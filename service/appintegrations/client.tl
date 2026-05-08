@@ -8,62 +8,65 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("appintegrations.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("appintegrations.schemas")
 local traits = require("smithy.traits")
 local types = require("appintegrations.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createApplication: function(Client, types.CreateApplicationInput, any): async.Operation<types.CreateApplicationOutput>
-    createDataIntegration: function(Client, types.CreateDataIntegrationInput, any): async.Operation<types.CreateDataIntegrationOutput>
-    createDataIntegrationAssociation: function(Client, types.CreateDataIntegrationAssociationInput, any): async.Operation<types.CreateDataIntegrationAssociationOutput>
-    createEventIntegration: function(Client, types.CreateEventIntegrationInput, any): async.Operation<types.CreateEventIntegrationOutput>
-    deleteApplication: function(Client, types.DeleteApplicationInput, any): async.Operation<types.DeleteApplicationOutput>
-    deleteDataIntegration: function(Client, types.DeleteDataIntegrationInput, any): async.Operation<types.DeleteDataIntegrationOutput>
-    deleteEventIntegration: function(Client, types.DeleteEventIntegrationInput, any): async.Operation<types.DeleteEventIntegrationOutput>
-    getApplication: function(Client, types.GetApplicationInput, any): async.Operation<types.GetApplicationOutput>
-    getDataIntegration: function(Client, types.GetDataIntegrationInput, any): async.Operation<types.GetDataIntegrationOutput>
-    getEventIntegration: function(Client, types.GetEventIntegrationInput, any): async.Operation<types.GetEventIntegrationOutput>
-    listApplicationAssociations: function(Client, types.ListApplicationAssociationsInput, any): async.Operation<types.ListApplicationAssociationsOutput>
-    listApplications: function(Client, types.ListApplicationsInput, any): async.Operation<types.ListApplicationsOutput>
-    listDataIntegrationAssociations: function(Client, types.ListDataIntegrationAssociationsInput, any): async.Operation<types.ListDataIntegrationAssociationsOutput>
-    listDataIntegrations: function(Client, types.ListDataIntegrationsInput, any): async.Operation<types.ListDataIntegrationsOutput>
-    listEventIntegrationAssociations: function(Client, types.ListEventIntegrationAssociationsInput, any): async.Operation<types.ListEventIntegrationAssociationsOutput>
-    listEventIntegrations: function(Client, types.ListEventIntegrationsInput, any): async.Operation<types.ListEventIntegrationsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateApplication: function(Client, types.UpdateApplicationInput, any): async.Operation<types.UpdateApplicationOutput>
-    updateDataIntegration: function(Client, types.UpdateDataIntegrationInput, any): async.Operation<types.UpdateDataIntegrationOutput>
-    updateDataIntegrationAssociation: function(Client, types.UpdateDataIntegrationAssociationInput, any): async.Operation<types.UpdateDataIntegrationAssociationOutput>
-    updateEventIntegration: function(Client, types.UpdateEventIntegrationInput, any): async.Operation<types.UpdateEventIntegrationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createApplication: function(Client, types.CreateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    createDataIntegration: function(Client, types.CreateDataIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataIntegrationOutput>
+    createDataIntegrationAssociation: function(Client, types.CreateDataIntegrationAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataIntegrationAssociationOutput>
+    createEventIntegration: function(Client, types.CreateEventIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.CreateEventIntegrationOutput>
+    deleteApplication: function(Client, types.DeleteApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
+    deleteDataIntegration: function(Client, types.DeleteDataIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataIntegrationOutput>
+    deleteEventIntegration: function(Client, types.DeleteEventIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEventIntegrationOutput>
+    getApplication: function(Client, types.GetApplicationInput, ? base_client.InvokeOptions): async.Operation<types.GetApplicationOutput>
+    getDataIntegration: function(Client, types.GetDataIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.GetDataIntegrationOutput>
+    getEventIntegration: function(Client, types.GetEventIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.GetEventIntegrationOutput>
+    listApplicationAssociations: function(Client, types.ListApplicationAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationAssociationsOutput>
+    listApplications: function(Client, types.ListApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    listDataIntegrationAssociations: function(Client, types.ListDataIntegrationAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataIntegrationAssociationsOutput>
+    listDataIntegrations: function(Client, types.ListDataIntegrationsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataIntegrationsOutput>
+    listEventIntegrationAssociations: function(Client, types.ListEventIntegrationAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListEventIntegrationAssociationsOutput>
+    listEventIntegrations: function(Client, types.ListEventIntegrationsInput, ? base_client.InvokeOptions): async.Operation<types.ListEventIntegrationsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateApplication: function(Client, types.UpdateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
+    updateDataIntegration: function(Client, types.UpdateDataIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataIntegrationOutput>
+    updateDataIntegrationAssociation: function(Client, types.UpdateDataIntegrationAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataIntegrationAssociationOutput>
+    updateEventIntegration: function(Client, types.UpdateEventIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEventIntegrationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonAppIntegrationService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "app-integrations", signing_region = c.region } }
                 else
@@ -82,96 +85,96 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createApplication(input: types.CreateApplicationInput, options: any): async.Operation<types.CreateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateApplication, input, options) as async.Operation<types.CreateApplicationOutput>
+function C:createApplication(input: types.CreateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApplication as schema.OperationSchema, input, options) as async.Operation<types.CreateApplicationOutput>
 end
 
-function C:createDataIntegration(input: types.CreateDataIntegrationInput, options: any): async.Operation<types.CreateDataIntegrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataIntegration, input, options) as async.Operation<types.CreateDataIntegrationOutput>
+function C:createDataIntegration(input: types.CreateDataIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataIntegrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataIntegration as schema.OperationSchema, input, options) as async.Operation<types.CreateDataIntegrationOutput>
 end
 
-function C:createDataIntegrationAssociation(input: types.CreateDataIntegrationAssociationInput, options: any): async.Operation<types.CreateDataIntegrationAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataIntegrationAssociation, input, options) as async.Operation<types.CreateDataIntegrationAssociationOutput>
+function C:createDataIntegrationAssociation(input: types.CreateDataIntegrationAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataIntegrationAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataIntegrationAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreateDataIntegrationAssociationOutput>
 end
 
-function C:createEventIntegration(input: types.CreateEventIntegrationInput, options: any): async.Operation<types.CreateEventIntegrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEventIntegration, input, options) as async.Operation<types.CreateEventIntegrationOutput>
+function C:createEventIntegration(input: types.CreateEventIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEventIntegrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEventIntegration as schema.OperationSchema, input, options) as async.Operation<types.CreateEventIntegrationOutput>
 end
 
-function C:deleteApplication(input: types.DeleteApplicationInput, options: any): async.Operation<types.DeleteApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApplication, input, options) as async.Operation<types.DeleteApplicationOutput>
+function C:deleteApplication(input: types.DeleteApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplication as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationOutput>
 end
 
-function C:deleteDataIntegration(input: types.DeleteDataIntegrationInput, options: any): async.Operation<types.DeleteDataIntegrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDataIntegration, input, options) as async.Operation<types.DeleteDataIntegrationOutput>
+function C:deleteDataIntegration(input: types.DeleteDataIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDataIntegrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataIntegration as schema.OperationSchema, input, options) as async.Operation<types.DeleteDataIntegrationOutput>
 end
 
-function C:deleteEventIntegration(input: types.DeleteEventIntegrationInput, options: any): async.Operation<types.DeleteEventIntegrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEventIntegration, input, options) as async.Operation<types.DeleteEventIntegrationOutput>
+function C:deleteEventIntegration(input: types.DeleteEventIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEventIntegrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEventIntegration as schema.OperationSchema, input, options) as async.Operation<types.DeleteEventIntegrationOutput>
 end
 
-function C:getApplication(input: types.GetApplicationInput, options: any): async.Operation<types.GetApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetApplication, input, options) as async.Operation<types.GetApplicationOutput>
+function C:getApplication(input: types.GetApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.GetApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetApplication as schema.OperationSchema, input, options) as async.Operation<types.GetApplicationOutput>
 end
 
-function C:getDataIntegration(input: types.GetDataIntegrationInput, options: any): async.Operation<types.GetDataIntegrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataIntegration, input, options) as async.Operation<types.GetDataIntegrationOutput>
+function C:getDataIntegration(input: types.GetDataIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataIntegrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataIntegration as schema.OperationSchema, input, options) as async.Operation<types.GetDataIntegrationOutput>
 end
 
-function C:getEventIntegration(input: types.GetEventIntegrationInput, options: any): async.Operation<types.GetEventIntegrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEventIntegration, input, options) as async.Operation<types.GetEventIntegrationOutput>
+function C:getEventIntegration(input: types.GetEventIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.GetEventIntegrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEventIntegration as schema.OperationSchema, input, options) as async.Operation<types.GetEventIntegrationOutput>
 end
 
-function C:listApplicationAssociations(input: types.ListApplicationAssociationsInput, options: any): async.Operation<types.ListApplicationAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplicationAssociations, input, options) as async.Operation<types.ListApplicationAssociationsOutput>
+function C:listApplicationAssociations(input: types.ListApplicationAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplicationAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationAssociationsOutput>
 end
 
-function C:listApplications(input: types.ListApplicationsInput, options: any): async.Operation<types.ListApplicationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplications, input, options) as async.Operation<types.ListApplicationsOutput>
+function C:listApplications(input: types.ListApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplications as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationsOutput>
 end
 
-function C:listDataIntegrationAssociations(input: types.ListDataIntegrationAssociationsInput, options: any): async.Operation<types.ListDataIntegrationAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDataIntegrationAssociations, input, options) as async.Operation<types.ListDataIntegrationAssociationsOutput>
+function C:listDataIntegrationAssociations(input: types.ListDataIntegrationAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataIntegrationAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataIntegrationAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListDataIntegrationAssociationsOutput>
 end
 
-function C:listDataIntegrations(input: types.ListDataIntegrationsInput, options: any): async.Operation<types.ListDataIntegrationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDataIntegrations, input, options) as async.Operation<types.ListDataIntegrationsOutput>
+function C:listDataIntegrations(input: types.ListDataIntegrationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataIntegrationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataIntegrations as schema.OperationSchema, input, options) as async.Operation<types.ListDataIntegrationsOutput>
 end
 
-function C:listEventIntegrationAssociations(input: types.ListEventIntegrationAssociationsInput, options: any): async.Operation<types.ListEventIntegrationAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEventIntegrationAssociations, input, options) as async.Operation<types.ListEventIntegrationAssociationsOutput>
+function C:listEventIntegrationAssociations(input: types.ListEventIntegrationAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEventIntegrationAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEventIntegrationAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListEventIntegrationAssociationsOutput>
 end
 
-function C:listEventIntegrations(input: types.ListEventIntegrationsInput, options: any): async.Operation<types.ListEventIntegrationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEventIntegrations, input, options) as async.Operation<types.ListEventIntegrationsOutput>
+function C:listEventIntegrations(input: types.ListEventIntegrationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEventIntegrationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEventIntegrations as schema.OperationSchema, input, options) as async.Operation<types.ListEventIntegrationsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateApplication(input: types.UpdateApplicationInput, options: any): async.Operation<types.UpdateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateApplication, input, options) as async.Operation<types.UpdateApplicationOutput>
+function C:updateApplication(input: types.UpdateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApplication as schema.OperationSchema, input, options) as async.Operation<types.UpdateApplicationOutput>
 end
 
-function C:updateDataIntegration(input: types.UpdateDataIntegrationInput, options: any): async.Operation<types.UpdateDataIntegrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDataIntegration, input, options) as async.Operation<types.UpdateDataIntegrationOutput>
+function C:updateDataIntegration(input: types.UpdateDataIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDataIntegrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDataIntegration as schema.OperationSchema, input, options) as async.Operation<types.UpdateDataIntegrationOutput>
 end
 
-function C:updateDataIntegrationAssociation(input: types.UpdateDataIntegrationAssociationInput, options: any): async.Operation<types.UpdateDataIntegrationAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDataIntegrationAssociation, input, options) as async.Operation<types.UpdateDataIntegrationAssociationOutput>
+function C:updateDataIntegrationAssociation(input: types.UpdateDataIntegrationAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDataIntegrationAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDataIntegrationAssociation as schema.OperationSchema, input, options) as async.Operation<types.UpdateDataIntegrationAssociationOutput>
 end
 
-function C:updateEventIntegration(input: types.UpdateEventIntegrationInput, options: any): async.Operation<types.UpdateEventIntegrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEventIntegration, input, options) as async.Operation<types.UpdateEventIntegrationOutput>
+function C:updateEventIntegration(input: types.UpdateEventIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEventIntegrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEventIntegration as schema.OperationSchema, input, options) as async.Operation<types.UpdateEventIntegrationOutput>
 end
 
 return M

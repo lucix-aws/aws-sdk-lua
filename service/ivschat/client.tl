@@ -8,56 +8,59 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("ivschat.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("ivschat.schemas")
 local traits = require("smithy.traits")
 local types = require("ivschat.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createChatToken: function(Client, types.CreateChatTokenInput, any): async.Operation<types.CreateChatTokenOutput>
-    createLoggingConfiguration: function(Client, types.CreateLoggingConfigurationInput, any): async.Operation<types.CreateLoggingConfigurationOutput>
-    createRoom: function(Client, types.CreateRoomInput, any): async.Operation<types.CreateRoomOutput>
-    deleteLoggingConfiguration: function(Client, types.DeleteLoggingConfigurationInput, any): async.Operation<types.DeleteLoggingConfigurationOutput>
-    deleteMessage: function(Client, types.DeleteMessageInput, any): async.Operation<types.DeleteMessageOutput>
-    deleteRoom: function(Client, types.DeleteRoomInput, any): async.Operation<types.DeleteRoomOutput>
-    disconnectUser: function(Client, types.DisconnectUserInput, any): async.Operation<types.DisconnectUserOutput>
-    getLoggingConfiguration: function(Client, types.GetLoggingConfigurationInput, any): async.Operation<types.GetLoggingConfigurationOutput>
-    getRoom: function(Client, types.GetRoomInput, any): async.Operation<types.GetRoomOutput>
-    listLoggingConfigurations: function(Client, types.ListLoggingConfigurationsInput, any): async.Operation<types.ListLoggingConfigurationsOutput>
-    listRooms: function(Client, types.ListRoomsInput, any): async.Operation<types.ListRoomsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    sendEvent: function(Client, types.SendEventInput, any): async.Operation<types.SendEventOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateLoggingConfiguration: function(Client, types.UpdateLoggingConfigurationInput, any): async.Operation<types.UpdateLoggingConfigurationOutput>
-    updateRoom: function(Client, types.UpdateRoomInput, any): async.Operation<types.UpdateRoomOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createChatToken: function(Client, types.CreateChatTokenInput, ? base_client.InvokeOptions): async.Operation<types.CreateChatTokenOutput>
+    createLoggingConfiguration: function(Client, types.CreateLoggingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateLoggingConfigurationOutput>
+    createRoom: function(Client, types.CreateRoomInput, ? base_client.InvokeOptions): async.Operation<types.CreateRoomOutput>
+    deleteLoggingConfiguration: function(Client, types.DeleteLoggingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLoggingConfigurationOutput>
+    deleteMessage: function(Client, types.DeleteMessageInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMessageOutput>
+    deleteRoom: function(Client, types.DeleteRoomInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRoomOutput>
+    disconnectUser: function(Client, types.DisconnectUserInput, ? base_client.InvokeOptions): async.Operation<types.DisconnectUserOutput>
+    getLoggingConfiguration: function(Client, types.GetLoggingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetLoggingConfigurationOutput>
+    getRoom: function(Client, types.GetRoomInput, ? base_client.InvokeOptions): async.Operation<types.GetRoomOutput>
+    listLoggingConfigurations: function(Client, types.ListLoggingConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListLoggingConfigurationsOutput>
+    listRooms: function(Client, types.ListRoomsInput, ? base_client.InvokeOptions): async.Operation<types.ListRoomsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    sendEvent: function(Client, types.SendEventInput, ? base_client.InvokeOptions): async.Operation<types.SendEventOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateLoggingConfiguration: function(Client, types.UpdateLoggingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLoggingConfigurationOutput>
+    updateRoom: function(Client, types.UpdateRoomInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRoomOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonInteractiveVideoServiceChat"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ivschat", signing_region = c.region } }
                 else
@@ -76,72 +79,72 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createChatToken(input: types.CreateChatTokenInput, options: any): async.Operation<types.CreateChatTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateChatToken, input, options) as async.Operation<types.CreateChatTokenOutput>
+function C:createChatToken(input: types.CreateChatTokenInput, options?: base_client.InvokeOptions): async.Operation<types.CreateChatTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateChatToken as schema.OperationSchema, input, options) as async.Operation<types.CreateChatTokenOutput>
 end
 
-function C:createLoggingConfiguration(input: types.CreateLoggingConfigurationInput, options: any): async.Operation<types.CreateLoggingConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLoggingConfiguration, input, options) as async.Operation<types.CreateLoggingConfigurationOutput>
+function C:createLoggingConfiguration(input: types.CreateLoggingConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLoggingConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLoggingConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateLoggingConfigurationOutput>
 end
 
-function C:createRoom(input: types.CreateRoomInput, options: any): async.Operation<types.CreateRoomOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRoom, input, options) as async.Operation<types.CreateRoomOutput>
+function C:createRoom(input: types.CreateRoomInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRoomOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRoom as schema.OperationSchema, input, options) as async.Operation<types.CreateRoomOutput>
 end
 
-function C:deleteLoggingConfiguration(input: types.DeleteLoggingConfigurationInput, options: any): async.Operation<types.DeleteLoggingConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLoggingConfiguration, input, options) as async.Operation<types.DeleteLoggingConfigurationOutput>
+function C:deleteLoggingConfiguration(input: types.DeleteLoggingConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLoggingConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLoggingConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteLoggingConfigurationOutput>
 end
 
-function C:deleteMessage(input: types.DeleteMessageInput, options: any): async.Operation<types.DeleteMessageOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMessage, input, options) as async.Operation<types.DeleteMessageOutput>
+function C:deleteMessage(input: types.DeleteMessageInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMessageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMessage as schema.OperationSchema, input, options) as async.Operation<types.DeleteMessageOutput>
 end
 
-function C:deleteRoom(input: types.DeleteRoomInput, options: any): async.Operation<types.DeleteRoomOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRoom, input, options) as async.Operation<types.DeleteRoomOutput>
+function C:deleteRoom(input: types.DeleteRoomInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRoomOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRoom as schema.OperationSchema, input, options) as async.Operation<types.DeleteRoomOutput>
 end
 
-function C:disconnectUser(input: types.DisconnectUserInput, options: any): async.Operation<types.DisconnectUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisconnectUser, input, options) as async.Operation<types.DisconnectUserOutput>
+function C:disconnectUser(input: types.DisconnectUserInput, options?: base_client.InvokeOptions): async.Operation<types.DisconnectUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisconnectUser as schema.OperationSchema, input, options) as async.Operation<types.DisconnectUserOutput>
 end
 
-function C:getLoggingConfiguration(input: types.GetLoggingConfigurationInput, options: any): async.Operation<types.GetLoggingConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLoggingConfiguration, input, options) as async.Operation<types.GetLoggingConfigurationOutput>
+function C:getLoggingConfiguration(input: types.GetLoggingConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetLoggingConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLoggingConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetLoggingConfigurationOutput>
 end
 
-function C:getRoom(input: types.GetRoomInput, options: any): async.Operation<types.GetRoomOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRoom, input, options) as async.Operation<types.GetRoomOutput>
+function C:getRoom(input: types.GetRoomInput, options?: base_client.InvokeOptions): async.Operation<types.GetRoomOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRoom as schema.OperationSchema, input, options) as async.Operation<types.GetRoomOutput>
 end
 
-function C:listLoggingConfigurations(input: types.ListLoggingConfigurationsInput, options: any): async.Operation<types.ListLoggingConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLoggingConfigurations, input, options) as async.Operation<types.ListLoggingConfigurationsOutput>
+function C:listLoggingConfigurations(input: types.ListLoggingConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLoggingConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLoggingConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListLoggingConfigurationsOutput>
 end
 
-function C:listRooms(input: types.ListRoomsInput, options: any): async.Operation<types.ListRoomsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRooms, input, options) as async.Operation<types.ListRoomsOutput>
+function C:listRooms(input: types.ListRoomsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRoomsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRooms as schema.OperationSchema, input, options) as async.Operation<types.ListRoomsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:sendEvent(input: types.SendEventInput, options: any): async.Operation<types.SendEventOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendEvent, input, options) as async.Operation<types.SendEventOutput>
+function C:sendEvent(input: types.SendEventInput, options?: base_client.InvokeOptions): async.Operation<types.SendEventOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendEvent as schema.OperationSchema, input, options) as async.Operation<types.SendEventOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateLoggingConfiguration(input: types.UpdateLoggingConfigurationInput, options: any): async.Operation<types.UpdateLoggingConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLoggingConfiguration, input, options) as async.Operation<types.UpdateLoggingConfigurationOutput>
+function C:updateLoggingConfiguration(input: types.UpdateLoggingConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLoggingConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLoggingConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateLoggingConfigurationOutput>
 end
 
-function C:updateRoom(input: types.UpdateRoomInput, options: any): async.Operation<types.UpdateRoomOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRoom, input, options) as async.Operation<types.UpdateRoomOutput>
+function C:updateRoom(input: types.UpdateRoomInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRoomOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRoom as schema.OperationSchema, input, options) as async.Operation<types.UpdateRoomOutput>
 end
 
 return M

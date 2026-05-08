@@ -8,64 +8,67 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("backupgateway.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("backupgateway.schemas")
 local traits = require("smithy.traits")
 local types = require("backupgateway.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateGatewayToServer: function(Client, types.AssociateGatewayToServerInput, any): async.Operation<types.AssociateGatewayToServerOutput>
-    createGateway: function(Client, types.CreateGatewayInput, any): async.Operation<types.CreateGatewayOutput>
-    deleteGateway: function(Client, types.DeleteGatewayInput, any): async.Operation<types.DeleteGatewayOutput>
-    deleteHypervisor: function(Client, types.DeleteHypervisorInput, any): async.Operation<types.DeleteHypervisorOutput>
-    disassociateGatewayFromServer: function(Client, types.DisassociateGatewayFromServerInput, any): async.Operation<types.DisassociateGatewayFromServerOutput>
-    getBandwidthRateLimitSchedule: function(Client, types.GetBandwidthRateLimitScheduleInput, any): async.Operation<types.GetBandwidthRateLimitScheduleOutput>
-    getGateway: function(Client, types.GetGatewayInput, any): async.Operation<types.GetGatewayOutput>
-    getHypervisor: function(Client, types.GetHypervisorInput, any): async.Operation<types.GetHypervisorOutput>
-    getHypervisorPropertyMappings: function(Client, types.GetHypervisorPropertyMappingsInput, any): async.Operation<types.GetHypervisorPropertyMappingsOutput>
-    getVirtualMachine: function(Client, types.GetVirtualMachineInput, any): async.Operation<types.GetVirtualMachineOutput>
-    importHypervisorConfiguration: function(Client, types.ImportHypervisorConfigurationInput, any): async.Operation<types.ImportHypervisorConfigurationOutput>
-    listGateways: function(Client, types.ListGatewaysInput, any): async.Operation<types.ListGatewaysOutput>
-    listHypervisors: function(Client, types.ListHypervisorsInput, any): async.Operation<types.ListHypervisorsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listVirtualMachines: function(Client, types.ListVirtualMachinesInput, any): async.Operation<types.ListVirtualMachinesOutput>
-    putBandwidthRateLimitSchedule: function(Client, types.PutBandwidthRateLimitScheduleInput, any): async.Operation<types.PutBandwidthRateLimitScheduleOutput>
-    putHypervisorPropertyMappings: function(Client, types.PutHypervisorPropertyMappingsInput, any): async.Operation<types.PutHypervisorPropertyMappingsOutput>
-    putMaintenanceStartTime: function(Client, types.PutMaintenanceStartTimeInput, any): async.Operation<types.PutMaintenanceStartTimeOutput>
-    startVirtualMachinesMetadataSync: function(Client, types.StartVirtualMachinesMetadataSyncInput, any): async.Operation<types.StartVirtualMachinesMetadataSyncOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    testHypervisorConfiguration: function(Client, types.TestHypervisorConfigurationInput, any): async.Operation<types.TestHypervisorConfigurationOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateGatewayInformation: function(Client, types.UpdateGatewayInformationInput, any): async.Operation<types.UpdateGatewayInformationOutput>
-    updateGatewaySoftwareNow: function(Client, types.UpdateGatewaySoftwareNowInput, any): async.Operation<types.UpdateGatewaySoftwareNowOutput>
-    updateHypervisor: function(Client, types.UpdateHypervisorInput, any): async.Operation<types.UpdateHypervisorOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateGatewayToServer: function(Client, types.AssociateGatewayToServerInput, ? base_client.InvokeOptions): async.Operation<types.AssociateGatewayToServerOutput>
+    createGateway: function(Client, types.CreateGatewayInput, ? base_client.InvokeOptions): async.Operation<types.CreateGatewayOutput>
+    deleteGateway: function(Client, types.DeleteGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGatewayOutput>
+    deleteHypervisor: function(Client, types.DeleteHypervisorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteHypervisorOutput>
+    disassociateGatewayFromServer: function(Client, types.DisassociateGatewayFromServerInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateGatewayFromServerOutput>
+    getBandwidthRateLimitSchedule: function(Client, types.GetBandwidthRateLimitScheduleInput, ? base_client.InvokeOptions): async.Operation<types.GetBandwidthRateLimitScheduleOutput>
+    getGateway: function(Client, types.GetGatewayInput, ? base_client.InvokeOptions): async.Operation<types.GetGatewayOutput>
+    getHypervisor: function(Client, types.GetHypervisorInput, ? base_client.InvokeOptions): async.Operation<types.GetHypervisorOutput>
+    getHypervisorPropertyMappings: function(Client, types.GetHypervisorPropertyMappingsInput, ? base_client.InvokeOptions): async.Operation<types.GetHypervisorPropertyMappingsOutput>
+    getVirtualMachine: function(Client, types.GetVirtualMachineInput, ? base_client.InvokeOptions): async.Operation<types.GetVirtualMachineOutput>
+    importHypervisorConfiguration: function(Client, types.ImportHypervisorConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.ImportHypervisorConfigurationOutput>
+    listGateways: function(Client, types.ListGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.ListGatewaysOutput>
+    listHypervisors: function(Client, types.ListHypervisorsInput, ? base_client.InvokeOptions): async.Operation<types.ListHypervisorsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listVirtualMachines: function(Client, types.ListVirtualMachinesInput, ? base_client.InvokeOptions): async.Operation<types.ListVirtualMachinesOutput>
+    putBandwidthRateLimitSchedule: function(Client, types.PutBandwidthRateLimitScheduleInput, ? base_client.InvokeOptions): async.Operation<types.PutBandwidthRateLimitScheduleOutput>
+    putHypervisorPropertyMappings: function(Client, types.PutHypervisorPropertyMappingsInput, ? base_client.InvokeOptions): async.Operation<types.PutHypervisorPropertyMappingsOutput>
+    putMaintenanceStartTime: function(Client, types.PutMaintenanceStartTimeInput, ? base_client.InvokeOptions): async.Operation<types.PutMaintenanceStartTimeOutput>
+    startVirtualMachinesMetadataSync: function(Client, types.StartVirtualMachinesMetadataSyncInput, ? base_client.InvokeOptions): async.Operation<types.StartVirtualMachinesMetadataSyncOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    testHypervisorConfiguration: function(Client, types.TestHypervisorConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.TestHypervisorConfigurationOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateGatewayInformation: function(Client, types.UpdateGatewayInformationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGatewayInformationOutput>
+    updateGatewaySoftwareNow: function(Client, types.UpdateGatewaySoftwareNowInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGatewaySoftwareNowOutput>
+    updateHypervisor: function(Client, types.UpdateHypervisorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateHypervisorOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "BackupOnPremises_v20210101"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "backup-gateway", signing_region = c.region } }
                 else
@@ -84,104 +87,104 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateGatewayToServer(input: types.AssociateGatewayToServerInput, options: any): async.Operation<types.AssociateGatewayToServerOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateGatewayToServer, input, options) as async.Operation<types.AssociateGatewayToServerOutput>
+function C:associateGatewayToServer(input: types.AssociateGatewayToServerInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateGatewayToServerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateGatewayToServer as schema.OperationSchema, input, options) as async.Operation<types.AssociateGatewayToServerOutput>
 end
 
-function C:createGateway(input: types.CreateGatewayInput, options: any): async.Operation<types.CreateGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateGateway, input, options) as async.Operation<types.CreateGatewayOutput>
+function C:createGateway(input: types.CreateGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGateway as schema.OperationSchema, input, options) as async.Operation<types.CreateGatewayOutput>
 end
 
-function C:deleteGateway(input: types.DeleteGatewayInput, options: any): async.Operation<types.DeleteGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteGateway, input, options) as async.Operation<types.DeleteGatewayOutput>
+function C:deleteGateway(input: types.DeleteGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGateway as schema.OperationSchema, input, options) as async.Operation<types.DeleteGatewayOutput>
 end
 
-function C:deleteHypervisor(input: types.DeleteHypervisorInput, options: any): async.Operation<types.DeleteHypervisorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteHypervisor, input, options) as async.Operation<types.DeleteHypervisorOutput>
+function C:deleteHypervisor(input: types.DeleteHypervisorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteHypervisorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteHypervisor as schema.OperationSchema, input, options) as async.Operation<types.DeleteHypervisorOutput>
 end
 
-function C:disassociateGatewayFromServer(input: types.DisassociateGatewayFromServerInput, options: any): async.Operation<types.DisassociateGatewayFromServerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateGatewayFromServer, input, options) as async.Operation<types.DisassociateGatewayFromServerOutput>
+function C:disassociateGatewayFromServer(input: types.DisassociateGatewayFromServerInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateGatewayFromServerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateGatewayFromServer as schema.OperationSchema, input, options) as async.Operation<types.DisassociateGatewayFromServerOutput>
 end
 
-function C:getBandwidthRateLimitSchedule(input: types.GetBandwidthRateLimitScheduleInput, options: any): async.Operation<types.GetBandwidthRateLimitScheduleOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBandwidthRateLimitSchedule, input, options) as async.Operation<types.GetBandwidthRateLimitScheduleOutput>
+function C:getBandwidthRateLimitSchedule(input: types.GetBandwidthRateLimitScheduleInput, options?: base_client.InvokeOptions): async.Operation<types.GetBandwidthRateLimitScheduleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBandwidthRateLimitSchedule as schema.OperationSchema, input, options) as async.Operation<types.GetBandwidthRateLimitScheduleOutput>
 end
 
-function C:getGateway(input: types.GetGatewayInput, options: any): async.Operation<types.GetGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetGateway, input, options) as async.Operation<types.GetGatewayOutput>
+function C:getGateway(input: types.GetGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.GetGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGateway as schema.OperationSchema, input, options) as async.Operation<types.GetGatewayOutput>
 end
 
-function C:getHypervisor(input: types.GetHypervisorInput, options: any): async.Operation<types.GetHypervisorOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetHypervisor, input, options) as async.Operation<types.GetHypervisorOutput>
+function C:getHypervisor(input: types.GetHypervisorInput, options?: base_client.InvokeOptions): async.Operation<types.GetHypervisorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetHypervisor as schema.OperationSchema, input, options) as async.Operation<types.GetHypervisorOutput>
 end
 
-function C:getHypervisorPropertyMappings(input: types.GetHypervisorPropertyMappingsInput, options: any): async.Operation<types.GetHypervisorPropertyMappingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetHypervisorPropertyMappings, input, options) as async.Operation<types.GetHypervisorPropertyMappingsOutput>
+function C:getHypervisorPropertyMappings(input: types.GetHypervisorPropertyMappingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetHypervisorPropertyMappingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetHypervisorPropertyMappings as schema.OperationSchema, input, options) as async.Operation<types.GetHypervisorPropertyMappingsOutput>
 end
 
-function C:getVirtualMachine(input: types.GetVirtualMachineInput, options: any): async.Operation<types.GetVirtualMachineOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetVirtualMachine, input, options) as async.Operation<types.GetVirtualMachineOutput>
+function C:getVirtualMachine(input: types.GetVirtualMachineInput, options?: base_client.InvokeOptions): async.Operation<types.GetVirtualMachineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVirtualMachine as schema.OperationSchema, input, options) as async.Operation<types.GetVirtualMachineOutput>
 end
 
-function C:importHypervisorConfiguration(input: types.ImportHypervisorConfigurationInput, options: any): async.Operation<types.ImportHypervisorConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportHypervisorConfiguration, input, options) as async.Operation<types.ImportHypervisorConfigurationOutput>
+function C:importHypervisorConfiguration(input: types.ImportHypervisorConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.ImportHypervisorConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportHypervisorConfiguration as schema.OperationSchema, input, options) as async.Operation<types.ImportHypervisorConfigurationOutput>
 end
 
-function C:listGateways(input: types.ListGatewaysInput, options: any): async.Operation<types.ListGatewaysOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGateways, input, options) as async.Operation<types.ListGatewaysOutput>
+function C:listGateways(input: types.ListGatewaysInput, options?: base_client.InvokeOptions): async.Operation<types.ListGatewaysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGateways as schema.OperationSchema, input, options) as async.Operation<types.ListGatewaysOutput>
 end
 
-function C:listHypervisors(input: types.ListHypervisorsInput, options: any): async.Operation<types.ListHypervisorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListHypervisors, input, options) as async.Operation<types.ListHypervisorsOutput>
+function C:listHypervisors(input: types.ListHypervisorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListHypervisorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListHypervisors as schema.OperationSchema, input, options) as async.Operation<types.ListHypervisorsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listVirtualMachines(input: types.ListVirtualMachinesInput, options: any): async.Operation<types.ListVirtualMachinesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVirtualMachines, input, options) as async.Operation<types.ListVirtualMachinesOutput>
+function C:listVirtualMachines(input: types.ListVirtualMachinesInput, options?: base_client.InvokeOptions): async.Operation<types.ListVirtualMachinesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVirtualMachines as schema.OperationSchema, input, options) as async.Operation<types.ListVirtualMachinesOutput>
 end
 
-function C:putBandwidthRateLimitSchedule(input: types.PutBandwidthRateLimitScheduleInput, options: any): async.Operation<types.PutBandwidthRateLimitScheduleOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutBandwidthRateLimitSchedule, input, options) as async.Operation<types.PutBandwidthRateLimitScheduleOutput>
+function C:putBandwidthRateLimitSchedule(input: types.PutBandwidthRateLimitScheduleInput, options?: base_client.InvokeOptions): async.Operation<types.PutBandwidthRateLimitScheduleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutBandwidthRateLimitSchedule as schema.OperationSchema, input, options) as async.Operation<types.PutBandwidthRateLimitScheduleOutput>
 end
 
-function C:putHypervisorPropertyMappings(input: types.PutHypervisorPropertyMappingsInput, options: any): async.Operation<types.PutHypervisorPropertyMappingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutHypervisorPropertyMappings, input, options) as async.Operation<types.PutHypervisorPropertyMappingsOutput>
+function C:putHypervisorPropertyMappings(input: types.PutHypervisorPropertyMappingsInput, options?: base_client.InvokeOptions): async.Operation<types.PutHypervisorPropertyMappingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutHypervisorPropertyMappings as schema.OperationSchema, input, options) as async.Operation<types.PutHypervisorPropertyMappingsOutput>
 end
 
-function C:putMaintenanceStartTime(input: types.PutMaintenanceStartTimeInput, options: any): async.Operation<types.PutMaintenanceStartTimeOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutMaintenanceStartTime, input, options) as async.Operation<types.PutMaintenanceStartTimeOutput>
+function C:putMaintenanceStartTime(input: types.PutMaintenanceStartTimeInput, options?: base_client.InvokeOptions): async.Operation<types.PutMaintenanceStartTimeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutMaintenanceStartTime as schema.OperationSchema, input, options) as async.Operation<types.PutMaintenanceStartTimeOutput>
 end
 
-function C:startVirtualMachinesMetadataSync(input: types.StartVirtualMachinesMetadataSyncInput, options: any): async.Operation<types.StartVirtualMachinesMetadataSyncOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartVirtualMachinesMetadataSync, input, options) as async.Operation<types.StartVirtualMachinesMetadataSyncOutput>
+function C:startVirtualMachinesMetadataSync(input: types.StartVirtualMachinesMetadataSyncInput, options?: base_client.InvokeOptions): async.Operation<types.StartVirtualMachinesMetadataSyncOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartVirtualMachinesMetadataSync as schema.OperationSchema, input, options) as async.Operation<types.StartVirtualMachinesMetadataSyncOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:testHypervisorConfiguration(input: types.TestHypervisorConfigurationInput, options: any): async.Operation<types.TestHypervisorConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.TestHypervisorConfiguration, input, options) as async.Operation<types.TestHypervisorConfigurationOutput>
+function C:testHypervisorConfiguration(input: types.TestHypervisorConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.TestHypervisorConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TestHypervisorConfiguration as schema.OperationSchema, input, options) as async.Operation<types.TestHypervisorConfigurationOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateGatewayInformation(input: types.UpdateGatewayInformationInput, options: any): async.Operation<types.UpdateGatewayInformationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateGatewayInformation, input, options) as async.Operation<types.UpdateGatewayInformationOutput>
+function C:updateGatewayInformation(input: types.UpdateGatewayInformationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGatewayInformationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGatewayInformation as schema.OperationSchema, input, options) as async.Operation<types.UpdateGatewayInformationOutput>
 end
 
-function C:updateGatewaySoftwareNow(input: types.UpdateGatewaySoftwareNowInput, options: any): async.Operation<types.UpdateGatewaySoftwareNowOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateGatewaySoftwareNow, input, options) as async.Operation<types.UpdateGatewaySoftwareNowOutput>
+function C:updateGatewaySoftwareNow(input: types.UpdateGatewaySoftwareNowInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGatewaySoftwareNowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGatewaySoftwareNow as schema.OperationSchema, input, options) as async.Operation<types.UpdateGatewaySoftwareNowOutput>
 end
 
-function C:updateHypervisor(input: types.UpdateHypervisorInput, options: any): async.Operation<types.UpdateHypervisorOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateHypervisor, input, options) as async.Operation<types.UpdateHypervisorOutput>
+function C:updateHypervisor(input: types.UpdateHypervisorInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateHypervisorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateHypervisor as schema.OperationSchema, input, options) as async.Operation<types.UpdateHypervisorOutput>
 end
 
 return M

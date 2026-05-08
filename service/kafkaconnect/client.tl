@@ -8,57 +8,60 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("kafkaconnect.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("kafkaconnect.schemas")
 local traits = require("smithy.traits")
 local types = require("kafkaconnect.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createConnector: function(Client, types.CreateConnectorInput, any): async.Operation<types.CreateConnectorOutput>
-    createCustomPlugin: function(Client, types.CreateCustomPluginInput, any): async.Operation<types.CreateCustomPluginOutput>
-    createWorkerConfiguration: function(Client, types.CreateWorkerConfigurationInput, any): async.Operation<types.CreateWorkerConfigurationOutput>
-    deleteConnector: function(Client, types.DeleteConnectorInput, any): async.Operation<types.DeleteConnectorOutput>
-    deleteCustomPlugin: function(Client, types.DeleteCustomPluginInput, any): async.Operation<types.DeleteCustomPluginOutput>
-    deleteWorkerConfiguration: function(Client, types.DeleteWorkerConfigurationInput, any): async.Operation<types.DeleteWorkerConfigurationOutput>
-    describeConnector: function(Client, types.DescribeConnectorInput, any): async.Operation<types.DescribeConnectorOutput>
-    describeConnectorOperation: function(Client, types.DescribeConnectorOperationInput, any): async.Operation<types.DescribeConnectorOperationOutput>
-    describeCustomPlugin: function(Client, types.DescribeCustomPluginInput, any): async.Operation<types.DescribeCustomPluginOutput>
-    describeWorkerConfiguration: function(Client, types.DescribeWorkerConfigurationInput, any): async.Operation<types.DescribeWorkerConfigurationOutput>
-    listConnectorOperations: function(Client, types.ListConnectorOperationsInput, any): async.Operation<types.ListConnectorOperationsOutput>
-    listConnectors: function(Client, types.ListConnectorsInput, any): async.Operation<types.ListConnectorsOutput>
-    listCustomPlugins: function(Client, types.ListCustomPluginsInput, any): async.Operation<types.ListCustomPluginsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listWorkerConfigurations: function(Client, types.ListWorkerConfigurationsInput, any): async.Operation<types.ListWorkerConfigurationsOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateConnector: function(Client, types.UpdateConnectorInput, any): async.Operation<types.UpdateConnectorOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createConnector: function(Client, types.CreateConnectorInput, ? base_client.InvokeOptions): async.Operation<types.CreateConnectorOutput>
+    createCustomPlugin: function(Client, types.CreateCustomPluginInput, ? base_client.InvokeOptions): async.Operation<types.CreateCustomPluginOutput>
+    createWorkerConfiguration: function(Client, types.CreateWorkerConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkerConfigurationOutput>
+    deleteConnector: function(Client, types.DeleteConnectorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConnectorOutput>
+    deleteCustomPlugin: function(Client, types.DeleteCustomPluginInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCustomPluginOutput>
+    deleteWorkerConfiguration: function(Client, types.DeleteWorkerConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWorkerConfigurationOutput>
+    describeConnector: function(Client, types.DescribeConnectorInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConnectorOutput>
+    describeConnectorOperation: function(Client, types.DescribeConnectorOperationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConnectorOperationOutput>
+    describeCustomPlugin: function(Client, types.DescribeCustomPluginInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCustomPluginOutput>
+    describeWorkerConfiguration: function(Client, types.DescribeWorkerConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeWorkerConfigurationOutput>
+    listConnectorOperations: function(Client, types.ListConnectorOperationsInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectorOperationsOutput>
+    listConnectors: function(Client, types.ListConnectorsInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectorsOutput>
+    listCustomPlugins: function(Client, types.ListCustomPluginsInput, ? base_client.InvokeOptions): async.Operation<types.ListCustomPluginsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listWorkerConfigurations: function(Client, types.ListWorkerConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkerConfigurationsOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateConnector: function(Client, types.UpdateConnectorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConnectorOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "KafkaConnect"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "kafkaconnect", signing_region = c.region } }
                 else
@@ -77,76 +80,76 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createConnector(input: types.CreateConnectorInput, options: any): async.Operation<types.CreateConnectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConnector, input, options) as async.Operation<types.CreateConnectorOutput>
+function C:createConnector(input: types.CreateConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConnector as schema.OperationSchema, input, options) as async.Operation<types.CreateConnectorOutput>
 end
 
-function C:createCustomPlugin(input: types.CreateCustomPluginInput, options: any): async.Operation<types.CreateCustomPluginOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCustomPlugin, input, options) as async.Operation<types.CreateCustomPluginOutput>
+function C:createCustomPlugin(input: types.CreateCustomPluginInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCustomPluginOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCustomPlugin as schema.OperationSchema, input, options) as async.Operation<types.CreateCustomPluginOutput>
 end
 
-function C:createWorkerConfiguration(input: types.CreateWorkerConfigurationInput, options: any): async.Operation<types.CreateWorkerConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWorkerConfiguration, input, options) as async.Operation<types.CreateWorkerConfigurationOutput>
+function C:createWorkerConfiguration(input: types.CreateWorkerConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWorkerConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWorkerConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateWorkerConfigurationOutput>
 end
 
-function C:deleteConnector(input: types.DeleteConnectorInput, options: any): async.Operation<types.DeleteConnectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConnector, input, options) as async.Operation<types.DeleteConnectorOutput>
+function C:deleteConnector(input: types.DeleteConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConnector as schema.OperationSchema, input, options) as async.Operation<types.DeleteConnectorOutput>
 end
 
-function C:deleteCustomPlugin(input: types.DeleteCustomPluginInput, options: any): async.Operation<types.DeleteCustomPluginOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCustomPlugin, input, options) as async.Operation<types.DeleteCustomPluginOutput>
+function C:deleteCustomPlugin(input: types.DeleteCustomPluginInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCustomPluginOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCustomPlugin as schema.OperationSchema, input, options) as async.Operation<types.DeleteCustomPluginOutput>
 end
 
-function C:deleteWorkerConfiguration(input: types.DeleteWorkerConfigurationInput, options: any): async.Operation<types.DeleteWorkerConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWorkerConfiguration, input, options) as async.Operation<types.DeleteWorkerConfigurationOutput>
+function C:deleteWorkerConfiguration(input: types.DeleteWorkerConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWorkerConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWorkerConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteWorkerConfigurationOutput>
 end
 
-function C:describeConnector(input: types.DescribeConnectorInput, options: any): async.Operation<types.DescribeConnectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeConnector, input, options) as async.Operation<types.DescribeConnectorOutput>
+function C:describeConnector(input: types.DescribeConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeConnector as schema.OperationSchema, input, options) as async.Operation<types.DescribeConnectorOutput>
 end
 
-function C:describeConnectorOperation(input: types.DescribeConnectorOperationInput, options: any): async.Operation<types.DescribeConnectorOperationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeConnectorOperation, input, options) as async.Operation<types.DescribeConnectorOperationOutput>
+function C:describeConnectorOperation(input: types.DescribeConnectorOperationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeConnectorOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeConnectorOperation as schema.OperationSchema, input, options) as async.Operation<types.DescribeConnectorOperationOutput>
 end
 
-function C:describeCustomPlugin(input: types.DescribeCustomPluginInput, options: any): async.Operation<types.DescribeCustomPluginOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCustomPlugin, input, options) as async.Operation<types.DescribeCustomPluginOutput>
+function C:describeCustomPlugin(input: types.DescribeCustomPluginInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCustomPluginOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCustomPlugin as schema.OperationSchema, input, options) as async.Operation<types.DescribeCustomPluginOutput>
 end
 
-function C:describeWorkerConfiguration(input: types.DescribeWorkerConfigurationInput, options: any): async.Operation<types.DescribeWorkerConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeWorkerConfiguration, input, options) as async.Operation<types.DescribeWorkerConfigurationOutput>
+function C:describeWorkerConfiguration(input: types.DescribeWorkerConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeWorkerConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeWorkerConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeWorkerConfigurationOutput>
 end
 
-function C:listConnectorOperations(input: types.ListConnectorOperationsInput, options: any): async.Operation<types.ListConnectorOperationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConnectorOperations, input, options) as async.Operation<types.ListConnectorOperationsOutput>
+function C:listConnectorOperations(input: types.ListConnectorOperationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConnectorOperationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConnectorOperations as schema.OperationSchema, input, options) as async.Operation<types.ListConnectorOperationsOutput>
 end
 
-function C:listConnectors(input: types.ListConnectorsInput, options: any): async.Operation<types.ListConnectorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConnectors, input, options) as async.Operation<types.ListConnectorsOutput>
+function C:listConnectors(input: types.ListConnectorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConnectorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConnectors as schema.OperationSchema, input, options) as async.Operation<types.ListConnectorsOutput>
 end
 
-function C:listCustomPlugins(input: types.ListCustomPluginsInput, options: any): async.Operation<types.ListCustomPluginsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCustomPlugins, input, options) as async.Operation<types.ListCustomPluginsOutput>
+function C:listCustomPlugins(input: types.ListCustomPluginsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCustomPluginsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCustomPlugins as schema.OperationSchema, input, options) as async.Operation<types.ListCustomPluginsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listWorkerConfigurations(input: types.ListWorkerConfigurationsInput, options: any): async.Operation<types.ListWorkerConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWorkerConfigurations, input, options) as async.Operation<types.ListWorkerConfigurationsOutput>
+function C:listWorkerConfigurations(input: types.ListWorkerConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkerConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkerConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListWorkerConfigurationsOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateConnector(input: types.UpdateConnectorInput, options: any): async.Operation<types.UpdateConnectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConnector, input, options) as async.Operation<types.UpdateConnectorOutput>
+function C:updateConnector(input: types.UpdateConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConnector as schema.OperationSchema, input, options) as async.Operation<types.UpdateConnectorOutput>
 end
 
 return M

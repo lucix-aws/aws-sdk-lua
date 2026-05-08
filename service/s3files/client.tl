@@ -8,60 +8,63 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("s3files.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("s3files.schemas")
 local traits = require("smithy.traits")
 local types = require("s3files.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createAccessPoint: function(Client, types.CreateAccessPointInput, any): async.Operation<types.CreateAccessPointOutput>
-    createFileSystem: function(Client, types.CreateFileSystemInput, any): async.Operation<types.CreateFileSystemOutput>
-    createMountTarget: function(Client, types.CreateMountTargetInput, any): async.Operation<types.CreateMountTargetOutput>
-    deleteAccessPoint: function(Client, types.DeleteAccessPointInput, any): async.Operation<types.DeleteAccessPointOutput>
-    deleteFileSystem: function(Client, types.DeleteFileSystemInput, any): async.Operation<types.DeleteFileSystemOutput>
-    deleteFileSystemPolicy: function(Client, types.DeleteFileSystemPolicyInput, any): async.Operation<types.DeleteFileSystemPolicyOutput>
-    deleteMountTarget: function(Client, types.DeleteMountTargetInput, any): async.Operation<types.DeleteMountTargetOutput>
-    getAccessPoint: function(Client, types.GetAccessPointInput, any): async.Operation<types.GetAccessPointOutput>
-    getFileSystem: function(Client, types.GetFileSystemInput, any): async.Operation<types.GetFileSystemOutput>
-    getFileSystemPolicy: function(Client, types.GetFileSystemPolicyInput, any): async.Operation<types.GetFileSystemPolicyOutput>
-    getMountTarget: function(Client, types.GetMountTargetInput, any): async.Operation<types.GetMountTargetOutput>
-    getSynchronizationConfiguration: function(Client, types.GetSynchronizationConfigurationInput, any): async.Operation<types.GetSynchronizationConfigurationOutput>
-    listAccessPoints: function(Client, types.ListAccessPointsInput, any): async.Operation<types.ListAccessPointsOutput>
-    listFileSystems: function(Client, types.ListFileSystemsInput, any): async.Operation<types.ListFileSystemsOutput>
-    listMountTargets: function(Client, types.ListMountTargetsInput, any): async.Operation<types.ListMountTargetsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putFileSystemPolicy: function(Client, types.PutFileSystemPolicyInput, any): async.Operation<types.PutFileSystemPolicyOutput>
-    putSynchronizationConfiguration: function(Client, types.PutSynchronizationConfigurationInput, any): async.Operation<types.PutSynchronizationConfigurationOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateMountTarget: function(Client, types.UpdateMountTargetInput, any): async.Operation<types.UpdateMountTargetOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createAccessPoint: function(Client, types.CreateAccessPointInput, ? base_client.InvokeOptions): async.Operation<types.CreateAccessPointOutput>
+    createFileSystem: function(Client, types.CreateFileSystemInput, ? base_client.InvokeOptions): async.Operation<types.CreateFileSystemOutput>
+    createMountTarget: function(Client, types.CreateMountTargetInput, ? base_client.InvokeOptions): async.Operation<types.CreateMountTargetOutput>
+    deleteAccessPoint: function(Client, types.DeleteAccessPointInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccessPointOutput>
+    deleteFileSystem: function(Client, types.DeleteFileSystemInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFileSystemOutput>
+    deleteFileSystemPolicy: function(Client, types.DeleteFileSystemPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFileSystemPolicyOutput>
+    deleteMountTarget: function(Client, types.DeleteMountTargetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMountTargetOutput>
+    getAccessPoint: function(Client, types.GetAccessPointInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessPointOutput>
+    getFileSystem: function(Client, types.GetFileSystemInput, ? base_client.InvokeOptions): async.Operation<types.GetFileSystemOutput>
+    getFileSystemPolicy: function(Client, types.GetFileSystemPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetFileSystemPolicyOutput>
+    getMountTarget: function(Client, types.GetMountTargetInput, ? base_client.InvokeOptions): async.Operation<types.GetMountTargetOutput>
+    getSynchronizationConfiguration: function(Client, types.GetSynchronizationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetSynchronizationConfigurationOutput>
+    listAccessPoints: function(Client, types.ListAccessPointsInput, ? base_client.InvokeOptions): async.Operation<types.ListAccessPointsOutput>
+    listFileSystems: function(Client, types.ListFileSystemsInput, ? base_client.InvokeOptions): async.Operation<types.ListFileSystemsOutput>
+    listMountTargets: function(Client, types.ListMountTargetsInput, ? base_client.InvokeOptions): async.Operation<types.ListMountTargetsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putFileSystemPolicy: function(Client, types.PutFileSystemPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutFileSystemPolicyOutput>
+    putSynchronizationConfiguration: function(Client, types.PutSynchronizationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutSynchronizationConfigurationOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateMountTarget: function(Client, types.UpdateMountTargetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMountTargetOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "S3Files"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "s3files", signing_region = c.region } }
                 else
@@ -80,88 +83,88 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createAccessPoint(input: types.CreateAccessPointInput, options: any): async.Operation<types.CreateAccessPointOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAccessPoint, input, options) as async.Operation<types.CreateAccessPointOutput>
+function C:createAccessPoint(input: types.CreateAccessPointInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAccessPointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAccessPoint as schema.OperationSchema, input, options) as async.Operation<types.CreateAccessPointOutput>
 end
 
-function C:createFileSystem(input: types.CreateFileSystemInput, options: any): async.Operation<types.CreateFileSystemOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFileSystem, input, options) as async.Operation<types.CreateFileSystemOutput>
+function C:createFileSystem(input: types.CreateFileSystemInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFileSystemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFileSystem as schema.OperationSchema, input, options) as async.Operation<types.CreateFileSystemOutput>
 end
 
-function C:createMountTarget(input: types.CreateMountTargetInput, options: any): async.Operation<types.CreateMountTargetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMountTarget, input, options) as async.Operation<types.CreateMountTargetOutput>
+function C:createMountTarget(input: types.CreateMountTargetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMountTargetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMountTarget as schema.OperationSchema, input, options) as async.Operation<types.CreateMountTargetOutput>
 end
 
-function C:deleteAccessPoint(input: types.DeleteAccessPointInput, options: any): async.Operation<types.DeleteAccessPointOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAccessPoint, input, options) as async.Operation<types.DeleteAccessPointOutput>
+function C:deleteAccessPoint(input: types.DeleteAccessPointInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAccessPointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAccessPoint as schema.OperationSchema, input, options) as async.Operation<types.DeleteAccessPointOutput>
 end
 
-function C:deleteFileSystem(input: types.DeleteFileSystemInput, options: any): async.Operation<types.DeleteFileSystemOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFileSystem, input, options) as async.Operation<types.DeleteFileSystemOutput>
+function C:deleteFileSystem(input: types.DeleteFileSystemInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFileSystemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFileSystem as schema.OperationSchema, input, options) as async.Operation<types.DeleteFileSystemOutput>
 end
 
-function C:deleteFileSystemPolicy(input: types.DeleteFileSystemPolicyInput, options: any): async.Operation<types.DeleteFileSystemPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFileSystemPolicy, input, options) as async.Operation<types.DeleteFileSystemPolicyOutput>
+function C:deleteFileSystemPolicy(input: types.DeleteFileSystemPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFileSystemPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFileSystemPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteFileSystemPolicyOutput>
 end
 
-function C:deleteMountTarget(input: types.DeleteMountTargetInput, options: any): async.Operation<types.DeleteMountTargetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMountTarget, input, options) as async.Operation<types.DeleteMountTargetOutput>
+function C:deleteMountTarget(input: types.DeleteMountTargetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMountTargetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMountTarget as schema.OperationSchema, input, options) as async.Operation<types.DeleteMountTargetOutput>
 end
 
-function C:getAccessPoint(input: types.GetAccessPointInput, options: any): async.Operation<types.GetAccessPointOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccessPoint, input, options) as async.Operation<types.GetAccessPointOutput>
+function C:getAccessPoint(input: types.GetAccessPointInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccessPointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccessPoint as schema.OperationSchema, input, options) as async.Operation<types.GetAccessPointOutput>
 end
 
-function C:getFileSystem(input: types.GetFileSystemInput, options: any): async.Operation<types.GetFileSystemOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFileSystem, input, options) as async.Operation<types.GetFileSystemOutput>
+function C:getFileSystem(input: types.GetFileSystemInput, options?: base_client.InvokeOptions): async.Operation<types.GetFileSystemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFileSystem as schema.OperationSchema, input, options) as async.Operation<types.GetFileSystemOutput>
 end
 
-function C:getFileSystemPolicy(input: types.GetFileSystemPolicyInput, options: any): async.Operation<types.GetFileSystemPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFileSystemPolicy, input, options) as async.Operation<types.GetFileSystemPolicyOutput>
+function C:getFileSystemPolicy(input: types.GetFileSystemPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetFileSystemPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFileSystemPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetFileSystemPolicyOutput>
 end
 
-function C:getMountTarget(input: types.GetMountTargetInput, options: any): async.Operation<types.GetMountTargetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMountTarget, input, options) as async.Operation<types.GetMountTargetOutput>
+function C:getMountTarget(input: types.GetMountTargetInput, options?: base_client.InvokeOptions): async.Operation<types.GetMountTargetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMountTarget as schema.OperationSchema, input, options) as async.Operation<types.GetMountTargetOutput>
 end
 
-function C:getSynchronizationConfiguration(input: types.GetSynchronizationConfigurationInput, options: any): async.Operation<types.GetSynchronizationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSynchronizationConfiguration, input, options) as async.Operation<types.GetSynchronizationConfigurationOutput>
+function C:getSynchronizationConfiguration(input: types.GetSynchronizationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetSynchronizationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSynchronizationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetSynchronizationConfigurationOutput>
 end
 
-function C:listAccessPoints(input: types.ListAccessPointsInput, options: any): async.Operation<types.ListAccessPointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccessPoints, input, options) as async.Operation<types.ListAccessPointsOutput>
+function C:listAccessPoints(input: types.ListAccessPointsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccessPointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccessPoints as schema.OperationSchema, input, options) as async.Operation<types.ListAccessPointsOutput>
 end
 
-function C:listFileSystems(input: types.ListFileSystemsInput, options: any): async.Operation<types.ListFileSystemsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFileSystems, input, options) as async.Operation<types.ListFileSystemsOutput>
+function C:listFileSystems(input: types.ListFileSystemsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFileSystemsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFileSystems as schema.OperationSchema, input, options) as async.Operation<types.ListFileSystemsOutput>
 end
 
-function C:listMountTargets(input: types.ListMountTargetsInput, options: any): async.Operation<types.ListMountTargetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMountTargets, input, options) as async.Operation<types.ListMountTargetsOutput>
+function C:listMountTargets(input: types.ListMountTargetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMountTargetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMountTargets as schema.OperationSchema, input, options) as async.Operation<types.ListMountTargetsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putFileSystemPolicy(input: types.PutFileSystemPolicyInput, options: any): async.Operation<types.PutFileSystemPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutFileSystemPolicy, input, options) as async.Operation<types.PutFileSystemPolicyOutput>
+function C:putFileSystemPolicy(input: types.PutFileSystemPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutFileSystemPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutFileSystemPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutFileSystemPolicyOutput>
 end
 
-function C:putSynchronizationConfiguration(input: types.PutSynchronizationConfigurationInput, options: any): async.Operation<types.PutSynchronizationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutSynchronizationConfiguration, input, options) as async.Operation<types.PutSynchronizationConfigurationOutput>
+function C:putSynchronizationConfiguration(input: types.PutSynchronizationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutSynchronizationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutSynchronizationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutSynchronizationConfigurationOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateMountTarget(input: types.UpdateMountTargetInput, options: any): async.Operation<types.UpdateMountTargetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateMountTarget, input, options) as async.Operation<types.UpdateMountTargetOutput>
+function C:updateMountTarget(input: types.UpdateMountTargetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMountTargetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMountTarget as schema.OperationSchema, input, options) as async.Operation<types.UpdateMountTargetOutput>
 end
 
 return M

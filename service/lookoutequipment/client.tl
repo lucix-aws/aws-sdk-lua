@@ -8,88 +8,91 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("lookoutequipment.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("lookoutequipment.schemas")
 local traits = require("smithy.traits")
 local types = require("lookoutequipment.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createDataset: function(Client, types.CreateDatasetInput, any): async.Operation<types.CreateDatasetOutput>
-    createInferenceScheduler: function(Client, types.CreateInferenceSchedulerInput, any): async.Operation<types.CreateInferenceSchedulerOutput>
-    createLabel: function(Client, types.CreateLabelInput, any): async.Operation<types.CreateLabelOutput>
-    createLabelGroup: function(Client, types.CreateLabelGroupInput, any): async.Operation<types.CreateLabelGroupOutput>
-    createModel: function(Client, types.CreateModelInput, any): async.Operation<types.CreateModelOutput>
-    createRetrainingScheduler: function(Client, types.CreateRetrainingSchedulerInput, any): async.Operation<types.CreateRetrainingSchedulerOutput>
-    deleteDataset: function(Client, types.DeleteDatasetInput, any): async.Operation<types.DeleteDatasetOutput>
-    deleteInferenceScheduler: function(Client, types.DeleteInferenceSchedulerInput, any): async.Operation<types.DeleteInferenceSchedulerOutput>
-    deleteLabel: function(Client, types.DeleteLabelInput, any): async.Operation<types.DeleteLabelOutput>
-    deleteLabelGroup: function(Client, types.DeleteLabelGroupInput, any): async.Operation<types.DeleteLabelGroupOutput>
-    deleteModel: function(Client, types.DeleteModelInput, any): async.Operation<types.DeleteModelOutput>
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, any): async.Operation<types.DeleteResourcePolicyOutput>
-    deleteRetrainingScheduler: function(Client, types.DeleteRetrainingSchedulerInput, any): async.Operation<types.DeleteRetrainingSchedulerOutput>
-    describeDataIngestionJob: function(Client, types.DescribeDataIngestionJobInput, any): async.Operation<types.DescribeDataIngestionJobOutput>
-    describeDataset: function(Client, types.DescribeDatasetInput, any): async.Operation<types.DescribeDatasetOutput>
-    describeInferenceScheduler: function(Client, types.DescribeInferenceSchedulerInput, any): async.Operation<types.DescribeInferenceSchedulerOutput>
-    describeLabel: function(Client, types.DescribeLabelInput, any): async.Operation<types.DescribeLabelOutput>
-    describeLabelGroup: function(Client, types.DescribeLabelGroupInput, any): async.Operation<types.DescribeLabelGroupOutput>
-    describeModel: function(Client, types.DescribeModelInput, any): async.Operation<types.DescribeModelOutput>
-    describeModelVersion: function(Client, types.DescribeModelVersionInput, any): async.Operation<types.DescribeModelVersionOutput>
-    describeResourcePolicy: function(Client, types.DescribeResourcePolicyInput, any): async.Operation<types.DescribeResourcePolicyOutput>
-    describeRetrainingScheduler: function(Client, types.DescribeRetrainingSchedulerInput, any): async.Operation<types.DescribeRetrainingSchedulerOutput>
-    importDataset: function(Client, types.ImportDatasetInput, any): async.Operation<types.ImportDatasetOutput>
-    importModelVersion: function(Client, types.ImportModelVersionInput, any): async.Operation<types.ImportModelVersionOutput>
-    listDataIngestionJobs: function(Client, types.ListDataIngestionJobsInput, any): async.Operation<types.ListDataIngestionJobsOutput>
-    listDatasets: function(Client, types.ListDatasetsInput, any): async.Operation<types.ListDatasetsOutput>
-    listInferenceEvents: function(Client, types.ListInferenceEventsInput, any): async.Operation<types.ListInferenceEventsOutput>
-    listInferenceExecutions: function(Client, types.ListInferenceExecutionsInput, any): async.Operation<types.ListInferenceExecutionsOutput>
-    listInferenceSchedulers: function(Client, types.ListInferenceSchedulersInput, any): async.Operation<types.ListInferenceSchedulersOutput>
-    listLabelGroups: function(Client, types.ListLabelGroupsInput, any): async.Operation<types.ListLabelGroupsOutput>
-    listLabels: function(Client, types.ListLabelsInput, any): async.Operation<types.ListLabelsOutput>
-    listModels: function(Client, types.ListModelsInput, any): async.Operation<types.ListModelsOutput>
-    listModelVersions: function(Client, types.ListModelVersionsInput, any): async.Operation<types.ListModelVersionsOutput>
-    listRetrainingSchedulers: function(Client, types.ListRetrainingSchedulersInput, any): async.Operation<types.ListRetrainingSchedulersOutput>
-    listSensorStatistics: function(Client, types.ListSensorStatisticsInput, any): async.Operation<types.ListSensorStatisticsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput, any): async.Operation<types.PutResourcePolicyOutput>
-    startDataIngestionJob: function(Client, types.StartDataIngestionJobInput, any): async.Operation<types.StartDataIngestionJobOutput>
-    startInferenceScheduler: function(Client, types.StartInferenceSchedulerInput, any): async.Operation<types.StartInferenceSchedulerOutput>
-    startRetrainingScheduler: function(Client, types.StartRetrainingSchedulerInput, any): async.Operation<types.StartRetrainingSchedulerOutput>
-    stopInferenceScheduler: function(Client, types.StopInferenceSchedulerInput, any): async.Operation<types.StopInferenceSchedulerOutput>
-    stopRetrainingScheduler: function(Client, types.StopRetrainingSchedulerInput, any): async.Operation<types.StopRetrainingSchedulerOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateActiveModelVersion: function(Client, types.UpdateActiveModelVersionInput, any): async.Operation<types.UpdateActiveModelVersionOutput>
-    updateInferenceScheduler: function(Client, types.UpdateInferenceSchedulerInput, any): async.Operation<types.UpdateInferenceSchedulerOutput>
-    updateLabelGroup: function(Client, types.UpdateLabelGroupInput, any): async.Operation<types.UpdateLabelGroupOutput>
-    updateModel: function(Client, types.UpdateModelInput, any): async.Operation<types.UpdateModelOutput>
-    updateRetrainingScheduler: function(Client, types.UpdateRetrainingSchedulerInput, any): async.Operation<types.UpdateRetrainingSchedulerOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createDataset: function(Client, types.CreateDatasetInput, ? base_client.InvokeOptions): async.Operation<types.CreateDatasetOutput>
+    createInferenceScheduler: function(Client, types.CreateInferenceSchedulerInput, ? base_client.InvokeOptions): async.Operation<types.CreateInferenceSchedulerOutput>
+    createLabel: function(Client, types.CreateLabelInput, ? base_client.InvokeOptions): async.Operation<types.CreateLabelOutput>
+    createLabelGroup: function(Client, types.CreateLabelGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateLabelGroupOutput>
+    createModel: function(Client, types.CreateModelInput, ? base_client.InvokeOptions): async.Operation<types.CreateModelOutput>
+    createRetrainingScheduler: function(Client, types.CreateRetrainingSchedulerInput, ? base_client.InvokeOptions): async.Operation<types.CreateRetrainingSchedulerOutput>
+    deleteDataset: function(Client, types.DeleteDatasetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDatasetOutput>
+    deleteInferenceScheduler: function(Client, types.DeleteInferenceSchedulerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInferenceSchedulerOutput>
+    deleteLabel: function(Client, types.DeleteLabelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLabelOutput>
+    deleteLabelGroup: function(Client, types.DeleteLabelGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLabelGroupOutput>
+    deleteModel: function(Client, types.DeleteModelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteModelOutput>
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    deleteRetrainingScheduler: function(Client, types.DeleteRetrainingSchedulerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRetrainingSchedulerOutput>
+    describeDataIngestionJob: function(Client, types.DescribeDataIngestionJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDataIngestionJobOutput>
+    describeDataset: function(Client, types.DescribeDatasetInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDatasetOutput>
+    describeInferenceScheduler: function(Client, types.DescribeInferenceSchedulerInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInferenceSchedulerOutput>
+    describeLabel: function(Client, types.DescribeLabelInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLabelOutput>
+    describeLabelGroup: function(Client, types.DescribeLabelGroupInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLabelGroupOutput>
+    describeModel: function(Client, types.DescribeModelInput, ? base_client.InvokeOptions): async.Operation<types.DescribeModelOutput>
+    describeModelVersion: function(Client, types.DescribeModelVersionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeModelVersionOutput>
+    describeResourcePolicy: function(Client, types.DescribeResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DescribeResourcePolicyOutput>
+    describeRetrainingScheduler: function(Client, types.DescribeRetrainingSchedulerInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRetrainingSchedulerOutput>
+    importDataset: function(Client, types.ImportDatasetInput, ? base_client.InvokeOptions): async.Operation<types.ImportDatasetOutput>
+    importModelVersion: function(Client, types.ImportModelVersionInput, ? base_client.InvokeOptions): async.Operation<types.ImportModelVersionOutput>
+    listDataIngestionJobs: function(Client, types.ListDataIngestionJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataIngestionJobsOutput>
+    listDatasets: function(Client, types.ListDatasetsInput, ? base_client.InvokeOptions): async.Operation<types.ListDatasetsOutput>
+    listInferenceEvents: function(Client, types.ListInferenceEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListInferenceEventsOutput>
+    listInferenceExecutions: function(Client, types.ListInferenceExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListInferenceExecutionsOutput>
+    listInferenceSchedulers: function(Client, types.ListInferenceSchedulersInput, ? base_client.InvokeOptions): async.Operation<types.ListInferenceSchedulersOutput>
+    listLabelGroups: function(Client, types.ListLabelGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListLabelGroupsOutput>
+    listLabels: function(Client, types.ListLabelsInput, ? base_client.InvokeOptions): async.Operation<types.ListLabelsOutput>
+    listModels: function(Client, types.ListModelsInput, ? base_client.InvokeOptions): async.Operation<types.ListModelsOutput>
+    listModelVersions: function(Client, types.ListModelVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListModelVersionsOutput>
+    listRetrainingSchedulers: function(Client, types.ListRetrainingSchedulersInput, ? base_client.InvokeOptions): async.Operation<types.ListRetrainingSchedulersOutput>
+    listSensorStatistics: function(Client, types.ListSensorStatisticsInput, ? base_client.InvokeOptions): async.Operation<types.ListSensorStatisticsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    startDataIngestionJob: function(Client, types.StartDataIngestionJobInput, ? base_client.InvokeOptions): async.Operation<types.StartDataIngestionJobOutput>
+    startInferenceScheduler: function(Client, types.StartInferenceSchedulerInput, ? base_client.InvokeOptions): async.Operation<types.StartInferenceSchedulerOutput>
+    startRetrainingScheduler: function(Client, types.StartRetrainingSchedulerInput, ? base_client.InvokeOptions): async.Operation<types.StartRetrainingSchedulerOutput>
+    stopInferenceScheduler: function(Client, types.StopInferenceSchedulerInput, ? base_client.InvokeOptions): async.Operation<types.StopInferenceSchedulerOutput>
+    stopRetrainingScheduler: function(Client, types.StopRetrainingSchedulerInput, ? base_client.InvokeOptions): async.Operation<types.StopRetrainingSchedulerOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateActiveModelVersion: function(Client, types.UpdateActiveModelVersionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateActiveModelVersionOutput>
+    updateInferenceScheduler: function(Client, types.UpdateInferenceSchedulerInput, ? base_client.InvokeOptions): async.Operation<types.UpdateInferenceSchedulerOutput>
+    updateLabelGroup: function(Client, types.UpdateLabelGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLabelGroupOutput>
+    updateModel: function(Client, types.UpdateModelInput, ? base_client.InvokeOptions): async.Operation<types.UpdateModelOutput>
+    updateRetrainingScheduler: function(Client, types.UpdateRetrainingSchedulerInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRetrainingSchedulerOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSLookoutEquipmentFrontendService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "lookoutequipment", signing_region = c.region } }
                 else
@@ -108,200 +111,200 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createDataset(input: types.CreateDatasetInput, options: any): async.Operation<types.CreateDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataset, input, options) as async.Operation<types.CreateDatasetOutput>
+function C:createDataset(input: types.CreateDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataset as schema.OperationSchema, input, options) as async.Operation<types.CreateDatasetOutput>
 end
 
-function C:createInferenceScheduler(input: types.CreateInferenceSchedulerInput, options: any): async.Operation<types.CreateInferenceSchedulerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateInferenceScheduler, input, options) as async.Operation<types.CreateInferenceSchedulerOutput>
+function C:createInferenceScheduler(input: types.CreateInferenceSchedulerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInferenceSchedulerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInferenceScheduler as schema.OperationSchema, input, options) as async.Operation<types.CreateInferenceSchedulerOutput>
 end
 
-function C:createLabel(input: types.CreateLabelInput, options: any): async.Operation<types.CreateLabelOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLabel, input, options) as async.Operation<types.CreateLabelOutput>
+function C:createLabel(input: types.CreateLabelInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLabelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLabel as schema.OperationSchema, input, options) as async.Operation<types.CreateLabelOutput>
 end
 
-function C:createLabelGroup(input: types.CreateLabelGroupInput, options: any): async.Operation<types.CreateLabelGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLabelGroup, input, options) as async.Operation<types.CreateLabelGroupOutput>
+function C:createLabelGroup(input: types.CreateLabelGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLabelGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLabelGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateLabelGroupOutput>
 end
 
-function C:createModel(input: types.CreateModelInput, options: any): async.Operation<types.CreateModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateModel, input, options) as async.Operation<types.CreateModelOutput>
+function C:createModel(input: types.CreateModelInput, options?: base_client.InvokeOptions): async.Operation<types.CreateModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateModel as schema.OperationSchema, input, options) as async.Operation<types.CreateModelOutput>
 end
 
-function C:createRetrainingScheduler(input: types.CreateRetrainingSchedulerInput, options: any): async.Operation<types.CreateRetrainingSchedulerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRetrainingScheduler, input, options) as async.Operation<types.CreateRetrainingSchedulerOutput>
+function C:createRetrainingScheduler(input: types.CreateRetrainingSchedulerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRetrainingSchedulerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRetrainingScheduler as schema.OperationSchema, input, options) as async.Operation<types.CreateRetrainingSchedulerOutput>
 end
 
-function C:deleteDataset(input: types.DeleteDatasetInput, options: any): async.Operation<types.DeleteDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDataset, input, options) as async.Operation<types.DeleteDatasetOutput>
+function C:deleteDataset(input: types.DeleteDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataset as schema.OperationSchema, input, options) as async.Operation<types.DeleteDatasetOutput>
 end
 
-function C:deleteInferenceScheduler(input: types.DeleteInferenceSchedulerInput, options: any): async.Operation<types.DeleteInferenceSchedulerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteInferenceScheduler, input, options) as async.Operation<types.DeleteInferenceSchedulerOutput>
+function C:deleteInferenceScheduler(input: types.DeleteInferenceSchedulerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteInferenceSchedulerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInferenceScheduler as schema.OperationSchema, input, options) as async.Operation<types.DeleteInferenceSchedulerOutput>
 end
 
-function C:deleteLabel(input: types.DeleteLabelInput, options: any): async.Operation<types.DeleteLabelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLabel, input, options) as async.Operation<types.DeleteLabelOutput>
+function C:deleteLabel(input: types.DeleteLabelInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLabelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLabel as schema.OperationSchema, input, options) as async.Operation<types.DeleteLabelOutput>
 end
 
-function C:deleteLabelGroup(input: types.DeleteLabelGroupInput, options: any): async.Operation<types.DeleteLabelGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLabelGroup, input, options) as async.Operation<types.DeleteLabelGroupOutput>
+function C:deleteLabelGroup(input: types.DeleteLabelGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLabelGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLabelGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteLabelGroupOutput>
 end
 
-function C:deleteModel(input: types.DeleteModelInput, options: any): async.Operation<types.DeleteModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteModel, input, options) as async.Operation<types.DeleteModelOutput>
+function C:deleteModel(input: types.DeleteModelInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteModel as schema.OperationSchema, input, options) as async.Operation<types.DeleteModelOutput>
 end
 
-function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options: any): async.Operation<types.DeleteResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicy, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
+function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
 end
 
-function C:deleteRetrainingScheduler(input: types.DeleteRetrainingSchedulerInput, options: any): async.Operation<types.DeleteRetrainingSchedulerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRetrainingScheduler, input, options) as async.Operation<types.DeleteRetrainingSchedulerOutput>
+function C:deleteRetrainingScheduler(input: types.DeleteRetrainingSchedulerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRetrainingSchedulerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRetrainingScheduler as schema.OperationSchema, input, options) as async.Operation<types.DeleteRetrainingSchedulerOutput>
 end
 
-function C:describeDataIngestionJob(input: types.DescribeDataIngestionJobInput, options: any): async.Operation<types.DescribeDataIngestionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDataIngestionJob, input, options) as async.Operation<types.DescribeDataIngestionJobOutput>
+function C:describeDataIngestionJob(input: types.DescribeDataIngestionJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDataIngestionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDataIngestionJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeDataIngestionJobOutput>
 end
 
-function C:describeDataset(input: types.DescribeDatasetInput, options: any): async.Operation<types.DescribeDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDataset, input, options) as async.Operation<types.DescribeDatasetOutput>
+function C:describeDataset(input: types.DescribeDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDataset as schema.OperationSchema, input, options) as async.Operation<types.DescribeDatasetOutput>
 end
 
-function C:describeInferenceScheduler(input: types.DescribeInferenceSchedulerInput, options: any): async.Operation<types.DescribeInferenceSchedulerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInferenceScheduler, input, options) as async.Operation<types.DescribeInferenceSchedulerOutput>
+function C:describeInferenceScheduler(input: types.DescribeInferenceSchedulerInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInferenceSchedulerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInferenceScheduler as schema.OperationSchema, input, options) as async.Operation<types.DescribeInferenceSchedulerOutput>
 end
 
-function C:describeLabel(input: types.DescribeLabelInput, options: any): async.Operation<types.DescribeLabelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLabel, input, options) as async.Operation<types.DescribeLabelOutput>
+function C:describeLabel(input: types.DescribeLabelInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLabelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLabel as schema.OperationSchema, input, options) as async.Operation<types.DescribeLabelOutput>
 end
 
-function C:describeLabelGroup(input: types.DescribeLabelGroupInput, options: any): async.Operation<types.DescribeLabelGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLabelGroup, input, options) as async.Operation<types.DescribeLabelGroupOutput>
+function C:describeLabelGroup(input: types.DescribeLabelGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLabelGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLabelGroup as schema.OperationSchema, input, options) as async.Operation<types.DescribeLabelGroupOutput>
 end
 
-function C:describeModel(input: types.DescribeModelInput, options: any): async.Operation<types.DescribeModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeModel, input, options) as async.Operation<types.DescribeModelOutput>
+function C:describeModel(input: types.DescribeModelInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeModel as schema.OperationSchema, input, options) as async.Operation<types.DescribeModelOutput>
 end
 
-function C:describeModelVersion(input: types.DescribeModelVersionInput, options: any): async.Operation<types.DescribeModelVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeModelVersion, input, options) as async.Operation<types.DescribeModelVersionOutput>
+function C:describeModelVersion(input: types.DescribeModelVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeModelVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeModelVersion as schema.OperationSchema, input, options) as async.Operation<types.DescribeModelVersionOutput>
 end
 
-function C:describeResourcePolicy(input: types.DescribeResourcePolicyInput, options: any): async.Operation<types.DescribeResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeResourcePolicy, input, options) as async.Operation<types.DescribeResourcePolicyOutput>
+function C:describeResourcePolicy(input: types.DescribeResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DescribeResourcePolicyOutput>
 end
 
-function C:describeRetrainingScheduler(input: types.DescribeRetrainingSchedulerInput, options: any): async.Operation<types.DescribeRetrainingSchedulerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRetrainingScheduler, input, options) as async.Operation<types.DescribeRetrainingSchedulerOutput>
+function C:describeRetrainingScheduler(input: types.DescribeRetrainingSchedulerInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRetrainingSchedulerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRetrainingScheduler as schema.OperationSchema, input, options) as async.Operation<types.DescribeRetrainingSchedulerOutput>
 end
 
-function C:importDataset(input: types.ImportDatasetInput, options: any): async.Operation<types.ImportDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportDataset, input, options) as async.Operation<types.ImportDatasetOutput>
+function C:importDataset(input: types.ImportDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.ImportDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportDataset as schema.OperationSchema, input, options) as async.Operation<types.ImportDatasetOutput>
 end
 
-function C:importModelVersion(input: types.ImportModelVersionInput, options: any): async.Operation<types.ImportModelVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportModelVersion, input, options) as async.Operation<types.ImportModelVersionOutput>
+function C:importModelVersion(input: types.ImportModelVersionInput, options?: base_client.InvokeOptions): async.Operation<types.ImportModelVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportModelVersion as schema.OperationSchema, input, options) as async.Operation<types.ImportModelVersionOutput>
 end
 
-function C:listDataIngestionJobs(input: types.ListDataIngestionJobsInput, options: any): async.Operation<types.ListDataIngestionJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDataIngestionJobs, input, options) as async.Operation<types.ListDataIngestionJobsOutput>
+function C:listDataIngestionJobs(input: types.ListDataIngestionJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataIngestionJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataIngestionJobs as schema.OperationSchema, input, options) as async.Operation<types.ListDataIngestionJobsOutput>
 end
 
-function C:listDatasets(input: types.ListDatasetsInput, options: any): async.Operation<types.ListDatasetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDatasets, input, options) as async.Operation<types.ListDatasetsOutput>
+function C:listDatasets(input: types.ListDatasetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDatasetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDatasets as schema.OperationSchema, input, options) as async.Operation<types.ListDatasetsOutput>
 end
 
-function C:listInferenceEvents(input: types.ListInferenceEventsInput, options: any): async.Operation<types.ListInferenceEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInferenceEvents, input, options) as async.Operation<types.ListInferenceEventsOutput>
+function C:listInferenceEvents(input: types.ListInferenceEventsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInferenceEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInferenceEvents as schema.OperationSchema, input, options) as async.Operation<types.ListInferenceEventsOutput>
 end
 
-function C:listInferenceExecutions(input: types.ListInferenceExecutionsInput, options: any): async.Operation<types.ListInferenceExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInferenceExecutions, input, options) as async.Operation<types.ListInferenceExecutionsOutput>
+function C:listInferenceExecutions(input: types.ListInferenceExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInferenceExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInferenceExecutions as schema.OperationSchema, input, options) as async.Operation<types.ListInferenceExecutionsOutput>
 end
 
-function C:listInferenceSchedulers(input: types.ListInferenceSchedulersInput, options: any): async.Operation<types.ListInferenceSchedulersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInferenceSchedulers, input, options) as async.Operation<types.ListInferenceSchedulersOutput>
+function C:listInferenceSchedulers(input: types.ListInferenceSchedulersInput, options?: base_client.InvokeOptions): async.Operation<types.ListInferenceSchedulersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInferenceSchedulers as schema.OperationSchema, input, options) as async.Operation<types.ListInferenceSchedulersOutput>
 end
 
-function C:listLabelGroups(input: types.ListLabelGroupsInput, options: any): async.Operation<types.ListLabelGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLabelGroups, input, options) as async.Operation<types.ListLabelGroupsOutput>
+function C:listLabelGroups(input: types.ListLabelGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLabelGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLabelGroups as schema.OperationSchema, input, options) as async.Operation<types.ListLabelGroupsOutput>
 end
 
-function C:listLabels(input: types.ListLabelsInput, options: any): async.Operation<types.ListLabelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLabels, input, options) as async.Operation<types.ListLabelsOutput>
+function C:listLabels(input: types.ListLabelsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLabelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLabels as schema.OperationSchema, input, options) as async.Operation<types.ListLabelsOutput>
 end
 
-function C:listModels(input: types.ListModelsInput, options: any): async.Operation<types.ListModelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListModels, input, options) as async.Operation<types.ListModelsOutput>
+function C:listModels(input: types.ListModelsInput, options?: base_client.InvokeOptions): async.Operation<types.ListModelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListModels as schema.OperationSchema, input, options) as async.Operation<types.ListModelsOutput>
 end
 
-function C:listModelVersions(input: types.ListModelVersionsInput, options: any): async.Operation<types.ListModelVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListModelVersions, input, options) as async.Operation<types.ListModelVersionsOutput>
+function C:listModelVersions(input: types.ListModelVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListModelVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListModelVersions as schema.OperationSchema, input, options) as async.Operation<types.ListModelVersionsOutput>
 end
 
-function C:listRetrainingSchedulers(input: types.ListRetrainingSchedulersInput, options: any): async.Operation<types.ListRetrainingSchedulersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRetrainingSchedulers, input, options) as async.Operation<types.ListRetrainingSchedulersOutput>
+function C:listRetrainingSchedulers(input: types.ListRetrainingSchedulersInput, options?: base_client.InvokeOptions): async.Operation<types.ListRetrainingSchedulersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRetrainingSchedulers as schema.OperationSchema, input, options) as async.Operation<types.ListRetrainingSchedulersOutput>
 end
 
-function C:listSensorStatistics(input: types.ListSensorStatisticsInput, options: any): async.Operation<types.ListSensorStatisticsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSensorStatistics, input, options) as async.Operation<types.ListSensorStatisticsOutput>
+function C:listSensorStatistics(input: types.ListSensorStatisticsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSensorStatisticsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSensorStatistics as schema.OperationSchema, input, options) as async.Operation<types.ListSensorStatisticsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putResourcePolicy(input: types.PutResourcePolicyInput, options: any): async.Operation<types.PutResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutResourcePolicy, input, options) as async.Operation<types.PutResourcePolicyOutput>
+function C:putResourcePolicy(input: types.PutResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutResourcePolicyOutput>
 end
 
-function C:startDataIngestionJob(input: types.StartDataIngestionJobInput, options: any): async.Operation<types.StartDataIngestionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartDataIngestionJob, input, options) as async.Operation<types.StartDataIngestionJobOutput>
+function C:startDataIngestionJob(input: types.StartDataIngestionJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartDataIngestionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDataIngestionJob as schema.OperationSchema, input, options) as async.Operation<types.StartDataIngestionJobOutput>
 end
 
-function C:startInferenceScheduler(input: types.StartInferenceSchedulerInput, options: any): async.Operation<types.StartInferenceSchedulerOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartInferenceScheduler, input, options) as async.Operation<types.StartInferenceSchedulerOutput>
+function C:startInferenceScheduler(input: types.StartInferenceSchedulerInput, options?: base_client.InvokeOptions): async.Operation<types.StartInferenceSchedulerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartInferenceScheduler as schema.OperationSchema, input, options) as async.Operation<types.StartInferenceSchedulerOutput>
 end
 
-function C:startRetrainingScheduler(input: types.StartRetrainingSchedulerInput, options: any): async.Operation<types.StartRetrainingSchedulerOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartRetrainingScheduler, input, options) as async.Operation<types.StartRetrainingSchedulerOutput>
+function C:startRetrainingScheduler(input: types.StartRetrainingSchedulerInput, options?: base_client.InvokeOptions): async.Operation<types.StartRetrainingSchedulerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartRetrainingScheduler as schema.OperationSchema, input, options) as async.Operation<types.StartRetrainingSchedulerOutput>
 end
 
-function C:stopInferenceScheduler(input: types.StopInferenceSchedulerInput, options: any): async.Operation<types.StopInferenceSchedulerOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopInferenceScheduler, input, options) as async.Operation<types.StopInferenceSchedulerOutput>
+function C:stopInferenceScheduler(input: types.StopInferenceSchedulerInput, options?: base_client.InvokeOptions): async.Operation<types.StopInferenceSchedulerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopInferenceScheduler as schema.OperationSchema, input, options) as async.Operation<types.StopInferenceSchedulerOutput>
 end
 
-function C:stopRetrainingScheduler(input: types.StopRetrainingSchedulerInput, options: any): async.Operation<types.StopRetrainingSchedulerOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopRetrainingScheduler, input, options) as async.Operation<types.StopRetrainingSchedulerOutput>
+function C:stopRetrainingScheduler(input: types.StopRetrainingSchedulerInput, options?: base_client.InvokeOptions): async.Operation<types.StopRetrainingSchedulerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopRetrainingScheduler as schema.OperationSchema, input, options) as async.Operation<types.StopRetrainingSchedulerOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateActiveModelVersion(input: types.UpdateActiveModelVersionInput, options: any): async.Operation<types.UpdateActiveModelVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateActiveModelVersion, input, options) as async.Operation<types.UpdateActiveModelVersionOutput>
+function C:updateActiveModelVersion(input: types.UpdateActiveModelVersionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateActiveModelVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateActiveModelVersion as schema.OperationSchema, input, options) as async.Operation<types.UpdateActiveModelVersionOutput>
 end
 
-function C:updateInferenceScheduler(input: types.UpdateInferenceSchedulerInput, options: any): async.Operation<types.UpdateInferenceSchedulerOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateInferenceScheduler, input, options) as async.Operation<types.UpdateInferenceSchedulerOutput>
+function C:updateInferenceScheduler(input: types.UpdateInferenceSchedulerInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateInferenceSchedulerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateInferenceScheduler as schema.OperationSchema, input, options) as async.Operation<types.UpdateInferenceSchedulerOutput>
 end
 
-function C:updateLabelGroup(input: types.UpdateLabelGroupInput, options: any): async.Operation<types.UpdateLabelGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLabelGroup, input, options) as async.Operation<types.UpdateLabelGroupOutput>
+function C:updateLabelGroup(input: types.UpdateLabelGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLabelGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLabelGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateLabelGroupOutput>
 end
 
-function C:updateModel(input: types.UpdateModelInput, options: any): async.Operation<types.UpdateModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateModel, input, options) as async.Operation<types.UpdateModelOutput>
+function C:updateModel(input: types.UpdateModelInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateModel as schema.OperationSchema, input, options) as async.Operation<types.UpdateModelOutput>
 end
 
-function C:updateRetrainingScheduler(input: types.UpdateRetrainingSchedulerInput, options: any): async.Operation<types.UpdateRetrainingSchedulerOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRetrainingScheduler, input, options) as async.Operation<types.UpdateRetrainingSchedulerOutput>
+function C:updateRetrainingScheduler(input: types.UpdateRetrainingSchedulerInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRetrainingSchedulerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRetrainingScheduler as schema.OperationSchema, input, options) as async.Operation<types.UpdateRetrainingSchedulerOutput>
 end
 
 return M

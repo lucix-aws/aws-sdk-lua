@@ -8,132 +8,135 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("qconnect.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("qconnect.schemas")
 local traits = require("smithy.traits")
 local types = require("qconnect.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    activateMessageTemplate: function(Client, types.ActivateMessageTemplateInput, any): async.Operation<types.ActivateMessageTemplateOutput>
-    createAIAgent: function(Client, types.CreateAIAgentInput, any): async.Operation<types.CreateAIAgentOutput>
-    createAIAgentVersion: function(Client, types.CreateAIAgentVersionInput, any): async.Operation<types.CreateAIAgentVersionOutput>
-    createAIGuardrail: function(Client, types.CreateAIGuardrailInput, any): async.Operation<types.CreateAIGuardrailOutput>
-    createAIGuardrailVersion: function(Client, types.CreateAIGuardrailVersionInput, any): async.Operation<types.CreateAIGuardrailVersionOutput>
-    createAIPrompt: function(Client, types.CreateAIPromptInput, any): async.Operation<types.CreateAIPromptOutput>
-    createAIPromptVersion: function(Client, types.CreateAIPromptVersionInput, any): async.Operation<types.CreateAIPromptVersionOutput>
-    createAssistant: function(Client, types.CreateAssistantInput, any): async.Operation<types.CreateAssistantOutput>
-    createAssistantAssociation: function(Client, types.CreateAssistantAssociationInput, any): async.Operation<types.CreateAssistantAssociationOutput>
-    createContent: function(Client, types.CreateContentInput, any): async.Operation<types.CreateContentOutput>
-    createContentAssociation: function(Client, types.CreateContentAssociationInput, any): async.Operation<types.CreateContentAssociationOutput>
-    createKnowledgeBase: function(Client, types.CreateKnowledgeBaseInput, any): async.Operation<types.CreateKnowledgeBaseOutput>
-    createMessageTemplate: function(Client, types.CreateMessageTemplateInput, any): async.Operation<types.CreateMessageTemplateOutput>
-    createMessageTemplateAttachment: function(Client, types.CreateMessageTemplateAttachmentInput, any): async.Operation<types.CreateMessageTemplateAttachmentOutput>
-    createMessageTemplateVersion: function(Client, types.CreateMessageTemplateVersionInput, any): async.Operation<types.CreateMessageTemplateVersionOutput>
-    createQuickResponse: function(Client, types.CreateQuickResponseInput, any): async.Operation<types.CreateQuickResponseOutput>
-    createSession: function(Client, types.CreateSessionInput, any): async.Operation<types.CreateSessionOutput>
-    deactivateMessageTemplate: function(Client, types.DeactivateMessageTemplateInput, any): async.Operation<types.DeactivateMessageTemplateOutput>
-    deleteAIAgent: function(Client, types.DeleteAIAgentInput, any): async.Operation<types.DeleteAIAgentOutput>
-    deleteAIAgentVersion: function(Client, types.DeleteAIAgentVersionInput, any): async.Operation<types.DeleteAIAgentVersionOutput>
-    deleteAIGuardrail: function(Client, types.DeleteAIGuardrailInput, any): async.Operation<types.DeleteAIGuardrailOutput>
-    deleteAIGuardrailVersion: function(Client, types.DeleteAIGuardrailVersionInput, any): async.Operation<types.DeleteAIGuardrailVersionOutput>
-    deleteAIPrompt: function(Client, types.DeleteAIPromptInput, any): async.Operation<types.DeleteAIPromptOutput>
-    deleteAIPromptVersion: function(Client, types.DeleteAIPromptVersionInput, any): async.Operation<types.DeleteAIPromptVersionOutput>
-    deleteAssistant: function(Client, types.DeleteAssistantInput, any): async.Operation<types.DeleteAssistantOutput>
-    deleteAssistantAssociation: function(Client, types.DeleteAssistantAssociationInput, any): async.Operation<types.DeleteAssistantAssociationOutput>
-    deleteContent: function(Client, types.DeleteContentInput, any): async.Operation<types.DeleteContentOutput>
-    deleteContentAssociation: function(Client, types.DeleteContentAssociationInput, any): async.Operation<types.DeleteContentAssociationOutput>
-    deleteImportJob: function(Client, types.DeleteImportJobInput, any): async.Operation<types.DeleteImportJobOutput>
-    deleteKnowledgeBase: function(Client, types.DeleteKnowledgeBaseInput, any): async.Operation<types.DeleteKnowledgeBaseOutput>
-    deleteMessageTemplate: function(Client, types.DeleteMessageTemplateInput, any): async.Operation<types.DeleteMessageTemplateOutput>
-    deleteMessageTemplateAttachment: function(Client, types.DeleteMessageTemplateAttachmentInput, any): async.Operation<types.DeleteMessageTemplateAttachmentOutput>
-    deleteQuickResponse: function(Client, types.DeleteQuickResponseInput, any): async.Operation<types.DeleteQuickResponseOutput>
-    getAIAgent: function(Client, types.GetAIAgentInput, any): async.Operation<types.GetAIAgentOutput>
-    getAIGuardrail: function(Client, types.GetAIGuardrailInput, any): async.Operation<types.GetAIGuardrailOutput>
-    getAIPrompt: function(Client, types.GetAIPromptInput, any): async.Operation<types.GetAIPromptOutput>
-    getAssistant: function(Client, types.GetAssistantInput, any): async.Operation<types.GetAssistantOutput>
-    getAssistantAssociation: function(Client, types.GetAssistantAssociationInput, any): async.Operation<types.GetAssistantAssociationOutput>
-    getContent: function(Client, types.GetContentInput, any): async.Operation<types.GetContentOutput>
-    getContentAssociation: function(Client, types.GetContentAssociationInput, any): async.Operation<types.GetContentAssociationOutput>
-    getContentSummary: function(Client, types.GetContentSummaryInput, any): async.Operation<types.GetContentSummaryOutput>
-    getImportJob: function(Client, types.GetImportJobInput, any): async.Operation<types.GetImportJobOutput>
-    getKnowledgeBase: function(Client, types.GetKnowledgeBaseInput, any): async.Operation<types.GetKnowledgeBaseOutput>
-    getMessageTemplate: function(Client, types.GetMessageTemplateInput, any): async.Operation<types.GetMessageTemplateOutput>
-    getNextMessage: function(Client, types.GetNextMessageInput, any): async.Operation<types.GetNextMessageOutput>
-    getQuickResponse: function(Client, types.GetQuickResponseInput, any): async.Operation<types.GetQuickResponseOutput>
-    getRecommendations: function(Client, types.GetRecommendationsInput, any): async.Operation<types.GetRecommendationsOutput>
-    getSession: function(Client, types.GetSessionInput, any): async.Operation<types.GetSessionOutput>
-    listAIAgents: function(Client, types.ListAIAgentsInput, any): async.Operation<types.ListAIAgentsOutput>
-    listAIAgentVersions: function(Client, types.ListAIAgentVersionsInput, any): async.Operation<types.ListAIAgentVersionsOutput>
-    listAIGuardrails: function(Client, types.ListAIGuardrailsInput, any): async.Operation<types.ListAIGuardrailsOutput>
-    listAIGuardrailVersions: function(Client, types.ListAIGuardrailVersionsInput, any): async.Operation<types.ListAIGuardrailVersionsOutput>
-    listAIPrompts: function(Client, types.ListAIPromptsInput, any): async.Operation<types.ListAIPromptsOutput>
-    listAIPromptVersions: function(Client, types.ListAIPromptVersionsInput, any): async.Operation<types.ListAIPromptVersionsOutput>
-    listAssistantAssociations: function(Client, types.ListAssistantAssociationsInput, any): async.Operation<types.ListAssistantAssociationsOutput>
-    listAssistants: function(Client, types.ListAssistantsInput, any): async.Operation<types.ListAssistantsOutput>
-    listContentAssociations: function(Client, types.ListContentAssociationsInput, any): async.Operation<types.ListContentAssociationsOutput>
-    listContents: function(Client, types.ListContentsInput, any): async.Operation<types.ListContentsOutput>
-    listImportJobs: function(Client, types.ListImportJobsInput, any): async.Operation<types.ListImportJobsOutput>
-    listKnowledgeBases: function(Client, types.ListKnowledgeBasesInput, any): async.Operation<types.ListKnowledgeBasesOutput>
-    listMessages: function(Client, types.ListMessagesInput, any): async.Operation<types.ListMessagesOutput>
-    listMessageTemplates: function(Client, types.ListMessageTemplatesInput, any): async.Operation<types.ListMessageTemplatesOutput>
-    listMessageTemplateVersions: function(Client, types.ListMessageTemplateVersionsInput, any): async.Operation<types.ListMessageTemplateVersionsOutput>
-    listQuickResponses: function(Client, types.ListQuickResponsesInput, any): async.Operation<types.ListQuickResponsesOutput>
-    listSpans: function(Client, types.ListSpansInput, any): async.Operation<types.ListSpansOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    notifyRecommendationsReceived: function(Client, types.NotifyRecommendationsReceivedInput, any): async.Operation<types.NotifyRecommendationsReceivedOutput>
-    putFeedback: function(Client, types.PutFeedbackInput, any): async.Operation<types.PutFeedbackOutput>
-    queryAssistant: function(Client, types.QueryAssistantInput, any): async.Operation<types.QueryAssistantOutput>
-    removeAssistantAIAgent: function(Client, types.RemoveAssistantAIAgentInput, any): async.Operation<types.RemoveAssistantAIAgentOutput>
-    removeKnowledgeBaseTemplateUri: function(Client, types.RemoveKnowledgeBaseTemplateUriInput, any): async.Operation<types.RemoveKnowledgeBaseTemplateUriOutput>
-    renderMessageTemplate: function(Client, types.RenderMessageTemplateInput, any): async.Operation<types.RenderMessageTemplateOutput>
-    retrieve: function(Client, types.RetrieveInput, any): async.Operation<types.RetrieveOutput>
-    searchContent: function(Client, types.SearchContentInput, any): async.Operation<types.SearchContentOutput>
-    searchMessageTemplates: function(Client, types.SearchMessageTemplatesInput, any): async.Operation<types.SearchMessageTemplatesOutput>
-    searchQuickResponses: function(Client, types.SearchQuickResponsesInput, any): async.Operation<types.SearchQuickResponsesOutput>
-    searchSessions: function(Client, types.SearchSessionsInput, any): async.Operation<types.SearchSessionsOutput>
-    sendMessage: function(Client, types.SendMessageInput, any): async.Operation<types.SendMessageOutput>
-    startContentUpload: function(Client, types.StartContentUploadInput, any): async.Operation<types.StartContentUploadOutput>
-    startImportJob: function(Client, types.StartImportJobInput, any): async.Operation<types.StartImportJobOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAIAgent: function(Client, types.UpdateAIAgentInput, any): async.Operation<types.UpdateAIAgentOutput>
-    updateAIGuardrail: function(Client, types.UpdateAIGuardrailInput, any): async.Operation<types.UpdateAIGuardrailOutput>
-    updateAIPrompt: function(Client, types.UpdateAIPromptInput, any): async.Operation<types.UpdateAIPromptOutput>
-    updateAssistantAIAgent: function(Client, types.UpdateAssistantAIAgentInput, any): async.Operation<types.UpdateAssistantAIAgentOutput>
-    updateContent: function(Client, types.UpdateContentInput, any): async.Operation<types.UpdateContentOutput>
-    updateKnowledgeBaseTemplateUri: function(Client, types.UpdateKnowledgeBaseTemplateUriInput, any): async.Operation<types.UpdateKnowledgeBaseTemplateUriOutput>
-    updateMessageTemplate: function(Client, types.UpdateMessageTemplateInput, any): async.Operation<types.UpdateMessageTemplateOutput>
-    updateMessageTemplateMetadata: function(Client, types.UpdateMessageTemplateMetadataInput, any): async.Operation<types.UpdateMessageTemplateMetadataOutput>
-    updateQuickResponse: function(Client, types.UpdateQuickResponseInput, any): async.Operation<types.UpdateQuickResponseOutput>
-    updateSession: function(Client, types.UpdateSessionInput, any): async.Operation<types.UpdateSessionOutput>
-    updateSessionData: function(Client, types.UpdateSessionDataInput, any): async.Operation<types.UpdateSessionDataOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    activateMessageTemplate: function(Client, types.ActivateMessageTemplateInput, ? base_client.InvokeOptions): async.Operation<types.ActivateMessageTemplateOutput>
+    createAIAgent: function(Client, types.CreateAIAgentInput, ? base_client.InvokeOptions): async.Operation<types.CreateAIAgentOutput>
+    createAIAgentVersion: function(Client, types.CreateAIAgentVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateAIAgentVersionOutput>
+    createAIGuardrail: function(Client, types.CreateAIGuardrailInput, ? base_client.InvokeOptions): async.Operation<types.CreateAIGuardrailOutput>
+    createAIGuardrailVersion: function(Client, types.CreateAIGuardrailVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateAIGuardrailVersionOutput>
+    createAIPrompt: function(Client, types.CreateAIPromptInput, ? base_client.InvokeOptions): async.Operation<types.CreateAIPromptOutput>
+    createAIPromptVersion: function(Client, types.CreateAIPromptVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateAIPromptVersionOutput>
+    createAssistant: function(Client, types.CreateAssistantInput, ? base_client.InvokeOptions): async.Operation<types.CreateAssistantOutput>
+    createAssistantAssociation: function(Client, types.CreateAssistantAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateAssistantAssociationOutput>
+    createContent: function(Client, types.CreateContentInput, ? base_client.InvokeOptions): async.Operation<types.CreateContentOutput>
+    createContentAssociation: function(Client, types.CreateContentAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateContentAssociationOutput>
+    createKnowledgeBase: function(Client, types.CreateKnowledgeBaseInput, ? base_client.InvokeOptions): async.Operation<types.CreateKnowledgeBaseOutput>
+    createMessageTemplate: function(Client, types.CreateMessageTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateMessageTemplateOutput>
+    createMessageTemplateAttachment: function(Client, types.CreateMessageTemplateAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateMessageTemplateAttachmentOutput>
+    createMessageTemplateVersion: function(Client, types.CreateMessageTemplateVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateMessageTemplateVersionOutput>
+    createQuickResponse: function(Client, types.CreateQuickResponseInput, ? base_client.InvokeOptions): async.Operation<types.CreateQuickResponseOutput>
+    createSession: function(Client, types.CreateSessionInput, ? base_client.InvokeOptions): async.Operation<types.CreateSessionOutput>
+    deactivateMessageTemplate: function(Client, types.DeactivateMessageTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeactivateMessageTemplateOutput>
+    deleteAIAgent: function(Client, types.DeleteAIAgentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAIAgentOutput>
+    deleteAIAgentVersion: function(Client, types.DeleteAIAgentVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAIAgentVersionOutput>
+    deleteAIGuardrail: function(Client, types.DeleteAIGuardrailInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAIGuardrailOutput>
+    deleteAIGuardrailVersion: function(Client, types.DeleteAIGuardrailVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAIGuardrailVersionOutput>
+    deleteAIPrompt: function(Client, types.DeleteAIPromptInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAIPromptOutput>
+    deleteAIPromptVersion: function(Client, types.DeleteAIPromptVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAIPromptVersionOutput>
+    deleteAssistant: function(Client, types.DeleteAssistantInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAssistantOutput>
+    deleteAssistantAssociation: function(Client, types.DeleteAssistantAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAssistantAssociationOutput>
+    deleteContent: function(Client, types.DeleteContentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteContentOutput>
+    deleteContentAssociation: function(Client, types.DeleteContentAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteContentAssociationOutput>
+    deleteImportJob: function(Client, types.DeleteImportJobInput, ? base_client.InvokeOptions): async.Operation<types.DeleteImportJobOutput>
+    deleteKnowledgeBase: function(Client, types.DeleteKnowledgeBaseInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKnowledgeBaseOutput>
+    deleteMessageTemplate: function(Client, types.DeleteMessageTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMessageTemplateOutput>
+    deleteMessageTemplateAttachment: function(Client, types.DeleteMessageTemplateAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMessageTemplateAttachmentOutput>
+    deleteQuickResponse: function(Client, types.DeleteQuickResponseInput, ? base_client.InvokeOptions): async.Operation<types.DeleteQuickResponseOutput>
+    getAIAgent: function(Client, types.GetAIAgentInput, ? base_client.InvokeOptions): async.Operation<types.GetAIAgentOutput>
+    getAIGuardrail: function(Client, types.GetAIGuardrailInput, ? base_client.InvokeOptions): async.Operation<types.GetAIGuardrailOutput>
+    getAIPrompt: function(Client, types.GetAIPromptInput, ? base_client.InvokeOptions): async.Operation<types.GetAIPromptOutput>
+    getAssistant: function(Client, types.GetAssistantInput, ? base_client.InvokeOptions): async.Operation<types.GetAssistantOutput>
+    getAssistantAssociation: function(Client, types.GetAssistantAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetAssistantAssociationOutput>
+    getContent: function(Client, types.GetContentInput, ? base_client.InvokeOptions): async.Operation<types.GetContentOutput>
+    getContentAssociation: function(Client, types.GetContentAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetContentAssociationOutput>
+    getContentSummary: function(Client, types.GetContentSummaryInput, ? base_client.InvokeOptions): async.Operation<types.GetContentSummaryOutput>
+    getImportJob: function(Client, types.GetImportJobInput, ? base_client.InvokeOptions): async.Operation<types.GetImportJobOutput>
+    getKnowledgeBase: function(Client, types.GetKnowledgeBaseInput, ? base_client.InvokeOptions): async.Operation<types.GetKnowledgeBaseOutput>
+    getMessageTemplate: function(Client, types.GetMessageTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetMessageTemplateOutput>
+    getNextMessage: function(Client, types.GetNextMessageInput, ? base_client.InvokeOptions): async.Operation<types.GetNextMessageOutput>
+    getQuickResponse: function(Client, types.GetQuickResponseInput, ? base_client.InvokeOptions): async.Operation<types.GetQuickResponseOutput>
+    getRecommendations: function(Client, types.GetRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.GetRecommendationsOutput>
+    getSession: function(Client, types.GetSessionInput, ? base_client.InvokeOptions): async.Operation<types.GetSessionOutput>
+    listAIAgents: function(Client, types.ListAIAgentsInput, ? base_client.InvokeOptions): async.Operation<types.ListAIAgentsOutput>
+    listAIAgentVersions: function(Client, types.ListAIAgentVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListAIAgentVersionsOutput>
+    listAIGuardrails: function(Client, types.ListAIGuardrailsInput, ? base_client.InvokeOptions): async.Operation<types.ListAIGuardrailsOutput>
+    listAIGuardrailVersions: function(Client, types.ListAIGuardrailVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListAIGuardrailVersionsOutput>
+    listAIPrompts: function(Client, types.ListAIPromptsInput, ? base_client.InvokeOptions): async.Operation<types.ListAIPromptsOutput>
+    listAIPromptVersions: function(Client, types.ListAIPromptVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListAIPromptVersionsOutput>
+    listAssistantAssociations: function(Client, types.ListAssistantAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssistantAssociationsOutput>
+    listAssistants: function(Client, types.ListAssistantsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssistantsOutput>
+    listContentAssociations: function(Client, types.ListContentAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListContentAssociationsOutput>
+    listContents: function(Client, types.ListContentsInput, ? base_client.InvokeOptions): async.Operation<types.ListContentsOutput>
+    listImportJobs: function(Client, types.ListImportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListImportJobsOutput>
+    listKnowledgeBases: function(Client, types.ListKnowledgeBasesInput, ? base_client.InvokeOptions): async.Operation<types.ListKnowledgeBasesOutput>
+    listMessages: function(Client, types.ListMessagesInput, ? base_client.InvokeOptions): async.Operation<types.ListMessagesOutput>
+    listMessageTemplates: function(Client, types.ListMessageTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListMessageTemplatesOutput>
+    listMessageTemplateVersions: function(Client, types.ListMessageTemplateVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListMessageTemplateVersionsOutput>
+    listQuickResponses: function(Client, types.ListQuickResponsesInput, ? base_client.InvokeOptions): async.Operation<types.ListQuickResponsesOutput>
+    listSpans: function(Client, types.ListSpansInput, ? base_client.InvokeOptions): async.Operation<types.ListSpansOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    notifyRecommendationsReceived: function(Client, types.NotifyRecommendationsReceivedInput, ? base_client.InvokeOptions): async.Operation<types.NotifyRecommendationsReceivedOutput>
+    putFeedback: function(Client, types.PutFeedbackInput, ? base_client.InvokeOptions): async.Operation<types.PutFeedbackOutput>
+    queryAssistant: function(Client, types.QueryAssistantInput, ? base_client.InvokeOptions): async.Operation<types.QueryAssistantOutput>
+    removeAssistantAIAgent: function(Client, types.RemoveAssistantAIAgentInput, ? base_client.InvokeOptions): async.Operation<types.RemoveAssistantAIAgentOutput>
+    removeKnowledgeBaseTemplateUri: function(Client, types.RemoveKnowledgeBaseTemplateUriInput, ? base_client.InvokeOptions): async.Operation<types.RemoveKnowledgeBaseTemplateUriOutput>
+    renderMessageTemplate: function(Client, types.RenderMessageTemplateInput, ? base_client.InvokeOptions): async.Operation<types.RenderMessageTemplateOutput>
+    retrieve: function(Client, types.RetrieveInput, ? base_client.InvokeOptions): async.Operation<types.RetrieveOutput>
+    searchContent: function(Client, types.SearchContentInput, ? base_client.InvokeOptions): async.Operation<types.SearchContentOutput>
+    searchMessageTemplates: function(Client, types.SearchMessageTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.SearchMessageTemplatesOutput>
+    searchQuickResponses: function(Client, types.SearchQuickResponsesInput, ? base_client.InvokeOptions): async.Operation<types.SearchQuickResponsesOutput>
+    searchSessions: function(Client, types.SearchSessionsInput, ? base_client.InvokeOptions): async.Operation<types.SearchSessionsOutput>
+    sendMessage: function(Client, types.SendMessageInput, ? base_client.InvokeOptions): async.Operation<types.SendMessageOutput>
+    startContentUpload: function(Client, types.StartContentUploadInput, ? base_client.InvokeOptions): async.Operation<types.StartContentUploadOutput>
+    startImportJob: function(Client, types.StartImportJobInput, ? base_client.InvokeOptions): async.Operation<types.StartImportJobOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAIAgent: function(Client, types.UpdateAIAgentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAIAgentOutput>
+    updateAIGuardrail: function(Client, types.UpdateAIGuardrailInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAIGuardrailOutput>
+    updateAIPrompt: function(Client, types.UpdateAIPromptInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAIPromptOutput>
+    updateAssistantAIAgent: function(Client, types.UpdateAssistantAIAgentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAssistantAIAgentOutput>
+    updateContent: function(Client, types.UpdateContentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContentOutput>
+    updateKnowledgeBaseTemplateUri: function(Client, types.UpdateKnowledgeBaseTemplateUriInput, ? base_client.InvokeOptions): async.Operation<types.UpdateKnowledgeBaseTemplateUriOutput>
+    updateMessageTemplate: function(Client, types.UpdateMessageTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMessageTemplateOutput>
+    updateMessageTemplateMetadata: function(Client, types.UpdateMessageTemplateMetadataInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMessageTemplateMetadataOutput>
+    updateQuickResponse: function(Client, types.UpdateQuickResponseInput, ? base_client.InvokeOptions): async.Operation<types.UpdateQuickResponseOutput>
+    updateSession: function(Client, types.UpdateSessionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSessionOutput>
+    updateSessionData: function(Client, types.UpdateSessionDataInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSessionDataOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "WisdomService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "wisdom", signing_region = c.region } }
                 else
@@ -152,376 +155,376 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:activateMessageTemplate(input: types.ActivateMessageTemplateInput, options: any): async.Operation<types.ActivateMessageTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.ActivateMessageTemplate, input, options) as async.Operation<types.ActivateMessageTemplateOutput>
+function C:activateMessageTemplate(input: types.ActivateMessageTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.ActivateMessageTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ActivateMessageTemplate as schema.OperationSchema, input, options) as async.Operation<types.ActivateMessageTemplateOutput>
 end
 
-function C:createAIAgent(input: types.CreateAIAgentInput, options: any): async.Operation<types.CreateAIAgentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAIAgent, input, options) as async.Operation<types.CreateAIAgentOutput>
+function C:createAIAgent(input: types.CreateAIAgentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAIAgentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAIAgent as schema.OperationSchema, input, options) as async.Operation<types.CreateAIAgentOutput>
 end
 
-function C:createAIAgentVersion(input: types.CreateAIAgentVersionInput, options: any): async.Operation<types.CreateAIAgentVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAIAgentVersion, input, options) as async.Operation<types.CreateAIAgentVersionOutput>
+function C:createAIAgentVersion(input: types.CreateAIAgentVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAIAgentVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAIAgentVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateAIAgentVersionOutput>
 end
 
-function C:createAIGuardrail(input: types.CreateAIGuardrailInput, options: any): async.Operation<types.CreateAIGuardrailOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAIGuardrail, input, options) as async.Operation<types.CreateAIGuardrailOutput>
+function C:createAIGuardrail(input: types.CreateAIGuardrailInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAIGuardrailOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAIGuardrail as schema.OperationSchema, input, options) as async.Operation<types.CreateAIGuardrailOutput>
 end
 
-function C:createAIGuardrailVersion(input: types.CreateAIGuardrailVersionInput, options: any): async.Operation<types.CreateAIGuardrailVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAIGuardrailVersion, input, options) as async.Operation<types.CreateAIGuardrailVersionOutput>
+function C:createAIGuardrailVersion(input: types.CreateAIGuardrailVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAIGuardrailVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAIGuardrailVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateAIGuardrailVersionOutput>
 end
 
-function C:createAIPrompt(input: types.CreateAIPromptInput, options: any): async.Operation<types.CreateAIPromptOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAIPrompt, input, options) as async.Operation<types.CreateAIPromptOutput>
+function C:createAIPrompt(input: types.CreateAIPromptInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAIPromptOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAIPrompt as schema.OperationSchema, input, options) as async.Operation<types.CreateAIPromptOutput>
 end
 
-function C:createAIPromptVersion(input: types.CreateAIPromptVersionInput, options: any): async.Operation<types.CreateAIPromptVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAIPromptVersion, input, options) as async.Operation<types.CreateAIPromptVersionOutput>
+function C:createAIPromptVersion(input: types.CreateAIPromptVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAIPromptVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAIPromptVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateAIPromptVersionOutput>
 end
 
-function C:createAssistant(input: types.CreateAssistantInput, options: any): async.Operation<types.CreateAssistantOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAssistant, input, options) as async.Operation<types.CreateAssistantOutput>
+function C:createAssistant(input: types.CreateAssistantInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAssistantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAssistant as schema.OperationSchema, input, options) as async.Operation<types.CreateAssistantOutput>
 end
 
-function C:createAssistantAssociation(input: types.CreateAssistantAssociationInput, options: any): async.Operation<types.CreateAssistantAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAssistantAssociation, input, options) as async.Operation<types.CreateAssistantAssociationOutput>
+function C:createAssistantAssociation(input: types.CreateAssistantAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAssistantAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAssistantAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreateAssistantAssociationOutput>
 end
 
-function C:createContent(input: types.CreateContentInput, options: any): async.Operation<types.CreateContentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateContent, input, options) as async.Operation<types.CreateContentOutput>
+function C:createContent(input: types.CreateContentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateContentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateContent as schema.OperationSchema, input, options) as async.Operation<types.CreateContentOutput>
 end
 
-function C:createContentAssociation(input: types.CreateContentAssociationInput, options: any): async.Operation<types.CreateContentAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateContentAssociation, input, options) as async.Operation<types.CreateContentAssociationOutput>
+function C:createContentAssociation(input: types.CreateContentAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateContentAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateContentAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreateContentAssociationOutput>
 end
 
-function C:createKnowledgeBase(input: types.CreateKnowledgeBaseInput, options: any): async.Operation<types.CreateKnowledgeBaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateKnowledgeBase, input, options) as async.Operation<types.CreateKnowledgeBaseOutput>
+function C:createKnowledgeBase(input: types.CreateKnowledgeBaseInput, options?: base_client.InvokeOptions): async.Operation<types.CreateKnowledgeBaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateKnowledgeBase as schema.OperationSchema, input, options) as async.Operation<types.CreateKnowledgeBaseOutput>
 end
 
-function C:createMessageTemplate(input: types.CreateMessageTemplateInput, options: any): async.Operation<types.CreateMessageTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMessageTemplate, input, options) as async.Operation<types.CreateMessageTemplateOutput>
+function C:createMessageTemplate(input: types.CreateMessageTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMessageTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMessageTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateMessageTemplateOutput>
 end
 
-function C:createMessageTemplateAttachment(input: types.CreateMessageTemplateAttachmentInput, options: any): async.Operation<types.CreateMessageTemplateAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMessageTemplateAttachment, input, options) as async.Operation<types.CreateMessageTemplateAttachmentOutput>
+function C:createMessageTemplateAttachment(input: types.CreateMessageTemplateAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMessageTemplateAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMessageTemplateAttachment as schema.OperationSchema, input, options) as async.Operation<types.CreateMessageTemplateAttachmentOutput>
 end
 
-function C:createMessageTemplateVersion(input: types.CreateMessageTemplateVersionInput, options: any): async.Operation<types.CreateMessageTemplateVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMessageTemplateVersion, input, options) as async.Operation<types.CreateMessageTemplateVersionOutput>
+function C:createMessageTemplateVersion(input: types.CreateMessageTemplateVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMessageTemplateVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMessageTemplateVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateMessageTemplateVersionOutput>
 end
 
-function C:createQuickResponse(input: types.CreateQuickResponseInput, options: any): async.Operation<types.CreateQuickResponseOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateQuickResponse, input, options) as async.Operation<types.CreateQuickResponseOutput>
+function C:createQuickResponse(input: types.CreateQuickResponseInput, options?: base_client.InvokeOptions): async.Operation<types.CreateQuickResponseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateQuickResponse as schema.OperationSchema, input, options) as async.Operation<types.CreateQuickResponseOutput>
 end
 
-function C:createSession(input: types.CreateSessionInput, options: any): async.Operation<types.CreateSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSession, input, options) as async.Operation<types.CreateSessionOutput>
+function C:createSession(input: types.CreateSessionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSession as schema.OperationSchema, input, options) as async.Operation<types.CreateSessionOutput>
 end
 
-function C:deactivateMessageTemplate(input: types.DeactivateMessageTemplateInput, options: any): async.Operation<types.DeactivateMessageTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeactivateMessageTemplate, input, options) as async.Operation<types.DeactivateMessageTemplateOutput>
+function C:deactivateMessageTemplate(input: types.DeactivateMessageTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeactivateMessageTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeactivateMessageTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeactivateMessageTemplateOutput>
 end
 
-function C:deleteAIAgent(input: types.DeleteAIAgentInput, options: any): async.Operation<types.DeleteAIAgentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAIAgent, input, options) as async.Operation<types.DeleteAIAgentOutput>
+function C:deleteAIAgent(input: types.DeleteAIAgentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAIAgentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAIAgent as schema.OperationSchema, input, options) as async.Operation<types.DeleteAIAgentOutput>
 end
 
-function C:deleteAIAgentVersion(input: types.DeleteAIAgentVersionInput, options: any): async.Operation<types.DeleteAIAgentVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAIAgentVersion, input, options) as async.Operation<types.DeleteAIAgentVersionOutput>
+function C:deleteAIAgentVersion(input: types.DeleteAIAgentVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAIAgentVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAIAgentVersion as schema.OperationSchema, input, options) as async.Operation<types.DeleteAIAgentVersionOutput>
 end
 
-function C:deleteAIGuardrail(input: types.DeleteAIGuardrailInput, options: any): async.Operation<types.DeleteAIGuardrailOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAIGuardrail, input, options) as async.Operation<types.DeleteAIGuardrailOutput>
+function C:deleteAIGuardrail(input: types.DeleteAIGuardrailInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAIGuardrailOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAIGuardrail as schema.OperationSchema, input, options) as async.Operation<types.DeleteAIGuardrailOutput>
 end
 
-function C:deleteAIGuardrailVersion(input: types.DeleteAIGuardrailVersionInput, options: any): async.Operation<types.DeleteAIGuardrailVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAIGuardrailVersion, input, options) as async.Operation<types.DeleteAIGuardrailVersionOutput>
+function C:deleteAIGuardrailVersion(input: types.DeleteAIGuardrailVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAIGuardrailVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAIGuardrailVersion as schema.OperationSchema, input, options) as async.Operation<types.DeleteAIGuardrailVersionOutput>
 end
 
-function C:deleteAIPrompt(input: types.DeleteAIPromptInput, options: any): async.Operation<types.DeleteAIPromptOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAIPrompt, input, options) as async.Operation<types.DeleteAIPromptOutput>
+function C:deleteAIPrompt(input: types.DeleteAIPromptInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAIPromptOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAIPrompt as schema.OperationSchema, input, options) as async.Operation<types.DeleteAIPromptOutput>
 end
 
-function C:deleteAIPromptVersion(input: types.DeleteAIPromptVersionInput, options: any): async.Operation<types.DeleteAIPromptVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAIPromptVersion, input, options) as async.Operation<types.DeleteAIPromptVersionOutput>
+function C:deleteAIPromptVersion(input: types.DeleteAIPromptVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAIPromptVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAIPromptVersion as schema.OperationSchema, input, options) as async.Operation<types.DeleteAIPromptVersionOutput>
 end
 
-function C:deleteAssistant(input: types.DeleteAssistantInput, options: any): async.Operation<types.DeleteAssistantOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAssistant, input, options) as async.Operation<types.DeleteAssistantOutput>
+function C:deleteAssistant(input: types.DeleteAssistantInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAssistantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAssistant as schema.OperationSchema, input, options) as async.Operation<types.DeleteAssistantOutput>
 end
 
-function C:deleteAssistantAssociation(input: types.DeleteAssistantAssociationInput, options: any): async.Operation<types.DeleteAssistantAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAssistantAssociation, input, options) as async.Operation<types.DeleteAssistantAssociationOutput>
+function C:deleteAssistantAssociation(input: types.DeleteAssistantAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAssistantAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAssistantAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteAssistantAssociationOutput>
 end
 
-function C:deleteContent(input: types.DeleteContentInput, options: any): async.Operation<types.DeleteContentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteContent, input, options) as async.Operation<types.DeleteContentOutput>
+function C:deleteContent(input: types.DeleteContentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteContentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteContent as schema.OperationSchema, input, options) as async.Operation<types.DeleteContentOutput>
 end
 
-function C:deleteContentAssociation(input: types.DeleteContentAssociationInput, options: any): async.Operation<types.DeleteContentAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteContentAssociation, input, options) as async.Operation<types.DeleteContentAssociationOutput>
+function C:deleteContentAssociation(input: types.DeleteContentAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteContentAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteContentAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteContentAssociationOutput>
 end
 
-function C:deleteImportJob(input: types.DeleteImportJobInput, options: any): async.Operation<types.DeleteImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteImportJob, input, options) as async.Operation<types.DeleteImportJobOutput>
+function C:deleteImportJob(input: types.DeleteImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteImportJob as schema.OperationSchema, input, options) as async.Operation<types.DeleteImportJobOutput>
 end
 
-function C:deleteKnowledgeBase(input: types.DeleteKnowledgeBaseInput, options: any): async.Operation<types.DeleteKnowledgeBaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteKnowledgeBase, input, options) as async.Operation<types.DeleteKnowledgeBaseOutput>
+function C:deleteKnowledgeBase(input: types.DeleteKnowledgeBaseInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteKnowledgeBaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteKnowledgeBase as schema.OperationSchema, input, options) as async.Operation<types.DeleteKnowledgeBaseOutput>
 end
 
-function C:deleteMessageTemplate(input: types.DeleteMessageTemplateInput, options: any): async.Operation<types.DeleteMessageTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMessageTemplate, input, options) as async.Operation<types.DeleteMessageTemplateOutput>
+function C:deleteMessageTemplate(input: types.DeleteMessageTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMessageTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMessageTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteMessageTemplateOutput>
 end
 
-function C:deleteMessageTemplateAttachment(input: types.DeleteMessageTemplateAttachmentInput, options: any): async.Operation<types.DeleteMessageTemplateAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMessageTemplateAttachment, input, options) as async.Operation<types.DeleteMessageTemplateAttachmentOutput>
+function C:deleteMessageTemplateAttachment(input: types.DeleteMessageTemplateAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMessageTemplateAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMessageTemplateAttachment as schema.OperationSchema, input, options) as async.Operation<types.DeleteMessageTemplateAttachmentOutput>
 end
 
-function C:deleteQuickResponse(input: types.DeleteQuickResponseInput, options: any): async.Operation<types.DeleteQuickResponseOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteQuickResponse, input, options) as async.Operation<types.DeleteQuickResponseOutput>
+function C:deleteQuickResponse(input: types.DeleteQuickResponseInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteQuickResponseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteQuickResponse as schema.OperationSchema, input, options) as async.Operation<types.DeleteQuickResponseOutput>
 end
 
-function C:getAIAgent(input: types.GetAIAgentInput, options: any): async.Operation<types.GetAIAgentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAIAgent, input, options) as async.Operation<types.GetAIAgentOutput>
+function C:getAIAgent(input: types.GetAIAgentInput, options?: base_client.InvokeOptions): async.Operation<types.GetAIAgentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAIAgent as schema.OperationSchema, input, options) as async.Operation<types.GetAIAgentOutput>
 end
 
-function C:getAIGuardrail(input: types.GetAIGuardrailInput, options: any): async.Operation<types.GetAIGuardrailOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAIGuardrail, input, options) as async.Operation<types.GetAIGuardrailOutput>
+function C:getAIGuardrail(input: types.GetAIGuardrailInput, options?: base_client.InvokeOptions): async.Operation<types.GetAIGuardrailOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAIGuardrail as schema.OperationSchema, input, options) as async.Operation<types.GetAIGuardrailOutput>
 end
 
-function C:getAIPrompt(input: types.GetAIPromptInput, options: any): async.Operation<types.GetAIPromptOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAIPrompt, input, options) as async.Operation<types.GetAIPromptOutput>
+function C:getAIPrompt(input: types.GetAIPromptInput, options?: base_client.InvokeOptions): async.Operation<types.GetAIPromptOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAIPrompt as schema.OperationSchema, input, options) as async.Operation<types.GetAIPromptOutput>
 end
 
-function C:getAssistant(input: types.GetAssistantInput, options: any): async.Operation<types.GetAssistantOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAssistant, input, options) as async.Operation<types.GetAssistantOutput>
+function C:getAssistant(input: types.GetAssistantInput, options?: base_client.InvokeOptions): async.Operation<types.GetAssistantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAssistant as schema.OperationSchema, input, options) as async.Operation<types.GetAssistantOutput>
 end
 
-function C:getAssistantAssociation(input: types.GetAssistantAssociationInput, options: any): async.Operation<types.GetAssistantAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAssistantAssociation, input, options) as async.Operation<types.GetAssistantAssociationOutput>
+function C:getAssistantAssociation(input: types.GetAssistantAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetAssistantAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAssistantAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetAssistantAssociationOutput>
 end
 
-function C:getContent(input: types.GetContentInput, options: any): async.Operation<types.GetContentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetContent, input, options) as async.Operation<types.GetContentOutput>
+function C:getContent(input: types.GetContentInput, options?: base_client.InvokeOptions): async.Operation<types.GetContentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetContent as schema.OperationSchema, input, options) as async.Operation<types.GetContentOutput>
 end
 
-function C:getContentAssociation(input: types.GetContentAssociationInput, options: any): async.Operation<types.GetContentAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetContentAssociation, input, options) as async.Operation<types.GetContentAssociationOutput>
+function C:getContentAssociation(input: types.GetContentAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetContentAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetContentAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetContentAssociationOutput>
 end
 
-function C:getContentSummary(input: types.GetContentSummaryInput, options: any): async.Operation<types.GetContentSummaryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetContentSummary, input, options) as async.Operation<types.GetContentSummaryOutput>
+function C:getContentSummary(input: types.GetContentSummaryInput, options?: base_client.InvokeOptions): async.Operation<types.GetContentSummaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetContentSummary as schema.OperationSchema, input, options) as async.Operation<types.GetContentSummaryOutput>
 end
 
-function C:getImportJob(input: types.GetImportJobInput, options: any): async.Operation<types.GetImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetImportJob, input, options) as async.Operation<types.GetImportJobOutput>
+function C:getImportJob(input: types.GetImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetImportJob as schema.OperationSchema, input, options) as async.Operation<types.GetImportJobOutput>
 end
 
-function C:getKnowledgeBase(input: types.GetKnowledgeBaseInput, options: any): async.Operation<types.GetKnowledgeBaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetKnowledgeBase, input, options) as async.Operation<types.GetKnowledgeBaseOutput>
+function C:getKnowledgeBase(input: types.GetKnowledgeBaseInput, options?: base_client.InvokeOptions): async.Operation<types.GetKnowledgeBaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetKnowledgeBase as schema.OperationSchema, input, options) as async.Operation<types.GetKnowledgeBaseOutput>
 end
 
-function C:getMessageTemplate(input: types.GetMessageTemplateInput, options: any): async.Operation<types.GetMessageTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMessageTemplate, input, options) as async.Operation<types.GetMessageTemplateOutput>
+function C:getMessageTemplate(input: types.GetMessageTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetMessageTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMessageTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetMessageTemplateOutput>
 end
 
-function C:getNextMessage(input: types.GetNextMessageInput, options: any): async.Operation<types.GetNextMessageOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNextMessage, input, options) as async.Operation<types.GetNextMessageOutput>
+function C:getNextMessage(input: types.GetNextMessageInput, options?: base_client.InvokeOptions): async.Operation<types.GetNextMessageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNextMessage as schema.OperationSchema, input, options) as async.Operation<types.GetNextMessageOutput>
 end
 
-function C:getQuickResponse(input: types.GetQuickResponseInput, options: any): async.Operation<types.GetQuickResponseOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetQuickResponse, input, options) as async.Operation<types.GetQuickResponseOutput>
+function C:getQuickResponse(input: types.GetQuickResponseInput, options?: base_client.InvokeOptions): async.Operation<types.GetQuickResponseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQuickResponse as schema.OperationSchema, input, options) as async.Operation<types.GetQuickResponseOutput>
 end
 
-function C:getRecommendations(input: types.GetRecommendationsInput, options: any): async.Operation<types.GetRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRecommendations, input, options) as async.Operation<types.GetRecommendationsOutput>
+function C:getRecommendations(input: types.GetRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRecommendations as schema.OperationSchema, input, options) as async.Operation<types.GetRecommendationsOutput>
 end
 
-function C:getSession(input: types.GetSessionInput, options: any): async.Operation<types.GetSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSession, input, options) as async.Operation<types.GetSessionOutput>
+function C:getSession(input: types.GetSessionInput, options?: base_client.InvokeOptions): async.Operation<types.GetSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSession as schema.OperationSchema, input, options) as async.Operation<types.GetSessionOutput>
 end
 
-function C:listAIAgents(input: types.ListAIAgentsInput, options: any): async.Operation<types.ListAIAgentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAIAgents, input, options) as async.Operation<types.ListAIAgentsOutput>
+function C:listAIAgents(input: types.ListAIAgentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAIAgentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAIAgents as schema.OperationSchema, input, options) as async.Operation<types.ListAIAgentsOutput>
 end
 
-function C:listAIAgentVersions(input: types.ListAIAgentVersionsInput, options: any): async.Operation<types.ListAIAgentVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAIAgentVersions, input, options) as async.Operation<types.ListAIAgentVersionsOutput>
+function C:listAIAgentVersions(input: types.ListAIAgentVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAIAgentVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAIAgentVersions as schema.OperationSchema, input, options) as async.Operation<types.ListAIAgentVersionsOutput>
 end
 
-function C:listAIGuardrails(input: types.ListAIGuardrailsInput, options: any): async.Operation<types.ListAIGuardrailsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAIGuardrails, input, options) as async.Operation<types.ListAIGuardrailsOutput>
+function C:listAIGuardrails(input: types.ListAIGuardrailsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAIGuardrailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAIGuardrails as schema.OperationSchema, input, options) as async.Operation<types.ListAIGuardrailsOutput>
 end
 
-function C:listAIGuardrailVersions(input: types.ListAIGuardrailVersionsInput, options: any): async.Operation<types.ListAIGuardrailVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAIGuardrailVersions, input, options) as async.Operation<types.ListAIGuardrailVersionsOutput>
+function C:listAIGuardrailVersions(input: types.ListAIGuardrailVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAIGuardrailVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAIGuardrailVersions as schema.OperationSchema, input, options) as async.Operation<types.ListAIGuardrailVersionsOutput>
 end
 
-function C:listAIPrompts(input: types.ListAIPromptsInput, options: any): async.Operation<types.ListAIPromptsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAIPrompts, input, options) as async.Operation<types.ListAIPromptsOutput>
+function C:listAIPrompts(input: types.ListAIPromptsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAIPromptsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAIPrompts as schema.OperationSchema, input, options) as async.Operation<types.ListAIPromptsOutput>
 end
 
-function C:listAIPromptVersions(input: types.ListAIPromptVersionsInput, options: any): async.Operation<types.ListAIPromptVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAIPromptVersions, input, options) as async.Operation<types.ListAIPromptVersionsOutput>
+function C:listAIPromptVersions(input: types.ListAIPromptVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAIPromptVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAIPromptVersions as schema.OperationSchema, input, options) as async.Operation<types.ListAIPromptVersionsOutput>
 end
 
-function C:listAssistantAssociations(input: types.ListAssistantAssociationsInput, options: any): async.Operation<types.ListAssistantAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssistantAssociations, input, options) as async.Operation<types.ListAssistantAssociationsOutput>
+function C:listAssistantAssociations(input: types.ListAssistantAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssistantAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssistantAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListAssistantAssociationsOutput>
 end
 
-function C:listAssistants(input: types.ListAssistantsInput, options: any): async.Operation<types.ListAssistantsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssistants, input, options) as async.Operation<types.ListAssistantsOutput>
+function C:listAssistants(input: types.ListAssistantsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssistantsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssistants as schema.OperationSchema, input, options) as async.Operation<types.ListAssistantsOutput>
 end
 
-function C:listContentAssociations(input: types.ListContentAssociationsInput, options: any): async.Operation<types.ListContentAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListContentAssociations, input, options) as async.Operation<types.ListContentAssociationsOutput>
+function C:listContentAssociations(input: types.ListContentAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListContentAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListContentAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListContentAssociationsOutput>
 end
 
-function C:listContents(input: types.ListContentsInput, options: any): async.Operation<types.ListContentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListContents, input, options) as async.Operation<types.ListContentsOutput>
+function C:listContents(input: types.ListContentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListContentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListContents as schema.OperationSchema, input, options) as async.Operation<types.ListContentsOutput>
 end
 
-function C:listImportJobs(input: types.ListImportJobsInput, options: any): async.Operation<types.ListImportJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListImportJobs, input, options) as async.Operation<types.ListImportJobsOutput>
+function C:listImportJobs(input: types.ListImportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListImportJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListImportJobs as schema.OperationSchema, input, options) as async.Operation<types.ListImportJobsOutput>
 end
 
-function C:listKnowledgeBases(input: types.ListKnowledgeBasesInput, options: any): async.Operation<types.ListKnowledgeBasesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListKnowledgeBases, input, options) as async.Operation<types.ListKnowledgeBasesOutput>
+function C:listKnowledgeBases(input: types.ListKnowledgeBasesInput, options?: base_client.InvokeOptions): async.Operation<types.ListKnowledgeBasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListKnowledgeBases as schema.OperationSchema, input, options) as async.Operation<types.ListKnowledgeBasesOutput>
 end
 
-function C:listMessages(input: types.ListMessagesInput, options: any): async.Operation<types.ListMessagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMessages, input, options) as async.Operation<types.ListMessagesOutput>
+function C:listMessages(input: types.ListMessagesInput, options?: base_client.InvokeOptions): async.Operation<types.ListMessagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMessages as schema.OperationSchema, input, options) as async.Operation<types.ListMessagesOutput>
 end
 
-function C:listMessageTemplates(input: types.ListMessageTemplatesInput, options: any): async.Operation<types.ListMessageTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMessageTemplates, input, options) as async.Operation<types.ListMessageTemplatesOutput>
+function C:listMessageTemplates(input: types.ListMessageTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListMessageTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMessageTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListMessageTemplatesOutput>
 end
 
-function C:listMessageTemplateVersions(input: types.ListMessageTemplateVersionsInput, options: any): async.Operation<types.ListMessageTemplateVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMessageTemplateVersions, input, options) as async.Operation<types.ListMessageTemplateVersionsOutput>
+function C:listMessageTemplateVersions(input: types.ListMessageTemplateVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMessageTemplateVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMessageTemplateVersions as schema.OperationSchema, input, options) as async.Operation<types.ListMessageTemplateVersionsOutput>
 end
 
-function C:listQuickResponses(input: types.ListQuickResponsesInput, options: any): async.Operation<types.ListQuickResponsesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListQuickResponses, input, options) as async.Operation<types.ListQuickResponsesOutput>
+function C:listQuickResponses(input: types.ListQuickResponsesInput, options?: base_client.InvokeOptions): async.Operation<types.ListQuickResponsesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListQuickResponses as schema.OperationSchema, input, options) as async.Operation<types.ListQuickResponsesOutput>
 end
 
-function C:listSpans(input: types.ListSpansInput, options: any): async.Operation<types.ListSpansOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSpans, input, options) as async.Operation<types.ListSpansOutput>
+function C:listSpans(input: types.ListSpansInput, options?: base_client.InvokeOptions): async.Operation<types.ListSpansOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSpans as schema.OperationSchema, input, options) as async.Operation<types.ListSpansOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:notifyRecommendationsReceived(input: types.NotifyRecommendationsReceivedInput, options: any): async.Operation<types.NotifyRecommendationsReceivedOutput>
-    return self:invokeOperation(schemas.Service, schemas.NotifyRecommendationsReceived, input, options) as async.Operation<types.NotifyRecommendationsReceivedOutput>
+function C:notifyRecommendationsReceived(input: types.NotifyRecommendationsReceivedInput, options?: base_client.InvokeOptions): async.Operation<types.NotifyRecommendationsReceivedOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.NotifyRecommendationsReceived as schema.OperationSchema, input, options) as async.Operation<types.NotifyRecommendationsReceivedOutput>
 end
 
-function C:putFeedback(input: types.PutFeedbackInput, options: any): async.Operation<types.PutFeedbackOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutFeedback, input, options) as async.Operation<types.PutFeedbackOutput>
+function C:putFeedback(input: types.PutFeedbackInput, options?: base_client.InvokeOptions): async.Operation<types.PutFeedbackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutFeedback as schema.OperationSchema, input, options) as async.Operation<types.PutFeedbackOutput>
 end
 
-function C:queryAssistant(input: types.QueryAssistantInput, options: any): async.Operation<types.QueryAssistantOutput>
-    return self:invokeOperation(schemas.Service, schemas.QueryAssistant, input, options) as async.Operation<types.QueryAssistantOutput>
+function C:queryAssistant(input: types.QueryAssistantInput, options?: base_client.InvokeOptions): async.Operation<types.QueryAssistantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.QueryAssistant as schema.OperationSchema, input, options) as async.Operation<types.QueryAssistantOutput>
 end
 
-function C:removeAssistantAIAgent(input: types.RemoveAssistantAIAgentInput, options: any): async.Operation<types.RemoveAssistantAIAgentOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveAssistantAIAgent, input, options) as async.Operation<types.RemoveAssistantAIAgentOutput>
+function C:removeAssistantAIAgent(input: types.RemoveAssistantAIAgentInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveAssistantAIAgentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveAssistantAIAgent as schema.OperationSchema, input, options) as async.Operation<types.RemoveAssistantAIAgentOutput>
 end
 
-function C:removeKnowledgeBaseTemplateUri(input: types.RemoveKnowledgeBaseTemplateUriInput, options: any): async.Operation<types.RemoveKnowledgeBaseTemplateUriOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveKnowledgeBaseTemplateUri, input, options) as async.Operation<types.RemoveKnowledgeBaseTemplateUriOutput>
+function C:removeKnowledgeBaseTemplateUri(input: types.RemoveKnowledgeBaseTemplateUriInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveKnowledgeBaseTemplateUriOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveKnowledgeBaseTemplateUri as schema.OperationSchema, input, options) as async.Operation<types.RemoveKnowledgeBaseTemplateUriOutput>
 end
 
-function C:renderMessageTemplate(input: types.RenderMessageTemplateInput, options: any): async.Operation<types.RenderMessageTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.RenderMessageTemplate, input, options) as async.Operation<types.RenderMessageTemplateOutput>
+function C:renderMessageTemplate(input: types.RenderMessageTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.RenderMessageTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RenderMessageTemplate as schema.OperationSchema, input, options) as async.Operation<types.RenderMessageTemplateOutput>
 end
 
-function C:retrieve(input: types.RetrieveInput, options: any): async.Operation<types.RetrieveOutput>
-    return self:invokeOperation(schemas.Service, schemas.Retrieve, input, options) as async.Operation<types.RetrieveOutput>
+function C:retrieve(input: types.RetrieveInput, options?: base_client.InvokeOptions): async.Operation<types.RetrieveOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Retrieve as schema.OperationSchema, input, options) as async.Operation<types.RetrieveOutput>
 end
 
-function C:searchContent(input: types.SearchContentInput, options: any): async.Operation<types.SearchContentOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchContent, input, options) as async.Operation<types.SearchContentOutput>
+function C:searchContent(input: types.SearchContentInput, options?: base_client.InvokeOptions): async.Operation<types.SearchContentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchContent as schema.OperationSchema, input, options) as async.Operation<types.SearchContentOutput>
 end
 
-function C:searchMessageTemplates(input: types.SearchMessageTemplatesInput, options: any): async.Operation<types.SearchMessageTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchMessageTemplates, input, options) as async.Operation<types.SearchMessageTemplatesOutput>
+function C:searchMessageTemplates(input: types.SearchMessageTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.SearchMessageTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchMessageTemplates as schema.OperationSchema, input, options) as async.Operation<types.SearchMessageTemplatesOutput>
 end
 
-function C:searchQuickResponses(input: types.SearchQuickResponsesInput, options: any): async.Operation<types.SearchQuickResponsesOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchQuickResponses, input, options) as async.Operation<types.SearchQuickResponsesOutput>
+function C:searchQuickResponses(input: types.SearchQuickResponsesInput, options?: base_client.InvokeOptions): async.Operation<types.SearchQuickResponsesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchQuickResponses as schema.OperationSchema, input, options) as async.Operation<types.SearchQuickResponsesOutput>
 end
 
-function C:searchSessions(input: types.SearchSessionsInput, options: any): async.Operation<types.SearchSessionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchSessions, input, options) as async.Operation<types.SearchSessionsOutput>
+function C:searchSessions(input: types.SearchSessionsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchSessionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchSessions as schema.OperationSchema, input, options) as async.Operation<types.SearchSessionsOutput>
 end
 
-function C:sendMessage(input: types.SendMessageInput, options: any): async.Operation<types.SendMessageOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendMessage, input, options) as async.Operation<types.SendMessageOutput>
+function C:sendMessage(input: types.SendMessageInput, options?: base_client.InvokeOptions): async.Operation<types.SendMessageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendMessage as schema.OperationSchema, input, options) as async.Operation<types.SendMessageOutput>
 end
 
-function C:startContentUpload(input: types.StartContentUploadInput, options: any): async.Operation<types.StartContentUploadOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartContentUpload, input, options) as async.Operation<types.StartContentUploadOutput>
+function C:startContentUpload(input: types.StartContentUploadInput, options?: base_client.InvokeOptions): async.Operation<types.StartContentUploadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartContentUpload as schema.OperationSchema, input, options) as async.Operation<types.StartContentUploadOutput>
 end
 
-function C:startImportJob(input: types.StartImportJobInput, options: any): async.Operation<types.StartImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartImportJob, input, options) as async.Operation<types.StartImportJobOutput>
+function C:startImportJob(input: types.StartImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartImportJob as schema.OperationSchema, input, options) as async.Operation<types.StartImportJobOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAIAgent(input: types.UpdateAIAgentInput, options: any): async.Operation<types.UpdateAIAgentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAIAgent, input, options) as async.Operation<types.UpdateAIAgentOutput>
+function C:updateAIAgent(input: types.UpdateAIAgentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAIAgentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAIAgent as schema.OperationSchema, input, options) as async.Operation<types.UpdateAIAgentOutput>
 end
 
-function C:updateAIGuardrail(input: types.UpdateAIGuardrailInput, options: any): async.Operation<types.UpdateAIGuardrailOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAIGuardrail, input, options) as async.Operation<types.UpdateAIGuardrailOutput>
+function C:updateAIGuardrail(input: types.UpdateAIGuardrailInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAIGuardrailOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAIGuardrail as schema.OperationSchema, input, options) as async.Operation<types.UpdateAIGuardrailOutput>
 end
 
-function C:updateAIPrompt(input: types.UpdateAIPromptInput, options: any): async.Operation<types.UpdateAIPromptOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAIPrompt, input, options) as async.Operation<types.UpdateAIPromptOutput>
+function C:updateAIPrompt(input: types.UpdateAIPromptInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAIPromptOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAIPrompt as schema.OperationSchema, input, options) as async.Operation<types.UpdateAIPromptOutput>
 end
 
-function C:updateAssistantAIAgent(input: types.UpdateAssistantAIAgentInput, options: any): async.Operation<types.UpdateAssistantAIAgentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAssistantAIAgent, input, options) as async.Operation<types.UpdateAssistantAIAgentOutput>
+function C:updateAssistantAIAgent(input: types.UpdateAssistantAIAgentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAssistantAIAgentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAssistantAIAgent as schema.OperationSchema, input, options) as async.Operation<types.UpdateAssistantAIAgentOutput>
 end
 
-function C:updateContent(input: types.UpdateContentInput, options: any): async.Operation<types.UpdateContentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateContent, input, options) as async.Operation<types.UpdateContentOutput>
+function C:updateContent(input: types.UpdateContentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateContentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateContent as schema.OperationSchema, input, options) as async.Operation<types.UpdateContentOutput>
 end
 
-function C:updateKnowledgeBaseTemplateUri(input: types.UpdateKnowledgeBaseTemplateUriInput, options: any): async.Operation<types.UpdateKnowledgeBaseTemplateUriOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateKnowledgeBaseTemplateUri, input, options) as async.Operation<types.UpdateKnowledgeBaseTemplateUriOutput>
+function C:updateKnowledgeBaseTemplateUri(input: types.UpdateKnowledgeBaseTemplateUriInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateKnowledgeBaseTemplateUriOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateKnowledgeBaseTemplateUri as schema.OperationSchema, input, options) as async.Operation<types.UpdateKnowledgeBaseTemplateUriOutput>
 end
 
-function C:updateMessageTemplate(input: types.UpdateMessageTemplateInput, options: any): async.Operation<types.UpdateMessageTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateMessageTemplate, input, options) as async.Operation<types.UpdateMessageTemplateOutput>
+function C:updateMessageTemplate(input: types.UpdateMessageTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMessageTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMessageTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateMessageTemplateOutput>
 end
 
-function C:updateMessageTemplateMetadata(input: types.UpdateMessageTemplateMetadataInput, options: any): async.Operation<types.UpdateMessageTemplateMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateMessageTemplateMetadata, input, options) as async.Operation<types.UpdateMessageTemplateMetadataOutput>
+function C:updateMessageTemplateMetadata(input: types.UpdateMessageTemplateMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMessageTemplateMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMessageTemplateMetadata as schema.OperationSchema, input, options) as async.Operation<types.UpdateMessageTemplateMetadataOutput>
 end
 
-function C:updateQuickResponse(input: types.UpdateQuickResponseInput, options: any): async.Operation<types.UpdateQuickResponseOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateQuickResponse, input, options) as async.Operation<types.UpdateQuickResponseOutput>
+function C:updateQuickResponse(input: types.UpdateQuickResponseInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateQuickResponseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateQuickResponse as schema.OperationSchema, input, options) as async.Operation<types.UpdateQuickResponseOutput>
 end
 
-function C:updateSession(input: types.UpdateSessionInput, options: any): async.Operation<types.UpdateSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSession, input, options) as async.Operation<types.UpdateSessionOutput>
+function C:updateSession(input: types.UpdateSessionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSession as schema.OperationSchema, input, options) as async.Operation<types.UpdateSessionOutput>
 end
 
-function C:updateSessionData(input: types.UpdateSessionDataInput, options: any): async.Operation<types.UpdateSessionDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSessionData, input, options) as async.Operation<types.UpdateSessionDataOutput>
+function C:updateSessionData(input: types.UpdateSessionDataInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSessionDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSessionData as schema.OperationSchema, input, options) as async.Operation<types.UpdateSessionDataOutput>
 end
 
 return M

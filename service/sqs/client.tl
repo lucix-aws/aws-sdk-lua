@@ -8,62 +8,65 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("sqs.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("sqs.schemas")
 local traits = require("smithy.traits")
 local types = require("sqs.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    addPermission: function(Client, types.AddPermissionInput, any): async.Operation<types.AddPermissionOutput>
-    cancelMessageMoveTask: function(Client, types.CancelMessageMoveTaskInput, any): async.Operation<types.CancelMessageMoveTaskOutput>
-    changeMessageVisibility: function(Client, types.ChangeMessageVisibilityInput, any): async.Operation<types.ChangeMessageVisibilityOutput>
-    changeMessageVisibilityBatch: function(Client, types.ChangeMessageVisibilityBatchInput, any): async.Operation<types.ChangeMessageVisibilityBatchOutput>
-    createQueue: function(Client, types.CreateQueueInput, any): async.Operation<types.CreateQueueOutput>
-    deleteMessage: function(Client, types.DeleteMessageInput, any): async.Operation<types.DeleteMessageOutput>
-    deleteMessageBatch: function(Client, types.DeleteMessageBatchInput, any): async.Operation<types.DeleteMessageBatchOutput>
-    deleteQueue: function(Client, types.DeleteQueueInput, any): async.Operation<types.DeleteQueueOutput>
-    getQueueAttributes: function(Client, types.GetQueueAttributesInput, any): async.Operation<types.GetQueueAttributesOutput>
-    getQueueUrl: function(Client, types.GetQueueUrlInput, any): async.Operation<types.GetQueueUrlOutput>
-    listDeadLetterSourceQueues: function(Client, types.ListDeadLetterSourceQueuesInput, any): async.Operation<types.ListDeadLetterSourceQueuesOutput>
-    listMessageMoveTasks: function(Client, types.ListMessageMoveTasksInput, any): async.Operation<types.ListMessageMoveTasksOutput>
-    listQueues: function(Client, types.ListQueuesInput, any): async.Operation<types.ListQueuesOutput>
-    listQueueTags: function(Client, types.ListQueueTagsInput, any): async.Operation<types.ListQueueTagsOutput>
-    purgeQueue: function(Client, types.PurgeQueueInput, any): async.Operation<types.PurgeQueueOutput>
-    receiveMessage: function(Client, types.ReceiveMessageInput, any): async.Operation<types.ReceiveMessageOutput>
-    removePermission: function(Client, types.RemovePermissionInput, any): async.Operation<types.RemovePermissionOutput>
-    sendMessage: function(Client, types.SendMessageInput, any): async.Operation<types.SendMessageOutput>
-    sendMessageBatch: function(Client, types.SendMessageBatchInput, any): async.Operation<types.SendMessageBatchOutput>
-    setQueueAttributes: function(Client, types.SetQueueAttributesInput, any): async.Operation<types.SetQueueAttributesOutput>
-    startMessageMoveTask: function(Client, types.StartMessageMoveTaskInput, any): async.Operation<types.StartMessageMoveTaskOutput>
-    tagQueue: function(Client, types.TagQueueInput, any): async.Operation<types.TagQueueOutput>
-    untagQueue: function(Client, types.UntagQueueInput, any): async.Operation<types.UntagQueueOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    addPermission: function(Client, types.AddPermissionInput, ? base_client.InvokeOptions): async.Operation<types.AddPermissionOutput>
+    cancelMessageMoveTask: function(Client, types.CancelMessageMoveTaskInput, ? base_client.InvokeOptions): async.Operation<types.CancelMessageMoveTaskOutput>
+    changeMessageVisibility: function(Client, types.ChangeMessageVisibilityInput, ? base_client.InvokeOptions): async.Operation<types.ChangeMessageVisibilityOutput>
+    changeMessageVisibilityBatch: function(Client, types.ChangeMessageVisibilityBatchInput, ? base_client.InvokeOptions): async.Operation<types.ChangeMessageVisibilityBatchOutput>
+    createQueue: function(Client, types.CreateQueueInput, ? base_client.InvokeOptions): async.Operation<types.CreateQueueOutput>
+    deleteMessage: function(Client, types.DeleteMessageInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMessageOutput>
+    deleteMessageBatch: function(Client, types.DeleteMessageBatchInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMessageBatchOutput>
+    deleteQueue: function(Client, types.DeleteQueueInput, ? base_client.InvokeOptions): async.Operation<types.DeleteQueueOutput>
+    getQueueAttributes: function(Client, types.GetQueueAttributesInput, ? base_client.InvokeOptions): async.Operation<types.GetQueueAttributesOutput>
+    getQueueUrl: function(Client, types.GetQueueUrlInput, ? base_client.InvokeOptions): async.Operation<types.GetQueueUrlOutput>
+    listDeadLetterSourceQueues: function(Client, types.ListDeadLetterSourceQueuesInput, ? base_client.InvokeOptions): async.Operation<types.ListDeadLetterSourceQueuesOutput>
+    listMessageMoveTasks: function(Client, types.ListMessageMoveTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListMessageMoveTasksOutput>
+    listQueues: function(Client, types.ListQueuesInput, ? base_client.InvokeOptions): async.Operation<types.ListQueuesOutput>
+    listQueueTags: function(Client, types.ListQueueTagsInput, ? base_client.InvokeOptions): async.Operation<types.ListQueueTagsOutput>
+    purgeQueue: function(Client, types.PurgeQueueInput, ? base_client.InvokeOptions): async.Operation<types.PurgeQueueOutput>
+    receiveMessage: function(Client, types.ReceiveMessageInput, ? base_client.InvokeOptions): async.Operation<types.ReceiveMessageOutput>
+    removePermission: function(Client, types.RemovePermissionInput, ? base_client.InvokeOptions): async.Operation<types.RemovePermissionOutput>
+    sendMessage: function(Client, types.SendMessageInput, ? base_client.InvokeOptions): async.Operation<types.SendMessageOutput>
+    sendMessageBatch: function(Client, types.SendMessageBatchInput, ? base_client.InvokeOptions): async.Operation<types.SendMessageBatchOutput>
+    setQueueAttributes: function(Client, types.SetQueueAttributesInput, ? base_client.InvokeOptions): async.Operation<types.SetQueueAttributesOutput>
+    startMessageMoveTask: function(Client, types.StartMessageMoveTaskInput, ? base_client.InvokeOptions): async.Operation<types.StartMessageMoveTaskOutput>
+    tagQueue: function(Client, types.TagQueueInput, ? base_client.InvokeOptions): async.Operation<types.TagQueueOutput>
+    untagQueue: function(Client, types.UntagQueueInput, ? base_client.InvokeOptions): async.Operation<types.UntagQueueOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonSQS"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "sqs", signing_region = c.region } }
                 else
@@ -82,96 +85,96 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:addPermission(input: types.AddPermissionInput, options: any): async.Operation<types.AddPermissionOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddPermission, input, options) as async.Operation<types.AddPermissionOutput>
+function C:addPermission(input: types.AddPermissionInput, options?: base_client.InvokeOptions): async.Operation<types.AddPermissionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddPermission as schema.OperationSchema, input, options) as async.Operation<types.AddPermissionOutput>
 end
 
-function C:cancelMessageMoveTask(input: types.CancelMessageMoveTaskInput, options: any): async.Operation<types.CancelMessageMoveTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelMessageMoveTask, input, options) as async.Operation<types.CancelMessageMoveTaskOutput>
+function C:cancelMessageMoveTask(input: types.CancelMessageMoveTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CancelMessageMoveTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelMessageMoveTask as schema.OperationSchema, input, options) as async.Operation<types.CancelMessageMoveTaskOutput>
 end
 
-function C:changeMessageVisibility(input: types.ChangeMessageVisibilityInput, options: any): async.Operation<types.ChangeMessageVisibilityOutput>
-    return self:invokeOperation(schemas.Service, schemas.ChangeMessageVisibility, input, options) as async.Operation<types.ChangeMessageVisibilityOutput>
+function C:changeMessageVisibility(input: types.ChangeMessageVisibilityInput, options?: base_client.InvokeOptions): async.Operation<types.ChangeMessageVisibilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ChangeMessageVisibility as schema.OperationSchema, input, options) as async.Operation<types.ChangeMessageVisibilityOutput>
 end
 
-function C:changeMessageVisibilityBatch(input: types.ChangeMessageVisibilityBatchInput, options: any): async.Operation<types.ChangeMessageVisibilityBatchOutput>
-    return self:invokeOperation(schemas.Service, schemas.ChangeMessageVisibilityBatch, input, options) as async.Operation<types.ChangeMessageVisibilityBatchOutput>
+function C:changeMessageVisibilityBatch(input: types.ChangeMessageVisibilityBatchInput, options?: base_client.InvokeOptions): async.Operation<types.ChangeMessageVisibilityBatchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ChangeMessageVisibilityBatch as schema.OperationSchema, input, options) as async.Operation<types.ChangeMessageVisibilityBatchOutput>
 end
 
-function C:createQueue(input: types.CreateQueueInput, options: any): async.Operation<types.CreateQueueOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateQueue, input, options) as async.Operation<types.CreateQueueOutput>
+function C:createQueue(input: types.CreateQueueInput, options?: base_client.InvokeOptions): async.Operation<types.CreateQueueOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateQueue as schema.OperationSchema, input, options) as async.Operation<types.CreateQueueOutput>
 end
 
-function C:deleteMessage(input: types.DeleteMessageInput, options: any): async.Operation<types.DeleteMessageOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMessage, input, options) as async.Operation<types.DeleteMessageOutput>
+function C:deleteMessage(input: types.DeleteMessageInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMessageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMessage as schema.OperationSchema, input, options) as async.Operation<types.DeleteMessageOutput>
 end
 
-function C:deleteMessageBatch(input: types.DeleteMessageBatchInput, options: any): async.Operation<types.DeleteMessageBatchOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMessageBatch, input, options) as async.Operation<types.DeleteMessageBatchOutput>
+function C:deleteMessageBatch(input: types.DeleteMessageBatchInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMessageBatchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMessageBatch as schema.OperationSchema, input, options) as async.Operation<types.DeleteMessageBatchOutput>
 end
 
-function C:deleteQueue(input: types.DeleteQueueInput, options: any): async.Operation<types.DeleteQueueOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteQueue, input, options) as async.Operation<types.DeleteQueueOutput>
+function C:deleteQueue(input: types.DeleteQueueInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteQueueOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteQueue as schema.OperationSchema, input, options) as async.Operation<types.DeleteQueueOutput>
 end
 
-function C:getQueueAttributes(input: types.GetQueueAttributesInput, options: any): async.Operation<types.GetQueueAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetQueueAttributes, input, options) as async.Operation<types.GetQueueAttributesOutput>
+function C:getQueueAttributes(input: types.GetQueueAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.GetQueueAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQueueAttributes as schema.OperationSchema, input, options) as async.Operation<types.GetQueueAttributesOutput>
 end
 
-function C:getQueueUrl(input: types.GetQueueUrlInput, options: any): async.Operation<types.GetQueueUrlOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetQueueUrl, input, options) as async.Operation<types.GetQueueUrlOutput>
+function C:getQueueUrl(input: types.GetQueueUrlInput, options?: base_client.InvokeOptions): async.Operation<types.GetQueueUrlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQueueUrl as schema.OperationSchema, input, options) as async.Operation<types.GetQueueUrlOutput>
 end
 
-function C:listDeadLetterSourceQueues(input: types.ListDeadLetterSourceQueuesInput, options: any): async.Operation<types.ListDeadLetterSourceQueuesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDeadLetterSourceQueues, input, options) as async.Operation<types.ListDeadLetterSourceQueuesOutput>
+function C:listDeadLetterSourceQueues(input: types.ListDeadLetterSourceQueuesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDeadLetterSourceQueuesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDeadLetterSourceQueues as schema.OperationSchema, input, options) as async.Operation<types.ListDeadLetterSourceQueuesOutput>
 end
 
-function C:listMessageMoveTasks(input: types.ListMessageMoveTasksInput, options: any): async.Operation<types.ListMessageMoveTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMessageMoveTasks, input, options) as async.Operation<types.ListMessageMoveTasksOutput>
+function C:listMessageMoveTasks(input: types.ListMessageMoveTasksInput, options?: base_client.InvokeOptions): async.Operation<types.ListMessageMoveTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMessageMoveTasks as schema.OperationSchema, input, options) as async.Operation<types.ListMessageMoveTasksOutput>
 end
 
-function C:listQueues(input: types.ListQueuesInput, options: any): async.Operation<types.ListQueuesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListQueues, input, options) as async.Operation<types.ListQueuesOutput>
+function C:listQueues(input: types.ListQueuesInput, options?: base_client.InvokeOptions): async.Operation<types.ListQueuesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListQueues as schema.OperationSchema, input, options) as async.Operation<types.ListQueuesOutput>
 end
 
-function C:listQueueTags(input: types.ListQueueTagsInput, options: any): async.Operation<types.ListQueueTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListQueueTags, input, options) as async.Operation<types.ListQueueTagsOutput>
+function C:listQueueTags(input: types.ListQueueTagsInput, options?: base_client.InvokeOptions): async.Operation<types.ListQueueTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListQueueTags as schema.OperationSchema, input, options) as async.Operation<types.ListQueueTagsOutput>
 end
 
-function C:purgeQueue(input: types.PurgeQueueInput, options: any): async.Operation<types.PurgeQueueOutput>
-    return self:invokeOperation(schemas.Service, schemas.PurgeQueue, input, options) as async.Operation<types.PurgeQueueOutput>
+function C:purgeQueue(input: types.PurgeQueueInput, options?: base_client.InvokeOptions): async.Operation<types.PurgeQueueOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PurgeQueue as schema.OperationSchema, input, options) as async.Operation<types.PurgeQueueOutput>
 end
 
-function C:receiveMessage(input: types.ReceiveMessageInput, options: any): async.Operation<types.ReceiveMessageOutput>
-    return self:invokeOperation(schemas.Service, schemas.ReceiveMessage, input, options) as async.Operation<types.ReceiveMessageOutput>
+function C:receiveMessage(input: types.ReceiveMessageInput, options?: base_client.InvokeOptions): async.Operation<types.ReceiveMessageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReceiveMessage as schema.OperationSchema, input, options) as async.Operation<types.ReceiveMessageOutput>
 end
 
-function C:removePermission(input: types.RemovePermissionInput, options: any): async.Operation<types.RemovePermissionOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemovePermission, input, options) as async.Operation<types.RemovePermissionOutput>
+function C:removePermission(input: types.RemovePermissionInput, options?: base_client.InvokeOptions): async.Operation<types.RemovePermissionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemovePermission as schema.OperationSchema, input, options) as async.Operation<types.RemovePermissionOutput>
 end
 
-function C:sendMessage(input: types.SendMessageInput, options: any): async.Operation<types.SendMessageOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendMessage, input, options) as async.Operation<types.SendMessageOutput>
+function C:sendMessage(input: types.SendMessageInput, options?: base_client.InvokeOptions): async.Operation<types.SendMessageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendMessage as schema.OperationSchema, input, options) as async.Operation<types.SendMessageOutput>
 end
 
-function C:sendMessageBatch(input: types.SendMessageBatchInput, options: any): async.Operation<types.SendMessageBatchOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendMessageBatch, input, options) as async.Operation<types.SendMessageBatchOutput>
+function C:sendMessageBatch(input: types.SendMessageBatchInput, options?: base_client.InvokeOptions): async.Operation<types.SendMessageBatchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendMessageBatch as schema.OperationSchema, input, options) as async.Operation<types.SendMessageBatchOutput>
 end
 
-function C:setQueueAttributes(input: types.SetQueueAttributesInput, options: any): async.Operation<types.SetQueueAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetQueueAttributes, input, options) as async.Operation<types.SetQueueAttributesOutput>
+function C:setQueueAttributes(input: types.SetQueueAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.SetQueueAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetQueueAttributes as schema.OperationSchema, input, options) as async.Operation<types.SetQueueAttributesOutput>
 end
 
-function C:startMessageMoveTask(input: types.StartMessageMoveTaskInput, options: any): async.Operation<types.StartMessageMoveTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartMessageMoveTask, input, options) as async.Operation<types.StartMessageMoveTaskOutput>
+function C:startMessageMoveTask(input: types.StartMessageMoveTaskInput, options?: base_client.InvokeOptions): async.Operation<types.StartMessageMoveTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartMessageMoveTask as schema.OperationSchema, input, options) as async.Operation<types.StartMessageMoveTaskOutput>
 end
 
-function C:tagQueue(input: types.TagQueueInput, options: any): async.Operation<types.TagQueueOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagQueue, input, options) as async.Operation<types.TagQueueOutput>
+function C:tagQueue(input: types.TagQueueInput, options?: base_client.InvokeOptions): async.Operation<types.TagQueueOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagQueue as schema.OperationSchema, input, options) as async.Operation<types.TagQueueOutput>
 end
 
-function C:untagQueue(input: types.UntagQueueInput, options: any): async.Operation<types.UntagQueueOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagQueue, input, options) as async.Operation<types.UntagQueueOutput>
+function C:untagQueue(input: types.UntagQueueInput, options?: base_client.InvokeOptions): async.Operation<types.UntagQueueOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagQueue as schema.OperationSchema, input, options) as async.Operation<types.UntagQueueOutput>
 end
 
 return M

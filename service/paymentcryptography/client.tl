@@ -8,71 +8,74 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("paymentcryptography.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("paymentcryptography.schemas")
 local traits = require("smithy.traits")
 local types = require("paymentcryptography.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    addKeyReplicationRegions: function(Client, types.AddKeyReplicationRegionsInput, any): async.Operation<types.AddKeyReplicationRegionsOutput>
-    associateMpaTeam: function(Client, types.AssociateMpaTeamInput, any): async.Operation<types.AssociateMpaTeamOutput>
-    createAlias: function(Client, types.CreateAliasInput, any): async.Operation<types.CreateAliasOutput>
-    createKey: function(Client, types.CreateKeyInput, any): async.Operation<types.CreateKeyOutput>
-    deleteAlias: function(Client, types.DeleteAliasInput, any): async.Operation<types.DeleteAliasOutput>
-    deleteKey: function(Client, types.DeleteKeyInput, any): async.Operation<types.DeleteKeyOutput>
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, any): async.Operation<types.DeleteResourcePolicyOutput>
-    disableDefaultKeyReplicationRegions: function(Client, types.DisableDefaultKeyReplicationRegionsInput, any): async.Operation<types.DisableDefaultKeyReplicationRegionsOutput>
-    disassociateMpaTeam: function(Client, types.DisassociateMpaTeamInput, any): async.Operation<types.DisassociateMpaTeamOutput>
-    enableDefaultKeyReplicationRegions: function(Client, types.EnableDefaultKeyReplicationRegionsInput, any): async.Operation<types.EnableDefaultKeyReplicationRegionsOutput>
-    exportKey: function(Client, types.ExportKeyInput, any): async.Operation<types.ExportKeyOutput>
-    getAlias: function(Client, types.GetAliasInput, any): async.Operation<types.GetAliasOutput>
-    getCertificateSigningRequest: function(Client, types.GetCertificateSigningRequestInput, any): async.Operation<types.GetCertificateSigningRequestOutput>
-    getDefaultKeyReplicationRegions: function(Client, types.GetDefaultKeyReplicationRegionsInput, any): async.Operation<types.GetDefaultKeyReplicationRegionsOutput>
-    getKey: function(Client, types.GetKeyInput, any): async.Operation<types.GetKeyOutput>
-    getMpaTeamAssociation: function(Client, types.GetMpaTeamAssociationInput, any): async.Operation<types.GetMpaTeamAssociationOutput>
-    getParametersForExport: function(Client, types.GetParametersForExportInput, any): async.Operation<types.GetParametersForExportOutput>
-    getParametersForImport: function(Client, types.GetParametersForImportInput, any): async.Operation<types.GetParametersForImportOutput>
-    getPublicKeyCertificate: function(Client, types.GetPublicKeyCertificateInput, any): async.Operation<types.GetPublicKeyCertificateOutput>
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput, any): async.Operation<types.GetResourcePolicyOutput>
-    importKey: function(Client, types.ImportKeyInput, any): async.Operation<types.ImportKeyOutput>
-    listAliases: function(Client, types.ListAliasesInput, any): async.Operation<types.ListAliasesOutput>
-    listKeys: function(Client, types.ListKeysInput, any): async.Operation<types.ListKeysOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput, any): async.Operation<types.PutResourcePolicyOutput>
-    removeKeyReplicationRegions: function(Client, types.RemoveKeyReplicationRegionsInput, any): async.Operation<types.RemoveKeyReplicationRegionsOutput>
-    restoreKey: function(Client, types.RestoreKeyInput, any): async.Operation<types.RestoreKeyOutput>
-    startKeyUsage: function(Client, types.StartKeyUsageInput, any): async.Operation<types.StartKeyUsageOutput>
-    stopKeyUsage: function(Client, types.StopKeyUsageInput, any): async.Operation<types.StopKeyUsageOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAlias: function(Client, types.UpdateAliasInput, any): async.Operation<types.UpdateAliasOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    addKeyReplicationRegions: function(Client, types.AddKeyReplicationRegionsInput, ? base_client.InvokeOptions): async.Operation<types.AddKeyReplicationRegionsOutput>
+    associateMpaTeam: function(Client, types.AssociateMpaTeamInput, ? base_client.InvokeOptions): async.Operation<types.AssociateMpaTeamOutput>
+    createAlias: function(Client, types.CreateAliasInput, ? base_client.InvokeOptions): async.Operation<types.CreateAliasOutput>
+    createKey: function(Client, types.CreateKeyInput, ? base_client.InvokeOptions): async.Operation<types.CreateKeyOutput>
+    deleteAlias: function(Client, types.DeleteAliasInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAliasOutput>
+    deleteKey: function(Client, types.DeleteKeyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKeyOutput>
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    disableDefaultKeyReplicationRegions: function(Client, types.DisableDefaultKeyReplicationRegionsInput, ? base_client.InvokeOptions): async.Operation<types.DisableDefaultKeyReplicationRegionsOutput>
+    disassociateMpaTeam: function(Client, types.DisassociateMpaTeamInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateMpaTeamOutput>
+    enableDefaultKeyReplicationRegions: function(Client, types.EnableDefaultKeyReplicationRegionsInput, ? base_client.InvokeOptions): async.Operation<types.EnableDefaultKeyReplicationRegionsOutput>
+    exportKey: function(Client, types.ExportKeyInput, ? base_client.InvokeOptions): async.Operation<types.ExportKeyOutput>
+    getAlias: function(Client, types.GetAliasInput, ? base_client.InvokeOptions): async.Operation<types.GetAliasOutput>
+    getCertificateSigningRequest: function(Client, types.GetCertificateSigningRequestInput, ? base_client.InvokeOptions): async.Operation<types.GetCertificateSigningRequestOutput>
+    getDefaultKeyReplicationRegions: function(Client, types.GetDefaultKeyReplicationRegionsInput, ? base_client.InvokeOptions): async.Operation<types.GetDefaultKeyReplicationRegionsOutput>
+    getKey: function(Client, types.GetKeyInput, ? base_client.InvokeOptions): async.Operation<types.GetKeyOutput>
+    getMpaTeamAssociation: function(Client, types.GetMpaTeamAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetMpaTeamAssociationOutput>
+    getParametersForExport: function(Client, types.GetParametersForExportInput, ? base_client.InvokeOptions): async.Operation<types.GetParametersForExportOutput>
+    getParametersForImport: function(Client, types.GetParametersForImportInput, ? base_client.InvokeOptions): async.Operation<types.GetParametersForImportOutput>
+    getPublicKeyCertificate: function(Client, types.GetPublicKeyCertificateInput, ? base_client.InvokeOptions): async.Operation<types.GetPublicKeyCertificateOutput>
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    importKey: function(Client, types.ImportKeyInput, ? base_client.InvokeOptions): async.Operation<types.ImportKeyOutput>
+    listAliases: function(Client, types.ListAliasesInput, ? base_client.InvokeOptions): async.Operation<types.ListAliasesOutput>
+    listKeys: function(Client, types.ListKeysInput, ? base_client.InvokeOptions): async.Operation<types.ListKeysOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    removeKeyReplicationRegions: function(Client, types.RemoveKeyReplicationRegionsInput, ? base_client.InvokeOptions): async.Operation<types.RemoveKeyReplicationRegionsOutput>
+    restoreKey: function(Client, types.RestoreKeyInput, ? base_client.InvokeOptions): async.Operation<types.RestoreKeyOutput>
+    startKeyUsage: function(Client, types.StartKeyUsageInput, ? base_client.InvokeOptions): async.Operation<types.StartKeyUsageOutput>
+    stopKeyUsage: function(Client, types.StopKeyUsageInput, ? base_client.InvokeOptions): async.Operation<types.StopKeyUsageOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAlias: function(Client, types.UpdateAliasInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAliasOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "PaymentCryptographyControlPlane"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "payment-cryptography", signing_region = c.region } }
                 else
@@ -91,132 +94,132 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:addKeyReplicationRegions(input: types.AddKeyReplicationRegionsInput, options: any): async.Operation<types.AddKeyReplicationRegionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddKeyReplicationRegions, input, options) as async.Operation<types.AddKeyReplicationRegionsOutput>
+function C:addKeyReplicationRegions(input: types.AddKeyReplicationRegionsInput, options?: base_client.InvokeOptions): async.Operation<types.AddKeyReplicationRegionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddKeyReplicationRegions as schema.OperationSchema, input, options) as async.Operation<types.AddKeyReplicationRegionsOutput>
 end
 
-function C:associateMpaTeam(input: types.AssociateMpaTeamInput, options: any): async.Operation<types.AssociateMpaTeamOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateMpaTeam, input, options) as async.Operation<types.AssociateMpaTeamOutput>
+function C:associateMpaTeam(input: types.AssociateMpaTeamInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateMpaTeamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateMpaTeam as schema.OperationSchema, input, options) as async.Operation<types.AssociateMpaTeamOutput>
 end
 
-function C:createAlias(input: types.CreateAliasInput, options: any): async.Operation<types.CreateAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAlias, input, options) as async.Operation<types.CreateAliasOutput>
+function C:createAlias(input: types.CreateAliasInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAlias as schema.OperationSchema, input, options) as async.Operation<types.CreateAliasOutput>
 end
 
-function C:createKey(input: types.CreateKeyInput, options: any): async.Operation<types.CreateKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateKey, input, options) as async.Operation<types.CreateKeyOutput>
+function C:createKey(input: types.CreateKeyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateKey as schema.OperationSchema, input, options) as async.Operation<types.CreateKeyOutput>
 end
 
-function C:deleteAlias(input: types.DeleteAliasInput, options: any): async.Operation<types.DeleteAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAlias, input, options) as async.Operation<types.DeleteAliasOutput>
+function C:deleteAlias(input: types.DeleteAliasInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAlias as schema.OperationSchema, input, options) as async.Operation<types.DeleteAliasOutput>
 end
 
-function C:deleteKey(input: types.DeleteKeyInput, options: any): async.Operation<types.DeleteKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteKey, input, options) as async.Operation<types.DeleteKeyOutput>
+function C:deleteKey(input: types.DeleteKeyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteKey as schema.OperationSchema, input, options) as async.Operation<types.DeleteKeyOutput>
 end
 
-function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options: any): async.Operation<types.DeleteResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicy, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
+function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
 end
 
-function C:disableDefaultKeyReplicationRegions(input: types.DisableDefaultKeyReplicationRegionsInput, options: any): async.Operation<types.DisableDefaultKeyReplicationRegionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableDefaultKeyReplicationRegions, input, options) as async.Operation<types.DisableDefaultKeyReplicationRegionsOutput>
+function C:disableDefaultKeyReplicationRegions(input: types.DisableDefaultKeyReplicationRegionsInput, options?: base_client.InvokeOptions): async.Operation<types.DisableDefaultKeyReplicationRegionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableDefaultKeyReplicationRegions as schema.OperationSchema, input, options) as async.Operation<types.DisableDefaultKeyReplicationRegionsOutput>
 end
 
-function C:disassociateMpaTeam(input: types.DisassociateMpaTeamInput, options: any): async.Operation<types.DisassociateMpaTeamOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateMpaTeam, input, options) as async.Operation<types.DisassociateMpaTeamOutput>
+function C:disassociateMpaTeam(input: types.DisassociateMpaTeamInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateMpaTeamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateMpaTeam as schema.OperationSchema, input, options) as async.Operation<types.DisassociateMpaTeamOutput>
 end
 
-function C:enableDefaultKeyReplicationRegions(input: types.EnableDefaultKeyReplicationRegionsInput, options: any): async.Operation<types.EnableDefaultKeyReplicationRegionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableDefaultKeyReplicationRegions, input, options) as async.Operation<types.EnableDefaultKeyReplicationRegionsOutput>
+function C:enableDefaultKeyReplicationRegions(input: types.EnableDefaultKeyReplicationRegionsInput, options?: base_client.InvokeOptions): async.Operation<types.EnableDefaultKeyReplicationRegionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableDefaultKeyReplicationRegions as schema.OperationSchema, input, options) as async.Operation<types.EnableDefaultKeyReplicationRegionsOutput>
 end
 
-function C:exportKey(input: types.ExportKeyInput, options: any): async.Operation<types.ExportKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExportKey, input, options) as async.Operation<types.ExportKeyOutput>
+function C:exportKey(input: types.ExportKeyInput, options?: base_client.InvokeOptions): async.Operation<types.ExportKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportKey as schema.OperationSchema, input, options) as async.Operation<types.ExportKeyOutput>
 end
 
-function C:getAlias(input: types.GetAliasInput, options: any): async.Operation<types.GetAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAlias, input, options) as async.Operation<types.GetAliasOutput>
+function C:getAlias(input: types.GetAliasInput, options?: base_client.InvokeOptions): async.Operation<types.GetAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAlias as schema.OperationSchema, input, options) as async.Operation<types.GetAliasOutput>
 end
 
-function C:getCertificateSigningRequest(input: types.GetCertificateSigningRequestInput, options: any): async.Operation<types.GetCertificateSigningRequestOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCertificateSigningRequest, input, options) as async.Operation<types.GetCertificateSigningRequestOutput>
+function C:getCertificateSigningRequest(input: types.GetCertificateSigningRequestInput, options?: base_client.InvokeOptions): async.Operation<types.GetCertificateSigningRequestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCertificateSigningRequest as schema.OperationSchema, input, options) as async.Operation<types.GetCertificateSigningRequestOutput>
 end
 
-function C:getDefaultKeyReplicationRegions(input: types.GetDefaultKeyReplicationRegionsInput, options: any): async.Operation<types.GetDefaultKeyReplicationRegionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDefaultKeyReplicationRegions, input, options) as async.Operation<types.GetDefaultKeyReplicationRegionsOutput>
+function C:getDefaultKeyReplicationRegions(input: types.GetDefaultKeyReplicationRegionsInput, options?: base_client.InvokeOptions): async.Operation<types.GetDefaultKeyReplicationRegionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDefaultKeyReplicationRegions as schema.OperationSchema, input, options) as async.Operation<types.GetDefaultKeyReplicationRegionsOutput>
 end
 
-function C:getKey(input: types.GetKeyInput, options: any): async.Operation<types.GetKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetKey, input, options) as async.Operation<types.GetKeyOutput>
+function C:getKey(input: types.GetKeyInput, options?: base_client.InvokeOptions): async.Operation<types.GetKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetKey as schema.OperationSchema, input, options) as async.Operation<types.GetKeyOutput>
 end
 
-function C:getMpaTeamAssociation(input: types.GetMpaTeamAssociationInput, options: any): async.Operation<types.GetMpaTeamAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMpaTeamAssociation, input, options) as async.Operation<types.GetMpaTeamAssociationOutput>
+function C:getMpaTeamAssociation(input: types.GetMpaTeamAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetMpaTeamAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMpaTeamAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetMpaTeamAssociationOutput>
 end
 
-function C:getParametersForExport(input: types.GetParametersForExportInput, options: any): async.Operation<types.GetParametersForExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetParametersForExport, input, options) as async.Operation<types.GetParametersForExportOutput>
+function C:getParametersForExport(input: types.GetParametersForExportInput, options?: base_client.InvokeOptions): async.Operation<types.GetParametersForExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetParametersForExport as schema.OperationSchema, input, options) as async.Operation<types.GetParametersForExportOutput>
 end
 
-function C:getParametersForImport(input: types.GetParametersForImportInput, options: any): async.Operation<types.GetParametersForImportOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetParametersForImport, input, options) as async.Operation<types.GetParametersForImportOutput>
+function C:getParametersForImport(input: types.GetParametersForImportInput, options?: base_client.InvokeOptions): async.Operation<types.GetParametersForImportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetParametersForImport as schema.OperationSchema, input, options) as async.Operation<types.GetParametersForImportOutput>
 end
 
-function C:getPublicKeyCertificate(input: types.GetPublicKeyCertificateInput, options: any): async.Operation<types.GetPublicKeyCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPublicKeyCertificate, input, options) as async.Operation<types.GetPublicKeyCertificateOutput>
+function C:getPublicKeyCertificate(input: types.GetPublicKeyCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.GetPublicKeyCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPublicKeyCertificate as schema.OperationSchema, input, options) as async.Operation<types.GetPublicKeyCertificateOutput>
 end
 
-function C:getResourcePolicy(input: types.GetResourcePolicyInput, options: any): async.Operation<types.GetResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicy, input, options) as async.Operation<types.GetResourcePolicyOutput>
+function C:getResourcePolicy(input: types.GetResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePolicyOutput>
 end
 
-function C:importKey(input: types.ImportKeyInput, options: any): async.Operation<types.ImportKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportKey, input, options) as async.Operation<types.ImportKeyOutput>
+function C:importKey(input: types.ImportKeyInput, options?: base_client.InvokeOptions): async.Operation<types.ImportKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportKey as schema.OperationSchema, input, options) as async.Operation<types.ImportKeyOutput>
 end
 
-function C:listAliases(input: types.ListAliasesInput, options: any): async.Operation<types.ListAliasesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAliases, input, options) as async.Operation<types.ListAliasesOutput>
+function C:listAliases(input: types.ListAliasesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAliasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAliases as schema.OperationSchema, input, options) as async.Operation<types.ListAliasesOutput>
 end
 
-function C:listKeys(input: types.ListKeysInput, options: any): async.Operation<types.ListKeysOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListKeys, input, options) as async.Operation<types.ListKeysOutput>
+function C:listKeys(input: types.ListKeysInput, options?: base_client.InvokeOptions): async.Operation<types.ListKeysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListKeys as schema.OperationSchema, input, options) as async.Operation<types.ListKeysOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putResourcePolicy(input: types.PutResourcePolicyInput, options: any): async.Operation<types.PutResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutResourcePolicy, input, options) as async.Operation<types.PutResourcePolicyOutput>
+function C:putResourcePolicy(input: types.PutResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutResourcePolicyOutput>
 end
 
-function C:removeKeyReplicationRegions(input: types.RemoveKeyReplicationRegionsInput, options: any): async.Operation<types.RemoveKeyReplicationRegionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveKeyReplicationRegions, input, options) as async.Operation<types.RemoveKeyReplicationRegionsOutput>
+function C:removeKeyReplicationRegions(input: types.RemoveKeyReplicationRegionsInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveKeyReplicationRegionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveKeyReplicationRegions as schema.OperationSchema, input, options) as async.Operation<types.RemoveKeyReplicationRegionsOutput>
 end
 
-function C:restoreKey(input: types.RestoreKeyInput, options: any): async.Operation<types.RestoreKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.RestoreKey, input, options) as async.Operation<types.RestoreKeyOutput>
+function C:restoreKey(input: types.RestoreKeyInput, options?: base_client.InvokeOptions): async.Operation<types.RestoreKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestoreKey as schema.OperationSchema, input, options) as async.Operation<types.RestoreKeyOutput>
 end
 
-function C:startKeyUsage(input: types.StartKeyUsageInput, options: any): async.Operation<types.StartKeyUsageOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartKeyUsage, input, options) as async.Operation<types.StartKeyUsageOutput>
+function C:startKeyUsage(input: types.StartKeyUsageInput, options?: base_client.InvokeOptions): async.Operation<types.StartKeyUsageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartKeyUsage as schema.OperationSchema, input, options) as async.Operation<types.StartKeyUsageOutput>
 end
 
-function C:stopKeyUsage(input: types.StopKeyUsageInput, options: any): async.Operation<types.StopKeyUsageOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopKeyUsage, input, options) as async.Operation<types.StopKeyUsageOutput>
+function C:stopKeyUsage(input: types.StopKeyUsageInput, options?: base_client.InvokeOptions): async.Operation<types.StopKeyUsageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopKeyUsage as schema.OperationSchema, input, options) as async.Operation<types.StopKeyUsageOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAlias(input: types.UpdateAliasInput, options: any): async.Operation<types.UpdateAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAlias, input, options) as async.Operation<types.UpdateAliasOutput>
+function C:updateAlias(input: types.UpdateAliasInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAlias as schema.OperationSchema, input, options) as async.Operation<types.UpdateAliasOutput>
 end
 
 return M

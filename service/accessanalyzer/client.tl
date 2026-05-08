@@ -8,76 +8,79 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("accessanalyzer.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("accessanalyzer.schemas")
 local traits = require("smithy.traits")
 local types = require("accessanalyzer.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    applyArchiveRule: function(Client, types.ApplyArchiveRuleInput, any): async.Operation<types.ApplyArchiveRuleOutput>
-    cancelPolicyGeneration: function(Client, types.CancelPolicyGenerationInput, any): async.Operation<types.CancelPolicyGenerationOutput>
-    checkAccessNotGranted: function(Client, types.CheckAccessNotGrantedInput, any): async.Operation<types.CheckAccessNotGrantedOutput>
-    checkNoNewAccess: function(Client, types.CheckNoNewAccessInput, any): async.Operation<types.CheckNoNewAccessOutput>
-    checkNoPublicAccess: function(Client, types.CheckNoPublicAccessInput, any): async.Operation<types.CheckNoPublicAccessOutput>
-    createAccessPreview: function(Client, types.CreateAccessPreviewInput, any): async.Operation<types.CreateAccessPreviewOutput>
-    createAnalyzer: function(Client, types.CreateAnalyzerInput, any): async.Operation<types.CreateAnalyzerOutput>
-    createArchiveRule: function(Client, types.CreateArchiveRuleInput, any): async.Operation<types.CreateArchiveRuleOutput>
-    deleteAnalyzer: function(Client, types.DeleteAnalyzerInput, any): async.Operation<types.DeleteAnalyzerOutput>
-    deleteArchiveRule: function(Client, types.DeleteArchiveRuleInput, any): async.Operation<types.DeleteArchiveRuleOutput>
-    generateFindingRecommendation: function(Client, types.GenerateFindingRecommendationInput, any): async.Operation<types.GenerateFindingRecommendationOutput>
-    getAccessPreview: function(Client, types.GetAccessPreviewInput, any): async.Operation<types.GetAccessPreviewOutput>
-    getAnalyzedResource: function(Client, types.GetAnalyzedResourceInput, any): async.Operation<types.GetAnalyzedResourceOutput>
-    getAnalyzer: function(Client, types.GetAnalyzerInput, any): async.Operation<types.GetAnalyzerOutput>
-    getArchiveRule: function(Client, types.GetArchiveRuleInput, any): async.Operation<types.GetArchiveRuleOutput>
-    getFinding: function(Client, types.GetFindingInput, any): async.Operation<types.GetFindingOutput>
-    getFindingRecommendation: function(Client, types.GetFindingRecommendationInput, any): async.Operation<types.GetFindingRecommendationOutput>
-    getFindingsStatistics: function(Client, types.GetFindingsStatisticsInput, any): async.Operation<types.GetFindingsStatisticsOutput>
-    getFindingV2: function(Client, types.GetFindingV2Input, any): async.Operation<types.GetFindingV2Output>
-    getGeneratedPolicy: function(Client, types.GetGeneratedPolicyInput, any): async.Operation<types.GetGeneratedPolicyOutput>
-    listAccessPreviewFindings: function(Client, types.ListAccessPreviewFindingsInput, any): async.Operation<types.ListAccessPreviewFindingsOutput>
-    listAccessPreviews: function(Client, types.ListAccessPreviewsInput, any): async.Operation<types.ListAccessPreviewsOutput>
-    listAnalyzedResources: function(Client, types.ListAnalyzedResourcesInput, any): async.Operation<types.ListAnalyzedResourcesOutput>
-    listAnalyzers: function(Client, types.ListAnalyzersInput, any): async.Operation<types.ListAnalyzersOutput>
-    listArchiveRules: function(Client, types.ListArchiveRulesInput, any): async.Operation<types.ListArchiveRulesOutput>
-    listFindings: function(Client, types.ListFindingsInput, any): async.Operation<types.ListFindingsOutput>
-    listFindingsV2: function(Client, types.ListFindingsV2Input, any): async.Operation<types.ListFindingsV2Output>
-    listPolicyGenerations: function(Client, types.ListPolicyGenerationsInput, any): async.Operation<types.ListPolicyGenerationsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    startPolicyGeneration: function(Client, types.StartPolicyGenerationInput, any): async.Operation<types.StartPolicyGenerationOutput>
-    startResourceScan: function(Client, types.StartResourceScanInput, any): async.Operation<types.StartResourceScanOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAnalyzer: function(Client, types.UpdateAnalyzerInput, any): async.Operation<types.UpdateAnalyzerOutput>
-    updateArchiveRule: function(Client, types.UpdateArchiveRuleInput, any): async.Operation<types.UpdateArchiveRuleOutput>
-    updateFindings: function(Client, types.UpdateFindingsInput, any): async.Operation<types.UpdateFindingsOutput>
-    validatePolicy: function(Client, types.ValidatePolicyInput, any): async.Operation<types.ValidatePolicyOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    applyArchiveRule: function(Client, types.ApplyArchiveRuleInput, ? base_client.InvokeOptions): async.Operation<types.ApplyArchiveRuleOutput>
+    cancelPolicyGeneration: function(Client, types.CancelPolicyGenerationInput, ? base_client.InvokeOptions): async.Operation<types.CancelPolicyGenerationOutput>
+    checkAccessNotGranted: function(Client, types.CheckAccessNotGrantedInput, ? base_client.InvokeOptions): async.Operation<types.CheckAccessNotGrantedOutput>
+    checkNoNewAccess: function(Client, types.CheckNoNewAccessInput, ? base_client.InvokeOptions): async.Operation<types.CheckNoNewAccessOutput>
+    checkNoPublicAccess: function(Client, types.CheckNoPublicAccessInput, ? base_client.InvokeOptions): async.Operation<types.CheckNoPublicAccessOutput>
+    createAccessPreview: function(Client, types.CreateAccessPreviewInput, ? base_client.InvokeOptions): async.Operation<types.CreateAccessPreviewOutput>
+    createAnalyzer: function(Client, types.CreateAnalyzerInput, ? base_client.InvokeOptions): async.Operation<types.CreateAnalyzerOutput>
+    createArchiveRule: function(Client, types.CreateArchiveRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateArchiveRuleOutput>
+    deleteAnalyzer: function(Client, types.DeleteAnalyzerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAnalyzerOutput>
+    deleteArchiveRule: function(Client, types.DeleteArchiveRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteArchiveRuleOutput>
+    generateFindingRecommendation: function(Client, types.GenerateFindingRecommendationInput, ? base_client.InvokeOptions): async.Operation<types.GenerateFindingRecommendationOutput>
+    getAccessPreview: function(Client, types.GetAccessPreviewInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessPreviewOutput>
+    getAnalyzedResource: function(Client, types.GetAnalyzedResourceInput, ? base_client.InvokeOptions): async.Operation<types.GetAnalyzedResourceOutput>
+    getAnalyzer: function(Client, types.GetAnalyzerInput, ? base_client.InvokeOptions): async.Operation<types.GetAnalyzerOutput>
+    getArchiveRule: function(Client, types.GetArchiveRuleInput, ? base_client.InvokeOptions): async.Operation<types.GetArchiveRuleOutput>
+    getFinding: function(Client, types.GetFindingInput, ? base_client.InvokeOptions): async.Operation<types.GetFindingOutput>
+    getFindingRecommendation: function(Client, types.GetFindingRecommendationInput, ? base_client.InvokeOptions): async.Operation<types.GetFindingRecommendationOutput>
+    getFindingsStatistics: function(Client, types.GetFindingsStatisticsInput, ? base_client.InvokeOptions): async.Operation<types.GetFindingsStatisticsOutput>
+    getFindingV2: function(Client, types.GetFindingV2Input, ? base_client.InvokeOptions): async.Operation<types.GetFindingV2Output>
+    getGeneratedPolicy: function(Client, types.GetGeneratedPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetGeneratedPolicyOutput>
+    listAccessPreviewFindings: function(Client, types.ListAccessPreviewFindingsInput, ? base_client.InvokeOptions): async.Operation<types.ListAccessPreviewFindingsOutput>
+    listAccessPreviews: function(Client, types.ListAccessPreviewsInput, ? base_client.InvokeOptions): async.Operation<types.ListAccessPreviewsOutput>
+    listAnalyzedResources: function(Client, types.ListAnalyzedResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListAnalyzedResourcesOutput>
+    listAnalyzers: function(Client, types.ListAnalyzersInput, ? base_client.InvokeOptions): async.Operation<types.ListAnalyzersOutput>
+    listArchiveRules: function(Client, types.ListArchiveRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListArchiveRulesOutput>
+    listFindings: function(Client, types.ListFindingsInput, ? base_client.InvokeOptions): async.Operation<types.ListFindingsOutput>
+    listFindingsV2: function(Client, types.ListFindingsV2Input, ? base_client.InvokeOptions): async.Operation<types.ListFindingsV2Output>
+    listPolicyGenerations: function(Client, types.ListPolicyGenerationsInput, ? base_client.InvokeOptions): async.Operation<types.ListPolicyGenerationsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    startPolicyGeneration: function(Client, types.StartPolicyGenerationInput, ? base_client.InvokeOptions): async.Operation<types.StartPolicyGenerationOutput>
+    startResourceScan: function(Client, types.StartResourceScanInput, ? base_client.InvokeOptions): async.Operation<types.StartResourceScanOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAnalyzer: function(Client, types.UpdateAnalyzerInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAnalyzerOutput>
+    updateArchiveRule: function(Client, types.UpdateArchiveRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateArchiveRuleOutput>
+    updateFindings: function(Client, types.UpdateFindingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFindingsOutput>
+    validatePolicy: function(Client, types.ValidatePolicyInput, ? base_client.InvokeOptions): async.Operation<types.ValidatePolicyOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AccessAnalyzer"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "access-analyzer", signing_region = c.region } }
                 else
@@ -96,152 +99,152 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:applyArchiveRule(input: types.ApplyArchiveRuleInput, options: any): async.Operation<types.ApplyArchiveRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.ApplyArchiveRule, input, options) as async.Operation<types.ApplyArchiveRuleOutput>
+function C:applyArchiveRule(input: types.ApplyArchiveRuleInput, options?: base_client.InvokeOptions): async.Operation<types.ApplyArchiveRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ApplyArchiveRule as schema.OperationSchema, input, options) as async.Operation<types.ApplyArchiveRuleOutput>
 end
 
-function C:cancelPolicyGeneration(input: types.CancelPolicyGenerationInput, options: any): async.Operation<types.CancelPolicyGenerationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelPolicyGeneration, input, options) as async.Operation<types.CancelPolicyGenerationOutput>
+function C:cancelPolicyGeneration(input: types.CancelPolicyGenerationInput, options?: base_client.InvokeOptions): async.Operation<types.CancelPolicyGenerationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelPolicyGeneration as schema.OperationSchema, input, options) as async.Operation<types.CancelPolicyGenerationOutput>
 end
 
-function C:checkAccessNotGranted(input: types.CheckAccessNotGrantedInput, options: any): async.Operation<types.CheckAccessNotGrantedOutput>
-    return self:invokeOperation(schemas.Service, schemas.CheckAccessNotGranted, input, options) as async.Operation<types.CheckAccessNotGrantedOutput>
+function C:checkAccessNotGranted(input: types.CheckAccessNotGrantedInput, options?: base_client.InvokeOptions): async.Operation<types.CheckAccessNotGrantedOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CheckAccessNotGranted as schema.OperationSchema, input, options) as async.Operation<types.CheckAccessNotGrantedOutput>
 end
 
-function C:checkNoNewAccess(input: types.CheckNoNewAccessInput, options: any): async.Operation<types.CheckNoNewAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.CheckNoNewAccess, input, options) as async.Operation<types.CheckNoNewAccessOutput>
+function C:checkNoNewAccess(input: types.CheckNoNewAccessInput, options?: base_client.InvokeOptions): async.Operation<types.CheckNoNewAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CheckNoNewAccess as schema.OperationSchema, input, options) as async.Operation<types.CheckNoNewAccessOutput>
 end
 
-function C:checkNoPublicAccess(input: types.CheckNoPublicAccessInput, options: any): async.Operation<types.CheckNoPublicAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.CheckNoPublicAccess, input, options) as async.Operation<types.CheckNoPublicAccessOutput>
+function C:checkNoPublicAccess(input: types.CheckNoPublicAccessInput, options?: base_client.InvokeOptions): async.Operation<types.CheckNoPublicAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CheckNoPublicAccess as schema.OperationSchema, input, options) as async.Operation<types.CheckNoPublicAccessOutput>
 end
 
-function C:createAccessPreview(input: types.CreateAccessPreviewInput, options: any): async.Operation<types.CreateAccessPreviewOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAccessPreview, input, options) as async.Operation<types.CreateAccessPreviewOutput>
+function C:createAccessPreview(input: types.CreateAccessPreviewInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAccessPreviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAccessPreview as schema.OperationSchema, input, options) as async.Operation<types.CreateAccessPreviewOutput>
 end
 
-function C:createAnalyzer(input: types.CreateAnalyzerInput, options: any): async.Operation<types.CreateAnalyzerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAnalyzer, input, options) as async.Operation<types.CreateAnalyzerOutput>
+function C:createAnalyzer(input: types.CreateAnalyzerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAnalyzerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAnalyzer as schema.OperationSchema, input, options) as async.Operation<types.CreateAnalyzerOutput>
 end
 
-function C:createArchiveRule(input: types.CreateArchiveRuleInput, options: any): async.Operation<types.CreateArchiveRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateArchiveRule, input, options) as async.Operation<types.CreateArchiveRuleOutput>
+function C:createArchiveRule(input: types.CreateArchiveRuleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateArchiveRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateArchiveRule as schema.OperationSchema, input, options) as async.Operation<types.CreateArchiveRuleOutput>
 end
 
-function C:deleteAnalyzer(input: types.DeleteAnalyzerInput, options: any): async.Operation<types.DeleteAnalyzerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAnalyzer, input, options) as async.Operation<types.DeleteAnalyzerOutput>
+function C:deleteAnalyzer(input: types.DeleteAnalyzerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAnalyzerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAnalyzer as schema.OperationSchema, input, options) as async.Operation<types.DeleteAnalyzerOutput>
 end
 
-function C:deleteArchiveRule(input: types.DeleteArchiveRuleInput, options: any): async.Operation<types.DeleteArchiveRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteArchiveRule, input, options) as async.Operation<types.DeleteArchiveRuleOutput>
+function C:deleteArchiveRule(input: types.DeleteArchiveRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteArchiveRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteArchiveRule as schema.OperationSchema, input, options) as async.Operation<types.DeleteArchiveRuleOutput>
 end
 
-function C:generateFindingRecommendation(input: types.GenerateFindingRecommendationInput, options: any): async.Operation<types.GenerateFindingRecommendationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GenerateFindingRecommendation, input, options) as async.Operation<types.GenerateFindingRecommendationOutput>
+function C:generateFindingRecommendation(input: types.GenerateFindingRecommendationInput, options?: base_client.InvokeOptions): async.Operation<types.GenerateFindingRecommendationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GenerateFindingRecommendation as schema.OperationSchema, input, options) as async.Operation<types.GenerateFindingRecommendationOutput>
 end
 
-function C:getAccessPreview(input: types.GetAccessPreviewInput, options: any): async.Operation<types.GetAccessPreviewOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccessPreview, input, options) as async.Operation<types.GetAccessPreviewOutput>
+function C:getAccessPreview(input: types.GetAccessPreviewInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccessPreviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccessPreview as schema.OperationSchema, input, options) as async.Operation<types.GetAccessPreviewOutput>
 end
 
-function C:getAnalyzedResource(input: types.GetAnalyzedResourceInput, options: any): async.Operation<types.GetAnalyzedResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAnalyzedResource, input, options) as async.Operation<types.GetAnalyzedResourceOutput>
+function C:getAnalyzedResource(input: types.GetAnalyzedResourceInput, options?: base_client.InvokeOptions): async.Operation<types.GetAnalyzedResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAnalyzedResource as schema.OperationSchema, input, options) as async.Operation<types.GetAnalyzedResourceOutput>
 end
 
-function C:getAnalyzer(input: types.GetAnalyzerInput, options: any): async.Operation<types.GetAnalyzerOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAnalyzer, input, options) as async.Operation<types.GetAnalyzerOutput>
+function C:getAnalyzer(input: types.GetAnalyzerInput, options?: base_client.InvokeOptions): async.Operation<types.GetAnalyzerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAnalyzer as schema.OperationSchema, input, options) as async.Operation<types.GetAnalyzerOutput>
 end
 
-function C:getArchiveRule(input: types.GetArchiveRuleInput, options: any): async.Operation<types.GetArchiveRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetArchiveRule, input, options) as async.Operation<types.GetArchiveRuleOutput>
+function C:getArchiveRule(input: types.GetArchiveRuleInput, options?: base_client.InvokeOptions): async.Operation<types.GetArchiveRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetArchiveRule as schema.OperationSchema, input, options) as async.Operation<types.GetArchiveRuleOutput>
 end
 
-function C:getFinding(input: types.GetFindingInput, options: any): async.Operation<types.GetFindingOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFinding, input, options) as async.Operation<types.GetFindingOutput>
+function C:getFinding(input: types.GetFindingInput, options?: base_client.InvokeOptions): async.Operation<types.GetFindingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFinding as schema.OperationSchema, input, options) as async.Operation<types.GetFindingOutput>
 end
 
-function C:getFindingRecommendation(input: types.GetFindingRecommendationInput, options: any): async.Operation<types.GetFindingRecommendationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFindingRecommendation, input, options) as async.Operation<types.GetFindingRecommendationOutput>
+function C:getFindingRecommendation(input: types.GetFindingRecommendationInput, options?: base_client.InvokeOptions): async.Operation<types.GetFindingRecommendationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFindingRecommendation as schema.OperationSchema, input, options) as async.Operation<types.GetFindingRecommendationOutput>
 end
 
-function C:getFindingsStatistics(input: types.GetFindingsStatisticsInput, options: any): async.Operation<types.GetFindingsStatisticsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFindingsStatistics, input, options) as async.Operation<types.GetFindingsStatisticsOutput>
+function C:getFindingsStatistics(input: types.GetFindingsStatisticsInput, options?: base_client.InvokeOptions): async.Operation<types.GetFindingsStatisticsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFindingsStatistics as schema.OperationSchema, input, options) as async.Operation<types.GetFindingsStatisticsOutput>
 end
 
-function C:getFindingV2(input: types.GetFindingV2Input, options: any): async.Operation<types.GetFindingV2Output>
-    return self:invokeOperation(schemas.Service, schemas.GetFindingV2, input, options) as async.Operation<types.GetFindingV2Output>
+function C:getFindingV2(input: types.GetFindingV2Input, options?: base_client.InvokeOptions): async.Operation<types.GetFindingV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFindingV2 as schema.OperationSchema, input, options) as async.Operation<types.GetFindingV2Output>
 end
 
-function C:getGeneratedPolicy(input: types.GetGeneratedPolicyInput, options: any): async.Operation<types.GetGeneratedPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetGeneratedPolicy, input, options) as async.Operation<types.GetGeneratedPolicyOutput>
+function C:getGeneratedPolicy(input: types.GetGeneratedPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetGeneratedPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGeneratedPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetGeneratedPolicyOutput>
 end
 
-function C:listAccessPreviewFindings(input: types.ListAccessPreviewFindingsInput, options: any): async.Operation<types.ListAccessPreviewFindingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccessPreviewFindings, input, options) as async.Operation<types.ListAccessPreviewFindingsOutput>
+function C:listAccessPreviewFindings(input: types.ListAccessPreviewFindingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccessPreviewFindingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccessPreviewFindings as schema.OperationSchema, input, options) as async.Operation<types.ListAccessPreviewFindingsOutput>
 end
 
-function C:listAccessPreviews(input: types.ListAccessPreviewsInput, options: any): async.Operation<types.ListAccessPreviewsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccessPreviews, input, options) as async.Operation<types.ListAccessPreviewsOutput>
+function C:listAccessPreviews(input: types.ListAccessPreviewsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccessPreviewsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccessPreviews as schema.OperationSchema, input, options) as async.Operation<types.ListAccessPreviewsOutput>
 end
 
-function C:listAnalyzedResources(input: types.ListAnalyzedResourcesInput, options: any): async.Operation<types.ListAnalyzedResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAnalyzedResources, input, options) as async.Operation<types.ListAnalyzedResourcesOutput>
+function C:listAnalyzedResources(input: types.ListAnalyzedResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAnalyzedResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAnalyzedResources as schema.OperationSchema, input, options) as async.Operation<types.ListAnalyzedResourcesOutput>
 end
 
-function C:listAnalyzers(input: types.ListAnalyzersInput, options: any): async.Operation<types.ListAnalyzersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAnalyzers, input, options) as async.Operation<types.ListAnalyzersOutput>
+function C:listAnalyzers(input: types.ListAnalyzersInput, options?: base_client.InvokeOptions): async.Operation<types.ListAnalyzersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAnalyzers as schema.OperationSchema, input, options) as async.Operation<types.ListAnalyzersOutput>
 end
 
-function C:listArchiveRules(input: types.ListArchiveRulesInput, options: any): async.Operation<types.ListArchiveRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListArchiveRules, input, options) as async.Operation<types.ListArchiveRulesOutput>
+function C:listArchiveRules(input: types.ListArchiveRulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListArchiveRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListArchiveRules as schema.OperationSchema, input, options) as async.Operation<types.ListArchiveRulesOutput>
 end
 
-function C:listFindings(input: types.ListFindingsInput, options: any): async.Operation<types.ListFindingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFindings, input, options) as async.Operation<types.ListFindingsOutput>
+function C:listFindings(input: types.ListFindingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFindingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFindings as schema.OperationSchema, input, options) as async.Operation<types.ListFindingsOutput>
 end
 
-function C:listFindingsV2(input: types.ListFindingsV2Input, options: any): async.Operation<types.ListFindingsV2Output>
-    return self:invokeOperation(schemas.Service, schemas.ListFindingsV2, input, options) as async.Operation<types.ListFindingsV2Output>
+function C:listFindingsV2(input: types.ListFindingsV2Input, options?: base_client.InvokeOptions): async.Operation<types.ListFindingsV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFindingsV2 as schema.OperationSchema, input, options) as async.Operation<types.ListFindingsV2Output>
 end
 
-function C:listPolicyGenerations(input: types.ListPolicyGenerationsInput, options: any): async.Operation<types.ListPolicyGenerationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPolicyGenerations, input, options) as async.Operation<types.ListPolicyGenerationsOutput>
+function C:listPolicyGenerations(input: types.ListPolicyGenerationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPolicyGenerationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPolicyGenerations as schema.OperationSchema, input, options) as async.Operation<types.ListPolicyGenerationsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:startPolicyGeneration(input: types.StartPolicyGenerationInput, options: any): async.Operation<types.StartPolicyGenerationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartPolicyGeneration, input, options) as async.Operation<types.StartPolicyGenerationOutput>
+function C:startPolicyGeneration(input: types.StartPolicyGenerationInput, options?: base_client.InvokeOptions): async.Operation<types.StartPolicyGenerationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartPolicyGeneration as schema.OperationSchema, input, options) as async.Operation<types.StartPolicyGenerationOutput>
 end
 
-function C:startResourceScan(input: types.StartResourceScanInput, options: any): async.Operation<types.StartResourceScanOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartResourceScan, input, options) as async.Operation<types.StartResourceScanOutput>
+function C:startResourceScan(input: types.StartResourceScanInput, options?: base_client.InvokeOptions): async.Operation<types.StartResourceScanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartResourceScan as schema.OperationSchema, input, options) as async.Operation<types.StartResourceScanOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAnalyzer(input: types.UpdateAnalyzerInput, options: any): async.Operation<types.UpdateAnalyzerOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAnalyzer, input, options) as async.Operation<types.UpdateAnalyzerOutput>
+function C:updateAnalyzer(input: types.UpdateAnalyzerInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAnalyzerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAnalyzer as schema.OperationSchema, input, options) as async.Operation<types.UpdateAnalyzerOutput>
 end
 
-function C:updateArchiveRule(input: types.UpdateArchiveRuleInput, options: any): async.Operation<types.UpdateArchiveRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateArchiveRule, input, options) as async.Operation<types.UpdateArchiveRuleOutput>
+function C:updateArchiveRule(input: types.UpdateArchiveRuleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateArchiveRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateArchiveRule as schema.OperationSchema, input, options) as async.Operation<types.UpdateArchiveRuleOutput>
 end
 
-function C:updateFindings(input: types.UpdateFindingsInput, options: any): async.Operation<types.UpdateFindingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFindings, input, options) as async.Operation<types.UpdateFindingsOutput>
+function C:updateFindings(input: types.UpdateFindingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFindingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFindings as schema.OperationSchema, input, options) as async.Operation<types.UpdateFindingsOutput>
 end
 
-function C:validatePolicy(input: types.ValidatePolicyInput, options: any): async.Operation<types.ValidatePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.ValidatePolicy, input, options) as async.Operation<types.ValidatePolicyOutput>
+function C:validatePolicy(input: types.ValidatePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.ValidatePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ValidatePolicy as schema.OperationSchema, input, options) as async.Operation<types.ValidatePolicyOutput>
 end
 
 return M

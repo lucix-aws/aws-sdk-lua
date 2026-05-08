@@ -8,74 +8,77 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("iotthingsgraph.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("iotthingsgraph.schemas")
 local traits = require("smithy.traits")
 local types = require("iotthingsgraph.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateEntityToThing: function(Client, types.AssociateEntityToThingInput, any): async.Operation<types.AssociateEntityToThingOutput>
-    createFlowTemplate: function(Client, types.CreateFlowTemplateInput, any): async.Operation<types.CreateFlowTemplateOutput>
-    createSystemInstance: function(Client, types.CreateSystemInstanceInput, any): async.Operation<types.CreateSystemInstanceOutput>
-    createSystemTemplate: function(Client, types.CreateSystemTemplateInput, any): async.Operation<types.CreateSystemTemplateOutput>
-    deleteFlowTemplate: function(Client, types.DeleteFlowTemplateInput, any): async.Operation<types.DeleteFlowTemplateOutput>
-    deleteNamespace: function(Client, types.DeleteNamespaceInput, any): async.Operation<types.DeleteNamespaceOutput>
-    deleteSystemInstance: function(Client, types.DeleteSystemInstanceInput, any): async.Operation<types.DeleteSystemInstanceOutput>
-    deleteSystemTemplate: function(Client, types.DeleteSystemTemplateInput, any): async.Operation<types.DeleteSystemTemplateOutput>
-    deploySystemInstance: function(Client, types.DeploySystemInstanceInput, any): async.Operation<types.DeploySystemInstanceOutput>
-    deprecateFlowTemplate: function(Client, types.DeprecateFlowTemplateInput, any): async.Operation<types.DeprecateFlowTemplateOutput>
-    deprecateSystemTemplate: function(Client, types.DeprecateSystemTemplateInput, any): async.Operation<types.DeprecateSystemTemplateOutput>
-    describeNamespace: function(Client, types.DescribeNamespaceInput, any): async.Operation<types.DescribeNamespaceOutput>
-    dissociateEntityFromThing: function(Client, types.DissociateEntityFromThingInput, any): async.Operation<types.DissociateEntityFromThingOutput>
-    getEntities: function(Client, types.GetEntitiesInput, any): async.Operation<types.GetEntitiesOutput>
-    getFlowTemplate: function(Client, types.GetFlowTemplateInput, any): async.Operation<types.GetFlowTemplateOutput>
-    getFlowTemplateRevisions: function(Client, types.GetFlowTemplateRevisionsInput, any): async.Operation<types.GetFlowTemplateRevisionsOutput>
-    getNamespaceDeletionStatus: function(Client, types.GetNamespaceDeletionStatusInput, any): async.Operation<types.GetNamespaceDeletionStatusOutput>
-    getSystemInstance: function(Client, types.GetSystemInstanceInput, any): async.Operation<types.GetSystemInstanceOutput>
-    getSystemTemplate: function(Client, types.GetSystemTemplateInput, any): async.Operation<types.GetSystemTemplateOutput>
-    getSystemTemplateRevisions: function(Client, types.GetSystemTemplateRevisionsInput, any): async.Operation<types.GetSystemTemplateRevisionsOutput>
-    getUploadStatus: function(Client, types.GetUploadStatusInput, any): async.Operation<types.GetUploadStatusOutput>
-    listFlowExecutionMessages: function(Client, types.ListFlowExecutionMessagesInput, any): async.Operation<types.ListFlowExecutionMessagesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    searchEntities: function(Client, types.SearchEntitiesInput, any): async.Operation<types.SearchEntitiesOutput>
-    searchFlowExecutions: function(Client, types.SearchFlowExecutionsInput, any): async.Operation<types.SearchFlowExecutionsOutput>
-    searchFlowTemplates: function(Client, types.SearchFlowTemplatesInput, any): async.Operation<types.SearchFlowTemplatesOutput>
-    searchSystemInstances: function(Client, types.SearchSystemInstancesInput, any): async.Operation<types.SearchSystemInstancesOutput>
-    searchSystemTemplates: function(Client, types.SearchSystemTemplatesInput, any): async.Operation<types.SearchSystemTemplatesOutput>
-    searchThings: function(Client, types.SearchThingsInput, any): async.Operation<types.SearchThingsOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    undeploySystemInstance: function(Client, types.UndeploySystemInstanceInput, any): async.Operation<types.UndeploySystemInstanceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateFlowTemplate: function(Client, types.UpdateFlowTemplateInput, any): async.Operation<types.UpdateFlowTemplateOutput>
-    updateSystemTemplate: function(Client, types.UpdateSystemTemplateInput, any): async.Operation<types.UpdateSystemTemplateOutput>
-    uploadEntityDefinitions: function(Client, types.UploadEntityDefinitionsInput, any): async.Operation<types.UploadEntityDefinitionsOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateEntityToThing: function(Client, types.AssociateEntityToThingInput, ? base_client.InvokeOptions): async.Operation<types.AssociateEntityToThingOutput>
+    createFlowTemplate: function(Client, types.CreateFlowTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateFlowTemplateOutput>
+    createSystemInstance: function(Client, types.CreateSystemInstanceInput, ? base_client.InvokeOptions): async.Operation<types.CreateSystemInstanceOutput>
+    createSystemTemplate: function(Client, types.CreateSystemTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateSystemTemplateOutput>
+    deleteFlowTemplate: function(Client, types.DeleteFlowTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFlowTemplateOutput>
+    deleteNamespace: function(Client, types.DeleteNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNamespaceOutput>
+    deleteSystemInstance: function(Client, types.DeleteSystemInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSystemInstanceOutput>
+    deleteSystemTemplate: function(Client, types.DeleteSystemTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSystemTemplateOutput>
+    deploySystemInstance: function(Client, types.DeploySystemInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DeploySystemInstanceOutput>
+    deprecateFlowTemplate: function(Client, types.DeprecateFlowTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeprecateFlowTemplateOutput>
+    deprecateSystemTemplate: function(Client, types.DeprecateSystemTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeprecateSystemTemplateOutput>
+    describeNamespace: function(Client, types.DescribeNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNamespaceOutput>
+    dissociateEntityFromThing: function(Client, types.DissociateEntityFromThingInput, ? base_client.InvokeOptions): async.Operation<types.DissociateEntityFromThingOutput>
+    getEntities: function(Client, types.GetEntitiesInput, ? base_client.InvokeOptions): async.Operation<types.GetEntitiesOutput>
+    getFlowTemplate: function(Client, types.GetFlowTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetFlowTemplateOutput>
+    getFlowTemplateRevisions: function(Client, types.GetFlowTemplateRevisionsInput, ? base_client.InvokeOptions): async.Operation<types.GetFlowTemplateRevisionsOutput>
+    getNamespaceDeletionStatus: function(Client, types.GetNamespaceDeletionStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetNamespaceDeletionStatusOutput>
+    getSystemInstance: function(Client, types.GetSystemInstanceInput, ? base_client.InvokeOptions): async.Operation<types.GetSystemInstanceOutput>
+    getSystemTemplate: function(Client, types.GetSystemTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetSystemTemplateOutput>
+    getSystemTemplateRevisions: function(Client, types.GetSystemTemplateRevisionsInput, ? base_client.InvokeOptions): async.Operation<types.GetSystemTemplateRevisionsOutput>
+    getUploadStatus: function(Client, types.GetUploadStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetUploadStatusOutput>
+    listFlowExecutionMessages: function(Client, types.ListFlowExecutionMessagesInput, ? base_client.InvokeOptions): async.Operation<types.ListFlowExecutionMessagesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    searchEntities: function(Client, types.SearchEntitiesInput, ? base_client.InvokeOptions): async.Operation<types.SearchEntitiesOutput>
+    searchFlowExecutions: function(Client, types.SearchFlowExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.SearchFlowExecutionsOutput>
+    searchFlowTemplates: function(Client, types.SearchFlowTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.SearchFlowTemplatesOutput>
+    searchSystemInstances: function(Client, types.SearchSystemInstancesInput, ? base_client.InvokeOptions): async.Operation<types.SearchSystemInstancesOutput>
+    searchSystemTemplates: function(Client, types.SearchSystemTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.SearchSystemTemplatesOutput>
+    searchThings: function(Client, types.SearchThingsInput, ? base_client.InvokeOptions): async.Operation<types.SearchThingsOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    undeploySystemInstance: function(Client, types.UndeploySystemInstanceInput, ? base_client.InvokeOptions): async.Operation<types.UndeploySystemInstanceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateFlowTemplate: function(Client, types.UpdateFlowTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFlowTemplateOutput>
+    updateSystemTemplate: function(Client, types.UpdateSystemTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSystemTemplateOutput>
+    uploadEntityDefinitions: function(Client, types.UploadEntityDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.UploadEntityDefinitionsOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "IotThingsGraphFrontEndService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "iotthingsgraph", signing_region = c.region } }
                 else
@@ -94,144 +97,144 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateEntityToThing(input: types.AssociateEntityToThingInput, options: any): async.Operation<types.AssociateEntityToThingOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateEntityToThing, input, options) as async.Operation<types.AssociateEntityToThingOutput>
+function C:associateEntityToThing(input: types.AssociateEntityToThingInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateEntityToThingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateEntityToThing as schema.OperationSchema, input, options) as async.Operation<types.AssociateEntityToThingOutput>
 end
 
-function C:createFlowTemplate(input: types.CreateFlowTemplateInput, options: any): async.Operation<types.CreateFlowTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFlowTemplate, input, options) as async.Operation<types.CreateFlowTemplateOutput>
+function C:createFlowTemplate(input: types.CreateFlowTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFlowTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFlowTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateFlowTemplateOutput>
 end
 
-function C:createSystemInstance(input: types.CreateSystemInstanceInput, options: any): async.Operation<types.CreateSystemInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSystemInstance, input, options) as async.Operation<types.CreateSystemInstanceOutput>
+function C:createSystemInstance(input: types.CreateSystemInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSystemInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSystemInstance as schema.OperationSchema, input, options) as async.Operation<types.CreateSystemInstanceOutput>
 end
 
-function C:createSystemTemplate(input: types.CreateSystemTemplateInput, options: any): async.Operation<types.CreateSystemTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSystemTemplate, input, options) as async.Operation<types.CreateSystemTemplateOutput>
+function C:createSystemTemplate(input: types.CreateSystemTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSystemTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSystemTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateSystemTemplateOutput>
 end
 
-function C:deleteFlowTemplate(input: types.DeleteFlowTemplateInput, options: any): async.Operation<types.DeleteFlowTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFlowTemplate, input, options) as async.Operation<types.DeleteFlowTemplateOutput>
+function C:deleteFlowTemplate(input: types.DeleteFlowTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFlowTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFlowTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteFlowTemplateOutput>
 end
 
-function C:deleteNamespace(input: types.DeleteNamespaceInput, options: any): async.Operation<types.DeleteNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNamespace, input, options) as async.Operation<types.DeleteNamespaceOutput>
+function C:deleteNamespace(input: types.DeleteNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNamespace as schema.OperationSchema, input, options) as async.Operation<types.DeleteNamespaceOutput>
 end
 
-function C:deleteSystemInstance(input: types.DeleteSystemInstanceInput, options: any): async.Operation<types.DeleteSystemInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSystemInstance, input, options) as async.Operation<types.DeleteSystemInstanceOutput>
+function C:deleteSystemInstance(input: types.DeleteSystemInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSystemInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSystemInstance as schema.OperationSchema, input, options) as async.Operation<types.DeleteSystemInstanceOutput>
 end
 
-function C:deleteSystemTemplate(input: types.DeleteSystemTemplateInput, options: any): async.Operation<types.DeleteSystemTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSystemTemplate, input, options) as async.Operation<types.DeleteSystemTemplateOutput>
+function C:deleteSystemTemplate(input: types.DeleteSystemTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSystemTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSystemTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteSystemTemplateOutput>
 end
 
-function C:deploySystemInstance(input: types.DeploySystemInstanceInput, options: any): async.Operation<types.DeploySystemInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeploySystemInstance, input, options) as async.Operation<types.DeploySystemInstanceOutput>
+function C:deploySystemInstance(input: types.DeploySystemInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.DeploySystemInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeploySystemInstance as schema.OperationSchema, input, options) as async.Operation<types.DeploySystemInstanceOutput>
 end
 
-function C:deprecateFlowTemplate(input: types.DeprecateFlowTemplateInput, options: any): async.Operation<types.DeprecateFlowTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeprecateFlowTemplate, input, options) as async.Operation<types.DeprecateFlowTemplateOutput>
+function C:deprecateFlowTemplate(input: types.DeprecateFlowTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeprecateFlowTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeprecateFlowTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeprecateFlowTemplateOutput>
 end
 
-function C:deprecateSystemTemplate(input: types.DeprecateSystemTemplateInput, options: any): async.Operation<types.DeprecateSystemTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeprecateSystemTemplate, input, options) as async.Operation<types.DeprecateSystemTemplateOutput>
+function C:deprecateSystemTemplate(input: types.DeprecateSystemTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeprecateSystemTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeprecateSystemTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeprecateSystemTemplateOutput>
 end
 
-function C:describeNamespace(input: types.DescribeNamespaceInput, options: any): async.Operation<types.DescribeNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeNamespace, input, options) as async.Operation<types.DescribeNamespaceOutput>
+function C:describeNamespace(input: types.DescribeNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeNamespace as schema.OperationSchema, input, options) as async.Operation<types.DescribeNamespaceOutput>
 end
 
-function C:dissociateEntityFromThing(input: types.DissociateEntityFromThingInput, options: any): async.Operation<types.DissociateEntityFromThingOutput>
-    return self:invokeOperation(schemas.Service, schemas.DissociateEntityFromThing, input, options) as async.Operation<types.DissociateEntityFromThingOutput>
+function C:dissociateEntityFromThing(input: types.DissociateEntityFromThingInput, options?: base_client.InvokeOptions): async.Operation<types.DissociateEntityFromThingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DissociateEntityFromThing as schema.OperationSchema, input, options) as async.Operation<types.DissociateEntityFromThingOutput>
 end
 
-function C:getEntities(input: types.GetEntitiesInput, options: any): async.Operation<types.GetEntitiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEntities, input, options) as async.Operation<types.GetEntitiesOutput>
+function C:getEntities(input: types.GetEntitiesInput, options?: base_client.InvokeOptions): async.Operation<types.GetEntitiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEntities as schema.OperationSchema, input, options) as async.Operation<types.GetEntitiesOutput>
 end
 
-function C:getFlowTemplate(input: types.GetFlowTemplateInput, options: any): async.Operation<types.GetFlowTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFlowTemplate, input, options) as async.Operation<types.GetFlowTemplateOutput>
+function C:getFlowTemplate(input: types.GetFlowTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetFlowTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFlowTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetFlowTemplateOutput>
 end
 
-function C:getFlowTemplateRevisions(input: types.GetFlowTemplateRevisionsInput, options: any): async.Operation<types.GetFlowTemplateRevisionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFlowTemplateRevisions, input, options) as async.Operation<types.GetFlowTemplateRevisionsOutput>
+function C:getFlowTemplateRevisions(input: types.GetFlowTemplateRevisionsInput, options?: base_client.InvokeOptions): async.Operation<types.GetFlowTemplateRevisionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFlowTemplateRevisions as schema.OperationSchema, input, options) as async.Operation<types.GetFlowTemplateRevisionsOutput>
 end
 
-function C:getNamespaceDeletionStatus(input: types.GetNamespaceDeletionStatusInput, options: any): async.Operation<types.GetNamespaceDeletionStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNamespaceDeletionStatus, input, options) as async.Operation<types.GetNamespaceDeletionStatusOutput>
+function C:getNamespaceDeletionStatus(input: types.GetNamespaceDeletionStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetNamespaceDeletionStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNamespaceDeletionStatus as schema.OperationSchema, input, options) as async.Operation<types.GetNamespaceDeletionStatusOutput>
 end
 
-function C:getSystemInstance(input: types.GetSystemInstanceInput, options: any): async.Operation<types.GetSystemInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSystemInstance, input, options) as async.Operation<types.GetSystemInstanceOutput>
+function C:getSystemInstance(input: types.GetSystemInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.GetSystemInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSystemInstance as schema.OperationSchema, input, options) as async.Operation<types.GetSystemInstanceOutput>
 end
 
-function C:getSystemTemplate(input: types.GetSystemTemplateInput, options: any): async.Operation<types.GetSystemTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSystemTemplate, input, options) as async.Operation<types.GetSystemTemplateOutput>
+function C:getSystemTemplate(input: types.GetSystemTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetSystemTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSystemTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetSystemTemplateOutput>
 end
 
-function C:getSystemTemplateRevisions(input: types.GetSystemTemplateRevisionsInput, options: any): async.Operation<types.GetSystemTemplateRevisionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSystemTemplateRevisions, input, options) as async.Operation<types.GetSystemTemplateRevisionsOutput>
+function C:getSystemTemplateRevisions(input: types.GetSystemTemplateRevisionsInput, options?: base_client.InvokeOptions): async.Operation<types.GetSystemTemplateRevisionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSystemTemplateRevisions as schema.OperationSchema, input, options) as async.Operation<types.GetSystemTemplateRevisionsOutput>
 end
 
-function C:getUploadStatus(input: types.GetUploadStatusInput, options: any): async.Operation<types.GetUploadStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetUploadStatus, input, options) as async.Operation<types.GetUploadStatusOutput>
+function C:getUploadStatus(input: types.GetUploadStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetUploadStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetUploadStatus as schema.OperationSchema, input, options) as async.Operation<types.GetUploadStatusOutput>
 end
 
-function C:listFlowExecutionMessages(input: types.ListFlowExecutionMessagesInput, options: any): async.Operation<types.ListFlowExecutionMessagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFlowExecutionMessages, input, options) as async.Operation<types.ListFlowExecutionMessagesOutput>
+function C:listFlowExecutionMessages(input: types.ListFlowExecutionMessagesInput, options?: base_client.InvokeOptions): async.Operation<types.ListFlowExecutionMessagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFlowExecutionMessages as schema.OperationSchema, input, options) as async.Operation<types.ListFlowExecutionMessagesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:searchEntities(input: types.SearchEntitiesInput, options: any): async.Operation<types.SearchEntitiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchEntities, input, options) as async.Operation<types.SearchEntitiesOutput>
+function C:searchEntities(input: types.SearchEntitiesInput, options?: base_client.InvokeOptions): async.Operation<types.SearchEntitiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchEntities as schema.OperationSchema, input, options) as async.Operation<types.SearchEntitiesOutput>
 end
 
-function C:searchFlowExecutions(input: types.SearchFlowExecutionsInput, options: any): async.Operation<types.SearchFlowExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchFlowExecutions, input, options) as async.Operation<types.SearchFlowExecutionsOutput>
+function C:searchFlowExecutions(input: types.SearchFlowExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchFlowExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchFlowExecutions as schema.OperationSchema, input, options) as async.Operation<types.SearchFlowExecutionsOutput>
 end
 
-function C:searchFlowTemplates(input: types.SearchFlowTemplatesInput, options: any): async.Operation<types.SearchFlowTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchFlowTemplates, input, options) as async.Operation<types.SearchFlowTemplatesOutput>
+function C:searchFlowTemplates(input: types.SearchFlowTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.SearchFlowTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchFlowTemplates as schema.OperationSchema, input, options) as async.Operation<types.SearchFlowTemplatesOutput>
 end
 
-function C:searchSystemInstances(input: types.SearchSystemInstancesInput, options: any): async.Operation<types.SearchSystemInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchSystemInstances, input, options) as async.Operation<types.SearchSystemInstancesOutput>
+function C:searchSystemInstances(input: types.SearchSystemInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.SearchSystemInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchSystemInstances as schema.OperationSchema, input, options) as async.Operation<types.SearchSystemInstancesOutput>
 end
 
-function C:searchSystemTemplates(input: types.SearchSystemTemplatesInput, options: any): async.Operation<types.SearchSystemTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchSystemTemplates, input, options) as async.Operation<types.SearchSystemTemplatesOutput>
+function C:searchSystemTemplates(input: types.SearchSystemTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.SearchSystemTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchSystemTemplates as schema.OperationSchema, input, options) as async.Operation<types.SearchSystemTemplatesOutput>
 end
 
-function C:searchThings(input: types.SearchThingsInput, options: any): async.Operation<types.SearchThingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchThings, input, options) as async.Operation<types.SearchThingsOutput>
+function C:searchThings(input: types.SearchThingsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchThingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchThings as schema.OperationSchema, input, options) as async.Operation<types.SearchThingsOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:undeploySystemInstance(input: types.UndeploySystemInstanceInput, options: any): async.Operation<types.UndeploySystemInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UndeploySystemInstance, input, options) as async.Operation<types.UndeploySystemInstanceOutput>
+function C:undeploySystemInstance(input: types.UndeploySystemInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.UndeploySystemInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UndeploySystemInstance as schema.OperationSchema, input, options) as async.Operation<types.UndeploySystemInstanceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateFlowTemplate(input: types.UpdateFlowTemplateInput, options: any): async.Operation<types.UpdateFlowTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFlowTemplate, input, options) as async.Operation<types.UpdateFlowTemplateOutput>
+function C:updateFlowTemplate(input: types.UpdateFlowTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFlowTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFlowTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateFlowTemplateOutput>
 end
 
-function C:updateSystemTemplate(input: types.UpdateSystemTemplateInput, options: any): async.Operation<types.UpdateSystemTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSystemTemplate, input, options) as async.Operation<types.UpdateSystemTemplateOutput>
+function C:updateSystemTemplate(input: types.UpdateSystemTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSystemTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSystemTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateSystemTemplateOutput>
 end
 
-function C:uploadEntityDefinitions(input: types.UploadEntityDefinitionsInput, options: any): async.Operation<types.UploadEntityDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UploadEntityDefinitions, input, options) as async.Operation<types.UploadEntityDefinitionsOutput>
+function C:uploadEntityDefinitions(input: types.UploadEntityDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.UploadEntityDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UploadEntityDefinitions as schema.OperationSchema, input, options) as async.Operation<types.UploadEntityDefinitionsOutput>
 end
 
 return M

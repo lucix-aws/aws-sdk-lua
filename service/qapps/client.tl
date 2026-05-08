@@ -8,74 +8,77 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("qapps.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("qapps.schemas")
 local traits = require("smithy.traits")
 local types = require("qapps.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateLibraryItemReview: function(Client, types.AssociateLibraryItemReviewInput, any): async.Operation<types.AssociateLibraryItemReviewOutput>
-    associateQAppWithUser: function(Client, types.AssociateQAppWithUserInput, any): async.Operation<types.AssociateQAppWithUserOutput>
-    batchCreateCategory: function(Client, types.BatchCreateCategoryInput, any): async.Operation<types.BatchCreateCategoryOutput>
-    batchDeleteCategory: function(Client, types.BatchDeleteCategoryInput, any): async.Operation<types.BatchDeleteCategoryOutput>
-    batchUpdateCategory: function(Client, types.BatchUpdateCategoryInput, any): async.Operation<types.BatchUpdateCategoryOutput>
-    createLibraryItem: function(Client, types.CreateLibraryItemInput, any): async.Operation<types.CreateLibraryItemOutput>
-    createPresignedUrl: function(Client, types.CreatePresignedUrlInput, any): async.Operation<types.CreatePresignedUrlOutput>
-    createQApp: function(Client, types.CreateQAppInput, any): async.Operation<types.CreateQAppOutput>
-    deleteLibraryItem: function(Client, types.DeleteLibraryItemInput, any): async.Operation<types.DeleteLibraryItemOutput>
-    deleteQApp: function(Client, types.DeleteQAppInput, any): async.Operation<types.DeleteQAppOutput>
-    describeQAppPermissions: function(Client, types.DescribeQAppPermissionsInput, any): async.Operation<types.DescribeQAppPermissionsOutput>
-    disassociateLibraryItemReview: function(Client, types.DisassociateLibraryItemReviewInput, any): async.Operation<types.DisassociateLibraryItemReviewOutput>
-    disassociateQAppFromUser: function(Client, types.DisassociateQAppFromUserInput, any): async.Operation<types.DisassociateQAppFromUserOutput>
-    exportQAppSessionData: function(Client, types.ExportQAppSessionDataInput, any): async.Operation<types.ExportQAppSessionDataOutput>
-    getLibraryItem: function(Client, types.GetLibraryItemInput, any): async.Operation<types.GetLibraryItemOutput>
-    getQApp: function(Client, types.GetQAppInput, any): async.Operation<types.GetQAppOutput>
-    getQAppSession: function(Client, types.GetQAppSessionInput, any): async.Operation<types.GetQAppSessionOutput>
-    getQAppSessionMetadata: function(Client, types.GetQAppSessionMetadataInput, any): async.Operation<types.GetQAppSessionMetadataOutput>
-    importDocument: function(Client, types.ImportDocumentInput, any): async.Operation<types.ImportDocumentOutput>
-    listCategories: function(Client, types.ListCategoriesInput, any): async.Operation<types.ListCategoriesOutput>
-    listLibraryItems: function(Client, types.ListLibraryItemsInput, any): async.Operation<types.ListLibraryItemsOutput>
-    listQApps: function(Client, types.ListQAppsInput, any): async.Operation<types.ListQAppsOutput>
-    listQAppSessionData: function(Client, types.ListQAppSessionDataInput, any): async.Operation<types.ListQAppSessionDataOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    predictQApp: function(Client, types.PredictQAppInput, any): async.Operation<types.PredictQAppOutput>
-    startQAppSession: function(Client, types.StartQAppSessionInput, any): async.Operation<types.StartQAppSessionOutput>
-    stopQAppSession: function(Client, types.StopQAppSessionInput, any): async.Operation<types.StopQAppSessionOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateLibraryItem: function(Client, types.UpdateLibraryItemInput, any): async.Operation<types.UpdateLibraryItemOutput>
-    updateLibraryItemMetadata: function(Client, types.UpdateLibraryItemMetadataInput, any): async.Operation<types.UpdateLibraryItemMetadataOutput>
-    updateQApp: function(Client, types.UpdateQAppInput, any): async.Operation<types.UpdateQAppOutput>
-    updateQAppPermissions: function(Client, types.UpdateQAppPermissionsInput, any): async.Operation<types.UpdateQAppPermissionsOutput>
-    updateQAppSession: function(Client, types.UpdateQAppSessionInput, any): async.Operation<types.UpdateQAppSessionOutput>
-    updateQAppSessionMetadata: function(Client, types.UpdateQAppSessionMetadataInput, any): async.Operation<types.UpdateQAppSessionMetadataOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateLibraryItemReview: function(Client, types.AssociateLibraryItemReviewInput, ? base_client.InvokeOptions): async.Operation<types.AssociateLibraryItemReviewOutput>
+    associateQAppWithUser: function(Client, types.AssociateQAppWithUserInput, ? base_client.InvokeOptions): async.Operation<types.AssociateQAppWithUserOutput>
+    batchCreateCategory: function(Client, types.BatchCreateCategoryInput, ? base_client.InvokeOptions): async.Operation<types.BatchCreateCategoryOutput>
+    batchDeleteCategory: function(Client, types.BatchDeleteCategoryInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteCategoryOutput>
+    batchUpdateCategory: function(Client, types.BatchUpdateCategoryInput, ? base_client.InvokeOptions): async.Operation<types.BatchUpdateCategoryOutput>
+    createLibraryItem: function(Client, types.CreateLibraryItemInput, ? base_client.InvokeOptions): async.Operation<types.CreateLibraryItemOutput>
+    createPresignedUrl: function(Client, types.CreatePresignedUrlInput, ? base_client.InvokeOptions): async.Operation<types.CreatePresignedUrlOutput>
+    createQApp: function(Client, types.CreateQAppInput, ? base_client.InvokeOptions): async.Operation<types.CreateQAppOutput>
+    deleteLibraryItem: function(Client, types.DeleteLibraryItemInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLibraryItemOutput>
+    deleteQApp: function(Client, types.DeleteQAppInput, ? base_client.InvokeOptions): async.Operation<types.DeleteQAppOutput>
+    describeQAppPermissions: function(Client, types.DescribeQAppPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeQAppPermissionsOutput>
+    disassociateLibraryItemReview: function(Client, types.DisassociateLibraryItemReviewInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateLibraryItemReviewOutput>
+    disassociateQAppFromUser: function(Client, types.DisassociateQAppFromUserInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateQAppFromUserOutput>
+    exportQAppSessionData: function(Client, types.ExportQAppSessionDataInput, ? base_client.InvokeOptions): async.Operation<types.ExportQAppSessionDataOutput>
+    getLibraryItem: function(Client, types.GetLibraryItemInput, ? base_client.InvokeOptions): async.Operation<types.GetLibraryItemOutput>
+    getQApp: function(Client, types.GetQAppInput, ? base_client.InvokeOptions): async.Operation<types.GetQAppOutput>
+    getQAppSession: function(Client, types.GetQAppSessionInput, ? base_client.InvokeOptions): async.Operation<types.GetQAppSessionOutput>
+    getQAppSessionMetadata: function(Client, types.GetQAppSessionMetadataInput, ? base_client.InvokeOptions): async.Operation<types.GetQAppSessionMetadataOutput>
+    importDocument: function(Client, types.ImportDocumentInput, ? base_client.InvokeOptions): async.Operation<types.ImportDocumentOutput>
+    listCategories: function(Client, types.ListCategoriesInput, ? base_client.InvokeOptions): async.Operation<types.ListCategoriesOutput>
+    listLibraryItems: function(Client, types.ListLibraryItemsInput, ? base_client.InvokeOptions): async.Operation<types.ListLibraryItemsOutput>
+    listQApps: function(Client, types.ListQAppsInput, ? base_client.InvokeOptions): async.Operation<types.ListQAppsOutput>
+    listQAppSessionData: function(Client, types.ListQAppSessionDataInput, ? base_client.InvokeOptions): async.Operation<types.ListQAppSessionDataOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    predictQApp: function(Client, types.PredictQAppInput, ? base_client.InvokeOptions): async.Operation<types.PredictQAppOutput>
+    startQAppSession: function(Client, types.StartQAppSessionInput, ? base_client.InvokeOptions): async.Operation<types.StartQAppSessionOutput>
+    stopQAppSession: function(Client, types.StopQAppSessionInput, ? base_client.InvokeOptions): async.Operation<types.StopQAppSessionOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateLibraryItem: function(Client, types.UpdateLibraryItemInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLibraryItemOutput>
+    updateLibraryItemMetadata: function(Client, types.UpdateLibraryItemMetadataInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLibraryItemMetadataOutput>
+    updateQApp: function(Client, types.UpdateQAppInput, ? base_client.InvokeOptions): async.Operation<types.UpdateQAppOutput>
+    updateQAppPermissions: function(Client, types.UpdateQAppPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateQAppPermissionsOutput>
+    updateQAppSession: function(Client, types.UpdateQAppSessionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateQAppSessionOutput>
+    updateQAppSessionMetadata: function(Client, types.UpdateQAppSessionMetadataInput, ? base_client.InvokeOptions): async.Operation<types.UpdateQAppSessionMetadataOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "QAppsService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "qapps", signing_region = c.region } }
                 else
@@ -94,144 +97,144 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateLibraryItemReview(input: types.AssociateLibraryItemReviewInput, options: any): async.Operation<types.AssociateLibraryItemReviewOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateLibraryItemReview, input, options) as async.Operation<types.AssociateLibraryItemReviewOutput>
+function C:associateLibraryItemReview(input: types.AssociateLibraryItemReviewInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateLibraryItemReviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateLibraryItemReview as schema.OperationSchema, input, options) as async.Operation<types.AssociateLibraryItemReviewOutput>
 end
 
-function C:associateQAppWithUser(input: types.AssociateQAppWithUserInput, options: any): async.Operation<types.AssociateQAppWithUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateQAppWithUser, input, options) as async.Operation<types.AssociateQAppWithUserOutput>
+function C:associateQAppWithUser(input: types.AssociateQAppWithUserInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateQAppWithUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateQAppWithUser as schema.OperationSchema, input, options) as async.Operation<types.AssociateQAppWithUserOutput>
 end
 
-function C:batchCreateCategory(input: types.BatchCreateCategoryInput, options: any): async.Operation<types.BatchCreateCategoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchCreateCategory, input, options) as async.Operation<types.BatchCreateCategoryOutput>
+function C:batchCreateCategory(input: types.BatchCreateCategoryInput, options?: base_client.InvokeOptions): async.Operation<types.BatchCreateCategoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchCreateCategory as schema.OperationSchema, input, options) as async.Operation<types.BatchCreateCategoryOutput>
 end
 
-function C:batchDeleteCategory(input: types.BatchDeleteCategoryInput, options: any): async.Operation<types.BatchDeleteCategoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDeleteCategory, input, options) as async.Operation<types.BatchDeleteCategoryOutput>
+function C:batchDeleteCategory(input: types.BatchDeleteCategoryInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteCategoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteCategory as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteCategoryOutput>
 end
 
-function C:batchUpdateCategory(input: types.BatchUpdateCategoryInput, options: any): async.Operation<types.BatchUpdateCategoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchUpdateCategory, input, options) as async.Operation<types.BatchUpdateCategoryOutput>
+function C:batchUpdateCategory(input: types.BatchUpdateCategoryInput, options?: base_client.InvokeOptions): async.Operation<types.BatchUpdateCategoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchUpdateCategory as schema.OperationSchema, input, options) as async.Operation<types.BatchUpdateCategoryOutput>
 end
 
-function C:createLibraryItem(input: types.CreateLibraryItemInput, options: any): async.Operation<types.CreateLibraryItemOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLibraryItem, input, options) as async.Operation<types.CreateLibraryItemOutput>
+function C:createLibraryItem(input: types.CreateLibraryItemInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLibraryItemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLibraryItem as schema.OperationSchema, input, options) as async.Operation<types.CreateLibraryItemOutput>
 end
 
-function C:createPresignedUrl(input: types.CreatePresignedUrlInput, options: any): async.Operation<types.CreatePresignedUrlOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePresignedUrl, input, options) as async.Operation<types.CreatePresignedUrlOutput>
+function C:createPresignedUrl(input: types.CreatePresignedUrlInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePresignedUrlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePresignedUrl as schema.OperationSchema, input, options) as async.Operation<types.CreatePresignedUrlOutput>
 end
 
-function C:createQApp(input: types.CreateQAppInput, options: any): async.Operation<types.CreateQAppOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateQApp, input, options) as async.Operation<types.CreateQAppOutput>
+function C:createQApp(input: types.CreateQAppInput, options?: base_client.InvokeOptions): async.Operation<types.CreateQAppOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateQApp as schema.OperationSchema, input, options) as async.Operation<types.CreateQAppOutput>
 end
 
-function C:deleteLibraryItem(input: types.DeleteLibraryItemInput, options: any): async.Operation<types.DeleteLibraryItemOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLibraryItem, input, options) as async.Operation<types.DeleteLibraryItemOutput>
+function C:deleteLibraryItem(input: types.DeleteLibraryItemInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLibraryItemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLibraryItem as schema.OperationSchema, input, options) as async.Operation<types.DeleteLibraryItemOutput>
 end
 
-function C:deleteQApp(input: types.DeleteQAppInput, options: any): async.Operation<types.DeleteQAppOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteQApp, input, options) as async.Operation<types.DeleteQAppOutput>
+function C:deleteQApp(input: types.DeleteQAppInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteQAppOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteQApp as schema.OperationSchema, input, options) as async.Operation<types.DeleteQAppOutput>
 end
 
-function C:describeQAppPermissions(input: types.DescribeQAppPermissionsInput, options: any): async.Operation<types.DescribeQAppPermissionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeQAppPermissions, input, options) as async.Operation<types.DescribeQAppPermissionsOutput>
+function C:describeQAppPermissions(input: types.DescribeQAppPermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeQAppPermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeQAppPermissions as schema.OperationSchema, input, options) as async.Operation<types.DescribeQAppPermissionsOutput>
 end
 
-function C:disassociateLibraryItemReview(input: types.DisassociateLibraryItemReviewInput, options: any): async.Operation<types.DisassociateLibraryItemReviewOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateLibraryItemReview, input, options) as async.Operation<types.DisassociateLibraryItemReviewOutput>
+function C:disassociateLibraryItemReview(input: types.DisassociateLibraryItemReviewInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateLibraryItemReviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateLibraryItemReview as schema.OperationSchema, input, options) as async.Operation<types.DisassociateLibraryItemReviewOutput>
 end
 
-function C:disassociateQAppFromUser(input: types.DisassociateQAppFromUserInput, options: any): async.Operation<types.DisassociateQAppFromUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateQAppFromUser, input, options) as async.Operation<types.DisassociateQAppFromUserOutput>
+function C:disassociateQAppFromUser(input: types.DisassociateQAppFromUserInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateQAppFromUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateQAppFromUser as schema.OperationSchema, input, options) as async.Operation<types.DisassociateQAppFromUserOutput>
 end
 
-function C:exportQAppSessionData(input: types.ExportQAppSessionDataInput, options: any): async.Operation<types.ExportQAppSessionDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExportQAppSessionData, input, options) as async.Operation<types.ExportQAppSessionDataOutput>
+function C:exportQAppSessionData(input: types.ExportQAppSessionDataInput, options?: base_client.InvokeOptions): async.Operation<types.ExportQAppSessionDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportQAppSessionData as schema.OperationSchema, input, options) as async.Operation<types.ExportQAppSessionDataOutput>
 end
 
-function C:getLibraryItem(input: types.GetLibraryItemInput, options: any): async.Operation<types.GetLibraryItemOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLibraryItem, input, options) as async.Operation<types.GetLibraryItemOutput>
+function C:getLibraryItem(input: types.GetLibraryItemInput, options?: base_client.InvokeOptions): async.Operation<types.GetLibraryItemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLibraryItem as schema.OperationSchema, input, options) as async.Operation<types.GetLibraryItemOutput>
 end
 
-function C:getQApp(input: types.GetQAppInput, options: any): async.Operation<types.GetQAppOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetQApp, input, options) as async.Operation<types.GetQAppOutput>
+function C:getQApp(input: types.GetQAppInput, options?: base_client.InvokeOptions): async.Operation<types.GetQAppOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQApp as schema.OperationSchema, input, options) as async.Operation<types.GetQAppOutput>
 end
 
-function C:getQAppSession(input: types.GetQAppSessionInput, options: any): async.Operation<types.GetQAppSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetQAppSession, input, options) as async.Operation<types.GetQAppSessionOutput>
+function C:getQAppSession(input: types.GetQAppSessionInput, options?: base_client.InvokeOptions): async.Operation<types.GetQAppSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQAppSession as schema.OperationSchema, input, options) as async.Operation<types.GetQAppSessionOutput>
 end
 
-function C:getQAppSessionMetadata(input: types.GetQAppSessionMetadataInput, options: any): async.Operation<types.GetQAppSessionMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetQAppSessionMetadata, input, options) as async.Operation<types.GetQAppSessionMetadataOutput>
+function C:getQAppSessionMetadata(input: types.GetQAppSessionMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.GetQAppSessionMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQAppSessionMetadata as schema.OperationSchema, input, options) as async.Operation<types.GetQAppSessionMetadataOutput>
 end
 
-function C:importDocument(input: types.ImportDocumentInput, options: any): async.Operation<types.ImportDocumentOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportDocument, input, options) as async.Operation<types.ImportDocumentOutput>
+function C:importDocument(input: types.ImportDocumentInput, options?: base_client.InvokeOptions): async.Operation<types.ImportDocumentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportDocument as schema.OperationSchema, input, options) as async.Operation<types.ImportDocumentOutput>
 end
 
-function C:listCategories(input: types.ListCategoriesInput, options: any): async.Operation<types.ListCategoriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCategories, input, options) as async.Operation<types.ListCategoriesOutput>
+function C:listCategories(input: types.ListCategoriesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCategoriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCategories as schema.OperationSchema, input, options) as async.Operation<types.ListCategoriesOutput>
 end
 
-function C:listLibraryItems(input: types.ListLibraryItemsInput, options: any): async.Operation<types.ListLibraryItemsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLibraryItems, input, options) as async.Operation<types.ListLibraryItemsOutput>
+function C:listLibraryItems(input: types.ListLibraryItemsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLibraryItemsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLibraryItems as schema.OperationSchema, input, options) as async.Operation<types.ListLibraryItemsOutput>
 end
 
-function C:listQApps(input: types.ListQAppsInput, options: any): async.Operation<types.ListQAppsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListQApps, input, options) as async.Operation<types.ListQAppsOutput>
+function C:listQApps(input: types.ListQAppsInput, options?: base_client.InvokeOptions): async.Operation<types.ListQAppsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListQApps as schema.OperationSchema, input, options) as async.Operation<types.ListQAppsOutput>
 end
 
-function C:listQAppSessionData(input: types.ListQAppSessionDataInput, options: any): async.Operation<types.ListQAppSessionDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListQAppSessionData, input, options) as async.Operation<types.ListQAppSessionDataOutput>
+function C:listQAppSessionData(input: types.ListQAppSessionDataInput, options?: base_client.InvokeOptions): async.Operation<types.ListQAppSessionDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListQAppSessionData as schema.OperationSchema, input, options) as async.Operation<types.ListQAppSessionDataOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:predictQApp(input: types.PredictQAppInput, options: any): async.Operation<types.PredictQAppOutput>
-    return self:invokeOperation(schemas.Service, schemas.PredictQApp, input, options) as async.Operation<types.PredictQAppOutput>
+function C:predictQApp(input: types.PredictQAppInput, options?: base_client.InvokeOptions): async.Operation<types.PredictQAppOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PredictQApp as schema.OperationSchema, input, options) as async.Operation<types.PredictQAppOutput>
 end
 
-function C:startQAppSession(input: types.StartQAppSessionInput, options: any): async.Operation<types.StartQAppSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartQAppSession, input, options) as async.Operation<types.StartQAppSessionOutput>
+function C:startQAppSession(input: types.StartQAppSessionInput, options?: base_client.InvokeOptions): async.Operation<types.StartQAppSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartQAppSession as schema.OperationSchema, input, options) as async.Operation<types.StartQAppSessionOutput>
 end
 
-function C:stopQAppSession(input: types.StopQAppSessionInput, options: any): async.Operation<types.StopQAppSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopQAppSession, input, options) as async.Operation<types.StopQAppSessionOutput>
+function C:stopQAppSession(input: types.StopQAppSessionInput, options?: base_client.InvokeOptions): async.Operation<types.StopQAppSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopQAppSession as schema.OperationSchema, input, options) as async.Operation<types.StopQAppSessionOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateLibraryItem(input: types.UpdateLibraryItemInput, options: any): async.Operation<types.UpdateLibraryItemOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLibraryItem, input, options) as async.Operation<types.UpdateLibraryItemOutput>
+function C:updateLibraryItem(input: types.UpdateLibraryItemInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLibraryItemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLibraryItem as schema.OperationSchema, input, options) as async.Operation<types.UpdateLibraryItemOutput>
 end
 
-function C:updateLibraryItemMetadata(input: types.UpdateLibraryItemMetadataInput, options: any): async.Operation<types.UpdateLibraryItemMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLibraryItemMetadata, input, options) as async.Operation<types.UpdateLibraryItemMetadataOutput>
+function C:updateLibraryItemMetadata(input: types.UpdateLibraryItemMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLibraryItemMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLibraryItemMetadata as schema.OperationSchema, input, options) as async.Operation<types.UpdateLibraryItemMetadataOutput>
 end
 
-function C:updateQApp(input: types.UpdateQAppInput, options: any): async.Operation<types.UpdateQAppOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateQApp, input, options) as async.Operation<types.UpdateQAppOutput>
+function C:updateQApp(input: types.UpdateQAppInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateQAppOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateQApp as schema.OperationSchema, input, options) as async.Operation<types.UpdateQAppOutput>
 end
 
-function C:updateQAppPermissions(input: types.UpdateQAppPermissionsInput, options: any): async.Operation<types.UpdateQAppPermissionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateQAppPermissions, input, options) as async.Operation<types.UpdateQAppPermissionsOutput>
+function C:updateQAppPermissions(input: types.UpdateQAppPermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateQAppPermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateQAppPermissions as schema.OperationSchema, input, options) as async.Operation<types.UpdateQAppPermissionsOutput>
 end
 
-function C:updateQAppSession(input: types.UpdateQAppSessionInput, options: any): async.Operation<types.UpdateQAppSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateQAppSession, input, options) as async.Operation<types.UpdateQAppSessionOutput>
+function C:updateQAppSession(input: types.UpdateQAppSessionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateQAppSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateQAppSession as schema.OperationSchema, input, options) as async.Operation<types.UpdateQAppSessionOutput>
 end
 
-function C:updateQAppSessionMetadata(input: types.UpdateQAppSessionMetadataInput, options: any): async.Operation<types.UpdateQAppSessionMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateQAppSessionMetadata, input, options) as async.Operation<types.UpdateQAppSessionMetadataOutput>
+function C:updateQAppSessionMetadata(input: types.UpdateQAppSessionMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateQAppSessionMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateQAppSessionMetadata as schema.OperationSchema, input, options) as async.Operation<types.UpdateQAppSessionMetadataOutput>
 end
 
 return M

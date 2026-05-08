@@ -8,51 +8,54 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("bcmdataexports.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("bcmdataexports.schemas")
 local traits = require("smithy.traits")
 local types = require("bcmdataexports.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createExport: function(Client, types.CreateExportInput, any): async.Operation<types.CreateExportOutput>
-    deleteExport: function(Client, types.DeleteExportInput, any): async.Operation<types.DeleteExportOutput>
-    getExecution: function(Client, types.GetExecutionInput, any): async.Operation<types.GetExecutionOutput>
-    getExport: function(Client, types.GetExportInput, any): async.Operation<types.GetExportOutput>
-    getTable: function(Client, types.GetTableInput, any): async.Operation<types.GetTableOutput>
-    listExecutions: function(Client, types.ListExecutionsInput, any): async.Operation<types.ListExecutionsOutput>
-    listExports: function(Client, types.ListExportsInput, any): async.Operation<types.ListExportsOutput>
-    listTables: function(Client, types.ListTablesInput, any): async.Operation<types.ListTablesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateExport: function(Client, types.UpdateExportInput, any): async.Operation<types.UpdateExportOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createExport: function(Client, types.CreateExportInput, ? base_client.InvokeOptions): async.Operation<types.CreateExportOutput>
+    deleteExport: function(Client, types.DeleteExportInput, ? base_client.InvokeOptions): async.Operation<types.DeleteExportOutput>
+    getExecution: function(Client, types.GetExecutionInput, ? base_client.InvokeOptions): async.Operation<types.GetExecutionOutput>
+    getExport: function(Client, types.GetExportInput, ? base_client.InvokeOptions): async.Operation<types.GetExportOutput>
+    getTable: function(Client, types.GetTableInput, ? base_client.InvokeOptions): async.Operation<types.GetTableOutput>
+    listExecutions: function(Client, types.ListExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListExecutionsOutput>
+    listExports: function(Client, types.ListExportsInput, ? base_client.InvokeOptions): async.Operation<types.ListExportsOutput>
+    listTables: function(Client, types.ListTablesInput, ? base_client.InvokeOptions): async.Operation<types.ListTablesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateExport: function(Client, types.UpdateExportInput, ? base_client.InvokeOptions): async.Operation<types.UpdateExportOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSBillingAndCostManagementDataExports"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "bcm-data-exports", signing_region = c.region } }
                 else
@@ -71,52 +74,52 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createExport(input: types.CreateExportInput, options: any): async.Operation<types.CreateExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateExport, input, options) as async.Operation<types.CreateExportOutput>
+function C:createExport(input: types.CreateExportInput, options?: base_client.InvokeOptions): async.Operation<types.CreateExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateExport as schema.OperationSchema, input, options) as async.Operation<types.CreateExportOutput>
 end
 
-function C:deleteExport(input: types.DeleteExportInput, options: any): async.Operation<types.DeleteExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteExport, input, options) as async.Operation<types.DeleteExportOutput>
+function C:deleteExport(input: types.DeleteExportInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteExport as schema.OperationSchema, input, options) as async.Operation<types.DeleteExportOutput>
 end
 
-function C:getExecution(input: types.GetExecutionInput, options: any): async.Operation<types.GetExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetExecution, input, options) as async.Operation<types.GetExecutionOutput>
+function C:getExecution(input: types.GetExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.GetExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetExecution as schema.OperationSchema, input, options) as async.Operation<types.GetExecutionOutput>
 end
 
-function C:getExport(input: types.GetExportInput, options: any): async.Operation<types.GetExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetExport, input, options) as async.Operation<types.GetExportOutput>
+function C:getExport(input: types.GetExportInput, options?: base_client.InvokeOptions): async.Operation<types.GetExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetExport as schema.OperationSchema, input, options) as async.Operation<types.GetExportOutput>
 end
 
-function C:getTable(input: types.GetTableInput, options: any): async.Operation<types.GetTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTable, input, options) as async.Operation<types.GetTableOutput>
+function C:getTable(input: types.GetTableInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTable as schema.OperationSchema, input, options) as async.Operation<types.GetTableOutput>
 end
 
-function C:listExecutions(input: types.ListExecutionsInput, options: any): async.Operation<types.ListExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListExecutions, input, options) as async.Operation<types.ListExecutionsOutput>
+function C:listExecutions(input: types.ListExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExecutions as schema.OperationSchema, input, options) as async.Operation<types.ListExecutionsOutput>
 end
 
-function C:listExports(input: types.ListExportsInput, options: any): async.Operation<types.ListExportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListExports, input, options) as async.Operation<types.ListExportsOutput>
+function C:listExports(input: types.ListExportsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExports as schema.OperationSchema, input, options) as async.Operation<types.ListExportsOutput>
 end
 
-function C:listTables(input: types.ListTablesInput, options: any): async.Operation<types.ListTablesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTables, input, options) as async.Operation<types.ListTablesOutput>
+function C:listTables(input: types.ListTablesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTablesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTables as schema.OperationSchema, input, options) as async.Operation<types.ListTablesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateExport(input: types.UpdateExportInput, options: any): async.Operation<types.UpdateExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateExport, input, options) as async.Operation<types.UpdateExportOutput>
+function C:updateExport(input: types.UpdateExportInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateExport as schema.OperationSchema, input, options) as async.Operation<types.UpdateExportOutput>
 end
 
 return M

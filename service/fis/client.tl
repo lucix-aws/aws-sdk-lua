@@ -8,65 +8,68 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("fis.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("fis.schemas")
 local traits = require("smithy.traits")
 local types = require("fis.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createExperimentTemplate: function(Client, types.CreateExperimentTemplateInput, any): async.Operation<types.CreateExperimentTemplateOutput>
-    createTargetAccountConfiguration: function(Client, types.CreateTargetAccountConfigurationInput, any): async.Operation<types.CreateTargetAccountConfigurationOutput>
-    deleteExperimentTemplate: function(Client, types.DeleteExperimentTemplateInput, any): async.Operation<types.DeleteExperimentTemplateOutput>
-    deleteTargetAccountConfiguration: function(Client, types.DeleteTargetAccountConfigurationInput, any): async.Operation<types.DeleteTargetAccountConfigurationOutput>
-    getAction: function(Client, types.GetActionInput, any): async.Operation<types.GetActionOutput>
-    getExperiment: function(Client, types.GetExperimentInput, any): async.Operation<types.GetExperimentOutput>
-    getExperimentTargetAccountConfiguration: function(Client, types.GetExperimentTargetAccountConfigurationInput, any): async.Operation<types.GetExperimentTargetAccountConfigurationOutput>
-    getExperimentTemplate: function(Client, types.GetExperimentTemplateInput, any): async.Operation<types.GetExperimentTemplateOutput>
-    getSafetyLever: function(Client, types.GetSafetyLeverInput, any): async.Operation<types.GetSafetyLeverOutput>
-    getTargetAccountConfiguration: function(Client, types.GetTargetAccountConfigurationInput, any): async.Operation<types.GetTargetAccountConfigurationOutput>
-    getTargetResourceType: function(Client, types.GetTargetResourceTypeInput, any): async.Operation<types.GetTargetResourceTypeOutput>
-    listActions: function(Client, types.ListActionsInput, any): async.Operation<types.ListActionsOutput>
-    listExperimentResolvedTargets: function(Client, types.ListExperimentResolvedTargetsInput, any): async.Operation<types.ListExperimentResolvedTargetsOutput>
-    listExperiments: function(Client, types.ListExperimentsInput, any): async.Operation<types.ListExperimentsOutput>
-    listExperimentTargetAccountConfigurations: function(Client, types.ListExperimentTargetAccountConfigurationsInput, any): async.Operation<types.ListExperimentTargetAccountConfigurationsOutput>
-    listExperimentTemplates: function(Client, types.ListExperimentTemplatesInput, any): async.Operation<types.ListExperimentTemplatesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTargetAccountConfigurations: function(Client, types.ListTargetAccountConfigurationsInput, any): async.Operation<types.ListTargetAccountConfigurationsOutput>
-    listTargetResourceTypes: function(Client, types.ListTargetResourceTypesInput, any): async.Operation<types.ListTargetResourceTypesOutput>
-    startExperiment: function(Client, types.StartExperimentInput, any): async.Operation<types.StartExperimentOutput>
-    stopExperiment: function(Client, types.StopExperimentInput, any): async.Operation<types.StopExperimentOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateExperimentTemplate: function(Client, types.UpdateExperimentTemplateInput, any): async.Operation<types.UpdateExperimentTemplateOutput>
-    updateSafetyLeverState: function(Client, types.UpdateSafetyLeverStateOperationInput, any): async.Operation<types.UpdateSafetyLeverStateOutput>
-    updateTargetAccountConfiguration: function(Client, types.UpdateTargetAccountConfigurationInput, any): async.Operation<types.UpdateTargetAccountConfigurationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createExperimentTemplate: function(Client, types.CreateExperimentTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateExperimentTemplateOutput>
+    createTargetAccountConfiguration: function(Client, types.CreateTargetAccountConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateTargetAccountConfigurationOutput>
+    deleteExperimentTemplate: function(Client, types.DeleteExperimentTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteExperimentTemplateOutput>
+    deleteTargetAccountConfiguration: function(Client, types.DeleteTargetAccountConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTargetAccountConfigurationOutput>
+    getAction: function(Client, types.GetActionInput, ? base_client.InvokeOptions): async.Operation<types.GetActionOutput>
+    getExperiment: function(Client, types.GetExperimentInput, ? base_client.InvokeOptions): async.Operation<types.GetExperimentOutput>
+    getExperimentTargetAccountConfiguration: function(Client, types.GetExperimentTargetAccountConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetExperimentTargetAccountConfigurationOutput>
+    getExperimentTemplate: function(Client, types.GetExperimentTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetExperimentTemplateOutput>
+    getSafetyLever: function(Client, types.GetSafetyLeverInput, ? base_client.InvokeOptions): async.Operation<types.GetSafetyLeverOutput>
+    getTargetAccountConfiguration: function(Client, types.GetTargetAccountConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetTargetAccountConfigurationOutput>
+    getTargetResourceType: function(Client, types.GetTargetResourceTypeInput, ? base_client.InvokeOptions): async.Operation<types.GetTargetResourceTypeOutput>
+    listActions: function(Client, types.ListActionsInput, ? base_client.InvokeOptions): async.Operation<types.ListActionsOutput>
+    listExperimentResolvedTargets: function(Client, types.ListExperimentResolvedTargetsInput, ? base_client.InvokeOptions): async.Operation<types.ListExperimentResolvedTargetsOutput>
+    listExperiments: function(Client, types.ListExperimentsInput, ? base_client.InvokeOptions): async.Operation<types.ListExperimentsOutput>
+    listExperimentTargetAccountConfigurations: function(Client, types.ListExperimentTargetAccountConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListExperimentTargetAccountConfigurationsOutput>
+    listExperimentTemplates: function(Client, types.ListExperimentTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListExperimentTemplatesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTargetAccountConfigurations: function(Client, types.ListTargetAccountConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListTargetAccountConfigurationsOutput>
+    listTargetResourceTypes: function(Client, types.ListTargetResourceTypesInput, ? base_client.InvokeOptions): async.Operation<types.ListTargetResourceTypesOutput>
+    startExperiment: function(Client, types.StartExperimentInput, ? base_client.InvokeOptions): async.Operation<types.StartExperimentOutput>
+    stopExperiment: function(Client, types.StopExperimentInput, ? base_client.InvokeOptions): async.Operation<types.StopExperimentOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateExperimentTemplate: function(Client, types.UpdateExperimentTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateExperimentTemplateOutput>
+    updateSafetyLeverState: function(Client, types.UpdateSafetyLeverStateOperationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSafetyLeverStateOutput>
+    updateTargetAccountConfiguration: function(Client, types.UpdateTargetAccountConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTargetAccountConfigurationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "FaultInjectionSimulator"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "fis", signing_region = c.region } }
                 else
@@ -85,108 +88,108 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createExperimentTemplate(input: types.CreateExperimentTemplateInput, options: any): async.Operation<types.CreateExperimentTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateExperimentTemplate, input, options) as async.Operation<types.CreateExperimentTemplateOutput>
+function C:createExperimentTemplate(input: types.CreateExperimentTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateExperimentTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateExperimentTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateExperimentTemplateOutput>
 end
 
-function C:createTargetAccountConfiguration(input: types.CreateTargetAccountConfigurationInput, options: any): async.Operation<types.CreateTargetAccountConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTargetAccountConfiguration, input, options) as async.Operation<types.CreateTargetAccountConfigurationOutput>
+function C:createTargetAccountConfiguration(input: types.CreateTargetAccountConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTargetAccountConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTargetAccountConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateTargetAccountConfigurationOutput>
 end
 
-function C:deleteExperimentTemplate(input: types.DeleteExperimentTemplateInput, options: any): async.Operation<types.DeleteExperimentTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteExperimentTemplate, input, options) as async.Operation<types.DeleteExperimentTemplateOutput>
+function C:deleteExperimentTemplate(input: types.DeleteExperimentTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteExperimentTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteExperimentTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteExperimentTemplateOutput>
 end
 
-function C:deleteTargetAccountConfiguration(input: types.DeleteTargetAccountConfigurationInput, options: any): async.Operation<types.DeleteTargetAccountConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTargetAccountConfiguration, input, options) as async.Operation<types.DeleteTargetAccountConfigurationOutput>
+function C:deleteTargetAccountConfiguration(input: types.DeleteTargetAccountConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTargetAccountConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTargetAccountConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteTargetAccountConfigurationOutput>
 end
 
-function C:getAction(input: types.GetActionInput, options: any): async.Operation<types.GetActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAction, input, options) as async.Operation<types.GetActionOutput>
+function C:getAction(input: types.GetActionInput, options?: base_client.InvokeOptions): async.Operation<types.GetActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAction as schema.OperationSchema, input, options) as async.Operation<types.GetActionOutput>
 end
 
-function C:getExperiment(input: types.GetExperimentInput, options: any): async.Operation<types.GetExperimentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetExperiment, input, options) as async.Operation<types.GetExperimentOutput>
+function C:getExperiment(input: types.GetExperimentInput, options?: base_client.InvokeOptions): async.Operation<types.GetExperimentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetExperiment as schema.OperationSchema, input, options) as async.Operation<types.GetExperimentOutput>
 end
 
-function C:getExperimentTargetAccountConfiguration(input: types.GetExperimentTargetAccountConfigurationInput, options: any): async.Operation<types.GetExperimentTargetAccountConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetExperimentTargetAccountConfiguration, input, options) as async.Operation<types.GetExperimentTargetAccountConfigurationOutput>
+function C:getExperimentTargetAccountConfiguration(input: types.GetExperimentTargetAccountConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetExperimentTargetAccountConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetExperimentTargetAccountConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetExperimentTargetAccountConfigurationOutput>
 end
 
-function C:getExperimentTemplate(input: types.GetExperimentTemplateInput, options: any): async.Operation<types.GetExperimentTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetExperimentTemplate, input, options) as async.Operation<types.GetExperimentTemplateOutput>
+function C:getExperimentTemplate(input: types.GetExperimentTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetExperimentTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetExperimentTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetExperimentTemplateOutput>
 end
 
-function C:getSafetyLever(input: types.GetSafetyLeverInput, options: any): async.Operation<types.GetSafetyLeverOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSafetyLever, input, options) as async.Operation<types.GetSafetyLeverOutput>
+function C:getSafetyLever(input: types.GetSafetyLeverInput, options?: base_client.InvokeOptions): async.Operation<types.GetSafetyLeverOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSafetyLever as schema.OperationSchema, input, options) as async.Operation<types.GetSafetyLeverOutput>
 end
 
-function C:getTargetAccountConfiguration(input: types.GetTargetAccountConfigurationInput, options: any): async.Operation<types.GetTargetAccountConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTargetAccountConfiguration, input, options) as async.Operation<types.GetTargetAccountConfigurationOutput>
+function C:getTargetAccountConfiguration(input: types.GetTargetAccountConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetTargetAccountConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTargetAccountConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetTargetAccountConfigurationOutput>
 end
 
-function C:getTargetResourceType(input: types.GetTargetResourceTypeInput, options: any): async.Operation<types.GetTargetResourceTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTargetResourceType, input, options) as async.Operation<types.GetTargetResourceTypeOutput>
+function C:getTargetResourceType(input: types.GetTargetResourceTypeInput, options?: base_client.InvokeOptions): async.Operation<types.GetTargetResourceTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTargetResourceType as schema.OperationSchema, input, options) as async.Operation<types.GetTargetResourceTypeOutput>
 end
 
-function C:listActions(input: types.ListActionsInput, options: any): async.Operation<types.ListActionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListActions, input, options) as async.Operation<types.ListActionsOutput>
+function C:listActions(input: types.ListActionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListActionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListActions as schema.OperationSchema, input, options) as async.Operation<types.ListActionsOutput>
 end
 
-function C:listExperimentResolvedTargets(input: types.ListExperimentResolvedTargetsInput, options: any): async.Operation<types.ListExperimentResolvedTargetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListExperimentResolvedTargets, input, options) as async.Operation<types.ListExperimentResolvedTargetsOutput>
+function C:listExperimentResolvedTargets(input: types.ListExperimentResolvedTargetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExperimentResolvedTargetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExperimentResolvedTargets as schema.OperationSchema, input, options) as async.Operation<types.ListExperimentResolvedTargetsOutput>
 end
 
-function C:listExperiments(input: types.ListExperimentsInput, options: any): async.Operation<types.ListExperimentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListExperiments, input, options) as async.Operation<types.ListExperimentsOutput>
+function C:listExperiments(input: types.ListExperimentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExperimentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExperiments as schema.OperationSchema, input, options) as async.Operation<types.ListExperimentsOutput>
 end
 
-function C:listExperimentTargetAccountConfigurations(input: types.ListExperimentTargetAccountConfigurationsInput, options: any): async.Operation<types.ListExperimentTargetAccountConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListExperimentTargetAccountConfigurations, input, options) as async.Operation<types.ListExperimentTargetAccountConfigurationsOutput>
+function C:listExperimentTargetAccountConfigurations(input: types.ListExperimentTargetAccountConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExperimentTargetAccountConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExperimentTargetAccountConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListExperimentTargetAccountConfigurationsOutput>
 end
 
-function C:listExperimentTemplates(input: types.ListExperimentTemplatesInput, options: any): async.Operation<types.ListExperimentTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListExperimentTemplates, input, options) as async.Operation<types.ListExperimentTemplatesOutput>
+function C:listExperimentTemplates(input: types.ListExperimentTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListExperimentTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExperimentTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListExperimentTemplatesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTargetAccountConfigurations(input: types.ListTargetAccountConfigurationsInput, options: any): async.Operation<types.ListTargetAccountConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTargetAccountConfigurations, input, options) as async.Operation<types.ListTargetAccountConfigurationsOutput>
+function C:listTargetAccountConfigurations(input: types.ListTargetAccountConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTargetAccountConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTargetAccountConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListTargetAccountConfigurationsOutput>
 end
 
-function C:listTargetResourceTypes(input: types.ListTargetResourceTypesInput, options: any): async.Operation<types.ListTargetResourceTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTargetResourceTypes, input, options) as async.Operation<types.ListTargetResourceTypesOutput>
+function C:listTargetResourceTypes(input: types.ListTargetResourceTypesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTargetResourceTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTargetResourceTypes as schema.OperationSchema, input, options) as async.Operation<types.ListTargetResourceTypesOutput>
 end
 
-function C:startExperiment(input: types.StartExperimentInput, options: any): async.Operation<types.StartExperimentOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartExperiment, input, options) as async.Operation<types.StartExperimentOutput>
+function C:startExperiment(input: types.StartExperimentInput, options?: base_client.InvokeOptions): async.Operation<types.StartExperimentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartExperiment as schema.OperationSchema, input, options) as async.Operation<types.StartExperimentOutput>
 end
 
-function C:stopExperiment(input: types.StopExperimentInput, options: any): async.Operation<types.StopExperimentOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopExperiment, input, options) as async.Operation<types.StopExperimentOutput>
+function C:stopExperiment(input: types.StopExperimentInput, options?: base_client.InvokeOptions): async.Operation<types.StopExperimentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopExperiment as schema.OperationSchema, input, options) as async.Operation<types.StopExperimentOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateExperimentTemplate(input: types.UpdateExperimentTemplateInput, options: any): async.Operation<types.UpdateExperimentTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateExperimentTemplate, input, options) as async.Operation<types.UpdateExperimentTemplateOutput>
+function C:updateExperimentTemplate(input: types.UpdateExperimentTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateExperimentTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateExperimentTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateExperimentTemplateOutput>
 end
 
-function C:updateSafetyLeverState(input: types.UpdateSafetyLeverStateOperationInput, options: any): async.Operation<types.UpdateSafetyLeverStateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSafetyLeverState, input, options) as async.Operation<types.UpdateSafetyLeverStateOutput>
+function C:updateSafetyLeverState(input: types.UpdateSafetyLeverStateOperationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSafetyLeverStateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSafetyLeverState as schema.OperationSchema, input, options) as async.Operation<types.UpdateSafetyLeverStateOutput>
 end
 
-function C:updateTargetAccountConfiguration(input: types.UpdateTargetAccountConfigurationInput, options: any): async.Operation<types.UpdateTargetAccountConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTargetAccountConfiguration, input, options) as async.Operation<types.UpdateTargetAccountConfigurationOutput>
+function C:updateTargetAccountConfiguration(input: types.UpdateTargetAccountConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTargetAccountConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTargetAccountConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateTargetAccountConfigurationOutput>
 end
 
 return M

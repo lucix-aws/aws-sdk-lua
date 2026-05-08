@@ -8,67 +8,70 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("computeoptimizer.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("computeoptimizer.schemas")
 local traits = require("smithy.traits")
 local types = require("computeoptimizer.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    deleteRecommendationPreferences: function(Client, types.DeleteRecommendationPreferencesInput, any): async.Operation<types.DeleteRecommendationPreferencesOutput>
-    describeRecommendationExportJobs: function(Client, types.DescribeRecommendationExportJobsInput, any): async.Operation<types.DescribeRecommendationExportJobsOutput>
-    exportAutoScalingGroupRecommendations: function(Client, types.ExportAutoScalingGroupRecommendationsInput, any): async.Operation<types.ExportAutoScalingGroupRecommendationsOutput>
-    exportEBSVolumeRecommendations: function(Client, types.ExportEBSVolumeRecommendationsInput, any): async.Operation<types.ExportEBSVolumeRecommendationsOutput>
-    exportEC2InstanceRecommendations: function(Client, types.ExportEC2InstanceRecommendationsInput, any): async.Operation<types.ExportEC2InstanceRecommendationsOutput>
-    exportECSServiceRecommendations: function(Client, types.ExportECSServiceRecommendationsInput, any): async.Operation<types.ExportECSServiceRecommendationsOutput>
-    exportIdleRecommendations: function(Client, types.ExportIdleRecommendationsInput, any): async.Operation<types.ExportIdleRecommendationsOutput>
-    exportLambdaFunctionRecommendations: function(Client, types.ExportLambdaFunctionRecommendationsInput, any): async.Operation<types.ExportLambdaFunctionRecommendationsOutput>
-    exportLicenseRecommendations: function(Client, types.ExportLicenseRecommendationsInput, any): async.Operation<types.ExportLicenseRecommendationsOutput>
-    exportRDSDatabaseRecommendations: function(Client, types.ExportRDSDatabaseRecommendationsInput, any): async.Operation<types.ExportRDSDatabaseRecommendationsOutput>
-    getAutoScalingGroupRecommendations: function(Client, types.GetAutoScalingGroupRecommendationsInput, any): async.Operation<types.GetAutoScalingGroupRecommendationsOutput>
-    getEBSVolumeRecommendations: function(Client, types.GetEBSVolumeRecommendationsInput, any): async.Operation<types.GetEBSVolumeRecommendationsOutput>
-    getEC2InstanceRecommendations: function(Client, types.GetEC2InstanceRecommendationsInput, any): async.Operation<types.GetEC2InstanceRecommendationsOutput>
-    getEC2RecommendationProjectedMetrics: function(Client, types.GetEC2RecommendationProjectedMetricsInput, any): async.Operation<types.GetEC2RecommendationProjectedMetricsOutput>
-    getECSServiceRecommendationProjectedMetrics: function(Client, types.GetECSServiceRecommendationProjectedMetricsInput, any): async.Operation<types.GetECSServiceRecommendationProjectedMetricsOutput>
-    getECSServiceRecommendations: function(Client, types.GetECSServiceRecommendationsInput, any): async.Operation<types.GetECSServiceRecommendationsOutput>
-    getEffectiveRecommendationPreferences: function(Client, types.GetEffectiveRecommendationPreferencesInput, any): async.Operation<types.GetEffectiveRecommendationPreferencesOutput>
-    getEnrollmentStatus: function(Client, types.GetEnrollmentStatusInput, any): async.Operation<types.GetEnrollmentStatusOutput>
-    getEnrollmentStatusesForOrganization: function(Client, types.GetEnrollmentStatusesForOrganizationInput, any): async.Operation<types.GetEnrollmentStatusesForOrganizationOutput>
-    getIdleRecommendations: function(Client, types.GetIdleRecommendationsInput, any): async.Operation<types.GetIdleRecommendationsOutput>
-    getLambdaFunctionRecommendations: function(Client, types.GetLambdaFunctionRecommendationsInput, any): async.Operation<types.GetLambdaFunctionRecommendationsOutput>
-    getLicenseRecommendations: function(Client, types.GetLicenseRecommendationsInput, any): async.Operation<types.GetLicenseRecommendationsOutput>
-    getRDSDatabaseRecommendationProjectedMetrics: function(Client, types.GetRDSDatabaseRecommendationProjectedMetricsInput, any): async.Operation<types.GetRDSDatabaseRecommendationProjectedMetricsOutput>
-    getRDSDatabaseRecommendations: function(Client, types.GetRDSDatabaseRecommendationsInput, any): async.Operation<types.GetRDSDatabaseRecommendationsOutput>
-    getRecommendationPreferences: function(Client, types.GetRecommendationPreferencesInput, any): async.Operation<types.GetRecommendationPreferencesOutput>
-    getRecommendationSummaries: function(Client, types.GetRecommendationSummariesInput, any): async.Operation<types.GetRecommendationSummariesOutput>
-    putRecommendationPreferences: function(Client, types.PutRecommendationPreferencesInput, any): async.Operation<types.PutRecommendationPreferencesOutput>
-    updateEnrollmentStatus: function(Client, types.UpdateEnrollmentStatusInput, any): async.Operation<types.UpdateEnrollmentStatusOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    deleteRecommendationPreferences: function(Client, types.DeleteRecommendationPreferencesInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRecommendationPreferencesOutput>
+    describeRecommendationExportJobs: function(Client, types.DescribeRecommendationExportJobsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRecommendationExportJobsOutput>
+    exportAutoScalingGroupRecommendations: function(Client, types.ExportAutoScalingGroupRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.ExportAutoScalingGroupRecommendationsOutput>
+    exportEBSVolumeRecommendations: function(Client, types.ExportEBSVolumeRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.ExportEBSVolumeRecommendationsOutput>
+    exportEC2InstanceRecommendations: function(Client, types.ExportEC2InstanceRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.ExportEC2InstanceRecommendationsOutput>
+    exportECSServiceRecommendations: function(Client, types.ExportECSServiceRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.ExportECSServiceRecommendationsOutput>
+    exportIdleRecommendations: function(Client, types.ExportIdleRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.ExportIdleRecommendationsOutput>
+    exportLambdaFunctionRecommendations: function(Client, types.ExportLambdaFunctionRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.ExportLambdaFunctionRecommendationsOutput>
+    exportLicenseRecommendations: function(Client, types.ExportLicenseRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.ExportLicenseRecommendationsOutput>
+    exportRDSDatabaseRecommendations: function(Client, types.ExportRDSDatabaseRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.ExportRDSDatabaseRecommendationsOutput>
+    getAutoScalingGroupRecommendations: function(Client, types.GetAutoScalingGroupRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.GetAutoScalingGroupRecommendationsOutput>
+    getEBSVolumeRecommendations: function(Client, types.GetEBSVolumeRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.GetEBSVolumeRecommendationsOutput>
+    getEC2InstanceRecommendations: function(Client, types.GetEC2InstanceRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.GetEC2InstanceRecommendationsOutput>
+    getEC2RecommendationProjectedMetrics: function(Client, types.GetEC2RecommendationProjectedMetricsInput, ? base_client.InvokeOptions): async.Operation<types.GetEC2RecommendationProjectedMetricsOutput>
+    getECSServiceRecommendationProjectedMetrics: function(Client, types.GetECSServiceRecommendationProjectedMetricsInput, ? base_client.InvokeOptions): async.Operation<types.GetECSServiceRecommendationProjectedMetricsOutput>
+    getECSServiceRecommendations: function(Client, types.GetECSServiceRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.GetECSServiceRecommendationsOutput>
+    getEffectiveRecommendationPreferences: function(Client, types.GetEffectiveRecommendationPreferencesInput, ? base_client.InvokeOptions): async.Operation<types.GetEffectiveRecommendationPreferencesOutput>
+    getEnrollmentStatus: function(Client, types.GetEnrollmentStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetEnrollmentStatusOutput>
+    getEnrollmentStatusesForOrganization: function(Client, types.GetEnrollmentStatusesForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.GetEnrollmentStatusesForOrganizationOutput>
+    getIdleRecommendations: function(Client, types.GetIdleRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.GetIdleRecommendationsOutput>
+    getLambdaFunctionRecommendations: function(Client, types.GetLambdaFunctionRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.GetLambdaFunctionRecommendationsOutput>
+    getLicenseRecommendations: function(Client, types.GetLicenseRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.GetLicenseRecommendationsOutput>
+    getRDSDatabaseRecommendationProjectedMetrics: function(Client, types.GetRDSDatabaseRecommendationProjectedMetricsInput, ? base_client.InvokeOptions): async.Operation<types.GetRDSDatabaseRecommendationProjectedMetricsOutput>
+    getRDSDatabaseRecommendations: function(Client, types.GetRDSDatabaseRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.GetRDSDatabaseRecommendationsOutput>
+    getRecommendationPreferences: function(Client, types.GetRecommendationPreferencesInput, ? base_client.InvokeOptions): async.Operation<types.GetRecommendationPreferencesOutput>
+    getRecommendationSummaries: function(Client, types.GetRecommendationSummariesInput, ? base_client.InvokeOptions): async.Operation<types.GetRecommendationSummariesOutput>
+    putRecommendationPreferences: function(Client, types.PutRecommendationPreferencesInput, ? base_client.InvokeOptions): async.Operation<types.PutRecommendationPreferencesOutput>
+    updateEnrollmentStatus: function(Client, types.UpdateEnrollmentStatusInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEnrollmentStatusOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "ComputeOptimizerService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "compute-optimizer", signing_region = c.region } }
                 else
@@ -87,116 +90,116 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:deleteRecommendationPreferences(input: types.DeleteRecommendationPreferencesInput, options: any): async.Operation<types.DeleteRecommendationPreferencesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRecommendationPreferences, input, options) as async.Operation<types.DeleteRecommendationPreferencesOutput>
+function C:deleteRecommendationPreferences(input: types.DeleteRecommendationPreferencesInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRecommendationPreferencesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRecommendationPreferences as schema.OperationSchema, input, options) as async.Operation<types.DeleteRecommendationPreferencesOutput>
 end
 
-function C:describeRecommendationExportJobs(input: types.DescribeRecommendationExportJobsInput, options: any): async.Operation<types.DescribeRecommendationExportJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRecommendationExportJobs, input, options) as async.Operation<types.DescribeRecommendationExportJobsOutput>
+function C:describeRecommendationExportJobs(input: types.DescribeRecommendationExportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRecommendationExportJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRecommendationExportJobs as schema.OperationSchema, input, options) as async.Operation<types.DescribeRecommendationExportJobsOutput>
 end
 
-function C:exportAutoScalingGroupRecommendations(input: types.ExportAutoScalingGroupRecommendationsInput, options: any): async.Operation<types.ExportAutoScalingGroupRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExportAutoScalingGroupRecommendations, input, options) as async.Operation<types.ExportAutoScalingGroupRecommendationsOutput>
+function C:exportAutoScalingGroupRecommendations(input: types.ExportAutoScalingGroupRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.ExportAutoScalingGroupRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportAutoScalingGroupRecommendations as schema.OperationSchema, input, options) as async.Operation<types.ExportAutoScalingGroupRecommendationsOutput>
 end
 
-function C:exportEBSVolumeRecommendations(input: types.ExportEBSVolumeRecommendationsInput, options: any): async.Operation<types.ExportEBSVolumeRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExportEBSVolumeRecommendations, input, options) as async.Operation<types.ExportEBSVolumeRecommendationsOutput>
+function C:exportEBSVolumeRecommendations(input: types.ExportEBSVolumeRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.ExportEBSVolumeRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportEBSVolumeRecommendations as schema.OperationSchema, input, options) as async.Operation<types.ExportEBSVolumeRecommendationsOutput>
 end
 
-function C:exportEC2InstanceRecommendations(input: types.ExportEC2InstanceRecommendationsInput, options: any): async.Operation<types.ExportEC2InstanceRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExportEC2InstanceRecommendations, input, options) as async.Operation<types.ExportEC2InstanceRecommendationsOutput>
+function C:exportEC2InstanceRecommendations(input: types.ExportEC2InstanceRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.ExportEC2InstanceRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportEC2InstanceRecommendations as schema.OperationSchema, input, options) as async.Operation<types.ExportEC2InstanceRecommendationsOutput>
 end
 
-function C:exportECSServiceRecommendations(input: types.ExportECSServiceRecommendationsInput, options: any): async.Operation<types.ExportECSServiceRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExportECSServiceRecommendations, input, options) as async.Operation<types.ExportECSServiceRecommendationsOutput>
+function C:exportECSServiceRecommendations(input: types.ExportECSServiceRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.ExportECSServiceRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportECSServiceRecommendations as schema.OperationSchema, input, options) as async.Operation<types.ExportECSServiceRecommendationsOutput>
 end
 
-function C:exportIdleRecommendations(input: types.ExportIdleRecommendationsInput, options: any): async.Operation<types.ExportIdleRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExportIdleRecommendations, input, options) as async.Operation<types.ExportIdleRecommendationsOutput>
+function C:exportIdleRecommendations(input: types.ExportIdleRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.ExportIdleRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportIdleRecommendations as schema.OperationSchema, input, options) as async.Operation<types.ExportIdleRecommendationsOutput>
 end
 
-function C:exportLambdaFunctionRecommendations(input: types.ExportLambdaFunctionRecommendationsInput, options: any): async.Operation<types.ExportLambdaFunctionRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExportLambdaFunctionRecommendations, input, options) as async.Operation<types.ExportLambdaFunctionRecommendationsOutput>
+function C:exportLambdaFunctionRecommendations(input: types.ExportLambdaFunctionRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.ExportLambdaFunctionRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportLambdaFunctionRecommendations as schema.OperationSchema, input, options) as async.Operation<types.ExportLambdaFunctionRecommendationsOutput>
 end
 
-function C:exportLicenseRecommendations(input: types.ExportLicenseRecommendationsInput, options: any): async.Operation<types.ExportLicenseRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExportLicenseRecommendations, input, options) as async.Operation<types.ExportLicenseRecommendationsOutput>
+function C:exportLicenseRecommendations(input: types.ExportLicenseRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.ExportLicenseRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportLicenseRecommendations as schema.OperationSchema, input, options) as async.Operation<types.ExportLicenseRecommendationsOutput>
 end
 
-function C:exportRDSDatabaseRecommendations(input: types.ExportRDSDatabaseRecommendationsInput, options: any): async.Operation<types.ExportRDSDatabaseRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExportRDSDatabaseRecommendations, input, options) as async.Operation<types.ExportRDSDatabaseRecommendationsOutput>
+function C:exportRDSDatabaseRecommendations(input: types.ExportRDSDatabaseRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.ExportRDSDatabaseRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportRDSDatabaseRecommendations as schema.OperationSchema, input, options) as async.Operation<types.ExportRDSDatabaseRecommendationsOutput>
 end
 
-function C:getAutoScalingGroupRecommendations(input: types.GetAutoScalingGroupRecommendationsInput, options: any): async.Operation<types.GetAutoScalingGroupRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAutoScalingGroupRecommendations, input, options) as async.Operation<types.GetAutoScalingGroupRecommendationsOutput>
+function C:getAutoScalingGroupRecommendations(input: types.GetAutoScalingGroupRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetAutoScalingGroupRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAutoScalingGroupRecommendations as schema.OperationSchema, input, options) as async.Operation<types.GetAutoScalingGroupRecommendationsOutput>
 end
 
-function C:getEBSVolumeRecommendations(input: types.GetEBSVolumeRecommendationsInput, options: any): async.Operation<types.GetEBSVolumeRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEBSVolumeRecommendations, input, options) as async.Operation<types.GetEBSVolumeRecommendationsOutput>
+function C:getEBSVolumeRecommendations(input: types.GetEBSVolumeRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetEBSVolumeRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEBSVolumeRecommendations as schema.OperationSchema, input, options) as async.Operation<types.GetEBSVolumeRecommendationsOutput>
 end
 
-function C:getEC2InstanceRecommendations(input: types.GetEC2InstanceRecommendationsInput, options: any): async.Operation<types.GetEC2InstanceRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEC2InstanceRecommendations, input, options) as async.Operation<types.GetEC2InstanceRecommendationsOutput>
+function C:getEC2InstanceRecommendations(input: types.GetEC2InstanceRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetEC2InstanceRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEC2InstanceRecommendations as schema.OperationSchema, input, options) as async.Operation<types.GetEC2InstanceRecommendationsOutput>
 end
 
-function C:getEC2RecommendationProjectedMetrics(input: types.GetEC2RecommendationProjectedMetricsInput, options: any): async.Operation<types.GetEC2RecommendationProjectedMetricsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEC2RecommendationProjectedMetrics, input, options) as async.Operation<types.GetEC2RecommendationProjectedMetricsOutput>
+function C:getEC2RecommendationProjectedMetrics(input: types.GetEC2RecommendationProjectedMetricsInput, options?: base_client.InvokeOptions): async.Operation<types.GetEC2RecommendationProjectedMetricsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEC2RecommendationProjectedMetrics as schema.OperationSchema, input, options) as async.Operation<types.GetEC2RecommendationProjectedMetricsOutput>
 end
 
-function C:getECSServiceRecommendationProjectedMetrics(input: types.GetECSServiceRecommendationProjectedMetricsInput, options: any): async.Operation<types.GetECSServiceRecommendationProjectedMetricsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetECSServiceRecommendationProjectedMetrics, input, options) as async.Operation<types.GetECSServiceRecommendationProjectedMetricsOutput>
+function C:getECSServiceRecommendationProjectedMetrics(input: types.GetECSServiceRecommendationProjectedMetricsInput, options?: base_client.InvokeOptions): async.Operation<types.GetECSServiceRecommendationProjectedMetricsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetECSServiceRecommendationProjectedMetrics as schema.OperationSchema, input, options) as async.Operation<types.GetECSServiceRecommendationProjectedMetricsOutput>
 end
 
-function C:getECSServiceRecommendations(input: types.GetECSServiceRecommendationsInput, options: any): async.Operation<types.GetECSServiceRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetECSServiceRecommendations, input, options) as async.Operation<types.GetECSServiceRecommendationsOutput>
+function C:getECSServiceRecommendations(input: types.GetECSServiceRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetECSServiceRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetECSServiceRecommendations as schema.OperationSchema, input, options) as async.Operation<types.GetECSServiceRecommendationsOutput>
 end
 
-function C:getEffectiveRecommendationPreferences(input: types.GetEffectiveRecommendationPreferencesInput, options: any): async.Operation<types.GetEffectiveRecommendationPreferencesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEffectiveRecommendationPreferences, input, options) as async.Operation<types.GetEffectiveRecommendationPreferencesOutput>
+function C:getEffectiveRecommendationPreferences(input: types.GetEffectiveRecommendationPreferencesInput, options?: base_client.InvokeOptions): async.Operation<types.GetEffectiveRecommendationPreferencesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEffectiveRecommendationPreferences as schema.OperationSchema, input, options) as async.Operation<types.GetEffectiveRecommendationPreferencesOutput>
 end
 
-function C:getEnrollmentStatus(input: types.GetEnrollmentStatusInput, options: any): async.Operation<types.GetEnrollmentStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEnrollmentStatus, input, options) as async.Operation<types.GetEnrollmentStatusOutput>
+function C:getEnrollmentStatus(input: types.GetEnrollmentStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetEnrollmentStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEnrollmentStatus as schema.OperationSchema, input, options) as async.Operation<types.GetEnrollmentStatusOutput>
 end
 
-function C:getEnrollmentStatusesForOrganization(input: types.GetEnrollmentStatusesForOrganizationInput, options: any): async.Operation<types.GetEnrollmentStatusesForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEnrollmentStatusesForOrganization, input, options) as async.Operation<types.GetEnrollmentStatusesForOrganizationOutput>
+function C:getEnrollmentStatusesForOrganization(input: types.GetEnrollmentStatusesForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.GetEnrollmentStatusesForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEnrollmentStatusesForOrganization as schema.OperationSchema, input, options) as async.Operation<types.GetEnrollmentStatusesForOrganizationOutput>
 end
 
-function C:getIdleRecommendations(input: types.GetIdleRecommendationsInput, options: any): async.Operation<types.GetIdleRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIdleRecommendations, input, options) as async.Operation<types.GetIdleRecommendationsOutput>
+function C:getIdleRecommendations(input: types.GetIdleRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetIdleRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIdleRecommendations as schema.OperationSchema, input, options) as async.Operation<types.GetIdleRecommendationsOutput>
 end
 
-function C:getLambdaFunctionRecommendations(input: types.GetLambdaFunctionRecommendationsInput, options: any): async.Operation<types.GetLambdaFunctionRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLambdaFunctionRecommendations, input, options) as async.Operation<types.GetLambdaFunctionRecommendationsOutput>
+function C:getLambdaFunctionRecommendations(input: types.GetLambdaFunctionRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetLambdaFunctionRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLambdaFunctionRecommendations as schema.OperationSchema, input, options) as async.Operation<types.GetLambdaFunctionRecommendationsOutput>
 end
 
-function C:getLicenseRecommendations(input: types.GetLicenseRecommendationsInput, options: any): async.Operation<types.GetLicenseRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLicenseRecommendations, input, options) as async.Operation<types.GetLicenseRecommendationsOutput>
+function C:getLicenseRecommendations(input: types.GetLicenseRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetLicenseRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLicenseRecommendations as schema.OperationSchema, input, options) as async.Operation<types.GetLicenseRecommendationsOutput>
 end
 
-function C:getRDSDatabaseRecommendationProjectedMetrics(input: types.GetRDSDatabaseRecommendationProjectedMetricsInput, options: any): async.Operation<types.GetRDSDatabaseRecommendationProjectedMetricsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRDSDatabaseRecommendationProjectedMetrics, input, options) as async.Operation<types.GetRDSDatabaseRecommendationProjectedMetricsOutput>
+function C:getRDSDatabaseRecommendationProjectedMetrics(input: types.GetRDSDatabaseRecommendationProjectedMetricsInput, options?: base_client.InvokeOptions): async.Operation<types.GetRDSDatabaseRecommendationProjectedMetricsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRDSDatabaseRecommendationProjectedMetrics as schema.OperationSchema, input, options) as async.Operation<types.GetRDSDatabaseRecommendationProjectedMetricsOutput>
 end
 
-function C:getRDSDatabaseRecommendations(input: types.GetRDSDatabaseRecommendationsInput, options: any): async.Operation<types.GetRDSDatabaseRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRDSDatabaseRecommendations, input, options) as async.Operation<types.GetRDSDatabaseRecommendationsOutput>
+function C:getRDSDatabaseRecommendations(input: types.GetRDSDatabaseRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetRDSDatabaseRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRDSDatabaseRecommendations as schema.OperationSchema, input, options) as async.Operation<types.GetRDSDatabaseRecommendationsOutput>
 end
 
-function C:getRecommendationPreferences(input: types.GetRecommendationPreferencesInput, options: any): async.Operation<types.GetRecommendationPreferencesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRecommendationPreferences, input, options) as async.Operation<types.GetRecommendationPreferencesOutput>
+function C:getRecommendationPreferences(input: types.GetRecommendationPreferencesInput, options?: base_client.InvokeOptions): async.Operation<types.GetRecommendationPreferencesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRecommendationPreferences as schema.OperationSchema, input, options) as async.Operation<types.GetRecommendationPreferencesOutput>
 end
 
-function C:getRecommendationSummaries(input: types.GetRecommendationSummariesInput, options: any): async.Operation<types.GetRecommendationSummariesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRecommendationSummaries, input, options) as async.Operation<types.GetRecommendationSummariesOutput>
+function C:getRecommendationSummaries(input: types.GetRecommendationSummariesInput, options?: base_client.InvokeOptions): async.Operation<types.GetRecommendationSummariesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRecommendationSummaries as schema.OperationSchema, input, options) as async.Operation<types.GetRecommendationSummariesOutput>
 end
 
-function C:putRecommendationPreferences(input: types.PutRecommendationPreferencesInput, options: any): async.Operation<types.PutRecommendationPreferencesOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutRecommendationPreferences, input, options) as async.Operation<types.PutRecommendationPreferencesOutput>
+function C:putRecommendationPreferences(input: types.PutRecommendationPreferencesInput, options?: base_client.InvokeOptions): async.Operation<types.PutRecommendationPreferencesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutRecommendationPreferences as schema.OperationSchema, input, options) as async.Operation<types.PutRecommendationPreferencesOutput>
 end
 
-function C:updateEnrollmentStatus(input: types.UpdateEnrollmentStatusInput, options: any): async.Operation<types.UpdateEnrollmentStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEnrollmentStatus, input, options) as async.Operation<types.UpdateEnrollmentStatusOutput>
+function C:updateEnrollmentStatus(input: types.UpdateEnrollmentStatusInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEnrollmentStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEnrollmentStatus as schema.OperationSchema, input, options) as async.Operation<types.UpdateEnrollmentStatusOutput>
 end
 
 return M

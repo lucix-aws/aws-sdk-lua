@@ -8,81 +8,84 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("sns.endpoint_rules")
 local query_protocol = require("smithy.protocol.awsquery")
+local schema = require("smithy.schema")
 local schemas = require("sns.schemas")
 local traits = require("smithy.traits")
 local types = require("sns.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    addPermission: function(Client, types.AddPermissionInput, any): async.Operation<types.AddPermissionOutput>
-    checkIfPhoneNumberIsOptedOut: function(Client, types.CheckIfPhoneNumberIsOptedOutInput, any): async.Operation<types.CheckIfPhoneNumberIsOptedOutOutput>
-    confirmSubscription: function(Client, types.ConfirmSubscriptionInput, any): async.Operation<types.ConfirmSubscriptionOutput>
-    createPlatformApplication: function(Client, types.CreatePlatformApplicationInput, any): async.Operation<types.CreatePlatformApplicationOutput>
-    createPlatformEndpoint: function(Client, types.CreatePlatformEndpointInput, any): async.Operation<types.CreatePlatformEndpointOutput>
-    createSMSSandboxPhoneNumber: function(Client, types.CreateSMSSandboxPhoneNumberInput, any): async.Operation<types.CreateSMSSandboxPhoneNumberOutput>
-    createTopic: function(Client, types.CreateTopicInput, any): async.Operation<types.CreateTopicOutput>
-    deleteEndpoint: function(Client, types.DeleteEndpointInput, any): async.Operation<types.DeleteEndpointOutput>
-    deletePlatformApplication: function(Client, types.DeletePlatformApplicationInput, any): async.Operation<types.DeletePlatformApplicationOutput>
-    deleteSMSSandboxPhoneNumber: function(Client, types.DeleteSMSSandboxPhoneNumberInput, any): async.Operation<types.DeleteSMSSandboxPhoneNumberOutput>
-    deleteTopic: function(Client, types.DeleteTopicInput, any): async.Operation<types.DeleteTopicOutput>
-    getDataProtectionPolicy: function(Client, types.GetDataProtectionPolicyInput, any): async.Operation<types.GetDataProtectionPolicyOutput>
-    getEndpointAttributes: function(Client, types.GetEndpointAttributesInput, any): async.Operation<types.GetEndpointAttributesOutput>
-    getPlatformApplicationAttributes: function(Client, types.GetPlatformApplicationAttributesInput, any): async.Operation<types.GetPlatformApplicationAttributesOutput>
-    getSMSAttributes: function(Client, types.GetSMSAttributesInput, any): async.Operation<types.GetSMSAttributesOutput>
-    getSMSSandboxAccountStatus: function(Client, types.GetSMSSandboxAccountStatusInput, any): async.Operation<types.GetSMSSandboxAccountStatusOutput>
-    getSubscriptionAttributes: function(Client, types.GetSubscriptionAttributesInput, any): async.Operation<types.GetSubscriptionAttributesOutput>
-    getTopicAttributes: function(Client, types.GetTopicAttributesInput, any): async.Operation<types.GetTopicAttributesOutput>
-    listEndpointsByPlatformApplication: function(Client, types.ListEndpointsByPlatformApplicationInput, any): async.Operation<types.ListEndpointsByPlatformApplicationOutput>
-    listOriginationNumbers: function(Client, types.ListOriginationNumbersInput, any): async.Operation<types.ListOriginationNumbersOutput>
-    listPhoneNumbersOptedOut: function(Client, types.ListPhoneNumbersOptedOutInput, any): async.Operation<types.ListPhoneNumbersOptedOutOutput>
-    listPlatformApplications: function(Client, types.ListPlatformApplicationsInput, any): async.Operation<types.ListPlatformApplicationsOutput>
-    listSMSSandboxPhoneNumbers: function(Client, types.ListSMSSandboxPhoneNumbersInput, any): async.Operation<types.ListSMSSandboxPhoneNumbersOutput>
-    listSubscriptions: function(Client, types.ListSubscriptionsInput, any): async.Operation<types.ListSubscriptionsOutput>
-    listSubscriptionsByTopic: function(Client, types.ListSubscriptionsByTopicInput, any): async.Operation<types.ListSubscriptionsByTopicOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTopics: function(Client, types.ListTopicsInput, any): async.Operation<types.ListTopicsOutput>
-    optInPhoneNumber: function(Client, types.OptInPhoneNumberInput, any): async.Operation<types.OptInPhoneNumberOutput>
-    publish: function(Client, types.PublishInput, any): async.Operation<types.PublishOutput>
-    publishBatch: function(Client, types.PublishBatchInput, any): async.Operation<types.PublishBatchOutput>
-    putDataProtectionPolicy: function(Client, types.PutDataProtectionPolicyInput, any): async.Operation<types.PutDataProtectionPolicyOutput>
-    removePermission: function(Client, types.RemovePermissionInput, any): async.Operation<types.RemovePermissionOutput>
-    setEndpointAttributes: function(Client, types.SetEndpointAttributesInput, any): async.Operation<types.SetEndpointAttributesOutput>
-    setPlatformApplicationAttributes: function(Client, types.SetPlatformApplicationAttributesInput, any): async.Operation<types.SetPlatformApplicationAttributesOutput>
-    setSMSAttributes: function(Client, types.SetSMSAttributesInput, any): async.Operation<types.SetSMSAttributesOutput>
-    setSubscriptionAttributes: function(Client, types.SetSubscriptionAttributesInput, any): async.Operation<types.SetSubscriptionAttributesOutput>
-    setTopicAttributes: function(Client, types.SetTopicAttributesInput, any): async.Operation<types.SetTopicAttributesOutput>
-    subscribe: function(Client, types.SubscribeInput, any): async.Operation<types.SubscribeOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    unsubscribe: function(Client, types.UnsubscribeInput, any): async.Operation<types.UnsubscribeOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    verifySMSSandboxPhoneNumber: function(Client, types.VerifySMSSandboxPhoneNumberInput, any): async.Operation<types.VerifySMSSandboxPhoneNumberOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    addPermission: function(Client, types.AddPermissionInput, ? base_client.InvokeOptions): async.Operation<types.AddPermissionOutput>
+    checkIfPhoneNumberIsOptedOut: function(Client, types.CheckIfPhoneNumberIsOptedOutInput, ? base_client.InvokeOptions): async.Operation<types.CheckIfPhoneNumberIsOptedOutOutput>
+    confirmSubscription: function(Client, types.ConfirmSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.ConfirmSubscriptionOutput>
+    createPlatformApplication: function(Client, types.CreatePlatformApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreatePlatformApplicationOutput>
+    createPlatformEndpoint: function(Client, types.CreatePlatformEndpointInput, ? base_client.InvokeOptions): async.Operation<types.CreatePlatformEndpointOutput>
+    createSMSSandboxPhoneNumber: function(Client, types.CreateSMSSandboxPhoneNumberInput, ? base_client.InvokeOptions): async.Operation<types.CreateSMSSandboxPhoneNumberOutput>
+    createTopic: function(Client, types.CreateTopicInput, ? base_client.InvokeOptions): async.Operation<types.CreateTopicOutput>
+    deleteEndpoint: function(Client, types.DeleteEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEndpointOutput>
+    deletePlatformApplication: function(Client, types.DeletePlatformApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeletePlatformApplicationOutput>
+    deleteSMSSandboxPhoneNumber: function(Client, types.DeleteSMSSandboxPhoneNumberInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSMSSandboxPhoneNumberOutput>
+    deleteTopic: function(Client, types.DeleteTopicInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTopicOutput>
+    getDataProtectionPolicy: function(Client, types.GetDataProtectionPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetDataProtectionPolicyOutput>
+    getEndpointAttributes: function(Client, types.GetEndpointAttributesInput, ? base_client.InvokeOptions): async.Operation<types.GetEndpointAttributesOutput>
+    getPlatformApplicationAttributes: function(Client, types.GetPlatformApplicationAttributesInput, ? base_client.InvokeOptions): async.Operation<types.GetPlatformApplicationAttributesOutput>
+    getSMSAttributes: function(Client, types.GetSMSAttributesInput, ? base_client.InvokeOptions): async.Operation<types.GetSMSAttributesOutput>
+    getSMSSandboxAccountStatus: function(Client, types.GetSMSSandboxAccountStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetSMSSandboxAccountStatusOutput>
+    getSubscriptionAttributes: function(Client, types.GetSubscriptionAttributesInput, ? base_client.InvokeOptions): async.Operation<types.GetSubscriptionAttributesOutput>
+    getTopicAttributes: function(Client, types.GetTopicAttributesInput, ? base_client.InvokeOptions): async.Operation<types.GetTopicAttributesOutput>
+    listEndpointsByPlatformApplication: function(Client, types.ListEndpointsByPlatformApplicationInput, ? base_client.InvokeOptions): async.Operation<types.ListEndpointsByPlatformApplicationOutput>
+    listOriginationNumbers: function(Client, types.ListOriginationNumbersInput, ? base_client.InvokeOptions): async.Operation<types.ListOriginationNumbersOutput>
+    listPhoneNumbersOptedOut: function(Client, types.ListPhoneNumbersOptedOutInput, ? base_client.InvokeOptions): async.Operation<types.ListPhoneNumbersOptedOutOutput>
+    listPlatformApplications: function(Client, types.ListPlatformApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.ListPlatformApplicationsOutput>
+    listSMSSandboxPhoneNumbers: function(Client, types.ListSMSSandboxPhoneNumbersInput, ? base_client.InvokeOptions): async.Operation<types.ListSMSSandboxPhoneNumbersOutput>
+    listSubscriptions: function(Client, types.ListSubscriptionsInput, ? base_client.InvokeOptions): async.Operation<types.ListSubscriptionsOutput>
+    listSubscriptionsByTopic: function(Client, types.ListSubscriptionsByTopicInput, ? base_client.InvokeOptions): async.Operation<types.ListSubscriptionsByTopicOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTopics: function(Client, types.ListTopicsInput, ? base_client.InvokeOptions): async.Operation<types.ListTopicsOutput>
+    optInPhoneNumber: function(Client, types.OptInPhoneNumberInput, ? base_client.InvokeOptions): async.Operation<types.OptInPhoneNumberOutput>
+    publish: function(Client, types.PublishInput, ? base_client.InvokeOptions): async.Operation<types.PublishOutput>
+    publishBatch: function(Client, types.PublishBatchInput, ? base_client.InvokeOptions): async.Operation<types.PublishBatchOutput>
+    putDataProtectionPolicy: function(Client, types.PutDataProtectionPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutDataProtectionPolicyOutput>
+    removePermission: function(Client, types.RemovePermissionInput, ? base_client.InvokeOptions): async.Operation<types.RemovePermissionOutput>
+    setEndpointAttributes: function(Client, types.SetEndpointAttributesInput, ? base_client.InvokeOptions): async.Operation<types.SetEndpointAttributesOutput>
+    setPlatformApplicationAttributes: function(Client, types.SetPlatformApplicationAttributesInput, ? base_client.InvokeOptions): async.Operation<types.SetPlatformApplicationAttributesOutput>
+    setSMSAttributes: function(Client, types.SetSMSAttributesInput, ? base_client.InvokeOptions): async.Operation<types.SetSMSAttributesOutput>
+    setSubscriptionAttributes: function(Client, types.SetSubscriptionAttributesInput, ? base_client.InvokeOptions): async.Operation<types.SetSubscriptionAttributesOutput>
+    setTopicAttributes: function(Client, types.SetTopicAttributesInput, ? base_client.InvokeOptions): async.Operation<types.SetTopicAttributesOutput>
+    subscribe: function(Client, types.SubscribeInput, ? base_client.InvokeOptions): async.Operation<types.SubscribeOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    unsubscribe: function(Client, types.UnsubscribeInput, ? base_client.InvokeOptions): async.Operation<types.UnsubscribeOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    verifySMSSandboxPhoneNumber: function(Client, types.VerifySMSSandboxPhoneNumberInput, ? base_client.InvokeOptions): async.Operation<types.VerifySMSSandboxPhoneNumberOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonSimpleNotificationService"
-    if not c.protocol then c.protocol = query_protocol.new("awsQuery") end
+    if not c.protocol then c.protocol = query_protocol.new("awsQuery") as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "sns", signing_region = c.region } }
                 else
@@ -101,172 +104,172 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:addPermission(input: types.AddPermissionInput, options: any): async.Operation<types.AddPermissionOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddPermission, input, options) as async.Operation<types.AddPermissionOutput>
+function C:addPermission(input: types.AddPermissionInput, options?: base_client.InvokeOptions): async.Operation<types.AddPermissionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddPermission as schema.OperationSchema, input, options) as async.Operation<types.AddPermissionOutput>
 end
 
-function C:checkIfPhoneNumberIsOptedOut(input: types.CheckIfPhoneNumberIsOptedOutInput, options: any): async.Operation<types.CheckIfPhoneNumberIsOptedOutOutput>
-    return self:invokeOperation(schemas.Service, schemas.CheckIfPhoneNumberIsOptedOut, input, options) as async.Operation<types.CheckIfPhoneNumberIsOptedOutOutput>
+function C:checkIfPhoneNumberIsOptedOut(input: types.CheckIfPhoneNumberIsOptedOutInput, options?: base_client.InvokeOptions): async.Operation<types.CheckIfPhoneNumberIsOptedOutOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CheckIfPhoneNumberIsOptedOut as schema.OperationSchema, input, options) as async.Operation<types.CheckIfPhoneNumberIsOptedOutOutput>
 end
 
-function C:confirmSubscription(input: types.ConfirmSubscriptionInput, options: any): async.Operation<types.ConfirmSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ConfirmSubscription, input, options) as async.Operation<types.ConfirmSubscriptionOutput>
+function C:confirmSubscription(input: types.ConfirmSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.ConfirmSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ConfirmSubscription as schema.OperationSchema, input, options) as async.Operation<types.ConfirmSubscriptionOutput>
 end
 
-function C:createPlatformApplication(input: types.CreatePlatformApplicationInput, options: any): async.Operation<types.CreatePlatformApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePlatformApplication, input, options) as async.Operation<types.CreatePlatformApplicationOutput>
+function C:createPlatformApplication(input: types.CreatePlatformApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePlatformApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePlatformApplication as schema.OperationSchema, input, options) as async.Operation<types.CreatePlatformApplicationOutput>
 end
 
-function C:createPlatformEndpoint(input: types.CreatePlatformEndpointInput, options: any): async.Operation<types.CreatePlatformEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePlatformEndpoint, input, options) as async.Operation<types.CreatePlatformEndpointOutput>
+function C:createPlatformEndpoint(input: types.CreatePlatformEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePlatformEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePlatformEndpoint as schema.OperationSchema, input, options) as async.Operation<types.CreatePlatformEndpointOutput>
 end
 
-function C:createSMSSandboxPhoneNumber(input: types.CreateSMSSandboxPhoneNumberInput, options: any): async.Operation<types.CreateSMSSandboxPhoneNumberOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSMSSandboxPhoneNumber, input, options) as async.Operation<types.CreateSMSSandboxPhoneNumberOutput>
+function C:createSMSSandboxPhoneNumber(input: types.CreateSMSSandboxPhoneNumberInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSMSSandboxPhoneNumberOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSMSSandboxPhoneNumber as schema.OperationSchema, input, options) as async.Operation<types.CreateSMSSandboxPhoneNumberOutput>
 end
 
-function C:createTopic(input: types.CreateTopicInput, options: any): async.Operation<types.CreateTopicOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTopic, input, options) as async.Operation<types.CreateTopicOutput>
+function C:createTopic(input: types.CreateTopicInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTopicOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTopic as schema.OperationSchema, input, options) as async.Operation<types.CreateTopicOutput>
 end
 
-function C:deleteEndpoint(input: types.DeleteEndpointInput, options: any): async.Operation<types.DeleteEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEndpoint, input, options) as async.Operation<types.DeleteEndpointOutput>
+function C:deleteEndpoint(input: types.DeleteEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEndpoint as schema.OperationSchema, input, options) as async.Operation<types.DeleteEndpointOutput>
 end
 
-function C:deletePlatformApplication(input: types.DeletePlatformApplicationInput, options: any): async.Operation<types.DeletePlatformApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePlatformApplication, input, options) as async.Operation<types.DeletePlatformApplicationOutput>
+function C:deletePlatformApplication(input: types.DeletePlatformApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePlatformApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePlatformApplication as schema.OperationSchema, input, options) as async.Operation<types.DeletePlatformApplicationOutput>
 end
 
-function C:deleteSMSSandboxPhoneNumber(input: types.DeleteSMSSandboxPhoneNumberInput, options: any): async.Operation<types.DeleteSMSSandboxPhoneNumberOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSMSSandboxPhoneNumber, input, options) as async.Operation<types.DeleteSMSSandboxPhoneNumberOutput>
+function C:deleteSMSSandboxPhoneNumber(input: types.DeleteSMSSandboxPhoneNumberInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSMSSandboxPhoneNumberOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSMSSandboxPhoneNumber as schema.OperationSchema, input, options) as async.Operation<types.DeleteSMSSandboxPhoneNumberOutput>
 end
 
-function C:deleteTopic(input: types.DeleteTopicInput, options: any): async.Operation<types.DeleteTopicOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTopic, input, options) as async.Operation<types.DeleteTopicOutput>
+function C:deleteTopic(input: types.DeleteTopicInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTopicOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTopic as schema.OperationSchema, input, options) as async.Operation<types.DeleteTopicOutput>
 end
 
-function C:getDataProtectionPolicy(input: types.GetDataProtectionPolicyInput, options: any): async.Operation<types.GetDataProtectionPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataProtectionPolicy, input, options) as async.Operation<types.GetDataProtectionPolicyOutput>
+function C:getDataProtectionPolicy(input: types.GetDataProtectionPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataProtectionPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataProtectionPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetDataProtectionPolicyOutput>
 end
 
-function C:getEndpointAttributes(input: types.GetEndpointAttributesInput, options: any): async.Operation<types.GetEndpointAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEndpointAttributes, input, options) as async.Operation<types.GetEndpointAttributesOutput>
+function C:getEndpointAttributes(input: types.GetEndpointAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.GetEndpointAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEndpointAttributes as schema.OperationSchema, input, options) as async.Operation<types.GetEndpointAttributesOutput>
 end
 
-function C:getPlatformApplicationAttributes(input: types.GetPlatformApplicationAttributesInput, options: any): async.Operation<types.GetPlatformApplicationAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPlatformApplicationAttributes, input, options) as async.Operation<types.GetPlatformApplicationAttributesOutput>
+function C:getPlatformApplicationAttributes(input: types.GetPlatformApplicationAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.GetPlatformApplicationAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPlatformApplicationAttributes as schema.OperationSchema, input, options) as async.Operation<types.GetPlatformApplicationAttributesOutput>
 end
 
-function C:getSMSAttributes(input: types.GetSMSAttributesInput, options: any): async.Operation<types.GetSMSAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSMSAttributes, input, options) as async.Operation<types.GetSMSAttributesOutput>
+function C:getSMSAttributes(input: types.GetSMSAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.GetSMSAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSMSAttributes as schema.OperationSchema, input, options) as async.Operation<types.GetSMSAttributesOutput>
 end
 
-function C:getSMSSandboxAccountStatus(input: types.GetSMSSandboxAccountStatusInput, options: any): async.Operation<types.GetSMSSandboxAccountStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSMSSandboxAccountStatus, input, options) as async.Operation<types.GetSMSSandboxAccountStatusOutput>
+function C:getSMSSandboxAccountStatus(input: types.GetSMSSandboxAccountStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetSMSSandboxAccountStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSMSSandboxAccountStatus as schema.OperationSchema, input, options) as async.Operation<types.GetSMSSandboxAccountStatusOutput>
 end
 
-function C:getSubscriptionAttributes(input: types.GetSubscriptionAttributesInput, options: any): async.Operation<types.GetSubscriptionAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSubscriptionAttributes, input, options) as async.Operation<types.GetSubscriptionAttributesOutput>
+function C:getSubscriptionAttributes(input: types.GetSubscriptionAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.GetSubscriptionAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSubscriptionAttributes as schema.OperationSchema, input, options) as async.Operation<types.GetSubscriptionAttributesOutput>
 end
 
-function C:getTopicAttributes(input: types.GetTopicAttributesInput, options: any): async.Operation<types.GetTopicAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTopicAttributes, input, options) as async.Operation<types.GetTopicAttributesOutput>
+function C:getTopicAttributes(input: types.GetTopicAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.GetTopicAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTopicAttributes as schema.OperationSchema, input, options) as async.Operation<types.GetTopicAttributesOutput>
 end
 
-function C:listEndpointsByPlatformApplication(input: types.ListEndpointsByPlatformApplicationInput, options: any): async.Operation<types.ListEndpointsByPlatformApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEndpointsByPlatformApplication, input, options) as async.Operation<types.ListEndpointsByPlatformApplicationOutput>
+function C:listEndpointsByPlatformApplication(input: types.ListEndpointsByPlatformApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.ListEndpointsByPlatformApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEndpointsByPlatformApplication as schema.OperationSchema, input, options) as async.Operation<types.ListEndpointsByPlatformApplicationOutput>
 end
 
-function C:listOriginationNumbers(input: types.ListOriginationNumbersInput, options: any): async.Operation<types.ListOriginationNumbersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOriginationNumbers, input, options) as async.Operation<types.ListOriginationNumbersOutput>
+function C:listOriginationNumbers(input: types.ListOriginationNumbersInput, options?: base_client.InvokeOptions): async.Operation<types.ListOriginationNumbersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOriginationNumbers as schema.OperationSchema, input, options) as async.Operation<types.ListOriginationNumbersOutput>
 end
 
-function C:listPhoneNumbersOptedOut(input: types.ListPhoneNumbersOptedOutInput, options: any): async.Operation<types.ListPhoneNumbersOptedOutOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPhoneNumbersOptedOut, input, options) as async.Operation<types.ListPhoneNumbersOptedOutOutput>
+function C:listPhoneNumbersOptedOut(input: types.ListPhoneNumbersOptedOutInput, options?: base_client.InvokeOptions): async.Operation<types.ListPhoneNumbersOptedOutOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPhoneNumbersOptedOut as schema.OperationSchema, input, options) as async.Operation<types.ListPhoneNumbersOptedOutOutput>
 end
 
-function C:listPlatformApplications(input: types.ListPlatformApplicationsInput, options: any): async.Operation<types.ListPlatformApplicationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPlatformApplications, input, options) as async.Operation<types.ListPlatformApplicationsOutput>
+function C:listPlatformApplications(input: types.ListPlatformApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPlatformApplicationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPlatformApplications as schema.OperationSchema, input, options) as async.Operation<types.ListPlatformApplicationsOutput>
 end
 
-function C:listSMSSandboxPhoneNumbers(input: types.ListSMSSandboxPhoneNumbersInput, options: any): async.Operation<types.ListSMSSandboxPhoneNumbersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSMSSandboxPhoneNumbers, input, options) as async.Operation<types.ListSMSSandboxPhoneNumbersOutput>
+function C:listSMSSandboxPhoneNumbers(input: types.ListSMSSandboxPhoneNumbersInput, options?: base_client.InvokeOptions): async.Operation<types.ListSMSSandboxPhoneNumbersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSMSSandboxPhoneNumbers as schema.OperationSchema, input, options) as async.Operation<types.ListSMSSandboxPhoneNumbersOutput>
 end
 
-function C:listSubscriptions(input: types.ListSubscriptionsInput, options: any): async.Operation<types.ListSubscriptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSubscriptions, input, options) as async.Operation<types.ListSubscriptionsOutput>
+function C:listSubscriptions(input: types.ListSubscriptionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSubscriptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSubscriptions as schema.OperationSchema, input, options) as async.Operation<types.ListSubscriptionsOutput>
 end
 
-function C:listSubscriptionsByTopic(input: types.ListSubscriptionsByTopicInput, options: any): async.Operation<types.ListSubscriptionsByTopicOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSubscriptionsByTopic, input, options) as async.Operation<types.ListSubscriptionsByTopicOutput>
+function C:listSubscriptionsByTopic(input: types.ListSubscriptionsByTopicInput, options?: base_client.InvokeOptions): async.Operation<types.ListSubscriptionsByTopicOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSubscriptionsByTopic as schema.OperationSchema, input, options) as async.Operation<types.ListSubscriptionsByTopicOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTopics(input: types.ListTopicsInput, options: any): async.Operation<types.ListTopicsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTopics, input, options) as async.Operation<types.ListTopicsOutput>
+function C:listTopics(input: types.ListTopicsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTopicsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTopics as schema.OperationSchema, input, options) as async.Operation<types.ListTopicsOutput>
 end
 
-function C:optInPhoneNumber(input: types.OptInPhoneNumberInput, options: any): async.Operation<types.OptInPhoneNumberOutput>
-    return self:invokeOperation(schemas.Service, schemas.OptInPhoneNumber, input, options) as async.Operation<types.OptInPhoneNumberOutput>
+function C:optInPhoneNumber(input: types.OptInPhoneNumberInput, options?: base_client.InvokeOptions): async.Operation<types.OptInPhoneNumberOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.OptInPhoneNumber as schema.OperationSchema, input, options) as async.Operation<types.OptInPhoneNumberOutput>
 end
 
-function C:publish(input: types.PublishInput, options: any): async.Operation<types.PublishOutput>
-    return self:invokeOperation(schemas.Service, schemas.Publish, input, options) as async.Operation<types.PublishOutput>
+function C:publish(input: types.PublishInput, options?: base_client.InvokeOptions): async.Operation<types.PublishOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Publish as schema.OperationSchema, input, options) as async.Operation<types.PublishOutput>
 end
 
-function C:publishBatch(input: types.PublishBatchInput, options: any): async.Operation<types.PublishBatchOutput>
-    return self:invokeOperation(schemas.Service, schemas.PublishBatch, input, options) as async.Operation<types.PublishBatchOutput>
+function C:publishBatch(input: types.PublishBatchInput, options?: base_client.InvokeOptions): async.Operation<types.PublishBatchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PublishBatch as schema.OperationSchema, input, options) as async.Operation<types.PublishBatchOutput>
 end
 
-function C:putDataProtectionPolicy(input: types.PutDataProtectionPolicyInput, options: any): async.Operation<types.PutDataProtectionPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutDataProtectionPolicy, input, options) as async.Operation<types.PutDataProtectionPolicyOutput>
+function C:putDataProtectionPolicy(input: types.PutDataProtectionPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutDataProtectionPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutDataProtectionPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutDataProtectionPolicyOutput>
 end
 
-function C:removePermission(input: types.RemovePermissionInput, options: any): async.Operation<types.RemovePermissionOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemovePermission, input, options) as async.Operation<types.RemovePermissionOutput>
+function C:removePermission(input: types.RemovePermissionInput, options?: base_client.InvokeOptions): async.Operation<types.RemovePermissionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemovePermission as schema.OperationSchema, input, options) as async.Operation<types.RemovePermissionOutput>
 end
 
-function C:setEndpointAttributes(input: types.SetEndpointAttributesInput, options: any): async.Operation<types.SetEndpointAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetEndpointAttributes, input, options) as async.Operation<types.SetEndpointAttributesOutput>
+function C:setEndpointAttributes(input: types.SetEndpointAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.SetEndpointAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetEndpointAttributes as schema.OperationSchema, input, options) as async.Operation<types.SetEndpointAttributesOutput>
 end
 
-function C:setPlatformApplicationAttributes(input: types.SetPlatformApplicationAttributesInput, options: any): async.Operation<types.SetPlatformApplicationAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetPlatformApplicationAttributes, input, options) as async.Operation<types.SetPlatformApplicationAttributesOutput>
+function C:setPlatformApplicationAttributes(input: types.SetPlatformApplicationAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.SetPlatformApplicationAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetPlatformApplicationAttributes as schema.OperationSchema, input, options) as async.Operation<types.SetPlatformApplicationAttributesOutput>
 end
 
-function C:setSMSAttributes(input: types.SetSMSAttributesInput, options: any): async.Operation<types.SetSMSAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetSMSAttributes, input, options) as async.Operation<types.SetSMSAttributesOutput>
+function C:setSMSAttributes(input: types.SetSMSAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.SetSMSAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetSMSAttributes as schema.OperationSchema, input, options) as async.Operation<types.SetSMSAttributesOutput>
 end
 
-function C:setSubscriptionAttributes(input: types.SetSubscriptionAttributesInput, options: any): async.Operation<types.SetSubscriptionAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetSubscriptionAttributes, input, options) as async.Operation<types.SetSubscriptionAttributesOutput>
+function C:setSubscriptionAttributes(input: types.SetSubscriptionAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.SetSubscriptionAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetSubscriptionAttributes as schema.OperationSchema, input, options) as async.Operation<types.SetSubscriptionAttributesOutput>
 end
 
-function C:setTopicAttributes(input: types.SetTopicAttributesInput, options: any): async.Operation<types.SetTopicAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetTopicAttributes, input, options) as async.Operation<types.SetTopicAttributesOutput>
+function C:setTopicAttributes(input: types.SetTopicAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.SetTopicAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetTopicAttributes as schema.OperationSchema, input, options) as async.Operation<types.SetTopicAttributesOutput>
 end
 
-function C:subscribe(input: types.SubscribeInput, options: any): async.Operation<types.SubscribeOutput>
-    return self:invokeOperation(schemas.Service, schemas.Subscribe, input, options) as async.Operation<types.SubscribeOutput>
+function C:subscribe(input: types.SubscribeInput, options?: base_client.InvokeOptions): async.Operation<types.SubscribeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Subscribe as schema.OperationSchema, input, options) as async.Operation<types.SubscribeOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:unsubscribe(input: types.UnsubscribeInput, options: any): async.Operation<types.UnsubscribeOutput>
-    return self:invokeOperation(schemas.Service, schemas.Unsubscribe, input, options) as async.Operation<types.UnsubscribeOutput>
+function C:unsubscribe(input: types.UnsubscribeInput, options?: base_client.InvokeOptions): async.Operation<types.UnsubscribeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Unsubscribe as schema.OperationSchema, input, options) as async.Operation<types.UnsubscribeOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:verifySMSSandboxPhoneNumber(input: types.VerifySMSSandboxPhoneNumberInput, options: any): async.Operation<types.VerifySMSSandboxPhoneNumberOutput>
-    return self:invokeOperation(schemas.Service, schemas.VerifySMSSandboxPhoneNumber, input, options) as async.Operation<types.VerifySMSSandboxPhoneNumberOutput>
+function C:verifySMSSandboxPhoneNumber(input: types.VerifySMSSandboxPhoneNumberInput, options?: base_client.InvokeOptions): async.Operation<types.VerifySMSSandboxPhoneNumberOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.VerifySMSSandboxPhoneNumber as schema.OperationSchema, input, options) as async.Operation<types.VerifySMSSandboxPhoneNumberOutput>
 end
 
 return M

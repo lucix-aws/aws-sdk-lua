@@ -8,116 +8,119 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("imagebuilder.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("imagebuilder.schemas")
 local traits = require("smithy.traits")
 local types = require("imagebuilder.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    cancelImageCreation: function(Client, types.CancelImageCreationInput, any): async.Operation<types.CancelImageCreationOutput>
-    cancelLifecycleExecution: function(Client, types.CancelLifecycleExecutionInput, any): async.Operation<types.CancelLifecycleExecutionOutput>
-    createComponent: function(Client, types.CreateComponentInput, any): async.Operation<types.CreateComponentOutput>
-    createContainerRecipe: function(Client, types.CreateContainerRecipeInput, any): async.Operation<types.CreateContainerRecipeOutput>
-    createDistributionConfiguration: function(Client, types.CreateDistributionConfigurationInput, any): async.Operation<types.CreateDistributionConfigurationOutput>
-    createImage: function(Client, types.CreateImageInput, any): async.Operation<types.CreateImageOutput>
-    createImagePipeline: function(Client, types.CreateImagePipelineInput, any): async.Operation<types.CreateImagePipelineOutput>
-    createImageRecipe: function(Client, types.CreateImageRecipeInput, any): async.Operation<types.CreateImageRecipeOutput>
-    createInfrastructureConfiguration: function(Client, types.CreateInfrastructureConfigurationInput, any): async.Operation<types.CreateInfrastructureConfigurationOutput>
-    createLifecyclePolicy: function(Client, types.CreateLifecyclePolicyInput, any): async.Operation<types.CreateLifecyclePolicyOutput>
-    createWorkflow: function(Client, types.CreateWorkflowInput, any): async.Operation<types.CreateWorkflowOutput>
-    deleteComponent: function(Client, types.DeleteComponentInput, any): async.Operation<types.DeleteComponentOutput>
-    deleteContainerRecipe: function(Client, types.DeleteContainerRecipeInput, any): async.Operation<types.DeleteContainerRecipeOutput>
-    deleteDistributionConfiguration: function(Client, types.DeleteDistributionConfigurationInput, any): async.Operation<types.DeleteDistributionConfigurationOutput>
-    deleteImage: function(Client, types.DeleteImageInput, any): async.Operation<types.DeleteImageOutput>
-    deleteImagePipeline: function(Client, types.DeleteImagePipelineInput, any): async.Operation<types.DeleteImagePipelineOutput>
-    deleteImageRecipe: function(Client, types.DeleteImageRecipeInput, any): async.Operation<types.DeleteImageRecipeOutput>
-    deleteInfrastructureConfiguration: function(Client, types.DeleteInfrastructureConfigurationInput, any): async.Operation<types.DeleteInfrastructureConfigurationOutput>
-    deleteLifecyclePolicy: function(Client, types.DeleteLifecyclePolicyInput, any): async.Operation<types.DeleteLifecyclePolicyOutput>
-    deleteWorkflow: function(Client, types.DeleteWorkflowInput, any): async.Operation<types.DeleteWorkflowOutput>
-    distributeImage: function(Client, types.DistributeImageInput, any): async.Operation<types.DistributeImageOutput>
-    getComponent: function(Client, types.GetComponentInput, any): async.Operation<types.GetComponentOutput>
-    getComponentPolicy: function(Client, types.GetComponentPolicyInput, any): async.Operation<types.GetComponentPolicyOutput>
-    getContainerRecipe: function(Client, types.GetContainerRecipeInput, any): async.Operation<types.GetContainerRecipeOutput>
-    getContainerRecipePolicy: function(Client, types.GetContainerRecipePolicyInput, any): async.Operation<types.GetContainerRecipePolicyOutput>
-    getDistributionConfiguration: function(Client, types.GetDistributionConfigurationInput, any): async.Operation<types.GetDistributionConfigurationOutput>
-    getImage: function(Client, types.GetImageInput, any): async.Operation<types.GetImageOutput>
-    getImagePipeline: function(Client, types.GetImagePipelineInput, any): async.Operation<types.GetImagePipelineOutput>
-    getImagePolicy: function(Client, types.GetImagePolicyInput, any): async.Operation<types.GetImagePolicyOutput>
-    getImageRecipe: function(Client, types.GetImageRecipeInput, any): async.Operation<types.GetImageRecipeOutput>
-    getImageRecipePolicy: function(Client, types.GetImageRecipePolicyInput, any): async.Operation<types.GetImageRecipePolicyOutput>
-    getInfrastructureConfiguration: function(Client, types.GetInfrastructureConfigurationInput, any): async.Operation<types.GetInfrastructureConfigurationOutput>
-    getLifecycleExecution: function(Client, types.GetLifecycleExecutionInput, any): async.Operation<types.GetLifecycleExecutionOutput>
-    getLifecyclePolicy: function(Client, types.GetLifecyclePolicyInput, any): async.Operation<types.GetLifecyclePolicyOutput>
-    getMarketplaceResource: function(Client, types.GetMarketplaceResourceInput, any): async.Operation<types.GetMarketplaceResourceOutput>
-    getWorkflow: function(Client, types.GetWorkflowInput, any): async.Operation<types.GetWorkflowOutput>
-    getWorkflowExecution: function(Client, types.GetWorkflowExecutionInput, any): async.Operation<types.GetWorkflowExecutionOutput>
-    getWorkflowStepExecution: function(Client, types.GetWorkflowStepExecutionInput, any): async.Operation<types.GetWorkflowStepExecutionOutput>
-    importComponent: function(Client, types.ImportComponentInput, any): async.Operation<types.ImportComponentOutput>
-    importDiskImage: function(Client, types.ImportDiskImageInput, any): async.Operation<types.ImportDiskImageOutput>
-    importVmImage: function(Client, types.ImportVmImageInput, any): async.Operation<types.ImportVmImageOutput>
-    listComponentBuildVersions: function(Client, types.ListComponentBuildVersionsInput, any): async.Operation<types.ListComponentBuildVersionsOutput>
-    listComponents: function(Client, types.ListComponentsInput, any): async.Operation<types.ListComponentsOutput>
-    listContainerRecipes: function(Client, types.ListContainerRecipesInput, any): async.Operation<types.ListContainerRecipesOutput>
-    listDistributionConfigurations: function(Client, types.ListDistributionConfigurationsInput, any): async.Operation<types.ListDistributionConfigurationsOutput>
-    listImageBuildVersions: function(Client, types.ListImageBuildVersionsInput, any): async.Operation<types.ListImageBuildVersionsOutput>
-    listImagePackages: function(Client, types.ListImagePackagesInput, any): async.Operation<types.ListImagePackagesOutput>
-    listImagePipelineImages: function(Client, types.ListImagePipelineImagesInput, any): async.Operation<types.ListImagePipelineImagesOutput>
-    listImagePipelines: function(Client, types.ListImagePipelinesInput, any): async.Operation<types.ListImagePipelinesOutput>
-    listImageRecipes: function(Client, types.ListImageRecipesInput, any): async.Operation<types.ListImageRecipesOutput>
-    listImages: function(Client, types.ListImagesInput, any): async.Operation<types.ListImagesOutput>
-    listImageScanFindingAggregations: function(Client, types.ListImageScanFindingAggregationsInput, any): async.Operation<types.ListImageScanFindingAggregationsOutput>
-    listImageScanFindings: function(Client, types.ListImageScanFindingsInput, any): async.Operation<types.ListImageScanFindingsOutput>
-    listInfrastructureConfigurations: function(Client, types.ListInfrastructureConfigurationsInput, any): async.Operation<types.ListInfrastructureConfigurationsOutput>
-    listLifecycleExecutionResources: function(Client, types.ListLifecycleExecutionResourcesInput, any): async.Operation<types.ListLifecycleExecutionResourcesOutput>
-    listLifecycleExecutions: function(Client, types.ListLifecycleExecutionsInput, any): async.Operation<types.ListLifecycleExecutionsOutput>
-    listLifecyclePolicies: function(Client, types.ListLifecyclePoliciesInput, any): async.Operation<types.ListLifecyclePoliciesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listWaitingWorkflowSteps: function(Client, types.ListWaitingWorkflowStepsInput, any): async.Operation<types.ListWaitingWorkflowStepsOutput>
-    listWorkflowBuildVersions: function(Client, types.ListWorkflowBuildVersionsInput, any): async.Operation<types.ListWorkflowBuildVersionsOutput>
-    listWorkflowExecutions: function(Client, types.ListWorkflowExecutionsInput, any): async.Operation<types.ListWorkflowExecutionsOutput>
-    listWorkflows: function(Client, types.ListWorkflowsInput, any): async.Operation<types.ListWorkflowsOutput>
-    listWorkflowStepExecutions: function(Client, types.ListWorkflowStepExecutionsInput, any): async.Operation<types.ListWorkflowStepExecutionsOutput>
-    putComponentPolicy: function(Client, types.PutComponentPolicyInput, any): async.Operation<types.PutComponentPolicyOutput>
-    putContainerRecipePolicy: function(Client, types.PutContainerRecipePolicyInput, any): async.Operation<types.PutContainerRecipePolicyOutput>
-    putImagePolicy: function(Client, types.PutImagePolicyInput, any): async.Operation<types.PutImagePolicyOutput>
-    putImageRecipePolicy: function(Client, types.PutImageRecipePolicyInput, any): async.Operation<types.PutImageRecipePolicyOutput>
-    retryImage: function(Client, types.RetryImageInput, any): async.Operation<types.RetryImageOutput>
-    sendWorkflowStepAction: function(Client, types.SendWorkflowStepActionInput, any): async.Operation<types.SendWorkflowStepActionOutput>
-    startImagePipelineExecution: function(Client, types.StartImagePipelineExecutionInput, any): async.Operation<types.StartImagePipelineExecutionOutput>
-    startResourceStateUpdate: function(Client, types.StartResourceStateUpdateInput, any): async.Operation<types.StartResourceStateUpdateOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateDistributionConfiguration: function(Client, types.UpdateDistributionConfigurationInput, any): async.Operation<types.UpdateDistributionConfigurationOutput>
-    updateImagePipeline: function(Client, types.UpdateImagePipelineInput, any): async.Operation<types.UpdateImagePipelineOutput>
-    updateInfrastructureConfiguration: function(Client, types.UpdateInfrastructureConfigurationInput, any): async.Operation<types.UpdateInfrastructureConfigurationOutput>
-    updateLifecyclePolicy: function(Client, types.UpdateLifecyclePolicyInput, any): async.Operation<types.UpdateLifecyclePolicyOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    cancelImageCreation: function(Client, types.CancelImageCreationInput, ? base_client.InvokeOptions): async.Operation<types.CancelImageCreationOutput>
+    cancelLifecycleExecution: function(Client, types.CancelLifecycleExecutionInput, ? base_client.InvokeOptions): async.Operation<types.CancelLifecycleExecutionOutput>
+    createComponent: function(Client, types.CreateComponentInput, ? base_client.InvokeOptions): async.Operation<types.CreateComponentOutput>
+    createContainerRecipe: function(Client, types.CreateContainerRecipeInput, ? base_client.InvokeOptions): async.Operation<types.CreateContainerRecipeOutput>
+    createDistributionConfiguration: function(Client, types.CreateDistributionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateDistributionConfigurationOutput>
+    createImage: function(Client, types.CreateImageInput, ? base_client.InvokeOptions): async.Operation<types.CreateImageOutput>
+    createImagePipeline: function(Client, types.CreateImagePipelineInput, ? base_client.InvokeOptions): async.Operation<types.CreateImagePipelineOutput>
+    createImageRecipe: function(Client, types.CreateImageRecipeInput, ? base_client.InvokeOptions): async.Operation<types.CreateImageRecipeOutput>
+    createInfrastructureConfiguration: function(Client, types.CreateInfrastructureConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateInfrastructureConfigurationOutput>
+    createLifecyclePolicy: function(Client, types.CreateLifecyclePolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateLifecyclePolicyOutput>
+    createWorkflow: function(Client, types.CreateWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkflowOutput>
+    deleteComponent: function(Client, types.DeleteComponentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteComponentOutput>
+    deleteContainerRecipe: function(Client, types.DeleteContainerRecipeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteContainerRecipeOutput>
+    deleteDistributionConfiguration: function(Client, types.DeleteDistributionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDistributionConfigurationOutput>
+    deleteImage: function(Client, types.DeleteImageInput, ? base_client.InvokeOptions): async.Operation<types.DeleteImageOutput>
+    deleteImagePipeline: function(Client, types.DeleteImagePipelineInput, ? base_client.InvokeOptions): async.Operation<types.DeleteImagePipelineOutput>
+    deleteImageRecipe: function(Client, types.DeleteImageRecipeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteImageRecipeOutput>
+    deleteInfrastructureConfiguration: function(Client, types.DeleteInfrastructureConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInfrastructureConfigurationOutput>
+    deleteLifecyclePolicy: function(Client, types.DeleteLifecyclePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLifecyclePolicyOutput>
+    deleteWorkflow: function(Client, types.DeleteWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWorkflowOutput>
+    distributeImage: function(Client, types.DistributeImageInput, ? base_client.InvokeOptions): async.Operation<types.DistributeImageOutput>
+    getComponent: function(Client, types.GetComponentInput, ? base_client.InvokeOptions): async.Operation<types.GetComponentOutput>
+    getComponentPolicy: function(Client, types.GetComponentPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetComponentPolicyOutput>
+    getContainerRecipe: function(Client, types.GetContainerRecipeInput, ? base_client.InvokeOptions): async.Operation<types.GetContainerRecipeOutput>
+    getContainerRecipePolicy: function(Client, types.GetContainerRecipePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetContainerRecipePolicyOutput>
+    getDistributionConfiguration: function(Client, types.GetDistributionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetDistributionConfigurationOutput>
+    getImage: function(Client, types.GetImageInput, ? base_client.InvokeOptions): async.Operation<types.GetImageOutput>
+    getImagePipeline: function(Client, types.GetImagePipelineInput, ? base_client.InvokeOptions): async.Operation<types.GetImagePipelineOutput>
+    getImagePolicy: function(Client, types.GetImagePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetImagePolicyOutput>
+    getImageRecipe: function(Client, types.GetImageRecipeInput, ? base_client.InvokeOptions): async.Operation<types.GetImageRecipeOutput>
+    getImageRecipePolicy: function(Client, types.GetImageRecipePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetImageRecipePolicyOutput>
+    getInfrastructureConfiguration: function(Client, types.GetInfrastructureConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetInfrastructureConfigurationOutput>
+    getLifecycleExecution: function(Client, types.GetLifecycleExecutionInput, ? base_client.InvokeOptions): async.Operation<types.GetLifecycleExecutionOutput>
+    getLifecyclePolicy: function(Client, types.GetLifecyclePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetLifecyclePolicyOutput>
+    getMarketplaceResource: function(Client, types.GetMarketplaceResourceInput, ? base_client.InvokeOptions): async.Operation<types.GetMarketplaceResourceOutput>
+    getWorkflow: function(Client, types.GetWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkflowOutput>
+    getWorkflowExecution: function(Client, types.GetWorkflowExecutionInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkflowExecutionOutput>
+    getWorkflowStepExecution: function(Client, types.GetWorkflowStepExecutionInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkflowStepExecutionOutput>
+    importComponent: function(Client, types.ImportComponentInput, ? base_client.InvokeOptions): async.Operation<types.ImportComponentOutput>
+    importDiskImage: function(Client, types.ImportDiskImageInput, ? base_client.InvokeOptions): async.Operation<types.ImportDiskImageOutput>
+    importVmImage: function(Client, types.ImportVmImageInput, ? base_client.InvokeOptions): async.Operation<types.ImportVmImageOutput>
+    listComponentBuildVersions: function(Client, types.ListComponentBuildVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListComponentBuildVersionsOutput>
+    listComponents: function(Client, types.ListComponentsInput, ? base_client.InvokeOptions): async.Operation<types.ListComponentsOutput>
+    listContainerRecipes: function(Client, types.ListContainerRecipesInput, ? base_client.InvokeOptions): async.Operation<types.ListContainerRecipesOutput>
+    listDistributionConfigurations: function(Client, types.ListDistributionConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListDistributionConfigurationsOutput>
+    listImageBuildVersions: function(Client, types.ListImageBuildVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListImageBuildVersionsOutput>
+    listImagePackages: function(Client, types.ListImagePackagesInput, ? base_client.InvokeOptions): async.Operation<types.ListImagePackagesOutput>
+    listImagePipelineImages: function(Client, types.ListImagePipelineImagesInput, ? base_client.InvokeOptions): async.Operation<types.ListImagePipelineImagesOutput>
+    listImagePipelines: function(Client, types.ListImagePipelinesInput, ? base_client.InvokeOptions): async.Operation<types.ListImagePipelinesOutput>
+    listImageRecipes: function(Client, types.ListImageRecipesInput, ? base_client.InvokeOptions): async.Operation<types.ListImageRecipesOutput>
+    listImages: function(Client, types.ListImagesInput, ? base_client.InvokeOptions): async.Operation<types.ListImagesOutput>
+    listImageScanFindingAggregations: function(Client, types.ListImageScanFindingAggregationsInput, ? base_client.InvokeOptions): async.Operation<types.ListImageScanFindingAggregationsOutput>
+    listImageScanFindings: function(Client, types.ListImageScanFindingsInput, ? base_client.InvokeOptions): async.Operation<types.ListImageScanFindingsOutput>
+    listInfrastructureConfigurations: function(Client, types.ListInfrastructureConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListInfrastructureConfigurationsOutput>
+    listLifecycleExecutionResources: function(Client, types.ListLifecycleExecutionResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListLifecycleExecutionResourcesOutput>
+    listLifecycleExecutions: function(Client, types.ListLifecycleExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListLifecycleExecutionsOutput>
+    listLifecyclePolicies: function(Client, types.ListLifecyclePoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListLifecyclePoliciesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listWaitingWorkflowSteps: function(Client, types.ListWaitingWorkflowStepsInput, ? base_client.InvokeOptions): async.Operation<types.ListWaitingWorkflowStepsOutput>
+    listWorkflowBuildVersions: function(Client, types.ListWorkflowBuildVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkflowBuildVersionsOutput>
+    listWorkflowExecutions: function(Client, types.ListWorkflowExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkflowExecutionsOutput>
+    listWorkflows: function(Client, types.ListWorkflowsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkflowsOutput>
+    listWorkflowStepExecutions: function(Client, types.ListWorkflowStepExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkflowStepExecutionsOutput>
+    putComponentPolicy: function(Client, types.PutComponentPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutComponentPolicyOutput>
+    putContainerRecipePolicy: function(Client, types.PutContainerRecipePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutContainerRecipePolicyOutput>
+    putImagePolicy: function(Client, types.PutImagePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutImagePolicyOutput>
+    putImageRecipePolicy: function(Client, types.PutImageRecipePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutImageRecipePolicyOutput>
+    retryImage: function(Client, types.RetryImageInput, ? base_client.InvokeOptions): async.Operation<types.RetryImageOutput>
+    sendWorkflowStepAction: function(Client, types.SendWorkflowStepActionInput, ? base_client.InvokeOptions): async.Operation<types.SendWorkflowStepActionOutput>
+    startImagePipelineExecution: function(Client, types.StartImagePipelineExecutionInput, ? base_client.InvokeOptions): async.Operation<types.StartImagePipelineExecutionOutput>
+    startResourceStateUpdate: function(Client, types.StartResourceStateUpdateInput, ? base_client.InvokeOptions): async.Operation<types.StartResourceStateUpdateOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateDistributionConfiguration: function(Client, types.UpdateDistributionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDistributionConfigurationOutput>
+    updateImagePipeline: function(Client, types.UpdateImagePipelineInput, ? base_client.InvokeOptions): async.Operation<types.UpdateImagePipelineOutput>
+    updateInfrastructureConfiguration: function(Client, types.UpdateInfrastructureConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateInfrastructureConfigurationOutput>
+    updateLifecyclePolicy: function(Client, types.UpdateLifecyclePolicyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLifecyclePolicyOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "imagebuilder"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "imagebuilder", signing_region = c.region } }
                 else
@@ -136,312 +139,312 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:cancelImageCreation(input: types.CancelImageCreationInput, options: any): async.Operation<types.CancelImageCreationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelImageCreation, input, options) as async.Operation<types.CancelImageCreationOutput>
+function C:cancelImageCreation(input: types.CancelImageCreationInput, options?: base_client.InvokeOptions): async.Operation<types.CancelImageCreationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelImageCreation as schema.OperationSchema, input, options) as async.Operation<types.CancelImageCreationOutput>
 end
 
-function C:cancelLifecycleExecution(input: types.CancelLifecycleExecutionInput, options: any): async.Operation<types.CancelLifecycleExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelLifecycleExecution, input, options) as async.Operation<types.CancelLifecycleExecutionOutput>
+function C:cancelLifecycleExecution(input: types.CancelLifecycleExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.CancelLifecycleExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelLifecycleExecution as schema.OperationSchema, input, options) as async.Operation<types.CancelLifecycleExecutionOutput>
 end
 
-function C:createComponent(input: types.CreateComponentInput, options: any): async.Operation<types.CreateComponentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateComponent, input, options) as async.Operation<types.CreateComponentOutput>
+function C:createComponent(input: types.CreateComponentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateComponentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateComponent as schema.OperationSchema, input, options) as async.Operation<types.CreateComponentOutput>
 end
 
-function C:createContainerRecipe(input: types.CreateContainerRecipeInput, options: any): async.Operation<types.CreateContainerRecipeOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateContainerRecipe, input, options) as async.Operation<types.CreateContainerRecipeOutput>
+function C:createContainerRecipe(input: types.CreateContainerRecipeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateContainerRecipeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateContainerRecipe as schema.OperationSchema, input, options) as async.Operation<types.CreateContainerRecipeOutput>
 end
 
-function C:createDistributionConfiguration(input: types.CreateDistributionConfigurationInput, options: any): async.Operation<types.CreateDistributionConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDistributionConfiguration, input, options) as async.Operation<types.CreateDistributionConfigurationOutput>
+function C:createDistributionConfiguration(input: types.CreateDistributionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDistributionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDistributionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateDistributionConfigurationOutput>
 end
 
-function C:createImage(input: types.CreateImageInput, options: any): async.Operation<types.CreateImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateImage, input, options) as async.Operation<types.CreateImageOutput>
+function C:createImage(input: types.CreateImageInput, options?: base_client.InvokeOptions): async.Operation<types.CreateImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateImage as schema.OperationSchema, input, options) as async.Operation<types.CreateImageOutput>
 end
 
-function C:createImagePipeline(input: types.CreateImagePipelineInput, options: any): async.Operation<types.CreateImagePipelineOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateImagePipeline, input, options) as async.Operation<types.CreateImagePipelineOutput>
+function C:createImagePipeline(input: types.CreateImagePipelineInput, options?: base_client.InvokeOptions): async.Operation<types.CreateImagePipelineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateImagePipeline as schema.OperationSchema, input, options) as async.Operation<types.CreateImagePipelineOutput>
 end
 
-function C:createImageRecipe(input: types.CreateImageRecipeInput, options: any): async.Operation<types.CreateImageRecipeOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateImageRecipe, input, options) as async.Operation<types.CreateImageRecipeOutput>
+function C:createImageRecipe(input: types.CreateImageRecipeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateImageRecipeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateImageRecipe as schema.OperationSchema, input, options) as async.Operation<types.CreateImageRecipeOutput>
 end
 
-function C:createInfrastructureConfiguration(input: types.CreateInfrastructureConfigurationInput, options: any): async.Operation<types.CreateInfrastructureConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateInfrastructureConfiguration, input, options) as async.Operation<types.CreateInfrastructureConfigurationOutput>
+function C:createInfrastructureConfiguration(input: types.CreateInfrastructureConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInfrastructureConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInfrastructureConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateInfrastructureConfigurationOutput>
 end
 
-function C:createLifecyclePolicy(input: types.CreateLifecyclePolicyInput, options: any): async.Operation<types.CreateLifecyclePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLifecyclePolicy, input, options) as async.Operation<types.CreateLifecyclePolicyOutput>
+function C:createLifecyclePolicy(input: types.CreateLifecyclePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLifecyclePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLifecyclePolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateLifecyclePolicyOutput>
 end
 
-function C:createWorkflow(input: types.CreateWorkflowInput, options: any): async.Operation<types.CreateWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWorkflow, input, options) as async.Operation<types.CreateWorkflowOutput>
+function C:createWorkflow(input: types.CreateWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWorkflow as schema.OperationSchema, input, options) as async.Operation<types.CreateWorkflowOutput>
 end
 
-function C:deleteComponent(input: types.DeleteComponentInput, options: any): async.Operation<types.DeleteComponentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteComponent, input, options) as async.Operation<types.DeleteComponentOutput>
+function C:deleteComponent(input: types.DeleteComponentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteComponentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteComponent as schema.OperationSchema, input, options) as async.Operation<types.DeleteComponentOutput>
 end
 
-function C:deleteContainerRecipe(input: types.DeleteContainerRecipeInput, options: any): async.Operation<types.DeleteContainerRecipeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteContainerRecipe, input, options) as async.Operation<types.DeleteContainerRecipeOutput>
+function C:deleteContainerRecipe(input: types.DeleteContainerRecipeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteContainerRecipeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteContainerRecipe as schema.OperationSchema, input, options) as async.Operation<types.DeleteContainerRecipeOutput>
 end
 
-function C:deleteDistributionConfiguration(input: types.DeleteDistributionConfigurationInput, options: any): async.Operation<types.DeleteDistributionConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDistributionConfiguration, input, options) as async.Operation<types.DeleteDistributionConfigurationOutput>
+function C:deleteDistributionConfiguration(input: types.DeleteDistributionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDistributionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDistributionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteDistributionConfigurationOutput>
 end
 
-function C:deleteImage(input: types.DeleteImageInput, options: any): async.Operation<types.DeleteImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteImage, input, options) as async.Operation<types.DeleteImageOutput>
+function C:deleteImage(input: types.DeleteImageInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteImage as schema.OperationSchema, input, options) as async.Operation<types.DeleteImageOutput>
 end
 
-function C:deleteImagePipeline(input: types.DeleteImagePipelineInput, options: any): async.Operation<types.DeleteImagePipelineOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteImagePipeline, input, options) as async.Operation<types.DeleteImagePipelineOutput>
+function C:deleteImagePipeline(input: types.DeleteImagePipelineInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteImagePipelineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteImagePipeline as schema.OperationSchema, input, options) as async.Operation<types.DeleteImagePipelineOutput>
 end
 
-function C:deleteImageRecipe(input: types.DeleteImageRecipeInput, options: any): async.Operation<types.DeleteImageRecipeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteImageRecipe, input, options) as async.Operation<types.DeleteImageRecipeOutput>
+function C:deleteImageRecipe(input: types.DeleteImageRecipeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteImageRecipeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteImageRecipe as schema.OperationSchema, input, options) as async.Operation<types.DeleteImageRecipeOutput>
 end
 
-function C:deleteInfrastructureConfiguration(input: types.DeleteInfrastructureConfigurationInput, options: any): async.Operation<types.DeleteInfrastructureConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteInfrastructureConfiguration, input, options) as async.Operation<types.DeleteInfrastructureConfigurationOutput>
+function C:deleteInfrastructureConfiguration(input: types.DeleteInfrastructureConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteInfrastructureConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInfrastructureConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteInfrastructureConfigurationOutput>
 end
 
-function C:deleteLifecyclePolicy(input: types.DeleteLifecyclePolicyInput, options: any): async.Operation<types.DeleteLifecyclePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLifecyclePolicy, input, options) as async.Operation<types.DeleteLifecyclePolicyOutput>
+function C:deleteLifecyclePolicy(input: types.DeleteLifecyclePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLifecyclePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLifecyclePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteLifecyclePolicyOutput>
 end
 
-function C:deleteWorkflow(input: types.DeleteWorkflowInput, options: any): async.Operation<types.DeleteWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWorkflow, input, options) as async.Operation<types.DeleteWorkflowOutput>
+function C:deleteWorkflow(input: types.DeleteWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWorkflow as schema.OperationSchema, input, options) as async.Operation<types.DeleteWorkflowOutput>
 end
 
-function C:distributeImage(input: types.DistributeImageInput, options: any): async.Operation<types.DistributeImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.DistributeImage, input, options) as async.Operation<types.DistributeImageOutput>
+function C:distributeImage(input: types.DistributeImageInput, options?: base_client.InvokeOptions): async.Operation<types.DistributeImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DistributeImage as schema.OperationSchema, input, options) as async.Operation<types.DistributeImageOutput>
 end
 
-function C:getComponent(input: types.GetComponentInput, options: any): async.Operation<types.GetComponentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetComponent, input, options) as async.Operation<types.GetComponentOutput>
+function C:getComponent(input: types.GetComponentInput, options?: base_client.InvokeOptions): async.Operation<types.GetComponentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetComponent as schema.OperationSchema, input, options) as async.Operation<types.GetComponentOutput>
 end
 
-function C:getComponentPolicy(input: types.GetComponentPolicyInput, options: any): async.Operation<types.GetComponentPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetComponentPolicy, input, options) as async.Operation<types.GetComponentPolicyOutput>
+function C:getComponentPolicy(input: types.GetComponentPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetComponentPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetComponentPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetComponentPolicyOutput>
 end
 
-function C:getContainerRecipe(input: types.GetContainerRecipeInput, options: any): async.Operation<types.GetContainerRecipeOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetContainerRecipe, input, options) as async.Operation<types.GetContainerRecipeOutput>
+function C:getContainerRecipe(input: types.GetContainerRecipeInput, options?: base_client.InvokeOptions): async.Operation<types.GetContainerRecipeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetContainerRecipe as schema.OperationSchema, input, options) as async.Operation<types.GetContainerRecipeOutput>
 end
 
-function C:getContainerRecipePolicy(input: types.GetContainerRecipePolicyInput, options: any): async.Operation<types.GetContainerRecipePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetContainerRecipePolicy, input, options) as async.Operation<types.GetContainerRecipePolicyOutput>
+function C:getContainerRecipePolicy(input: types.GetContainerRecipePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetContainerRecipePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetContainerRecipePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetContainerRecipePolicyOutput>
 end
 
-function C:getDistributionConfiguration(input: types.GetDistributionConfigurationInput, options: any): async.Operation<types.GetDistributionConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDistributionConfiguration, input, options) as async.Operation<types.GetDistributionConfigurationOutput>
+function C:getDistributionConfiguration(input: types.GetDistributionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetDistributionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDistributionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetDistributionConfigurationOutput>
 end
 
-function C:getImage(input: types.GetImageInput, options: any): async.Operation<types.GetImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetImage, input, options) as async.Operation<types.GetImageOutput>
+function C:getImage(input: types.GetImageInput, options?: base_client.InvokeOptions): async.Operation<types.GetImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetImage as schema.OperationSchema, input, options) as async.Operation<types.GetImageOutput>
 end
 
-function C:getImagePipeline(input: types.GetImagePipelineInput, options: any): async.Operation<types.GetImagePipelineOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetImagePipeline, input, options) as async.Operation<types.GetImagePipelineOutput>
+function C:getImagePipeline(input: types.GetImagePipelineInput, options?: base_client.InvokeOptions): async.Operation<types.GetImagePipelineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetImagePipeline as schema.OperationSchema, input, options) as async.Operation<types.GetImagePipelineOutput>
 end
 
-function C:getImagePolicy(input: types.GetImagePolicyInput, options: any): async.Operation<types.GetImagePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetImagePolicy, input, options) as async.Operation<types.GetImagePolicyOutput>
+function C:getImagePolicy(input: types.GetImagePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetImagePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetImagePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetImagePolicyOutput>
 end
 
-function C:getImageRecipe(input: types.GetImageRecipeInput, options: any): async.Operation<types.GetImageRecipeOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetImageRecipe, input, options) as async.Operation<types.GetImageRecipeOutput>
+function C:getImageRecipe(input: types.GetImageRecipeInput, options?: base_client.InvokeOptions): async.Operation<types.GetImageRecipeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetImageRecipe as schema.OperationSchema, input, options) as async.Operation<types.GetImageRecipeOutput>
 end
 
-function C:getImageRecipePolicy(input: types.GetImageRecipePolicyInput, options: any): async.Operation<types.GetImageRecipePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetImageRecipePolicy, input, options) as async.Operation<types.GetImageRecipePolicyOutput>
+function C:getImageRecipePolicy(input: types.GetImageRecipePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetImageRecipePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetImageRecipePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetImageRecipePolicyOutput>
 end
 
-function C:getInfrastructureConfiguration(input: types.GetInfrastructureConfigurationInput, options: any): async.Operation<types.GetInfrastructureConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInfrastructureConfiguration, input, options) as async.Operation<types.GetInfrastructureConfigurationOutput>
+function C:getInfrastructureConfiguration(input: types.GetInfrastructureConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetInfrastructureConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInfrastructureConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetInfrastructureConfigurationOutput>
 end
 
-function C:getLifecycleExecution(input: types.GetLifecycleExecutionInput, options: any): async.Operation<types.GetLifecycleExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLifecycleExecution, input, options) as async.Operation<types.GetLifecycleExecutionOutput>
+function C:getLifecycleExecution(input: types.GetLifecycleExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.GetLifecycleExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLifecycleExecution as schema.OperationSchema, input, options) as async.Operation<types.GetLifecycleExecutionOutput>
 end
 
-function C:getLifecyclePolicy(input: types.GetLifecyclePolicyInput, options: any): async.Operation<types.GetLifecyclePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLifecyclePolicy, input, options) as async.Operation<types.GetLifecyclePolicyOutput>
+function C:getLifecyclePolicy(input: types.GetLifecyclePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetLifecyclePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLifecyclePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetLifecyclePolicyOutput>
 end
 
-function C:getMarketplaceResource(input: types.GetMarketplaceResourceInput, options: any): async.Operation<types.GetMarketplaceResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMarketplaceResource, input, options) as async.Operation<types.GetMarketplaceResourceOutput>
+function C:getMarketplaceResource(input: types.GetMarketplaceResourceInput, options?: base_client.InvokeOptions): async.Operation<types.GetMarketplaceResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMarketplaceResource as schema.OperationSchema, input, options) as async.Operation<types.GetMarketplaceResourceOutput>
 end
 
-function C:getWorkflow(input: types.GetWorkflowInput, options: any): async.Operation<types.GetWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWorkflow, input, options) as async.Operation<types.GetWorkflowOutput>
+function C:getWorkflow(input: types.GetWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.GetWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWorkflow as schema.OperationSchema, input, options) as async.Operation<types.GetWorkflowOutput>
 end
 
-function C:getWorkflowExecution(input: types.GetWorkflowExecutionInput, options: any): async.Operation<types.GetWorkflowExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWorkflowExecution, input, options) as async.Operation<types.GetWorkflowExecutionOutput>
+function C:getWorkflowExecution(input: types.GetWorkflowExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.GetWorkflowExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWorkflowExecution as schema.OperationSchema, input, options) as async.Operation<types.GetWorkflowExecutionOutput>
 end
 
-function C:getWorkflowStepExecution(input: types.GetWorkflowStepExecutionInput, options: any): async.Operation<types.GetWorkflowStepExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWorkflowStepExecution, input, options) as async.Operation<types.GetWorkflowStepExecutionOutput>
+function C:getWorkflowStepExecution(input: types.GetWorkflowStepExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.GetWorkflowStepExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWorkflowStepExecution as schema.OperationSchema, input, options) as async.Operation<types.GetWorkflowStepExecutionOutput>
 end
 
-function C:importComponent(input: types.ImportComponentInput, options: any): async.Operation<types.ImportComponentOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportComponent, input, options) as async.Operation<types.ImportComponentOutput>
+function C:importComponent(input: types.ImportComponentInput, options?: base_client.InvokeOptions): async.Operation<types.ImportComponentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportComponent as schema.OperationSchema, input, options) as async.Operation<types.ImportComponentOutput>
 end
 
-function C:importDiskImage(input: types.ImportDiskImageInput, options: any): async.Operation<types.ImportDiskImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportDiskImage, input, options) as async.Operation<types.ImportDiskImageOutput>
+function C:importDiskImage(input: types.ImportDiskImageInput, options?: base_client.InvokeOptions): async.Operation<types.ImportDiskImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportDiskImage as schema.OperationSchema, input, options) as async.Operation<types.ImportDiskImageOutput>
 end
 
-function C:importVmImage(input: types.ImportVmImageInput, options: any): async.Operation<types.ImportVmImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportVmImage, input, options) as async.Operation<types.ImportVmImageOutput>
+function C:importVmImage(input: types.ImportVmImageInput, options?: base_client.InvokeOptions): async.Operation<types.ImportVmImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportVmImage as schema.OperationSchema, input, options) as async.Operation<types.ImportVmImageOutput>
 end
 
-function C:listComponentBuildVersions(input: types.ListComponentBuildVersionsInput, options: any): async.Operation<types.ListComponentBuildVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListComponentBuildVersions, input, options) as async.Operation<types.ListComponentBuildVersionsOutput>
+function C:listComponentBuildVersions(input: types.ListComponentBuildVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListComponentBuildVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListComponentBuildVersions as schema.OperationSchema, input, options) as async.Operation<types.ListComponentBuildVersionsOutput>
 end
 
-function C:listComponents(input: types.ListComponentsInput, options: any): async.Operation<types.ListComponentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListComponents, input, options) as async.Operation<types.ListComponentsOutput>
+function C:listComponents(input: types.ListComponentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListComponentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListComponents as schema.OperationSchema, input, options) as async.Operation<types.ListComponentsOutput>
 end
 
-function C:listContainerRecipes(input: types.ListContainerRecipesInput, options: any): async.Operation<types.ListContainerRecipesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListContainerRecipes, input, options) as async.Operation<types.ListContainerRecipesOutput>
+function C:listContainerRecipes(input: types.ListContainerRecipesInput, options?: base_client.InvokeOptions): async.Operation<types.ListContainerRecipesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListContainerRecipes as schema.OperationSchema, input, options) as async.Operation<types.ListContainerRecipesOutput>
 end
 
-function C:listDistributionConfigurations(input: types.ListDistributionConfigurationsInput, options: any): async.Operation<types.ListDistributionConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDistributionConfigurations, input, options) as async.Operation<types.ListDistributionConfigurationsOutput>
+function C:listDistributionConfigurations(input: types.ListDistributionConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDistributionConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDistributionConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListDistributionConfigurationsOutput>
 end
 
-function C:listImageBuildVersions(input: types.ListImageBuildVersionsInput, options: any): async.Operation<types.ListImageBuildVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListImageBuildVersions, input, options) as async.Operation<types.ListImageBuildVersionsOutput>
+function C:listImageBuildVersions(input: types.ListImageBuildVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListImageBuildVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListImageBuildVersions as schema.OperationSchema, input, options) as async.Operation<types.ListImageBuildVersionsOutput>
 end
 
-function C:listImagePackages(input: types.ListImagePackagesInput, options: any): async.Operation<types.ListImagePackagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListImagePackages, input, options) as async.Operation<types.ListImagePackagesOutput>
+function C:listImagePackages(input: types.ListImagePackagesInput, options?: base_client.InvokeOptions): async.Operation<types.ListImagePackagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListImagePackages as schema.OperationSchema, input, options) as async.Operation<types.ListImagePackagesOutput>
 end
 
-function C:listImagePipelineImages(input: types.ListImagePipelineImagesInput, options: any): async.Operation<types.ListImagePipelineImagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListImagePipelineImages, input, options) as async.Operation<types.ListImagePipelineImagesOutput>
+function C:listImagePipelineImages(input: types.ListImagePipelineImagesInput, options?: base_client.InvokeOptions): async.Operation<types.ListImagePipelineImagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListImagePipelineImages as schema.OperationSchema, input, options) as async.Operation<types.ListImagePipelineImagesOutput>
 end
 
-function C:listImagePipelines(input: types.ListImagePipelinesInput, options: any): async.Operation<types.ListImagePipelinesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListImagePipelines, input, options) as async.Operation<types.ListImagePipelinesOutput>
+function C:listImagePipelines(input: types.ListImagePipelinesInput, options?: base_client.InvokeOptions): async.Operation<types.ListImagePipelinesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListImagePipelines as schema.OperationSchema, input, options) as async.Operation<types.ListImagePipelinesOutput>
 end
 
-function C:listImageRecipes(input: types.ListImageRecipesInput, options: any): async.Operation<types.ListImageRecipesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListImageRecipes, input, options) as async.Operation<types.ListImageRecipesOutput>
+function C:listImageRecipes(input: types.ListImageRecipesInput, options?: base_client.InvokeOptions): async.Operation<types.ListImageRecipesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListImageRecipes as schema.OperationSchema, input, options) as async.Operation<types.ListImageRecipesOutput>
 end
 
-function C:listImages(input: types.ListImagesInput, options: any): async.Operation<types.ListImagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListImages, input, options) as async.Operation<types.ListImagesOutput>
+function C:listImages(input: types.ListImagesInput, options?: base_client.InvokeOptions): async.Operation<types.ListImagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListImages as schema.OperationSchema, input, options) as async.Operation<types.ListImagesOutput>
 end
 
-function C:listImageScanFindingAggregations(input: types.ListImageScanFindingAggregationsInput, options: any): async.Operation<types.ListImageScanFindingAggregationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListImageScanFindingAggregations, input, options) as async.Operation<types.ListImageScanFindingAggregationsOutput>
+function C:listImageScanFindingAggregations(input: types.ListImageScanFindingAggregationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListImageScanFindingAggregationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListImageScanFindingAggregations as schema.OperationSchema, input, options) as async.Operation<types.ListImageScanFindingAggregationsOutput>
 end
 
-function C:listImageScanFindings(input: types.ListImageScanFindingsInput, options: any): async.Operation<types.ListImageScanFindingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListImageScanFindings, input, options) as async.Operation<types.ListImageScanFindingsOutput>
+function C:listImageScanFindings(input: types.ListImageScanFindingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListImageScanFindingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListImageScanFindings as schema.OperationSchema, input, options) as async.Operation<types.ListImageScanFindingsOutput>
 end
 
-function C:listInfrastructureConfigurations(input: types.ListInfrastructureConfigurationsInput, options: any): async.Operation<types.ListInfrastructureConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInfrastructureConfigurations, input, options) as async.Operation<types.ListInfrastructureConfigurationsOutput>
+function C:listInfrastructureConfigurations(input: types.ListInfrastructureConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInfrastructureConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInfrastructureConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListInfrastructureConfigurationsOutput>
 end
 
-function C:listLifecycleExecutionResources(input: types.ListLifecycleExecutionResourcesInput, options: any): async.Operation<types.ListLifecycleExecutionResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLifecycleExecutionResources, input, options) as async.Operation<types.ListLifecycleExecutionResourcesOutput>
+function C:listLifecycleExecutionResources(input: types.ListLifecycleExecutionResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListLifecycleExecutionResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLifecycleExecutionResources as schema.OperationSchema, input, options) as async.Operation<types.ListLifecycleExecutionResourcesOutput>
 end
 
-function C:listLifecycleExecutions(input: types.ListLifecycleExecutionsInput, options: any): async.Operation<types.ListLifecycleExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLifecycleExecutions, input, options) as async.Operation<types.ListLifecycleExecutionsOutput>
+function C:listLifecycleExecutions(input: types.ListLifecycleExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLifecycleExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLifecycleExecutions as schema.OperationSchema, input, options) as async.Operation<types.ListLifecycleExecutionsOutput>
 end
 
-function C:listLifecyclePolicies(input: types.ListLifecyclePoliciesInput, options: any): async.Operation<types.ListLifecyclePoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLifecyclePolicies, input, options) as async.Operation<types.ListLifecyclePoliciesOutput>
+function C:listLifecyclePolicies(input: types.ListLifecyclePoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListLifecyclePoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLifecyclePolicies as schema.OperationSchema, input, options) as async.Operation<types.ListLifecyclePoliciesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listWaitingWorkflowSteps(input: types.ListWaitingWorkflowStepsInput, options: any): async.Operation<types.ListWaitingWorkflowStepsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWaitingWorkflowSteps, input, options) as async.Operation<types.ListWaitingWorkflowStepsOutput>
+function C:listWaitingWorkflowSteps(input: types.ListWaitingWorkflowStepsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWaitingWorkflowStepsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWaitingWorkflowSteps as schema.OperationSchema, input, options) as async.Operation<types.ListWaitingWorkflowStepsOutput>
 end
 
-function C:listWorkflowBuildVersions(input: types.ListWorkflowBuildVersionsInput, options: any): async.Operation<types.ListWorkflowBuildVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWorkflowBuildVersions, input, options) as async.Operation<types.ListWorkflowBuildVersionsOutput>
+function C:listWorkflowBuildVersions(input: types.ListWorkflowBuildVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkflowBuildVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkflowBuildVersions as schema.OperationSchema, input, options) as async.Operation<types.ListWorkflowBuildVersionsOutput>
 end
 
-function C:listWorkflowExecutions(input: types.ListWorkflowExecutionsInput, options: any): async.Operation<types.ListWorkflowExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWorkflowExecutions, input, options) as async.Operation<types.ListWorkflowExecutionsOutput>
+function C:listWorkflowExecutions(input: types.ListWorkflowExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkflowExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkflowExecutions as schema.OperationSchema, input, options) as async.Operation<types.ListWorkflowExecutionsOutput>
 end
 
-function C:listWorkflows(input: types.ListWorkflowsInput, options: any): async.Operation<types.ListWorkflowsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWorkflows, input, options) as async.Operation<types.ListWorkflowsOutput>
+function C:listWorkflows(input: types.ListWorkflowsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkflowsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkflows as schema.OperationSchema, input, options) as async.Operation<types.ListWorkflowsOutput>
 end
 
-function C:listWorkflowStepExecutions(input: types.ListWorkflowStepExecutionsInput, options: any): async.Operation<types.ListWorkflowStepExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWorkflowStepExecutions, input, options) as async.Operation<types.ListWorkflowStepExecutionsOutput>
+function C:listWorkflowStepExecutions(input: types.ListWorkflowStepExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkflowStepExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkflowStepExecutions as schema.OperationSchema, input, options) as async.Operation<types.ListWorkflowStepExecutionsOutput>
 end
 
-function C:putComponentPolicy(input: types.PutComponentPolicyInput, options: any): async.Operation<types.PutComponentPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutComponentPolicy, input, options) as async.Operation<types.PutComponentPolicyOutput>
+function C:putComponentPolicy(input: types.PutComponentPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutComponentPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutComponentPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutComponentPolicyOutput>
 end
 
-function C:putContainerRecipePolicy(input: types.PutContainerRecipePolicyInput, options: any): async.Operation<types.PutContainerRecipePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutContainerRecipePolicy, input, options) as async.Operation<types.PutContainerRecipePolicyOutput>
+function C:putContainerRecipePolicy(input: types.PutContainerRecipePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutContainerRecipePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutContainerRecipePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutContainerRecipePolicyOutput>
 end
 
-function C:putImagePolicy(input: types.PutImagePolicyInput, options: any): async.Operation<types.PutImagePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutImagePolicy, input, options) as async.Operation<types.PutImagePolicyOutput>
+function C:putImagePolicy(input: types.PutImagePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutImagePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutImagePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutImagePolicyOutput>
 end
 
-function C:putImageRecipePolicy(input: types.PutImageRecipePolicyInput, options: any): async.Operation<types.PutImageRecipePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutImageRecipePolicy, input, options) as async.Operation<types.PutImageRecipePolicyOutput>
+function C:putImageRecipePolicy(input: types.PutImageRecipePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutImageRecipePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutImageRecipePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutImageRecipePolicyOutput>
 end
 
-function C:retryImage(input: types.RetryImageInput, options: any): async.Operation<types.RetryImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.RetryImage, input, options) as async.Operation<types.RetryImageOutput>
+function C:retryImage(input: types.RetryImageInput, options?: base_client.InvokeOptions): async.Operation<types.RetryImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RetryImage as schema.OperationSchema, input, options) as async.Operation<types.RetryImageOutput>
 end
 
-function C:sendWorkflowStepAction(input: types.SendWorkflowStepActionInput, options: any): async.Operation<types.SendWorkflowStepActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendWorkflowStepAction, input, options) as async.Operation<types.SendWorkflowStepActionOutput>
+function C:sendWorkflowStepAction(input: types.SendWorkflowStepActionInput, options?: base_client.InvokeOptions): async.Operation<types.SendWorkflowStepActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendWorkflowStepAction as schema.OperationSchema, input, options) as async.Operation<types.SendWorkflowStepActionOutput>
 end
 
-function C:startImagePipelineExecution(input: types.StartImagePipelineExecutionInput, options: any): async.Operation<types.StartImagePipelineExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartImagePipelineExecution, input, options) as async.Operation<types.StartImagePipelineExecutionOutput>
+function C:startImagePipelineExecution(input: types.StartImagePipelineExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.StartImagePipelineExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartImagePipelineExecution as schema.OperationSchema, input, options) as async.Operation<types.StartImagePipelineExecutionOutput>
 end
 
-function C:startResourceStateUpdate(input: types.StartResourceStateUpdateInput, options: any): async.Operation<types.StartResourceStateUpdateOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartResourceStateUpdate, input, options) as async.Operation<types.StartResourceStateUpdateOutput>
+function C:startResourceStateUpdate(input: types.StartResourceStateUpdateInput, options?: base_client.InvokeOptions): async.Operation<types.StartResourceStateUpdateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartResourceStateUpdate as schema.OperationSchema, input, options) as async.Operation<types.StartResourceStateUpdateOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateDistributionConfiguration(input: types.UpdateDistributionConfigurationInput, options: any): async.Operation<types.UpdateDistributionConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDistributionConfiguration, input, options) as async.Operation<types.UpdateDistributionConfigurationOutput>
+function C:updateDistributionConfiguration(input: types.UpdateDistributionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDistributionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDistributionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateDistributionConfigurationOutput>
 end
 
-function C:updateImagePipeline(input: types.UpdateImagePipelineInput, options: any): async.Operation<types.UpdateImagePipelineOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateImagePipeline, input, options) as async.Operation<types.UpdateImagePipelineOutput>
+function C:updateImagePipeline(input: types.UpdateImagePipelineInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateImagePipelineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateImagePipeline as schema.OperationSchema, input, options) as async.Operation<types.UpdateImagePipelineOutput>
 end
 
-function C:updateInfrastructureConfiguration(input: types.UpdateInfrastructureConfigurationInput, options: any): async.Operation<types.UpdateInfrastructureConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateInfrastructureConfiguration, input, options) as async.Operation<types.UpdateInfrastructureConfigurationOutput>
+function C:updateInfrastructureConfiguration(input: types.UpdateInfrastructureConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateInfrastructureConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateInfrastructureConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateInfrastructureConfigurationOutput>
 end
 
-function C:updateLifecyclePolicy(input: types.UpdateLifecyclePolicyInput, options: any): async.Operation<types.UpdateLifecyclePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLifecyclePolicy, input, options) as async.Operation<types.UpdateLifecyclePolicyOutput>
+function C:updateLifecyclePolicy(input: types.UpdateLifecyclePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLifecyclePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLifecyclePolicy as schema.OperationSchema, input, options) as async.Operation<types.UpdateLifecyclePolicyOutput>
 end
 
 return M

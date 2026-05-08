@@ -8,94 +8,97 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("docdb.endpoint_rules")
 local query_protocol = require("smithy.protocol.awsquery")
+local schema = require("smithy.schema")
 local schemas = require("docdb.schemas")
 local traits = require("smithy.traits")
 local types = require("docdb.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    addSourceIdentifierToSubscription: function(Client, types.AddSourceIdentifierToSubscriptionInput, any): async.Operation<types.AddSourceIdentifierToSubscriptionOutput>
-    addTagsToResource: function(Client, types.AddTagsToResourceInput, any): async.Operation<types.AddTagsToResourceOutput>
-    applyPendingMaintenanceAction: function(Client, types.ApplyPendingMaintenanceActionInput, any): async.Operation<types.ApplyPendingMaintenanceActionOutput>
-    copyDBClusterParameterGroup: function(Client, types.CopyDBClusterParameterGroupInput, any): async.Operation<types.CopyDBClusterParameterGroupOutput>
-    copyDBClusterSnapshot: function(Client, types.CopyDBClusterSnapshotInput, any): async.Operation<types.CopyDBClusterSnapshotOutput>
-    createDBCluster: function(Client, types.CreateDBClusterInput, any): async.Operation<types.CreateDBClusterOutput>
-    createDBClusterParameterGroup: function(Client, types.CreateDBClusterParameterGroupInput, any): async.Operation<types.CreateDBClusterParameterGroupOutput>
-    createDBClusterSnapshot: function(Client, types.CreateDBClusterSnapshotInput, any): async.Operation<types.CreateDBClusterSnapshotOutput>
-    createDBInstance: function(Client, types.CreateDBInstanceInput, any): async.Operation<types.CreateDBInstanceOutput>
-    createDBSubnetGroup: function(Client, types.CreateDBSubnetGroupInput, any): async.Operation<types.CreateDBSubnetGroupOutput>
-    createEventSubscription: function(Client, types.CreateEventSubscriptionInput, any): async.Operation<types.CreateEventSubscriptionOutput>
-    createGlobalCluster: function(Client, types.CreateGlobalClusterInput, any): async.Operation<types.CreateGlobalClusterOutput>
-    deleteDBCluster: function(Client, types.DeleteDBClusterInput, any): async.Operation<types.DeleteDBClusterOutput>
-    deleteDBClusterParameterGroup: function(Client, types.DeleteDBClusterParameterGroupInput, any): async.Operation<types.DeleteDBClusterParameterGroupOutput>
-    deleteDBClusterSnapshot: function(Client, types.DeleteDBClusterSnapshotInput, any): async.Operation<types.DeleteDBClusterSnapshotOutput>
-    deleteDBInstance: function(Client, types.DeleteDBInstanceInput, any): async.Operation<types.DeleteDBInstanceOutput>
-    deleteDBSubnetGroup: function(Client, types.DeleteDBSubnetGroupInput, any): async.Operation<types.DeleteDBSubnetGroupOutput>
-    deleteEventSubscription: function(Client, types.DeleteEventSubscriptionInput, any): async.Operation<types.DeleteEventSubscriptionOutput>
-    deleteGlobalCluster: function(Client, types.DeleteGlobalClusterInput, any): async.Operation<types.DeleteGlobalClusterOutput>
-    describeCertificates: function(Client, types.DescribeCertificatesInput, any): async.Operation<types.DescribeCertificatesOutput>
-    describeDBClusterParameterGroups: function(Client, types.DescribeDBClusterParameterGroupsInput, any): async.Operation<types.DescribeDBClusterParameterGroupsOutput>
-    describeDBClusterParameters: function(Client, types.DescribeDBClusterParametersInput, any): async.Operation<types.DescribeDBClusterParametersOutput>
-    describeDBClusters: function(Client, types.DescribeDBClustersInput, any): async.Operation<types.DescribeDBClustersOutput>
-    describeDBClusterSnapshotAttributes: function(Client, types.DescribeDBClusterSnapshotAttributesInput, any): async.Operation<types.DescribeDBClusterSnapshotAttributesOutput>
-    describeDBClusterSnapshots: function(Client, types.DescribeDBClusterSnapshotsInput, any): async.Operation<types.DescribeDBClusterSnapshotsOutput>
-    describeDBEngineVersions: function(Client, types.DescribeDBEngineVersionsInput, any): async.Operation<types.DescribeDBEngineVersionsOutput>
-    describeDBInstances: function(Client, types.DescribeDBInstancesInput, any): async.Operation<types.DescribeDBInstancesOutput>
-    describeDBSubnetGroups: function(Client, types.DescribeDBSubnetGroupsInput, any): async.Operation<types.DescribeDBSubnetGroupsOutput>
-    describeEngineDefaultClusterParameters: function(Client, types.DescribeEngineDefaultClusterParametersInput, any): async.Operation<types.DescribeEngineDefaultClusterParametersOutput>
-    describeEventCategories: function(Client, types.DescribeEventCategoriesInput, any): async.Operation<types.DescribeEventCategoriesOutput>
-    describeEvents: function(Client, types.DescribeEventsInput, any): async.Operation<types.DescribeEventsOutput>
-    describeEventSubscriptions: function(Client, types.DescribeEventSubscriptionsInput, any): async.Operation<types.DescribeEventSubscriptionsOutput>
-    describeGlobalClusters: function(Client, types.DescribeGlobalClustersInput, any): async.Operation<types.DescribeGlobalClustersOutput>
-    describeOrderableDBInstanceOptions: function(Client, types.DescribeOrderableDBInstanceOptionsInput, any): async.Operation<types.DescribeOrderableDBInstanceOptionsOutput>
-    describePendingMaintenanceActions: function(Client, types.DescribePendingMaintenanceActionsInput, any): async.Operation<types.DescribePendingMaintenanceActionsOutput>
-    failoverDBCluster: function(Client, types.FailoverDBClusterInput, any): async.Operation<types.FailoverDBClusterOutput>
-    failoverGlobalCluster: function(Client, types.FailoverGlobalClusterInput, any): async.Operation<types.FailoverGlobalClusterOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    modifyDBCluster: function(Client, types.ModifyDBClusterInput, any): async.Operation<types.ModifyDBClusterOutput>
-    modifyDBClusterParameterGroup: function(Client, types.ModifyDBClusterParameterGroupInput, any): async.Operation<types.ModifyDBClusterParameterGroupOutput>
-    modifyDBClusterSnapshotAttribute: function(Client, types.ModifyDBClusterSnapshotAttributeInput, any): async.Operation<types.ModifyDBClusterSnapshotAttributeOutput>
-    modifyDBInstance: function(Client, types.ModifyDBInstanceInput, any): async.Operation<types.ModifyDBInstanceOutput>
-    modifyDBSubnetGroup: function(Client, types.ModifyDBSubnetGroupInput, any): async.Operation<types.ModifyDBSubnetGroupOutput>
-    modifyEventSubscription: function(Client, types.ModifyEventSubscriptionInput, any): async.Operation<types.ModifyEventSubscriptionOutput>
-    modifyGlobalCluster: function(Client, types.ModifyGlobalClusterInput, any): async.Operation<types.ModifyGlobalClusterOutput>
-    rebootDBInstance: function(Client, types.RebootDBInstanceInput, any): async.Operation<types.RebootDBInstanceOutput>
-    removeFromGlobalCluster: function(Client, types.RemoveFromGlobalClusterInput, any): async.Operation<types.RemoveFromGlobalClusterOutput>
-    removeSourceIdentifierFromSubscription: function(Client, types.RemoveSourceIdentifierFromSubscriptionInput, any): async.Operation<types.RemoveSourceIdentifierFromSubscriptionOutput>
-    removeTagsFromResource: function(Client, types.RemoveTagsFromResourceInput, any): async.Operation<types.RemoveTagsFromResourceOutput>
-    resetDBClusterParameterGroup: function(Client, types.ResetDBClusterParameterGroupInput, any): async.Operation<types.ResetDBClusterParameterGroupOutput>
-    restoreDBClusterFromSnapshot: function(Client, types.RestoreDBClusterFromSnapshotInput, any): async.Operation<types.RestoreDBClusterFromSnapshotOutput>
-    restoreDBClusterToPointInTime: function(Client, types.RestoreDBClusterToPointInTimeInput, any): async.Operation<types.RestoreDBClusterToPointInTimeOutput>
-    startDBCluster: function(Client, types.StartDBClusterInput, any): async.Operation<types.StartDBClusterOutput>
-    stopDBCluster: function(Client, types.StopDBClusterInput, any): async.Operation<types.StopDBClusterOutput>
-    switchoverGlobalCluster: function(Client, types.SwitchoverGlobalClusterInput, any): async.Operation<types.SwitchoverGlobalClusterOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    addSourceIdentifierToSubscription: function(Client, types.AddSourceIdentifierToSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.AddSourceIdentifierToSubscriptionOutput>
+    addTagsToResource: function(Client, types.AddTagsToResourceInput, ? base_client.InvokeOptions): async.Operation<types.AddTagsToResourceOutput>
+    applyPendingMaintenanceAction: function(Client, types.ApplyPendingMaintenanceActionInput, ? base_client.InvokeOptions): async.Operation<types.ApplyPendingMaintenanceActionOutput>
+    copyDBClusterParameterGroup: function(Client, types.CopyDBClusterParameterGroupInput, ? base_client.InvokeOptions): async.Operation<types.CopyDBClusterParameterGroupOutput>
+    copyDBClusterSnapshot: function(Client, types.CopyDBClusterSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.CopyDBClusterSnapshotOutput>
+    createDBCluster: function(Client, types.CreateDBClusterInput, ? base_client.InvokeOptions): async.Operation<types.CreateDBClusterOutput>
+    createDBClusterParameterGroup: function(Client, types.CreateDBClusterParameterGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateDBClusterParameterGroupOutput>
+    createDBClusterSnapshot: function(Client, types.CreateDBClusterSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.CreateDBClusterSnapshotOutput>
+    createDBInstance: function(Client, types.CreateDBInstanceInput, ? base_client.InvokeOptions): async.Operation<types.CreateDBInstanceOutput>
+    createDBSubnetGroup: function(Client, types.CreateDBSubnetGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateDBSubnetGroupOutput>
+    createEventSubscription: function(Client, types.CreateEventSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.CreateEventSubscriptionOutput>
+    createGlobalCluster: function(Client, types.CreateGlobalClusterInput, ? base_client.InvokeOptions): async.Operation<types.CreateGlobalClusterOutput>
+    deleteDBCluster: function(Client, types.DeleteDBClusterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDBClusterOutput>
+    deleteDBClusterParameterGroup: function(Client, types.DeleteDBClusterParameterGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDBClusterParameterGroupOutput>
+    deleteDBClusterSnapshot: function(Client, types.DeleteDBClusterSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDBClusterSnapshotOutput>
+    deleteDBInstance: function(Client, types.DeleteDBInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDBInstanceOutput>
+    deleteDBSubnetGroup: function(Client, types.DeleteDBSubnetGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDBSubnetGroupOutput>
+    deleteEventSubscription: function(Client, types.DeleteEventSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEventSubscriptionOutput>
+    deleteGlobalCluster: function(Client, types.DeleteGlobalClusterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGlobalClusterOutput>
+    describeCertificates: function(Client, types.DescribeCertificatesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCertificatesOutput>
+    describeDBClusterParameterGroups: function(Client, types.DescribeDBClusterParameterGroupsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDBClusterParameterGroupsOutput>
+    describeDBClusterParameters: function(Client, types.DescribeDBClusterParametersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDBClusterParametersOutput>
+    describeDBClusters: function(Client, types.DescribeDBClustersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDBClustersOutput>
+    describeDBClusterSnapshotAttributes: function(Client, types.DescribeDBClusterSnapshotAttributesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDBClusterSnapshotAttributesOutput>
+    describeDBClusterSnapshots: function(Client, types.DescribeDBClusterSnapshotsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDBClusterSnapshotsOutput>
+    describeDBEngineVersions: function(Client, types.DescribeDBEngineVersionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDBEngineVersionsOutput>
+    describeDBInstances: function(Client, types.DescribeDBInstancesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDBInstancesOutput>
+    describeDBSubnetGroups: function(Client, types.DescribeDBSubnetGroupsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDBSubnetGroupsOutput>
+    describeEngineDefaultClusterParameters: function(Client, types.DescribeEngineDefaultClusterParametersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEngineDefaultClusterParametersOutput>
+    describeEventCategories: function(Client, types.DescribeEventCategoriesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEventCategoriesOutput>
+    describeEvents: function(Client, types.DescribeEventsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEventsOutput>
+    describeEventSubscriptions: function(Client, types.DescribeEventSubscriptionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEventSubscriptionsOutput>
+    describeGlobalClusters: function(Client, types.DescribeGlobalClustersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeGlobalClustersOutput>
+    describeOrderableDBInstanceOptions: function(Client, types.DescribeOrderableDBInstanceOptionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeOrderableDBInstanceOptionsOutput>
+    describePendingMaintenanceActions: function(Client, types.DescribePendingMaintenanceActionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribePendingMaintenanceActionsOutput>
+    failoverDBCluster: function(Client, types.FailoverDBClusterInput, ? base_client.InvokeOptions): async.Operation<types.FailoverDBClusterOutput>
+    failoverGlobalCluster: function(Client, types.FailoverGlobalClusterInput, ? base_client.InvokeOptions): async.Operation<types.FailoverGlobalClusterOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    modifyDBCluster: function(Client, types.ModifyDBClusterInput, ? base_client.InvokeOptions): async.Operation<types.ModifyDBClusterOutput>
+    modifyDBClusterParameterGroup: function(Client, types.ModifyDBClusterParameterGroupInput, ? base_client.InvokeOptions): async.Operation<types.ModifyDBClusterParameterGroupOutput>
+    modifyDBClusterSnapshotAttribute: function(Client, types.ModifyDBClusterSnapshotAttributeInput, ? base_client.InvokeOptions): async.Operation<types.ModifyDBClusterSnapshotAttributeOutput>
+    modifyDBInstance: function(Client, types.ModifyDBInstanceInput, ? base_client.InvokeOptions): async.Operation<types.ModifyDBInstanceOutput>
+    modifyDBSubnetGroup: function(Client, types.ModifyDBSubnetGroupInput, ? base_client.InvokeOptions): async.Operation<types.ModifyDBSubnetGroupOutput>
+    modifyEventSubscription: function(Client, types.ModifyEventSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.ModifyEventSubscriptionOutput>
+    modifyGlobalCluster: function(Client, types.ModifyGlobalClusterInput, ? base_client.InvokeOptions): async.Operation<types.ModifyGlobalClusterOutput>
+    rebootDBInstance: function(Client, types.RebootDBInstanceInput, ? base_client.InvokeOptions): async.Operation<types.RebootDBInstanceOutput>
+    removeFromGlobalCluster: function(Client, types.RemoveFromGlobalClusterInput, ? base_client.InvokeOptions): async.Operation<types.RemoveFromGlobalClusterOutput>
+    removeSourceIdentifierFromSubscription: function(Client, types.RemoveSourceIdentifierFromSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.RemoveSourceIdentifierFromSubscriptionOutput>
+    removeTagsFromResource: function(Client, types.RemoveTagsFromResourceInput, ? base_client.InvokeOptions): async.Operation<types.RemoveTagsFromResourceOutput>
+    resetDBClusterParameterGroup: function(Client, types.ResetDBClusterParameterGroupInput, ? base_client.InvokeOptions): async.Operation<types.ResetDBClusterParameterGroupOutput>
+    restoreDBClusterFromSnapshot: function(Client, types.RestoreDBClusterFromSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.RestoreDBClusterFromSnapshotOutput>
+    restoreDBClusterToPointInTime: function(Client, types.RestoreDBClusterToPointInTimeInput, ? base_client.InvokeOptions): async.Operation<types.RestoreDBClusterToPointInTimeOutput>
+    startDBCluster: function(Client, types.StartDBClusterInput, ? base_client.InvokeOptions): async.Operation<types.StartDBClusterOutput>
+    stopDBCluster: function(Client, types.StopDBClusterInput, ? base_client.InvokeOptions): async.Operation<types.StopDBClusterOutput>
+    switchoverGlobalCluster: function(Client, types.SwitchoverGlobalClusterInput, ? base_client.InvokeOptions): async.Operation<types.SwitchoverGlobalClusterOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonRDSv19"
-    if not c.protocol then c.protocol = query_protocol.new("awsQuery") end
+    if not c.protocol then c.protocol = query_protocol.new("awsQuery") as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "rds", signing_region = c.region } }
                 else
@@ -114,224 +117,224 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:addSourceIdentifierToSubscription(input: types.AddSourceIdentifierToSubscriptionInput, options: any): async.Operation<types.AddSourceIdentifierToSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddSourceIdentifierToSubscription, input, options) as async.Operation<types.AddSourceIdentifierToSubscriptionOutput>
+function C:addSourceIdentifierToSubscription(input: types.AddSourceIdentifierToSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.AddSourceIdentifierToSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddSourceIdentifierToSubscription as schema.OperationSchema, input, options) as async.Operation<types.AddSourceIdentifierToSubscriptionOutput>
 end
 
-function C:addTagsToResource(input: types.AddTagsToResourceInput, options: any): async.Operation<types.AddTagsToResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddTagsToResource, input, options) as async.Operation<types.AddTagsToResourceOutput>
+function C:addTagsToResource(input: types.AddTagsToResourceInput, options?: base_client.InvokeOptions): async.Operation<types.AddTagsToResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddTagsToResource as schema.OperationSchema, input, options) as async.Operation<types.AddTagsToResourceOutput>
 end
 
-function C:applyPendingMaintenanceAction(input: types.ApplyPendingMaintenanceActionInput, options: any): async.Operation<types.ApplyPendingMaintenanceActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ApplyPendingMaintenanceAction, input, options) as async.Operation<types.ApplyPendingMaintenanceActionOutput>
+function C:applyPendingMaintenanceAction(input: types.ApplyPendingMaintenanceActionInput, options?: base_client.InvokeOptions): async.Operation<types.ApplyPendingMaintenanceActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ApplyPendingMaintenanceAction as schema.OperationSchema, input, options) as async.Operation<types.ApplyPendingMaintenanceActionOutput>
 end
 
-function C:copyDBClusterParameterGroup(input: types.CopyDBClusterParameterGroupInput, options: any): async.Operation<types.CopyDBClusterParameterGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CopyDBClusterParameterGroup, input, options) as async.Operation<types.CopyDBClusterParameterGroupOutput>
+function C:copyDBClusterParameterGroup(input: types.CopyDBClusterParameterGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CopyDBClusterParameterGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CopyDBClusterParameterGroup as schema.OperationSchema, input, options) as async.Operation<types.CopyDBClusterParameterGroupOutput>
 end
 
-function C:copyDBClusterSnapshot(input: types.CopyDBClusterSnapshotInput, options: any): async.Operation<types.CopyDBClusterSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.CopyDBClusterSnapshot, input, options) as async.Operation<types.CopyDBClusterSnapshotOutput>
+function C:copyDBClusterSnapshot(input: types.CopyDBClusterSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.CopyDBClusterSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CopyDBClusterSnapshot as schema.OperationSchema, input, options) as async.Operation<types.CopyDBClusterSnapshotOutput>
 end
 
-function C:createDBCluster(input: types.CreateDBClusterInput, options: any): async.Operation<types.CreateDBClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDBCluster, input, options) as async.Operation<types.CreateDBClusterOutput>
+function C:createDBCluster(input: types.CreateDBClusterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDBClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDBCluster as schema.OperationSchema, input, options) as async.Operation<types.CreateDBClusterOutput>
 end
 
-function C:createDBClusterParameterGroup(input: types.CreateDBClusterParameterGroupInput, options: any): async.Operation<types.CreateDBClusterParameterGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDBClusterParameterGroup, input, options) as async.Operation<types.CreateDBClusterParameterGroupOutput>
+function C:createDBClusterParameterGroup(input: types.CreateDBClusterParameterGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDBClusterParameterGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDBClusterParameterGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateDBClusterParameterGroupOutput>
 end
 
-function C:createDBClusterSnapshot(input: types.CreateDBClusterSnapshotInput, options: any): async.Operation<types.CreateDBClusterSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDBClusterSnapshot, input, options) as async.Operation<types.CreateDBClusterSnapshotOutput>
+function C:createDBClusterSnapshot(input: types.CreateDBClusterSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDBClusterSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDBClusterSnapshot as schema.OperationSchema, input, options) as async.Operation<types.CreateDBClusterSnapshotOutput>
 end
 
-function C:createDBInstance(input: types.CreateDBInstanceInput, options: any): async.Operation<types.CreateDBInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDBInstance, input, options) as async.Operation<types.CreateDBInstanceOutput>
+function C:createDBInstance(input: types.CreateDBInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDBInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDBInstance as schema.OperationSchema, input, options) as async.Operation<types.CreateDBInstanceOutput>
 end
 
-function C:createDBSubnetGroup(input: types.CreateDBSubnetGroupInput, options: any): async.Operation<types.CreateDBSubnetGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDBSubnetGroup, input, options) as async.Operation<types.CreateDBSubnetGroupOutput>
+function C:createDBSubnetGroup(input: types.CreateDBSubnetGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDBSubnetGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDBSubnetGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateDBSubnetGroupOutput>
 end
 
-function C:createEventSubscription(input: types.CreateEventSubscriptionInput, options: any): async.Operation<types.CreateEventSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEventSubscription, input, options) as async.Operation<types.CreateEventSubscriptionOutput>
+function C:createEventSubscription(input: types.CreateEventSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEventSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEventSubscription as schema.OperationSchema, input, options) as async.Operation<types.CreateEventSubscriptionOutput>
 end
 
-function C:createGlobalCluster(input: types.CreateGlobalClusterInput, options: any): async.Operation<types.CreateGlobalClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateGlobalCluster, input, options) as async.Operation<types.CreateGlobalClusterOutput>
+function C:createGlobalCluster(input: types.CreateGlobalClusterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGlobalClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGlobalCluster as schema.OperationSchema, input, options) as async.Operation<types.CreateGlobalClusterOutput>
 end
 
-function C:deleteDBCluster(input: types.DeleteDBClusterInput, options: any): async.Operation<types.DeleteDBClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDBCluster, input, options) as async.Operation<types.DeleteDBClusterOutput>
+function C:deleteDBCluster(input: types.DeleteDBClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDBClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDBCluster as schema.OperationSchema, input, options) as async.Operation<types.DeleteDBClusterOutput>
 end
 
-function C:deleteDBClusterParameterGroup(input: types.DeleteDBClusterParameterGroupInput, options: any): async.Operation<types.DeleteDBClusterParameterGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDBClusterParameterGroup, input, options) as async.Operation<types.DeleteDBClusterParameterGroupOutput>
+function C:deleteDBClusterParameterGroup(input: types.DeleteDBClusterParameterGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDBClusterParameterGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDBClusterParameterGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteDBClusterParameterGroupOutput>
 end
 
-function C:deleteDBClusterSnapshot(input: types.DeleteDBClusterSnapshotInput, options: any): async.Operation<types.DeleteDBClusterSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDBClusterSnapshot, input, options) as async.Operation<types.DeleteDBClusterSnapshotOutput>
+function C:deleteDBClusterSnapshot(input: types.DeleteDBClusterSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDBClusterSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDBClusterSnapshot as schema.OperationSchema, input, options) as async.Operation<types.DeleteDBClusterSnapshotOutput>
 end
 
-function C:deleteDBInstance(input: types.DeleteDBInstanceInput, options: any): async.Operation<types.DeleteDBInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDBInstance, input, options) as async.Operation<types.DeleteDBInstanceOutput>
+function C:deleteDBInstance(input: types.DeleteDBInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDBInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDBInstance as schema.OperationSchema, input, options) as async.Operation<types.DeleteDBInstanceOutput>
 end
 
-function C:deleteDBSubnetGroup(input: types.DeleteDBSubnetGroupInput, options: any): async.Operation<types.DeleteDBSubnetGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDBSubnetGroup, input, options) as async.Operation<types.DeleteDBSubnetGroupOutput>
+function C:deleteDBSubnetGroup(input: types.DeleteDBSubnetGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDBSubnetGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDBSubnetGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteDBSubnetGroupOutput>
 end
 
-function C:deleteEventSubscription(input: types.DeleteEventSubscriptionInput, options: any): async.Operation<types.DeleteEventSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEventSubscription, input, options) as async.Operation<types.DeleteEventSubscriptionOutput>
+function C:deleteEventSubscription(input: types.DeleteEventSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEventSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEventSubscription as schema.OperationSchema, input, options) as async.Operation<types.DeleteEventSubscriptionOutput>
 end
 
-function C:deleteGlobalCluster(input: types.DeleteGlobalClusterInput, options: any): async.Operation<types.DeleteGlobalClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteGlobalCluster, input, options) as async.Operation<types.DeleteGlobalClusterOutput>
+function C:deleteGlobalCluster(input: types.DeleteGlobalClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGlobalClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGlobalCluster as schema.OperationSchema, input, options) as async.Operation<types.DeleteGlobalClusterOutput>
 end
 
-function C:describeCertificates(input: types.DescribeCertificatesInput, options: any): async.Operation<types.DescribeCertificatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCertificates, input, options) as async.Operation<types.DescribeCertificatesOutput>
+function C:describeCertificates(input: types.DescribeCertificatesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCertificatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCertificates as schema.OperationSchema, input, options) as async.Operation<types.DescribeCertificatesOutput>
 end
 
-function C:describeDBClusterParameterGroups(input: types.DescribeDBClusterParameterGroupsInput, options: any): async.Operation<types.DescribeDBClusterParameterGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDBClusterParameterGroups, input, options) as async.Operation<types.DescribeDBClusterParameterGroupsOutput>
+function C:describeDBClusterParameterGroups(input: types.DescribeDBClusterParameterGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDBClusterParameterGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDBClusterParameterGroups as schema.OperationSchema, input, options) as async.Operation<types.DescribeDBClusterParameterGroupsOutput>
 end
 
-function C:describeDBClusterParameters(input: types.DescribeDBClusterParametersInput, options: any): async.Operation<types.DescribeDBClusterParametersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDBClusterParameters, input, options) as async.Operation<types.DescribeDBClusterParametersOutput>
+function C:describeDBClusterParameters(input: types.DescribeDBClusterParametersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDBClusterParametersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDBClusterParameters as schema.OperationSchema, input, options) as async.Operation<types.DescribeDBClusterParametersOutput>
 end
 
-function C:describeDBClusters(input: types.DescribeDBClustersInput, options: any): async.Operation<types.DescribeDBClustersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDBClusters, input, options) as async.Operation<types.DescribeDBClustersOutput>
+function C:describeDBClusters(input: types.DescribeDBClustersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDBClustersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDBClusters as schema.OperationSchema, input, options) as async.Operation<types.DescribeDBClustersOutput>
 end
 
-function C:describeDBClusterSnapshotAttributes(input: types.DescribeDBClusterSnapshotAttributesInput, options: any): async.Operation<types.DescribeDBClusterSnapshotAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDBClusterSnapshotAttributes, input, options) as async.Operation<types.DescribeDBClusterSnapshotAttributesOutput>
+function C:describeDBClusterSnapshotAttributes(input: types.DescribeDBClusterSnapshotAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDBClusterSnapshotAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDBClusterSnapshotAttributes as schema.OperationSchema, input, options) as async.Operation<types.DescribeDBClusterSnapshotAttributesOutput>
 end
 
-function C:describeDBClusterSnapshots(input: types.DescribeDBClusterSnapshotsInput, options: any): async.Operation<types.DescribeDBClusterSnapshotsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDBClusterSnapshots, input, options) as async.Operation<types.DescribeDBClusterSnapshotsOutput>
+function C:describeDBClusterSnapshots(input: types.DescribeDBClusterSnapshotsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDBClusterSnapshotsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDBClusterSnapshots as schema.OperationSchema, input, options) as async.Operation<types.DescribeDBClusterSnapshotsOutput>
 end
 
-function C:describeDBEngineVersions(input: types.DescribeDBEngineVersionsInput, options: any): async.Operation<types.DescribeDBEngineVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDBEngineVersions, input, options) as async.Operation<types.DescribeDBEngineVersionsOutput>
+function C:describeDBEngineVersions(input: types.DescribeDBEngineVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDBEngineVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDBEngineVersions as schema.OperationSchema, input, options) as async.Operation<types.DescribeDBEngineVersionsOutput>
 end
 
-function C:describeDBInstances(input: types.DescribeDBInstancesInput, options: any): async.Operation<types.DescribeDBInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDBInstances, input, options) as async.Operation<types.DescribeDBInstancesOutput>
+function C:describeDBInstances(input: types.DescribeDBInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDBInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDBInstances as schema.OperationSchema, input, options) as async.Operation<types.DescribeDBInstancesOutput>
 end
 
-function C:describeDBSubnetGroups(input: types.DescribeDBSubnetGroupsInput, options: any): async.Operation<types.DescribeDBSubnetGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDBSubnetGroups, input, options) as async.Operation<types.DescribeDBSubnetGroupsOutput>
+function C:describeDBSubnetGroups(input: types.DescribeDBSubnetGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDBSubnetGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDBSubnetGroups as schema.OperationSchema, input, options) as async.Operation<types.DescribeDBSubnetGroupsOutput>
 end
 
-function C:describeEngineDefaultClusterParameters(input: types.DescribeEngineDefaultClusterParametersInput, options: any): async.Operation<types.DescribeEngineDefaultClusterParametersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEngineDefaultClusterParameters, input, options) as async.Operation<types.DescribeEngineDefaultClusterParametersOutput>
+function C:describeEngineDefaultClusterParameters(input: types.DescribeEngineDefaultClusterParametersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEngineDefaultClusterParametersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEngineDefaultClusterParameters as schema.OperationSchema, input, options) as async.Operation<types.DescribeEngineDefaultClusterParametersOutput>
 end
 
-function C:describeEventCategories(input: types.DescribeEventCategoriesInput, options: any): async.Operation<types.DescribeEventCategoriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEventCategories, input, options) as async.Operation<types.DescribeEventCategoriesOutput>
+function C:describeEventCategories(input: types.DescribeEventCategoriesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEventCategoriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEventCategories as schema.OperationSchema, input, options) as async.Operation<types.DescribeEventCategoriesOutput>
 end
 
-function C:describeEvents(input: types.DescribeEventsInput, options: any): async.Operation<types.DescribeEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEvents, input, options) as async.Operation<types.DescribeEventsOutput>
+function C:describeEvents(input: types.DescribeEventsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEvents as schema.OperationSchema, input, options) as async.Operation<types.DescribeEventsOutput>
 end
 
-function C:describeEventSubscriptions(input: types.DescribeEventSubscriptionsInput, options: any): async.Operation<types.DescribeEventSubscriptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEventSubscriptions, input, options) as async.Operation<types.DescribeEventSubscriptionsOutput>
+function C:describeEventSubscriptions(input: types.DescribeEventSubscriptionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEventSubscriptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEventSubscriptions as schema.OperationSchema, input, options) as async.Operation<types.DescribeEventSubscriptionsOutput>
 end
 
-function C:describeGlobalClusters(input: types.DescribeGlobalClustersInput, options: any): async.Operation<types.DescribeGlobalClustersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeGlobalClusters, input, options) as async.Operation<types.DescribeGlobalClustersOutput>
+function C:describeGlobalClusters(input: types.DescribeGlobalClustersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeGlobalClustersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeGlobalClusters as schema.OperationSchema, input, options) as async.Operation<types.DescribeGlobalClustersOutput>
 end
 
-function C:describeOrderableDBInstanceOptions(input: types.DescribeOrderableDBInstanceOptionsInput, options: any): async.Operation<types.DescribeOrderableDBInstanceOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeOrderableDBInstanceOptions, input, options) as async.Operation<types.DescribeOrderableDBInstanceOptionsOutput>
+function C:describeOrderableDBInstanceOptions(input: types.DescribeOrderableDBInstanceOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeOrderableDBInstanceOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeOrderableDBInstanceOptions as schema.OperationSchema, input, options) as async.Operation<types.DescribeOrderableDBInstanceOptionsOutput>
 end
 
-function C:describePendingMaintenanceActions(input: types.DescribePendingMaintenanceActionsInput, options: any): async.Operation<types.DescribePendingMaintenanceActionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePendingMaintenanceActions, input, options) as async.Operation<types.DescribePendingMaintenanceActionsOutput>
+function C:describePendingMaintenanceActions(input: types.DescribePendingMaintenanceActionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePendingMaintenanceActionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePendingMaintenanceActions as schema.OperationSchema, input, options) as async.Operation<types.DescribePendingMaintenanceActionsOutput>
 end
 
-function C:failoverDBCluster(input: types.FailoverDBClusterInput, options: any): async.Operation<types.FailoverDBClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.FailoverDBCluster, input, options) as async.Operation<types.FailoverDBClusterOutput>
+function C:failoverDBCluster(input: types.FailoverDBClusterInput, options?: base_client.InvokeOptions): async.Operation<types.FailoverDBClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.FailoverDBCluster as schema.OperationSchema, input, options) as async.Operation<types.FailoverDBClusterOutput>
 end
 
-function C:failoverGlobalCluster(input: types.FailoverGlobalClusterInput, options: any): async.Operation<types.FailoverGlobalClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.FailoverGlobalCluster, input, options) as async.Operation<types.FailoverGlobalClusterOutput>
+function C:failoverGlobalCluster(input: types.FailoverGlobalClusterInput, options?: base_client.InvokeOptions): async.Operation<types.FailoverGlobalClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.FailoverGlobalCluster as schema.OperationSchema, input, options) as async.Operation<types.FailoverGlobalClusterOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:modifyDBCluster(input: types.ModifyDBClusterInput, options: any): async.Operation<types.ModifyDBClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyDBCluster, input, options) as async.Operation<types.ModifyDBClusterOutput>
+function C:modifyDBCluster(input: types.ModifyDBClusterInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyDBClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyDBCluster as schema.OperationSchema, input, options) as async.Operation<types.ModifyDBClusterOutput>
 end
 
-function C:modifyDBClusterParameterGroup(input: types.ModifyDBClusterParameterGroupInput, options: any): async.Operation<types.ModifyDBClusterParameterGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyDBClusterParameterGroup, input, options) as async.Operation<types.ModifyDBClusterParameterGroupOutput>
+function C:modifyDBClusterParameterGroup(input: types.ModifyDBClusterParameterGroupInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyDBClusterParameterGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyDBClusterParameterGroup as schema.OperationSchema, input, options) as async.Operation<types.ModifyDBClusterParameterGroupOutput>
 end
 
-function C:modifyDBClusterSnapshotAttribute(input: types.ModifyDBClusterSnapshotAttributeInput, options: any): async.Operation<types.ModifyDBClusterSnapshotAttributeOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyDBClusterSnapshotAttribute, input, options) as async.Operation<types.ModifyDBClusterSnapshotAttributeOutput>
+function C:modifyDBClusterSnapshotAttribute(input: types.ModifyDBClusterSnapshotAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyDBClusterSnapshotAttributeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyDBClusterSnapshotAttribute as schema.OperationSchema, input, options) as async.Operation<types.ModifyDBClusterSnapshotAttributeOutput>
 end
 
-function C:modifyDBInstance(input: types.ModifyDBInstanceInput, options: any): async.Operation<types.ModifyDBInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyDBInstance, input, options) as async.Operation<types.ModifyDBInstanceOutput>
+function C:modifyDBInstance(input: types.ModifyDBInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyDBInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyDBInstance as schema.OperationSchema, input, options) as async.Operation<types.ModifyDBInstanceOutput>
 end
 
-function C:modifyDBSubnetGroup(input: types.ModifyDBSubnetGroupInput, options: any): async.Operation<types.ModifyDBSubnetGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyDBSubnetGroup, input, options) as async.Operation<types.ModifyDBSubnetGroupOutput>
+function C:modifyDBSubnetGroup(input: types.ModifyDBSubnetGroupInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyDBSubnetGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyDBSubnetGroup as schema.OperationSchema, input, options) as async.Operation<types.ModifyDBSubnetGroupOutput>
 end
 
-function C:modifyEventSubscription(input: types.ModifyEventSubscriptionInput, options: any): async.Operation<types.ModifyEventSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyEventSubscription, input, options) as async.Operation<types.ModifyEventSubscriptionOutput>
+function C:modifyEventSubscription(input: types.ModifyEventSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyEventSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyEventSubscription as schema.OperationSchema, input, options) as async.Operation<types.ModifyEventSubscriptionOutput>
 end
 
-function C:modifyGlobalCluster(input: types.ModifyGlobalClusterInput, options: any): async.Operation<types.ModifyGlobalClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyGlobalCluster, input, options) as async.Operation<types.ModifyGlobalClusterOutput>
+function C:modifyGlobalCluster(input: types.ModifyGlobalClusterInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyGlobalClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyGlobalCluster as schema.OperationSchema, input, options) as async.Operation<types.ModifyGlobalClusterOutput>
 end
 
-function C:rebootDBInstance(input: types.RebootDBInstanceInput, options: any): async.Operation<types.RebootDBInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.RebootDBInstance, input, options) as async.Operation<types.RebootDBInstanceOutput>
+function C:rebootDBInstance(input: types.RebootDBInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.RebootDBInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RebootDBInstance as schema.OperationSchema, input, options) as async.Operation<types.RebootDBInstanceOutput>
 end
 
-function C:removeFromGlobalCluster(input: types.RemoveFromGlobalClusterInput, options: any): async.Operation<types.RemoveFromGlobalClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveFromGlobalCluster, input, options) as async.Operation<types.RemoveFromGlobalClusterOutput>
+function C:removeFromGlobalCluster(input: types.RemoveFromGlobalClusterInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveFromGlobalClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveFromGlobalCluster as schema.OperationSchema, input, options) as async.Operation<types.RemoveFromGlobalClusterOutput>
 end
 
-function C:removeSourceIdentifierFromSubscription(input: types.RemoveSourceIdentifierFromSubscriptionInput, options: any): async.Operation<types.RemoveSourceIdentifierFromSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveSourceIdentifierFromSubscription, input, options) as async.Operation<types.RemoveSourceIdentifierFromSubscriptionOutput>
+function C:removeSourceIdentifierFromSubscription(input: types.RemoveSourceIdentifierFromSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveSourceIdentifierFromSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveSourceIdentifierFromSubscription as schema.OperationSchema, input, options) as async.Operation<types.RemoveSourceIdentifierFromSubscriptionOutput>
 end
 
-function C:removeTagsFromResource(input: types.RemoveTagsFromResourceInput, options: any): async.Operation<types.RemoveTagsFromResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveTagsFromResource, input, options) as async.Operation<types.RemoveTagsFromResourceOutput>
+function C:removeTagsFromResource(input: types.RemoveTagsFromResourceInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveTagsFromResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveTagsFromResource as schema.OperationSchema, input, options) as async.Operation<types.RemoveTagsFromResourceOutput>
 end
 
-function C:resetDBClusterParameterGroup(input: types.ResetDBClusterParameterGroupInput, options: any): async.Operation<types.ResetDBClusterParameterGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResetDBClusterParameterGroup, input, options) as async.Operation<types.ResetDBClusterParameterGroupOutput>
+function C:resetDBClusterParameterGroup(input: types.ResetDBClusterParameterGroupInput, options?: base_client.InvokeOptions): async.Operation<types.ResetDBClusterParameterGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResetDBClusterParameterGroup as schema.OperationSchema, input, options) as async.Operation<types.ResetDBClusterParameterGroupOutput>
 end
 
-function C:restoreDBClusterFromSnapshot(input: types.RestoreDBClusterFromSnapshotInput, options: any): async.Operation<types.RestoreDBClusterFromSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.RestoreDBClusterFromSnapshot, input, options) as async.Operation<types.RestoreDBClusterFromSnapshotOutput>
+function C:restoreDBClusterFromSnapshot(input: types.RestoreDBClusterFromSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.RestoreDBClusterFromSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestoreDBClusterFromSnapshot as schema.OperationSchema, input, options) as async.Operation<types.RestoreDBClusterFromSnapshotOutput>
 end
 
-function C:restoreDBClusterToPointInTime(input: types.RestoreDBClusterToPointInTimeInput, options: any): async.Operation<types.RestoreDBClusterToPointInTimeOutput>
-    return self:invokeOperation(schemas.Service, schemas.RestoreDBClusterToPointInTime, input, options) as async.Operation<types.RestoreDBClusterToPointInTimeOutput>
+function C:restoreDBClusterToPointInTime(input: types.RestoreDBClusterToPointInTimeInput, options?: base_client.InvokeOptions): async.Operation<types.RestoreDBClusterToPointInTimeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestoreDBClusterToPointInTime as schema.OperationSchema, input, options) as async.Operation<types.RestoreDBClusterToPointInTimeOutput>
 end
 
-function C:startDBCluster(input: types.StartDBClusterInput, options: any): async.Operation<types.StartDBClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartDBCluster, input, options) as async.Operation<types.StartDBClusterOutput>
+function C:startDBCluster(input: types.StartDBClusterInput, options?: base_client.InvokeOptions): async.Operation<types.StartDBClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDBCluster as schema.OperationSchema, input, options) as async.Operation<types.StartDBClusterOutput>
 end
 
-function C:stopDBCluster(input: types.StopDBClusterInput, options: any): async.Operation<types.StopDBClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopDBCluster, input, options) as async.Operation<types.StopDBClusterOutput>
+function C:stopDBCluster(input: types.StopDBClusterInput, options?: base_client.InvokeOptions): async.Operation<types.StopDBClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopDBCluster as schema.OperationSchema, input, options) as async.Operation<types.StopDBClusterOutput>
 end
 
-function C:switchoverGlobalCluster(input: types.SwitchoverGlobalClusterInput, options: any): async.Operation<types.SwitchoverGlobalClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.SwitchoverGlobalCluster, input, options) as async.Operation<types.SwitchoverGlobalClusterOutput>
+function C:switchoverGlobalCluster(input: types.SwitchoverGlobalClusterInput, options?: base_client.InvokeOptions): async.Operation<types.SwitchoverGlobalClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SwitchoverGlobalCluster as schema.OperationSchema, input, options) as async.Operation<types.SwitchoverGlobalClusterOutput>
 end
 
 return M

@@ -8,83 +8,86 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("databrew.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("databrew.schemas")
 local traits = require("smithy.traits")
 local types = require("databrew.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchDeleteRecipeVersion: function(Client, types.BatchDeleteRecipeVersionInput, any): async.Operation<types.BatchDeleteRecipeVersionOutput>
-    createDataset: function(Client, types.CreateDatasetInput, any): async.Operation<types.CreateDatasetOutput>
-    createProfileJob: function(Client, types.CreateProfileJobInput, any): async.Operation<types.CreateProfileJobOutput>
-    createProject: function(Client, types.CreateProjectInput, any): async.Operation<types.CreateProjectOutput>
-    createRecipe: function(Client, types.CreateRecipeInput, any): async.Operation<types.CreateRecipeOutput>
-    createRecipeJob: function(Client, types.CreateRecipeJobInput, any): async.Operation<types.CreateRecipeJobOutput>
-    createRuleset: function(Client, types.CreateRulesetInput, any): async.Operation<types.CreateRulesetOutput>
-    createSchedule: function(Client, types.CreateScheduleInput, any): async.Operation<types.CreateScheduleOutput>
-    deleteDataset: function(Client, types.DeleteDatasetInput, any): async.Operation<types.DeleteDatasetOutput>
-    deleteJob: function(Client, types.DeleteJobInput, any): async.Operation<types.DeleteJobOutput>
-    deleteProject: function(Client, types.DeleteProjectInput, any): async.Operation<types.DeleteProjectOutput>
-    deleteRecipeVersion: function(Client, types.DeleteRecipeVersionInput, any): async.Operation<types.DeleteRecipeVersionOutput>
-    deleteRuleset: function(Client, types.DeleteRulesetInput, any): async.Operation<types.DeleteRulesetOutput>
-    deleteSchedule: function(Client, types.DeleteScheduleInput, any): async.Operation<types.DeleteScheduleOutput>
-    describeDataset: function(Client, types.DescribeDatasetInput, any): async.Operation<types.DescribeDatasetOutput>
-    describeJob: function(Client, types.DescribeJobInput, any): async.Operation<types.DescribeJobOutput>
-    describeJobRun: function(Client, types.DescribeJobRunInput, any): async.Operation<types.DescribeJobRunOutput>
-    describeProject: function(Client, types.DescribeProjectInput, any): async.Operation<types.DescribeProjectOutput>
-    describeRecipe: function(Client, types.DescribeRecipeInput, any): async.Operation<types.DescribeRecipeOutput>
-    describeRuleset: function(Client, types.DescribeRulesetInput, any): async.Operation<types.DescribeRulesetOutput>
-    describeSchedule: function(Client, types.DescribeScheduleInput, any): async.Operation<types.DescribeScheduleOutput>
-    listDatasets: function(Client, types.ListDatasetsInput, any): async.Operation<types.ListDatasetsOutput>
-    listJobRuns: function(Client, types.ListJobRunsInput, any): async.Operation<types.ListJobRunsOutput>
-    listJobs: function(Client, types.ListJobsInput, any): async.Operation<types.ListJobsOutput>
-    listProjects: function(Client, types.ListProjectsInput, any): async.Operation<types.ListProjectsOutput>
-    listRecipes: function(Client, types.ListRecipesInput, any): async.Operation<types.ListRecipesOutput>
-    listRecipeVersions: function(Client, types.ListRecipeVersionsInput, any): async.Operation<types.ListRecipeVersionsOutput>
-    listRulesets: function(Client, types.ListRulesetsInput, any): async.Operation<types.ListRulesetsOutput>
-    listSchedules: function(Client, types.ListSchedulesInput, any): async.Operation<types.ListSchedulesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    publishRecipe: function(Client, types.PublishRecipeInput, any): async.Operation<types.PublishRecipeOutput>
-    sendProjectSessionAction: function(Client, types.SendProjectSessionActionInput, any): async.Operation<types.SendProjectSessionActionOutput>
-    startJobRun: function(Client, types.StartJobRunInput, any): async.Operation<types.StartJobRunOutput>
-    startProjectSession: function(Client, types.StartProjectSessionInput, any): async.Operation<types.StartProjectSessionOutput>
-    stopJobRun: function(Client, types.StopJobRunInput, any): async.Operation<types.StopJobRunOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateDataset: function(Client, types.UpdateDatasetInput, any): async.Operation<types.UpdateDatasetOutput>
-    updateProfileJob: function(Client, types.UpdateProfileJobInput, any): async.Operation<types.UpdateProfileJobOutput>
-    updateProject: function(Client, types.UpdateProjectInput, any): async.Operation<types.UpdateProjectOutput>
-    updateRecipe: function(Client, types.UpdateRecipeInput, any): async.Operation<types.UpdateRecipeOutput>
-    updateRecipeJob: function(Client, types.UpdateRecipeJobInput, any): async.Operation<types.UpdateRecipeJobOutput>
-    updateRuleset: function(Client, types.UpdateRulesetInput, any): async.Operation<types.UpdateRulesetOutput>
-    updateSchedule: function(Client, types.UpdateScheduleInput, any): async.Operation<types.UpdateScheduleOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchDeleteRecipeVersion: function(Client, types.BatchDeleteRecipeVersionInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteRecipeVersionOutput>
+    createDataset: function(Client, types.CreateDatasetInput, ? base_client.InvokeOptions): async.Operation<types.CreateDatasetOutput>
+    createProfileJob: function(Client, types.CreateProfileJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateProfileJobOutput>
+    createProject: function(Client, types.CreateProjectInput, ? base_client.InvokeOptions): async.Operation<types.CreateProjectOutput>
+    createRecipe: function(Client, types.CreateRecipeInput, ? base_client.InvokeOptions): async.Operation<types.CreateRecipeOutput>
+    createRecipeJob: function(Client, types.CreateRecipeJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateRecipeJobOutput>
+    createRuleset: function(Client, types.CreateRulesetInput, ? base_client.InvokeOptions): async.Operation<types.CreateRulesetOutput>
+    createSchedule: function(Client, types.CreateScheduleInput, ? base_client.InvokeOptions): async.Operation<types.CreateScheduleOutput>
+    deleteDataset: function(Client, types.DeleteDatasetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDatasetOutput>
+    deleteJob: function(Client, types.DeleteJobInput, ? base_client.InvokeOptions): async.Operation<types.DeleteJobOutput>
+    deleteProject: function(Client, types.DeleteProjectInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProjectOutput>
+    deleteRecipeVersion: function(Client, types.DeleteRecipeVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRecipeVersionOutput>
+    deleteRuleset: function(Client, types.DeleteRulesetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRulesetOutput>
+    deleteSchedule: function(Client, types.DeleteScheduleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteScheduleOutput>
+    describeDataset: function(Client, types.DescribeDatasetInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDatasetOutput>
+    describeJob: function(Client, types.DescribeJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeJobOutput>
+    describeJobRun: function(Client, types.DescribeJobRunInput, ? base_client.InvokeOptions): async.Operation<types.DescribeJobRunOutput>
+    describeProject: function(Client, types.DescribeProjectInput, ? base_client.InvokeOptions): async.Operation<types.DescribeProjectOutput>
+    describeRecipe: function(Client, types.DescribeRecipeInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRecipeOutput>
+    describeRuleset: function(Client, types.DescribeRulesetInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRulesetOutput>
+    describeSchedule: function(Client, types.DescribeScheduleInput, ? base_client.InvokeOptions): async.Operation<types.DescribeScheduleOutput>
+    listDatasets: function(Client, types.ListDatasetsInput, ? base_client.InvokeOptions): async.Operation<types.ListDatasetsOutput>
+    listJobRuns: function(Client, types.ListJobRunsInput, ? base_client.InvokeOptions): async.Operation<types.ListJobRunsOutput>
+    listJobs: function(Client, types.ListJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListJobsOutput>
+    listProjects: function(Client, types.ListProjectsInput, ? base_client.InvokeOptions): async.Operation<types.ListProjectsOutput>
+    listRecipes: function(Client, types.ListRecipesInput, ? base_client.InvokeOptions): async.Operation<types.ListRecipesOutput>
+    listRecipeVersions: function(Client, types.ListRecipeVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListRecipeVersionsOutput>
+    listRulesets: function(Client, types.ListRulesetsInput, ? base_client.InvokeOptions): async.Operation<types.ListRulesetsOutput>
+    listSchedules: function(Client, types.ListSchedulesInput, ? base_client.InvokeOptions): async.Operation<types.ListSchedulesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    publishRecipe: function(Client, types.PublishRecipeInput, ? base_client.InvokeOptions): async.Operation<types.PublishRecipeOutput>
+    sendProjectSessionAction: function(Client, types.SendProjectSessionActionInput, ? base_client.InvokeOptions): async.Operation<types.SendProjectSessionActionOutput>
+    startJobRun: function(Client, types.StartJobRunInput, ? base_client.InvokeOptions): async.Operation<types.StartJobRunOutput>
+    startProjectSession: function(Client, types.StartProjectSessionInput, ? base_client.InvokeOptions): async.Operation<types.StartProjectSessionOutput>
+    stopJobRun: function(Client, types.StopJobRunInput, ? base_client.InvokeOptions): async.Operation<types.StopJobRunOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateDataset: function(Client, types.UpdateDatasetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDatasetOutput>
+    updateProfileJob: function(Client, types.UpdateProfileJobInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProfileJobOutput>
+    updateProject: function(Client, types.UpdateProjectInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProjectOutput>
+    updateRecipe: function(Client, types.UpdateRecipeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRecipeOutput>
+    updateRecipeJob: function(Client, types.UpdateRecipeJobInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRecipeJobOutput>
+    updateRuleset: function(Client, types.UpdateRulesetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRulesetOutput>
+    updateSchedule: function(Client, types.UpdateScheduleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateScheduleOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSGlueDataBrew"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "databrew", signing_region = c.region } }
                 else
@@ -103,180 +106,180 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchDeleteRecipeVersion(input: types.BatchDeleteRecipeVersionInput, options: any): async.Operation<types.BatchDeleteRecipeVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDeleteRecipeVersion, input, options) as async.Operation<types.BatchDeleteRecipeVersionOutput>
+function C:batchDeleteRecipeVersion(input: types.BatchDeleteRecipeVersionInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteRecipeVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteRecipeVersion as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteRecipeVersionOutput>
 end
 
-function C:createDataset(input: types.CreateDatasetInput, options: any): async.Operation<types.CreateDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataset, input, options) as async.Operation<types.CreateDatasetOutput>
+function C:createDataset(input: types.CreateDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataset as schema.OperationSchema, input, options) as async.Operation<types.CreateDatasetOutput>
 end
 
-function C:createProfileJob(input: types.CreateProfileJobInput, options: any): async.Operation<types.CreateProfileJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProfileJob, input, options) as async.Operation<types.CreateProfileJobOutput>
+function C:createProfileJob(input: types.CreateProfileJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProfileJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProfileJob as schema.OperationSchema, input, options) as async.Operation<types.CreateProfileJobOutput>
 end
 
-function C:createProject(input: types.CreateProjectInput, options: any): async.Operation<types.CreateProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProject, input, options) as async.Operation<types.CreateProjectOutput>
+function C:createProject(input: types.CreateProjectInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProject as schema.OperationSchema, input, options) as async.Operation<types.CreateProjectOutput>
 end
 
-function C:createRecipe(input: types.CreateRecipeInput, options: any): async.Operation<types.CreateRecipeOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRecipe, input, options) as async.Operation<types.CreateRecipeOutput>
+function C:createRecipe(input: types.CreateRecipeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRecipeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRecipe as schema.OperationSchema, input, options) as async.Operation<types.CreateRecipeOutput>
 end
 
-function C:createRecipeJob(input: types.CreateRecipeJobInput, options: any): async.Operation<types.CreateRecipeJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRecipeJob, input, options) as async.Operation<types.CreateRecipeJobOutput>
+function C:createRecipeJob(input: types.CreateRecipeJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRecipeJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRecipeJob as schema.OperationSchema, input, options) as async.Operation<types.CreateRecipeJobOutput>
 end
 
-function C:createRuleset(input: types.CreateRulesetInput, options: any): async.Operation<types.CreateRulesetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRuleset, input, options) as async.Operation<types.CreateRulesetOutput>
+function C:createRuleset(input: types.CreateRulesetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRulesetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRuleset as schema.OperationSchema, input, options) as async.Operation<types.CreateRulesetOutput>
 end
 
-function C:createSchedule(input: types.CreateScheduleInput, options: any): async.Operation<types.CreateScheduleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSchedule, input, options) as async.Operation<types.CreateScheduleOutput>
+function C:createSchedule(input: types.CreateScheduleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateScheduleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSchedule as schema.OperationSchema, input, options) as async.Operation<types.CreateScheduleOutput>
 end
 
-function C:deleteDataset(input: types.DeleteDatasetInput, options: any): async.Operation<types.DeleteDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDataset, input, options) as async.Operation<types.DeleteDatasetOutput>
+function C:deleteDataset(input: types.DeleteDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataset as schema.OperationSchema, input, options) as async.Operation<types.DeleteDatasetOutput>
 end
 
-function C:deleteJob(input: types.DeleteJobInput, options: any): async.Operation<types.DeleteJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteJob, input, options) as async.Operation<types.DeleteJobOutput>
+function C:deleteJob(input: types.DeleteJobInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteJob as schema.OperationSchema, input, options) as async.Operation<types.DeleteJobOutput>
 end
 
-function C:deleteProject(input: types.DeleteProjectInput, options: any): async.Operation<types.DeleteProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProject, input, options) as async.Operation<types.DeleteProjectOutput>
+function C:deleteProject(input: types.DeleteProjectInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProject as schema.OperationSchema, input, options) as async.Operation<types.DeleteProjectOutput>
 end
 
-function C:deleteRecipeVersion(input: types.DeleteRecipeVersionInput, options: any): async.Operation<types.DeleteRecipeVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRecipeVersion, input, options) as async.Operation<types.DeleteRecipeVersionOutput>
+function C:deleteRecipeVersion(input: types.DeleteRecipeVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRecipeVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRecipeVersion as schema.OperationSchema, input, options) as async.Operation<types.DeleteRecipeVersionOutput>
 end
 
-function C:deleteRuleset(input: types.DeleteRulesetInput, options: any): async.Operation<types.DeleteRulesetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRuleset, input, options) as async.Operation<types.DeleteRulesetOutput>
+function C:deleteRuleset(input: types.DeleteRulesetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRulesetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRuleset as schema.OperationSchema, input, options) as async.Operation<types.DeleteRulesetOutput>
 end
 
-function C:deleteSchedule(input: types.DeleteScheduleInput, options: any): async.Operation<types.DeleteScheduleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSchedule, input, options) as async.Operation<types.DeleteScheduleOutput>
+function C:deleteSchedule(input: types.DeleteScheduleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteScheduleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSchedule as schema.OperationSchema, input, options) as async.Operation<types.DeleteScheduleOutput>
 end
 
-function C:describeDataset(input: types.DescribeDatasetInput, options: any): async.Operation<types.DescribeDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDataset, input, options) as async.Operation<types.DescribeDatasetOutput>
+function C:describeDataset(input: types.DescribeDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDataset as schema.OperationSchema, input, options) as async.Operation<types.DescribeDatasetOutput>
 end
 
-function C:describeJob(input: types.DescribeJobInput, options: any): async.Operation<types.DescribeJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeJob, input, options) as async.Operation<types.DescribeJobOutput>
+function C:describeJob(input: types.DescribeJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeJobOutput>
 end
 
-function C:describeJobRun(input: types.DescribeJobRunInput, options: any): async.Operation<types.DescribeJobRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeJobRun, input, options) as async.Operation<types.DescribeJobRunOutput>
+function C:describeJobRun(input: types.DescribeJobRunInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeJobRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeJobRun as schema.OperationSchema, input, options) as async.Operation<types.DescribeJobRunOutput>
 end
 
-function C:describeProject(input: types.DescribeProjectInput, options: any): async.Operation<types.DescribeProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeProject, input, options) as async.Operation<types.DescribeProjectOutput>
+function C:describeProject(input: types.DescribeProjectInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeProject as schema.OperationSchema, input, options) as async.Operation<types.DescribeProjectOutput>
 end
 
-function C:describeRecipe(input: types.DescribeRecipeInput, options: any): async.Operation<types.DescribeRecipeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRecipe, input, options) as async.Operation<types.DescribeRecipeOutput>
+function C:describeRecipe(input: types.DescribeRecipeInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRecipeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRecipe as schema.OperationSchema, input, options) as async.Operation<types.DescribeRecipeOutput>
 end
 
-function C:describeRuleset(input: types.DescribeRulesetInput, options: any): async.Operation<types.DescribeRulesetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRuleset, input, options) as async.Operation<types.DescribeRulesetOutput>
+function C:describeRuleset(input: types.DescribeRulesetInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRulesetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRuleset as schema.OperationSchema, input, options) as async.Operation<types.DescribeRulesetOutput>
 end
 
-function C:describeSchedule(input: types.DescribeScheduleInput, options: any): async.Operation<types.DescribeScheduleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSchedule, input, options) as async.Operation<types.DescribeScheduleOutput>
+function C:describeSchedule(input: types.DescribeScheduleInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeScheduleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSchedule as schema.OperationSchema, input, options) as async.Operation<types.DescribeScheduleOutput>
 end
 
-function C:listDatasets(input: types.ListDatasetsInput, options: any): async.Operation<types.ListDatasetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDatasets, input, options) as async.Operation<types.ListDatasetsOutput>
+function C:listDatasets(input: types.ListDatasetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDatasetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDatasets as schema.OperationSchema, input, options) as async.Operation<types.ListDatasetsOutput>
 end
 
-function C:listJobRuns(input: types.ListJobRunsInput, options: any): async.Operation<types.ListJobRunsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListJobRuns, input, options) as async.Operation<types.ListJobRunsOutput>
+function C:listJobRuns(input: types.ListJobRunsInput, options?: base_client.InvokeOptions): async.Operation<types.ListJobRunsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListJobRuns as schema.OperationSchema, input, options) as async.Operation<types.ListJobRunsOutput>
 end
 
-function C:listJobs(input: types.ListJobsInput, options: any): async.Operation<types.ListJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListJobs, input, options) as async.Operation<types.ListJobsOutput>
+function C:listJobs(input: types.ListJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListJobs as schema.OperationSchema, input, options) as async.Operation<types.ListJobsOutput>
 end
 
-function C:listProjects(input: types.ListProjectsInput, options: any): async.Operation<types.ListProjectsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProjects, input, options) as async.Operation<types.ListProjectsOutput>
+function C:listProjects(input: types.ListProjectsInput, options?: base_client.InvokeOptions): async.Operation<types.ListProjectsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProjects as schema.OperationSchema, input, options) as async.Operation<types.ListProjectsOutput>
 end
 
-function C:listRecipes(input: types.ListRecipesInput, options: any): async.Operation<types.ListRecipesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRecipes, input, options) as async.Operation<types.ListRecipesOutput>
+function C:listRecipes(input: types.ListRecipesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecipesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecipes as schema.OperationSchema, input, options) as async.Operation<types.ListRecipesOutput>
 end
 
-function C:listRecipeVersions(input: types.ListRecipeVersionsInput, options: any): async.Operation<types.ListRecipeVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRecipeVersions, input, options) as async.Operation<types.ListRecipeVersionsOutput>
+function C:listRecipeVersions(input: types.ListRecipeVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecipeVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecipeVersions as schema.OperationSchema, input, options) as async.Operation<types.ListRecipeVersionsOutput>
 end
 
-function C:listRulesets(input: types.ListRulesetsInput, options: any): async.Operation<types.ListRulesetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRulesets, input, options) as async.Operation<types.ListRulesetsOutput>
+function C:listRulesets(input: types.ListRulesetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRulesetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRulesets as schema.OperationSchema, input, options) as async.Operation<types.ListRulesetsOutput>
 end
 
-function C:listSchedules(input: types.ListSchedulesInput, options: any): async.Operation<types.ListSchedulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSchedules, input, options) as async.Operation<types.ListSchedulesOutput>
+function C:listSchedules(input: types.ListSchedulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSchedulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSchedules as schema.OperationSchema, input, options) as async.Operation<types.ListSchedulesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:publishRecipe(input: types.PublishRecipeInput, options: any): async.Operation<types.PublishRecipeOutput>
-    return self:invokeOperation(schemas.Service, schemas.PublishRecipe, input, options) as async.Operation<types.PublishRecipeOutput>
+function C:publishRecipe(input: types.PublishRecipeInput, options?: base_client.InvokeOptions): async.Operation<types.PublishRecipeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PublishRecipe as schema.OperationSchema, input, options) as async.Operation<types.PublishRecipeOutput>
 end
 
-function C:sendProjectSessionAction(input: types.SendProjectSessionActionInput, options: any): async.Operation<types.SendProjectSessionActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendProjectSessionAction, input, options) as async.Operation<types.SendProjectSessionActionOutput>
+function C:sendProjectSessionAction(input: types.SendProjectSessionActionInput, options?: base_client.InvokeOptions): async.Operation<types.SendProjectSessionActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendProjectSessionAction as schema.OperationSchema, input, options) as async.Operation<types.SendProjectSessionActionOutput>
 end
 
-function C:startJobRun(input: types.StartJobRunInput, options: any): async.Operation<types.StartJobRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartJobRun, input, options) as async.Operation<types.StartJobRunOutput>
+function C:startJobRun(input: types.StartJobRunInput, options?: base_client.InvokeOptions): async.Operation<types.StartJobRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartJobRun as schema.OperationSchema, input, options) as async.Operation<types.StartJobRunOutput>
 end
 
-function C:startProjectSession(input: types.StartProjectSessionInput, options: any): async.Operation<types.StartProjectSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartProjectSession, input, options) as async.Operation<types.StartProjectSessionOutput>
+function C:startProjectSession(input: types.StartProjectSessionInput, options?: base_client.InvokeOptions): async.Operation<types.StartProjectSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartProjectSession as schema.OperationSchema, input, options) as async.Operation<types.StartProjectSessionOutput>
 end
 
-function C:stopJobRun(input: types.StopJobRunInput, options: any): async.Operation<types.StopJobRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopJobRun, input, options) as async.Operation<types.StopJobRunOutput>
+function C:stopJobRun(input: types.StopJobRunInput, options?: base_client.InvokeOptions): async.Operation<types.StopJobRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopJobRun as schema.OperationSchema, input, options) as async.Operation<types.StopJobRunOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateDataset(input: types.UpdateDatasetInput, options: any): async.Operation<types.UpdateDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDataset, input, options) as async.Operation<types.UpdateDatasetOutput>
+function C:updateDataset(input: types.UpdateDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDataset as schema.OperationSchema, input, options) as async.Operation<types.UpdateDatasetOutput>
 end
 
-function C:updateProfileJob(input: types.UpdateProfileJobInput, options: any): async.Operation<types.UpdateProfileJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProfileJob, input, options) as async.Operation<types.UpdateProfileJobOutput>
+function C:updateProfileJob(input: types.UpdateProfileJobInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProfileJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProfileJob as schema.OperationSchema, input, options) as async.Operation<types.UpdateProfileJobOutput>
 end
 
-function C:updateProject(input: types.UpdateProjectInput, options: any): async.Operation<types.UpdateProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProject, input, options) as async.Operation<types.UpdateProjectOutput>
+function C:updateProject(input: types.UpdateProjectInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProject as schema.OperationSchema, input, options) as async.Operation<types.UpdateProjectOutput>
 end
 
-function C:updateRecipe(input: types.UpdateRecipeInput, options: any): async.Operation<types.UpdateRecipeOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRecipe, input, options) as async.Operation<types.UpdateRecipeOutput>
+function C:updateRecipe(input: types.UpdateRecipeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRecipeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRecipe as schema.OperationSchema, input, options) as async.Operation<types.UpdateRecipeOutput>
 end
 
-function C:updateRecipeJob(input: types.UpdateRecipeJobInput, options: any): async.Operation<types.UpdateRecipeJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRecipeJob, input, options) as async.Operation<types.UpdateRecipeJobOutput>
+function C:updateRecipeJob(input: types.UpdateRecipeJobInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRecipeJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRecipeJob as schema.OperationSchema, input, options) as async.Operation<types.UpdateRecipeJobOutput>
 end
 
-function C:updateRuleset(input: types.UpdateRulesetInput, options: any): async.Operation<types.UpdateRulesetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRuleset, input, options) as async.Operation<types.UpdateRulesetOutput>
+function C:updateRuleset(input: types.UpdateRulesetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRulesetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRuleset as schema.OperationSchema, input, options) as async.Operation<types.UpdateRulesetOutput>
 end
 
-function C:updateSchedule(input: types.UpdateScheduleInput, options: any): async.Operation<types.UpdateScheduleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSchedule, input, options) as async.Operation<types.UpdateScheduleOutput>
+function C:updateSchedule(input: types.UpdateScheduleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateScheduleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSchedule as schema.OperationSchema, input, options) as async.Operation<types.UpdateScheduleOutput>
 end
 
 return M

@@ -8,49 +8,52 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("rbin.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("rbin.schemas")
 local traits = require("smithy.traits")
 local types = require("rbin.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createRule: function(Client, types.CreateRuleInput, any): async.Operation<types.CreateRuleOutput>
-    deleteRule: function(Client, types.DeleteRuleInput, any): async.Operation<types.DeleteRuleOutput>
-    getRule: function(Client, types.GetRuleInput, any): async.Operation<types.GetRuleOutput>
-    listRules: function(Client, types.ListRulesInput, any): async.Operation<types.ListRulesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    lockRule: function(Client, types.LockRuleInput, any): async.Operation<types.LockRuleOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    unlockRule: function(Client, types.UnlockRuleInput, any): async.Operation<types.UnlockRuleOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateRule: function(Client, types.UpdateRuleInput, any): async.Operation<types.UpdateRuleOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createRule: function(Client, types.CreateRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateRuleOutput>
+    deleteRule: function(Client, types.DeleteRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRuleOutput>
+    getRule: function(Client, types.GetRuleInput, ? base_client.InvokeOptions): async.Operation<types.GetRuleOutput>
+    listRules: function(Client, types.ListRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListRulesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    lockRule: function(Client, types.LockRuleInput, ? base_client.InvokeOptions): async.Operation<types.LockRuleOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    unlockRule: function(Client, types.UnlockRuleInput, ? base_client.InvokeOptions): async.Operation<types.UnlockRuleOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateRule: function(Client, types.UpdateRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRuleOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonRecycleBin"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "rbin", signing_region = c.region } }
                 else
@@ -69,44 +72,44 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createRule(input: types.CreateRuleInput, options: any): async.Operation<types.CreateRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRule, input, options) as async.Operation<types.CreateRuleOutput>
+function C:createRule(input: types.CreateRuleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRule as schema.OperationSchema, input, options) as async.Operation<types.CreateRuleOutput>
 end
 
-function C:deleteRule(input: types.DeleteRuleInput, options: any): async.Operation<types.DeleteRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRule, input, options) as async.Operation<types.DeleteRuleOutput>
+function C:deleteRule(input: types.DeleteRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRule as schema.OperationSchema, input, options) as async.Operation<types.DeleteRuleOutput>
 end
 
-function C:getRule(input: types.GetRuleInput, options: any): async.Operation<types.GetRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRule, input, options) as async.Operation<types.GetRuleOutput>
+function C:getRule(input: types.GetRuleInput, options?: base_client.InvokeOptions): async.Operation<types.GetRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRule as schema.OperationSchema, input, options) as async.Operation<types.GetRuleOutput>
 end
 
-function C:listRules(input: types.ListRulesInput, options: any): async.Operation<types.ListRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRules, input, options) as async.Operation<types.ListRulesOutput>
+function C:listRules(input: types.ListRulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRules as schema.OperationSchema, input, options) as async.Operation<types.ListRulesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:lockRule(input: types.LockRuleInput, options: any): async.Operation<types.LockRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.LockRule, input, options) as async.Operation<types.LockRuleOutput>
+function C:lockRule(input: types.LockRuleInput, options?: base_client.InvokeOptions): async.Operation<types.LockRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.LockRule as schema.OperationSchema, input, options) as async.Operation<types.LockRuleOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:unlockRule(input: types.UnlockRuleInput, options: any): async.Operation<types.UnlockRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UnlockRule, input, options) as async.Operation<types.UnlockRuleOutput>
+function C:unlockRule(input: types.UnlockRuleInput, options?: base_client.InvokeOptions): async.Operation<types.UnlockRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UnlockRule as schema.OperationSchema, input, options) as async.Operation<types.UnlockRuleOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateRule(input: types.UpdateRuleInput, options: any): async.Operation<types.UpdateRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRule, input, options) as async.Operation<types.UpdateRuleOutput>
+function C:updateRule(input: types.UpdateRuleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRule as schema.OperationSchema, input, options) as async.Operation<types.UpdateRuleOutput>
 end
 
 return M

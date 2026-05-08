@@ -8,44 +8,47 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("pricing.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("pricing.schemas")
 local traits = require("smithy.traits")
 local types = require("pricing.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    describeServices: function(Client, types.DescribeServicesInput, any): async.Operation<types.DescribeServicesOutput>
-    getAttributeValues: function(Client, types.GetAttributeValuesInput, any): async.Operation<types.GetAttributeValuesOutput>
-    getPriceListFileUrl: function(Client, types.GetPriceListFileUrlInput, any): async.Operation<types.GetPriceListFileUrlOutput>
-    getProducts: function(Client, types.GetProductsInput, any): async.Operation<types.GetProductsOutput>
-    listPriceLists: function(Client, types.ListPriceListsInput, any): async.Operation<types.ListPriceListsOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    describeServices: function(Client, types.DescribeServicesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeServicesOutput>
+    getAttributeValues: function(Client, types.GetAttributeValuesInput, ? base_client.InvokeOptions): async.Operation<types.GetAttributeValuesOutput>
+    getPriceListFileUrl: function(Client, types.GetPriceListFileUrlInput, ? base_client.InvokeOptions): async.Operation<types.GetPriceListFileUrlOutput>
+    getProducts: function(Client, types.GetProductsInput, ? base_client.InvokeOptions): async.Operation<types.GetProductsOutput>
+    listPriceLists: function(Client, types.ListPriceListsInput, ? base_client.InvokeOptions): async.Operation<types.ListPriceListsOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSPriceListService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "pricing", signing_region = c.region } }
                 else
@@ -64,24 +67,24 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:describeServices(input: types.DescribeServicesInput, options: any): async.Operation<types.DescribeServicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeServices, input, options) as async.Operation<types.DescribeServicesOutput>
+function C:describeServices(input: types.DescribeServicesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeServicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeServices as schema.OperationSchema, input, options) as async.Operation<types.DescribeServicesOutput>
 end
 
-function C:getAttributeValues(input: types.GetAttributeValuesInput, options: any): async.Operation<types.GetAttributeValuesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAttributeValues, input, options) as async.Operation<types.GetAttributeValuesOutput>
+function C:getAttributeValues(input: types.GetAttributeValuesInput, options?: base_client.InvokeOptions): async.Operation<types.GetAttributeValuesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAttributeValues as schema.OperationSchema, input, options) as async.Operation<types.GetAttributeValuesOutput>
 end
 
-function C:getPriceListFileUrl(input: types.GetPriceListFileUrlInput, options: any): async.Operation<types.GetPriceListFileUrlOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPriceListFileUrl, input, options) as async.Operation<types.GetPriceListFileUrlOutput>
+function C:getPriceListFileUrl(input: types.GetPriceListFileUrlInput, options?: base_client.InvokeOptions): async.Operation<types.GetPriceListFileUrlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPriceListFileUrl as schema.OperationSchema, input, options) as async.Operation<types.GetPriceListFileUrlOutput>
 end
 
-function C:getProducts(input: types.GetProductsInput, options: any): async.Operation<types.GetProductsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetProducts, input, options) as async.Operation<types.GetProductsOutput>
+function C:getProducts(input: types.GetProductsInput, options?: base_client.InvokeOptions): async.Operation<types.GetProductsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProducts as schema.OperationSchema, input, options) as async.Operation<types.GetProductsOutput>
 end
 
-function C:listPriceLists(input: types.ListPriceListsInput, options: any): async.Operation<types.ListPriceListsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPriceLists, input, options) as async.Operation<types.ListPriceListsOutput>
+function C:listPriceLists(input: types.ListPriceListsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPriceListsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPriceLists as schema.OperationSchema, input, options) as async.Operation<types.ListPriceListsOutput>
 end
 
 return M

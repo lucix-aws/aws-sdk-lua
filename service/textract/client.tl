@@ -8,64 +8,67 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("textract.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("textract.schemas")
 local traits = require("smithy.traits")
 local types = require("textract.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    analyzeDocument: function(Client, types.AnalyzeDocumentInput, any): async.Operation<types.AnalyzeDocumentOutput>
-    analyzeExpense: function(Client, types.AnalyzeExpenseInput, any): async.Operation<types.AnalyzeExpenseOutput>
-    analyzeID: function(Client, types.AnalyzeIDInput, any): async.Operation<types.AnalyzeIDOutput>
-    createAdapter: function(Client, types.CreateAdapterInput, any): async.Operation<types.CreateAdapterOutput>
-    createAdapterVersion: function(Client, types.CreateAdapterVersionInput, any): async.Operation<types.CreateAdapterVersionOutput>
-    deleteAdapter: function(Client, types.DeleteAdapterInput, any): async.Operation<types.DeleteAdapterOutput>
-    deleteAdapterVersion: function(Client, types.DeleteAdapterVersionInput, any): async.Operation<types.DeleteAdapterVersionOutput>
-    detectDocumentText: function(Client, types.DetectDocumentTextInput, any): async.Operation<types.DetectDocumentTextOutput>
-    getAdapter: function(Client, types.GetAdapterInput, any): async.Operation<types.GetAdapterOutput>
-    getAdapterVersion: function(Client, types.GetAdapterVersionInput, any): async.Operation<types.GetAdapterVersionOutput>
-    getDocumentAnalysis: function(Client, types.GetDocumentAnalysisInput, any): async.Operation<types.GetDocumentAnalysisOutput>
-    getDocumentTextDetection: function(Client, types.GetDocumentTextDetectionInput, any): async.Operation<types.GetDocumentTextDetectionOutput>
-    getExpenseAnalysis: function(Client, types.GetExpenseAnalysisInput, any): async.Operation<types.GetExpenseAnalysisOutput>
-    getLendingAnalysis: function(Client, types.GetLendingAnalysisInput, any): async.Operation<types.GetLendingAnalysisOutput>
-    getLendingAnalysisSummary: function(Client, types.GetLendingAnalysisSummaryInput, any): async.Operation<types.GetLendingAnalysisSummaryOutput>
-    listAdapters: function(Client, types.ListAdaptersInput, any): async.Operation<types.ListAdaptersOutput>
-    listAdapterVersions: function(Client, types.ListAdapterVersionsInput, any): async.Operation<types.ListAdapterVersionsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    startDocumentAnalysis: function(Client, types.StartDocumentAnalysisInput, any): async.Operation<types.StartDocumentAnalysisOutput>
-    startDocumentTextDetection: function(Client, types.StartDocumentTextDetectionInput, any): async.Operation<types.StartDocumentTextDetectionOutput>
-    startExpenseAnalysis: function(Client, types.StartExpenseAnalysisInput, any): async.Operation<types.StartExpenseAnalysisOutput>
-    startLendingAnalysis: function(Client, types.StartLendingAnalysisInput, any): async.Operation<types.StartLendingAnalysisOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAdapter: function(Client, types.UpdateAdapterInput, any): async.Operation<types.UpdateAdapterOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    analyzeDocument: function(Client, types.AnalyzeDocumentInput, ? base_client.InvokeOptions): async.Operation<types.AnalyzeDocumentOutput>
+    analyzeExpense: function(Client, types.AnalyzeExpenseInput, ? base_client.InvokeOptions): async.Operation<types.AnalyzeExpenseOutput>
+    analyzeID: function(Client, types.AnalyzeIDInput, ? base_client.InvokeOptions): async.Operation<types.AnalyzeIDOutput>
+    createAdapter: function(Client, types.CreateAdapterInput, ? base_client.InvokeOptions): async.Operation<types.CreateAdapterOutput>
+    createAdapterVersion: function(Client, types.CreateAdapterVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateAdapterVersionOutput>
+    deleteAdapter: function(Client, types.DeleteAdapterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAdapterOutput>
+    deleteAdapterVersion: function(Client, types.DeleteAdapterVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAdapterVersionOutput>
+    detectDocumentText: function(Client, types.DetectDocumentTextInput, ? base_client.InvokeOptions): async.Operation<types.DetectDocumentTextOutput>
+    getAdapter: function(Client, types.GetAdapterInput, ? base_client.InvokeOptions): async.Operation<types.GetAdapterOutput>
+    getAdapterVersion: function(Client, types.GetAdapterVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetAdapterVersionOutput>
+    getDocumentAnalysis: function(Client, types.GetDocumentAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.GetDocumentAnalysisOutput>
+    getDocumentTextDetection: function(Client, types.GetDocumentTextDetectionInput, ? base_client.InvokeOptions): async.Operation<types.GetDocumentTextDetectionOutput>
+    getExpenseAnalysis: function(Client, types.GetExpenseAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.GetExpenseAnalysisOutput>
+    getLendingAnalysis: function(Client, types.GetLendingAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.GetLendingAnalysisOutput>
+    getLendingAnalysisSummary: function(Client, types.GetLendingAnalysisSummaryInput, ? base_client.InvokeOptions): async.Operation<types.GetLendingAnalysisSummaryOutput>
+    listAdapters: function(Client, types.ListAdaptersInput, ? base_client.InvokeOptions): async.Operation<types.ListAdaptersOutput>
+    listAdapterVersions: function(Client, types.ListAdapterVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListAdapterVersionsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    startDocumentAnalysis: function(Client, types.StartDocumentAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.StartDocumentAnalysisOutput>
+    startDocumentTextDetection: function(Client, types.StartDocumentTextDetectionInput, ? base_client.InvokeOptions): async.Operation<types.StartDocumentTextDetectionOutput>
+    startExpenseAnalysis: function(Client, types.StartExpenseAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.StartExpenseAnalysisOutput>
+    startLendingAnalysis: function(Client, types.StartLendingAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.StartLendingAnalysisOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAdapter: function(Client, types.UpdateAdapterInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAdapterOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "Textract"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "textract", signing_region = c.region } }
                 else
@@ -84,104 +87,104 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:analyzeDocument(input: types.AnalyzeDocumentInput, options: any): async.Operation<types.AnalyzeDocumentOutput>
-    return self:invokeOperation(schemas.Service, schemas.AnalyzeDocument, input, options) as async.Operation<types.AnalyzeDocumentOutput>
+function C:analyzeDocument(input: types.AnalyzeDocumentInput, options?: base_client.InvokeOptions): async.Operation<types.AnalyzeDocumentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AnalyzeDocument as schema.OperationSchema, input, options) as async.Operation<types.AnalyzeDocumentOutput>
 end
 
-function C:analyzeExpense(input: types.AnalyzeExpenseInput, options: any): async.Operation<types.AnalyzeExpenseOutput>
-    return self:invokeOperation(schemas.Service, schemas.AnalyzeExpense, input, options) as async.Operation<types.AnalyzeExpenseOutput>
+function C:analyzeExpense(input: types.AnalyzeExpenseInput, options?: base_client.InvokeOptions): async.Operation<types.AnalyzeExpenseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AnalyzeExpense as schema.OperationSchema, input, options) as async.Operation<types.AnalyzeExpenseOutput>
 end
 
-function C:analyzeID(input: types.AnalyzeIDInput, options: any): async.Operation<types.AnalyzeIDOutput>
-    return self:invokeOperation(schemas.Service, schemas.AnalyzeID, input, options) as async.Operation<types.AnalyzeIDOutput>
+function C:analyzeID(input: types.AnalyzeIDInput, options?: base_client.InvokeOptions): async.Operation<types.AnalyzeIDOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AnalyzeID as schema.OperationSchema, input, options) as async.Operation<types.AnalyzeIDOutput>
 end
 
-function C:createAdapter(input: types.CreateAdapterInput, options: any): async.Operation<types.CreateAdapterOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAdapter, input, options) as async.Operation<types.CreateAdapterOutput>
+function C:createAdapter(input: types.CreateAdapterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAdapterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAdapter as schema.OperationSchema, input, options) as async.Operation<types.CreateAdapterOutput>
 end
 
-function C:createAdapterVersion(input: types.CreateAdapterVersionInput, options: any): async.Operation<types.CreateAdapterVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAdapterVersion, input, options) as async.Operation<types.CreateAdapterVersionOutput>
+function C:createAdapterVersion(input: types.CreateAdapterVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAdapterVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAdapterVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateAdapterVersionOutput>
 end
 
-function C:deleteAdapter(input: types.DeleteAdapterInput, options: any): async.Operation<types.DeleteAdapterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAdapter, input, options) as async.Operation<types.DeleteAdapterOutput>
+function C:deleteAdapter(input: types.DeleteAdapterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAdapterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAdapter as schema.OperationSchema, input, options) as async.Operation<types.DeleteAdapterOutput>
 end
 
-function C:deleteAdapterVersion(input: types.DeleteAdapterVersionInput, options: any): async.Operation<types.DeleteAdapterVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAdapterVersion, input, options) as async.Operation<types.DeleteAdapterVersionOutput>
+function C:deleteAdapterVersion(input: types.DeleteAdapterVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAdapterVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAdapterVersion as schema.OperationSchema, input, options) as async.Operation<types.DeleteAdapterVersionOutput>
 end
 
-function C:detectDocumentText(input: types.DetectDocumentTextInput, options: any): async.Operation<types.DetectDocumentTextOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetectDocumentText, input, options) as async.Operation<types.DetectDocumentTextOutput>
+function C:detectDocumentText(input: types.DetectDocumentTextInput, options?: base_client.InvokeOptions): async.Operation<types.DetectDocumentTextOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetectDocumentText as schema.OperationSchema, input, options) as async.Operation<types.DetectDocumentTextOutput>
 end
 
-function C:getAdapter(input: types.GetAdapterInput, options: any): async.Operation<types.GetAdapterOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAdapter, input, options) as async.Operation<types.GetAdapterOutput>
+function C:getAdapter(input: types.GetAdapterInput, options?: base_client.InvokeOptions): async.Operation<types.GetAdapterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAdapter as schema.OperationSchema, input, options) as async.Operation<types.GetAdapterOutput>
 end
 
-function C:getAdapterVersion(input: types.GetAdapterVersionInput, options: any): async.Operation<types.GetAdapterVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAdapterVersion, input, options) as async.Operation<types.GetAdapterVersionOutput>
+function C:getAdapterVersion(input: types.GetAdapterVersionInput, options?: base_client.InvokeOptions): async.Operation<types.GetAdapterVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAdapterVersion as schema.OperationSchema, input, options) as async.Operation<types.GetAdapterVersionOutput>
 end
 
-function C:getDocumentAnalysis(input: types.GetDocumentAnalysisInput, options: any): async.Operation<types.GetDocumentAnalysisOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDocumentAnalysis, input, options) as async.Operation<types.GetDocumentAnalysisOutput>
+function C:getDocumentAnalysis(input: types.GetDocumentAnalysisInput, options?: base_client.InvokeOptions): async.Operation<types.GetDocumentAnalysisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDocumentAnalysis as schema.OperationSchema, input, options) as async.Operation<types.GetDocumentAnalysisOutput>
 end
 
-function C:getDocumentTextDetection(input: types.GetDocumentTextDetectionInput, options: any): async.Operation<types.GetDocumentTextDetectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDocumentTextDetection, input, options) as async.Operation<types.GetDocumentTextDetectionOutput>
+function C:getDocumentTextDetection(input: types.GetDocumentTextDetectionInput, options?: base_client.InvokeOptions): async.Operation<types.GetDocumentTextDetectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDocumentTextDetection as schema.OperationSchema, input, options) as async.Operation<types.GetDocumentTextDetectionOutput>
 end
 
-function C:getExpenseAnalysis(input: types.GetExpenseAnalysisInput, options: any): async.Operation<types.GetExpenseAnalysisOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetExpenseAnalysis, input, options) as async.Operation<types.GetExpenseAnalysisOutput>
+function C:getExpenseAnalysis(input: types.GetExpenseAnalysisInput, options?: base_client.InvokeOptions): async.Operation<types.GetExpenseAnalysisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetExpenseAnalysis as schema.OperationSchema, input, options) as async.Operation<types.GetExpenseAnalysisOutput>
 end
 
-function C:getLendingAnalysis(input: types.GetLendingAnalysisInput, options: any): async.Operation<types.GetLendingAnalysisOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLendingAnalysis, input, options) as async.Operation<types.GetLendingAnalysisOutput>
+function C:getLendingAnalysis(input: types.GetLendingAnalysisInput, options?: base_client.InvokeOptions): async.Operation<types.GetLendingAnalysisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLendingAnalysis as schema.OperationSchema, input, options) as async.Operation<types.GetLendingAnalysisOutput>
 end
 
-function C:getLendingAnalysisSummary(input: types.GetLendingAnalysisSummaryInput, options: any): async.Operation<types.GetLendingAnalysisSummaryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLendingAnalysisSummary, input, options) as async.Operation<types.GetLendingAnalysisSummaryOutput>
+function C:getLendingAnalysisSummary(input: types.GetLendingAnalysisSummaryInput, options?: base_client.InvokeOptions): async.Operation<types.GetLendingAnalysisSummaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLendingAnalysisSummary as schema.OperationSchema, input, options) as async.Operation<types.GetLendingAnalysisSummaryOutput>
 end
 
-function C:listAdapters(input: types.ListAdaptersInput, options: any): async.Operation<types.ListAdaptersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAdapters, input, options) as async.Operation<types.ListAdaptersOutput>
+function C:listAdapters(input: types.ListAdaptersInput, options?: base_client.InvokeOptions): async.Operation<types.ListAdaptersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAdapters as schema.OperationSchema, input, options) as async.Operation<types.ListAdaptersOutput>
 end
 
-function C:listAdapterVersions(input: types.ListAdapterVersionsInput, options: any): async.Operation<types.ListAdapterVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAdapterVersions, input, options) as async.Operation<types.ListAdapterVersionsOutput>
+function C:listAdapterVersions(input: types.ListAdapterVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAdapterVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAdapterVersions as schema.OperationSchema, input, options) as async.Operation<types.ListAdapterVersionsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:startDocumentAnalysis(input: types.StartDocumentAnalysisInput, options: any): async.Operation<types.StartDocumentAnalysisOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartDocumentAnalysis, input, options) as async.Operation<types.StartDocumentAnalysisOutput>
+function C:startDocumentAnalysis(input: types.StartDocumentAnalysisInput, options?: base_client.InvokeOptions): async.Operation<types.StartDocumentAnalysisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDocumentAnalysis as schema.OperationSchema, input, options) as async.Operation<types.StartDocumentAnalysisOutput>
 end
 
-function C:startDocumentTextDetection(input: types.StartDocumentTextDetectionInput, options: any): async.Operation<types.StartDocumentTextDetectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartDocumentTextDetection, input, options) as async.Operation<types.StartDocumentTextDetectionOutput>
+function C:startDocumentTextDetection(input: types.StartDocumentTextDetectionInput, options?: base_client.InvokeOptions): async.Operation<types.StartDocumentTextDetectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDocumentTextDetection as schema.OperationSchema, input, options) as async.Operation<types.StartDocumentTextDetectionOutput>
 end
 
-function C:startExpenseAnalysis(input: types.StartExpenseAnalysisInput, options: any): async.Operation<types.StartExpenseAnalysisOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartExpenseAnalysis, input, options) as async.Operation<types.StartExpenseAnalysisOutput>
+function C:startExpenseAnalysis(input: types.StartExpenseAnalysisInput, options?: base_client.InvokeOptions): async.Operation<types.StartExpenseAnalysisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartExpenseAnalysis as schema.OperationSchema, input, options) as async.Operation<types.StartExpenseAnalysisOutput>
 end
 
-function C:startLendingAnalysis(input: types.StartLendingAnalysisInput, options: any): async.Operation<types.StartLendingAnalysisOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartLendingAnalysis, input, options) as async.Operation<types.StartLendingAnalysisOutput>
+function C:startLendingAnalysis(input: types.StartLendingAnalysisInput, options?: base_client.InvokeOptions): async.Operation<types.StartLendingAnalysisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartLendingAnalysis as schema.OperationSchema, input, options) as async.Operation<types.StartLendingAnalysisOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAdapter(input: types.UpdateAdapterInput, options: any): async.Operation<types.UpdateAdapterOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAdapter, input, options) as async.Operation<types.UpdateAdapterOutput>
+function C:updateAdapter(input: types.UpdateAdapterInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAdapterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAdapter as schema.OperationSchema, input, options) as async.Operation<types.UpdateAdapterOutput>
 end
 
 return M

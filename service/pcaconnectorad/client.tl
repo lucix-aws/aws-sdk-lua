@@ -8,64 +8,67 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("pcaconnectorad.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("pcaconnectorad.schemas")
 local traits = require("smithy.traits")
 local types = require("pcaconnectorad.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createConnector: function(Client, types.CreateConnectorInput, any): async.Operation<types.CreateConnectorOutput>
-    createDirectoryRegistration: function(Client, types.CreateDirectoryRegistrationInput, any): async.Operation<types.CreateDirectoryRegistrationOutput>
-    createServicePrincipalName: function(Client, types.CreateServicePrincipalNameInput, any): async.Operation<types.CreateServicePrincipalNameOutput>
-    createTemplate: function(Client, types.CreateTemplateInput, any): async.Operation<types.CreateTemplateOutput>
-    createTemplateGroupAccessControlEntry: function(Client, types.CreateTemplateGroupAccessControlEntryInput, any): async.Operation<types.CreateTemplateGroupAccessControlEntryOutput>
-    deleteConnector: function(Client, types.DeleteConnectorInput, any): async.Operation<types.DeleteConnectorOutput>
-    deleteDirectoryRegistration: function(Client, types.DeleteDirectoryRegistrationInput, any): async.Operation<types.DeleteDirectoryRegistrationOutput>
-    deleteServicePrincipalName: function(Client, types.DeleteServicePrincipalNameInput, any): async.Operation<types.DeleteServicePrincipalNameOutput>
-    deleteTemplate: function(Client, types.DeleteTemplateInput, any): async.Operation<types.DeleteTemplateOutput>
-    deleteTemplateGroupAccessControlEntry: function(Client, types.DeleteTemplateGroupAccessControlEntryInput, any): async.Operation<types.DeleteTemplateGroupAccessControlEntryOutput>
-    getConnector: function(Client, types.GetConnectorInput, any): async.Operation<types.GetConnectorOutput>
-    getDirectoryRegistration: function(Client, types.GetDirectoryRegistrationInput, any): async.Operation<types.GetDirectoryRegistrationOutput>
-    getServicePrincipalName: function(Client, types.GetServicePrincipalNameInput, any): async.Operation<types.GetServicePrincipalNameOutput>
-    getTemplate: function(Client, types.GetTemplateInput, any): async.Operation<types.GetTemplateOutput>
-    getTemplateGroupAccessControlEntry: function(Client, types.GetTemplateGroupAccessControlEntryInput, any): async.Operation<types.GetTemplateGroupAccessControlEntryOutput>
-    listConnectors: function(Client, types.ListConnectorsInput, any): async.Operation<types.ListConnectorsOutput>
-    listDirectoryRegistrations: function(Client, types.ListDirectoryRegistrationsInput, any): async.Operation<types.ListDirectoryRegistrationsOutput>
-    listServicePrincipalNames: function(Client, types.ListServicePrincipalNamesInput, any): async.Operation<types.ListServicePrincipalNamesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTemplateGroupAccessControlEntries: function(Client, types.ListTemplateGroupAccessControlEntriesInput, any): async.Operation<types.ListTemplateGroupAccessControlEntriesOutput>
-    listTemplates: function(Client, types.ListTemplatesInput, any): async.Operation<types.ListTemplatesOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateTemplate: function(Client, types.UpdateTemplateInput, any): async.Operation<types.UpdateTemplateOutput>
-    updateTemplateGroupAccessControlEntry: function(Client, types.UpdateTemplateGroupAccessControlEntryInput, any): async.Operation<types.UpdateTemplateGroupAccessControlEntryOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createConnector: function(Client, types.CreateConnectorInput, ? base_client.InvokeOptions): async.Operation<types.CreateConnectorOutput>
+    createDirectoryRegistration: function(Client, types.CreateDirectoryRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.CreateDirectoryRegistrationOutput>
+    createServicePrincipalName: function(Client, types.CreateServicePrincipalNameInput, ? base_client.InvokeOptions): async.Operation<types.CreateServicePrincipalNameOutput>
+    createTemplate: function(Client, types.CreateTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateTemplateOutput>
+    createTemplateGroupAccessControlEntry: function(Client, types.CreateTemplateGroupAccessControlEntryInput, ? base_client.InvokeOptions): async.Operation<types.CreateTemplateGroupAccessControlEntryOutput>
+    deleteConnector: function(Client, types.DeleteConnectorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConnectorOutput>
+    deleteDirectoryRegistration: function(Client, types.DeleteDirectoryRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDirectoryRegistrationOutput>
+    deleteServicePrincipalName: function(Client, types.DeleteServicePrincipalNameInput, ? base_client.InvokeOptions): async.Operation<types.DeleteServicePrincipalNameOutput>
+    deleteTemplate: function(Client, types.DeleteTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTemplateOutput>
+    deleteTemplateGroupAccessControlEntry: function(Client, types.DeleteTemplateGroupAccessControlEntryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTemplateGroupAccessControlEntryOutput>
+    getConnector: function(Client, types.GetConnectorInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectorOutput>
+    getDirectoryRegistration: function(Client, types.GetDirectoryRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.GetDirectoryRegistrationOutput>
+    getServicePrincipalName: function(Client, types.GetServicePrincipalNameInput, ? base_client.InvokeOptions): async.Operation<types.GetServicePrincipalNameOutput>
+    getTemplate: function(Client, types.GetTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetTemplateOutput>
+    getTemplateGroupAccessControlEntry: function(Client, types.GetTemplateGroupAccessControlEntryInput, ? base_client.InvokeOptions): async.Operation<types.GetTemplateGroupAccessControlEntryOutput>
+    listConnectors: function(Client, types.ListConnectorsInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectorsOutput>
+    listDirectoryRegistrations: function(Client, types.ListDirectoryRegistrationsInput, ? base_client.InvokeOptions): async.Operation<types.ListDirectoryRegistrationsOutput>
+    listServicePrincipalNames: function(Client, types.ListServicePrincipalNamesInput, ? base_client.InvokeOptions): async.Operation<types.ListServicePrincipalNamesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTemplateGroupAccessControlEntries: function(Client, types.ListTemplateGroupAccessControlEntriesInput, ? base_client.InvokeOptions): async.Operation<types.ListTemplateGroupAccessControlEntriesOutput>
+    listTemplates: function(Client, types.ListTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListTemplatesOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateTemplate: function(Client, types.UpdateTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTemplateOutput>
+    updateTemplateGroupAccessControlEntry: function(Client, types.UpdateTemplateGroupAccessControlEntryInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTemplateGroupAccessControlEntryOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "PcaConnectorAd"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "pca-connector-ad", signing_region = c.region } }
                 else
@@ -84,104 +87,104 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createConnector(input: types.CreateConnectorInput, options: any): async.Operation<types.CreateConnectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConnector, input, options) as async.Operation<types.CreateConnectorOutput>
+function C:createConnector(input: types.CreateConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConnector as schema.OperationSchema, input, options) as async.Operation<types.CreateConnectorOutput>
 end
 
-function C:createDirectoryRegistration(input: types.CreateDirectoryRegistrationInput, options: any): async.Operation<types.CreateDirectoryRegistrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDirectoryRegistration, input, options) as async.Operation<types.CreateDirectoryRegistrationOutput>
+function C:createDirectoryRegistration(input: types.CreateDirectoryRegistrationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDirectoryRegistrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDirectoryRegistration as schema.OperationSchema, input, options) as async.Operation<types.CreateDirectoryRegistrationOutput>
 end
 
-function C:createServicePrincipalName(input: types.CreateServicePrincipalNameInput, options: any): async.Operation<types.CreateServicePrincipalNameOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateServicePrincipalName, input, options) as async.Operation<types.CreateServicePrincipalNameOutput>
+function C:createServicePrincipalName(input: types.CreateServicePrincipalNameInput, options?: base_client.InvokeOptions): async.Operation<types.CreateServicePrincipalNameOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateServicePrincipalName as schema.OperationSchema, input, options) as async.Operation<types.CreateServicePrincipalNameOutput>
 end
 
-function C:createTemplate(input: types.CreateTemplateInput, options: any): async.Operation<types.CreateTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTemplate, input, options) as async.Operation<types.CreateTemplateOutput>
+function C:createTemplate(input: types.CreateTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateTemplateOutput>
 end
 
-function C:createTemplateGroupAccessControlEntry(input: types.CreateTemplateGroupAccessControlEntryInput, options: any): async.Operation<types.CreateTemplateGroupAccessControlEntryOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTemplateGroupAccessControlEntry, input, options) as async.Operation<types.CreateTemplateGroupAccessControlEntryOutput>
+function C:createTemplateGroupAccessControlEntry(input: types.CreateTemplateGroupAccessControlEntryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTemplateGroupAccessControlEntryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTemplateGroupAccessControlEntry as schema.OperationSchema, input, options) as async.Operation<types.CreateTemplateGroupAccessControlEntryOutput>
 end
 
-function C:deleteConnector(input: types.DeleteConnectorInput, options: any): async.Operation<types.DeleteConnectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConnector, input, options) as async.Operation<types.DeleteConnectorOutput>
+function C:deleteConnector(input: types.DeleteConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConnector as schema.OperationSchema, input, options) as async.Operation<types.DeleteConnectorOutput>
 end
 
-function C:deleteDirectoryRegistration(input: types.DeleteDirectoryRegistrationInput, options: any): async.Operation<types.DeleteDirectoryRegistrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDirectoryRegistration, input, options) as async.Operation<types.DeleteDirectoryRegistrationOutput>
+function C:deleteDirectoryRegistration(input: types.DeleteDirectoryRegistrationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDirectoryRegistrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDirectoryRegistration as schema.OperationSchema, input, options) as async.Operation<types.DeleteDirectoryRegistrationOutput>
 end
 
-function C:deleteServicePrincipalName(input: types.DeleteServicePrincipalNameInput, options: any): async.Operation<types.DeleteServicePrincipalNameOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteServicePrincipalName, input, options) as async.Operation<types.DeleteServicePrincipalNameOutput>
+function C:deleteServicePrincipalName(input: types.DeleteServicePrincipalNameInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteServicePrincipalNameOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteServicePrincipalName as schema.OperationSchema, input, options) as async.Operation<types.DeleteServicePrincipalNameOutput>
 end
 
-function C:deleteTemplate(input: types.DeleteTemplateInput, options: any): async.Operation<types.DeleteTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTemplate, input, options) as async.Operation<types.DeleteTemplateOutput>
+function C:deleteTemplate(input: types.DeleteTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteTemplateOutput>
 end
 
-function C:deleteTemplateGroupAccessControlEntry(input: types.DeleteTemplateGroupAccessControlEntryInput, options: any): async.Operation<types.DeleteTemplateGroupAccessControlEntryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTemplateGroupAccessControlEntry, input, options) as async.Operation<types.DeleteTemplateGroupAccessControlEntryOutput>
+function C:deleteTemplateGroupAccessControlEntry(input: types.DeleteTemplateGroupAccessControlEntryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTemplateGroupAccessControlEntryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTemplateGroupAccessControlEntry as schema.OperationSchema, input, options) as async.Operation<types.DeleteTemplateGroupAccessControlEntryOutput>
 end
 
-function C:getConnector(input: types.GetConnectorInput, options: any): async.Operation<types.GetConnectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConnector, input, options) as async.Operation<types.GetConnectorOutput>
+function C:getConnector(input: types.GetConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.GetConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConnector as schema.OperationSchema, input, options) as async.Operation<types.GetConnectorOutput>
 end
 
-function C:getDirectoryRegistration(input: types.GetDirectoryRegistrationInput, options: any): async.Operation<types.GetDirectoryRegistrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDirectoryRegistration, input, options) as async.Operation<types.GetDirectoryRegistrationOutput>
+function C:getDirectoryRegistration(input: types.GetDirectoryRegistrationInput, options?: base_client.InvokeOptions): async.Operation<types.GetDirectoryRegistrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDirectoryRegistration as schema.OperationSchema, input, options) as async.Operation<types.GetDirectoryRegistrationOutput>
 end
 
-function C:getServicePrincipalName(input: types.GetServicePrincipalNameInput, options: any): async.Operation<types.GetServicePrincipalNameOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetServicePrincipalName, input, options) as async.Operation<types.GetServicePrincipalNameOutput>
+function C:getServicePrincipalName(input: types.GetServicePrincipalNameInput, options?: base_client.InvokeOptions): async.Operation<types.GetServicePrincipalNameOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetServicePrincipalName as schema.OperationSchema, input, options) as async.Operation<types.GetServicePrincipalNameOutput>
 end
 
-function C:getTemplate(input: types.GetTemplateInput, options: any): async.Operation<types.GetTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTemplate, input, options) as async.Operation<types.GetTemplateOutput>
+function C:getTemplate(input: types.GetTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetTemplateOutput>
 end
 
-function C:getTemplateGroupAccessControlEntry(input: types.GetTemplateGroupAccessControlEntryInput, options: any): async.Operation<types.GetTemplateGroupAccessControlEntryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTemplateGroupAccessControlEntry, input, options) as async.Operation<types.GetTemplateGroupAccessControlEntryOutput>
+function C:getTemplateGroupAccessControlEntry(input: types.GetTemplateGroupAccessControlEntryInput, options?: base_client.InvokeOptions): async.Operation<types.GetTemplateGroupAccessControlEntryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTemplateGroupAccessControlEntry as schema.OperationSchema, input, options) as async.Operation<types.GetTemplateGroupAccessControlEntryOutput>
 end
 
-function C:listConnectors(input: types.ListConnectorsInput, options: any): async.Operation<types.ListConnectorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConnectors, input, options) as async.Operation<types.ListConnectorsOutput>
+function C:listConnectors(input: types.ListConnectorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConnectorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConnectors as schema.OperationSchema, input, options) as async.Operation<types.ListConnectorsOutput>
 end
 
-function C:listDirectoryRegistrations(input: types.ListDirectoryRegistrationsInput, options: any): async.Operation<types.ListDirectoryRegistrationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDirectoryRegistrations, input, options) as async.Operation<types.ListDirectoryRegistrationsOutput>
+function C:listDirectoryRegistrations(input: types.ListDirectoryRegistrationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDirectoryRegistrationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDirectoryRegistrations as schema.OperationSchema, input, options) as async.Operation<types.ListDirectoryRegistrationsOutput>
 end
 
-function C:listServicePrincipalNames(input: types.ListServicePrincipalNamesInput, options: any): async.Operation<types.ListServicePrincipalNamesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServicePrincipalNames, input, options) as async.Operation<types.ListServicePrincipalNamesOutput>
+function C:listServicePrincipalNames(input: types.ListServicePrincipalNamesInput, options?: base_client.InvokeOptions): async.Operation<types.ListServicePrincipalNamesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServicePrincipalNames as schema.OperationSchema, input, options) as async.Operation<types.ListServicePrincipalNamesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTemplateGroupAccessControlEntries(input: types.ListTemplateGroupAccessControlEntriesInput, options: any): async.Operation<types.ListTemplateGroupAccessControlEntriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTemplateGroupAccessControlEntries, input, options) as async.Operation<types.ListTemplateGroupAccessControlEntriesOutput>
+function C:listTemplateGroupAccessControlEntries(input: types.ListTemplateGroupAccessControlEntriesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTemplateGroupAccessControlEntriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTemplateGroupAccessControlEntries as schema.OperationSchema, input, options) as async.Operation<types.ListTemplateGroupAccessControlEntriesOutput>
 end
 
-function C:listTemplates(input: types.ListTemplatesInput, options: any): async.Operation<types.ListTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTemplates, input, options) as async.Operation<types.ListTemplatesOutput>
+function C:listTemplates(input: types.ListTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListTemplatesOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateTemplate(input: types.UpdateTemplateInput, options: any): async.Operation<types.UpdateTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTemplate, input, options) as async.Operation<types.UpdateTemplateOutput>
+function C:updateTemplate(input: types.UpdateTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateTemplateOutput>
 end
 
-function C:updateTemplateGroupAccessControlEntry(input: types.UpdateTemplateGroupAccessControlEntryInput, options: any): async.Operation<types.UpdateTemplateGroupAccessControlEntryOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTemplateGroupAccessControlEntry, input, options) as async.Operation<types.UpdateTemplateGroupAccessControlEntryOutput>
+function C:updateTemplateGroupAccessControlEntry(input: types.UpdateTemplateGroupAccessControlEntryInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTemplateGroupAccessControlEntryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTemplateGroupAccessControlEntry as schema.OperationSchema, input, options) as async.Operation<types.UpdateTemplateGroupAccessControlEntryOutput>
 end
 
 return M

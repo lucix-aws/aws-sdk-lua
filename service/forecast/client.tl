@@ -8,102 +8,105 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("forecast.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("forecast.schemas")
 local traits = require("smithy.traits")
 local types = require("forecast.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createAutoPredictor: function(Client, types.CreateAutoPredictorInput, any): async.Operation<types.CreateAutoPredictorOutput>
-    createDataset: function(Client, types.CreateDatasetInput, any): async.Operation<types.CreateDatasetOutput>
-    createDatasetGroup: function(Client, types.CreateDatasetGroupInput, any): async.Operation<types.CreateDatasetGroupOutput>
-    createDatasetImportJob: function(Client, types.CreateDatasetImportJobInput, any): async.Operation<types.CreateDatasetImportJobOutput>
-    createExplainability: function(Client, types.CreateExplainabilityInput, any): async.Operation<types.CreateExplainabilityOutput>
-    createExplainabilityExport: function(Client, types.CreateExplainabilityExportInput, any): async.Operation<types.CreateExplainabilityExportOutput>
-    createForecast: function(Client, types.CreateForecastInput, any): async.Operation<types.CreateForecastOutput>
-    createForecastExportJob: function(Client, types.CreateForecastExportJobInput, any): async.Operation<types.CreateForecastExportJobOutput>
-    createMonitor: function(Client, types.CreateMonitorInput, any): async.Operation<types.CreateMonitorOutput>
-    createPredictor: function(Client, types.CreatePredictorInput, any): async.Operation<types.CreatePredictorOutput>
-    createPredictorBacktestExportJob: function(Client, types.CreatePredictorBacktestExportJobInput, any): async.Operation<types.CreatePredictorBacktestExportJobOutput>
-    createWhatIfAnalysis: function(Client, types.CreateWhatIfAnalysisInput, any): async.Operation<types.CreateWhatIfAnalysisOutput>
-    createWhatIfForecast: function(Client, types.CreateWhatIfForecastInput, any): async.Operation<types.CreateWhatIfForecastOutput>
-    createWhatIfForecastExport: function(Client, types.CreateWhatIfForecastExportInput, any): async.Operation<types.CreateWhatIfForecastExportOutput>
-    deleteDataset: function(Client, types.DeleteDatasetInput, any): async.Operation<types.DeleteDatasetOutput>
-    deleteDatasetGroup: function(Client, types.DeleteDatasetGroupInput, any): async.Operation<types.DeleteDatasetGroupOutput>
-    deleteDatasetImportJob: function(Client, types.DeleteDatasetImportJobInput, any): async.Operation<types.DeleteDatasetImportJobOutput>
-    deleteExplainability: function(Client, types.DeleteExplainabilityInput, any): async.Operation<types.DeleteExplainabilityOutput>
-    deleteExplainabilityExport: function(Client, types.DeleteExplainabilityExportInput, any): async.Operation<types.DeleteExplainabilityExportOutput>
-    deleteForecast: function(Client, types.DeleteForecastInput, any): async.Operation<types.DeleteForecastOutput>
-    deleteForecastExportJob: function(Client, types.DeleteForecastExportJobInput, any): async.Operation<types.DeleteForecastExportJobOutput>
-    deleteMonitor: function(Client, types.DeleteMonitorInput, any): async.Operation<types.DeleteMonitorOutput>
-    deletePredictor: function(Client, types.DeletePredictorInput, any): async.Operation<types.DeletePredictorOutput>
-    deletePredictorBacktestExportJob: function(Client, types.DeletePredictorBacktestExportJobInput, any): async.Operation<types.DeletePredictorBacktestExportJobOutput>
-    deleteResourceTree: function(Client, types.DeleteResourceTreeInput, any): async.Operation<types.DeleteResourceTreeOutput>
-    deleteWhatIfAnalysis: function(Client, types.DeleteWhatIfAnalysisInput, any): async.Operation<types.DeleteWhatIfAnalysisOutput>
-    deleteWhatIfForecast: function(Client, types.DeleteWhatIfForecastInput, any): async.Operation<types.DeleteWhatIfForecastOutput>
-    deleteWhatIfForecastExport: function(Client, types.DeleteWhatIfForecastExportInput, any): async.Operation<types.DeleteWhatIfForecastExportOutput>
-    describeAutoPredictor: function(Client, types.DescribeAutoPredictorInput, any): async.Operation<types.DescribeAutoPredictorOutput>
-    describeDataset: function(Client, types.DescribeDatasetInput, any): async.Operation<types.DescribeDatasetOutput>
-    describeDatasetGroup: function(Client, types.DescribeDatasetGroupInput, any): async.Operation<types.DescribeDatasetGroupOutput>
-    describeDatasetImportJob: function(Client, types.DescribeDatasetImportJobInput, any): async.Operation<types.DescribeDatasetImportJobOutput>
-    describeExplainability: function(Client, types.DescribeExplainabilityInput, any): async.Operation<types.DescribeExplainabilityOutput>
-    describeExplainabilityExport: function(Client, types.DescribeExplainabilityExportInput, any): async.Operation<types.DescribeExplainabilityExportOutput>
-    describeForecast: function(Client, types.DescribeForecastInput, any): async.Operation<types.DescribeForecastOutput>
-    describeForecastExportJob: function(Client, types.DescribeForecastExportJobInput, any): async.Operation<types.DescribeForecastExportJobOutput>
-    describeMonitor: function(Client, types.DescribeMonitorInput, any): async.Operation<types.DescribeMonitorOutput>
-    describePredictor: function(Client, types.DescribePredictorInput, any): async.Operation<types.DescribePredictorOutput>
-    describePredictorBacktestExportJob: function(Client, types.DescribePredictorBacktestExportJobInput, any): async.Operation<types.DescribePredictorBacktestExportJobOutput>
-    describeWhatIfAnalysis: function(Client, types.DescribeWhatIfAnalysisInput, any): async.Operation<types.DescribeWhatIfAnalysisOutput>
-    describeWhatIfForecast: function(Client, types.DescribeWhatIfForecastInput, any): async.Operation<types.DescribeWhatIfForecastOutput>
-    describeWhatIfForecastExport: function(Client, types.DescribeWhatIfForecastExportInput, any): async.Operation<types.DescribeWhatIfForecastExportOutput>
-    getAccuracyMetrics: function(Client, types.GetAccuracyMetricsInput, any): async.Operation<types.GetAccuracyMetricsOutput>
-    listDatasetGroups: function(Client, types.ListDatasetGroupsInput, any): async.Operation<types.ListDatasetGroupsOutput>
-    listDatasetImportJobs: function(Client, types.ListDatasetImportJobsInput, any): async.Operation<types.ListDatasetImportJobsOutput>
-    listDatasets: function(Client, types.ListDatasetsInput, any): async.Operation<types.ListDatasetsOutput>
-    listExplainabilities: function(Client, types.ListExplainabilitiesInput, any): async.Operation<types.ListExplainabilitiesOutput>
-    listExplainabilityExports: function(Client, types.ListExplainabilityExportsInput, any): async.Operation<types.ListExplainabilityExportsOutput>
-    listForecastExportJobs: function(Client, types.ListForecastExportJobsInput, any): async.Operation<types.ListForecastExportJobsOutput>
-    listForecasts: function(Client, types.ListForecastsInput, any): async.Operation<types.ListForecastsOutput>
-    listMonitorEvaluations: function(Client, types.ListMonitorEvaluationsInput, any): async.Operation<types.ListMonitorEvaluationsOutput>
-    listMonitors: function(Client, types.ListMonitorsInput, any): async.Operation<types.ListMonitorsOutput>
-    listPredictorBacktestExportJobs: function(Client, types.ListPredictorBacktestExportJobsInput, any): async.Operation<types.ListPredictorBacktestExportJobsOutput>
-    listPredictors: function(Client, types.ListPredictorsInput, any): async.Operation<types.ListPredictorsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listWhatIfAnalyses: function(Client, types.ListWhatIfAnalysesInput, any): async.Operation<types.ListWhatIfAnalysesOutput>
-    listWhatIfForecastExports: function(Client, types.ListWhatIfForecastExportsInput, any): async.Operation<types.ListWhatIfForecastExportsOutput>
-    listWhatIfForecasts: function(Client, types.ListWhatIfForecastsInput, any): async.Operation<types.ListWhatIfForecastsOutput>
-    resumeResource: function(Client, types.ResumeResourceInput, any): async.Operation<types.ResumeResourceOutput>
-    stopResource: function(Client, types.StopResourceInput, any): async.Operation<types.StopResourceOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateDatasetGroup: function(Client, types.UpdateDatasetGroupInput, any): async.Operation<types.UpdateDatasetGroupOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createAutoPredictor: function(Client, types.CreateAutoPredictorInput, ? base_client.InvokeOptions): async.Operation<types.CreateAutoPredictorOutput>
+    createDataset: function(Client, types.CreateDatasetInput, ? base_client.InvokeOptions): async.Operation<types.CreateDatasetOutput>
+    createDatasetGroup: function(Client, types.CreateDatasetGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateDatasetGroupOutput>
+    createDatasetImportJob: function(Client, types.CreateDatasetImportJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateDatasetImportJobOutput>
+    createExplainability: function(Client, types.CreateExplainabilityInput, ? base_client.InvokeOptions): async.Operation<types.CreateExplainabilityOutput>
+    createExplainabilityExport: function(Client, types.CreateExplainabilityExportInput, ? base_client.InvokeOptions): async.Operation<types.CreateExplainabilityExportOutput>
+    createForecast: function(Client, types.CreateForecastInput, ? base_client.InvokeOptions): async.Operation<types.CreateForecastOutput>
+    createForecastExportJob: function(Client, types.CreateForecastExportJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateForecastExportJobOutput>
+    createMonitor: function(Client, types.CreateMonitorInput, ? base_client.InvokeOptions): async.Operation<types.CreateMonitorOutput>
+    createPredictor: function(Client, types.CreatePredictorInput, ? base_client.InvokeOptions): async.Operation<types.CreatePredictorOutput>
+    createPredictorBacktestExportJob: function(Client, types.CreatePredictorBacktestExportJobInput, ? base_client.InvokeOptions): async.Operation<types.CreatePredictorBacktestExportJobOutput>
+    createWhatIfAnalysis: function(Client, types.CreateWhatIfAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.CreateWhatIfAnalysisOutput>
+    createWhatIfForecast: function(Client, types.CreateWhatIfForecastInput, ? base_client.InvokeOptions): async.Operation<types.CreateWhatIfForecastOutput>
+    createWhatIfForecastExport: function(Client, types.CreateWhatIfForecastExportInput, ? base_client.InvokeOptions): async.Operation<types.CreateWhatIfForecastExportOutput>
+    deleteDataset: function(Client, types.DeleteDatasetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDatasetOutput>
+    deleteDatasetGroup: function(Client, types.DeleteDatasetGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDatasetGroupOutput>
+    deleteDatasetImportJob: function(Client, types.DeleteDatasetImportJobInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDatasetImportJobOutput>
+    deleteExplainability: function(Client, types.DeleteExplainabilityInput, ? base_client.InvokeOptions): async.Operation<types.DeleteExplainabilityOutput>
+    deleteExplainabilityExport: function(Client, types.DeleteExplainabilityExportInput, ? base_client.InvokeOptions): async.Operation<types.DeleteExplainabilityExportOutput>
+    deleteForecast: function(Client, types.DeleteForecastInput, ? base_client.InvokeOptions): async.Operation<types.DeleteForecastOutput>
+    deleteForecastExportJob: function(Client, types.DeleteForecastExportJobInput, ? base_client.InvokeOptions): async.Operation<types.DeleteForecastExportJobOutput>
+    deleteMonitor: function(Client, types.DeleteMonitorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMonitorOutput>
+    deletePredictor: function(Client, types.DeletePredictorInput, ? base_client.InvokeOptions): async.Operation<types.DeletePredictorOutput>
+    deletePredictorBacktestExportJob: function(Client, types.DeletePredictorBacktestExportJobInput, ? base_client.InvokeOptions): async.Operation<types.DeletePredictorBacktestExportJobOutput>
+    deleteResourceTree: function(Client, types.DeleteResourceTreeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourceTreeOutput>
+    deleteWhatIfAnalysis: function(Client, types.DeleteWhatIfAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWhatIfAnalysisOutput>
+    deleteWhatIfForecast: function(Client, types.DeleteWhatIfForecastInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWhatIfForecastOutput>
+    deleteWhatIfForecastExport: function(Client, types.DeleteWhatIfForecastExportInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWhatIfForecastExportOutput>
+    describeAutoPredictor: function(Client, types.DescribeAutoPredictorInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAutoPredictorOutput>
+    describeDataset: function(Client, types.DescribeDatasetInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDatasetOutput>
+    describeDatasetGroup: function(Client, types.DescribeDatasetGroupInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDatasetGroupOutput>
+    describeDatasetImportJob: function(Client, types.DescribeDatasetImportJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDatasetImportJobOutput>
+    describeExplainability: function(Client, types.DescribeExplainabilityInput, ? base_client.InvokeOptions): async.Operation<types.DescribeExplainabilityOutput>
+    describeExplainabilityExport: function(Client, types.DescribeExplainabilityExportInput, ? base_client.InvokeOptions): async.Operation<types.DescribeExplainabilityExportOutput>
+    describeForecast: function(Client, types.DescribeForecastInput, ? base_client.InvokeOptions): async.Operation<types.DescribeForecastOutput>
+    describeForecastExportJob: function(Client, types.DescribeForecastExportJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeForecastExportJobOutput>
+    describeMonitor: function(Client, types.DescribeMonitorInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMonitorOutput>
+    describePredictor: function(Client, types.DescribePredictorInput, ? base_client.InvokeOptions): async.Operation<types.DescribePredictorOutput>
+    describePredictorBacktestExportJob: function(Client, types.DescribePredictorBacktestExportJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribePredictorBacktestExportJobOutput>
+    describeWhatIfAnalysis: function(Client, types.DescribeWhatIfAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.DescribeWhatIfAnalysisOutput>
+    describeWhatIfForecast: function(Client, types.DescribeWhatIfForecastInput, ? base_client.InvokeOptions): async.Operation<types.DescribeWhatIfForecastOutput>
+    describeWhatIfForecastExport: function(Client, types.DescribeWhatIfForecastExportInput, ? base_client.InvokeOptions): async.Operation<types.DescribeWhatIfForecastExportOutput>
+    getAccuracyMetrics: function(Client, types.GetAccuracyMetricsInput, ? base_client.InvokeOptions): async.Operation<types.GetAccuracyMetricsOutput>
+    listDatasetGroups: function(Client, types.ListDatasetGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListDatasetGroupsOutput>
+    listDatasetImportJobs: function(Client, types.ListDatasetImportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListDatasetImportJobsOutput>
+    listDatasets: function(Client, types.ListDatasetsInput, ? base_client.InvokeOptions): async.Operation<types.ListDatasetsOutput>
+    listExplainabilities: function(Client, types.ListExplainabilitiesInput, ? base_client.InvokeOptions): async.Operation<types.ListExplainabilitiesOutput>
+    listExplainabilityExports: function(Client, types.ListExplainabilityExportsInput, ? base_client.InvokeOptions): async.Operation<types.ListExplainabilityExportsOutput>
+    listForecastExportJobs: function(Client, types.ListForecastExportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListForecastExportJobsOutput>
+    listForecasts: function(Client, types.ListForecastsInput, ? base_client.InvokeOptions): async.Operation<types.ListForecastsOutput>
+    listMonitorEvaluations: function(Client, types.ListMonitorEvaluationsInput, ? base_client.InvokeOptions): async.Operation<types.ListMonitorEvaluationsOutput>
+    listMonitors: function(Client, types.ListMonitorsInput, ? base_client.InvokeOptions): async.Operation<types.ListMonitorsOutput>
+    listPredictorBacktestExportJobs: function(Client, types.ListPredictorBacktestExportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListPredictorBacktestExportJobsOutput>
+    listPredictors: function(Client, types.ListPredictorsInput, ? base_client.InvokeOptions): async.Operation<types.ListPredictorsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listWhatIfAnalyses: function(Client, types.ListWhatIfAnalysesInput, ? base_client.InvokeOptions): async.Operation<types.ListWhatIfAnalysesOutput>
+    listWhatIfForecastExports: function(Client, types.ListWhatIfForecastExportsInput, ? base_client.InvokeOptions): async.Operation<types.ListWhatIfForecastExportsOutput>
+    listWhatIfForecasts: function(Client, types.ListWhatIfForecastsInput, ? base_client.InvokeOptions): async.Operation<types.ListWhatIfForecastsOutput>
+    resumeResource: function(Client, types.ResumeResourceInput, ? base_client.InvokeOptions): async.Operation<types.ResumeResourceOutput>
+    stopResource: function(Client, types.StopResourceInput, ? base_client.InvokeOptions): async.Operation<types.StopResourceOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateDatasetGroup: function(Client, types.UpdateDatasetGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDatasetGroupOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonForecast"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "forecast", signing_region = c.region } }
                 else
@@ -122,256 +125,256 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createAutoPredictor(input: types.CreateAutoPredictorInput, options: any): async.Operation<types.CreateAutoPredictorOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAutoPredictor, input, options) as async.Operation<types.CreateAutoPredictorOutput>
+function C:createAutoPredictor(input: types.CreateAutoPredictorInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAutoPredictorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAutoPredictor as schema.OperationSchema, input, options) as async.Operation<types.CreateAutoPredictorOutput>
 end
 
-function C:createDataset(input: types.CreateDatasetInput, options: any): async.Operation<types.CreateDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataset, input, options) as async.Operation<types.CreateDatasetOutput>
+function C:createDataset(input: types.CreateDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataset as schema.OperationSchema, input, options) as async.Operation<types.CreateDatasetOutput>
 end
 
-function C:createDatasetGroup(input: types.CreateDatasetGroupInput, options: any): async.Operation<types.CreateDatasetGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDatasetGroup, input, options) as async.Operation<types.CreateDatasetGroupOutput>
+function C:createDatasetGroup(input: types.CreateDatasetGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDatasetGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDatasetGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateDatasetGroupOutput>
 end
 
-function C:createDatasetImportJob(input: types.CreateDatasetImportJobInput, options: any): async.Operation<types.CreateDatasetImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDatasetImportJob, input, options) as async.Operation<types.CreateDatasetImportJobOutput>
+function C:createDatasetImportJob(input: types.CreateDatasetImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDatasetImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDatasetImportJob as schema.OperationSchema, input, options) as async.Operation<types.CreateDatasetImportJobOutput>
 end
 
-function C:createExplainability(input: types.CreateExplainabilityInput, options: any): async.Operation<types.CreateExplainabilityOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateExplainability, input, options) as async.Operation<types.CreateExplainabilityOutput>
+function C:createExplainability(input: types.CreateExplainabilityInput, options?: base_client.InvokeOptions): async.Operation<types.CreateExplainabilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateExplainability as schema.OperationSchema, input, options) as async.Operation<types.CreateExplainabilityOutput>
 end
 
-function C:createExplainabilityExport(input: types.CreateExplainabilityExportInput, options: any): async.Operation<types.CreateExplainabilityExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateExplainabilityExport, input, options) as async.Operation<types.CreateExplainabilityExportOutput>
+function C:createExplainabilityExport(input: types.CreateExplainabilityExportInput, options?: base_client.InvokeOptions): async.Operation<types.CreateExplainabilityExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateExplainabilityExport as schema.OperationSchema, input, options) as async.Operation<types.CreateExplainabilityExportOutput>
 end
 
-function C:createForecast(input: types.CreateForecastInput, options: any): async.Operation<types.CreateForecastOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateForecast, input, options) as async.Operation<types.CreateForecastOutput>
+function C:createForecast(input: types.CreateForecastInput, options?: base_client.InvokeOptions): async.Operation<types.CreateForecastOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateForecast as schema.OperationSchema, input, options) as async.Operation<types.CreateForecastOutput>
 end
 
-function C:createForecastExportJob(input: types.CreateForecastExportJobInput, options: any): async.Operation<types.CreateForecastExportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateForecastExportJob, input, options) as async.Operation<types.CreateForecastExportJobOutput>
+function C:createForecastExportJob(input: types.CreateForecastExportJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateForecastExportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateForecastExportJob as schema.OperationSchema, input, options) as async.Operation<types.CreateForecastExportJobOutput>
 end
 
-function C:createMonitor(input: types.CreateMonitorInput, options: any): async.Operation<types.CreateMonitorOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMonitor, input, options) as async.Operation<types.CreateMonitorOutput>
+function C:createMonitor(input: types.CreateMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMonitorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMonitor as schema.OperationSchema, input, options) as async.Operation<types.CreateMonitorOutput>
 end
 
-function C:createPredictor(input: types.CreatePredictorInput, options: any): async.Operation<types.CreatePredictorOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePredictor, input, options) as async.Operation<types.CreatePredictorOutput>
+function C:createPredictor(input: types.CreatePredictorInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePredictorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePredictor as schema.OperationSchema, input, options) as async.Operation<types.CreatePredictorOutput>
 end
 
-function C:createPredictorBacktestExportJob(input: types.CreatePredictorBacktestExportJobInput, options: any): async.Operation<types.CreatePredictorBacktestExportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePredictorBacktestExportJob, input, options) as async.Operation<types.CreatePredictorBacktestExportJobOutput>
+function C:createPredictorBacktestExportJob(input: types.CreatePredictorBacktestExportJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePredictorBacktestExportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePredictorBacktestExportJob as schema.OperationSchema, input, options) as async.Operation<types.CreatePredictorBacktestExportJobOutput>
 end
 
-function C:createWhatIfAnalysis(input: types.CreateWhatIfAnalysisInput, options: any): async.Operation<types.CreateWhatIfAnalysisOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWhatIfAnalysis, input, options) as async.Operation<types.CreateWhatIfAnalysisOutput>
+function C:createWhatIfAnalysis(input: types.CreateWhatIfAnalysisInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWhatIfAnalysisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWhatIfAnalysis as schema.OperationSchema, input, options) as async.Operation<types.CreateWhatIfAnalysisOutput>
 end
 
-function C:createWhatIfForecast(input: types.CreateWhatIfForecastInput, options: any): async.Operation<types.CreateWhatIfForecastOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWhatIfForecast, input, options) as async.Operation<types.CreateWhatIfForecastOutput>
+function C:createWhatIfForecast(input: types.CreateWhatIfForecastInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWhatIfForecastOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWhatIfForecast as schema.OperationSchema, input, options) as async.Operation<types.CreateWhatIfForecastOutput>
 end
 
-function C:createWhatIfForecastExport(input: types.CreateWhatIfForecastExportInput, options: any): async.Operation<types.CreateWhatIfForecastExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWhatIfForecastExport, input, options) as async.Operation<types.CreateWhatIfForecastExportOutput>
+function C:createWhatIfForecastExport(input: types.CreateWhatIfForecastExportInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWhatIfForecastExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWhatIfForecastExport as schema.OperationSchema, input, options) as async.Operation<types.CreateWhatIfForecastExportOutput>
 end
 
-function C:deleteDataset(input: types.DeleteDatasetInput, options: any): async.Operation<types.DeleteDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDataset, input, options) as async.Operation<types.DeleteDatasetOutput>
+function C:deleteDataset(input: types.DeleteDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataset as schema.OperationSchema, input, options) as async.Operation<types.DeleteDatasetOutput>
 end
 
-function C:deleteDatasetGroup(input: types.DeleteDatasetGroupInput, options: any): async.Operation<types.DeleteDatasetGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDatasetGroup, input, options) as async.Operation<types.DeleteDatasetGroupOutput>
+function C:deleteDatasetGroup(input: types.DeleteDatasetGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDatasetGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDatasetGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteDatasetGroupOutput>
 end
 
-function C:deleteDatasetImportJob(input: types.DeleteDatasetImportJobInput, options: any): async.Operation<types.DeleteDatasetImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDatasetImportJob, input, options) as async.Operation<types.DeleteDatasetImportJobOutput>
+function C:deleteDatasetImportJob(input: types.DeleteDatasetImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDatasetImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDatasetImportJob as schema.OperationSchema, input, options) as async.Operation<types.DeleteDatasetImportJobOutput>
 end
 
-function C:deleteExplainability(input: types.DeleteExplainabilityInput, options: any): async.Operation<types.DeleteExplainabilityOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteExplainability, input, options) as async.Operation<types.DeleteExplainabilityOutput>
+function C:deleteExplainability(input: types.DeleteExplainabilityInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteExplainabilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteExplainability as schema.OperationSchema, input, options) as async.Operation<types.DeleteExplainabilityOutput>
 end
 
-function C:deleteExplainabilityExport(input: types.DeleteExplainabilityExportInput, options: any): async.Operation<types.DeleteExplainabilityExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteExplainabilityExport, input, options) as async.Operation<types.DeleteExplainabilityExportOutput>
+function C:deleteExplainabilityExport(input: types.DeleteExplainabilityExportInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteExplainabilityExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteExplainabilityExport as schema.OperationSchema, input, options) as async.Operation<types.DeleteExplainabilityExportOutput>
 end
 
-function C:deleteForecast(input: types.DeleteForecastInput, options: any): async.Operation<types.DeleteForecastOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteForecast, input, options) as async.Operation<types.DeleteForecastOutput>
+function C:deleteForecast(input: types.DeleteForecastInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteForecastOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteForecast as schema.OperationSchema, input, options) as async.Operation<types.DeleteForecastOutput>
 end
 
-function C:deleteForecastExportJob(input: types.DeleteForecastExportJobInput, options: any): async.Operation<types.DeleteForecastExportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteForecastExportJob, input, options) as async.Operation<types.DeleteForecastExportJobOutput>
+function C:deleteForecastExportJob(input: types.DeleteForecastExportJobInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteForecastExportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteForecastExportJob as schema.OperationSchema, input, options) as async.Operation<types.DeleteForecastExportJobOutput>
 end
 
-function C:deleteMonitor(input: types.DeleteMonitorInput, options: any): async.Operation<types.DeleteMonitorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMonitor, input, options) as async.Operation<types.DeleteMonitorOutput>
+function C:deleteMonitor(input: types.DeleteMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMonitorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMonitor as schema.OperationSchema, input, options) as async.Operation<types.DeleteMonitorOutput>
 end
 
-function C:deletePredictor(input: types.DeletePredictorInput, options: any): async.Operation<types.DeletePredictorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePredictor, input, options) as async.Operation<types.DeletePredictorOutput>
+function C:deletePredictor(input: types.DeletePredictorInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePredictorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePredictor as schema.OperationSchema, input, options) as async.Operation<types.DeletePredictorOutput>
 end
 
-function C:deletePredictorBacktestExportJob(input: types.DeletePredictorBacktestExportJobInput, options: any): async.Operation<types.DeletePredictorBacktestExportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePredictorBacktestExportJob, input, options) as async.Operation<types.DeletePredictorBacktestExportJobOutput>
+function C:deletePredictorBacktestExportJob(input: types.DeletePredictorBacktestExportJobInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePredictorBacktestExportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePredictorBacktestExportJob as schema.OperationSchema, input, options) as async.Operation<types.DeletePredictorBacktestExportJobOutput>
 end
 
-function C:deleteResourceTree(input: types.DeleteResourceTreeInput, options: any): async.Operation<types.DeleteResourceTreeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourceTree, input, options) as async.Operation<types.DeleteResourceTreeOutput>
+function C:deleteResourceTree(input: types.DeleteResourceTreeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourceTreeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourceTree as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourceTreeOutput>
 end
 
-function C:deleteWhatIfAnalysis(input: types.DeleteWhatIfAnalysisInput, options: any): async.Operation<types.DeleteWhatIfAnalysisOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWhatIfAnalysis, input, options) as async.Operation<types.DeleteWhatIfAnalysisOutput>
+function C:deleteWhatIfAnalysis(input: types.DeleteWhatIfAnalysisInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWhatIfAnalysisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWhatIfAnalysis as schema.OperationSchema, input, options) as async.Operation<types.DeleteWhatIfAnalysisOutput>
 end
 
-function C:deleteWhatIfForecast(input: types.DeleteWhatIfForecastInput, options: any): async.Operation<types.DeleteWhatIfForecastOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWhatIfForecast, input, options) as async.Operation<types.DeleteWhatIfForecastOutput>
+function C:deleteWhatIfForecast(input: types.DeleteWhatIfForecastInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWhatIfForecastOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWhatIfForecast as schema.OperationSchema, input, options) as async.Operation<types.DeleteWhatIfForecastOutput>
 end
 
-function C:deleteWhatIfForecastExport(input: types.DeleteWhatIfForecastExportInput, options: any): async.Operation<types.DeleteWhatIfForecastExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWhatIfForecastExport, input, options) as async.Operation<types.DeleteWhatIfForecastExportOutput>
+function C:deleteWhatIfForecastExport(input: types.DeleteWhatIfForecastExportInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWhatIfForecastExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWhatIfForecastExport as schema.OperationSchema, input, options) as async.Operation<types.DeleteWhatIfForecastExportOutput>
 end
 
-function C:describeAutoPredictor(input: types.DescribeAutoPredictorInput, options: any): async.Operation<types.DescribeAutoPredictorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAutoPredictor, input, options) as async.Operation<types.DescribeAutoPredictorOutput>
+function C:describeAutoPredictor(input: types.DescribeAutoPredictorInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAutoPredictorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAutoPredictor as schema.OperationSchema, input, options) as async.Operation<types.DescribeAutoPredictorOutput>
 end
 
-function C:describeDataset(input: types.DescribeDatasetInput, options: any): async.Operation<types.DescribeDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDataset, input, options) as async.Operation<types.DescribeDatasetOutput>
+function C:describeDataset(input: types.DescribeDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDataset as schema.OperationSchema, input, options) as async.Operation<types.DescribeDatasetOutput>
 end
 
-function C:describeDatasetGroup(input: types.DescribeDatasetGroupInput, options: any): async.Operation<types.DescribeDatasetGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDatasetGroup, input, options) as async.Operation<types.DescribeDatasetGroupOutput>
+function C:describeDatasetGroup(input: types.DescribeDatasetGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDatasetGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDatasetGroup as schema.OperationSchema, input, options) as async.Operation<types.DescribeDatasetGroupOutput>
 end
 
-function C:describeDatasetImportJob(input: types.DescribeDatasetImportJobInput, options: any): async.Operation<types.DescribeDatasetImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDatasetImportJob, input, options) as async.Operation<types.DescribeDatasetImportJobOutput>
+function C:describeDatasetImportJob(input: types.DescribeDatasetImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDatasetImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDatasetImportJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeDatasetImportJobOutput>
 end
 
-function C:describeExplainability(input: types.DescribeExplainabilityInput, options: any): async.Operation<types.DescribeExplainabilityOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeExplainability, input, options) as async.Operation<types.DescribeExplainabilityOutput>
+function C:describeExplainability(input: types.DescribeExplainabilityInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeExplainabilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeExplainability as schema.OperationSchema, input, options) as async.Operation<types.DescribeExplainabilityOutput>
 end
 
-function C:describeExplainabilityExport(input: types.DescribeExplainabilityExportInput, options: any): async.Operation<types.DescribeExplainabilityExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeExplainabilityExport, input, options) as async.Operation<types.DescribeExplainabilityExportOutput>
+function C:describeExplainabilityExport(input: types.DescribeExplainabilityExportInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeExplainabilityExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeExplainabilityExport as schema.OperationSchema, input, options) as async.Operation<types.DescribeExplainabilityExportOutput>
 end
 
-function C:describeForecast(input: types.DescribeForecastInput, options: any): async.Operation<types.DescribeForecastOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeForecast, input, options) as async.Operation<types.DescribeForecastOutput>
+function C:describeForecast(input: types.DescribeForecastInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeForecastOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeForecast as schema.OperationSchema, input, options) as async.Operation<types.DescribeForecastOutput>
 end
 
-function C:describeForecastExportJob(input: types.DescribeForecastExportJobInput, options: any): async.Operation<types.DescribeForecastExportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeForecastExportJob, input, options) as async.Operation<types.DescribeForecastExportJobOutput>
+function C:describeForecastExportJob(input: types.DescribeForecastExportJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeForecastExportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeForecastExportJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeForecastExportJobOutput>
 end
 
-function C:describeMonitor(input: types.DescribeMonitorInput, options: any): async.Operation<types.DescribeMonitorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeMonitor, input, options) as async.Operation<types.DescribeMonitorOutput>
+function C:describeMonitor(input: types.DescribeMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMonitorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMonitor as schema.OperationSchema, input, options) as async.Operation<types.DescribeMonitorOutput>
 end
 
-function C:describePredictor(input: types.DescribePredictorInput, options: any): async.Operation<types.DescribePredictorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePredictor, input, options) as async.Operation<types.DescribePredictorOutput>
+function C:describePredictor(input: types.DescribePredictorInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePredictorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePredictor as schema.OperationSchema, input, options) as async.Operation<types.DescribePredictorOutput>
 end
 
-function C:describePredictorBacktestExportJob(input: types.DescribePredictorBacktestExportJobInput, options: any): async.Operation<types.DescribePredictorBacktestExportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePredictorBacktestExportJob, input, options) as async.Operation<types.DescribePredictorBacktestExportJobOutput>
+function C:describePredictorBacktestExportJob(input: types.DescribePredictorBacktestExportJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePredictorBacktestExportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePredictorBacktestExportJob as schema.OperationSchema, input, options) as async.Operation<types.DescribePredictorBacktestExportJobOutput>
 end
 
-function C:describeWhatIfAnalysis(input: types.DescribeWhatIfAnalysisInput, options: any): async.Operation<types.DescribeWhatIfAnalysisOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeWhatIfAnalysis, input, options) as async.Operation<types.DescribeWhatIfAnalysisOutput>
+function C:describeWhatIfAnalysis(input: types.DescribeWhatIfAnalysisInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeWhatIfAnalysisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeWhatIfAnalysis as schema.OperationSchema, input, options) as async.Operation<types.DescribeWhatIfAnalysisOutput>
 end
 
-function C:describeWhatIfForecast(input: types.DescribeWhatIfForecastInput, options: any): async.Operation<types.DescribeWhatIfForecastOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeWhatIfForecast, input, options) as async.Operation<types.DescribeWhatIfForecastOutput>
+function C:describeWhatIfForecast(input: types.DescribeWhatIfForecastInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeWhatIfForecastOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeWhatIfForecast as schema.OperationSchema, input, options) as async.Operation<types.DescribeWhatIfForecastOutput>
 end
 
-function C:describeWhatIfForecastExport(input: types.DescribeWhatIfForecastExportInput, options: any): async.Operation<types.DescribeWhatIfForecastExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeWhatIfForecastExport, input, options) as async.Operation<types.DescribeWhatIfForecastExportOutput>
+function C:describeWhatIfForecastExport(input: types.DescribeWhatIfForecastExportInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeWhatIfForecastExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeWhatIfForecastExport as schema.OperationSchema, input, options) as async.Operation<types.DescribeWhatIfForecastExportOutput>
 end
 
-function C:getAccuracyMetrics(input: types.GetAccuracyMetricsInput, options: any): async.Operation<types.GetAccuracyMetricsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccuracyMetrics, input, options) as async.Operation<types.GetAccuracyMetricsOutput>
+function C:getAccuracyMetrics(input: types.GetAccuracyMetricsInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccuracyMetricsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccuracyMetrics as schema.OperationSchema, input, options) as async.Operation<types.GetAccuracyMetricsOutput>
 end
 
-function C:listDatasetGroups(input: types.ListDatasetGroupsInput, options: any): async.Operation<types.ListDatasetGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDatasetGroups, input, options) as async.Operation<types.ListDatasetGroupsOutput>
+function C:listDatasetGroups(input: types.ListDatasetGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDatasetGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDatasetGroups as schema.OperationSchema, input, options) as async.Operation<types.ListDatasetGroupsOutput>
 end
 
-function C:listDatasetImportJobs(input: types.ListDatasetImportJobsInput, options: any): async.Operation<types.ListDatasetImportJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDatasetImportJobs, input, options) as async.Operation<types.ListDatasetImportJobsOutput>
+function C:listDatasetImportJobs(input: types.ListDatasetImportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDatasetImportJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDatasetImportJobs as schema.OperationSchema, input, options) as async.Operation<types.ListDatasetImportJobsOutput>
 end
 
-function C:listDatasets(input: types.ListDatasetsInput, options: any): async.Operation<types.ListDatasetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDatasets, input, options) as async.Operation<types.ListDatasetsOutput>
+function C:listDatasets(input: types.ListDatasetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDatasetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDatasets as schema.OperationSchema, input, options) as async.Operation<types.ListDatasetsOutput>
 end
 
-function C:listExplainabilities(input: types.ListExplainabilitiesInput, options: any): async.Operation<types.ListExplainabilitiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListExplainabilities, input, options) as async.Operation<types.ListExplainabilitiesOutput>
+function C:listExplainabilities(input: types.ListExplainabilitiesInput, options?: base_client.InvokeOptions): async.Operation<types.ListExplainabilitiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExplainabilities as schema.OperationSchema, input, options) as async.Operation<types.ListExplainabilitiesOutput>
 end
 
-function C:listExplainabilityExports(input: types.ListExplainabilityExportsInput, options: any): async.Operation<types.ListExplainabilityExportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListExplainabilityExports, input, options) as async.Operation<types.ListExplainabilityExportsOutput>
+function C:listExplainabilityExports(input: types.ListExplainabilityExportsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExplainabilityExportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExplainabilityExports as schema.OperationSchema, input, options) as async.Operation<types.ListExplainabilityExportsOutput>
 end
 
-function C:listForecastExportJobs(input: types.ListForecastExportJobsInput, options: any): async.Operation<types.ListForecastExportJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListForecastExportJobs, input, options) as async.Operation<types.ListForecastExportJobsOutput>
+function C:listForecastExportJobs(input: types.ListForecastExportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListForecastExportJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListForecastExportJobs as schema.OperationSchema, input, options) as async.Operation<types.ListForecastExportJobsOutput>
 end
 
-function C:listForecasts(input: types.ListForecastsInput, options: any): async.Operation<types.ListForecastsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListForecasts, input, options) as async.Operation<types.ListForecastsOutput>
+function C:listForecasts(input: types.ListForecastsInput, options?: base_client.InvokeOptions): async.Operation<types.ListForecastsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListForecasts as schema.OperationSchema, input, options) as async.Operation<types.ListForecastsOutput>
 end
 
-function C:listMonitorEvaluations(input: types.ListMonitorEvaluationsInput, options: any): async.Operation<types.ListMonitorEvaluationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMonitorEvaluations, input, options) as async.Operation<types.ListMonitorEvaluationsOutput>
+function C:listMonitorEvaluations(input: types.ListMonitorEvaluationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMonitorEvaluationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMonitorEvaluations as schema.OperationSchema, input, options) as async.Operation<types.ListMonitorEvaluationsOutput>
 end
 
-function C:listMonitors(input: types.ListMonitorsInput, options: any): async.Operation<types.ListMonitorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMonitors, input, options) as async.Operation<types.ListMonitorsOutput>
+function C:listMonitors(input: types.ListMonitorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMonitorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMonitors as schema.OperationSchema, input, options) as async.Operation<types.ListMonitorsOutput>
 end
 
-function C:listPredictorBacktestExportJobs(input: types.ListPredictorBacktestExportJobsInput, options: any): async.Operation<types.ListPredictorBacktestExportJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPredictorBacktestExportJobs, input, options) as async.Operation<types.ListPredictorBacktestExportJobsOutput>
+function C:listPredictorBacktestExportJobs(input: types.ListPredictorBacktestExportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPredictorBacktestExportJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPredictorBacktestExportJobs as schema.OperationSchema, input, options) as async.Operation<types.ListPredictorBacktestExportJobsOutput>
 end
 
-function C:listPredictors(input: types.ListPredictorsInput, options: any): async.Operation<types.ListPredictorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPredictors, input, options) as async.Operation<types.ListPredictorsOutput>
+function C:listPredictors(input: types.ListPredictorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPredictorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPredictors as schema.OperationSchema, input, options) as async.Operation<types.ListPredictorsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listWhatIfAnalyses(input: types.ListWhatIfAnalysesInput, options: any): async.Operation<types.ListWhatIfAnalysesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWhatIfAnalyses, input, options) as async.Operation<types.ListWhatIfAnalysesOutput>
+function C:listWhatIfAnalyses(input: types.ListWhatIfAnalysesInput, options?: base_client.InvokeOptions): async.Operation<types.ListWhatIfAnalysesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWhatIfAnalyses as schema.OperationSchema, input, options) as async.Operation<types.ListWhatIfAnalysesOutput>
 end
 
-function C:listWhatIfForecastExports(input: types.ListWhatIfForecastExportsInput, options: any): async.Operation<types.ListWhatIfForecastExportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWhatIfForecastExports, input, options) as async.Operation<types.ListWhatIfForecastExportsOutput>
+function C:listWhatIfForecastExports(input: types.ListWhatIfForecastExportsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWhatIfForecastExportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWhatIfForecastExports as schema.OperationSchema, input, options) as async.Operation<types.ListWhatIfForecastExportsOutput>
 end
 
-function C:listWhatIfForecasts(input: types.ListWhatIfForecastsInput, options: any): async.Operation<types.ListWhatIfForecastsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWhatIfForecasts, input, options) as async.Operation<types.ListWhatIfForecastsOutput>
+function C:listWhatIfForecasts(input: types.ListWhatIfForecastsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWhatIfForecastsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWhatIfForecasts as schema.OperationSchema, input, options) as async.Operation<types.ListWhatIfForecastsOutput>
 end
 
-function C:resumeResource(input: types.ResumeResourceInput, options: any): async.Operation<types.ResumeResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResumeResource, input, options) as async.Operation<types.ResumeResourceOutput>
+function C:resumeResource(input: types.ResumeResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ResumeResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResumeResource as schema.OperationSchema, input, options) as async.Operation<types.ResumeResourceOutput>
 end
 
-function C:stopResource(input: types.StopResourceInput, options: any): async.Operation<types.StopResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopResource, input, options) as async.Operation<types.StopResourceOutput>
+function C:stopResource(input: types.StopResourceInput, options?: base_client.InvokeOptions): async.Operation<types.StopResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopResource as schema.OperationSchema, input, options) as async.Operation<types.StopResourceOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateDatasetGroup(input: types.UpdateDatasetGroupInput, options: any): async.Operation<types.UpdateDatasetGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDatasetGroup, input, options) as async.Operation<types.UpdateDatasetGroupOutput>
+function C:updateDatasetGroup(input: types.UpdateDatasetGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDatasetGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDatasetGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateDatasetGroupOutput>
 end
 
 return M

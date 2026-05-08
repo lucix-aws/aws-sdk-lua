@@ -8,66 +8,69 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("snowball.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("snowball.schemas")
 local traits = require("smithy.traits")
 local types = require("snowball.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    cancelCluster: function(Client, types.CancelClusterInput, any): async.Operation<types.CancelClusterOutput>
-    cancelJob: function(Client, types.CancelJobInput, any): async.Operation<types.CancelJobOutput>
-    createAddress: function(Client, types.CreateAddressInput, any): async.Operation<types.CreateAddressOutput>
-    createCluster: function(Client, types.CreateClusterInput, any): async.Operation<types.CreateClusterOutput>
-    createJob: function(Client, types.CreateJobInput, any): async.Operation<types.CreateJobOutput>
-    createLongTermPricing: function(Client, types.CreateLongTermPricingInput, any): async.Operation<types.CreateLongTermPricingOutput>
-    createReturnShippingLabel: function(Client, types.CreateReturnShippingLabelInput, any): async.Operation<types.CreateReturnShippingLabelOutput>
-    describeAddress: function(Client, types.DescribeAddressInput, any): async.Operation<types.DescribeAddressOutput>
-    describeAddresses: function(Client, types.DescribeAddressesInput, any): async.Operation<types.DescribeAddressesOutput>
-    describeCluster: function(Client, types.DescribeClusterInput, any): async.Operation<types.DescribeClusterOutput>
-    describeJob: function(Client, types.DescribeJobInput, any): async.Operation<types.DescribeJobOutput>
-    describeReturnShippingLabel: function(Client, types.DescribeReturnShippingLabelInput, any): async.Operation<types.DescribeReturnShippingLabelOutput>
-    getJobManifest: function(Client, types.GetJobManifestInput, any): async.Operation<types.GetJobManifestOutput>
-    getJobUnlockCode: function(Client, types.GetJobUnlockCodeInput, any): async.Operation<types.GetJobUnlockCodeOutput>
-    getSnowballUsage: function(Client, types.GetSnowballUsageInput, any): async.Operation<types.GetSnowballUsageOutput>
-    getSoftwareUpdates: function(Client, types.GetSoftwareUpdatesInput, any): async.Operation<types.GetSoftwareUpdatesOutput>
-    listClusterJobs: function(Client, types.ListClusterJobsInput, any): async.Operation<types.ListClusterJobsOutput>
-    listClusters: function(Client, types.ListClustersInput, any): async.Operation<types.ListClustersOutput>
-    listCompatibleImages: function(Client, types.ListCompatibleImagesInput, any): async.Operation<types.ListCompatibleImagesOutput>
-    listJobs: function(Client, types.ListJobsInput, any): async.Operation<types.ListJobsOutput>
-    listLongTermPricing: function(Client, types.ListLongTermPricingInput, any): async.Operation<types.ListLongTermPricingOutput>
-    listPickupLocations: function(Client, types.ListPickupLocationsInput, any): async.Operation<types.ListPickupLocationsOutput>
-    listServiceVersions: function(Client, types.ListServiceVersionsInput, any): async.Operation<types.ListServiceVersionsOutput>
-    updateCluster: function(Client, types.UpdateClusterInput, any): async.Operation<types.UpdateClusterOutput>
-    updateJob: function(Client, types.UpdateJobInput, any): async.Operation<types.UpdateJobOutput>
-    updateJobShipmentState: function(Client, types.UpdateJobShipmentStateInput, any): async.Operation<types.UpdateJobShipmentStateOutput>
-    updateLongTermPricing: function(Client, types.UpdateLongTermPricingInput, any): async.Operation<types.UpdateLongTermPricingOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    cancelCluster: function(Client, types.CancelClusterInput, ? base_client.InvokeOptions): async.Operation<types.CancelClusterOutput>
+    cancelJob: function(Client, types.CancelJobInput, ? base_client.InvokeOptions): async.Operation<types.CancelJobOutput>
+    createAddress: function(Client, types.CreateAddressInput, ? base_client.InvokeOptions): async.Operation<types.CreateAddressOutput>
+    createCluster: function(Client, types.CreateClusterInput, ? base_client.InvokeOptions): async.Operation<types.CreateClusterOutput>
+    createJob: function(Client, types.CreateJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateJobOutput>
+    createLongTermPricing: function(Client, types.CreateLongTermPricingInput, ? base_client.InvokeOptions): async.Operation<types.CreateLongTermPricingOutput>
+    createReturnShippingLabel: function(Client, types.CreateReturnShippingLabelInput, ? base_client.InvokeOptions): async.Operation<types.CreateReturnShippingLabelOutput>
+    describeAddress: function(Client, types.DescribeAddressInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAddressOutput>
+    describeAddresses: function(Client, types.DescribeAddressesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAddressesOutput>
+    describeCluster: function(Client, types.DescribeClusterInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClusterOutput>
+    describeJob: function(Client, types.DescribeJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeJobOutput>
+    describeReturnShippingLabel: function(Client, types.DescribeReturnShippingLabelInput, ? base_client.InvokeOptions): async.Operation<types.DescribeReturnShippingLabelOutput>
+    getJobManifest: function(Client, types.GetJobManifestInput, ? base_client.InvokeOptions): async.Operation<types.GetJobManifestOutput>
+    getJobUnlockCode: function(Client, types.GetJobUnlockCodeInput, ? base_client.InvokeOptions): async.Operation<types.GetJobUnlockCodeOutput>
+    getSnowballUsage: function(Client, types.GetSnowballUsageInput, ? base_client.InvokeOptions): async.Operation<types.GetSnowballUsageOutput>
+    getSoftwareUpdates: function(Client, types.GetSoftwareUpdatesInput, ? base_client.InvokeOptions): async.Operation<types.GetSoftwareUpdatesOutput>
+    listClusterJobs: function(Client, types.ListClusterJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListClusterJobsOutput>
+    listClusters: function(Client, types.ListClustersInput, ? base_client.InvokeOptions): async.Operation<types.ListClustersOutput>
+    listCompatibleImages: function(Client, types.ListCompatibleImagesInput, ? base_client.InvokeOptions): async.Operation<types.ListCompatibleImagesOutput>
+    listJobs: function(Client, types.ListJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListJobsOutput>
+    listLongTermPricing: function(Client, types.ListLongTermPricingInput, ? base_client.InvokeOptions): async.Operation<types.ListLongTermPricingOutput>
+    listPickupLocations: function(Client, types.ListPickupLocationsInput, ? base_client.InvokeOptions): async.Operation<types.ListPickupLocationsOutput>
+    listServiceVersions: function(Client, types.ListServiceVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListServiceVersionsOutput>
+    updateCluster: function(Client, types.UpdateClusterInput, ? base_client.InvokeOptions): async.Operation<types.UpdateClusterOutput>
+    updateJob: function(Client, types.UpdateJobInput, ? base_client.InvokeOptions): async.Operation<types.UpdateJobOutput>
+    updateJobShipmentState: function(Client, types.UpdateJobShipmentStateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateJobShipmentStateOutput>
+    updateLongTermPricing: function(Client, types.UpdateLongTermPricingInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLongTermPricingOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSIESnowballJobManagementService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "snowball", signing_region = c.region } }
                 else
@@ -86,112 +89,112 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:cancelCluster(input: types.CancelClusterInput, options: any): async.Operation<types.CancelClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelCluster, input, options) as async.Operation<types.CancelClusterOutput>
+function C:cancelCluster(input: types.CancelClusterInput, options?: base_client.InvokeOptions): async.Operation<types.CancelClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelCluster as schema.OperationSchema, input, options) as async.Operation<types.CancelClusterOutput>
 end
 
-function C:cancelJob(input: types.CancelJobInput, options: any): async.Operation<types.CancelJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelJob, input, options) as async.Operation<types.CancelJobOutput>
+function C:cancelJob(input: types.CancelJobInput, options?: base_client.InvokeOptions): async.Operation<types.CancelJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelJob as schema.OperationSchema, input, options) as async.Operation<types.CancelJobOutput>
 end
 
-function C:createAddress(input: types.CreateAddressInput, options: any): async.Operation<types.CreateAddressOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAddress, input, options) as async.Operation<types.CreateAddressOutput>
+function C:createAddress(input: types.CreateAddressInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAddressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAddress as schema.OperationSchema, input, options) as async.Operation<types.CreateAddressOutput>
 end
 
-function C:createCluster(input: types.CreateClusterInput, options: any): async.Operation<types.CreateClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCluster, input, options) as async.Operation<types.CreateClusterOutput>
+function C:createCluster(input: types.CreateClusterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCluster as schema.OperationSchema, input, options) as async.Operation<types.CreateClusterOutput>
 end
 
-function C:createJob(input: types.CreateJobInput, options: any): async.Operation<types.CreateJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateJob, input, options) as async.Operation<types.CreateJobOutput>
+function C:createJob(input: types.CreateJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateJob as schema.OperationSchema, input, options) as async.Operation<types.CreateJobOutput>
 end
 
-function C:createLongTermPricing(input: types.CreateLongTermPricingInput, options: any): async.Operation<types.CreateLongTermPricingOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLongTermPricing, input, options) as async.Operation<types.CreateLongTermPricingOutput>
+function C:createLongTermPricing(input: types.CreateLongTermPricingInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLongTermPricingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLongTermPricing as schema.OperationSchema, input, options) as async.Operation<types.CreateLongTermPricingOutput>
 end
 
-function C:createReturnShippingLabel(input: types.CreateReturnShippingLabelInput, options: any): async.Operation<types.CreateReturnShippingLabelOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateReturnShippingLabel, input, options) as async.Operation<types.CreateReturnShippingLabelOutput>
+function C:createReturnShippingLabel(input: types.CreateReturnShippingLabelInput, options?: base_client.InvokeOptions): async.Operation<types.CreateReturnShippingLabelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateReturnShippingLabel as schema.OperationSchema, input, options) as async.Operation<types.CreateReturnShippingLabelOutput>
 end
 
-function C:describeAddress(input: types.DescribeAddressInput, options: any): async.Operation<types.DescribeAddressOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAddress, input, options) as async.Operation<types.DescribeAddressOutput>
+function C:describeAddress(input: types.DescribeAddressInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAddressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAddress as schema.OperationSchema, input, options) as async.Operation<types.DescribeAddressOutput>
 end
 
-function C:describeAddresses(input: types.DescribeAddressesInput, options: any): async.Operation<types.DescribeAddressesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAddresses, input, options) as async.Operation<types.DescribeAddressesOutput>
+function C:describeAddresses(input: types.DescribeAddressesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAddressesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAddresses as schema.OperationSchema, input, options) as async.Operation<types.DescribeAddressesOutput>
 end
 
-function C:describeCluster(input: types.DescribeClusterInput, options: any): async.Operation<types.DescribeClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCluster, input, options) as async.Operation<types.DescribeClusterOutput>
+function C:describeCluster(input: types.DescribeClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCluster as schema.OperationSchema, input, options) as async.Operation<types.DescribeClusterOutput>
 end
 
-function C:describeJob(input: types.DescribeJobInput, options: any): async.Operation<types.DescribeJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeJob, input, options) as async.Operation<types.DescribeJobOutput>
+function C:describeJob(input: types.DescribeJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeJobOutput>
 end
 
-function C:describeReturnShippingLabel(input: types.DescribeReturnShippingLabelInput, options: any): async.Operation<types.DescribeReturnShippingLabelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeReturnShippingLabel, input, options) as async.Operation<types.DescribeReturnShippingLabelOutput>
+function C:describeReturnShippingLabel(input: types.DescribeReturnShippingLabelInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeReturnShippingLabelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeReturnShippingLabel as schema.OperationSchema, input, options) as async.Operation<types.DescribeReturnShippingLabelOutput>
 end
 
-function C:getJobManifest(input: types.GetJobManifestInput, options: any): async.Operation<types.GetJobManifestOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetJobManifest, input, options) as async.Operation<types.GetJobManifestOutput>
+function C:getJobManifest(input: types.GetJobManifestInput, options?: base_client.InvokeOptions): async.Operation<types.GetJobManifestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetJobManifest as schema.OperationSchema, input, options) as async.Operation<types.GetJobManifestOutput>
 end
 
-function C:getJobUnlockCode(input: types.GetJobUnlockCodeInput, options: any): async.Operation<types.GetJobUnlockCodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetJobUnlockCode, input, options) as async.Operation<types.GetJobUnlockCodeOutput>
+function C:getJobUnlockCode(input: types.GetJobUnlockCodeInput, options?: base_client.InvokeOptions): async.Operation<types.GetJobUnlockCodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetJobUnlockCode as schema.OperationSchema, input, options) as async.Operation<types.GetJobUnlockCodeOutput>
 end
 
-function C:getSnowballUsage(input: types.GetSnowballUsageInput, options: any): async.Operation<types.GetSnowballUsageOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSnowballUsage, input, options) as async.Operation<types.GetSnowballUsageOutput>
+function C:getSnowballUsage(input: types.GetSnowballUsageInput, options?: base_client.InvokeOptions): async.Operation<types.GetSnowballUsageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSnowballUsage as schema.OperationSchema, input, options) as async.Operation<types.GetSnowballUsageOutput>
 end
 
-function C:getSoftwareUpdates(input: types.GetSoftwareUpdatesInput, options: any): async.Operation<types.GetSoftwareUpdatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSoftwareUpdates, input, options) as async.Operation<types.GetSoftwareUpdatesOutput>
+function C:getSoftwareUpdates(input: types.GetSoftwareUpdatesInput, options?: base_client.InvokeOptions): async.Operation<types.GetSoftwareUpdatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSoftwareUpdates as schema.OperationSchema, input, options) as async.Operation<types.GetSoftwareUpdatesOutput>
 end
 
-function C:listClusterJobs(input: types.ListClusterJobsInput, options: any): async.Operation<types.ListClusterJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListClusterJobs, input, options) as async.Operation<types.ListClusterJobsOutput>
+function C:listClusterJobs(input: types.ListClusterJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListClusterJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListClusterJobs as schema.OperationSchema, input, options) as async.Operation<types.ListClusterJobsOutput>
 end
 
-function C:listClusters(input: types.ListClustersInput, options: any): async.Operation<types.ListClustersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListClusters, input, options) as async.Operation<types.ListClustersOutput>
+function C:listClusters(input: types.ListClustersInput, options?: base_client.InvokeOptions): async.Operation<types.ListClustersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListClusters as schema.OperationSchema, input, options) as async.Operation<types.ListClustersOutput>
 end
 
-function C:listCompatibleImages(input: types.ListCompatibleImagesInput, options: any): async.Operation<types.ListCompatibleImagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCompatibleImages, input, options) as async.Operation<types.ListCompatibleImagesOutput>
+function C:listCompatibleImages(input: types.ListCompatibleImagesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCompatibleImagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCompatibleImages as schema.OperationSchema, input, options) as async.Operation<types.ListCompatibleImagesOutput>
 end
 
-function C:listJobs(input: types.ListJobsInput, options: any): async.Operation<types.ListJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListJobs, input, options) as async.Operation<types.ListJobsOutput>
+function C:listJobs(input: types.ListJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListJobs as schema.OperationSchema, input, options) as async.Operation<types.ListJobsOutput>
 end
 
-function C:listLongTermPricing(input: types.ListLongTermPricingInput, options: any): async.Operation<types.ListLongTermPricingOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLongTermPricing, input, options) as async.Operation<types.ListLongTermPricingOutput>
+function C:listLongTermPricing(input: types.ListLongTermPricingInput, options?: base_client.InvokeOptions): async.Operation<types.ListLongTermPricingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLongTermPricing as schema.OperationSchema, input, options) as async.Operation<types.ListLongTermPricingOutput>
 end
 
-function C:listPickupLocations(input: types.ListPickupLocationsInput, options: any): async.Operation<types.ListPickupLocationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPickupLocations, input, options) as async.Operation<types.ListPickupLocationsOutput>
+function C:listPickupLocations(input: types.ListPickupLocationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPickupLocationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPickupLocations as schema.OperationSchema, input, options) as async.Operation<types.ListPickupLocationsOutput>
 end
 
-function C:listServiceVersions(input: types.ListServiceVersionsInput, options: any): async.Operation<types.ListServiceVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServiceVersions, input, options) as async.Operation<types.ListServiceVersionsOutput>
+function C:listServiceVersions(input: types.ListServiceVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListServiceVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServiceVersions as schema.OperationSchema, input, options) as async.Operation<types.ListServiceVersionsOutput>
 end
 
-function C:updateCluster(input: types.UpdateClusterInput, options: any): async.Operation<types.UpdateClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCluster, input, options) as async.Operation<types.UpdateClusterOutput>
+function C:updateCluster(input: types.UpdateClusterInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCluster as schema.OperationSchema, input, options) as async.Operation<types.UpdateClusterOutput>
 end
 
-function C:updateJob(input: types.UpdateJobInput, options: any): async.Operation<types.UpdateJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateJob, input, options) as async.Operation<types.UpdateJobOutput>
+function C:updateJob(input: types.UpdateJobInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateJob as schema.OperationSchema, input, options) as async.Operation<types.UpdateJobOutput>
 end
 
-function C:updateJobShipmentState(input: types.UpdateJobShipmentStateInput, options: any): async.Operation<types.UpdateJobShipmentStateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateJobShipmentState, input, options) as async.Operation<types.UpdateJobShipmentStateOutput>
+function C:updateJobShipmentState(input: types.UpdateJobShipmentStateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateJobShipmentStateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateJobShipmentState as schema.OperationSchema, input, options) as async.Operation<types.UpdateJobShipmentStateOutput>
 end
 
-function C:updateLongTermPricing(input: types.UpdateLongTermPricingInput, options: any): async.Operation<types.UpdateLongTermPricingOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLongTermPricing, input, options) as async.Operation<types.UpdateLongTermPricingOutput>
+function C:updateLongTermPricing(input: types.UpdateLongTermPricingInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLongTermPricingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLongTermPricing as schema.OperationSchema, input, options) as async.Operation<types.UpdateLongTermPricingOutput>
 end
 
 return M

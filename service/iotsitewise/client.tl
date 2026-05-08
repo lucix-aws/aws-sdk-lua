@@ -8,143 +8,146 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("iotsitewise.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("iotsitewise.schemas")
 local traits = require("smithy.traits")
 local types = require("iotsitewise.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateAssets: function(Client, types.AssociateAssetsInput, any): async.Operation<types.AssociateAssetsOutput>
-    associateTimeSeriesToAssetProperty: function(Client, types.AssociateTimeSeriesToAssetPropertyInput, any): async.Operation<types.AssociateTimeSeriesToAssetPropertyOutput>
-    batchAssociateProjectAssets: function(Client, types.BatchAssociateProjectAssetsInput, any): async.Operation<types.BatchAssociateProjectAssetsOutput>
-    batchDisassociateProjectAssets: function(Client, types.BatchDisassociateProjectAssetsInput, any): async.Operation<types.BatchDisassociateProjectAssetsOutput>
-    batchGetAssetPropertyAggregates: function(Client, types.BatchGetAssetPropertyAggregatesInput, any): async.Operation<types.BatchGetAssetPropertyAggregatesOutput>
-    batchGetAssetPropertyValue: function(Client, types.BatchGetAssetPropertyValueInput, any): async.Operation<types.BatchGetAssetPropertyValueOutput>
-    batchGetAssetPropertyValueHistory: function(Client, types.BatchGetAssetPropertyValueHistoryInput, any): async.Operation<types.BatchGetAssetPropertyValueHistoryOutput>
-    batchPutAssetPropertyValue: function(Client, types.BatchPutAssetPropertyValueInput, any): async.Operation<types.BatchPutAssetPropertyValueOutput>
-    createAccessPolicy: function(Client, types.CreateAccessPolicyInput, any): async.Operation<types.CreateAccessPolicyOutput>
-    createAsset: function(Client, types.CreateAssetInput, any): async.Operation<types.CreateAssetOutput>
-    createAssetModel: function(Client, types.CreateAssetModelInput, any): async.Operation<types.CreateAssetModelOutput>
-    createAssetModelCompositeModel: function(Client, types.CreateAssetModelCompositeModelInput, any): async.Operation<types.CreateAssetModelCompositeModelOutput>
-    createBulkImportJob: function(Client, types.CreateBulkImportJobInput, any): async.Operation<types.CreateBulkImportJobOutput>
-    createComputationModel: function(Client, types.CreateComputationModelInput, any): async.Operation<types.CreateComputationModelOutput>
-    createDashboard: function(Client, types.CreateDashboardInput, any): async.Operation<types.CreateDashboardOutput>
-    createDataset: function(Client, types.CreateDatasetInput, any): async.Operation<types.CreateDatasetOutput>
-    createGateway: function(Client, types.CreateGatewayInput, any): async.Operation<types.CreateGatewayOutput>
-    createPortal: function(Client, types.CreatePortalInput, any): async.Operation<types.CreatePortalOutput>
-    createProject: function(Client, types.CreateProjectInput, any): async.Operation<types.CreateProjectOutput>
-    deleteAccessPolicy: function(Client, types.DeleteAccessPolicyInput, any): async.Operation<types.DeleteAccessPolicyOutput>
-    deleteAsset: function(Client, types.DeleteAssetInput, any): async.Operation<types.DeleteAssetOutput>
-    deleteAssetModel: function(Client, types.DeleteAssetModelInput, any): async.Operation<types.DeleteAssetModelOutput>
-    deleteAssetModelCompositeModel: function(Client, types.DeleteAssetModelCompositeModelInput, any): async.Operation<types.DeleteAssetModelCompositeModelOutput>
-    deleteAssetModelInterfaceRelationship: function(Client, types.DeleteAssetModelInterfaceRelationshipInput, any): async.Operation<types.DeleteAssetModelInterfaceRelationshipOutput>
-    deleteComputationModel: function(Client, types.DeleteComputationModelInput, any): async.Operation<types.DeleteComputationModelOutput>
-    deleteDashboard: function(Client, types.DeleteDashboardInput, any): async.Operation<types.DeleteDashboardOutput>
-    deleteDataset: function(Client, types.DeleteDatasetInput, any): async.Operation<types.DeleteDatasetOutput>
-    deleteGateway: function(Client, types.DeleteGatewayInput, any): async.Operation<types.DeleteGatewayOutput>
-    deletePortal: function(Client, types.DeletePortalInput, any): async.Operation<types.DeletePortalOutput>
-    deleteProject: function(Client, types.DeleteProjectInput, any): async.Operation<types.DeleteProjectOutput>
-    deleteTimeSeries: function(Client, types.DeleteTimeSeriesInput, any): async.Operation<types.DeleteTimeSeriesOutput>
-    describeAccessPolicy: function(Client, types.DescribeAccessPolicyInput, any): async.Operation<types.DescribeAccessPolicyOutput>
-    describeAction: function(Client, types.DescribeActionInput, any): async.Operation<types.DescribeActionOutput>
-    describeAsset: function(Client, types.DescribeAssetInput, any): async.Operation<types.DescribeAssetOutput>
-    describeAssetCompositeModel: function(Client, types.DescribeAssetCompositeModelInput, any): async.Operation<types.DescribeAssetCompositeModelOutput>
-    describeAssetModel: function(Client, types.DescribeAssetModelInput, any): async.Operation<types.DescribeAssetModelOutput>
-    describeAssetModelCompositeModel: function(Client, types.DescribeAssetModelCompositeModelInput, any): async.Operation<types.DescribeAssetModelCompositeModelOutput>
-    describeAssetModelInterfaceRelationship: function(Client, types.DescribeAssetModelInterfaceRelationshipInput, any): async.Operation<types.DescribeAssetModelInterfaceRelationshipOutput>
-    describeAssetProperty: function(Client, types.DescribeAssetPropertyInput, any): async.Operation<types.DescribeAssetPropertyOutput>
-    describeBulkImportJob: function(Client, types.DescribeBulkImportJobInput, any): async.Operation<types.DescribeBulkImportJobOutput>
-    describeComputationModel: function(Client, types.DescribeComputationModelInput, any): async.Operation<types.DescribeComputationModelOutput>
-    describeComputationModelExecutionSummary: function(Client, types.DescribeComputationModelExecutionSummaryInput, any): async.Operation<types.DescribeComputationModelExecutionSummaryOutput>
-    describeDashboard: function(Client, types.DescribeDashboardInput, any): async.Operation<types.DescribeDashboardOutput>
-    describeDataset: function(Client, types.DescribeDatasetInput, any): async.Operation<types.DescribeDatasetOutput>
-    describeDefaultEncryptionConfiguration: function(Client, types.DescribeDefaultEncryptionConfigurationInput, any): async.Operation<types.DescribeDefaultEncryptionConfigurationOutput>
-    describeExecution: function(Client, types.DescribeExecutionInput, any): async.Operation<types.DescribeExecutionOutput>
-    describeGateway: function(Client, types.DescribeGatewayInput, any): async.Operation<types.DescribeGatewayOutput>
-    describeGatewayCapabilityConfiguration: function(Client, types.DescribeGatewayCapabilityConfigurationInput, any): async.Operation<types.DescribeGatewayCapabilityConfigurationOutput>
-    describeLoggingOptions: function(Client, types.DescribeLoggingOptionsInput, any): async.Operation<types.DescribeLoggingOptionsOutput>
-    describePortal: function(Client, types.DescribePortalInput, any): async.Operation<types.DescribePortalOutput>
-    describeProject: function(Client, types.DescribeProjectInput, any): async.Operation<types.DescribeProjectOutput>
-    describeStorageConfiguration: function(Client, types.DescribeStorageConfigurationInput, any): async.Operation<types.DescribeStorageConfigurationOutput>
-    describeTimeSeries: function(Client, types.DescribeTimeSeriesInput, any): async.Operation<types.DescribeTimeSeriesOutput>
-    disassociateAssets: function(Client, types.DisassociateAssetsInput, any): async.Operation<types.DisassociateAssetsOutput>
-    disassociateTimeSeriesFromAssetProperty: function(Client, types.DisassociateTimeSeriesFromAssetPropertyInput, any): async.Operation<types.DisassociateTimeSeriesFromAssetPropertyOutput>
-    executeAction: function(Client, types.ExecuteActionInput, any): async.Operation<types.ExecuteActionOutput>
-    executeQuery: function(Client, types.ExecuteQueryInput, any): async.Operation<types.ExecuteQueryOutput>
-    getAssetPropertyAggregates: function(Client, types.GetAssetPropertyAggregatesInput, any): async.Operation<types.GetAssetPropertyAggregatesOutput>
-    getAssetPropertyValue: function(Client, types.GetAssetPropertyValueInput, any): async.Operation<types.GetAssetPropertyValueOutput>
-    getAssetPropertyValueHistory: function(Client, types.GetAssetPropertyValueHistoryInput, any): async.Operation<types.GetAssetPropertyValueHistoryOutput>
-    getInterpolatedAssetPropertyValues: function(Client, types.GetInterpolatedAssetPropertyValuesInput, any): async.Operation<types.GetInterpolatedAssetPropertyValuesOutput>
-    invokeAssistant: function(Client, types.InvokeAssistantInput, any): async.Operation<types.InvokeAssistantOutput>
-    listAccessPolicies: function(Client, types.ListAccessPoliciesInput, any): async.Operation<types.ListAccessPoliciesOutput>
-    listActions: function(Client, types.ListActionsInput, any): async.Operation<types.ListActionsOutput>
-    listAssetModelCompositeModels: function(Client, types.ListAssetModelCompositeModelsInput, any): async.Operation<types.ListAssetModelCompositeModelsOutput>
-    listAssetModelProperties: function(Client, types.ListAssetModelPropertiesInput, any): async.Operation<types.ListAssetModelPropertiesOutput>
-    listAssetModels: function(Client, types.ListAssetModelsInput, any): async.Operation<types.ListAssetModelsOutput>
-    listAssetProperties: function(Client, types.ListAssetPropertiesInput, any): async.Operation<types.ListAssetPropertiesOutput>
-    listAssetRelationships: function(Client, types.ListAssetRelationshipsInput, any): async.Operation<types.ListAssetRelationshipsOutput>
-    listAssets: function(Client, types.ListAssetsInput, any): async.Operation<types.ListAssetsOutput>
-    listAssociatedAssets: function(Client, types.ListAssociatedAssetsInput, any): async.Operation<types.ListAssociatedAssetsOutput>
-    listBulkImportJobs: function(Client, types.ListBulkImportJobsInput, any): async.Operation<types.ListBulkImportJobsOutput>
-    listCompositionRelationships: function(Client, types.ListCompositionRelationshipsInput, any): async.Operation<types.ListCompositionRelationshipsOutput>
-    listComputationModelDataBindingUsages: function(Client, types.ListComputationModelDataBindingUsagesInput, any): async.Operation<types.ListComputationModelDataBindingUsagesOutput>
-    listComputationModelResolveToResources: function(Client, types.ListComputationModelResolveToResourcesInput, any): async.Operation<types.ListComputationModelResolveToResourcesOutput>
-    listComputationModels: function(Client, types.ListComputationModelsInput, any): async.Operation<types.ListComputationModelsOutput>
-    listDashboards: function(Client, types.ListDashboardsInput, any): async.Operation<types.ListDashboardsOutput>
-    listDatasets: function(Client, types.ListDatasetsInput, any): async.Operation<types.ListDatasetsOutput>
-    listExecutions: function(Client, types.ListExecutionsInput, any): async.Operation<types.ListExecutionsOutput>
-    listGateways: function(Client, types.ListGatewaysInput, any): async.Operation<types.ListGatewaysOutput>
-    listInterfaceRelationships: function(Client, types.ListInterfaceRelationshipsInput, any): async.Operation<types.ListInterfaceRelationshipsOutput>
-    listPortals: function(Client, types.ListPortalsInput, any): async.Operation<types.ListPortalsOutput>
-    listProjectAssets: function(Client, types.ListProjectAssetsInput, any): async.Operation<types.ListProjectAssetsOutput>
-    listProjects: function(Client, types.ListProjectsInput, any): async.Operation<types.ListProjectsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTimeSeries: function(Client, types.ListTimeSeriesInput, any): async.Operation<types.ListTimeSeriesOutput>
-    putAssetModelInterfaceRelationship: function(Client, types.PutAssetModelInterfaceRelationshipInput, any): async.Operation<types.PutAssetModelInterfaceRelationshipOutput>
-    putDefaultEncryptionConfiguration: function(Client, types.PutDefaultEncryptionConfigurationInput, any): async.Operation<types.PutDefaultEncryptionConfigurationOutput>
-    putLoggingOptions: function(Client, types.PutLoggingOptionsInput, any): async.Operation<types.PutLoggingOptionsOutput>
-    putStorageConfiguration: function(Client, types.PutStorageConfigurationInput, any): async.Operation<types.PutStorageConfigurationOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAccessPolicy: function(Client, types.UpdateAccessPolicyInput, any): async.Operation<types.UpdateAccessPolicyOutput>
-    updateAsset: function(Client, types.UpdateAssetInput, any): async.Operation<types.UpdateAssetOutput>
-    updateAssetModel: function(Client, types.UpdateAssetModelInput, any): async.Operation<types.UpdateAssetModelOutput>
-    updateAssetModelCompositeModel: function(Client, types.UpdateAssetModelCompositeModelInput, any): async.Operation<types.UpdateAssetModelCompositeModelOutput>
-    updateAssetProperty: function(Client, types.UpdateAssetPropertyInput, any): async.Operation<types.UpdateAssetPropertyOutput>
-    updateComputationModel: function(Client, types.UpdateComputationModelInput, any): async.Operation<types.UpdateComputationModelOutput>
-    updateDashboard: function(Client, types.UpdateDashboardInput, any): async.Operation<types.UpdateDashboardOutput>
-    updateDataset: function(Client, types.UpdateDatasetInput, any): async.Operation<types.UpdateDatasetOutput>
-    updateGateway: function(Client, types.UpdateGatewayInput, any): async.Operation<types.UpdateGatewayOutput>
-    updateGatewayCapabilityConfiguration: function(Client, types.UpdateGatewayCapabilityConfigurationInput, any): async.Operation<types.UpdateGatewayCapabilityConfigurationOutput>
-    updatePortal: function(Client, types.UpdatePortalInput, any): async.Operation<types.UpdatePortalOutput>
-    updateProject: function(Client, types.UpdateProjectInput, any): async.Operation<types.UpdateProjectOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateAssets: function(Client, types.AssociateAssetsInput, ? base_client.InvokeOptions): async.Operation<types.AssociateAssetsOutput>
+    associateTimeSeriesToAssetProperty: function(Client, types.AssociateTimeSeriesToAssetPropertyInput, ? base_client.InvokeOptions): async.Operation<types.AssociateTimeSeriesToAssetPropertyOutput>
+    batchAssociateProjectAssets: function(Client, types.BatchAssociateProjectAssetsInput, ? base_client.InvokeOptions): async.Operation<types.BatchAssociateProjectAssetsOutput>
+    batchDisassociateProjectAssets: function(Client, types.BatchDisassociateProjectAssetsInput, ? base_client.InvokeOptions): async.Operation<types.BatchDisassociateProjectAssetsOutput>
+    batchGetAssetPropertyAggregates: function(Client, types.BatchGetAssetPropertyAggregatesInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetAssetPropertyAggregatesOutput>
+    batchGetAssetPropertyValue: function(Client, types.BatchGetAssetPropertyValueInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetAssetPropertyValueOutput>
+    batchGetAssetPropertyValueHistory: function(Client, types.BatchGetAssetPropertyValueHistoryInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetAssetPropertyValueHistoryOutput>
+    batchPutAssetPropertyValue: function(Client, types.BatchPutAssetPropertyValueInput, ? base_client.InvokeOptions): async.Operation<types.BatchPutAssetPropertyValueOutput>
+    createAccessPolicy: function(Client, types.CreateAccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateAccessPolicyOutput>
+    createAsset: function(Client, types.CreateAssetInput, ? base_client.InvokeOptions): async.Operation<types.CreateAssetOutput>
+    createAssetModel: function(Client, types.CreateAssetModelInput, ? base_client.InvokeOptions): async.Operation<types.CreateAssetModelOutput>
+    createAssetModelCompositeModel: function(Client, types.CreateAssetModelCompositeModelInput, ? base_client.InvokeOptions): async.Operation<types.CreateAssetModelCompositeModelOutput>
+    createBulkImportJob: function(Client, types.CreateBulkImportJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateBulkImportJobOutput>
+    createComputationModel: function(Client, types.CreateComputationModelInput, ? base_client.InvokeOptions): async.Operation<types.CreateComputationModelOutput>
+    createDashboard: function(Client, types.CreateDashboardInput, ? base_client.InvokeOptions): async.Operation<types.CreateDashboardOutput>
+    createDataset: function(Client, types.CreateDatasetInput, ? base_client.InvokeOptions): async.Operation<types.CreateDatasetOutput>
+    createGateway: function(Client, types.CreateGatewayInput, ? base_client.InvokeOptions): async.Operation<types.CreateGatewayOutput>
+    createPortal: function(Client, types.CreatePortalInput, ? base_client.InvokeOptions): async.Operation<types.CreatePortalOutput>
+    createProject: function(Client, types.CreateProjectInput, ? base_client.InvokeOptions): async.Operation<types.CreateProjectOutput>
+    deleteAccessPolicy: function(Client, types.DeleteAccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccessPolicyOutput>
+    deleteAsset: function(Client, types.DeleteAssetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAssetOutput>
+    deleteAssetModel: function(Client, types.DeleteAssetModelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAssetModelOutput>
+    deleteAssetModelCompositeModel: function(Client, types.DeleteAssetModelCompositeModelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAssetModelCompositeModelOutput>
+    deleteAssetModelInterfaceRelationship: function(Client, types.DeleteAssetModelInterfaceRelationshipInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAssetModelInterfaceRelationshipOutput>
+    deleteComputationModel: function(Client, types.DeleteComputationModelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteComputationModelOutput>
+    deleteDashboard: function(Client, types.DeleteDashboardInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDashboardOutput>
+    deleteDataset: function(Client, types.DeleteDatasetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDatasetOutput>
+    deleteGateway: function(Client, types.DeleteGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGatewayOutput>
+    deletePortal: function(Client, types.DeletePortalInput, ? base_client.InvokeOptions): async.Operation<types.DeletePortalOutput>
+    deleteProject: function(Client, types.DeleteProjectInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProjectOutput>
+    deleteTimeSeries: function(Client, types.DeleteTimeSeriesInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTimeSeriesOutput>
+    describeAccessPolicy: function(Client, types.DescribeAccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAccessPolicyOutput>
+    describeAction: function(Client, types.DescribeActionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeActionOutput>
+    describeAsset: function(Client, types.DescribeAssetInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAssetOutput>
+    describeAssetCompositeModel: function(Client, types.DescribeAssetCompositeModelInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAssetCompositeModelOutput>
+    describeAssetModel: function(Client, types.DescribeAssetModelInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAssetModelOutput>
+    describeAssetModelCompositeModel: function(Client, types.DescribeAssetModelCompositeModelInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAssetModelCompositeModelOutput>
+    describeAssetModelInterfaceRelationship: function(Client, types.DescribeAssetModelInterfaceRelationshipInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAssetModelInterfaceRelationshipOutput>
+    describeAssetProperty: function(Client, types.DescribeAssetPropertyInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAssetPropertyOutput>
+    describeBulkImportJob: function(Client, types.DescribeBulkImportJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBulkImportJobOutput>
+    describeComputationModel: function(Client, types.DescribeComputationModelInput, ? base_client.InvokeOptions): async.Operation<types.DescribeComputationModelOutput>
+    describeComputationModelExecutionSummary: function(Client, types.DescribeComputationModelExecutionSummaryInput, ? base_client.InvokeOptions): async.Operation<types.DescribeComputationModelExecutionSummaryOutput>
+    describeDashboard: function(Client, types.DescribeDashboardInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDashboardOutput>
+    describeDataset: function(Client, types.DescribeDatasetInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDatasetOutput>
+    describeDefaultEncryptionConfiguration: function(Client, types.DescribeDefaultEncryptionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDefaultEncryptionConfigurationOutput>
+    describeExecution: function(Client, types.DescribeExecutionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeExecutionOutput>
+    describeGateway: function(Client, types.DescribeGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DescribeGatewayOutput>
+    describeGatewayCapabilityConfiguration: function(Client, types.DescribeGatewayCapabilityConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeGatewayCapabilityConfigurationOutput>
+    describeLoggingOptions: function(Client, types.DescribeLoggingOptionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLoggingOptionsOutput>
+    describePortal: function(Client, types.DescribePortalInput, ? base_client.InvokeOptions): async.Operation<types.DescribePortalOutput>
+    describeProject: function(Client, types.DescribeProjectInput, ? base_client.InvokeOptions): async.Operation<types.DescribeProjectOutput>
+    describeStorageConfiguration: function(Client, types.DescribeStorageConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeStorageConfigurationOutput>
+    describeTimeSeries: function(Client, types.DescribeTimeSeriesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTimeSeriesOutput>
+    disassociateAssets: function(Client, types.DisassociateAssetsInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateAssetsOutput>
+    disassociateTimeSeriesFromAssetProperty: function(Client, types.DisassociateTimeSeriesFromAssetPropertyInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateTimeSeriesFromAssetPropertyOutput>
+    executeAction: function(Client, types.ExecuteActionInput, ? base_client.InvokeOptions): async.Operation<types.ExecuteActionOutput>
+    executeQuery: function(Client, types.ExecuteQueryInput, ? base_client.InvokeOptions): async.Operation<types.ExecuteQueryOutput>
+    getAssetPropertyAggregates: function(Client, types.GetAssetPropertyAggregatesInput, ? base_client.InvokeOptions): async.Operation<types.GetAssetPropertyAggregatesOutput>
+    getAssetPropertyValue: function(Client, types.GetAssetPropertyValueInput, ? base_client.InvokeOptions): async.Operation<types.GetAssetPropertyValueOutput>
+    getAssetPropertyValueHistory: function(Client, types.GetAssetPropertyValueHistoryInput, ? base_client.InvokeOptions): async.Operation<types.GetAssetPropertyValueHistoryOutput>
+    getInterpolatedAssetPropertyValues: function(Client, types.GetInterpolatedAssetPropertyValuesInput, ? base_client.InvokeOptions): async.Operation<types.GetInterpolatedAssetPropertyValuesOutput>
+    invokeAssistant: function(Client, types.InvokeAssistantInput, ? base_client.InvokeOptions): async.Operation<types.InvokeAssistantOutput>
+    listAccessPolicies: function(Client, types.ListAccessPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListAccessPoliciesOutput>
+    listActions: function(Client, types.ListActionsInput, ? base_client.InvokeOptions): async.Operation<types.ListActionsOutput>
+    listAssetModelCompositeModels: function(Client, types.ListAssetModelCompositeModelsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssetModelCompositeModelsOutput>
+    listAssetModelProperties: function(Client, types.ListAssetModelPropertiesInput, ? base_client.InvokeOptions): async.Operation<types.ListAssetModelPropertiesOutput>
+    listAssetModels: function(Client, types.ListAssetModelsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssetModelsOutput>
+    listAssetProperties: function(Client, types.ListAssetPropertiesInput, ? base_client.InvokeOptions): async.Operation<types.ListAssetPropertiesOutput>
+    listAssetRelationships: function(Client, types.ListAssetRelationshipsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssetRelationshipsOutput>
+    listAssets: function(Client, types.ListAssetsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssetsOutput>
+    listAssociatedAssets: function(Client, types.ListAssociatedAssetsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssociatedAssetsOutput>
+    listBulkImportJobs: function(Client, types.ListBulkImportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListBulkImportJobsOutput>
+    listCompositionRelationships: function(Client, types.ListCompositionRelationshipsInput, ? base_client.InvokeOptions): async.Operation<types.ListCompositionRelationshipsOutput>
+    listComputationModelDataBindingUsages: function(Client, types.ListComputationModelDataBindingUsagesInput, ? base_client.InvokeOptions): async.Operation<types.ListComputationModelDataBindingUsagesOutput>
+    listComputationModelResolveToResources: function(Client, types.ListComputationModelResolveToResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListComputationModelResolveToResourcesOutput>
+    listComputationModels: function(Client, types.ListComputationModelsInput, ? base_client.InvokeOptions): async.Operation<types.ListComputationModelsOutput>
+    listDashboards: function(Client, types.ListDashboardsInput, ? base_client.InvokeOptions): async.Operation<types.ListDashboardsOutput>
+    listDatasets: function(Client, types.ListDatasetsInput, ? base_client.InvokeOptions): async.Operation<types.ListDatasetsOutput>
+    listExecutions: function(Client, types.ListExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListExecutionsOutput>
+    listGateways: function(Client, types.ListGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.ListGatewaysOutput>
+    listInterfaceRelationships: function(Client, types.ListInterfaceRelationshipsInput, ? base_client.InvokeOptions): async.Operation<types.ListInterfaceRelationshipsOutput>
+    listPortals: function(Client, types.ListPortalsInput, ? base_client.InvokeOptions): async.Operation<types.ListPortalsOutput>
+    listProjectAssets: function(Client, types.ListProjectAssetsInput, ? base_client.InvokeOptions): async.Operation<types.ListProjectAssetsOutput>
+    listProjects: function(Client, types.ListProjectsInput, ? base_client.InvokeOptions): async.Operation<types.ListProjectsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTimeSeries: function(Client, types.ListTimeSeriesInput, ? base_client.InvokeOptions): async.Operation<types.ListTimeSeriesOutput>
+    putAssetModelInterfaceRelationship: function(Client, types.PutAssetModelInterfaceRelationshipInput, ? base_client.InvokeOptions): async.Operation<types.PutAssetModelInterfaceRelationshipOutput>
+    putDefaultEncryptionConfiguration: function(Client, types.PutDefaultEncryptionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutDefaultEncryptionConfigurationOutput>
+    putLoggingOptions: function(Client, types.PutLoggingOptionsInput, ? base_client.InvokeOptions): async.Operation<types.PutLoggingOptionsOutput>
+    putStorageConfiguration: function(Client, types.PutStorageConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutStorageConfigurationOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAccessPolicy: function(Client, types.UpdateAccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAccessPolicyOutput>
+    updateAsset: function(Client, types.UpdateAssetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAssetOutput>
+    updateAssetModel: function(Client, types.UpdateAssetModelInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAssetModelOutput>
+    updateAssetModelCompositeModel: function(Client, types.UpdateAssetModelCompositeModelInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAssetModelCompositeModelOutput>
+    updateAssetProperty: function(Client, types.UpdateAssetPropertyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAssetPropertyOutput>
+    updateComputationModel: function(Client, types.UpdateComputationModelInput, ? base_client.InvokeOptions): async.Operation<types.UpdateComputationModelOutput>
+    updateDashboard: function(Client, types.UpdateDashboardInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDashboardOutput>
+    updateDataset: function(Client, types.UpdateDatasetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDatasetOutput>
+    updateGateway: function(Client, types.UpdateGatewayInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGatewayOutput>
+    updateGatewayCapabilityConfiguration: function(Client, types.UpdateGatewayCapabilityConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGatewayCapabilityConfigurationOutput>
+    updatePortal: function(Client, types.UpdatePortalInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePortalOutput>
+    updateProject: function(Client, types.UpdateProjectInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProjectOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSIoTSiteWise"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "iotsitewise", signing_region = c.region } }
                 else
@@ -163,420 +166,420 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateAssets(input: types.AssociateAssetsInput, options: any): async.Operation<types.AssociateAssetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateAssets, input, options) as async.Operation<types.AssociateAssetsOutput>
+function C:associateAssets(input: types.AssociateAssetsInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateAssetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateAssets as schema.OperationSchema, input, options) as async.Operation<types.AssociateAssetsOutput>
 end
 
-function C:associateTimeSeriesToAssetProperty(input: types.AssociateTimeSeriesToAssetPropertyInput, options: any): async.Operation<types.AssociateTimeSeriesToAssetPropertyOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateTimeSeriesToAssetProperty, input, options) as async.Operation<types.AssociateTimeSeriesToAssetPropertyOutput>
+function C:associateTimeSeriesToAssetProperty(input: types.AssociateTimeSeriesToAssetPropertyInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateTimeSeriesToAssetPropertyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateTimeSeriesToAssetProperty as schema.OperationSchema, input, options) as async.Operation<types.AssociateTimeSeriesToAssetPropertyOutput>
 end
 
-function C:batchAssociateProjectAssets(input: types.BatchAssociateProjectAssetsInput, options: any): async.Operation<types.BatchAssociateProjectAssetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchAssociateProjectAssets, input, options) as async.Operation<types.BatchAssociateProjectAssetsOutput>
+function C:batchAssociateProjectAssets(input: types.BatchAssociateProjectAssetsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchAssociateProjectAssetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchAssociateProjectAssets as schema.OperationSchema, input, options) as async.Operation<types.BatchAssociateProjectAssetsOutput>
 end
 
-function C:batchDisassociateProjectAssets(input: types.BatchDisassociateProjectAssetsInput, options: any): async.Operation<types.BatchDisassociateProjectAssetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDisassociateProjectAssets, input, options) as async.Operation<types.BatchDisassociateProjectAssetsOutput>
+function C:batchDisassociateProjectAssets(input: types.BatchDisassociateProjectAssetsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDisassociateProjectAssetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDisassociateProjectAssets as schema.OperationSchema, input, options) as async.Operation<types.BatchDisassociateProjectAssetsOutput>
 end
 
-function C:batchGetAssetPropertyAggregates(input: types.BatchGetAssetPropertyAggregatesInput, options: any): async.Operation<types.BatchGetAssetPropertyAggregatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetAssetPropertyAggregates, input, options) as async.Operation<types.BatchGetAssetPropertyAggregatesOutput>
+function C:batchGetAssetPropertyAggregates(input: types.BatchGetAssetPropertyAggregatesInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetAssetPropertyAggregatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetAssetPropertyAggregates as schema.OperationSchema, input, options) as async.Operation<types.BatchGetAssetPropertyAggregatesOutput>
 end
 
-function C:batchGetAssetPropertyValue(input: types.BatchGetAssetPropertyValueInput, options: any): async.Operation<types.BatchGetAssetPropertyValueOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetAssetPropertyValue, input, options) as async.Operation<types.BatchGetAssetPropertyValueOutput>
+function C:batchGetAssetPropertyValue(input: types.BatchGetAssetPropertyValueInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetAssetPropertyValueOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetAssetPropertyValue as schema.OperationSchema, input, options) as async.Operation<types.BatchGetAssetPropertyValueOutput>
 end
 
-function C:batchGetAssetPropertyValueHistory(input: types.BatchGetAssetPropertyValueHistoryInput, options: any): async.Operation<types.BatchGetAssetPropertyValueHistoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetAssetPropertyValueHistory, input, options) as async.Operation<types.BatchGetAssetPropertyValueHistoryOutput>
+function C:batchGetAssetPropertyValueHistory(input: types.BatchGetAssetPropertyValueHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetAssetPropertyValueHistoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetAssetPropertyValueHistory as schema.OperationSchema, input, options) as async.Operation<types.BatchGetAssetPropertyValueHistoryOutput>
 end
 
-function C:batchPutAssetPropertyValue(input: types.BatchPutAssetPropertyValueInput, options: any): async.Operation<types.BatchPutAssetPropertyValueOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchPutAssetPropertyValue, input, options) as async.Operation<types.BatchPutAssetPropertyValueOutput>
+function C:batchPutAssetPropertyValue(input: types.BatchPutAssetPropertyValueInput, options?: base_client.InvokeOptions): async.Operation<types.BatchPutAssetPropertyValueOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchPutAssetPropertyValue as schema.OperationSchema, input, options) as async.Operation<types.BatchPutAssetPropertyValueOutput>
 end
 
-function C:createAccessPolicy(input: types.CreateAccessPolicyInput, options: any): async.Operation<types.CreateAccessPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAccessPolicy, input, options) as async.Operation<types.CreateAccessPolicyOutput>
+function C:createAccessPolicy(input: types.CreateAccessPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAccessPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAccessPolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateAccessPolicyOutput>
 end
 
-function C:createAsset(input: types.CreateAssetInput, options: any): async.Operation<types.CreateAssetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAsset, input, options) as async.Operation<types.CreateAssetOutput>
+function C:createAsset(input: types.CreateAssetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAssetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAsset as schema.OperationSchema, input, options) as async.Operation<types.CreateAssetOutput>
 end
 
-function C:createAssetModel(input: types.CreateAssetModelInput, options: any): async.Operation<types.CreateAssetModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAssetModel, input, options) as async.Operation<types.CreateAssetModelOutput>
+function C:createAssetModel(input: types.CreateAssetModelInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAssetModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAssetModel as schema.OperationSchema, input, options) as async.Operation<types.CreateAssetModelOutput>
 end
 
-function C:createAssetModelCompositeModel(input: types.CreateAssetModelCompositeModelInput, options: any): async.Operation<types.CreateAssetModelCompositeModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAssetModelCompositeModel, input, options) as async.Operation<types.CreateAssetModelCompositeModelOutput>
+function C:createAssetModelCompositeModel(input: types.CreateAssetModelCompositeModelInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAssetModelCompositeModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAssetModelCompositeModel as schema.OperationSchema, input, options) as async.Operation<types.CreateAssetModelCompositeModelOutput>
 end
 
-function C:createBulkImportJob(input: types.CreateBulkImportJobInput, options: any): async.Operation<types.CreateBulkImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBulkImportJob, input, options) as async.Operation<types.CreateBulkImportJobOutput>
+function C:createBulkImportJob(input: types.CreateBulkImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBulkImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBulkImportJob as schema.OperationSchema, input, options) as async.Operation<types.CreateBulkImportJobOutput>
 end
 
-function C:createComputationModel(input: types.CreateComputationModelInput, options: any): async.Operation<types.CreateComputationModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateComputationModel, input, options) as async.Operation<types.CreateComputationModelOutput>
+function C:createComputationModel(input: types.CreateComputationModelInput, options?: base_client.InvokeOptions): async.Operation<types.CreateComputationModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateComputationModel as schema.OperationSchema, input, options) as async.Operation<types.CreateComputationModelOutput>
 end
 
-function C:createDashboard(input: types.CreateDashboardInput, options: any): async.Operation<types.CreateDashboardOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDashboard, input, options) as async.Operation<types.CreateDashboardOutput>
+function C:createDashboard(input: types.CreateDashboardInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDashboardOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDashboard as schema.OperationSchema, input, options) as async.Operation<types.CreateDashboardOutput>
 end
 
-function C:createDataset(input: types.CreateDatasetInput, options: any): async.Operation<types.CreateDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataset, input, options) as async.Operation<types.CreateDatasetOutput>
+function C:createDataset(input: types.CreateDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataset as schema.OperationSchema, input, options) as async.Operation<types.CreateDatasetOutput>
 end
 
-function C:createGateway(input: types.CreateGatewayInput, options: any): async.Operation<types.CreateGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateGateway, input, options) as async.Operation<types.CreateGatewayOutput>
+function C:createGateway(input: types.CreateGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGateway as schema.OperationSchema, input, options) as async.Operation<types.CreateGatewayOutput>
 end
 
-function C:createPortal(input: types.CreatePortalInput, options: any): async.Operation<types.CreatePortalOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePortal, input, options) as async.Operation<types.CreatePortalOutput>
+function C:createPortal(input: types.CreatePortalInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePortalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePortal as schema.OperationSchema, input, options) as async.Operation<types.CreatePortalOutput>
 end
 
-function C:createProject(input: types.CreateProjectInput, options: any): async.Operation<types.CreateProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProject, input, options) as async.Operation<types.CreateProjectOutput>
+function C:createProject(input: types.CreateProjectInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProject as schema.OperationSchema, input, options) as async.Operation<types.CreateProjectOutput>
 end
 
-function C:deleteAccessPolicy(input: types.DeleteAccessPolicyInput, options: any): async.Operation<types.DeleteAccessPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAccessPolicy, input, options) as async.Operation<types.DeleteAccessPolicyOutput>
+function C:deleteAccessPolicy(input: types.DeleteAccessPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAccessPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAccessPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteAccessPolicyOutput>
 end
 
-function C:deleteAsset(input: types.DeleteAssetInput, options: any): async.Operation<types.DeleteAssetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAsset, input, options) as async.Operation<types.DeleteAssetOutput>
+function C:deleteAsset(input: types.DeleteAssetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAssetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAsset as schema.OperationSchema, input, options) as async.Operation<types.DeleteAssetOutput>
 end
 
-function C:deleteAssetModel(input: types.DeleteAssetModelInput, options: any): async.Operation<types.DeleteAssetModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAssetModel, input, options) as async.Operation<types.DeleteAssetModelOutput>
+function C:deleteAssetModel(input: types.DeleteAssetModelInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAssetModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAssetModel as schema.OperationSchema, input, options) as async.Operation<types.DeleteAssetModelOutput>
 end
 
-function C:deleteAssetModelCompositeModel(input: types.DeleteAssetModelCompositeModelInput, options: any): async.Operation<types.DeleteAssetModelCompositeModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAssetModelCompositeModel, input, options) as async.Operation<types.DeleteAssetModelCompositeModelOutput>
+function C:deleteAssetModelCompositeModel(input: types.DeleteAssetModelCompositeModelInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAssetModelCompositeModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAssetModelCompositeModel as schema.OperationSchema, input, options) as async.Operation<types.DeleteAssetModelCompositeModelOutput>
 end
 
-function C:deleteAssetModelInterfaceRelationship(input: types.DeleteAssetModelInterfaceRelationshipInput, options: any): async.Operation<types.DeleteAssetModelInterfaceRelationshipOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAssetModelInterfaceRelationship, input, options) as async.Operation<types.DeleteAssetModelInterfaceRelationshipOutput>
+function C:deleteAssetModelInterfaceRelationship(input: types.DeleteAssetModelInterfaceRelationshipInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAssetModelInterfaceRelationshipOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAssetModelInterfaceRelationship as schema.OperationSchema, input, options) as async.Operation<types.DeleteAssetModelInterfaceRelationshipOutput>
 end
 
-function C:deleteComputationModel(input: types.DeleteComputationModelInput, options: any): async.Operation<types.DeleteComputationModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteComputationModel, input, options) as async.Operation<types.DeleteComputationModelOutput>
+function C:deleteComputationModel(input: types.DeleteComputationModelInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteComputationModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteComputationModel as schema.OperationSchema, input, options) as async.Operation<types.DeleteComputationModelOutput>
 end
 
-function C:deleteDashboard(input: types.DeleteDashboardInput, options: any): async.Operation<types.DeleteDashboardOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDashboard, input, options) as async.Operation<types.DeleteDashboardOutput>
+function C:deleteDashboard(input: types.DeleteDashboardInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDashboardOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDashboard as schema.OperationSchema, input, options) as async.Operation<types.DeleteDashboardOutput>
 end
 
-function C:deleteDataset(input: types.DeleteDatasetInput, options: any): async.Operation<types.DeleteDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDataset, input, options) as async.Operation<types.DeleteDatasetOutput>
+function C:deleteDataset(input: types.DeleteDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataset as schema.OperationSchema, input, options) as async.Operation<types.DeleteDatasetOutput>
 end
 
-function C:deleteGateway(input: types.DeleteGatewayInput, options: any): async.Operation<types.DeleteGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteGateway, input, options) as async.Operation<types.DeleteGatewayOutput>
+function C:deleteGateway(input: types.DeleteGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGateway as schema.OperationSchema, input, options) as async.Operation<types.DeleteGatewayOutput>
 end
 
-function C:deletePortal(input: types.DeletePortalInput, options: any): async.Operation<types.DeletePortalOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePortal, input, options) as async.Operation<types.DeletePortalOutput>
+function C:deletePortal(input: types.DeletePortalInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePortalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePortal as schema.OperationSchema, input, options) as async.Operation<types.DeletePortalOutput>
 end
 
-function C:deleteProject(input: types.DeleteProjectInput, options: any): async.Operation<types.DeleteProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProject, input, options) as async.Operation<types.DeleteProjectOutput>
+function C:deleteProject(input: types.DeleteProjectInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProject as schema.OperationSchema, input, options) as async.Operation<types.DeleteProjectOutput>
 end
 
-function C:deleteTimeSeries(input: types.DeleteTimeSeriesInput, options: any): async.Operation<types.DeleteTimeSeriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTimeSeries, input, options) as async.Operation<types.DeleteTimeSeriesOutput>
+function C:deleteTimeSeries(input: types.DeleteTimeSeriesInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTimeSeriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTimeSeries as schema.OperationSchema, input, options) as async.Operation<types.DeleteTimeSeriesOutput>
 end
 
-function C:describeAccessPolicy(input: types.DescribeAccessPolicyInput, options: any): async.Operation<types.DescribeAccessPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAccessPolicy, input, options) as async.Operation<types.DescribeAccessPolicyOutput>
+function C:describeAccessPolicy(input: types.DescribeAccessPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAccessPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAccessPolicy as schema.OperationSchema, input, options) as async.Operation<types.DescribeAccessPolicyOutput>
 end
 
-function C:describeAction(input: types.DescribeActionInput, options: any): async.Operation<types.DescribeActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAction, input, options) as async.Operation<types.DescribeActionOutput>
+function C:describeAction(input: types.DescribeActionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAction as schema.OperationSchema, input, options) as async.Operation<types.DescribeActionOutput>
 end
 
-function C:describeAsset(input: types.DescribeAssetInput, options: any): async.Operation<types.DescribeAssetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAsset, input, options) as async.Operation<types.DescribeAssetOutput>
+function C:describeAsset(input: types.DescribeAssetInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAssetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAsset as schema.OperationSchema, input, options) as async.Operation<types.DescribeAssetOutput>
 end
 
-function C:describeAssetCompositeModel(input: types.DescribeAssetCompositeModelInput, options: any): async.Operation<types.DescribeAssetCompositeModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAssetCompositeModel, input, options) as async.Operation<types.DescribeAssetCompositeModelOutput>
+function C:describeAssetCompositeModel(input: types.DescribeAssetCompositeModelInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAssetCompositeModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAssetCompositeModel as schema.OperationSchema, input, options) as async.Operation<types.DescribeAssetCompositeModelOutput>
 end
 
-function C:describeAssetModel(input: types.DescribeAssetModelInput, options: any): async.Operation<types.DescribeAssetModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAssetModel, input, options) as async.Operation<types.DescribeAssetModelOutput>
+function C:describeAssetModel(input: types.DescribeAssetModelInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAssetModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAssetModel as schema.OperationSchema, input, options) as async.Operation<types.DescribeAssetModelOutput>
 end
 
-function C:describeAssetModelCompositeModel(input: types.DescribeAssetModelCompositeModelInput, options: any): async.Operation<types.DescribeAssetModelCompositeModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAssetModelCompositeModel, input, options) as async.Operation<types.DescribeAssetModelCompositeModelOutput>
+function C:describeAssetModelCompositeModel(input: types.DescribeAssetModelCompositeModelInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAssetModelCompositeModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAssetModelCompositeModel as schema.OperationSchema, input, options) as async.Operation<types.DescribeAssetModelCompositeModelOutput>
 end
 
-function C:describeAssetModelInterfaceRelationship(input: types.DescribeAssetModelInterfaceRelationshipInput, options: any): async.Operation<types.DescribeAssetModelInterfaceRelationshipOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAssetModelInterfaceRelationship, input, options) as async.Operation<types.DescribeAssetModelInterfaceRelationshipOutput>
+function C:describeAssetModelInterfaceRelationship(input: types.DescribeAssetModelInterfaceRelationshipInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAssetModelInterfaceRelationshipOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAssetModelInterfaceRelationship as schema.OperationSchema, input, options) as async.Operation<types.DescribeAssetModelInterfaceRelationshipOutput>
 end
 
-function C:describeAssetProperty(input: types.DescribeAssetPropertyInput, options: any): async.Operation<types.DescribeAssetPropertyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAssetProperty, input, options) as async.Operation<types.DescribeAssetPropertyOutput>
+function C:describeAssetProperty(input: types.DescribeAssetPropertyInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAssetPropertyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAssetProperty as schema.OperationSchema, input, options) as async.Operation<types.DescribeAssetPropertyOutput>
 end
 
-function C:describeBulkImportJob(input: types.DescribeBulkImportJobInput, options: any): async.Operation<types.DescribeBulkImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeBulkImportJob, input, options) as async.Operation<types.DescribeBulkImportJobOutput>
+function C:describeBulkImportJob(input: types.DescribeBulkImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBulkImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeBulkImportJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeBulkImportJobOutput>
 end
 
-function C:describeComputationModel(input: types.DescribeComputationModelInput, options: any): async.Operation<types.DescribeComputationModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeComputationModel, input, options) as async.Operation<types.DescribeComputationModelOutput>
+function C:describeComputationModel(input: types.DescribeComputationModelInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeComputationModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeComputationModel as schema.OperationSchema, input, options) as async.Operation<types.DescribeComputationModelOutput>
 end
 
-function C:describeComputationModelExecutionSummary(input: types.DescribeComputationModelExecutionSummaryInput, options: any): async.Operation<types.DescribeComputationModelExecutionSummaryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeComputationModelExecutionSummary, input, options) as async.Operation<types.DescribeComputationModelExecutionSummaryOutput>
+function C:describeComputationModelExecutionSummary(input: types.DescribeComputationModelExecutionSummaryInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeComputationModelExecutionSummaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeComputationModelExecutionSummary as schema.OperationSchema, input, options) as async.Operation<types.DescribeComputationModelExecutionSummaryOutput>
 end
 
-function C:describeDashboard(input: types.DescribeDashboardInput, options: any): async.Operation<types.DescribeDashboardOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDashboard, input, options) as async.Operation<types.DescribeDashboardOutput>
+function C:describeDashboard(input: types.DescribeDashboardInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDashboardOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDashboard as schema.OperationSchema, input, options) as async.Operation<types.DescribeDashboardOutput>
 end
 
-function C:describeDataset(input: types.DescribeDatasetInput, options: any): async.Operation<types.DescribeDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDataset, input, options) as async.Operation<types.DescribeDatasetOutput>
+function C:describeDataset(input: types.DescribeDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDataset as schema.OperationSchema, input, options) as async.Operation<types.DescribeDatasetOutput>
 end
 
-function C:describeDefaultEncryptionConfiguration(input: types.DescribeDefaultEncryptionConfigurationInput, options: any): async.Operation<types.DescribeDefaultEncryptionConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDefaultEncryptionConfiguration, input, options) as async.Operation<types.DescribeDefaultEncryptionConfigurationOutput>
+function C:describeDefaultEncryptionConfiguration(input: types.DescribeDefaultEncryptionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDefaultEncryptionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDefaultEncryptionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeDefaultEncryptionConfigurationOutput>
 end
 
-function C:describeExecution(input: types.DescribeExecutionInput, options: any): async.Operation<types.DescribeExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeExecution, input, options) as async.Operation<types.DescribeExecutionOutput>
+function C:describeExecution(input: types.DescribeExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeExecution as schema.OperationSchema, input, options) as async.Operation<types.DescribeExecutionOutput>
 end
 
-function C:describeGateway(input: types.DescribeGatewayInput, options: any): async.Operation<types.DescribeGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeGateway, input, options) as async.Operation<types.DescribeGatewayOutput>
+function C:describeGateway(input: types.DescribeGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeGateway as schema.OperationSchema, input, options) as async.Operation<types.DescribeGatewayOutput>
 end
 
-function C:describeGatewayCapabilityConfiguration(input: types.DescribeGatewayCapabilityConfigurationInput, options: any): async.Operation<types.DescribeGatewayCapabilityConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeGatewayCapabilityConfiguration, input, options) as async.Operation<types.DescribeGatewayCapabilityConfigurationOutput>
+function C:describeGatewayCapabilityConfiguration(input: types.DescribeGatewayCapabilityConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeGatewayCapabilityConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeGatewayCapabilityConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeGatewayCapabilityConfigurationOutput>
 end
 
-function C:describeLoggingOptions(input: types.DescribeLoggingOptionsInput, options: any): async.Operation<types.DescribeLoggingOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLoggingOptions, input, options) as async.Operation<types.DescribeLoggingOptionsOutput>
+function C:describeLoggingOptions(input: types.DescribeLoggingOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLoggingOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLoggingOptions as schema.OperationSchema, input, options) as async.Operation<types.DescribeLoggingOptionsOutput>
 end
 
-function C:describePortal(input: types.DescribePortalInput, options: any): async.Operation<types.DescribePortalOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePortal, input, options) as async.Operation<types.DescribePortalOutput>
+function C:describePortal(input: types.DescribePortalInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePortalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePortal as schema.OperationSchema, input, options) as async.Operation<types.DescribePortalOutput>
 end
 
-function C:describeProject(input: types.DescribeProjectInput, options: any): async.Operation<types.DescribeProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeProject, input, options) as async.Operation<types.DescribeProjectOutput>
+function C:describeProject(input: types.DescribeProjectInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeProject as schema.OperationSchema, input, options) as async.Operation<types.DescribeProjectOutput>
 end
 
-function C:describeStorageConfiguration(input: types.DescribeStorageConfigurationInput, options: any): async.Operation<types.DescribeStorageConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeStorageConfiguration, input, options) as async.Operation<types.DescribeStorageConfigurationOutput>
+function C:describeStorageConfiguration(input: types.DescribeStorageConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeStorageConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeStorageConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeStorageConfigurationOutput>
 end
 
-function C:describeTimeSeries(input: types.DescribeTimeSeriesInput, options: any): async.Operation<types.DescribeTimeSeriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTimeSeries, input, options) as async.Operation<types.DescribeTimeSeriesOutput>
+function C:describeTimeSeries(input: types.DescribeTimeSeriesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTimeSeriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTimeSeries as schema.OperationSchema, input, options) as async.Operation<types.DescribeTimeSeriesOutput>
 end
 
-function C:disassociateAssets(input: types.DisassociateAssetsInput, options: any): async.Operation<types.DisassociateAssetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateAssets, input, options) as async.Operation<types.DisassociateAssetsOutput>
+function C:disassociateAssets(input: types.DisassociateAssetsInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateAssetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateAssets as schema.OperationSchema, input, options) as async.Operation<types.DisassociateAssetsOutput>
 end
 
-function C:disassociateTimeSeriesFromAssetProperty(input: types.DisassociateTimeSeriesFromAssetPropertyInput, options: any): async.Operation<types.DisassociateTimeSeriesFromAssetPropertyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateTimeSeriesFromAssetProperty, input, options) as async.Operation<types.DisassociateTimeSeriesFromAssetPropertyOutput>
+function C:disassociateTimeSeriesFromAssetProperty(input: types.DisassociateTimeSeriesFromAssetPropertyInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateTimeSeriesFromAssetPropertyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateTimeSeriesFromAssetProperty as schema.OperationSchema, input, options) as async.Operation<types.DisassociateTimeSeriesFromAssetPropertyOutput>
 end
 
-function C:executeAction(input: types.ExecuteActionInput, options: any): async.Operation<types.ExecuteActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExecuteAction, input, options) as async.Operation<types.ExecuteActionOutput>
+function C:executeAction(input: types.ExecuteActionInput, options?: base_client.InvokeOptions): async.Operation<types.ExecuteActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExecuteAction as schema.OperationSchema, input, options) as async.Operation<types.ExecuteActionOutput>
 end
 
-function C:executeQuery(input: types.ExecuteQueryInput, options: any): async.Operation<types.ExecuteQueryOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExecuteQuery, input, options) as async.Operation<types.ExecuteQueryOutput>
+function C:executeQuery(input: types.ExecuteQueryInput, options?: base_client.InvokeOptions): async.Operation<types.ExecuteQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExecuteQuery as schema.OperationSchema, input, options) as async.Operation<types.ExecuteQueryOutput>
 end
 
-function C:getAssetPropertyAggregates(input: types.GetAssetPropertyAggregatesInput, options: any): async.Operation<types.GetAssetPropertyAggregatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAssetPropertyAggregates, input, options) as async.Operation<types.GetAssetPropertyAggregatesOutput>
+function C:getAssetPropertyAggregates(input: types.GetAssetPropertyAggregatesInput, options?: base_client.InvokeOptions): async.Operation<types.GetAssetPropertyAggregatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAssetPropertyAggregates as schema.OperationSchema, input, options) as async.Operation<types.GetAssetPropertyAggregatesOutput>
 end
 
-function C:getAssetPropertyValue(input: types.GetAssetPropertyValueInput, options: any): async.Operation<types.GetAssetPropertyValueOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAssetPropertyValue, input, options) as async.Operation<types.GetAssetPropertyValueOutput>
+function C:getAssetPropertyValue(input: types.GetAssetPropertyValueInput, options?: base_client.InvokeOptions): async.Operation<types.GetAssetPropertyValueOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAssetPropertyValue as schema.OperationSchema, input, options) as async.Operation<types.GetAssetPropertyValueOutput>
 end
 
-function C:getAssetPropertyValueHistory(input: types.GetAssetPropertyValueHistoryInput, options: any): async.Operation<types.GetAssetPropertyValueHistoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAssetPropertyValueHistory, input, options) as async.Operation<types.GetAssetPropertyValueHistoryOutput>
+function C:getAssetPropertyValueHistory(input: types.GetAssetPropertyValueHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.GetAssetPropertyValueHistoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAssetPropertyValueHistory as schema.OperationSchema, input, options) as async.Operation<types.GetAssetPropertyValueHistoryOutput>
 end
 
-function C:getInterpolatedAssetPropertyValues(input: types.GetInterpolatedAssetPropertyValuesInput, options: any): async.Operation<types.GetInterpolatedAssetPropertyValuesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInterpolatedAssetPropertyValues, input, options) as async.Operation<types.GetInterpolatedAssetPropertyValuesOutput>
+function C:getInterpolatedAssetPropertyValues(input: types.GetInterpolatedAssetPropertyValuesInput, options?: base_client.InvokeOptions): async.Operation<types.GetInterpolatedAssetPropertyValuesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInterpolatedAssetPropertyValues as schema.OperationSchema, input, options) as async.Operation<types.GetInterpolatedAssetPropertyValuesOutput>
 end
 
-function C:invokeAssistant(input: types.InvokeAssistantInput, options: any): async.Operation<types.InvokeAssistantOutput>
-    return self:invokeOperation(schemas.Service, schemas.InvokeAssistant, input, options) as async.Operation<types.InvokeAssistantOutput>
+function C:invokeAssistant(input: types.InvokeAssistantInput, options?: base_client.InvokeOptions): async.Operation<types.InvokeAssistantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InvokeAssistant as schema.OperationSchema, input, options) as async.Operation<types.InvokeAssistantOutput>
 end
 
-function C:listAccessPolicies(input: types.ListAccessPoliciesInput, options: any): async.Operation<types.ListAccessPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccessPolicies, input, options) as async.Operation<types.ListAccessPoliciesOutput>
+function C:listAccessPolicies(input: types.ListAccessPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccessPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccessPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListAccessPoliciesOutput>
 end
 
-function C:listActions(input: types.ListActionsInput, options: any): async.Operation<types.ListActionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListActions, input, options) as async.Operation<types.ListActionsOutput>
+function C:listActions(input: types.ListActionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListActionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListActions as schema.OperationSchema, input, options) as async.Operation<types.ListActionsOutput>
 end
 
-function C:listAssetModelCompositeModels(input: types.ListAssetModelCompositeModelsInput, options: any): async.Operation<types.ListAssetModelCompositeModelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssetModelCompositeModels, input, options) as async.Operation<types.ListAssetModelCompositeModelsOutput>
+function C:listAssetModelCompositeModels(input: types.ListAssetModelCompositeModelsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssetModelCompositeModelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssetModelCompositeModels as schema.OperationSchema, input, options) as async.Operation<types.ListAssetModelCompositeModelsOutput>
 end
 
-function C:listAssetModelProperties(input: types.ListAssetModelPropertiesInput, options: any): async.Operation<types.ListAssetModelPropertiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssetModelProperties, input, options) as async.Operation<types.ListAssetModelPropertiesOutput>
+function C:listAssetModelProperties(input: types.ListAssetModelPropertiesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssetModelPropertiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssetModelProperties as schema.OperationSchema, input, options) as async.Operation<types.ListAssetModelPropertiesOutput>
 end
 
-function C:listAssetModels(input: types.ListAssetModelsInput, options: any): async.Operation<types.ListAssetModelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssetModels, input, options) as async.Operation<types.ListAssetModelsOutput>
+function C:listAssetModels(input: types.ListAssetModelsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssetModelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssetModels as schema.OperationSchema, input, options) as async.Operation<types.ListAssetModelsOutput>
 end
 
-function C:listAssetProperties(input: types.ListAssetPropertiesInput, options: any): async.Operation<types.ListAssetPropertiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssetProperties, input, options) as async.Operation<types.ListAssetPropertiesOutput>
+function C:listAssetProperties(input: types.ListAssetPropertiesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssetPropertiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssetProperties as schema.OperationSchema, input, options) as async.Operation<types.ListAssetPropertiesOutput>
 end
 
-function C:listAssetRelationships(input: types.ListAssetRelationshipsInput, options: any): async.Operation<types.ListAssetRelationshipsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssetRelationships, input, options) as async.Operation<types.ListAssetRelationshipsOutput>
+function C:listAssetRelationships(input: types.ListAssetRelationshipsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssetRelationshipsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssetRelationships as schema.OperationSchema, input, options) as async.Operation<types.ListAssetRelationshipsOutput>
 end
 
-function C:listAssets(input: types.ListAssetsInput, options: any): async.Operation<types.ListAssetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssets, input, options) as async.Operation<types.ListAssetsOutput>
+function C:listAssets(input: types.ListAssetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssets as schema.OperationSchema, input, options) as async.Operation<types.ListAssetsOutput>
 end
 
-function C:listAssociatedAssets(input: types.ListAssociatedAssetsInput, options: any): async.Operation<types.ListAssociatedAssetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssociatedAssets, input, options) as async.Operation<types.ListAssociatedAssetsOutput>
+function C:listAssociatedAssets(input: types.ListAssociatedAssetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssociatedAssetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssociatedAssets as schema.OperationSchema, input, options) as async.Operation<types.ListAssociatedAssetsOutput>
 end
 
-function C:listBulkImportJobs(input: types.ListBulkImportJobsInput, options: any): async.Operation<types.ListBulkImportJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBulkImportJobs, input, options) as async.Operation<types.ListBulkImportJobsOutput>
+function C:listBulkImportJobs(input: types.ListBulkImportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBulkImportJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBulkImportJobs as schema.OperationSchema, input, options) as async.Operation<types.ListBulkImportJobsOutput>
 end
 
-function C:listCompositionRelationships(input: types.ListCompositionRelationshipsInput, options: any): async.Operation<types.ListCompositionRelationshipsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCompositionRelationships, input, options) as async.Operation<types.ListCompositionRelationshipsOutput>
+function C:listCompositionRelationships(input: types.ListCompositionRelationshipsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCompositionRelationshipsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCompositionRelationships as schema.OperationSchema, input, options) as async.Operation<types.ListCompositionRelationshipsOutput>
 end
 
-function C:listComputationModelDataBindingUsages(input: types.ListComputationModelDataBindingUsagesInput, options: any): async.Operation<types.ListComputationModelDataBindingUsagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListComputationModelDataBindingUsages, input, options) as async.Operation<types.ListComputationModelDataBindingUsagesOutput>
+function C:listComputationModelDataBindingUsages(input: types.ListComputationModelDataBindingUsagesInput, options?: base_client.InvokeOptions): async.Operation<types.ListComputationModelDataBindingUsagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListComputationModelDataBindingUsages as schema.OperationSchema, input, options) as async.Operation<types.ListComputationModelDataBindingUsagesOutput>
 end
 
-function C:listComputationModelResolveToResources(input: types.ListComputationModelResolveToResourcesInput, options: any): async.Operation<types.ListComputationModelResolveToResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListComputationModelResolveToResources, input, options) as async.Operation<types.ListComputationModelResolveToResourcesOutput>
+function C:listComputationModelResolveToResources(input: types.ListComputationModelResolveToResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListComputationModelResolveToResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListComputationModelResolveToResources as schema.OperationSchema, input, options) as async.Operation<types.ListComputationModelResolveToResourcesOutput>
 end
 
-function C:listComputationModels(input: types.ListComputationModelsInput, options: any): async.Operation<types.ListComputationModelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListComputationModels, input, options) as async.Operation<types.ListComputationModelsOutput>
+function C:listComputationModels(input: types.ListComputationModelsInput, options?: base_client.InvokeOptions): async.Operation<types.ListComputationModelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListComputationModels as schema.OperationSchema, input, options) as async.Operation<types.ListComputationModelsOutput>
 end
 
-function C:listDashboards(input: types.ListDashboardsInput, options: any): async.Operation<types.ListDashboardsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDashboards, input, options) as async.Operation<types.ListDashboardsOutput>
+function C:listDashboards(input: types.ListDashboardsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDashboardsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDashboards as schema.OperationSchema, input, options) as async.Operation<types.ListDashboardsOutput>
 end
 
-function C:listDatasets(input: types.ListDatasetsInput, options: any): async.Operation<types.ListDatasetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDatasets, input, options) as async.Operation<types.ListDatasetsOutput>
+function C:listDatasets(input: types.ListDatasetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDatasetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDatasets as schema.OperationSchema, input, options) as async.Operation<types.ListDatasetsOutput>
 end
 
-function C:listExecutions(input: types.ListExecutionsInput, options: any): async.Operation<types.ListExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListExecutions, input, options) as async.Operation<types.ListExecutionsOutput>
+function C:listExecutions(input: types.ListExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExecutions as schema.OperationSchema, input, options) as async.Operation<types.ListExecutionsOutput>
 end
 
-function C:listGateways(input: types.ListGatewaysInput, options: any): async.Operation<types.ListGatewaysOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGateways, input, options) as async.Operation<types.ListGatewaysOutput>
+function C:listGateways(input: types.ListGatewaysInput, options?: base_client.InvokeOptions): async.Operation<types.ListGatewaysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGateways as schema.OperationSchema, input, options) as async.Operation<types.ListGatewaysOutput>
 end
 
-function C:listInterfaceRelationships(input: types.ListInterfaceRelationshipsInput, options: any): async.Operation<types.ListInterfaceRelationshipsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInterfaceRelationships, input, options) as async.Operation<types.ListInterfaceRelationshipsOutput>
+function C:listInterfaceRelationships(input: types.ListInterfaceRelationshipsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInterfaceRelationshipsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInterfaceRelationships as schema.OperationSchema, input, options) as async.Operation<types.ListInterfaceRelationshipsOutput>
 end
 
-function C:listPortals(input: types.ListPortalsInput, options: any): async.Operation<types.ListPortalsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPortals, input, options) as async.Operation<types.ListPortalsOutput>
+function C:listPortals(input: types.ListPortalsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPortalsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPortals as schema.OperationSchema, input, options) as async.Operation<types.ListPortalsOutput>
 end
 
-function C:listProjectAssets(input: types.ListProjectAssetsInput, options: any): async.Operation<types.ListProjectAssetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProjectAssets, input, options) as async.Operation<types.ListProjectAssetsOutput>
+function C:listProjectAssets(input: types.ListProjectAssetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListProjectAssetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProjectAssets as schema.OperationSchema, input, options) as async.Operation<types.ListProjectAssetsOutput>
 end
 
-function C:listProjects(input: types.ListProjectsInput, options: any): async.Operation<types.ListProjectsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProjects, input, options) as async.Operation<types.ListProjectsOutput>
+function C:listProjects(input: types.ListProjectsInput, options?: base_client.InvokeOptions): async.Operation<types.ListProjectsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProjects as schema.OperationSchema, input, options) as async.Operation<types.ListProjectsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTimeSeries(input: types.ListTimeSeriesInput, options: any): async.Operation<types.ListTimeSeriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTimeSeries, input, options) as async.Operation<types.ListTimeSeriesOutput>
+function C:listTimeSeries(input: types.ListTimeSeriesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTimeSeriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTimeSeries as schema.OperationSchema, input, options) as async.Operation<types.ListTimeSeriesOutput>
 end
 
-function C:putAssetModelInterfaceRelationship(input: types.PutAssetModelInterfaceRelationshipInput, options: any): async.Operation<types.PutAssetModelInterfaceRelationshipOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAssetModelInterfaceRelationship, input, options) as async.Operation<types.PutAssetModelInterfaceRelationshipOutput>
+function C:putAssetModelInterfaceRelationship(input: types.PutAssetModelInterfaceRelationshipInput, options?: base_client.InvokeOptions): async.Operation<types.PutAssetModelInterfaceRelationshipOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAssetModelInterfaceRelationship as schema.OperationSchema, input, options) as async.Operation<types.PutAssetModelInterfaceRelationshipOutput>
 end
 
-function C:putDefaultEncryptionConfiguration(input: types.PutDefaultEncryptionConfigurationInput, options: any): async.Operation<types.PutDefaultEncryptionConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutDefaultEncryptionConfiguration, input, options) as async.Operation<types.PutDefaultEncryptionConfigurationOutput>
+function C:putDefaultEncryptionConfiguration(input: types.PutDefaultEncryptionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutDefaultEncryptionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutDefaultEncryptionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutDefaultEncryptionConfigurationOutput>
 end
 
-function C:putLoggingOptions(input: types.PutLoggingOptionsInput, options: any): async.Operation<types.PutLoggingOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutLoggingOptions, input, options) as async.Operation<types.PutLoggingOptionsOutput>
+function C:putLoggingOptions(input: types.PutLoggingOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.PutLoggingOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutLoggingOptions as schema.OperationSchema, input, options) as async.Operation<types.PutLoggingOptionsOutput>
 end
 
-function C:putStorageConfiguration(input: types.PutStorageConfigurationInput, options: any): async.Operation<types.PutStorageConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutStorageConfiguration, input, options) as async.Operation<types.PutStorageConfigurationOutput>
+function C:putStorageConfiguration(input: types.PutStorageConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutStorageConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutStorageConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutStorageConfigurationOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAccessPolicy(input: types.UpdateAccessPolicyInput, options: any): async.Operation<types.UpdateAccessPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAccessPolicy, input, options) as async.Operation<types.UpdateAccessPolicyOutput>
+function C:updateAccessPolicy(input: types.UpdateAccessPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAccessPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAccessPolicy as schema.OperationSchema, input, options) as async.Operation<types.UpdateAccessPolicyOutput>
 end
 
-function C:updateAsset(input: types.UpdateAssetInput, options: any): async.Operation<types.UpdateAssetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAsset, input, options) as async.Operation<types.UpdateAssetOutput>
+function C:updateAsset(input: types.UpdateAssetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAssetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAsset as schema.OperationSchema, input, options) as async.Operation<types.UpdateAssetOutput>
 end
 
-function C:updateAssetModel(input: types.UpdateAssetModelInput, options: any): async.Operation<types.UpdateAssetModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAssetModel, input, options) as async.Operation<types.UpdateAssetModelOutput>
+function C:updateAssetModel(input: types.UpdateAssetModelInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAssetModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAssetModel as schema.OperationSchema, input, options) as async.Operation<types.UpdateAssetModelOutput>
 end
 
-function C:updateAssetModelCompositeModel(input: types.UpdateAssetModelCompositeModelInput, options: any): async.Operation<types.UpdateAssetModelCompositeModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAssetModelCompositeModel, input, options) as async.Operation<types.UpdateAssetModelCompositeModelOutput>
+function C:updateAssetModelCompositeModel(input: types.UpdateAssetModelCompositeModelInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAssetModelCompositeModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAssetModelCompositeModel as schema.OperationSchema, input, options) as async.Operation<types.UpdateAssetModelCompositeModelOutput>
 end
 
-function C:updateAssetProperty(input: types.UpdateAssetPropertyInput, options: any): async.Operation<types.UpdateAssetPropertyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAssetProperty, input, options) as async.Operation<types.UpdateAssetPropertyOutput>
+function C:updateAssetProperty(input: types.UpdateAssetPropertyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAssetPropertyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAssetProperty as schema.OperationSchema, input, options) as async.Operation<types.UpdateAssetPropertyOutput>
 end
 
-function C:updateComputationModel(input: types.UpdateComputationModelInput, options: any): async.Operation<types.UpdateComputationModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateComputationModel, input, options) as async.Operation<types.UpdateComputationModelOutput>
+function C:updateComputationModel(input: types.UpdateComputationModelInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateComputationModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateComputationModel as schema.OperationSchema, input, options) as async.Operation<types.UpdateComputationModelOutput>
 end
 
-function C:updateDashboard(input: types.UpdateDashboardInput, options: any): async.Operation<types.UpdateDashboardOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDashboard, input, options) as async.Operation<types.UpdateDashboardOutput>
+function C:updateDashboard(input: types.UpdateDashboardInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDashboardOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDashboard as schema.OperationSchema, input, options) as async.Operation<types.UpdateDashboardOutput>
 end
 
-function C:updateDataset(input: types.UpdateDatasetInput, options: any): async.Operation<types.UpdateDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDataset, input, options) as async.Operation<types.UpdateDatasetOutput>
+function C:updateDataset(input: types.UpdateDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDataset as schema.OperationSchema, input, options) as async.Operation<types.UpdateDatasetOutput>
 end
 
-function C:updateGateway(input: types.UpdateGatewayInput, options: any): async.Operation<types.UpdateGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateGateway, input, options) as async.Operation<types.UpdateGatewayOutput>
+function C:updateGateway(input: types.UpdateGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGateway as schema.OperationSchema, input, options) as async.Operation<types.UpdateGatewayOutput>
 end
 
-function C:updateGatewayCapabilityConfiguration(input: types.UpdateGatewayCapabilityConfigurationInput, options: any): async.Operation<types.UpdateGatewayCapabilityConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateGatewayCapabilityConfiguration, input, options) as async.Operation<types.UpdateGatewayCapabilityConfigurationOutput>
+function C:updateGatewayCapabilityConfiguration(input: types.UpdateGatewayCapabilityConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGatewayCapabilityConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGatewayCapabilityConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateGatewayCapabilityConfigurationOutput>
 end
 
-function C:updatePortal(input: types.UpdatePortalInput, options: any): async.Operation<types.UpdatePortalOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePortal, input, options) as async.Operation<types.UpdatePortalOutput>
+function C:updatePortal(input: types.UpdatePortalInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePortalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePortal as schema.OperationSchema, input, options) as async.Operation<types.UpdatePortalOutput>
 end
 
-function C:updateProject(input: types.UpdateProjectInput, options: any): async.Operation<types.UpdateProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProject, input, options) as async.Operation<types.UpdateProjectOutput>
+function C:updateProject(input: types.UpdateProjectInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProject as schema.OperationSchema, input, options) as async.Operation<types.UpdateProjectOutput>
 end
 
 return M

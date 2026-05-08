@@ -8,50 +8,53 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("aiops.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("aiops.schemas")
 local traits = require("smithy.traits")
 local types = require("aiops.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createInvestigationGroup: function(Client, types.CreateInvestigationGroupInput, any): async.Operation<types.CreateInvestigationGroupOutput>
-    deleteInvestigationGroup: function(Client, types.DeleteInvestigationGroupInput, any): async.Operation<types.DeleteInvestigationGroupOutput>
-    deleteInvestigationGroupPolicy: function(Client, types.DeleteInvestigationGroupPolicyInput, any): async.Operation<types.DeleteInvestigationGroupPolicyOutput>
-    getInvestigationGroup: function(Client, types.GetInvestigationGroupInput, any): async.Operation<types.GetInvestigationGroupOutput>
-    getInvestigationGroupPolicy: function(Client, types.GetInvestigationGroupPolicyInput, any): async.Operation<types.GetInvestigationGroupPolicyOutput>
-    listInvestigationGroups: function(Client, types.ListInvestigationGroupsInput, any): async.Operation<types.ListInvestigationGroupsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putInvestigationGroupPolicy: function(Client, types.PutInvestigationGroupPolicyInput, any): async.Operation<types.PutInvestigationGroupPolicyOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateInvestigationGroup: function(Client, types.UpdateInvestigationGroupInput, any): async.Operation<types.UpdateInvestigationGroupOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createInvestigationGroup: function(Client, types.CreateInvestigationGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateInvestigationGroupOutput>
+    deleteInvestigationGroup: function(Client, types.DeleteInvestigationGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInvestigationGroupOutput>
+    deleteInvestigationGroupPolicy: function(Client, types.DeleteInvestigationGroupPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInvestigationGroupPolicyOutput>
+    getInvestigationGroup: function(Client, types.GetInvestigationGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetInvestigationGroupOutput>
+    getInvestigationGroupPolicy: function(Client, types.GetInvestigationGroupPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetInvestigationGroupPolicyOutput>
+    listInvestigationGroups: function(Client, types.ListInvestigationGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListInvestigationGroupsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putInvestigationGroupPolicy: function(Client, types.PutInvestigationGroupPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutInvestigationGroupPolicyOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateInvestigationGroup: function(Client, types.UpdateInvestigationGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateInvestigationGroupOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AIOps"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "aiops", signing_region = c.region } }
                 else
@@ -70,48 +73,48 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createInvestigationGroup(input: types.CreateInvestigationGroupInput, options: any): async.Operation<types.CreateInvestigationGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateInvestigationGroup, input, options) as async.Operation<types.CreateInvestigationGroupOutput>
+function C:createInvestigationGroup(input: types.CreateInvestigationGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInvestigationGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInvestigationGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateInvestigationGroupOutput>
 end
 
-function C:deleteInvestigationGroup(input: types.DeleteInvestigationGroupInput, options: any): async.Operation<types.DeleteInvestigationGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteInvestigationGroup, input, options) as async.Operation<types.DeleteInvestigationGroupOutput>
+function C:deleteInvestigationGroup(input: types.DeleteInvestigationGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteInvestigationGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInvestigationGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteInvestigationGroupOutput>
 end
 
-function C:deleteInvestigationGroupPolicy(input: types.DeleteInvestigationGroupPolicyInput, options: any): async.Operation<types.DeleteInvestigationGroupPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteInvestigationGroupPolicy, input, options) as async.Operation<types.DeleteInvestigationGroupPolicyOutput>
+function C:deleteInvestigationGroupPolicy(input: types.DeleteInvestigationGroupPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteInvestigationGroupPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInvestigationGroupPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteInvestigationGroupPolicyOutput>
 end
 
-function C:getInvestigationGroup(input: types.GetInvestigationGroupInput, options: any): async.Operation<types.GetInvestigationGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInvestigationGroup, input, options) as async.Operation<types.GetInvestigationGroupOutput>
+function C:getInvestigationGroup(input: types.GetInvestigationGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetInvestigationGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInvestigationGroup as schema.OperationSchema, input, options) as async.Operation<types.GetInvestigationGroupOutput>
 end
 
-function C:getInvestigationGroupPolicy(input: types.GetInvestigationGroupPolicyInput, options: any): async.Operation<types.GetInvestigationGroupPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInvestigationGroupPolicy, input, options) as async.Operation<types.GetInvestigationGroupPolicyOutput>
+function C:getInvestigationGroupPolicy(input: types.GetInvestigationGroupPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetInvestigationGroupPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInvestigationGroupPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetInvestigationGroupPolicyOutput>
 end
 
-function C:listInvestigationGroups(input: types.ListInvestigationGroupsInput, options: any): async.Operation<types.ListInvestigationGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInvestigationGroups, input, options) as async.Operation<types.ListInvestigationGroupsOutput>
+function C:listInvestigationGroups(input: types.ListInvestigationGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInvestigationGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInvestigationGroups as schema.OperationSchema, input, options) as async.Operation<types.ListInvestigationGroupsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putInvestigationGroupPolicy(input: types.PutInvestigationGroupPolicyInput, options: any): async.Operation<types.PutInvestigationGroupPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutInvestigationGroupPolicy, input, options) as async.Operation<types.PutInvestigationGroupPolicyOutput>
+function C:putInvestigationGroupPolicy(input: types.PutInvestigationGroupPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutInvestigationGroupPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutInvestigationGroupPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutInvestigationGroupPolicyOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateInvestigationGroup(input: types.UpdateInvestigationGroupInput, options: any): async.Operation<types.UpdateInvestigationGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateInvestigationGroup, input, options) as async.Operation<types.UpdateInvestigationGroupOutput>
+function C:updateInvestigationGroup(input: types.UpdateInvestigationGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateInvestigationGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateInvestigationGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateInvestigationGroupOutput>
 end
 
 return M

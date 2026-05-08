@@ -8,76 +8,79 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("sfn.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("sfn.schemas")
 local traits = require("smithy.traits")
 local types = require("sfn.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createActivity: function(Client, types.CreateActivityInput, any): async.Operation<types.CreateActivityOutput>
-    createStateMachine: function(Client, types.CreateStateMachineInput, any): async.Operation<types.CreateStateMachineOutput>
-    createStateMachineAlias: function(Client, types.CreateStateMachineAliasInput, any): async.Operation<types.CreateStateMachineAliasOutput>
-    deleteActivity: function(Client, types.DeleteActivityInput, any): async.Operation<types.DeleteActivityOutput>
-    deleteStateMachine: function(Client, types.DeleteStateMachineInput, any): async.Operation<types.DeleteStateMachineOutput>
-    deleteStateMachineAlias: function(Client, types.DeleteStateMachineAliasInput, any): async.Operation<types.DeleteStateMachineAliasOutput>
-    deleteStateMachineVersion: function(Client, types.DeleteStateMachineVersionInput, any): async.Operation<types.DeleteStateMachineVersionOutput>
-    describeActivity: function(Client, types.DescribeActivityInput, any): async.Operation<types.DescribeActivityOutput>
-    describeExecution: function(Client, types.DescribeExecutionInput, any): async.Operation<types.DescribeExecutionOutput>
-    describeMapRun: function(Client, types.DescribeMapRunInput, any): async.Operation<types.DescribeMapRunOutput>
-    describeStateMachine: function(Client, types.DescribeStateMachineInput, any): async.Operation<types.DescribeStateMachineOutput>
-    describeStateMachineAlias: function(Client, types.DescribeStateMachineAliasInput, any): async.Operation<types.DescribeStateMachineAliasOutput>
-    describeStateMachineForExecution: function(Client, types.DescribeStateMachineForExecutionInput, any): async.Operation<types.DescribeStateMachineForExecutionOutput>
-    getActivityTask: function(Client, types.GetActivityTaskInput, any): async.Operation<types.GetActivityTaskOutput>
-    getExecutionHistory: function(Client, types.GetExecutionHistoryInput, any): async.Operation<types.GetExecutionHistoryOutput>
-    listActivities: function(Client, types.ListActivitiesInput, any): async.Operation<types.ListActivitiesOutput>
-    listExecutions: function(Client, types.ListExecutionsInput, any): async.Operation<types.ListExecutionsOutput>
-    listMapRuns: function(Client, types.ListMapRunsInput, any): async.Operation<types.ListMapRunsOutput>
-    listStateMachineAliases: function(Client, types.ListStateMachineAliasesInput, any): async.Operation<types.ListStateMachineAliasesOutput>
-    listStateMachines: function(Client, types.ListStateMachinesInput, any): async.Operation<types.ListStateMachinesOutput>
-    listStateMachineVersions: function(Client, types.ListStateMachineVersionsInput, any): async.Operation<types.ListStateMachineVersionsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    publishStateMachineVersion: function(Client, types.PublishStateMachineVersionInput, any): async.Operation<types.PublishStateMachineVersionOutput>
-    redriveExecution: function(Client, types.RedriveExecutionInput, any): async.Operation<types.RedriveExecutionOutput>
-    sendTaskFailure: function(Client, types.SendTaskFailureInput, any): async.Operation<types.SendTaskFailureOutput>
-    sendTaskHeartbeat: function(Client, types.SendTaskHeartbeatInput, any): async.Operation<types.SendTaskHeartbeatOutput>
-    sendTaskSuccess: function(Client, types.SendTaskSuccessInput, any): async.Operation<types.SendTaskSuccessOutput>
-    startExecution: function(Client, types.StartExecutionInput, any): async.Operation<types.StartExecutionOutput>
-    startSyncExecution: function(Client, types.StartSyncExecutionInput, any): async.Operation<types.StartSyncExecutionOutput>
-    stopExecution: function(Client, types.StopExecutionInput, any): async.Operation<types.StopExecutionOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    testState: function(Client, types.TestStateInput, any): async.Operation<types.TestStateOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateMapRun: function(Client, types.UpdateMapRunInput, any): async.Operation<types.UpdateMapRunOutput>
-    updateStateMachine: function(Client, types.UpdateStateMachineInput, any): async.Operation<types.UpdateStateMachineOutput>
-    updateStateMachineAlias: function(Client, types.UpdateStateMachineAliasInput, any): async.Operation<types.UpdateStateMachineAliasOutput>
-    validateStateMachineDefinition: function(Client, types.ValidateStateMachineDefinitionInput, any): async.Operation<types.ValidateStateMachineDefinitionOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createActivity: function(Client, types.CreateActivityInput, ? base_client.InvokeOptions): async.Operation<types.CreateActivityOutput>
+    createStateMachine: function(Client, types.CreateStateMachineInput, ? base_client.InvokeOptions): async.Operation<types.CreateStateMachineOutput>
+    createStateMachineAlias: function(Client, types.CreateStateMachineAliasInput, ? base_client.InvokeOptions): async.Operation<types.CreateStateMachineAliasOutput>
+    deleteActivity: function(Client, types.DeleteActivityInput, ? base_client.InvokeOptions): async.Operation<types.DeleteActivityOutput>
+    deleteStateMachine: function(Client, types.DeleteStateMachineInput, ? base_client.InvokeOptions): async.Operation<types.DeleteStateMachineOutput>
+    deleteStateMachineAlias: function(Client, types.DeleteStateMachineAliasInput, ? base_client.InvokeOptions): async.Operation<types.DeleteStateMachineAliasOutput>
+    deleteStateMachineVersion: function(Client, types.DeleteStateMachineVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteStateMachineVersionOutput>
+    describeActivity: function(Client, types.DescribeActivityInput, ? base_client.InvokeOptions): async.Operation<types.DescribeActivityOutput>
+    describeExecution: function(Client, types.DescribeExecutionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeExecutionOutput>
+    describeMapRun: function(Client, types.DescribeMapRunInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMapRunOutput>
+    describeStateMachine: function(Client, types.DescribeStateMachineInput, ? base_client.InvokeOptions): async.Operation<types.DescribeStateMachineOutput>
+    describeStateMachineAlias: function(Client, types.DescribeStateMachineAliasInput, ? base_client.InvokeOptions): async.Operation<types.DescribeStateMachineAliasOutput>
+    describeStateMachineForExecution: function(Client, types.DescribeStateMachineForExecutionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeStateMachineForExecutionOutput>
+    getActivityTask: function(Client, types.GetActivityTaskInput, ? base_client.InvokeOptions): async.Operation<types.GetActivityTaskOutput>
+    getExecutionHistory: function(Client, types.GetExecutionHistoryInput, ? base_client.InvokeOptions): async.Operation<types.GetExecutionHistoryOutput>
+    listActivities: function(Client, types.ListActivitiesInput, ? base_client.InvokeOptions): async.Operation<types.ListActivitiesOutput>
+    listExecutions: function(Client, types.ListExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListExecutionsOutput>
+    listMapRuns: function(Client, types.ListMapRunsInput, ? base_client.InvokeOptions): async.Operation<types.ListMapRunsOutput>
+    listStateMachineAliases: function(Client, types.ListStateMachineAliasesInput, ? base_client.InvokeOptions): async.Operation<types.ListStateMachineAliasesOutput>
+    listStateMachines: function(Client, types.ListStateMachinesInput, ? base_client.InvokeOptions): async.Operation<types.ListStateMachinesOutput>
+    listStateMachineVersions: function(Client, types.ListStateMachineVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListStateMachineVersionsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    publishStateMachineVersion: function(Client, types.PublishStateMachineVersionInput, ? base_client.InvokeOptions): async.Operation<types.PublishStateMachineVersionOutput>
+    redriveExecution: function(Client, types.RedriveExecutionInput, ? base_client.InvokeOptions): async.Operation<types.RedriveExecutionOutput>
+    sendTaskFailure: function(Client, types.SendTaskFailureInput, ? base_client.InvokeOptions): async.Operation<types.SendTaskFailureOutput>
+    sendTaskHeartbeat: function(Client, types.SendTaskHeartbeatInput, ? base_client.InvokeOptions): async.Operation<types.SendTaskHeartbeatOutput>
+    sendTaskSuccess: function(Client, types.SendTaskSuccessInput, ? base_client.InvokeOptions): async.Operation<types.SendTaskSuccessOutput>
+    startExecution: function(Client, types.StartExecutionInput, ? base_client.InvokeOptions): async.Operation<types.StartExecutionOutput>
+    startSyncExecution: function(Client, types.StartSyncExecutionInput, ? base_client.InvokeOptions): async.Operation<types.StartSyncExecutionOutput>
+    stopExecution: function(Client, types.StopExecutionInput, ? base_client.InvokeOptions): async.Operation<types.StopExecutionOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    testState: function(Client, types.TestStateInput, ? base_client.InvokeOptions): async.Operation<types.TestStateOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateMapRun: function(Client, types.UpdateMapRunInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMapRunOutput>
+    updateStateMachine: function(Client, types.UpdateStateMachineInput, ? base_client.InvokeOptions): async.Operation<types.UpdateStateMachineOutput>
+    updateStateMachineAlias: function(Client, types.UpdateStateMachineAliasInput, ? base_client.InvokeOptions): async.Operation<types.UpdateStateMachineAliasOutput>
+    validateStateMachineDefinition: function(Client, types.ValidateStateMachineDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.ValidateStateMachineDefinitionOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSStepFunctions"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "states", signing_region = c.region } }
                 else
@@ -96,152 +99,152 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createActivity(input: types.CreateActivityInput, options: any): async.Operation<types.CreateActivityOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateActivity, input, options) as async.Operation<types.CreateActivityOutput>
+function C:createActivity(input: types.CreateActivityInput, options?: base_client.InvokeOptions): async.Operation<types.CreateActivityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateActivity as schema.OperationSchema, input, options) as async.Operation<types.CreateActivityOutput>
 end
 
-function C:createStateMachine(input: types.CreateStateMachineInput, options: any): async.Operation<types.CreateStateMachineOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateStateMachine, input, options) as async.Operation<types.CreateStateMachineOutput>
+function C:createStateMachine(input: types.CreateStateMachineInput, options?: base_client.InvokeOptions): async.Operation<types.CreateStateMachineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateStateMachine as schema.OperationSchema, input, options) as async.Operation<types.CreateStateMachineOutput>
 end
 
-function C:createStateMachineAlias(input: types.CreateStateMachineAliasInput, options: any): async.Operation<types.CreateStateMachineAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateStateMachineAlias, input, options) as async.Operation<types.CreateStateMachineAliasOutput>
+function C:createStateMachineAlias(input: types.CreateStateMachineAliasInput, options?: base_client.InvokeOptions): async.Operation<types.CreateStateMachineAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateStateMachineAlias as schema.OperationSchema, input, options) as async.Operation<types.CreateStateMachineAliasOutput>
 end
 
-function C:deleteActivity(input: types.DeleteActivityInput, options: any): async.Operation<types.DeleteActivityOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteActivity, input, options) as async.Operation<types.DeleteActivityOutput>
+function C:deleteActivity(input: types.DeleteActivityInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteActivityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteActivity as schema.OperationSchema, input, options) as async.Operation<types.DeleteActivityOutput>
 end
 
-function C:deleteStateMachine(input: types.DeleteStateMachineInput, options: any): async.Operation<types.DeleteStateMachineOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteStateMachine, input, options) as async.Operation<types.DeleteStateMachineOutput>
+function C:deleteStateMachine(input: types.DeleteStateMachineInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteStateMachineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteStateMachine as schema.OperationSchema, input, options) as async.Operation<types.DeleteStateMachineOutput>
 end
 
-function C:deleteStateMachineAlias(input: types.DeleteStateMachineAliasInput, options: any): async.Operation<types.DeleteStateMachineAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteStateMachineAlias, input, options) as async.Operation<types.DeleteStateMachineAliasOutput>
+function C:deleteStateMachineAlias(input: types.DeleteStateMachineAliasInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteStateMachineAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteStateMachineAlias as schema.OperationSchema, input, options) as async.Operation<types.DeleteStateMachineAliasOutput>
 end
 
-function C:deleteStateMachineVersion(input: types.DeleteStateMachineVersionInput, options: any): async.Operation<types.DeleteStateMachineVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteStateMachineVersion, input, options) as async.Operation<types.DeleteStateMachineVersionOutput>
+function C:deleteStateMachineVersion(input: types.DeleteStateMachineVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteStateMachineVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteStateMachineVersion as schema.OperationSchema, input, options) as async.Operation<types.DeleteStateMachineVersionOutput>
 end
 
-function C:describeActivity(input: types.DescribeActivityInput, options: any): async.Operation<types.DescribeActivityOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeActivity, input, options) as async.Operation<types.DescribeActivityOutput>
+function C:describeActivity(input: types.DescribeActivityInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeActivityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeActivity as schema.OperationSchema, input, options) as async.Operation<types.DescribeActivityOutput>
 end
 
-function C:describeExecution(input: types.DescribeExecutionInput, options: any): async.Operation<types.DescribeExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeExecution, input, options) as async.Operation<types.DescribeExecutionOutput>
+function C:describeExecution(input: types.DescribeExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeExecution as schema.OperationSchema, input, options) as async.Operation<types.DescribeExecutionOutput>
 end
 
-function C:describeMapRun(input: types.DescribeMapRunInput, options: any): async.Operation<types.DescribeMapRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeMapRun, input, options) as async.Operation<types.DescribeMapRunOutput>
+function C:describeMapRun(input: types.DescribeMapRunInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMapRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMapRun as schema.OperationSchema, input, options) as async.Operation<types.DescribeMapRunOutput>
 end
 
-function C:describeStateMachine(input: types.DescribeStateMachineInput, options: any): async.Operation<types.DescribeStateMachineOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeStateMachine, input, options) as async.Operation<types.DescribeStateMachineOutput>
+function C:describeStateMachine(input: types.DescribeStateMachineInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeStateMachineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeStateMachine as schema.OperationSchema, input, options) as async.Operation<types.DescribeStateMachineOutput>
 end
 
-function C:describeStateMachineAlias(input: types.DescribeStateMachineAliasInput, options: any): async.Operation<types.DescribeStateMachineAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeStateMachineAlias, input, options) as async.Operation<types.DescribeStateMachineAliasOutput>
+function C:describeStateMachineAlias(input: types.DescribeStateMachineAliasInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeStateMachineAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeStateMachineAlias as schema.OperationSchema, input, options) as async.Operation<types.DescribeStateMachineAliasOutput>
 end
 
-function C:describeStateMachineForExecution(input: types.DescribeStateMachineForExecutionInput, options: any): async.Operation<types.DescribeStateMachineForExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeStateMachineForExecution, input, options) as async.Operation<types.DescribeStateMachineForExecutionOutput>
+function C:describeStateMachineForExecution(input: types.DescribeStateMachineForExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeStateMachineForExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeStateMachineForExecution as schema.OperationSchema, input, options) as async.Operation<types.DescribeStateMachineForExecutionOutput>
 end
 
-function C:getActivityTask(input: types.GetActivityTaskInput, options: any): async.Operation<types.GetActivityTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetActivityTask, input, options) as async.Operation<types.GetActivityTaskOutput>
+function C:getActivityTask(input: types.GetActivityTaskInput, options?: base_client.InvokeOptions): async.Operation<types.GetActivityTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetActivityTask as schema.OperationSchema, input, options) as async.Operation<types.GetActivityTaskOutput>
 end
 
-function C:getExecutionHistory(input: types.GetExecutionHistoryInput, options: any): async.Operation<types.GetExecutionHistoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetExecutionHistory, input, options) as async.Operation<types.GetExecutionHistoryOutput>
+function C:getExecutionHistory(input: types.GetExecutionHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.GetExecutionHistoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetExecutionHistory as schema.OperationSchema, input, options) as async.Operation<types.GetExecutionHistoryOutput>
 end
 
-function C:listActivities(input: types.ListActivitiesInput, options: any): async.Operation<types.ListActivitiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListActivities, input, options) as async.Operation<types.ListActivitiesOutput>
+function C:listActivities(input: types.ListActivitiesInput, options?: base_client.InvokeOptions): async.Operation<types.ListActivitiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListActivities as schema.OperationSchema, input, options) as async.Operation<types.ListActivitiesOutput>
 end
 
-function C:listExecutions(input: types.ListExecutionsInput, options: any): async.Operation<types.ListExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListExecutions, input, options) as async.Operation<types.ListExecutionsOutput>
+function C:listExecutions(input: types.ListExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExecutions as schema.OperationSchema, input, options) as async.Operation<types.ListExecutionsOutput>
 end
 
-function C:listMapRuns(input: types.ListMapRunsInput, options: any): async.Operation<types.ListMapRunsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMapRuns, input, options) as async.Operation<types.ListMapRunsOutput>
+function C:listMapRuns(input: types.ListMapRunsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMapRunsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMapRuns as schema.OperationSchema, input, options) as async.Operation<types.ListMapRunsOutput>
 end
 
-function C:listStateMachineAliases(input: types.ListStateMachineAliasesInput, options: any): async.Operation<types.ListStateMachineAliasesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStateMachineAliases, input, options) as async.Operation<types.ListStateMachineAliasesOutput>
+function C:listStateMachineAliases(input: types.ListStateMachineAliasesInput, options?: base_client.InvokeOptions): async.Operation<types.ListStateMachineAliasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStateMachineAliases as schema.OperationSchema, input, options) as async.Operation<types.ListStateMachineAliasesOutput>
 end
 
-function C:listStateMachines(input: types.ListStateMachinesInput, options: any): async.Operation<types.ListStateMachinesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStateMachines, input, options) as async.Operation<types.ListStateMachinesOutput>
+function C:listStateMachines(input: types.ListStateMachinesInput, options?: base_client.InvokeOptions): async.Operation<types.ListStateMachinesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStateMachines as schema.OperationSchema, input, options) as async.Operation<types.ListStateMachinesOutput>
 end
 
-function C:listStateMachineVersions(input: types.ListStateMachineVersionsInput, options: any): async.Operation<types.ListStateMachineVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStateMachineVersions, input, options) as async.Operation<types.ListStateMachineVersionsOutput>
+function C:listStateMachineVersions(input: types.ListStateMachineVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListStateMachineVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStateMachineVersions as schema.OperationSchema, input, options) as async.Operation<types.ListStateMachineVersionsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:publishStateMachineVersion(input: types.PublishStateMachineVersionInput, options: any): async.Operation<types.PublishStateMachineVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.PublishStateMachineVersion, input, options) as async.Operation<types.PublishStateMachineVersionOutput>
+function C:publishStateMachineVersion(input: types.PublishStateMachineVersionInput, options?: base_client.InvokeOptions): async.Operation<types.PublishStateMachineVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PublishStateMachineVersion as schema.OperationSchema, input, options) as async.Operation<types.PublishStateMachineVersionOutput>
 end
 
-function C:redriveExecution(input: types.RedriveExecutionInput, options: any): async.Operation<types.RedriveExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.RedriveExecution, input, options) as async.Operation<types.RedriveExecutionOutput>
+function C:redriveExecution(input: types.RedriveExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.RedriveExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RedriveExecution as schema.OperationSchema, input, options) as async.Operation<types.RedriveExecutionOutput>
 end
 
-function C:sendTaskFailure(input: types.SendTaskFailureInput, options: any): async.Operation<types.SendTaskFailureOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendTaskFailure, input, options) as async.Operation<types.SendTaskFailureOutput>
+function C:sendTaskFailure(input: types.SendTaskFailureInput, options?: base_client.InvokeOptions): async.Operation<types.SendTaskFailureOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendTaskFailure as schema.OperationSchema, input, options) as async.Operation<types.SendTaskFailureOutput>
 end
 
-function C:sendTaskHeartbeat(input: types.SendTaskHeartbeatInput, options: any): async.Operation<types.SendTaskHeartbeatOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendTaskHeartbeat, input, options) as async.Operation<types.SendTaskHeartbeatOutput>
+function C:sendTaskHeartbeat(input: types.SendTaskHeartbeatInput, options?: base_client.InvokeOptions): async.Operation<types.SendTaskHeartbeatOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendTaskHeartbeat as schema.OperationSchema, input, options) as async.Operation<types.SendTaskHeartbeatOutput>
 end
 
-function C:sendTaskSuccess(input: types.SendTaskSuccessInput, options: any): async.Operation<types.SendTaskSuccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendTaskSuccess, input, options) as async.Operation<types.SendTaskSuccessOutput>
+function C:sendTaskSuccess(input: types.SendTaskSuccessInput, options?: base_client.InvokeOptions): async.Operation<types.SendTaskSuccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendTaskSuccess as schema.OperationSchema, input, options) as async.Operation<types.SendTaskSuccessOutput>
 end
 
-function C:startExecution(input: types.StartExecutionInput, options: any): async.Operation<types.StartExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartExecution, input, options) as async.Operation<types.StartExecutionOutput>
+function C:startExecution(input: types.StartExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.StartExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartExecution as schema.OperationSchema, input, options) as async.Operation<types.StartExecutionOutput>
 end
 
-function C:startSyncExecution(input: types.StartSyncExecutionInput, options: any): async.Operation<types.StartSyncExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartSyncExecution, input, options) as async.Operation<types.StartSyncExecutionOutput>
+function C:startSyncExecution(input: types.StartSyncExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.StartSyncExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartSyncExecution as schema.OperationSchema, input, options) as async.Operation<types.StartSyncExecutionOutput>
 end
 
-function C:stopExecution(input: types.StopExecutionInput, options: any): async.Operation<types.StopExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopExecution, input, options) as async.Operation<types.StopExecutionOutput>
+function C:stopExecution(input: types.StopExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.StopExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopExecution as schema.OperationSchema, input, options) as async.Operation<types.StopExecutionOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:testState(input: types.TestStateInput, options: any): async.Operation<types.TestStateOutput>
-    return self:invokeOperation(schemas.Service, schemas.TestState, input, options) as async.Operation<types.TestStateOutput>
+function C:testState(input: types.TestStateInput, options?: base_client.InvokeOptions): async.Operation<types.TestStateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TestState as schema.OperationSchema, input, options) as async.Operation<types.TestStateOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateMapRun(input: types.UpdateMapRunInput, options: any): async.Operation<types.UpdateMapRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateMapRun, input, options) as async.Operation<types.UpdateMapRunOutput>
+function C:updateMapRun(input: types.UpdateMapRunInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMapRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMapRun as schema.OperationSchema, input, options) as async.Operation<types.UpdateMapRunOutput>
 end
 
-function C:updateStateMachine(input: types.UpdateStateMachineInput, options: any): async.Operation<types.UpdateStateMachineOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateStateMachine, input, options) as async.Operation<types.UpdateStateMachineOutput>
+function C:updateStateMachine(input: types.UpdateStateMachineInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateStateMachineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateStateMachine as schema.OperationSchema, input, options) as async.Operation<types.UpdateStateMachineOutput>
 end
 
-function C:updateStateMachineAlias(input: types.UpdateStateMachineAliasInput, options: any): async.Operation<types.UpdateStateMachineAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateStateMachineAlias, input, options) as async.Operation<types.UpdateStateMachineAliasOutput>
+function C:updateStateMachineAlias(input: types.UpdateStateMachineAliasInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateStateMachineAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateStateMachineAlias as schema.OperationSchema, input, options) as async.Operation<types.UpdateStateMachineAliasOutput>
 end
 
-function C:validateStateMachineDefinition(input: types.ValidateStateMachineDefinitionInput, options: any): async.Operation<types.ValidateStateMachineDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ValidateStateMachineDefinition, input, options) as async.Operation<types.ValidateStateMachineDefinitionOutput>
+function C:validateStateMachineDefinition(input: types.ValidateStateMachineDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.ValidateStateMachineDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ValidateStateMachineDefinition as schema.OperationSchema, input, options) as async.Operation<types.ValidateStateMachineDefinitionOutput>
 end
 
 return M

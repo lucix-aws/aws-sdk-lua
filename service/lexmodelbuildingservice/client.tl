@@ -8,81 +8,84 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("lexmodelbuildingservice.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("lexmodelbuildingservice.schemas")
 local traits = require("smithy.traits")
 local types = require("lexmodelbuildingservice.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createBotVersion: function(Client, types.CreateBotVersionInput, any): async.Operation<types.CreateBotVersionOutput>
-    createIntentVersion: function(Client, types.CreateIntentVersionInput, any): async.Operation<types.CreateIntentVersionOutput>
-    createSlotTypeVersion: function(Client, types.CreateSlotTypeVersionInput, any): async.Operation<types.CreateSlotTypeVersionOutput>
-    deleteBot: function(Client, types.DeleteBotInput, any): async.Operation<types.DeleteBotOutput>
-    deleteBotAlias: function(Client, types.DeleteBotAliasInput, any): async.Operation<types.DeleteBotAliasOutput>
-    deleteBotChannelAssociation: function(Client, types.DeleteBotChannelAssociationInput, any): async.Operation<types.DeleteBotChannelAssociationOutput>
-    deleteBotVersion: function(Client, types.DeleteBotVersionInput, any): async.Operation<types.DeleteBotVersionOutput>
-    deleteIntent: function(Client, types.DeleteIntentInput, any): async.Operation<types.DeleteIntentOutput>
-    deleteIntentVersion: function(Client, types.DeleteIntentVersionInput, any): async.Operation<types.DeleteIntentVersionOutput>
-    deleteSlotType: function(Client, types.DeleteSlotTypeInput, any): async.Operation<types.DeleteSlotTypeOutput>
-    deleteSlotTypeVersion: function(Client, types.DeleteSlotTypeVersionInput, any): async.Operation<types.DeleteSlotTypeVersionOutput>
-    deleteUtterances: function(Client, types.DeleteUtterancesInput, any): async.Operation<types.DeleteUtterancesOutput>
-    getBot: function(Client, types.GetBotInput, any): async.Operation<types.GetBotOutput>
-    getBotAlias: function(Client, types.GetBotAliasInput, any): async.Operation<types.GetBotAliasOutput>
-    getBotAliases: function(Client, types.GetBotAliasesInput, any): async.Operation<types.GetBotAliasesOutput>
-    getBotChannelAssociation: function(Client, types.GetBotChannelAssociationInput, any): async.Operation<types.GetBotChannelAssociationOutput>
-    getBotChannelAssociations: function(Client, types.GetBotChannelAssociationsInput, any): async.Operation<types.GetBotChannelAssociationsOutput>
-    getBots: function(Client, types.GetBotsInput, any): async.Operation<types.GetBotsOutput>
-    getBotVersions: function(Client, types.GetBotVersionsInput, any): async.Operation<types.GetBotVersionsOutput>
-    getBuiltinIntent: function(Client, types.GetBuiltinIntentInput, any): async.Operation<types.GetBuiltinIntentOutput>
-    getBuiltinIntents: function(Client, types.GetBuiltinIntentsInput, any): async.Operation<types.GetBuiltinIntentsOutput>
-    getBuiltinSlotTypes: function(Client, types.GetBuiltinSlotTypesInput, any): async.Operation<types.GetBuiltinSlotTypesOutput>
-    getExport: function(Client, types.GetExportInput, any): async.Operation<types.GetExportOutput>
-    getImport: function(Client, types.GetImportInput, any): async.Operation<types.GetImportOutput>
-    getIntent: function(Client, types.GetIntentInput, any): async.Operation<types.GetIntentOutput>
-    getIntents: function(Client, types.GetIntentsInput, any): async.Operation<types.GetIntentsOutput>
-    getIntentVersions: function(Client, types.GetIntentVersionsInput, any): async.Operation<types.GetIntentVersionsOutput>
-    getMigration: function(Client, types.GetMigrationInput, any): async.Operation<types.GetMigrationOutput>
-    getMigrations: function(Client, types.GetMigrationsInput, any): async.Operation<types.GetMigrationsOutput>
-    getSlotType: function(Client, types.GetSlotTypeInput, any): async.Operation<types.GetSlotTypeOutput>
-    getSlotTypes: function(Client, types.GetSlotTypesInput, any): async.Operation<types.GetSlotTypesOutput>
-    getSlotTypeVersions: function(Client, types.GetSlotTypeVersionsInput, any): async.Operation<types.GetSlotTypeVersionsOutput>
-    getUtterancesView: function(Client, types.GetUtterancesViewInput, any): async.Operation<types.GetUtterancesViewOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putBot: function(Client, types.PutBotInput, any): async.Operation<types.PutBotOutput>
-    putBotAlias: function(Client, types.PutBotAliasInput, any): async.Operation<types.PutBotAliasOutput>
-    putIntent: function(Client, types.PutIntentInput, any): async.Operation<types.PutIntentOutput>
-    putSlotType: function(Client, types.PutSlotTypeInput, any): async.Operation<types.PutSlotTypeOutput>
-    startImport: function(Client, types.StartImportInput, any): async.Operation<types.StartImportOutput>
-    startMigration: function(Client, types.StartMigrationInput, any): async.Operation<types.StartMigrationOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createBotVersion: function(Client, types.CreateBotVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateBotVersionOutput>
+    createIntentVersion: function(Client, types.CreateIntentVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateIntentVersionOutput>
+    createSlotTypeVersion: function(Client, types.CreateSlotTypeVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateSlotTypeVersionOutput>
+    deleteBot: function(Client, types.DeleteBotInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBotOutput>
+    deleteBotAlias: function(Client, types.DeleteBotAliasInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBotAliasOutput>
+    deleteBotChannelAssociation: function(Client, types.DeleteBotChannelAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBotChannelAssociationOutput>
+    deleteBotVersion: function(Client, types.DeleteBotVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBotVersionOutput>
+    deleteIntent: function(Client, types.DeleteIntentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIntentOutput>
+    deleteIntentVersion: function(Client, types.DeleteIntentVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIntentVersionOutput>
+    deleteSlotType: function(Client, types.DeleteSlotTypeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSlotTypeOutput>
+    deleteSlotTypeVersion: function(Client, types.DeleteSlotTypeVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSlotTypeVersionOutput>
+    deleteUtterances: function(Client, types.DeleteUtterancesInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUtterancesOutput>
+    getBot: function(Client, types.GetBotInput, ? base_client.InvokeOptions): async.Operation<types.GetBotOutput>
+    getBotAlias: function(Client, types.GetBotAliasInput, ? base_client.InvokeOptions): async.Operation<types.GetBotAliasOutput>
+    getBotAliases: function(Client, types.GetBotAliasesInput, ? base_client.InvokeOptions): async.Operation<types.GetBotAliasesOutput>
+    getBotChannelAssociation: function(Client, types.GetBotChannelAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetBotChannelAssociationOutput>
+    getBotChannelAssociations: function(Client, types.GetBotChannelAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.GetBotChannelAssociationsOutput>
+    getBots: function(Client, types.GetBotsInput, ? base_client.InvokeOptions): async.Operation<types.GetBotsOutput>
+    getBotVersions: function(Client, types.GetBotVersionsInput, ? base_client.InvokeOptions): async.Operation<types.GetBotVersionsOutput>
+    getBuiltinIntent: function(Client, types.GetBuiltinIntentInput, ? base_client.InvokeOptions): async.Operation<types.GetBuiltinIntentOutput>
+    getBuiltinIntents: function(Client, types.GetBuiltinIntentsInput, ? base_client.InvokeOptions): async.Operation<types.GetBuiltinIntentsOutput>
+    getBuiltinSlotTypes: function(Client, types.GetBuiltinSlotTypesInput, ? base_client.InvokeOptions): async.Operation<types.GetBuiltinSlotTypesOutput>
+    getExport: function(Client, types.GetExportInput, ? base_client.InvokeOptions): async.Operation<types.GetExportOutput>
+    getImport: function(Client, types.GetImportInput, ? base_client.InvokeOptions): async.Operation<types.GetImportOutput>
+    getIntent: function(Client, types.GetIntentInput, ? base_client.InvokeOptions): async.Operation<types.GetIntentOutput>
+    getIntents: function(Client, types.GetIntentsInput, ? base_client.InvokeOptions): async.Operation<types.GetIntentsOutput>
+    getIntentVersions: function(Client, types.GetIntentVersionsInput, ? base_client.InvokeOptions): async.Operation<types.GetIntentVersionsOutput>
+    getMigration: function(Client, types.GetMigrationInput, ? base_client.InvokeOptions): async.Operation<types.GetMigrationOutput>
+    getMigrations: function(Client, types.GetMigrationsInput, ? base_client.InvokeOptions): async.Operation<types.GetMigrationsOutput>
+    getSlotType: function(Client, types.GetSlotTypeInput, ? base_client.InvokeOptions): async.Operation<types.GetSlotTypeOutput>
+    getSlotTypes: function(Client, types.GetSlotTypesInput, ? base_client.InvokeOptions): async.Operation<types.GetSlotTypesOutput>
+    getSlotTypeVersions: function(Client, types.GetSlotTypeVersionsInput, ? base_client.InvokeOptions): async.Operation<types.GetSlotTypeVersionsOutput>
+    getUtterancesView: function(Client, types.GetUtterancesViewInput, ? base_client.InvokeOptions): async.Operation<types.GetUtterancesViewOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putBot: function(Client, types.PutBotInput, ? base_client.InvokeOptions): async.Operation<types.PutBotOutput>
+    putBotAlias: function(Client, types.PutBotAliasInput, ? base_client.InvokeOptions): async.Operation<types.PutBotAliasOutput>
+    putIntent: function(Client, types.PutIntentInput, ? base_client.InvokeOptions): async.Operation<types.PutIntentOutput>
+    putSlotType: function(Client, types.PutSlotTypeInput, ? base_client.InvokeOptions): async.Operation<types.PutSlotTypeOutput>
+    startImport: function(Client, types.StartImportInput, ? base_client.InvokeOptions): async.Operation<types.StartImportOutput>
+    startMigration: function(Client, types.StartMigrationInput, ? base_client.InvokeOptions): async.Operation<types.StartMigrationOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSDeepSenseModelBuildingService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "lex", signing_region = c.region } }
                 else
@@ -101,172 +104,172 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createBotVersion(input: types.CreateBotVersionInput, options: any): async.Operation<types.CreateBotVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBotVersion, input, options) as async.Operation<types.CreateBotVersionOutput>
+function C:createBotVersion(input: types.CreateBotVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBotVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBotVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateBotVersionOutput>
 end
 
-function C:createIntentVersion(input: types.CreateIntentVersionInput, options: any): async.Operation<types.CreateIntentVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIntentVersion, input, options) as async.Operation<types.CreateIntentVersionOutput>
+function C:createIntentVersion(input: types.CreateIntentVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIntentVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIntentVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateIntentVersionOutput>
 end
 
-function C:createSlotTypeVersion(input: types.CreateSlotTypeVersionInput, options: any): async.Operation<types.CreateSlotTypeVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSlotTypeVersion, input, options) as async.Operation<types.CreateSlotTypeVersionOutput>
+function C:createSlotTypeVersion(input: types.CreateSlotTypeVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSlotTypeVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSlotTypeVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateSlotTypeVersionOutput>
 end
 
-function C:deleteBot(input: types.DeleteBotInput, options: any): async.Operation<types.DeleteBotOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBot, input, options) as async.Operation<types.DeleteBotOutput>
+function C:deleteBot(input: types.DeleteBotInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBot as schema.OperationSchema, input, options) as async.Operation<types.DeleteBotOutput>
 end
 
-function C:deleteBotAlias(input: types.DeleteBotAliasInput, options: any): async.Operation<types.DeleteBotAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBotAlias, input, options) as async.Operation<types.DeleteBotAliasOutput>
+function C:deleteBotAlias(input: types.DeleteBotAliasInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBotAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBotAlias as schema.OperationSchema, input, options) as async.Operation<types.DeleteBotAliasOutput>
 end
 
-function C:deleteBotChannelAssociation(input: types.DeleteBotChannelAssociationInput, options: any): async.Operation<types.DeleteBotChannelAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBotChannelAssociation, input, options) as async.Operation<types.DeleteBotChannelAssociationOutput>
+function C:deleteBotChannelAssociation(input: types.DeleteBotChannelAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBotChannelAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBotChannelAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteBotChannelAssociationOutput>
 end
 
-function C:deleteBotVersion(input: types.DeleteBotVersionInput, options: any): async.Operation<types.DeleteBotVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBotVersion, input, options) as async.Operation<types.DeleteBotVersionOutput>
+function C:deleteBotVersion(input: types.DeleteBotVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBotVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBotVersion as schema.OperationSchema, input, options) as async.Operation<types.DeleteBotVersionOutput>
 end
 
-function C:deleteIntent(input: types.DeleteIntentInput, options: any): async.Operation<types.DeleteIntentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIntent, input, options) as async.Operation<types.DeleteIntentOutput>
+function C:deleteIntent(input: types.DeleteIntentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIntentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIntent as schema.OperationSchema, input, options) as async.Operation<types.DeleteIntentOutput>
 end
 
-function C:deleteIntentVersion(input: types.DeleteIntentVersionInput, options: any): async.Operation<types.DeleteIntentVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIntentVersion, input, options) as async.Operation<types.DeleteIntentVersionOutput>
+function C:deleteIntentVersion(input: types.DeleteIntentVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIntentVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIntentVersion as schema.OperationSchema, input, options) as async.Operation<types.DeleteIntentVersionOutput>
 end
 
-function C:deleteSlotType(input: types.DeleteSlotTypeInput, options: any): async.Operation<types.DeleteSlotTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSlotType, input, options) as async.Operation<types.DeleteSlotTypeOutput>
+function C:deleteSlotType(input: types.DeleteSlotTypeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSlotTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSlotType as schema.OperationSchema, input, options) as async.Operation<types.DeleteSlotTypeOutput>
 end
 
-function C:deleteSlotTypeVersion(input: types.DeleteSlotTypeVersionInput, options: any): async.Operation<types.DeleteSlotTypeVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSlotTypeVersion, input, options) as async.Operation<types.DeleteSlotTypeVersionOutput>
+function C:deleteSlotTypeVersion(input: types.DeleteSlotTypeVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSlotTypeVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSlotTypeVersion as schema.OperationSchema, input, options) as async.Operation<types.DeleteSlotTypeVersionOutput>
 end
 
-function C:deleteUtterances(input: types.DeleteUtterancesInput, options: any): async.Operation<types.DeleteUtterancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteUtterances, input, options) as async.Operation<types.DeleteUtterancesOutput>
+function C:deleteUtterances(input: types.DeleteUtterancesInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteUtterancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteUtterances as schema.OperationSchema, input, options) as async.Operation<types.DeleteUtterancesOutput>
 end
 
-function C:getBot(input: types.GetBotInput, options: any): async.Operation<types.GetBotOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBot, input, options) as async.Operation<types.GetBotOutput>
+function C:getBot(input: types.GetBotInput, options?: base_client.InvokeOptions): async.Operation<types.GetBotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBot as schema.OperationSchema, input, options) as async.Operation<types.GetBotOutput>
 end
 
-function C:getBotAlias(input: types.GetBotAliasInput, options: any): async.Operation<types.GetBotAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBotAlias, input, options) as async.Operation<types.GetBotAliasOutput>
+function C:getBotAlias(input: types.GetBotAliasInput, options?: base_client.InvokeOptions): async.Operation<types.GetBotAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBotAlias as schema.OperationSchema, input, options) as async.Operation<types.GetBotAliasOutput>
 end
 
-function C:getBotAliases(input: types.GetBotAliasesInput, options: any): async.Operation<types.GetBotAliasesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBotAliases, input, options) as async.Operation<types.GetBotAliasesOutput>
+function C:getBotAliases(input: types.GetBotAliasesInput, options?: base_client.InvokeOptions): async.Operation<types.GetBotAliasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBotAliases as schema.OperationSchema, input, options) as async.Operation<types.GetBotAliasesOutput>
 end
 
-function C:getBotChannelAssociation(input: types.GetBotChannelAssociationInput, options: any): async.Operation<types.GetBotChannelAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBotChannelAssociation, input, options) as async.Operation<types.GetBotChannelAssociationOutput>
+function C:getBotChannelAssociation(input: types.GetBotChannelAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetBotChannelAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBotChannelAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetBotChannelAssociationOutput>
 end
 
-function C:getBotChannelAssociations(input: types.GetBotChannelAssociationsInput, options: any): async.Operation<types.GetBotChannelAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBotChannelAssociations, input, options) as async.Operation<types.GetBotChannelAssociationsOutput>
+function C:getBotChannelAssociations(input: types.GetBotChannelAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetBotChannelAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBotChannelAssociations as schema.OperationSchema, input, options) as async.Operation<types.GetBotChannelAssociationsOutput>
 end
 
-function C:getBots(input: types.GetBotsInput, options: any): async.Operation<types.GetBotsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBots, input, options) as async.Operation<types.GetBotsOutput>
+function C:getBots(input: types.GetBotsInput, options?: base_client.InvokeOptions): async.Operation<types.GetBotsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBots as schema.OperationSchema, input, options) as async.Operation<types.GetBotsOutput>
 end
 
-function C:getBotVersions(input: types.GetBotVersionsInput, options: any): async.Operation<types.GetBotVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBotVersions, input, options) as async.Operation<types.GetBotVersionsOutput>
+function C:getBotVersions(input: types.GetBotVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.GetBotVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBotVersions as schema.OperationSchema, input, options) as async.Operation<types.GetBotVersionsOutput>
 end
 
-function C:getBuiltinIntent(input: types.GetBuiltinIntentInput, options: any): async.Operation<types.GetBuiltinIntentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBuiltinIntent, input, options) as async.Operation<types.GetBuiltinIntentOutput>
+function C:getBuiltinIntent(input: types.GetBuiltinIntentInput, options?: base_client.InvokeOptions): async.Operation<types.GetBuiltinIntentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBuiltinIntent as schema.OperationSchema, input, options) as async.Operation<types.GetBuiltinIntentOutput>
 end
 
-function C:getBuiltinIntents(input: types.GetBuiltinIntentsInput, options: any): async.Operation<types.GetBuiltinIntentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBuiltinIntents, input, options) as async.Operation<types.GetBuiltinIntentsOutput>
+function C:getBuiltinIntents(input: types.GetBuiltinIntentsInput, options?: base_client.InvokeOptions): async.Operation<types.GetBuiltinIntentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBuiltinIntents as schema.OperationSchema, input, options) as async.Operation<types.GetBuiltinIntentsOutput>
 end
 
-function C:getBuiltinSlotTypes(input: types.GetBuiltinSlotTypesInput, options: any): async.Operation<types.GetBuiltinSlotTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBuiltinSlotTypes, input, options) as async.Operation<types.GetBuiltinSlotTypesOutput>
+function C:getBuiltinSlotTypes(input: types.GetBuiltinSlotTypesInput, options?: base_client.InvokeOptions): async.Operation<types.GetBuiltinSlotTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBuiltinSlotTypes as schema.OperationSchema, input, options) as async.Operation<types.GetBuiltinSlotTypesOutput>
 end
 
-function C:getExport(input: types.GetExportInput, options: any): async.Operation<types.GetExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetExport, input, options) as async.Operation<types.GetExportOutput>
+function C:getExport(input: types.GetExportInput, options?: base_client.InvokeOptions): async.Operation<types.GetExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetExport as schema.OperationSchema, input, options) as async.Operation<types.GetExportOutput>
 end
 
-function C:getImport(input: types.GetImportInput, options: any): async.Operation<types.GetImportOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetImport, input, options) as async.Operation<types.GetImportOutput>
+function C:getImport(input: types.GetImportInput, options?: base_client.InvokeOptions): async.Operation<types.GetImportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetImport as schema.OperationSchema, input, options) as async.Operation<types.GetImportOutput>
 end
 
-function C:getIntent(input: types.GetIntentInput, options: any): async.Operation<types.GetIntentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIntent, input, options) as async.Operation<types.GetIntentOutput>
+function C:getIntent(input: types.GetIntentInput, options?: base_client.InvokeOptions): async.Operation<types.GetIntentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIntent as schema.OperationSchema, input, options) as async.Operation<types.GetIntentOutput>
 end
 
-function C:getIntents(input: types.GetIntentsInput, options: any): async.Operation<types.GetIntentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIntents, input, options) as async.Operation<types.GetIntentsOutput>
+function C:getIntents(input: types.GetIntentsInput, options?: base_client.InvokeOptions): async.Operation<types.GetIntentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIntents as schema.OperationSchema, input, options) as async.Operation<types.GetIntentsOutput>
 end
 
-function C:getIntentVersions(input: types.GetIntentVersionsInput, options: any): async.Operation<types.GetIntentVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIntentVersions, input, options) as async.Operation<types.GetIntentVersionsOutput>
+function C:getIntentVersions(input: types.GetIntentVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.GetIntentVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIntentVersions as schema.OperationSchema, input, options) as async.Operation<types.GetIntentVersionsOutput>
 end
 
-function C:getMigration(input: types.GetMigrationInput, options: any): async.Operation<types.GetMigrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMigration, input, options) as async.Operation<types.GetMigrationOutput>
+function C:getMigration(input: types.GetMigrationInput, options?: base_client.InvokeOptions): async.Operation<types.GetMigrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMigration as schema.OperationSchema, input, options) as async.Operation<types.GetMigrationOutput>
 end
 
-function C:getMigrations(input: types.GetMigrationsInput, options: any): async.Operation<types.GetMigrationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMigrations, input, options) as async.Operation<types.GetMigrationsOutput>
+function C:getMigrations(input: types.GetMigrationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetMigrationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMigrations as schema.OperationSchema, input, options) as async.Operation<types.GetMigrationsOutput>
 end
 
-function C:getSlotType(input: types.GetSlotTypeInput, options: any): async.Operation<types.GetSlotTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSlotType, input, options) as async.Operation<types.GetSlotTypeOutput>
+function C:getSlotType(input: types.GetSlotTypeInput, options?: base_client.InvokeOptions): async.Operation<types.GetSlotTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSlotType as schema.OperationSchema, input, options) as async.Operation<types.GetSlotTypeOutput>
 end
 
-function C:getSlotTypes(input: types.GetSlotTypesInput, options: any): async.Operation<types.GetSlotTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSlotTypes, input, options) as async.Operation<types.GetSlotTypesOutput>
+function C:getSlotTypes(input: types.GetSlotTypesInput, options?: base_client.InvokeOptions): async.Operation<types.GetSlotTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSlotTypes as schema.OperationSchema, input, options) as async.Operation<types.GetSlotTypesOutput>
 end
 
-function C:getSlotTypeVersions(input: types.GetSlotTypeVersionsInput, options: any): async.Operation<types.GetSlotTypeVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSlotTypeVersions, input, options) as async.Operation<types.GetSlotTypeVersionsOutput>
+function C:getSlotTypeVersions(input: types.GetSlotTypeVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.GetSlotTypeVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSlotTypeVersions as schema.OperationSchema, input, options) as async.Operation<types.GetSlotTypeVersionsOutput>
 end
 
-function C:getUtterancesView(input: types.GetUtterancesViewInput, options: any): async.Operation<types.GetUtterancesViewOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetUtterancesView, input, options) as async.Operation<types.GetUtterancesViewOutput>
+function C:getUtterancesView(input: types.GetUtterancesViewInput, options?: base_client.InvokeOptions): async.Operation<types.GetUtterancesViewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetUtterancesView as schema.OperationSchema, input, options) as async.Operation<types.GetUtterancesViewOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putBot(input: types.PutBotInput, options: any): async.Operation<types.PutBotOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutBot, input, options) as async.Operation<types.PutBotOutput>
+function C:putBot(input: types.PutBotInput, options?: base_client.InvokeOptions): async.Operation<types.PutBotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutBot as schema.OperationSchema, input, options) as async.Operation<types.PutBotOutput>
 end
 
-function C:putBotAlias(input: types.PutBotAliasInput, options: any): async.Operation<types.PutBotAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutBotAlias, input, options) as async.Operation<types.PutBotAliasOutput>
+function C:putBotAlias(input: types.PutBotAliasInput, options?: base_client.InvokeOptions): async.Operation<types.PutBotAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutBotAlias as schema.OperationSchema, input, options) as async.Operation<types.PutBotAliasOutput>
 end
 
-function C:putIntent(input: types.PutIntentInput, options: any): async.Operation<types.PutIntentOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutIntent, input, options) as async.Operation<types.PutIntentOutput>
+function C:putIntent(input: types.PutIntentInput, options?: base_client.InvokeOptions): async.Operation<types.PutIntentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutIntent as schema.OperationSchema, input, options) as async.Operation<types.PutIntentOutput>
 end
 
-function C:putSlotType(input: types.PutSlotTypeInput, options: any): async.Operation<types.PutSlotTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutSlotType, input, options) as async.Operation<types.PutSlotTypeOutput>
+function C:putSlotType(input: types.PutSlotTypeInput, options?: base_client.InvokeOptions): async.Operation<types.PutSlotTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutSlotType as schema.OperationSchema, input, options) as async.Operation<types.PutSlotTypeOutput>
 end
 
-function C:startImport(input: types.StartImportInput, options: any): async.Operation<types.StartImportOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartImport, input, options) as async.Operation<types.StartImportOutput>
+function C:startImport(input: types.StartImportInput, options?: base_client.InvokeOptions): async.Operation<types.StartImportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartImport as schema.OperationSchema, input, options) as async.Operation<types.StartImportOutput>
 end
 
-function C:startMigration(input: types.StartMigrationInput, options: any): async.Operation<types.StartMigrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartMigration, input, options) as async.Operation<types.StartMigrationOutput>
+function C:startMigration(input: types.StartMigrationInput, options?: base_client.InvokeOptions): async.Operation<types.StartMigrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartMigration as schema.OperationSchema, input, options) as async.Operation<types.StartMigrationOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
 return M

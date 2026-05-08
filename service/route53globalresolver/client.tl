@@ -8,86 +8,89 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("route53globalresolver.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("route53globalresolver.schemas")
 local traits = require("smithy.traits")
 local types = require("route53globalresolver.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateHostedZone: function(Client, types.AssociateHostedZoneInput, any): async.Operation<types.AssociateHostedZoneOutput>
-    batchCreateFirewallRule: function(Client, types.BatchCreateFirewallRuleInput, any): async.Operation<types.BatchCreateFirewallRuleOutput>
-    batchDeleteFirewallRule: function(Client, types.BatchDeleteFirewallRuleInput, any): async.Operation<types.BatchDeleteFirewallRuleOutput>
-    batchUpdateFirewallRule: function(Client, types.BatchUpdateFirewallRuleInput, any): async.Operation<types.BatchUpdateFirewallRuleOutput>
-    createAccessSource: function(Client, types.CreateAccessSourceInput, any): async.Operation<types.CreateAccessSourceOutput>
-    createAccessToken: function(Client, types.CreateAccessTokenInput, any): async.Operation<types.CreateAccessTokenOutput>
-    createDNSView: function(Client, types.CreateDNSViewInput, any): async.Operation<types.CreateDNSViewOutput>
-    createFirewallDomainList: function(Client, types.CreateFirewallDomainListInput, any): async.Operation<types.CreateFirewallDomainListOutput>
-    createFirewallRule: function(Client, types.CreateFirewallRuleInput, any): async.Operation<types.CreateFirewallRuleOutput>
-    createGlobalResolver: function(Client, types.CreateGlobalResolverInput, any): async.Operation<types.CreateGlobalResolverOutput>
-    deleteAccessSource: function(Client, types.DeleteAccessSourceInput, any): async.Operation<types.DeleteAccessSourceOutput>
-    deleteAccessToken: function(Client, types.DeleteAccessTokenInput, any): async.Operation<types.DeleteAccessTokenOutput>
-    deleteDNSView: function(Client, types.DeleteDNSViewInput, any): async.Operation<types.DeleteDNSViewOutput>
-    deleteFirewallDomainList: function(Client, types.DeleteFirewallDomainListInput, any): async.Operation<types.DeleteFirewallDomainListOutput>
-    deleteFirewallRule: function(Client, types.DeleteFirewallRuleInput, any): async.Operation<types.DeleteFirewallRuleOutput>
-    deleteGlobalResolver: function(Client, types.DeleteGlobalResolverInput, any): async.Operation<types.DeleteGlobalResolverOutput>
-    disableDNSView: function(Client, types.DisableDNSViewInput, any): async.Operation<types.DisableDNSViewOutput>
-    disassociateHostedZone: function(Client, types.DisassociateHostedZoneInput, any): async.Operation<types.DisassociateHostedZoneOutput>
-    enableDNSView: function(Client, types.EnableDNSViewInput, any): async.Operation<types.EnableDNSViewOutput>
-    getAccessSource: function(Client, types.GetAccessSourceInput, any): async.Operation<types.GetAccessSourceOutput>
-    getAccessToken: function(Client, types.GetAccessTokenInput, any): async.Operation<types.GetAccessTokenOutput>
-    getDNSView: function(Client, types.GetDNSViewInput, any): async.Operation<types.GetDNSViewOutput>
-    getFirewallDomainList: function(Client, types.GetFirewallDomainListInput, any): async.Operation<types.GetFirewallDomainListOutput>
-    getFirewallRule: function(Client, types.GetFirewallRuleInput, any): async.Operation<types.GetFirewallRuleOutput>
-    getGlobalResolver: function(Client, types.GetGlobalResolverInput, any): async.Operation<types.GetGlobalResolverOutput>
-    getHostedZoneAssociation: function(Client, types.GetHostedZoneAssociationInput, any): async.Operation<types.GetHostedZoneAssociationOutput>
-    getManagedFirewallDomainList: function(Client, types.GetManagedFirewallDomainListInput, any): async.Operation<types.GetManagedFirewallDomainListOutput>
-    importFirewallDomains: function(Client, types.ImportFirewallDomainsInput, any): async.Operation<types.ImportFirewallDomainsOutput>
-    listAccessSources: function(Client, types.ListAccessSourcesInput, any): async.Operation<types.ListAccessSourcesOutput>
-    listAccessTokens: function(Client, types.ListAccessTokensInput, any): async.Operation<types.ListAccessTokensOutput>
-    listDNSViews: function(Client, types.ListDNSViewsInput, any): async.Operation<types.ListDNSViewsOutput>
-    listFirewallDomainLists: function(Client, types.ListFirewallDomainListsInput, any): async.Operation<types.ListFirewallDomainListsOutput>
-    listFirewallDomains: function(Client, types.ListFirewallDomainsInput, any): async.Operation<types.ListFirewallDomainsOutput>
-    listFirewallRules: function(Client, types.ListFirewallRulesInput, any): async.Operation<types.ListFirewallRulesOutput>
-    listGlobalResolvers: function(Client, types.ListGlobalResolversInput, any): async.Operation<types.ListGlobalResolversOutput>
-    listHostedZoneAssociations: function(Client, types.ListHostedZoneAssociationsInput, any): async.Operation<types.ListHostedZoneAssociationsOutput>
-    listManagedFirewallDomainLists: function(Client, types.ListManagedFirewallDomainListsInput, any): async.Operation<types.ListManagedFirewallDomainListsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAccessSource: function(Client, types.UpdateAccessSourceInput, any): async.Operation<types.UpdateAccessSourceOutput>
-    updateAccessToken: function(Client, types.UpdateAccessTokenInput, any): async.Operation<types.UpdateAccessTokenOutput>
-    updateDNSView: function(Client, types.UpdateDNSViewInput, any): async.Operation<types.UpdateDNSViewOutput>
-    updateFirewallDomains: function(Client, types.UpdateFirewallDomainsInput, any): async.Operation<types.UpdateFirewallDomainsOutput>
-    updateFirewallRule: function(Client, types.UpdateFirewallRuleInput, any): async.Operation<types.UpdateFirewallRuleOutput>
-    updateGlobalResolver: function(Client, types.UpdateGlobalResolverInput, any): async.Operation<types.UpdateGlobalResolverOutput>
-    updateHostedZoneAssociation: function(Client, types.UpdateHostedZoneAssociationInput, any): async.Operation<types.UpdateHostedZoneAssociationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateHostedZone: function(Client, types.AssociateHostedZoneInput, ? base_client.InvokeOptions): async.Operation<types.AssociateHostedZoneOutput>
+    batchCreateFirewallRule: function(Client, types.BatchCreateFirewallRuleInput, ? base_client.InvokeOptions): async.Operation<types.BatchCreateFirewallRuleOutput>
+    batchDeleteFirewallRule: function(Client, types.BatchDeleteFirewallRuleInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteFirewallRuleOutput>
+    batchUpdateFirewallRule: function(Client, types.BatchUpdateFirewallRuleInput, ? base_client.InvokeOptions): async.Operation<types.BatchUpdateFirewallRuleOutput>
+    createAccessSource: function(Client, types.CreateAccessSourceInput, ? base_client.InvokeOptions): async.Operation<types.CreateAccessSourceOutput>
+    createAccessToken: function(Client, types.CreateAccessTokenInput, ? base_client.InvokeOptions): async.Operation<types.CreateAccessTokenOutput>
+    createDNSView: function(Client, types.CreateDNSViewInput, ? base_client.InvokeOptions): async.Operation<types.CreateDNSViewOutput>
+    createFirewallDomainList: function(Client, types.CreateFirewallDomainListInput, ? base_client.InvokeOptions): async.Operation<types.CreateFirewallDomainListOutput>
+    createFirewallRule: function(Client, types.CreateFirewallRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateFirewallRuleOutput>
+    createGlobalResolver: function(Client, types.CreateGlobalResolverInput, ? base_client.InvokeOptions): async.Operation<types.CreateGlobalResolverOutput>
+    deleteAccessSource: function(Client, types.DeleteAccessSourceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccessSourceOutput>
+    deleteAccessToken: function(Client, types.DeleteAccessTokenInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccessTokenOutput>
+    deleteDNSView: function(Client, types.DeleteDNSViewInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDNSViewOutput>
+    deleteFirewallDomainList: function(Client, types.DeleteFirewallDomainListInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFirewallDomainListOutput>
+    deleteFirewallRule: function(Client, types.DeleteFirewallRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFirewallRuleOutput>
+    deleteGlobalResolver: function(Client, types.DeleteGlobalResolverInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGlobalResolverOutput>
+    disableDNSView: function(Client, types.DisableDNSViewInput, ? base_client.InvokeOptions): async.Operation<types.DisableDNSViewOutput>
+    disassociateHostedZone: function(Client, types.DisassociateHostedZoneInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateHostedZoneOutput>
+    enableDNSView: function(Client, types.EnableDNSViewInput, ? base_client.InvokeOptions): async.Operation<types.EnableDNSViewOutput>
+    getAccessSource: function(Client, types.GetAccessSourceInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessSourceOutput>
+    getAccessToken: function(Client, types.GetAccessTokenInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessTokenOutput>
+    getDNSView: function(Client, types.GetDNSViewInput, ? base_client.InvokeOptions): async.Operation<types.GetDNSViewOutput>
+    getFirewallDomainList: function(Client, types.GetFirewallDomainListInput, ? base_client.InvokeOptions): async.Operation<types.GetFirewallDomainListOutput>
+    getFirewallRule: function(Client, types.GetFirewallRuleInput, ? base_client.InvokeOptions): async.Operation<types.GetFirewallRuleOutput>
+    getGlobalResolver: function(Client, types.GetGlobalResolverInput, ? base_client.InvokeOptions): async.Operation<types.GetGlobalResolverOutput>
+    getHostedZoneAssociation: function(Client, types.GetHostedZoneAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetHostedZoneAssociationOutput>
+    getManagedFirewallDomainList: function(Client, types.GetManagedFirewallDomainListInput, ? base_client.InvokeOptions): async.Operation<types.GetManagedFirewallDomainListOutput>
+    importFirewallDomains: function(Client, types.ImportFirewallDomainsInput, ? base_client.InvokeOptions): async.Operation<types.ImportFirewallDomainsOutput>
+    listAccessSources: function(Client, types.ListAccessSourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListAccessSourcesOutput>
+    listAccessTokens: function(Client, types.ListAccessTokensInput, ? base_client.InvokeOptions): async.Operation<types.ListAccessTokensOutput>
+    listDNSViews: function(Client, types.ListDNSViewsInput, ? base_client.InvokeOptions): async.Operation<types.ListDNSViewsOutput>
+    listFirewallDomainLists: function(Client, types.ListFirewallDomainListsInput, ? base_client.InvokeOptions): async.Operation<types.ListFirewallDomainListsOutput>
+    listFirewallDomains: function(Client, types.ListFirewallDomainsInput, ? base_client.InvokeOptions): async.Operation<types.ListFirewallDomainsOutput>
+    listFirewallRules: function(Client, types.ListFirewallRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListFirewallRulesOutput>
+    listGlobalResolvers: function(Client, types.ListGlobalResolversInput, ? base_client.InvokeOptions): async.Operation<types.ListGlobalResolversOutput>
+    listHostedZoneAssociations: function(Client, types.ListHostedZoneAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListHostedZoneAssociationsOutput>
+    listManagedFirewallDomainLists: function(Client, types.ListManagedFirewallDomainListsInput, ? base_client.InvokeOptions): async.Operation<types.ListManagedFirewallDomainListsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAccessSource: function(Client, types.UpdateAccessSourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAccessSourceOutput>
+    updateAccessToken: function(Client, types.UpdateAccessTokenInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAccessTokenOutput>
+    updateDNSView: function(Client, types.UpdateDNSViewInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDNSViewOutput>
+    updateFirewallDomains: function(Client, types.UpdateFirewallDomainsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFirewallDomainsOutput>
+    updateFirewallRule: function(Client, types.UpdateFirewallRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFirewallRuleOutput>
+    updateGlobalResolver: function(Client, types.UpdateGlobalResolverInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGlobalResolverOutput>
+    updateHostedZoneAssociation: function(Client, types.UpdateHostedZoneAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateHostedZoneAssociationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "EC2DNSGlobalResolverCustomerAPI"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "route53globalresolver", signing_region = c.region } }
                 else
@@ -106,192 +109,192 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateHostedZone(input: types.AssociateHostedZoneInput, options: any): async.Operation<types.AssociateHostedZoneOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateHostedZone, input, options) as async.Operation<types.AssociateHostedZoneOutput>
+function C:associateHostedZone(input: types.AssociateHostedZoneInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateHostedZoneOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateHostedZone as schema.OperationSchema, input, options) as async.Operation<types.AssociateHostedZoneOutput>
 end
 
-function C:batchCreateFirewallRule(input: types.BatchCreateFirewallRuleInput, options: any): async.Operation<types.BatchCreateFirewallRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchCreateFirewallRule, input, options) as async.Operation<types.BatchCreateFirewallRuleOutput>
+function C:batchCreateFirewallRule(input: types.BatchCreateFirewallRuleInput, options?: base_client.InvokeOptions): async.Operation<types.BatchCreateFirewallRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchCreateFirewallRule as schema.OperationSchema, input, options) as async.Operation<types.BatchCreateFirewallRuleOutput>
 end
 
-function C:batchDeleteFirewallRule(input: types.BatchDeleteFirewallRuleInput, options: any): async.Operation<types.BatchDeleteFirewallRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDeleteFirewallRule, input, options) as async.Operation<types.BatchDeleteFirewallRuleOutput>
+function C:batchDeleteFirewallRule(input: types.BatchDeleteFirewallRuleInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteFirewallRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteFirewallRule as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteFirewallRuleOutput>
 end
 
-function C:batchUpdateFirewallRule(input: types.BatchUpdateFirewallRuleInput, options: any): async.Operation<types.BatchUpdateFirewallRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchUpdateFirewallRule, input, options) as async.Operation<types.BatchUpdateFirewallRuleOutput>
+function C:batchUpdateFirewallRule(input: types.BatchUpdateFirewallRuleInput, options?: base_client.InvokeOptions): async.Operation<types.BatchUpdateFirewallRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchUpdateFirewallRule as schema.OperationSchema, input, options) as async.Operation<types.BatchUpdateFirewallRuleOutput>
 end
 
-function C:createAccessSource(input: types.CreateAccessSourceInput, options: any): async.Operation<types.CreateAccessSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAccessSource, input, options) as async.Operation<types.CreateAccessSourceOutput>
+function C:createAccessSource(input: types.CreateAccessSourceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAccessSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAccessSource as schema.OperationSchema, input, options) as async.Operation<types.CreateAccessSourceOutput>
 end
 
-function C:createAccessToken(input: types.CreateAccessTokenInput, options: any): async.Operation<types.CreateAccessTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAccessToken, input, options) as async.Operation<types.CreateAccessTokenOutput>
+function C:createAccessToken(input: types.CreateAccessTokenInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAccessTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAccessToken as schema.OperationSchema, input, options) as async.Operation<types.CreateAccessTokenOutput>
 end
 
-function C:createDNSView(input: types.CreateDNSViewInput, options: any): async.Operation<types.CreateDNSViewOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDNSView, input, options) as async.Operation<types.CreateDNSViewOutput>
+function C:createDNSView(input: types.CreateDNSViewInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDNSViewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDNSView as schema.OperationSchema, input, options) as async.Operation<types.CreateDNSViewOutput>
 end
 
-function C:createFirewallDomainList(input: types.CreateFirewallDomainListInput, options: any): async.Operation<types.CreateFirewallDomainListOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFirewallDomainList, input, options) as async.Operation<types.CreateFirewallDomainListOutput>
+function C:createFirewallDomainList(input: types.CreateFirewallDomainListInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFirewallDomainListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFirewallDomainList as schema.OperationSchema, input, options) as async.Operation<types.CreateFirewallDomainListOutput>
 end
 
-function C:createFirewallRule(input: types.CreateFirewallRuleInput, options: any): async.Operation<types.CreateFirewallRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFirewallRule, input, options) as async.Operation<types.CreateFirewallRuleOutput>
+function C:createFirewallRule(input: types.CreateFirewallRuleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFirewallRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFirewallRule as schema.OperationSchema, input, options) as async.Operation<types.CreateFirewallRuleOutput>
 end
 
-function C:createGlobalResolver(input: types.CreateGlobalResolverInput, options: any): async.Operation<types.CreateGlobalResolverOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateGlobalResolver, input, options) as async.Operation<types.CreateGlobalResolverOutput>
+function C:createGlobalResolver(input: types.CreateGlobalResolverInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGlobalResolverOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGlobalResolver as schema.OperationSchema, input, options) as async.Operation<types.CreateGlobalResolverOutput>
 end
 
-function C:deleteAccessSource(input: types.DeleteAccessSourceInput, options: any): async.Operation<types.DeleteAccessSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAccessSource, input, options) as async.Operation<types.DeleteAccessSourceOutput>
+function C:deleteAccessSource(input: types.DeleteAccessSourceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAccessSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAccessSource as schema.OperationSchema, input, options) as async.Operation<types.DeleteAccessSourceOutput>
 end
 
-function C:deleteAccessToken(input: types.DeleteAccessTokenInput, options: any): async.Operation<types.DeleteAccessTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAccessToken, input, options) as async.Operation<types.DeleteAccessTokenOutput>
+function C:deleteAccessToken(input: types.DeleteAccessTokenInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAccessTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAccessToken as schema.OperationSchema, input, options) as async.Operation<types.DeleteAccessTokenOutput>
 end
 
-function C:deleteDNSView(input: types.DeleteDNSViewInput, options: any): async.Operation<types.DeleteDNSViewOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDNSView, input, options) as async.Operation<types.DeleteDNSViewOutput>
+function C:deleteDNSView(input: types.DeleteDNSViewInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDNSViewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDNSView as schema.OperationSchema, input, options) as async.Operation<types.DeleteDNSViewOutput>
 end
 
-function C:deleteFirewallDomainList(input: types.DeleteFirewallDomainListInput, options: any): async.Operation<types.DeleteFirewallDomainListOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFirewallDomainList, input, options) as async.Operation<types.DeleteFirewallDomainListOutput>
+function C:deleteFirewallDomainList(input: types.DeleteFirewallDomainListInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFirewallDomainListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFirewallDomainList as schema.OperationSchema, input, options) as async.Operation<types.DeleteFirewallDomainListOutput>
 end
 
-function C:deleteFirewallRule(input: types.DeleteFirewallRuleInput, options: any): async.Operation<types.DeleteFirewallRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFirewallRule, input, options) as async.Operation<types.DeleteFirewallRuleOutput>
+function C:deleteFirewallRule(input: types.DeleteFirewallRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFirewallRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFirewallRule as schema.OperationSchema, input, options) as async.Operation<types.DeleteFirewallRuleOutput>
 end
 
-function C:deleteGlobalResolver(input: types.DeleteGlobalResolverInput, options: any): async.Operation<types.DeleteGlobalResolverOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteGlobalResolver, input, options) as async.Operation<types.DeleteGlobalResolverOutput>
+function C:deleteGlobalResolver(input: types.DeleteGlobalResolverInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGlobalResolverOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGlobalResolver as schema.OperationSchema, input, options) as async.Operation<types.DeleteGlobalResolverOutput>
 end
 
-function C:disableDNSView(input: types.DisableDNSViewInput, options: any): async.Operation<types.DisableDNSViewOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableDNSView, input, options) as async.Operation<types.DisableDNSViewOutput>
+function C:disableDNSView(input: types.DisableDNSViewInput, options?: base_client.InvokeOptions): async.Operation<types.DisableDNSViewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableDNSView as schema.OperationSchema, input, options) as async.Operation<types.DisableDNSViewOutput>
 end
 
-function C:disassociateHostedZone(input: types.DisassociateHostedZoneInput, options: any): async.Operation<types.DisassociateHostedZoneOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateHostedZone, input, options) as async.Operation<types.DisassociateHostedZoneOutput>
+function C:disassociateHostedZone(input: types.DisassociateHostedZoneInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateHostedZoneOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateHostedZone as schema.OperationSchema, input, options) as async.Operation<types.DisassociateHostedZoneOutput>
 end
 
-function C:enableDNSView(input: types.EnableDNSViewInput, options: any): async.Operation<types.EnableDNSViewOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableDNSView, input, options) as async.Operation<types.EnableDNSViewOutput>
+function C:enableDNSView(input: types.EnableDNSViewInput, options?: base_client.InvokeOptions): async.Operation<types.EnableDNSViewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableDNSView as schema.OperationSchema, input, options) as async.Operation<types.EnableDNSViewOutput>
 end
 
-function C:getAccessSource(input: types.GetAccessSourceInput, options: any): async.Operation<types.GetAccessSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccessSource, input, options) as async.Operation<types.GetAccessSourceOutput>
+function C:getAccessSource(input: types.GetAccessSourceInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccessSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccessSource as schema.OperationSchema, input, options) as async.Operation<types.GetAccessSourceOutput>
 end
 
-function C:getAccessToken(input: types.GetAccessTokenInput, options: any): async.Operation<types.GetAccessTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccessToken, input, options) as async.Operation<types.GetAccessTokenOutput>
+function C:getAccessToken(input: types.GetAccessTokenInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccessTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccessToken as schema.OperationSchema, input, options) as async.Operation<types.GetAccessTokenOutput>
 end
 
-function C:getDNSView(input: types.GetDNSViewInput, options: any): async.Operation<types.GetDNSViewOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDNSView, input, options) as async.Operation<types.GetDNSViewOutput>
+function C:getDNSView(input: types.GetDNSViewInput, options?: base_client.InvokeOptions): async.Operation<types.GetDNSViewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDNSView as schema.OperationSchema, input, options) as async.Operation<types.GetDNSViewOutput>
 end
 
-function C:getFirewallDomainList(input: types.GetFirewallDomainListInput, options: any): async.Operation<types.GetFirewallDomainListOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFirewallDomainList, input, options) as async.Operation<types.GetFirewallDomainListOutput>
+function C:getFirewallDomainList(input: types.GetFirewallDomainListInput, options?: base_client.InvokeOptions): async.Operation<types.GetFirewallDomainListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFirewallDomainList as schema.OperationSchema, input, options) as async.Operation<types.GetFirewallDomainListOutput>
 end
 
-function C:getFirewallRule(input: types.GetFirewallRuleInput, options: any): async.Operation<types.GetFirewallRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFirewallRule, input, options) as async.Operation<types.GetFirewallRuleOutput>
+function C:getFirewallRule(input: types.GetFirewallRuleInput, options?: base_client.InvokeOptions): async.Operation<types.GetFirewallRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFirewallRule as schema.OperationSchema, input, options) as async.Operation<types.GetFirewallRuleOutput>
 end
 
-function C:getGlobalResolver(input: types.GetGlobalResolverInput, options: any): async.Operation<types.GetGlobalResolverOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetGlobalResolver, input, options) as async.Operation<types.GetGlobalResolverOutput>
+function C:getGlobalResolver(input: types.GetGlobalResolverInput, options?: base_client.InvokeOptions): async.Operation<types.GetGlobalResolverOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGlobalResolver as schema.OperationSchema, input, options) as async.Operation<types.GetGlobalResolverOutput>
 end
 
-function C:getHostedZoneAssociation(input: types.GetHostedZoneAssociationInput, options: any): async.Operation<types.GetHostedZoneAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetHostedZoneAssociation, input, options) as async.Operation<types.GetHostedZoneAssociationOutput>
+function C:getHostedZoneAssociation(input: types.GetHostedZoneAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetHostedZoneAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetHostedZoneAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetHostedZoneAssociationOutput>
 end
 
-function C:getManagedFirewallDomainList(input: types.GetManagedFirewallDomainListInput, options: any): async.Operation<types.GetManagedFirewallDomainListOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetManagedFirewallDomainList, input, options) as async.Operation<types.GetManagedFirewallDomainListOutput>
+function C:getManagedFirewallDomainList(input: types.GetManagedFirewallDomainListInput, options?: base_client.InvokeOptions): async.Operation<types.GetManagedFirewallDomainListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetManagedFirewallDomainList as schema.OperationSchema, input, options) as async.Operation<types.GetManagedFirewallDomainListOutput>
 end
 
-function C:importFirewallDomains(input: types.ImportFirewallDomainsInput, options: any): async.Operation<types.ImportFirewallDomainsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportFirewallDomains, input, options) as async.Operation<types.ImportFirewallDomainsOutput>
+function C:importFirewallDomains(input: types.ImportFirewallDomainsInput, options?: base_client.InvokeOptions): async.Operation<types.ImportFirewallDomainsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportFirewallDomains as schema.OperationSchema, input, options) as async.Operation<types.ImportFirewallDomainsOutput>
 end
 
-function C:listAccessSources(input: types.ListAccessSourcesInput, options: any): async.Operation<types.ListAccessSourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccessSources, input, options) as async.Operation<types.ListAccessSourcesOutput>
+function C:listAccessSources(input: types.ListAccessSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccessSourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccessSources as schema.OperationSchema, input, options) as async.Operation<types.ListAccessSourcesOutput>
 end
 
-function C:listAccessTokens(input: types.ListAccessTokensInput, options: any): async.Operation<types.ListAccessTokensOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccessTokens, input, options) as async.Operation<types.ListAccessTokensOutput>
+function C:listAccessTokens(input: types.ListAccessTokensInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccessTokensOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccessTokens as schema.OperationSchema, input, options) as async.Operation<types.ListAccessTokensOutput>
 end
 
-function C:listDNSViews(input: types.ListDNSViewsInput, options: any): async.Operation<types.ListDNSViewsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDNSViews, input, options) as async.Operation<types.ListDNSViewsOutput>
+function C:listDNSViews(input: types.ListDNSViewsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDNSViewsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDNSViews as schema.OperationSchema, input, options) as async.Operation<types.ListDNSViewsOutput>
 end
 
-function C:listFirewallDomainLists(input: types.ListFirewallDomainListsInput, options: any): async.Operation<types.ListFirewallDomainListsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFirewallDomainLists, input, options) as async.Operation<types.ListFirewallDomainListsOutput>
+function C:listFirewallDomainLists(input: types.ListFirewallDomainListsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFirewallDomainListsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFirewallDomainLists as schema.OperationSchema, input, options) as async.Operation<types.ListFirewallDomainListsOutput>
 end
 
-function C:listFirewallDomains(input: types.ListFirewallDomainsInput, options: any): async.Operation<types.ListFirewallDomainsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFirewallDomains, input, options) as async.Operation<types.ListFirewallDomainsOutput>
+function C:listFirewallDomains(input: types.ListFirewallDomainsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFirewallDomainsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFirewallDomains as schema.OperationSchema, input, options) as async.Operation<types.ListFirewallDomainsOutput>
 end
 
-function C:listFirewallRules(input: types.ListFirewallRulesInput, options: any): async.Operation<types.ListFirewallRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFirewallRules, input, options) as async.Operation<types.ListFirewallRulesOutput>
+function C:listFirewallRules(input: types.ListFirewallRulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListFirewallRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFirewallRules as schema.OperationSchema, input, options) as async.Operation<types.ListFirewallRulesOutput>
 end
 
-function C:listGlobalResolvers(input: types.ListGlobalResolversInput, options: any): async.Operation<types.ListGlobalResolversOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGlobalResolvers, input, options) as async.Operation<types.ListGlobalResolversOutput>
+function C:listGlobalResolvers(input: types.ListGlobalResolversInput, options?: base_client.InvokeOptions): async.Operation<types.ListGlobalResolversOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGlobalResolvers as schema.OperationSchema, input, options) as async.Operation<types.ListGlobalResolversOutput>
 end
 
-function C:listHostedZoneAssociations(input: types.ListHostedZoneAssociationsInput, options: any): async.Operation<types.ListHostedZoneAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListHostedZoneAssociations, input, options) as async.Operation<types.ListHostedZoneAssociationsOutput>
+function C:listHostedZoneAssociations(input: types.ListHostedZoneAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListHostedZoneAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListHostedZoneAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListHostedZoneAssociationsOutput>
 end
 
-function C:listManagedFirewallDomainLists(input: types.ListManagedFirewallDomainListsInput, options: any): async.Operation<types.ListManagedFirewallDomainListsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListManagedFirewallDomainLists, input, options) as async.Operation<types.ListManagedFirewallDomainListsOutput>
+function C:listManagedFirewallDomainLists(input: types.ListManagedFirewallDomainListsInput, options?: base_client.InvokeOptions): async.Operation<types.ListManagedFirewallDomainListsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListManagedFirewallDomainLists as schema.OperationSchema, input, options) as async.Operation<types.ListManagedFirewallDomainListsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAccessSource(input: types.UpdateAccessSourceInput, options: any): async.Operation<types.UpdateAccessSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAccessSource, input, options) as async.Operation<types.UpdateAccessSourceOutput>
+function C:updateAccessSource(input: types.UpdateAccessSourceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAccessSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAccessSource as schema.OperationSchema, input, options) as async.Operation<types.UpdateAccessSourceOutput>
 end
 
-function C:updateAccessToken(input: types.UpdateAccessTokenInput, options: any): async.Operation<types.UpdateAccessTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAccessToken, input, options) as async.Operation<types.UpdateAccessTokenOutput>
+function C:updateAccessToken(input: types.UpdateAccessTokenInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAccessTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAccessToken as schema.OperationSchema, input, options) as async.Operation<types.UpdateAccessTokenOutput>
 end
 
-function C:updateDNSView(input: types.UpdateDNSViewInput, options: any): async.Operation<types.UpdateDNSViewOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDNSView, input, options) as async.Operation<types.UpdateDNSViewOutput>
+function C:updateDNSView(input: types.UpdateDNSViewInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDNSViewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDNSView as schema.OperationSchema, input, options) as async.Operation<types.UpdateDNSViewOutput>
 end
 
-function C:updateFirewallDomains(input: types.UpdateFirewallDomainsInput, options: any): async.Operation<types.UpdateFirewallDomainsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFirewallDomains, input, options) as async.Operation<types.UpdateFirewallDomainsOutput>
+function C:updateFirewallDomains(input: types.UpdateFirewallDomainsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFirewallDomainsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFirewallDomains as schema.OperationSchema, input, options) as async.Operation<types.UpdateFirewallDomainsOutput>
 end
 
-function C:updateFirewallRule(input: types.UpdateFirewallRuleInput, options: any): async.Operation<types.UpdateFirewallRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFirewallRule, input, options) as async.Operation<types.UpdateFirewallRuleOutput>
+function C:updateFirewallRule(input: types.UpdateFirewallRuleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFirewallRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFirewallRule as schema.OperationSchema, input, options) as async.Operation<types.UpdateFirewallRuleOutput>
 end
 
-function C:updateGlobalResolver(input: types.UpdateGlobalResolverInput, options: any): async.Operation<types.UpdateGlobalResolverOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateGlobalResolver, input, options) as async.Operation<types.UpdateGlobalResolverOutput>
+function C:updateGlobalResolver(input: types.UpdateGlobalResolverInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGlobalResolverOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGlobalResolver as schema.OperationSchema, input, options) as async.Operation<types.UpdateGlobalResolverOutput>
 end
 
-function C:updateHostedZoneAssociation(input: types.UpdateHostedZoneAssociationInput, options: any): async.Operation<types.UpdateHostedZoneAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateHostedZoneAssociation, input, options) as async.Operation<types.UpdateHostedZoneAssociationOutput>
+function C:updateHostedZoneAssociation(input: types.UpdateHostedZoneAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateHostedZoneAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateHostedZoneAssociation as schema.OperationSchema, input, options) as async.Operation<types.UpdateHostedZoneAssociationOutput>
 end
 
 return M

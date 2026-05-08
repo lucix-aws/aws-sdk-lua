@@ -8,151 +8,154 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("iotwireless.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("iotwireless.schemas")
 local traits = require("smithy.traits")
 local types = require("iotwireless.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateAwsAccountWithPartnerAccount: function(Client, types.AssociateAwsAccountWithPartnerAccountInput, any): async.Operation<types.AssociateAwsAccountWithPartnerAccountOutput>
-    associateMulticastGroupWithFuotaTask: function(Client, types.AssociateMulticastGroupWithFuotaTaskInput, any): async.Operation<types.AssociateMulticastGroupWithFuotaTaskOutput>
-    associateWirelessDeviceWithFuotaTask: function(Client, types.AssociateWirelessDeviceWithFuotaTaskInput, any): async.Operation<types.AssociateWirelessDeviceWithFuotaTaskOutput>
-    associateWirelessDeviceWithMulticastGroup: function(Client, types.AssociateWirelessDeviceWithMulticastGroupInput, any): async.Operation<types.AssociateWirelessDeviceWithMulticastGroupOutput>
-    associateWirelessDeviceWithThing: function(Client, types.AssociateWirelessDeviceWithThingInput, any): async.Operation<types.AssociateWirelessDeviceWithThingOutput>
-    associateWirelessGatewayWithCertificate: function(Client, types.AssociateWirelessGatewayWithCertificateInput, any): async.Operation<types.AssociateWirelessGatewayWithCertificateOutput>
-    associateWirelessGatewayWithThing: function(Client, types.AssociateWirelessGatewayWithThingInput, any): async.Operation<types.AssociateWirelessGatewayWithThingOutput>
-    cancelMulticastGroupSession: function(Client, types.CancelMulticastGroupSessionInput, any): async.Operation<types.CancelMulticastGroupSessionOutput>
-    createDestination: function(Client, types.CreateDestinationInput, any): async.Operation<types.CreateDestinationOutput>
-    createDeviceProfile: function(Client, types.CreateDeviceProfileInput, any): async.Operation<types.CreateDeviceProfileOutput>
-    createFuotaTask: function(Client, types.CreateFuotaTaskInput, any): async.Operation<types.CreateFuotaTaskOutput>
-    createMulticastGroup: function(Client, types.CreateMulticastGroupInput, any): async.Operation<types.CreateMulticastGroupOutput>
-    createNetworkAnalyzerConfiguration: function(Client, types.CreateNetworkAnalyzerConfigurationInput, any): async.Operation<types.CreateNetworkAnalyzerConfigurationOutput>
-    createServiceProfile: function(Client, types.CreateServiceProfileInput, any): async.Operation<types.CreateServiceProfileOutput>
-    createWirelessDevice: function(Client, types.CreateWirelessDeviceInput, any): async.Operation<types.CreateWirelessDeviceOutput>
-    createWirelessGateway: function(Client, types.CreateWirelessGatewayInput, any): async.Operation<types.CreateWirelessGatewayOutput>
-    createWirelessGatewayTask: function(Client, types.CreateWirelessGatewayTaskInput, any): async.Operation<types.CreateWirelessGatewayTaskOutput>
-    createWirelessGatewayTaskDefinition: function(Client, types.CreateWirelessGatewayTaskDefinitionInput, any): async.Operation<types.CreateWirelessGatewayTaskDefinitionOutput>
-    deleteDestination: function(Client, types.DeleteDestinationInput, any): async.Operation<types.DeleteDestinationOutput>
-    deleteDeviceProfile: function(Client, types.DeleteDeviceProfileInput, any): async.Operation<types.DeleteDeviceProfileOutput>
-    deleteFuotaTask: function(Client, types.DeleteFuotaTaskInput, any): async.Operation<types.DeleteFuotaTaskOutput>
-    deleteMulticastGroup: function(Client, types.DeleteMulticastGroupInput, any): async.Operation<types.DeleteMulticastGroupOutput>
-    deleteNetworkAnalyzerConfiguration: function(Client, types.DeleteNetworkAnalyzerConfigurationInput, any): async.Operation<types.DeleteNetworkAnalyzerConfigurationOutput>
-    deleteQueuedMessages: function(Client, types.DeleteQueuedMessagesInput, any): async.Operation<types.DeleteQueuedMessagesOutput>
-    deleteServiceProfile: function(Client, types.DeleteServiceProfileInput, any): async.Operation<types.DeleteServiceProfileOutput>
-    deleteWirelessDevice: function(Client, types.DeleteWirelessDeviceInput, any): async.Operation<types.DeleteWirelessDeviceOutput>
-    deleteWirelessDeviceImportTask: function(Client, types.DeleteWirelessDeviceImportTaskInput, any): async.Operation<types.DeleteWirelessDeviceImportTaskOutput>
-    deleteWirelessGateway: function(Client, types.DeleteWirelessGatewayInput, any): async.Operation<types.DeleteWirelessGatewayOutput>
-    deleteWirelessGatewayTask: function(Client, types.DeleteWirelessGatewayTaskInput, any): async.Operation<types.DeleteWirelessGatewayTaskOutput>
-    deleteWirelessGatewayTaskDefinition: function(Client, types.DeleteWirelessGatewayTaskDefinitionInput, any): async.Operation<types.DeleteWirelessGatewayTaskDefinitionOutput>
-    deregisterWirelessDevice: function(Client, types.DeregisterWirelessDeviceInput, any): async.Operation<types.DeregisterWirelessDeviceOutput>
-    disassociateAwsAccountFromPartnerAccount: function(Client, types.DisassociateAwsAccountFromPartnerAccountInput, any): async.Operation<types.DisassociateAwsAccountFromPartnerAccountOutput>
-    disassociateMulticastGroupFromFuotaTask: function(Client, types.DisassociateMulticastGroupFromFuotaTaskInput, any): async.Operation<types.DisassociateMulticastGroupFromFuotaTaskOutput>
-    disassociateWirelessDeviceFromFuotaTask: function(Client, types.DisassociateWirelessDeviceFromFuotaTaskInput, any): async.Operation<types.DisassociateWirelessDeviceFromFuotaTaskOutput>
-    disassociateWirelessDeviceFromMulticastGroup: function(Client, types.DisassociateWirelessDeviceFromMulticastGroupInput, any): async.Operation<types.DisassociateWirelessDeviceFromMulticastGroupOutput>
-    disassociateWirelessDeviceFromThing: function(Client, types.DisassociateWirelessDeviceFromThingInput, any): async.Operation<types.DisassociateWirelessDeviceFromThingOutput>
-    disassociateWirelessGatewayFromCertificate: function(Client, types.DisassociateWirelessGatewayFromCertificateInput, any): async.Operation<types.DisassociateWirelessGatewayFromCertificateOutput>
-    disassociateWirelessGatewayFromThing: function(Client, types.DisassociateWirelessGatewayFromThingInput, any): async.Operation<types.DisassociateWirelessGatewayFromThingOutput>
-    getDestination: function(Client, types.GetDestinationInput, any): async.Operation<types.GetDestinationOutput>
-    getDeviceProfile: function(Client, types.GetDeviceProfileInput, any): async.Operation<types.GetDeviceProfileOutput>
-    getEventConfigurationByResourceTypes: function(Client, types.GetEventConfigurationByResourceTypesInput, any): async.Operation<types.GetEventConfigurationByResourceTypesOutput>
-    getFuotaTask: function(Client, types.GetFuotaTaskInput, any): async.Operation<types.GetFuotaTaskOutput>
-    getLogLevelsByResourceTypes: function(Client, types.GetLogLevelsByResourceTypesInput, any): async.Operation<types.GetLogLevelsByResourceTypesOutput>
-    getMetricConfiguration: function(Client, types.GetMetricConfigurationInput, any): async.Operation<types.GetMetricConfigurationOutput>
-    getMetrics: function(Client, types.GetMetricsInput, any): async.Operation<types.GetMetricsOutput>
-    getMulticastGroup: function(Client, types.GetMulticastGroupInput, any): async.Operation<types.GetMulticastGroupOutput>
-    getMulticastGroupSession: function(Client, types.GetMulticastGroupSessionInput, any): async.Operation<types.GetMulticastGroupSessionOutput>
-    getNetworkAnalyzerConfiguration: function(Client, types.GetNetworkAnalyzerConfigurationInput, any): async.Operation<types.GetNetworkAnalyzerConfigurationOutput>
-    getPartnerAccount: function(Client, types.GetPartnerAccountInput, any): async.Operation<types.GetPartnerAccountOutput>
-    getPosition: function(Client, types.GetPositionInput, any): async.Operation<types.GetPositionOutput>
-    getPositionConfiguration: function(Client, types.GetPositionConfigurationInput, any): async.Operation<types.GetPositionConfigurationOutput>
-    getPositionEstimate: function(Client, types.GetPositionEstimateInput, any): async.Operation<types.GetPositionEstimateOutput>
-    getResourceEventConfiguration: function(Client, types.GetResourceEventConfigurationInput, any): async.Operation<types.GetResourceEventConfigurationOutput>
-    getResourceLogLevel: function(Client, types.GetResourceLogLevelInput, any): async.Operation<types.GetResourceLogLevelOutput>
-    getResourcePosition: function(Client, types.GetResourcePositionInput, any): async.Operation<types.GetResourcePositionOutput>
-    getServiceEndpoint: function(Client, types.GetServiceEndpointInput, any): async.Operation<types.GetServiceEndpointOutput>
-    getServiceProfile: function(Client, types.GetServiceProfileInput, any): async.Operation<types.GetServiceProfileOutput>
-    getWirelessDevice: function(Client, types.GetWirelessDeviceInput, any): async.Operation<types.GetWirelessDeviceOutput>
-    getWirelessDeviceImportTask: function(Client, types.GetWirelessDeviceImportTaskInput, any): async.Operation<types.GetWirelessDeviceImportTaskOutput>
-    getWirelessDeviceStatistics: function(Client, types.GetWirelessDeviceStatisticsInput, any): async.Operation<types.GetWirelessDeviceStatisticsOutput>
-    getWirelessGateway: function(Client, types.GetWirelessGatewayInput, any): async.Operation<types.GetWirelessGatewayOutput>
-    getWirelessGatewayCertificate: function(Client, types.GetWirelessGatewayCertificateInput, any): async.Operation<types.GetWirelessGatewayCertificateOutput>
-    getWirelessGatewayFirmwareInformation: function(Client, types.GetWirelessGatewayFirmwareInformationInput, any): async.Operation<types.GetWirelessGatewayFirmwareInformationOutput>
-    getWirelessGatewayStatistics: function(Client, types.GetWirelessGatewayStatisticsInput, any): async.Operation<types.GetWirelessGatewayStatisticsOutput>
-    getWirelessGatewayTask: function(Client, types.GetWirelessGatewayTaskInput, any): async.Operation<types.GetWirelessGatewayTaskOutput>
-    getWirelessGatewayTaskDefinition: function(Client, types.GetWirelessGatewayTaskDefinitionInput, any): async.Operation<types.GetWirelessGatewayTaskDefinitionOutput>
-    listDestinations: function(Client, types.ListDestinationsInput, any): async.Operation<types.ListDestinationsOutput>
-    listDeviceProfiles: function(Client, types.ListDeviceProfilesInput, any): async.Operation<types.ListDeviceProfilesOutput>
-    listDevicesForWirelessDeviceImportTask: function(Client, types.ListDevicesForWirelessDeviceImportTaskInput, any): async.Operation<types.ListDevicesForWirelessDeviceImportTaskOutput>
-    listEventConfigurations: function(Client, types.ListEventConfigurationsInput, any): async.Operation<types.ListEventConfigurationsOutput>
-    listFuotaTasks: function(Client, types.ListFuotaTasksInput, any): async.Operation<types.ListFuotaTasksOutput>
-    listMulticastGroups: function(Client, types.ListMulticastGroupsInput, any): async.Operation<types.ListMulticastGroupsOutput>
-    listMulticastGroupsByFuotaTask: function(Client, types.ListMulticastGroupsByFuotaTaskInput, any): async.Operation<types.ListMulticastGroupsByFuotaTaskOutput>
-    listNetworkAnalyzerConfigurations: function(Client, types.ListNetworkAnalyzerConfigurationsInput, any): async.Operation<types.ListNetworkAnalyzerConfigurationsOutput>
-    listPartnerAccounts: function(Client, types.ListPartnerAccountsInput, any): async.Operation<types.ListPartnerAccountsOutput>
-    listPositionConfigurations: function(Client, types.ListPositionConfigurationsInput, any): async.Operation<types.ListPositionConfigurationsOutput>
-    listQueuedMessages: function(Client, types.ListQueuedMessagesInput, any): async.Operation<types.ListQueuedMessagesOutput>
-    listServiceProfiles: function(Client, types.ListServiceProfilesInput, any): async.Operation<types.ListServiceProfilesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listWirelessDeviceImportTasks: function(Client, types.ListWirelessDeviceImportTasksInput, any): async.Operation<types.ListWirelessDeviceImportTasksOutput>
-    listWirelessDevices: function(Client, types.ListWirelessDevicesInput, any): async.Operation<types.ListWirelessDevicesOutput>
-    listWirelessGateways: function(Client, types.ListWirelessGatewaysInput, any): async.Operation<types.ListWirelessGatewaysOutput>
-    listWirelessGatewayTaskDefinitions: function(Client, types.ListWirelessGatewayTaskDefinitionsInput, any): async.Operation<types.ListWirelessGatewayTaskDefinitionsOutput>
-    putPositionConfiguration: function(Client, types.PutPositionConfigurationInput, any): async.Operation<types.PutPositionConfigurationOutput>
-    putResourceLogLevel: function(Client, types.PutResourceLogLevelInput, any): async.Operation<types.PutResourceLogLevelOutput>
-    resetAllResourceLogLevels: function(Client, types.ResetAllResourceLogLevelsInput, any): async.Operation<types.ResetAllResourceLogLevelsOutput>
-    resetResourceLogLevel: function(Client, types.ResetResourceLogLevelInput, any): async.Operation<types.ResetResourceLogLevelOutput>
-    sendDataToMulticastGroup: function(Client, types.SendDataToMulticastGroupInput, any): async.Operation<types.SendDataToMulticastGroupOutput>
-    sendDataToWirelessDevice: function(Client, types.SendDataToWirelessDeviceInput, any): async.Operation<types.SendDataToWirelessDeviceOutput>
-    startBulkAssociateWirelessDeviceWithMulticastGroup: function(Client, types.StartBulkAssociateWirelessDeviceWithMulticastGroupInput, any): async.Operation<types.StartBulkAssociateWirelessDeviceWithMulticastGroupOutput>
-    startBulkDisassociateWirelessDeviceFromMulticastGroup: function(Client, types.StartBulkDisassociateWirelessDeviceFromMulticastGroupInput, any): async.Operation<types.StartBulkDisassociateWirelessDeviceFromMulticastGroupOutput>
-    startFuotaTask: function(Client, types.StartFuotaTaskInput, any): async.Operation<types.StartFuotaTaskOutput>
-    startMulticastGroupSession: function(Client, types.StartMulticastGroupSessionInput, any): async.Operation<types.StartMulticastGroupSessionOutput>
-    startSingleWirelessDeviceImportTask: function(Client, types.StartSingleWirelessDeviceImportTaskInput, any): async.Operation<types.StartSingleWirelessDeviceImportTaskOutput>
-    startWirelessDeviceImportTask: function(Client, types.StartWirelessDeviceImportTaskInput, any): async.Operation<types.StartWirelessDeviceImportTaskOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    testWirelessDevice: function(Client, types.TestWirelessDeviceInput, any): async.Operation<types.TestWirelessDeviceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateDestination: function(Client, types.UpdateDestinationInput, any): async.Operation<types.UpdateDestinationOutput>
-    updateEventConfigurationByResourceTypes: function(Client, types.UpdateEventConfigurationByResourceTypesInput, any): async.Operation<types.UpdateEventConfigurationByResourceTypesOutput>
-    updateFuotaTask: function(Client, types.UpdateFuotaTaskInput, any): async.Operation<types.UpdateFuotaTaskOutput>
-    updateLogLevelsByResourceTypes: function(Client, types.UpdateLogLevelsByResourceTypesInput, any): async.Operation<types.UpdateLogLevelsByResourceTypesOutput>
-    updateMetricConfiguration: function(Client, types.UpdateMetricConfigurationInput, any): async.Operation<types.UpdateMetricConfigurationOutput>
-    updateMulticastGroup: function(Client, types.UpdateMulticastGroupInput, any): async.Operation<types.UpdateMulticastGroupOutput>
-    updateNetworkAnalyzerConfiguration: function(Client, types.UpdateNetworkAnalyzerConfigurationInput, any): async.Operation<types.UpdateNetworkAnalyzerConfigurationOutput>
-    updatePartnerAccount: function(Client, types.UpdatePartnerAccountInput, any): async.Operation<types.UpdatePartnerAccountOutput>
-    updatePosition: function(Client, types.UpdatePositionInput, any): async.Operation<types.UpdatePositionOutput>
-    updateResourceEventConfiguration: function(Client, types.UpdateResourceEventConfigurationInput, any): async.Operation<types.UpdateResourceEventConfigurationOutput>
-    updateResourcePosition: function(Client, types.UpdateResourcePositionInput, any): async.Operation<types.UpdateResourcePositionOutput>
-    updateWirelessDevice: function(Client, types.UpdateWirelessDeviceInput, any): async.Operation<types.UpdateWirelessDeviceOutput>
-    updateWirelessDeviceImportTask: function(Client, types.UpdateWirelessDeviceImportTaskInput, any): async.Operation<types.UpdateWirelessDeviceImportTaskOutput>
-    updateWirelessGateway: function(Client, types.UpdateWirelessGatewayInput, any): async.Operation<types.UpdateWirelessGatewayOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateAwsAccountWithPartnerAccount: function(Client, types.AssociateAwsAccountWithPartnerAccountInput, ? base_client.InvokeOptions): async.Operation<types.AssociateAwsAccountWithPartnerAccountOutput>
+    associateMulticastGroupWithFuotaTask: function(Client, types.AssociateMulticastGroupWithFuotaTaskInput, ? base_client.InvokeOptions): async.Operation<types.AssociateMulticastGroupWithFuotaTaskOutput>
+    associateWirelessDeviceWithFuotaTask: function(Client, types.AssociateWirelessDeviceWithFuotaTaskInput, ? base_client.InvokeOptions): async.Operation<types.AssociateWirelessDeviceWithFuotaTaskOutput>
+    associateWirelessDeviceWithMulticastGroup: function(Client, types.AssociateWirelessDeviceWithMulticastGroupInput, ? base_client.InvokeOptions): async.Operation<types.AssociateWirelessDeviceWithMulticastGroupOutput>
+    associateWirelessDeviceWithThing: function(Client, types.AssociateWirelessDeviceWithThingInput, ? base_client.InvokeOptions): async.Operation<types.AssociateWirelessDeviceWithThingOutput>
+    associateWirelessGatewayWithCertificate: function(Client, types.AssociateWirelessGatewayWithCertificateInput, ? base_client.InvokeOptions): async.Operation<types.AssociateWirelessGatewayWithCertificateOutput>
+    associateWirelessGatewayWithThing: function(Client, types.AssociateWirelessGatewayWithThingInput, ? base_client.InvokeOptions): async.Operation<types.AssociateWirelessGatewayWithThingOutput>
+    cancelMulticastGroupSession: function(Client, types.CancelMulticastGroupSessionInput, ? base_client.InvokeOptions): async.Operation<types.CancelMulticastGroupSessionOutput>
+    createDestination: function(Client, types.CreateDestinationInput, ? base_client.InvokeOptions): async.Operation<types.CreateDestinationOutput>
+    createDeviceProfile: function(Client, types.CreateDeviceProfileInput, ? base_client.InvokeOptions): async.Operation<types.CreateDeviceProfileOutput>
+    createFuotaTask: function(Client, types.CreateFuotaTaskInput, ? base_client.InvokeOptions): async.Operation<types.CreateFuotaTaskOutput>
+    createMulticastGroup: function(Client, types.CreateMulticastGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateMulticastGroupOutput>
+    createNetworkAnalyzerConfiguration: function(Client, types.CreateNetworkAnalyzerConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateNetworkAnalyzerConfigurationOutput>
+    createServiceProfile: function(Client, types.CreateServiceProfileInput, ? base_client.InvokeOptions): async.Operation<types.CreateServiceProfileOutput>
+    createWirelessDevice: function(Client, types.CreateWirelessDeviceInput, ? base_client.InvokeOptions): async.Operation<types.CreateWirelessDeviceOutput>
+    createWirelessGateway: function(Client, types.CreateWirelessGatewayInput, ? base_client.InvokeOptions): async.Operation<types.CreateWirelessGatewayOutput>
+    createWirelessGatewayTask: function(Client, types.CreateWirelessGatewayTaskInput, ? base_client.InvokeOptions): async.Operation<types.CreateWirelessGatewayTaskOutput>
+    createWirelessGatewayTaskDefinition: function(Client, types.CreateWirelessGatewayTaskDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.CreateWirelessGatewayTaskDefinitionOutput>
+    deleteDestination: function(Client, types.DeleteDestinationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDestinationOutput>
+    deleteDeviceProfile: function(Client, types.DeleteDeviceProfileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDeviceProfileOutput>
+    deleteFuotaTask: function(Client, types.DeleteFuotaTaskInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFuotaTaskOutput>
+    deleteMulticastGroup: function(Client, types.DeleteMulticastGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMulticastGroupOutput>
+    deleteNetworkAnalyzerConfiguration: function(Client, types.DeleteNetworkAnalyzerConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNetworkAnalyzerConfigurationOutput>
+    deleteQueuedMessages: function(Client, types.DeleteQueuedMessagesInput, ? base_client.InvokeOptions): async.Operation<types.DeleteQueuedMessagesOutput>
+    deleteServiceProfile: function(Client, types.DeleteServiceProfileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteServiceProfileOutput>
+    deleteWirelessDevice: function(Client, types.DeleteWirelessDeviceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWirelessDeviceOutput>
+    deleteWirelessDeviceImportTask: function(Client, types.DeleteWirelessDeviceImportTaskInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWirelessDeviceImportTaskOutput>
+    deleteWirelessGateway: function(Client, types.DeleteWirelessGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWirelessGatewayOutput>
+    deleteWirelessGatewayTask: function(Client, types.DeleteWirelessGatewayTaskInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWirelessGatewayTaskOutput>
+    deleteWirelessGatewayTaskDefinition: function(Client, types.DeleteWirelessGatewayTaskDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWirelessGatewayTaskDefinitionOutput>
+    deregisterWirelessDevice: function(Client, types.DeregisterWirelessDeviceInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterWirelessDeviceOutput>
+    disassociateAwsAccountFromPartnerAccount: function(Client, types.DisassociateAwsAccountFromPartnerAccountInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateAwsAccountFromPartnerAccountOutput>
+    disassociateMulticastGroupFromFuotaTask: function(Client, types.DisassociateMulticastGroupFromFuotaTaskInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateMulticastGroupFromFuotaTaskOutput>
+    disassociateWirelessDeviceFromFuotaTask: function(Client, types.DisassociateWirelessDeviceFromFuotaTaskInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateWirelessDeviceFromFuotaTaskOutput>
+    disassociateWirelessDeviceFromMulticastGroup: function(Client, types.DisassociateWirelessDeviceFromMulticastGroupInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateWirelessDeviceFromMulticastGroupOutput>
+    disassociateWirelessDeviceFromThing: function(Client, types.DisassociateWirelessDeviceFromThingInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateWirelessDeviceFromThingOutput>
+    disassociateWirelessGatewayFromCertificate: function(Client, types.DisassociateWirelessGatewayFromCertificateInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateWirelessGatewayFromCertificateOutput>
+    disassociateWirelessGatewayFromThing: function(Client, types.DisassociateWirelessGatewayFromThingInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateWirelessGatewayFromThingOutput>
+    getDestination: function(Client, types.GetDestinationInput, ? base_client.InvokeOptions): async.Operation<types.GetDestinationOutput>
+    getDeviceProfile: function(Client, types.GetDeviceProfileInput, ? base_client.InvokeOptions): async.Operation<types.GetDeviceProfileOutput>
+    getEventConfigurationByResourceTypes: function(Client, types.GetEventConfigurationByResourceTypesInput, ? base_client.InvokeOptions): async.Operation<types.GetEventConfigurationByResourceTypesOutput>
+    getFuotaTask: function(Client, types.GetFuotaTaskInput, ? base_client.InvokeOptions): async.Operation<types.GetFuotaTaskOutput>
+    getLogLevelsByResourceTypes: function(Client, types.GetLogLevelsByResourceTypesInput, ? base_client.InvokeOptions): async.Operation<types.GetLogLevelsByResourceTypesOutput>
+    getMetricConfiguration: function(Client, types.GetMetricConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetMetricConfigurationOutput>
+    getMetrics: function(Client, types.GetMetricsInput, ? base_client.InvokeOptions): async.Operation<types.GetMetricsOutput>
+    getMulticastGroup: function(Client, types.GetMulticastGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetMulticastGroupOutput>
+    getMulticastGroupSession: function(Client, types.GetMulticastGroupSessionInput, ? base_client.InvokeOptions): async.Operation<types.GetMulticastGroupSessionOutput>
+    getNetworkAnalyzerConfiguration: function(Client, types.GetNetworkAnalyzerConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetNetworkAnalyzerConfigurationOutput>
+    getPartnerAccount: function(Client, types.GetPartnerAccountInput, ? base_client.InvokeOptions): async.Operation<types.GetPartnerAccountOutput>
+    getPosition: function(Client, types.GetPositionInput, ? base_client.InvokeOptions): async.Operation<types.GetPositionOutput>
+    getPositionConfiguration: function(Client, types.GetPositionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetPositionConfigurationOutput>
+    getPositionEstimate: function(Client, types.GetPositionEstimateInput, ? base_client.InvokeOptions): async.Operation<types.GetPositionEstimateOutput>
+    getResourceEventConfiguration: function(Client, types.GetResourceEventConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetResourceEventConfigurationOutput>
+    getResourceLogLevel: function(Client, types.GetResourceLogLevelInput, ? base_client.InvokeOptions): async.Operation<types.GetResourceLogLevelOutput>
+    getResourcePosition: function(Client, types.GetResourcePositionInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePositionOutput>
+    getServiceEndpoint: function(Client, types.GetServiceEndpointInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceEndpointOutput>
+    getServiceProfile: function(Client, types.GetServiceProfileInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceProfileOutput>
+    getWirelessDevice: function(Client, types.GetWirelessDeviceInput, ? base_client.InvokeOptions): async.Operation<types.GetWirelessDeviceOutput>
+    getWirelessDeviceImportTask: function(Client, types.GetWirelessDeviceImportTaskInput, ? base_client.InvokeOptions): async.Operation<types.GetWirelessDeviceImportTaskOutput>
+    getWirelessDeviceStatistics: function(Client, types.GetWirelessDeviceStatisticsInput, ? base_client.InvokeOptions): async.Operation<types.GetWirelessDeviceStatisticsOutput>
+    getWirelessGateway: function(Client, types.GetWirelessGatewayInput, ? base_client.InvokeOptions): async.Operation<types.GetWirelessGatewayOutput>
+    getWirelessGatewayCertificate: function(Client, types.GetWirelessGatewayCertificateInput, ? base_client.InvokeOptions): async.Operation<types.GetWirelessGatewayCertificateOutput>
+    getWirelessGatewayFirmwareInformation: function(Client, types.GetWirelessGatewayFirmwareInformationInput, ? base_client.InvokeOptions): async.Operation<types.GetWirelessGatewayFirmwareInformationOutput>
+    getWirelessGatewayStatistics: function(Client, types.GetWirelessGatewayStatisticsInput, ? base_client.InvokeOptions): async.Operation<types.GetWirelessGatewayStatisticsOutput>
+    getWirelessGatewayTask: function(Client, types.GetWirelessGatewayTaskInput, ? base_client.InvokeOptions): async.Operation<types.GetWirelessGatewayTaskOutput>
+    getWirelessGatewayTaskDefinition: function(Client, types.GetWirelessGatewayTaskDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.GetWirelessGatewayTaskDefinitionOutput>
+    listDestinations: function(Client, types.ListDestinationsInput, ? base_client.InvokeOptions): async.Operation<types.ListDestinationsOutput>
+    listDeviceProfiles: function(Client, types.ListDeviceProfilesInput, ? base_client.InvokeOptions): async.Operation<types.ListDeviceProfilesOutput>
+    listDevicesForWirelessDeviceImportTask: function(Client, types.ListDevicesForWirelessDeviceImportTaskInput, ? base_client.InvokeOptions): async.Operation<types.ListDevicesForWirelessDeviceImportTaskOutput>
+    listEventConfigurations: function(Client, types.ListEventConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListEventConfigurationsOutput>
+    listFuotaTasks: function(Client, types.ListFuotaTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListFuotaTasksOutput>
+    listMulticastGroups: function(Client, types.ListMulticastGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListMulticastGroupsOutput>
+    listMulticastGroupsByFuotaTask: function(Client, types.ListMulticastGroupsByFuotaTaskInput, ? base_client.InvokeOptions): async.Operation<types.ListMulticastGroupsByFuotaTaskOutput>
+    listNetworkAnalyzerConfigurations: function(Client, types.ListNetworkAnalyzerConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListNetworkAnalyzerConfigurationsOutput>
+    listPartnerAccounts: function(Client, types.ListPartnerAccountsInput, ? base_client.InvokeOptions): async.Operation<types.ListPartnerAccountsOutput>
+    listPositionConfigurations: function(Client, types.ListPositionConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListPositionConfigurationsOutput>
+    listQueuedMessages: function(Client, types.ListQueuedMessagesInput, ? base_client.InvokeOptions): async.Operation<types.ListQueuedMessagesOutput>
+    listServiceProfiles: function(Client, types.ListServiceProfilesInput, ? base_client.InvokeOptions): async.Operation<types.ListServiceProfilesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listWirelessDeviceImportTasks: function(Client, types.ListWirelessDeviceImportTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListWirelessDeviceImportTasksOutput>
+    listWirelessDevices: function(Client, types.ListWirelessDevicesInput, ? base_client.InvokeOptions): async.Operation<types.ListWirelessDevicesOutput>
+    listWirelessGateways: function(Client, types.ListWirelessGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.ListWirelessGatewaysOutput>
+    listWirelessGatewayTaskDefinitions: function(Client, types.ListWirelessGatewayTaskDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.ListWirelessGatewayTaskDefinitionsOutput>
+    putPositionConfiguration: function(Client, types.PutPositionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutPositionConfigurationOutput>
+    putResourceLogLevel: function(Client, types.PutResourceLogLevelInput, ? base_client.InvokeOptions): async.Operation<types.PutResourceLogLevelOutput>
+    resetAllResourceLogLevels: function(Client, types.ResetAllResourceLogLevelsInput, ? base_client.InvokeOptions): async.Operation<types.ResetAllResourceLogLevelsOutput>
+    resetResourceLogLevel: function(Client, types.ResetResourceLogLevelInput, ? base_client.InvokeOptions): async.Operation<types.ResetResourceLogLevelOutput>
+    sendDataToMulticastGroup: function(Client, types.SendDataToMulticastGroupInput, ? base_client.InvokeOptions): async.Operation<types.SendDataToMulticastGroupOutput>
+    sendDataToWirelessDevice: function(Client, types.SendDataToWirelessDeviceInput, ? base_client.InvokeOptions): async.Operation<types.SendDataToWirelessDeviceOutput>
+    startBulkAssociateWirelessDeviceWithMulticastGroup: function(Client, types.StartBulkAssociateWirelessDeviceWithMulticastGroupInput, ? base_client.InvokeOptions): async.Operation<types.StartBulkAssociateWirelessDeviceWithMulticastGroupOutput>
+    startBulkDisassociateWirelessDeviceFromMulticastGroup: function(Client, types.StartBulkDisassociateWirelessDeviceFromMulticastGroupInput, ? base_client.InvokeOptions): async.Operation<types.StartBulkDisassociateWirelessDeviceFromMulticastGroupOutput>
+    startFuotaTask: function(Client, types.StartFuotaTaskInput, ? base_client.InvokeOptions): async.Operation<types.StartFuotaTaskOutput>
+    startMulticastGroupSession: function(Client, types.StartMulticastGroupSessionInput, ? base_client.InvokeOptions): async.Operation<types.StartMulticastGroupSessionOutput>
+    startSingleWirelessDeviceImportTask: function(Client, types.StartSingleWirelessDeviceImportTaskInput, ? base_client.InvokeOptions): async.Operation<types.StartSingleWirelessDeviceImportTaskOutput>
+    startWirelessDeviceImportTask: function(Client, types.StartWirelessDeviceImportTaskInput, ? base_client.InvokeOptions): async.Operation<types.StartWirelessDeviceImportTaskOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    testWirelessDevice: function(Client, types.TestWirelessDeviceInput, ? base_client.InvokeOptions): async.Operation<types.TestWirelessDeviceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateDestination: function(Client, types.UpdateDestinationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDestinationOutput>
+    updateEventConfigurationByResourceTypes: function(Client, types.UpdateEventConfigurationByResourceTypesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEventConfigurationByResourceTypesOutput>
+    updateFuotaTask: function(Client, types.UpdateFuotaTaskInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFuotaTaskOutput>
+    updateLogLevelsByResourceTypes: function(Client, types.UpdateLogLevelsByResourceTypesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLogLevelsByResourceTypesOutput>
+    updateMetricConfiguration: function(Client, types.UpdateMetricConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMetricConfigurationOutput>
+    updateMulticastGroup: function(Client, types.UpdateMulticastGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMulticastGroupOutput>
+    updateNetworkAnalyzerConfiguration: function(Client, types.UpdateNetworkAnalyzerConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNetworkAnalyzerConfigurationOutput>
+    updatePartnerAccount: function(Client, types.UpdatePartnerAccountInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePartnerAccountOutput>
+    updatePosition: function(Client, types.UpdatePositionInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePositionOutput>
+    updateResourceEventConfiguration: function(Client, types.UpdateResourceEventConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResourceEventConfigurationOutput>
+    updateResourcePosition: function(Client, types.UpdateResourcePositionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResourcePositionOutput>
+    updateWirelessDevice: function(Client, types.UpdateWirelessDeviceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWirelessDeviceOutput>
+    updateWirelessDeviceImportTask: function(Client, types.UpdateWirelessDeviceImportTaskInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWirelessDeviceImportTaskOutput>
+    updateWirelessGateway: function(Client, types.UpdateWirelessGatewayInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWirelessGatewayOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "iotwireless"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "iotwireless", signing_region = c.region } }
                 else
@@ -171,452 +174,452 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateAwsAccountWithPartnerAccount(input: types.AssociateAwsAccountWithPartnerAccountInput, options: any): async.Operation<types.AssociateAwsAccountWithPartnerAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateAwsAccountWithPartnerAccount, input, options) as async.Operation<types.AssociateAwsAccountWithPartnerAccountOutput>
+function C:associateAwsAccountWithPartnerAccount(input: types.AssociateAwsAccountWithPartnerAccountInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateAwsAccountWithPartnerAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateAwsAccountWithPartnerAccount as schema.OperationSchema, input, options) as async.Operation<types.AssociateAwsAccountWithPartnerAccountOutput>
 end
 
-function C:associateMulticastGroupWithFuotaTask(input: types.AssociateMulticastGroupWithFuotaTaskInput, options: any): async.Operation<types.AssociateMulticastGroupWithFuotaTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateMulticastGroupWithFuotaTask, input, options) as async.Operation<types.AssociateMulticastGroupWithFuotaTaskOutput>
+function C:associateMulticastGroupWithFuotaTask(input: types.AssociateMulticastGroupWithFuotaTaskInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateMulticastGroupWithFuotaTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateMulticastGroupWithFuotaTask as schema.OperationSchema, input, options) as async.Operation<types.AssociateMulticastGroupWithFuotaTaskOutput>
 end
 
-function C:associateWirelessDeviceWithFuotaTask(input: types.AssociateWirelessDeviceWithFuotaTaskInput, options: any): async.Operation<types.AssociateWirelessDeviceWithFuotaTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateWirelessDeviceWithFuotaTask, input, options) as async.Operation<types.AssociateWirelessDeviceWithFuotaTaskOutput>
+function C:associateWirelessDeviceWithFuotaTask(input: types.AssociateWirelessDeviceWithFuotaTaskInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateWirelessDeviceWithFuotaTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateWirelessDeviceWithFuotaTask as schema.OperationSchema, input, options) as async.Operation<types.AssociateWirelessDeviceWithFuotaTaskOutput>
 end
 
-function C:associateWirelessDeviceWithMulticastGroup(input: types.AssociateWirelessDeviceWithMulticastGroupInput, options: any): async.Operation<types.AssociateWirelessDeviceWithMulticastGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateWirelessDeviceWithMulticastGroup, input, options) as async.Operation<types.AssociateWirelessDeviceWithMulticastGroupOutput>
+function C:associateWirelessDeviceWithMulticastGroup(input: types.AssociateWirelessDeviceWithMulticastGroupInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateWirelessDeviceWithMulticastGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateWirelessDeviceWithMulticastGroup as schema.OperationSchema, input, options) as async.Operation<types.AssociateWirelessDeviceWithMulticastGroupOutput>
 end
 
-function C:associateWirelessDeviceWithThing(input: types.AssociateWirelessDeviceWithThingInput, options: any): async.Operation<types.AssociateWirelessDeviceWithThingOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateWirelessDeviceWithThing, input, options) as async.Operation<types.AssociateWirelessDeviceWithThingOutput>
+function C:associateWirelessDeviceWithThing(input: types.AssociateWirelessDeviceWithThingInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateWirelessDeviceWithThingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateWirelessDeviceWithThing as schema.OperationSchema, input, options) as async.Operation<types.AssociateWirelessDeviceWithThingOutput>
 end
 
-function C:associateWirelessGatewayWithCertificate(input: types.AssociateWirelessGatewayWithCertificateInput, options: any): async.Operation<types.AssociateWirelessGatewayWithCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateWirelessGatewayWithCertificate, input, options) as async.Operation<types.AssociateWirelessGatewayWithCertificateOutput>
+function C:associateWirelessGatewayWithCertificate(input: types.AssociateWirelessGatewayWithCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateWirelessGatewayWithCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateWirelessGatewayWithCertificate as schema.OperationSchema, input, options) as async.Operation<types.AssociateWirelessGatewayWithCertificateOutput>
 end
 
-function C:associateWirelessGatewayWithThing(input: types.AssociateWirelessGatewayWithThingInput, options: any): async.Operation<types.AssociateWirelessGatewayWithThingOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateWirelessGatewayWithThing, input, options) as async.Operation<types.AssociateWirelessGatewayWithThingOutput>
+function C:associateWirelessGatewayWithThing(input: types.AssociateWirelessGatewayWithThingInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateWirelessGatewayWithThingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateWirelessGatewayWithThing as schema.OperationSchema, input, options) as async.Operation<types.AssociateWirelessGatewayWithThingOutput>
 end
 
-function C:cancelMulticastGroupSession(input: types.CancelMulticastGroupSessionInput, options: any): async.Operation<types.CancelMulticastGroupSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelMulticastGroupSession, input, options) as async.Operation<types.CancelMulticastGroupSessionOutput>
+function C:cancelMulticastGroupSession(input: types.CancelMulticastGroupSessionInput, options?: base_client.InvokeOptions): async.Operation<types.CancelMulticastGroupSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelMulticastGroupSession as schema.OperationSchema, input, options) as async.Operation<types.CancelMulticastGroupSessionOutput>
 end
 
-function C:createDestination(input: types.CreateDestinationInput, options: any): async.Operation<types.CreateDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDestination, input, options) as async.Operation<types.CreateDestinationOutput>
+function C:createDestination(input: types.CreateDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDestination as schema.OperationSchema, input, options) as async.Operation<types.CreateDestinationOutput>
 end
 
-function C:createDeviceProfile(input: types.CreateDeviceProfileInput, options: any): async.Operation<types.CreateDeviceProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDeviceProfile, input, options) as async.Operation<types.CreateDeviceProfileOutput>
+function C:createDeviceProfile(input: types.CreateDeviceProfileInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDeviceProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDeviceProfile as schema.OperationSchema, input, options) as async.Operation<types.CreateDeviceProfileOutput>
 end
 
-function C:createFuotaTask(input: types.CreateFuotaTaskInput, options: any): async.Operation<types.CreateFuotaTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFuotaTask, input, options) as async.Operation<types.CreateFuotaTaskOutput>
+function C:createFuotaTask(input: types.CreateFuotaTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFuotaTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFuotaTask as schema.OperationSchema, input, options) as async.Operation<types.CreateFuotaTaskOutput>
 end
 
-function C:createMulticastGroup(input: types.CreateMulticastGroupInput, options: any): async.Operation<types.CreateMulticastGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMulticastGroup, input, options) as async.Operation<types.CreateMulticastGroupOutput>
+function C:createMulticastGroup(input: types.CreateMulticastGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMulticastGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMulticastGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateMulticastGroupOutput>
 end
 
-function C:createNetworkAnalyzerConfiguration(input: types.CreateNetworkAnalyzerConfigurationInput, options: any): async.Operation<types.CreateNetworkAnalyzerConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNetworkAnalyzerConfiguration, input, options) as async.Operation<types.CreateNetworkAnalyzerConfigurationOutput>
+function C:createNetworkAnalyzerConfiguration(input: types.CreateNetworkAnalyzerConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNetworkAnalyzerConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNetworkAnalyzerConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateNetworkAnalyzerConfigurationOutput>
 end
 
-function C:createServiceProfile(input: types.CreateServiceProfileInput, options: any): async.Operation<types.CreateServiceProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateServiceProfile, input, options) as async.Operation<types.CreateServiceProfileOutput>
+function C:createServiceProfile(input: types.CreateServiceProfileInput, options?: base_client.InvokeOptions): async.Operation<types.CreateServiceProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateServiceProfile as schema.OperationSchema, input, options) as async.Operation<types.CreateServiceProfileOutput>
 end
 
-function C:createWirelessDevice(input: types.CreateWirelessDeviceInput, options: any): async.Operation<types.CreateWirelessDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWirelessDevice, input, options) as async.Operation<types.CreateWirelessDeviceOutput>
+function C:createWirelessDevice(input: types.CreateWirelessDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWirelessDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWirelessDevice as schema.OperationSchema, input, options) as async.Operation<types.CreateWirelessDeviceOutput>
 end
 
-function C:createWirelessGateway(input: types.CreateWirelessGatewayInput, options: any): async.Operation<types.CreateWirelessGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWirelessGateway, input, options) as async.Operation<types.CreateWirelessGatewayOutput>
+function C:createWirelessGateway(input: types.CreateWirelessGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWirelessGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWirelessGateway as schema.OperationSchema, input, options) as async.Operation<types.CreateWirelessGatewayOutput>
 end
 
-function C:createWirelessGatewayTask(input: types.CreateWirelessGatewayTaskInput, options: any): async.Operation<types.CreateWirelessGatewayTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWirelessGatewayTask, input, options) as async.Operation<types.CreateWirelessGatewayTaskOutput>
+function C:createWirelessGatewayTask(input: types.CreateWirelessGatewayTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWirelessGatewayTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWirelessGatewayTask as schema.OperationSchema, input, options) as async.Operation<types.CreateWirelessGatewayTaskOutput>
 end
 
-function C:createWirelessGatewayTaskDefinition(input: types.CreateWirelessGatewayTaskDefinitionInput, options: any): async.Operation<types.CreateWirelessGatewayTaskDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWirelessGatewayTaskDefinition, input, options) as async.Operation<types.CreateWirelessGatewayTaskDefinitionOutput>
+function C:createWirelessGatewayTaskDefinition(input: types.CreateWirelessGatewayTaskDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWirelessGatewayTaskDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWirelessGatewayTaskDefinition as schema.OperationSchema, input, options) as async.Operation<types.CreateWirelessGatewayTaskDefinitionOutput>
 end
 
-function C:deleteDestination(input: types.DeleteDestinationInput, options: any): async.Operation<types.DeleteDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDestination, input, options) as async.Operation<types.DeleteDestinationOutput>
+function C:deleteDestination(input: types.DeleteDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDestination as schema.OperationSchema, input, options) as async.Operation<types.DeleteDestinationOutput>
 end
 
-function C:deleteDeviceProfile(input: types.DeleteDeviceProfileInput, options: any): async.Operation<types.DeleteDeviceProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDeviceProfile, input, options) as async.Operation<types.DeleteDeviceProfileOutput>
+function C:deleteDeviceProfile(input: types.DeleteDeviceProfileInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDeviceProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDeviceProfile as schema.OperationSchema, input, options) as async.Operation<types.DeleteDeviceProfileOutput>
 end
 
-function C:deleteFuotaTask(input: types.DeleteFuotaTaskInput, options: any): async.Operation<types.DeleteFuotaTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFuotaTask, input, options) as async.Operation<types.DeleteFuotaTaskOutput>
+function C:deleteFuotaTask(input: types.DeleteFuotaTaskInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFuotaTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFuotaTask as schema.OperationSchema, input, options) as async.Operation<types.DeleteFuotaTaskOutput>
 end
 
-function C:deleteMulticastGroup(input: types.DeleteMulticastGroupInput, options: any): async.Operation<types.DeleteMulticastGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMulticastGroup, input, options) as async.Operation<types.DeleteMulticastGroupOutput>
+function C:deleteMulticastGroup(input: types.DeleteMulticastGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMulticastGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMulticastGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteMulticastGroupOutput>
 end
 
-function C:deleteNetworkAnalyzerConfiguration(input: types.DeleteNetworkAnalyzerConfigurationInput, options: any): async.Operation<types.DeleteNetworkAnalyzerConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNetworkAnalyzerConfiguration, input, options) as async.Operation<types.DeleteNetworkAnalyzerConfigurationOutput>
+function C:deleteNetworkAnalyzerConfiguration(input: types.DeleteNetworkAnalyzerConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNetworkAnalyzerConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNetworkAnalyzerConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteNetworkAnalyzerConfigurationOutput>
 end
 
-function C:deleteQueuedMessages(input: types.DeleteQueuedMessagesInput, options: any): async.Operation<types.DeleteQueuedMessagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteQueuedMessages, input, options) as async.Operation<types.DeleteQueuedMessagesOutput>
+function C:deleteQueuedMessages(input: types.DeleteQueuedMessagesInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteQueuedMessagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteQueuedMessages as schema.OperationSchema, input, options) as async.Operation<types.DeleteQueuedMessagesOutput>
 end
 
-function C:deleteServiceProfile(input: types.DeleteServiceProfileInput, options: any): async.Operation<types.DeleteServiceProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteServiceProfile, input, options) as async.Operation<types.DeleteServiceProfileOutput>
+function C:deleteServiceProfile(input: types.DeleteServiceProfileInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteServiceProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteServiceProfile as schema.OperationSchema, input, options) as async.Operation<types.DeleteServiceProfileOutput>
 end
 
-function C:deleteWirelessDevice(input: types.DeleteWirelessDeviceInput, options: any): async.Operation<types.DeleteWirelessDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWirelessDevice, input, options) as async.Operation<types.DeleteWirelessDeviceOutput>
+function C:deleteWirelessDevice(input: types.DeleteWirelessDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWirelessDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWirelessDevice as schema.OperationSchema, input, options) as async.Operation<types.DeleteWirelessDeviceOutput>
 end
 
-function C:deleteWirelessDeviceImportTask(input: types.DeleteWirelessDeviceImportTaskInput, options: any): async.Operation<types.DeleteWirelessDeviceImportTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWirelessDeviceImportTask, input, options) as async.Operation<types.DeleteWirelessDeviceImportTaskOutput>
+function C:deleteWirelessDeviceImportTask(input: types.DeleteWirelessDeviceImportTaskInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWirelessDeviceImportTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWirelessDeviceImportTask as schema.OperationSchema, input, options) as async.Operation<types.DeleteWirelessDeviceImportTaskOutput>
 end
 
-function C:deleteWirelessGateway(input: types.DeleteWirelessGatewayInput, options: any): async.Operation<types.DeleteWirelessGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWirelessGateway, input, options) as async.Operation<types.DeleteWirelessGatewayOutput>
+function C:deleteWirelessGateway(input: types.DeleteWirelessGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWirelessGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWirelessGateway as schema.OperationSchema, input, options) as async.Operation<types.DeleteWirelessGatewayOutput>
 end
 
-function C:deleteWirelessGatewayTask(input: types.DeleteWirelessGatewayTaskInput, options: any): async.Operation<types.DeleteWirelessGatewayTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWirelessGatewayTask, input, options) as async.Operation<types.DeleteWirelessGatewayTaskOutput>
+function C:deleteWirelessGatewayTask(input: types.DeleteWirelessGatewayTaskInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWirelessGatewayTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWirelessGatewayTask as schema.OperationSchema, input, options) as async.Operation<types.DeleteWirelessGatewayTaskOutput>
 end
 
-function C:deleteWirelessGatewayTaskDefinition(input: types.DeleteWirelessGatewayTaskDefinitionInput, options: any): async.Operation<types.DeleteWirelessGatewayTaskDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWirelessGatewayTaskDefinition, input, options) as async.Operation<types.DeleteWirelessGatewayTaskDefinitionOutput>
+function C:deleteWirelessGatewayTaskDefinition(input: types.DeleteWirelessGatewayTaskDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWirelessGatewayTaskDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWirelessGatewayTaskDefinition as schema.OperationSchema, input, options) as async.Operation<types.DeleteWirelessGatewayTaskDefinitionOutput>
 end
 
-function C:deregisterWirelessDevice(input: types.DeregisterWirelessDeviceInput, options: any): async.Operation<types.DeregisterWirelessDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterWirelessDevice, input, options) as async.Operation<types.DeregisterWirelessDeviceOutput>
+function C:deregisterWirelessDevice(input: types.DeregisterWirelessDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterWirelessDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterWirelessDevice as schema.OperationSchema, input, options) as async.Operation<types.DeregisterWirelessDeviceOutput>
 end
 
-function C:disassociateAwsAccountFromPartnerAccount(input: types.DisassociateAwsAccountFromPartnerAccountInput, options: any): async.Operation<types.DisassociateAwsAccountFromPartnerAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateAwsAccountFromPartnerAccount, input, options) as async.Operation<types.DisassociateAwsAccountFromPartnerAccountOutput>
+function C:disassociateAwsAccountFromPartnerAccount(input: types.DisassociateAwsAccountFromPartnerAccountInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateAwsAccountFromPartnerAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateAwsAccountFromPartnerAccount as schema.OperationSchema, input, options) as async.Operation<types.DisassociateAwsAccountFromPartnerAccountOutput>
 end
 
-function C:disassociateMulticastGroupFromFuotaTask(input: types.DisassociateMulticastGroupFromFuotaTaskInput, options: any): async.Operation<types.DisassociateMulticastGroupFromFuotaTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateMulticastGroupFromFuotaTask, input, options) as async.Operation<types.DisassociateMulticastGroupFromFuotaTaskOutput>
+function C:disassociateMulticastGroupFromFuotaTask(input: types.DisassociateMulticastGroupFromFuotaTaskInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateMulticastGroupFromFuotaTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateMulticastGroupFromFuotaTask as schema.OperationSchema, input, options) as async.Operation<types.DisassociateMulticastGroupFromFuotaTaskOutput>
 end
 
-function C:disassociateWirelessDeviceFromFuotaTask(input: types.DisassociateWirelessDeviceFromFuotaTaskInput, options: any): async.Operation<types.DisassociateWirelessDeviceFromFuotaTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateWirelessDeviceFromFuotaTask, input, options) as async.Operation<types.DisassociateWirelessDeviceFromFuotaTaskOutput>
+function C:disassociateWirelessDeviceFromFuotaTask(input: types.DisassociateWirelessDeviceFromFuotaTaskInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateWirelessDeviceFromFuotaTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateWirelessDeviceFromFuotaTask as schema.OperationSchema, input, options) as async.Operation<types.DisassociateWirelessDeviceFromFuotaTaskOutput>
 end
 
-function C:disassociateWirelessDeviceFromMulticastGroup(input: types.DisassociateWirelessDeviceFromMulticastGroupInput, options: any): async.Operation<types.DisassociateWirelessDeviceFromMulticastGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateWirelessDeviceFromMulticastGroup, input, options) as async.Operation<types.DisassociateWirelessDeviceFromMulticastGroupOutput>
+function C:disassociateWirelessDeviceFromMulticastGroup(input: types.DisassociateWirelessDeviceFromMulticastGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateWirelessDeviceFromMulticastGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateWirelessDeviceFromMulticastGroup as schema.OperationSchema, input, options) as async.Operation<types.DisassociateWirelessDeviceFromMulticastGroupOutput>
 end
 
-function C:disassociateWirelessDeviceFromThing(input: types.DisassociateWirelessDeviceFromThingInput, options: any): async.Operation<types.DisassociateWirelessDeviceFromThingOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateWirelessDeviceFromThing, input, options) as async.Operation<types.DisassociateWirelessDeviceFromThingOutput>
+function C:disassociateWirelessDeviceFromThing(input: types.DisassociateWirelessDeviceFromThingInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateWirelessDeviceFromThingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateWirelessDeviceFromThing as schema.OperationSchema, input, options) as async.Operation<types.DisassociateWirelessDeviceFromThingOutput>
 end
 
-function C:disassociateWirelessGatewayFromCertificate(input: types.DisassociateWirelessGatewayFromCertificateInput, options: any): async.Operation<types.DisassociateWirelessGatewayFromCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateWirelessGatewayFromCertificate, input, options) as async.Operation<types.DisassociateWirelessGatewayFromCertificateOutput>
+function C:disassociateWirelessGatewayFromCertificate(input: types.DisassociateWirelessGatewayFromCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateWirelessGatewayFromCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateWirelessGatewayFromCertificate as schema.OperationSchema, input, options) as async.Operation<types.DisassociateWirelessGatewayFromCertificateOutput>
 end
 
-function C:disassociateWirelessGatewayFromThing(input: types.DisassociateWirelessGatewayFromThingInput, options: any): async.Operation<types.DisassociateWirelessGatewayFromThingOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateWirelessGatewayFromThing, input, options) as async.Operation<types.DisassociateWirelessGatewayFromThingOutput>
+function C:disassociateWirelessGatewayFromThing(input: types.DisassociateWirelessGatewayFromThingInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateWirelessGatewayFromThingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateWirelessGatewayFromThing as schema.OperationSchema, input, options) as async.Operation<types.DisassociateWirelessGatewayFromThingOutput>
 end
 
-function C:getDestination(input: types.GetDestinationInput, options: any): async.Operation<types.GetDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDestination, input, options) as async.Operation<types.GetDestinationOutput>
+function C:getDestination(input: types.GetDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.GetDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDestination as schema.OperationSchema, input, options) as async.Operation<types.GetDestinationOutput>
 end
 
-function C:getDeviceProfile(input: types.GetDeviceProfileInput, options: any): async.Operation<types.GetDeviceProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDeviceProfile, input, options) as async.Operation<types.GetDeviceProfileOutput>
+function C:getDeviceProfile(input: types.GetDeviceProfileInput, options?: base_client.InvokeOptions): async.Operation<types.GetDeviceProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDeviceProfile as schema.OperationSchema, input, options) as async.Operation<types.GetDeviceProfileOutput>
 end
 
-function C:getEventConfigurationByResourceTypes(input: types.GetEventConfigurationByResourceTypesInput, options: any): async.Operation<types.GetEventConfigurationByResourceTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEventConfigurationByResourceTypes, input, options) as async.Operation<types.GetEventConfigurationByResourceTypesOutput>
+function C:getEventConfigurationByResourceTypes(input: types.GetEventConfigurationByResourceTypesInput, options?: base_client.InvokeOptions): async.Operation<types.GetEventConfigurationByResourceTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEventConfigurationByResourceTypes as schema.OperationSchema, input, options) as async.Operation<types.GetEventConfigurationByResourceTypesOutput>
 end
 
-function C:getFuotaTask(input: types.GetFuotaTaskInput, options: any): async.Operation<types.GetFuotaTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFuotaTask, input, options) as async.Operation<types.GetFuotaTaskOutput>
+function C:getFuotaTask(input: types.GetFuotaTaskInput, options?: base_client.InvokeOptions): async.Operation<types.GetFuotaTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFuotaTask as schema.OperationSchema, input, options) as async.Operation<types.GetFuotaTaskOutput>
 end
 
-function C:getLogLevelsByResourceTypes(input: types.GetLogLevelsByResourceTypesInput, options: any): async.Operation<types.GetLogLevelsByResourceTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLogLevelsByResourceTypes, input, options) as async.Operation<types.GetLogLevelsByResourceTypesOutput>
+function C:getLogLevelsByResourceTypes(input: types.GetLogLevelsByResourceTypesInput, options?: base_client.InvokeOptions): async.Operation<types.GetLogLevelsByResourceTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLogLevelsByResourceTypes as schema.OperationSchema, input, options) as async.Operation<types.GetLogLevelsByResourceTypesOutput>
 end
 
-function C:getMetricConfiguration(input: types.GetMetricConfigurationInput, options: any): async.Operation<types.GetMetricConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMetricConfiguration, input, options) as async.Operation<types.GetMetricConfigurationOutput>
+function C:getMetricConfiguration(input: types.GetMetricConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetMetricConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMetricConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetMetricConfigurationOutput>
 end
 
-function C:getMetrics(input: types.GetMetricsInput, options: any): async.Operation<types.GetMetricsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMetrics, input, options) as async.Operation<types.GetMetricsOutput>
+function C:getMetrics(input: types.GetMetricsInput, options?: base_client.InvokeOptions): async.Operation<types.GetMetricsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMetrics as schema.OperationSchema, input, options) as async.Operation<types.GetMetricsOutput>
 end
 
-function C:getMulticastGroup(input: types.GetMulticastGroupInput, options: any): async.Operation<types.GetMulticastGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMulticastGroup, input, options) as async.Operation<types.GetMulticastGroupOutput>
+function C:getMulticastGroup(input: types.GetMulticastGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetMulticastGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMulticastGroup as schema.OperationSchema, input, options) as async.Operation<types.GetMulticastGroupOutput>
 end
 
-function C:getMulticastGroupSession(input: types.GetMulticastGroupSessionInput, options: any): async.Operation<types.GetMulticastGroupSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMulticastGroupSession, input, options) as async.Operation<types.GetMulticastGroupSessionOutput>
+function C:getMulticastGroupSession(input: types.GetMulticastGroupSessionInput, options?: base_client.InvokeOptions): async.Operation<types.GetMulticastGroupSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMulticastGroupSession as schema.OperationSchema, input, options) as async.Operation<types.GetMulticastGroupSessionOutput>
 end
 
-function C:getNetworkAnalyzerConfiguration(input: types.GetNetworkAnalyzerConfigurationInput, options: any): async.Operation<types.GetNetworkAnalyzerConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNetworkAnalyzerConfiguration, input, options) as async.Operation<types.GetNetworkAnalyzerConfigurationOutput>
+function C:getNetworkAnalyzerConfiguration(input: types.GetNetworkAnalyzerConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetNetworkAnalyzerConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNetworkAnalyzerConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetNetworkAnalyzerConfigurationOutput>
 end
 
-function C:getPartnerAccount(input: types.GetPartnerAccountInput, options: any): async.Operation<types.GetPartnerAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPartnerAccount, input, options) as async.Operation<types.GetPartnerAccountOutput>
+function C:getPartnerAccount(input: types.GetPartnerAccountInput, options?: base_client.InvokeOptions): async.Operation<types.GetPartnerAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPartnerAccount as schema.OperationSchema, input, options) as async.Operation<types.GetPartnerAccountOutput>
 end
 
-function C:getPosition(input: types.GetPositionInput, options: any): async.Operation<types.GetPositionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPosition, input, options) as async.Operation<types.GetPositionOutput>
+function C:getPosition(input: types.GetPositionInput, options?: base_client.InvokeOptions): async.Operation<types.GetPositionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPosition as schema.OperationSchema, input, options) as async.Operation<types.GetPositionOutput>
 end
 
-function C:getPositionConfiguration(input: types.GetPositionConfigurationInput, options: any): async.Operation<types.GetPositionConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPositionConfiguration, input, options) as async.Operation<types.GetPositionConfigurationOutput>
+function C:getPositionConfiguration(input: types.GetPositionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetPositionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPositionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetPositionConfigurationOutput>
 end
 
-function C:getPositionEstimate(input: types.GetPositionEstimateInput, options: any): async.Operation<types.GetPositionEstimateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPositionEstimate, input, options) as async.Operation<types.GetPositionEstimateOutput>
+function C:getPositionEstimate(input: types.GetPositionEstimateInput, options?: base_client.InvokeOptions): async.Operation<types.GetPositionEstimateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPositionEstimate as schema.OperationSchema, input, options) as async.Operation<types.GetPositionEstimateOutput>
 end
 
-function C:getResourceEventConfiguration(input: types.GetResourceEventConfigurationInput, options: any): async.Operation<types.GetResourceEventConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourceEventConfiguration, input, options) as async.Operation<types.GetResourceEventConfigurationOutput>
+function C:getResourceEventConfiguration(input: types.GetResourceEventConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourceEventConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourceEventConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetResourceEventConfigurationOutput>
 end
 
-function C:getResourceLogLevel(input: types.GetResourceLogLevelInput, options: any): async.Operation<types.GetResourceLogLevelOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourceLogLevel, input, options) as async.Operation<types.GetResourceLogLevelOutput>
+function C:getResourceLogLevel(input: types.GetResourceLogLevelInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourceLogLevelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourceLogLevel as schema.OperationSchema, input, options) as async.Operation<types.GetResourceLogLevelOutput>
 end
 
-function C:getResourcePosition(input: types.GetResourcePositionInput, options: any): async.Operation<types.GetResourcePositionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourcePosition, input, options) as async.Operation<types.GetResourcePositionOutput>
+function C:getResourcePosition(input: types.GetResourcePositionInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcePositionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePosition as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePositionOutput>
 end
 
-function C:getServiceEndpoint(input: types.GetServiceEndpointInput, options: any): async.Operation<types.GetServiceEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetServiceEndpoint, input, options) as async.Operation<types.GetServiceEndpointOutput>
+function C:getServiceEndpoint(input: types.GetServiceEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetServiceEndpoint as schema.OperationSchema, input, options) as async.Operation<types.GetServiceEndpointOutput>
 end
 
-function C:getServiceProfile(input: types.GetServiceProfileInput, options: any): async.Operation<types.GetServiceProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetServiceProfile, input, options) as async.Operation<types.GetServiceProfileOutput>
+function C:getServiceProfile(input: types.GetServiceProfileInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetServiceProfile as schema.OperationSchema, input, options) as async.Operation<types.GetServiceProfileOutput>
 end
 
-function C:getWirelessDevice(input: types.GetWirelessDeviceInput, options: any): async.Operation<types.GetWirelessDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWirelessDevice, input, options) as async.Operation<types.GetWirelessDeviceOutput>
+function C:getWirelessDevice(input: types.GetWirelessDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.GetWirelessDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWirelessDevice as schema.OperationSchema, input, options) as async.Operation<types.GetWirelessDeviceOutput>
 end
 
-function C:getWirelessDeviceImportTask(input: types.GetWirelessDeviceImportTaskInput, options: any): async.Operation<types.GetWirelessDeviceImportTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWirelessDeviceImportTask, input, options) as async.Operation<types.GetWirelessDeviceImportTaskOutput>
+function C:getWirelessDeviceImportTask(input: types.GetWirelessDeviceImportTaskInput, options?: base_client.InvokeOptions): async.Operation<types.GetWirelessDeviceImportTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWirelessDeviceImportTask as schema.OperationSchema, input, options) as async.Operation<types.GetWirelessDeviceImportTaskOutput>
 end
 
-function C:getWirelessDeviceStatistics(input: types.GetWirelessDeviceStatisticsInput, options: any): async.Operation<types.GetWirelessDeviceStatisticsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWirelessDeviceStatistics, input, options) as async.Operation<types.GetWirelessDeviceStatisticsOutput>
+function C:getWirelessDeviceStatistics(input: types.GetWirelessDeviceStatisticsInput, options?: base_client.InvokeOptions): async.Operation<types.GetWirelessDeviceStatisticsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWirelessDeviceStatistics as schema.OperationSchema, input, options) as async.Operation<types.GetWirelessDeviceStatisticsOutput>
 end
 
-function C:getWirelessGateway(input: types.GetWirelessGatewayInput, options: any): async.Operation<types.GetWirelessGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWirelessGateway, input, options) as async.Operation<types.GetWirelessGatewayOutput>
+function C:getWirelessGateway(input: types.GetWirelessGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.GetWirelessGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWirelessGateway as schema.OperationSchema, input, options) as async.Operation<types.GetWirelessGatewayOutput>
 end
 
-function C:getWirelessGatewayCertificate(input: types.GetWirelessGatewayCertificateInput, options: any): async.Operation<types.GetWirelessGatewayCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWirelessGatewayCertificate, input, options) as async.Operation<types.GetWirelessGatewayCertificateOutput>
+function C:getWirelessGatewayCertificate(input: types.GetWirelessGatewayCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.GetWirelessGatewayCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWirelessGatewayCertificate as schema.OperationSchema, input, options) as async.Operation<types.GetWirelessGatewayCertificateOutput>
 end
 
-function C:getWirelessGatewayFirmwareInformation(input: types.GetWirelessGatewayFirmwareInformationInput, options: any): async.Operation<types.GetWirelessGatewayFirmwareInformationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWirelessGatewayFirmwareInformation, input, options) as async.Operation<types.GetWirelessGatewayFirmwareInformationOutput>
+function C:getWirelessGatewayFirmwareInformation(input: types.GetWirelessGatewayFirmwareInformationInput, options?: base_client.InvokeOptions): async.Operation<types.GetWirelessGatewayFirmwareInformationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWirelessGatewayFirmwareInformation as schema.OperationSchema, input, options) as async.Operation<types.GetWirelessGatewayFirmwareInformationOutput>
 end
 
-function C:getWirelessGatewayStatistics(input: types.GetWirelessGatewayStatisticsInput, options: any): async.Operation<types.GetWirelessGatewayStatisticsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWirelessGatewayStatistics, input, options) as async.Operation<types.GetWirelessGatewayStatisticsOutput>
+function C:getWirelessGatewayStatistics(input: types.GetWirelessGatewayStatisticsInput, options?: base_client.InvokeOptions): async.Operation<types.GetWirelessGatewayStatisticsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWirelessGatewayStatistics as schema.OperationSchema, input, options) as async.Operation<types.GetWirelessGatewayStatisticsOutput>
 end
 
-function C:getWirelessGatewayTask(input: types.GetWirelessGatewayTaskInput, options: any): async.Operation<types.GetWirelessGatewayTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWirelessGatewayTask, input, options) as async.Operation<types.GetWirelessGatewayTaskOutput>
+function C:getWirelessGatewayTask(input: types.GetWirelessGatewayTaskInput, options?: base_client.InvokeOptions): async.Operation<types.GetWirelessGatewayTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWirelessGatewayTask as schema.OperationSchema, input, options) as async.Operation<types.GetWirelessGatewayTaskOutput>
 end
 
-function C:getWirelessGatewayTaskDefinition(input: types.GetWirelessGatewayTaskDefinitionInput, options: any): async.Operation<types.GetWirelessGatewayTaskDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWirelessGatewayTaskDefinition, input, options) as async.Operation<types.GetWirelessGatewayTaskDefinitionOutput>
+function C:getWirelessGatewayTaskDefinition(input: types.GetWirelessGatewayTaskDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.GetWirelessGatewayTaskDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWirelessGatewayTaskDefinition as schema.OperationSchema, input, options) as async.Operation<types.GetWirelessGatewayTaskDefinitionOutput>
 end
 
-function C:listDestinations(input: types.ListDestinationsInput, options: any): async.Operation<types.ListDestinationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDestinations, input, options) as async.Operation<types.ListDestinationsOutput>
+function C:listDestinations(input: types.ListDestinationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDestinationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDestinations as schema.OperationSchema, input, options) as async.Operation<types.ListDestinationsOutput>
 end
 
-function C:listDeviceProfiles(input: types.ListDeviceProfilesInput, options: any): async.Operation<types.ListDeviceProfilesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDeviceProfiles, input, options) as async.Operation<types.ListDeviceProfilesOutput>
+function C:listDeviceProfiles(input: types.ListDeviceProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDeviceProfilesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDeviceProfiles as schema.OperationSchema, input, options) as async.Operation<types.ListDeviceProfilesOutput>
 end
 
-function C:listDevicesForWirelessDeviceImportTask(input: types.ListDevicesForWirelessDeviceImportTaskInput, options: any): async.Operation<types.ListDevicesForWirelessDeviceImportTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDevicesForWirelessDeviceImportTask, input, options) as async.Operation<types.ListDevicesForWirelessDeviceImportTaskOutput>
+function C:listDevicesForWirelessDeviceImportTask(input: types.ListDevicesForWirelessDeviceImportTaskInput, options?: base_client.InvokeOptions): async.Operation<types.ListDevicesForWirelessDeviceImportTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDevicesForWirelessDeviceImportTask as schema.OperationSchema, input, options) as async.Operation<types.ListDevicesForWirelessDeviceImportTaskOutput>
 end
 
-function C:listEventConfigurations(input: types.ListEventConfigurationsInput, options: any): async.Operation<types.ListEventConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEventConfigurations, input, options) as async.Operation<types.ListEventConfigurationsOutput>
+function C:listEventConfigurations(input: types.ListEventConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEventConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEventConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListEventConfigurationsOutput>
 end
 
-function C:listFuotaTasks(input: types.ListFuotaTasksInput, options: any): async.Operation<types.ListFuotaTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFuotaTasks, input, options) as async.Operation<types.ListFuotaTasksOutput>
+function C:listFuotaTasks(input: types.ListFuotaTasksInput, options?: base_client.InvokeOptions): async.Operation<types.ListFuotaTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFuotaTasks as schema.OperationSchema, input, options) as async.Operation<types.ListFuotaTasksOutput>
 end
 
-function C:listMulticastGroups(input: types.ListMulticastGroupsInput, options: any): async.Operation<types.ListMulticastGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMulticastGroups, input, options) as async.Operation<types.ListMulticastGroupsOutput>
+function C:listMulticastGroups(input: types.ListMulticastGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMulticastGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMulticastGroups as schema.OperationSchema, input, options) as async.Operation<types.ListMulticastGroupsOutput>
 end
 
-function C:listMulticastGroupsByFuotaTask(input: types.ListMulticastGroupsByFuotaTaskInput, options: any): async.Operation<types.ListMulticastGroupsByFuotaTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMulticastGroupsByFuotaTask, input, options) as async.Operation<types.ListMulticastGroupsByFuotaTaskOutput>
+function C:listMulticastGroupsByFuotaTask(input: types.ListMulticastGroupsByFuotaTaskInput, options?: base_client.InvokeOptions): async.Operation<types.ListMulticastGroupsByFuotaTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMulticastGroupsByFuotaTask as schema.OperationSchema, input, options) as async.Operation<types.ListMulticastGroupsByFuotaTaskOutput>
 end
 
-function C:listNetworkAnalyzerConfigurations(input: types.ListNetworkAnalyzerConfigurationsInput, options: any): async.Operation<types.ListNetworkAnalyzerConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNetworkAnalyzerConfigurations, input, options) as async.Operation<types.ListNetworkAnalyzerConfigurationsOutput>
+function C:listNetworkAnalyzerConfigurations(input: types.ListNetworkAnalyzerConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListNetworkAnalyzerConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNetworkAnalyzerConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListNetworkAnalyzerConfigurationsOutput>
 end
 
-function C:listPartnerAccounts(input: types.ListPartnerAccountsInput, options: any): async.Operation<types.ListPartnerAccountsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPartnerAccounts, input, options) as async.Operation<types.ListPartnerAccountsOutput>
+function C:listPartnerAccounts(input: types.ListPartnerAccountsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPartnerAccountsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPartnerAccounts as schema.OperationSchema, input, options) as async.Operation<types.ListPartnerAccountsOutput>
 end
 
-function C:listPositionConfigurations(input: types.ListPositionConfigurationsInput, options: any): async.Operation<types.ListPositionConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPositionConfigurations, input, options) as async.Operation<types.ListPositionConfigurationsOutput>
+function C:listPositionConfigurations(input: types.ListPositionConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPositionConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPositionConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListPositionConfigurationsOutput>
 end
 
-function C:listQueuedMessages(input: types.ListQueuedMessagesInput, options: any): async.Operation<types.ListQueuedMessagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListQueuedMessages, input, options) as async.Operation<types.ListQueuedMessagesOutput>
+function C:listQueuedMessages(input: types.ListQueuedMessagesInput, options?: base_client.InvokeOptions): async.Operation<types.ListQueuedMessagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListQueuedMessages as schema.OperationSchema, input, options) as async.Operation<types.ListQueuedMessagesOutput>
 end
 
-function C:listServiceProfiles(input: types.ListServiceProfilesInput, options: any): async.Operation<types.ListServiceProfilesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServiceProfiles, input, options) as async.Operation<types.ListServiceProfilesOutput>
+function C:listServiceProfiles(input: types.ListServiceProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.ListServiceProfilesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServiceProfiles as schema.OperationSchema, input, options) as async.Operation<types.ListServiceProfilesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listWirelessDeviceImportTasks(input: types.ListWirelessDeviceImportTasksInput, options: any): async.Operation<types.ListWirelessDeviceImportTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWirelessDeviceImportTasks, input, options) as async.Operation<types.ListWirelessDeviceImportTasksOutput>
+function C:listWirelessDeviceImportTasks(input: types.ListWirelessDeviceImportTasksInput, options?: base_client.InvokeOptions): async.Operation<types.ListWirelessDeviceImportTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWirelessDeviceImportTasks as schema.OperationSchema, input, options) as async.Operation<types.ListWirelessDeviceImportTasksOutput>
 end
 
-function C:listWirelessDevices(input: types.ListWirelessDevicesInput, options: any): async.Operation<types.ListWirelessDevicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWirelessDevices, input, options) as async.Operation<types.ListWirelessDevicesOutput>
+function C:listWirelessDevices(input: types.ListWirelessDevicesInput, options?: base_client.InvokeOptions): async.Operation<types.ListWirelessDevicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWirelessDevices as schema.OperationSchema, input, options) as async.Operation<types.ListWirelessDevicesOutput>
 end
 
-function C:listWirelessGateways(input: types.ListWirelessGatewaysInput, options: any): async.Operation<types.ListWirelessGatewaysOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWirelessGateways, input, options) as async.Operation<types.ListWirelessGatewaysOutput>
+function C:listWirelessGateways(input: types.ListWirelessGatewaysInput, options?: base_client.InvokeOptions): async.Operation<types.ListWirelessGatewaysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWirelessGateways as schema.OperationSchema, input, options) as async.Operation<types.ListWirelessGatewaysOutput>
 end
 
-function C:listWirelessGatewayTaskDefinitions(input: types.ListWirelessGatewayTaskDefinitionsInput, options: any): async.Operation<types.ListWirelessGatewayTaskDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWirelessGatewayTaskDefinitions, input, options) as async.Operation<types.ListWirelessGatewayTaskDefinitionsOutput>
+function C:listWirelessGatewayTaskDefinitions(input: types.ListWirelessGatewayTaskDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWirelessGatewayTaskDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWirelessGatewayTaskDefinitions as schema.OperationSchema, input, options) as async.Operation<types.ListWirelessGatewayTaskDefinitionsOutput>
 end
 
-function C:putPositionConfiguration(input: types.PutPositionConfigurationInput, options: any): async.Operation<types.PutPositionConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutPositionConfiguration, input, options) as async.Operation<types.PutPositionConfigurationOutput>
+function C:putPositionConfiguration(input: types.PutPositionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutPositionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutPositionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutPositionConfigurationOutput>
 end
 
-function C:putResourceLogLevel(input: types.PutResourceLogLevelInput, options: any): async.Operation<types.PutResourceLogLevelOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutResourceLogLevel, input, options) as async.Operation<types.PutResourceLogLevelOutput>
+function C:putResourceLogLevel(input: types.PutResourceLogLevelInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourceLogLevelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourceLogLevel as schema.OperationSchema, input, options) as async.Operation<types.PutResourceLogLevelOutput>
 end
 
-function C:resetAllResourceLogLevels(input: types.ResetAllResourceLogLevelsInput, options: any): async.Operation<types.ResetAllResourceLogLevelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResetAllResourceLogLevels, input, options) as async.Operation<types.ResetAllResourceLogLevelsOutput>
+function C:resetAllResourceLogLevels(input: types.ResetAllResourceLogLevelsInput, options?: base_client.InvokeOptions): async.Operation<types.ResetAllResourceLogLevelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResetAllResourceLogLevels as schema.OperationSchema, input, options) as async.Operation<types.ResetAllResourceLogLevelsOutput>
 end
 
-function C:resetResourceLogLevel(input: types.ResetResourceLogLevelInput, options: any): async.Operation<types.ResetResourceLogLevelOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResetResourceLogLevel, input, options) as async.Operation<types.ResetResourceLogLevelOutput>
+function C:resetResourceLogLevel(input: types.ResetResourceLogLevelInput, options?: base_client.InvokeOptions): async.Operation<types.ResetResourceLogLevelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResetResourceLogLevel as schema.OperationSchema, input, options) as async.Operation<types.ResetResourceLogLevelOutput>
 end
 
-function C:sendDataToMulticastGroup(input: types.SendDataToMulticastGroupInput, options: any): async.Operation<types.SendDataToMulticastGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendDataToMulticastGroup, input, options) as async.Operation<types.SendDataToMulticastGroupOutput>
+function C:sendDataToMulticastGroup(input: types.SendDataToMulticastGroupInput, options?: base_client.InvokeOptions): async.Operation<types.SendDataToMulticastGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendDataToMulticastGroup as schema.OperationSchema, input, options) as async.Operation<types.SendDataToMulticastGroupOutput>
 end
 
-function C:sendDataToWirelessDevice(input: types.SendDataToWirelessDeviceInput, options: any): async.Operation<types.SendDataToWirelessDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendDataToWirelessDevice, input, options) as async.Operation<types.SendDataToWirelessDeviceOutput>
+function C:sendDataToWirelessDevice(input: types.SendDataToWirelessDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.SendDataToWirelessDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendDataToWirelessDevice as schema.OperationSchema, input, options) as async.Operation<types.SendDataToWirelessDeviceOutput>
 end
 
-function C:startBulkAssociateWirelessDeviceWithMulticastGroup(input: types.StartBulkAssociateWirelessDeviceWithMulticastGroupInput, options: any): async.Operation<types.StartBulkAssociateWirelessDeviceWithMulticastGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartBulkAssociateWirelessDeviceWithMulticastGroup, input, options) as async.Operation<types.StartBulkAssociateWirelessDeviceWithMulticastGroupOutput>
+function C:startBulkAssociateWirelessDeviceWithMulticastGroup(input: types.StartBulkAssociateWirelessDeviceWithMulticastGroupInput, options?: base_client.InvokeOptions): async.Operation<types.StartBulkAssociateWirelessDeviceWithMulticastGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartBulkAssociateWirelessDeviceWithMulticastGroup as schema.OperationSchema, input, options) as async.Operation<types.StartBulkAssociateWirelessDeviceWithMulticastGroupOutput>
 end
 
-function C:startBulkDisassociateWirelessDeviceFromMulticastGroup(input: types.StartBulkDisassociateWirelessDeviceFromMulticastGroupInput, options: any): async.Operation<types.StartBulkDisassociateWirelessDeviceFromMulticastGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartBulkDisassociateWirelessDeviceFromMulticastGroup, input, options) as async.Operation<types.StartBulkDisassociateWirelessDeviceFromMulticastGroupOutput>
+function C:startBulkDisassociateWirelessDeviceFromMulticastGroup(input: types.StartBulkDisassociateWirelessDeviceFromMulticastGroupInput, options?: base_client.InvokeOptions): async.Operation<types.StartBulkDisassociateWirelessDeviceFromMulticastGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartBulkDisassociateWirelessDeviceFromMulticastGroup as schema.OperationSchema, input, options) as async.Operation<types.StartBulkDisassociateWirelessDeviceFromMulticastGroupOutput>
 end
 
-function C:startFuotaTask(input: types.StartFuotaTaskInput, options: any): async.Operation<types.StartFuotaTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartFuotaTask, input, options) as async.Operation<types.StartFuotaTaskOutput>
+function C:startFuotaTask(input: types.StartFuotaTaskInput, options?: base_client.InvokeOptions): async.Operation<types.StartFuotaTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartFuotaTask as schema.OperationSchema, input, options) as async.Operation<types.StartFuotaTaskOutput>
 end
 
-function C:startMulticastGroupSession(input: types.StartMulticastGroupSessionInput, options: any): async.Operation<types.StartMulticastGroupSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartMulticastGroupSession, input, options) as async.Operation<types.StartMulticastGroupSessionOutput>
+function C:startMulticastGroupSession(input: types.StartMulticastGroupSessionInput, options?: base_client.InvokeOptions): async.Operation<types.StartMulticastGroupSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartMulticastGroupSession as schema.OperationSchema, input, options) as async.Operation<types.StartMulticastGroupSessionOutput>
 end
 
-function C:startSingleWirelessDeviceImportTask(input: types.StartSingleWirelessDeviceImportTaskInput, options: any): async.Operation<types.StartSingleWirelessDeviceImportTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartSingleWirelessDeviceImportTask, input, options) as async.Operation<types.StartSingleWirelessDeviceImportTaskOutput>
+function C:startSingleWirelessDeviceImportTask(input: types.StartSingleWirelessDeviceImportTaskInput, options?: base_client.InvokeOptions): async.Operation<types.StartSingleWirelessDeviceImportTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartSingleWirelessDeviceImportTask as schema.OperationSchema, input, options) as async.Operation<types.StartSingleWirelessDeviceImportTaskOutput>
 end
 
-function C:startWirelessDeviceImportTask(input: types.StartWirelessDeviceImportTaskInput, options: any): async.Operation<types.StartWirelessDeviceImportTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartWirelessDeviceImportTask, input, options) as async.Operation<types.StartWirelessDeviceImportTaskOutput>
+function C:startWirelessDeviceImportTask(input: types.StartWirelessDeviceImportTaskInput, options?: base_client.InvokeOptions): async.Operation<types.StartWirelessDeviceImportTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartWirelessDeviceImportTask as schema.OperationSchema, input, options) as async.Operation<types.StartWirelessDeviceImportTaskOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:testWirelessDevice(input: types.TestWirelessDeviceInput, options: any): async.Operation<types.TestWirelessDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TestWirelessDevice, input, options) as async.Operation<types.TestWirelessDeviceOutput>
+function C:testWirelessDevice(input: types.TestWirelessDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.TestWirelessDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TestWirelessDevice as schema.OperationSchema, input, options) as async.Operation<types.TestWirelessDeviceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateDestination(input: types.UpdateDestinationInput, options: any): async.Operation<types.UpdateDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDestination, input, options) as async.Operation<types.UpdateDestinationOutput>
+function C:updateDestination(input: types.UpdateDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDestination as schema.OperationSchema, input, options) as async.Operation<types.UpdateDestinationOutput>
 end
 
-function C:updateEventConfigurationByResourceTypes(input: types.UpdateEventConfigurationByResourceTypesInput, options: any): async.Operation<types.UpdateEventConfigurationByResourceTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEventConfigurationByResourceTypes, input, options) as async.Operation<types.UpdateEventConfigurationByResourceTypesOutput>
+function C:updateEventConfigurationByResourceTypes(input: types.UpdateEventConfigurationByResourceTypesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEventConfigurationByResourceTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEventConfigurationByResourceTypes as schema.OperationSchema, input, options) as async.Operation<types.UpdateEventConfigurationByResourceTypesOutput>
 end
 
-function C:updateFuotaTask(input: types.UpdateFuotaTaskInput, options: any): async.Operation<types.UpdateFuotaTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFuotaTask, input, options) as async.Operation<types.UpdateFuotaTaskOutput>
+function C:updateFuotaTask(input: types.UpdateFuotaTaskInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFuotaTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFuotaTask as schema.OperationSchema, input, options) as async.Operation<types.UpdateFuotaTaskOutput>
 end
 
-function C:updateLogLevelsByResourceTypes(input: types.UpdateLogLevelsByResourceTypesInput, options: any): async.Operation<types.UpdateLogLevelsByResourceTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLogLevelsByResourceTypes, input, options) as async.Operation<types.UpdateLogLevelsByResourceTypesOutput>
+function C:updateLogLevelsByResourceTypes(input: types.UpdateLogLevelsByResourceTypesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLogLevelsByResourceTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLogLevelsByResourceTypes as schema.OperationSchema, input, options) as async.Operation<types.UpdateLogLevelsByResourceTypesOutput>
 end
 
-function C:updateMetricConfiguration(input: types.UpdateMetricConfigurationInput, options: any): async.Operation<types.UpdateMetricConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateMetricConfiguration, input, options) as async.Operation<types.UpdateMetricConfigurationOutput>
+function C:updateMetricConfiguration(input: types.UpdateMetricConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMetricConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMetricConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateMetricConfigurationOutput>
 end
 
-function C:updateMulticastGroup(input: types.UpdateMulticastGroupInput, options: any): async.Operation<types.UpdateMulticastGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateMulticastGroup, input, options) as async.Operation<types.UpdateMulticastGroupOutput>
+function C:updateMulticastGroup(input: types.UpdateMulticastGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMulticastGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMulticastGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateMulticastGroupOutput>
 end
 
-function C:updateNetworkAnalyzerConfiguration(input: types.UpdateNetworkAnalyzerConfigurationInput, options: any): async.Operation<types.UpdateNetworkAnalyzerConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateNetworkAnalyzerConfiguration, input, options) as async.Operation<types.UpdateNetworkAnalyzerConfigurationOutput>
+function C:updateNetworkAnalyzerConfiguration(input: types.UpdateNetworkAnalyzerConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNetworkAnalyzerConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNetworkAnalyzerConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateNetworkAnalyzerConfigurationOutput>
 end
 
-function C:updatePartnerAccount(input: types.UpdatePartnerAccountInput, options: any): async.Operation<types.UpdatePartnerAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePartnerAccount, input, options) as async.Operation<types.UpdatePartnerAccountOutput>
+function C:updatePartnerAccount(input: types.UpdatePartnerAccountInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePartnerAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePartnerAccount as schema.OperationSchema, input, options) as async.Operation<types.UpdatePartnerAccountOutput>
 end
 
-function C:updatePosition(input: types.UpdatePositionInput, options: any): async.Operation<types.UpdatePositionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePosition, input, options) as async.Operation<types.UpdatePositionOutput>
+function C:updatePosition(input: types.UpdatePositionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePositionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePosition as schema.OperationSchema, input, options) as async.Operation<types.UpdatePositionOutput>
 end
 
-function C:updateResourceEventConfiguration(input: types.UpdateResourceEventConfigurationInput, options: any): async.Operation<types.UpdateResourceEventConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateResourceEventConfiguration, input, options) as async.Operation<types.UpdateResourceEventConfigurationOutput>
+function C:updateResourceEventConfiguration(input: types.UpdateResourceEventConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateResourceEventConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateResourceEventConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateResourceEventConfigurationOutput>
 end
 
-function C:updateResourcePosition(input: types.UpdateResourcePositionInput, options: any): async.Operation<types.UpdateResourcePositionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateResourcePosition, input, options) as async.Operation<types.UpdateResourcePositionOutput>
+function C:updateResourcePosition(input: types.UpdateResourcePositionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateResourcePositionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateResourcePosition as schema.OperationSchema, input, options) as async.Operation<types.UpdateResourcePositionOutput>
 end
 
-function C:updateWirelessDevice(input: types.UpdateWirelessDeviceInput, options: any): async.Operation<types.UpdateWirelessDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateWirelessDevice, input, options) as async.Operation<types.UpdateWirelessDeviceOutput>
+function C:updateWirelessDevice(input: types.UpdateWirelessDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWirelessDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWirelessDevice as schema.OperationSchema, input, options) as async.Operation<types.UpdateWirelessDeviceOutput>
 end
 
-function C:updateWirelessDeviceImportTask(input: types.UpdateWirelessDeviceImportTaskInput, options: any): async.Operation<types.UpdateWirelessDeviceImportTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateWirelessDeviceImportTask, input, options) as async.Operation<types.UpdateWirelessDeviceImportTaskOutput>
+function C:updateWirelessDeviceImportTask(input: types.UpdateWirelessDeviceImportTaskInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWirelessDeviceImportTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWirelessDeviceImportTask as schema.OperationSchema, input, options) as async.Operation<types.UpdateWirelessDeviceImportTaskOutput>
 end
 
-function C:updateWirelessGateway(input: types.UpdateWirelessGatewayInput, options: any): async.Operation<types.UpdateWirelessGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateWirelessGateway, input, options) as async.Operation<types.UpdateWirelessGatewayOutput>
+function C:updateWirelessGateway(input: types.UpdateWirelessGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWirelessGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWirelessGateway as schema.OperationSchema, input, options) as async.Operation<types.UpdateWirelessGatewayOutput>
 end
 
 return M

@@ -8,112 +8,115 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("frauddetector.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("frauddetector.schemas")
 local traits = require("smithy.traits")
 local types = require("frauddetector.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchCreateVariable: function(Client, types.BatchCreateVariableInput, any): async.Operation<types.BatchCreateVariableOutput>
-    batchGetVariable: function(Client, types.BatchGetVariableInput, any): async.Operation<types.BatchGetVariableOutput>
-    cancelBatchImportJob: function(Client, types.CancelBatchImportJobInput, any): async.Operation<types.CancelBatchImportJobOutput>
-    cancelBatchPredictionJob: function(Client, types.CancelBatchPredictionJobInput, any): async.Operation<types.CancelBatchPredictionJobOutput>
-    createBatchImportJob: function(Client, types.CreateBatchImportJobInput, any): async.Operation<types.CreateBatchImportJobOutput>
-    createBatchPredictionJob: function(Client, types.CreateBatchPredictionJobInput, any): async.Operation<types.CreateBatchPredictionJobOutput>
-    createDetectorVersion: function(Client, types.CreateDetectorVersionInput, any): async.Operation<types.CreateDetectorVersionOutput>
-    createList: function(Client, types.CreateListInput, any): async.Operation<types.CreateListOutput>
-    createModel: function(Client, types.CreateModelInput, any): async.Operation<types.CreateModelOutput>
-    createModelVersion: function(Client, types.CreateModelVersionInput, any): async.Operation<types.CreateModelVersionOutput>
-    createRule: function(Client, types.CreateRuleInput, any): async.Operation<types.CreateRuleOutput>
-    createVariable: function(Client, types.CreateVariableInput, any): async.Operation<types.CreateVariableOutput>
-    deleteBatchImportJob: function(Client, types.DeleteBatchImportJobInput, any): async.Operation<types.DeleteBatchImportJobOutput>
-    deleteBatchPredictionJob: function(Client, types.DeleteBatchPredictionJobInput, any): async.Operation<types.DeleteBatchPredictionJobOutput>
-    deleteDetector: function(Client, types.DeleteDetectorInput, any): async.Operation<types.DeleteDetectorOutput>
-    deleteDetectorVersion: function(Client, types.DeleteDetectorVersionInput, any): async.Operation<types.DeleteDetectorVersionOutput>
-    deleteEntityType: function(Client, types.DeleteEntityTypeInput, any): async.Operation<types.DeleteEntityTypeOutput>
-    deleteEvent: function(Client, types.DeleteEventInput, any): async.Operation<types.DeleteEventOutput>
-    deleteEventsByEventType: function(Client, types.DeleteEventsByEventTypeInput, any): async.Operation<types.DeleteEventsByEventTypeOutput>
-    deleteEventType: function(Client, types.DeleteEventTypeInput, any): async.Operation<types.DeleteEventTypeOutput>
-    deleteExternalModel: function(Client, types.DeleteExternalModelInput, any): async.Operation<types.DeleteExternalModelOutput>
-    deleteLabel: function(Client, types.DeleteLabelInput, any): async.Operation<types.DeleteLabelOutput>
-    deleteList: function(Client, types.DeleteListInput, any): async.Operation<types.DeleteListOutput>
-    deleteModel: function(Client, types.DeleteModelInput, any): async.Operation<types.DeleteModelOutput>
-    deleteModelVersion: function(Client, types.DeleteModelVersionInput, any): async.Operation<types.DeleteModelVersionOutput>
-    deleteOutcome: function(Client, types.DeleteOutcomeInput, any): async.Operation<types.DeleteOutcomeOutput>
-    deleteRule: function(Client, types.DeleteRuleInput, any): async.Operation<types.DeleteRuleOutput>
-    deleteVariable: function(Client, types.DeleteVariableInput, any): async.Operation<types.DeleteVariableOutput>
-    describeDetector: function(Client, types.DescribeDetectorInput, any): async.Operation<types.DescribeDetectorOutput>
-    describeModelVersions: function(Client, types.DescribeModelVersionsInput, any): async.Operation<types.DescribeModelVersionsOutput>
-    getBatchImportJobs: function(Client, types.GetBatchImportJobsInput, any): async.Operation<types.GetBatchImportJobsOutput>
-    getBatchPredictionJobs: function(Client, types.GetBatchPredictionJobsInput, any): async.Operation<types.GetBatchPredictionJobsOutput>
-    getDeleteEventsByEventTypeStatus: function(Client, types.GetDeleteEventsByEventTypeStatusInput, any): async.Operation<types.GetDeleteEventsByEventTypeStatusOutput>
-    getDetectors: function(Client, types.GetDetectorsInput, any): async.Operation<types.GetDetectorsOutput>
-    getDetectorVersion: function(Client, types.GetDetectorVersionInput, any): async.Operation<types.GetDetectorVersionOutput>
-    getEntityTypes: function(Client, types.GetEntityTypesInput, any): async.Operation<types.GetEntityTypesOutput>
-    getEvent: function(Client, types.GetEventInput, any): async.Operation<types.GetEventOutput>
-    getEventPrediction: function(Client, types.GetEventPredictionInput, any): async.Operation<types.GetEventPredictionOutput>
-    getEventPredictionMetadata: function(Client, types.GetEventPredictionMetadataInput, any): async.Operation<types.GetEventPredictionMetadataOutput>
-    getEventTypes: function(Client, types.GetEventTypesInput, any): async.Operation<types.GetEventTypesOutput>
-    getExternalModels: function(Client, types.GetExternalModelsInput, any): async.Operation<types.GetExternalModelsOutput>
-    getKMSEncryptionKey: function(Client, types.GetKMSEncryptionKeyInput, any): async.Operation<types.GetKMSEncryptionKeyOutput>
-    getLabels: function(Client, types.GetLabelsInput, any): async.Operation<types.GetLabelsOutput>
-    getListElements: function(Client, types.GetListElementsInput, any): async.Operation<types.GetListElementsOutput>
-    getListsMetadata: function(Client, types.GetListsMetadataInput, any): async.Operation<types.GetListsMetadataOutput>
-    getModels: function(Client, types.GetModelsInput, any): async.Operation<types.GetModelsOutput>
-    getModelVersion: function(Client, types.GetModelVersionInput, any): async.Operation<types.GetModelVersionOutput>
-    getOutcomes: function(Client, types.GetOutcomesInput, any): async.Operation<types.GetOutcomesOutput>
-    getRules: function(Client, types.GetRulesInput, any): async.Operation<types.GetRulesOutput>
-    getVariables: function(Client, types.GetVariablesInput, any): async.Operation<types.GetVariablesOutput>
-    listEventPredictions: function(Client, types.ListEventPredictionsInput, any): async.Operation<types.ListEventPredictionsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putDetector: function(Client, types.PutDetectorInput, any): async.Operation<types.PutDetectorOutput>
-    putEntityType: function(Client, types.PutEntityTypeInput, any): async.Operation<types.PutEntityTypeOutput>
-    putEventType: function(Client, types.PutEventTypeInput, any): async.Operation<types.PutEventTypeOutput>
-    putExternalModel: function(Client, types.PutExternalModelInput, any): async.Operation<types.PutExternalModelOutput>
-    putKMSEncryptionKey: function(Client, types.PutKMSEncryptionKeyInput, any): async.Operation<types.PutKMSEncryptionKeyOutput>
-    putLabel: function(Client, types.PutLabelInput, any): async.Operation<types.PutLabelOutput>
-    putOutcome: function(Client, types.PutOutcomeInput, any): async.Operation<types.PutOutcomeOutput>
-    sendEvent: function(Client, types.SendEventInput, any): async.Operation<types.SendEventOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateDetectorVersion: function(Client, types.UpdateDetectorVersionInput, any): async.Operation<types.UpdateDetectorVersionOutput>
-    updateDetectorVersionMetadata: function(Client, types.UpdateDetectorVersionMetadataInput, any): async.Operation<types.UpdateDetectorVersionMetadataOutput>
-    updateDetectorVersionStatus: function(Client, types.UpdateDetectorVersionStatusInput, any): async.Operation<types.UpdateDetectorVersionStatusOutput>
-    updateEventLabel: function(Client, types.UpdateEventLabelInput, any): async.Operation<types.UpdateEventLabelOutput>
-    updateList: function(Client, types.UpdateListInput, any): async.Operation<types.UpdateListOutput>
-    updateModel: function(Client, types.UpdateModelInput, any): async.Operation<types.UpdateModelOutput>
-    updateModelVersion: function(Client, types.UpdateModelVersionInput, any): async.Operation<types.UpdateModelVersionOutput>
-    updateModelVersionStatus: function(Client, types.UpdateModelVersionStatusInput, any): async.Operation<types.UpdateModelVersionStatusOutput>
-    updateRuleMetadata: function(Client, types.UpdateRuleMetadataInput, any): async.Operation<types.UpdateRuleMetadataOutput>
-    updateRuleVersion: function(Client, types.UpdateRuleVersionInput, any): async.Operation<types.UpdateRuleVersionOutput>
-    updateVariable: function(Client, types.UpdateVariableInput, any): async.Operation<types.UpdateVariableOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchCreateVariable: function(Client, types.BatchCreateVariableInput, ? base_client.InvokeOptions): async.Operation<types.BatchCreateVariableOutput>
+    batchGetVariable: function(Client, types.BatchGetVariableInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetVariableOutput>
+    cancelBatchImportJob: function(Client, types.CancelBatchImportJobInput, ? base_client.InvokeOptions): async.Operation<types.CancelBatchImportJobOutput>
+    cancelBatchPredictionJob: function(Client, types.CancelBatchPredictionJobInput, ? base_client.InvokeOptions): async.Operation<types.CancelBatchPredictionJobOutput>
+    createBatchImportJob: function(Client, types.CreateBatchImportJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateBatchImportJobOutput>
+    createBatchPredictionJob: function(Client, types.CreateBatchPredictionJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateBatchPredictionJobOutput>
+    createDetectorVersion: function(Client, types.CreateDetectorVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateDetectorVersionOutput>
+    createList: function(Client, types.CreateListInput, ? base_client.InvokeOptions): async.Operation<types.CreateListOutput>
+    createModel: function(Client, types.CreateModelInput, ? base_client.InvokeOptions): async.Operation<types.CreateModelOutput>
+    createModelVersion: function(Client, types.CreateModelVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateModelVersionOutput>
+    createRule: function(Client, types.CreateRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateRuleOutput>
+    createVariable: function(Client, types.CreateVariableInput, ? base_client.InvokeOptions): async.Operation<types.CreateVariableOutput>
+    deleteBatchImportJob: function(Client, types.DeleteBatchImportJobInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBatchImportJobOutput>
+    deleteBatchPredictionJob: function(Client, types.DeleteBatchPredictionJobInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBatchPredictionJobOutput>
+    deleteDetector: function(Client, types.DeleteDetectorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDetectorOutput>
+    deleteDetectorVersion: function(Client, types.DeleteDetectorVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDetectorVersionOutput>
+    deleteEntityType: function(Client, types.DeleteEntityTypeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEntityTypeOutput>
+    deleteEvent: function(Client, types.DeleteEventInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEventOutput>
+    deleteEventsByEventType: function(Client, types.DeleteEventsByEventTypeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEventsByEventTypeOutput>
+    deleteEventType: function(Client, types.DeleteEventTypeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEventTypeOutput>
+    deleteExternalModel: function(Client, types.DeleteExternalModelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteExternalModelOutput>
+    deleteLabel: function(Client, types.DeleteLabelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLabelOutput>
+    deleteList: function(Client, types.DeleteListInput, ? base_client.InvokeOptions): async.Operation<types.DeleteListOutput>
+    deleteModel: function(Client, types.DeleteModelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteModelOutput>
+    deleteModelVersion: function(Client, types.DeleteModelVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteModelVersionOutput>
+    deleteOutcome: function(Client, types.DeleteOutcomeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOutcomeOutput>
+    deleteRule: function(Client, types.DeleteRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRuleOutput>
+    deleteVariable: function(Client, types.DeleteVariableInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVariableOutput>
+    describeDetector: function(Client, types.DescribeDetectorInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDetectorOutput>
+    describeModelVersions: function(Client, types.DescribeModelVersionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeModelVersionsOutput>
+    getBatchImportJobs: function(Client, types.GetBatchImportJobsInput, ? base_client.InvokeOptions): async.Operation<types.GetBatchImportJobsOutput>
+    getBatchPredictionJobs: function(Client, types.GetBatchPredictionJobsInput, ? base_client.InvokeOptions): async.Operation<types.GetBatchPredictionJobsOutput>
+    getDeleteEventsByEventTypeStatus: function(Client, types.GetDeleteEventsByEventTypeStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetDeleteEventsByEventTypeStatusOutput>
+    getDetectors: function(Client, types.GetDetectorsInput, ? base_client.InvokeOptions): async.Operation<types.GetDetectorsOutput>
+    getDetectorVersion: function(Client, types.GetDetectorVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetDetectorVersionOutput>
+    getEntityTypes: function(Client, types.GetEntityTypesInput, ? base_client.InvokeOptions): async.Operation<types.GetEntityTypesOutput>
+    getEvent: function(Client, types.GetEventInput, ? base_client.InvokeOptions): async.Operation<types.GetEventOutput>
+    getEventPrediction: function(Client, types.GetEventPredictionInput, ? base_client.InvokeOptions): async.Operation<types.GetEventPredictionOutput>
+    getEventPredictionMetadata: function(Client, types.GetEventPredictionMetadataInput, ? base_client.InvokeOptions): async.Operation<types.GetEventPredictionMetadataOutput>
+    getEventTypes: function(Client, types.GetEventTypesInput, ? base_client.InvokeOptions): async.Operation<types.GetEventTypesOutput>
+    getExternalModels: function(Client, types.GetExternalModelsInput, ? base_client.InvokeOptions): async.Operation<types.GetExternalModelsOutput>
+    getKMSEncryptionKey: function(Client, types.GetKMSEncryptionKeyInput, ? base_client.InvokeOptions): async.Operation<types.GetKMSEncryptionKeyOutput>
+    getLabels: function(Client, types.GetLabelsInput, ? base_client.InvokeOptions): async.Operation<types.GetLabelsOutput>
+    getListElements: function(Client, types.GetListElementsInput, ? base_client.InvokeOptions): async.Operation<types.GetListElementsOutput>
+    getListsMetadata: function(Client, types.GetListsMetadataInput, ? base_client.InvokeOptions): async.Operation<types.GetListsMetadataOutput>
+    getModels: function(Client, types.GetModelsInput, ? base_client.InvokeOptions): async.Operation<types.GetModelsOutput>
+    getModelVersion: function(Client, types.GetModelVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetModelVersionOutput>
+    getOutcomes: function(Client, types.GetOutcomesInput, ? base_client.InvokeOptions): async.Operation<types.GetOutcomesOutput>
+    getRules: function(Client, types.GetRulesInput, ? base_client.InvokeOptions): async.Operation<types.GetRulesOutput>
+    getVariables: function(Client, types.GetVariablesInput, ? base_client.InvokeOptions): async.Operation<types.GetVariablesOutput>
+    listEventPredictions: function(Client, types.ListEventPredictionsInput, ? base_client.InvokeOptions): async.Operation<types.ListEventPredictionsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putDetector: function(Client, types.PutDetectorInput, ? base_client.InvokeOptions): async.Operation<types.PutDetectorOutput>
+    putEntityType: function(Client, types.PutEntityTypeInput, ? base_client.InvokeOptions): async.Operation<types.PutEntityTypeOutput>
+    putEventType: function(Client, types.PutEventTypeInput, ? base_client.InvokeOptions): async.Operation<types.PutEventTypeOutput>
+    putExternalModel: function(Client, types.PutExternalModelInput, ? base_client.InvokeOptions): async.Operation<types.PutExternalModelOutput>
+    putKMSEncryptionKey: function(Client, types.PutKMSEncryptionKeyInput, ? base_client.InvokeOptions): async.Operation<types.PutKMSEncryptionKeyOutput>
+    putLabel: function(Client, types.PutLabelInput, ? base_client.InvokeOptions): async.Operation<types.PutLabelOutput>
+    putOutcome: function(Client, types.PutOutcomeInput, ? base_client.InvokeOptions): async.Operation<types.PutOutcomeOutput>
+    sendEvent: function(Client, types.SendEventInput, ? base_client.InvokeOptions): async.Operation<types.SendEventOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateDetectorVersion: function(Client, types.UpdateDetectorVersionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDetectorVersionOutput>
+    updateDetectorVersionMetadata: function(Client, types.UpdateDetectorVersionMetadataInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDetectorVersionMetadataOutput>
+    updateDetectorVersionStatus: function(Client, types.UpdateDetectorVersionStatusInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDetectorVersionStatusOutput>
+    updateEventLabel: function(Client, types.UpdateEventLabelInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEventLabelOutput>
+    updateList: function(Client, types.UpdateListInput, ? base_client.InvokeOptions): async.Operation<types.UpdateListOutput>
+    updateModel: function(Client, types.UpdateModelInput, ? base_client.InvokeOptions): async.Operation<types.UpdateModelOutput>
+    updateModelVersion: function(Client, types.UpdateModelVersionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateModelVersionOutput>
+    updateModelVersionStatus: function(Client, types.UpdateModelVersionStatusInput, ? base_client.InvokeOptions): async.Operation<types.UpdateModelVersionStatusOutput>
+    updateRuleMetadata: function(Client, types.UpdateRuleMetadataInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRuleMetadataOutput>
+    updateRuleVersion: function(Client, types.UpdateRuleVersionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRuleVersionOutput>
+    updateVariable: function(Client, types.UpdateVariableInput, ? base_client.InvokeOptions): async.Operation<types.UpdateVariableOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSHawksNestServiceFacade"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "frauddetector", signing_region = c.region } }
                 else
@@ -132,296 +135,296 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchCreateVariable(input: types.BatchCreateVariableInput, options: any): async.Operation<types.BatchCreateVariableOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchCreateVariable, input, options) as async.Operation<types.BatchCreateVariableOutput>
+function C:batchCreateVariable(input: types.BatchCreateVariableInput, options?: base_client.InvokeOptions): async.Operation<types.BatchCreateVariableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchCreateVariable as schema.OperationSchema, input, options) as async.Operation<types.BatchCreateVariableOutput>
 end
 
-function C:batchGetVariable(input: types.BatchGetVariableInput, options: any): async.Operation<types.BatchGetVariableOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetVariable, input, options) as async.Operation<types.BatchGetVariableOutput>
+function C:batchGetVariable(input: types.BatchGetVariableInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetVariableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetVariable as schema.OperationSchema, input, options) as async.Operation<types.BatchGetVariableOutput>
 end
 
-function C:cancelBatchImportJob(input: types.CancelBatchImportJobInput, options: any): async.Operation<types.CancelBatchImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelBatchImportJob, input, options) as async.Operation<types.CancelBatchImportJobOutput>
+function C:cancelBatchImportJob(input: types.CancelBatchImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.CancelBatchImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelBatchImportJob as schema.OperationSchema, input, options) as async.Operation<types.CancelBatchImportJobOutput>
 end
 
-function C:cancelBatchPredictionJob(input: types.CancelBatchPredictionJobInput, options: any): async.Operation<types.CancelBatchPredictionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelBatchPredictionJob, input, options) as async.Operation<types.CancelBatchPredictionJobOutput>
+function C:cancelBatchPredictionJob(input: types.CancelBatchPredictionJobInput, options?: base_client.InvokeOptions): async.Operation<types.CancelBatchPredictionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelBatchPredictionJob as schema.OperationSchema, input, options) as async.Operation<types.CancelBatchPredictionJobOutput>
 end
 
-function C:createBatchImportJob(input: types.CreateBatchImportJobInput, options: any): async.Operation<types.CreateBatchImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBatchImportJob, input, options) as async.Operation<types.CreateBatchImportJobOutput>
+function C:createBatchImportJob(input: types.CreateBatchImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBatchImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBatchImportJob as schema.OperationSchema, input, options) as async.Operation<types.CreateBatchImportJobOutput>
 end
 
-function C:createBatchPredictionJob(input: types.CreateBatchPredictionJobInput, options: any): async.Operation<types.CreateBatchPredictionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBatchPredictionJob, input, options) as async.Operation<types.CreateBatchPredictionJobOutput>
+function C:createBatchPredictionJob(input: types.CreateBatchPredictionJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBatchPredictionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBatchPredictionJob as schema.OperationSchema, input, options) as async.Operation<types.CreateBatchPredictionJobOutput>
 end
 
-function C:createDetectorVersion(input: types.CreateDetectorVersionInput, options: any): async.Operation<types.CreateDetectorVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDetectorVersion, input, options) as async.Operation<types.CreateDetectorVersionOutput>
+function C:createDetectorVersion(input: types.CreateDetectorVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDetectorVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDetectorVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateDetectorVersionOutput>
 end
 
-function C:createList(input: types.CreateListInput, options: any): async.Operation<types.CreateListOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateList, input, options) as async.Operation<types.CreateListOutput>
+function C:createList(input: types.CreateListInput, options?: base_client.InvokeOptions): async.Operation<types.CreateListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateList as schema.OperationSchema, input, options) as async.Operation<types.CreateListOutput>
 end
 
-function C:createModel(input: types.CreateModelInput, options: any): async.Operation<types.CreateModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateModel, input, options) as async.Operation<types.CreateModelOutput>
+function C:createModel(input: types.CreateModelInput, options?: base_client.InvokeOptions): async.Operation<types.CreateModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateModel as schema.OperationSchema, input, options) as async.Operation<types.CreateModelOutput>
 end
 
-function C:createModelVersion(input: types.CreateModelVersionInput, options: any): async.Operation<types.CreateModelVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateModelVersion, input, options) as async.Operation<types.CreateModelVersionOutput>
+function C:createModelVersion(input: types.CreateModelVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateModelVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateModelVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateModelVersionOutput>
 end
 
-function C:createRule(input: types.CreateRuleInput, options: any): async.Operation<types.CreateRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRule, input, options) as async.Operation<types.CreateRuleOutput>
+function C:createRule(input: types.CreateRuleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRule as schema.OperationSchema, input, options) as async.Operation<types.CreateRuleOutput>
 end
 
-function C:createVariable(input: types.CreateVariableInput, options: any): async.Operation<types.CreateVariableOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVariable, input, options) as async.Operation<types.CreateVariableOutput>
+function C:createVariable(input: types.CreateVariableInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVariableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVariable as schema.OperationSchema, input, options) as async.Operation<types.CreateVariableOutput>
 end
 
-function C:deleteBatchImportJob(input: types.DeleteBatchImportJobInput, options: any): async.Operation<types.DeleteBatchImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBatchImportJob, input, options) as async.Operation<types.DeleteBatchImportJobOutput>
+function C:deleteBatchImportJob(input: types.DeleteBatchImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBatchImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBatchImportJob as schema.OperationSchema, input, options) as async.Operation<types.DeleteBatchImportJobOutput>
 end
 
-function C:deleteBatchPredictionJob(input: types.DeleteBatchPredictionJobInput, options: any): async.Operation<types.DeleteBatchPredictionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBatchPredictionJob, input, options) as async.Operation<types.DeleteBatchPredictionJobOutput>
+function C:deleteBatchPredictionJob(input: types.DeleteBatchPredictionJobInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBatchPredictionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBatchPredictionJob as schema.OperationSchema, input, options) as async.Operation<types.DeleteBatchPredictionJobOutput>
 end
 
-function C:deleteDetector(input: types.DeleteDetectorInput, options: any): async.Operation<types.DeleteDetectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDetector, input, options) as async.Operation<types.DeleteDetectorOutput>
+function C:deleteDetector(input: types.DeleteDetectorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDetectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDetector as schema.OperationSchema, input, options) as async.Operation<types.DeleteDetectorOutput>
 end
 
-function C:deleteDetectorVersion(input: types.DeleteDetectorVersionInput, options: any): async.Operation<types.DeleteDetectorVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDetectorVersion, input, options) as async.Operation<types.DeleteDetectorVersionOutput>
+function C:deleteDetectorVersion(input: types.DeleteDetectorVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDetectorVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDetectorVersion as schema.OperationSchema, input, options) as async.Operation<types.DeleteDetectorVersionOutput>
 end
 
-function C:deleteEntityType(input: types.DeleteEntityTypeInput, options: any): async.Operation<types.DeleteEntityTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEntityType, input, options) as async.Operation<types.DeleteEntityTypeOutput>
+function C:deleteEntityType(input: types.DeleteEntityTypeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEntityTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEntityType as schema.OperationSchema, input, options) as async.Operation<types.DeleteEntityTypeOutput>
 end
 
-function C:deleteEvent(input: types.DeleteEventInput, options: any): async.Operation<types.DeleteEventOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEvent, input, options) as async.Operation<types.DeleteEventOutput>
+function C:deleteEvent(input: types.DeleteEventInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEventOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEvent as schema.OperationSchema, input, options) as async.Operation<types.DeleteEventOutput>
 end
 
-function C:deleteEventsByEventType(input: types.DeleteEventsByEventTypeInput, options: any): async.Operation<types.DeleteEventsByEventTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEventsByEventType, input, options) as async.Operation<types.DeleteEventsByEventTypeOutput>
+function C:deleteEventsByEventType(input: types.DeleteEventsByEventTypeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEventsByEventTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEventsByEventType as schema.OperationSchema, input, options) as async.Operation<types.DeleteEventsByEventTypeOutput>
 end
 
-function C:deleteEventType(input: types.DeleteEventTypeInput, options: any): async.Operation<types.DeleteEventTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEventType, input, options) as async.Operation<types.DeleteEventTypeOutput>
+function C:deleteEventType(input: types.DeleteEventTypeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEventTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEventType as schema.OperationSchema, input, options) as async.Operation<types.DeleteEventTypeOutput>
 end
 
-function C:deleteExternalModel(input: types.DeleteExternalModelInput, options: any): async.Operation<types.DeleteExternalModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteExternalModel, input, options) as async.Operation<types.DeleteExternalModelOutput>
+function C:deleteExternalModel(input: types.DeleteExternalModelInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteExternalModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteExternalModel as schema.OperationSchema, input, options) as async.Operation<types.DeleteExternalModelOutput>
 end
 
-function C:deleteLabel(input: types.DeleteLabelInput, options: any): async.Operation<types.DeleteLabelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLabel, input, options) as async.Operation<types.DeleteLabelOutput>
+function C:deleteLabel(input: types.DeleteLabelInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLabelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLabel as schema.OperationSchema, input, options) as async.Operation<types.DeleteLabelOutput>
 end
 
-function C:deleteList(input: types.DeleteListInput, options: any): async.Operation<types.DeleteListOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteList, input, options) as async.Operation<types.DeleteListOutput>
+function C:deleteList(input: types.DeleteListInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteList as schema.OperationSchema, input, options) as async.Operation<types.DeleteListOutput>
 end
 
-function C:deleteModel(input: types.DeleteModelInput, options: any): async.Operation<types.DeleteModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteModel, input, options) as async.Operation<types.DeleteModelOutput>
+function C:deleteModel(input: types.DeleteModelInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteModel as schema.OperationSchema, input, options) as async.Operation<types.DeleteModelOutput>
 end
 
-function C:deleteModelVersion(input: types.DeleteModelVersionInput, options: any): async.Operation<types.DeleteModelVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteModelVersion, input, options) as async.Operation<types.DeleteModelVersionOutput>
+function C:deleteModelVersion(input: types.DeleteModelVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteModelVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteModelVersion as schema.OperationSchema, input, options) as async.Operation<types.DeleteModelVersionOutput>
 end
 
-function C:deleteOutcome(input: types.DeleteOutcomeInput, options: any): async.Operation<types.DeleteOutcomeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteOutcome, input, options) as async.Operation<types.DeleteOutcomeOutput>
+function C:deleteOutcome(input: types.DeleteOutcomeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteOutcomeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteOutcome as schema.OperationSchema, input, options) as async.Operation<types.DeleteOutcomeOutput>
 end
 
-function C:deleteRule(input: types.DeleteRuleInput, options: any): async.Operation<types.DeleteRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRule, input, options) as async.Operation<types.DeleteRuleOutput>
+function C:deleteRule(input: types.DeleteRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRule as schema.OperationSchema, input, options) as async.Operation<types.DeleteRuleOutput>
 end
 
-function C:deleteVariable(input: types.DeleteVariableInput, options: any): async.Operation<types.DeleteVariableOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVariable, input, options) as async.Operation<types.DeleteVariableOutput>
+function C:deleteVariable(input: types.DeleteVariableInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVariableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVariable as schema.OperationSchema, input, options) as async.Operation<types.DeleteVariableOutput>
 end
 
-function C:describeDetector(input: types.DescribeDetectorInput, options: any): async.Operation<types.DescribeDetectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDetector, input, options) as async.Operation<types.DescribeDetectorOutput>
+function C:describeDetector(input: types.DescribeDetectorInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDetectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDetector as schema.OperationSchema, input, options) as async.Operation<types.DescribeDetectorOutput>
 end
 
-function C:describeModelVersions(input: types.DescribeModelVersionsInput, options: any): async.Operation<types.DescribeModelVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeModelVersions, input, options) as async.Operation<types.DescribeModelVersionsOutput>
+function C:describeModelVersions(input: types.DescribeModelVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeModelVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeModelVersions as schema.OperationSchema, input, options) as async.Operation<types.DescribeModelVersionsOutput>
 end
 
-function C:getBatchImportJobs(input: types.GetBatchImportJobsInput, options: any): async.Operation<types.GetBatchImportJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBatchImportJobs, input, options) as async.Operation<types.GetBatchImportJobsOutput>
+function C:getBatchImportJobs(input: types.GetBatchImportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.GetBatchImportJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBatchImportJobs as schema.OperationSchema, input, options) as async.Operation<types.GetBatchImportJobsOutput>
 end
 
-function C:getBatchPredictionJobs(input: types.GetBatchPredictionJobsInput, options: any): async.Operation<types.GetBatchPredictionJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBatchPredictionJobs, input, options) as async.Operation<types.GetBatchPredictionJobsOutput>
+function C:getBatchPredictionJobs(input: types.GetBatchPredictionJobsInput, options?: base_client.InvokeOptions): async.Operation<types.GetBatchPredictionJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBatchPredictionJobs as schema.OperationSchema, input, options) as async.Operation<types.GetBatchPredictionJobsOutput>
 end
 
-function C:getDeleteEventsByEventTypeStatus(input: types.GetDeleteEventsByEventTypeStatusInput, options: any): async.Operation<types.GetDeleteEventsByEventTypeStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDeleteEventsByEventTypeStatus, input, options) as async.Operation<types.GetDeleteEventsByEventTypeStatusOutput>
+function C:getDeleteEventsByEventTypeStatus(input: types.GetDeleteEventsByEventTypeStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetDeleteEventsByEventTypeStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDeleteEventsByEventTypeStatus as schema.OperationSchema, input, options) as async.Operation<types.GetDeleteEventsByEventTypeStatusOutput>
 end
 
-function C:getDetectors(input: types.GetDetectorsInput, options: any): async.Operation<types.GetDetectorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDetectors, input, options) as async.Operation<types.GetDetectorsOutput>
+function C:getDetectors(input: types.GetDetectorsInput, options?: base_client.InvokeOptions): async.Operation<types.GetDetectorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDetectors as schema.OperationSchema, input, options) as async.Operation<types.GetDetectorsOutput>
 end
 
-function C:getDetectorVersion(input: types.GetDetectorVersionInput, options: any): async.Operation<types.GetDetectorVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDetectorVersion, input, options) as async.Operation<types.GetDetectorVersionOutput>
+function C:getDetectorVersion(input: types.GetDetectorVersionInput, options?: base_client.InvokeOptions): async.Operation<types.GetDetectorVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDetectorVersion as schema.OperationSchema, input, options) as async.Operation<types.GetDetectorVersionOutput>
 end
 
-function C:getEntityTypes(input: types.GetEntityTypesInput, options: any): async.Operation<types.GetEntityTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEntityTypes, input, options) as async.Operation<types.GetEntityTypesOutput>
+function C:getEntityTypes(input: types.GetEntityTypesInput, options?: base_client.InvokeOptions): async.Operation<types.GetEntityTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEntityTypes as schema.OperationSchema, input, options) as async.Operation<types.GetEntityTypesOutput>
 end
 
-function C:getEvent(input: types.GetEventInput, options: any): async.Operation<types.GetEventOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEvent, input, options) as async.Operation<types.GetEventOutput>
+function C:getEvent(input: types.GetEventInput, options?: base_client.InvokeOptions): async.Operation<types.GetEventOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEvent as schema.OperationSchema, input, options) as async.Operation<types.GetEventOutput>
 end
 
-function C:getEventPrediction(input: types.GetEventPredictionInput, options: any): async.Operation<types.GetEventPredictionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEventPrediction, input, options) as async.Operation<types.GetEventPredictionOutput>
+function C:getEventPrediction(input: types.GetEventPredictionInput, options?: base_client.InvokeOptions): async.Operation<types.GetEventPredictionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEventPrediction as schema.OperationSchema, input, options) as async.Operation<types.GetEventPredictionOutput>
 end
 
-function C:getEventPredictionMetadata(input: types.GetEventPredictionMetadataInput, options: any): async.Operation<types.GetEventPredictionMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEventPredictionMetadata, input, options) as async.Operation<types.GetEventPredictionMetadataOutput>
+function C:getEventPredictionMetadata(input: types.GetEventPredictionMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.GetEventPredictionMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEventPredictionMetadata as schema.OperationSchema, input, options) as async.Operation<types.GetEventPredictionMetadataOutput>
 end
 
-function C:getEventTypes(input: types.GetEventTypesInput, options: any): async.Operation<types.GetEventTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEventTypes, input, options) as async.Operation<types.GetEventTypesOutput>
+function C:getEventTypes(input: types.GetEventTypesInput, options?: base_client.InvokeOptions): async.Operation<types.GetEventTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEventTypes as schema.OperationSchema, input, options) as async.Operation<types.GetEventTypesOutput>
 end
 
-function C:getExternalModels(input: types.GetExternalModelsInput, options: any): async.Operation<types.GetExternalModelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetExternalModels, input, options) as async.Operation<types.GetExternalModelsOutput>
+function C:getExternalModels(input: types.GetExternalModelsInput, options?: base_client.InvokeOptions): async.Operation<types.GetExternalModelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetExternalModels as schema.OperationSchema, input, options) as async.Operation<types.GetExternalModelsOutput>
 end
 
-function C:getKMSEncryptionKey(input: types.GetKMSEncryptionKeyInput, options: any): async.Operation<types.GetKMSEncryptionKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetKMSEncryptionKey, input, options) as async.Operation<types.GetKMSEncryptionKeyOutput>
+function C:getKMSEncryptionKey(input: types.GetKMSEncryptionKeyInput, options?: base_client.InvokeOptions): async.Operation<types.GetKMSEncryptionKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetKMSEncryptionKey as schema.OperationSchema, input, options) as async.Operation<types.GetKMSEncryptionKeyOutput>
 end
 
-function C:getLabels(input: types.GetLabelsInput, options: any): async.Operation<types.GetLabelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLabels, input, options) as async.Operation<types.GetLabelsOutput>
+function C:getLabels(input: types.GetLabelsInput, options?: base_client.InvokeOptions): async.Operation<types.GetLabelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLabels as schema.OperationSchema, input, options) as async.Operation<types.GetLabelsOutput>
 end
 
-function C:getListElements(input: types.GetListElementsInput, options: any): async.Operation<types.GetListElementsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetListElements, input, options) as async.Operation<types.GetListElementsOutput>
+function C:getListElements(input: types.GetListElementsInput, options?: base_client.InvokeOptions): async.Operation<types.GetListElementsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetListElements as schema.OperationSchema, input, options) as async.Operation<types.GetListElementsOutput>
 end
 
-function C:getListsMetadata(input: types.GetListsMetadataInput, options: any): async.Operation<types.GetListsMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetListsMetadata, input, options) as async.Operation<types.GetListsMetadataOutput>
+function C:getListsMetadata(input: types.GetListsMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.GetListsMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetListsMetadata as schema.OperationSchema, input, options) as async.Operation<types.GetListsMetadataOutput>
 end
 
-function C:getModels(input: types.GetModelsInput, options: any): async.Operation<types.GetModelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetModels, input, options) as async.Operation<types.GetModelsOutput>
+function C:getModels(input: types.GetModelsInput, options?: base_client.InvokeOptions): async.Operation<types.GetModelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetModels as schema.OperationSchema, input, options) as async.Operation<types.GetModelsOutput>
 end
 
-function C:getModelVersion(input: types.GetModelVersionInput, options: any): async.Operation<types.GetModelVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetModelVersion, input, options) as async.Operation<types.GetModelVersionOutput>
+function C:getModelVersion(input: types.GetModelVersionInput, options?: base_client.InvokeOptions): async.Operation<types.GetModelVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetModelVersion as schema.OperationSchema, input, options) as async.Operation<types.GetModelVersionOutput>
 end
 
-function C:getOutcomes(input: types.GetOutcomesInput, options: any): async.Operation<types.GetOutcomesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOutcomes, input, options) as async.Operation<types.GetOutcomesOutput>
+function C:getOutcomes(input: types.GetOutcomesInput, options?: base_client.InvokeOptions): async.Operation<types.GetOutcomesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOutcomes as schema.OperationSchema, input, options) as async.Operation<types.GetOutcomesOutput>
 end
 
-function C:getRules(input: types.GetRulesInput, options: any): async.Operation<types.GetRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRules, input, options) as async.Operation<types.GetRulesOutput>
+function C:getRules(input: types.GetRulesInput, options?: base_client.InvokeOptions): async.Operation<types.GetRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRules as schema.OperationSchema, input, options) as async.Operation<types.GetRulesOutput>
 end
 
-function C:getVariables(input: types.GetVariablesInput, options: any): async.Operation<types.GetVariablesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetVariables, input, options) as async.Operation<types.GetVariablesOutput>
+function C:getVariables(input: types.GetVariablesInput, options?: base_client.InvokeOptions): async.Operation<types.GetVariablesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVariables as schema.OperationSchema, input, options) as async.Operation<types.GetVariablesOutput>
 end
 
-function C:listEventPredictions(input: types.ListEventPredictionsInput, options: any): async.Operation<types.ListEventPredictionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEventPredictions, input, options) as async.Operation<types.ListEventPredictionsOutput>
+function C:listEventPredictions(input: types.ListEventPredictionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEventPredictionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEventPredictions as schema.OperationSchema, input, options) as async.Operation<types.ListEventPredictionsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putDetector(input: types.PutDetectorInput, options: any): async.Operation<types.PutDetectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutDetector, input, options) as async.Operation<types.PutDetectorOutput>
+function C:putDetector(input: types.PutDetectorInput, options?: base_client.InvokeOptions): async.Operation<types.PutDetectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutDetector as schema.OperationSchema, input, options) as async.Operation<types.PutDetectorOutput>
 end
 
-function C:putEntityType(input: types.PutEntityTypeInput, options: any): async.Operation<types.PutEntityTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutEntityType, input, options) as async.Operation<types.PutEntityTypeOutput>
+function C:putEntityType(input: types.PutEntityTypeInput, options?: base_client.InvokeOptions): async.Operation<types.PutEntityTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutEntityType as schema.OperationSchema, input, options) as async.Operation<types.PutEntityTypeOutput>
 end
 
-function C:putEventType(input: types.PutEventTypeInput, options: any): async.Operation<types.PutEventTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutEventType, input, options) as async.Operation<types.PutEventTypeOutput>
+function C:putEventType(input: types.PutEventTypeInput, options?: base_client.InvokeOptions): async.Operation<types.PutEventTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutEventType as schema.OperationSchema, input, options) as async.Operation<types.PutEventTypeOutput>
 end
 
-function C:putExternalModel(input: types.PutExternalModelInput, options: any): async.Operation<types.PutExternalModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutExternalModel, input, options) as async.Operation<types.PutExternalModelOutput>
+function C:putExternalModel(input: types.PutExternalModelInput, options?: base_client.InvokeOptions): async.Operation<types.PutExternalModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutExternalModel as schema.OperationSchema, input, options) as async.Operation<types.PutExternalModelOutput>
 end
 
-function C:putKMSEncryptionKey(input: types.PutKMSEncryptionKeyInput, options: any): async.Operation<types.PutKMSEncryptionKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutKMSEncryptionKey, input, options) as async.Operation<types.PutKMSEncryptionKeyOutput>
+function C:putKMSEncryptionKey(input: types.PutKMSEncryptionKeyInput, options?: base_client.InvokeOptions): async.Operation<types.PutKMSEncryptionKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutKMSEncryptionKey as schema.OperationSchema, input, options) as async.Operation<types.PutKMSEncryptionKeyOutput>
 end
 
-function C:putLabel(input: types.PutLabelInput, options: any): async.Operation<types.PutLabelOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutLabel, input, options) as async.Operation<types.PutLabelOutput>
+function C:putLabel(input: types.PutLabelInput, options?: base_client.InvokeOptions): async.Operation<types.PutLabelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutLabel as schema.OperationSchema, input, options) as async.Operation<types.PutLabelOutput>
 end
 
-function C:putOutcome(input: types.PutOutcomeInput, options: any): async.Operation<types.PutOutcomeOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutOutcome, input, options) as async.Operation<types.PutOutcomeOutput>
+function C:putOutcome(input: types.PutOutcomeInput, options?: base_client.InvokeOptions): async.Operation<types.PutOutcomeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutOutcome as schema.OperationSchema, input, options) as async.Operation<types.PutOutcomeOutput>
 end
 
-function C:sendEvent(input: types.SendEventInput, options: any): async.Operation<types.SendEventOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendEvent, input, options) as async.Operation<types.SendEventOutput>
+function C:sendEvent(input: types.SendEventInput, options?: base_client.InvokeOptions): async.Operation<types.SendEventOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendEvent as schema.OperationSchema, input, options) as async.Operation<types.SendEventOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateDetectorVersion(input: types.UpdateDetectorVersionInput, options: any): async.Operation<types.UpdateDetectorVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDetectorVersion, input, options) as async.Operation<types.UpdateDetectorVersionOutput>
+function C:updateDetectorVersion(input: types.UpdateDetectorVersionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDetectorVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDetectorVersion as schema.OperationSchema, input, options) as async.Operation<types.UpdateDetectorVersionOutput>
 end
 
-function C:updateDetectorVersionMetadata(input: types.UpdateDetectorVersionMetadataInput, options: any): async.Operation<types.UpdateDetectorVersionMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDetectorVersionMetadata, input, options) as async.Operation<types.UpdateDetectorVersionMetadataOutput>
+function C:updateDetectorVersionMetadata(input: types.UpdateDetectorVersionMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDetectorVersionMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDetectorVersionMetadata as schema.OperationSchema, input, options) as async.Operation<types.UpdateDetectorVersionMetadataOutput>
 end
 
-function C:updateDetectorVersionStatus(input: types.UpdateDetectorVersionStatusInput, options: any): async.Operation<types.UpdateDetectorVersionStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDetectorVersionStatus, input, options) as async.Operation<types.UpdateDetectorVersionStatusOutput>
+function C:updateDetectorVersionStatus(input: types.UpdateDetectorVersionStatusInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDetectorVersionStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDetectorVersionStatus as schema.OperationSchema, input, options) as async.Operation<types.UpdateDetectorVersionStatusOutput>
 end
 
-function C:updateEventLabel(input: types.UpdateEventLabelInput, options: any): async.Operation<types.UpdateEventLabelOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEventLabel, input, options) as async.Operation<types.UpdateEventLabelOutput>
+function C:updateEventLabel(input: types.UpdateEventLabelInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEventLabelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEventLabel as schema.OperationSchema, input, options) as async.Operation<types.UpdateEventLabelOutput>
 end
 
-function C:updateList(input: types.UpdateListInput, options: any): async.Operation<types.UpdateListOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateList, input, options) as async.Operation<types.UpdateListOutput>
+function C:updateList(input: types.UpdateListInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateList as schema.OperationSchema, input, options) as async.Operation<types.UpdateListOutput>
 end
 
-function C:updateModel(input: types.UpdateModelInput, options: any): async.Operation<types.UpdateModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateModel, input, options) as async.Operation<types.UpdateModelOutput>
+function C:updateModel(input: types.UpdateModelInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateModel as schema.OperationSchema, input, options) as async.Operation<types.UpdateModelOutput>
 end
 
-function C:updateModelVersion(input: types.UpdateModelVersionInput, options: any): async.Operation<types.UpdateModelVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateModelVersion, input, options) as async.Operation<types.UpdateModelVersionOutput>
+function C:updateModelVersion(input: types.UpdateModelVersionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateModelVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateModelVersion as schema.OperationSchema, input, options) as async.Operation<types.UpdateModelVersionOutput>
 end
 
-function C:updateModelVersionStatus(input: types.UpdateModelVersionStatusInput, options: any): async.Operation<types.UpdateModelVersionStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateModelVersionStatus, input, options) as async.Operation<types.UpdateModelVersionStatusOutput>
+function C:updateModelVersionStatus(input: types.UpdateModelVersionStatusInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateModelVersionStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateModelVersionStatus as schema.OperationSchema, input, options) as async.Operation<types.UpdateModelVersionStatusOutput>
 end
 
-function C:updateRuleMetadata(input: types.UpdateRuleMetadataInput, options: any): async.Operation<types.UpdateRuleMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRuleMetadata, input, options) as async.Operation<types.UpdateRuleMetadataOutput>
+function C:updateRuleMetadata(input: types.UpdateRuleMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRuleMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRuleMetadata as schema.OperationSchema, input, options) as async.Operation<types.UpdateRuleMetadataOutput>
 end
 
-function C:updateRuleVersion(input: types.UpdateRuleVersionInput, options: any): async.Operation<types.UpdateRuleVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRuleVersion, input, options) as async.Operation<types.UpdateRuleVersionOutput>
+function C:updateRuleVersion(input: types.UpdateRuleVersionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRuleVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRuleVersion as schema.OperationSchema, input, options) as async.Operation<types.UpdateRuleVersionOutput>
 end
 
-function C:updateVariable(input: types.UpdateVariableInput, options: any): async.Operation<types.UpdateVariableOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateVariable, input, options) as async.Operation<types.UpdateVariableOutput>
+function C:updateVariable(input: types.UpdateVariableInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateVariableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateVariable as schema.OperationSchema, input, options) as async.Operation<types.UpdateVariableOutput>
 end
 
 return M

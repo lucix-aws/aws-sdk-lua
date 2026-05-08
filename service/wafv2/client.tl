@@ -8,94 +8,97 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("wafv2.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("wafv2.schemas")
 local traits = require("smithy.traits")
 local types = require("wafv2.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateWebACL: function(Client, types.AssociateWebACLInput, any): async.Operation<types.AssociateWebACLOutput>
-    checkCapacity: function(Client, types.CheckCapacityInput, any): async.Operation<types.CheckCapacityOutput>
-    createAPIKey: function(Client, types.CreateAPIKeyInput, any): async.Operation<types.CreateAPIKeyOutput>
-    createIPSet: function(Client, types.CreateIPSetInput, any): async.Operation<types.CreateIPSetOutput>
-    createRegexPatternSet: function(Client, types.CreateRegexPatternSetInput, any): async.Operation<types.CreateRegexPatternSetOutput>
-    createRuleGroup: function(Client, types.CreateRuleGroupInput, any): async.Operation<types.CreateRuleGroupOutput>
-    createWebACL: function(Client, types.CreateWebACLInput, any): async.Operation<types.CreateWebACLOutput>
-    deleteAPIKey: function(Client, types.DeleteAPIKeyInput, any): async.Operation<types.DeleteAPIKeyOutput>
-    deleteFirewallManagerRuleGroups: function(Client, types.DeleteFirewallManagerRuleGroupsInput, any): async.Operation<types.DeleteFirewallManagerRuleGroupsOutput>
-    deleteIPSet: function(Client, types.DeleteIPSetInput, any): async.Operation<types.DeleteIPSetOutput>
-    deleteLoggingConfiguration: function(Client, types.DeleteLoggingConfigurationInput, any): async.Operation<types.DeleteLoggingConfigurationOutput>
-    deletePermissionPolicy: function(Client, types.DeletePermissionPolicyInput, any): async.Operation<types.DeletePermissionPolicyOutput>
-    deleteRegexPatternSet: function(Client, types.DeleteRegexPatternSetInput, any): async.Operation<types.DeleteRegexPatternSetOutput>
-    deleteRuleGroup: function(Client, types.DeleteRuleGroupInput, any): async.Operation<types.DeleteRuleGroupOutput>
-    deleteWebACL: function(Client, types.DeleteWebACLInput, any): async.Operation<types.DeleteWebACLOutput>
-    describeAllManagedProducts: function(Client, types.DescribeAllManagedProductsInput, any): async.Operation<types.DescribeAllManagedProductsOutput>
-    describeManagedProductsByVendor: function(Client, types.DescribeManagedProductsByVendorInput, any): async.Operation<types.DescribeManagedProductsByVendorOutput>
-    describeManagedRuleGroup: function(Client, types.DescribeManagedRuleGroupInput, any): async.Operation<types.DescribeManagedRuleGroupOutput>
-    disassociateWebACL: function(Client, types.DisassociateWebACLInput, any): async.Operation<types.DisassociateWebACLOutput>
-    generateMobileSdkReleaseUrl: function(Client, types.GenerateMobileSdkReleaseUrlInput, any): async.Operation<types.GenerateMobileSdkReleaseUrlOutput>
-    getDecryptedAPIKey: function(Client, types.GetDecryptedAPIKeyInput, any): async.Operation<types.GetDecryptedAPIKeyOutput>
-    getIPSet: function(Client, types.GetIPSetInput, any): async.Operation<types.GetIPSetOutput>
-    getLoggingConfiguration: function(Client, types.GetLoggingConfigurationInput, any): async.Operation<types.GetLoggingConfigurationOutput>
-    getManagedRuleSet: function(Client, types.GetManagedRuleSetInput, any): async.Operation<types.GetManagedRuleSetOutput>
-    getMobileSdkRelease: function(Client, types.GetMobileSdkReleaseInput, any): async.Operation<types.GetMobileSdkReleaseOutput>
-    getPermissionPolicy: function(Client, types.GetPermissionPolicyInput, any): async.Operation<types.GetPermissionPolicyOutput>
-    getRateBasedStatementManagedKeys: function(Client, types.GetRateBasedStatementManagedKeysInput, any): async.Operation<types.GetRateBasedStatementManagedKeysOutput>
-    getRegexPatternSet: function(Client, types.GetRegexPatternSetInput, any): async.Operation<types.GetRegexPatternSetOutput>
-    getRuleGroup: function(Client, types.GetRuleGroupInput, any): async.Operation<types.GetRuleGroupOutput>
-    getSampledRequests: function(Client, types.GetSampledRequestsInput, any): async.Operation<types.GetSampledRequestsOutput>
-    getTopPathStatisticsByTraffic: function(Client, types.GetTopPathStatisticsByTrafficInput, any): async.Operation<types.GetTopPathStatisticsByTrafficOutput>
-    getWebACL: function(Client, types.GetWebACLInput, any): async.Operation<types.GetWebACLOutput>
-    getWebACLForResource: function(Client, types.GetWebACLForResourceInput, any): async.Operation<types.GetWebACLForResourceOutput>
-    listAPIKeys: function(Client, types.ListAPIKeysInput, any): async.Operation<types.ListAPIKeysOutput>
-    listAvailableManagedRuleGroups: function(Client, types.ListAvailableManagedRuleGroupsInput, any): async.Operation<types.ListAvailableManagedRuleGroupsOutput>
-    listAvailableManagedRuleGroupVersions: function(Client, types.ListAvailableManagedRuleGroupVersionsInput, any): async.Operation<types.ListAvailableManagedRuleGroupVersionsOutput>
-    listIPSets: function(Client, types.ListIPSetsInput, any): async.Operation<types.ListIPSetsOutput>
-    listLoggingConfigurations: function(Client, types.ListLoggingConfigurationsInput, any): async.Operation<types.ListLoggingConfigurationsOutput>
-    listManagedRuleSets: function(Client, types.ListManagedRuleSetsInput, any): async.Operation<types.ListManagedRuleSetsOutput>
-    listMobileSdkReleases: function(Client, types.ListMobileSdkReleasesInput, any): async.Operation<types.ListMobileSdkReleasesOutput>
-    listRegexPatternSets: function(Client, types.ListRegexPatternSetsInput, any): async.Operation<types.ListRegexPatternSetsOutput>
-    listResourcesForWebACL: function(Client, types.ListResourcesForWebACLInput, any): async.Operation<types.ListResourcesForWebACLOutput>
-    listRuleGroups: function(Client, types.ListRuleGroupsInput, any): async.Operation<types.ListRuleGroupsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listWebACLs: function(Client, types.ListWebACLsInput, any): async.Operation<types.ListWebACLsOutput>
-    putLoggingConfiguration: function(Client, types.PutLoggingConfigurationInput, any): async.Operation<types.PutLoggingConfigurationOutput>
-    putManagedRuleSetVersions: function(Client, types.PutManagedRuleSetVersionsInput, any): async.Operation<types.PutManagedRuleSetVersionsOutput>
-    putPermissionPolicy: function(Client, types.PutPermissionPolicyInput, any): async.Operation<types.PutPermissionPolicyOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateIPSet: function(Client, types.UpdateIPSetInput, any): async.Operation<types.UpdateIPSetOutput>
-    updateManagedRuleSetVersionExpiryDate: function(Client, types.UpdateManagedRuleSetVersionExpiryDateInput, any): async.Operation<types.UpdateManagedRuleSetVersionExpiryDateOutput>
-    updateRegexPatternSet: function(Client, types.UpdateRegexPatternSetInput, any): async.Operation<types.UpdateRegexPatternSetOutput>
-    updateRuleGroup: function(Client, types.UpdateRuleGroupInput, any): async.Operation<types.UpdateRuleGroupOutput>
-    updateWebACL: function(Client, types.UpdateWebACLInput, any): async.Operation<types.UpdateWebACLOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateWebACL: function(Client, types.AssociateWebACLInput, ? base_client.InvokeOptions): async.Operation<types.AssociateWebACLOutput>
+    checkCapacity: function(Client, types.CheckCapacityInput, ? base_client.InvokeOptions): async.Operation<types.CheckCapacityOutput>
+    createAPIKey: function(Client, types.CreateAPIKeyInput, ? base_client.InvokeOptions): async.Operation<types.CreateAPIKeyOutput>
+    createIPSet: function(Client, types.CreateIPSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateIPSetOutput>
+    createRegexPatternSet: function(Client, types.CreateRegexPatternSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateRegexPatternSetOutput>
+    createRuleGroup: function(Client, types.CreateRuleGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateRuleGroupOutput>
+    createWebACL: function(Client, types.CreateWebACLInput, ? base_client.InvokeOptions): async.Operation<types.CreateWebACLOutput>
+    deleteAPIKey: function(Client, types.DeleteAPIKeyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAPIKeyOutput>
+    deleteFirewallManagerRuleGroups: function(Client, types.DeleteFirewallManagerRuleGroupsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFirewallManagerRuleGroupsOutput>
+    deleteIPSet: function(Client, types.DeleteIPSetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIPSetOutput>
+    deleteLoggingConfiguration: function(Client, types.DeleteLoggingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLoggingConfigurationOutput>
+    deletePermissionPolicy: function(Client, types.DeletePermissionPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeletePermissionPolicyOutput>
+    deleteRegexPatternSet: function(Client, types.DeleteRegexPatternSetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRegexPatternSetOutput>
+    deleteRuleGroup: function(Client, types.DeleteRuleGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRuleGroupOutput>
+    deleteWebACL: function(Client, types.DeleteWebACLInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWebACLOutput>
+    describeAllManagedProducts: function(Client, types.DescribeAllManagedProductsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAllManagedProductsOutput>
+    describeManagedProductsByVendor: function(Client, types.DescribeManagedProductsByVendorInput, ? base_client.InvokeOptions): async.Operation<types.DescribeManagedProductsByVendorOutput>
+    describeManagedRuleGroup: function(Client, types.DescribeManagedRuleGroupInput, ? base_client.InvokeOptions): async.Operation<types.DescribeManagedRuleGroupOutput>
+    disassociateWebACL: function(Client, types.DisassociateWebACLInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateWebACLOutput>
+    generateMobileSdkReleaseUrl: function(Client, types.GenerateMobileSdkReleaseUrlInput, ? base_client.InvokeOptions): async.Operation<types.GenerateMobileSdkReleaseUrlOutput>
+    getDecryptedAPIKey: function(Client, types.GetDecryptedAPIKeyInput, ? base_client.InvokeOptions): async.Operation<types.GetDecryptedAPIKeyOutput>
+    getIPSet: function(Client, types.GetIPSetInput, ? base_client.InvokeOptions): async.Operation<types.GetIPSetOutput>
+    getLoggingConfiguration: function(Client, types.GetLoggingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetLoggingConfigurationOutput>
+    getManagedRuleSet: function(Client, types.GetManagedRuleSetInput, ? base_client.InvokeOptions): async.Operation<types.GetManagedRuleSetOutput>
+    getMobileSdkRelease: function(Client, types.GetMobileSdkReleaseInput, ? base_client.InvokeOptions): async.Operation<types.GetMobileSdkReleaseOutput>
+    getPermissionPolicy: function(Client, types.GetPermissionPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetPermissionPolicyOutput>
+    getRateBasedStatementManagedKeys: function(Client, types.GetRateBasedStatementManagedKeysInput, ? base_client.InvokeOptions): async.Operation<types.GetRateBasedStatementManagedKeysOutput>
+    getRegexPatternSet: function(Client, types.GetRegexPatternSetInput, ? base_client.InvokeOptions): async.Operation<types.GetRegexPatternSetOutput>
+    getRuleGroup: function(Client, types.GetRuleGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetRuleGroupOutput>
+    getSampledRequests: function(Client, types.GetSampledRequestsInput, ? base_client.InvokeOptions): async.Operation<types.GetSampledRequestsOutput>
+    getTopPathStatisticsByTraffic: function(Client, types.GetTopPathStatisticsByTrafficInput, ? base_client.InvokeOptions): async.Operation<types.GetTopPathStatisticsByTrafficOutput>
+    getWebACL: function(Client, types.GetWebACLInput, ? base_client.InvokeOptions): async.Operation<types.GetWebACLOutput>
+    getWebACLForResource: function(Client, types.GetWebACLForResourceInput, ? base_client.InvokeOptions): async.Operation<types.GetWebACLForResourceOutput>
+    listAPIKeys: function(Client, types.ListAPIKeysInput, ? base_client.InvokeOptions): async.Operation<types.ListAPIKeysOutput>
+    listAvailableManagedRuleGroups: function(Client, types.ListAvailableManagedRuleGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListAvailableManagedRuleGroupsOutput>
+    listAvailableManagedRuleGroupVersions: function(Client, types.ListAvailableManagedRuleGroupVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListAvailableManagedRuleGroupVersionsOutput>
+    listIPSets: function(Client, types.ListIPSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListIPSetsOutput>
+    listLoggingConfigurations: function(Client, types.ListLoggingConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListLoggingConfigurationsOutput>
+    listManagedRuleSets: function(Client, types.ListManagedRuleSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListManagedRuleSetsOutput>
+    listMobileSdkReleases: function(Client, types.ListMobileSdkReleasesInput, ? base_client.InvokeOptions): async.Operation<types.ListMobileSdkReleasesOutput>
+    listRegexPatternSets: function(Client, types.ListRegexPatternSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListRegexPatternSetsOutput>
+    listResourcesForWebACL: function(Client, types.ListResourcesForWebACLInput, ? base_client.InvokeOptions): async.Operation<types.ListResourcesForWebACLOutput>
+    listRuleGroups: function(Client, types.ListRuleGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListRuleGroupsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listWebACLs: function(Client, types.ListWebACLsInput, ? base_client.InvokeOptions): async.Operation<types.ListWebACLsOutput>
+    putLoggingConfiguration: function(Client, types.PutLoggingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutLoggingConfigurationOutput>
+    putManagedRuleSetVersions: function(Client, types.PutManagedRuleSetVersionsInput, ? base_client.InvokeOptions): async.Operation<types.PutManagedRuleSetVersionsOutput>
+    putPermissionPolicy: function(Client, types.PutPermissionPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutPermissionPolicyOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateIPSet: function(Client, types.UpdateIPSetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIPSetOutput>
+    updateManagedRuleSetVersionExpiryDate: function(Client, types.UpdateManagedRuleSetVersionExpiryDateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateManagedRuleSetVersionExpiryDateOutput>
+    updateRegexPatternSet: function(Client, types.UpdateRegexPatternSetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRegexPatternSetOutput>
+    updateRuleGroup: function(Client, types.UpdateRuleGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRuleGroupOutput>
+    updateWebACL: function(Client, types.UpdateWebACLInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWebACLOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSWAF_20190729"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "wafv2", signing_region = c.region } }
                 else
@@ -114,224 +117,224 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateWebACL(input: types.AssociateWebACLInput, options: any): async.Operation<types.AssociateWebACLOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateWebACL, input, options) as async.Operation<types.AssociateWebACLOutput>
+function C:associateWebACL(input: types.AssociateWebACLInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateWebACLOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateWebACL as schema.OperationSchema, input, options) as async.Operation<types.AssociateWebACLOutput>
 end
 
-function C:checkCapacity(input: types.CheckCapacityInput, options: any): async.Operation<types.CheckCapacityOutput>
-    return self:invokeOperation(schemas.Service, schemas.CheckCapacity, input, options) as async.Operation<types.CheckCapacityOutput>
+function C:checkCapacity(input: types.CheckCapacityInput, options?: base_client.InvokeOptions): async.Operation<types.CheckCapacityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CheckCapacity as schema.OperationSchema, input, options) as async.Operation<types.CheckCapacityOutput>
 end
 
-function C:createAPIKey(input: types.CreateAPIKeyInput, options: any): async.Operation<types.CreateAPIKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAPIKey, input, options) as async.Operation<types.CreateAPIKeyOutput>
+function C:createAPIKey(input: types.CreateAPIKeyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAPIKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAPIKey as schema.OperationSchema, input, options) as async.Operation<types.CreateAPIKeyOutput>
 end
 
-function C:createIPSet(input: types.CreateIPSetInput, options: any): async.Operation<types.CreateIPSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIPSet, input, options) as async.Operation<types.CreateIPSetOutput>
+function C:createIPSet(input: types.CreateIPSetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIPSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIPSet as schema.OperationSchema, input, options) as async.Operation<types.CreateIPSetOutput>
 end
 
-function C:createRegexPatternSet(input: types.CreateRegexPatternSetInput, options: any): async.Operation<types.CreateRegexPatternSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRegexPatternSet, input, options) as async.Operation<types.CreateRegexPatternSetOutput>
+function C:createRegexPatternSet(input: types.CreateRegexPatternSetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRegexPatternSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRegexPatternSet as schema.OperationSchema, input, options) as async.Operation<types.CreateRegexPatternSetOutput>
 end
 
-function C:createRuleGroup(input: types.CreateRuleGroupInput, options: any): async.Operation<types.CreateRuleGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRuleGroup, input, options) as async.Operation<types.CreateRuleGroupOutput>
+function C:createRuleGroup(input: types.CreateRuleGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRuleGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRuleGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateRuleGroupOutput>
 end
 
-function C:createWebACL(input: types.CreateWebACLInput, options: any): async.Operation<types.CreateWebACLOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWebACL, input, options) as async.Operation<types.CreateWebACLOutput>
+function C:createWebACL(input: types.CreateWebACLInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWebACLOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWebACL as schema.OperationSchema, input, options) as async.Operation<types.CreateWebACLOutput>
 end
 
-function C:deleteAPIKey(input: types.DeleteAPIKeyInput, options: any): async.Operation<types.DeleteAPIKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAPIKey, input, options) as async.Operation<types.DeleteAPIKeyOutput>
+function C:deleteAPIKey(input: types.DeleteAPIKeyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAPIKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAPIKey as schema.OperationSchema, input, options) as async.Operation<types.DeleteAPIKeyOutput>
 end
 
-function C:deleteFirewallManagerRuleGroups(input: types.DeleteFirewallManagerRuleGroupsInput, options: any): async.Operation<types.DeleteFirewallManagerRuleGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFirewallManagerRuleGroups, input, options) as async.Operation<types.DeleteFirewallManagerRuleGroupsOutput>
+function C:deleteFirewallManagerRuleGroups(input: types.DeleteFirewallManagerRuleGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFirewallManagerRuleGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFirewallManagerRuleGroups as schema.OperationSchema, input, options) as async.Operation<types.DeleteFirewallManagerRuleGroupsOutput>
 end
 
-function C:deleteIPSet(input: types.DeleteIPSetInput, options: any): async.Operation<types.DeleteIPSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIPSet, input, options) as async.Operation<types.DeleteIPSetOutput>
+function C:deleteIPSet(input: types.DeleteIPSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIPSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIPSet as schema.OperationSchema, input, options) as async.Operation<types.DeleteIPSetOutput>
 end
 
-function C:deleteLoggingConfiguration(input: types.DeleteLoggingConfigurationInput, options: any): async.Operation<types.DeleteLoggingConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLoggingConfiguration, input, options) as async.Operation<types.DeleteLoggingConfigurationOutput>
+function C:deleteLoggingConfiguration(input: types.DeleteLoggingConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLoggingConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLoggingConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteLoggingConfigurationOutput>
 end
 
-function C:deletePermissionPolicy(input: types.DeletePermissionPolicyInput, options: any): async.Operation<types.DeletePermissionPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePermissionPolicy, input, options) as async.Operation<types.DeletePermissionPolicyOutput>
+function C:deletePermissionPolicy(input: types.DeletePermissionPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePermissionPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePermissionPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeletePermissionPolicyOutput>
 end
 
-function C:deleteRegexPatternSet(input: types.DeleteRegexPatternSetInput, options: any): async.Operation<types.DeleteRegexPatternSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRegexPatternSet, input, options) as async.Operation<types.DeleteRegexPatternSetOutput>
+function C:deleteRegexPatternSet(input: types.DeleteRegexPatternSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRegexPatternSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRegexPatternSet as schema.OperationSchema, input, options) as async.Operation<types.DeleteRegexPatternSetOutput>
 end
 
-function C:deleteRuleGroup(input: types.DeleteRuleGroupInput, options: any): async.Operation<types.DeleteRuleGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRuleGroup, input, options) as async.Operation<types.DeleteRuleGroupOutput>
+function C:deleteRuleGroup(input: types.DeleteRuleGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRuleGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRuleGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteRuleGroupOutput>
 end
 
-function C:deleteWebACL(input: types.DeleteWebACLInput, options: any): async.Operation<types.DeleteWebACLOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWebACL, input, options) as async.Operation<types.DeleteWebACLOutput>
+function C:deleteWebACL(input: types.DeleteWebACLInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWebACLOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWebACL as schema.OperationSchema, input, options) as async.Operation<types.DeleteWebACLOutput>
 end
 
-function C:describeAllManagedProducts(input: types.DescribeAllManagedProductsInput, options: any): async.Operation<types.DescribeAllManagedProductsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAllManagedProducts, input, options) as async.Operation<types.DescribeAllManagedProductsOutput>
+function C:describeAllManagedProducts(input: types.DescribeAllManagedProductsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAllManagedProductsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAllManagedProducts as schema.OperationSchema, input, options) as async.Operation<types.DescribeAllManagedProductsOutput>
 end
 
-function C:describeManagedProductsByVendor(input: types.DescribeManagedProductsByVendorInput, options: any): async.Operation<types.DescribeManagedProductsByVendorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeManagedProductsByVendor, input, options) as async.Operation<types.DescribeManagedProductsByVendorOutput>
+function C:describeManagedProductsByVendor(input: types.DescribeManagedProductsByVendorInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeManagedProductsByVendorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeManagedProductsByVendor as schema.OperationSchema, input, options) as async.Operation<types.DescribeManagedProductsByVendorOutput>
 end
 
-function C:describeManagedRuleGroup(input: types.DescribeManagedRuleGroupInput, options: any): async.Operation<types.DescribeManagedRuleGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeManagedRuleGroup, input, options) as async.Operation<types.DescribeManagedRuleGroupOutput>
+function C:describeManagedRuleGroup(input: types.DescribeManagedRuleGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeManagedRuleGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeManagedRuleGroup as schema.OperationSchema, input, options) as async.Operation<types.DescribeManagedRuleGroupOutput>
 end
 
-function C:disassociateWebACL(input: types.DisassociateWebACLInput, options: any): async.Operation<types.DisassociateWebACLOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateWebACL, input, options) as async.Operation<types.DisassociateWebACLOutput>
+function C:disassociateWebACL(input: types.DisassociateWebACLInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateWebACLOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateWebACL as schema.OperationSchema, input, options) as async.Operation<types.DisassociateWebACLOutput>
 end
 
-function C:generateMobileSdkReleaseUrl(input: types.GenerateMobileSdkReleaseUrlInput, options: any): async.Operation<types.GenerateMobileSdkReleaseUrlOutput>
-    return self:invokeOperation(schemas.Service, schemas.GenerateMobileSdkReleaseUrl, input, options) as async.Operation<types.GenerateMobileSdkReleaseUrlOutput>
+function C:generateMobileSdkReleaseUrl(input: types.GenerateMobileSdkReleaseUrlInput, options?: base_client.InvokeOptions): async.Operation<types.GenerateMobileSdkReleaseUrlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GenerateMobileSdkReleaseUrl as schema.OperationSchema, input, options) as async.Operation<types.GenerateMobileSdkReleaseUrlOutput>
 end
 
-function C:getDecryptedAPIKey(input: types.GetDecryptedAPIKeyInput, options: any): async.Operation<types.GetDecryptedAPIKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDecryptedAPIKey, input, options) as async.Operation<types.GetDecryptedAPIKeyOutput>
+function C:getDecryptedAPIKey(input: types.GetDecryptedAPIKeyInput, options?: base_client.InvokeOptions): async.Operation<types.GetDecryptedAPIKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDecryptedAPIKey as schema.OperationSchema, input, options) as async.Operation<types.GetDecryptedAPIKeyOutput>
 end
 
-function C:getIPSet(input: types.GetIPSetInput, options: any): async.Operation<types.GetIPSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIPSet, input, options) as async.Operation<types.GetIPSetOutput>
+function C:getIPSet(input: types.GetIPSetInput, options?: base_client.InvokeOptions): async.Operation<types.GetIPSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIPSet as schema.OperationSchema, input, options) as async.Operation<types.GetIPSetOutput>
 end
 
-function C:getLoggingConfiguration(input: types.GetLoggingConfigurationInput, options: any): async.Operation<types.GetLoggingConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLoggingConfiguration, input, options) as async.Operation<types.GetLoggingConfigurationOutput>
+function C:getLoggingConfiguration(input: types.GetLoggingConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetLoggingConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLoggingConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetLoggingConfigurationOutput>
 end
 
-function C:getManagedRuleSet(input: types.GetManagedRuleSetInput, options: any): async.Operation<types.GetManagedRuleSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetManagedRuleSet, input, options) as async.Operation<types.GetManagedRuleSetOutput>
+function C:getManagedRuleSet(input: types.GetManagedRuleSetInput, options?: base_client.InvokeOptions): async.Operation<types.GetManagedRuleSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetManagedRuleSet as schema.OperationSchema, input, options) as async.Operation<types.GetManagedRuleSetOutput>
 end
 
-function C:getMobileSdkRelease(input: types.GetMobileSdkReleaseInput, options: any): async.Operation<types.GetMobileSdkReleaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMobileSdkRelease, input, options) as async.Operation<types.GetMobileSdkReleaseOutput>
+function C:getMobileSdkRelease(input: types.GetMobileSdkReleaseInput, options?: base_client.InvokeOptions): async.Operation<types.GetMobileSdkReleaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMobileSdkRelease as schema.OperationSchema, input, options) as async.Operation<types.GetMobileSdkReleaseOutput>
 end
 
-function C:getPermissionPolicy(input: types.GetPermissionPolicyInput, options: any): async.Operation<types.GetPermissionPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPermissionPolicy, input, options) as async.Operation<types.GetPermissionPolicyOutput>
+function C:getPermissionPolicy(input: types.GetPermissionPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetPermissionPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPermissionPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetPermissionPolicyOutput>
 end
 
-function C:getRateBasedStatementManagedKeys(input: types.GetRateBasedStatementManagedKeysInput, options: any): async.Operation<types.GetRateBasedStatementManagedKeysOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRateBasedStatementManagedKeys, input, options) as async.Operation<types.GetRateBasedStatementManagedKeysOutput>
+function C:getRateBasedStatementManagedKeys(input: types.GetRateBasedStatementManagedKeysInput, options?: base_client.InvokeOptions): async.Operation<types.GetRateBasedStatementManagedKeysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRateBasedStatementManagedKeys as schema.OperationSchema, input, options) as async.Operation<types.GetRateBasedStatementManagedKeysOutput>
 end
 
-function C:getRegexPatternSet(input: types.GetRegexPatternSetInput, options: any): async.Operation<types.GetRegexPatternSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRegexPatternSet, input, options) as async.Operation<types.GetRegexPatternSetOutput>
+function C:getRegexPatternSet(input: types.GetRegexPatternSetInput, options?: base_client.InvokeOptions): async.Operation<types.GetRegexPatternSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRegexPatternSet as schema.OperationSchema, input, options) as async.Operation<types.GetRegexPatternSetOutput>
 end
 
-function C:getRuleGroup(input: types.GetRuleGroupInput, options: any): async.Operation<types.GetRuleGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRuleGroup, input, options) as async.Operation<types.GetRuleGroupOutput>
+function C:getRuleGroup(input: types.GetRuleGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetRuleGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRuleGroup as schema.OperationSchema, input, options) as async.Operation<types.GetRuleGroupOutput>
 end
 
-function C:getSampledRequests(input: types.GetSampledRequestsInput, options: any): async.Operation<types.GetSampledRequestsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSampledRequests, input, options) as async.Operation<types.GetSampledRequestsOutput>
+function C:getSampledRequests(input: types.GetSampledRequestsInput, options?: base_client.InvokeOptions): async.Operation<types.GetSampledRequestsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSampledRequests as schema.OperationSchema, input, options) as async.Operation<types.GetSampledRequestsOutput>
 end
 
-function C:getTopPathStatisticsByTraffic(input: types.GetTopPathStatisticsByTrafficInput, options: any): async.Operation<types.GetTopPathStatisticsByTrafficOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTopPathStatisticsByTraffic, input, options) as async.Operation<types.GetTopPathStatisticsByTrafficOutput>
+function C:getTopPathStatisticsByTraffic(input: types.GetTopPathStatisticsByTrafficInput, options?: base_client.InvokeOptions): async.Operation<types.GetTopPathStatisticsByTrafficOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTopPathStatisticsByTraffic as schema.OperationSchema, input, options) as async.Operation<types.GetTopPathStatisticsByTrafficOutput>
 end
 
-function C:getWebACL(input: types.GetWebACLInput, options: any): async.Operation<types.GetWebACLOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWebACL, input, options) as async.Operation<types.GetWebACLOutput>
+function C:getWebACL(input: types.GetWebACLInput, options?: base_client.InvokeOptions): async.Operation<types.GetWebACLOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWebACL as schema.OperationSchema, input, options) as async.Operation<types.GetWebACLOutput>
 end
 
-function C:getWebACLForResource(input: types.GetWebACLForResourceInput, options: any): async.Operation<types.GetWebACLForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWebACLForResource, input, options) as async.Operation<types.GetWebACLForResourceOutput>
+function C:getWebACLForResource(input: types.GetWebACLForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.GetWebACLForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWebACLForResource as schema.OperationSchema, input, options) as async.Operation<types.GetWebACLForResourceOutput>
 end
 
-function C:listAPIKeys(input: types.ListAPIKeysInput, options: any): async.Operation<types.ListAPIKeysOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAPIKeys, input, options) as async.Operation<types.ListAPIKeysOutput>
+function C:listAPIKeys(input: types.ListAPIKeysInput, options?: base_client.InvokeOptions): async.Operation<types.ListAPIKeysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAPIKeys as schema.OperationSchema, input, options) as async.Operation<types.ListAPIKeysOutput>
 end
 
-function C:listAvailableManagedRuleGroups(input: types.ListAvailableManagedRuleGroupsInput, options: any): async.Operation<types.ListAvailableManagedRuleGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAvailableManagedRuleGroups, input, options) as async.Operation<types.ListAvailableManagedRuleGroupsOutput>
+function C:listAvailableManagedRuleGroups(input: types.ListAvailableManagedRuleGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAvailableManagedRuleGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAvailableManagedRuleGroups as schema.OperationSchema, input, options) as async.Operation<types.ListAvailableManagedRuleGroupsOutput>
 end
 
-function C:listAvailableManagedRuleGroupVersions(input: types.ListAvailableManagedRuleGroupVersionsInput, options: any): async.Operation<types.ListAvailableManagedRuleGroupVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAvailableManagedRuleGroupVersions, input, options) as async.Operation<types.ListAvailableManagedRuleGroupVersionsOutput>
+function C:listAvailableManagedRuleGroupVersions(input: types.ListAvailableManagedRuleGroupVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAvailableManagedRuleGroupVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAvailableManagedRuleGroupVersions as schema.OperationSchema, input, options) as async.Operation<types.ListAvailableManagedRuleGroupVersionsOutput>
 end
 
-function C:listIPSets(input: types.ListIPSetsInput, options: any): async.Operation<types.ListIPSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIPSets, input, options) as async.Operation<types.ListIPSetsOutput>
+function C:listIPSets(input: types.ListIPSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListIPSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIPSets as schema.OperationSchema, input, options) as async.Operation<types.ListIPSetsOutput>
 end
 
-function C:listLoggingConfigurations(input: types.ListLoggingConfigurationsInput, options: any): async.Operation<types.ListLoggingConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLoggingConfigurations, input, options) as async.Operation<types.ListLoggingConfigurationsOutput>
+function C:listLoggingConfigurations(input: types.ListLoggingConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLoggingConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLoggingConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListLoggingConfigurationsOutput>
 end
 
-function C:listManagedRuleSets(input: types.ListManagedRuleSetsInput, options: any): async.Operation<types.ListManagedRuleSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListManagedRuleSets, input, options) as async.Operation<types.ListManagedRuleSetsOutput>
+function C:listManagedRuleSets(input: types.ListManagedRuleSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListManagedRuleSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListManagedRuleSets as schema.OperationSchema, input, options) as async.Operation<types.ListManagedRuleSetsOutput>
 end
 
-function C:listMobileSdkReleases(input: types.ListMobileSdkReleasesInput, options: any): async.Operation<types.ListMobileSdkReleasesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMobileSdkReleases, input, options) as async.Operation<types.ListMobileSdkReleasesOutput>
+function C:listMobileSdkReleases(input: types.ListMobileSdkReleasesInput, options?: base_client.InvokeOptions): async.Operation<types.ListMobileSdkReleasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMobileSdkReleases as schema.OperationSchema, input, options) as async.Operation<types.ListMobileSdkReleasesOutput>
 end
 
-function C:listRegexPatternSets(input: types.ListRegexPatternSetsInput, options: any): async.Operation<types.ListRegexPatternSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRegexPatternSets, input, options) as async.Operation<types.ListRegexPatternSetsOutput>
+function C:listRegexPatternSets(input: types.ListRegexPatternSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRegexPatternSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRegexPatternSets as schema.OperationSchema, input, options) as async.Operation<types.ListRegexPatternSetsOutput>
 end
 
-function C:listResourcesForWebACL(input: types.ListResourcesForWebACLInput, options: any): async.Operation<types.ListResourcesForWebACLOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResourcesForWebACL, input, options) as async.Operation<types.ListResourcesForWebACLOutput>
+function C:listResourcesForWebACL(input: types.ListResourcesForWebACLInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourcesForWebACLOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourcesForWebACL as schema.OperationSchema, input, options) as async.Operation<types.ListResourcesForWebACLOutput>
 end
 
-function C:listRuleGroups(input: types.ListRuleGroupsInput, options: any): async.Operation<types.ListRuleGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRuleGroups, input, options) as async.Operation<types.ListRuleGroupsOutput>
+function C:listRuleGroups(input: types.ListRuleGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRuleGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRuleGroups as schema.OperationSchema, input, options) as async.Operation<types.ListRuleGroupsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listWebACLs(input: types.ListWebACLsInput, options: any): async.Operation<types.ListWebACLsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWebACLs, input, options) as async.Operation<types.ListWebACLsOutput>
+function C:listWebACLs(input: types.ListWebACLsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWebACLsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWebACLs as schema.OperationSchema, input, options) as async.Operation<types.ListWebACLsOutput>
 end
 
-function C:putLoggingConfiguration(input: types.PutLoggingConfigurationInput, options: any): async.Operation<types.PutLoggingConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutLoggingConfiguration, input, options) as async.Operation<types.PutLoggingConfigurationOutput>
+function C:putLoggingConfiguration(input: types.PutLoggingConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutLoggingConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutLoggingConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutLoggingConfigurationOutput>
 end
 
-function C:putManagedRuleSetVersions(input: types.PutManagedRuleSetVersionsInput, options: any): async.Operation<types.PutManagedRuleSetVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutManagedRuleSetVersions, input, options) as async.Operation<types.PutManagedRuleSetVersionsOutput>
+function C:putManagedRuleSetVersions(input: types.PutManagedRuleSetVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.PutManagedRuleSetVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutManagedRuleSetVersions as schema.OperationSchema, input, options) as async.Operation<types.PutManagedRuleSetVersionsOutput>
 end
 
-function C:putPermissionPolicy(input: types.PutPermissionPolicyInput, options: any): async.Operation<types.PutPermissionPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutPermissionPolicy, input, options) as async.Operation<types.PutPermissionPolicyOutput>
+function C:putPermissionPolicy(input: types.PutPermissionPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutPermissionPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutPermissionPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutPermissionPolicyOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateIPSet(input: types.UpdateIPSetInput, options: any): async.Operation<types.UpdateIPSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateIPSet, input, options) as async.Operation<types.UpdateIPSetOutput>
+function C:updateIPSet(input: types.UpdateIPSetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIPSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIPSet as schema.OperationSchema, input, options) as async.Operation<types.UpdateIPSetOutput>
 end
 
-function C:updateManagedRuleSetVersionExpiryDate(input: types.UpdateManagedRuleSetVersionExpiryDateInput, options: any): async.Operation<types.UpdateManagedRuleSetVersionExpiryDateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateManagedRuleSetVersionExpiryDate, input, options) as async.Operation<types.UpdateManagedRuleSetVersionExpiryDateOutput>
+function C:updateManagedRuleSetVersionExpiryDate(input: types.UpdateManagedRuleSetVersionExpiryDateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateManagedRuleSetVersionExpiryDateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateManagedRuleSetVersionExpiryDate as schema.OperationSchema, input, options) as async.Operation<types.UpdateManagedRuleSetVersionExpiryDateOutput>
 end
 
-function C:updateRegexPatternSet(input: types.UpdateRegexPatternSetInput, options: any): async.Operation<types.UpdateRegexPatternSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRegexPatternSet, input, options) as async.Operation<types.UpdateRegexPatternSetOutput>
+function C:updateRegexPatternSet(input: types.UpdateRegexPatternSetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRegexPatternSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRegexPatternSet as schema.OperationSchema, input, options) as async.Operation<types.UpdateRegexPatternSetOutput>
 end
 
-function C:updateRuleGroup(input: types.UpdateRuleGroupInput, options: any): async.Operation<types.UpdateRuleGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRuleGroup, input, options) as async.Operation<types.UpdateRuleGroupOutput>
+function C:updateRuleGroup(input: types.UpdateRuleGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRuleGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRuleGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateRuleGroupOutput>
 end
 
-function C:updateWebACL(input: types.UpdateWebACLInput, options: any): async.Operation<types.UpdateWebACLOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateWebACL, input, options) as async.Operation<types.UpdateWebACLOutput>
+function C:updateWebACL(input: types.UpdateWebACLInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWebACLOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWebACL as schema.OperationSchema, input, options) as async.Operation<types.UpdateWebACLOutput>
 end
 
 return M

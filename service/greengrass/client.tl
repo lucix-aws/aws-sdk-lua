@@ -8,131 +8,134 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("greengrass.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("greengrass.schemas")
 local traits = require("smithy.traits")
 local types = require("greengrass.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateRoleToGroup: function(Client, types.AssociateRoleToGroupInput, any): async.Operation<types.AssociateRoleToGroupOutput>
-    associateServiceRoleToAccount: function(Client, types.AssociateServiceRoleToAccountInput, any): async.Operation<types.AssociateServiceRoleToAccountOutput>
-    createConnectorDefinition: function(Client, types.CreateConnectorDefinitionInput, any): async.Operation<types.CreateConnectorDefinitionOutput>
-    createConnectorDefinitionVersion: function(Client, types.CreateConnectorDefinitionVersionInput, any): async.Operation<types.CreateConnectorDefinitionVersionOutput>
-    createCoreDefinition: function(Client, types.CreateCoreDefinitionInput, any): async.Operation<types.CreateCoreDefinitionOutput>
-    createCoreDefinitionVersion: function(Client, types.CreateCoreDefinitionVersionInput, any): async.Operation<types.CreateCoreDefinitionVersionOutput>
-    createDeployment: function(Client, types.CreateDeploymentInput, any): async.Operation<types.CreateDeploymentOutput>
-    createDeviceDefinition: function(Client, types.CreateDeviceDefinitionInput, any): async.Operation<types.CreateDeviceDefinitionOutput>
-    createDeviceDefinitionVersion: function(Client, types.CreateDeviceDefinitionVersionInput, any): async.Operation<types.CreateDeviceDefinitionVersionOutput>
-    createFunctionDefinition: function(Client, types.CreateFunctionDefinitionInput, any): async.Operation<types.CreateFunctionDefinitionOutput>
-    createFunctionDefinitionVersion: function(Client, types.CreateFunctionDefinitionVersionInput, any): async.Operation<types.CreateFunctionDefinitionVersionOutput>
-    createGroup: function(Client, types.CreateGroupInput, any): async.Operation<types.CreateGroupOutput>
-    createGroupCertificateAuthority: function(Client, types.CreateGroupCertificateAuthorityInput, any): async.Operation<types.CreateGroupCertificateAuthorityOutput>
-    createGroupVersion: function(Client, types.CreateGroupVersionInput, any): async.Operation<types.CreateGroupVersionOutput>
-    createLoggerDefinition: function(Client, types.CreateLoggerDefinitionInput, any): async.Operation<types.CreateLoggerDefinitionOutput>
-    createLoggerDefinitionVersion: function(Client, types.CreateLoggerDefinitionVersionInput, any): async.Operation<types.CreateLoggerDefinitionVersionOutput>
-    createResourceDefinition: function(Client, types.CreateResourceDefinitionInput, any): async.Operation<types.CreateResourceDefinitionOutput>
-    createResourceDefinitionVersion: function(Client, types.CreateResourceDefinitionVersionInput, any): async.Operation<types.CreateResourceDefinitionVersionOutput>
-    createSoftwareUpdateJob: function(Client, types.CreateSoftwareUpdateJobInput, any): async.Operation<types.CreateSoftwareUpdateJobOutput>
-    createSubscriptionDefinition: function(Client, types.CreateSubscriptionDefinitionInput, any): async.Operation<types.CreateSubscriptionDefinitionOutput>
-    createSubscriptionDefinitionVersion: function(Client, types.CreateSubscriptionDefinitionVersionInput, any): async.Operation<types.CreateSubscriptionDefinitionVersionOutput>
-    deleteConnectorDefinition: function(Client, types.DeleteConnectorDefinitionInput, any): async.Operation<types.DeleteConnectorDefinitionOutput>
-    deleteCoreDefinition: function(Client, types.DeleteCoreDefinitionInput, any): async.Operation<types.DeleteCoreDefinitionOutput>
-    deleteDeviceDefinition: function(Client, types.DeleteDeviceDefinitionInput, any): async.Operation<types.DeleteDeviceDefinitionOutput>
-    deleteFunctionDefinition: function(Client, types.DeleteFunctionDefinitionInput, any): async.Operation<types.DeleteFunctionDefinitionOutput>
-    deleteGroup: function(Client, types.DeleteGroupInput, any): async.Operation<types.DeleteGroupOutput>
-    deleteLoggerDefinition: function(Client, types.DeleteLoggerDefinitionInput, any): async.Operation<types.DeleteLoggerDefinitionOutput>
-    deleteResourceDefinition: function(Client, types.DeleteResourceDefinitionInput, any): async.Operation<types.DeleteResourceDefinitionOutput>
-    deleteSubscriptionDefinition: function(Client, types.DeleteSubscriptionDefinitionInput, any): async.Operation<types.DeleteSubscriptionDefinitionOutput>
-    disassociateRoleFromGroup: function(Client, types.DisassociateRoleFromGroupInput, any): async.Operation<types.DisassociateRoleFromGroupOutput>
-    disassociateServiceRoleFromAccount: function(Client, types.DisassociateServiceRoleFromAccountInput, any): async.Operation<types.DisassociateServiceRoleFromAccountOutput>
-    getAssociatedRole: function(Client, types.GetAssociatedRoleInput, any): async.Operation<types.GetAssociatedRoleOutput>
-    getBulkDeploymentStatus: function(Client, types.GetBulkDeploymentStatusInput, any): async.Operation<types.GetBulkDeploymentStatusOutput>
-    getConnectivityInfo: function(Client, types.GetConnectivityInfoInput, any): async.Operation<types.GetConnectivityInfoOutput>
-    getConnectorDefinition: function(Client, types.GetConnectorDefinitionInput, any): async.Operation<types.GetConnectorDefinitionOutput>
-    getConnectorDefinitionVersion: function(Client, types.GetConnectorDefinitionVersionInput, any): async.Operation<types.GetConnectorDefinitionVersionOutput>
-    getCoreDefinition: function(Client, types.GetCoreDefinitionInput, any): async.Operation<types.GetCoreDefinitionOutput>
-    getCoreDefinitionVersion: function(Client, types.GetCoreDefinitionVersionInput, any): async.Operation<types.GetCoreDefinitionVersionOutput>
-    getDeploymentStatus: function(Client, types.GetDeploymentStatusInput, any): async.Operation<types.GetDeploymentStatusOutput>
-    getDeviceDefinition: function(Client, types.GetDeviceDefinitionInput, any): async.Operation<types.GetDeviceDefinitionOutput>
-    getDeviceDefinitionVersion: function(Client, types.GetDeviceDefinitionVersionInput, any): async.Operation<types.GetDeviceDefinitionVersionOutput>
-    getFunctionDefinition: function(Client, types.GetFunctionDefinitionInput, any): async.Operation<types.GetFunctionDefinitionOutput>
-    getFunctionDefinitionVersion: function(Client, types.GetFunctionDefinitionVersionInput, any): async.Operation<types.GetFunctionDefinitionVersionOutput>
-    getGroup: function(Client, types.GetGroupInput, any): async.Operation<types.GetGroupOutput>
-    getGroupCertificateAuthority: function(Client, types.GetGroupCertificateAuthorityInput, any): async.Operation<types.GetGroupCertificateAuthorityOutput>
-    getGroupCertificateConfiguration: function(Client, types.GetGroupCertificateConfigurationInput, any): async.Operation<types.GetGroupCertificateConfigurationOutput>
-    getGroupVersion: function(Client, types.GetGroupVersionInput, any): async.Operation<types.GetGroupVersionOutput>
-    getLoggerDefinition: function(Client, types.GetLoggerDefinitionInput, any): async.Operation<types.GetLoggerDefinitionOutput>
-    getLoggerDefinitionVersion: function(Client, types.GetLoggerDefinitionVersionInput, any): async.Operation<types.GetLoggerDefinitionVersionOutput>
-    getResourceDefinition: function(Client, types.GetResourceDefinitionInput, any): async.Operation<types.GetResourceDefinitionOutput>
-    getResourceDefinitionVersion: function(Client, types.GetResourceDefinitionVersionInput, any): async.Operation<types.GetResourceDefinitionVersionOutput>
-    getServiceRoleForAccount: function(Client, types.GetServiceRoleForAccountInput, any): async.Operation<types.GetServiceRoleForAccountOutput>
-    getSubscriptionDefinition: function(Client, types.GetSubscriptionDefinitionInput, any): async.Operation<types.GetSubscriptionDefinitionOutput>
-    getSubscriptionDefinitionVersion: function(Client, types.GetSubscriptionDefinitionVersionInput, any): async.Operation<types.GetSubscriptionDefinitionVersionOutput>
-    getThingRuntimeConfiguration: function(Client, types.GetThingRuntimeConfigurationInput, any): async.Operation<types.GetThingRuntimeConfigurationOutput>
-    listBulkDeploymentDetailedReports: function(Client, types.ListBulkDeploymentDetailedReportsInput, any): async.Operation<types.ListBulkDeploymentDetailedReportsOutput>
-    listBulkDeployments: function(Client, types.ListBulkDeploymentsInput, any): async.Operation<types.ListBulkDeploymentsOutput>
-    listConnectorDefinitions: function(Client, types.ListConnectorDefinitionsInput, any): async.Operation<types.ListConnectorDefinitionsOutput>
-    listConnectorDefinitionVersions: function(Client, types.ListConnectorDefinitionVersionsInput, any): async.Operation<types.ListConnectorDefinitionVersionsOutput>
-    listCoreDefinitions: function(Client, types.ListCoreDefinitionsInput, any): async.Operation<types.ListCoreDefinitionsOutput>
-    listCoreDefinitionVersions: function(Client, types.ListCoreDefinitionVersionsInput, any): async.Operation<types.ListCoreDefinitionVersionsOutput>
-    listDeployments: function(Client, types.ListDeploymentsInput, any): async.Operation<types.ListDeploymentsOutput>
-    listDeviceDefinitions: function(Client, types.ListDeviceDefinitionsInput, any): async.Operation<types.ListDeviceDefinitionsOutput>
-    listDeviceDefinitionVersions: function(Client, types.ListDeviceDefinitionVersionsInput, any): async.Operation<types.ListDeviceDefinitionVersionsOutput>
-    listFunctionDefinitions: function(Client, types.ListFunctionDefinitionsInput, any): async.Operation<types.ListFunctionDefinitionsOutput>
-    listFunctionDefinitionVersions: function(Client, types.ListFunctionDefinitionVersionsInput, any): async.Operation<types.ListFunctionDefinitionVersionsOutput>
-    listGroupCertificateAuthorities: function(Client, types.ListGroupCertificateAuthoritiesInput, any): async.Operation<types.ListGroupCertificateAuthoritiesOutput>
-    listGroups: function(Client, types.ListGroupsInput, any): async.Operation<types.ListGroupsOutput>
-    listGroupVersions: function(Client, types.ListGroupVersionsInput, any): async.Operation<types.ListGroupVersionsOutput>
-    listLoggerDefinitions: function(Client, types.ListLoggerDefinitionsInput, any): async.Operation<types.ListLoggerDefinitionsOutput>
-    listLoggerDefinitionVersions: function(Client, types.ListLoggerDefinitionVersionsInput, any): async.Operation<types.ListLoggerDefinitionVersionsOutput>
-    listResourceDefinitions: function(Client, types.ListResourceDefinitionsInput, any): async.Operation<types.ListResourceDefinitionsOutput>
-    listResourceDefinitionVersions: function(Client, types.ListResourceDefinitionVersionsInput, any): async.Operation<types.ListResourceDefinitionVersionsOutput>
-    listSubscriptionDefinitions: function(Client, types.ListSubscriptionDefinitionsInput, any): async.Operation<types.ListSubscriptionDefinitionsOutput>
-    listSubscriptionDefinitionVersions: function(Client, types.ListSubscriptionDefinitionVersionsInput, any): async.Operation<types.ListSubscriptionDefinitionVersionsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    resetDeployments: function(Client, types.ResetDeploymentsInput, any): async.Operation<types.ResetDeploymentsOutput>
-    startBulkDeployment: function(Client, types.StartBulkDeploymentInput, any): async.Operation<types.StartBulkDeploymentOutput>
-    stopBulkDeployment: function(Client, types.StopBulkDeploymentInput, any): async.Operation<types.StopBulkDeploymentOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateConnectivityInfo: function(Client, types.UpdateConnectivityInfoInput, any): async.Operation<types.UpdateConnectivityInfoOutput>
-    updateConnectorDefinition: function(Client, types.UpdateConnectorDefinitionInput, any): async.Operation<types.UpdateConnectorDefinitionOutput>
-    updateCoreDefinition: function(Client, types.UpdateCoreDefinitionInput, any): async.Operation<types.UpdateCoreDefinitionOutput>
-    updateDeviceDefinition: function(Client, types.UpdateDeviceDefinitionInput, any): async.Operation<types.UpdateDeviceDefinitionOutput>
-    updateFunctionDefinition: function(Client, types.UpdateFunctionDefinitionInput, any): async.Operation<types.UpdateFunctionDefinitionOutput>
-    updateGroup: function(Client, types.UpdateGroupInput, any): async.Operation<types.UpdateGroupOutput>
-    updateGroupCertificateConfiguration: function(Client, types.UpdateGroupCertificateConfigurationInput, any): async.Operation<types.UpdateGroupCertificateConfigurationOutput>
-    updateLoggerDefinition: function(Client, types.UpdateLoggerDefinitionInput, any): async.Operation<types.UpdateLoggerDefinitionOutput>
-    updateResourceDefinition: function(Client, types.UpdateResourceDefinitionInput, any): async.Operation<types.UpdateResourceDefinitionOutput>
-    updateSubscriptionDefinition: function(Client, types.UpdateSubscriptionDefinitionInput, any): async.Operation<types.UpdateSubscriptionDefinitionOutput>
-    updateThingRuntimeConfiguration: function(Client, types.UpdateThingRuntimeConfigurationInput, any): async.Operation<types.UpdateThingRuntimeConfigurationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateRoleToGroup: function(Client, types.AssociateRoleToGroupInput, ? base_client.InvokeOptions): async.Operation<types.AssociateRoleToGroupOutput>
+    associateServiceRoleToAccount: function(Client, types.AssociateServiceRoleToAccountInput, ? base_client.InvokeOptions): async.Operation<types.AssociateServiceRoleToAccountOutput>
+    createConnectorDefinition: function(Client, types.CreateConnectorDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.CreateConnectorDefinitionOutput>
+    createConnectorDefinitionVersion: function(Client, types.CreateConnectorDefinitionVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateConnectorDefinitionVersionOutput>
+    createCoreDefinition: function(Client, types.CreateCoreDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.CreateCoreDefinitionOutput>
+    createCoreDefinitionVersion: function(Client, types.CreateCoreDefinitionVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateCoreDefinitionVersionOutput>
+    createDeployment: function(Client, types.CreateDeploymentInput, ? base_client.InvokeOptions): async.Operation<types.CreateDeploymentOutput>
+    createDeviceDefinition: function(Client, types.CreateDeviceDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.CreateDeviceDefinitionOutput>
+    createDeviceDefinitionVersion: function(Client, types.CreateDeviceDefinitionVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateDeviceDefinitionVersionOutput>
+    createFunctionDefinition: function(Client, types.CreateFunctionDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.CreateFunctionDefinitionOutput>
+    createFunctionDefinitionVersion: function(Client, types.CreateFunctionDefinitionVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateFunctionDefinitionVersionOutput>
+    createGroup: function(Client, types.CreateGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateGroupOutput>
+    createGroupCertificateAuthority: function(Client, types.CreateGroupCertificateAuthorityInput, ? base_client.InvokeOptions): async.Operation<types.CreateGroupCertificateAuthorityOutput>
+    createGroupVersion: function(Client, types.CreateGroupVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateGroupVersionOutput>
+    createLoggerDefinition: function(Client, types.CreateLoggerDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.CreateLoggerDefinitionOutput>
+    createLoggerDefinitionVersion: function(Client, types.CreateLoggerDefinitionVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateLoggerDefinitionVersionOutput>
+    createResourceDefinition: function(Client, types.CreateResourceDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.CreateResourceDefinitionOutput>
+    createResourceDefinitionVersion: function(Client, types.CreateResourceDefinitionVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateResourceDefinitionVersionOutput>
+    createSoftwareUpdateJob: function(Client, types.CreateSoftwareUpdateJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateSoftwareUpdateJobOutput>
+    createSubscriptionDefinition: function(Client, types.CreateSubscriptionDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.CreateSubscriptionDefinitionOutput>
+    createSubscriptionDefinitionVersion: function(Client, types.CreateSubscriptionDefinitionVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateSubscriptionDefinitionVersionOutput>
+    deleteConnectorDefinition: function(Client, types.DeleteConnectorDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConnectorDefinitionOutput>
+    deleteCoreDefinition: function(Client, types.DeleteCoreDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCoreDefinitionOutput>
+    deleteDeviceDefinition: function(Client, types.DeleteDeviceDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDeviceDefinitionOutput>
+    deleteFunctionDefinition: function(Client, types.DeleteFunctionDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFunctionDefinitionOutput>
+    deleteGroup: function(Client, types.DeleteGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGroupOutput>
+    deleteLoggerDefinition: function(Client, types.DeleteLoggerDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLoggerDefinitionOutput>
+    deleteResourceDefinition: function(Client, types.DeleteResourceDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourceDefinitionOutput>
+    deleteSubscriptionDefinition: function(Client, types.DeleteSubscriptionDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSubscriptionDefinitionOutput>
+    disassociateRoleFromGroup: function(Client, types.DisassociateRoleFromGroupInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateRoleFromGroupOutput>
+    disassociateServiceRoleFromAccount: function(Client, types.DisassociateServiceRoleFromAccountInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateServiceRoleFromAccountOutput>
+    getAssociatedRole: function(Client, types.GetAssociatedRoleInput, ? base_client.InvokeOptions): async.Operation<types.GetAssociatedRoleOutput>
+    getBulkDeploymentStatus: function(Client, types.GetBulkDeploymentStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetBulkDeploymentStatusOutput>
+    getConnectivityInfo: function(Client, types.GetConnectivityInfoInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectivityInfoOutput>
+    getConnectorDefinition: function(Client, types.GetConnectorDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectorDefinitionOutput>
+    getConnectorDefinitionVersion: function(Client, types.GetConnectorDefinitionVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectorDefinitionVersionOutput>
+    getCoreDefinition: function(Client, types.GetCoreDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.GetCoreDefinitionOutput>
+    getCoreDefinitionVersion: function(Client, types.GetCoreDefinitionVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetCoreDefinitionVersionOutput>
+    getDeploymentStatus: function(Client, types.GetDeploymentStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetDeploymentStatusOutput>
+    getDeviceDefinition: function(Client, types.GetDeviceDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.GetDeviceDefinitionOutput>
+    getDeviceDefinitionVersion: function(Client, types.GetDeviceDefinitionVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetDeviceDefinitionVersionOutput>
+    getFunctionDefinition: function(Client, types.GetFunctionDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.GetFunctionDefinitionOutput>
+    getFunctionDefinitionVersion: function(Client, types.GetFunctionDefinitionVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetFunctionDefinitionVersionOutput>
+    getGroup: function(Client, types.GetGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetGroupOutput>
+    getGroupCertificateAuthority: function(Client, types.GetGroupCertificateAuthorityInput, ? base_client.InvokeOptions): async.Operation<types.GetGroupCertificateAuthorityOutput>
+    getGroupCertificateConfiguration: function(Client, types.GetGroupCertificateConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetGroupCertificateConfigurationOutput>
+    getGroupVersion: function(Client, types.GetGroupVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetGroupVersionOutput>
+    getLoggerDefinition: function(Client, types.GetLoggerDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.GetLoggerDefinitionOutput>
+    getLoggerDefinitionVersion: function(Client, types.GetLoggerDefinitionVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetLoggerDefinitionVersionOutput>
+    getResourceDefinition: function(Client, types.GetResourceDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.GetResourceDefinitionOutput>
+    getResourceDefinitionVersion: function(Client, types.GetResourceDefinitionVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetResourceDefinitionVersionOutput>
+    getServiceRoleForAccount: function(Client, types.GetServiceRoleForAccountInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceRoleForAccountOutput>
+    getSubscriptionDefinition: function(Client, types.GetSubscriptionDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.GetSubscriptionDefinitionOutput>
+    getSubscriptionDefinitionVersion: function(Client, types.GetSubscriptionDefinitionVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetSubscriptionDefinitionVersionOutput>
+    getThingRuntimeConfiguration: function(Client, types.GetThingRuntimeConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetThingRuntimeConfigurationOutput>
+    listBulkDeploymentDetailedReports: function(Client, types.ListBulkDeploymentDetailedReportsInput, ? base_client.InvokeOptions): async.Operation<types.ListBulkDeploymentDetailedReportsOutput>
+    listBulkDeployments: function(Client, types.ListBulkDeploymentsInput, ? base_client.InvokeOptions): async.Operation<types.ListBulkDeploymentsOutput>
+    listConnectorDefinitions: function(Client, types.ListConnectorDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectorDefinitionsOutput>
+    listConnectorDefinitionVersions: function(Client, types.ListConnectorDefinitionVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectorDefinitionVersionsOutput>
+    listCoreDefinitions: function(Client, types.ListCoreDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.ListCoreDefinitionsOutput>
+    listCoreDefinitionVersions: function(Client, types.ListCoreDefinitionVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListCoreDefinitionVersionsOutput>
+    listDeployments: function(Client, types.ListDeploymentsInput, ? base_client.InvokeOptions): async.Operation<types.ListDeploymentsOutput>
+    listDeviceDefinitions: function(Client, types.ListDeviceDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.ListDeviceDefinitionsOutput>
+    listDeviceDefinitionVersions: function(Client, types.ListDeviceDefinitionVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListDeviceDefinitionVersionsOutput>
+    listFunctionDefinitions: function(Client, types.ListFunctionDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.ListFunctionDefinitionsOutput>
+    listFunctionDefinitionVersions: function(Client, types.ListFunctionDefinitionVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListFunctionDefinitionVersionsOutput>
+    listGroupCertificateAuthorities: function(Client, types.ListGroupCertificateAuthoritiesInput, ? base_client.InvokeOptions): async.Operation<types.ListGroupCertificateAuthoritiesOutput>
+    listGroups: function(Client, types.ListGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListGroupsOutput>
+    listGroupVersions: function(Client, types.ListGroupVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListGroupVersionsOutput>
+    listLoggerDefinitions: function(Client, types.ListLoggerDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.ListLoggerDefinitionsOutput>
+    listLoggerDefinitionVersions: function(Client, types.ListLoggerDefinitionVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListLoggerDefinitionVersionsOutput>
+    listResourceDefinitions: function(Client, types.ListResourceDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceDefinitionsOutput>
+    listResourceDefinitionVersions: function(Client, types.ListResourceDefinitionVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceDefinitionVersionsOutput>
+    listSubscriptionDefinitions: function(Client, types.ListSubscriptionDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.ListSubscriptionDefinitionsOutput>
+    listSubscriptionDefinitionVersions: function(Client, types.ListSubscriptionDefinitionVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListSubscriptionDefinitionVersionsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    resetDeployments: function(Client, types.ResetDeploymentsInput, ? base_client.InvokeOptions): async.Operation<types.ResetDeploymentsOutput>
+    startBulkDeployment: function(Client, types.StartBulkDeploymentInput, ? base_client.InvokeOptions): async.Operation<types.StartBulkDeploymentOutput>
+    stopBulkDeployment: function(Client, types.StopBulkDeploymentInput, ? base_client.InvokeOptions): async.Operation<types.StopBulkDeploymentOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateConnectivityInfo: function(Client, types.UpdateConnectivityInfoInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConnectivityInfoOutput>
+    updateConnectorDefinition: function(Client, types.UpdateConnectorDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConnectorDefinitionOutput>
+    updateCoreDefinition: function(Client, types.UpdateCoreDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCoreDefinitionOutput>
+    updateDeviceDefinition: function(Client, types.UpdateDeviceDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDeviceDefinitionOutput>
+    updateFunctionDefinition: function(Client, types.UpdateFunctionDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFunctionDefinitionOutput>
+    updateGroup: function(Client, types.UpdateGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGroupOutput>
+    updateGroupCertificateConfiguration: function(Client, types.UpdateGroupCertificateConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGroupCertificateConfigurationOutput>
+    updateLoggerDefinition: function(Client, types.UpdateLoggerDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLoggerDefinitionOutput>
+    updateResourceDefinition: function(Client, types.UpdateResourceDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResourceDefinitionOutput>
+    updateSubscriptionDefinition: function(Client, types.UpdateSubscriptionDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSubscriptionDefinitionOutput>
+    updateThingRuntimeConfiguration: function(Client, types.UpdateThingRuntimeConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateThingRuntimeConfigurationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "Greengrass"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "greengrass", signing_region = c.region } }
                 else
@@ -151,372 +154,372 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateRoleToGroup(input: types.AssociateRoleToGroupInput, options: any): async.Operation<types.AssociateRoleToGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateRoleToGroup, input, options) as async.Operation<types.AssociateRoleToGroupOutput>
+function C:associateRoleToGroup(input: types.AssociateRoleToGroupInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateRoleToGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateRoleToGroup as schema.OperationSchema, input, options) as async.Operation<types.AssociateRoleToGroupOutput>
 end
 
-function C:associateServiceRoleToAccount(input: types.AssociateServiceRoleToAccountInput, options: any): async.Operation<types.AssociateServiceRoleToAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateServiceRoleToAccount, input, options) as async.Operation<types.AssociateServiceRoleToAccountOutput>
+function C:associateServiceRoleToAccount(input: types.AssociateServiceRoleToAccountInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateServiceRoleToAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateServiceRoleToAccount as schema.OperationSchema, input, options) as async.Operation<types.AssociateServiceRoleToAccountOutput>
 end
 
-function C:createConnectorDefinition(input: types.CreateConnectorDefinitionInput, options: any): async.Operation<types.CreateConnectorDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConnectorDefinition, input, options) as async.Operation<types.CreateConnectorDefinitionOutput>
+function C:createConnectorDefinition(input: types.CreateConnectorDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConnectorDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConnectorDefinition as schema.OperationSchema, input, options) as async.Operation<types.CreateConnectorDefinitionOutput>
 end
 
-function C:createConnectorDefinitionVersion(input: types.CreateConnectorDefinitionVersionInput, options: any): async.Operation<types.CreateConnectorDefinitionVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConnectorDefinitionVersion, input, options) as async.Operation<types.CreateConnectorDefinitionVersionOutput>
+function C:createConnectorDefinitionVersion(input: types.CreateConnectorDefinitionVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConnectorDefinitionVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConnectorDefinitionVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateConnectorDefinitionVersionOutput>
 end
 
-function C:createCoreDefinition(input: types.CreateCoreDefinitionInput, options: any): async.Operation<types.CreateCoreDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCoreDefinition, input, options) as async.Operation<types.CreateCoreDefinitionOutput>
+function C:createCoreDefinition(input: types.CreateCoreDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCoreDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCoreDefinition as schema.OperationSchema, input, options) as async.Operation<types.CreateCoreDefinitionOutput>
 end
 
-function C:createCoreDefinitionVersion(input: types.CreateCoreDefinitionVersionInput, options: any): async.Operation<types.CreateCoreDefinitionVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCoreDefinitionVersion, input, options) as async.Operation<types.CreateCoreDefinitionVersionOutput>
+function C:createCoreDefinitionVersion(input: types.CreateCoreDefinitionVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCoreDefinitionVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCoreDefinitionVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateCoreDefinitionVersionOutput>
 end
 
-function C:createDeployment(input: types.CreateDeploymentInput, options: any): async.Operation<types.CreateDeploymentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDeployment, input, options) as async.Operation<types.CreateDeploymentOutput>
+function C:createDeployment(input: types.CreateDeploymentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDeploymentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDeployment as schema.OperationSchema, input, options) as async.Operation<types.CreateDeploymentOutput>
 end
 
-function C:createDeviceDefinition(input: types.CreateDeviceDefinitionInput, options: any): async.Operation<types.CreateDeviceDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDeviceDefinition, input, options) as async.Operation<types.CreateDeviceDefinitionOutput>
+function C:createDeviceDefinition(input: types.CreateDeviceDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDeviceDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDeviceDefinition as schema.OperationSchema, input, options) as async.Operation<types.CreateDeviceDefinitionOutput>
 end
 
-function C:createDeviceDefinitionVersion(input: types.CreateDeviceDefinitionVersionInput, options: any): async.Operation<types.CreateDeviceDefinitionVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDeviceDefinitionVersion, input, options) as async.Operation<types.CreateDeviceDefinitionVersionOutput>
+function C:createDeviceDefinitionVersion(input: types.CreateDeviceDefinitionVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDeviceDefinitionVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDeviceDefinitionVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateDeviceDefinitionVersionOutput>
 end
 
-function C:createFunctionDefinition(input: types.CreateFunctionDefinitionInput, options: any): async.Operation<types.CreateFunctionDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFunctionDefinition, input, options) as async.Operation<types.CreateFunctionDefinitionOutput>
+function C:createFunctionDefinition(input: types.CreateFunctionDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFunctionDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFunctionDefinition as schema.OperationSchema, input, options) as async.Operation<types.CreateFunctionDefinitionOutput>
 end
 
-function C:createFunctionDefinitionVersion(input: types.CreateFunctionDefinitionVersionInput, options: any): async.Operation<types.CreateFunctionDefinitionVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFunctionDefinitionVersion, input, options) as async.Operation<types.CreateFunctionDefinitionVersionOutput>
+function C:createFunctionDefinitionVersion(input: types.CreateFunctionDefinitionVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFunctionDefinitionVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFunctionDefinitionVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateFunctionDefinitionVersionOutput>
 end
 
-function C:createGroup(input: types.CreateGroupInput, options: any): async.Operation<types.CreateGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateGroup, input, options) as async.Operation<types.CreateGroupOutput>
+function C:createGroup(input: types.CreateGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateGroupOutput>
 end
 
-function C:createGroupCertificateAuthority(input: types.CreateGroupCertificateAuthorityInput, options: any): async.Operation<types.CreateGroupCertificateAuthorityOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateGroupCertificateAuthority, input, options) as async.Operation<types.CreateGroupCertificateAuthorityOutput>
+function C:createGroupCertificateAuthority(input: types.CreateGroupCertificateAuthorityInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGroupCertificateAuthorityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGroupCertificateAuthority as schema.OperationSchema, input, options) as async.Operation<types.CreateGroupCertificateAuthorityOutput>
 end
 
-function C:createGroupVersion(input: types.CreateGroupVersionInput, options: any): async.Operation<types.CreateGroupVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateGroupVersion, input, options) as async.Operation<types.CreateGroupVersionOutput>
+function C:createGroupVersion(input: types.CreateGroupVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGroupVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGroupVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateGroupVersionOutput>
 end
 
-function C:createLoggerDefinition(input: types.CreateLoggerDefinitionInput, options: any): async.Operation<types.CreateLoggerDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLoggerDefinition, input, options) as async.Operation<types.CreateLoggerDefinitionOutput>
+function C:createLoggerDefinition(input: types.CreateLoggerDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLoggerDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLoggerDefinition as schema.OperationSchema, input, options) as async.Operation<types.CreateLoggerDefinitionOutput>
 end
 
-function C:createLoggerDefinitionVersion(input: types.CreateLoggerDefinitionVersionInput, options: any): async.Operation<types.CreateLoggerDefinitionVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLoggerDefinitionVersion, input, options) as async.Operation<types.CreateLoggerDefinitionVersionOutput>
+function C:createLoggerDefinitionVersion(input: types.CreateLoggerDefinitionVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLoggerDefinitionVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLoggerDefinitionVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateLoggerDefinitionVersionOutput>
 end
 
-function C:createResourceDefinition(input: types.CreateResourceDefinitionInput, options: any): async.Operation<types.CreateResourceDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateResourceDefinition, input, options) as async.Operation<types.CreateResourceDefinitionOutput>
+function C:createResourceDefinition(input: types.CreateResourceDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateResourceDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateResourceDefinition as schema.OperationSchema, input, options) as async.Operation<types.CreateResourceDefinitionOutput>
 end
 
-function C:createResourceDefinitionVersion(input: types.CreateResourceDefinitionVersionInput, options: any): async.Operation<types.CreateResourceDefinitionVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateResourceDefinitionVersion, input, options) as async.Operation<types.CreateResourceDefinitionVersionOutput>
+function C:createResourceDefinitionVersion(input: types.CreateResourceDefinitionVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateResourceDefinitionVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateResourceDefinitionVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateResourceDefinitionVersionOutput>
 end
 
-function C:createSoftwareUpdateJob(input: types.CreateSoftwareUpdateJobInput, options: any): async.Operation<types.CreateSoftwareUpdateJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSoftwareUpdateJob, input, options) as async.Operation<types.CreateSoftwareUpdateJobOutput>
+function C:createSoftwareUpdateJob(input: types.CreateSoftwareUpdateJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSoftwareUpdateJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSoftwareUpdateJob as schema.OperationSchema, input, options) as async.Operation<types.CreateSoftwareUpdateJobOutput>
 end
 
-function C:createSubscriptionDefinition(input: types.CreateSubscriptionDefinitionInput, options: any): async.Operation<types.CreateSubscriptionDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSubscriptionDefinition, input, options) as async.Operation<types.CreateSubscriptionDefinitionOutput>
+function C:createSubscriptionDefinition(input: types.CreateSubscriptionDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSubscriptionDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSubscriptionDefinition as schema.OperationSchema, input, options) as async.Operation<types.CreateSubscriptionDefinitionOutput>
 end
 
-function C:createSubscriptionDefinitionVersion(input: types.CreateSubscriptionDefinitionVersionInput, options: any): async.Operation<types.CreateSubscriptionDefinitionVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSubscriptionDefinitionVersion, input, options) as async.Operation<types.CreateSubscriptionDefinitionVersionOutput>
+function C:createSubscriptionDefinitionVersion(input: types.CreateSubscriptionDefinitionVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSubscriptionDefinitionVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSubscriptionDefinitionVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateSubscriptionDefinitionVersionOutput>
 end
 
-function C:deleteConnectorDefinition(input: types.DeleteConnectorDefinitionInput, options: any): async.Operation<types.DeleteConnectorDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConnectorDefinition, input, options) as async.Operation<types.DeleteConnectorDefinitionOutput>
+function C:deleteConnectorDefinition(input: types.DeleteConnectorDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConnectorDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConnectorDefinition as schema.OperationSchema, input, options) as async.Operation<types.DeleteConnectorDefinitionOutput>
 end
 
-function C:deleteCoreDefinition(input: types.DeleteCoreDefinitionInput, options: any): async.Operation<types.DeleteCoreDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCoreDefinition, input, options) as async.Operation<types.DeleteCoreDefinitionOutput>
+function C:deleteCoreDefinition(input: types.DeleteCoreDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCoreDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCoreDefinition as schema.OperationSchema, input, options) as async.Operation<types.DeleteCoreDefinitionOutput>
 end
 
-function C:deleteDeviceDefinition(input: types.DeleteDeviceDefinitionInput, options: any): async.Operation<types.DeleteDeviceDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDeviceDefinition, input, options) as async.Operation<types.DeleteDeviceDefinitionOutput>
+function C:deleteDeviceDefinition(input: types.DeleteDeviceDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDeviceDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDeviceDefinition as schema.OperationSchema, input, options) as async.Operation<types.DeleteDeviceDefinitionOutput>
 end
 
-function C:deleteFunctionDefinition(input: types.DeleteFunctionDefinitionInput, options: any): async.Operation<types.DeleteFunctionDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFunctionDefinition, input, options) as async.Operation<types.DeleteFunctionDefinitionOutput>
+function C:deleteFunctionDefinition(input: types.DeleteFunctionDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFunctionDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFunctionDefinition as schema.OperationSchema, input, options) as async.Operation<types.DeleteFunctionDefinitionOutput>
 end
 
-function C:deleteGroup(input: types.DeleteGroupInput, options: any): async.Operation<types.DeleteGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteGroup, input, options) as async.Operation<types.DeleteGroupOutput>
+function C:deleteGroup(input: types.DeleteGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteGroupOutput>
 end
 
-function C:deleteLoggerDefinition(input: types.DeleteLoggerDefinitionInput, options: any): async.Operation<types.DeleteLoggerDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLoggerDefinition, input, options) as async.Operation<types.DeleteLoggerDefinitionOutput>
+function C:deleteLoggerDefinition(input: types.DeleteLoggerDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLoggerDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLoggerDefinition as schema.OperationSchema, input, options) as async.Operation<types.DeleteLoggerDefinitionOutput>
 end
 
-function C:deleteResourceDefinition(input: types.DeleteResourceDefinitionInput, options: any): async.Operation<types.DeleteResourceDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourceDefinition, input, options) as async.Operation<types.DeleteResourceDefinitionOutput>
+function C:deleteResourceDefinition(input: types.DeleteResourceDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourceDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourceDefinition as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourceDefinitionOutput>
 end
 
-function C:deleteSubscriptionDefinition(input: types.DeleteSubscriptionDefinitionInput, options: any): async.Operation<types.DeleteSubscriptionDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSubscriptionDefinition, input, options) as async.Operation<types.DeleteSubscriptionDefinitionOutput>
+function C:deleteSubscriptionDefinition(input: types.DeleteSubscriptionDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSubscriptionDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSubscriptionDefinition as schema.OperationSchema, input, options) as async.Operation<types.DeleteSubscriptionDefinitionOutput>
 end
 
-function C:disassociateRoleFromGroup(input: types.DisassociateRoleFromGroupInput, options: any): async.Operation<types.DisassociateRoleFromGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateRoleFromGroup, input, options) as async.Operation<types.DisassociateRoleFromGroupOutput>
+function C:disassociateRoleFromGroup(input: types.DisassociateRoleFromGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateRoleFromGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateRoleFromGroup as schema.OperationSchema, input, options) as async.Operation<types.DisassociateRoleFromGroupOutput>
 end
 
-function C:disassociateServiceRoleFromAccount(input: types.DisassociateServiceRoleFromAccountInput, options: any): async.Operation<types.DisassociateServiceRoleFromAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateServiceRoleFromAccount, input, options) as async.Operation<types.DisassociateServiceRoleFromAccountOutput>
+function C:disassociateServiceRoleFromAccount(input: types.DisassociateServiceRoleFromAccountInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateServiceRoleFromAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateServiceRoleFromAccount as schema.OperationSchema, input, options) as async.Operation<types.DisassociateServiceRoleFromAccountOutput>
 end
 
-function C:getAssociatedRole(input: types.GetAssociatedRoleInput, options: any): async.Operation<types.GetAssociatedRoleOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAssociatedRole, input, options) as async.Operation<types.GetAssociatedRoleOutput>
+function C:getAssociatedRole(input: types.GetAssociatedRoleInput, options?: base_client.InvokeOptions): async.Operation<types.GetAssociatedRoleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAssociatedRole as schema.OperationSchema, input, options) as async.Operation<types.GetAssociatedRoleOutput>
 end
 
-function C:getBulkDeploymentStatus(input: types.GetBulkDeploymentStatusInput, options: any): async.Operation<types.GetBulkDeploymentStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBulkDeploymentStatus, input, options) as async.Operation<types.GetBulkDeploymentStatusOutput>
+function C:getBulkDeploymentStatus(input: types.GetBulkDeploymentStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetBulkDeploymentStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBulkDeploymentStatus as schema.OperationSchema, input, options) as async.Operation<types.GetBulkDeploymentStatusOutput>
 end
 
-function C:getConnectivityInfo(input: types.GetConnectivityInfoInput, options: any): async.Operation<types.GetConnectivityInfoOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConnectivityInfo, input, options) as async.Operation<types.GetConnectivityInfoOutput>
+function C:getConnectivityInfo(input: types.GetConnectivityInfoInput, options?: base_client.InvokeOptions): async.Operation<types.GetConnectivityInfoOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConnectivityInfo as schema.OperationSchema, input, options) as async.Operation<types.GetConnectivityInfoOutput>
 end
 
-function C:getConnectorDefinition(input: types.GetConnectorDefinitionInput, options: any): async.Operation<types.GetConnectorDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConnectorDefinition, input, options) as async.Operation<types.GetConnectorDefinitionOutput>
+function C:getConnectorDefinition(input: types.GetConnectorDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.GetConnectorDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConnectorDefinition as schema.OperationSchema, input, options) as async.Operation<types.GetConnectorDefinitionOutput>
 end
 
-function C:getConnectorDefinitionVersion(input: types.GetConnectorDefinitionVersionInput, options: any): async.Operation<types.GetConnectorDefinitionVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConnectorDefinitionVersion, input, options) as async.Operation<types.GetConnectorDefinitionVersionOutput>
+function C:getConnectorDefinitionVersion(input: types.GetConnectorDefinitionVersionInput, options?: base_client.InvokeOptions): async.Operation<types.GetConnectorDefinitionVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConnectorDefinitionVersion as schema.OperationSchema, input, options) as async.Operation<types.GetConnectorDefinitionVersionOutput>
 end
 
-function C:getCoreDefinition(input: types.GetCoreDefinitionInput, options: any): async.Operation<types.GetCoreDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCoreDefinition, input, options) as async.Operation<types.GetCoreDefinitionOutput>
+function C:getCoreDefinition(input: types.GetCoreDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.GetCoreDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCoreDefinition as schema.OperationSchema, input, options) as async.Operation<types.GetCoreDefinitionOutput>
 end
 
-function C:getCoreDefinitionVersion(input: types.GetCoreDefinitionVersionInput, options: any): async.Operation<types.GetCoreDefinitionVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCoreDefinitionVersion, input, options) as async.Operation<types.GetCoreDefinitionVersionOutput>
+function C:getCoreDefinitionVersion(input: types.GetCoreDefinitionVersionInput, options?: base_client.InvokeOptions): async.Operation<types.GetCoreDefinitionVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCoreDefinitionVersion as schema.OperationSchema, input, options) as async.Operation<types.GetCoreDefinitionVersionOutput>
 end
 
-function C:getDeploymentStatus(input: types.GetDeploymentStatusInput, options: any): async.Operation<types.GetDeploymentStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDeploymentStatus, input, options) as async.Operation<types.GetDeploymentStatusOutput>
+function C:getDeploymentStatus(input: types.GetDeploymentStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetDeploymentStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDeploymentStatus as schema.OperationSchema, input, options) as async.Operation<types.GetDeploymentStatusOutput>
 end
 
-function C:getDeviceDefinition(input: types.GetDeviceDefinitionInput, options: any): async.Operation<types.GetDeviceDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDeviceDefinition, input, options) as async.Operation<types.GetDeviceDefinitionOutput>
+function C:getDeviceDefinition(input: types.GetDeviceDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.GetDeviceDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDeviceDefinition as schema.OperationSchema, input, options) as async.Operation<types.GetDeviceDefinitionOutput>
 end
 
-function C:getDeviceDefinitionVersion(input: types.GetDeviceDefinitionVersionInput, options: any): async.Operation<types.GetDeviceDefinitionVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDeviceDefinitionVersion, input, options) as async.Operation<types.GetDeviceDefinitionVersionOutput>
+function C:getDeviceDefinitionVersion(input: types.GetDeviceDefinitionVersionInput, options?: base_client.InvokeOptions): async.Operation<types.GetDeviceDefinitionVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDeviceDefinitionVersion as schema.OperationSchema, input, options) as async.Operation<types.GetDeviceDefinitionVersionOutput>
 end
 
-function C:getFunctionDefinition(input: types.GetFunctionDefinitionInput, options: any): async.Operation<types.GetFunctionDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFunctionDefinition, input, options) as async.Operation<types.GetFunctionDefinitionOutput>
+function C:getFunctionDefinition(input: types.GetFunctionDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.GetFunctionDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFunctionDefinition as schema.OperationSchema, input, options) as async.Operation<types.GetFunctionDefinitionOutput>
 end
 
-function C:getFunctionDefinitionVersion(input: types.GetFunctionDefinitionVersionInput, options: any): async.Operation<types.GetFunctionDefinitionVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFunctionDefinitionVersion, input, options) as async.Operation<types.GetFunctionDefinitionVersionOutput>
+function C:getFunctionDefinitionVersion(input: types.GetFunctionDefinitionVersionInput, options?: base_client.InvokeOptions): async.Operation<types.GetFunctionDefinitionVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFunctionDefinitionVersion as schema.OperationSchema, input, options) as async.Operation<types.GetFunctionDefinitionVersionOutput>
 end
 
-function C:getGroup(input: types.GetGroupInput, options: any): async.Operation<types.GetGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetGroup, input, options) as async.Operation<types.GetGroupOutput>
+function C:getGroup(input: types.GetGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGroup as schema.OperationSchema, input, options) as async.Operation<types.GetGroupOutput>
 end
 
-function C:getGroupCertificateAuthority(input: types.GetGroupCertificateAuthorityInput, options: any): async.Operation<types.GetGroupCertificateAuthorityOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetGroupCertificateAuthority, input, options) as async.Operation<types.GetGroupCertificateAuthorityOutput>
+function C:getGroupCertificateAuthority(input: types.GetGroupCertificateAuthorityInput, options?: base_client.InvokeOptions): async.Operation<types.GetGroupCertificateAuthorityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGroupCertificateAuthority as schema.OperationSchema, input, options) as async.Operation<types.GetGroupCertificateAuthorityOutput>
 end
 
-function C:getGroupCertificateConfiguration(input: types.GetGroupCertificateConfigurationInput, options: any): async.Operation<types.GetGroupCertificateConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetGroupCertificateConfiguration, input, options) as async.Operation<types.GetGroupCertificateConfigurationOutput>
+function C:getGroupCertificateConfiguration(input: types.GetGroupCertificateConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetGroupCertificateConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGroupCertificateConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetGroupCertificateConfigurationOutput>
 end
 
-function C:getGroupVersion(input: types.GetGroupVersionInput, options: any): async.Operation<types.GetGroupVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetGroupVersion, input, options) as async.Operation<types.GetGroupVersionOutput>
+function C:getGroupVersion(input: types.GetGroupVersionInput, options?: base_client.InvokeOptions): async.Operation<types.GetGroupVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGroupVersion as schema.OperationSchema, input, options) as async.Operation<types.GetGroupVersionOutput>
 end
 
-function C:getLoggerDefinition(input: types.GetLoggerDefinitionInput, options: any): async.Operation<types.GetLoggerDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLoggerDefinition, input, options) as async.Operation<types.GetLoggerDefinitionOutput>
+function C:getLoggerDefinition(input: types.GetLoggerDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.GetLoggerDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLoggerDefinition as schema.OperationSchema, input, options) as async.Operation<types.GetLoggerDefinitionOutput>
 end
 
-function C:getLoggerDefinitionVersion(input: types.GetLoggerDefinitionVersionInput, options: any): async.Operation<types.GetLoggerDefinitionVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLoggerDefinitionVersion, input, options) as async.Operation<types.GetLoggerDefinitionVersionOutput>
+function C:getLoggerDefinitionVersion(input: types.GetLoggerDefinitionVersionInput, options?: base_client.InvokeOptions): async.Operation<types.GetLoggerDefinitionVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLoggerDefinitionVersion as schema.OperationSchema, input, options) as async.Operation<types.GetLoggerDefinitionVersionOutput>
 end
 
-function C:getResourceDefinition(input: types.GetResourceDefinitionInput, options: any): async.Operation<types.GetResourceDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourceDefinition, input, options) as async.Operation<types.GetResourceDefinitionOutput>
+function C:getResourceDefinition(input: types.GetResourceDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourceDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourceDefinition as schema.OperationSchema, input, options) as async.Operation<types.GetResourceDefinitionOutput>
 end
 
-function C:getResourceDefinitionVersion(input: types.GetResourceDefinitionVersionInput, options: any): async.Operation<types.GetResourceDefinitionVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourceDefinitionVersion, input, options) as async.Operation<types.GetResourceDefinitionVersionOutput>
+function C:getResourceDefinitionVersion(input: types.GetResourceDefinitionVersionInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourceDefinitionVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourceDefinitionVersion as schema.OperationSchema, input, options) as async.Operation<types.GetResourceDefinitionVersionOutput>
 end
 
-function C:getServiceRoleForAccount(input: types.GetServiceRoleForAccountInput, options: any): async.Operation<types.GetServiceRoleForAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetServiceRoleForAccount, input, options) as async.Operation<types.GetServiceRoleForAccountOutput>
+function C:getServiceRoleForAccount(input: types.GetServiceRoleForAccountInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceRoleForAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetServiceRoleForAccount as schema.OperationSchema, input, options) as async.Operation<types.GetServiceRoleForAccountOutput>
 end
 
-function C:getSubscriptionDefinition(input: types.GetSubscriptionDefinitionInput, options: any): async.Operation<types.GetSubscriptionDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSubscriptionDefinition, input, options) as async.Operation<types.GetSubscriptionDefinitionOutput>
+function C:getSubscriptionDefinition(input: types.GetSubscriptionDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.GetSubscriptionDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSubscriptionDefinition as schema.OperationSchema, input, options) as async.Operation<types.GetSubscriptionDefinitionOutput>
 end
 
-function C:getSubscriptionDefinitionVersion(input: types.GetSubscriptionDefinitionVersionInput, options: any): async.Operation<types.GetSubscriptionDefinitionVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSubscriptionDefinitionVersion, input, options) as async.Operation<types.GetSubscriptionDefinitionVersionOutput>
+function C:getSubscriptionDefinitionVersion(input: types.GetSubscriptionDefinitionVersionInput, options?: base_client.InvokeOptions): async.Operation<types.GetSubscriptionDefinitionVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSubscriptionDefinitionVersion as schema.OperationSchema, input, options) as async.Operation<types.GetSubscriptionDefinitionVersionOutput>
 end
 
-function C:getThingRuntimeConfiguration(input: types.GetThingRuntimeConfigurationInput, options: any): async.Operation<types.GetThingRuntimeConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetThingRuntimeConfiguration, input, options) as async.Operation<types.GetThingRuntimeConfigurationOutput>
+function C:getThingRuntimeConfiguration(input: types.GetThingRuntimeConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetThingRuntimeConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetThingRuntimeConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetThingRuntimeConfigurationOutput>
 end
 
-function C:listBulkDeploymentDetailedReports(input: types.ListBulkDeploymentDetailedReportsInput, options: any): async.Operation<types.ListBulkDeploymentDetailedReportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBulkDeploymentDetailedReports, input, options) as async.Operation<types.ListBulkDeploymentDetailedReportsOutput>
+function C:listBulkDeploymentDetailedReports(input: types.ListBulkDeploymentDetailedReportsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBulkDeploymentDetailedReportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBulkDeploymentDetailedReports as schema.OperationSchema, input, options) as async.Operation<types.ListBulkDeploymentDetailedReportsOutput>
 end
 
-function C:listBulkDeployments(input: types.ListBulkDeploymentsInput, options: any): async.Operation<types.ListBulkDeploymentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBulkDeployments, input, options) as async.Operation<types.ListBulkDeploymentsOutput>
+function C:listBulkDeployments(input: types.ListBulkDeploymentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBulkDeploymentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBulkDeployments as schema.OperationSchema, input, options) as async.Operation<types.ListBulkDeploymentsOutput>
 end
 
-function C:listConnectorDefinitions(input: types.ListConnectorDefinitionsInput, options: any): async.Operation<types.ListConnectorDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConnectorDefinitions, input, options) as async.Operation<types.ListConnectorDefinitionsOutput>
+function C:listConnectorDefinitions(input: types.ListConnectorDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConnectorDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConnectorDefinitions as schema.OperationSchema, input, options) as async.Operation<types.ListConnectorDefinitionsOutput>
 end
 
-function C:listConnectorDefinitionVersions(input: types.ListConnectorDefinitionVersionsInput, options: any): async.Operation<types.ListConnectorDefinitionVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConnectorDefinitionVersions, input, options) as async.Operation<types.ListConnectorDefinitionVersionsOutput>
+function C:listConnectorDefinitionVersions(input: types.ListConnectorDefinitionVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConnectorDefinitionVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConnectorDefinitionVersions as schema.OperationSchema, input, options) as async.Operation<types.ListConnectorDefinitionVersionsOutput>
 end
 
-function C:listCoreDefinitions(input: types.ListCoreDefinitionsInput, options: any): async.Operation<types.ListCoreDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCoreDefinitions, input, options) as async.Operation<types.ListCoreDefinitionsOutput>
+function C:listCoreDefinitions(input: types.ListCoreDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCoreDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCoreDefinitions as schema.OperationSchema, input, options) as async.Operation<types.ListCoreDefinitionsOutput>
 end
 
-function C:listCoreDefinitionVersions(input: types.ListCoreDefinitionVersionsInput, options: any): async.Operation<types.ListCoreDefinitionVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCoreDefinitionVersions, input, options) as async.Operation<types.ListCoreDefinitionVersionsOutput>
+function C:listCoreDefinitionVersions(input: types.ListCoreDefinitionVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCoreDefinitionVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCoreDefinitionVersions as schema.OperationSchema, input, options) as async.Operation<types.ListCoreDefinitionVersionsOutput>
 end
 
-function C:listDeployments(input: types.ListDeploymentsInput, options: any): async.Operation<types.ListDeploymentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDeployments, input, options) as async.Operation<types.ListDeploymentsOutput>
+function C:listDeployments(input: types.ListDeploymentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDeploymentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDeployments as schema.OperationSchema, input, options) as async.Operation<types.ListDeploymentsOutput>
 end
 
-function C:listDeviceDefinitions(input: types.ListDeviceDefinitionsInput, options: any): async.Operation<types.ListDeviceDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDeviceDefinitions, input, options) as async.Operation<types.ListDeviceDefinitionsOutput>
+function C:listDeviceDefinitions(input: types.ListDeviceDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDeviceDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDeviceDefinitions as schema.OperationSchema, input, options) as async.Operation<types.ListDeviceDefinitionsOutput>
 end
 
-function C:listDeviceDefinitionVersions(input: types.ListDeviceDefinitionVersionsInput, options: any): async.Operation<types.ListDeviceDefinitionVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDeviceDefinitionVersions, input, options) as async.Operation<types.ListDeviceDefinitionVersionsOutput>
+function C:listDeviceDefinitionVersions(input: types.ListDeviceDefinitionVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDeviceDefinitionVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDeviceDefinitionVersions as schema.OperationSchema, input, options) as async.Operation<types.ListDeviceDefinitionVersionsOutput>
 end
 
-function C:listFunctionDefinitions(input: types.ListFunctionDefinitionsInput, options: any): async.Operation<types.ListFunctionDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFunctionDefinitions, input, options) as async.Operation<types.ListFunctionDefinitionsOutput>
+function C:listFunctionDefinitions(input: types.ListFunctionDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFunctionDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFunctionDefinitions as schema.OperationSchema, input, options) as async.Operation<types.ListFunctionDefinitionsOutput>
 end
 
-function C:listFunctionDefinitionVersions(input: types.ListFunctionDefinitionVersionsInput, options: any): async.Operation<types.ListFunctionDefinitionVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFunctionDefinitionVersions, input, options) as async.Operation<types.ListFunctionDefinitionVersionsOutput>
+function C:listFunctionDefinitionVersions(input: types.ListFunctionDefinitionVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFunctionDefinitionVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFunctionDefinitionVersions as schema.OperationSchema, input, options) as async.Operation<types.ListFunctionDefinitionVersionsOutput>
 end
 
-function C:listGroupCertificateAuthorities(input: types.ListGroupCertificateAuthoritiesInput, options: any): async.Operation<types.ListGroupCertificateAuthoritiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGroupCertificateAuthorities, input, options) as async.Operation<types.ListGroupCertificateAuthoritiesOutput>
+function C:listGroupCertificateAuthorities(input: types.ListGroupCertificateAuthoritiesInput, options?: base_client.InvokeOptions): async.Operation<types.ListGroupCertificateAuthoritiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGroupCertificateAuthorities as schema.OperationSchema, input, options) as async.Operation<types.ListGroupCertificateAuthoritiesOutput>
 end
 
-function C:listGroups(input: types.ListGroupsInput, options: any): async.Operation<types.ListGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGroups, input, options) as async.Operation<types.ListGroupsOutput>
+function C:listGroups(input: types.ListGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGroups as schema.OperationSchema, input, options) as async.Operation<types.ListGroupsOutput>
 end
 
-function C:listGroupVersions(input: types.ListGroupVersionsInput, options: any): async.Operation<types.ListGroupVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGroupVersions, input, options) as async.Operation<types.ListGroupVersionsOutput>
+function C:listGroupVersions(input: types.ListGroupVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListGroupVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGroupVersions as schema.OperationSchema, input, options) as async.Operation<types.ListGroupVersionsOutput>
 end
 
-function C:listLoggerDefinitions(input: types.ListLoggerDefinitionsInput, options: any): async.Operation<types.ListLoggerDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLoggerDefinitions, input, options) as async.Operation<types.ListLoggerDefinitionsOutput>
+function C:listLoggerDefinitions(input: types.ListLoggerDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLoggerDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLoggerDefinitions as schema.OperationSchema, input, options) as async.Operation<types.ListLoggerDefinitionsOutput>
 end
 
-function C:listLoggerDefinitionVersions(input: types.ListLoggerDefinitionVersionsInput, options: any): async.Operation<types.ListLoggerDefinitionVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLoggerDefinitionVersions, input, options) as async.Operation<types.ListLoggerDefinitionVersionsOutput>
+function C:listLoggerDefinitionVersions(input: types.ListLoggerDefinitionVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLoggerDefinitionVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLoggerDefinitionVersions as schema.OperationSchema, input, options) as async.Operation<types.ListLoggerDefinitionVersionsOutput>
 end
 
-function C:listResourceDefinitions(input: types.ListResourceDefinitionsInput, options: any): async.Operation<types.ListResourceDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResourceDefinitions, input, options) as async.Operation<types.ListResourceDefinitionsOutput>
+function C:listResourceDefinitions(input: types.ListResourceDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourceDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourceDefinitions as schema.OperationSchema, input, options) as async.Operation<types.ListResourceDefinitionsOutput>
 end
 
-function C:listResourceDefinitionVersions(input: types.ListResourceDefinitionVersionsInput, options: any): async.Operation<types.ListResourceDefinitionVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResourceDefinitionVersions, input, options) as async.Operation<types.ListResourceDefinitionVersionsOutput>
+function C:listResourceDefinitionVersions(input: types.ListResourceDefinitionVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourceDefinitionVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourceDefinitionVersions as schema.OperationSchema, input, options) as async.Operation<types.ListResourceDefinitionVersionsOutput>
 end
 
-function C:listSubscriptionDefinitions(input: types.ListSubscriptionDefinitionsInput, options: any): async.Operation<types.ListSubscriptionDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSubscriptionDefinitions, input, options) as async.Operation<types.ListSubscriptionDefinitionsOutput>
+function C:listSubscriptionDefinitions(input: types.ListSubscriptionDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSubscriptionDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSubscriptionDefinitions as schema.OperationSchema, input, options) as async.Operation<types.ListSubscriptionDefinitionsOutput>
 end
 
-function C:listSubscriptionDefinitionVersions(input: types.ListSubscriptionDefinitionVersionsInput, options: any): async.Operation<types.ListSubscriptionDefinitionVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSubscriptionDefinitionVersions, input, options) as async.Operation<types.ListSubscriptionDefinitionVersionsOutput>
+function C:listSubscriptionDefinitionVersions(input: types.ListSubscriptionDefinitionVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSubscriptionDefinitionVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSubscriptionDefinitionVersions as schema.OperationSchema, input, options) as async.Operation<types.ListSubscriptionDefinitionVersionsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:resetDeployments(input: types.ResetDeploymentsInput, options: any): async.Operation<types.ResetDeploymentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResetDeployments, input, options) as async.Operation<types.ResetDeploymentsOutput>
+function C:resetDeployments(input: types.ResetDeploymentsInput, options?: base_client.InvokeOptions): async.Operation<types.ResetDeploymentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResetDeployments as schema.OperationSchema, input, options) as async.Operation<types.ResetDeploymentsOutput>
 end
 
-function C:startBulkDeployment(input: types.StartBulkDeploymentInput, options: any): async.Operation<types.StartBulkDeploymentOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartBulkDeployment, input, options) as async.Operation<types.StartBulkDeploymentOutput>
+function C:startBulkDeployment(input: types.StartBulkDeploymentInput, options?: base_client.InvokeOptions): async.Operation<types.StartBulkDeploymentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartBulkDeployment as schema.OperationSchema, input, options) as async.Operation<types.StartBulkDeploymentOutput>
 end
 
-function C:stopBulkDeployment(input: types.StopBulkDeploymentInput, options: any): async.Operation<types.StopBulkDeploymentOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopBulkDeployment, input, options) as async.Operation<types.StopBulkDeploymentOutput>
+function C:stopBulkDeployment(input: types.StopBulkDeploymentInput, options?: base_client.InvokeOptions): async.Operation<types.StopBulkDeploymentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopBulkDeployment as schema.OperationSchema, input, options) as async.Operation<types.StopBulkDeploymentOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateConnectivityInfo(input: types.UpdateConnectivityInfoInput, options: any): async.Operation<types.UpdateConnectivityInfoOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConnectivityInfo, input, options) as async.Operation<types.UpdateConnectivityInfoOutput>
+function C:updateConnectivityInfo(input: types.UpdateConnectivityInfoInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConnectivityInfoOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConnectivityInfo as schema.OperationSchema, input, options) as async.Operation<types.UpdateConnectivityInfoOutput>
 end
 
-function C:updateConnectorDefinition(input: types.UpdateConnectorDefinitionInput, options: any): async.Operation<types.UpdateConnectorDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConnectorDefinition, input, options) as async.Operation<types.UpdateConnectorDefinitionOutput>
+function C:updateConnectorDefinition(input: types.UpdateConnectorDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConnectorDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConnectorDefinition as schema.OperationSchema, input, options) as async.Operation<types.UpdateConnectorDefinitionOutput>
 end
 
-function C:updateCoreDefinition(input: types.UpdateCoreDefinitionInput, options: any): async.Operation<types.UpdateCoreDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCoreDefinition, input, options) as async.Operation<types.UpdateCoreDefinitionOutput>
+function C:updateCoreDefinition(input: types.UpdateCoreDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCoreDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCoreDefinition as schema.OperationSchema, input, options) as async.Operation<types.UpdateCoreDefinitionOutput>
 end
 
-function C:updateDeviceDefinition(input: types.UpdateDeviceDefinitionInput, options: any): async.Operation<types.UpdateDeviceDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDeviceDefinition, input, options) as async.Operation<types.UpdateDeviceDefinitionOutput>
+function C:updateDeviceDefinition(input: types.UpdateDeviceDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDeviceDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDeviceDefinition as schema.OperationSchema, input, options) as async.Operation<types.UpdateDeviceDefinitionOutput>
 end
 
-function C:updateFunctionDefinition(input: types.UpdateFunctionDefinitionInput, options: any): async.Operation<types.UpdateFunctionDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFunctionDefinition, input, options) as async.Operation<types.UpdateFunctionDefinitionOutput>
+function C:updateFunctionDefinition(input: types.UpdateFunctionDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFunctionDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFunctionDefinition as schema.OperationSchema, input, options) as async.Operation<types.UpdateFunctionDefinitionOutput>
 end
 
-function C:updateGroup(input: types.UpdateGroupInput, options: any): async.Operation<types.UpdateGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateGroup, input, options) as async.Operation<types.UpdateGroupOutput>
+function C:updateGroup(input: types.UpdateGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateGroupOutput>
 end
 
-function C:updateGroupCertificateConfiguration(input: types.UpdateGroupCertificateConfigurationInput, options: any): async.Operation<types.UpdateGroupCertificateConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateGroupCertificateConfiguration, input, options) as async.Operation<types.UpdateGroupCertificateConfigurationOutput>
+function C:updateGroupCertificateConfiguration(input: types.UpdateGroupCertificateConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGroupCertificateConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGroupCertificateConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateGroupCertificateConfigurationOutput>
 end
 
-function C:updateLoggerDefinition(input: types.UpdateLoggerDefinitionInput, options: any): async.Operation<types.UpdateLoggerDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLoggerDefinition, input, options) as async.Operation<types.UpdateLoggerDefinitionOutput>
+function C:updateLoggerDefinition(input: types.UpdateLoggerDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLoggerDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLoggerDefinition as schema.OperationSchema, input, options) as async.Operation<types.UpdateLoggerDefinitionOutput>
 end
 
-function C:updateResourceDefinition(input: types.UpdateResourceDefinitionInput, options: any): async.Operation<types.UpdateResourceDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateResourceDefinition, input, options) as async.Operation<types.UpdateResourceDefinitionOutput>
+function C:updateResourceDefinition(input: types.UpdateResourceDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateResourceDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateResourceDefinition as schema.OperationSchema, input, options) as async.Operation<types.UpdateResourceDefinitionOutput>
 end
 
-function C:updateSubscriptionDefinition(input: types.UpdateSubscriptionDefinitionInput, options: any): async.Operation<types.UpdateSubscriptionDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSubscriptionDefinition, input, options) as async.Operation<types.UpdateSubscriptionDefinitionOutput>
+function C:updateSubscriptionDefinition(input: types.UpdateSubscriptionDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSubscriptionDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSubscriptionDefinition as schema.OperationSchema, input, options) as async.Operation<types.UpdateSubscriptionDefinitionOutput>
 end
 
-function C:updateThingRuntimeConfiguration(input: types.UpdateThingRuntimeConfigurationInput, options: any): async.Operation<types.UpdateThingRuntimeConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateThingRuntimeConfiguration, input, options) as async.Operation<types.UpdateThingRuntimeConfigurationOutput>
+function C:updateThingRuntimeConfiguration(input: types.UpdateThingRuntimeConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateThingRuntimeConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateThingRuntimeConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateThingRuntimeConfigurationOutput>
 end
 
 return M

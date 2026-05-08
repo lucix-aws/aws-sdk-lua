@@ -8,49 +8,52 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("bedrockruntime.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("bedrockruntime.schemas")
 local traits = require("smithy.traits")
 local types = require("bedrockruntime.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    applyGuardrail: function(Client, types.ApplyGuardrailInput, any): async.Operation<types.ApplyGuardrailOutput>
-    converse: function(Client, types.ConverseInput, any): async.Operation<types.ConverseOperationOutput>
-    converseStream: function(Client, types.ConverseStreamInput, any): async.Operation<types.ConverseStreamOperationOutput>
-    countTokens: function(Client, types.CountTokensOperationInput, any): async.Operation<types.CountTokensOutput>
-    getAsyncInvoke: function(Client, types.GetAsyncInvokeInput, any): async.Operation<types.GetAsyncInvokeOutput>
-    invokeModel: function(Client, types.InvokeModelInput, any): async.Operation<types.InvokeModelOutput>
-    invokeModelWithBidirectionalStream: function(Client, types.InvokeModelWithBidirectionalStreamOperationInput, any): async.Operation<types.InvokeModelWithBidirectionalStreamOperationOutput>
-    invokeModelWithResponseStream: function(Client, types.InvokeModelWithResponseStreamInput, any): async.Operation<types.InvokeModelWithResponseStreamOutput>
-    listAsyncInvokes: function(Client, types.ListAsyncInvokesInput, any): async.Operation<types.ListAsyncInvokesOutput>
-    startAsyncInvoke: function(Client, types.StartAsyncInvokeInput, any): async.Operation<types.StartAsyncInvokeOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    applyGuardrail: function(Client, types.ApplyGuardrailInput, ? base_client.InvokeOptions): async.Operation<types.ApplyGuardrailOutput>
+    converse: function(Client, types.ConverseInput, ? base_client.InvokeOptions): async.Operation<types.ConverseOperationOutput>
+    converseStream: function(Client, types.ConverseStreamInput, ? base_client.InvokeOptions): async.Operation<types.ConverseStreamOperationOutput>
+    countTokens: function(Client, types.CountTokensOperationInput, ? base_client.InvokeOptions): async.Operation<types.CountTokensOutput>
+    getAsyncInvoke: function(Client, types.GetAsyncInvokeInput, ? base_client.InvokeOptions): async.Operation<types.GetAsyncInvokeOutput>
+    invokeModel: function(Client, types.InvokeModelInput, ? base_client.InvokeOptions): async.Operation<types.InvokeModelOutput>
+    invokeModelWithBidirectionalStream: function(Client, types.InvokeModelWithBidirectionalStreamOperationInput, ? base_client.InvokeOptions): async.Operation<types.InvokeModelWithBidirectionalStreamOperationOutput>
+    invokeModelWithResponseStream: function(Client, types.InvokeModelWithResponseStreamInput, ? base_client.InvokeOptions): async.Operation<types.InvokeModelWithResponseStreamOutput>
+    listAsyncInvokes: function(Client, types.ListAsyncInvokesInput, ? base_client.InvokeOptions): async.Operation<types.ListAsyncInvokesOutput>
+    startAsyncInvoke: function(Client, types.StartAsyncInvokeInput, ? base_client.InvokeOptions): async.Operation<types.StartAsyncInvokeOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonBedrockFrontendService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "bedrock", signing_region = c.region } }
                 else
@@ -69,44 +72,44 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:applyGuardrail(input: types.ApplyGuardrailInput, options: any): async.Operation<types.ApplyGuardrailOutput>
-    return self:invokeOperation(schemas.Service, schemas.ApplyGuardrail, input, options) as async.Operation<types.ApplyGuardrailOutput>
+function C:applyGuardrail(input: types.ApplyGuardrailInput, options?: base_client.InvokeOptions): async.Operation<types.ApplyGuardrailOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ApplyGuardrail as schema.OperationSchema, input, options) as async.Operation<types.ApplyGuardrailOutput>
 end
 
-function C:converse(input: types.ConverseInput, options: any): async.Operation<types.ConverseOperationOutput>
-    return self:invokeOperation(schemas.Service, schemas.Converse, input, options) as async.Operation<types.ConverseOperationOutput>
+function C:converse(input: types.ConverseInput, options?: base_client.InvokeOptions): async.Operation<types.ConverseOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Converse as schema.OperationSchema, input, options) as async.Operation<types.ConverseOperationOutput>
 end
 
-function C:converseStream(input: types.ConverseStreamInput, options: any): async.Operation<types.ConverseStreamOperationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ConverseStream, input, options) as async.Operation<types.ConverseStreamOperationOutput>
+function C:converseStream(input: types.ConverseStreamInput, options?: base_client.InvokeOptions): async.Operation<types.ConverseStreamOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ConverseStream as schema.OperationSchema, input, options) as async.Operation<types.ConverseStreamOperationOutput>
 end
 
-function C:countTokens(input: types.CountTokensOperationInput, options: any): async.Operation<types.CountTokensOutput>
-    return self:invokeOperation(schemas.Service, schemas.CountTokens, input, options) as async.Operation<types.CountTokensOutput>
+function C:countTokens(input: types.CountTokensOperationInput, options?: base_client.InvokeOptions): async.Operation<types.CountTokensOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CountTokens as schema.OperationSchema, input, options) as async.Operation<types.CountTokensOutput>
 end
 
-function C:getAsyncInvoke(input: types.GetAsyncInvokeInput, options: any): async.Operation<types.GetAsyncInvokeOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAsyncInvoke, input, options) as async.Operation<types.GetAsyncInvokeOutput>
+function C:getAsyncInvoke(input: types.GetAsyncInvokeInput, options?: base_client.InvokeOptions): async.Operation<types.GetAsyncInvokeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAsyncInvoke as schema.OperationSchema, input, options) as async.Operation<types.GetAsyncInvokeOutput>
 end
 
-function C:invokeModel(input: types.InvokeModelInput, options: any): async.Operation<types.InvokeModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.InvokeModel, input, options) as async.Operation<types.InvokeModelOutput>
+function C:invokeModel(input: types.InvokeModelInput, options?: base_client.InvokeOptions): async.Operation<types.InvokeModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InvokeModel as schema.OperationSchema, input, options) as async.Operation<types.InvokeModelOutput>
 end
 
-function C:invokeModelWithBidirectionalStream(input: types.InvokeModelWithBidirectionalStreamOperationInput, options: any): async.Operation<types.InvokeModelWithBidirectionalStreamOperationOutput>
-    return self:invokeOperation(schemas.Service, schemas.InvokeModelWithBidirectionalStream, input, options) as async.Operation<types.InvokeModelWithBidirectionalStreamOperationOutput>
+function C:invokeModelWithBidirectionalStream(input: types.InvokeModelWithBidirectionalStreamOperationInput, options?: base_client.InvokeOptions): async.Operation<types.InvokeModelWithBidirectionalStreamOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InvokeModelWithBidirectionalStream as schema.OperationSchema, input, options) as async.Operation<types.InvokeModelWithBidirectionalStreamOperationOutput>
 end
 
-function C:invokeModelWithResponseStream(input: types.InvokeModelWithResponseStreamInput, options: any): async.Operation<types.InvokeModelWithResponseStreamOutput>
-    return self:invokeOperation(schemas.Service, schemas.InvokeModelWithResponseStream, input, options) as async.Operation<types.InvokeModelWithResponseStreamOutput>
+function C:invokeModelWithResponseStream(input: types.InvokeModelWithResponseStreamInput, options?: base_client.InvokeOptions): async.Operation<types.InvokeModelWithResponseStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InvokeModelWithResponseStream as schema.OperationSchema, input, options) as async.Operation<types.InvokeModelWithResponseStreamOutput>
 end
 
-function C:listAsyncInvokes(input: types.ListAsyncInvokesInput, options: any): async.Operation<types.ListAsyncInvokesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAsyncInvokes, input, options) as async.Operation<types.ListAsyncInvokesOutput>
+function C:listAsyncInvokes(input: types.ListAsyncInvokesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAsyncInvokesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAsyncInvokes as schema.OperationSchema, input, options) as async.Operation<types.ListAsyncInvokesOutput>
 end
 
-function C:startAsyncInvoke(input: types.StartAsyncInvokeInput, options: any): async.Operation<types.StartAsyncInvokeOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartAsyncInvoke, input, options) as async.Operation<types.StartAsyncInvokeOutput>
+function C:startAsyncInvoke(input: types.StartAsyncInvokeInput, options?: base_client.InvokeOptions): async.Operation<types.StartAsyncInvokeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartAsyncInvoke as schema.OperationSchema, input, options) as async.Operation<types.StartAsyncInvokeOutput>
 end
 
 return M

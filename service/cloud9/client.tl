@@ -8,52 +8,55 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("cloud9.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("cloud9.schemas")
 local traits = require("smithy.traits")
 local types = require("cloud9.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createEnvironmentEC2: function(Client, types.CreateEnvironmentEC2Input, any): async.Operation<types.CreateEnvironmentEC2Output>
-    createEnvironmentMembership: function(Client, types.CreateEnvironmentMembershipInput, any): async.Operation<types.CreateEnvironmentMembershipOutput>
-    deleteEnvironment: function(Client, types.DeleteEnvironmentInput, any): async.Operation<types.DeleteEnvironmentOutput>
-    deleteEnvironmentMembership: function(Client, types.DeleteEnvironmentMembershipInput, any): async.Operation<types.DeleteEnvironmentMembershipOutput>
-    describeEnvironmentMemberships: function(Client, types.DescribeEnvironmentMembershipsInput, any): async.Operation<types.DescribeEnvironmentMembershipsOutput>
-    describeEnvironments: function(Client, types.DescribeEnvironmentsInput, any): async.Operation<types.DescribeEnvironmentsOutput>
-    describeEnvironmentStatus: function(Client, types.DescribeEnvironmentStatusInput, any): async.Operation<types.DescribeEnvironmentStatusOutput>
-    listEnvironments: function(Client, types.ListEnvironmentsInput, any): async.Operation<types.ListEnvironmentsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateEnvironment: function(Client, types.UpdateEnvironmentInput, any): async.Operation<types.UpdateEnvironmentOutput>
-    updateEnvironmentMembership: function(Client, types.UpdateEnvironmentMembershipInput, any): async.Operation<types.UpdateEnvironmentMembershipOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createEnvironmentEC2: function(Client, types.CreateEnvironmentEC2Input, ? base_client.InvokeOptions): async.Operation<types.CreateEnvironmentEC2Output>
+    createEnvironmentMembership: function(Client, types.CreateEnvironmentMembershipInput, ? base_client.InvokeOptions): async.Operation<types.CreateEnvironmentMembershipOutput>
+    deleteEnvironment: function(Client, types.DeleteEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentOutput>
+    deleteEnvironmentMembership: function(Client, types.DeleteEnvironmentMembershipInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentMembershipOutput>
+    describeEnvironmentMemberships: function(Client, types.DescribeEnvironmentMembershipsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEnvironmentMembershipsOutput>
+    describeEnvironments: function(Client, types.DescribeEnvironmentsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEnvironmentsOutput>
+    describeEnvironmentStatus: function(Client, types.DescribeEnvironmentStatusInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEnvironmentStatusOutput>
+    listEnvironments: function(Client, types.ListEnvironmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListEnvironmentsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateEnvironment: function(Client, types.UpdateEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEnvironmentOutput>
+    updateEnvironmentMembership: function(Client, types.UpdateEnvironmentMembershipInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEnvironmentMembershipOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSCloud9WorkspaceManagementService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "cloud9", signing_region = c.region } }
                 else
@@ -72,56 +75,56 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createEnvironmentEC2(input: types.CreateEnvironmentEC2Input, options: any): async.Operation<types.CreateEnvironmentEC2Output>
-    return self:invokeOperation(schemas.Service, schemas.CreateEnvironmentEC2, input, options) as async.Operation<types.CreateEnvironmentEC2Output>
+function C:createEnvironmentEC2(input: types.CreateEnvironmentEC2Input, options?: base_client.InvokeOptions): async.Operation<types.CreateEnvironmentEC2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEnvironmentEC2 as schema.OperationSchema, input, options) as async.Operation<types.CreateEnvironmentEC2Output>
 end
 
-function C:createEnvironmentMembership(input: types.CreateEnvironmentMembershipInput, options: any): async.Operation<types.CreateEnvironmentMembershipOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEnvironmentMembership, input, options) as async.Operation<types.CreateEnvironmentMembershipOutput>
+function C:createEnvironmentMembership(input: types.CreateEnvironmentMembershipInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEnvironmentMembershipOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEnvironmentMembership as schema.OperationSchema, input, options) as async.Operation<types.CreateEnvironmentMembershipOutput>
 end
 
-function C:deleteEnvironment(input: types.DeleteEnvironmentInput, options: any): async.Operation<types.DeleteEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEnvironment, input, options) as async.Operation<types.DeleteEnvironmentOutput>
+function C:deleteEnvironment(input: types.DeleteEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEnvironment as schema.OperationSchema, input, options) as async.Operation<types.DeleteEnvironmentOutput>
 end
 
-function C:deleteEnvironmentMembership(input: types.DeleteEnvironmentMembershipInput, options: any): async.Operation<types.DeleteEnvironmentMembershipOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEnvironmentMembership, input, options) as async.Operation<types.DeleteEnvironmentMembershipOutput>
+function C:deleteEnvironmentMembership(input: types.DeleteEnvironmentMembershipInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentMembershipOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEnvironmentMembership as schema.OperationSchema, input, options) as async.Operation<types.DeleteEnvironmentMembershipOutput>
 end
 
-function C:describeEnvironmentMemberships(input: types.DescribeEnvironmentMembershipsInput, options: any): async.Operation<types.DescribeEnvironmentMembershipsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEnvironmentMemberships, input, options) as async.Operation<types.DescribeEnvironmentMembershipsOutput>
+function C:describeEnvironmentMemberships(input: types.DescribeEnvironmentMembershipsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEnvironmentMembershipsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEnvironmentMemberships as schema.OperationSchema, input, options) as async.Operation<types.DescribeEnvironmentMembershipsOutput>
 end
 
-function C:describeEnvironments(input: types.DescribeEnvironmentsInput, options: any): async.Operation<types.DescribeEnvironmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEnvironments, input, options) as async.Operation<types.DescribeEnvironmentsOutput>
+function C:describeEnvironments(input: types.DescribeEnvironmentsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEnvironmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEnvironments as schema.OperationSchema, input, options) as async.Operation<types.DescribeEnvironmentsOutput>
 end
 
-function C:describeEnvironmentStatus(input: types.DescribeEnvironmentStatusInput, options: any): async.Operation<types.DescribeEnvironmentStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEnvironmentStatus, input, options) as async.Operation<types.DescribeEnvironmentStatusOutput>
+function C:describeEnvironmentStatus(input: types.DescribeEnvironmentStatusInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEnvironmentStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEnvironmentStatus as schema.OperationSchema, input, options) as async.Operation<types.DescribeEnvironmentStatusOutput>
 end
 
-function C:listEnvironments(input: types.ListEnvironmentsInput, options: any): async.Operation<types.ListEnvironmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEnvironments, input, options) as async.Operation<types.ListEnvironmentsOutput>
+function C:listEnvironments(input: types.ListEnvironmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEnvironmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEnvironments as schema.OperationSchema, input, options) as async.Operation<types.ListEnvironmentsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateEnvironment(input: types.UpdateEnvironmentInput, options: any): async.Operation<types.UpdateEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEnvironment, input, options) as async.Operation<types.UpdateEnvironmentOutput>
+function C:updateEnvironment(input: types.UpdateEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEnvironment as schema.OperationSchema, input, options) as async.Operation<types.UpdateEnvironmentOutput>
 end
 
-function C:updateEnvironmentMembership(input: types.UpdateEnvironmentMembershipInput, options: any): async.Operation<types.UpdateEnvironmentMembershipOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEnvironmentMembership, input, options) as async.Operation<types.UpdateEnvironmentMembershipOutput>
+function C:updateEnvironmentMembership(input: types.UpdateEnvironmentMembershipInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEnvironmentMembershipOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEnvironmentMembership as schema.OperationSchema, input, options) as async.Operation<types.UpdateEnvironmentMembershipOutput>
 end
 
 return M

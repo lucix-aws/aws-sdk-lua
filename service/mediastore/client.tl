@@ -8,60 +8,63 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("mediastore.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("mediastore.schemas")
 local traits = require("smithy.traits")
 local types = require("mediastore.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createContainer: function(Client, types.CreateContainerInput, any): async.Operation<types.CreateContainerOutput>
-    deleteContainer: function(Client, types.DeleteContainerInput, any): async.Operation<types.DeleteContainerOutput>
-    deleteContainerPolicy: function(Client, types.DeleteContainerPolicyInput, any): async.Operation<types.DeleteContainerPolicyOutput>
-    deleteCorsPolicy: function(Client, types.DeleteCorsPolicyInput, any): async.Operation<types.DeleteCorsPolicyOutput>
-    deleteLifecyclePolicy: function(Client, types.DeleteLifecyclePolicyInput, any): async.Operation<types.DeleteLifecyclePolicyOutput>
-    deleteMetricPolicy: function(Client, types.DeleteMetricPolicyInput, any): async.Operation<types.DeleteMetricPolicyOutput>
-    describeContainer: function(Client, types.DescribeContainerInput, any): async.Operation<types.DescribeContainerOutput>
-    getContainerPolicy: function(Client, types.GetContainerPolicyInput, any): async.Operation<types.GetContainerPolicyOutput>
-    getCorsPolicy: function(Client, types.GetCorsPolicyInput, any): async.Operation<types.GetCorsPolicyOutput>
-    getLifecyclePolicy: function(Client, types.GetLifecyclePolicyInput, any): async.Operation<types.GetLifecyclePolicyOutput>
-    getMetricPolicy: function(Client, types.GetMetricPolicyInput, any): async.Operation<types.GetMetricPolicyOutput>
-    listContainers: function(Client, types.ListContainersInput, any): async.Operation<types.ListContainersOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putContainerPolicy: function(Client, types.PutContainerPolicyInput, any): async.Operation<types.PutContainerPolicyOutput>
-    putCorsPolicy: function(Client, types.PutCorsPolicyInput, any): async.Operation<types.PutCorsPolicyOutput>
-    putLifecyclePolicy: function(Client, types.PutLifecyclePolicyInput, any): async.Operation<types.PutLifecyclePolicyOutput>
-    putMetricPolicy: function(Client, types.PutMetricPolicyInput, any): async.Operation<types.PutMetricPolicyOutput>
-    startAccessLogging: function(Client, types.StartAccessLoggingInput, any): async.Operation<types.StartAccessLoggingOutput>
-    stopAccessLogging: function(Client, types.StopAccessLoggingInput, any): async.Operation<types.StopAccessLoggingOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createContainer: function(Client, types.CreateContainerInput, ? base_client.InvokeOptions): async.Operation<types.CreateContainerOutput>
+    deleteContainer: function(Client, types.DeleteContainerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteContainerOutput>
+    deleteContainerPolicy: function(Client, types.DeleteContainerPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteContainerPolicyOutput>
+    deleteCorsPolicy: function(Client, types.DeleteCorsPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCorsPolicyOutput>
+    deleteLifecyclePolicy: function(Client, types.DeleteLifecyclePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLifecyclePolicyOutput>
+    deleteMetricPolicy: function(Client, types.DeleteMetricPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMetricPolicyOutput>
+    describeContainer: function(Client, types.DescribeContainerInput, ? base_client.InvokeOptions): async.Operation<types.DescribeContainerOutput>
+    getContainerPolicy: function(Client, types.GetContainerPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetContainerPolicyOutput>
+    getCorsPolicy: function(Client, types.GetCorsPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetCorsPolicyOutput>
+    getLifecyclePolicy: function(Client, types.GetLifecyclePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetLifecyclePolicyOutput>
+    getMetricPolicy: function(Client, types.GetMetricPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetMetricPolicyOutput>
+    listContainers: function(Client, types.ListContainersInput, ? base_client.InvokeOptions): async.Operation<types.ListContainersOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putContainerPolicy: function(Client, types.PutContainerPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutContainerPolicyOutput>
+    putCorsPolicy: function(Client, types.PutCorsPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutCorsPolicyOutput>
+    putLifecyclePolicy: function(Client, types.PutLifecyclePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutLifecyclePolicyOutput>
+    putMetricPolicy: function(Client, types.PutMetricPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutMetricPolicyOutput>
+    startAccessLogging: function(Client, types.StartAccessLoggingInput, ? base_client.InvokeOptions): async.Operation<types.StartAccessLoggingOutput>
+    stopAccessLogging: function(Client, types.StopAccessLoggingInput, ? base_client.InvokeOptions): async.Operation<types.StopAccessLoggingOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "MediaStore_20170901"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "mediastore", signing_region = c.region } }
                 else
@@ -80,88 +83,88 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createContainer(input: types.CreateContainerInput, options: any): async.Operation<types.CreateContainerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateContainer, input, options) as async.Operation<types.CreateContainerOutput>
+function C:createContainer(input: types.CreateContainerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateContainerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateContainer as schema.OperationSchema, input, options) as async.Operation<types.CreateContainerOutput>
 end
 
-function C:deleteContainer(input: types.DeleteContainerInput, options: any): async.Operation<types.DeleteContainerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteContainer, input, options) as async.Operation<types.DeleteContainerOutput>
+function C:deleteContainer(input: types.DeleteContainerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteContainerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteContainer as schema.OperationSchema, input, options) as async.Operation<types.DeleteContainerOutput>
 end
 
-function C:deleteContainerPolicy(input: types.DeleteContainerPolicyInput, options: any): async.Operation<types.DeleteContainerPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteContainerPolicy, input, options) as async.Operation<types.DeleteContainerPolicyOutput>
+function C:deleteContainerPolicy(input: types.DeleteContainerPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteContainerPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteContainerPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteContainerPolicyOutput>
 end
 
-function C:deleteCorsPolicy(input: types.DeleteCorsPolicyInput, options: any): async.Operation<types.DeleteCorsPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCorsPolicy, input, options) as async.Operation<types.DeleteCorsPolicyOutput>
+function C:deleteCorsPolicy(input: types.DeleteCorsPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCorsPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCorsPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteCorsPolicyOutput>
 end
 
-function C:deleteLifecyclePolicy(input: types.DeleteLifecyclePolicyInput, options: any): async.Operation<types.DeleteLifecyclePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLifecyclePolicy, input, options) as async.Operation<types.DeleteLifecyclePolicyOutput>
+function C:deleteLifecyclePolicy(input: types.DeleteLifecyclePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLifecyclePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLifecyclePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteLifecyclePolicyOutput>
 end
 
-function C:deleteMetricPolicy(input: types.DeleteMetricPolicyInput, options: any): async.Operation<types.DeleteMetricPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMetricPolicy, input, options) as async.Operation<types.DeleteMetricPolicyOutput>
+function C:deleteMetricPolicy(input: types.DeleteMetricPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMetricPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMetricPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteMetricPolicyOutput>
 end
 
-function C:describeContainer(input: types.DescribeContainerInput, options: any): async.Operation<types.DescribeContainerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeContainer, input, options) as async.Operation<types.DescribeContainerOutput>
+function C:describeContainer(input: types.DescribeContainerInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeContainerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeContainer as schema.OperationSchema, input, options) as async.Operation<types.DescribeContainerOutput>
 end
 
-function C:getContainerPolicy(input: types.GetContainerPolicyInput, options: any): async.Operation<types.GetContainerPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetContainerPolicy, input, options) as async.Operation<types.GetContainerPolicyOutput>
+function C:getContainerPolicy(input: types.GetContainerPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetContainerPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetContainerPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetContainerPolicyOutput>
 end
 
-function C:getCorsPolicy(input: types.GetCorsPolicyInput, options: any): async.Operation<types.GetCorsPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCorsPolicy, input, options) as async.Operation<types.GetCorsPolicyOutput>
+function C:getCorsPolicy(input: types.GetCorsPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetCorsPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCorsPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetCorsPolicyOutput>
 end
 
-function C:getLifecyclePolicy(input: types.GetLifecyclePolicyInput, options: any): async.Operation<types.GetLifecyclePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLifecyclePolicy, input, options) as async.Operation<types.GetLifecyclePolicyOutput>
+function C:getLifecyclePolicy(input: types.GetLifecyclePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetLifecyclePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLifecyclePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetLifecyclePolicyOutput>
 end
 
-function C:getMetricPolicy(input: types.GetMetricPolicyInput, options: any): async.Operation<types.GetMetricPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMetricPolicy, input, options) as async.Operation<types.GetMetricPolicyOutput>
+function C:getMetricPolicy(input: types.GetMetricPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetMetricPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMetricPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetMetricPolicyOutput>
 end
 
-function C:listContainers(input: types.ListContainersInput, options: any): async.Operation<types.ListContainersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListContainers, input, options) as async.Operation<types.ListContainersOutput>
+function C:listContainers(input: types.ListContainersInput, options?: base_client.InvokeOptions): async.Operation<types.ListContainersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListContainers as schema.OperationSchema, input, options) as async.Operation<types.ListContainersOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putContainerPolicy(input: types.PutContainerPolicyInput, options: any): async.Operation<types.PutContainerPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutContainerPolicy, input, options) as async.Operation<types.PutContainerPolicyOutput>
+function C:putContainerPolicy(input: types.PutContainerPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutContainerPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutContainerPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutContainerPolicyOutput>
 end
 
-function C:putCorsPolicy(input: types.PutCorsPolicyInput, options: any): async.Operation<types.PutCorsPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutCorsPolicy, input, options) as async.Operation<types.PutCorsPolicyOutput>
+function C:putCorsPolicy(input: types.PutCorsPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutCorsPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutCorsPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutCorsPolicyOutput>
 end
 
-function C:putLifecyclePolicy(input: types.PutLifecyclePolicyInput, options: any): async.Operation<types.PutLifecyclePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutLifecyclePolicy, input, options) as async.Operation<types.PutLifecyclePolicyOutput>
+function C:putLifecyclePolicy(input: types.PutLifecyclePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutLifecyclePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutLifecyclePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutLifecyclePolicyOutput>
 end
 
-function C:putMetricPolicy(input: types.PutMetricPolicyInput, options: any): async.Operation<types.PutMetricPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutMetricPolicy, input, options) as async.Operation<types.PutMetricPolicyOutput>
+function C:putMetricPolicy(input: types.PutMetricPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutMetricPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutMetricPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutMetricPolicyOutput>
 end
 
-function C:startAccessLogging(input: types.StartAccessLoggingInput, options: any): async.Operation<types.StartAccessLoggingOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartAccessLogging, input, options) as async.Operation<types.StartAccessLoggingOutput>
+function C:startAccessLogging(input: types.StartAccessLoggingInput, options?: base_client.InvokeOptions): async.Operation<types.StartAccessLoggingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartAccessLogging as schema.OperationSchema, input, options) as async.Operation<types.StartAccessLoggingOutput>
 end
 
-function C:stopAccessLogging(input: types.StopAccessLoggingInput, options: any): async.Operation<types.StopAccessLoggingOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopAccessLogging, input, options) as async.Operation<types.StopAccessLoggingOutput>
+function C:stopAccessLogging(input: types.StopAccessLoggingInput, options?: base_client.InvokeOptions): async.Operation<types.StopAccessLoggingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopAccessLogging as schema.OperationSchema, input, options) as async.Operation<types.StopAccessLoggingOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
 return M

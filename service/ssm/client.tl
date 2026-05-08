@@ -8,185 +8,188 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("ssm.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("ssm.schemas")
 local traits = require("smithy.traits")
 local types = require("ssm.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    addTagsToResource: function(Client, types.AddTagsToResourceInput, any): async.Operation<types.AddTagsToResourceOutput>
-    associateOpsItemRelatedItem: function(Client, types.AssociateOpsItemRelatedItemInput, any): async.Operation<types.AssociateOpsItemRelatedItemOutput>
-    cancelCommand: function(Client, types.CancelCommandInput, any): async.Operation<types.CancelCommandOutput>
-    cancelMaintenanceWindowExecution: function(Client, types.CancelMaintenanceWindowExecutionInput, any): async.Operation<types.CancelMaintenanceWindowExecutionOutput>
-    createActivation: function(Client, types.CreateActivationInput, any): async.Operation<types.CreateActivationOutput>
-    createAssociation: function(Client, types.CreateAssociationInput, any): async.Operation<types.CreateAssociationOutput>
-    createAssociationBatch: function(Client, types.CreateAssociationBatchInput, any): async.Operation<types.CreateAssociationBatchOutput>
-    createDocument: function(Client, types.CreateDocumentInput, any): async.Operation<types.CreateDocumentOutput>
-    createMaintenanceWindow: function(Client, types.CreateMaintenanceWindowInput, any): async.Operation<types.CreateMaintenanceWindowOutput>
-    createOpsItem: function(Client, types.CreateOpsItemInput, any): async.Operation<types.CreateOpsItemOutput>
-    createOpsMetadata: function(Client, types.CreateOpsMetadataInput, any): async.Operation<types.CreateOpsMetadataOutput>
-    createPatchBaseline: function(Client, types.CreatePatchBaselineInput, any): async.Operation<types.CreatePatchBaselineOutput>
-    createResourceDataSync: function(Client, types.CreateResourceDataSyncInput, any): async.Operation<types.CreateResourceDataSyncOutput>
-    deleteActivation: function(Client, types.DeleteActivationInput, any): async.Operation<types.DeleteActivationOutput>
-    deleteAssociation: function(Client, types.DeleteAssociationInput, any): async.Operation<types.DeleteAssociationOutput>
-    deleteDocument: function(Client, types.DeleteDocumentInput, any): async.Operation<types.DeleteDocumentOutput>
-    deleteInventory: function(Client, types.DeleteInventoryInput, any): async.Operation<types.DeleteInventoryOutput>
-    deleteMaintenanceWindow: function(Client, types.DeleteMaintenanceWindowInput, any): async.Operation<types.DeleteMaintenanceWindowOutput>
-    deleteOpsItem: function(Client, types.DeleteOpsItemInput, any): async.Operation<types.DeleteOpsItemOutput>
-    deleteOpsMetadata: function(Client, types.DeleteOpsMetadataInput, any): async.Operation<types.DeleteOpsMetadataOutput>
-    deleteParameter: function(Client, types.DeleteParameterInput, any): async.Operation<types.DeleteParameterOutput>
-    deleteParameters: function(Client, types.DeleteParametersInput, any): async.Operation<types.DeleteParametersOutput>
-    deletePatchBaseline: function(Client, types.DeletePatchBaselineInput, any): async.Operation<types.DeletePatchBaselineOutput>
-    deleteResourceDataSync: function(Client, types.DeleteResourceDataSyncInput, any): async.Operation<types.DeleteResourceDataSyncOutput>
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, any): async.Operation<types.DeleteResourcePolicyOutput>
-    deregisterManagedInstance: function(Client, types.DeregisterManagedInstanceInput, any): async.Operation<types.DeregisterManagedInstanceOutput>
-    deregisterPatchBaselineForPatchGroup: function(Client, types.DeregisterPatchBaselineForPatchGroupInput, any): async.Operation<types.DeregisterPatchBaselineForPatchGroupOutput>
-    deregisterTargetFromMaintenanceWindow: function(Client, types.DeregisterTargetFromMaintenanceWindowInput, any): async.Operation<types.DeregisterTargetFromMaintenanceWindowOutput>
-    deregisterTaskFromMaintenanceWindow: function(Client, types.DeregisterTaskFromMaintenanceWindowInput, any): async.Operation<types.DeregisterTaskFromMaintenanceWindowOutput>
-    describeActivations: function(Client, types.DescribeActivationsInput, any): async.Operation<types.DescribeActivationsOutput>
-    describeAssociation: function(Client, types.DescribeAssociationInput, any): async.Operation<types.DescribeAssociationOutput>
-    describeAssociationExecutions: function(Client, types.DescribeAssociationExecutionsInput, any): async.Operation<types.DescribeAssociationExecutionsOutput>
-    describeAssociationExecutionTargets: function(Client, types.DescribeAssociationExecutionTargetsInput, any): async.Operation<types.DescribeAssociationExecutionTargetsOutput>
-    describeAutomationExecutions: function(Client, types.DescribeAutomationExecutionsInput, any): async.Operation<types.DescribeAutomationExecutionsOutput>
-    describeAutomationStepExecutions: function(Client, types.DescribeAutomationStepExecutionsInput, any): async.Operation<types.DescribeAutomationStepExecutionsOutput>
-    describeAvailablePatches: function(Client, types.DescribeAvailablePatchesInput, any): async.Operation<types.DescribeAvailablePatchesOutput>
-    describeDocument: function(Client, types.DescribeDocumentInput, any): async.Operation<types.DescribeDocumentOutput>
-    describeDocumentPermission: function(Client, types.DescribeDocumentPermissionInput, any): async.Operation<types.DescribeDocumentPermissionOutput>
-    describeEffectiveInstanceAssociations: function(Client, types.DescribeEffectiveInstanceAssociationsInput, any): async.Operation<types.DescribeEffectiveInstanceAssociationsOutput>
-    describeEffectivePatchesForPatchBaseline: function(Client, types.DescribeEffectivePatchesForPatchBaselineInput, any): async.Operation<types.DescribeEffectivePatchesForPatchBaselineOutput>
-    describeInstanceAssociationsStatus: function(Client, types.DescribeInstanceAssociationsStatusInput, any): async.Operation<types.DescribeInstanceAssociationsStatusOutput>
-    describeInstanceInformation: function(Client, types.DescribeInstanceInformationInput, any): async.Operation<types.DescribeInstanceInformationOutput>
-    describeInstancePatches: function(Client, types.DescribeInstancePatchesInput, any): async.Operation<types.DescribeInstancePatchesOutput>
-    describeInstancePatchStates: function(Client, types.DescribeInstancePatchStatesInput, any): async.Operation<types.DescribeInstancePatchStatesOutput>
-    describeInstancePatchStatesForPatchGroup: function(Client, types.DescribeInstancePatchStatesForPatchGroupInput, any): async.Operation<types.DescribeInstancePatchStatesForPatchGroupOutput>
-    describeInstanceProperties: function(Client, types.DescribeInstancePropertiesInput, any): async.Operation<types.DescribeInstancePropertiesOutput>
-    describeInventoryDeletions: function(Client, types.DescribeInventoryDeletionsInput, any): async.Operation<types.DescribeInventoryDeletionsOutput>
-    describeMaintenanceWindowExecutions: function(Client, types.DescribeMaintenanceWindowExecutionsInput, any): async.Operation<types.DescribeMaintenanceWindowExecutionsOutput>
-    describeMaintenanceWindowExecutionTaskInvocations: function(Client, types.DescribeMaintenanceWindowExecutionTaskInvocationsInput, any): async.Operation<types.DescribeMaintenanceWindowExecutionTaskInvocationsOutput>
-    describeMaintenanceWindowExecutionTasks: function(Client, types.DescribeMaintenanceWindowExecutionTasksInput, any): async.Operation<types.DescribeMaintenanceWindowExecutionTasksOutput>
-    describeMaintenanceWindows: function(Client, types.DescribeMaintenanceWindowsInput, any): async.Operation<types.DescribeMaintenanceWindowsOutput>
-    describeMaintenanceWindowSchedule: function(Client, types.DescribeMaintenanceWindowScheduleInput, any): async.Operation<types.DescribeMaintenanceWindowScheduleOutput>
-    describeMaintenanceWindowsForTarget: function(Client, types.DescribeMaintenanceWindowsForTargetInput, any): async.Operation<types.DescribeMaintenanceWindowsForTargetOutput>
-    describeMaintenanceWindowTargets: function(Client, types.DescribeMaintenanceWindowTargetsInput, any): async.Operation<types.DescribeMaintenanceWindowTargetsOutput>
-    describeMaintenanceWindowTasks: function(Client, types.DescribeMaintenanceWindowTasksInput, any): async.Operation<types.DescribeMaintenanceWindowTasksOutput>
-    describeOpsItems: function(Client, types.DescribeOpsItemsInput, any): async.Operation<types.DescribeOpsItemsOutput>
-    describeParameters: function(Client, types.DescribeParametersInput, any): async.Operation<types.DescribeParametersOutput>
-    describePatchBaselines: function(Client, types.DescribePatchBaselinesInput, any): async.Operation<types.DescribePatchBaselinesOutput>
-    describePatchGroups: function(Client, types.DescribePatchGroupsInput, any): async.Operation<types.DescribePatchGroupsOutput>
-    describePatchGroupState: function(Client, types.DescribePatchGroupStateInput, any): async.Operation<types.DescribePatchGroupStateOutput>
-    describePatchProperties: function(Client, types.DescribePatchPropertiesInput, any): async.Operation<types.DescribePatchPropertiesOutput>
-    describeSessions: function(Client, types.DescribeSessionsInput, any): async.Operation<types.DescribeSessionsOutput>
-    disassociateOpsItemRelatedItem: function(Client, types.DisassociateOpsItemRelatedItemInput, any): async.Operation<types.DisassociateOpsItemRelatedItemOutput>
-    getAccessToken: function(Client, types.GetAccessTokenInput, any): async.Operation<types.GetAccessTokenOutput>
-    getAutomationExecution: function(Client, types.GetAutomationExecutionInput, any): async.Operation<types.GetAutomationExecutionOutput>
-    getCalendarState: function(Client, types.GetCalendarStateInput, any): async.Operation<types.GetCalendarStateOutput>
-    getCommandInvocation: function(Client, types.GetCommandInvocationInput, any): async.Operation<types.GetCommandInvocationOutput>
-    getConnectionStatus: function(Client, types.GetConnectionStatusInput, any): async.Operation<types.GetConnectionStatusOutput>
-    getDefaultPatchBaseline: function(Client, types.GetDefaultPatchBaselineInput, any): async.Operation<types.GetDefaultPatchBaselineOutput>
-    getDeployablePatchSnapshotForInstance: function(Client, types.GetDeployablePatchSnapshotForInstanceInput, any): async.Operation<types.GetDeployablePatchSnapshotForInstanceOutput>
-    getDocument: function(Client, types.GetDocumentInput, any): async.Operation<types.GetDocumentOutput>
-    getExecutionPreview: function(Client, types.GetExecutionPreviewInput, any): async.Operation<types.GetExecutionPreviewOutput>
-    getInventory: function(Client, types.GetInventoryInput, any): async.Operation<types.GetInventoryOutput>
-    getInventorySchema: function(Client, types.GetInventorySchemaInput, any): async.Operation<types.GetInventorySchemaOutput>
-    getMaintenanceWindow: function(Client, types.GetMaintenanceWindowInput, any): async.Operation<types.GetMaintenanceWindowOutput>
-    getMaintenanceWindowExecution: function(Client, types.GetMaintenanceWindowExecutionInput, any): async.Operation<types.GetMaintenanceWindowExecutionOutput>
-    getMaintenanceWindowExecutionTask: function(Client, types.GetMaintenanceWindowExecutionTaskInput, any): async.Operation<types.GetMaintenanceWindowExecutionTaskOutput>
-    getMaintenanceWindowExecutionTaskInvocation: function(Client, types.GetMaintenanceWindowExecutionTaskInvocationInput, any): async.Operation<types.GetMaintenanceWindowExecutionTaskInvocationOutput>
-    getMaintenanceWindowTask: function(Client, types.GetMaintenanceWindowTaskInput, any): async.Operation<types.GetMaintenanceWindowTaskOutput>
-    getOpsItem: function(Client, types.GetOpsItemInput, any): async.Operation<types.GetOpsItemOutput>
-    getOpsMetadata: function(Client, types.GetOpsMetadataInput, any): async.Operation<types.GetOpsMetadataOutput>
-    getOpsSummary: function(Client, types.GetOpsSummaryInput, any): async.Operation<types.GetOpsSummaryOutput>
-    getParameter: function(Client, types.GetParameterInput, any): async.Operation<types.GetParameterOutput>
-    getParameterHistory: function(Client, types.GetParameterHistoryInput, any): async.Operation<types.GetParameterHistoryOutput>
-    getParameters: function(Client, types.GetParametersInput, any): async.Operation<types.GetParametersOutput>
-    getParametersByPath: function(Client, types.GetParametersByPathInput, any): async.Operation<types.GetParametersByPathOutput>
-    getPatchBaseline: function(Client, types.GetPatchBaselineInput, any): async.Operation<types.GetPatchBaselineOutput>
-    getPatchBaselineForPatchGroup: function(Client, types.GetPatchBaselineForPatchGroupInput, any): async.Operation<types.GetPatchBaselineForPatchGroupOutput>
-    getResourcePolicies: function(Client, types.GetResourcePoliciesInput, any): async.Operation<types.GetResourcePoliciesOutput>
-    getServiceSetting: function(Client, types.GetServiceSettingInput, any): async.Operation<types.GetServiceSettingOutput>
-    labelParameterVersion: function(Client, types.LabelParameterVersionInput, any): async.Operation<types.LabelParameterVersionOutput>
-    listAssociations: function(Client, types.ListAssociationsInput, any): async.Operation<types.ListAssociationsOutput>
-    listAssociationVersions: function(Client, types.ListAssociationVersionsInput, any): async.Operation<types.ListAssociationVersionsOutput>
-    listCommandInvocations: function(Client, types.ListCommandInvocationsInput, any): async.Operation<types.ListCommandInvocationsOutput>
-    listCommands: function(Client, types.ListCommandsInput, any): async.Operation<types.ListCommandsOutput>
-    listComplianceItems: function(Client, types.ListComplianceItemsInput, any): async.Operation<types.ListComplianceItemsOutput>
-    listComplianceSummaries: function(Client, types.ListComplianceSummariesInput, any): async.Operation<types.ListComplianceSummariesOutput>
-    listDocumentMetadataHistory: function(Client, types.ListDocumentMetadataHistoryInput, any): async.Operation<types.ListDocumentMetadataHistoryOutput>
-    listDocuments: function(Client, types.ListDocumentsInput, any): async.Operation<types.ListDocumentsOutput>
-    listDocumentVersions: function(Client, types.ListDocumentVersionsInput, any): async.Operation<types.ListDocumentVersionsOutput>
-    listInventoryEntries: function(Client, types.ListInventoryEntriesInput, any): async.Operation<types.ListInventoryEntriesOutput>
-    listNodes: function(Client, types.ListNodesInput, any): async.Operation<types.ListNodesOutput>
-    listNodesSummary: function(Client, types.ListNodesSummaryInput, any): async.Operation<types.ListNodesSummaryOutput>
-    listOpsItemEvents: function(Client, types.ListOpsItemEventsInput, any): async.Operation<types.ListOpsItemEventsOutput>
-    listOpsItemRelatedItems: function(Client, types.ListOpsItemRelatedItemsInput, any): async.Operation<types.ListOpsItemRelatedItemsOutput>
-    listOpsMetadata: function(Client, types.ListOpsMetadataInput, any): async.Operation<types.ListOpsMetadataOutput>
-    listResourceComplianceSummaries: function(Client, types.ListResourceComplianceSummariesInput, any): async.Operation<types.ListResourceComplianceSummariesOutput>
-    listResourceDataSync: function(Client, types.ListResourceDataSyncInput, any): async.Operation<types.ListResourceDataSyncOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    modifyDocumentPermission: function(Client, types.ModifyDocumentPermissionInput, any): async.Operation<types.ModifyDocumentPermissionOutput>
-    putComplianceItems: function(Client, types.PutComplianceItemsInput, any): async.Operation<types.PutComplianceItemsOutput>
-    putInventory: function(Client, types.PutInventoryInput, any): async.Operation<types.PutInventoryOutput>
-    putParameter: function(Client, types.PutParameterInput, any): async.Operation<types.PutParameterOutput>
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput, any): async.Operation<types.PutResourcePolicyOutput>
-    registerDefaultPatchBaseline: function(Client, types.RegisterDefaultPatchBaselineInput, any): async.Operation<types.RegisterDefaultPatchBaselineOutput>
-    registerPatchBaselineForPatchGroup: function(Client, types.RegisterPatchBaselineForPatchGroupInput, any): async.Operation<types.RegisterPatchBaselineForPatchGroupOutput>
-    registerTargetWithMaintenanceWindow: function(Client, types.RegisterTargetWithMaintenanceWindowInput, any): async.Operation<types.RegisterTargetWithMaintenanceWindowOutput>
-    registerTaskWithMaintenanceWindow: function(Client, types.RegisterTaskWithMaintenanceWindowInput, any): async.Operation<types.RegisterTaskWithMaintenanceWindowOutput>
-    removeTagsFromResource: function(Client, types.RemoveTagsFromResourceInput, any): async.Operation<types.RemoveTagsFromResourceOutput>
-    resetServiceSetting: function(Client, types.ResetServiceSettingInput, any): async.Operation<types.ResetServiceSettingOutput>
-    resumeSession: function(Client, types.ResumeSessionInput, any): async.Operation<types.ResumeSessionOutput>
-    sendAutomationSignal: function(Client, types.SendAutomationSignalInput, any): async.Operation<types.SendAutomationSignalOutput>
-    sendCommand: function(Client, types.SendCommandInput, any): async.Operation<types.SendCommandOutput>
-    startAccessRequest: function(Client, types.StartAccessRequestInput, any): async.Operation<types.StartAccessRequestOutput>
-    startAssociationsOnce: function(Client, types.StartAssociationsOnceInput, any): async.Operation<types.StartAssociationsOnceOutput>
-    startAutomationExecution: function(Client, types.StartAutomationExecutionInput, any): async.Operation<types.StartAutomationExecutionOutput>
-    startChangeRequestExecution: function(Client, types.StartChangeRequestExecutionInput, any): async.Operation<types.StartChangeRequestExecutionOutput>
-    startExecutionPreview: function(Client, types.StartExecutionPreviewInput, any): async.Operation<types.StartExecutionPreviewOutput>
-    startSession: function(Client, types.StartSessionInput, any): async.Operation<types.StartSessionOutput>
-    stopAutomationExecution: function(Client, types.StopAutomationExecutionInput, any): async.Operation<types.StopAutomationExecutionOutput>
-    terminateSession: function(Client, types.TerminateSessionInput, any): async.Operation<types.TerminateSessionOutput>
-    unlabelParameterVersion: function(Client, types.UnlabelParameterVersionInput, any): async.Operation<types.UnlabelParameterVersionOutput>
-    updateAssociation: function(Client, types.UpdateAssociationInput, any): async.Operation<types.UpdateAssociationOutput>
-    updateAssociationStatus: function(Client, types.UpdateAssociationStatusInput, any): async.Operation<types.UpdateAssociationStatusOutput>
-    updateDocument: function(Client, types.UpdateDocumentInput, any): async.Operation<types.UpdateDocumentOutput>
-    updateDocumentDefaultVersion: function(Client, types.UpdateDocumentDefaultVersionInput, any): async.Operation<types.UpdateDocumentDefaultVersionOutput>
-    updateDocumentMetadata: function(Client, types.UpdateDocumentMetadataInput, any): async.Operation<types.UpdateDocumentMetadataOutput>
-    updateMaintenanceWindow: function(Client, types.UpdateMaintenanceWindowInput, any): async.Operation<types.UpdateMaintenanceWindowOutput>
-    updateMaintenanceWindowTarget: function(Client, types.UpdateMaintenanceWindowTargetInput, any): async.Operation<types.UpdateMaintenanceWindowTargetOutput>
-    updateMaintenanceWindowTask: function(Client, types.UpdateMaintenanceWindowTaskInput, any): async.Operation<types.UpdateMaintenanceWindowTaskOutput>
-    updateManagedInstanceRole: function(Client, types.UpdateManagedInstanceRoleInput, any): async.Operation<types.UpdateManagedInstanceRoleOutput>
-    updateOpsItem: function(Client, types.UpdateOpsItemInput, any): async.Operation<types.UpdateOpsItemOutput>
-    updateOpsMetadata: function(Client, types.UpdateOpsMetadataInput, any): async.Operation<types.UpdateOpsMetadataOutput>
-    updatePatchBaseline: function(Client, types.UpdatePatchBaselineInput, any): async.Operation<types.UpdatePatchBaselineOutput>
-    updateResourceDataSync: function(Client, types.UpdateResourceDataSyncInput, any): async.Operation<types.UpdateResourceDataSyncOutput>
-    updateServiceSetting: function(Client, types.UpdateServiceSettingInput, any): async.Operation<types.UpdateServiceSettingOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    addTagsToResource: function(Client, types.AddTagsToResourceInput, ? base_client.InvokeOptions): async.Operation<types.AddTagsToResourceOutput>
+    associateOpsItemRelatedItem: function(Client, types.AssociateOpsItemRelatedItemInput, ? base_client.InvokeOptions): async.Operation<types.AssociateOpsItemRelatedItemOutput>
+    cancelCommand: function(Client, types.CancelCommandInput, ? base_client.InvokeOptions): async.Operation<types.CancelCommandOutput>
+    cancelMaintenanceWindowExecution: function(Client, types.CancelMaintenanceWindowExecutionInput, ? base_client.InvokeOptions): async.Operation<types.CancelMaintenanceWindowExecutionOutput>
+    createActivation: function(Client, types.CreateActivationInput, ? base_client.InvokeOptions): async.Operation<types.CreateActivationOutput>
+    createAssociation: function(Client, types.CreateAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateAssociationOutput>
+    createAssociationBatch: function(Client, types.CreateAssociationBatchInput, ? base_client.InvokeOptions): async.Operation<types.CreateAssociationBatchOutput>
+    createDocument: function(Client, types.CreateDocumentInput, ? base_client.InvokeOptions): async.Operation<types.CreateDocumentOutput>
+    createMaintenanceWindow: function(Client, types.CreateMaintenanceWindowInput, ? base_client.InvokeOptions): async.Operation<types.CreateMaintenanceWindowOutput>
+    createOpsItem: function(Client, types.CreateOpsItemInput, ? base_client.InvokeOptions): async.Operation<types.CreateOpsItemOutput>
+    createOpsMetadata: function(Client, types.CreateOpsMetadataInput, ? base_client.InvokeOptions): async.Operation<types.CreateOpsMetadataOutput>
+    createPatchBaseline: function(Client, types.CreatePatchBaselineInput, ? base_client.InvokeOptions): async.Operation<types.CreatePatchBaselineOutput>
+    createResourceDataSync: function(Client, types.CreateResourceDataSyncInput, ? base_client.InvokeOptions): async.Operation<types.CreateResourceDataSyncOutput>
+    deleteActivation: function(Client, types.DeleteActivationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteActivationOutput>
+    deleteAssociation: function(Client, types.DeleteAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAssociationOutput>
+    deleteDocument: function(Client, types.DeleteDocumentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDocumentOutput>
+    deleteInventory: function(Client, types.DeleteInventoryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInventoryOutput>
+    deleteMaintenanceWindow: function(Client, types.DeleteMaintenanceWindowInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMaintenanceWindowOutput>
+    deleteOpsItem: function(Client, types.DeleteOpsItemInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOpsItemOutput>
+    deleteOpsMetadata: function(Client, types.DeleteOpsMetadataInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOpsMetadataOutput>
+    deleteParameter: function(Client, types.DeleteParameterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteParameterOutput>
+    deleteParameters: function(Client, types.DeleteParametersInput, ? base_client.InvokeOptions): async.Operation<types.DeleteParametersOutput>
+    deletePatchBaseline: function(Client, types.DeletePatchBaselineInput, ? base_client.InvokeOptions): async.Operation<types.DeletePatchBaselineOutput>
+    deleteResourceDataSync: function(Client, types.DeleteResourceDataSyncInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourceDataSyncOutput>
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    deregisterManagedInstance: function(Client, types.DeregisterManagedInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterManagedInstanceOutput>
+    deregisterPatchBaselineForPatchGroup: function(Client, types.DeregisterPatchBaselineForPatchGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterPatchBaselineForPatchGroupOutput>
+    deregisterTargetFromMaintenanceWindow: function(Client, types.DeregisterTargetFromMaintenanceWindowInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterTargetFromMaintenanceWindowOutput>
+    deregisterTaskFromMaintenanceWindow: function(Client, types.DeregisterTaskFromMaintenanceWindowInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterTaskFromMaintenanceWindowOutput>
+    describeActivations: function(Client, types.DescribeActivationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeActivationsOutput>
+    describeAssociation: function(Client, types.DescribeAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAssociationOutput>
+    describeAssociationExecutions: function(Client, types.DescribeAssociationExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAssociationExecutionsOutput>
+    describeAssociationExecutionTargets: function(Client, types.DescribeAssociationExecutionTargetsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAssociationExecutionTargetsOutput>
+    describeAutomationExecutions: function(Client, types.DescribeAutomationExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAutomationExecutionsOutput>
+    describeAutomationStepExecutions: function(Client, types.DescribeAutomationStepExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAutomationStepExecutionsOutput>
+    describeAvailablePatches: function(Client, types.DescribeAvailablePatchesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAvailablePatchesOutput>
+    describeDocument: function(Client, types.DescribeDocumentInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDocumentOutput>
+    describeDocumentPermission: function(Client, types.DescribeDocumentPermissionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDocumentPermissionOutput>
+    describeEffectiveInstanceAssociations: function(Client, types.DescribeEffectiveInstanceAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEffectiveInstanceAssociationsOutput>
+    describeEffectivePatchesForPatchBaseline: function(Client, types.DescribeEffectivePatchesForPatchBaselineInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEffectivePatchesForPatchBaselineOutput>
+    describeInstanceAssociationsStatus: function(Client, types.DescribeInstanceAssociationsStatusInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstanceAssociationsStatusOutput>
+    describeInstanceInformation: function(Client, types.DescribeInstanceInformationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstanceInformationOutput>
+    describeInstancePatches: function(Client, types.DescribeInstancePatchesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstancePatchesOutput>
+    describeInstancePatchStates: function(Client, types.DescribeInstancePatchStatesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstancePatchStatesOutput>
+    describeInstancePatchStatesForPatchGroup: function(Client, types.DescribeInstancePatchStatesForPatchGroupInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstancePatchStatesForPatchGroupOutput>
+    describeInstanceProperties: function(Client, types.DescribeInstancePropertiesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstancePropertiesOutput>
+    describeInventoryDeletions: function(Client, types.DescribeInventoryDeletionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInventoryDeletionsOutput>
+    describeMaintenanceWindowExecutions: function(Client, types.DescribeMaintenanceWindowExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMaintenanceWindowExecutionsOutput>
+    describeMaintenanceWindowExecutionTaskInvocations: function(Client, types.DescribeMaintenanceWindowExecutionTaskInvocationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMaintenanceWindowExecutionTaskInvocationsOutput>
+    describeMaintenanceWindowExecutionTasks: function(Client, types.DescribeMaintenanceWindowExecutionTasksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMaintenanceWindowExecutionTasksOutput>
+    describeMaintenanceWindows: function(Client, types.DescribeMaintenanceWindowsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMaintenanceWindowsOutput>
+    describeMaintenanceWindowSchedule: function(Client, types.DescribeMaintenanceWindowScheduleInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMaintenanceWindowScheduleOutput>
+    describeMaintenanceWindowsForTarget: function(Client, types.DescribeMaintenanceWindowsForTargetInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMaintenanceWindowsForTargetOutput>
+    describeMaintenanceWindowTargets: function(Client, types.DescribeMaintenanceWindowTargetsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMaintenanceWindowTargetsOutput>
+    describeMaintenanceWindowTasks: function(Client, types.DescribeMaintenanceWindowTasksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMaintenanceWindowTasksOutput>
+    describeOpsItems: function(Client, types.DescribeOpsItemsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeOpsItemsOutput>
+    describeParameters: function(Client, types.DescribeParametersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeParametersOutput>
+    describePatchBaselines: function(Client, types.DescribePatchBaselinesInput, ? base_client.InvokeOptions): async.Operation<types.DescribePatchBaselinesOutput>
+    describePatchGroups: function(Client, types.DescribePatchGroupsInput, ? base_client.InvokeOptions): async.Operation<types.DescribePatchGroupsOutput>
+    describePatchGroupState: function(Client, types.DescribePatchGroupStateInput, ? base_client.InvokeOptions): async.Operation<types.DescribePatchGroupStateOutput>
+    describePatchProperties: function(Client, types.DescribePatchPropertiesInput, ? base_client.InvokeOptions): async.Operation<types.DescribePatchPropertiesOutput>
+    describeSessions: function(Client, types.DescribeSessionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSessionsOutput>
+    disassociateOpsItemRelatedItem: function(Client, types.DisassociateOpsItemRelatedItemInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateOpsItemRelatedItemOutput>
+    getAccessToken: function(Client, types.GetAccessTokenInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessTokenOutput>
+    getAutomationExecution: function(Client, types.GetAutomationExecutionInput, ? base_client.InvokeOptions): async.Operation<types.GetAutomationExecutionOutput>
+    getCalendarState: function(Client, types.GetCalendarStateInput, ? base_client.InvokeOptions): async.Operation<types.GetCalendarStateOutput>
+    getCommandInvocation: function(Client, types.GetCommandInvocationInput, ? base_client.InvokeOptions): async.Operation<types.GetCommandInvocationOutput>
+    getConnectionStatus: function(Client, types.GetConnectionStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectionStatusOutput>
+    getDefaultPatchBaseline: function(Client, types.GetDefaultPatchBaselineInput, ? base_client.InvokeOptions): async.Operation<types.GetDefaultPatchBaselineOutput>
+    getDeployablePatchSnapshotForInstance: function(Client, types.GetDeployablePatchSnapshotForInstanceInput, ? base_client.InvokeOptions): async.Operation<types.GetDeployablePatchSnapshotForInstanceOutput>
+    getDocument: function(Client, types.GetDocumentInput, ? base_client.InvokeOptions): async.Operation<types.GetDocumentOutput>
+    getExecutionPreview: function(Client, types.GetExecutionPreviewInput, ? base_client.InvokeOptions): async.Operation<types.GetExecutionPreviewOutput>
+    getInventory: function(Client, types.GetInventoryInput, ? base_client.InvokeOptions): async.Operation<types.GetInventoryOutput>
+    getInventorySchema: function(Client, types.GetInventorySchemaInput, ? base_client.InvokeOptions): async.Operation<types.GetInventorySchemaOutput>
+    getMaintenanceWindow: function(Client, types.GetMaintenanceWindowInput, ? base_client.InvokeOptions): async.Operation<types.GetMaintenanceWindowOutput>
+    getMaintenanceWindowExecution: function(Client, types.GetMaintenanceWindowExecutionInput, ? base_client.InvokeOptions): async.Operation<types.GetMaintenanceWindowExecutionOutput>
+    getMaintenanceWindowExecutionTask: function(Client, types.GetMaintenanceWindowExecutionTaskInput, ? base_client.InvokeOptions): async.Operation<types.GetMaintenanceWindowExecutionTaskOutput>
+    getMaintenanceWindowExecutionTaskInvocation: function(Client, types.GetMaintenanceWindowExecutionTaskInvocationInput, ? base_client.InvokeOptions): async.Operation<types.GetMaintenanceWindowExecutionTaskInvocationOutput>
+    getMaintenanceWindowTask: function(Client, types.GetMaintenanceWindowTaskInput, ? base_client.InvokeOptions): async.Operation<types.GetMaintenanceWindowTaskOutput>
+    getOpsItem: function(Client, types.GetOpsItemInput, ? base_client.InvokeOptions): async.Operation<types.GetOpsItemOutput>
+    getOpsMetadata: function(Client, types.GetOpsMetadataInput, ? base_client.InvokeOptions): async.Operation<types.GetOpsMetadataOutput>
+    getOpsSummary: function(Client, types.GetOpsSummaryInput, ? base_client.InvokeOptions): async.Operation<types.GetOpsSummaryOutput>
+    getParameter: function(Client, types.GetParameterInput, ? base_client.InvokeOptions): async.Operation<types.GetParameterOutput>
+    getParameterHistory: function(Client, types.GetParameterHistoryInput, ? base_client.InvokeOptions): async.Operation<types.GetParameterHistoryOutput>
+    getParameters: function(Client, types.GetParametersInput, ? base_client.InvokeOptions): async.Operation<types.GetParametersOutput>
+    getParametersByPath: function(Client, types.GetParametersByPathInput, ? base_client.InvokeOptions): async.Operation<types.GetParametersByPathOutput>
+    getPatchBaseline: function(Client, types.GetPatchBaselineInput, ? base_client.InvokeOptions): async.Operation<types.GetPatchBaselineOutput>
+    getPatchBaselineForPatchGroup: function(Client, types.GetPatchBaselineForPatchGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetPatchBaselineForPatchGroupOutput>
+    getResourcePolicies: function(Client, types.GetResourcePoliciesInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePoliciesOutput>
+    getServiceSetting: function(Client, types.GetServiceSettingInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceSettingOutput>
+    labelParameterVersion: function(Client, types.LabelParameterVersionInput, ? base_client.InvokeOptions): async.Operation<types.LabelParameterVersionOutput>
+    listAssociations: function(Client, types.ListAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssociationsOutput>
+    listAssociationVersions: function(Client, types.ListAssociationVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssociationVersionsOutput>
+    listCommandInvocations: function(Client, types.ListCommandInvocationsInput, ? base_client.InvokeOptions): async.Operation<types.ListCommandInvocationsOutput>
+    listCommands: function(Client, types.ListCommandsInput, ? base_client.InvokeOptions): async.Operation<types.ListCommandsOutput>
+    listComplianceItems: function(Client, types.ListComplianceItemsInput, ? base_client.InvokeOptions): async.Operation<types.ListComplianceItemsOutput>
+    listComplianceSummaries: function(Client, types.ListComplianceSummariesInput, ? base_client.InvokeOptions): async.Operation<types.ListComplianceSummariesOutput>
+    listDocumentMetadataHistory: function(Client, types.ListDocumentMetadataHistoryInput, ? base_client.InvokeOptions): async.Operation<types.ListDocumentMetadataHistoryOutput>
+    listDocuments: function(Client, types.ListDocumentsInput, ? base_client.InvokeOptions): async.Operation<types.ListDocumentsOutput>
+    listDocumentVersions: function(Client, types.ListDocumentVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListDocumentVersionsOutput>
+    listInventoryEntries: function(Client, types.ListInventoryEntriesInput, ? base_client.InvokeOptions): async.Operation<types.ListInventoryEntriesOutput>
+    listNodes: function(Client, types.ListNodesInput, ? base_client.InvokeOptions): async.Operation<types.ListNodesOutput>
+    listNodesSummary: function(Client, types.ListNodesSummaryInput, ? base_client.InvokeOptions): async.Operation<types.ListNodesSummaryOutput>
+    listOpsItemEvents: function(Client, types.ListOpsItemEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListOpsItemEventsOutput>
+    listOpsItemRelatedItems: function(Client, types.ListOpsItemRelatedItemsInput, ? base_client.InvokeOptions): async.Operation<types.ListOpsItemRelatedItemsOutput>
+    listOpsMetadata: function(Client, types.ListOpsMetadataInput, ? base_client.InvokeOptions): async.Operation<types.ListOpsMetadataOutput>
+    listResourceComplianceSummaries: function(Client, types.ListResourceComplianceSummariesInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceComplianceSummariesOutput>
+    listResourceDataSync: function(Client, types.ListResourceDataSyncInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceDataSyncOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    modifyDocumentPermission: function(Client, types.ModifyDocumentPermissionInput, ? base_client.InvokeOptions): async.Operation<types.ModifyDocumentPermissionOutput>
+    putComplianceItems: function(Client, types.PutComplianceItemsInput, ? base_client.InvokeOptions): async.Operation<types.PutComplianceItemsOutput>
+    putInventory: function(Client, types.PutInventoryInput, ? base_client.InvokeOptions): async.Operation<types.PutInventoryOutput>
+    putParameter: function(Client, types.PutParameterInput, ? base_client.InvokeOptions): async.Operation<types.PutParameterOutput>
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    registerDefaultPatchBaseline: function(Client, types.RegisterDefaultPatchBaselineInput, ? base_client.InvokeOptions): async.Operation<types.RegisterDefaultPatchBaselineOutput>
+    registerPatchBaselineForPatchGroup: function(Client, types.RegisterPatchBaselineForPatchGroupInput, ? base_client.InvokeOptions): async.Operation<types.RegisterPatchBaselineForPatchGroupOutput>
+    registerTargetWithMaintenanceWindow: function(Client, types.RegisterTargetWithMaintenanceWindowInput, ? base_client.InvokeOptions): async.Operation<types.RegisterTargetWithMaintenanceWindowOutput>
+    registerTaskWithMaintenanceWindow: function(Client, types.RegisterTaskWithMaintenanceWindowInput, ? base_client.InvokeOptions): async.Operation<types.RegisterTaskWithMaintenanceWindowOutput>
+    removeTagsFromResource: function(Client, types.RemoveTagsFromResourceInput, ? base_client.InvokeOptions): async.Operation<types.RemoveTagsFromResourceOutput>
+    resetServiceSetting: function(Client, types.ResetServiceSettingInput, ? base_client.InvokeOptions): async.Operation<types.ResetServiceSettingOutput>
+    resumeSession: function(Client, types.ResumeSessionInput, ? base_client.InvokeOptions): async.Operation<types.ResumeSessionOutput>
+    sendAutomationSignal: function(Client, types.SendAutomationSignalInput, ? base_client.InvokeOptions): async.Operation<types.SendAutomationSignalOutput>
+    sendCommand: function(Client, types.SendCommandInput, ? base_client.InvokeOptions): async.Operation<types.SendCommandOutput>
+    startAccessRequest: function(Client, types.StartAccessRequestInput, ? base_client.InvokeOptions): async.Operation<types.StartAccessRequestOutput>
+    startAssociationsOnce: function(Client, types.StartAssociationsOnceInput, ? base_client.InvokeOptions): async.Operation<types.StartAssociationsOnceOutput>
+    startAutomationExecution: function(Client, types.StartAutomationExecutionInput, ? base_client.InvokeOptions): async.Operation<types.StartAutomationExecutionOutput>
+    startChangeRequestExecution: function(Client, types.StartChangeRequestExecutionInput, ? base_client.InvokeOptions): async.Operation<types.StartChangeRequestExecutionOutput>
+    startExecutionPreview: function(Client, types.StartExecutionPreviewInput, ? base_client.InvokeOptions): async.Operation<types.StartExecutionPreviewOutput>
+    startSession: function(Client, types.StartSessionInput, ? base_client.InvokeOptions): async.Operation<types.StartSessionOutput>
+    stopAutomationExecution: function(Client, types.StopAutomationExecutionInput, ? base_client.InvokeOptions): async.Operation<types.StopAutomationExecutionOutput>
+    terminateSession: function(Client, types.TerminateSessionInput, ? base_client.InvokeOptions): async.Operation<types.TerminateSessionOutput>
+    unlabelParameterVersion: function(Client, types.UnlabelParameterVersionInput, ? base_client.InvokeOptions): async.Operation<types.UnlabelParameterVersionOutput>
+    updateAssociation: function(Client, types.UpdateAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAssociationOutput>
+    updateAssociationStatus: function(Client, types.UpdateAssociationStatusInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAssociationStatusOutput>
+    updateDocument: function(Client, types.UpdateDocumentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDocumentOutput>
+    updateDocumentDefaultVersion: function(Client, types.UpdateDocumentDefaultVersionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDocumentDefaultVersionOutput>
+    updateDocumentMetadata: function(Client, types.UpdateDocumentMetadataInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDocumentMetadataOutput>
+    updateMaintenanceWindow: function(Client, types.UpdateMaintenanceWindowInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMaintenanceWindowOutput>
+    updateMaintenanceWindowTarget: function(Client, types.UpdateMaintenanceWindowTargetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMaintenanceWindowTargetOutput>
+    updateMaintenanceWindowTask: function(Client, types.UpdateMaintenanceWindowTaskInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMaintenanceWindowTaskOutput>
+    updateManagedInstanceRole: function(Client, types.UpdateManagedInstanceRoleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateManagedInstanceRoleOutput>
+    updateOpsItem: function(Client, types.UpdateOpsItemInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOpsItemOutput>
+    updateOpsMetadata: function(Client, types.UpdateOpsMetadataInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOpsMetadataOutput>
+    updatePatchBaseline: function(Client, types.UpdatePatchBaselineInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePatchBaselineOutput>
+    updateResourceDataSync: function(Client, types.UpdateResourceDataSyncInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResourceDataSyncOutput>
+    updateServiceSetting: function(Client, types.UpdateServiceSettingInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServiceSettingOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonSSM"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ssm", signing_region = c.region } }
                 else
@@ -205,588 +208,588 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:addTagsToResource(input: types.AddTagsToResourceInput, options: any): async.Operation<types.AddTagsToResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddTagsToResource, input, options) as async.Operation<types.AddTagsToResourceOutput>
+function C:addTagsToResource(input: types.AddTagsToResourceInput, options?: base_client.InvokeOptions): async.Operation<types.AddTagsToResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddTagsToResource as schema.OperationSchema, input, options) as async.Operation<types.AddTagsToResourceOutput>
 end
 
-function C:associateOpsItemRelatedItem(input: types.AssociateOpsItemRelatedItemInput, options: any): async.Operation<types.AssociateOpsItemRelatedItemOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateOpsItemRelatedItem, input, options) as async.Operation<types.AssociateOpsItemRelatedItemOutput>
+function C:associateOpsItemRelatedItem(input: types.AssociateOpsItemRelatedItemInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateOpsItemRelatedItemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateOpsItemRelatedItem as schema.OperationSchema, input, options) as async.Operation<types.AssociateOpsItemRelatedItemOutput>
 end
 
-function C:cancelCommand(input: types.CancelCommandInput, options: any): async.Operation<types.CancelCommandOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelCommand, input, options) as async.Operation<types.CancelCommandOutput>
+function C:cancelCommand(input: types.CancelCommandInput, options?: base_client.InvokeOptions): async.Operation<types.CancelCommandOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelCommand as schema.OperationSchema, input, options) as async.Operation<types.CancelCommandOutput>
 end
 
-function C:cancelMaintenanceWindowExecution(input: types.CancelMaintenanceWindowExecutionInput, options: any): async.Operation<types.CancelMaintenanceWindowExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelMaintenanceWindowExecution, input, options) as async.Operation<types.CancelMaintenanceWindowExecutionOutput>
+function C:cancelMaintenanceWindowExecution(input: types.CancelMaintenanceWindowExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.CancelMaintenanceWindowExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelMaintenanceWindowExecution as schema.OperationSchema, input, options) as async.Operation<types.CancelMaintenanceWindowExecutionOutput>
 end
 
-function C:createActivation(input: types.CreateActivationInput, options: any): async.Operation<types.CreateActivationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateActivation, input, options) as async.Operation<types.CreateActivationOutput>
+function C:createActivation(input: types.CreateActivationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateActivationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateActivation as schema.OperationSchema, input, options) as async.Operation<types.CreateActivationOutput>
 end
 
-function C:createAssociation(input: types.CreateAssociationInput, options: any): async.Operation<types.CreateAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAssociation, input, options) as async.Operation<types.CreateAssociationOutput>
+function C:createAssociation(input: types.CreateAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreateAssociationOutput>
 end
 
-function C:createAssociationBatch(input: types.CreateAssociationBatchInput, options: any): async.Operation<types.CreateAssociationBatchOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAssociationBatch, input, options) as async.Operation<types.CreateAssociationBatchOutput>
+function C:createAssociationBatch(input: types.CreateAssociationBatchInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAssociationBatchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAssociationBatch as schema.OperationSchema, input, options) as async.Operation<types.CreateAssociationBatchOutput>
 end
 
-function C:createDocument(input: types.CreateDocumentInput, options: any): async.Operation<types.CreateDocumentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDocument, input, options) as async.Operation<types.CreateDocumentOutput>
+function C:createDocument(input: types.CreateDocumentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDocumentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDocument as schema.OperationSchema, input, options) as async.Operation<types.CreateDocumentOutput>
 end
 
-function C:createMaintenanceWindow(input: types.CreateMaintenanceWindowInput, options: any): async.Operation<types.CreateMaintenanceWindowOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMaintenanceWindow, input, options) as async.Operation<types.CreateMaintenanceWindowOutput>
+function C:createMaintenanceWindow(input: types.CreateMaintenanceWindowInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMaintenanceWindowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMaintenanceWindow as schema.OperationSchema, input, options) as async.Operation<types.CreateMaintenanceWindowOutput>
 end
 
-function C:createOpsItem(input: types.CreateOpsItemInput, options: any): async.Operation<types.CreateOpsItemOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateOpsItem, input, options) as async.Operation<types.CreateOpsItemOutput>
+function C:createOpsItem(input: types.CreateOpsItemInput, options?: base_client.InvokeOptions): async.Operation<types.CreateOpsItemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateOpsItem as schema.OperationSchema, input, options) as async.Operation<types.CreateOpsItemOutput>
 end
 
-function C:createOpsMetadata(input: types.CreateOpsMetadataInput, options: any): async.Operation<types.CreateOpsMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateOpsMetadata, input, options) as async.Operation<types.CreateOpsMetadataOutput>
+function C:createOpsMetadata(input: types.CreateOpsMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.CreateOpsMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateOpsMetadata as schema.OperationSchema, input, options) as async.Operation<types.CreateOpsMetadataOutput>
 end
 
-function C:createPatchBaseline(input: types.CreatePatchBaselineInput, options: any): async.Operation<types.CreatePatchBaselineOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePatchBaseline, input, options) as async.Operation<types.CreatePatchBaselineOutput>
+function C:createPatchBaseline(input: types.CreatePatchBaselineInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePatchBaselineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePatchBaseline as schema.OperationSchema, input, options) as async.Operation<types.CreatePatchBaselineOutput>
 end
 
-function C:createResourceDataSync(input: types.CreateResourceDataSyncInput, options: any): async.Operation<types.CreateResourceDataSyncOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateResourceDataSync, input, options) as async.Operation<types.CreateResourceDataSyncOutput>
+function C:createResourceDataSync(input: types.CreateResourceDataSyncInput, options?: base_client.InvokeOptions): async.Operation<types.CreateResourceDataSyncOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateResourceDataSync as schema.OperationSchema, input, options) as async.Operation<types.CreateResourceDataSyncOutput>
 end
 
-function C:deleteActivation(input: types.DeleteActivationInput, options: any): async.Operation<types.DeleteActivationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteActivation, input, options) as async.Operation<types.DeleteActivationOutput>
+function C:deleteActivation(input: types.DeleteActivationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteActivationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteActivation as schema.OperationSchema, input, options) as async.Operation<types.DeleteActivationOutput>
 end
 
-function C:deleteAssociation(input: types.DeleteAssociationInput, options: any): async.Operation<types.DeleteAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAssociation, input, options) as async.Operation<types.DeleteAssociationOutput>
+function C:deleteAssociation(input: types.DeleteAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteAssociationOutput>
 end
 
-function C:deleteDocument(input: types.DeleteDocumentInput, options: any): async.Operation<types.DeleteDocumentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDocument, input, options) as async.Operation<types.DeleteDocumentOutput>
+function C:deleteDocument(input: types.DeleteDocumentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDocumentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDocument as schema.OperationSchema, input, options) as async.Operation<types.DeleteDocumentOutput>
 end
 
-function C:deleteInventory(input: types.DeleteInventoryInput, options: any): async.Operation<types.DeleteInventoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteInventory, input, options) as async.Operation<types.DeleteInventoryOutput>
+function C:deleteInventory(input: types.DeleteInventoryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteInventoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInventory as schema.OperationSchema, input, options) as async.Operation<types.DeleteInventoryOutput>
 end
 
-function C:deleteMaintenanceWindow(input: types.DeleteMaintenanceWindowInput, options: any): async.Operation<types.DeleteMaintenanceWindowOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMaintenanceWindow, input, options) as async.Operation<types.DeleteMaintenanceWindowOutput>
+function C:deleteMaintenanceWindow(input: types.DeleteMaintenanceWindowInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMaintenanceWindowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMaintenanceWindow as schema.OperationSchema, input, options) as async.Operation<types.DeleteMaintenanceWindowOutput>
 end
 
-function C:deleteOpsItem(input: types.DeleteOpsItemInput, options: any): async.Operation<types.DeleteOpsItemOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteOpsItem, input, options) as async.Operation<types.DeleteOpsItemOutput>
+function C:deleteOpsItem(input: types.DeleteOpsItemInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteOpsItemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteOpsItem as schema.OperationSchema, input, options) as async.Operation<types.DeleteOpsItemOutput>
 end
 
-function C:deleteOpsMetadata(input: types.DeleteOpsMetadataInput, options: any): async.Operation<types.DeleteOpsMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteOpsMetadata, input, options) as async.Operation<types.DeleteOpsMetadataOutput>
+function C:deleteOpsMetadata(input: types.DeleteOpsMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteOpsMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteOpsMetadata as schema.OperationSchema, input, options) as async.Operation<types.DeleteOpsMetadataOutput>
 end
 
-function C:deleteParameter(input: types.DeleteParameterInput, options: any): async.Operation<types.DeleteParameterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteParameter, input, options) as async.Operation<types.DeleteParameterOutput>
+function C:deleteParameter(input: types.DeleteParameterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteParameterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteParameter as schema.OperationSchema, input, options) as async.Operation<types.DeleteParameterOutput>
 end
 
-function C:deleteParameters(input: types.DeleteParametersInput, options: any): async.Operation<types.DeleteParametersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteParameters, input, options) as async.Operation<types.DeleteParametersOutput>
+function C:deleteParameters(input: types.DeleteParametersInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteParametersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteParameters as schema.OperationSchema, input, options) as async.Operation<types.DeleteParametersOutput>
 end
 
-function C:deletePatchBaseline(input: types.DeletePatchBaselineInput, options: any): async.Operation<types.DeletePatchBaselineOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePatchBaseline, input, options) as async.Operation<types.DeletePatchBaselineOutput>
+function C:deletePatchBaseline(input: types.DeletePatchBaselineInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePatchBaselineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePatchBaseline as schema.OperationSchema, input, options) as async.Operation<types.DeletePatchBaselineOutput>
 end
 
-function C:deleteResourceDataSync(input: types.DeleteResourceDataSyncInput, options: any): async.Operation<types.DeleteResourceDataSyncOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourceDataSync, input, options) as async.Operation<types.DeleteResourceDataSyncOutput>
+function C:deleteResourceDataSync(input: types.DeleteResourceDataSyncInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourceDataSyncOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourceDataSync as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourceDataSyncOutput>
 end
 
-function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options: any): async.Operation<types.DeleteResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicy, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
+function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
 end
 
-function C:deregisterManagedInstance(input: types.DeregisterManagedInstanceInput, options: any): async.Operation<types.DeregisterManagedInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterManagedInstance, input, options) as async.Operation<types.DeregisterManagedInstanceOutput>
+function C:deregisterManagedInstance(input: types.DeregisterManagedInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterManagedInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterManagedInstance as schema.OperationSchema, input, options) as async.Operation<types.DeregisterManagedInstanceOutput>
 end
 
-function C:deregisterPatchBaselineForPatchGroup(input: types.DeregisterPatchBaselineForPatchGroupInput, options: any): async.Operation<types.DeregisterPatchBaselineForPatchGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterPatchBaselineForPatchGroup, input, options) as async.Operation<types.DeregisterPatchBaselineForPatchGroupOutput>
+function C:deregisterPatchBaselineForPatchGroup(input: types.DeregisterPatchBaselineForPatchGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterPatchBaselineForPatchGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterPatchBaselineForPatchGroup as schema.OperationSchema, input, options) as async.Operation<types.DeregisterPatchBaselineForPatchGroupOutput>
 end
 
-function C:deregisterTargetFromMaintenanceWindow(input: types.DeregisterTargetFromMaintenanceWindowInput, options: any): async.Operation<types.DeregisterTargetFromMaintenanceWindowOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterTargetFromMaintenanceWindow, input, options) as async.Operation<types.DeregisterTargetFromMaintenanceWindowOutput>
+function C:deregisterTargetFromMaintenanceWindow(input: types.DeregisterTargetFromMaintenanceWindowInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterTargetFromMaintenanceWindowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterTargetFromMaintenanceWindow as schema.OperationSchema, input, options) as async.Operation<types.DeregisterTargetFromMaintenanceWindowOutput>
 end
 
-function C:deregisterTaskFromMaintenanceWindow(input: types.DeregisterTaskFromMaintenanceWindowInput, options: any): async.Operation<types.DeregisterTaskFromMaintenanceWindowOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterTaskFromMaintenanceWindow, input, options) as async.Operation<types.DeregisterTaskFromMaintenanceWindowOutput>
+function C:deregisterTaskFromMaintenanceWindow(input: types.DeregisterTaskFromMaintenanceWindowInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterTaskFromMaintenanceWindowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterTaskFromMaintenanceWindow as schema.OperationSchema, input, options) as async.Operation<types.DeregisterTaskFromMaintenanceWindowOutput>
 end
 
-function C:describeActivations(input: types.DescribeActivationsInput, options: any): async.Operation<types.DescribeActivationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeActivations, input, options) as async.Operation<types.DescribeActivationsOutput>
+function C:describeActivations(input: types.DescribeActivationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeActivationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeActivations as schema.OperationSchema, input, options) as async.Operation<types.DescribeActivationsOutput>
 end
 
-function C:describeAssociation(input: types.DescribeAssociationInput, options: any): async.Operation<types.DescribeAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAssociation, input, options) as async.Operation<types.DescribeAssociationOutput>
+function C:describeAssociation(input: types.DescribeAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAssociation as schema.OperationSchema, input, options) as async.Operation<types.DescribeAssociationOutput>
 end
 
-function C:describeAssociationExecutions(input: types.DescribeAssociationExecutionsInput, options: any): async.Operation<types.DescribeAssociationExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAssociationExecutions, input, options) as async.Operation<types.DescribeAssociationExecutionsOutput>
+function C:describeAssociationExecutions(input: types.DescribeAssociationExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAssociationExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAssociationExecutions as schema.OperationSchema, input, options) as async.Operation<types.DescribeAssociationExecutionsOutput>
 end
 
-function C:describeAssociationExecutionTargets(input: types.DescribeAssociationExecutionTargetsInput, options: any): async.Operation<types.DescribeAssociationExecutionTargetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAssociationExecutionTargets, input, options) as async.Operation<types.DescribeAssociationExecutionTargetsOutput>
+function C:describeAssociationExecutionTargets(input: types.DescribeAssociationExecutionTargetsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAssociationExecutionTargetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAssociationExecutionTargets as schema.OperationSchema, input, options) as async.Operation<types.DescribeAssociationExecutionTargetsOutput>
 end
 
-function C:describeAutomationExecutions(input: types.DescribeAutomationExecutionsInput, options: any): async.Operation<types.DescribeAutomationExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAutomationExecutions, input, options) as async.Operation<types.DescribeAutomationExecutionsOutput>
+function C:describeAutomationExecutions(input: types.DescribeAutomationExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAutomationExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAutomationExecutions as schema.OperationSchema, input, options) as async.Operation<types.DescribeAutomationExecutionsOutput>
 end
 
-function C:describeAutomationStepExecutions(input: types.DescribeAutomationStepExecutionsInput, options: any): async.Operation<types.DescribeAutomationStepExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAutomationStepExecutions, input, options) as async.Operation<types.DescribeAutomationStepExecutionsOutput>
+function C:describeAutomationStepExecutions(input: types.DescribeAutomationStepExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAutomationStepExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAutomationStepExecutions as schema.OperationSchema, input, options) as async.Operation<types.DescribeAutomationStepExecutionsOutput>
 end
 
-function C:describeAvailablePatches(input: types.DescribeAvailablePatchesInput, options: any): async.Operation<types.DescribeAvailablePatchesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAvailablePatches, input, options) as async.Operation<types.DescribeAvailablePatchesOutput>
+function C:describeAvailablePatches(input: types.DescribeAvailablePatchesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAvailablePatchesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAvailablePatches as schema.OperationSchema, input, options) as async.Operation<types.DescribeAvailablePatchesOutput>
 end
 
-function C:describeDocument(input: types.DescribeDocumentInput, options: any): async.Operation<types.DescribeDocumentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDocument, input, options) as async.Operation<types.DescribeDocumentOutput>
+function C:describeDocument(input: types.DescribeDocumentInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDocumentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDocument as schema.OperationSchema, input, options) as async.Operation<types.DescribeDocumentOutput>
 end
 
-function C:describeDocumentPermission(input: types.DescribeDocumentPermissionInput, options: any): async.Operation<types.DescribeDocumentPermissionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDocumentPermission, input, options) as async.Operation<types.DescribeDocumentPermissionOutput>
+function C:describeDocumentPermission(input: types.DescribeDocumentPermissionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDocumentPermissionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDocumentPermission as schema.OperationSchema, input, options) as async.Operation<types.DescribeDocumentPermissionOutput>
 end
 
-function C:describeEffectiveInstanceAssociations(input: types.DescribeEffectiveInstanceAssociationsInput, options: any): async.Operation<types.DescribeEffectiveInstanceAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEffectiveInstanceAssociations, input, options) as async.Operation<types.DescribeEffectiveInstanceAssociationsOutput>
+function C:describeEffectiveInstanceAssociations(input: types.DescribeEffectiveInstanceAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEffectiveInstanceAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEffectiveInstanceAssociations as schema.OperationSchema, input, options) as async.Operation<types.DescribeEffectiveInstanceAssociationsOutput>
 end
 
-function C:describeEffectivePatchesForPatchBaseline(input: types.DescribeEffectivePatchesForPatchBaselineInput, options: any): async.Operation<types.DescribeEffectivePatchesForPatchBaselineOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEffectivePatchesForPatchBaseline, input, options) as async.Operation<types.DescribeEffectivePatchesForPatchBaselineOutput>
+function C:describeEffectivePatchesForPatchBaseline(input: types.DescribeEffectivePatchesForPatchBaselineInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEffectivePatchesForPatchBaselineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEffectivePatchesForPatchBaseline as schema.OperationSchema, input, options) as async.Operation<types.DescribeEffectivePatchesForPatchBaselineOutput>
 end
 
-function C:describeInstanceAssociationsStatus(input: types.DescribeInstanceAssociationsStatusInput, options: any): async.Operation<types.DescribeInstanceAssociationsStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInstanceAssociationsStatus, input, options) as async.Operation<types.DescribeInstanceAssociationsStatusOutput>
+function C:describeInstanceAssociationsStatus(input: types.DescribeInstanceAssociationsStatusInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInstanceAssociationsStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInstanceAssociationsStatus as schema.OperationSchema, input, options) as async.Operation<types.DescribeInstanceAssociationsStatusOutput>
 end
 
-function C:describeInstanceInformation(input: types.DescribeInstanceInformationInput, options: any): async.Operation<types.DescribeInstanceInformationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInstanceInformation, input, options) as async.Operation<types.DescribeInstanceInformationOutput>
+function C:describeInstanceInformation(input: types.DescribeInstanceInformationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInstanceInformationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInstanceInformation as schema.OperationSchema, input, options) as async.Operation<types.DescribeInstanceInformationOutput>
 end
 
-function C:describeInstancePatches(input: types.DescribeInstancePatchesInput, options: any): async.Operation<types.DescribeInstancePatchesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInstancePatches, input, options) as async.Operation<types.DescribeInstancePatchesOutput>
+function C:describeInstancePatches(input: types.DescribeInstancePatchesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInstancePatchesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInstancePatches as schema.OperationSchema, input, options) as async.Operation<types.DescribeInstancePatchesOutput>
 end
 
-function C:describeInstancePatchStates(input: types.DescribeInstancePatchStatesInput, options: any): async.Operation<types.DescribeInstancePatchStatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInstancePatchStates, input, options) as async.Operation<types.DescribeInstancePatchStatesOutput>
+function C:describeInstancePatchStates(input: types.DescribeInstancePatchStatesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInstancePatchStatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInstancePatchStates as schema.OperationSchema, input, options) as async.Operation<types.DescribeInstancePatchStatesOutput>
 end
 
-function C:describeInstancePatchStatesForPatchGroup(input: types.DescribeInstancePatchStatesForPatchGroupInput, options: any): async.Operation<types.DescribeInstancePatchStatesForPatchGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInstancePatchStatesForPatchGroup, input, options) as async.Operation<types.DescribeInstancePatchStatesForPatchGroupOutput>
+function C:describeInstancePatchStatesForPatchGroup(input: types.DescribeInstancePatchStatesForPatchGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInstancePatchStatesForPatchGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInstancePatchStatesForPatchGroup as schema.OperationSchema, input, options) as async.Operation<types.DescribeInstancePatchStatesForPatchGroupOutput>
 end
 
-function C:describeInstanceProperties(input: types.DescribeInstancePropertiesInput, options: any): async.Operation<types.DescribeInstancePropertiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInstanceProperties, input, options) as async.Operation<types.DescribeInstancePropertiesOutput>
+function C:describeInstanceProperties(input: types.DescribeInstancePropertiesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInstancePropertiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInstanceProperties as schema.OperationSchema, input, options) as async.Operation<types.DescribeInstancePropertiesOutput>
 end
 
-function C:describeInventoryDeletions(input: types.DescribeInventoryDeletionsInput, options: any): async.Operation<types.DescribeInventoryDeletionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInventoryDeletions, input, options) as async.Operation<types.DescribeInventoryDeletionsOutput>
+function C:describeInventoryDeletions(input: types.DescribeInventoryDeletionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInventoryDeletionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInventoryDeletions as schema.OperationSchema, input, options) as async.Operation<types.DescribeInventoryDeletionsOutput>
 end
 
-function C:describeMaintenanceWindowExecutions(input: types.DescribeMaintenanceWindowExecutionsInput, options: any): async.Operation<types.DescribeMaintenanceWindowExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeMaintenanceWindowExecutions, input, options) as async.Operation<types.DescribeMaintenanceWindowExecutionsOutput>
+function C:describeMaintenanceWindowExecutions(input: types.DescribeMaintenanceWindowExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMaintenanceWindowExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMaintenanceWindowExecutions as schema.OperationSchema, input, options) as async.Operation<types.DescribeMaintenanceWindowExecutionsOutput>
 end
 
-function C:describeMaintenanceWindowExecutionTaskInvocations(input: types.DescribeMaintenanceWindowExecutionTaskInvocationsInput, options: any): async.Operation<types.DescribeMaintenanceWindowExecutionTaskInvocationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeMaintenanceWindowExecutionTaskInvocations, input, options) as async.Operation<types.DescribeMaintenanceWindowExecutionTaskInvocationsOutput>
+function C:describeMaintenanceWindowExecutionTaskInvocations(input: types.DescribeMaintenanceWindowExecutionTaskInvocationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMaintenanceWindowExecutionTaskInvocationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMaintenanceWindowExecutionTaskInvocations as schema.OperationSchema, input, options) as async.Operation<types.DescribeMaintenanceWindowExecutionTaskInvocationsOutput>
 end
 
-function C:describeMaintenanceWindowExecutionTasks(input: types.DescribeMaintenanceWindowExecutionTasksInput, options: any): async.Operation<types.DescribeMaintenanceWindowExecutionTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeMaintenanceWindowExecutionTasks, input, options) as async.Operation<types.DescribeMaintenanceWindowExecutionTasksOutput>
+function C:describeMaintenanceWindowExecutionTasks(input: types.DescribeMaintenanceWindowExecutionTasksInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMaintenanceWindowExecutionTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMaintenanceWindowExecutionTasks as schema.OperationSchema, input, options) as async.Operation<types.DescribeMaintenanceWindowExecutionTasksOutput>
 end
 
-function C:describeMaintenanceWindows(input: types.DescribeMaintenanceWindowsInput, options: any): async.Operation<types.DescribeMaintenanceWindowsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeMaintenanceWindows, input, options) as async.Operation<types.DescribeMaintenanceWindowsOutput>
+function C:describeMaintenanceWindows(input: types.DescribeMaintenanceWindowsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMaintenanceWindowsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMaintenanceWindows as schema.OperationSchema, input, options) as async.Operation<types.DescribeMaintenanceWindowsOutput>
 end
 
-function C:describeMaintenanceWindowSchedule(input: types.DescribeMaintenanceWindowScheduleInput, options: any): async.Operation<types.DescribeMaintenanceWindowScheduleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeMaintenanceWindowSchedule, input, options) as async.Operation<types.DescribeMaintenanceWindowScheduleOutput>
+function C:describeMaintenanceWindowSchedule(input: types.DescribeMaintenanceWindowScheduleInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMaintenanceWindowScheduleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMaintenanceWindowSchedule as schema.OperationSchema, input, options) as async.Operation<types.DescribeMaintenanceWindowScheduleOutput>
 end
 
-function C:describeMaintenanceWindowsForTarget(input: types.DescribeMaintenanceWindowsForTargetInput, options: any): async.Operation<types.DescribeMaintenanceWindowsForTargetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeMaintenanceWindowsForTarget, input, options) as async.Operation<types.DescribeMaintenanceWindowsForTargetOutput>
+function C:describeMaintenanceWindowsForTarget(input: types.DescribeMaintenanceWindowsForTargetInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMaintenanceWindowsForTargetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMaintenanceWindowsForTarget as schema.OperationSchema, input, options) as async.Operation<types.DescribeMaintenanceWindowsForTargetOutput>
 end
 
-function C:describeMaintenanceWindowTargets(input: types.DescribeMaintenanceWindowTargetsInput, options: any): async.Operation<types.DescribeMaintenanceWindowTargetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeMaintenanceWindowTargets, input, options) as async.Operation<types.DescribeMaintenanceWindowTargetsOutput>
+function C:describeMaintenanceWindowTargets(input: types.DescribeMaintenanceWindowTargetsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMaintenanceWindowTargetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMaintenanceWindowTargets as schema.OperationSchema, input, options) as async.Operation<types.DescribeMaintenanceWindowTargetsOutput>
 end
 
-function C:describeMaintenanceWindowTasks(input: types.DescribeMaintenanceWindowTasksInput, options: any): async.Operation<types.DescribeMaintenanceWindowTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeMaintenanceWindowTasks, input, options) as async.Operation<types.DescribeMaintenanceWindowTasksOutput>
+function C:describeMaintenanceWindowTasks(input: types.DescribeMaintenanceWindowTasksInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMaintenanceWindowTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMaintenanceWindowTasks as schema.OperationSchema, input, options) as async.Operation<types.DescribeMaintenanceWindowTasksOutput>
 end
 
-function C:describeOpsItems(input: types.DescribeOpsItemsInput, options: any): async.Operation<types.DescribeOpsItemsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeOpsItems, input, options) as async.Operation<types.DescribeOpsItemsOutput>
+function C:describeOpsItems(input: types.DescribeOpsItemsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeOpsItemsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeOpsItems as schema.OperationSchema, input, options) as async.Operation<types.DescribeOpsItemsOutput>
 end
 
-function C:describeParameters(input: types.DescribeParametersInput, options: any): async.Operation<types.DescribeParametersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeParameters, input, options) as async.Operation<types.DescribeParametersOutput>
+function C:describeParameters(input: types.DescribeParametersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeParametersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeParameters as schema.OperationSchema, input, options) as async.Operation<types.DescribeParametersOutput>
 end
 
-function C:describePatchBaselines(input: types.DescribePatchBaselinesInput, options: any): async.Operation<types.DescribePatchBaselinesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePatchBaselines, input, options) as async.Operation<types.DescribePatchBaselinesOutput>
+function C:describePatchBaselines(input: types.DescribePatchBaselinesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePatchBaselinesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePatchBaselines as schema.OperationSchema, input, options) as async.Operation<types.DescribePatchBaselinesOutput>
 end
 
-function C:describePatchGroups(input: types.DescribePatchGroupsInput, options: any): async.Operation<types.DescribePatchGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePatchGroups, input, options) as async.Operation<types.DescribePatchGroupsOutput>
+function C:describePatchGroups(input: types.DescribePatchGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePatchGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePatchGroups as schema.OperationSchema, input, options) as async.Operation<types.DescribePatchGroupsOutput>
 end
 
-function C:describePatchGroupState(input: types.DescribePatchGroupStateInput, options: any): async.Operation<types.DescribePatchGroupStateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePatchGroupState, input, options) as async.Operation<types.DescribePatchGroupStateOutput>
+function C:describePatchGroupState(input: types.DescribePatchGroupStateInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePatchGroupStateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePatchGroupState as schema.OperationSchema, input, options) as async.Operation<types.DescribePatchGroupStateOutput>
 end
 
-function C:describePatchProperties(input: types.DescribePatchPropertiesInput, options: any): async.Operation<types.DescribePatchPropertiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePatchProperties, input, options) as async.Operation<types.DescribePatchPropertiesOutput>
+function C:describePatchProperties(input: types.DescribePatchPropertiesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePatchPropertiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePatchProperties as schema.OperationSchema, input, options) as async.Operation<types.DescribePatchPropertiesOutput>
 end
 
-function C:describeSessions(input: types.DescribeSessionsInput, options: any): async.Operation<types.DescribeSessionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSessions, input, options) as async.Operation<types.DescribeSessionsOutput>
+function C:describeSessions(input: types.DescribeSessionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSessionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSessions as schema.OperationSchema, input, options) as async.Operation<types.DescribeSessionsOutput>
 end
 
-function C:disassociateOpsItemRelatedItem(input: types.DisassociateOpsItemRelatedItemInput, options: any): async.Operation<types.DisassociateOpsItemRelatedItemOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateOpsItemRelatedItem, input, options) as async.Operation<types.DisassociateOpsItemRelatedItemOutput>
+function C:disassociateOpsItemRelatedItem(input: types.DisassociateOpsItemRelatedItemInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateOpsItemRelatedItemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateOpsItemRelatedItem as schema.OperationSchema, input, options) as async.Operation<types.DisassociateOpsItemRelatedItemOutput>
 end
 
-function C:getAccessToken(input: types.GetAccessTokenInput, options: any): async.Operation<types.GetAccessTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccessToken, input, options) as async.Operation<types.GetAccessTokenOutput>
+function C:getAccessToken(input: types.GetAccessTokenInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccessTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccessToken as schema.OperationSchema, input, options) as async.Operation<types.GetAccessTokenOutput>
 end
 
-function C:getAutomationExecution(input: types.GetAutomationExecutionInput, options: any): async.Operation<types.GetAutomationExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAutomationExecution, input, options) as async.Operation<types.GetAutomationExecutionOutput>
+function C:getAutomationExecution(input: types.GetAutomationExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.GetAutomationExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAutomationExecution as schema.OperationSchema, input, options) as async.Operation<types.GetAutomationExecutionOutput>
 end
 
-function C:getCalendarState(input: types.GetCalendarStateInput, options: any): async.Operation<types.GetCalendarStateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCalendarState, input, options) as async.Operation<types.GetCalendarStateOutput>
+function C:getCalendarState(input: types.GetCalendarStateInput, options?: base_client.InvokeOptions): async.Operation<types.GetCalendarStateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCalendarState as schema.OperationSchema, input, options) as async.Operation<types.GetCalendarStateOutput>
 end
 
-function C:getCommandInvocation(input: types.GetCommandInvocationInput, options: any): async.Operation<types.GetCommandInvocationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCommandInvocation, input, options) as async.Operation<types.GetCommandInvocationOutput>
+function C:getCommandInvocation(input: types.GetCommandInvocationInput, options?: base_client.InvokeOptions): async.Operation<types.GetCommandInvocationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCommandInvocation as schema.OperationSchema, input, options) as async.Operation<types.GetCommandInvocationOutput>
 end
 
-function C:getConnectionStatus(input: types.GetConnectionStatusInput, options: any): async.Operation<types.GetConnectionStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConnectionStatus, input, options) as async.Operation<types.GetConnectionStatusOutput>
+function C:getConnectionStatus(input: types.GetConnectionStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetConnectionStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConnectionStatus as schema.OperationSchema, input, options) as async.Operation<types.GetConnectionStatusOutput>
 end
 
-function C:getDefaultPatchBaseline(input: types.GetDefaultPatchBaselineInput, options: any): async.Operation<types.GetDefaultPatchBaselineOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDefaultPatchBaseline, input, options) as async.Operation<types.GetDefaultPatchBaselineOutput>
+function C:getDefaultPatchBaseline(input: types.GetDefaultPatchBaselineInput, options?: base_client.InvokeOptions): async.Operation<types.GetDefaultPatchBaselineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDefaultPatchBaseline as schema.OperationSchema, input, options) as async.Operation<types.GetDefaultPatchBaselineOutput>
 end
 
-function C:getDeployablePatchSnapshotForInstance(input: types.GetDeployablePatchSnapshotForInstanceInput, options: any): async.Operation<types.GetDeployablePatchSnapshotForInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDeployablePatchSnapshotForInstance, input, options) as async.Operation<types.GetDeployablePatchSnapshotForInstanceOutput>
+function C:getDeployablePatchSnapshotForInstance(input: types.GetDeployablePatchSnapshotForInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.GetDeployablePatchSnapshotForInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDeployablePatchSnapshotForInstance as schema.OperationSchema, input, options) as async.Operation<types.GetDeployablePatchSnapshotForInstanceOutput>
 end
 
-function C:getDocument(input: types.GetDocumentInput, options: any): async.Operation<types.GetDocumentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDocument, input, options) as async.Operation<types.GetDocumentOutput>
+function C:getDocument(input: types.GetDocumentInput, options?: base_client.InvokeOptions): async.Operation<types.GetDocumentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDocument as schema.OperationSchema, input, options) as async.Operation<types.GetDocumentOutput>
 end
 
-function C:getExecutionPreview(input: types.GetExecutionPreviewInput, options: any): async.Operation<types.GetExecutionPreviewOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetExecutionPreview, input, options) as async.Operation<types.GetExecutionPreviewOutput>
+function C:getExecutionPreview(input: types.GetExecutionPreviewInput, options?: base_client.InvokeOptions): async.Operation<types.GetExecutionPreviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetExecutionPreview as schema.OperationSchema, input, options) as async.Operation<types.GetExecutionPreviewOutput>
 end
 
-function C:getInventory(input: types.GetInventoryInput, options: any): async.Operation<types.GetInventoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInventory, input, options) as async.Operation<types.GetInventoryOutput>
+function C:getInventory(input: types.GetInventoryInput, options?: base_client.InvokeOptions): async.Operation<types.GetInventoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInventory as schema.OperationSchema, input, options) as async.Operation<types.GetInventoryOutput>
 end
 
-function C:getInventorySchema(input: types.GetInventorySchemaInput, options: any): async.Operation<types.GetInventorySchemaOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInventorySchema, input, options) as async.Operation<types.GetInventorySchemaOutput>
+function C:getInventorySchema(input: types.GetInventorySchemaInput, options?: base_client.InvokeOptions): async.Operation<types.GetInventorySchemaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInventorySchema as schema.OperationSchema, input, options) as async.Operation<types.GetInventorySchemaOutput>
 end
 
-function C:getMaintenanceWindow(input: types.GetMaintenanceWindowInput, options: any): async.Operation<types.GetMaintenanceWindowOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMaintenanceWindow, input, options) as async.Operation<types.GetMaintenanceWindowOutput>
+function C:getMaintenanceWindow(input: types.GetMaintenanceWindowInput, options?: base_client.InvokeOptions): async.Operation<types.GetMaintenanceWindowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMaintenanceWindow as schema.OperationSchema, input, options) as async.Operation<types.GetMaintenanceWindowOutput>
 end
 
-function C:getMaintenanceWindowExecution(input: types.GetMaintenanceWindowExecutionInput, options: any): async.Operation<types.GetMaintenanceWindowExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMaintenanceWindowExecution, input, options) as async.Operation<types.GetMaintenanceWindowExecutionOutput>
+function C:getMaintenanceWindowExecution(input: types.GetMaintenanceWindowExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.GetMaintenanceWindowExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMaintenanceWindowExecution as schema.OperationSchema, input, options) as async.Operation<types.GetMaintenanceWindowExecutionOutput>
 end
 
-function C:getMaintenanceWindowExecutionTask(input: types.GetMaintenanceWindowExecutionTaskInput, options: any): async.Operation<types.GetMaintenanceWindowExecutionTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMaintenanceWindowExecutionTask, input, options) as async.Operation<types.GetMaintenanceWindowExecutionTaskOutput>
+function C:getMaintenanceWindowExecutionTask(input: types.GetMaintenanceWindowExecutionTaskInput, options?: base_client.InvokeOptions): async.Operation<types.GetMaintenanceWindowExecutionTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMaintenanceWindowExecutionTask as schema.OperationSchema, input, options) as async.Operation<types.GetMaintenanceWindowExecutionTaskOutput>
 end
 
-function C:getMaintenanceWindowExecutionTaskInvocation(input: types.GetMaintenanceWindowExecutionTaskInvocationInput, options: any): async.Operation<types.GetMaintenanceWindowExecutionTaskInvocationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMaintenanceWindowExecutionTaskInvocation, input, options) as async.Operation<types.GetMaintenanceWindowExecutionTaskInvocationOutput>
+function C:getMaintenanceWindowExecutionTaskInvocation(input: types.GetMaintenanceWindowExecutionTaskInvocationInput, options?: base_client.InvokeOptions): async.Operation<types.GetMaintenanceWindowExecutionTaskInvocationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMaintenanceWindowExecutionTaskInvocation as schema.OperationSchema, input, options) as async.Operation<types.GetMaintenanceWindowExecutionTaskInvocationOutput>
 end
 
-function C:getMaintenanceWindowTask(input: types.GetMaintenanceWindowTaskInput, options: any): async.Operation<types.GetMaintenanceWindowTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMaintenanceWindowTask, input, options) as async.Operation<types.GetMaintenanceWindowTaskOutput>
+function C:getMaintenanceWindowTask(input: types.GetMaintenanceWindowTaskInput, options?: base_client.InvokeOptions): async.Operation<types.GetMaintenanceWindowTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMaintenanceWindowTask as schema.OperationSchema, input, options) as async.Operation<types.GetMaintenanceWindowTaskOutput>
 end
 
-function C:getOpsItem(input: types.GetOpsItemInput, options: any): async.Operation<types.GetOpsItemOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOpsItem, input, options) as async.Operation<types.GetOpsItemOutput>
+function C:getOpsItem(input: types.GetOpsItemInput, options?: base_client.InvokeOptions): async.Operation<types.GetOpsItemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOpsItem as schema.OperationSchema, input, options) as async.Operation<types.GetOpsItemOutput>
 end
 
-function C:getOpsMetadata(input: types.GetOpsMetadataInput, options: any): async.Operation<types.GetOpsMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOpsMetadata, input, options) as async.Operation<types.GetOpsMetadataOutput>
+function C:getOpsMetadata(input: types.GetOpsMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.GetOpsMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOpsMetadata as schema.OperationSchema, input, options) as async.Operation<types.GetOpsMetadataOutput>
 end
 
-function C:getOpsSummary(input: types.GetOpsSummaryInput, options: any): async.Operation<types.GetOpsSummaryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOpsSummary, input, options) as async.Operation<types.GetOpsSummaryOutput>
+function C:getOpsSummary(input: types.GetOpsSummaryInput, options?: base_client.InvokeOptions): async.Operation<types.GetOpsSummaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOpsSummary as schema.OperationSchema, input, options) as async.Operation<types.GetOpsSummaryOutput>
 end
 
-function C:getParameter(input: types.GetParameterInput, options: any): async.Operation<types.GetParameterOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetParameter, input, options) as async.Operation<types.GetParameterOutput>
+function C:getParameter(input: types.GetParameterInput, options?: base_client.InvokeOptions): async.Operation<types.GetParameterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetParameter as schema.OperationSchema, input, options) as async.Operation<types.GetParameterOutput>
 end
 
-function C:getParameterHistory(input: types.GetParameterHistoryInput, options: any): async.Operation<types.GetParameterHistoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetParameterHistory, input, options) as async.Operation<types.GetParameterHistoryOutput>
+function C:getParameterHistory(input: types.GetParameterHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.GetParameterHistoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetParameterHistory as schema.OperationSchema, input, options) as async.Operation<types.GetParameterHistoryOutput>
 end
 
-function C:getParameters(input: types.GetParametersInput, options: any): async.Operation<types.GetParametersOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetParameters, input, options) as async.Operation<types.GetParametersOutput>
+function C:getParameters(input: types.GetParametersInput, options?: base_client.InvokeOptions): async.Operation<types.GetParametersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetParameters as schema.OperationSchema, input, options) as async.Operation<types.GetParametersOutput>
 end
 
-function C:getParametersByPath(input: types.GetParametersByPathInput, options: any): async.Operation<types.GetParametersByPathOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetParametersByPath, input, options) as async.Operation<types.GetParametersByPathOutput>
+function C:getParametersByPath(input: types.GetParametersByPathInput, options?: base_client.InvokeOptions): async.Operation<types.GetParametersByPathOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetParametersByPath as schema.OperationSchema, input, options) as async.Operation<types.GetParametersByPathOutput>
 end
 
-function C:getPatchBaseline(input: types.GetPatchBaselineInput, options: any): async.Operation<types.GetPatchBaselineOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPatchBaseline, input, options) as async.Operation<types.GetPatchBaselineOutput>
+function C:getPatchBaseline(input: types.GetPatchBaselineInput, options?: base_client.InvokeOptions): async.Operation<types.GetPatchBaselineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPatchBaseline as schema.OperationSchema, input, options) as async.Operation<types.GetPatchBaselineOutput>
 end
 
-function C:getPatchBaselineForPatchGroup(input: types.GetPatchBaselineForPatchGroupInput, options: any): async.Operation<types.GetPatchBaselineForPatchGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPatchBaselineForPatchGroup, input, options) as async.Operation<types.GetPatchBaselineForPatchGroupOutput>
+function C:getPatchBaselineForPatchGroup(input: types.GetPatchBaselineForPatchGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetPatchBaselineForPatchGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPatchBaselineForPatchGroup as schema.OperationSchema, input, options) as async.Operation<types.GetPatchBaselineForPatchGroupOutput>
 end
 
-function C:getResourcePolicies(input: types.GetResourcePoliciesInput, options: any): async.Operation<types.GetResourcePoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicies, input, options) as async.Operation<types.GetResourcePoliciesOutput>
+function C:getResourcePolicies(input: types.GetResourcePoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcePoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePolicies as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePoliciesOutput>
 end
 
-function C:getServiceSetting(input: types.GetServiceSettingInput, options: any): async.Operation<types.GetServiceSettingOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetServiceSetting, input, options) as async.Operation<types.GetServiceSettingOutput>
+function C:getServiceSetting(input: types.GetServiceSettingInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceSettingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetServiceSetting as schema.OperationSchema, input, options) as async.Operation<types.GetServiceSettingOutput>
 end
 
-function C:labelParameterVersion(input: types.LabelParameterVersionInput, options: any): async.Operation<types.LabelParameterVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.LabelParameterVersion, input, options) as async.Operation<types.LabelParameterVersionOutput>
+function C:labelParameterVersion(input: types.LabelParameterVersionInput, options?: base_client.InvokeOptions): async.Operation<types.LabelParameterVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.LabelParameterVersion as schema.OperationSchema, input, options) as async.Operation<types.LabelParameterVersionOutput>
 end
 
-function C:listAssociations(input: types.ListAssociationsInput, options: any): async.Operation<types.ListAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssociations, input, options) as async.Operation<types.ListAssociationsOutput>
+function C:listAssociations(input: types.ListAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListAssociationsOutput>
 end
 
-function C:listAssociationVersions(input: types.ListAssociationVersionsInput, options: any): async.Operation<types.ListAssociationVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssociationVersions, input, options) as async.Operation<types.ListAssociationVersionsOutput>
+function C:listAssociationVersions(input: types.ListAssociationVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssociationVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssociationVersions as schema.OperationSchema, input, options) as async.Operation<types.ListAssociationVersionsOutput>
 end
 
-function C:listCommandInvocations(input: types.ListCommandInvocationsInput, options: any): async.Operation<types.ListCommandInvocationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCommandInvocations, input, options) as async.Operation<types.ListCommandInvocationsOutput>
+function C:listCommandInvocations(input: types.ListCommandInvocationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCommandInvocationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCommandInvocations as schema.OperationSchema, input, options) as async.Operation<types.ListCommandInvocationsOutput>
 end
 
-function C:listCommands(input: types.ListCommandsInput, options: any): async.Operation<types.ListCommandsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCommands, input, options) as async.Operation<types.ListCommandsOutput>
+function C:listCommands(input: types.ListCommandsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCommandsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCommands as schema.OperationSchema, input, options) as async.Operation<types.ListCommandsOutput>
 end
 
-function C:listComplianceItems(input: types.ListComplianceItemsInput, options: any): async.Operation<types.ListComplianceItemsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListComplianceItems, input, options) as async.Operation<types.ListComplianceItemsOutput>
+function C:listComplianceItems(input: types.ListComplianceItemsInput, options?: base_client.InvokeOptions): async.Operation<types.ListComplianceItemsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListComplianceItems as schema.OperationSchema, input, options) as async.Operation<types.ListComplianceItemsOutput>
 end
 
-function C:listComplianceSummaries(input: types.ListComplianceSummariesInput, options: any): async.Operation<types.ListComplianceSummariesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListComplianceSummaries, input, options) as async.Operation<types.ListComplianceSummariesOutput>
+function C:listComplianceSummaries(input: types.ListComplianceSummariesInput, options?: base_client.InvokeOptions): async.Operation<types.ListComplianceSummariesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListComplianceSummaries as schema.OperationSchema, input, options) as async.Operation<types.ListComplianceSummariesOutput>
 end
 
-function C:listDocumentMetadataHistory(input: types.ListDocumentMetadataHistoryInput, options: any): async.Operation<types.ListDocumentMetadataHistoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDocumentMetadataHistory, input, options) as async.Operation<types.ListDocumentMetadataHistoryOutput>
+function C:listDocumentMetadataHistory(input: types.ListDocumentMetadataHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.ListDocumentMetadataHistoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDocumentMetadataHistory as schema.OperationSchema, input, options) as async.Operation<types.ListDocumentMetadataHistoryOutput>
 end
 
-function C:listDocuments(input: types.ListDocumentsInput, options: any): async.Operation<types.ListDocumentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDocuments, input, options) as async.Operation<types.ListDocumentsOutput>
+function C:listDocuments(input: types.ListDocumentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDocumentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDocuments as schema.OperationSchema, input, options) as async.Operation<types.ListDocumentsOutput>
 end
 
-function C:listDocumentVersions(input: types.ListDocumentVersionsInput, options: any): async.Operation<types.ListDocumentVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDocumentVersions, input, options) as async.Operation<types.ListDocumentVersionsOutput>
+function C:listDocumentVersions(input: types.ListDocumentVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDocumentVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDocumentVersions as schema.OperationSchema, input, options) as async.Operation<types.ListDocumentVersionsOutput>
 end
 
-function C:listInventoryEntries(input: types.ListInventoryEntriesInput, options: any): async.Operation<types.ListInventoryEntriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInventoryEntries, input, options) as async.Operation<types.ListInventoryEntriesOutput>
+function C:listInventoryEntries(input: types.ListInventoryEntriesInput, options?: base_client.InvokeOptions): async.Operation<types.ListInventoryEntriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInventoryEntries as schema.OperationSchema, input, options) as async.Operation<types.ListInventoryEntriesOutput>
 end
 
-function C:listNodes(input: types.ListNodesInput, options: any): async.Operation<types.ListNodesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNodes, input, options) as async.Operation<types.ListNodesOutput>
+function C:listNodes(input: types.ListNodesInput, options?: base_client.InvokeOptions): async.Operation<types.ListNodesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNodes as schema.OperationSchema, input, options) as async.Operation<types.ListNodesOutput>
 end
 
-function C:listNodesSummary(input: types.ListNodesSummaryInput, options: any): async.Operation<types.ListNodesSummaryOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNodesSummary, input, options) as async.Operation<types.ListNodesSummaryOutput>
+function C:listNodesSummary(input: types.ListNodesSummaryInput, options?: base_client.InvokeOptions): async.Operation<types.ListNodesSummaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNodesSummary as schema.OperationSchema, input, options) as async.Operation<types.ListNodesSummaryOutput>
 end
 
-function C:listOpsItemEvents(input: types.ListOpsItemEventsInput, options: any): async.Operation<types.ListOpsItemEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOpsItemEvents, input, options) as async.Operation<types.ListOpsItemEventsOutput>
+function C:listOpsItemEvents(input: types.ListOpsItemEventsInput, options?: base_client.InvokeOptions): async.Operation<types.ListOpsItemEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOpsItemEvents as schema.OperationSchema, input, options) as async.Operation<types.ListOpsItemEventsOutput>
 end
 
-function C:listOpsItemRelatedItems(input: types.ListOpsItemRelatedItemsInput, options: any): async.Operation<types.ListOpsItemRelatedItemsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOpsItemRelatedItems, input, options) as async.Operation<types.ListOpsItemRelatedItemsOutput>
+function C:listOpsItemRelatedItems(input: types.ListOpsItemRelatedItemsInput, options?: base_client.InvokeOptions): async.Operation<types.ListOpsItemRelatedItemsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOpsItemRelatedItems as schema.OperationSchema, input, options) as async.Operation<types.ListOpsItemRelatedItemsOutput>
 end
 
-function C:listOpsMetadata(input: types.ListOpsMetadataInput, options: any): async.Operation<types.ListOpsMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOpsMetadata, input, options) as async.Operation<types.ListOpsMetadataOutput>
+function C:listOpsMetadata(input: types.ListOpsMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.ListOpsMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOpsMetadata as schema.OperationSchema, input, options) as async.Operation<types.ListOpsMetadataOutput>
 end
 
-function C:listResourceComplianceSummaries(input: types.ListResourceComplianceSummariesInput, options: any): async.Operation<types.ListResourceComplianceSummariesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResourceComplianceSummaries, input, options) as async.Operation<types.ListResourceComplianceSummariesOutput>
+function C:listResourceComplianceSummaries(input: types.ListResourceComplianceSummariesInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourceComplianceSummariesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourceComplianceSummaries as schema.OperationSchema, input, options) as async.Operation<types.ListResourceComplianceSummariesOutput>
 end
 
-function C:listResourceDataSync(input: types.ListResourceDataSyncInput, options: any): async.Operation<types.ListResourceDataSyncOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResourceDataSync, input, options) as async.Operation<types.ListResourceDataSyncOutput>
+function C:listResourceDataSync(input: types.ListResourceDataSyncInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourceDataSyncOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourceDataSync as schema.OperationSchema, input, options) as async.Operation<types.ListResourceDataSyncOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:modifyDocumentPermission(input: types.ModifyDocumentPermissionInput, options: any): async.Operation<types.ModifyDocumentPermissionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyDocumentPermission, input, options) as async.Operation<types.ModifyDocumentPermissionOutput>
+function C:modifyDocumentPermission(input: types.ModifyDocumentPermissionInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyDocumentPermissionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyDocumentPermission as schema.OperationSchema, input, options) as async.Operation<types.ModifyDocumentPermissionOutput>
 end
 
-function C:putComplianceItems(input: types.PutComplianceItemsInput, options: any): async.Operation<types.PutComplianceItemsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutComplianceItems, input, options) as async.Operation<types.PutComplianceItemsOutput>
+function C:putComplianceItems(input: types.PutComplianceItemsInput, options?: base_client.InvokeOptions): async.Operation<types.PutComplianceItemsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutComplianceItems as schema.OperationSchema, input, options) as async.Operation<types.PutComplianceItemsOutput>
 end
 
-function C:putInventory(input: types.PutInventoryInput, options: any): async.Operation<types.PutInventoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutInventory, input, options) as async.Operation<types.PutInventoryOutput>
+function C:putInventory(input: types.PutInventoryInput, options?: base_client.InvokeOptions): async.Operation<types.PutInventoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutInventory as schema.OperationSchema, input, options) as async.Operation<types.PutInventoryOutput>
 end
 
-function C:putParameter(input: types.PutParameterInput, options: any): async.Operation<types.PutParameterOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutParameter, input, options) as async.Operation<types.PutParameterOutput>
+function C:putParameter(input: types.PutParameterInput, options?: base_client.InvokeOptions): async.Operation<types.PutParameterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutParameter as schema.OperationSchema, input, options) as async.Operation<types.PutParameterOutput>
 end
 
-function C:putResourcePolicy(input: types.PutResourcePolicyInput, options: any): async.Operation<types.PutResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutResourcePolicy, input, options) as async.Operation<types.PutResourcePolicyOutput>
+function C:putResourcePolicy(input: types.PutResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutResourcePolicyOutput>
 end
 
-function C:registerDefaultPatchBaseline(input: types.RegisterDefaultPatchBaselineInput, options: any): async.Operation<types.RegisterDefaultPatchBaselineOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterDefaultPatchBaseline, input, options) as async.Operation<types.RegisterDefaultPatchBaselineOutput>
+function C:registerDefaultPatchBaseline(input: types.RegisterDefaultPatchBaselineInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterDefaultPatchBaselineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterDefaultPatchBaseline as schema.OperationSchema, input, options) as async.Operation<types.RegisterDefaultPatchBaselineOutput>
 end
 
-function C:registerPatchBaselineForPatchGroup(input: types.RegisterPatchBaselineForPatchGroupInput, options: any): async.Operation<types.RegisterPatchBaselineForPatchGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterPatchBaselineForPatchGroup, input, options) as async.Operation<types.RegisterPatchBaselineForPatchGroupOutput>
+function C:registerPatchBaselineForPatchGroup(input: types.RegisterPatchBaselineForPatchGroupInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterPatchBaselineForPatchGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterPatchBaselineForPatchGroup as schema.OperationSchema, input, options) as async.Operation<types.RegisterPatchBaselineForPatchGroupOutput>
 end
 
-function C:registerTargetWithMaintenanceWindow(input: types.RegisterTargetWithMaintenanceWindowInput, options: any): async.Operation<types.RegisterTargetWithMaintenanceWindowOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterTargetWithMaintenanceWindow, input, options) as async.Operation<types.RegisterTargetWithMaintenanceWindowOutput>
+function C:registerTargetWithMaintenanceWindow(input: types.RegisterTargetWithMaintenanceWindowInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterTargetWithMaintenanceWindowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterTargetWithMaintenanceWindow as schema.OperationSchema, input, options) as async.Operation<types.RegisterTargetWithMaintenanceWindowOutput>
 end
 
-function C:registerTaskWithMaintenanceWindow(input: types.RegisterTaskWithMaintenanceWindowInput, options: any): async.Operation<types.RegisterTaskWithMaintenanceWindowOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterTaskWithMaintenanceWindow, input, options) as async.Operation<types.RegisterTaskWithMaintenanceWindowOutput>
+function C:registerTaskWithMaintenanceWindow(input: types.RegisterTaskWithMaintenanceWindowInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterTaskWithMaintenanceWindowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterTaskWithMaintenanceWindow as schema.OperationSchema, input, options) as async.Operation<types.RegisterTaskWithMaintenanceWindowOutput>
 end
 
-function C:removeTagsFromResource(input: types.RemoveTagsFromResourceInput, options: any): async.Operation<types.RemoveTagsFromResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveTagsFromResource, input, options) as async.Operation<types.RemoveTagsFromResourceOutput>
+function C:removeTagsFromResource(input: types.RemoveTagsFromResourceInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveTagsFromResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveTagsFromResource as schema.OperationSchema, input, options) as async.Operation<types.RemoveTagsFromResourceOutput>
 end
 
-function C:resetServiceSetting(input: types.ResetServiceSettingInput, options: any): async.Operation<types.ResetServiceSettingOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResetServiceSetting, input, options) as async.Operation<types.ResetServiceSettingOutput>
+function C:resetServiceSetting(input: types.ResetServiceSettingInput, options?: base_client.InvokeOptions): async.Operation<types.ResetServiceSettingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResetServiceSetting as schema.OperationSchema, input, options) as async.Operation<types.ResetServiceSettingOutput>
 end
 
-function C:resumeSession(input: types.ResumeSessionInput, options: any): async.Operation<types.ResumeSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResumeSession, input, options) as async.Operation<types.ResumeSessionOutput>
+function C:resumeSession(input: types.ResumeSessionInput, options?: base_client.InvokeOptions): async.Operation<types.ResumeSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResumeSession as schema.OperationSchema, input, options) as async.Operation<types.ResumeSessionOutput>
 end
 
-function C:sendAutomationSignal(input: types.SendAutomationSignalInput, options: any): async.Operation<types.SendAutomationSignalOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendAutomationSignal, input, options) as async.Operation<types.SendAutomationSignalOutput>
+function C:sendAutomationSignal(input: types.SendAutomationSignalInput, options?: base_client.InvokeOptions): async.Operation<types.SendAutomationSignalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendAutomationSignal as schema.OperationSchema, input, options) as async.Operation<types.SendAutomationSignalOutput>
 end
 
-function C:sendCommand(input: types.SendCommandInput, options: any): async.Operation<types.SendCommandOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendCommand, input, options) as async.Operation<types.SendCommandOutput>
+function C:sendCommand(input: types.SendCommandInput, options?: base_client.InvokeOptions): async.Operation<types.SendCommandOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendCommand as schema.OperationSchema, input, options) as async.Operation<types.SendCommandOutput>
 end
 
-function C:startAccessRequest(input: types.StartAccessRequestInput, options: any): async.Operation<types.StartAccessRequestOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartAccessRequest, input, options) as async.Operation<types.StartAccessRequestOutput>
+function C:startAccessRequest(input: types.StartAccessRequestInput, options?: base_client.InvokeOptions): async.Operation<types.StartAccessRequestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartAccessRequest as schema.OperationSchema, input, options) as async.Operation<types.StartAccessRequestOutput>
 end
 
-function C:startAssociationsOnce(input: types.StartAssociationsOnceInput, options: any): async.Operation<types.StartAssociationsOnceOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartAssociationsOnce, input, options) as async.Operation<types.StartAssociationsOnceOutput>
+function C:startAssociationsOnce(input: types.StartAssociationsOnceInput, options?: base_client.InvokeOptions): async.Operation<types.StartAssociationsOnceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartAssociationsOnce as schema.OperationSchema, input, options) as async.Operation<types.StartAssociationsOnceOutput>
 end
 
-function C:startAutomationExecution(input: types.StartAutomationExecutionInput, options: any): async.Operation<types.StartAutomationExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartAutomationExecution, input, options) as async.Operation<types.StartAutomationExecutionOutput>
+function C:startAutomationExecution(input: types.StartAutomationExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.StartAutomationExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartAutomationExecution as schema.OperationSchema, input, options) as async.Operation<types.StartAutomationExecutionOutput>
 end
 
-function C:startChangeRequestExecution(input: types.StartChangeRequestExecutionInput, options: any): async.Operation<types.StartChangeRequestExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartChangeRequestExecution, input, options) as async.Operation<types.StartChangeRequestExecutionOutput>
+function C:startChangeRequestExecution(input: types.StartChangeRequestExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.StartChangeRequestExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartChangeRequestExecution as schema.OperationSchema, input, options) as async.Operation<types.StartChangeRequestExecutionOutput>
 end
 
-function C:startExecutionPreview(input: types.StartExecutionPreviewInput, options: any): async.Operation<types.StartExecutionPreviewOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartExecutionPreview, input, options) as async.Operation<types.StartExecutionPreviewOutput>
+function C:startExecutionPreview(input: types.StartExecutionPreviewInput, options?: base_client.InvokeOptions): async.Operation<types.StartExecutionPreviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartExecutionPreview as schema.OperationSchema, input, options) as async.Operation<types.StartExecutionPreviewOutput>
 end
 
-function C:startSession(input: types.StartSessionInput, options: any): async.Operation<types.StartSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartSession, input, options) as async.Operation<types.StartSessionOutput>
+function C:startSession(input: types.StartSessionInput, options?: base_client.InvokeOptions): async.Operation<types.StartSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartSession as schema.OperationSchema, input, options) as async.Operation<types.StartSessionOutput>
 end
 
-function C:stopAutomationExecution(input: types.StopAutomationExecutionInput, options: any): async.Operation<types.StopAutomationExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopAutomationExecution, input, options) as async.Operation<types.StopAutomationExecutionOutput>
+function C:stopAutomationExecution(input: types.StopAutomationExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.StopAutomationExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopAutomationExecution as schema.OperationSchema, input, options) as async.Operation<types.StopAutomationExecutionOutput>
 end
 
-function C:terminateSession(input: types.TerminateSessionInput, options: any): async.Operation<types.TerminateSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.TerminateSession, input, options) as async.Operation<types.TerminateSessionOutput>
+function C:terminateSession(input: types.TerminateSessionInput, options?: base_client.InvokeOptions): async.Operation<types.TerminateSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TerminateSession as schema.OperationSchema, input, options) as async.Operation<types.TerminateSessionOutput>
 end
 
-function C:unlabelParameterVersion(input: types.UnlabelParameterVersionInput, options: any): async.Operation<types.UnlabelParameterVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UnlabelParameterVersion, input, options) as async.Operation<types.UnlabelParameterVersionOutput>
+function C:unlabelParameterVersion(input: types.UnlabelParameterVersionInput, options?: base_client.InvokeOptions): async.Operation<types.UnlabelParameterVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UnlabelParameterVersion as schema.OperationSchema, input, options) as async.Operation<types.UnlabelParameterVersionOutput>
 end
 
-function C:updateAssociation(input: types.UpdateAssociationInput, options: any): async.Operation<types.UpdateAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAssociation, input, options) as async.Operation<types.UpdateAssociationOutput>
+function C:updateAssociation(input: types.UpdateAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAssociation as schema.OperationSchema, input, options) as async.Operation<types.UpdateAssociationOutput>
 end
 
-function C:updateAssociationStatus(input: types.UpdateAssociationStatusInput, options: any): async.Operation<types.UpdateAssociationStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAssociationStatus, input, options) as async.Operation<types.UpdateAssociationStatusOutput>
+function C:updateAssociationStatus(input: types.UpdateAssociationStatusInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAssociationStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAssociationStatus as schema.OperationSchema, input, options) as async.Operation<types.UpdateAssociationStatusOutput>
 end
 
-function C:updateDocument(input: types.UpdateDocumentInput, options: any): async.Operation<types.UpdateDocumentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDocument, input, options) as async.Operation<types.UpdateDocumentOutput>
+function C:updateDocument(input: types.UpdateDocumentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDocumentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDocument as schema.OperationSchema, input, options) as async.Operation<types.UpdateDocumentOutput>
 end
 
-function C:updateDocumentDefaultVersion(input: types.UpdateDocumentDefaultVersionInput, options: any): async.Operation<types.UpdateDocumentDefaultVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDocumentDefaultVersion, input, options) as async.Operation<types.UpdateDocumentDefaultVersionOutput>
+function C:updateDocumentDefaultVersion(input: types.UpdateDocumentDefaultVersionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDocumentDefaultVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDocumentDefaultVersion as schema.OperationSchema, input, options) as async.Operation<types.UpdateDocumentDefaultVersionOutput>
 end
 
-function C:updateDocumentMetadata(input: types.UpdateDocumentMetadataInput, options: any): async.Operation<types.UpdateDocumentMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDocumentMetadata, input, options) as async.Operation<types.UpdateDocumentMetadataOutput>
+function C:updateDocumentMetadata(input: types.UpdateDocumentMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDocumentMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDocumentMetadata as schema.OperationSchema, input, options) as async.Operation<types.UpdateDocumentMetadataOutput>
 end
 
-function C:updateMaintenanceWindow(input: types.UpdateMaintenanceWindowInput, options: any): async.Operation<types.UpdateMaintenanceWindowOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateMaintenanceWindow, input, options) as async.Operation<types.UpdateMaintenanceWindowOutput>
+function C:updateMaintenanceWindow(input: types.UpdateMaintenanceWindowInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMaintenanceWindowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMaintenanceWindow as schema.OperationSchema, input, options) as async.Operation<types.UpdateMaintenanceWindowOutput>
 end
 
-function C:updateMaintenanceWindowTarget(input: types.UpdateMaintenanceWindowTargetInput, options: any): async.Operation<types.UpdateMaintenanceWindowTargetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateMaintenanceWindowTarget, input, options) as async.Operation<types.UpdateMaintenanceWindowTargetOutput>
+function C:updateMaintenanceWindowTarget(input: types.UpdateMaintenanceWindowTargetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMaintenanceWindowTargetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMaintenanceWindowTarget as schema.OperationSchema, input, options) as async.Operation<types.UpdateMaintenanceWindowTargetOutput>
 end
 
-function C:updateMaintenanceWindowTask(input: types.UpdateMaintenanceWindowTaskInput, options: any): async.Operation<types.UpdateMaintenanceWindowTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateMaintenanceWindowTask, input, options) as async.Operation<types.UpdateMaintenanceWindowTaskOutput>
+function C:updateMaintenanceWindowTask(input: types.UpdateMaintenanceWindowTaskInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMaintenanceWindowTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMaintenanceWindowTask as schema.OperationSchema, input, options) as async.Operation<types.UpdateMaintenanceWindowTaskOutput>
 end
 
-function C:updateManagedInstanceRole(input: types.UpdateManagedInstanceRoleInput, options: any): async.Operation<types.UpdateManagedInstanceRoleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateManagedInstanceRole, input, options) as async.Operation<types.UpdateManagedInstanceRoleOutput>
+function C:updateManagedInstanceRole(input: types.UpdateManagedInstanceRoleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateManagedInstanceRoleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateManagedInstanceRole as schema.OperationSchema, input, options) as async.Operation<types.UpdateManagedInstanceRoleOutput>
 end
 
-function C:updateOpsItem(input: types.UpdateOpsItemInput, options: any): async.Operation<types.UpdateOpsItemOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateOpsItem, input, options) as async.Operation<types.UpdateOpsItemOutput>
+function C:updateOpsItem(input: types.UpdateOpsItemInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateOpsItemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateOpsItem as schema.OperationSchema, input, options) as async.Operation<types.UpdateOpsItemOutput>
 end
 
-function C:updateOpsMetadata(input: types.UpdateOpsMetadataInput, options: any): async.Operation<types.UpdateOpsMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateOpsMetadata, input, options) as async.Operation<types.UpdateOpsMetadataOutput>
+function C:updateOpsMetadata(input: types.UpdateOpsMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateOpsMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateOpsMetadata as schema.OperationSchema, input, options) as async.Operation<types.UpdateOpsMetadataOutput>
 end
 
-function C:updatePatchBaseline(input: types.UpdatePatchBaselineInput, options: any): async.Operation<types.UpdatePatchBaselineOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePatchBaseline, input, options) as async.Operation<types.UpdatePatchBaselineOutput>
+function C:updatePatchBaseline(input: types.UpdatePatchBaselineInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePatchBaselineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePatchBaseline as schema.OperationSchema, input, options) as async.Operation<types.UpdatePatchBaselineOutput>
 end
 
-function C:updateResourceDataSync(input: types.UpdateResourceDataSyncInput, options: any): async.Operation<types.UpdateResourceDataSyncOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateResourceDataSync, input, options) as async.Operation<types.UpdateResourceDataSyncOutput>
+function C:updateResourceDataSync(input: types.UpdateResourceDataSyncInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateResourceDataSyncOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateResourceDataSync as schema.OperationSchema, input, options) as async.Operation<types.UpdateResourceDataSyncOutput>
 end
 
-function C:updateServiceSetting(input: types.UpdateServiceSettingInput, options: any): async.Operation<types.UpdateServiceSettingOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateServiceSetting, input, options) as async.Operation<types.UpdateServiceSettingOutput>
+function C:updateServiceSetting(input: types.UpdateServiceSettingInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateServiceSettingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateServiceSetting as schema.OperationSchema, input, options) as async.Operation<types.UpdateServiceSettingOutput>
 end
 
 return M

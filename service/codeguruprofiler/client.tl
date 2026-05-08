@@ -8,62 +8,65 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("codeguruprofiler.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("codeguruprofiler.schemas")
 local traits = require("smithy.traits")
 local types = require("codeguruprofiler.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    addNotificationChannels: function(Client, types.AddNotificationChannelsInput, any): async.Operation<types.AddNotificationChannelsOutput>
-    batchGetFrameMetricData: function(Client, types.BatchGetFrameMetricDataInput, any): async.Operation<types.BatchGetFrameMetricDataOutput>
-    configureAgent: function(Client, types.ConfigureAgentInput, any): async.Operation<types.ConfigureAgentOutput>
-    createProfilingGroup: function(Client, types.CreateProfilingGroupInput, any): async.Operation<types.CreateProfilingGroupOutput>
-    deleteProfilingGroup: function(Client, types.DeleteProfilingGroupInput, any): async.Operation<types.DeleteProfilingGroupOutput>
-    describeProfilingGroup: function(Client, types.DescribeProfilingGroupInput, any): async.Operation<types.DescribeProfilingGroupOutput>
-    getFindingsReportAccountSummary: function(Client, types.GetFindingsReportAccountSummaryInput, any): async.Operation<types.GetFindingsReportAccountSummaryOutput>
-    getNotificationConfiguration: function(Client, types.GetNotificationConfigurationInput, any): async.Operation<types.GetNotificationConfigurationOutput>
-    getPolicy: function(Client, types.GetPolicyInput, any): async.Operation<types.GetPolicyOutput>
-    getProfile: function(Client, types.GetProfileInput, any): async.Operation<types.GetProfileOutput>
-    getRecommendations: function(Client, types.GetRecommendationsInput, any): async.Operation<types.GetRecommendationsOutput>
-    listFindingsReports: function(Client, types.ListFindingsReportsInput, any): async.Operation<types.ListFindingsReportsOutput>
-    listProfileTimes: function(Client, types.ListProfileTimesInput, any): async.Operation<types.ListProfileTimesOutput>
-    listProfilingGroups: function(Client, types.ListProfilingGroupsInput, any): async.Operation<types.ListProfilingGroupsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    postAgentProfile: function(Client, types.PostAgentProfileInput, any): async.Operation<types.PostAgentProfileOutput>
-    putPermission: function(Client, types.PutPermissionInput, any): async.Operation<types.PutPermissionOutput>
-    removeNotificationChannel: function(Client, types.RemoveNotificationChannelInput, any): async.Operation<types.RemoveNotificationChannelOutput>
-    removePermission: function(Client, types.RemovePermissionInput, any): async.Operation<types.RemovePermissionOutput>
-    submitFeedback: function(Client, types.SubmitFeedbackInput, any): async.Operation<types.SubmitFeedbackOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateProfilingGroup: function(Client, types.UpdateProfilingGroupInput, any): async.Operation<types.UpdateProfilingGroupOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    addNotificationChannels: function(Client, types.AddNotificationChannelsInput, ? base_client.InvokeOptions): async.Operation<types.AddNotificationChannelsOutput>
+    batchGetFrameMetricData: function(Client, types.BatchGetFrameMetricDataInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetFrameMetricDataOutput>
+    configureAgent: function(Client, types.ConfigureAgentInput, ? base_client.InvokeOptions): async.Operation<types.ConfigureAgentOutput>
+    createProfilingGroup: function(Client, types.CreateProfilingGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateProfilingGroupOutput>
+    deleteProfilingGroup: function(Client, types.DeleteProfilingGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProfilingGroupOutput>
+    describeProfilingGroup: function(Client, types.DescribeProfilingGroupInput, ? base_client.InvokeOptions): async.Operation<types.DescribeProfilingGroupOutput>
+    getFindingsReportAccountSummary: function(Client, types.GetFindingsReportAccountSummaryInput, ? base_client.InvokeOptions): async.Operation<types.GetFindingsReportAccountSummaryOutput>
+    getNotificationConfiguration: function(Client, types.GetNotificationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetNotificationConfigurationOutput>
+    getPolicy: function(Client, types.GetPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetPolicyOutput>
+    getProfile: function(Client, types.GetProfileInput, ? base_client.InvokeOptions): async.Operation<types.GetProfileOutput>
+    getRecommendations: function(Client, types.GetRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.GetRecommendationsOutput>
+    listFindingsReports: function(Client, types.ListFindingsReportsInput, ? base_client.InvokeOptions): async.Operation<types.ListFindingsReportsOutput>
+    listProfileTimes: function(Client, types.ListProfileTimesInput, ? base_client.InvokeOptions): async.Operation<types.ListProfileTimesOutput>
+    listProfilingGroups: function(Client, types.ListProfilingGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListProfilingGroupsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    postAgentProfile: function(Client, types.PostAgentProfileInput, ? base_client.InvokeOptions): async.Operation<types.PostAgentProfileOutput>
+    putPermission: function(Client, types.PutPermissionInput, ? base_client.InvokeOptions): async.Operation<types.PutPermissionOutput>
+    removeNotificationChannel: function(Client, types.RemoveNotificationChannelInput, ? base_client.InvokeOptions): async.Operation<types.RemoveNotificationChannelOutput>
+    removePermission: function(Client, types.RemovePermissionInput, ? base_client.InvokeOptions): async.Operation<types.RemovePermissionOutput>
+    submitFeedback: function(Client, types.SubmitFeedbackInput, ? base_client.InvokeOptions): async.Operation<types.SubmitFeedbackOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateProfilingGroup: function(Client, types.UpdateProfilingGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProfilingGroupOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "CodeGuruProfiler"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "codeguru-profiler", signing_region = c.region } }
                 else
@@ -82,96 +85,96 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:addNotificationChannels(input: types.AddNotificationChannelsInput, options: any): async.Operation<types.AddNotificationChannelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddNotificationChannels, input, options) as async.Operation<types.AddNotificationChannelsOutput>
+function C:addNotificationChannels(input: types.AddNotificationChannelsInput, options?: base_client.InvokeOptions): async.Operation<types.AddNotificationChannelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddNotificationChannels as schema.OperationSchema, input, options) as async.Operation<types.AddNotificationChannelsOutput>
 end
 
-function C:batchGetFrameMetricData(input: types.BatchGetFrameMetricDataInput, options: any): async.Operation<types.BatchGetFrameMetricDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetFrameMetricData, input, options) as async.Operation<types.BatchGetFrameMetricDataOutput>
+function C:batchGetFrameMetricData(input: types.BatchGetFrameMetricDataInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetFrameMetricDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetFrameMetricData as schema.OperationSchema, input, options) as async.Operation<types.BatchGetFrameMetricDataOutput>
 end
 
-function C:configureAgent(input: types.ConfigureAgentInput, options: any): async.Operation<types.ConfigureAgentOutput>
-    return self:invokeOperation(schemas.Service, schemas.ConfigureAgent, input, options) as async.Operation<types.ConfigureAgentOutput>
+function C:configureAgent(input: types.ConfigureAgentInput, options?: base_client.InvokeOptions): async.Operation<types.ConfigureAgentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ConfigureAgent as schema.OperationSchema, input, options) as async.Operation<types.ConfigureAgentOutput>
 end
 
-function C:createProfilingGroup(input: types.CreateProfilingGroupInput, options: any): async.Operation<types.CreateProfilingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProfilingGroup, input, options) as async.Operation<types.CreateProfilingGroupOutput>
+function C:createProfilingGroup(input: types.CreateProfilingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProfilingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProfilingGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateProfilingGroupOutput>
 end
 
-function C:deleteProfilingGroup(input: types.DeleteProfilingGroupInput, options: any): async.Operation<types.DeleteProfilingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProfilingGroup, input, options) as async.Operation<types.DeleteProfilingGroupOutput>
+function C:deleteProfilingGroup(input: types.DeleteProfilingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProfilingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProfilingGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteProfilingGroupOutput>
 end
 
-function C:describeProfilingGroup(input: types.DescribeProfilingGroupInput, options: any): async.Operation<types.DescribeProfilingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeProfilingGroup, input, options) as async.Operation<types.DescribeProfilingGroupOutput>
+function C:describeProfilingGroup(input: types.DescribeProfilingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeProfilingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeProfilingGroup as schema.OperationSchema, input, options) as async.Operation<types.DescribeProfilingGroupOutput>
 end
 
-function C:getFindingsReportAccountSummary(input: types.GetFindingsReportAccountSummaryInput, options: any): async.Operation<types.GetFindingsReportAccountSummaryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFindingsReportAccountSummary, input, options) as async.Operation<types.GetFindingsReportAccountSummaryOutput>
+function C:getFindingsReportAccountSummary(input: types.GetFindingsReportAccountSummaryInput, options?: base_client.InvokeOptions): async.Operation<types.GetFindingsReportAccountSummaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFindingsReportAccountSummary as schema.OperationSchema, input, options) as async.Operation<types.GetFindingsReportAccountSummaryOutput>
 end
 
-function C:getNotificationConfiguration(input: types.GetNotificationConfigurationInput, options: any): async.Operation<types.GetNotificationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNotificationConfiguration, input, options) as async.Operation<types.GetNotificationConfigurationOutput>
+function C:getNotificationConfiguration(input: types.GetNotificationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetNotificationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNotificationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetNotificationConfigurationOutput>
 end
 
-function C:getPolicy(input: types.GetPolicyInput, options: any): async.Operation<types.GetPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPolicy, input, options) as async.Operation<types.GetPolicyOutput>
+function C:getPolicy(input: types.GetPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetPolicyOutput>
 end
 
-function C:getProfile(input: types.GetProfileInput, options: any): async.Operation<types.GetProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetProfile, input, options) as async.Operation<types.GetProfileOutput>
+function C:getProfile(input: types.GetProfileInput, options?: base_client.InvokeOptions): async.Operation<types.GetProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProfile as schema.OperationSchema, input, options) as async.Operation<types.GetProfileOutput>
 end
 
-function C:getRecommendations(input: types.GetRecommendationsInput, options: any): async.Operation<types.GetRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRecommendations, input, options) as async.Operation<types.GetRecommendationsOutput>
+function C:getRecommendations(input: types.GetRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRecommendations as schema.OperationSchema, input, options) as async.Operation<types.GetRecommendationsOutput>
 end
 
-function C:listFindingsReports(input: types.ListFindingsReportsInput, options: any): async.Operation<types.ListFindingsReportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFindingsReports, input, options) as async.Operation<types.ListFindingsReportsOutput>
+function C:listFindingsReports(input: types.ListFindingsReportsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFindingsReportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFindingsReports as schema.OperationSchema, input, options) as async.Operation<types.ListFindingsReportsOutput>
 end
 
-function C:listProfileTimes(input: types.ListProfileTimesInput, options: any): async.Operation<types.ListProfileTimesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProfileTimes, input, options) as async.Operation<types.ListProfileTimesOutput>
+function C:listProfileTimes(input: types.ListProfileTimesInput, options?: base_client.InvokeOptions): async.Operation<types.ListProfileTimesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProfileTimes as schema.OperationSchema, input, options) as async.Operation<types.ListProfileTimesOutput>
 end
 
-function C:listProfilingGroups(input: types.ListProfilingGroupsInput, options: any): async.Operation<types.ListProfilingGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProfilingGroups, input, options) as async.Operation<types.ListProfilingGroupsOutput>
+function C:listProfilingGroups(input: types.ListProfilingGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListProfilingGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProfilingGroups as schema.OperationSchema, input, options) as async.Operation<types.ListProfilingGroupsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:postAgentProfile(input: types.PostAgentProfileInput, options: any): async.Operation<types.PostAgentProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.PostAgentProfile, input, options) as async.Operation<types.PostAgentProfileOutput>
+function C:postAgentProfile(input: types.PostAgentProfileInput, options?: base_client.InvokeOptions): async.Operation<types.PostAgentProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PostAgentProfile as schema.OperationSchema, input, options) as async.Operation<types.PostAgentProfileOutput>
 end
 
-function C:putPermission(input: types.PutPermissionInput, options: any): async.Operation<types.PutPermissionOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutPermission, input, options) as async.Operation<types.PutPermissionOutput>
+function C:putPermission(input: types.PutPermissionInput, options?: base_client.InvokeOptions): async.Operation<types.PutPermissionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutPermission as schema.OperationSchema, input, options) as async.Operation<types.PutPermissionOutput>
 end
 
-function C:removeNotificationChannel(input: types.RemoveNotificationChannelInput, options: any): async.Operation<types.RemoveNotificationChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveNotificationChannel, input, options) as async.Operation<types.RemoveNotificationChannelOutput>
+function C:removeNotificationChannel(input: types.RemoveNotificationChannelInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveNotificationChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveNotificationChannel as schema.OperationSchema, input, options) as async.Operation<types.RemoveNotificationChannelOutput>
 end
 
-function C:removePermission(input: types.RemovePermissionInput, options: any): async.Operation<types.RemovePermissionOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemovePermission, input, options) as async.Operation<types.RemovePermissionOutput>
+function C:removePermission(input: types.RemovePermissionInput, options?: base_client.InvokeOptions): async.Operation<types.RemovePermissionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemovePermission as schema.OperationSchema, input, options) as async.Operation<types.RemovePermissionOutput>
 end
 
-function C:submitFeedback(input: types.SubmitFeedbackInput, options: any): async.Operation<types.SubmitFeedbackOutput>
-    return self:invokeOperation(schemas.Service, schemas.SubmitFeedback, input, options) as async.Operation<types.SubmitFeedbackOutput>
+function C:submitFeedback(input: types.SubmitFeedbackInput, options?: base_client.InvokeOptions): async.Operation<types.SubmitFeedbackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SubmitFeedback as schema.OperationSchema, input, options) as async.Operation<types.SubmitFeedbackOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateProfilingGroup(input: types.UpdateProfilingGroupInput, options: any): async.Operation<types.UpdateProfilingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProfilingGroup, input, options) as async.Operation<types.UpdateProfilingGroupOutput>
+function C:updateProfilingGroup(input: types.UpdateProfilingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProfilingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProfilingGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateProfilingGroupOutput>
 end
 
 return M

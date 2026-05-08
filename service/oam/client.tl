@@ -8,54 +8,57 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("oam.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("oam.schemas")
 local traits = require("smithy.traits")
 local types = require("oam.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createLink: function(Client, types.CreateLinkInput, any): async.Operation<types.CreateLinkOutput>
-    createSink: function(Client, types.CreateSinkInput, any): async.Operation<types.CreateSinkOutput>
-    deleteLink: function(Client, types.DeleteLinkInput, any): async.Operation<types.DeleteLinkOutput>
-    deleteSink: function(Client, types.DeleteSinkInput, any): async.Operation<types.DeleteSinkOutput>
-    getLink: function(Client, types.GetLinkInput, any): async.Operation<types.GetLinkOutput>
-    getSink: function(Client, types.GetSinkInput, any): async.Operation<types.GetSinkOutput>
-    getSinkPolicy: function(Client, types.GetSinkPolicyInput, any): async.Operation<types.GetSinkPolicyOutput>
-    listAttachedLinks: function(Client, types.ListAttachedLinksInput, any): async.Operation<types.ListAttachedLinksOutput>
-    listLinks: function(Client, types.ListLinksInput, any): async.Operation<types.ListLinksOutput>
-    listSinks: function(Client, types.ListSinksInput, any): async.Operation<types.ListSinksOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putSinkPolicy: function(Client, types.PutSinkPolicyInput, any): async.Operation<types.PutSinkPolicyOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateLink: function(Client, types.UpdateLinkInput, any): async.Operation<types.UpdateLinkOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createLink: function(Client, types.CreateLinkInput, ? base_client.InvokeOptions): async.Operation<types.CreateLinkOutput>
+    createSink: function(Client, types.CreateSinkInput, ? base_client.InvokeOptions): async.Operation<types.CreateSinkOutput>
+    deleteLink: function(Client, types.DeleteLinkInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLinkOutput>
+    deleteSink: function(Client, types.DeleteSinkInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSinkOutput>
+    getLink: function(Client, types.GetLinkInput, ? base_client.InvokeOptions): async.Operation<types.GetLinkOutput>
+    getSink: function(Client, types.GetSinkInput, ? base_client.InvokeOptions): async.Operation<types.GetSinkOutput>
+    getSinkPolicy: function(Client, types.GetSinkPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetSinkPolicyOutput>
+    listAttachedLinks: function(Client, types.ListAttachedLinksInput, ? base_client.InvokeOptions): async.Operation<types.ListAttachedLinksOutput>
+    listLinks: function(Client, types.ListLinksInput, ? base_client.InvokeOptions): async.Operation<types.ListLinksOutput>
+    listSinks: function(Client, types.ListSinksInput, ? base_client.InvokeOptions): async.Operation<types.ListSinksOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putSinkPolicy: function(Client, types.PutSinkPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutSinkPolicyOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateLink: function(Client, types.UpdateLinkInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLinkOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "oamservice"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "oam", signing_region = c.region } }
                 else
@@ -74,64 +77,64 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createLink(input: types.CreateLinkInput, options: any): async.Operation<types.CreateLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLink, input, options) as async.Operation<types.CreateLinkOutput>
+function C:createLink(input: types.CreateLinkInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLink as schema.OperationSchema, input, options) as async.Operation<types.CreateLinkOutput>
 end
 
-function C:createSink(input: types.CreateSinkInput, options: any): async.Operation<types.CreateSinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSink, input, options) as async.Operation<types.CreateSinkOutput>
+function C:createSink(input: types.CreateSinkInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSink as schema.OperationSchema, input, options) as async.Operation<types.CreateSinkOutput>
 end
 
-function C:deleteLink(input: types.DeleteLinkInput, options: any): async.Operation<types.DeleteLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLink, input, options) as async.Operation<types.DeleteLinkOutput>
+function C:deleteLink(input: types.DeleteLinkInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLink as schema.OperationSchema, input, options) as async.Operation<types.DeleteLinkOutput>
 end
 
-function C:deleteSink(input: types.DeleteSinkInput, options: any): async.Operation<types.DeleteSinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSink, input, options) as async.Operation<types.DeleteSinkOutput>
+function C:deleteSink(input: types.DeleteSinkInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSink as schema.OperationSchema, input, options) as async.Operation<types.DeleteSinkOutput>
 end
 
-function C:getLink(input: types.GetLinkInput, options: any): async.Operation<types.GetLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLink, input, options) as async.Operation<types.GetLinkOutput>
+function C:getLink(input: types.GetLinkInput, options?: base_client.InvokeOptions): async.Operation<types.GetLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLink as schema.OperationSchema, input, options) as async.Operation<types.GetLinkOutput>
 end
 
-function C:getSink(input: types.GetSinkInput, options: any): async.Operation<types.GetSinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSink, input, options) as async.Operation<types.GetSinkOutput>
+function C:getSink(input: types.GetSinkInput, options?: base_client.InvokeOptions): async.Operation<types.GetSinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSink as schema.OperationSchema, input, options) as async.Operation<types.GetSinkOutput>
 end
 
-function C:getSinkPolicy(input: types.GetSinkPolicyInput, options: any): async.Operation<types.GetSinkPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSinkPolicy, input, options) as async.Operation<types.GetSinkPolicyOutput>
+function C:getSinkPolicy(input: types.GetSinkPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetSinkPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSinkPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetSinkPolicyOutput>
 end
 
-function C:listAttachedLinks(input: types.ListAttachedLinksInput, options: any): async.Operation<types.ListAttachedLinksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAttachedLinks, input, options) as async.Operation<types.ListAttachedLinksOutput>
+function C:listAttachedLinks(input: types.ListAttachedLinksInput, options?: base_client.InvokeOptions): async.Operation<types.ListAttachedLinksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAttachedLinks as schema.OperationSchema, input, options) as async.Operation<types.ListAttachedLinksOutput>
 end
 
-function C:listLinks(input: types.ListLinksInput, options: any): async.Operation<types.ListLinksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLinks, input, options) as async.Operation<types.ListLinksOutput>
+function C:listLinks(input: types.ListLinksInput, options?: base_client.InvokeOptions): async.Operation<types.ListLinksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLinks as schema.OperationSchema, input, options) as async.Operation<types.ListLinksOutput>
 end
 
-function C:listSinks(input: types.ListSinksInput, options: any): async.Operation<types.ListSinksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSinks, input, options) as async.Operation<types.ListSinksOutput>
+function C:listSinks(input: types.ListSinksInput, options?: base_client.InvokeOptions): async.Operation<types.ListSinksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSinks as schema.OperationSchema, input, options) as async.Operation<types.ListSinksOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putSinkPolicy(input: types.PutSinkPolicyInput, options: any): async.Operation<types.PutSinkPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutSinkPolicy, input, options) as async.Operation<types.PutSinkPolicyOutput>
+function C:putSinkPolicy(input: types.PutSinkPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutSinkPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutSinkPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutSinkPolicyOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateLink(input: types.UpdateLinkInput, options: any): async.Operation<types.UpdateLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLink, input, options) as async.Operation<types.UpdateLinkOutput>
+function C:updateLink(input: types.UpdateLinkInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLink as schema.OperationSchema, input, options) as async.Operation<types.UpdateLinkOutput>
 end
 
 return M

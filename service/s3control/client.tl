@@ -8,136 +8,139 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("s3control.endpoint_rules")
 local restxml_protocol = require("smithy.protocol.restxml")
+local schema = require("smithy.schema")
 local schemas = require("s3control.schemas")
 local traits = require("smithy.traits")
 local types = require("s3control.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateAccessGrantsIdentityCenter: function(Client, types.AssociateAccessGrantsIdentityCenterInput, any): async.Operation<types.AssociateAccessGrantsIdentityCenterOutput>
-    createAccessGrant: function(Client, types.CreateAccessGrantInput, any): async.Operation<types.CreateAccessGrantOutput>
-    createAccessGrantsInstance: function(Client, types.CreateAccessGrantsInstanceInput, any): async.Operation<types.CreateAccessGrantsInstanceOutput>
-    createAccessGrantsLocation: function(Client, types.CreateAccessGrantsLocationInput, any): async.Operation<types.CreateAccessGrantsLocationOutput>
-    createAccessPoint: function(Client, types.CreateAccessPointInput, any): async.Operation<types.CreateAccessPointOutput>
-    createAccessPointForObjectLambda: function(Client, types.CreateAccessPointForObjectLambdaInput, any): async.Operation<types.CreateAccessPointForObjectLambdaOutput>
-    createBucket: function(Client, types.CreateBucketInput, any): async.Operation<types.CreateBucketOutput>
-    createJob: function(Client, types.CreateJobInput, any): async.Operation<types.CreateJobOutput>
-    createMultiRegionAccessPoint: function(Client, types.CreateMultiRegionAccessPointOperationInput, any): async.Operation<types.CreateMultiRegionAccessPointOutput>
-    createStorageLensGroup: function(Client, types.CreateStorageLensGroupInput, any): async.Operation<types.CreateStorageLensGroupOutput>
-    deleteAccessGrant: function(Client, types.DeleteAccessGrantInput, any): async.Operation<types.DeleteAccessGrantOutput>
-    deleteAccessGrantsInstance: function(Client, types.DeleteAccessGrantsInstanceInput, any): async.Operation<types.DeleteAccessGrantsInstanceOutput>
-    deleteAccessGrantsInstanceResourcePolicy: function(Client, types.DeleteAccessGrantsInstanceResourcePolicyInput, any): async.Operation<types.DeleteAccessGrantsInstanceResourcePolicyOutput>
-    deleteAccessGrantsLocation: function(Client, types.DeleteAccessGrantsLocationInput, any): async.Operation<types.DeleteAccessGrantsLocationOutput>
-    deleteAccessPoint: function(Client, types.DeleteAccessPointInput, any): async.Operation<types.DeleteAccessPointOutput>
-    deleteAccessPointForObjectLambda: function(Client, types.DeleteAccessPointForObjectLambdaInput, any): async.Operation<types.DeleteAccessPointForObjectLambdaOutput>
-    deleteAccessPointPolicy: function(Client, types.DeleteAccessPointPolicyInput, any): async.Operation<types.DeleteAccessPointPolicyOutput>
-    deleteAccessPointPolicyForObjectLambda: function(Client, types.DeleteAccessPointPolicyForObjectLambdaInput, any): async.Operation<types.DeleteAccessPointPolicyForObjectLambdaOutput>
-    deleteAccessPointScope: function(Client, types.DeleteAccessPointScopeInput, any): async.Operation<types.DeleteAccessPointScopeOutput>
-    deleteBucket: function(Client, types.DeleteBucketInput, any): async.Operation<types.DeleteBucketOutput>
-    deleteBucketLifecycleConfiguration: function(Client, types.DeleteBucketLifecycleConfigurationInput, any): async.Operation<types.DeleteBucketLifecycleConfigurationOutput>
-    deleteBucketPolicy: function(Client, types.DeleteBucketPolicyInput, any): async.Operation<types.DeleteBucketPolicyOutput>
-    deleteBucketReplication: function(Client, types.DeleteBucketReplicationInput, any): async.Operation<types.DeleteBucketReplicationOutput>
-    deleteBucketTagging: function(Client, types.DeleteBucketTaggingInput, any): async.Operation<types.DeleteBucketTaggingOutput>
-    deleteJobTagging: function(Client, types.DeleteJobTaggingInput, any): async.Operation<types.DeleteJobTaggingOutput>
-    deleteMultiRegionAccessPoint: function(Client, types.DeleteMultiRegionAccessPointOperationInput, any): async.Operation<types.DeleteMultiRegionAccessPointOutput>
-    deletePublicAccessBlock: function(Client, types.DeletePublicAccessBlockInput, any): async.Operation<types.DeletePublicAccessBlockOutput>
-    deleteStorageLensConfiguration: function(Client, types.DeleteStorageLensConfigurationInput, any): async.Operation<types.DeleteStorageLensConfigurationOutput>
-    deleteStorageLensConfigurationTagging: function(Client, types.DeleteStorageLensConfigurationTaggingInput, any): async.Operation<types.DeleteStorageLensConfigurationTaggingOutput>
-    deleteStorageLensGroup: function(Client, types.DeleteStorageLensGroupInput, any): async.Operation<types.DeleteStorageLensGroupOutput>
-    describeJob: function(Client, types.DescribeJobInput, any): async.Operation<types.DescribeJobOutput>
-    describeMultiRegionAccessPointOperation: function(Client, types.DescribeMultiRegionAccessPointOperationInput, any): async.Operation<types.DescribeMultiRegionAccessPointOperationOutput>
-    dissociateAccessGrantsIdentityCenter: function(Client, types.DissociateAccessGrantsIdentityCenterInput, any): async.Operation<types.DissociateAccessGrantsIdentityCenterOutput>
-    getAccessGrant: function(Client, types.GetAccessGrantInput, any): async.Operation<types.GetAccessGrantOutput>
-    getAccessGrantsInstance: function(Client, types.GetAccessGrantsInstanceInput, any): async.Operation<types.GetAccessGrantsInstanceOutput>
-    getAccessGrantsInstanceForPrefix: function(Client, types.GetAccessGrantsInstanceForPrefixInput, any): async.Operation<types.GetAccessGrantsInstanceForPrefixOutput>
-    getAccessGrantsInstanceResourcePolicy: function(Client, types.GetAccessGrantsInstanceResourcePolicyInput, any): async.Operation<types.GetAccessGrantsInstanceResourcePolicyOutput>
-    getAccessGrantsLocation: function(Client, types.GetAccessGrantsLocationInput, any): async.Operation<types.GetAccessGrantsLocationOutput>
-    getAccessPoint: function(Client, types.GetAccessPointInput, any): async.Operation<types.GetAccessPointOutput>
-    getAccessPointConfigurationForObjectLambda: function(Client, types.GetAccessPointConfigurationForObjectLambdaInput, any): async.Operation<types.GetAccessPointConfigurationForObjectLambdaOutput>
-    getAccessPointForObjectLambda: function(Client, types.GetAccessPointForObjectLambdaInput, any): async.Operation<types.GetAccessPointForObjectLambdaOutput>
-    getAccessPointPolicy: function(Client, types.GetAccessPointPolicyInput, any): async.Operation<types.GetAccessPointPolicyOutput>
-    getAccessPointPolicyForObjectLambda: function(Client, types.GetAccessPointPolicyForObjectLambdaInput, any): async.Operation<types.GetAccessPointPolicyForObjectLambdaOutput>
-    getAccessPointPolicyStatus: function(Client, types.GetAccessPointPolicyStatusInput, any): async.Operation<types.GetAccessPointPolicyStatusOutput>
-    getAccessPointPolicyStatusForObjectLambda: function(Client, types.GetAccessPointPolicyStatusForObjectLambdaInput, any): async.Operation<types.GetAccessPointPolicyStatusForObjectLambdaOutput>
-    getAccessPointScope: function(Client, types.GetAccessPointScopeInput, any): async.Operation<types.GetAccessPointScopeOutput>
-    getBucket: function(Client, types.GetBucketInput, any): async.Operation<types.GetBucketOutput>
-    getBucketLifecycleConfiguration: function(Client, types.GetBucketLifecycleConfigurationInput, any): async.Operation<types.GetBucketLifecycleConfigurationOutput>
-    getBucketPolicy: function(Client, types.GetBucketPolicyInput, any): async.Operation<types.GetBucketPolicyOutput>
-    getBucketReplication: function(Client, types.GetBucketReplicationInput, any): async.Operation<types.GetBucketReplicationOutput>
-    getBucketTagging: function(Client, types.GetBucketTaggingInput, any): async.Operation<types.GetBucketTaggingOutput>
-    getBucketVersioning: function(Client, types.GetBucketVersioningInput, any): async.Operation<types.GetBucketVersioningOutput>
-    getDataAccess: function(Client, types.GetDataAccessInput, any): async.Operation<types.GetDataAccessOutput>
-    getJobTagging: function(Client, types.GetJobTaggingInput, any): async.Operation<types.GetJobTaggingOutput>
-    getMultiRegionAccessPoint: function(Client, types.GetMultiRegionAccessPointInput, any): async.Operation<types.GetMultiRegionAccessPointOutput>
-    getMultiRegionAccessPointPolicy: function(Client, types.GetMultiRegionAccessPointPolicyInput, any): async.Operation<types.GetMultiRegionAccessPointPolicyOutput>
-    getMultiRegionAccessPointPolicyStatus: function(Client, types.GetMultiRegionAccessPointPolicyStatusInput, any): async.Operation<types.GetMultiRegionAccessPointPolicyStatusOutput>
-    getMultiRegionAccessPointRoutes: function(Client, types.GetMultiRegionAccessPointRoutesInput, any): async.Operation<types.GetMultiRegionAccessPointRoutesOutput>
-    getPublicAccessBlock: function(Client, types.GetPublicAccessBlockInput, any): async.Operation<types.GetPublicAccessBlockOutput>
-    getStorageLensConfiguration: function(Client, types.GetStorageLensConfigurationInput, any): async.Operation<types.GetStorageLensConfigurationOutput>
-    getStorageLensConfigurationTagging: function(Client, types.GetStorageLensConfigurationTaggingInput, any): async.Operation<types.GetStorageLensConfigurationTaggingOutput>
-    getStorageLensGroup: function(Client, types.GetStorageLensGroupInput, any): async.Operation<types.GetStorageLensGroupOutput>
-    listAccessGrants: function(Client, types.ListAccessGrantsInput, any): async.Operation<types.ListAccessGrantsOutput>
-    listAccessGrantsInstances: function(Client, types.ListAccessGrantsInstancesInput, any): async.Operation<types.ListAccessGrantsInstancesOutput>
-    listAccessGrantsLocations: function(Client, types.ListAccessGrantsLocationsInput, any): async.Operation<types.ListAccessGrantsLocationsOutput>
-    listAccessPoints: function(Client, types.ListAccessPointsInput, any): async.Operation<types.ListAccessPointsOutput>
-    listAccessPointsForDirectoryBuckets: function(Client, types.ListAccessPointsForDirectoryBucketsInput, any): async.Operation<types.ListAccessPointsForDirectoryBucketsOutput>
-    listAccessPointsForObjectLambda: function(Client, types.ListAccessPointsForObjectLambdaInput, any): async.Operation<types.ListAccessPointsForObjectLambdaOutput>
-    listCallerAccessGrants: function(Client, types.ListCallerAccessGrantsInput, any): async.Operation<types.ListCallerAccessGrantsOutput>
-    listJobs: function(Client, types.ListJobsInput, any): async.Operation<types.ListJobsOutput>
-    listMultiRegionAccessPoints: function(Client, types.ListMultiRegionAccessPointsInput, any): async.Operation<types.ListMultiRegionAccessPointsOutput>
-    listRegionalBuckets: function(Client, types.ListRegionalBucketsInput, any): async.Operation<types.ListRegionalBucketsOutput>
-    listStorageLensConfigurations: function(Client, types.ListStorageLensConfigurationsInput, any): async.Operation<types.ListStorageLensConfigurationsOutput>
-    listStorageLensGroups: function(Client, types.ListStorageLensGroupsInput, any): async.Operation<types.ListStorageLensGroupsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putAccessGrantsInstanceResourcePolicy: function(Client, types.PutAccessGrantsInstanceResourcePolicyInput, any): async.Operation<types.PutAccessGrantsInstanceResourcePolicyOutput>
-    putAccessPointConfigurationForObjectLambda: function(Client, types.PutAccessPointConfigurationForObjectLambdaInput, any): async.Operation<types.PutAccessPointConfigurationForObjectLambdaOutput>
-    putAccessPointPolicy: function(Client, types.PutAccessPointPolicyInput, any): async.Operation<types.PutAccessPointPolicyOutput>
-    putAccessPointPolicyForObjectLambda: function(Client, types.PutAccessPointPolicyForObjectLambdaInput, any): async.Operation<types.PutAccessPointPolicyForObjectLambdaOutput>
-    putAccessPointScope: function(Client, types.PutAccessPointScopeInput, any): async.Operation<types.PutAccessPointScopeOutput>
-    putBucketLifecycleConfiguration: function(Client, types.PutBucketLifecycleConfigurationInput, any): async.Operation<types.PutBucketLifecycleConfigurationOutput>
-    putBucketPolicy: function(Client, types.PutBucketPolicyInput, any): async.Operation<types.PutBucketPolicyOutput>
-    putBucketReplication: function(Client, types.PutBucketReplicationInput, any): async.Operation<types.PutBucketReplicationOutput>
-    putBucketTagging: function(Client, types.PutBucketTaggingInput, any): async.Operation<types.PutBucketTaggingOutput>
-    putBucketVersioning: function(Client, types.PutBucketVersioningInput, any): async.Operation<types.PutBucketVersioningOutput>
-    putJobTagging: function(Client, types.PutJobTaggingInput, any): async.Operation<types.PutJobTaggingOutput>
-    putMultiRegionAccessPointPolicy: function(Client, types.PutMultiRegionAccessPointPolicyOperationInput, any): async.Operation<types.PutMultiRegionAccessPointPolicyOutput>
-    putPublicAccessBlock: function(Client, types.PutPublicAccessBlockInput, any): async.Operation<types.PutPublicAccessBlockOutput>
-    putStorageLensConfiguration: function(Client, types.PutStorageLensConfigurationInput, any): async.Operation<types.PutStorageLensConfigurationOutput>
-    putStorageLensConfigurationTagging: function(Client, types.PutStorageLensConfigurationTaggingInput, any): async.Operation<types.PutStorageLensConfigurationTaggingOutput>
-    submitMultiRegionAccessPointRoutes: function(Client, types.SubmitMultiRegionAccessPointRoutesInput, any): async.Operation<types.SubmitMultiRegionAccessPointRoutesOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAccessGrantsLocation: function(Client, types.UpdateAccessGrantsLocationInput, any): async.Operation<types.UpdateAccessGrantsLocationOutput>
-    updateJobPriority: function(Client, types.UpdateJobPriorityInput, any): async.Operation<types.UpdateJobPriorityOutput>
-    updateJobStatus: function(Client, types.UpdateJobStatusInput, any): async.Operation<types.UpdateJobStatusOutput>
-    updateStorageLensGroup: function(Client, types.UpdateStorageLensGroupInput, any): async.Operation<types.UpdateStorageLensGroupOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateAccessGrantsIdentityCenter: function(Client, types.AssociateAccessGrantsIdentityCenterInput, ? base_client.InvokeOptions): async.Operation<types.AssociateAccessGrantsIdentityCenterOutput>
+    createAccessGrant: function(Client, types.CreateAccessGrantInput, ? base_client.InvokeOptions): async.Operation<types.CreateAccessGrantOutput>
+    createAccessGrantsInstance: function(Client, types.CreateAccessGrantsInstanceInput, ? base_client.InvokeOptions): async.Operation<types.CreateAccessGrantsInstanceOutput>
+    createAccessGrantsLocation: function(Client, types.CreateAccessGrantsLocationInput, ? base_client.InvokeOptions): async.Operation<types.CreateAccessGrantsLocationOutput>
+    createAccessPoint: function(Client, types.CreateAccessPointInput, ? base_client.InvokeOptions): async.Operation<types.CreateAccessPointOutput>
+    createAccessPointForObjectLambda: function(Client, types.CreateAccessPointForObjectLambdaInput, ? base_client.InvokeOptions): async.Operation<types.CreateAccessPointForObjectLambdaOutput>
+    createBucket: function(Client, types.CreateBucketInput, ? base_client.InvokeOptions): async.Operation<types.CreateBucketOutput>
+    createJob: function(Client, types.CreateJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateJobOutput>
+    createMultiRegionAccessPoint: function(Client, types.CreateMultiRegionAccessPointOperationInput, ? base_client.InvokeOptions): async.Operation<types.CreateMultiRegionAccessPointOutput>
+    createStorageLensGroup: function(Client, types.CreateStorageLensGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateStorageLensGroupOutput>
+    deleteAccessGrant: function(Client, types.DeleteAccessGrantInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccessGrantOutput>
+    deleteAccessGrantsInstance: function(Client, types.DeleteAccessGrantsInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccessGrantsInstanceOutput>
+    deleteAccessGrantsInstanceResourcePolicy: function(Client, types.DeleteAccessGrantsInstanceResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccessGrantsInstanceResourcePolicyOutput>
+    deleteAccessGrantsLocation: function(Client, types.DeleteAccessGrantsLocationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccessGrantsLocationOutput>
+    deleteAccessPoint: function(Client, types.DeleteAccessPointInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccessPointOutput>
+    deleteAccessPointForObjectLambda: function(Client, types.DeleteAccessPointForObjectLambdaInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccessPointForObjectLambdaOutput>
+    deleteAccessPointPolicy: function(Client, types.DeleteAccessPointPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccessPointPolicyOutput>
+    deleteAccessPointPolicyForObjectLambda: function(Client, types.DeleteAccessPointPolicyForObjectLambdaInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccessPointPolicyForObjectLambdaOutput>
+    deleteAccessPointScope: function(Client, types.DeleteAccessPointScopeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccessPointScopeOutput>
+    deleteBucket: function(Client, types.DeleteBucketInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBucketOutput>
+    deleteBucketLifecycleConfiguration: function(Client, types.DeleteBucketLifecycleConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBucketLifecycleConfigurationOutput>
+    deleteBucketPolicy: function(Client, types.DeleteBucketPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBucketPolicyOutput>
+    deleteBucketReplication: function(Client, types.DeleteBucketReplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBucketReplicationOutput>
+    deleteBucketTagging: function(Client, types.DeleteBucketTaggingInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBucketTaggingOutput>
+    deleteJobTagging: function(Client, types.DeleteJobTaggingInput, ? base_client.InvokeOptions): async.Operation<types.DeleteJobTaggingOutput>
+    deleteMultiRegionAccessPoint: function(Client, types.DeleteMultiRegionAccessPointOperationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMultiRegionAccessPointOutput>
+    deletePublicAccessBlock: function(Client, types.DeletePublicAccessBlockInput, ? base_client.InvokeOptions): async.Operation<types.DeletePublicAccessBlockOutput>
+    deleteStorageLensConfiguration: function(Client, types.DeleteStorageLensConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteStorageLensConfigurationOutput>
+    deleteStorageLensConfigurationTagging: function(Client, types.DeleteStorageLensConfigurationTaggingInput, ? base_client.InvokeOptions): async.Operation<types.DeleteStorageLensConfigurationTaggingOutput>
+    deleteStorageLensGroup: function(Client, types.DeleteStorageLensGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteStorageLensGroupOutput>
+    describeJob: function(Client, types.DescribeJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeJobOutput>
+    describeMultiRegionAccessPointOperation: function(Client, types.DescribeMultiRegionAccessPointOperationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMultiRegionAccessPointOperationOutput>
+    dissociateAccessGrantsIdentityCenter: function(Client, types.DissociateAccessGrantsIdentityCenterInput, ? base_client.InvokeOptions): async.Operation<types.DissociateAccessGrantsIdentityCenterOutput>
+    getAccessGrant: function(Client, types.GetAccessGrantInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessGrantOutput>
+    getAccessGrantsInstance: function(Client, types.GetAccessGrantsInstanceInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessGrantsInstanceOutput>
+    getAccessGrantsInstanceForPrefix: function(Client, types.GetAccessGrantsInstanceForPrefixInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessGrantsInstanceForPrefixOutput>
+    getAccessGrantsInstanceResourcePolicy: function(Client, types.GetAccessGrantsInstanceResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessGrantsInstanceResourcePolicyOutput>
+    getAccessGrantsLocation: function(Client, types.GetAccessGrantsLocationInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessGrantsLocationOutput>
+    getAccessPoint: function(Client, types.GetAccessPointInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessPointOutput>
+    getAccessPointConfigurationForObjectLambda: function(Client, types.GetAccessPointConfigurationForObjectLambdaInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessPointConfigurationForObjectLambdaOutput>
+    getAccessPointForObjectLambda: function(Client, types.GetAccessPointForObjectLambdaInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessPointForObjectLambdaOutput>
+    getAccessPointPolicy: function(Client, types.GetAccessPointPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessPointPolicyOutput>
+    getAccessPointPolicyForObjectLambda: function(Client, types.GetAccessPointPolicyForObjectLambdaInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessPointPolicyForObjectLambdaOutput>
+    getAccessPointPolicyStatus: function(Client, types.GetAccessPointPolicyStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessPointPolicyStatusOutput>
+    getAccessPointPolicyStatusForObjectLambda: function(Client, types.GetAccessPointPolicyStatusForObjectLambdaInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessPointPolicyStatusForObjectLambdaOutput>
+    getAccessPointScope: function(Client, types.GetAccessPointScopeInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessPointScopeOutput>
+    getBucket: function(Client, types.GetBucketInput, ? base_client.InvokeOptions): async.Operation<types.GetBucketOutput>
+    getBucketLifecycleConfiguration: function(Client, types.GetBucketLifecycleConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetBucketLifecycleConfigurationOutput>
+    getBucketPolicy: function(Client, types.GetBucketPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetBucketPolicyOutput>
+    getBucketReplication: function(Client, types.GetBucketReplicationInput, ? base_client.InvokeOptions): async.Operation<types.GetBucketReplicationOutput>
+    getBucketTagging: function(Client, types.GetBucketTaggingInput, ? base_client.InvokeOptions): async.Operation<types.GetBucketTaggingOutput>
+    getBucketVersioning: function(Client, types.GetBucketVersioningInput, ? base_client.InvokeOptions): async.Operation<types.GetBucketVersioningOutput>
+    getDataAccess: function(Client, types.GetDataAccessInput, ? base_client.InvokeOptions): async.Operation<types.GetDataAccessOutput>
+    getJobTagging: function(Client, types.GetJobTaggingInput, ? base_client.InvokeOptions): async.Operation<types.GetJobTaggingOutput>
+    getMultiRegionAccessPoint: function(Client, types.GetMultiRegionAccessPointInput, ? base_client.InvokeOptions): async.Operation<types.GetMultiRegionAccessPointOutput>
+    getMultiRegionAccessPointPolicy: function(Client, types.GetMultiRegionAccessPointPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetMultiRegionAccessPointPolicyOutput>
+    getMultiRegionAccessPointPolicyStatus: function(Client, types.GetMultiRegionAccessPointPolicyStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetMultiRegionAccessPointPolicyStatusOutput>
+    getMultiRegionAccessPointRoutes: function(Client, types.GetMultiRegionAccessPointRoutesInput, ? base_client.InvokeOptions): async.Operation<types.GetMultiRegionAccessPointRoutesOutput>
+    getPublicAccessBlock: function(Client, types.GetPublicAccessBlockInput, ? base_client.InvokeOptions): async.Operation<types.GetPublicAccessBlockOutput>
+    getStorageLensConfiguration: function(Client, types.GetStorageLensConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetStorageLensConfigurationOutput>
+    getStorageLensConfigurationTagging: function(Client, types.GetStorageLensConfigurationTaggingInput, ? base_client.InvokeOptions): async.Operation<types.GetStorageLensConfigurationTaggingOutput>
+    getStorageLensGroup: function(Client, types.GetStorageLensGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetStorageLensGroupOutput>
+    listAccessGrants: function(Client, types.ListAccessGrantsInput, ? base_client.InvokeOptions): async.Operation<types.ListAccessGrantsOutput>
+    listAccessGrantsInstances: function(Client, types.ListAccessGrantsInstancesInput, ? base_client.InvokeOptions): async.Operation<types.ListAccessGrantsInstancesOutput>
+    listAccessGrantsLocations: function(Client, types.ListAccessGrantsLocationsInput, ? base_client.InvokeOptions): async.Operation<types.ListAccessGrantsLocationsOutput>
+    listAccessPoints: function(Client, types.ListAccessPointsInput, ? base_client.InvokeOptions): async.Operation<types.ListAccessPointsOutput>
+    listAccessPointsForDirectoryBuckets: function(Client, types.ListAccessPointsForDirectoryBucketsInput, ? base_client.InvokeOptions): async.Operation<types.ListAccessPointsForDirectoryBucketsOutput>
+    listAccessPointsForObjectLambda: function(Client, types.ListAccessPointsForObjectLambdaInput, ? base_client.InvokeOptions): async.Operation<types.ListAccessPointsForObjectLambdaOutput>
+    listCallerAccessGrants: function(Client, types.ListCallerAccessGrantsInput, ? base_client.InvokeOptions): async.Operation<types.ListCallerAccessGrantsOutput>
+    listJobs: function(Client, types.ListJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListJobsOutput>
+    listMultiRegionAccessPoints: function(Client, types.ListMultiRegionAccessPointsInput, ? base_client.InvokeOptions): async.Operation<types.ListMultiRegionAccessPointsOutput>
+    listRegionalBuckets: function(Client, types.ListRegionalBucketsInput, ? base_client.InvokeOptions): async.Operation<types.ListRegionalBucketsOutput>
+    listStorageLensConfigurations: function(Client, types.ListStorageLensConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListStorageLensConfigurationsOutput>
+    listStorageLensGroups: function(Client, types.ListStorageLensGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListStorageLensGroupsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putAccessGrantsInstanceResourcePolicy: function(Client, types.PutAccessGrantsInstanceResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutAccessGrantsInstanceResourcePolicyOutput>
+    putAccessPointConfigurationForObjectLambda: function(Client, types.PutAccessPointConfigurationForObjectLambdaInput, ? base_client.InvokeOptions): async.Operation<types.PutAccessPointConfigurationForObjectLambdaOutput>
+    putAccessPointPolicy: function(Client, types.PutAccessPointPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutAccessPointPolicyOutput>
+    putAccessPointPolicyForObjectLambda: function(Client, types.PutAccessPointPolicyForObjectLambdaInput, ? base_client.InvokeOptions): async.Operation<types.PutAccessPointPolicyForObjectLambdaOutput>
+    putAccessPointScope: function(Client, types.PutAccessPointScopeInput, ? base_client.InvokeOptions): async.Operation<types.PutAccessPointScopeOutput>
+    putBucketLifecycleConfiguration: function(Client, types.PutBucketLifecycleConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutBucketLifecycleConfigurationOutput>
+    putBucketPolicy: function(Client, types.PutBucketPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutBucketPolicyOutput>
+    putBucketReplication: function(Client, types.PutBucketReplicationInput, ? base_client.InvokeOptions): async.Operation<types.PutBucketReplicationOutput>
+    putBucketTagging: function(Client, types.PutBucketTaggingInput, ? base_client.InvokeOptions): async.Operation<types.PutBucketTaggingOutput>
+    putBucketVersioning: function(Client, types.PutBucketVersioningInput, ? base_client.InvokeOptions): async.Operation<types.PutBucketVersioningOutput>
+    putJobTagging: function(Client, types.PutJobTaggingInput, ? base_client.InvokeOptions): async.Operation<types.PutJobTaggingOutput>
+    putMultiRegionAccessPointPolicy: function(Client, types.PutMultiRegionAccessPointPolicyOperationInput, ? base_client.InvokeOptions): async.Operation<types.PutMultiRegionAccessPointPolicyOutput>
+    putPublicAccessBlock: function(Client, types.PutPublicAccessBlockInput, ? base_client.InvokeOptions): async.Operation<types.PutPublicAccessBlockOutput>
+    putStorageLensConfiguration: function(Client, types.PutStorageLensConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutStorageLensConfigurationOutput>
+    putStorageLensConfigurationTagging: function(Client, types.PutStorageLensConfigurationTaggingInput, ? base_client.InvokeOptions): async.Operation<types.PutStorageLensConfigurationTaggingOutput>
+    submitMultiRegionAccessPointRoutes: function(Client, types.SubmitMultiRegionAccessPointRoutesInput, ? base_client.InvokeOptions): async.Operation<types.SubmitMultiRegionAccessPointRoutesOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAccessGrantsLocation: function(Client, types.UpdateAccessGrantsLocationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAccessGrantsLocationOutput>
+    updateJobPriority: function(Client, types.UpdateJobPriorityInput, ? base_client.InvokeOptions): async.Operation<types.UpdateJobPriorityOutput>
+    updateJobStatus: function(Client, types.UpdateJobStatusInput, ? base_client.InvokeOptions): async.Operation<types.UpdateJobStatusOutput>
+    updateStorageLensGroup: function(Client, types.UpdateStorageLensGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateStorageLensGroupOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSS3ControlServiceV20180820"
-    if not c.protocol then c.protocol = restxml_protocol.new() end
+    if not c.protocol then c.protocol = restxml_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "s3", signing_region = c.region } }
                 else
@@ -156,392 +159,392 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateAccessGrantsIdentityCenter(input: types.AssociateAccessGrantsIdentityCenterInput, options: any): async.Operation<types.AssociateAccessGrantsIdentityCenterOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateAccessGrantsIdentityCenter, input, options) as async.Operation<types.AssociateAccessGrantsIdentityCenterOutput>
+function C:associateAccessGrantsIdentityCenter(input: types.AssociateAccessGrantsIdentityCenterInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateAccessGrantsIdentityCenterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateAccessGrantsIdentityCenter as schema.OperationSchema, input, options) as async.Operation<types.AssociateAccessGrantsIdentityCenterOutput>
 end
 
-function C:createAccessGrant(input: types.CreateAccessGrantInput, options: any): async.Operation<types.CreateAccessGrantOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAccessGrant, input, options) as async.Operation<types.CreateAccessGrantOutput>
+function C:createAccessGrant(input: types.CreateAccessGrantInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAccessGrantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAccessGrant as schema.OperationSchema, input, options) as async.Operation<types.CreateAccessGrantOutput>
 end
 
-function C:createAccessGrantsInstance(input: types.CreateAccessGrantsInstanceInput, options: any): async.Operation<types.CreateAccessGrantsInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAccessGrantsInstance, input, options) as async.Operation<types.CreateAccessGrantsInstanceOutput>
+function C:createAccessGrantsInstance(input: types.CreateAccessGrantsInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAccessGrantsInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAccessGrantsInstance as schema.OperationSchema, input, options) as async.Operation<types.CreateAccessGrantsInstanceOutput>
 end
 
-function C:createAccessGrantsLocation(input: types.CreateAccessGrantsLocationInput, options: any): async.Operation<types.CreateAccessGrantsLocationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAccessGrantsLocation, input, options) as async.Operation<types.CreateAccessGrantsLocationOutput>
+function C:createAccessGrantsLocation(input: types.CreateAccessGrantsLocationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAccessGrantsLocationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAccessGrantsLocation as schema.OperationSchema, input, options) as async.Operation<types.CreateAccessGrantsLocationOutput>
 end
 
-function C:createAccessPoint(input: types.CreateAccessPointInput, options: any): async.Operation<types.CreateAccessPointOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAccessPoint, input, options) as async.Operation<types.CreateAccessPointOutput>
+function C:createAccessPoint(input: types.CreateAccessPointInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAccessPointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAccessPoint as schema.OperationSchema, input, options) as async.Operation<types.CreateAccessPointOutput>
 end
 
-function C:createAccessPointForObjectLambda(input: types.CreateAccessPointForObjectLambdaInput, options: any): async.Operation<types.CreateAccessPointForObjectLambdaOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAccessPointForObjectLambda, input, options) as async.Operation<types.CreateAccessPointForObjectLambdaOutput>
+function C:createAccessPointForObjectLambda(input: types.CreateAccessPointForObjectLambdaInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAccessPointForObjectLambdaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAccessPointForObjectLambda as schema.OperationSchema, input, options) as async.Operation<types.CreateAccessPointForObjectLambdaOutput>
 end
 
-function C:createBucket(input: types.CreateBucketInput, options: any): async.Operation<types.CreateBucketOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBucket, input, options) as async.Operation<types.CreateBucketOutput>
+function C:createBucket(input: types.CreateBucketInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBucketOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBucket as schema.OperationSchema, input, options) as async.Operation<types.CreateBucketOutput>
 end
 
-function C:createJob(input: types.CreateJobInput, options: any): async.Operation<types.CreateJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateJob, input, options) as async.Operation<types.CreateJobOutput>
+function C:createJob(input: types.CreateJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateJob as schema.OperationSchema, input, options) as async.Operation<types.CreateJobOutput>
 end
 
-function C:createMultiRegionAccessPoint(input: types.CreateMultiRegionAccessPointOperationInput, options: any): async.Operation<types.CreateMultiRegionAccessPointOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMultiRegionAccessPoint, input, options) as async.Operation<types.CreateMultiRegionAccessPointOutput>
+function C:createMultiRegionAccessPoint(input: types.CreateMultiRegionAccessPointOperationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMultiRegionAccessPointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMultiRegionAccessPoint as schema.OperationSchema, input, options) as async.Operation<types.CreateMultiRegionAccessPointOutput>
 end
 
-function C:createStorageLensGroup(input: types.CreateStorageLensGroupInput, options: any): async.Operation<types.CreateStorageLensGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateStorageLensGroup, input, options) as async.Operation<types.CreateStorageLensGroupOutput>
+function C:createStorageLensGroup(input: types.CreateStorageLensGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateStorageLensGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateStorageLensGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateStorageLensGroupOutput>
 end
 
-function C:deleteAccessGrant(input: types.DeleteAccessGrantInput, options: any): async.Operation<types.DeleteAccessGrantOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAccessGrant, input, options) as async.Operation<types.DeleteAccessGrantOutput>
+function C:deleteAccessGrant(input: types.DeleteAccessGrantInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAccessGrantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAccessGrant as schema.OperationSchema, input, options) as async.Operation<types.DeleteAccessGrantOutput>
 end
 
-function C:deleteAccessGrantsInstance(input: types.DeleteAccessGrantsInstanceInput, options: any): async.Operation<types.DeleteAccessGrantsInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAccessGrantsInstance, input, options) as async.Operation<types.DeleteAccessGrantsInstanceOutput>
+function C:deleteAccessGrantsInstance(input: types.DeleteAccessGrantsInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAccessGrantsInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAccessGrantsInstance as schema.OperationSchema, input, options) as async.Operation<types.DeleteAccessGrantsInstanceOutput>
 end
 
-function C:deleteAccessGrantsInstanceResourcePolicy(input: types.DeleteAccessGrantsInstanceResourcePolicyInput, options: any): async.Operation<types.DeleteAccessGrantsInstanceResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAccessGrantsInstanceResourcePolicy, input, options) as async.Operation<types.DeleteAccessGrantsInstanceResourcePolicyOutput>
+function C:deleteAccessGrantsInstanceResourcePolicy(input: types.DeleteAccessGrantsInstanceResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAccessGrantsInstanceResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAccessGrantsInstanceResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteAccessGrantsInstanceResourcePolicyOutput>
 end
 
-function C:deleteAccessGrantsLocation(input: types.DeleteAccessGrantsLocationInput, options: any): async.Operation<types.DeleteAccessGrantsLocationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAccessGrantsLocation, input, options) as async.Operation<types.DeleteAccessGrantsLocationOutput>
+function C:deleteAccessGrantsLocation(input: types.DeleteAccessGrantsLocationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAccessGrantsLocationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAccessGrantsLocation as schema.OperationSchema, input, options) as async.Operation<types.DeleteAccessGrantsLocationOutput>
 end
 
-function C:deleteAccessPoint(input: types.DeleteAccessPointInput, options: any): async.Operation<types.DeleteAccessPointOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAccessPoint, input, options) as async.Operation<types.DeleteAccessPointOutput>
+function C:deleteAccessPoint(input: types.DeleteAccessPointInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAccessPointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAccessPoint as schema.OperationSchema, input, options) as async.Operation<types.DeleteAccessPointOutput>
 end
 
-function C:deleteAccessPointForObjectLambda(input: types.DeleteAccessPointForObjectLambdaInput, options: any): async.Operation<types.DeleteAccessPointForObjectLambdaOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAccessPointForObjectLambda, input, options) as async.Operation<types.DeleteAccessPointForObjectLambdaOutput>
+function C:deleteAccessPointForObjectLambda(input: types.DeleteAccessPointForObjectLambdaInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAccessPointForObjectLambdaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAccessPointForObjectLambda as schema.OperationSchema, input, options) as async.Operation<types.DeleteAccessPointForObjectLambdaOutput>
 end
 
-function C:deleteAccessPointPolicy(input: types.DeleteAccessPointPolicyInput, options: any): async.Operation<types.DeleteAccessPointPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAccessPointPolicy, input, options) as async.Operation<types.DeleteAccessPointPolicyOutput>
+function C:deleteAccessPointPolicy(input: types.DeleteAccessPointPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAccessPointPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAccessPointPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteAccessPointPolicyOutput>
 end
 
-function C:deleteAccessPointPolicyForObjectLambda(input: types.DeleteAccessPointPolicyForObjectLambdaInput, options: any): async.Operation<types.DeleteAccessPointPolicyForObjectLambdaOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAccessPointPolicyForObjectLambda, input, options) as async.Operation<types.DeleteAccessPointPolicyForObjectLambdaOutput>
+function C:deleteAccessPointPolicyForObjectLambda(input: types.DeleteAccessPointPolicyForObjectLambdaInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAccessPointPolicyForObjectLambdaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAccessPointPolicyForObjectLambda as schema.OperationSchema, input, options) as async.Operation<types.DeleteAccessPointPolicyForObjectLambdaOutput>
 end
 
-function C:deleteAccessPointScope(input: types.DeleteAccessPointScopeInput, options: any): async.Operation<types.DeleteAccessPointScopeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAccessPointScope, input, options) as async.Operation<types.DeleteAccessPointScopeOutput>
+function C:deleteAccessPointScope(input: types.DeleteAccessPointScopeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAccessPointScopeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAccessPointScope as schema.OperationSchema, input, options) as async.Operation<types.DeleteAccessPointScopeOutput>
 end
 
-function C:deleteBucket(input: types.DeleteBucketInput, options: any): async.Operation<types.DeleteBucketOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBucket, input, options) as async.Operation<types.DeleteBucketOutput>
+function C:deleteBucket(input: types.DeleteBucketInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBucketOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBucket as schema.OperationSchema, input, options) as async.Operation<types.DeleteBucketOutput>
 end
 
-function C:deleteBucketLifecycleConfiguration(input: types.DeleteBucketLifecycleConfigurationInput, options: any): async.Operation<types.DeleteBucketLifecycleConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBucketLifecycleConfiguration, input, options) as async.Operation<types.DeleteBucketLifecycleConfigurationOutput>
+function C:deleteBucketLifecycleConfiguration(input: types.DeleteBucketLifecycleConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBucketLifecycleConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBucketLifecycleConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteBucketLifecycleConfigurationOutput>
 end
 
-function C:deleteBucketPolicy(input: types.DeleteBucketPolicyInput, options: any): async.Operation<types.DeleteBucketPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBucketPolicy, input, options) as async.Operation<types.DeleteBucketPolicyOutput>
+function C:deleteBucketPolicy(input: types.DeleteBucketPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBucketPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBucketPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteBucketPolicyOutput>
 end
 
-function C:deleteBucketReplication(input: types.DeleteBucketReplicationInput, options: any): async.Operation<types.DeleteBucketReplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBucketReplication, input, options) as async.Operation<types.DeleteBucketReplicationOutput>
+function C:deleteBucketReplication(input: types.DeleteBucketReplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBucketReplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBucketReplication as schema.OperationSchema, input, options) as async.Operation<types.DeleteBucketReplicationOutput>
 end
 
-function C:deleteBucketTagging(input: types.DeleteBucketTaggingInput, options: any): async.Operation<types.DeleteBucketTaggingOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBucketTagging, input, options) as async.Operation<types.DeleteBucketTaggingOutput>
+function C:deleteBucketTagging(input: types.DeleteBucketTaggingInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBucketTaggingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBucketTagging as schema.OperationSchema, input, options) as async.Operation<types.DeleteBucketTaggingOutput>
 end
 
-function C:deleteJobTagging(input: types.DeleteJobTaggingInput, options: any): async.Operation<types.DeleteJobTaggingOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteJobTagging, input, options) as async.Operation<types.DeleteJobTaggingOutput>
+function C:deleteJobTagging(input: types.DeleteJobTaggingInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteJobTaggingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteJobTagging as schema.OperationSchema, input, options) as async.Operation<types.DeleteJobTaggingOutput>
 end
 
-function C:deleteMultiRegionAccessPoint(input: types.DeleteMultiRegionAccessPointOperationInput, options: any): async.Operation<types.DeleteMultiRegionAccessPointOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMultiRegionAccessPoint, input, options) as async.Operation<types.DeleteMultiRegionAccessPointOutput>
+function C:deleteMultiRegionAccessPoint(input: types.DeleteMultiRegionAccessPointOperationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMultiRegionAccessPointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMultiRegionAccessPoint as schema.OperationSchema, input, options) as async.Operation<types.DeleteMultiRegionAccessPointOutput>
 end
 
-function C:deletePublicAccessBlock(input: types.DeletePublicAccessBlockInput, options: any): async.Operation<types.DeletePublicAccessBlockOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePublicAccessBlock, input, options) as async.Operation<types.DeletePublicAccessBlockOutput>
+function C:deletePublicAccessBlock(input: types.DeletePublicAccessBlockInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePublicAccessBlockOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePublicAccessBlock as schema.OperationSchema, input, options) as async.Operation<types.DeletePublicAccessBlockOutput>
 end
 
-function C:deleteStorageLensConfiguration(input: types.DeleteStorageLensConfigurationInput, options: any): async.Operation<types.DeleteStorageLensConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteStorageLensConfiguration, input, options) as async.Operation<types.DeleteStorageLensConfigurationOutput>
+function C:deleteStorageLensConfiguration(input: types.DeleteStorageLensConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteStorageLensConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteStorageLensConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteStorageLensConfigurationOutput>
 end
 
-function C:deleteStorageLensConfigurationTagging(input: types.DeleteStorageLensConfigurationTaggingInput, options: any): async.Operation<types.DeleteStorageLensConfigurationTaggingOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteStorageLensConfigurationTagging, input, options) as async.Operation<types.DeleteStorageLensConfigurationTaggingOutput>
+function C:deleteStorageLensConfigurationTagging(input: types.DeleteStorageLensConfigurationTaggingInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteStorageLensConfigurationTaggingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteStorageLensConfigurationTagging as schema.OperationSchema, input, options) as async.Operation<types.DeleteStorageLensConfigurationTaggingOutput>
 end
 
-function C:deleteStorageLensGroup(input: types.DeleteStorageLensGroupInput, options: any): async.Operation<types.DeleteStorageLensGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteStorageLensGroup, input, options) as async.Operation<types.DeleteStorageLensGroupOutput>
+function C:deleteStorageLensGroup(input: types.DeleteStorageLensGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteStorageLensGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteStorageLensGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteStorageLensGroupOutput>
 end
 
-function C:describeJob(input: types.DescribeJobInput, options: any): async.Operation<types.DescribeJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeJob, input, options) as async.Operation<types.DescribeJobOutput>
+function C:describeJob(input: types.DescribeJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeJobOutput>
 end
 
-function C:describeMultiRegionAccessPointOperation(input: types.DescribeMultiRegionAccessPointOperationInput, options: any): async.Operation<types.DescribeMultiRegionAccessPointOperationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeMultiRegionAccessPointOperation, input, options) as async.Operation<types.DescribeMultiRegionAccessPointOperationOutput>
+function C:describeMultiRegionAccessPointOperation(input: types.DescribeMultiRegionAccessPointOperationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMultiRegionAccessPointOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMultiRegionAccessPointOperation as schema.OperationSchema, input, options) as async.Operation<types.DescribeMultiRegionAccessPointOperationOutput>
 end
 
-function C:dissociateAccessGrantsIdentityCenter(input: types.DissociateAccessGrantsIdentityCenterInput, options: any): async.Operation<types.DissociateAccessGrantsIdentityCenterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DissociateAccessGrantsIdentityCenter, input, options) as async.Operation<types.DissociateAccessGrantsIdentityCenterOutput>
+function C:dissociateAccessGrantsIdentityCenter(input: types.DissociateAccessGrantsIdentityCenterInput, options?: base_client.InvokeOptions): async.Operation<types.DissociateAccessGrantsIdentityCenterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DissociateAccessGrantsIdentityCenter as schema.OperationSchema, input, options) as async.Operation<types.DissociateAccessGrantsIdentityCenterOutput>
 end
 
-function C:getAccessGrant(input: types.GetAccessGrantInput, options: any): async.Operation<types.GetAccessGrantOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccessGrant, input, options) as async.Operation<types.GetAccessGrantOutput>
+function C:getAccessGrant(input: types.GetAccessGrantInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccessGrantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccessGrant as schema.OperationSchema, input, options) as async.Operation<types.GetAccessGrantOutput>
 end
 
-function C:getAccessGrantsInstance(input: types.GetAccessGrantsInstanceInput, options: any): async.Operation<types.GetAccessGrantsInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccessGrantsInstance, input, options) as async.Operation<types.GetAccessGrantsInstanceOutput>
+function C:getAccessGrantsInstance(input: types.GetAccessGrantsInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccessGrantsInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccessGrantsInstance as schema.OperationSchema, input, options) as async.Operation<types.GetAccessGrantsInstanceOutput>
 end
 
-function C:getAccessGrantsInstanceForPrefix(input: types.GetAccessGrantsInstanceForPrefixInput, options: any): async.Operation<types.GetAccessGrantsInstanceForPrefixOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccessGrantsInstanceForPrefix, input, options) as async.Operation<types.GetAccessGrantsInstanceForPrefixOutput>
+function C:getAccessGrantsInstanceForPrefix(input: types.GetAccessGrantsInstanceForPrefixInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccessGrantsInstanceForPrefixOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccessGrantsInstanceForPrefix as schema.OperationSchema, input, options) as async.Operation<types.GetAccessGrantsInstanceForPrefixOutput>
 end
 
-function C:getAccessGrantsInstanceResourcePolicy(input: types.GetAccessGrantsInstanceResourcePolicyInput, options: any): async.Operation<types.GetAccessGrantsInstanceResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccessGrantsInstanceResourcePolicy, input, options) as async.Operation<types.GetAccessGrantsInstanceResourcePolicyOutput>
+function C:getAccessGrantsInstanceResourcePolicy(input: types.GetAccessGrantsInstanceResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccessGrantsInstanceResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccessGrantsInstanceResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetAccessGrantsInstanceResourcePolicyOutput>
 end
 
-function C:getAccessGrantsLocation(input: types.GetAccessGrantsLocationInput, options: any): async.Operation<types.GetAccessGrantsLocationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccessGrantsLocation, input, options) as async.Operation<types.GetAccessGrantsLocationOutput>
+function C:getAccessGrantsLocation(input: types.GetAccessGrantsLocationInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccessGrantsLocationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccessGrantsLocation as schema.OperationSchema, input, options) as async.Operation<types.GetAccessGrantsLocationOutput>
 end
 
-function C:getAccessPoint(input: types.GetAccessPointInput, options: any): async.Operation<types.GetAccessPointOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccessPoint, input, options) as async.Operation<types.GetAccessPointOutput>
+function C:getAccessPoint(input: types.GetAccessPointInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccessPointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccessPoint as schema.OperationSchema, input, options) as async.Operation<types.GetAccessPointOutput>
 end
 
-function C:getAccessPointConfigurationForObjectLambda(input: types.GetAccessPointConfigurationForObjectLambdaInput, options: any): async.Operation<types.GetAccessPointConfigurationForObjectLambdaOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccessPointConfigurationForObjectLambda, input, options) as async.Operation<types.GetAccessPointConfigurationForObjectLambdaOutput>
+function C:getAccessPointConfigurationForObjectLambda(input: types.GetAccessPointConfigurationForObjectLambdaInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccessPointConfigurationForObjectLambdaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccessPointConfigurationForObjectLambda as schema.OperationSchema, input, options) as async.Operation<types.GetAccessPointConfigurationForObjectLambdaOutput>
 end
 
-function C:getAccessPointForObjectLambda(input: types.GetAccessPointForObjectLambdaInput, options: any): async.Operation<types.GetAccessPointForObjectLambdaOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccessPointForObjectLambda, input, options) as async.Operation<types.GetAccessPointForObjectLambdaOutput>
+function C:getAccessPointForObjectLambda(input: types.GetAccessPointForObjectLambdaInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccessPointForObjectLambdaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccessPointForObjectLambda as schema.OperationSchema, input, options) as async.Operation<types.GetAccessPointForObjectLambdaOutput>
 end
 
-function C:getAccessPointPolicy(input: types.GetAccessPointPolicyInput, options: any): async.Operation<types.GetAccessPointPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccessPointPolicy, input, options) as async.Operation<types.GetAccessPointPolicyOutput>
+function C:getAccessPointPolicy(input: types.GetAccessPointPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccessPointPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccessPointPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetAccessPointPolicyOutput>
 end
 
-function C:getAccessPointPolicyForObjectLambda(input: types.GetAccessPointPolicyForObjectLambdaInput, options: any): async.Operation<types.GetAccessPointPolicyForObjectLambdaOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccessPointPolicyForObjectLambda, input, options) as async.Operation<types.GetAccessPointPolicyForObjectLambdaOutput>
+function C:getAccessPointPolicyForObjectLambda(input: types.GetAccessPointPolicyForObjectLambdaInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccessPointPolicyForObjectLambdaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccessPointPolicyForObjectLambda as schema.OperationSchema, input, options) as async.Operation<types.GetAccessPointPolicyForObjectLambdaOutput>
 end
 
-function C:getAccessPointPolicyStatus(input: types.GetAccessPointPolicyStatusInput, options: any): async.Operation<types.GetAccessPointPolicyStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccessPointPolicyStatus, input, options) as async.Operation<types.GetAccessPointPolicyStatusOutput>
+function C:getAccessPointPolicyStatus(input: types.GetAccessPointPolicyStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccessPointPolicyStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccessPointPolicyStatus as schema.OperationSchema, input, options) as async.Operation<types.GetAccessPointPolicyStatusOutput>
 end
 
-function C:getAccessPointPolicyStatusForObjectLambda(input: types.GetAccessPointPolicyStatusForObjectLambdaInput, options: any): async.Operation<types.GetAccessPointPolicyStatusForObjectLambdaOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccessPointPolicyStatusForObjectLambda, input, options) as async.Operation<types.GetAccessPointPolicyStatusForObjectLambdaOutput>
+function C:getAccessPointPolicyStatusForObjectLambda(input: types.GetAccessPointPolicyStatusForObjectLambdaInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccessPointPolicyStatusForObjectLambdaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccessPointPolicyStatusForObjectLambda as schema.OperationSchema, input, options) as async.Operation<types.GetAccessPointPolicyStatusForObjectLambdaOutput>
 end
 
-function C:getAccessPointScope(input: types.GetAccessPointScopeInput, options: any): async.Operation<types.GetAccessPointScopeOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccessPointScope, input, options) as async.Operation<types.GetAccessPointScopeOutput>
+function C:getAccessPointScope(input: types.GetAccessPointScopeInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccessPointScopeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccessPointScope as schema.OperationSchema, input, options) as async.Operation<types.GetAccessPointScopeOutput>
 end
 
-function C:getBucket(input: types.GetBucketInput, options: any): async.Operation<types.GetBucketOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBucket, input, options) as async.Operation<types.GetBucketOutput>
+function C:getBucket(input: types.GetBucketInput, options?: base_client.InvokeOptions): async.Operation<types.GetBucketOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBucket as schema.OperationSchema, input, options) as async.Operation<types.GetBucketOutput>
 end
 
-function C:getBucketLifecycleConfiguration(input: types.GetBucketLifecycleConfigurationInput, options: any): async.Operation<types.GetBucketLifecycleConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBucketLifecycleConfiguration, input, options) as async.Operation<types.GetBucketLifecycleConfigurationOutput>
+function C:getBucketLifecycleConfiguration(input: types.GetBucketLifecycleConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetBucketLifecycleConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBucketLifecycleConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetBucketLifecycleConfigurationOutput>
 end
 
-function C:getBucketPolicy(input: types.GetBucketPolicyInput, options: any): async.Operation<types.GetBucketPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBucketPolicy, input, options) as async.Operation<types.GetBucketPolicyOutput>
+function C:getBucketPolicy(input: types.GetBucketPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetBucketPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBucketPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetBucketPolicyOutput>
 end
 
-function C:getBucketReplication(input: types.GetBucketReplicationInput, options: any): async.Operation<types.GetBucketReplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBucketReplication, input, options) as async.Operation<types.GetBucketReplicationOutput>
+function C:getBucketReplication(input: types.GetBucketReplicationInput, options?: base_client.InvokeOptions): async.Operation<types.GetBucketReplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBucketReplication as schema.OperationSchema, input, options) as async.Operation<types.GetBucketReplicationOutput>
 end
 
-function C:getBucketTagging(input: types.GetBucketTaggingInput, options: any): async.Operation<types.GetBucketTaggingOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBucketTagging, input, options) as async.Operation<types.GetBucketTaggingOutput>
+function C:getBucketTagging(input: types.GetBucketTaggingInput, options?: base_client.InvokeOptions): async.Operation<types.GetBucketTaggingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBucketTagging as schema.OperationSchema, input, options) as async.Operation<types.GetBucketTaggingOutput>
 end
 
-function C:getBucketVersioning(input: types.GetBucketVersioningInput, options: any): async.Operation<types.GetBucketVersioningOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBucketVersioning, input, options) as async.Operation<types.GetBucketVersioningOutput>
+function C:getBucketVersioning(input: types.GetBucketVersioningInput, options?: base_client.InvokeOptions): async.Operation<types.GetBucketVersioningOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBucketVersioning as schema.OperationSchema, input, options) as async.Operation<types.GetBucketVersioningOutput>
 end
 
-function C:getDataAccess(input: types.GetDataAccessInput, options: any): async.Operation<types.GetDataAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataAccess, input, options) as async.Operation<types.GetDataAccessOutput>
+function C:getDataAccess(input: types.GetDataAccessInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataAccess as schema.OperationSchema, input, options) as async.Operation<types.GetDataAccessOutput>
 end
 
-function C:getJobTagging(input: types.GetJobTaggingInput, options: any): async.Operation<types.GetJobTaggingOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetJobTagging, input, options) as async.Operation<types.GetJobTaggingOutput>
+function C:getJobTagging(input: types.GetJobTaggingInput, options?: base_client.InvokeOptions): async.Operation<types.GetJobTaggingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetJobTagging as schema.OperationSchema, input, options) as async.Operation<types.GetJobTaggingOutput>
 end
 
-function C:getMultiRegionAccessPoint(input: types.GetMultiRegionAccessPointInput, options: any): async.Operation<types.GetMultiRegionAccessPointOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMultiRegionAccessPoint, input, options) as async.Operation<types.GetMultiRegionAccessPointOutput>
+function C:getMultiRegionAccessPoint(input: types.GetMultiRegionAccessPointInput, options?: base_client.InvokeOptions): async.Operation<types.GetMultiRegionAccessPointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMultiRegionAccessPoint as schema.OperationSchema, input, options) as async.Operation<types.GetMultiRegionAccessPointOutput>
 end
 
-function C:getMultiRegionAccessPointPolicy(input: types.GetMultiRegionAccessPointPolicyInput, options: any): async.Operation<types.GetMultiRegionAccessPointPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMultiRegionAccessPointPolicy, input, options) as async.Operation<types.GetMultiRegionAccessPointPolicyOutput>
+function C:getMultiRegionAccessPointPolicy(input: types.GetMultiRegionAccessPointPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetMultiRegionAccessPointPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMultiRegionAccessPointPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetMultiRegionAccessPointPolicyOutput>
 end
 
-function C:getMultiRegionAccessPointPolicyStatus(input: types.GetMultiRegionAccessPointPolicyStatusInput, options: any): async.Operation<types.GetMultiRegionAccessPointPolicyStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMultiRegionAccessPointPolicyStatus, input, options) as async.Operation<types.GetMultiRegionAccessPointPolicyStatusOutput>
+function C:getMultiRegionAccessPointPolicyStatus(input: types.GetMultiRegionAccessPointPolicyStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetMultiRegionAccessPointPolicyStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMultiRegionAccessPointPolicyStatus as schema.OperationSchema, input, options) as async.Operation<types.GetMultiRegionAccessPointPolicyStatusOutput>
 end
 
-function C:getMultiRegionAccessPointRoutes(input: types.GetMultiRegionAccessPointRoutesInput, options: any): async.Operation<types.GetMultiRegionAccessPointRoutesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMultiRegionAccessPointRoutes, input, options) as async.Operation<types.GetMultiRegionAccessPointRoutesOutput>
+function C:getMultiRegionAccessPointRoutes(input: types.GetMultiRegionAccessPointRoutesInput, options?: base_client.InvokeOptions): async.Operation<types.GetMultiRegionAccessPointRoutesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMultiRegionAccessPointRoutes as schema.OperationSchema, input, options) as async.Operation<types.GetMultiRegionAccessPointRoutesOutput>
 end
 
-function C:getPublicAccessBlock(input: types.GetPublicAccessBlockInput, options: any): async.Operation<types.GetPublicAccessBlockOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPublicAccessBlock, input, options) as async.Operation<types.GetPublicAccessBlockOutput>
+function C:getPublicAccessBlock(input: types.GetPublicAccessBlockInput, options?: base_client.InvokeOptions): async.Operation<types.GetPublicAccessBlockOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPublicAccessBlock as schema.OperationSchema, input, options) as async.Operation<types.GetPublicAccessBlockOutput>
 end
 
-function C:getStorageLensConfiguration(input: types.GetStorageLensConfigurationInput, options: any): async.Operation<types.GetStorageLensConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetStorageLensConfiguration, input, options) as async.Operation<types.GetStorageLensConfigurationOutput>
+function C:getStorageLensConfiguration(input: types.GetStorageLensConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetStorageLensConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetStorageLensConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetStorageLensConfigurationOutput>
 end
 
-function C:getStorageLensConfigurationTagging(input: types.GetStorageLensConfigurationTaggingInput, options: any): async.Operation<types.GetStorageLensConfigurationTaggingOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetStorageLensConfigurationTagging, input, options) as async.Operation<types.GetStorageLensConfigurationTaggingOutput>
+function C:getStorageLensConfigurationTagging(input: types.GetStorageLensConfigurationTaggingInput, options?: base_client.InvokeOptions): async.Operation<types.GetStorageLensConfigurationTaggingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetStorageLensConfigurationTagging as schema.OperationSchema, input, options) as async.Operation<types.GetStorageLensConfigurationTaggingOutput>
 end
 
-function C:getStorageLensGroup(input: types.GetStorageLensGroupInput, options: any): async.Operation<types.GetStorageLensGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetStorageLensGroup, input, options) as async.Operation<types.GetStorageLensGroupOutput>
+function C:getStorageLensGroup(input: types.GetStorageLensGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetStorageLensGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetStorageLensGroup as schema.OperationSchema, input, options) as async.Operation<types.GetStorageLensGroupOutput>
 end
 
-function C:listAccessGrants(input: types.ListAccessGrantsInput, options: any): async.Operation<types.ListAccessGrantsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccessGrants, input, options) as async.Operation<types.ListAccessGrantsOutput>
+function C:listAccessGrants(input: types.ListAccessGrantsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccessGrantsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccessGrants as schema.OperationSchema, input, options) as async.Operation<types.ListAccessGrantsOutput>
 end
 
-function C:listAccessGrantsInstances(input: types.ListAccessGrantsInstancesInput, options: any): async.Operation<types.ListAccessGrantsInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccessGrantsInstances, input, options) as async.Operation<types.ListAccessGrantsInstancesOutput>
+function C:listAccessGrantsInstances(input: types.ListAccessGrantsInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccessGrantsInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccessGrantsInstances as schema.OperationSchema, input, options) as async.Operation<types.ListAccessGrantsInstancesOutput>
 end
 
-function C:listAccessGrantsLocations(input: types.ListAccessGrantsLocationsInput, options: any): async.Operation<types.ListAccessGrantsLocationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccessGrantsLocations, input, options) as async.Operation<types.ListAccessGrantsLocationsOutput>
+function C:listAccessGrantsLocations(input: types.ListAccessGrantsLocationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccessGrantsLocationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccessGrantsLocations as schema.OperationSchema, input, options) as async.Operation<types.ListAccessGrantsLocationsOutput>
 end
 
-function C:listAccessPoints(input: types.ListAccessPointsInput, options: any): async.Operation<types.ListAccessPointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccessPoints, input, options) as async.Operation<types.ListAccessPointsOutput>
+function C:listAccessPoints(input: types.ListAccessPointsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccessPointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccessPoints as schema.OperationSchema, input, options) as async.Operation<types.ListAccessPointsOutput>
 end
 
-function C:listAccessPointsForDirectoryBuckets(input: types.ListAccessPointsForDirectoryBucketsInput, options: any): async.Operation<types.ListAccessPointsForDirectoryBucketsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccessPointsForDirectoryBuckets, input, options) as async.Operation<types.ListAccessPointsForDirectoryBucketsOutput>
+function C:listAccessPointsForDirectoryBuckets(input: types.ListAccessPointsForDirectoryBucketsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccessPointsForDirectoryBucketsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccessPointsForDirectoryBuckets as schema.OperationSchema, input, options) as async.Operation<types.ListAccessPointsForDirectoryBucketsOutput>
 end
 
-function C:listAccessPointsForObjectLambda(input: types.ListAccessPointsForObjectLambdaInput, options: any): async.Operation<types.ListAccessPointsForObjectLambdaOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccessPointsForObjectLambda, input, options) as async.Operation<types.ListAccessPointsForObjectLambdaOutput>
+function C:listAccessPointsForObjectLambda(input: types.ListAccessPointsForObjectLambdaInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccessPointsForObjectLambdaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccessPointsForObjectLambda as schema.OperationSchema, input, options) as async.Operation<types.ListAccessPointsForObjectLambdaOutput>
 end
 
-function C:listCallerAccessGrants(input: types.ListCallerAccessGrantsInput, options: any): async.Operation<types.ListCallerAccessGrantsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCallerAccessGrants, input, options) as async.Operation<types.ListCallerAccessGrantsOutput>
+function C:listCallerAccessGrants(input: types.ListCallerAccessGrantsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCallerAccessGrantsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCallerAccessGrants as schema.OperationSchema, input, options) as async.Operation<types.ListCallerAccessGrantsOutput>
 end
 
-function C:listJobs(input: types.ListJobsInput, options: any): async.Operation<types.ListJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListJobs, input, options) as async.Operation<types.ListJobsOutput>
+function C:listJobs(input: types.ListJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListJobs as schema.OperationSchema, input, options) as async.Operation<types.ListJobsOutput>
 end
 
-function C:listMultiRegionAccessPoints(input: types.ListMultiRegionAccessPointsInput, options: any): async.Operation<types.ListMultiRegionAccessPointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMultiRegionAccessPoints, input, options) as async.Operation<types.ListMultiRegionAccessPointsOutput>
+function C:listMultiRegionAccessPoints(input: types.ListMultiRegionAccessPointsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMultiRegionAccessPointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMultiRegionAccessPoints as schema.OperationSchema, input, options) as async.Operation<types.ListMultiRegionAccessPointsOutput>
 end
 
-function C:listRegionalBuckets(input: types.ListRegionalBucketsInput, options: any): async.Operation<types.ListRegionalBucketsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRegionalBuckets, input, options) as async.Operation<types.ListRegionalBucketsOutput>
+function C:listRegionalBuckets(input: types.ListRegionalBucketsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRegionalBucketsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRegionalBuckets as schema.OperationSchema, input, options) as async.Operation<types.ListRegionalBucketsOutput>
 end
 
-function C:listStorageLensConfigurations(input: types.ListStorageLensConfigurationsInput, options: any): async.Operation<types.ListStorageLensConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStorageLensConfigurations, input, options) as async.Operation<types.ListStorageLensConfigurationsOutput>
+function C:listStorageLensConfigurations(input: types.ListStorageLensConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListStorageLensConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStorageLensConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListStorageLensConfigurationsOutput>
 end
 
-function C:listStorageLensGroups(input: types.ListStorageLensGroupsInput, options: any): async.Operation<types.ListStorageLensGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStorageLensGroups, input, options) as async.Operation<types.ListStorageLensGroupsOutput>
+function C:listStorageLensGroups(input: types.ListStorageLensGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListStorageLensGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStorageLensGroups as schema.OperationSchema, input, options) as async.Operation<types.ListStorageLensGroupsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putAccessGrantsInstanceResourcePolicy(input: types.PutAccessGrantsInstanceResourcePolicyInput, options: any): async.Operation<types.PutAccessGrantsInstanceResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAccessGrantsInstanceResourcePolicy, input, options) as async.Operation<types.PutAccessGrantsInstanceResourcePolicyOutput>
+function C:putAccessGrantsInstanceResourcePolicy(input: types.PutAccessGrantsInstanceResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutAccessGrantsInstanceResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAccessGrantsInstanceResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutAccessGrantsInstanceResourcePolicyOutput>
 end
 
-function C:putAccessPointConfigurationForObjectLambda(input: types.PutAccessPointConfigurationForObjectLambdaInput, options: any): async.Operation<types.PutAccessPointConfigurationForObjectLambdaOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAccessPointConfigurationForObjectLambda, input, options) as async.Operation<types.PutAccessPointConfigurationForObjectLambdaOutput>
+function C:putAccessPointConfigurationForObjectLambda(input: types.PutAccessPointConfigurationForObjectLambdaInput, options?: base_client.InvokeOptions): async.Operation<types.PutAccessPointConfigurationForObjectLambdaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAccessPointConfigurationForObjectLambda as schema.OperationSchema, input, options) as async.Operation<types.PutAccessPointConfigurationForObjectLambdaOutput>
 end
 
-function C:putAccessPointPolicy(input: types.PutAccessPointPolicyInput, options: any): async.Operation<types.PutAccessPointPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAccessPointPolicy, input, options) as async.Operation<types.PutAccessPointPolicyOutput>
+function C:putAccessPointPolicy(input: types.PutAccessPointPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutAccessPointPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAccessPointPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutAccessPointPolicyOutput>
 end
 
-function C:putAccessPointPolicyForObjectLambda(input: types.PutAccessPointPolicyForObjectLambdaInput, options: any): async.Operation<types.PutAccessPointPolicyForObjectLambdaOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAccessPointPolicyForObjectLambda, input, options) as async.Operation<types.PutAccessPointPolicyForObjectLambdaOutput>
+function C:putAccessPointPolicyForObjectLambda(input: types.PutAccessPointPolicyForObjectLambdaInput, options?: base_client.InvokeOptions): async.Operation<types.PutAccessPointPolicyForObjectLambdaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAccessPointPolicyForObjectLambda as schema.OperationSchema, input, options) as async.Operation<types.PutAccessPointPolicyForObjectLambdaOutput>
 end
 
-function C:putAccessPointScope(input: types.PutAccessPointScopeInput, options: any): async.Operation<types.PutAccessPointScopeOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAccessPointScope, input, options) as async.Operation<types.PutAccessPointScopeOutput>
+function C:putAccessPointScope(input: types.PutAccessPointScopeInput, options?: base_client.InvokeOptions): async.Operation<types.PutAccessPointScopeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAccessPointScope as schema.OperationSchema, input, options) as async.Operation<types.PutAccessPointScopeOutput>
 end
 
-function C:putBucketLifecycleConfiguration(input: types.PutBucketLifecycleConfigurationInput, options: any): async.Operation<types.PutBucketLifecycleConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutBucketLifecycleConfiguration, input, options) as async.Operation<types.PutBucketLifecycleConfigurationOutput>
+function C:putBucketLifecycleConfiguration(input: types.PutBucketLifecycleConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutBucketLifecycleConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutBucketLifecycleConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutBucketLifecycleConfigurationOutput>
 end
 
-function C:putBucketPolicy(input: types.PutBucketPolicyInput, options: any): async.Operation<types.PutBucketPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutBucketPolicy, input, options) as async.Operation<types.PutBucketPolicyOutput>
+function C:putBucketPolicy(input: types.PutBucketPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutBucketPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutBucketPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutBucketPolicyOutput>
 end
 
-function C:putBucketReplication(input: types.PutBucketReplicationInput, options: any): async.Operation<types.PutBucketReplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutBucketReplication, input, options) as async.Operation<types.PutBucketReplicationOutput>
+function C:putBucketReplication(input: types.PutBucketReplicationInput, options?: base_client.InvokeOptions): async.Operation<types.PutBucketReplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutBucketReplication as schema.OperationSchema, input, options) as async.Operation<types.PutBucketReplicationOutput>
 end
 
-function C:putBucketTagging(input: types.PutBucketTaggingInput, options: any): async.Operation<types.PutBucketTaggingOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutBucketTagging, input, options) as async.Operation<types.PutBucketTaggingOutput>
+function C:putBucketTagging(input: types.PutBucketTaggingInput, options?: base_client.InvokeOptions): async.Operation<types.PutBucketTaggingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutBucketTagging as schema.OperationSchema, input, options) as async.Operation<types.PutBucketTaggingOutput>
 end
 
-function C:putBucketVersioning(input: types.PutBucketVersioningInput, options: any): async.Operation<types.PutBucketVersioningOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutBucketVersioning, input, options) as async.Operation<types.PutBucketVersioningOutput>
+function C:putBucketVersioning(input: types.PutBucketVersioningInput, options?: base_client.InvokeOptions): async.Operation<types.PutBucketVersioningOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutBucketVersioning as schema.OperationSchema, input, options) as async.Operation<types.PutBucketVersioningOutput>
 end
 
-function C:putJobTagging(input: types.PutJobTaggingInput, options: any): async.Operation<types.PutJobTaggingOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutJobTagging, input, options) as async.Operation<types.PutJobTaggingOutput>
+function C:putJobTagging(input: types.PutJobTaggingInput, options?: base_client.InvokeOptions): async.Operation<types.PutJobTaggingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutJobTagging as schema.OperationSchema, input, options) as async.Operation<types.PutJobTaggingOutput>
 end
 
-function C:putMultiRegionAccessPointPolicy(input: types.PutMultiRegionAccessPointPolicyOperationInput, options: any): async.Operation<types.PutMultiRegionAccessPointPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutMultiRegionAccessPointPolicy, input, options) as async.Operation<types.PutMultiRegionAccessPointPolicyOutput>
+function C:putMultiRegionAccessPointPolicy(input: types.PutMultiRegionAccessPointPolicyOperationInput, options?: base_client.InvokeOptions): async.Operation<types.PutMultiRegionAccessPointPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutMultiRegionAccessPointPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutMultiRegionAccessPointPolicyOutput>
 end
 
-function C:putPublicAccessBlock(input: types.PutPublicAccessBlockInput, options: any): async.Operation<types.PutPublicAccessBlockOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutPublicAccessBlock, input, options) as async.Operation<types.PutPublicAccessBlockOutput>
+function C:putPublicAccessBlock(input: types.PutPublicAccessBlockInput, options?: base_client.InvokeOptions): async.Operation<types.PutPublicAccessBlockOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutPublicAccessBlock as schema.OperationSchema, input, options) as async.Operation<types.PutPublicAccessBlockOutput>
 end
 
-function C:putStorageLensConfiguration(input: types.PutStorageLensConfigurationInput, options: any): async.Operation<types.PutStorageLensConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutStorageLensConfiguration, input, options) as async.Operation<types.PutStorageLensConfigurationOutput>
+function C:putStorageLensConfiguration(input: types.PutStorageLensConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutStorageLensConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutStorageLensConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutStorageLensConfigurationOutput>
 end
 
-function C:putStorageLensConfigurationTagging(input: types.PutStorageLensConfigurationTaggingInput, options: any): async.Operation<types.PutStorageLensConfigurationTaggingOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutStorageLensConfigurationTagging, input, options) as async.Operation<types.PutStorageLensConfigurationTaggingOutput>
+function C:putStorageLensConfigurationTagging(input: types.PutStorageLensConfigurationTaggingInput, options?: base_client.InvokeOptions): async.Operation<types.PutStorageLensConfigurationTaggingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutStorageLensConfigurationTagging as schema.OperationSchema, input, options) as async.Operation<types.PutStorageLensConfigurationTaggingOutput>
 end
 
-function C:submitMultiRegionAccessPointRoutes(input: types.SubmitMultiRegionAccessPointRoutesInput, options: any): async.Operation<types.SubmitMultiRegionAccessPointRoutesOutput>
-    return self:invokeOperation(schemas.Service, schemas.SubmitMultiRegionAccessPointRoutes, input, options) as async.Operation<types.SubmitMultiRegionAccessPointRoutesOutput>
+function C:submitMultiRegionAccessPointRoutes(input: types.SubmitMultiRegionAccessPointRoutesInput, options?: base_client.InvokeOptions): async.Operation<types.SubmitMultiRegionAccessPointRoutesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SubmitMultiRegionAccessPointRoutes as schema.OperationSchema, input, options) as async.Operation<types.SubmitMultiRegionAccessPointRoutesOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAccessGrantsLocation(input: types.UpdateAccessGrantsLocationInput, options: any): async.Operation<types.UpdateAccessGrantsLocationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAccessGrantsLocation, input, options) as async.Operation<types.UpdateAccessGrantsLocationOutput>
+function C:updateAccessGrantsLocation(input: types.UpdateAccessGrantsLocationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAccessGrantsLocationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAccessGrantsLocation as schema.OperationSchema, input, options) as async.Operation<types.UpdateAccessGrantsLocationOutput>
 end
 
-function C:updateJobPriority(input: types.UpdateJobPriorityInput, options: any): async.Operation<types.UpdateJobPriorityOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateJobPriority, input, options) as async.Operation<types.UpdateJobPriorityOutput>
+function C:updateJobPriority(input: types.UpdateJobPriorityInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateJobPriorityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateJobPriority as schema.OperationSchema, input, options) as async.Operation<types.UpdateJobPriorityOutput>
 end
 
-function C:updateJobStatus(input: types.UpdateJobStatusInput, options: any): async.Operation<types.UpdateJobStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateJobStatus, input, options) as async.Operation<types.UpdateJobStatusOutput>
+function C:updateJobStatus(input: types.UpdateJobStatusInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateJobStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateJobStatus as schema.OperationSchema, input, options) as async.Operation<types.UpdateJobStatusOutput>
 end
 
-function C:updateStorageLensGroup(input: types.UpdateStorageLensGroupInput, options: any): async.Operation<types.UpdateStorageLensGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateStorageLensGroup, input, options) as async.Operation<types.UpdateStorageLensGroupOutput>
+function C:updateStorageLensGroup(input: types.UpdateStorageLensGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateStorageLensGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateStorageLensGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateStorageLensGroupOutput>
 end
 
 return M

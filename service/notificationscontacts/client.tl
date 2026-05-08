@@ -8,48 +8,51 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("notificationscontacts.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("notificationscontacts.schemas")
 local traits = require("smithy.traits")
 local types = require("notificationscontacts.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    activateEmailContact: function(Client, types.ActivateEmailContactInput, any): async.Operation<types.ActivateEmailContactOutput>
-    createEmailContact: function(Client, types.CreateEmailContactInput, any): async.Operation<types.CreateEmailContactOutput>
-    deleteEmailContact: function(Client, types.DeleteEmailContactInput, any): async.Operation<types.DeleteEmailContactOutput>
-    getEmailContact: function(Client, types.GetEmailContactInput, any): async.Operation<types.GetEmailContactOutput>
-    listEmailContacts: function(Client, types.ListEmailContactsInput, any): async.Operation<types.ListEmailContactsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    sendActivationCode: function(Client, types.SendActivationCodeInput, any): async.Operation<types.SendActivationCodeOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    activateEmailContact: function(Client, types.ActivateEmailContactInput, ? base_client.InvokeOptions): async.Operation<types.ActivateEmailContactOutput>
+    createEmailContact: function(Client, types.CreateEmailContactInput, ? base_client.InvokeOptions): async.Operation<types.CreateEmailContactOutput>
+    deleteEmailContact: function(Client, types.DeleteEmailContactInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEmailContactOutput>
+    getEmailContact: function(Client, types.GetEmailContactInput, ? base_client.InvokeOptions): async.Operation<types.GetEmailContactOutput>
+    listEmailContacts: function(Client, types.ListEmailContactsInput, ? base_client.InvokeOptions): async.Operation<types.ListEmailContactsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    sendActivationCode: function(Client, types.SendActivationCodeInput, ? base_client.InvokeOptions): async.Operation<types.SendActivationCodeOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "NotificationsContacts"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "notifications-contacts", signing_region = c.region } }
                 else
@@ -68,40 +71,40 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:activateEmailContact(input: types.ActivateEmailContactInput, options: any): async.Operation<types.ActivateEmailContactOutput>
-    return self:invokeOperation(schemas.Service, schemas.ActivateEmailContact, input, options) as async.Operation<types.ActivateEmailContactOutput>
+function C:activateEmailContact(input: types.ActivateEmailContactInput, options?: base_client.InvokeOptions): async.Operation<types.ActivateEmailContactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ActivateEmailContact as schema.OperationSchema, input, options) as async.Operation<types.ActivateEmailContactOutput>
 end
 
-function C:createEmailContact(input: types.CreateEmailContactInput, options: any): async.Operation<types.CreateEmailContactOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEmailContact, input, options) as async.Operation<types.CreateEmailContactOutput>
+function C:createEmailContact(input: types.CreateEmailContactInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEmailContactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEmailContact as schema.OperationSchema, input, options) as async.Operation<types.CreateEmailContactOutput>
 end
 
-function C:deleteEmailContact(input: types.DeleteEmailContactInput, options: any): async.Operation<types.DeleteEmailContactOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEmailContact, input, options) as async.Operation<types.DeleteEmailContactOutput>
+function C:deleteEmailContact(input: types.DeleteEmailContactInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEmailContactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEmailContact as schema.OperationSchema, input, options) as async.Operation<types.DeleteEmailContactOutput>
 end
 
-function C:getEmailContact(input: types.GetEmailContactInput, options: any): async.Operation<types.GetEmailContactOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEmailContact, input, options) as async.Operation<types.GetEmailContactOutput>
+function C:getEmailContact(input: types.GetEmailContactInput, options?: base_client.InvokeOptions): async.Operation<types.GetEmailContactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEmailContact as schema.OperationSchema, input, options) as async.Operation<types.GetEmailContactOutput>
 end
 
-function C:listEmailContacts(input: types.ListEmailContactsInput, options: any): async.Operation<types.ListEmailContactsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEmailContacts, input, options) as async.Operation<types.ListEmailContactsOutput>
+function C:listEmailContacts(input: types.ListEmailContactsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEmailContactsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEmailContacts as schema.OperationSchema, input, options) as async.Operation<types.ListEmailContactsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:sendActivationCode(input: types.SendActivationCodeInput, options: any): async.Operation<types.SendActivationCodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendActivationCode, input, options) as async.Operation<types.SendActivationCodeOutput>
+function C:sendActivationCode(input: types.SendActivationCodeInput, options?: base_client.InvokeOptions): async.Operation<types.SendActivationCodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendActivationCode as schema.OperationSchema, input, options) as async.Operation<types.SendActivationCodeOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
 return M

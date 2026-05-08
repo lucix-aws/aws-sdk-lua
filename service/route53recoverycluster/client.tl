@@ -8,43 +8,46 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("route53recoverycluster.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("route53recoverycluster.schemas")
 local traits = require("smithy.traits")
 local types = require("route53recoverycluster.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    getRoutingControlState: function(Client, types.GetRoutingControlStateInput, any): async.Operation<types.GetRoutingControlStateOutput>
-    listRoutingControls: function(Client, types.ListRoutingControlsInput, any): async.Operation<types.ListRoutingControlsOutput>
-    updateRoutingControlState: function(Client, types.UpdateRoutingControlStateInput, any): async.Operation<types.UpdateRoutingControlStateOutput>
-    updateRoutingControlStates: function(Client, types.UpdateRoutingControlStatesInput, any): async.Operation<types.UpdateRoutingControlStatesOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    getRoutingControlState: function(Client, types.GetRoutingControlStateInput, ? base_client.InvokeOptions): async.Operation<types.GetRoutingControlStateOutput>
+    listRoutingControls: function(Client, types.ListRoutingControlsInput, ? base_client.InvokeOptions): async.Operation<types.ListRoutingControlsOutput>
+    updateRoutingControlState: function(Client, types.UpdateRoutingControlStateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRoutingControlStateOutput>
+    updateRoutingControlStates: function(Client, types.UpdateRoutingControlStatesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRoutingControlStatesOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "ToggleCustomerAPI"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "route53-recovery-cluster", signing_region = c.region } }
                 else
@@ -63,20 +66,20 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:getRoutingControlState(input: types.GetRoutingControlStateInput, options: any): async.Operation<types.GetRoutingControlStateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRoutingControlState, input, options) as async.Operation<types.GetRoutingControlStateOutput>
+function C:getRoutingControlState(input: types.GetRoutingControlStateInput, options?: base_client.InvokeOptions): async.Operation<types.GetRoutingControlStateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRoutingControlState as schema.OperationSchema, input, options) as async.Operation<types.GetRoutingControlStateOutput>
 end
 
-function C:listRoutingControls(input: types.ListRoutingControlsInput, options: any): async.Operation<types.ListRoutingControlsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRoutingControls, input, options) as async.Operation<types.ListRoutingControlsOutput>
+function C:listRoutingControls(input: types.ListRoutingControlsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRoutingControlsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRoutingControls as schema.OperationSchema, input, options) as async.Operation<types.ListRoutingControlsOutput>
 end
 
-function C:updateRoutingControlState(input: types.UpdateRoutingControlStateInput, options: any): async.Operation<types.UpdateRoutingControlStateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRoutingControlState, input, options) as async.Operation<types.UpdateRoutingControlStateOutput>
+function C:updateRoutingControlState(input: types.UpdateRoutingControlStateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRoutingControlStateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRoutingControlState as schema.OperationSchema, input, options) as async.Operation<types.UpdateRoutingControlStateOutput>
 end
 
-function C:updateRoutingControlStates(input: types.UpdateRoutingControlStatesInput, options: any): async.Operation<types.UpdateRoutingControlStatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRoutingControlStates, input, options) as async.Operation<types.UpdateRoutingControlStatesOutput>
+function C:updateRoutingControlStates(input: types.UpdateRoutingControlStatesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRoutingControlStatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRoutingControlStates as schema.OperationSchema, input, options) as async.Operation<types.UpdateRoutingControlStatesOutput>
 end
 
 return M

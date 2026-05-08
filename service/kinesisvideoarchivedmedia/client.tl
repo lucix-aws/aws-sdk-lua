@@ -8,45 +8,48 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("kinesisvideoarchivedmedia.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("kinesisvideoarchivedmedia.schemas")
 local traits = require("smithy.traits")
 local types = require("kinesisvideoarchivedmedia.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    getClip: function(Client, types.GetClipInput, any): async.Operation<types.GetClipOutput>
-    getDASHStreamingSessionURL: function(Client, types.GetDASHStreamingSessionURLInput, any): async.Operation<types.GetDASHStreamingSessionURLOutput>
-    getHLSStreamingSessionURL: function(Client, types.GetHLSStreamingSessionURLInput, any): async.Operation<types.GetHLSStreamingSessionURLOutput>
-    getImages: function(Client, types.GetImagesInput, any): async.Operation<types.GetImagesOutput>
-    getMediaForFragmentList: function(Client, types.GetMediaForFragmentListInput, any): async.Operation<types.GetMediaForFragmentListOutput>
-    listFragments: function(Client, types.ListFragmentsInput, any): async.Operation<types.ListFragmentsOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    getClip: function(Client, types.GetClipInput, ? base_client.InvokeOptions): async.Operation<types.GetClipOutput>
+    getDASHStreamingSessionURL: function(Client, types.GetDASHStreamingSessionURLInput, ? base_client.InvokeOptions): async.Operation<types.GetDASHStreamingSessionURLOutput>
+    getHLSStreamingSessionURL: function(Client, types.GetHLSStreamingSessionURLInput, ? base_client.InvokeOptions): async.Operation<types.GetHLSStreamingSessionURLOutput>
+    getImages: function(Client, types.GetImagesInput, ? base_client.InvokeOptions): async.Operation<types.GetImagesOutput>
+    getMediaForFragmentList: function(Client, types.GetMediaForFragmentListInput, ? base_client.InvokeOptions): async.Operation<types.GetMediaForFragmentListOutput>
+    listFragments: function(Client, types.ListFragmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListFragmentsOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSAcuityReader"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "kinesisvideo", signing_region = c.region } }
                 else
@@ -65,28 +68,28 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:getClip(input: types.GetClipInput, options: any): async.Operation<types.GetClipOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetClip, input, options) as async.Operation<types.GetClipOutput>
+function C:getClip(input: types.GetClipInput, options?: base_client.InvokeOptions): async.Operation<types.GetClipOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetClip as schema.OperationSchema, input, options) as async.Operation<types.GetClipOutput>
 end
 
-function C:getDASHStreamingSessionURL(input: types.GetDASHStreamingSessionURLInput, options: any): async.Operation<types.GetDASHStreamingSessionURLOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDASHStreamingSessionURL, input, options) as async.Operation<types.GetDASHStreamingSessionURLOutput>
+function C:getDASHStreamingSessionURL(input: types.GetDASHStreamingSessionURLInput, options?: base_client.InvokeOptions): async.Operation<types.GetDASHStreamingSessionURLOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDASHStreamingSessionURL as schema.OperationSchema, input, options) as async.Operation<types.GetDASHStreamingSessionURLOutput>
 end
 
-function C:getHLSStreamingSessionURL(input: types.GetHLSStreamingSessionURLInput, options: any): async.Operation<types.GetHLSStreamingSessionURLOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetHLSStreamingSessionURL, input, options) as async.Operation<types.GetHLSStreamingSessionURLOutput>
+function C:getHLSStreamingSessionURL(input: types.GetHLSStreamingSessionURLInput, options?: base_client.InvokeOptions): async.Operation<types.GetHLSStreamingSessionURLOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetHLSStreamingSessionURL as schema.OperationSchema, input, options) as async.Operation<types.GetHLSStreamingSessionURLOutput>
 end
 
-function C:getImages(input: types.GetImagesInput, options: any): async.Operation<types.GetImagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetImages, input, options) as async.Operation<types.GetImagesOutput>
+function C:getImages(input: types.GetImagesInput, options?: base_client.InvokeOptions): async.Operation<types.GetImagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetImages as schema.OperationSchema, input, options) as async.Operation<types.GetImagesOutput>
 end
 
-function C:getMediaForFragmentList(input: types.GetMediaForFragmentListInput, options: any): async.Operation<types.GetMediaForFragmentListOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMediaForFragmentList, input, options) as async.Operation<types.GetMediaForFragmentListOutput>
+function C:getMediaForFragmentList(input: types.GetMediaForFragmentListInput, options?: base_client.InvokeOptions): async.Operation<types.GetMediaForFragmentListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMediaForFragmentList as schema.OperationSchema, input, options) as async.Operation<types.GetMediaForFragmentListOutput>
 end
 
-function C:listFragments(input: types.ListFragmentsInput, options: any): async.Operation<types.ListFragmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFragments, input, options) as async.Operation<types.ListFragmentsOutput>
+function C:listFragments(input: types.ListFragmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFragmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFragments as schema.OperationSchema, input, options) as async.Operation<types.ListFragmentsOutput>
 end
 
 return M

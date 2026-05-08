@@ -8,56 +8,59 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("invoicing.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("invoicing.schemas")
 local traits = require("smithy.traits")
 local types = require("invoicing.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchGetInvoiceProfile: function(Client, types.BatchGetInvoiceProfileInput, any): async.Operation<types.BatchGetInvoiceProfileOutput>
-    createInvoiceUnit: function(Client, types.CreateInvoiceUnitInput, any): async.Operation<types.CreateInvoiceUnitOutput>
-    createProcurementPortalPreference: function(Client, types.CreateProcurementPortalPreferenceInput, any): async.Operation<types.CreateProcurementPortalPreferenceOutput>
-    deleteInvoiceUnit: function(Client, types.DeleteInvoiceUnitInput, any): async.Operation<types.DeleteInvoiceUnitOutput>
-    deleteProcurementPortalPreference: function(Client, types.DeleteProcurementPortalPreferenceInput, any): async.Operation<types.DeleteProcurementPortalPreferenceOutput>
-    getInvoicePDF: function(Client, types.GetInvoicePDFInput, any): async.Operation<types.GetInvoicePDFOutput>
-    getInvoiceUnit: function(Client, types.GetInvoiceUnitInput, any): async.Operation<types.GetInvoiceUnitOutput>
-    getProcurementPortalPreference: function(Client, types.GetProcurementPortalPreferenceInput, any): async.Operation<types.GetProcurementPortalPreferenceOutput>
-    listInvoiceSummaries: function(Client, types.ListInvoiceSummariesInput, any): async.Operation<types.ListInvoiceSummariesOutput>
-    listInvoiceUnits: function(Client, types.ListInvoiceUnitsInput, any): async.Operation<types.ListInvoiceUnitsOutput>
-    listProcurementPortalPreferences: function(Client, types.ListProcurementPortalPreferencesInput, any): async.Operation<types.ListProcurementPortalPreferencesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putProcurementPortalPreference: function(Client, types.PutProcurementPortalPreferenceInput, any): async.Operation<types.PutProcurementPortalPreferenceOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateInvoiceUnit: function(Client, types.UpdateInvoiceUnitInput, any): async.Operation<types.UpdateInvoiceUnitOutput>
-    updateProcurementPortalPreferenceStatus: function(Client, types.UpdateProcurementPortalPreferenceStatusInput, any): async.Operation<types.UpdateProcurementPortalPreferenceStatusOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchGetInvoiceProfile: function(Client, types.BatchGetInvoiceProfileInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetInvoiceProfileOutput>
+    createInvoiceUnit: function(Client, types.CreateInvoiceUnitInput, ? base_client.InvokeOptions): async.Operation<types.CreateInvoiceUnitOutput>
+    createProcurementPortalPreference: function(Client, types.CreateProcurementPortalPreferenceInput, ? base_client.InvokeOptions): async.Operation<types.CreateProcurementPortalPreferenceOutput>
+    deleteInvoiceUnit: function(Client, types.DeleteInvoiceUnitInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInvoiceUnitOutput>
+    deleteProcurementPortalPreference: function(Client, types.DeleteProcurementPortalPreferenceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProcurementPortalPreferenceOutput>
+    getInvoicePDF: function(Client, types.GetInvoicePDFInput, ? base_client.InvokeOptions): async.Operation<types.GetInvoicePDFOutput>
+    getInvoiceUnit: function(Client, types.GetInvoiceUnitInput, ? base_client.InvokeOptions): async.Operation<types.GetInvoiceUnitOutput>
+    getProcurementPortalPreference: function(Client, types.GetProcurementPortalPreferenceInput, ? base_client.InvokeOptions): async.Operation<types.GetProcurementPortalPreferenceOutput>
+    listInvoiceSummaries: function(Client, types.ListInvoiceSummariesInput, ? base_client.InvokeOptions): async.Operation<types.ListInvoiceSummariesOutput>
+    listInvoiceUnits: function(Client, types.ListInvoiceUnitsInput, ? base_client.InvokeOptions): async.Operation<types.ListInvoiceUnitsOutput>
+    listProcurementPortalPreferences: function(Client, types.ListProcurementPortalPreferencesInput, ? base_client.InvokeOptions): async.Operation<types.ListProcurementPortalPreferencesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putProcurementPortalPreference: function(Client, types.PutProcurementPortalPreferenceInput, ? base_client.InvokeOptions): async.Operation<types.PutProcurementPortalPreferenceOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateInvoiceUnit: function(Client, types.UpdateInvoiceUnitInput, ? base_client.InvokeOptions): async.Operation<types.UpdateInvoiceUnitOutput>
+    updateProcurementPortalPreferenceStatus: function(Client, types.UpdateProcurementPortalPreferenceStatusInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProcurementPortalPreferenceStatusOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "Invoicing"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "invoicing", signing_region = c.region } }
                 else
@@ -76,72 +79,72 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchGetInvoiceProfile(input: types.BatchGetInvoiceProfileInput, options: any): async.Operation<types.BatchGetInvoiceProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetInvoiceProfile, input, options) as async.Operation<types.BatchGetInvoiceProfileOutput>
+function C:batchGetInvoiceProfile(input: types.BatchGetInvoiceProfileInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetInvoiceProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetInvoiceProfile as schema.OperationSchema, input, options) as async.Operation<types.BatchGetInvoiceProfileOutput>
 end
 
-function C:createInvoiceUnit(input: types.CreateInvoiceUnitInput, options: any): async.Operation<types.CreateInvoiceUnitOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateInvoiceUnit, input, options) as async.Operation<types.CreateInvoiceUnitOutput>
+function C:createInvoiceUnit(input: types.CreateInvoiceUnitInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInvoiceUnitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInvoiceUnit as schema.OperationSchema, input, options) as async.Operation<types.CreateInvoiceUnitOutput>
 end
 
-function C:createProcurementPortalPreference(input: types.CreateProcurementPortalPreferenceInput, options: any): async.Operation<types.CreateProcurementPortalPreferenceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProcurementPortalPreference, input, options) as async.Operation<types.CreateProcurementPortalPreferenceOutput>
+function C:createProcurementPortalPreference(input: types.CreateProcurementPortalPreferenceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProcurementPortalPreferenceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProcurementPortalPreference as schema.OperationSchema, input, options) as async.Operation<types.CreateProcurementPortalPreferenceOutput>
 end
 
-function C:deleteInvoiceUnit(input: types.DeleteInvoiceUnitInput, options: any): async.Operation<types.DeleteInvoiceUnitOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteInvoiceUnit, input, options) as async.Operation<types.DeleteInvoiceUnitOutput>
+function C:deleteInvoiceUnit(input: types.DeleteInvoiceUnitInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteInvoiceUnitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInvoiceUnit as schema.OperationSchema, input, options) as async.Operation<types.DeleteInvoiceUnitOutput>
 end
 
-function C:deleteProcurementPortalPreference(input: types.DeleteProcurementPortalPreferenceInput, options: any): async.Operation<types.DeleteProcurementPortalPreferenceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProcurementPortalPreference, input, options) as async.Operation<types.DeleteProcurementPortalPreferenceOutput>
+function C:deleteProcurementPortalPreference(input: types.DeleteProcurementPortalPreferenceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProcurementPortalPreferenceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProcurementPortalPreference as schema.OperationSchema, input, options) as async.Operation<types.DeleteProcurementPortalPreferenceOutput>
 end
 
-function C:getInvoicePDF(input: types.GetInvoicePDFInput, options: any): async.Operation<types.GetInvoicePDFOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInvoicePDF, input, options) as async.Operation<types.GetInvoicePDFOutput>
+function C:getInvoicePDF(input: types.GetInvoicePDFInput, options?: base_client.InvokeOptions): async.Operation<types.GetInvoicePDFOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInvoicePDF as schema.OperationSchema, input, options) as async.Operation<types.GetInvoicePDFOutput>
 end
 
-function C:getInvoiceUnit(input: types.GetInvoiceUnitInput, options: any): async.Operation<types.GetInvoiceUnitOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInvoiceUnit, input, options) as async.Operation<types.GetInvoiceUnitOutput>
+function C:getInvoiceUnit(input: types.GetInvoiceUnitInput, options?: base_client.InvokeOptions): async.Operation<types.GetInvoiceUnitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInvoiceUnit as schema.OperationSchema, input, options) as async.Operation<types.GetInvoiceUnitOutput>
 end
 
-function C:getProcurementPortalPreference(input: types.GetProcurementPortalPreferenceInput, options: any): async.Operation<types.GetProcurementPortalPreferenceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetProcurementPortalPreference, input, options) as async.Operation<types.GetProcurementPortalPreferenceOutput>
+function C:getProcurementPortalPreference(input: types.GetProcurementPortalPreferenceInput, options?: base_client.InvokeOptions): async.Operation<types.GetProcurementPortalPreferenceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProcurementPortalPreference as schema.OperationSchema, input, options) as async.Operation<types.GetProcurementPortalPreferenceOutput>
 end
 
-function C:listInvoiceSummaries(input: types.ListInvoiceSummariesInput, options: any): async.Operation<types.ListInvoiceSummariesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInvoiceSummaries, input, options) as async.Operation<types.ListInvoiceSummariesOutput>
+function C:listInvoiceSummaries(input: types.ListInvoiceSummariesInput, options?: base_client.InvokeOptions): async.Operation<types.ListInvoiceSummariesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInvoiceSummaries as schema.OperationSchema, input, options) as async.Operation<types.ListInvoiceSummariesOutput>
 end
 
-function C:listInvoiceUnits(input: types.ListInvoiceUnitsInput, options: any): async.Operation<types.ListInvoiceUnitsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInvoiceUnits, input, options) as async.Operation<types.ListInvoiceUnitsOutput>
+function C:listInvoiceUnits(input: types.ListInvoiceUnitsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInvoiceUnitsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInvoiceUnits as schema.OperationSchema, input, options) as async.Operation<types.ListInvoiceUnitsOutput>
 end
 
-function C:listProcurementPortalPreferences(input: types.ListProcurementPortalPreferencesInput, options: any): async.Operation<types.ListProcurementPortalPreferencesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProcurementPortalPreferences, input, options) as async.Operation<types.ListProcurementPortalPreferencesOutput>
+function C:listProcurementPortalPreferences(input: types.ListProcurementPortalPreferencesInput, options?: base_client.InvokeOptions): async.Operation<types.ListProcurementPortalPreferencesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProcurementPortalPreferences as schema.OperationSchema, input, options) as async.Operation<types.ListProcurementPortalPreferencesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putProcurementPortalPreference(input: types.PutProcurementPortalPreferenceInput, options: any): async.Operation<types.PutProcurementPortalPreferenceOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutProcurementPortalPreference, input, options) as async.Operation<types.PutProcurementPortalPreferenceOutput>
+function C:putProcurementPortalPreference(input: types.PutProcurementPortalPreferenceInput, options?: base_client.InvokeOptions): async.Operation<types.PutProcurementPortalPreferenceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutProcurementPortalPreference as schema.OperationSchema, input, options) as async.Operation<types.PutProcurementPortalPreferenceOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateInvoiceUnit(input: types.UpdateInvoiceUnitInput, options: any): async.Operation<types.UpdateInvoiceUnitOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateInvoiceUnit, input, options) as async.Operation<types.UpdateInvoiceUnitOutput>
+function C:updateInvoiceUnit(input: types.UpdateInvoiceUnitInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateInvoiceUnitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateInvoiceUnit as schema.OperationSchema, input, options) as async.Operation<types.UpdateInvoiceUnitOutput>
 end
 
-function C:updateProcurementPortalPreferenceStatus(input: types.UpdateProcurementPortalPreferenceStatusInput, options: any): async.Operation<types.UpdateProcurementPortalPreferenceStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProcurementPortalPreferenceStatus, input, options) as async.Operation<types.UpdateProcurementPortalPreferenceStatusOutput>
+function C:updateProcurementPortalPreferenceStatus(input: types.UpdateProcurementPortalPreferenceStatusInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProcurementPortalPreferenceStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProcurementPortalPreferenceStatus as schema.OperationSchema, input, options) as async.Operation<types.UpdateProcurementPortalPreferenceStatusOutput>
 end
 
 return M

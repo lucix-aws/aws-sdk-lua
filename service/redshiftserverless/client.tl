@@ -8,104 +8,107 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("redshiftserverless.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("redshiftserverless.schemas")
 local traits = require("smithy.traits")
 local types = require("redshiftserverless.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    convertRecoveryPointToSnapshot: function(Client, types.ConvertRecoveryPointToSnapshotInput, any): async.Operation<types.ConvertRecoveryPointToSnapshotOutput>
-    createCustomDomainAssociation: function(Client, types.CreateCustomDomainAssociationInput, any): async.Operation<types.CreateCustomDomainAssociationOutput>
-    createEndpointAccess: function(Client, types.CreateEndpointAccessInput, any): async.Operation<types.CreateEndpointAccessOutput>
-    createNamespace: function(Client, types.CreateNamespaceInput, any): async.Operation<types.CreateNamespaceOutput>
-    createReservation: function(Client, types.CreateReservationInput, any): async.Operation<types.CreateReservationOutput>
-    createScheduledAction: function(Client, types.CreateScheduledActionInput, any): async.Operation<types.CreateScheduledActionOutput>
-    createSnapshot: function(Client, types.CreateSnapshotInput, any): async.Operation<types.CreateSnapshotOutput>
-    createSnapshotCopyConfiguration: function(Client, types.CreateSnapshotCopyConfigurationInput, any): async.Operation<types.CreateSnapshotCopyConfigurationOutput>
-    createUsageLimit: function(Client, types.CreateUsageLimitInput, any): async.Operation<types.CreateUsageLimitOutput>
-    createWorkgroup: function(Client, types.CreateWorkgroupInput, any): async.Operation<types.CreateWorkgroupOutput>
-    deleteCustomDomainAssociation: function(Client, types.DeleteCustomDomainAssociationInput, any): async.Operation<types.DeleteCustomDomainAssociationOutput>
-    deleteEndpointAccess: function(Client, types.DeleteEndpointAccessInput, any): async.Operation<types.DeleteEndpointAccessOutput>
-    deleteNamespace: function(Client, types.DeleteNamespaceInput, any): async.Operation<types.DeleteNamespaceOutput>
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, any): async.Operation<types.DeleteResourcePolicyOutput>
-    deleteScheduledAction: function(Client, types.DeleteScheduledActionInput, any): async.Operation<types.DeleteScheduledActionOutput>
-    deleteSnapshot: function(Client, types.DeleteSnapshotInput, any): async.Operation<types.DeleteSnapshotOutput>
-    deleteSnapshotCopyConfiguration: function(Client, types.DeleteSnapshotCopyConfigurationInput, any): async.Operation<types.DeleteSnapshotCopyConfigurationOutput>
-    deleteUsageLimit: function(Client, types.DeleteUsageLimitInput, any): async.Operation<types.DeleteUsageLimitOutput>
-    deleteWorkgroup: function(Client, types.DeleteWorkgroupInput, any): async.Operation<types.DeleteWorkgroupOutput>
-    getCredentials: function(Client, types.GetCredentialsInput, any): async.Operation<types.GetCredentialsOutput>
-    getCustomDomainAssociation: function(Client, types.GetCustomDomainAssociationInput, any): async.Operation<types.GetCustomDomainAssociationOutput>
-    getEndpointAccess: function(Client, types.GetEndpointAccessInput, any): async.Operation<types.GetEndpointAccessOutput>
-    getIdentityCenterAuthToken: function(Client, types.GetIdentityCenterAuthTokenInput, any): async.Operation<types.GetIdentityCenterAuthTokenOutput>
-    getNamespace: function(Client, types.GetNamespaceInput, any): async.Operation<types.GetNamespaceOutput>
-    getRecoveryPoint: function(Client, types.GetRecoveryPointInput, any): async.Operation<types.GetRecoveryPointOutput>
-    getReservation: function(Client, types.GetReservationInput, any): async.Operation<types.GetReservationOutput>
-    getReservationOffering: function(Client, types.GetReservationOfferingInput, any): async.Operation<types.GetReservationOfferingOutput>
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput, any): async.Operation<types.GetResourcePolicyOutput>
-    getScheduledAction: function(Client, types.GetScheduledActionInput, any): async.Operation<types.GetScheduledActionOutput>
-    getSnapshot: function(Client, types.GetSnapshotInput, any): async.Operation<types.GetSnapshotOutput>
-    getTableRestoreStatus: function(Client, types.GetTableRestoreStatusInput, any): async.Operation<types.GetTableRestoreStatusOutput>
-    getTrack: function(Client, types.GetTrackInput, any): async.Operation<types.GetTrackOutput>
-    getUsageLimit: function(Client, types.GetUsageLimitInput, any): async.Operation<types.GetUsageLimitOutput>
-    getWorkgroup: function(Client, types.GetWorkgroupInput, any): async.Operation<types.GetWorkgroupOutput>
-    listCustomDomainAssociations: function(Client, types.ListCustomDomainAssociationsInput, any): async.Operation<types.ListCustomDomainAssociationsOutput>
-    listEndpointAccess: function(Client, types.ListEndpointAccessInput, any): async.Operation<types.ListEndpointAccessOutput>
-    listManagedWorkgroups: function(Client, types.ListManagedWorkgroupsInput, any): async.Operation<types.ListManagedWorkgroupsOutput>
-    listNamespaces: function(Client, types.ListNamespacesInput, any): async.Operation<types.ListNamespacesOutput>
-    listRecoveryPoints: function(Client, types.ListRecoveryPointsInput, any): async.Operation<types.ListRecoveryPointsOutput>
-    listReservationOfferings: function(Client, types.ListReservationOfferingsInput, any): async.Operation<types.ListReservationOfferingsOutput>
-    listReservations: function(Client, types.ListReservationsInput, any): async.Operation<types.ListReservationsOutput>
-    listScheduledActions: function(Client, types.ListScheduledActionsInput, any): async.Operation<types.ListScheduledActionsOutput>
-    listSnapshotCopyConfigurations: function(Client, types.ListSnapshotCopyConfigurationsInput, any): async.Operation<types.ListSnapshotCopyConfigurationsOutput>
-    listSnapshots: function(Client, types.ListSnapshotsInput, any): async.Operation<types.ListSnapshotsOutput>
-    listTableRestoreStatus: function(Client, types.ListTableRestoreStatusInput, any): async.Operation<types.ListTableRestoreStatusOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTracks: function(Client, types.ListTracksInput, any): async.Operation<types.ListTracksOutput>
-    listUsageLimits: function(Client, types.ListUsageLimitsInput, any): async.Operation<types.ListUsageLimitsOutput>
-    listWorkgroups: function(Client, types.ListWorkgroupsInput, any): async.Operation<types.ListWorkgroupsOutput>
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput, any): async.Operation<types.PutResourcePolicyOutput>
-    restoreFromRecoveryPoint: function(Client, types.RestoreFromRecoveryPointInput, any): async.Operation<types.RestoreFromRecoveryPointOutput>
-    restoreFromSnapshot: function(Client, types.RestoreFromSnapshotInput, any): async.Operation<types.RestoreFromSnapshotOutput>
-    restoreTableFromRecoveryPoint: function(Client, types.RestoreTableFromRecoveryPointInput, any): async.Operation<types.RestoreTableFromRecoveryPointOutput>
-    restoreTableFromSnapshot: function(Client, types.RestoreTableFromSnapshotInput, any): async.Operation<types.RestoreTableFromSnapshotOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateCustomDomainAssociation: function(Client, types.UpdateCustomDomainAssociationInput, any): async.Operation<types.UpdateCustomDomainAssociationOutput>
-    updateEndpointAccess: function(Client, types.UpdateEndpointAccessInput, any): async.Operation<types.UpdateEndpointAccessOutput>
-    updateLakehouseConfiguration: function(Client, types.UpdateLakehouseConfigurationInput, any): async.Operation<types.UpdateLakehouseConfigurationOutput>
-    updateNamespace: function(Client, types.UpdateNamespaceInput, any): async.Operation<types.UpdateNamespaceOutput>
-    updateScheduledAction: function(Client, types.UpdateScheduledActionInput, any): async.Operation<types.UpdateScheduledActionOutput>
-    updateSnapshot: function(Client, types.UpdateSnapshotInput, any): async.Operation<types.UpdateSnapshotOutput>
-    updateSnapshotCopyConfiguration: function(Client, types.UpdateSnapshotCopyConfigurationInput, any): async.Operation<types.UpdateSnapshotCopyConfigurationOutput>
-    updateUsageLimit: function(Client, types.UpdateUsageLimitInput, any): async.Operation<types.UpdateUsageLimitOutput>
-    updateWorkgroup: function(Client, types.UpdateWorkgroupInput, any): async.Operation<types.UpdateWorkgroupOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    convertRecoveryPointToSnapshot: function(Client, types.ConvertRecoveryPointToSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.ConvertRecoveryPointToSnapshotOutput>
+    createCustomDomainAssociation: function(Client, types.CreateCustomDomainAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateCustomDomainAssociationOutput>
+    createEndpointAccess: function(Client, types.CreateEndpointAccessInput, ? base_client.InvokeOptions): async.Operation<types.CreateEndpointAccessOutput>
+    createNamespace: function(Client, types.CreateNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.CreateNamespaceOutput>
+    createReservation: function(Client, types.CreateReservationInput, ? base_client.InvokeOptions): async.Operation<types.CreateReservationOutput>
+    createScheduledAction: function(Client, types.CreateScheduledActionInput, ? base_client.InvokeOptions): async.Operation<types.CreateScheduledActionOutput>
+    createSnapshot: function(Client, types.CreateSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.CreateSnapshotOutput>
+    createSnapshotCopyConfiguration: function(Client, types.CreateSnapshotCopyConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateSnapshotCopyConfigurationOutput>
+    createUsageLimit: function(Client, types.CreateUsageLimitInput, ? base_client.InvokeOptions): async.Operation<types.CreateUsageLimitOutput>
+    createWorkgroup: function(Client, types.CreateWorkgroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkgroupOutput>
+    deleteCustomDomainAssociation: function(Client, types.DeleteCustomDomainAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCustomDomainAssociationOutput>
+    deleteEndpointAccess: function(Client, types.DeleteEndpointAccessInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEndpointAccessOutput>
+    deleteNamespace: function(Client, types.DeleteNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNamespaceOutput>
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    deleteScheduledAction: function(Client, types.DeleteScheduledActionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteScheduledActionOutput>
+    deleteSnapshot: function(Client, types.DeleteSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSnapshotOutput>
+    deleteSnapshotCopyConfiguration: function(Client, types.DeleteSnapshotCopyConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSnapshotCopyConfigurationOutput>
+    deleteUsageLimit: function(Client, types.DeleteUsageLimitInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUsageLimitOutput>
+    deleteWorkgroup: function(Client, types.DeleteWorkgroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWorkgroupOutput>
+    getCredentials: function(Client, types.GetCredentialsInput, ? base_client.InvokeOptions): async.Operation<types.GetCredentialsOutput>
+    getCustomDomainAssociation: function(Client, types.GetCustomDomainAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetCustomDomainAssociationOutput>
+    getEndpointAccess: function(Client, types.GetEndpointAccessInput, ? base_client.InvokeOptions): async.Operation<types.GetEndpointAccessOutput>
+    getIdentityCenterAuthToken: function(Client, types.GetIdentityCenterAuthTokenInput, ? base_client.InvokeOptions): async.Operation<types.GetIdentityCenterAuthTokenOutput>
+    getNamespace: function(Client, types.GetNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.GetNamespaceOutput>
+    getRecoveryPoint: function(Client, types.GetRecoveryPointInput, ? base_client.InvokeOptions): async.Operation<types.GetRecoveryPointOutput>
+    getReservation: function(Client, types.GetReservationInput, ? base_client.InvokeOptions): async.Operation<types.GetReservationOutput>
+    getReservationOffering: function(Client, types.GetReservationOfferingInput, ? base_client.InvokeOptions): async.Operation<types.GetReservationOfferingOutput>
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    getScheduledAction: function(Client, types.GetScheduledActionInput, ? base_client.InvokeOptions): async.Operation<types.GetScheduledActionOutput>
+    getSnapshot: function(Client, types.GetSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.GetSnapshotOutput>
+    getTableRestoreStatus: function(Client, types.GetTableRestoreStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetTableRestoreStatusOutput>
+    getTrack: function(Client, types.GetTrackInput, ? base_client.InvokeOptions): async.Operation<types.GetTrackOutput>
+    getUsageLimit: function(Client, types.GetUsageLimitInput, ? base_client.InvokeOptions): async.Operation<types.GetUsageLimitOutput>
+    getWorkgroup: function(Client, types.GetWorkgroupInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkgroupOutput>
+    listCustomDomainAssociations: function(Client, types.ListCustomDomainAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListCustomDomainAssociationsOutput>
+    listEndpointAccess: function(Client, types.ListEndpointAccessInput, ? base_client.InvokeOptions): async.Operation<types.ListEndpointAccessOutput>
+    listManagedWorkgroups: function(Client, types.ListManagedWorkgroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListManagedWorkgroupsOutput>
+    listNamespaces: function(Client, types.ListNamespacesInput, ? base_client.InvokeOptions): async.Operation<types.ListNamespacesOutput>
+    listRecoveryPoints: function(Client, types.ListRecoveryPointsInput, ? base_client.InvokeOptions): async.Operation<types.ListRecoveryPointsOutput>
+    listReservationOfferings: function(Client, types.ListReservationOfferingsInput, ? base_client.InvokeOptions): async.Operation<types.ListReservationOfferingsOutput>
+    listReservations: function(Client, types.ListReservationsInput, ? base_client.InvokeOptions): async.Operation<types.ListReservationsOutput>
+    listScheduledActions: function(Client, types.ListScheduledActionsInput, ? base_client.InvokeOptions): async.Operation<types.ListScheduledActionsOutput>
+    listSnapshotCopyConfigurations: function(Client, types.ListSnapshotCopyConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListSnapshotCopyConfigurationsOutput>
+    listSnapshots: function(Client, types.ListSnapshotsInput, ? base_client.InvokeOptions): async.Operation<types.ListSnapshotsOutput>
+    listTableRestoreStatus: function(Client, types.ListTableRestoreStatusInput, ? base_client.InvokeOptions): async.Operation<types.ListTableRestoreStatusOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTracks: function(Client, types.ListTracksInput, ? base_client.InvokeOptions): async.Operation<types.ListTracksOutput>
+    listUsageLimits: function(Client, types.ListUsageLimitsInput, ? base_client.InvokeOptions): async.Operation<types.ListUsageLimitsOutput>
+    listWorkgroups: function(Client, types.ListWorkgroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkgroupsOutput>
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    restoreFromRecoveryPoint: function(Client, types.RestoreFromRecoveryPointInput, ? base_client.InvokeOptions): async.Operation<types.RestoreFromRecoveryPointOutput>
+    restoreFromSnapshot: function(Client, types.RestoreFromSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.RestoreFromSnapshotOutput>
+    restoreTableFromRecoveryPoint: function(Client, types.RestoreTableFromRecoveryPointInput, ? base_client.InvokeOptions): async.Operation<types.RestoreTableFromRecoveryPointOutput>
+    restoreTableFromSnapshot: function(Client, types.RestoreTableFromSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.RestoreTableFromSnapshotOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateCustomDomainAssociation: function(Client, types.UpdateCustomDomainAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCustomDomainAssociationOutput>
+    updateEndpointAccess: function(Client, types.UpdateEndpointAccessInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEndpointAccessOutput>
+    updateLakehouseConfiguration: function(Client, types.UpdateLakehouseConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLakehouseConfigurationOutput>
+    updateNamespace: function(Client, types.UpdateNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNamespaceOutput>
+    updateScheduledAction: function(Client, types.UpdateScheduledActionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateScheduledActionOutput>
+    updateSnapshot: function(Client, types.UpdateSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSnapshotOutput>
+    updateSnapshotCopyConfiguration: function(Client, types.UpdateSnapshotCopyConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSnapshotCopyConfigurationOutput>
+    updateUsageLimit: function(Client, types.UpdateUsageLimitInput, ? base_client.InvokeOptions): async.Operation<types.UpdateUsageLimitOutput>
+    updateWorkgroup: function(Client, types.UpdateWorkgroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWorkgroupOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "RedshiftServerless"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "redshift-serverless", signing_region = c.region } }
                 else
@@ -124,264 +127,264 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:convertRecoveryPointToSnapshot(input: types.ConvertRecoveryPointToSnapshotInput, options: any): async.Operation<types.ConvertRecoveryPointToSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.ConvertRecoveryPointToSnapshot, input, options) as async.Operation<types.ConvertRecoveryPointToSnapshotOutput>
+function C:convertRecoveryPointToSnapshot(input: types.ConvertRecoveryPointToSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.ConvertRecoveryPointToSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ConvertRecoveryPointToSnapshot as schema.OperationSchema, input, options) as async.Operation<types.ConvertRecoveryPointToSnapshotOutput>
 end
 
-function C:createCustomDomainAssociation(input: types.CreateCustomDomainAssociationInput, options: any): async.Operation<types.CreateCustomDomainAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCustomDomainAssociation, input, options) as async.Operation<types.CreateCustomDomainAssociationOutput>
+function C:createCustomDomainAssociation(input: types.CreateCustomDomainAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCustomDomainAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCustomDomainAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreateCustomDomainAssociationOutput>
 end
 
-function C:createEndpointAccess(input: types.CreateEndpointAccessInput, options: any): async.Operation<types.CreateEndpointAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEndpointAccess, input, options) as async.Operation<types.CreateEndpointAccessOutput>
+function C:createEndpointAccess(input: types.CreateEndpointAccessInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEndpointAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEndpointAccess as schema.OperationSchema, input, options) as async.Operation<types.CreateEndpointAccessOutput>
 end
 
-function C:createNamespace(input: types.CreateNamespaceInput, options: any): async.Operation<types.CreateNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNamespace, input, options) as async.Operation<types.CreateNamespaceOutput>
+function C:createNamespace(input: types.CreateNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNamespace as schema.OperationSchema, input, options) as async.Operation<types.CreateNamespaceOutput>
 end
 
-function C:createReservation(input: types.CreateReservationInput, options: any): async.Operation<types.CreateReservationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateReservation, input, options) as async.Operation<types.CreateReservationOutput>
+function C:createReservation(input: types.CreateReservationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateReservationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateReservation as schema.OperationSchema, input, options) as async.Operation<types.CreateReservationOutput>
 end
 
-function C:createScheduledAction(input: types.CreateScheduledActionInput, options: any): async.Operation<types.CreateScheduledActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateScheduledAction, input, options) as async.Operation<types.CreateScheduledActionOutput>
+function C:createScheduledAction(input: types.CreateScheduledActionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateScheduledActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateScheduledAction as schema.OperationSchema, input, options) as async.Operation<types.CreateScheduledActionOutput>
 end
 
-function C:createSnapshot(input: types.CreateSnapshotInput, options: any): async.Operation<types.CreateSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSnapshot, input, options) as async.Operation<types.CreateSnapshotOutput>
+function C:createSnapshot(input: types.CreateSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSnapshot as schema.OperationSchema, input, options) as async.Operation<types.CreateSnapshotOutput>
 end
 
-function C:createSnapshotCopyConfiguration(input: types.CreateSnapshotCopyConfigurationInput, options: any): async.Operation<types.CreateSnapshotCopyConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSnapshotCopyConfiguration, input, options) as async.Operation<types.CreateSnapshotCopyConfigurationOutput>
+function C:createSnapshotCopyConfiguration(input: types.CreateSnapshotCopyConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSnapshotCopyConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSnapshotCopyConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateSnapshotCopyConfigurationOutput>
 end
 
-function C:createUsageLimit(input: types.CreateUsageLimitInput, options: any): async.Operation<types.CreateUsageLimitOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateUsageLimit, input, options) as async.Operation<types.CreateUsageLimitOutput>
+function C:createUsageLimit(input: types.CreateUsageLimitInput, options?: base_client.InvokeOptions): async.Operation<types.CreateUsageLimitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateUsageLimit as schema.OperationSchema, input, options) as async.Operation<types.CreateUsageLimitOutput>
 end
 
-function C:createWorkgroup(input: types.CreateWorkgroupInput, options: any): async.Operation<types.CreateWorkgroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWorkgroup, input, options) as async.Operation<types.CreateWorkgroupOutput>
+function C:createWorkgroup(input: types.CreateWorkgroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWorkgroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWorkgroup as schema.OperationSchema, input, options) as async.Operation<types.CreateWorkgroupOutput>
 end
 
-function C:deleteCustomDomainAssociation(input: types.DeleteCustomDomainAssociationInput, options: any): async.Operation<types.DeleteCustomDomainAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCustomDomainAssociation, input, options) as async.Operation<types.DeleteCustomDomainAssociationOutput>
+function C:deleteCustomDomainAssociation(input: types.DeleteCustomDomainAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCustomDomainAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCustomDomainAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteCustomDomainAssociationOutput>
 end
 
-function C:deleteEndpointAccess(input: types.DeleteEndpointAccessInput, options: any): async.Operation<types.DeleteEndpointAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEndpointAccess, input, options) as async.Operation<types.DeleteEndpointAccessOutput>
+function C:deleteEndpointAccess(input: types.DeleteEndpointAccessInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEndpointAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEndpointAccess as schema.OperationSchema, input, options) as async.Operation<types.DeleteEndpointAccessOutput>
 end
 
-function C:deleteNamespace(input: types.DeleteNamespaceInput, options: any): async.Operation<types.DeleteNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNamespace, input, options) as async.Operation<types.DeleteNamespaceOutput>
+function C:deleteNamespace(input: types.DeleteNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNamespace as schema.OperationSchema, input, options) as async.Operation<types.DeleteNamespaceOutput>
 end
 
-function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options: any): async.Operation<types.DeleteResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicy, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
+function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
 end
 
-function C:deleteScheduledAction(input: types.DeleteScheduledActionInput, options: any): async.Operation<types.DeleteScheduledActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteScheduledAction, input, options) as async.Operation<types.DeleteScheduledActionOutput>
+function C:deleteScheduledAction(input: types.DeleteScheduledActionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteScheduledActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteScheduledAction as schema.OperationSchema, input, options) as async.Operation<types.DeleteScheduledActionOutput>
 end
 
-function C:deleteSnapshot(input: types.DeleteSnapshotInput, options: any): async.Operation<types.DeleteSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSnapshot, input, options) as async.Operation<types.DeleteSnapshotOutput>
+function C:deleteSnapshot(input: types.DeleteSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSnapshot as schema.OperationSchema, input, options) as async.Operation<types.DeleteSnapshotOutput>
 end
 
-function C:deleteSnapshotCopyConfiguration(input: types.DeleteSnapshotCopyConfigurationInput, options: any): async.Operation<types.DeleteSnapshotCopyConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSnapshotCopyConfiguration, input, options) as async.Operation<types.DeleteSnapshotCopyConfigurationOutput>
+function C:deleteSnapshotCopyConfiguration(input: types.DeleteSnapshotCopyConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSnapshotCopyConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSnapshotCopyConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteSnapshotCopyConfigurationOutput>
 end
 
-function C:deleteUsageLimit(input: types.DeleteUsageLimitInput, options: any): async.Operation<types.DeleteUsageLimitOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteUsageLimit, input, options) as async.Operation<types.DeleteUsageLimitOutput>
+function C:deleteUsageLimit(input: types.DeleteUsageLimitInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteUsageLimitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteUsageLimit as schema.OperationSchema, input, options) as async.Operation<types.DeleteUsageLimitOutput>
 end
 
-function C:deleteWorkgroup(input: types.DeleteWorkgroupInput, options: any): async.Operation<types.DeleteWorkgroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWorkgroup, input, options) as async.Operation<types.DeleteWorkgroupOutput>
+function C:deleteWorkgroup(input: types.DeleteWorkgroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWorkgroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWorkgroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteWorkgroupOutput>
 end
 
-function C:getCredentials(input: types.GetCredentialsInput, options: any): async.Operation<types.GetCredentialsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCredentials, input, options) as async.Operation<types.GetCredentialsOutput>
+function C:getCredentials(input: types.GetCredentialsInput, options?: base_client.InvokeOptions): async.Operation<types.GetCredentialsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCredentials as schema.OperationSchema, input, options) as async.Operation<types.GetCredentialsOutput>
 end
 
-function C:getCustomDomainAssociation(input: types.GetCustomDomainAssociationInput, options: any): async.Operation<types.GetCustomDomainAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCustomDomainAssociation, input, options) as async.Operation<types.GetCustomDomainAssociationOutput>
+function C:getCustomDomainAssociation(input: types.GetCustomDomainAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetCustomDomainAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCustomDomainAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetCustomDomainAssociationOutput>
 end
 
-function C:getEndpointAccess(input: types.GetEndpointAccessInput, options: any): async.Operation<types.GetEndpointAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEndpointAccess, input, options) as async.Operation<types.GetEndpointAccessOutput>
+function C:getEndpointAccess(input: types.GetEndpointAccessInput, options?: base_client.InvokeOptions): async.Operation<types.GetEndpointAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEndpointAccess as schema.OperationSchema, input, options) as async.Operation<types.GetEndpointAccessOutput>
 end
 
-function C:getIdentityCenterAuthToken(input: types.GetIdentityCenterAuthTokenInput, options: any): async.Operation<types.GetIdentityCenterAuthTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIdentityCenterAuthToken, input, options) as async.Operation<types.GetIdentityCenterAuthTokenOutput>
+function C:getIdentityCenterAuthToken(input: types.GetIdentityCenterAuthTokenInput, options?: base_client.InvokeOptions): async.Operation<types.GetIdentityCenterAuthTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIdentityCenterAuthToken as schema.OperationSchema, input, options) as async.Operation<types.GetIdentityCenterAuthTokenOutput>
 end
 
-function C:getNamespace(input: types.GetNamespaceInput, options: any): async.Operation<types.GetNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNamespace, input, options) as async.Operation<types.GetNamespaceOutput>
+function C:getNamespace(input: types.GetNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.GetNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNamespace as schema.OperationSchema, input, options) as async.Operation<types.GetNamespaceOutput>
 end
 
-function C:getRecoveryPoint(input: types.GetRecoveryPointInput, options: any): async.Operation<types.GetRecoveryPointOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRecoveryPoint, input, options) as async.Operation<types.GetRecoveryPointOutput>
+function C:getRecoveryPoint(input: types.GetRecoveryPointInput, options?: base_client.InvokeOptions): async.Operation<types.GetRecoveryPointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRecoveryPoint as schema.OperationSchema, input, options) as async.Operation<types.GetRecoveryPointOutput>
 end
 
-function C:getReservation(input: types.GetReservationInput, options: any): async.Operation<types.GetReservationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReservation, input, options) as async.Operation<types.GetReservationOutput>
+function C:getReservation(input: types.GetReservationInput, options?: base_client.InvokeOptions): async.Operation<types.GetReservationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReservation as schema.OperationSchema, input, options) as async.Operation<types.GetReservationOutput>
 end
 
-function C:getReservationOffering(input: types.GetReservationOfferingInput, options: any): async.Operation<types.GetReservationOfferingOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReservationOffering, input, options) as async.Operation<types.GetReservationOfferingOutput>
+function C:getReservationOffering(input: types.GetReservationOfferingInput, options?: base_client.InvokeOptions): async.Operation<types.GetReservationOfferingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReservationOffering as schema.OperationSchema, input, options) as async.Operation<types.GetReservationOfferingOutput>
 end
 
-function C:getResourcePolicy(input: types.GetResourcePolicyInput, options: any): async.Operation<types.GetResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicy, input, options) as async.Operation<types.GetResourcePolicyOutput>
+function C:getResourcePolicy(input: types.GetResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePolicyOutput>
 end
 
-function C:getScheduledAction(input: types.GetScheduledActionInput, options: any): async.Operation<types.GetScheduledActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetScheduledAction, input, options) as async.Operation<types.GetScheduledActionOutput>
+function C:getScheduledAction(input: types.GetScheduledActionInput, options?: base_client.InvokeOptions): async.Operation<types.GetScheduledActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetScheduledAction as schema.OperationSchema, input, options) as async.Operation<types.GetScheduledActionOutput>
 end
 
-function C:getSnapshot(input: types.GetSnapshotInput, options: any): async.Operation<types.GetSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSnapshot, input, options) as async.Operation<types.GetSnapshotOutput>
+function C:getSnapshot(input: types.GetSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.GetSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSnapshot as schema.OperationSchema, input, options) as async.Operation<types.GetSnapshotOutput>
 end
 
-function C:getTableRestoreStatus(input: types.GetTableRestoreStatusInput, options: any): async.Operation<types.GetTableRestoreStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTableRestoreStatus, input, options) as async.Operation<types.GetTableRestoreStatusOutput>
+function C:getTableRestoreStatus(input: types.GetTableRestoreStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableRestoreStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTableRestoreStatus as schema.OperationSchema, input, options) as async.Operation<types.GetTableRestoreStatusOutput>
 end
 
-function C:getTrack(input: types.GetTrackInput, options: any): async.Operation<types.GetTrackOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTrack, input, options) as async.Operation<types.GetTrackOutput>
+function C:getTrack(input: types.GetTrackInput, options?: base_client.InvokeOptions): async.Operation<types.GetTrackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTrack as schema.OperationSchema, input, options) as async.Operation<types.GetTrackOutput>
 end
 
-function C:getUsageLimit(input: types.GetUsageLimitInput, options: any): async.Operation<types.GetUsageLimitOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetUsageLimit, input, options) as async.Operation<types.GetUsageLimitOutput>
+function C:getUsageLimit(input: types.GetUsageLimitInput, options?: base_client.InvokeOptions): async.Operation<types.GetUsageLimitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetUsageLimit as schema.OperationSchema, input, options) as async.Operation<types.GetUsageLimitOutput>
 end
 
-function C:getWorkgroup(input: types.GetWorkgroupInput, options: any): async.Operation<types.GetWorkgroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWorkgroup, input, options) as async.Operation<types.GetWorkgroupOutput>
+function C:getWorkgroup(input: types.GetWorkgroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetWorkgroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWorkgroup as schema.OperationSchema, input, options) as async.Operation<types.GetWorkgroupOutput>
 end
 
-function C:listCustomDomainAssociations(input: types.ListCustomDomainAssociationsInput, options: any): async.Operation<types.ListCustomDomainAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCustomDomainAssociations, input, options) as async.Operation<types.ListCustomDomainAssociationsOutput>
+function C:listCustomDomainAssociations(input: types.ListCustomDomainAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCustomDomainAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCustomDomainAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListCustomDomainAssociationsOutput>
 end
 
-function C:listEndpointAccess(input: types.ListEndpointAccessInput, options: any): async.Operation<types.ListEndpointAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEndpointAccess, input, options) as async.Operation<types.ListEndpointAccessOutput>
+function C:listEndpointAccess(input: types.ListEndpointAccessInput, options?: base_client.InvokeOptions): async.Operation<types.ListEndpointAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEndpointAccess as schema.OperationSchema, input, options) as async.Operation<types.ListEndpointAccessOutput>
 end
 
-function C:listManagedWorkgroups(input: types.ListManagedWorkgroupsInput, options: any): async.Operation<types.ListManagedWorkgroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListManagedWorkgroups, input, options) as async.Operation<types.ListManagedWorkgroupsOutput>
+function C:listManagedWorkgroups(input: types.ListManagedWorkgroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListManagedWorkgroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListManagedWorkgroups as schema.OperationSchema, input, options) as async.Operation<types.ListManagedWorkgroupsOutput>
 end
 
-function C:listNamespaces(input: types.ListNamespacesInput, options: any): async.Operation<types.ListNamespacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNamespaces, input, options) as async.Operation<types.ListNamespacesOutput>
+function C:listNamespaces(input: types.ListNamespacesInput, options?: base_client.InvokeOptions): async.Operation<types.ListNamespacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNamespaces as schema.OperationSchema, input, options) as async.Operation<types.ListNamespacesOutput>
 end
 
-function C:listRecoveryPoints(input: types.ListRecoveryPointsInput, options: any): async.Operation<types.ListRecoveryPointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRecoveryPoints, input, options) as async.Operation<types.ListRecoveryPointsOutput>
+function C:listRecoveryPoints(input: types.ListRecoveryPointsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecoveryPointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecoveryPoints as schema.OperationSchema, input, options) as async.Operation<types.ListRecoveryPointsOutput>
 end
 
-function C:listReservationOfferings(input: types.ListReservationOfferingsInput, options: any): async.Operation<types.ListReservationOfferingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReservationOfferings, input, options) as async.Operation<types.ListReservationOfferingsOutput>
+function C:listReservationOfferings(input: types.ListReservationOfferingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListReservationOfferingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReservationOfferings as schema.OperationSchema, input, options) as async.Operation<types.ListReservationOfferingsOutput>
 end
 
-function C:listReservations(input: types.ListReservationsInput, options: any): async.Operation<types.ListReservationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReservations, input, options) as async.Operation<types.ListReservationsOutput>
+function C:listReservations(input: types.ListReservationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListReservationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReservations as schema.OperationSchema, input, options) as async.Operation<types.ListReservationsOutput>
 end
 
-function C:listScheduledActions(input: types.ListScheduledActionsInput, options: any): async.Operation<types.ListScheduledActionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListScheduledActions, input, options) as async.Operation<types.ListScheduledActionsOutput>
+function C:listScheduledActions(input: types.ListScheduledActionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListScheduledActionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListScheduledActions as schema.OperationSchema, input, options) as async.Operation<types.ListScheduledActionsOutput>
 end
 
-function C:listSnapshotCopyConfigurations(input: types.ListSnapshotCopyConfigurationsInput, options: any): async.Operation<types.ListSnapshotCopyConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSnapshotCopyConfigurations, input, options) as async.Operation<types.ListSnapshotCopyConfigurationsOutput>
+function C:listSnapshotCopyConfigurations(input: types.ListSnapshotCopyConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSnapshotCopyConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSnapshotCopyConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListSnapshotCopyConfigurationsOutput>
 end
 
-function C:listSnapshots(input: types.ListSnapshotsInput, options: any): async.Operation<types.ListSnapshotsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSnapshots, input, options) as async.Operation<types.ListSnapshotsOutput>
+function C:listSnapshots(input: types.ListSnapshotsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSnapshotsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSnapshots as schema.OperationSchema, input, options) as async.Operation<types.ListSnapshotsOutput>
 end
 
-function C:listTableRestoreStatus(input: types.ListTableRestoreStatusInput, options: any): async.Operation<types.ListTableRestoreStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTableRestoreStatus, input, options) as async.Operation<types.ListTableRestoreStatusOutput>
+function C:listTableRestoreStatus(input: types.ListTableRestoreStatusInput, options?: base_client.InvokeOptions): async.Operation<types.ListTableRestoreStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTableRestoreStatus as schema.OperationSchema, input, options) as async.Operation<types.ListTableRestoreStatusOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTracks(input: types.ListTracksInput, options: any): async.Operation<types.ListTracksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTracks, input, options) as async.Operation<types.ListTracksOutput>
+function C:listTracks(input: types.ListTracksInput, options?: base_client.InvokeOptions): async.Operation<types.ListTracksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTracks as schema.OperationSchema, input, options) as async.Operation<types.ListTracksOutput>
 end
 
-function C:listUsageLimits(input: types.ListUsageLimitsInput, options: any): async.Operation<types.ListUsageLimitsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListUsageLimits, input, options) as async.Operation<types.ListUsageLimitsOutput>
+function C:listUsageLimits(input: types.ListUsageLimitsInput, options?: base_client.InvokeOptions): async.Operation<types.ListUsageLimitsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUsageLimits as schema.OperationSchema, input, options) as async.Operation<types.ListUsageLimitsOutput>
 end
 
-function C:listWorkgroups(input: types.ListWorkgroupsInput, options: any): async.Operation<types.ListWorkgroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWorkgroups, input, options) as async.Operation<types.ListWorkgroupsOutput>
+function C:listWorkgroups(input: types.ListWorkgroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkgroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkgroups as schema.OperationSchema, input, options) as async.Operation<types.ListWorkgroupsOutput>
 end
 
-function C:putResourcePolicy(input: types.PutResourcePolicyInput, options: any): async.Operation<types.PutResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutResourcePolicy, input, options) as async.Operation<types.PutResourcePolicyOutput>
+function C:putResourcePolicy(input: types.PutResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutResourcePolicyOutput>
 end
 
-function C:restoreFromRecoveryPoint(input: types.RestoreFromRecoveryPointInput, options: any): async.Operation<types.RestoreFromRecoveryPointOutput>
-    return self:invokeOperation(schemas.Service, schemas.RestoreFromRecoveryPoint, input, options) as async.Operation<types.RestoreFromRecoveryPointOutput>
+function C:restoreFromRecoveryPoint(input: types.RestoreFromRecoveryPointInput, options?: base_client.InvokeOptions): async.Operation<types.RestoreFromRecoveryPointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestoreFromRecoveryPoint as schema.OperationSchema, input, options) as async.Operation<types.RestoreFromRecoveryPointOutput>
 end
 
-function C:restoreFromSnapshot(input: types.RestoreFromSnapshotInput, options: any): async.Operation<types.RestoreFromSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.RestoreFromSnapshot, input, options) as async.Operation<types.RestoreFromSnapshotOutput>
+function C:restoreFromSnapshot(input: types.RestoreFromSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.RestoreFromSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestoreFromSnapshot as schema.OperationSchema, input, options) as async.Operation<types.RestoreFromSnapshotOutput>
 end
 
-function C:restoreTableFromRecoveryPoint(input: types.RestoreTableFromRecoveryPointInput, options: any): async.Operation<types.RestoreTableFromRecoveryPointOutput>
-    return self:invokeOperation(schemas.Service, schemas.RestoreTableFromRecoveryPoint, input, options) as async.Operation<types.RestoreTableFromRecoveryPointOutput>
+function C:restoreTableFromRecoveryPoint(input: types.RestoreTableFromRecoveryPointInput, options?: base_client.InvokeOptions): async.Operation<types.RestoreTableFromRecoveryPointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestoreTableFromRecoveryPoint as schema.OperationSchema, input, options) as async.Operation<types.RestoreTableFromRecoveryPointOutput>
 end
 
-function C:restoreTableFromSnapshot(input: types.RestoreTableFromSnapshotInput, options: any): async.Operation<types.RestoreTableFromSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.RestoreTableFromSnapshot, input, options) as async.Operation<types.RestoreTableFromSnapshotOutput>
+function C:restoreTableFromSnapshot(input: types.RestoreTableFromSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.RestoreTableFromSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestoreTableFromSnapshot as schema.OperationSchema, input, options) as async.Operation<types.RestoreTableFromSnapshotOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateCustomDomainAssociation(input: types.UpdateCustomDomainAssociationInput, options: any): async.Operation<types.UpdateCustomDomainAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCustomDomainAssociation, input, options) as async.Operation<types.UpdateCustomDomainAssociationOutput>
+function C:updateCustomDomainAssociation(input: types.UpdateCustomDomainAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCustomDomainAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCustomDomainAssociation as schema.OperationSchema, input, options) as async.Operation<types.UpdateCustomDomainAssociationOutput>
 end
 
-function C:updateEndpointAccess(input: types.UpdateEndpointAccessInput, options: any): async.Operation<types.UpdateEndpointAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEndpointAccess, input, options) as async.Operation<types.UpdateEndpointAccessOutput>
+function C:updateEndpointAccess(input: types.UpdateEndpointAccessInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEndpointAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEndpointAccess as schema.OperationSchema, input, options) as async.Operation<types.UpdateEndpointAccessOutput>
 end
 
-function C:updateLakehouseConfiguration(input: types.UpdateLakehouseConfigurationInput, options: any): async.Operation<types.UpdateLakehouseConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLakehouseConfiguration, input, options) as async.Operation<types.UpdateLakehouseConfigurationOutput>
+function C:updateLakehouseConfiguration(input: types.UpdateLakehouseConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLakehouseConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLakehouseConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateLakehouseConfigurationOutput>
 end
 
-function C:updateNamespace(input: types.UpdateNamespaceInput, options: any): async.Operation<types.UpdateNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateNamespace, input, options) as async.Operation<types.UpdateNamespaceOutput>
+function C:updateNamespace(input: types.UpdateNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNamespace as schema.OperationSchema, input, options) as async.Operation<types.UpdateNamespaceOutput>
 end
 
-function C:updateScheduledAction(input: types.UpdateScheduledActionInput, options: any): async.Operation<types.UpdateScheduledActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateScheduledAction, input, options) as async.Operation<types.UpdateScheduledActionOutput>
+function C:updateScheduledAction(input: types.UpdateScheduledActionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateScheduledActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateScheduledAction as schema.OperationSchema, input, options) as async.Operation<types.UpdateScheduledActionOutput>
 end
 
-function C:updateSnapshot(input: types.UpdateSnapshotInput, options: any): async.Operation<types.UpdateSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSnapshot, input, options) as async.Operation<types.UpdateSnapshotOutput>
+function C:updateSnapshot(input: types.UpdateSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSnapshot as schema.OperationSchema, input, options) as async.Operation<types.UpdateSnapshotOutput>
 end
 
-function C:updateSnapshotCopyConfiguration(input: types.UpdateSnapshotCopyConfigurationInput, options: any): async.Operation<types.UpdateSnapshotCopyConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSnapshotCopyConfiguration, input, options) as async.Operation<types.UpdateSnapshotCopyConfigurationOutput>
+function C:updateSnapshotCopyConfiguration(input: types.UpdateSnapshotCopyConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSnapshotCopyConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSnapshotCopyConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateSnapshotCopyConfigurationOutput>
 end
 
-function C:updateUsageLimit(input: types.UpdateUsageLimitInput, options: any): async.Operation<types.UpdateUsageLimitOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateUsageLimit, input, options) as async.Operation<types.UpdateUsageLimitOutput>
+function C:updateUsageLimit(input: types.UpdateUsageLimitInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateUsageLimitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateUsageLimit as schema.OperationSchema, input, options) as async.Operation<types.UpdateUsageLimitOutput>
 end
 
-function C:updateWorkgroup(input: types.UpdateWorkgroupInput, options: any): async.Operation<types.UpdateWorkgroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateWorkgroup, input, options) as async.Operation<types.UpdateWorkgroupOutput>
+function C:updateWorkgroup(input: types.UpdateWorkgroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWorkgroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWorkgroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateWorkgroupOutput>
 end
 
 return M

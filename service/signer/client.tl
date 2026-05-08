@@ -8,58 +8,61 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("signer.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("signer.schemas")
 local traits = require("smithy.traits")
 local types = require("signer.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    addProfilePermission: function(Client, types.AddProfilePermissionInput, any): async.Operation<types.AddProfilePermissionOutput>
-    cancelSigningProfile: function(Client, types.CancelSigningProfileInput, any): async.Operation<types.CancelSigningProfileOutput>
-    describeSigningJob: function(Client, types.DescribeSigningJobInput, any): async.Operation<types.DescribeSigningJobOutput>
-    getRevocationStatus: function(Client, types.GetRevocationStatusInput, any): async.Operation<types.GetRevocationStatusOutput>
-    getSigningPlatform: function(Client, types.GetSigningPlatformInput, any): async.Operation<types.GetSigningPlatformOutput>
-    getSigningProfile: function(Client, types.GetSigningProfileInput, any): async.Operation<types.GetSigningProfileOutput>
-    listProfilePermissions: function(Client, types.ListProfilePermissionsInput, any): async.Operation<types.ListProfilePermissionsOutput>
-    listSigningJobs: function(Client, types.ListSigningJobsInput, any): async.Operation<types.ListSigningJobsOutput>
-    listSigningPlatforms: function(Client, types.ListSigningPlatformsInput, any): async.Operation<types.ListSigningPlatformsOutput>
-    listSigningProfiles: function(Client, types.ListSigningProfilesInput, any): async.Operation<types.ListSigningProfilesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putSigningProfile: function(Client, types.PutSigningProfileInput, any): async.Operation<types.PutSigningProfileOutput>
-    removeProfilePermission: function(Client, types.RemoveProfilePermissionInput, any): async.Operation<types.RemoveProfilePermissionOutput>
-    revokeSignature: function(Client, types.RevokeSignatureInput, any): async.Operation<types.RevokeSignatureOutput>
-    revokeSigningProfile: function(Client, types.RevokeSigningProfileInput, any): async.Operation<types.RevokeSigningProfileOutput>
-    signPayload: function(Client, types.SignPayloadInput, any): async.Operation<types.SignPayloadOutput>
-    startSigningJob: function(Client, types.StartSigningJobInput, any): async.Operation<types.StartSigningJobOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    addProfilePermission: function(Client, types.AddProfilePermissionInput, ? base_client.InvokeOptions): async.Operation<types.AddProfilePermissionOutput>
+    cancelSigningProfile: function(Client, types.CancelSigningProfileInput, ? base_client.InvokeOptions): async.Operation<types.CancelSigningProfileOutput>
+    describeSigningJob: function(Client, types.DescribeSigningJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSigningJobOutput>
+    getRevocationStatus: function(Client, types.GetRevocationStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetRevocationStatusOutput>
+    getSigningPlatform: function(Client, types.GetSigningPlatformInput, ? base_client.InvokeOptions): async.Operation<types.GetSigningPlatformOutput>
+    getSigningProfile: function(Client, types.GetSigningProfileInput, ? base_client.InvokeOptions): async.Operation<types.GetSigningProfileOutput>
+    listProfilePermissions: function(Client, types.ListProfilePermissionsInput, ? base_client.InvokeOptions): async.Operation<types.ListProfilePermissionsOutput>
+    listSigningJobs: function(Client, types.ListSigningJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListSigningJobsOutput>
+    listSigningPlatforms: function(Client, types.ListSigningPlatformsInput, ? base_client.InvokeOptions): async.Operation<types.ListSigningPlatformsOutput>
+    listSigningProfiles: function(Client, types.ListSigningProfilesInput, ? base_client.InvokeOptions): async.Operation<types.ListSigningProfilesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putSigningProfile: function(Client, types.PutSigningProfileInput, ? base_client.InvokeOptions): async.Operation<types.PutSigningProfileOutput>
+    removeProfilePermission: function(Client, types.RemoveProfilePermissionInput, ? base_client.InvokeOptions): async.Operation<types.RemoveProfilePermissionOutput>
+    revokeSignature: function(Client, types.RevokeSignatureInput, ? base_client.InvokeOptions): async.Operation<types.RevokeSignatureOutput>
+    revokeSigningProfile: function(Client, types.RevokeSigningProfileInput, ? base_client.InvokeOptions): async.Operation<types.RevokeSigningProfileOutput>
+    signPayload: function(Client, types.SignPayloadInput, ? base_client.InvokeOptions): async.Operation<types.SignPayloadOutput>
+    startSigningJob: function(Client, types.StartSigningJobInput, ? base_client.InvokeOptions): async.Operation<types.StartSigningJobOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "WallabyService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "signer", signing_region = c.region } }
                 else
@@ -78,80 +81,80 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:addProfilePermission(input: types.AddProfilePermissionInput, options: any): async.Operation<types.AddProfilePermissionOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddProfilePermission, input, options) as async.Operation<types.AddProfilePermissionOutput>
+function C:addProfilePermission(input: types.AddProfilePermissionInput, options?: base_client.InvokeOptions): async.Operation<types.AddProfilePermissionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddProfilePermission as schema.OperationSchema, input, options) as async.Operation<types.AddProfilePermissionOutput>
 end
 
-function C:cancelSigningProfile(input: types.CancelSigningProfileInput, options: any): async.Operation<types.CancelSigningProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelSigningProfile, input, options) as async.Operation<types.CancelSigningProfileOutput>
+function C:cancelSigningProfile(input: types.CancelSigningProfileInput, options?: base_client.InvokeOptions): async.Operation<types.CancelSigningProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelSigningProfile as schema.OperationSchema, input, options) as async.Operation<types.CancelSigningProfileOutput>
 end
 
-function C:describeSigningJob(input: types.DescribeSigningJobInput, options: any): async.Operation<types.DescribeSigningJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSigningJob, input, options) as async.Operation<types.DescribeSigningJobOutput>
+function C:describeSigningJob(input: types.DescribeSigningJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSigningJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSigningJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeSigningJobOutput>
 end
 
-function C:getRevocationStatus(input: types.GetRevocationStatusInput, options: any): async.Operation<types.GetRevocationStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRevocationStatus, input, options) as async.Operation<types.GetRevocationStatusOutput>
+function C:getRevocationStatus(input: types.GetRevocationStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetRevocationStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRevocationStatus as schema.OperationSchema, input, options) as async.Operation<types.GetRevocationStatusOutput>
 end
 
-function C:getSigningPlatform(input: types.GetSigningPlatformInput, options: any): async.Operation<types.GetSigningPlatformOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSigningPlatform, input, options) as async.Operation<types.GetSigningPlatformOutput>
+function C:getSigningPlatform(input: types.GetSigningPlatformInput, options?: base_client.InvokeOptions): async.Operation<types.GetSigningPlatformOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSigningPlatform as schema.OperationSchema, input, options) as async.Operation<types.GetSigningPlatformOutput>
 end
 
-function C:getSigningProfile(input: types.GetSigningProfileInput, options: any): async.Operation<types.GetSigningProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSigningProfile, input, options) as async.Operation<types.GetSigningProfileOutput>
+function C:getSigningProfile(input: types.GetSigningProfileInput, options?: base_client.InvokeOptions): async.Operation<types.GetSigningProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSigningProfile as schema.OperationSchema, input, options) as async.Operation<types.GetSigningProfileOutput>
 end
 
-function C:listProfilePermissions(input: types.ListProfilePermissionsInput, options: any): async.Operation<types.ListProfilePermissionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProfilePermissions, input, options) as async.Operation<types.ListProfilePermissionsOutput>
+function C:listProfilePermissions(input: types.ListProfilePermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListProfilePermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProfilePermissions as schema.OperationSchema, input, options) as async.Operation<types.ListProfilePermissionsOutput>
 end
 
-function C:listSigningJobs(input: types.ListSigningJobsInput, options: any): async.Operation<types.ListSigningJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSigningJobs, input, options) as async.Operation<types.ListSigningJobsOutput>
+function C:listSigningJobs(input: types.ListSigningJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSigningJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSigningJobs as schema.OperationSchema, input, options) as async.Operation<types.ListSigningJobsOutput>
 end
 
-function C:listSigningPlatforms(input: types.ListSigningPlatformsInput, options: any): async.Operation<types.ListSigningPlatformsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSigningPlatforms, input, options) as async.Operation<types.ListSigningPlatformsOutput>
+function C:listSigningPlatforms(input: types.ListSigningPlatformsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSigningPlatformsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSigningPlatforms as schema.OperationSchema, input, options) as async.Operation<types.ListSigningPlatformsOutput>
 end
 
-function C:listSigningProfiles(input: types.ListSigningProfilesInput, options: any): async.Operation<types.ListSigningProfilesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSigningProfiles, input, options) as async.Operation<types.ListSigningProfilesOutput>
+function C:listSigningProfiles(input: types.ListSigningProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSigningProfilesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSigningProfiles as schema.OperationSchema, input, options) as async.Operation<types.ListSigningProfilesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putSigningProfile(input: types.PutSigningProfileInput, options: any): async.Operation<types.PutSigningProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutSigningProfile, input, options) as async.Operation<types.PutSigningProfileOutput>
+function C:putSigningProfile(input: types.PutSigningProfileInput, options?: base_client.InvokeOptions): async.Operation<types.PutSigningProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutSigningProfile as schema.OperationSchema, input, options) as async.Operation<types.PutSigningProfileOutput>
 end
 
-function C:removeProfilePermission(input: types.RemoveProfilePermissionInput, options: any): async.Operation<types.RemoveProfilePermissionOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveProfilePermission, input, options) as async.Operation<types.RemoveProfilePermissionOutput>
+function C:removeProfilePermission(input: types.RemoveProfilePermissionInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveProfilePermissionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveProfilePermission as schema.OperationSchema, input, options) as async.Operation<types.RemoveProfilePermissionOutput>
 end
 
-function C:revokeSignature(input: types.RevokeSignatureInput, options: any): async.Operation<types.RevokeSignatureOutput>
-    return self:invokeOperation(schemas.Service, schemas.RevokeSignature, input, options) as async.Operation<types.RevokeSignatureOutput>
+function C:revokeSignature(input: types.RevokeSignatureInput, options?: base_client.InvokeOptions): async.Operation<types.RevokeSignatureOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RevokeSignature as schema.OperationSchema, input, options) as async.Operation<types.RevokeSignatureOutput>
 end
 
-function C:revokeSigningProfile(input: types.RevokeSigningProfileInput, options: any): async.Operation<types.RevokeSigningProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.RevokeSigningProfile, input, options) as async.Operation<types.RevokeSigningProfileOutput>
+function C:revokeSigningProfile(input: types.RevokeSigningProfileInput, options?: base_client.InvokeOptions): async.Operation<types.RevokeSigningProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RevokeSigningProfile as schema.OperationSchema, input, options) as async.Operation<types.RevokeSigningProfileOutput>
 end
 
-function C:signPayload(input: types.SignPayloadInput, options: any): async.Operation<types.SignPayloadOutput>
-    return self:invokeOperation(schemas.Service, schemas.SignPayload, input, options) as async.Operation<types.SignPayloadOutput>
+function C:signPayload(input: types.SignPayloadInput, options?: base_client.InvokeOptions): async.Operation<types.SignPayloadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SignPayload as schema.OperationSchema, input, options) as async.Operation<types.SignPayloadOutput>
 end
 
-function C:startSigningJob(input: types.StartSigningJobInput, options: any): async.Operation<types.StartSigningJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartSigningJob, input, options) as async.Operation<types.StartSigningJobOutput>
+function C:startSigningJob(input: types.StartSigningJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartSigningJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartSigningJob as schema.OperationSchema, input, options) as async.Operation<types.StartSigningJobOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
 return M

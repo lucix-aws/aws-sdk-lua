@@ -8,52 +8,55 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("codegurusecurity.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("codegurusecurity.schemas")
 local traits = require("smithy.traits")
 local types = require("codegurusecurity.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchGetFindings: function(Client, types.BatchGetFindingsInput, any): async.Operation<types.BatchGetFindingsOutput>
-    createScan: function(Client, types.CreateScanInput, any): async.Operation<types.CreateScanOutput>
-    createUploadUrl: function(Client, types.CreateUploadUrlInput, any): async.Operation<types.CreateUploadUrlOutput>
-    getAccountConfiguration: function(Client, types.GetAccountConfigurationInput, any): async.Operation<types.GetAccountConfigurationOutput>
-    getFindings: function(Client, types.GetFindingsInput, any): async.Operation<types.GetFindingsOutput>
-    getMetricsSummary: function(Client, types.GetMetricsSummaryInput, any): async.Operation<types.GetMetricsSummaryOutput>
-    getScan: function(Client, types.GetScanInput, any): async.Operation<types.GetScanOutput>
-    listFindingsMetrics: function(Client, types.ListFindingsMetricsInput, any): async.Operation<types.ListFindingsMetricsOutput>
-    listScans: function(Client, types.ListScansInput, any): async.Operation<types.ListScansOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAccountConfiguration: function(Client, types.UpdateAccountConfigurationInput, any): async.Operation<types.UpdateAccountConfigurationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchGetFindings: function(Client, types.BatchGetFindingsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetFindingsOutput>
+    createScan: function(Client, types.CreateScanInput, ? base_client.InvokeOptions): async.Operation<types.CreateScanOutput>
+    createUploadUrl: function(Client, types.CreateUploadUrlInput, ? base_client.InvokeOptions): async.Operation<types.CreateUploadUrlOutput>
+    getAccountConfiguration: function(Client, types.GetAccountConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountConfigurationOutput>
+    getFindings: function(Client, types.GetFindingsInput, ? base_client.InvokeOptions): async.Operation<types.GetFindingsOutput>
+    getMetricsSummary: function(Client, types.GetMetricsSummaryInput, ? base_client.InvokeOptions): async.Operation<types.GetMetricsSummaryOutput>
+    getScan: function(Client, types.GetScanInput, ? base_client.InvokeOptions): async.Operation<types.GetScanOutput>
+    listFindingsMetrics: function(Client, types.ListFindingsMetricsInput, ? base_client.InvokeOptions): async.Operation<types.ListFindingsMetricsOutput>
+    listScans: function(Client, types.ListScansInput, ? base_client.InvokeOptions): async.Operation<types.ListScansOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAccountConfiguration: function(Client, types.UpdateAccountConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAccountConfigurationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AwsCodeGuruSecurity"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "codeguru-security", signing_region = c.region } }
                 else
@@ -72,56 +75,56 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchGetFindings(input: types.BatchGetFindingsInput, options: any): async.Operation<types.BatchGetFindingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetFindings, input, options) as async.Operation<types.BatchGetFindingsOutput>
+function C:batchGetFindings(input: types.BatchGetFindingsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetFindingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetFindings as schema.OperationSchema, input, options) as async.Operation<types.BatchGetFindingsOutput>
 end
 
-function C:createScan(input: types.CreateScanInput, options: any): async.Operation<types.CreateScanOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateScan, input, options) as async.Operation<types.CreateScanOutput>
+function C:createScan(input: types.CreateScanInput, options?: base_client.InvokeOptions): async.Operation<types.CreateScanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateScan as schema.OperationSchema, input, options) as async.Operation<types.CreateScanOutput>
 end
 
-function C:createUploadUrl(input: types.CreateUploadUrlInput, options: any): async.Operation<types.CreateUploadUrlOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateUploadUrl, input, options) as async.Operation<types.CreateUploadUrlOutput>
+function C:createUploadUrl(input: types.CreateUploadUrlInput, options?: base_client.InvokeOptions): async.Operation<types.CreateUploadUrlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateUploadUrl as schema.OperationSchema, input, options) as async.Operation<types.CreateUploadUrlOutput>
 end
 
-function C:getAccountConfiguration(input: types.GetAccountConfigurationInput, options: any): async.Operation<types.GetAccountConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccountConfiguration, input, options) as async.Operation<types.GetAccountConfigurationOutput>
+function C:getAccountConfiguration(input: types.GetAccountConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccountConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccountConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetAccountConfigurationOutput>
 end
 
-function C:getFindings(input: types.GetFindingsInput, options: any): async.Operation<types.GetFindingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFindings, input, options) as async.Operation<types.GetFindingsOutput>
+function C:getFindings(input: types.GetFindingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetFindingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFindings as schema.OperationSchema, input, options) as async.Operation<types.GetFindingsOutput>
 end
 
-function C:getMetricsSummary(input: types.GetMetricsSummaryInput, options: any): async.Operation<types.GetMetricsSummaryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMetricsSummary, input, options) as async.Operation<types.GetMetricsSummaryOutput>
+function C:getMetricsSummary(input: types.GetMetricsSummaryInput, options?: base_client.InvokeOptions): async.Operation<types.GetMetricsSummaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMetricsSummary as schema.OperationSchema, input, options) as async.Operation<types.GetMetricsSummaryOutput>
 end
 
-function C:getScan(input: types.GetScanInput, options: any): async.Operation<types.GetScanOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetScan, input, options) as async.Operation<types.GetScanOutput>
+function C:getScan(input: types.GetScanInput, options?: base_client.InvokeOptions): async.Operation<types.GetScanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetScan as schema.OperationSchema, input, options) as async.Operation<types.GetScanOutput>
 end
 
-function C:listFindingsMetrics(input: types.ListFindingsMetricsInput, options: any): async.Operation<types.ListFindingsMetricsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFindingsMetrics, input, options) as async.Operation<types.ListFindingsMetricsOutput>
+function C:listFindingsMetrics(input: types.ListFindingsMetricsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFindingsMetricsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFindingsMetrics as schema.OperationSchema, input, options) as async.Operation<types.ListFindingsMetricsOutput>
 end
 
-function C:listScans(input: types.ListScansInput, options: any): async.Operation<types.ListScansOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListScans, input, options) as async.Operation<types.ListScansOutput>
+function C:listScans(input: types.ListScansInput, options?: base_client.InvokeOptions): async.Operation<types.ListScansOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListScans as schema.OperationSchema, input, options) as async.Operation<types.ListScansOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAccountConfiguration(input: types.UpdateAccountConfigurationInput, options: any): async.Operation<types.UpdateAccountConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAccountConfiguration, input, options) as async.Operation<types.UpdateAccountConfigurationOutput>
+function C:updateAccountConfiguration(input: types.UpdateAccountConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAccountConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAccountConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateAccountConfigurationOutput>
 end
 
 return M

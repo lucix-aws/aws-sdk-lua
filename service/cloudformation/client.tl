@@ -8,129 +8,132 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("cloudformation.endpoint_rules")
 local query_protocol = require("smithy.protocol.awsquery")
+local schema = require("smithy.schema")
 local schemas = require("cloudformation.schemas")
 local traits = require("smithy.traits")
 local types = require("cloudformation.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    activateOrganizationsAccess: function(Client, types.ActivateOrganizationsAccessInput, any): async.Operation<types.ActivateOrganizationsAccessOutput>
-    activateType: function(Client, types.ActivateTypeInput, any): async.Operation<types.ActivateTypeOutput>
-    batchDescribeTypeConfigurations: function(Client, types.BatchDescribeTypeConfigurationsInput, any): async.Operation<types.BatchDescribeTypeConfigurationsOutput>
-    cancelUpdateStack: function(Client, types.CancelUpdateStackInput, any): async.Operation<types.CancelUpdateStackOutput>
-    continueUpdateRollback: function(Client, types.ContinueUpdateRollbackInput, any): async.Operation<types.ContinueUpdateRollbackOutput>
-    createChangeSet: function(Client, types.CreateChangeSetInput, any): async.Operation<types.CreateChangeSetOutput>
-    createGeneratedTemplate: function(Client, types.CreateGeneratedTemplateInput, any): async.Operation<types.CreateGeneratedTemplateOutput>
-    createStack: function(Client, types.CreateStackInput, any): async.Operation<types.CreateStackOutput>
-    createStackInstances: function(Client, types.CreateStackInstancesInput, any): async.Operation<types.CreateStackInstancesOutput>
-    createStackRefactor: function(Client, types.CreateStackRefactorInput, any): async.Operation<types.CreateStackRefactorOutput>
-    createStackSet: function(Client, types.CreateStackSetInput, any): async.Operation<types.CreateStackSetOutput>
-    deactivateOrganizationsAccess: function(Client, types.DeactivateOrganizationsAccessInput, any): async.Operation<types.DeactivateOrganizationsAccessOutput>
-    deactivateType: function(Client, types.DeactivateTypeInput, any): async.Operation<types.DeactivateTypeOutput>
-    deleteChangeSet: function(Client, types.DeleteChangeSetInput, any): async.Operation<types.DeleteChangeSetOutput>
-    deleteGeneratedTemplate: function(Client, types.DeleteGeneratedTemplateInput, any): async.Operation<types.DeleteGeneratedTemplateOutput>
-    deleteStack: function(Client, types.DeleteStackInput, any): async.Operation<types.DeleteStackOutput>
-    deleteStackInstances: function(Client, types.DeleteStackInstancesInput, any): async.Operation<types.DeleteStackInstancesOutput>
-    deleteStackSet: function(Client, types.DeleteStackSetInput, any): async.Operation<types.DeleteStackSetOutput>
-    deregisterType: function(Client, types.DeregisterTypeInput, any): async.Operation<types.DeregisterTypeOutput>
-    describeAccountLimits: function(Client, types.DescribeAccountLimitsInput, any): async.Operation<types.DescribeAccountLimitsOutput>
-    describeChangeSet: function(Client, types.DescribeChangeSetInput, any): async.Operation<types.DescribeChangeSetOutput>
-    describeChangeSetHooks: function(Client, types.DescribeChangeSetHooksInput, any): async.Operation<types.DescribeChangeSetHooksOutput>
-    describeEvents: function(Client, types.DescribeEventsInput, any): async.Operation<types.DescribeEventsOutput>
-    describeGeneratedTemplate: function(Client, types.DescribeGeneratedTemplateInput, any): async.Operation<types.DescribeGeneratedTemplateOutput>
-    describeOrganizationsAccess: function(Client, types.DescribeOrganizationsAccessInput, any): async.Operation<types.DescribeOrganizationsAccessOutput>
-    describePublisher: function(Client, types.DescribePublisherInput, any): async.Operation<types.DescribePublisherOutput>
-    describeResourceScan: function(Client, types.DescribeResourceScanInput, any): async.Operation<types.DescribeResourceScanOutput>
-    describeStackDriftDetectionStatus: function(Client, types.DescribeStackDriftDetectionStatusInput, any): async.Operation<types.DescribeStackDriftDetectionStatusOutput>
-    describeStackEvents: function(Client, types.DescribeStackEventsInput, any): async.Operation<types.DescribeStackEventsOutput>
-    describeStackInstance: function(Client, types.DescribeStackInstanceInput, any): async.Operation<types.DescribeStackInstanceOutput>
-    describeStackRefactor: function(Client, types.DescribeStackRefactorInput, any): async.Operation<types.DescribeStackRefactorOutput>
-    describeStackResource: function(Client, types.DescribeStackResourceInput, any): async.Operation<types.DescribeStackResourceOutput>
-    describeStackResourceDrifts: function(Client, types.DescribeStackResourceDriftsInput, any): async.Operation<types.DescribeStackResourceDriftsOutput>
-    describeStackResources: function(Client, types.DescribeStackResourcesInput, any): async.Operation<types.DescribeStackResourcesOutput>
-    describeStacks: function(Client, types.DescribeStacksInput, any): async.Operation<types.DescribeStacksOutput>
-    describeStackSet: function(Client, types.DescribeStackSetInput, any): async.Operation<types.DescribeStackSetOutput>
-    describeStackSetOperation: function(Client, types.DescribeStackSetOperationInput, any): async.Operation<types.DescribeStackSetOperationOutput>
-    describeType: function(Client, types.DescribeTypeInput, any): async.Operation<types.DescribeTypeOutput>
-    describeTypeRegistration: function(Client, types.DescribeTypeRegistrationInput, any): async.Operation<types.DescribeTypeRegistrationOutput>
-    detectStackDrift: function(Client, types.DetectStackDriftInput, any): async.Operation<types.DetectStackDriftOutput>
-    detectStackResourceDrift: function(Client, types.DetectStackResourceDriftInput, any): async.Operation<types.DetectStackResourceDriftOutput>
-    detectStackSetDrift: function(Client, types.DetectStackSetDriftInput, any): async.Operation<types.DetectStackSetDriftOutput>
-    estimateTemplateCost: function(Client, types.EstimateTemplateCostInput, any): async.Operation<types.EstimateTemplateCostOutput>
-    executeChangeSet: function(Client, types.ExecuteChangeSetInput, any): async.Operation<types.ExecuteChangeSetOutput>
-    executeStackRefactor: function(Client, types.ExecuteStackRefactorInput, any): async.Operation<types.ExecuteStackRefactorOutput>
-    getGeneratedTemplate: function(Client, types.GetGeneratedTemplateInput, any): async.Operation<types.GetGeneratedTemplateOutput>
-    getHookResult: function(Client, types.GetHookResultInput, any): async.Operation<types.GetHookResultOutput>
-    getStackPolicy: function(Client, types.GetStackPolicyInput, any): async.Operation<types.GetStackPolicyOutput>
-    getTemplate: function(Client, types.GetTemplateInput, any): async.Operation<types.GetTemplateOutput>
-    getTemplateSummary: function(Client, types.GetTemplateSummaryInput, any): async.Operation<types.GetTemplateSummaryOutput>
-    importStacksToStackSet: function(Client, types.ImportStacksToStackSetInput, any): async.Operation<types.ImportStacksToStackSetOutput>
-    listChangeSets: function(Client, types.ListChangeSetsInput, any): async.Operation<types.ListChangeSetsOutput>
-    listExports: function(Client, types.ListExportsInput, any): async.Operation<types.ListExportsOutput>
-    listGeneratedTemplates: function(Client, types.ListGeneratedTemplatesInput, any): async.Operation<types.ListGeneratedTemplatesOutput>
-    listHookResults: function(Client, types.ListHookResultsInput, any): async.Operation<types.ListHookResultsOutput>
-    listImports: function(Client, types.ListImportsInput, any): async.Operation<types.ListImportsOutput>
-    listResourceScanRelatedResources: function(Client, types.ListResourceScanRelatedResourcesInput, any): async.Operation<types.ListResourceScanRelatedResourcesOutput>
-    listResourceScanResources: function(Client, types.ListResourceScanResourcesInput, any): async.Operation<types.ListResourceScanResourcesOutput>
-    listResourceScans: function(Client, types.ListResourceScansInput, any): async.Operation<types.ListResourceScansOutput>
-    listStackInstanceResourceDrifts: function(Client, types.ListStackInstanceResourceDriftsInput, any): async.Operation<types.ListStackInstanceResourceDriftsOutput>
-    listStackInstances: function(Client, types.ListStackInstancesInput, any): async.Operation<types.ListStackInstancesOutput>
-    listStackRefactorActions: function(Client, types.ListStackRefactorActionsInput, any): async.Operation<types.ListStackRefactorActionsOutput>
-    listStackRefactors: function(Client, types.ListStackRefactorsInput, any): async.Operation<types.ListStackRefactorsOutput>
-    listStackResources: function(Client, types.ListStackResourcesInput, any): async.Operation<types.ListStackResourcesOutput>
-    listStacks: function(Client, types.ListStacksInput, any): async.Operation<types.ListStacksOutput>
-    listStackSetAutoDeploymentTargets: function(Client, types.ListStackSetAutoDeploymentTargetsInput, any): async.Operation<types.ListStackSetAutoDeploymentTargetsOutput>
-    listStackSetOperationResults: function(Client, types.ListStackSetOperationResultsInput, any): async.Operation<types.ListStackSetOperationResultsOutput>
-    listStackSetOperations: function(Client, types.ListStackSetOperationsInput, any): async.Operation<types.ListStackSetOperationsOutput>
-    listStackSets: function(Client, types.ListStackSetsInput, any): async.Operation<types.ListStackSetsOutput>
-    listTypeRegistrations: function(Client, types.ListTypeRegistrationsInput, any): async.Operation<types.ListTypeRegistrationsOutput>
-    listTypes: function(Client, types.ListTypesInput, any): async.Operation<types.ListTypesOutput>
-    listTypeVersions: function(Client, types.ListTypeVersionsInput, any): async.Operation<types.ListTypeVersionsOutput>
-    publishType: function(Client, types.PublishTypeInput, any): async.Operation<types.PublishTypeOutput>
-    recordHandlerProgress: function(Client, types.RecordHandlerProgressInput, any): async.Operation<types.RecordHandlerProgressOutput>
-    registerPublisher: function(Client, types.RegisterPublisherInput, any): async.Operation<types.RegisterPublisherOutput>
-    registerType: function(Client, types.RegisterTypeInput, any): async.Operation<types.RegisterTypeOutput>
-    rollbackStack: function(Client, types.RollbackStackInput, any): async.Operation<types.RollbackStackOutput>
-    setStackPolicy: function(Client, types.SetStackPolicyInput, any): async.Operation<types.SetStackPolicyOutput>
-    setTypeConfiguration: function(Client, types.SetTypeConfigurationInput, any): async.Operation<types.SetTypeConfigurationOutput>
-    setTypeDefaultVersion: function(Client, types.SetTypeDefaultVersionInput, any): async.Operation<types.SetTypeDefaultVersionOutput>
-    signalResource: function(Client, types.SignalResourceInput, any): async.Operation<types.SignalResourceOutput>
-    startResourceScan: function(Client, types.StartResourceScanInput, any): async.Operation<types.StartResourceScanOutput>
-    stopStackSetOperation: function(Client, types.StopStackSetOperationInput, any): async.Operation<types.StopStackSetOperationOutput>
-    testType: function(Client, types.TestTypeInput, any): async.Operation<types.TestTypeOutput>
-    updateGeneratedTemplate: function(Client, types.UpdateGeneratedTemplateInput, any): async.Operation<types.UpdateGeneratedTemplateOutput>
-    updateStack: function(Client, types.UpdateStackInput, any): async.Operation<types.UpdateStackOutput>
-    updateStackInstances: function(Client, types.UpdateStackInstancesInput, any): async.Operation<types.UpdateStackInstancesOutput>
-    updateStackSet: function(Client, types.UpdateStackSetInput, any): async.Operation<types.UpdateStackSetOutput>
-    updateTerminationProtection: function(Client, types.UpdateTerminationProtectionInput, any): async.Operation<types.UpdateTerminationProtectionOutput>
-    validateTemplate: function(Client, types.ValidateTemplateInput, any): async.Operation<types.ValidateTemplateOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    activateOrganizationsAccess: function(Client, types.ActivateOrganizationsAccessInput, ? base_client.InvokeOptions): async.Operation<types.ActivateOrganizationsAccessOutput>
+    activateType: function(Client, types.ActivateTypeInput, ? base_client.InvokeOptions): async.Operation<types.ActivateTypeOutput>
+    batchDescribeTypeConfigurations: function(Client, types.BatchDescribeTypeConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.BatchDescribeTypeConfigurationsOutput>
+    cancelUpdateStack: function(Client, types.CancelUpdateStackInput, ? base_client.InvokeOptions): async.Operation<types.CancelUpdateStackOutput>
+    continueUpdateRollback: function(Client, types.ContinueUpdateRollbackInput, ? base_client.InvokeOptions): async.Operation<types.ContinueUpdateRollbackOutput>
+    createChangeSet: function(Client, types.CreateChangeSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateChangeSetOutput>
+    createGeneratedTemplate: function(Client, types.CreateGeneratedTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateGeneratedTemplateOutput>
+    createStack: function(Client, types.CreateStackInput, ? base_client.InvokeOptions): async.Operation<types.CreateStackOutput>
+    createStackInstances: function(Client, types.CreateStackInstancesInput, ? base_client.InvokeOptions): async.Operation<types.CreateStackInstancesOutput>
+    createStackRefactor: function(Client, types.CreateStackRefactorInput, ? base_client.InvokeOptions): async.Operation<types.CreateStackRefactorOutput>
+    createStackSet: function(Client, types.CreateStackSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateStackSetOutput>
+    deactivateOrganizationsAccess: function(Client, types.DeactivateOrganizationsAccessInput, ? base_client.InvokeOptions): async.Operation<types.DeactivateOrganizationsAccessOutput>
+    deactivateType: function(Client, types.DeactivateTypeInput, ? base_client.InvokeOptions): async.Operation<types.DeactivateTypeOutput>
+    deleteChangeSet: function(Client, types.DeleteChangeSetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteChangeSetOutput>
+    deleteGeneratedTemplate: function(Client, types.DeleteGeneratedTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGeneratedTemplateOutput>
+    deleteStack: function(Client, types.DeleteStackInput, ? base_client.InvokeOptions): async.Operation<types.DeleteStackOutput>
+    deleteStackInstances: function(Client, types.DeleteStackInstancesInput, ? base_client.InvokeOptions): async.Operation<types.DeleteStackInstancesOutput>
+    deleteStackSet: function(Client, types.DeleteStackSetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteStackSetOutput>
+    deregisterType: function(Client, types.DeregisterTypeInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterTypeOutput>
+    describeAccountLimits: function(Client, types.DescribeAccountLimitsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAccountLimitsOutput>
+    describeChangeSet: function(Client, types.DescribeChangeSetInput, ? base_client.InvokeOptions): async.Operation<types.DescribeChangeSetOutput>
+    describeChangeSetHooks: function(Client, types.DescribeChangeSetHooksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeChangeSetHooksOutput>
+    describeEvents: function(Client, types.DescribeEventsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEventsOutput>
+    describeGeneratedTemplate: function(Client, types.DescribeGeneratedTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DescribeGeneratedTemplateOutput>
+    describeOrganizationsAccess: function(Client, types.DescribeOrganizationsAccessInput, ? base_client.InvokeOptions): async.Operation<types.DescribeOrganizationsAccessOutput>
+    describePublisher: function(Client, types.DescribePublisherInput, ? base_client.InvokeOptions): async.Operation<types.DescribePublisherOutput>
+    describeResourceScan: function(Client, types.DescribeResourceScanInput, ? base_client.InvokeOptions): async.Operation<types.DescribeResourceScanOutput>
+    describeStackDriftDetectionStatus: function(Client, types.DescribeStackDriftDetectionStatusInput, ? base_client.InvokeOptions): async.Operation<types.DescribeStackDriftDetectionStatusOutput>
+    describeStackEvents: function(Client, types.DescribeStackEventsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeStackEventsOutput>
+    describeStackInstance: function(Client, types.DescribeStackInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeStackInstanceOutput>
+    describeStackRefactor: function(Client, types.DescribeStackRefactorInput, ? base_client.InvokeOptions): async.Operation<types.DescribeStackRefactorOutput>
+    describeStackResource: function(Client, types.DescribeStackResourceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeStackResourceOutput>
+    describeStackResourceDrifts: function(Client, types.DescribeStackResourceDriftsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeStackResourceDriftsOutput>
+    describeStackResources: function(Client, types.DescribeStackResourcesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeStackResourcesOutput>
+    describeStacks: function(Client, types.DescribeStacksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeStacksOutput>
+    describeStackSet: function(Client, types.DescribeStackSetInput, ? base_client.InvokeOptions): async.Operation<types.DescribeStackSetOutput>
+    describeStackSetOperation: function(Client, types.DescribeStackSetOperationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeStackSetOperationOutput>
+    describeType: function(Client, types.DescribeTypeInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTypeOutput>
+    describeTypeRegistration: function(Client, types.DescribeTypeRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTypeRegistrationOutput>
+    detectStackDrift: function(Client, types.DetectStackDriftInput, ? base_client.InvokeOptions): async.Operation<types.DetectStackDriftOutput>
+    detectStackResourceDrift: function(Client, types.DetectStackResourceDriftInput, ? base_client.InvokeOptions): async.Operation<types.DetectStackResourceDriftOutput>
+    detectStackSetDrift: function(Client, types.DetectStackSetDriftInput, ? base_client.InvokeOptions): async.Operation<types.DetectStackSetDriftOutput>
+    estimateTemplateCost: function(Client, types.EstimateTemplateCostInput, ? base_client.InvokeOptions): async.Operation<types.EstimateTemplateCostOutput>
+    executeChangeSet: function(Client, types.ExecuteChangeSetInput, ? base_client.InvokeOptions): async.Operation<types.ExecuteChangeSetOutput>
+    executeStackRefactor: function(Client, types.ExecuteStackRefactorInput, ? base_client.InvokeOptions): async.Operation<types.ExecuteStackRefactorOutput>
+    getGeneratedTemplate: function(Client, types.GetGeneratedTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetGeneratedTemplateOutput>
+    getHookResult: function(Client, types.GetHookResultInput, ? base_client.InvokeOptions): async.Operation<types.GetHookResultOutput>
+    getStackPolicy: function(Client, types.GetStackPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetStackPolicyOutput>
+    getTemplate: function(Client, types.GetTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetTemplateOutput>
+    getTemplateSummary: function(Client, types.GetTemplateSummaryInput, ? base_client.InvokeOptions): async.Operation<types.GetTemplateSummaryOutput>
+    importStacksToStackSet: function(Client, types.ImportStacksToStackSetInput, ? base_client.InvokeOptions): async.Operation<types.ImportStacksToStackSetOutput>
+    listChangeSets: function(Client, types.ListChangeSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListChangeSetsOutput>
+    listExports: function(Client, types.ListExportsInput, ? base_client.InvokeOptions): async.Operation<types.ListExportsOutput>
+    listGeneratedTemplates: function(Client, types.ListGeneratedTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListGeneratedTemplatesOutput>
+    listHookResults: function(Client, types.ListHookResultsInput, ? base_client.InvokeOptions): async.Operation<types.ListHookResultsOutput>
+    listImports: function(Client, types.ListImportsInput, ? base_client.InvokeOptions): async.Operation<types.ListImportsOutput>
+    listResourceScanRelatedResources: function(Client, types.ListResourceScanRelatedResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceScanRelatedResourcesOutput>
+    listResourceScanResources: function(Client, types.ListResourceScanResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceScanResourcesOutput>
+    listResourceScans: function(Client, types.ListResourceScansInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceScansOutput>
+    listStackInstanceResourceDrifts: function(Client, types.ListStackInstanceResourceDriftsInput, ? base_client.InvokeOptions): async.Operation<types.ListStackInstanceResourceDriftsOutput>
+    listStackInstances: function(Client, types.ListStackInstancesInput, ? base_client.InvokeOptions): async.Operation<types.ListStackInstancesOutput>
+    listStackRefactorActions: function(Client, types.ListStackRefactorActionsInput, ? base_client.InvokeOptions): async.Operation<types.ListStackRefactorActionsOutput>
+    listStackRefactors: function(Client, types.ListStackRefactorsInput, ? base_client.InvokeOptions): async.Operation<types.ListStackRefactorsOutput>
+    listStackResources: function(Client, types.ListStackResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListStackResourcesOutput>
+    listStacks: function(Client, types.ListStacksInput, ? base_client.InvokeOptions): async.Operation<types.ListStacksOutput>
+    listStackSetAutoDeploymentTargets: function(Client, types.ListStackSetAutoDeploymentTargetsInput, ? base_client.InvokeOptions): async.Operation<types.ListStackSetAutoDeploymentTargetsOutput>
+    listStackSetOperationResults: function(Client, types.ListStackSetOperationResultsInput, ? base_client.InvokeOptions): async.Operation<types.ListStackSetOperationResultsOutput>
+    listStackSetOperations: function(Client, types.ListStackSetOperationsInput, ? base_client.InvokeOptions): async.Operation<types.ListStackSetOperationsOutput>
+    listStackSets: function(Client, types.ListStackSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListStackSetsOutput>
+    listTypeRegistrations: function(Client, types.ListTypeRegistrationsInput, ? base_client.InvokeOptions): async.Operation<types.ListTypeRegistrationsOutput>
+    listTypes: function(Client, types.ListTypesInput, ? base_client.InvokeOptions): async.Operation<types.ListTypesOutput>
+    listTypeVersions: function(Client, types.ListTypeVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListTypeVersionsOutput>
+    publishType: function(Client, types.PublishTypeInput, ? base_client.InvokeOptions): async.Operation<types.PublishTypeOutput>
+    recordHandlerProgress: function(Client, types.RecordHandlerProgressInput, ? base_client.InvokeOptions): async.Operation<types.RecordHandlerProgressOutput>
+    registerPublisher: function(Client, types.RegisterPublisherInput, ? base_client.InvokeOptions): async.Operation<types.RegisterPublisherOutput>
+    registerType: function(Client, types.RegisterTypeInput, ? base_client.InvokeOptions): async.Operation<types.RegisterTypeOutput>
+    rollbackStack: function(Client, types.RollbackStackInput, ? base_client.InvokeOptions): async.Operation<types.RollbackStackOutput>
+    setStackPolicy: function(Client, types.SetStackPolicyInput, ? base_client.InvokeOptions): async.Operation<types.SetStackPolicyOutput>
+    setTypeConfiguration: function(Client, types.SetTypeConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.SetTypeConfigurationOutput>
+    setTypeDefaultVersion: function(Client, types.SetTypeDefaultVersionInput, ? base_client.InvokeOptions): async.Operation<types.SetTypeDefaultVersionOutput>
+    signalResource: function(Client, types.SignalResourceInput, ? base_client.InvokeOptions): async.Operation<types.SignalResourceOutput>
+    startResourceScan: function(Client, types.StartResourceScanInput, ? base_client.InvokeOptions): async.Operation<types.StartResourceScanOutput>
+    stopStackSetOperation: function(Client, types.StopStackSetOperationInput, ? base_client.InvokeOptions): async.Operation<types.StopStackSetOperationOutput>
+    testType: function(Client, types.TestTypeInput, ? base_client.InvokeOptions): async.Operation<types.TestTypeOutput>
+    updateGeneratedTemplate: function(Client, types.UpdateGeneratedTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGeneratedTemplateOutput>
+    updateStack: function(Client, types.UpdateStackInput, ? base_client.InvokeOptions): async.Operation<types.UpdateStackOutput>
+    updateStackInstances: function(Client, types.UpdateStackInstancesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateStackInstancesOutput>
+    updateStackSet: function(Client, types.UpdateStackSetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateStackSetOutput>
+    updateTerminationProtection: function(Client, types.UpdateTerminationProtectionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTerminationProtectionOutput>
+    validateTemplate: function(Client, types.ValidateTemplateInput, ? base_client.InvokeOptions): async.Operation<types.ValidateTemplateOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "CloudFormation"
-    if not c.protocol then c.protocol = query_protocol.new("awsQuery") end
+    if not c.protocol then c.protocol = query_protocol.new("awsQuery") as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "cloudformation", signing_region = c.region } }
                 else
@@ -149,364 +152,364 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:activateOrganizationsAccess(input: types.ActivateOrganizationsAccessInput, options: any): async.Operation<types.ActivateOrganizationsAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.ActivateOrganizationsAccess, input, options) as async.Operation<types.ActivateOrganizationsAccessOutput>
+function C:activateOrganizationsAccess(input: types.ActivateOrganizationsAccessInput, options?: base_client.InvokeOptions): async.Operation<types.ActivateOrganizationsAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ActivateOrganizationsAccess as schema.OperationSchema, input, options) as async.Operation<types.ActivateOrganizationsAccessOutput>
 end
 
-function C:activateType(input: types.ActivateTypeInput, options: any): async.Operation<types.ActivateTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.ActivateType, input, options) as async.Operation<types.ActivateTypeOutput>
+function C:activateType(input: types.ActivateTypeInput, options?: base_client.InvokeOptions): async.Operation<types.ActivateTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ActivateType as schema.OperationSchema, input, options) as async.Operation<types.ActivateTypeOutput>
 end
 
-function C:batchDescribeTypeConfigurations(input: types.BatchDescribeTypeConfigurationsInput, options: any): async.Operation<types.BatchDescribeTypeConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDescribeTypeConfigurations, input, options) as async.Operation<types.BatchDescribeTypeConfigurationsOutput>
+function C:batchDescribeTypeConfigurations(input: types.BatchDescribeTypeConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDescribeTypeConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDescribeTypeConfigurations as schema.OperationSchema, input, options) as async.Operation<types.BatchDescribeTypeConfigurationsOutput>
 end
 
-function C:cancelUpdateStack(input: types.CancelUpdateStackInput, options: any): async.Operation<types.CancelUpdateStackOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelUpdateStack, input, options) as async.Operation<types.CancelUpdateStackOutput>
+function C:cancelUpdateStack(input: types.CancelUpdateStackInput, options?: base_client.InvokeOptions): async.Operation<types.CancelUpdateStackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelUpdateStack as schema.OperationSchema, input, options) as async.Operation<types.CancelUpdateStackOutput>
 end
 
-function C:continueUpdateRollback(input: types.ContinueUpdateRollbackInput, options: any): async.Operation<types.ContinueUpdateRollbackOutput>
-    return self:invokeOperation(schemas.Service, schemas.ContinueUpdateRollback, input, options) as async.Operation<types.ContinueUpdateRollbackOutput>
+function C:continueUpdateRollback(input: types.ContinueUpdateRollbackInput, options?: base_client.InvokeOptions): async.Operation<types.ContinueUpdateRollbackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ContinueUpdateRollback as schema.OperationSchema, input, options) as async.Operation<types.ContinueUpdateRollbackOutput>
 end
 
-function C:createChangeSet(input: types.CreateChangeSetInput, options: any): async.Operation<types.CreateChangeSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateChangeSet, input, options) as async.Operation<types.CreateChangeSetOutput>
+function C:createChangeSet(input: types.CreateChangeSetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateChangeSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateChangeSet as schema.OperationSchema, input, options) as async.Operation<types.CreateChangeSetOutput>
 end
 
-function C:createGeneratedTemplate(input: types.CreateGeneratedTemplateInput, options: any): async.Operation<types.CreateGeneratedTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateGeneratedTemplate, input, options) as async.Operation<types.CreateGeneratedTemplateOutput>
+function C:createGeneratedTemplate(input: types.CreateGeneratedTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGeneratedTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGeneratedTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateGeneratedTemplateOutput>
 end
 
-function C:createStack(input: types.CreateStackInput, options: any): async.Operation<types.CreateStackOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateStack, input, options) as async.Operation<types.CreateStackOutput>
+function C:createStack(input: types.CreateStackInput, options?: base_client.InvokeOptions): async.Operation<types.CreateStackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateStack as schema.OperationSchema, input, options) as async.Operation<types.CreateStackOutput>
 end
 
-function C:createStackInstances(input: types.CreateStackInstancesInput, options: any): async.Operation<types.CreateStackInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateStackInstances, input, options) as async.Operation<types.CreateStackInstancesOutput>
+function C:createStackInstances(input: types.CreateStackInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.CreateStackInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateStackInstances as schema.OperationSchema, input, options) as async.Operation<types.CreateStackInstancesOutput>
 end
 
-function C:createStackRefactor(input: types.CreateStackRefactorInput, options: any): async.Operation<types.CreateStackRefactorOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateStackRefactor, input, options) as async.Operation<types.CreateStackRefactorOutput>
+function C:createStackRefactor(input: types.CreateStackRefactorInput, options?: base_client.InvokeOptions): async.Operation<types.CreateStackRefactorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateStackRefactor as schema.OperationSchema, input, options) as async.Operation<types.CreateStackRefactorOutput>
 end
 
-function C:createStackSet(input: types.CreateStackSetInput, options: any): async.Operation<types.CreateStackSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateStackSet, input, options) as async.Operation<types.CreateStackSetOutput>
+function C:createStackSet(input: types.CreateStackSetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateStackSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateStackSet as schema.OperationSchema, input, options) as async.Operation<types.CreateStackSetOutput>
 end
 
-function C:deactivateOrganizationsAccess(input: types.DeactivateOrganizationsAccessInput, options: any): async.Operation<types.DeactivateOrganizationsAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeactivateOrganizationsAccess, input, options) as async.Operation<types.DeactivateOrganizationsAccessOutput>
+function C:deactivateOrganizationsAccess(input: types.DeactivateOrganizationsAccessInput, options?: base_client.InvokeOptions): async.Operation<types.DeactivateOrganizationsAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeactivateOrganizationsAccess as schema.OperationSchema, input, options) as async.Operation<types.DeactivateOrganizationsAccessOutput>
 end
 
-function C:deactivateType(input: types.DeactivateTypeInput, options: any): async.Operation<types.DeactivateTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeactivateType, input, options) as async.Operation<types.DeactivateTypeOutput>
+function C:deactivateType(input: types.DeactivateTypeInput, options?: base_client.InvokeOptions): async.Operation<types.DeactivateTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeactivateType as schema.OperationSchema, input, options) as async.Operation<types.DeactivateTypeOutput>
 end
 
-function C:deleteChangeSet(input: types.DeleteChangeSetInput, options: any): async.Operation<types.DeleteChangeSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteChangeSet, input, options) as async.Operation<types.DeleteChangeSetOutput>
+function C:deleteChangeSet(input: types.DeleteChangeSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteChangeSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteChangeSet as schema.OperationSchema, input, options) as async.Operation<types.DeleteChangeSetOutput>
 end
 
-function C:deleteGeneratedTemplate(input: types.DeleteGeneratedTemplateInput, options: any): async.Operation<types.DeleteGeneratedTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteGeneratedTemplate, input, options) as async.Operation<types.DeleteGeneratedTemplateOutput>
+function C:deleteGeneratedTemplate(input: types.DeleteGeneratedTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGeneratedTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGeneratedTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteGeneratedTemplateOutput>
 end
 
-function C:deleteStack(input: types.DeleteStackInput, options: any): async.Operation<types.DeleteStackOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteStack, input, options) as async.Operation<types.DeleteStackOutput>
+function C:deleteStack(input: types.DeleteStackInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteStackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteStack as schema.OperationSchema, input, options) as async.Operation<types.DeleteStackOutput>
 end
 
-function C:deleteStackInstances(input: types.DeleteStackInstancesInput, options: any): async.Operation<types.DeleteStackInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteStackInstances, input, options) as async.Operation<types.DeleteStackInstancesOutput>
+function C:deleteStackInstances(input: types.DeleteStackInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteStackInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteStackInstances as schema.OperationSchema, input, options) as async.Operation<types.DeleteStackInstancesOutput>
 end
 
-function C:deleteStackSet(input: types.DeleteStackSetInput, options: any): async.Operation<types.DeleteStackSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteStackSet, input, options) as async.Operation<types.DeleteStackSetOutput>
+function C:deleteStackSet(input: types.DeleteStackSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteStackSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteStackSet as schema.OperationSchema, input, options) as async.Operation<types.DeleteStackSetOutput>
 end
 
-function C:deregisterType(input: types.DeregisterTypeInput, options: any): async.Operation<types.DeregisterTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterType, input, options) as async.Operation<types.DeregisterTypeOutput>
+function C:deregisterType(input: types.DeregisterTypeInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterType as schema.OperationSchema, input, options) as async.Operation<types.DeregisterTypeOutput>
 end
 
-function C:describeAccountLimits(input: types.DescribeAccountLimitsInput, options: any): async.Operation<types.DescribeAccountLimitsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAccountLimits, input, options) as async.Operation<types.DescribeAccountLimitsOutput>
+function C:describeAccountLimits(input: types.DescribeAccountLimitsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAccountLimitsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAccountLimits as schema.OperationSchema, input, options) as async.Operation<types.DescribeAccountLimitsOutput>
 end
 
-function C:describeChangeSet(input: types.DescribeChangeSetInput, options: any): async.Operation<types.DescribeChangeSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeChangeSet, input, options) as async.Operation<types.DescribeChangeSetOutput>
+function C:describeChangeSet(input: types.DescribeChangeSetInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeChangeSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeChangeSet as schema.OperationSchema, input, options) as async.Operation<types.DescribeChangeSetOutput>
 end
 
-function C:describeChangeSetHooks(input: types.DescribeChangeSetHooksInput, options: any): async.Operation<types.DescribeChangeSetHooksOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeChangeSetHooks, input, options) as async.Operation<types.DescribeChangeSetHooksOutput>
+function C:describeChangeSetHooks(input: types.DescribeChangeSetHooksInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeChangeSetHooksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeChangeSetHooks as schema.OperationSchema, input, options) as async.Operation<types.DescribeChangeSetHooksOutput>
 end
 
-function C:describeEvents(input: types.DescribeEventsInput, options: any): async.Operation<types.DescribeEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEvents, input, options) as async.Operation<types.DescribeEventsOutput>
+function C:describeEvents(input: types.DescribeEventsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEvents as schema.OperationSchema, input, options) as async.Operation<types.DescribeEventsOutput>
 end
 
-function C:describeGeneratedTemplate(input: types.DescribeGeneratedTemplateInput, options: any): async.Operation<types.DescribeGeneratedTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeGeneratedTemplate, input, options) as async.Operation<types.DescribeGeneratedTemplateOutput>
+function C:describeGeneratedTemplate(input: types.DescribeGeneratedTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeGeneratedTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeGeneratedTemplate as schema.OperationSchema, input, options) as async.Operation<types.DescribeGeneratedTemplateOutput>
 end
 
-function C:describeOrganizationsAccess(input: types.DescribeOrganizationsAccessInput, options: any): async.Operation<types.DescribeOrganizationsAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeOrganizationsAccess, input, options) as async.Operation<types.DescribeOrganizationsAccessOutput>
+function C:describeOrganizationsAccess(input: types.DescribeOrganizationsAccessInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeOrganizationsAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeOrganizationsAccess as schema.OperationSchema, input, options) as async.Operation<types.DescribeOrganizationsAccessOutput>
 end
 
-function C:describePublisher(input: types.DescribePublisherInput, options: any): async.Operation<types.DescribePublisherOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePublisher, input, options) as async.Operation<types.DescribePublisherOutput>
+function C:describePublisher(input: types.DescribePublisherInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePublisherOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePublisher as schema.OperationSchema, input, options) as async.Operation<types.DescribePublisherOutput>
 end
 
-function C:describeResourceScan(input: types.DescribeResourceScanInput, options: any): async.Operation<types.DescribeResourceScanOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeResourceScan, input, options) as async.Operation<types.DescribeResourceScanOutput>
+function C:describeResourceScan(input: types.DescribeResourceScanInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeResourceScanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeResourceScan as schema.OperationSchema, input, options) as async.Operation<types.DescribeResourceScanOutput>
 end
 
-function C:describeStackDriftDetectionStatus(input: types.DescribeStackDriftDetectionStatusInput, options: any): async.Operation<types.DescribeStackDriftDetectionStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeStackDriftDetectionStatus, input, options) as async.Operation<types.DescribeStackDriftDetectionStatusOutput>
+function C:describeStackDriftDetectionStatus(input: types.DescribeStackDriftDetectionStatusInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeStackDriftDetectionStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeStackDriftDetectionStatus as schema.OperationSchema, input, options) as async.Operation<types.DescribeStackDriftDetectionStatusOutput>
 end
 
-function C:describeStackEvents(input: types.DescribeStackEventsInput, options: any): async.Operation<types.DescribeStackEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeStackEvents, input, options) as async.Operation<types.DescribeStackEventsOutput>
+function C:describeStackEvents(input: types.DescribeStackEventsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeStackEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeStackEvents as schema.OperationSchema, input, options) as async.Operation<types.DescribeStackEventsOutput>
 end
 
-function C:describeStackInstance(input: types.DescribeStackInstanceInput, options: any): async.Operation<types.DescribeStackInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeStackInstance, input, options) as async.Operation<types.DescribeStackInstanceOutput>
+function C:describeStackInstance(input: types.DescribeStackInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeStackInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeStackInstance as schema.OperationSchema, input, options) as async.Operation<types.DescribeStackInstanceOutput>
 end
 
-function C:describeStackRefactor(input: types.DescribeStackRefactorInput, options: any): async.Operation<types.DescribeStackRefactorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeStackRefactor, input, options) as async.Operation<types.DescribeStackRefactorOutput>
+function C:describeStackRefactor(input: types.DescribeStackRefactorInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeStackRefactorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeStackRefactor as schema.OperationSchema, input, options) as async.Operation<types.DescribeStackRefactorOutput>
 end
 
-function C:describeStackResource(input: types.DescribeStackResourceInput, options: any): async.Operation<types.DescribeStackResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeStackResource, input, options) as async.Operation<types.DescribeStackResourceOutput>
+function C:describeStackResource(input: types.DescribeStackResourceInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeStackResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeStackResource as schema.OperationSchema, input, options) as async.Operation<types.DescribeStackResourceOutput>
 end
 
-function C:describeStackResourceDrifts(input: types.DescribeStackResourceDriftsInput, options: any): async.Operation<types.DescribeStackResourceDriftsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeStackResourceDrifts, input, options) as async.Operation<types.DescribeStackResourceDriftsOutput>
+function C:describeStackResourceDrifts(input: types.DescribeStackResourceDriftsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeStackResourceDriftsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeStackResourceDrifts as schema.OperationSchema, input, options) as async.Operation<types.DescribeStackResourceDriftsOutput>
 end
 
-function C:describeStackResources(input: types.DescribeStackResourcesInput, options: any): async.Operation<types.DescribeStackResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeStackResources, input, options) as async.Operation<types.DescribeStackResourcesOutput>
+function C:describeStackResources(input: types.DescribeStackResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeStackResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeStackResources as schema.OperationSchema, input, options) as async.Operation<types.DescribeStackResourcesOutput>
 end
 
-function C:describeStacks(input: types.DescribeStacksInput, options: any): async.Operation<types.DescribeStacksOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeStacks, input, options) as async.Operation<types.DescribeStacksOutput>
+function C:describeStacks(input: types.DescribeStacksInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeStacksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeStacks as schema.OperationSchema, input, options) as async.Operation<types.DescribeStacksOutput>
 end
 
-function C:describeStackSet(input: types.DescribeStackSetInput, options: any): async.Operation<types.DescribeStackSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeStackSet, input, options) as async.Operation<types.DescribeStackSetOutput>
+function C:describeStackSet(input: types.DescribeStackSetInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeStackSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeStackSet as schema.OperationSchema, input, options) as async.Operation<types.DescribeStackSetOutput>
 end
 
-function C:describeStackSetOperation(input: types.DescribeStackSetOperationInput, options: any): async.Operation<types.DescribeStackSetOperationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeStackSetOperation, input, options) as async.Operation<types.DescribeStackSetOperationOutput>
+function C:describeStackSetOperation(input: types.DescribeStackSetOperationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeStackSetOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeStackSetOperation as schema.OperationSchema, input, options) as async.Operation<types.DescribeStackSetOperationOutput>
 end
 
-function C:describeType(input: types.DescribeTypeInput, options: any): async.Operation<types.DescribeTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeType, input, options) as async.Operation<types.DescribeTypeOutput>
+function C:describeType(input: types.DescribeTypeInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeType as schema.OperationSchema, input, options) as async.Operation<types.DescribeTypeOutput>
 end
 
-function C:describeTypeRegistration(input: types.DescribeTypeRegistrationInput, options: any): async.Operation<types.DescribeTypeRegistrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTypeRegistration, input, options) as async.Operation<types.DescribeTypeRegistrationOutput>
+function C:describeTypeRegistration(input: types.DescribeTypeRegistrationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTypeRegistrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTypeRegistration as schema.OperationSchema, input, options) as async.Operation<types.DescribeTypeRegistrationOutput>
 end
 
-function C:detectStackDrift(input: types.DetectStackDriftInput, options: any): async.Operation<types.DetectStackDriftOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetectStackDrift, input, options) as async.Operation<types.DetectStackDriftOutput>
+function C:detectStackDrift(input: types.DetectStackDriftInput, options?: base_client.InvokeOptions): async.Operation<types.DetectStackDriftOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetectStackDrift as schema.OperationSchema, input, options) as async.Operation<types.DetectStackDriftOutput>
 end
 
-function C:detectStackResourceDrift(input: types.DetectStackResourceDriftInput, options: any): async.Operation<types.DetectStackResourceDriftOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetectStackResourceDrift, input, options) as async.Operation<types.DetectStackResourceDriftOutput>
+function C:detectStackResourceDrift(input: types.DetectStackResourceDriftInput, options?: base_client.InvokeOptions): async.Operation<types.DetectStackResourceDriftOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetectStackResourceDrift as schema.OperationSchema, input, options) as async.Operation<types.DetectStackResourceDriftOutput>
 end
 
-function C:detectStackSetDrift(input: types.DetectStackSetDriftInput, options: any): async.Operation<types.DetectStackSetDriftOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetectStackSetDrift, input, options) as async.Operation<types.DetectStackSetDriftOutput>
+function C:detectStackSetDrift(input: types.DetectStackSetDriftInput, options?: base_client.InvokeOptions): async.Operation<types.DetectStackSetDriftOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetectStackSetDrift as schema.OperationSchema, input, options) as async.Operation<types.DetectStackSetDriftOutput>
 end
 
-function C:estimateTemplateCost(input: types.EstimateTemplateCostInput, options: any): async.Operation<types.EstimateTemplateCostOutput>
-    return self:invokeOperation(schemas.Service, schemas.EstimateTemplateCost, input, options) as async.Operation<types.EstimateTemplateCostOutput>
+function C:estimateTemplateCost(input: types.EstimateTemplateCostInput, options?: base_client.InvokeOptions): async.Operation<types.EstimateTemplateCostOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EstimateTemplateCost as schema.OperationSchema, input, options) as async.Operation<types.EstimateTemplateCostOutput>
 end
 
-function C:executeChangeSet(input: types.ExecuteChangeSetInput, options: any): async.Operation<types.ExecuteChangeSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExecuteChangeSet, input, options) as async.Operation<types.ExecuteChangeSetOutput>
+function C:executeChangeSet(input: types.ExecuteChangeSetInput, options?: base_client.InvokeOptions): async.Operation<types.ExecuteChangeSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExecuteChangeSet as schema.OperationSchema, input, options) as async.Operation<types.ExecuteChangeSetOutput>
 end
 
-function C:executeStackRefactor(input: types.ExecuteStackRefactorInput, options: any): async.Operation<types.ExecuteStackRefactorOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExecuteStackRefactor, input, options) as async.Operation<types.ExecuteStackRefactorOutput>
+function C:executeStackRefactor(input: types.ExecuteStackRefactorInput, options?: base_client.InvokeOptions): async.Operation<types.ExecuteStackRefactorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExecuteStackRefactor as schema.OperationSchema, input, options) as async.Operation<types.ExecuteStackRefactorOutput>
 end
 
-function C:getGeneratedTemplate(input: types.GetGeneratedTemplateInput, options: any): async.Operation<types.GetGeneratedTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetGeneratedTemplate, input, options) as async.Operation<types.GetGeneratedTemplateOutput>
+function C:getGeneratedTemplate(input: types.GetGeneratedTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetGeneratedTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGeneratedTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetGeneratedTemplateOutput>
 end
 
-function C:getHookResult(input: types.GetHookResultInput, options: any): async.Operation<types.GetHookResultOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetHookResult, input, options) as async.Operation<types.GetHookResultOutput>
+function C:getHookResult(input: types.GetHookResultInput, options?: base_client.InvokeOptions): async.Operation<types.GetHookResultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetHookResult as schema.OperationSchema, input, options) as async.Operation<types.GetHookResultOutput>
 end
 
-function C:getStackPolicy(input: types.GetStackPolicyInput, options: any): async.Operation<types.GetStackPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetStackPolicy, input, options) as async.Operation<types.GetStackPolicyOutput>
+function C:getStackPolicy(input: types.GetStackPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetStackPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetStackPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetStackPolicyOutput>
 end
 
-function C:getTemplate(input: types.GetTemplateInput, options: any): async.Operation<types.GetTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTemplate, input, options) as async.Operation<types.GetTemplateOutput>
+function C:getTemplate(input: types.GetTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetTemplateOutput>
 end
 
-function C:getTemplateSummary(input: types.GetTemplateSummaryInput, options: any): async.Operation<types.GetTemplateSummaryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTemplateSummary, input, options) as async.Operation<types.GetTemplateSummaryOutput>
+function C:getTemplateSummary(input: types.GetTemplateSummaryInput, options?: base_client.InvokeOptions): async.Operation<types.GetTemplateSummaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTemplateSummary as schema.OperationSchema, input, options) as async.Operation<types.GetTemplateSummaryOutput>
 end
 
-function C:importStacksToStackSet(input: types.ImportStacksToStackSetInput, options: any): async.Operation<types.ImportStacksToStackSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportStacksToStackSet, input, options) as async.Operation<types.ImportStacksToStackSetOutput>
+function C:importStacksToStackSet(input: types.ImportStacksToStackSetInput, options?: base_client.InvokeOptions): async.Operation<types.ImportStacksToStackSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportStacksToStackSet as schema.OperationSchema, input, options) as async.Operation<types.ImportStacksToStackSetOutput>
 end
 
-function C:listChangeSets(input: types.ListChangeSetsInput, options: any): async.Operation<types.ListChangeSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListChangeSets, input, options) as async.Operation<types.ListChangeSetsOutput>
+function C:listChangeSets(input: types.ListChangeSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListChangeSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListChangeSets as schema.OperationSchema, input, options) as async.Operation<types.ListChangeSetsOutput>
 end
 
-function C:listExports(input: types.ListExportsInput, options: any): async.Operation<types.ListExportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListExports, input, options) as async.Operation<types.ListExportsOutput>
+function C:listExports(input: types.ListExportsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExports as schema.OperationSchema, input, options) as async.Operation<types.ListExportsOutput>
 end
 
-function C:listGeneratedTemplates(input: types.ListGeneratedTemplatesInput, options: any): async.Operation<types.ListGeneratedTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGeneratedTemplates, input, options) as async.Operation<types.ListGeneratedTemplatesOutput>
+function C:listGeneratedTemplates(input: types.ListGeneratedTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListGeneratedTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGeneratedTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListGeneratedTemplatesOutput>
 end
 
-function C:listHookResults(input: types.ListHookResultsInput, options: any): async.Operation<types.ListHookResultsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListHookResults, input, options) as async.Operation<types.ListHookResultsOutput>
+function C:listHookResults(input: types.ListHookResultsInput, options?: base_client.InvokeOptions): async.Operation<types.ListHookResultsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListHookResults as schema.OperationSchema, input, options) as async.Operation<types.ListHookResultsOutput>
 end
 
-function C:listImports(input: types.ListImportsInput, options: any): async.Operation<types.ListImportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListImports, input, options) as async.Operation<types.ListImportsOutput>
+function C:listImports(input: types.ListImportsInput, options?: base_client.InvokeOptions): async.Operation<types.ListImportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListImports as schema.OperationSchema, input, options) as async.Operation<types.ListImportsOutput>
 end
 
-function C:listResourceScanRelatedResources(input: types.ListResourceScanRelatedResourcesInput, options: any): async.Operation<types.ListResourceScanRelatedResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResourceScanRelatedResources, input, options) as async.Operation<types.ListResourceScanRelatedResourcesOutput>
+function C:listResourceScanRelatedResources(input: types.ListResourceScanRelatedResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourceScanRelatedResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourceScanRelatedResources as schema.OperationSchema, input, options) as async.Operation<types.ListResourceScanRelatedResourcesOutput>
 end
 
-function C:listResourceScanResources(input: types.ListResourceScanResourcesInput, options: any): async.Operation<types.ListResourceScanResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResourceScanResources, input, options) as async.Operation<types.ListResourceScanResourcesOutput>
+function C:listResourceScanResources(input: types.ListResourceScanResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourceScanResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourceScanResources as schema.OperationSchema, input, options) as async.Operation<types.ListResourceScanResourcesOutput>
 end
 
-function C:listResourceScans(input: types.ListResourceScansInput, options: any): async.Operation<types.ListResourceScansOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResourceScans, input, options) as async.Operation<types.ListResourceScansOutput>
+function C:listResourceScans(input: types.ListResourceScansInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourceScansOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourceScans as schema.OperationSchema, input, options) as async.Operation<types.ListResourceScansOutput>
 end
 
-function C:listStackInstanceResourceDrifts(input: types.ListStackInstanceResourceDriftsInput, options: any): async.Operation<types.ListStackInstanceResourceDriftsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStackInstanceResourceDrifts, input, options) as async.Operation<types.ListStackInstanceResourceDriftsOutput>
+function C:listStackInstanceResourceDrifts(input: types.ListStackInstanceResourceDriftsInput, options?: base_client.InvokeOptions): async.Operation<types.ListStackInstanceResourceDriftsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStackInstanceResourceDrifts as schema.OperationSchema, input, options) as async.Operation<types.ListStackInstanceResourceDriftsOutput>
 end
 
-function C:listStackInstances(input: types.ListStackInstancesInput, options: any): async.Operation<types.ListStackInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStackInstances, input, options) as async.Operation<types.ListStackInstancesOutput>
+function C:listStackInstances(input: types.ListStackInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.ListStackInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStackInstances as schema.OperationSchema, input, options) as async.Operation<types.ListStackInstancesOutput>
 end
 
-function C:listStackRefactorActions(input: types.ListStackRefactorActionsInput, options: any): async.Operation<types.ListStackRefactorActionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStackRefactorActions, input, options) as async.Operation<types.ListStackRefactorActionsOutput>
+function C:listStackRefactorActions(input: types.ListStackRefactorActionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListStackRefactorActionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStackRefactorActions as schema.OperationSchema, input, options) as async.Operation<types.ListStackRefactorActionsOutput>
 end
 
-function C:listStackRefactors(input: types.ListStackRefactorsInput, options: any): async.Operation<types.ListStackRefactorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStackRefactors, input, options) as async.Operation<types.ListStackRefactorsOutput>
+function C:listStackRefactors(input: types.ListStackRefactorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListStackRefactorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStackRefactors as schema.OperationSchema, input, options) as async.Operation<types.ListStackRefactorsOutput>
 end
 
-function C:listStackResources(input: types.ListStackResourcesInput, options: any): async.Operation<types.ListStackResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStackResources, input, options) as async.Operation<types.ListStackResourcesOutput>
+function C:listStackResources(input: types.ListStackResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListStackResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStackResources as schema.OperationSchema, input, options) as async.Operation<types.ListStackResourcesOutput>
 end
 
-function C:listStacks(input: types.ListStacksInput, options: any): async.Operation<types.ListStacksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStacks, input, options) as async.Operation<types.ListStacksOutput>
+function C:listStacks(input: types.ListStacksInput, options?: base_client.InvokeOptions): async.Operation<types.ListStacksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStacks as schema.OperationSchema, input, options) as async.Operation<types.ListStacksOutput>
 end
 
-function C:listStackSetAutoDeploymentTargets(input: types.ListStackSetAutoDeploymentTargetsInput, options: any): async.Operation<types.ListStackSetAutoDeploymentTargetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStackSetAutoDeploymentTargets, input, options) as async.Operation<types.ListStackSetAutoDeploymentTargetsOutput>
+function C:listStackSetAutoDeploymentTargets(input: types.ListStackSetAutoDeploymentTargetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListStackSetAutoDeploymentTargetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStackSetAutoDeploymentTargets as schema.OperationSchema, input, options) as async.Operation<types.ListStackSetAutoDeploymentTargetsOutput>
 end
 
-function C:listStackSetOperationResults(input: types.ListStackSetOperationResultsInput, options: any): async.Operation<types.ListStackSetOperationResultsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStackSetOperationResults, input, options) as async.Operation<types.ListStackSetOperationResultsOutput>
+function C:listStackSetOperationResults(input: types.ListStackSetOperationResultsInput, options?: base_client.InvokeOptions): async.Operation<types.ListStackSetOperationResultsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStackSetOperationResults as schema.OperationSchema, input, options) as async.Operation<types.ListStackSetOperationResultsOutput>
 end
 
-function C:listStackSetOperations(input: types.ListStackSetOperationsInput, options: any): async.Operation<types.ListStackSetOperationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStackSetOperations, input, options) as async.Operation<types.ListStackSetOperationsOutput>
+function C:listStackSetOperations(input: types.ListStackSetOperationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListStackSetOperationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStackSetOperations as schema.OperationSchema, input, options) as async.Operation<types.ListStackSetOperationsOutput>
 end
 
-function C:listStackSets(input: types.ListStackSetsInput, options: any): async.Operation<types.ListStackSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStackSets, input, options) as async.Operation<types.ListStackSetsOutput>
+function C:listStackSets(input: types.ListStackSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListStackSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStackSets as schema.OperationSchema, input, options) as async.Operation<types.ListStackSetsOutput>
 end
 
-function C:listTypeRegistrations(input: types.ListTypeRegistrationsInput, options: any): async.Operation<types.ListTypeRegistrationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTypeRegistrations, input, options) as async.Operation<types.ListTypeRegistrationsOutput>
+function C:listTypeRegistrations(input: types.ListTypeRegistrationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTypeRegistrationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTypeRegistrations as schema.OperationSchema, input, options) as async.Operation<types.ListTypeRegistrationsOutput>
 end
 
-function C:listTypes(input: types.ListTypesInput, options: any): async.Operation<types.ListTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTypes, input, options) as async.Operation<types.ListTypesOutput>
+function C:listTypes(input: types.ListTypesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTypes as schema.OperationSchema, input, options) as async.Operation<types.ListTypesOutput>
 end
 
-function C:listTypeVersions(input: types.ListTypeVersionsInput, options: any): async.Operation<types.ListTypeVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTypeVersions, input, options) as async.Operation<types.ListTypeVersionsOutput>
+function C:listTypeVersions(input: types.ListTypeVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTypeVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTypeVersions as schema.OperationSchema, input, options) as async.Operation<types.ListTypeVersionsOutput>
 end
 
-function C:publishType(input: types.PublishTypeInput, options: any): async.Operation<types.PublishTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.PublishType, input, options) as async.Operation<types.PublishTypeOutput>
+function C:publishType(input: types.PublishTypeInput, options?: base_client.InvokeOptions): async.Operation<types.PublishTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PublishType as schema.OperationSchema, input, options) as async.Operation<types.PublishTypeOutput>
 end
 
-function C:recordHandlerProgress(input: types.RecordHandlerProgressInput, options: any): async.Operation<types.RecordHandlerProgressOutput>
-    return self:invokeOperation(schemas.Service, schemas.RecordHandlerProgress, input, options) as async.Operation<types.RecordHandlerProgressOutput>
+function C:recordHandlerProgress(input: types.RecordHandlerProgressInput, options?: base_client.InvokeOptions): async.Operation<types.RecordHandlerProgressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RecordHandlerProgress as schema.OperationSchema, input, options) as async.Operation<types.RecordHandlerProgressOutput>
 end
 
-function C:registerPublisher(input: types.RegisterPublisherInput, options: any): async.Operation<types.RegisterPublisherOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterPublisher, input, options) as async.Operation<types.RegisterPublisherOutput>
+function C:registerPublisher(input: types.RegisterPublisherInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterPublisherOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterPublisher as schema.OperationSchema, input, options) as async.Operation<types.RegisterPublisherOutput>
 end
 
-function C:registerType(input: types.RegisterTypeInput, options: any): async.Operation<types.RegisterTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterType, input, options) as async.Operation<types.RegisterTypeOutput>
+function C:registerType(input: types.RegisterTypeInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterType as schema.OperationSchema, input, options) as async.Operation<types.RegisterTypeOutput>
 end
 
-function C:rollbackStack(input: types.RollbackStackInput, options: any): async.Operation<types.RollbackStackOutput>
-    return self:invokeOperation(schemas.Service, schemas.RollbackStack, input, options) as async.Operation<types.RollbackStackOutput>
+function C:rollbackStack(input: types.RollbackStackInput, options?: base_client.InvokeOptions): async.Operation<types.RollbackStackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RollbackStack as schema.OperationSchema, input, options) as async.Operation<types.RollbackStackOutput>
 end
 
-function C:setStackPolicy(input: types.SetStackPolicyInput, options: any): async.Operation<types.SetStackPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetStackPolicy, input, options) as async.Operation<types.SetStackPolicyOutput>
+function C:setStackPolicy(input: types.SetStackPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.SetStackPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetStackPolicy as schema.OperationSchema, input, options) as async.Operation<types.SetStackPolicyOutput>
 end
 
-function C:setTypeConfiguration(input: types.SetTypeConfigurationInput, options: any): async.Operation<types.SetTypeConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetTypeConfiguration, input, options) as async.Operation<types.SetTypeConfigurationOutput>
+function C:setTypeConfiguration(input: types.SetTypeConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.SetTypeConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetTypeConfiguration as schema.OperationSchema, input, options) as async.Operation<types.SetTypeConfigurationOutput>
 end
 
-function C:setTypeDefaultVersion(input: types.SetTypeDefaultVersionInput, options: any): async.Operation<types.SetTypeDefaultVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetTypeDefaultVersion, input, options) as async.Operation<types.SetTypeDefaultVersionOutput>
+function C:setTypeDefaultVersion(input: types.SetTypeDefaultVersionInput, options?: base_client.InvokeOptions): async.Operation<types.SetTypeDefaultVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetTypeDefaultVersion as schema.OperationSchema, input, options) as async.Operation<types.SetTypeDefaultVersionOutput>
 end
 
-function C:signalResource(input: types.SignalResourceInput, options: any): async.Operation<types.SignalResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.SignalResource, input, options) as async.Operation<types.SignalResourceOutput>
+function C:signalResource(input: types.SignalResourceInput, options?: base_client.InvokeOptions): async.Operation<types.SignalResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SignalResource as schema.OperationSchema, input, options) as async.Operation<types.SignalResourceOutput>
 end
 
-function C:startResourceScan(input: types.StartResourceScanInput, options: any): async.Operation<types.StartResourceScanOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartResourceScan, input, options) as async.Operation<types.StartResourceScanOutput>
+function C:startResourceScan(input: types.StartResourceScanInput, options?: base_client.InvokeOptions): async.Operation<types.StartResourceScanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartResourceScan as schema.OperationSchema, input, options) as async.Operation<types.StartResourceScanOutput>
 end
 
-function C:stopStackSetOperation(input: types.StopStackSetOperationInput, options: any): async.Operation<types.StopStackSetOperationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopStackSetOperation, input, options) as async.Operation<types.StopStackSetOperationOutput>
+function C:stopStackSetOperation(input: types.StopStackSetOperationInput, options?: base_client.InvokeOptions): async.Operation<types.StopStackSetOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopStackSetOperation as schema.OperationSchema, input, options) as async.Operation<types.StopStackSetOperationOutput>
 end
 
-function C:testType(input: types.TestTypeInput, options: any): async.Operation<types.TestTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.TestType, input, options) as async.Operation<types.TestTypeOutput>
+function C:testType(input: types.TestTypeInput, options?: base_client.InvokeOptions): async.Operation<types.TestTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TestType as schema.OperationSchema, input, options) as async.Operation<types.TestTypeOutput>
 end
 
-function C:updateGeneratedTemplate(input: types.UpdateGeneratedTemplateInput, options: any): async.Operation<types.UpdateGeneratedTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateGeneratedTemplate, input, options) as async.Operation<types.UpdateGeneratedTemplateOutput>
+function C:updateGeneratedTemplate(input: types.UpdateGeneratedTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGeneratedTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGeneratedTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateGeneratedTemplateOutput>
 end
 
-function C:updateStack(input: types.UpdateStackInput, options: any): async.Operation<types.UpdateStackOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateStack, input, options) as async.Operation<types.UpdateStackOutput>
+function C:updateStack(input: types.UpdateStackInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateStackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateStack as schema.OperationSchema, input, options) as async.Operation<types.UpdateStackOutput>
 end
 
-function C:updateStackInstances(input: types.UpdateStackInstancesInput, options: any): async.Operation<types.UpdateStackInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateStackInstances, input, options) as async.Operation<types.UpdateStackInstancesOutput>
+function C:updateStackInstances(input: types.UpdateStackInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateStackInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateStackInstances as schema.OperationSchema, input, options) as async.Operation<types.UpdateStackInstancesOutput>
 end
 
-function C:updateStackSet(input: types.UpdateStackSetInput, options: any): async.Operation<types.UpdateStackSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateStackSet, input, options) as async.Operation<types.UpdateStackSetOutput>
+function C:updateStackSet(input: types.UpdateStackSetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateStackSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateStackSet as schema.OperationSchema, input, options) as async.Operation<types.UpdateStackSetOutput>
 end
 
-function C:updateTerminationProtection(input: types.UpdateTerminationProtectionInput, options: any): async.Operation<types.UpdateTerminationProtectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTerminationProtection, input, options) as async.Operation<types.UpdateTerminationProtectionOutput>
+function C:updateTerminationProtection(input: types.UpdateTerminationProtectionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTerminationProtectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTerminationProtection as schema.OperationSchema, input, options) as async.Operation<types.UpdateTerminationProtectionOutput>
 end
 
-function C:validateTemplate(input: types.ValidateTemplateInput, options: any): async.Operation<types.ValidateTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.ValidateTemplate, input, options) as async.Operation<types.ValidateTemplateOutput>
+function C:validateTemplate(input: types.ValidateTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.ValidateTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ValidateTemplate as schema.OperationSchema, input, options) as async.Operation<types.ValidateTemplateOutput>
 end
 
 return M

@@ -8,44 +8,47 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("iotjobsdataplane.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("iotjobsdataplane.schemas")
 local traits = require("smithy.traits")
 local types = require("iotjobsdataplane.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    describeJobExecution: function(Client, types.DescribeJobExecutionInput, any): async.Operation<types.DescribeJobExecutionOutput>
-    getPendingJobExecutions: function(Client, types.GetPendingJobExecutionsInput, any): async.Operation<types.GetPendingJobExecutionsOutput>
-    startCommandExecution: function(Client, types.StartCommandExecutionInput, any): async.Operation<types.StartCommandExecutionOutput>
-    startNextPendingJobExecution: function(Client, types.StartNextPendingJobExecutionInput, any): async.Operation<types.StartNextPendingJobExecutionOutput>
-    updateJobExecution: function(Client, types.UpdateJobExecutionInput, any): async.Operation<types.UpdateJobExecutionOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    describeJobExecution: function(Client, types.DescribeJobExecutionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeJobExecutionOutput>
+    getPendingJobExecutions: function(Client, types.GetPendingJobExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.GetPendingJobExecutionsOutput>
+    startCommandExecution: function(Client, types.StartCommandExecutionInput, ? base_client.InvokeOptions): async.Operation<types.StartCommandExecutionOutput>
+    startNextPendingJobExecution: function(Client, types.StartNextPendingJobExecutionInput, ? base_client.InvokeOptions): async.Operation<types.StartNextPendingJobExecutionOutput>
+    updateJobExecution: function(Client, types.UpdateJobExecutionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateJobExecutionOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "IotLaserThingJobManagerExternalService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "iot-jobs-data", signing_region = c.region } }
                 else
@@ -64,24 +67,24 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:describeJobExecution(input: types.DescribeJobExecutionInput, options: any): async.Operation<types.DescribeJobExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeJobExecution, input, options) as async.Operation<types.DescribeJobExecutionOutput>
+function C:describeJobExecution(input: types.DescribeJobExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeJobExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeJobExecution as schema.OperationSchema, input, options) as async.Operation<types.DescribeJobExecutionOutput>
 end
 
-function C:getPendingJobExecutions(input: types.GetPendingJobExecutionsInput, options: any): async.Operation<types.GetPendingJobExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPendingJobExecutions, input, options) as async.Operation<types.GetPendingJobExecutionsOutput>
+function C:getPendingJobExecutions(input: types.GetPendingJobExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.GetPendingJobExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPendingJobExecutions as schema.OperationSchema, input, options) as async.Operation<types.GetPendingJobExecutionsOutput>
 end
 
-function C:startCommandExecution(input: types.StartCommandExecutionInput, options: any): async.Operation<types.StartCommandExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartCommandExecution, input, options) as async.Operation<types.StartCommandExecutionOutput>
+function C:startCommandExecution(input: types.StartCommandExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.StartCommandExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartCommandExecution as schema.OperationSchema, input, options) as async.Operation<types.StartCommandExecutionOutput>
 end
 
-function C:startNextPendingJobExecution(input: types.StartNextPendingJobExecutionInput, options: any): async.Operation<types.StartNextPendingJobExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartNextPendingJobExecution, input, options) as async.Operation<types.StartNextPendingJobExecutionOutput>
+function C:startNextPendingJobExecution(input: types.StartNextPendingJobExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.StartNextPendingJobExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartNextPendingJobExecution as schema.OperationSchema, input, options) as async.Operation<types.StartNextPendingJobExecutionOutput>
 end
 
-function C:updateJobExecution(input: types.UpdateJobExecutionInput, options: any): async.Operation<types.UpdateJobExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateJobExecution, input, options) as async.Operation<types.UpdateJobExecutionOutput>
+function C:updateJobExecution(input: types.UpdateJobExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateJobExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateJobExecution as schema.OperationSchema, input, options) as async.Operation<types.UpdateJobExecutionOutput>
 end
 
 return M

@@ -8,66 +8,69 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("bedrockdataautomation.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("bedrockdataautomation.schemas")
 local traits = require("smithy.traits")
 local types = require("bedrockdataautomation.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    copyBlueprintStage: function(Client, types.CopyBlueprintStageInput, any): async.Operation<types.CopyBlueprintStageOutput>
-    createBlueprint: function(Client, types.CreateBlueprintInput, any): async.Operation<types.CreateBlueprintOutput>
-    createBlueprintVersion: function(Client, types.CreateBlueprintVersionInput, any): async.Operation<types.CreateBlueprintVersionOutput>
-    createDataAutomationLibrary: function(Client, types.CreateDataAutomationLibraryInput, any): async.Operation<types.CreateDataAutomationLibraryOutput>
-    createDataAutomationProject: function(Client, types.CreateDataAutomationProjectInput, any): async.Operation<types.CreateDataAutomationProjectOutput>
-    deleteBlueprint: function(Client, types.DeleteBlueprintInput, any): async.Operation<types.DeleteBlueprintOutput>
-    deleteDataAutomationLibrary: function(Client, types.DeleteDataAutomationLibraryInput, any): async.Operation<types.DeleteDataAutomationLibraryOutput>
-    deleteDataAutomationProject: function(Client, types.DeleteDataAutomationProjectInput, any): async.Operation<types.DeleteDataAutomationProjectOutput>
-    getBlueprint: function(Client, types.GetBlueprintInput, any): async.Operation<types.GetBlueprintOutput>
-    getBlueprintOptimizationStatus: function(Client, types.GetBlueprintOptimizationStatusInput, any): async.Operation<types.GetBlueprintOptimizationStatusOutput>
-    getDataAutomationLibrary: function(Client, types.GetDataAutomationLibraryInput, any): async.Operation<types.GetDataAutomationLibraryOutput>
-    getDataAutomationLibraryEntity: function(Client, types.GetDataAutomationLibraryEntityInput, any): async.Operation<types.GetDataAutomationLibraryEntityOutput>
-    getDataAutomationLibraryIngestionJob: function(Client, types.GetDataAutomationLibraryIngestionJobInput, any): async.Operation<types.GetDataAutomationLibraryIngestionJobOutput>
-    getDataAutomationProject: function(Client, types.GetDataAutomationProjectInput, any): async.Operation<types.GetDataAutomationProjectOutput>
-    invokeBlueprintOptimizationAsync: function(Client, types.InvokeBlueprintOptimizationAsyncInput, any): async.Operation<types.InvokeBlueprintOptimizationAsyncOutput>
-    invokeDataAutomationLibraryIngestionJob: function(Client, types.InvokeDataAutomationLibraryIngestionJobInput, any): async.Operation<types.InvokeDataAutomationLibraryIngestionJobOutput>
-    listBlueprints: function(Client, types.ListBlueprintsInput, any): async.Operation<types.ListBlueprintsOutput>
-    listDataAutomationLibraries: function(Client, types.ListDataAutomationLibrariesInput, any): async.Operation<types.ListDataAutomationLibrariesOutput>
-    listDataAutomationLibraryEntities: function(Client, types.ListDataAutomationLibraryEntitiesInput, any): async.Operation<types.ListDataAutomationLibraryEntitiesOutput>
-    listDataAutomationLibraryIngestionJobs: function(Client, types.ListDataAutomationLibraryIngestionJobsInput, any): async.Operation<types.ListDataAutomationLibraryIngestionJobsOutput>
-    listDataAutomationProjects: function(Client, types.ListDataAutomationProjectsInput, any): async.Operation<types.ListDataAutomationProjectsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateBlueprint: function(Client, types.UpdateBlueprintInput, any): async.Operation<types.UpdateBlueprintOutput>
-    updateDataAutomationLibrary: function(Client, types.UpdateDataAutomationLibraryInput, any): async.Operation<types.UpdateDataAutomationLibraryOutput>
-    updateDataAutomationProject: function(Client, types.UpdateDataAutomationProjectInput, any): async.Operation<types.UpdateDataAutomationProjectOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    copyBlueprintStage: function(Client, types.CopyBlueprintStageInput, ? base_client.InvokeOptions): async.Operation<types.CopyBlueprintStageOutput>
+    createBlueprint: function(Client, types.CreateBlueprintInput, ? base_client.InvokeOptions): async.Operation<types.CreateBlueprintOutput>
+    createBlueprintVersion: function(Client, types.CreateBlueprintVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateBlueprintVersionOutput>
+    createDataAutomationLibrary: function(Client, types.CreateDataAutomationLibraryInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataAutomationLibraryOutput>
+    createDataAutomationProject: function(Client, types.CreateDataAutomationProjectInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataAutomationProjectOutput>
+    deleteBlueprint: function(Client, types.DeleteBlueprintInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBlueprintOutput>
+    deleteDataAutomationLibrary: function(Client, types.DeleteDataAutomationLibraryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataAutomationLibraryOutput>
+    deleteDataAutomationProject: function(Client, types.DeleteDataAutomationProjectInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataAutomationProjectOutput>
+    getBlueprint: function(Client, types.GetBlueprintInput, ? base_client.InvokeOptions): async.Operation<types.GetBlueprintOutput>
+    getBlueprintOptimizationStatus: function(Client, types.GetBlueprintOptimizationStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetBlueprintOptimizationStatusOutput>
+    getDataAutomationLibrary: function(Client, types.GetDataAutomationLibraryInput, ? base_client.InvokeOptions): async.Operation<types.GetDataAutomationLibraryOutput>
+    getDataAutomationLibraryEntity: function(Client, types.GetDataAutomationLibraryEntityInput, ? base_client.InvokeOptions): async.Operation<types.GetDataAutomationLibraryEntityOutput>
+    getDataAutomationLibraryIngestionJob: function(Client, types.GetDataAutomationLibraryIngestionJobInput, ? base_client.InvokeOptions): async.Operation<types.GetDataAutomationLibraryIngestionJobOutput>
+    getDataAutomationProject: function(Client, types.GetDataAutomationProjectInput, ? base_client.InvokeOptions): async.Operation<types.GetDataAutomationProjectOutput>
+    invokeBlueprintOptimizationAsync: function(Client, types.InvokeBlueprintOptimizationAsyncInput, ? base_client.InvokeOptions): async.Operation<types.InvokeBlueprintOptimizationAsyncOutput>
+    invokeDataAutomationLibraryIngestionJob: function(Client, types.InvokeDataAutomationLibraryIngestionJobInput, ? base_client.InvokeOptions): async.Operation<types.InvokeDataAutomationLibraryIngestionJobOutput>
+    listBlueprints: function(Client, types.ListBlueprintsInput, ? base_client.InvokeOptions): async.Operation<types.ListBlueprintsOutput>
+    listDataAutomationLibraries: function(Client, types.ListDataAutomationLibrariesInput, ? base_client.InvokeOptions): async.Operation<types.ListDataAutomationLibrariesOutput>
+    listDataAutomationLibraryEntities: function(Client, types.ListDataAutomationLibraryEntitiesInput, ? base_client.InvokeOptions): async.Operation<types.ListDataAutomationLibraryEntitiesOutput>
+    listDataAutomationLibraryIngestionJobs: function(Client, types.ListDataAutomationLibraryIngestionJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataAutomationLibraryIngestionJobsOutput>
+    listDataAutomationProjects: function(Client, types.ListDataAutomationProjectsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataAutomationProjectsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateBlueprint: function(Client, types.UpdateBlueprintInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBlueprintOutput>
+    updateDataAutomationLibrary: function(Client, types.UpdateDataAutomationLibraryInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataAutomationLibraryOutput>
+    updateDataAutomationProject: function(Client, types.UpdateDataAutomationProjectInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataAutomationProjectOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonBedrockKeystoneBuildTimeService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "bedrock", signing_region = c.region } }
                 else
@@ -86,112 +89,112 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:copyBlueprintStage(input: types.CopyBlueprintStageInput, options: any): async.Operation<types.CopyBlueprintStageOutput>
-    return self:invokeOperation(schemas.Service, schemas.CopyBlueprintStage, input, options) as async.Operation<types.CopyBlueprintStageOutput>
+function C:copyBlueprintStage(input: types.CopyBlueprintStageInput, options?: base_client.InvokeOptions): async.Operation<types.CopyBlueprintStageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CopyBlueprintStage as schema.OperationSchema, input, options) as async.Operation<types.CopyBlueprintStageOutput>
 end
 
-function C:createBlueprint(input: types.CreateBlueprintInput, options: any): async.Operation<types.CreateBlueprintOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBlueprint, input, options) as async.Operation<types.CreateBlueprintOutput>
+function C:createBlueprint(input: types.CreateBlueprintInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBlueprintOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBlueprint as schema.OperationSchema, input, options) as async.Operation<types.CreateBlueprintOutput>
 end
 
-function C:createBlueprintVersion(input: types.CreateBlueprintVersionInput, options: any): async.Operation<types.CreateBlueprintVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBlueprintVersion, input, options) as async.Operation<types.CreateBlueprintVersionOutput>
+function C:createBlueprintVersion(input: types.CreateBlueprintVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBlueprintVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBlueprintVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateBlueprintVersionOutput>
 end
 
-function C:createDataAutomationLibrary(input: types.CreateDataAutomationLibraryInput, options: any): async.Operation<types.CreateDataAutomationLibraryOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataAutomationLibrary, input, options) as async.Operation<types.CreateDataAutomationLibraryOutput>
+function C:createDataAutomationLibrary(input: types.CreateDataAutomationLibraryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataAutomationLibraryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataAutomationLibrary as schema.OperationSchema, input, options) as async.Operation<types.CreateDataAutomationLibraryOutput>
 end
 
-function C:createDataAutomationProject(input: types.CreateDataAutomationProjectInput, options: any): async.Operation<types.CreateDataAutomationProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataAutomationProject, input, options) as async.Operation<types.CreateDataAutomationProjectOutput>
+function C:createDataAutomationProject(input: types.CreateDataAutomationProjectInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataAutomationProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataAutomationProject as schema.OperationSchema, input, options) as async.Operation<types.CreateDataAutomationProjectOutput>
 end
 
-function C:deleteBlueprint(input: types.DeleteBlueprintInput, options: any): async.Operation<types.DeleteBlueprintOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBlueprint, input, options) as async.Operation<types.DeleteBlueprintOutput>
+function C:deleteBlueprint(input: types.DeleteBlueprintInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBlueprintOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBlueprint as schema.OperationSchema, input, options) as async.Operation<types.DeleteBlueprintOutput>
 end
 
-function C:deleteDataAutomationLibrary(input: types.DeleteDataAutomationLibraryInput, options: any): async.Operation<types.DeleteDataAutomationLibraryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDataAutomationLibrary, input, options) as async.Operation<types.DeleteDataAutomationLibraryOutput>
+function C:deleteDataAutomationLibrary(input: types.DeleteDataAutomationLibraryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDataAutomationLibraryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataAutomationLibrary as schema.OperationSchema, input, options) as async.Operation<types.DeleteDataAutomationLibraryOutput>
 end
 
-function C:deleteDataAutomationProject(input: types.DeleteDataAutomationProjectInput, options: any): async.Operation<types.DeleteDataAutomationProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDataAutomationProject, input, options) as async.Operation<types.DeleteDataAutomationProjectOutput>
+function C:deleteDataAutomationProject(input: types.DeleteDataAutomationProjectInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDataAutomationProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataAutomationProject as schema.OperationSchema, input, options) as async.Operation<types.DeleteDataAutomationProjectOutput>
 end
 
-function C:getBlueprint(input: types.GetBlueprintInput, options: any): async.Operation<types.GetBlueprintOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBlueprint, input, options) as async.Operation<types.GetBlueprintOutput>
+function C:getBlueprint(input: types.GetBlueprintInput, options?: base_client.InvokeOptions): async.Operation<types.GetBlueprintOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBlueprint as schema.OperationSchema, input, options) as async.Operation<types.GetBlueprintOutput>
 end
 
-function C:getBlueprintOptimizationStatus(input: types.GetBlueprintOptimizationStatusInput, options: any): async.Operation<types.GetBlueprintOptimizationStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBlueprintOptimizationStatus, input, options) as async.Operation<types.GetBlueprintOptimizationStatusOutput>
+function C:getBlueprintOptimizationStatus(input: types.GetBlueprintOptimizationStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetBlueprintOptimizationStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBlueprintOptimizationStatus as schema.OperationSchema, input, options) as async.Operation<types.GetBlueprintOptimizationStatusOutput>
 end
 
-function C:getDataAutomationLibrary(input: types.GetDataAutomationLibraryInput, options: any): async.Operation<types.GetDataAutomationLibraryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataAutomationLibrary, input, options) as async.Operation<types.GetDataAutomationLibraryOutput>
+function C:getDataAutomationLibrary(input: types.GetDataAutomationLibraryInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataAutomationLibraryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataAutomationLibrary as schema.OperationSchema, input, options) as async.Operation<types.GetDataAutomationLibraryOutput>
 end
 
-function C:getDataAutomationLibraryEntity(input: types.GetDataAutomationLibraryEntityInput, options: any): async.Operation<types.GetDataAutomationLibraryEntityOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataAutomationLibraryEntity, input, options) as async.Operation<types.GetDataAutomationLibraryEntityOutput>
+function C:getDataAutomationLibraryEntity(input: types.GetDataAutomationLibraryEntityInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataAutomationLibraryEntityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataAutomationLibraryEntity as schema.OperationSchema, input, options) as async.Operation<types.GetDataAutomationLibraryEntityOutput>
 end
 
-function C:getDataAutomationLibraryIngestionJob(input: types.GetDataAutomationLibraryIngestionJobInput, options: any): async.Operation<types.GetDataAutomationLibraryIngestionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataAutomationLibraryIngestionJob, input, options) as async.Operation<types.GetDataAutomationLibraryIngestionJobOutput>
+function C:getDataAutomationLibraryIngestionJob(input: types.GetDataAutomationLibraryIngestionJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataAutomationLibraryIngestionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataAutomationLibraryIngestionJob as schema.OperationSchema, input, options) as async.Operation<types.GetDataAutomationLibraryIngestionJobOutput>
 end
 
-function C:getDataAutomationProject(input: types.GetDataAutomationProjectInput, options: any): async.Operation<types.GetDataAutomationProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataAutomationProject, input, options) as async.Operation<types.GetDataAutomationProjectOutput>
+function C:getDataAutomationProject(input: types.GetDataAutomationProjectInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataAutomationProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataAutomationProject as schema.OperationSchema, input, options) as async.Operation<types.GetDataAutomationProjectOutput>
 end
 
-function C:invokeBlueprintOptimizationAsync(input: types.InvokeBlueprintOptimizationAsyncInput, options: any): async.Operation<types.InvokeBlueprintOptimizationAsyncOutput>
-    return self:invokeOperation(schemas.Service, schemas.InvokeBlueprintOptimizationAsync, input, options) as async.Operation<types.InvokeBlueprintOptimizationAsyncOutput>
+function C:invokeBlueprintOptimizationAsync(input: types.InvokeBlueprintOptimizationAsyncInput, options?: base_client.InvokeOptions): async.Operation<types.InvokeBlueprintOptimizationAsyncOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InvokeBlueprintOptimizationAsync as schema.OperationSchema, input, options) as async.Operation<types.InvokeBlueprintOptimizationAsyncOutput>
 end
 
-function C:invokeDataAutomationLibraryIngestionJob(input: types.InvokeDataAutomationLibraryIngestionJobInput, options: any): async.Operation<types.InvokeDataAutomationLibraryIngestionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.InvokeDataAutomationLibraryIngestionJob, input, options) as async.Operation<types.InvokeDataAutomationLibraryIngestionJobOutput>
+function C:invokeDataAutomationLibraryIngestionJob(input: types.InvokeDataAutomationLibraryIngestionJobInput, options?: base_client.InvokeOptions): async.Operation<types.InvokeDataAutomationLibraryIngestionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InvokeDataAutomationLibraryIngestionJob as schema.OperationSchema, input, options) as async.Operation<types.InvokeDataAutomationLibraryIngestionJobOutput>
 end
 
-function C:listBlueprints(input: types.ListBlueprintsInput, options: any): async.Operation<types.ListBlueprintsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBlueprints, input, options) as async.Operation<types.ListBlueprintsOutput>
+function C:listBlueprints(input: types.ListBlueprintsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBlueprintsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBlueprints as schema.OperationSchema, input, options) as async.Operation<types.ListBlueprintsOutput>
 end
 
-function C:listDataAutomationLibraries(input: types.ListDataAutomationLibrariesInput, options: any): async.Operation<types.ListDataAutomationLibrariesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDataAutomationLibraries, input, options) as async.Operation<types.ListDataAutomationLibrariesOutput>
+function C:listDataAutomationLibraries(input: types.ListDataAutomationLibrariesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataAutomationLibrariesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataAutomationLibraries as schema.OperationSchema, input, options) as async.Operation<types.ListDataAutomationLibrariesOutput>
 end
 
-function C:listDataAutomationLibraryEntities(input: types.ListDataAutomationLibraryEntitiesInput, options: any): async.Operation<types.ListDataAutomationLibraryEntitiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDataAutomationLibraryEntities, input, options) as async.Operation<types.ListDataAutomationLibraryEntitiesOutput>
+function C:listDataAutomationLibraryEntities(input: types.ListDataAutomationLibraryEntitiesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataAutomationLibraryEntitiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataAutomationLibraryEntities as schema.OperationSchema, input, options) as async.Operation<types.ListDataAutomationLibraryEntitiesOutput>
 end
 
-function C:listDataAutomationLibraryIngestionJobs(input: types.ListDataAutomationLibraryIngestionJobsInput, options: any): async.Operation<types.ListDataAutomationLibraryIngestionJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDataAutomationLibraryIngestionJobs, input, options) as async.Operation<types.ListDataAutomationLibraryIngestionJobsOutput>
+function C:listDataAutomationLibraryIngestionJobs(input: types.ListDataAutomationLibraryIngestionJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataAutomationLibraryIngestionJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataAutomationLibraryIngestionJobs as schema.OperationSchema, input, options) as async.Operation<types.ListDataAutomationLibraryIngestionJobsOutput>
 end
 
-function C:listDataAutomationProjects(input: types.ListDataAutomationProjectsInput, options: any): async.Operation<types.ListDataAutomationProjectsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDataAutomationProjects, input, options) as async.Operation<types.ListDataAutomationProjectsOutput>
+function C:listDataAutomationProjects(input: types.ListDataAutomationProjectsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataAutomationProjectsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataAutomationProjects as schema.OperationSchema, input, options) as async.Operation<types.ListDataAutomationProjectsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateBlueprint(input: types.UpdateBlueprintInput, options: any): async.Operation<types.UpdateBlueprintOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateBlueprint, input, options) as async.Operation<types.UpdateBlueprintOutput>
+function C:updateBlueprint(input: types.UpdateBlueprintInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBlueprintOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBlueprint as schema.OperationSchema, input, options) as async.Operation<types.UpdateBlueprintOutput>
 end
 
-function C:updateDataAutomationLibrary(input: types.UpdateDataAutomationLibraryInput, options: any): async.Operation<types.UpdateDataAutomationLibraryOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDataAutomationLibrary, input, options) as async.Operation<types.UpdateDataAutomationLibraryOutput>
+function C:updateDataAutomationLibrary(input: types.UpdateDataAutomationLibraryInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDataAutomationLibraryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDataAutomationLibrary as schema.OperationSchema, input, options) as async.Operation<types.UpdateDataAutomationLibraryOutput>
 end
 
-function C:updateDataAutomationProject(input: types.UpdateDataAutomationProjectInput, options: any): async.Operation<types.UpdateDataAutomationProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDataAutomationProject, input, options) as async.Operation<types.UpdateDataAutomationProjectOutput>
+function C:updateDataAutomationProject(input: types.UpdateDataAutomationProjectInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDataAutomationProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDataAutomationProject as schema.OperationSchema, input, options) as async.Operation<types.UpdateDataAutomationProjectOutput>
 end
 
 return M

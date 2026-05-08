@@ -8,68 +8,71 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("elasticloadbalancing.endpoint_rules")
 local query_protocol = require("smithy.protocol.awsquery")
+local schema = require("smithy.schema")
 local schemas = require("elasticloadbalancing.schemas")
 local traits = require("smithy.traits")
 local types = require("elasticloadbalancing.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    addTags: function(Client, types.AddTagsInput, any): async.Operation<types.AddTagsOutput>
-    applySecurityGroupsToLoadBalancer: function(Client, types.ApplySecurityGroupsToLoadBalancerInput, any): async.Operation<types.ApplySecurityGroupsToLoadBalancerOutput>
-    attachLoadBalancerToSubnets: function(Client, types.AttachLoadBalancerToSubnetsInput, any): async.Operation<types.AttachLoadBalancerToSubnetsOutput>
-    configureHealthCheck: function(Client, types.ConfigureHealthCheckInput, any): async.Operation<types.ConfigureHealthCheckOutput>
-    createAppCookieStickinessPolicy: function(Client, types.CreateAppCookieStickinessPolicyInput, any): async.Operation<types.CreateAppCookieStickinessPolicyOutput>
-    createLBCookieStickinessPolicy: function(Client, types.CreateLBCookieStickinessPolicyInput, any): async.Operation<types.CreateLBCookieStickinessPolicyOutput>
-    createLoadBalancer: function(Client, types.CreateLoadBalancerInput, any): async.Operation<types.CreateLoadBalancerOutput>
-    createLoadBalancerListeners: function(Client, types.CreateLoadBalancerListenersInput, any): async.Operation<types.CreateLoadBalancerListenersOutput>
-    createLoadBalancerPolicy: function(Client, types.CreateLoadBalancerPolicyInput, any): async.Operation<types.CreateLoadBalancerPolicyOutput>
-    deleteLoadBalancer: function(Client, types.DeleteLoadBalancerInput, any): async.Operation<types.DeleteLoadBalancerOutput>
-    deleteLoadBalancerListeners: function(Client, types.DeleteLoadBalancerListenersInput, any): async.Operation<types.DeleteLoadBalancerListenersOutput>
-    deleteLoadBalancerPolicy: function(Client, types.DeleteLoadBalancerPolicyInput, any): async.Operation<types.DeleteLoadBalancerPolicyOutput>
-    deregisterInstancesFromLoadBalancer: function(Client, types.DeregisterInstancesFromLoadBalancerInput, any): async.Operation<types.DeregisterInstancesFromLoadBalancerOutput>
-    describeAccountLimits: function(Client, types.DescribeAccountLimitsInput, any): async.Operation<types.DescribeAccountLimitsOutput>
-    describeInstanceHealth: function(Client, types.DescribeInstanceHealthInput, any): async.Operation<types.DescribeInstanceHealthOutput>
-    describeLoadBalancerAttributes: function(Client, types.DescribeLoadBalancerAttributesInput, any): async.Operation<types.DescribeLoadBalancerAttributesOutput>
-    describeLoadBalancerPolicies: function(Client, types.DescribeLoadBalancerPoliciesInput, any): async.Operation<types.DescribeLoadBalancerPoliciesOutput>
-    describeLoadBalancerPolicyTypes: function(Client, types.DescribeLoadBalancerPolicyTypesInput, any): async.Operation<types.DescribeLoadBalancerPolicyTypesOutput>
-    describeLoadBalancers: function(Client, types.DescribeLoadBalancersInput, any): async.Operation<types.DescribeLoadBalancersOutput>
-    describeTags: function(Client, types.DescribeTagsInput, any): async.Operation<types.DescribeTagsOutput>
-    detachLoadBalancerFromSubnets: function(Client, types.DetachLoadBalancerFromSubnetsInput, any): async.Operation<types.DetachLoadBalancerFromSubnetsOutput>
-    disableAvailabilityZonesForLoadBalancer: function(Client, types.DisableAvailabilityZonesForLoadBalancerInput, any): async.Operation<types.DisableAvailabilityZonesForLoadBalancerOutput>
-    enableAvailabilityZonesForLoadBalancer: function(Client, types.EnableAvailabilityZonesForLoadBalancerInput, any): async.Operation<types.EnableAvailabilityZonesForLoadBalancerOutput>
-    modifyLoadBalancerAttributes: function(Client, types.ModifyLoadBalancerAttributesInput, any): async.Operation<types.ModifyLoadBalancerAttributesOutput>
-    registerInstancesWithLoadBalancer: function(Client, types.RegisterInstancesWithLoadBalancerInput, any): async.Operation<types.RegisterInstancesWithLoadBalancerOutput>
-    removeTags: function(Client, types.RemoveTagsInput, any): async.Operation<types.RemoveTagsOutput>
-    setLoadBalancerListenerSSLCertificate: function(Client, types.SetLoadBalancerListenerSSLCertificateInput, any): async.Operation<types.SetLoadBalancerListenerSSLCertificateOutput>
-    setLoadBalancerPoliciesForBackendServer: function(Client, types.SetLoadBalancerPoliciesForBackendServerInput, any): async.Operation<types.SetLoadBalancerPoliciesForBackendServerOutput>
-    setLoadBalancerPoliciesOfListener: function(Client, types.SetLoadBalancerPoliciesOfListenerInput, any): async.Operation<types.SetLoadBalancerPoliciesOfListenerOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    addTags: function(Client, types.AddTagsInput, ? base_client.InvokeOptions): async.Operation<types.AddTagsOutput>
+    applySecurityGroupsToLoadBalancer: function(Client, types.ApplySecurityGroupsToLoadBalancerInput, ? base_client.InvokeOptions): async.Operation<types.ApplySecurityGroupsToLoadBalancerOutput>
+    attachLoadBalancerToSubnets: function(Client, types.AttachLoadBalancerToSubnetsInput, ? base_client.InvokeOptions): async.Operation<types.AttachLoadBalancerToSubnetsOutput>
+    configureHealthCheck: function(Client, types.ConfigureHealthCheckInput, ? base_client.InvokeOptions): async.Operation<types.ConfigureHealthCheckOutput>
+    createAppCookieStickinessPolicy: function(Client, types.CreateAppCookieStickinessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateAppCookieStickinessPolicyOutput>
+    createLBCookieStickinessPolicy: function(Client, types.CreateLBCookieStickinessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateLBCookieStickinessPolicyOutput>
+    createLoadBalancer: function(Client, types.CreateLoadBalancerInput, ? base_client.InvokeOptions): async.Operation<types.CreateLoadBalancerOutput>
+    createLoadBalancerListeners: function(Client, types.CreateLoadBalancerListenersInput, ? base_client.InvokeOptions): async.Operation<types.CreateLoadBalancerListenersOutput>
+    createLoadBalancerPolicy: function(Client, types.CreateLoadBalancerPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateLoadBalancerPolicyOutput>
+    deleteLoadBalancer: function(Client, types.DeleteLoadBalancerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLoadBalancerOutput>
+    deleteLoadBalancerListeners: function(Client, types.DeleteLoadBalancerListenersInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLoadBalancerListenersOutput>
+    deleteLoadBalancerPolicy: function(Client, types.DeleteLoadBalancerPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLoadBalancerPolicyOutput>
+    deregisterInstancesFromLoadBalancer: function(Client, types.DeregisterInstancesFromLoadBalancerInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterInstancesFromLoadBalancerOutput>
+    describeAccountLimits: function(Client, types.DescribeAccountLimitsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAccountLimitsOutput>
+    describeInstanceHealth: function(Client, types.DescribeInstanceHealthInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstanceHealthOutput>
+    describeLoadBalancerAttributes: function(Client, types.DescribeLoadBalancerAttributesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLoadBalancerAttributesOutput>
+    describeLoadBalancerPolicies: function(Client, types.DescribeLoadBalancerPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLoadBalancerPoliciesOutput>
+    describeLoadBalancerPolicyTypes: function(Client, types.DescribeLoadBalancerPolicyTypesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLoadBalancerPolicyTypesOutput>
+    describeLoadBalancers: function(Client, types.DescribeLoadBalancersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLoadBalancersOutput>
+    describeTags: function(Client, types.DescribeTagsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTagsOutput>
+    detachLoadBalancerFromSubnets: function(Client, types.DetachLoadBalancerFromSubnetsInput, ? base_client.InvokeOptions): async.Operation<types.DetachLoadBalancerFromSubnetsOutput>
+    disableAvailabilityZonesForLoadBalancer: function(Client, types.DisableAvailabilityZonesForLoadBalancerInput, ? base_client.InvokeOptions): async.Operation<types.DisableAvailabilityZonesForLoadBalancerOutput>
+    enableAvailabilityZonesForLoadBalancer: function(Client, types.EnableAvailabilityZonesForLoadBalancerInput, ? base_client.InvokeOptions): async.Operation<types.EnableAvailabilityZonesForLoadBalancerOutput>
+    modifyLoadBalancerAttributes: function(Client, types.ModifyLoadBalancerAttributesInput, ? base_client.InvokeOptions): async.Operation<types.ModifyLoadBalancerAttributesOutput>
+    registerInstancesWithLoadBalancer: function(Client, types.RegisterInstancesWithLoadBalancerInput, ? base_client.InvokeOptions): async.Operation<types.RegisterInstancesWithLoadBalancerOutput>
+    removeTags: function(Client, types.RemoveTagsInput, ? base_client.InvokeOptions): async.Operation<types.RemoveTagsOutput>
+    setLoadBalancerListenerSSLCertificate: function(Client, types.SetLoadBalancerListenerSSLCertificateInput, ? base_client.InvokeOptions): async.Operation<types.SetLoadBalancerListenerSSLCertificateOutput>
+    setLoadBalancerPoliciesForBackendServer: function(Client, types.SetLoadBalancerPoliciesForBackendServerInput, ? base_client.InvokeOptions): async.Operation<types.SetLoadBalancerPoliciesForBackendServerOutput>
+    setLoadBalancerPoliciesOfListener: function(Client, types.SetLoadBalancerPoliciesOfListenerInput, ? base_client.InvokeOptions): async.Operation<types.SetLoadBalancerPoliciesOfListenerOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "ElasticLoadBalancing_v7"
-    if not c.protocol then c.protocol = query_protocol.new("awsQuery") end
+    if not c.protocol then c.protocol = query_protocol.new("awsQuery") as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "elasticloadbalancing", signing_region = c.region } }
                 else
@@ -88,120 +91,120 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:addTags(input: types.AddTagsInput, options: any): async.Operation<types.AddTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddTags, input, options) as async.Operation<types.AddTagsOutput>
+function C:addTags(input: types.AddTagsInput, options?: base_client.InvokeOptions): async.Operation<types.AddTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddTags as schema.OperationSchema, input, options) as async.Operation<types.AddTagsOutput>
 end
 
-function C:applySecurityGroupsToLoadBalancer(input: types.ApplySecurityGroupsToLoadBalancerInput, options: any): async.Operation<types.ApplySecurityGroupsToLoadBalancerOutput>
-    return self:invokeOperation(schemas.Service, schemas.ApplySecurityGroupsToLoadBalancer, input, options) as async.Operation<types.ApplySecurityGroupsToLoadBalancerOutput>
+function C:applySecurityGroupsToLoadBalancer(input: types.ApplySecurityGroupsToLoadBalancerInput, options?: base_client.InvokeOptions): async.Operation<types.ApplySecurityGroupsToLoadBalancerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ApplySecurityGroupsToLoadBalancer as schema.OperationSchema, input, options) as async.Operation<types.ApplySecurityGroupsToLoadBalancerOutput>
 end
 
-function C:attachLoadBalancerToSubnets(input: types.AttachLoadBalancerToSubnetsInput, options: any): async.Operation<types.AttachLoadBalancerToSubnetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachLoadBalancerToSubnets, input, options) as async.Operation<types.AttachLoadBalancerToSubnetsOutput>
+function C:attachLoadBalancerToSubnets(input: types.AttachLoadBalancerToSubnetsInput, options?: base_client.InvokeOptions): async.Operation<types.AttachLoadBalancerToSubnetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachLoadBalancerToSubnets as schema.OperationSchema, input, options) as async.Operation<types.AttachLoadBalancerToSubnetsOutput>
 end
 
-function C:configureHealthCheck(input: types.ConfigureHealthCheckInput, options: any): async.Operation<types.ConfigureHealthCheckOutput>
-    return self:invokeOperation(schemas.Service, schemas.ConfigureHealthCheck, input, options) as async.Operation<types.ConfigureHealthCheckOutput>
+function C:configureHealthCheck(input: types.ConfigureHealthCheckInput, options?: base_client.InvokeOptions): async.Operation<types.ConfigureHealthCheckOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ConfigureHealthCheck as schema.OperationSchema, input, options) as async.Operation<types.ConfigureHealthCheckOutput>
 end
 
-function C:createAppCookieStickinessPolicy(input: types.CreateAppCookieStickinessPolicyInput, options: any): async.Operation<types.CreateAppCookieStickinessPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAppCookieStickinessPolicy, input, options) as async.Operation<types.CreateAppCookieStickinessPolicyOutput>
+function C:createAppCookieStickinessPolicy(input: types.CreateAppCookieStickinessPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAppCookieStickinessPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAppCookieStickinessPolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateAppCookieStickinessPolicyOutput>
 end
 
-function C:createLBCookieStickinessPolicy(input: types.CreateLBCookieStickinessPolicyInput, options: any): async.Operation<types.CreateLBCookieStickinessPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLBCookieStickinessPolicy, input, options) as async.Operation<types.CreateLBCookieStickinessPolicyOutput>
+function C:createLBCookieStickinessPolicy(input: types.CreateLBCookieStickinessPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLBCookieStickinessPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLBCookieStickinessPolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateLBCookieStickinessPolicyOutput>
 end
 
-function C:createLoadBalancer(input: types.CreateLoadBalancerInput, options: any): async.Operation<types.CreateLoadBalancerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLoadBalancer, input, options) as async.Operation<types.CreateLoadBalancerOutput>
+function C:createLoadBalancer(input: types.CreateLoadBalancerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLoadBalancerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLoadBalancer as schema.OperationSchema, input, options) as async.Operation<types.CreateLoadBalancerOutput>
 end
 
-function C:createLoadBalancerListeners(input: types.CreateLoadBalancerListenersInput, options: any): async.Operation<types.CreateLoadBalancerListenersOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLoadBalancerListeners, input, options) as async.Operation<types.CreateLoadBalancerListenersOutput>
+function C:createLoadBalancerListeners(input: types.CreateLoadBalancerListenersInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLoadBalancerListenersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLoadBalancerListeners as schema.OperationSchema, input, options) as async.Operation<types.CreateLoadBalancerListenersOutput>
 end
 
-function C:createLoadBalancerPolicy(input: types.CreateLoadBalancerPolicyInput, options: any): async.Operation<types.CreateLoadBalancerPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLoadBalancerPolicy, input, options) as async.Operation<types.CreateLoadBalancerPolicyOutput>
+function C:createLoadBalancerPolicy(input: types.CreateLoadBalancerPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLoadBalancerPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLoadBalancerPolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateLoadBalancerPolicyOutput>
 end
 
-function C:deleteLoadBalancer(input: types.DeleteLoadBalancerInput, options: any): async.Operation<types.DeleteLoadBalancerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLoadBalancer, input, options) as async.Operation<types.DeleteLoadBalancerOutput>
+function C:deleteLoadBalancer(input: types.DeleteLoadBalancerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLoadBalancerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLoadBalancer as schema.OperationSchema, input, options) as async.Operation<types.DeleteLoadBalancerOutput>
 end
 
-function C:deleteLoadBalancerListeners(input: types.DeleteLoadBalancerListenersInput, options: any): async.Operation<types.DeleteLoadBalancerListenersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLoadBalancerListeners, input, options) as async.Operation<types.DeleteLoadBalancerListenersOutput>
+function C:deleteLoadBalancerListeners(input: types.DeleteLoadBalancerListenersInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLoadBalancerListenersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLoadBalancerListeners as schema.OperationSchema, input, options) as async.Operation<types.DeleteLoadBalancerListenersOutput>
 end
 
-function C:deleteLoadBalancerPolicy(input: types.DeleteLoadBalancerPolicyInput, options: any): async.Operation<types.DeleteLoadBalancerPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLoadBalancerPolicy, input, options) as async.Operation<types.DeleteLoadBalancerPolicyOutput>
+function C:deleteLoadBalancerPolicy(input: types.DeleteLoadBalancerPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLoadBalancerPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLoadBalancerPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteLoadBalancerPolicyOutput>
 end
 
-function C:deregisterInstancesFromLoadBalancer(input: types.DeregisterInstancesFromLoadBalancerInput, options: any): async.Operation<types.DeregisterInstancesFromLoadBalancerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterInstancesFromLoadBalancer, input, options) as async.Operation<types.DeregisterInstancesFromLoadBalancerOutput>
+function C:deregisterInstancesFromLoadBalancer(input: types.DeregisterInstancesFromLoadBalancerInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterInstancesFromLoadBalancerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterInstancesFromLoadBalancer as schema.OperationSchema, input, options) as async.Operation<types.DeregisterInstancesFromLoadBalancerOutput>
 end
 
-function C:describeAccountLimits(input: types.DescribeAccountLimitsInput, options: any): async.Operation<types.DescribeAccountLimitsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAccountLimits, input, options) as async.Operation<types.DescribeAccountLimitsOutput>
+function C:describeAccountLimits(input: types.DescribeAccountLimitsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAccountLimitsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAccountLimits as schema.OperationSchema, input, options) as async.Operation<types.DescribeAccountLimitsOutput>
 end
 
-function C:describeInstanceHealth(input: types.DescribeInstanceHealthInput, options: any): async.Operation<types.DescribeInstanceHealthOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInstanceHealth, input, options) as async.Operation<types.DescribeInstanceHealthOutput>
+function C:describeInstanceHealth(input: types.DescribeInstanceHealthInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInstanceHealthOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInstanceHealth as schema.OperationSchema, input, options) as async.Operation<types.DescribeInstanceHealthOutput>
 end
 
-function C:describeLoadBalancerAttributes(input: types.DescribeLoadBalancerAttributesInput, options: any): async.Operation<types.DescribeLoadBalancerAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLoadBalancerAttributes, input, options) as async.Operation<types.DescribeLoadBalancerAttributesOutput>
+function C:describeLoadBalancerAttributes(input: types.DescribeLoadBalancerAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLoadBalancerAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLoadBalancerAttributes as schema.OperationSchema, input, options) as async.Operation<types.DescribeLoadBalancerAttributesOutput>
 end
 
-function C:describeLoadBalancerPolicies(input: types.DescribeLoadBalancerPoliciesInput, options: any): async.Operation<types.DescribeLoadBalancerPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLoadBalancerPolicies, input, options) as async.Operation<types.DescribeLoadBalancerPoliciesOutput>
+function C:describeLoadBalancerPolicies(input: types.DescribeLoadBalancerPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLoadBalancerPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLoadBalancerPolicies as schema.OperationSchema, input, options) as async.Operation<types.DescribeLoadBalancerPoliciesOutput>
 end
 
-function C:describeLoadBalancerPolicyTypes(input: types.DescribeLoadBalancerPolicyTypesInput, options: any): async.Operation<types.DescribeLoadBalancerPolicyTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLoadBalancerPolicyTypes, input, options) as async.Operation<types.DescribeLoadBalancerPolicyTypesOutput>
+function C:describeLoadBalancerPolicyTypes(input: types.DescribeLoadBalancerPolicyTypesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLoadBalancerPolicyTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLoadBalancerPolicyTypes as schema.OperationSchema, input, options) as async.Operation<types.DescribeLoadBalancerPolicyTypesOutput>
 end
 
-function C:describeLoadBalancers(input: types.DescribeLoadBalancersInput, options: any): async.Operation<types.DescribeLoadBalancersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLoadBalancers, input, options) as async.Operation<types.DescribeLoadBalancersOutput>
+function C:describeLoadBalancers(input: types.DescribeLoadBalancersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLoadBalancersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLoadBalancers as schema.OperationSchema, input, options) as async.Operation<types.DescribeLoadBalancersOutput>
 end
 
-function C:describeTags(input: types.DescribeTagsInput, options: any): async.Operation<types.DescribeTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTags, input, options) as async.Operation<types.DescribeTagsOutput>
+function C:describeTags(input: types.DescribeTagsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTags as schema.OperationSchema, input, options) as async.Operation<types.DescribeTagsOutput>
 end
 
-function C:detachLoadBalancerFromSubnets(input: types.DetachLoadBalancerFromSubnetsInput, options: any): async.Operation<types.DetachLoadBalancerFromSubnetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetachLoadBalancerFromSubnets, input, options) as async.Operation<types.DetachLoadBalancerFromSubnetsOutput>
+function C:detachLoadBalancerFromSubnets(input: types.DetachLoadBalancerFromSubnetsInput, options?: base_client.InvokeOptions): async.Operation<types.DetachLoadBalancerFromSubnetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachLoadBalancerFromSubnets as schema.OperationSchema, input, options) as async.Operation<types.DetachLoadBalancerFromSubnetsOutput>
 end
 
-function C:disableAvailabilityZonesForLoadBalancer(input: types.DisableAvailabilityZonesForLoadBalancerInput, options: any): async.Operation<types.DisableAvailabilityZonesForLoadBalancerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableAvailabilityZonesForLoadBalancer, input, options) as async.Operation<types.DisableAvailabilityZonesForLoadBalancerOutput>
+function C:disableAvailabilityZonesForLoadBalancer(input: types.DisableAvailabilityZonesForLoadBalancerInput, options?: base_client.InvokeOptions): async.Operation<types.DisableAvailabilityZonesForLoadBalancerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableAvailabilityZonesForLoadBalancer as schema.OperationSchema, input, options) as async.Operation<types.DisableAvailabilityZonesForLoadBalancerOutput>
 end
 
-function C:enableAvailabilityZonesForLoadBalancer(input: types.EnableAvailabilityZonesForLoadBalancerInput, options: any): async.Operation<types.EnableAvailabilityZonesForLoadBalancerOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableAvailabilityZonesForLoadBalancer, input, options) as async.Operation<types.EnableAvailabilityZonesForLoadBalancerOutput>
+function C:enableAvailabilityZonesForLoadBalancer(input: types.EnableAvailabilityZonesForLoadBalancerInput, options?: base_client.InvokeOptions): async.Operation<types.EnableAvailabilityZonesForLoadBalancerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableAvailabilityZonesForLoadBalancer as schema.OperationSchema, input, options) as async.Operation<types.EnableAvailabilityZonesForLoadBalancerOutput>
 end
 
-function C:modifyLoadBalancerAttributes(input: types.ModifyLoadBalancerAttributesInput, options: any): async.Operation<types.ModifyLoadBalancerAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyLoadBalancerAttributes, input, options) as async.Operation<types.ModifyLoadBalancerAttributesOutput>
+function C:modifyLoadBalancerAttributes(input: types.ModifyLoadBalancerAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyLoadBalancerAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyLoadBalancerAttributes as schema.OperationSchema, input, options) as async.Operation<types.ModifyLoadBalancerAttributesOutput>
 end
 
-function C:registerInstancesWithLoadBalancer(input: types.RegisterInstancesWithLoadBalancerInput, options: any): async.Operation<types.RegisterInstancesWithLoadBalancerOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterInstancesWithLoadBalancer, input, options) as async.Operation<types.RegisterInstancesWithLoadBalancerOutput>
+function C:registerInstancesWithLoadBalancer(input: types.RegisterInstancesWithLoadBalancerInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterInstancesWithLoadBalancerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterInstancesWithLoadBalancer as schema.OperationSchema, input, options) as async.Operation<types.RegisterInstancesWithLoadBalancerOutput>
 end
 
-function C:removeTags(input: types.RemoveTagsInput, options: any): async.Operation<types.RemoveTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveTags, input, options) as async.Operation<types.RemoveTagsOutput>
+function C:removeTags(input: types.RemoveTagsInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveTags as schema.OperationSchema, input, options) as async.Operation<types.RemoveTagsOutput>
 end
 
-function C:setLoadBalancerListenerSSLCertificate(input: types.SetLoadBalancerListenerSSLCertificateInput, options: any): async.Operation<types.SetLoadBalancerListenerSSLCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetLoadBalancerListenerSSLCertificate, input, options) as async.Operation<types.SetLoadBalancerListenerSSLCertificateOutput>
+function C:setLoadBalancerListenerSSLCertificate(input: types.SetLoadBalancerListenerSSLCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.SetLoadBalancerListenerSSLCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetLoadBalancerListenerSSLCertificate as schema.OperationSchema, input, options) as async.Operation<types.SetLoadBalancerListenerSSLCertificateOutput>
 end
 
-function C:setLoadBalancerPoliciesForBackendServer(input: types.SetLoadBalancerPoliciesForBackendServerInput, options: any): async.Operation<types.SetLoadBalancerPoliciesForBackendServerOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetLoadBalancerPoliciesForBackendServer, input, options) as async.Operation<types.SetLoadBalancerPoliciesForBackendServerOutput>
+function C:setLoadBalancerPoliciesForBackendServer(input: types.SetLoadBalancerPoliciesForBackendServerInput, options?: base_client.InvokeOptions): async.Operation<types.SetLoadBalancerPoliciesForBackendServerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetLoadBalancerPoliciesForBackendServer as schema.OperationSchema, input, options) as async.Operation<types.SetLoadBalancerPoliciesForBackendServerOutput>
 end
 
-function C:setLoadBalancerPoliciesOfListener(input: types.SetLoadBalancerPoliciesOfListenerInput, options: any): async.Operation<types.SetLoadBalancerPoliciesOfListenerOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetLoadBalancerPoliciesOfListener, input, options) as async.Operation<types.SetLoadBalancerPoliciesOfListenerOutput>
+function C:setLoadBalancerPoliciesOfListener(input: types.SetLoadBalancerPoliciesOfListenerInput, options?: base_client.InvokeOptions): async.Operation<types.SetLoadBalancerPoliciesOfListenerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetLoadBalancerPoliciesOfListener as schema.OperationSchema, input, options) as async.Operation<types.SetLoadBalancerPoliciesOfListenerOutput>
 end
 
 return M

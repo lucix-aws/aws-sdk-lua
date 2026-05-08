@@ -8,47 +8,50 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("pinpointsmsvoice.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("pinpointsmsvoice.schemas")
 local traits = require("smithy.traits")
 local types = require("pinpointsmsvoice.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createConfigurationSet: function(Client, types.CreateConfigurationSetInput, any): async.Operation<types.CreateConfigurationSetOutput>
-    createConfigurationSetEventDestination: function(Client, types.CreateConfigurationSetEventDestinationInput, any): async.Operation<types.CreateConfigurationSetEventDestinationOutput>
-    deleteConfigurationSet: function(Client, types.DeleteConfigurationSetInput, any): async.Operation<types.DeleteConfigurationSetOutput>
-    deleteConfigurationSetEventDestination: function(Client, types.DeleteConfigurationSetEventDestinationInput, any): async.Operation<types.DeleteConfigurationSetEventDestinationOutput>
-    getConfigurationSetEventDestinations: function(Client, types.GetConfigurationSetEventDestinationsInput, any): async.Operation<types.GetConfigurationSetEventDestinationsOutput>
-    listConfigurationSets: function(Client, types.ListConfigurationSetsInput, any): async.Operation<types.ListConfigurationSetsOutput>
-    sendVoiceMessage: function(Client, types.SendVoiceMessageInput, any): async.Operation<types.SendVoiceMessageOutput>
-    updateConfigurationSetEventDestination: function(Client, types.UpdateConfigurationSetEventDestinationInput, any): async.Operation<types.UpdateConfigurationSetEventDestinationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createConfigurationSet: function(Client, types.CreateConfigurationSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfigurationSetOutput>
+    createConfigurationSetEventDestination: function(Client, types.CreateConfigurationSetEventDestinationInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfigurationSetEventDestinationOutput>
+    deleteConfigurationSet: function(Client, types.DeleteConfigurationSetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfigurationSetOutput>
+    deleteConfigurationSetEventDestination: function(Client, types.DeleteConfigurationSetEventDestinationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfigurationSetEventDestinationOutput>
+    getConfigurationSetEventDestinations: function(Client, types.GetConfigurationSetEventDestinationsInput, ? base_client.InvokeOptions): async.Operation<types.GetConfigurationSetEventDestinationsOutput>
+    listConfigurationSets: function(Client, types.ListConfigurationSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListConfigurationSetsOutput>
+    sendVoiceMessage: function(Client, types.SendVoiceMessageInput, ? base_client.InvokeOptions): async.Operation<types.SendVoiceMessageOutput>
+    updateConfigurationSetEventDestination: function(Client, types.UpdateConfigurationSetEventDestinationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfigurationSetEventDestinationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "PinpointSMSVoice"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "sms-voice", signing_region = c.region } }
                 else
@@ -67,36 +70,36 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createConfigurationSet(input: types.CreateConfigurationSetInput, options: any): async.Operation<types.CreateConfigurationSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConfigurationSet, input, options) as async.Operation<types.CreateConfigurationSetOutput>
+function C:createConfigurationSet(input: types.CreateConfigurationSetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConfigurationSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConfigurationSet as schema.OperationSchema, input, options) as async.Operation<types.CreateConfigurationSetOutput>
 end
 
-function C:createConfigurationSetEventDestination(input: types.CreateConfigurationSetEventDestinationInput, options: any): async.Operation<types.CreateConfigurationSetEventDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConfigurationSetEventDestination, input, options) as async.Operation<types.CreateConfigurationSetEventDestinationOutput>
+function C:createConfigurationSetEventDestination(input: types.CreateConfigurationSetEventDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConfigurationSetEventDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConfigurationSetEventDestination as schema.OperationSchema, input, options) as async.Operation<types.CreateConfigurationSetEventDestinationOutput>
 end
 
-function C:deleteConfigurationSet(input: types.DeleteConfigurationSetInput, options: any): async.Operation<types.DeleteConfigurationSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConfigurationSet, input, options) as async.Operation<types.DeleteConfigurationSetOutput>
+function C:deleteConfigurationSet(input: types.DeleteConfigurationSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConfigurationSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConfigurationSet as schema.OperationSchema, input, options) as async.Operation<types.DeleteConfigurationSetOutput>
 end
 
-function C:deleteConfigurationSetEventDestination(input: types.DeleteConfigurationSetEventDestinationInput, options: any): async.Operation<types.DeleteConfigurationSetEventDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConfigurationSetEventDestination, input, options) as async.Operation<types.DeleteConfigurationSetEventDestinationOutput>
+function C:deleteConfigurationSetEventDestination(input: types.DeleteConfigurationSetEventDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConfigurationSetEventDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConfigurationSetEventDestination as schema.OperationSchema, input, options) as async.Operation<types.DeleteConfigurationSetEventDestinationOutput>
 end
 
-function C:getConfigurationSetEventDestinations(input: types.GetConfigurationSetEventDestinationsInput, options: any): async.Operation<types.GetConfigurationSetEventDestinationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConfigurationSetEventDestinations, input, options) as async.Operation<types.GetConfigurationSetEventDestinationsOutput>
+function C:getConfigurationSetEventDestinations(input: types.GetConfigurationSetEventDestinationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetConfigurationSetEventDestinationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConfigurationSetEventDestinations as schema.OperationSchema, input, options) as async.Operation<types.GetConfigurationSetEventDestinationsOutput>
 end
 
-function C:listConfigurationSets(input: types.ListConfigurationSetsInput, options: any): async.Operation<types.ListConfigurationSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConfigurationSets, input, options) as async.Operation<types.ListConfigurationSetsOutput>
+function C:listConfigurationSets(input: types.ListConfigurationSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConfigurationSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConfigurationSets as schema.OperationSchema, input, options) as async.Operation<types.ListConfigurationSetsOutput>
 end
 
-function C:sendVoiceMessage(input: types.SendVoiceMessageInput, options: any): async.Operation<types.SendVoiceMessageOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendVoiceMessage, input, options) as async.Operation<types.SendVoiceMessageOutput>
+function C:sendVoiceMessage(input: types.SendVoiceMessageInput, options?: base_client.InvokeOptions): async.Operation<types.SendVoiceMessageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendVoiceMessage as schema.OperationSchema, input, options) as async.Operation<types.SendVoiceMessageOutput>
 end
 
-function C:updateConfigurationSetEventDestination(input: types.UpdateConfigurationSetEventDestinationInput, options: any): async.Operation<types.UpdateConfigurationSetEventDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConfigurationSetEventDestination, input, options) as async.Operation<types.UpdateConfigurationSetEventDestinationOutput>
+function C:updateConfigurationSetEventDestination(input: types.UpdateConfigurationSetEventDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConfigurationSetEventDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConfigurationSetEventDestination as schema.OperationSchema, input, options) as async.Operation<types.UpdateConfigurationSetEventDestinationOutput>
 end
 
 return M

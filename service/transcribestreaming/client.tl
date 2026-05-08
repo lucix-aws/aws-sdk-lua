@@ -8,44 +8,47 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("transcribestreaming.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("transcribestreaming.schemas")
 local traits = require("smithy.traits")
 local types = require("transcribestreaming.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    getMedicalScribeStream: function(Client, types.GetMedicalScribeStreamInput, any): async.Operation<types.GetMedicalScribeStreamOutput>
-    startCallAnalyticsStreamTranscription: function(Client, types.StartCallAnalyticsStreamTranscriptionInput, any): async.Operation<types.StartCallAnalyticsStreamTranscriptionOutput>
-    startMedicalScribeStream: function(Client, types.StartMedicalScribeStreamInput, any): async.Operation<types.StartMedicalScribeStreamOutput>
-    startMedicalStreamTranscription: function(Client, types.StartMedicalStreamTranscriptionInput, any): async.Operation<types.StartMedicalStreamTranscriptionOutput>
-    startStreamTranscription: function(Client, types.StartStreamTranscriptionInput, any): async.Operation<types.StartStreamTranscriptionOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    getMedicalScribeStream: function(Client, types.GetMedicalScribeStreamInput, ? base_client.InvokeOptions): async.Operation<types.GetMedicalScribeStreamOutput>
+    startCallAnalyticsStreamTranscription: function(Client, types.StartCallAnalyticsStreamTranscriptionInput, ? base_client.InvokeOptions): async.Operation<types.StartCallAnalyticsStreamTranscriptionOutput>
+    startMedicalScribeStream: function(Client, types.StartMedicalScribeStreamInput, ? base_client.InvokeOptions): async.Operation<types.StartMedicalScribeStreamOutput>
+    startMedicalStreamTranscription: function(Client, types.StartMedicalStreamTranscriptionInput, ? base_client.InvokeOptions): async.Operation<types.StartMedicalStreamTranscriptionOutput>
+    startStreamTranscription: function(Client, types.StartStreamTranscriptionInput, ? base_client.InvokeOptions): async.Operation<types.StartStreamTranscriptionOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "Transcribe"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "transcribe", signing_region = c.region } }
                 else
@@ -64,24 +67,24 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:getMedicalScribeStream(input: types.GetMedicalScribeStreamInput, options: any): async.Operation<types.GetMedicalScribeStreamOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMedicalScribeStream, input, options) as async.Operation<types.GetMedicalScribeStreamOutput>
+function C:getMedicalScribeStream(input: types.GetMedicalScribeStreamInput, options?: base_client.InvokeOptions): async.Operation<types.GetMedicalScribeStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMedicalScribeStream as schema.OperationSchema, input, options) as async.Operation<types.GetMedicalScribeStreamOutput>
 end
 
-function C:startCallAnalyticsStreamTranscription(input: types.StartCallAnalyticsStreamTranscriptionInput, options: any): async.Operation<types.StartCallAnalyticsStreamTranscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartCallAnalyticsStreamTranscription, input, options) as async.Operation<types.StartCallAnalyticsStreamTranscriptionOutput>
+function C:startCallAnalyticsStreamTranscription(input: types.StartCallAnalyticsStreamTranscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.StartCallAnalyticsStreamTranscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartCallAnalyticsStreamTranscription as schema.OperationSchema, input, options) as async.Operation<types.StartCallAnalyticsStreamTranscriptionOutput>
 end
 
-function C:startMedicalScribeStream(input: types.StartMedicalScribeStreamInput, options: any): async.Operation<types.StartMedicalScribeStreamOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartMedicalScribeStream, input, options) as async.Operation<types.StartMedicalScribeStreamOutput>
+function C:startMedicalScribeStream(input: types.StartMedicalScribeStreamInput, options?: base_client.InvokeOptions): async.Operation<types.StartMedicalScribeStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartMedicalScribeStream as schema.OperationSchema, input, options) as async.Operation<types.StartMedicalScribeStreamOutput>
 end
 
-function C:startMedicalStreamTranscription(input: types.StartMedicalStreamTranscriptionInput, options: any): async.Operation<types.StartMedicalStreamTranscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartMedicalStreamTranscription, input, options) as async.Operation<types.StartMedicalStreamTranscriptionOutput>
+function C:startMedicalStreamTranscription(input: types.StartMedicalStreamTranscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.StartMedicalStreamTranscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartMedicalStreamTranscription as schema.OperationSchema, input, options) as async.Operation<types.StartMedicalStreamTranscriptionOutput>
 end
 
-function C:startStreamTranscription(input: types.StartStreamTranscriptionInput, options: any): async.Operation<types.StartStreamTranscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartStreamTranscription, input, options) as async.Operation<types.StartStreamTranscriptionOutput>
+function C:startStreamTranscription(input: types.StartStreamTranscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.StartStreamTranscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartStreamTranscription as schema.OperationSchema, input, options) as async.Operation<types.StartStreamTranscriptionOutput>
 end
 
 return M

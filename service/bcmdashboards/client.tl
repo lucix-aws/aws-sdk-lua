@@ -8,54 +8,57 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("bcmdashboards.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("bcmdashboards.schemas")
 local traits = require("smithy.traits")
 local types = require("bcmdashboards.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createDashboard: function(Client, types.CreateDashboardInput, any): async.Operation<types.CreateDashboardOutput>
-    createScheduledReport: function(Client, types.CreateScheduledReportInput, any): async.Operation<types.CreateScheduledReportOutput>
-    deleteDashboard: function(Client, types.DeleteDashboardInput, any): async.Operation<types.DeleteDashboardOutput>
-    deleteScheduledReport: function(Client, types.DeleteScheduledReportInput, any): async.Operation<types.DeleteScheduledReportOutput>
-    executeScheduledReport: function(Client, types.ExecuteScheduledReportInput, any): async.Operation<types.ExecuteScheduledReportOutput>
-    getDashboard: function(Client, types.GetDashboardInput, any): async.Operation<types.GetDashboardOutput>
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput, any): async.Operation<types.GetResourcePolicyOutput>
-    getScheduledReport: function(Client, types.GetScheduledReportInput, any): async.Operation<types.GetScheduledReportOutput>
-    listDashboards: function(Client, types.ListDashboardsInput, any): async.Operation<types.ListDashboardsOutput>
-    listScheduledReports: function(Client, types.ListScheduledReportsInput, any): async.Operation<types.ListScheduledReportsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateDashboard: function(Client, types.UpdateDashboardInput, any): async.Operation<types.UpdateDashboardOutput>
-    updateScheduledReport: function(Client, types.UpdateScheduledReportInput, any): async.Operation<types.UpdateScheduledReportOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createDashboard: function(Client, types.CreateDashboardInput, ? base_client.InvokeOptions): async.Operation<types.CreateDashboardOutput>
+    createScheduledReport: function(Client, types.CreateScheduledReportInput, ? base_client.InvokeOptions): async.Operation<types.CreateScheduledReportOutput>
+    deleteDashboard: function(Client, types.DeleteDashboardInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDashboardOutput>
+    deleteScheduledReport: function(Client, types.DeleteScheduledReportInput, ? base_client.InvokeOptions): async.Operation<types.DeleteScheduledReportOutput>
+    executeScheduledReport: function(Client, types.ExecuteScheduledReportInput, ? base_client.InvokeOptions): async.Operation<types.ExecuteScheduledReportOutput>
+    getDashboard: function(Client, types.GetDashboardInput, ? base_client.InvokeOptions): async.Operation<types.GetDashboardOutput>
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    getScheduledReport: function(Client, types.GetScheduledReportInput, ? base_client.InvokeOptions): async.Operation<types.GetScheduledReportOutput>
+    listDashboards: function(Client, types.ListDashboardsInput, ? base_client.InvokeOptions): async.Operation<types.ListDashboardsOutput>
+    listScheduledReports: function(Client, types.ListScheduledReportsInput, ? base_client.InvokeOptions): async.Operation<types.ListScheduledReportsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateDashboard: function(Client, types.UpdateDashboardInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDashboardOutput>
+    updateScheduledReport: function(Client, types.UpdateScheduledReportInput, ? base_client.InvokeOptions): async.Operation<types.UpdateScheduledReportOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSBCMDashboardsService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "bcm-dashboards", signing_region = c.region } }
                 else
@@ -74,64 +77,64 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createDashboard(input: types.CreateDashboardInput, options: any): async.Operation<types.CreateDashboardOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDashboard, input, options) as async.Operation<types.CreateDashboardOutput>
+function C:createDashboard(input: types.CreateDashboardInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDashboardOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDashboard as schema.OperationSchema, input, options) as async.Operation<types.CreateDashboardOutput>
 end
 
-function C:createScheduledReport(input: types.CreateScheduledReportInput, options: any): async.Operation<types.CreateScheduledReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateScheduledReport, input, options) as async.Operation<types.CreateScheduledReportOutput>
+function C:createScheduledReport(input: types.CreateScheduledReportInput, options?: base_client.InvokeOptions): async.Operation<types.CreateScheduledReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateScheduledReport as schema.OperationSchema, input, options) as async.Operation<types.CreateScheduledReportOutput>
 end
 
-function C:deleteDashboard(input: types.DeleteDashboardInput, options: any): async.Operation<types.DeleteDashboardOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDashboard, input, options) as async.Operation<types.DeleteDashboardOutput>
+function C:deleteDashboard(input: types.DeleteDashboardInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDashboardOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDashboard as schema.OperationSchema, input, options) as async.Operation<types.DeleteDashboardOutput>
 end
 
-function C:deleteScheduledReport(input: types.DeleteScheduledReportInput, options: any): async.Operation<types.DeleteScheduledReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteScheduledReport, input, options) as async.Operation<types.DeleteScheduledReportOutput>
+function C:deleteScheduledReport(input: types.DeleteScheduledReportInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteScheduledReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteScheduledReport as schema.OperationSchema, input, options) as async.Operation<types.DeleteScheduledReportOutput>
 end
 
-function C:executeScheduledReport(input: types.ExecuteScheduledReportInput, options: any): async.Operation<types.ExecuteScheduledReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExecuteScheduledReport, input, options) as async.Operation<types.ExecuteScheduledReportOutput>
+function C:executeScheduledReport(input: types.ExecuteScheduledReportInput, options?: base_client.InvokeOptions): async.Operation<types.ExecuteScheduledReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExecuteScheduledReport as schema.OperationSchema, input, options) as async.Operation<types.ExecuteScheduledReportOutput>
 end
 
-function C:getDashboard(input: types.GetDashboardInput, options: any): async.Operation<types.GetDashboardOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDashboard, input, options) as async.Operation<types.GetDashboardOutput>
+function C:getDashboard(input: types.GetDashboardInput, options?: base_client.InvokeOptions): async.Operation<types.GetDashboardOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDashboard as schema.OperationSchema, input, options) as async.Operation<types.GetDashboardOutput>
 end
 
-function C:getResourcePolicy(input: types.GetResourcePolicyInput, options: any): async.Operation<types.GetResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicy, input, options) as async.Operation<types.GetResourcePolicyOutput>
+function C:getResourcePolicy(input: types.GetResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePolicyOutput>
 end
 
-function C:getScheduledReport(input: types.GetScheduledReportInput, options: any): async.Operation<types.GetScheduledReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetScheduledReport, input, options) as async.Operation<types.GetScheduledReportOutput>
+function C:getScheduledReport(input: types.GetScheduledReportInput, options?: base_client.InvokeOptions): async.Operation<types.GetScheduledReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetScheduledReport as schema.OperationSchema, input, options) as async.Operation<types.GetScheduledReportOutput>
 end
 
-function C:listDashboards(input: types.ListDashboardsInput, options: any): async.Operation<types.ListDashboardsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDashboards, input, options) as async.Operation<types.ListDashboardsOutput>
+function C:listDashboards(input: types.ListDashboardsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDashboardsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDashboards as schema.OperationSchema, input, options) as async.Operation<types.ListDashboardsOutput>
 end
 
-function C:listScheduledReports(input: types.ListScheduledReportsInput, options: any): async.Operation<types.ListScheduledReportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListScheduledReports, input, options) as async.Operation<types.ListScheduledReportsOutput>
+function C:listScheduledReports(input: types.ListScheduledReportsInput, options?: base_client.InvokeOptions): async.Operation<types.ListScheduledReportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListScheduledReports as schema.OperationSchema, input, options) as async.Operation<types.ListScheduledReportsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateDashboard(input: types.UpdateDashboardInput, options: any): async.Operation<types.UpdateDashboardOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDashboard, input, options) as async.Operation<types.UpdateDashboardOutput>
+function C:updateDashboard(input: types.UpdateDashboardInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDashboardOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDashboard as schema.OperationSchema, input, options) as async.Operation<types.UpdateDashboardOutput>
 end
 
-function C:updateScheduledReport(input: types.UpdateScheduledReportInput, options: any): async.Operation<types.UpdateScheduledReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateScheduledReport, input, options) as async.Operation<types.UpdateScheduledReportOutput>
+function C:updateScheduledReport(input: types.UpdateScheduledReportInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateScheduledReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateScheduledReport as schema.OperationSchema, input, options) as async.Operation<types.UpdateScheduledReportOutput>
 end
 
 return M

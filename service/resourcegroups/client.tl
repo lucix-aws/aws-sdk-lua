@@ -8,62 +8,65 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("resourcegroups.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("resourcegroups.schemas")
 local traits = require("smithy.traits")
 local types = require("resourcegroups.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    cancelTagSyncTask: function(Client, types.CancelTagSyncTaskInput, any): async.Operation<types.CancelTagSyncTaskOutput>
-    createGroup: function(Client, types.CreateGroupInput, any): async.Operation<types.CreateGroupOutput>
-    deleteGroup: function(Client, types.DeleteGroupInput, any): async.Operation<types.DeleteGroupOutput>
-    getAccountSettings: function(Client, types.GetAccountSettingsInput, any): async.Operation<types.GetAccountSettingsOutput>
-    getGroup: function(Client, types.GetGroupInput, any): async.Operation<types.GetGroupOutput>
-    getGroupConfiguration: function(Client, types.GetGroupConfigurationInput, any): async.Operation<types.GetGroupConfigurationOutput>
-    getGroupQuery: function(Client, types.GetGroupQueryInput, any): async.Operation<types.GetGroupQueryOutput>
-    getTags: function(Client, types.GetTagsInput, any): async.Operation<types.GetTagsOutput>
-    getTagSyncTask: function(Client, types.GetTagSyncTaskInput, any): async.Operation<types.GetTagSyncTaskOutput>
-    groupResources: function(Client, types.GroupResourcesInput, any): async.Operation<types.GroupResourcesOutput>
-    listGroupingStatuses: function(Client, types.ListGroupingStatusesInput, any): async.Operation<types.ListGroupingStatusesOutput>
-    listGroupResources: function(Client, types.ListGroupResourcesInput, any): async.Operation<types.ListGroupResourcesOutput>
-    listGroups: function(Client, types.ListGroupsInput, any): async.Operation<types.ListGroupsOutput>
-    listTagSyncTasks: function(Client, types.ListTagSyncTasksInput, any): async.Operation<types.ListTagSyncTasksOutput>
-    putGroupConfiguration: function(Client, types.PutGroupConfigurationInput, any): async.Operation<types.PutGroupConfigurationOutput>
-    searchResources: function(Client, types.SearchResourcesInput, any): async.Operation<types.SearchResourcesOutput>
-    startTagSyncTask: function(Client, types.StartTagSyncTaskInput, any): async.Operation<types.StartTagSyncTaskOutput>
-    tag: function(Client, types.TagInput, any): async.Operation<types.TagOutput>
-    ungroupResources: function(Client, types.UngroupResourcesInput, any): async.Operation<types.UngroupResourcesOutput>
-    untag: function(Client, types.UntagInput, any): async.Operation<types.UntagOutput>
-    updateAccountSettings: function(Client, types.UpdateAccountSettingsInput, any): async.Operation<types.UpdateAccountSettingsOutput>
-    updateGroup: function(Client, types.UpdateGroupInput, any): async.Operation<types.UpdateGroupOutput>
-    updateGroupQuery: function(Client, types.UpdateGroupQueryInput, any): async.Operation<types.UpdateGroupQueryOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    cancelTagSyncTask: function(Client, types.CancelTagSyncTaskInput, ? base_client.InvokeOptions): async.Operation<types.CancelTagSyncTaskOutput>
+    createGroup: function(Client, types.CreateGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateGroupOutput>
+    deleteGroup: function(Client, types.DeleteGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGroupOutput>
+    getAccountSettings: function(Client, types.GetAccountSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountSettingsOutput>
+    getGroup: function(Client, types.GetGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetGroupOutput>
+    getGroupConfiguration: function(Client, types.GetGroupConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetGroupConfigurationOutput>
+    getGroupQuery: function(Client, types.GetGroupQueryInput, ? base_client.InvokeOptions): async.Operation<types.GetGroupQueryOutput>
+    getTags: function(Client, types.GetTagsInput, ? base_client.InvokeOptions): async.Operation<types.GetTagsOutput>
+    getTagSyncTask: function(Client, types.GetTagSyncTaskInput, ? base_client.InvokeOptions): async.Operation<types.GetTagSyncTaskOutput>
+    groupResources: function(Client, types.GroupResourcesInput, ? base_client.InvokeOptions): async.Operation<types.GroupResourcesOutput>
+    listGroupingStatuses: function(Client, types.ListGroupingStatusesInput, ? base_client.InvokeOptions): async.Operation<types.ListGroupingStatusesOutput>
+    listGroupResources: function(Client, types.ListGroupResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListGroupResourcesOutput>
+    listGroups: function(Client, types.ListGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListGroupsOutput>
+    listTagSyncTasks: function(Client, types.ListTagSyncTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListTagSyncTasksOutput>
+    putGroupConfiguration: function(Client, types.PutGroupConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutGroupConfigurationOutput>
+    searchResources: function(Client, types.SearchResourcesInput, ? base_client.InvokeOptions): async.Operation<types.SearchResourcesOutput>
+    startTagSyncTask: function(Client, types.StartTagSyncTaskInput, ? base_client.InvokeOptions): async.Operation<types.StartTagSyncTaskOutput>
+    tag: function(Client, types.TagInput, ? base_client.InvokeOptions): async.Operation<types.TagOutput>
+    ungroupResources: function(Client, types.UngroupResourcesInput, ? base_client.InvokeOptions): async.Operation<types.UngroupResourcesOutput>
+    untag: function(Client, types.UntagInput, ? base_client.InvokeOptions): async.Operation<types.UntagOutput>
+    updateAccountSettings: function(Client, types.UpdateAccountSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAccountSettingsOutput>
+    updateGroup: function(Client, types.UpdateGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGroupOutput>
+    updateGroupQuery: function(Client, types.UpdateGroupQueryInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGroupQueryOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "Ardi"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "resource-groups", signing_region = c.region } }
                 else
@@ -82,96 +85,96 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:cancelTagSyncTask(input: types.CancelTagSyncTaskInput, options: any): async.Operation<types.CancelTagSyncTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelTagSyncTask, input, options) as async.Operation<types.CancelTagSyncTaskOutput>
+function C:cancelTagSyncTask(input: types.CancelTagSyncTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CancelTagSyncTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelTagSyncTask as schema.OperationSchema, input, options) as async.Operation<types.CancelTagSyncTaskOutput>
 end
 
-function C:createGroup(input: types.CreateGroupInput, options: any): async.Operation<types.CreateGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateGroup, input, options) as async.Operation<types.CreateGroupOutput>
+function C:createGroup(input: types.CreateGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateGroupOutput>
 end
 
-function C:deleteGroup(input: types.DeleteGroupInput, options: any): async.Operation<types.DeleteGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteGroup, input, options) as async.Operation<types.DeleteGroupOutput>
+function C:deleteGroup(input: types.DeleteGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteGroupOutput>
 end
 
-function C:getAccountSettings(input: types.GetAccountSettingsInput, options: any): async.Operation<types.GetAccountSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccountSettings, input, options) as async.Operation<types.GetAccountSettingsOutput>
+function C:getAccountSettings(input: types.GetAccountSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccountSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccountSettings as schema.OperationSchema, input, options) as async.Operation<types.GetAccountSettingsOutput>
 end
 
-function C:getGroup(input: types.GetGroupInput, options: any): async.Operation<types.GetGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetGroup, input, options) as async.Operation<types.GetGroupOutput>
+function C:getGroup(input: types.GetGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGroup as schema.OperationSchema, input, options) as async.Operation<types.GetGroupOutput>
 end
 
-function C:getGroupConfiguration(input: types.GetGroupConfigurationInput, options: any): async.Operation<types.GetGroupConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetGroupConfiguration, input, options) as async.Operation<types.GetGroupConfigurationOutput>
+function C:getGroupConfiguration(input: types.GetGroupConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetGroupConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGroupConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetGroupConfigurationOutput>
 end
 
-function C:getGroupQuery(input: types.GetGroupQueryInput, options: any): async.Operation<types.GetGroupQueryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetGroupQuery, input, options) as async.Operation<types.GetGroupQueryOutput>
+function C:getGroupQuery(input: types.GetGroupQueryInput, options?: base_client.InvokeOptions): async.Operation<types.GetGroupQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGroupQuery as schema.OperationSchema, input, options) as async.Operation<types.GetGroupQueryOutput>
 end
 
-function C:getTags(input: types.GetTagsInput, options: any): async.Operation<types.GetTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTags, input, options) as async.Operation<types.GetTagsOutput>
+function C:getTags(input: types.GetTagsInput, options?: base_client.InvokeOptions): async.Operation<types.GetTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTags as schema.OperationSchema, input, options) as async.Operation<types.GetTagsOutput>
 end
 
-function C:getTagSyncTask(input: types.GetTagSyncTaskInput, options: any): async.Operation<types.GetTagSyncTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTagSyncTask, input, options) as async.Operation<types.GetTagSyncTaskOutput>
+function C:getTagSyncTask(input: types.GetTagSyncTaskInput, options?: base_client.InvokeOptions): async.Operation<types.GetTagSyncTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTagSyncTask as schema.OperationSchema, input, options) as async.Operation<types.GetTagSyncTaskOutput>
 end
 
-function C:groupResources(input: types.GroupResourcesInput, options: any): async.Operation<types.GroupResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GroupResources, input, options) as async.Operation<types.GroupResourcesOutput>
+function C:groupResources(input: types.GroupResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.GroupResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GroupResources as schema.OperationSchema, input, options) as async.Operation<types.GroupResourcesOutput>
 end
 
-function C:listGroupingStatuses(input: types.ListGroupingStatusesInput, options: any): async.Operation<types.ListGroupingStatusesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGroupingStatuses, input, options) as async.Operation<types.ListGroupingStatusesOutput>
+function C:listGroupingStatuses(input: types.ListGroupingStatusesInput, options?: base_client.InvokeOptions): async.Operation<types.ListGroupingStatusesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGroupingStatuses as schema.OperationSchema, input, options) as async.Operation<types.ListGroupingStatusesOutput>
 end
 
-function C:listGroupResources(input: types.ListGroupResourcesInput, options: any): async.Operation<types.ListGroupResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGroupResources, input, options) as async.Operation<types.ListGroupResourcesOutput>
+function C:listGroupResources(input: types.ListGroupResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListGroupResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGroupResources as schema.OperationSchema, input, options) as async.Operation<types.ListGroupResourcesOutput>
 end
 
-function C:listGroups(input: types.ListGroupsInput, options: any): async.Operation<types.ListGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGroups, input, options) as async.Operation<types.ListGroupsOutput>
+function C:listGroups(input: types.ListGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGroups as schema.OperationSchema, input, options) as async.Operation<types.ListGroupsOutput>
 end
 
-function C:listTagSyncTasks(input: types.ListTagSyncTasksInput, options: any): async.Operation<types.ListTagSyncTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagSyncTasks, input, options) as async.Operation<types.ListTagSyncTasksOutput>
+function C:listTagSyncTasks(input: types.ListTagSyncTasksInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagSyncTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagSyncTasks as schema.OperationSchema, input, options) as async.Operation<types.ListTagSyncTasksOutput>
 end
 
-function C:putGroupConfiguration(input: types.PutGroupConfigurationInput, options: any): async.Operation<types.PutGroupConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutGroupConfiguration, input, options) as async.Operation<types.PutGroupConfigurationOutput>
+function C:putGroupConfiguration(input: types.PutGroupConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutGroupConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutGroupConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutGroupConfigurationOutput>
 end
 
-function C:searchResources(input: types.SearchResourcesInput, options: any): async.Operation<types.SearchResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchResources, input, options) as async.Operation<types.SearchResourcesOutput>
+function C:searchResources(input: types.SearchResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.SearchResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchResources as schema.OperationSchema, input, options) as async.Operation<types.SearchResourcesOutput>
 end
 
-function C:startTagSyncTask(input: types.StartTagSyncTaskInput, options: any): async.Operation<types.StartTagSyncTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartTagSyncTask, input, options) as async.Operation<types.StartTagSyncTaskOutput>
+function C:startTagSyncTask(input: types.StartTagSyncTaskInput, options?: base_client.InvokeOptions): async.Operation<types.StartTagSyncTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartTagSyncTask as schema.OperationSchema, input, options) as async.Operation<types.StartTagSyncTaskOutput>
 end
 
-function C:tag(input: types.TagInput, options: any): async.Operation<types.TagOutput>
-    return self:invokeOperation(schemas.Service, schemas.Tag, input, options) as async.Operation<types.TagOutput>
+function C:tag(input: types.TagInput, options?: base_client.InvokeOptions): async.Operation<types.TagOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Tag as schema.OperationSchema, input, options) as async.Operation<types.TagOutput>
 end
 
-function C:ungroupResources(input: types.UngroupResourcesInput, options: any): async.Operation<types.UngroupResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UngroupResources, input, options) as async.Operation<types.UngroupResourcesOutput>
+function C:ungroupResources(input: types.UngroupResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.UngroupResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UngroupResources as schema.OperationSchema, input, options) as async.Operation<types.UngroupResourcesOutput>
 end
 
-function C:untag(input: types.UntagInput, options: any): async.Operation<types.UntagOutput>
-    return self:invokeOperation(schemas.Service, schemas.Untag, input, options) as async.Operation<types.UntagOutput>
+function C:untag(input: types.UntagInput, options?: base_client.InvokeOptions): async.Operation<types.UntagOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Untag as schema.OperationSchema, input, options) as async.Operation<types.UntagOutput>
 end
 
-function C:updateAccountSettings(input: types.UpdateAccountSettingsInput, options: any): async.Operation<types.UpdateAccountSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAccountSettings, input, options) as async.Operation<types.UpdateAccountSettingsOutput>
+function C:updateAccountSettings(input: types.UpdateAccountSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAccountSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAccountSettings as schema.OperationSchema, input, options) as async.Operation<types.UpdateAccountSettingsOutput>
 end
 
-function C:updateGroup(input: types.UpdateGroupInput, options: any): async.Operation<types.UpdateGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateGroup, input, options) as async.Operation<types.UpdateGroupOutput>
+function C:updateGroup(input: types.UpdateGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateGroupOutput>
 end
 
-function C:updateGroupQuery(input: types.UpdateGroupQueryInput, options: any): async.Operation<types.UpdateGroupQueryOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateGroupQuery, input, options) as async.Operation<types.UpdateGroupQueryOutput>
+function C:updateGroupQuery(input: types.UpdateGroupQueryInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGroupQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGroupQuery as schema.OperationSchema, input, options) as async.Operation<types.UpdateGroupQueryOutput>
 end
 
 return M

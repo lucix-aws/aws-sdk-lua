@@ -8,64 +8,67 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("grafana.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("grafana.schemas")
 local traits = require("smithy.traits")
 local types = require("grafana.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateLicense: function(Client, types.AssociateLicenseInput, any): async.Operation<types.AssociateLicenseOutput>
-    createWorkspace: function(Client, types.CreateWorkspaceInput, any): async.Operation<types.CreateWorkspaceOutput>
-    createWorkspaceApiKey: function(Client, types.CreateWorkspaceApiKeyInput, any): async.Operation<types.CreateWorkspaceApiKeyOutput>
-    createWorkspaceServiceAccount: function(Client, types.CreateWorkspaceServiceAccountInput, any): async.Operation<types.CreateWorkspaceServiceAccountOutput>
-    createWorkspaceServiceAccountToken: function(Client, types.CreateWorkspaceServiceAccountTokenInput, any): async.Operation<types.CreateWorkspaceServiceAccountTokenOutput>
-    deleteWorkspace: function(Client, types.DeleteWorkspaceInput, any): async.Operation<types.DeleteWorkspaceOutput>
-    deleteWorkspaceApiKey: function(Client, types.DeleteWorkspaceApiKeyInput, any): async.Operation<types.DeleteWorkspaceApiKeyOutput>
-    deleteWorkspaceServiceAccount: function(Client, types.DeleteWorkspaceServiceAccountInput, any): async.Operation<types.DeleteWorkspaceServiceAccountOutput>
-    deleteWorkspaceServiceAccountToken: function(Client, types.DeleteWorkspaceServiceAccountTokenInput, any): async.Operation<types.DeleteWorkspaceServiceAccountTokenOutput>
-    describeWorkspace: function(Client, types.DescribeWorkspaceInput, any): async.Operation<types.DescribeWorkspaceOutput>
-    describeWorkspaceAuthentication: function(Client, types.DescribeWorkspaceAuthenticationInput, any): async.Operation<types.DescribeWorkspaceAuthenticationOutput>
-    describeWorkspaceConfiguration: function(Client, types.DescribeWorkspaceConfigurationInput, any): async.Operation<types.DescribeWorkspaceConfigurationOutput>
-    disassociateLicense: function(Client, types.DisassociateLicenseInput, any): async.Operation<types.DisassociateLicenseOutput>
-    listPermissions: function(Client, types.ListPermissionsInput, any): async.Operation<types.ListPermissionsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listVersions: function(Client, types.ListVersionsInput, any): async.Operation<types.ListVersionsOutput>
-    listWorkspaces: function(Client, types.ListWorkspacesInput, any): async.Operation<types.ListWorkspacesOutput>
-    listWorkspaceServiceAccounts: function(Client, types.ListWorkspaceServiceAccountsInput, any): async.Operation<types.ListWorkspaceServiceAccountsOutput>
-    listWorkspaceServiceAccountTokens: function(Client, types.ListWorkspaceServiceAccountTokensInput, any): async.Operation<types.ListWorkspaceServiceAccountTokensOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updatePermissions: function(Client, types.UpdatePermissionsInput, any): async.Operation<types.UpdatePermissionsOutput>
-    updateWorkspace: function(Client, types.UpdateWorkspaceInput, any): async.Operation<types.UpdateWorkspaceOutput>
-    updateWorkspaceAuthentication: function(Client, types.UpdateWorkspaceAuthenticationInput, any): async.Operation<types.UpdateWorkspaceAuthenticationOutput>
-    updateWorkspaceConfiguration: function(Client, types.UpdateWorkspaceConfigurationInput, any): async.Operation<types.UpdateWorkspaceConfigurationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateLicense: function(Client, types.AssociateLicenseInput, ? base_client.InvokeOptions): async.Operation<types.AssociateLicenseOutput>
+    createWorkspace: function(Client, types.CreateWorkspaceInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkspaceOutput>
+    createWorkspaceApiKey: function(Client, types.CreateWorkspaceApiKeyInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkspaceApiKeyOutput>
+    createWorkspaceServiceAccount: function(Client, types.CreateWorkspaceServiceAccountInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkspaceServiceAccountOutput>
+    createWorkspaceServiceAccountToken: function(Client, types.CreateWorkspaceServiceAccountTokenInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkspaceServiceAccountTokenOutput>
+    deleteWorkspace: function(Client, types.DeleteWorkspaceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWorkspaceOutput>
+    deleteWorkspaceApiKey: function(Client, types.DeleteWorkspaceApiKeyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWorkspaceApiKeyOutput>
+    deleteWorkspaceServiceAccount: function(Client, types.DeleteWorkspaceServiceAccountInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWorkspaceServiceAccountOutput>
+    deleteWorkspaceServiceAccountToken: function(Client, types.DeleteWorkspaceServiceAccountTokenInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWorkspaceServiceAccountTokenOutput>
+    describeWorkspace: function(Client, types.DescribeWorkspaceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeWorkspaceOutput>
+    describeWorkspaceAuthentication: function(Client, types.DescribeWorkspaceAuthenticationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeWorkspaceAuthenticationOutput>
+    describeWorkspaceConfiguration: function(Client, types.DescribeWorkspaceConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeWorkspaceConfigurationOutput>
+    disassociateLicense: function(Client, types.DisassociateLicenseInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateLicenseOutput>
+    listPermissions: function(Client, types.ListPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.ListPermissionsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listVersions: function(Client, types.ListVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListVersionsOutput>
+    listWorkspaces: function(Client, types.ListWorkspacesInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkspacesOutput>
+    listWorkspaceServiceAccounts: function(Client, types.ListWorkspaceServiceAccountsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkspaceServiceAccountsOutput>
+    listWorkspaceServiceAccountTokens: function(Client, types.ListWorkspaceServiceAccountTokensInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkspaceServiceAccountTokensOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updatePermissions: function(Client, types.UpdatePermissionsInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePermissionsOutput>
+    updateWorkspace: function(Client, types.UpdateWorkspaceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWorkspaceOutput>
+    updateWorkspaceAuthentication: function(Client, types.UpdateWorkspaceAuthenticationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWorkspaceAuthenticationOutput>
+    updateWorkspaceConfiguration: function(Client, types.UpdateWorkspaceConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWorkspaceConfigurationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSGrafanaControlPlane"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "grafana", signing_region = c.region } }
                 else
@@ -84,104 +87,104 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateLicense(input: types.AssociateLicenseInput, options: any): async.Operation<types.AssociateLicenseOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateLicense, input, options) as async.Operation<types.AssociateLicenseOutput>
+function C:associateLicense(input: types.AssociateLicenseInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateLicenseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateLicense as schema.OperationSchema, input, options) as async.Operation<types.AssociateLicenseOutput>
 end
 
-function C:createWorkspace(input: types.CreateWorkspaceInput, options: any): async.Operation<types.CreateWorkspaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWorkspace, input, options) as async.Operation<types.CreateWorkspaceOutput>
+function C:createWorkspace(input: types.CreateWorkspaceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWorkspaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWorkspace as schema.OperationSchema, input, options) as async.Operation<types.CreateWorkspaceOutput>
 end
 
-function C:createWorkspaceApiKey(input: types.CreateWorkspaceApiKeyInput, options: any): async.Operation<types.CreateWorkspaceApiKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWorkspaceApiKey, input, options) as async.Operation<types.CreateWorkspaceApiKeyOutput>
+function C:createWorkspaceApiKey(input: types.CreateWorkspaceApiKeyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWorkspaceApiKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWorkspaceApiKey as schema.OperationSchema, input, options) as async.Operation<types.CreateWorkspaceApiKeyOutput>
 end
 
-function C:createWorkspaceServiceAccount(input: types.CreateWorkspaceServiceAccountInput, options: any): async.Operation<types.CreateWorkspaceServiceAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWorkspaceServiceAccount, input, options) as async.Operation<types.CreateWorkspaceServiceAccountOutput>
+function C:createWorkspaceServiceAccount(input: types.CreateWorkspaceServiceAccountInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWorkspaceServiceAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWorkspaceServiceAccount as schema.OperationSchema, input, options) as async.Operation<types.CreateWorkspaceServiceAccountOutput>
 end
 
-function C:createWorkspaceServiceAccountToken(input: types.CreateWorkspaceServiceAccountTokenInput, options: any): async.Operation<types.CreateWorkspaceServiceAccountTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWorkspaceServiceAccountToken, input, options) as async.Operation<types.CreateWorkspaceServiceAccountTokenOutput>
+function C:createWorkspaceServiceAccountToken(input: types.CreateWorkspaceServiceAccountTokenInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWorkspaceServiceAccountTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWorkspaceServiceAccountToken as schema.OperationSchema, input, options) as async.Operation<types.CreateWorkspaceServiceAccountTokenOutput>
 end
 
-function C:deleteWorkspace(input: types.DeleteWorkspaceInput, options: any): async.Operation<types.DeleteWorkspaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWorkspace, input, options) as async.Operation<types.DeleteWorkspaceOutput>
+function C:deleteWorkspace(input: types.DeleteWorkspaceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWorkspaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWorkspace as schema.OperationSchema, input, options) as async.Operation<types.DeleteWorkspaceOutput>
 end
 
-function C:deleteWorkspaceApiKey(input: types.DeleteWorkspaceApiKeyInput, options: any): async.Operation<types.DeleteWorkspaceApiKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWorkspaceApiKey, input, options) as async.Operation<types.DeleteWorkspaceApiKeyOutput>
+function C:deleteWorkspaceApiKey(input: types.DeleteWorkspaceApiKeyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWorkspaceApiKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWorkspaceApiKey as schema.OperationSchema, input, options) as async.Operation<types.DeleteWorkspaceApiKeyOutput>
 end
 
-function C:deleteWorkspaceServiceAccount(input: types.DeleteWorkspaceServiceAccountInput, options: any): async.Operation<types.DeleteWorkspaceServiceAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWorkspaceServiceAccount, input, options) as async.Operation<types.DeleteWorkspaceServiceAccountOutput>
+function C:deleteWorkspaceServiceAccount(input: types.DeleteWorkspaceServiceAccountInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWorkspaceServiceAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWorkspaceServiceAccount as schema.OperationSchema, input, options) as async.Operation<types.DeleteWorkspaceServiceAccountOutput>
 end
 
-function C:deleteWorkspaceServiceAccountToken(input: types.DeleteWorkspaceServiceAccountTokenInput, options: any): async.Operation<types.DeleteWorkspaceServiceAccountTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWorkspaceServiceAccountToken, input, options) as async.Operation<types.DeleteWorkspaceServiceAccountTokenOutput>
+function C:deleteWorkspaceServiceAccountToken(input: types.DeleteWorkspaceServiceAccountTokenInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWorkspaceServiceAccountTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWorkspaceServiceAccountToken as schema.OperationSchema, input, options) as async.Operation<types.DeleteWorkspaceServiceAccountTokenOutput>
 end
 
-function C:describeWorkspace(input: types.DescribeWorkspaceInput, options: any): async.Operation<types.DescribeWorkspaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeWorkspace, input, options) as async.Operation<types.DescribeWorkspaceOutput>
+function C:describeWorkspace(input: types.DescribeWorkspaceInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeWorkspaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeWorkspace as schema.OperationSchema, input, options) as async.Operation<types.DescribeWorkspaceOutput>
 end
 
-function C:describeWorkspaceAuthentication(input: types.DescribeWorkspaceAuthenticationInput, options: any): async.Operation<types.DescribeWorkspaceAuthenticationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeWorkspaceAuthentication, input, options) as async.Operation<types.DescribeWorkspaceAuthenticationOutput>
+function C:describeWorkspaceAuthentication(input: types.DescribeWorkspaceAuthenticationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeWorkspaceAuthenticationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeWorkspaceAuthentication as schema.OperationSchema, input, options) as async.Operation<types.DescribeWorkspaceAuthenticationOutput>
 end
 
-function C:describeWorkspaceConfiguration(input: types.DescribeWorkspaceConfigurationInput, options: any): async.Operation<types.DescribeWorkspaceConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeWorkspaceConfiguration, input, options) as async.Operation<types.DescribeWorkspaceConfigurationOutput>
+function C:describeWorkspaceConfiguration(input: types.DescribeWorkspaceConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeWorkspaceConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeWorkspaceConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeWorkspaceConfigurationOutput>
 end
 
-function C:disassociateLicense(input: types.DisassociateLicenseInput, options: any): async.Operation<types.DisassociateLicenseOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateLicense, input, options) as async.Operation<types.DisassociateLicenseOutput>
+function C:disassociateLicense(input: types.DisassociateLicenseInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateLicenseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateLicense as schema.OperationSchema, input, options) as async.Operation<types.DisassociateLicenseOutput>
 end
 
-function C:listPermissions(input: types.ListPermissionsInput, options: any): async.Operation<types.ListPermissionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPermissions, input, options) as async.Operation<types.ListPermissionsOutput>
+function C:listPermissions(input: types.ListPermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPermissions as schema.OperationSchema, input, options) as async.Operation<types.ListPermissionsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listVersions(input: types.ListVersionsInput, options: any): async.Operation<types.ListVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVersions, input, options) as async.Operation<types.ListVersionsOutput>
+function C:listVersions(input: types.ListVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVersions as schema.OperationSchema, input, options) as async.Operation<types.ListVersionsOutput>
 end
 
-function C:listWorkspaces(input: types.ListWorkspacesInput, options: any): async.Operation<types.ListWorkspacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWorkspaces, input, options) as async.Operation<types.ListWorkspacesOutput>
+function C:listWorkspaces(input: types.ListWorkspacesInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkspacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkspaces as schema.OperationSchema, input, options) as async.Operation<types.ListWorkspacesOutput>
 end
 
-function C:listWorkspaceServiceAccounts(input: types.ListWorkspaceServiceAccountsInput, options: any): async.Operation<types.ListWorkspaceServiceAccountsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWorkspaceServiceAccounts, input, options) as async.Operation<types.ListWorkspaceServiceAccountsOutput>
+function C:listWorkspaceServiceAccounts(input: types.ListWorkspaceServiceAccountsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkspaceServiceAccountsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkspaceServiceAccounts as schema.OperationSchema, input, options) as async.Operation<types.ListWorkspaceServiceAccountsOutput>
 end
 
-function C:listWorkspaceServiceAccountTokens(input: types.ListWorkspaceServiceAccountTokensInput, options: any): async.Operation<types.ListWorkspaceServiceAccountTokensOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWorkspaceServiceAccountTokens, input, options) as async.Operation<types.ListWorkspaceServiceAccountTokensOutput>
+function C:listWorkspaceServiceAccountTokens(input: types.ListWorkspaceServiceAccountTokensInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkspaceServiceAccountTokensOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkspaceServiceAccountTokens as schema.OperationSchema, input, options) as async.Operation<types.ListWorkspaceServiceAccountTokensOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updatePermissions(input: types.UpdatePermissionsInput, options: any): async.Operation<types.UpdatePermissionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePermissions, input, options) as async.Operation<types.UpdatePermissionsOutput>
+function C:updatePermissions(input: types.UpdatePermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePermissions as schema.OperationSchema, input, options) as async.Operation<types.UpdatePermissionsOutput>
 end
 
-function C:updateWorkspace(input: types.UpdateWorkspaceInput, options: any): async.Operation<types.UpdateWorkspaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateWorkspace, input, options) as async.Operation<types.UpdateWorkspaceOutput>
+function C:updateWorkspace(input: types.UpdateWorkspaceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWorkspaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWorkspace as schema.OperationSchema, input, options) as async.Operation<types.UpdateWorkspaceOutput>
 end
 
-function C:updateWorkspaceAuthentication(input: types.UpdateWorkspaceAuthenticationInput, options: any): async.Operation<types.UpdateWorkspaceAuthenticationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateWorkspaceAuthentication, input, options) as async.Operation<types.UpdateWorkspaceAuthenticationOutput>
+function C:updateWorkspaceAuthentication(input: types.UpdateWorkspaceAuthenticationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWorkspaceAuthenticationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWorkspaceAuthentication as schema.OperationSchema, input, options) as async.Operation<types.UpdateWorkspaceAuthenticationOutput>
 end
 
-function C:updateWorkspaceConfiguration(input: types.UpdateWorkspaceConfigurationInput, options: any): async.Operation<types.UpdateWorkspaceConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateWorkspaceConfiguration, input, options) as async.Operation<types.UpdateWorkspaceConfigurationOutput>
+function C:updateWorkspaceConfiguration(input: types.UpdateWorkspaceConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWorkspaceConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWorkspaceConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateWorkspaceConfigurationOutput>
 end
 
 return M

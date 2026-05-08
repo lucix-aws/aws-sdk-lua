@@ -8,67 +8,70 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("applicationdiscoveryservice.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("applicationdiscoveryservice.schemas")
 local traits = require("smithy.traits")
 local types = require("applicationdiscoveryservice.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateConfigurationItemsToApplication: function(Client, types.AssociateConfigurationItemsToApplicationInput, any): async.Operation<types.AssociateConfigurationItemsToApplicationOutput>
-    batchDeleteAgents: function(Client, types.BatchDeleteAgentsInput, any): async.Operation<types.BatchDeleteAgentsOutput>
-    batchDeleteImportData: function(Client, types.BatchDeleteImportDataInput, any): async.Operation<types.BatchDeleteImportDataOutput>
-    createApplication: function(Client, types.CreateApplicationInput, any): async.Operation<types.CreateApplicationOutput>
-    createTags: function(Client, types.CreateTagsInput, any): async.Operation<types.CreateTagsOutput>
-    deleteApplications: function(Client, types.DeleteApplicationsInput, any): async.Operation<types.DeleteApplicationsOutput>
-    deleteTags: function(Client, types.DeleteTagsInput, any): async.Operation<types.DeleteTagsOutput>
-    describeAgents: function(Client, types.DescribeAgentsInput, any): async.Operation<types.DescribeAgentsOutput>
-    describeBatchDeleteConfigurationTask: function(Client, types.DescribeBatchDeleteConfigurationTaskInput, any): async.Operation<types.DescribeBatchDeleteConfigurationTaskOutput>
-    describeConfigurations: function(Client, types.DescribeConfigurationsInput, any): async.Operation<types.DescribeConfigurationsOutput>
-    describeContinuousExports: function(Client, types.DescribeContinuousExportsInput, any): async.Operation<types.DescribeContinuousExportsOutput>
-    describeExportConfigurations: function(Client, types.DescribeExportConfigurationsInput, any): async.Operation<types.DescribeExportConfigurationsOutput>
-    describeExportTasks: function(Client, types.DescribeExportTasksInput, any): async.Operation<types.DescribeExportTasksOutput>
-    describeImportTasks: function(Client, types.DescribeImportTasksInput, any): async.Operation<types.DescribeImportTasksOutput>
-    describeTags: function(Client, types.DescribeTagsInput, any): async.Operation<types.DescribeTagsOutput>
-    disassociateConfigurationItemsFromApplication: function(Client, types.DisassociateConfigurationItemsFromApplicationInput, any): async.Operation<types.DisassociateConfigurationItemsFromApplicationOutput>
-    exportConfigurations: function(Client, types.ExportConfigurationsInput, any): async.Operation<types.ExportConfigurationsOutput>
-    getDiscoverySummary: function(Client, types.GetDiscoverySummaryInput, any): async.Operation<types.GetDiscoverySummaryOutput>
-    listConfigurations: function(Client, types.ListConfigurationsInput, any): async.Operation<types.ListConfigurationsOutput>
-    listServerNeighbors: function(Client, types.ListServerNeighborsInput, any): async.Operation<types.ListServerNeighborsOutput>
-    startBatchDeleteConfigurationTask: function(Client, types.StartBatchDeleteConfigurationTaskInput, any): async.Operation<types.StartBatchDeleteConfigurationTaskOutput>
-    startContinuousExport: function(Client, types.StartContinuousExportInput, any): async.Operation<types.StartContinuousExportOutput>
-    startDataCollectionByAgentIds: function(Client, types.StartDataCollectionByAgentIdsInput, any): async.Operation<types.StartDataCollectionByAgentIdsOutput>
-    startExportTask: function(Client, types.StartExportTaskInput, any): async.Operation<types.StartExportTaskOutput>
-    startImportTask: function(Client, types.StartImportTaskInput, any): async.Operation<types.StartImportTaskOutput>
-    stopContinuousExport: function(Client, types.StopContinuousExportInput, any): async.Operation<types.StopContinuousExportOutput>
-    stopDataCollectionByAgentIds: function(Client, types.StopDataCollectionByAgentIdsInput, any): async.Operation<types.StopDataCollectionByAgentIdsOutput>
-    updateApplication: function(Client, types.UpdateApplicationInput, any): async.Operation<types.UpdateApplicationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateConfigurationItemsToApplication: function(Client, types.AssociateConfigurationItemsToApplicationInput, ? base_client.InvokeOptions): async.Operation<types.AssociateConfigurationItemsToApplicationOutput>
+    batchDeleteAgents: function(Client, types.BatchDeleteAgentsInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteAgentsOutput>
+    batchDeleteImportData: function(Client, types.BatchDeleteImportDataInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteImportDataOutput>
+    createApplication: function(Client, types.CreateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    createTags: function(Client, types.CreateTagsInput, ? base_client.InvokeOptions): async.Operation<types.CreateTagsOutput>
+    deleteApplications: function(Client, types.DeleteApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationsOutput>
+    deleteTags: function(Client, types.DeleteTagsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTagsOutput>
+    describeAgents: function(Client, types.DescribeAgentsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAgentsOutput>
+    describeBatchDeleteConfigurationTask: function(Client, types.DescribeBatchDeleteConfigurationTaskInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBatchDeleteConfigurationTaskOutput>
+    describeConfigurations: function(Client, types.DescribeConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConfigurationsOutput>
+    describeContinuousExports: function(Client, types.DescribeContinuousExportsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeContinuousExportsOutput>
+    describeExportConfigurations: function(Client, types.DescribeExportConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeExportConfigurationsOutput>
+    describeExportTasks: function(Client, types.DescribeExportTasksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeExportTasksOutput>
+    describeImportTasks: function(Client, types.DescribeImportTasksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeImportTasksOutput>
+    describeTags: function(Client, types.DescribeTagsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTagsOutput>
+    disassociateConfigurationItemsFromApplication: function(Client, types.DisassociateConfigurationItemsFromApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateConfigurationItemsFromApplicationOutput>
+    exportConfigurations: function(Client, types.ExportConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ExportConfigurationsOutput>
+    getDiscoverySummary: function(Client, types.GetDiscoverySummaryInput, ? base_client.InvokeOptions): async.Operation<types.GetDiscoverySummaryOutput>
+    listConfigurations: function(Client, types.ListConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListConfigurationsOutput>
+    listServerNeighbors: function(Client, types.ListServerNeighborsInput, ? base_client.InvokeOptions): async.Operation<types.ListServerNeighborsOutput>
+    startBatchDeleteConfigurationTask: function(Client, types.StartBatchDeleteConfigurationTaskInput, ? base_client.InvokeOptions): async.Operation<types.StartBatchDeleteConfigurationTaskOutput>
+    startContinuousExport: function(Client, types.StartContinuousExportInput, ? base_client.InvokeOptions): async.Operation<types.StartContinuousExportOutput>
+    startDataCollectionByAgentIds: function(Client, types.StartDataCollectionByAgentIdsInput, ? base_client.InvokeOptions): async.Operation<types.StartDataCollectionByAgentIdsOutput>
+    startExportTask: function(Client, types.StartExportTaskInput, ? base_client.InvokeOptions): async.Operation<types.StartExportTaskOutput>
+    startImportTask: function(Client, types.StartImportTaskInput, ? base_client.InvokeOptions): async.Operation<types.StartImportTaskOutput>
+    stopContinuousExport: function(Client, types.StopContinuousExportInput, ? base_client.InvokeOptions): async.Operation<types.StopContinuousExportOutput>
+    stopDataCollectionByAgentIds: function(Client, types.StopDataCollectionByAgentIdsInput, ? base_client.InvokeOptions): async.Operation<types.StopDataCollectionByAgentIdsOutput>
+    updateApplication: function(Client, types.UpdateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSPoseidonService_V2015_11_01"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "discovery", signing_region = c.region } }
                 else
@@ -87,116 +90,116 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateConfigurationItemsToApplication(input: types.AssociateConfigurationItemsToApplicationInput, options: any): async.Operation<types.AssociateConfigurationItemsToApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateConfigurationItemsToApplication, input, options) as async.Operation<types.AssociateConfigurationItemsToApplicationOutput>
+function C:associateConfigurationItemsToApplication(input: types.AssociateConfigurationItemsToApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateConfigurationItemsToApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateConfigurationItemsToApplication as schema.OperationSchema, input, options) as async.Operation<types.AssociateConfigurationItemsToApplicationOutput>
 end
 
-function C:batchDeleteAgents(input: types.BatchDeleteAgentsInput, options: any): async.Operation<types.BatchDeleteAgentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDeleteAgents, input, options) as async.Operation<types.BatchDeleteAgentsOutput>
+function C:batchDeleteAgents(input: types.BatchDeleteAgentsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteAgentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteAgents as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteAgentsOutput>
 end
 
-function C:batchDeleteImportData(input: types.BatchDeleteImportDataInput, options: any): async.Operation<types.BatchDeleteImportDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDeleteImportData, input, options) as async.Operation<types.BatchDeleteImportDataOutput>
+function C:batchDeleteImportData(input: types.BatchDeleteImportDataInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteImportDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteImportData as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteImportDataOutput>
 end
 
-function C:createApplication(input: types.CreateApplicationInput, options: any): async.Operation<types.CreateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateApplication, input, options) as async.Operation<types.CreateApplicationOutput>
+function C:createApplication(input: types.CreateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApplication as schema.OperationSchema, input, options) as async.Operation<types.CreateApplicationOutput>
 end
 
-function C:createTags(input: types.CreateTagsInput, options: any): async.Operation<types.CreateTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTags, input, options) as async.Operation<types.CreateTagsOutput>
+function C:createTags(input: types.CreateTagsInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTags as schema.OperationSchema, input, options) as async.Operation<types.CreateTagsOutput>
 end
 
-function C:deleteApplications(input: types.DeleteApplicationsInput, options: any): async.Operation<types.DeleteApplicationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApplications, input, options) as async.Operation<types.DeleteApplicationsOutput>
+function C:deleteApplications(input: types.DeleteApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplications as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationsOutput>
 end
 
-function C:deleteTags(input: types.DeleteTagsInput, options: any): async.Operation<types.DeleteTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTags, input, options) as async.Operation<types.DeleteTagsOutput>
+function C:deleteTags(input: types.DeleteTagsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTags as schema.OperationSchema, input, options) as async.Operation<types.DeleteTagsOutput>
 end
 
-function C:describeAgents(input: types.DescribeAgentsInput, options: any): async.Operation<types.DescribeAgentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAgents, input, options) as async.Operation<types.DescribeAgentsOutput>
+function C:describeAgents(input: types.DescribeAgentsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAgentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAgents as schema.OperationSchema, input, options) as async.Operation<types.DescribeAgentsOutput>
 end
 
-function C:describeBatchDeleteConfigurationTask(input: types.DescribeBatchDeleteConfigurationTaskInput, options: any): async.Operation<types.DescribeBatchDeleteConfigurationTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeBatchDeleteConfigurationTask, input, options) as async.Operation<types.DescribeBatchDeleteConfigurationTaskOutput>
+function C:describeBatchDeleteConfigurationTask(input: types.DescribeBatchDeleteConfigurationTaskInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBatchDeleteConfigurationTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeBatchDeleteConfigurationTask as schema.OperationSchema, input, options) as async.Operation<types.DescribeBatchDeleteConfigurationTaskOutput>
 end
 
-function C:describeConfigurations(input: types.DescribeConfigurationsInput, options: any): async.Operation<types.DescribeConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeConfigurations, input, options) as async.Operation<types.DescribeConfigurationsOutput>
+function C:describeConfigurations(input: types.DescribeConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeConfigurations as schema.OperationSchema, input, options) as async.Operation<types.DescribeConfigurationsOutput>
 end
 
-function C:describeContinuousExports(input: types.DescribeContinuousExportsInput, options: any): async.Operation<types.DescribeContinuousExportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeContinuousExports, input, options) as async.Operation<types.DescribeContinuousExportsOutput>
+function C:describeContinuousExports(input: types.DescribeContinuousExportsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeContinuousExportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeContinuousExports as schema.OperationSchema, input, options) as async.Operation<types.DescribeContinuousExportsOutput>
 end
 
-function C:describeExportConfigurations(input: types.DescribeExportConfigurationsInput, options: any): async.Operation<types.DescribeExportConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeExportConfigurations, input, options) as async.Operation<types.DescribeExportConfigurationsOutput>
+function C:describeExportConfigurations(input: types.DescribeExportConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeExportConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeExportConfigurations as schema.OperationSchema, input, options) as async.Operation<types.DescribeExportConfigurationsOutput>
 end
 
-function C:describeExportTasks(input: types.DescribeExportTasksInput, options: any): async.Operation<types.DescribeExportTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeExportTasks, input, options) as async.Operation<types.DescribeExportTasksOutput>
+function C:describeExportTasks(input: types.DescribeExportTasksInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeExportTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeExportTasks as schema.OperationSchema, input, options) as async.Operation<types.DescribeExportTasksOutput>
 end
 
-function C:describeImportTasks(input: types.DescribeImportTasksInput, options: any): async.Operation<types.DescribeImportTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeImportTasks, input, options) as async.Operation<types.DescribeImportTasksOutput>
+function C:describeImportTasks(input: types.DescribeImportTasksInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeImportTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeImportTasks as schema.OperationSchema, input, options) as async.Operation<types.DescribeImportTasksOutput>
 end
 
-function C:describeTags(input: types.DescribeTagsInput, options: any): async.Operation<types.DescribeTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTags, input, options) as async.Operation<types.DescribeTagsOutput>
+function C:describeTags(input: types.DescribeTagsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTags as schema.OperationSchema, input, options) as async.Operation<types.DescribeTagsOutput>
 end
 
-function C:disassociateConfigurationItemsFromApplication(input: types.DisassociateConfigurationItemsFromApplicationInput, options: any): async.Operation<types.DisassociateConfigurationItemsFromApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateConfigurationItemsFromApplication, input, options) as async.Operation<types.DisassociateConfigurationItemsFromApplicationOutput>
+function C:disassociateConfigurationItemsFromApplication(input: types.DisassociateConfigurationItemsFromApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateConfigurationItemsFromApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateConfigurationItemsFromApplication as schema.OperationSchema, input, options) as async.Operation<types.DisassociateConfigurationItemsFromApplicationOutput>
 end
 
-function C:exportConfigurations(input: types.ExportConfigurationsInput, options: any): async.Operation<types.ExportConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExportConfigurations, input, options) as async.Operation<types.ExportConfigurationsOutput>
+function C:exportConfigurations(input: types.ExportConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ExportConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ExportConfigurationsOutput>
 end
 
-function C:getDiscoverySummary(input: types.GetDiscoverySummaryInput, options: any): async.Operation<types.GetDiscoverySummaryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDiscoverySummary, input, options) as async.Operation<types.GetDiscoverySummaryOutput>
+function C:getDiscoverySummary(input: types.GetDiscoverySummaryInput, options?: base_client.InvokeOptions): async.Operation<types.GetDiscoverySummaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDiscoverySummary as schema.OperationSchema, input, options) as async.Operation<types.GetDiscoverySummaryOutput>
 end
 
-function C:listConfigurations(input: types.ListConfigurationsInput, options: any): async.Operation<types.ListConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConfigurations, input, options) as async.Operation<types.ListConfigurationsOutput>
+function C:listConfigurations(input: types.ListConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListConfigurationsOutput>
 end
 
-function C:listServerNeighbors(input: types.ListServerNeighborsInput, options: any): async.Operation<types.ListServerNeighborsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServerNeighbors, input, options) as async.Operation<types.ListServerNeighborsOutput>
+function C:listServerNeighbors(input: types.ListServerNeighborsInput, options?: base_client.InvokeOptions): async.Operation<types.ListServerNeighborsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServerNeighbors as schema.OperationSchema, input, options) as async.Operation<types.ListServerNeighborsOutput>
 end
 
-function C:startBatchDeleteConfigurationTask(input: types.StartBatchDeleteConfigurationTaskInput, options: any): async.Operation<types.StartBatchDeleteConfigurationTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartBatchDeleteConfigurationTask, input, options) as async.Operation<types.StartBatchDeleteConfigurationTaskOutput>
+function C:startBatchDeleteConfigurationTask(input: types.StartBatchDeleteConfigurationTaskInput, options?: base_client.InvokeOptions): async.Operation<types.StartBatchDeleteConfigurationTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartBatchDeleteConfigurationTask as schema.OperationSchema, input, options) as async.Operation<types.StartBatchDeleteConfigurationTaskOutput>
 end
 
-function C:startContinuousExport(input: types.StartContinuousExportInput, options: any): async.Operation<types.StartContinuousExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartContinuousExport, input, options) as async.Operation<types.StartContinuousExportOutput>
+function C:startContinuousExport(input: types.StartContinuousExportInput, options?: base_client.InvokeOptions): async.Operation<types.StartContinuousExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartContinuousExport as schema.OperationSchema, input, options) as async.Operation<types.StartContinuousExportOutput>
 end
 
-function C:startDataCollectionByAgentIds(input: types.StartDataCollectionByAgentIdsInput, options: any): async.Operation<types.StartDataCollectionByAgentIdsOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartDataCollectionByAgentIds, input, options) as async.Operation<types.StartDataCollectionByAgentIdsOutput>
+function C:startDataCollectionByAgentIds(input: types.StartDataCollectionByAgentIdsInput, options?: base_client.InvokeOptions): async.Operation<types.StartDataCollectionByAgentIdsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDataCollectionByAgentIds as schema.OperationSchema, input, options) as async.Operation<types.StartDataCollectionByAgentIdsOutput>
 end
 
-function C:startExportTask(input: types.StartExportTaskInput, options: any): async.Operation<types.StartExportTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartExportTask, input, options) as async.Operation<types.StartExportTaskOutput>
+function C:startExportTask(input: types.StartExportTaskInput, options?: base_client.InvokeOptions): async.Operation<types.StartExportTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartExportTask as schema.OperationSchema, input, options) as async.Operation<types.StartExportTaskOutput>
 end
 
-function C:startImportTask(input: types.StartImportTaskInput, options: any): async.Operation<types.StartImportTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartImportTask, input, options) as async.Operation<types.StartImportTaskOutput>
+function C:startImportTask(input: types.StartImportTaskInput, options?: base_client.InvokeOptions): async.Operation<types.StartImportTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartImportTask as schema.OperationSchema, input, options) as async.Operation<types.StartImportTaskOutput>
 end
 
-function C:stopContinuousExport(input: types.StopContinuousExportInput, options: any): async.Operation<types.StopContinuousExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopContinuousExport, input, options) as async.Operation<types.StopContinuousExportOutput>
+function C:stopContinuousExport(input: types.StopContinuousExportInput, options?: base_client.InvokeOptions): async.Operation<types.StopContinuousExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopContinuousExport as schema.OperationSchema, input, options) as async.Operation<types.StopContinuousExportOutput>
 end
 
-function C:stopDataCollectionByAgentIds(input: types.StopDataCollectionByAgentIdsInput, options: any): async.Operation<types.StopDataCollectionByAgentIdsOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopDataCollectionByAgentIds, input, options) as async.Operation<types.StopDataCollectionByAgentIdsOutput>
+function C:stopDataCollectionByAgentIds(input: types.StopDataCollectionByAgentIdsInput, options?: base_client.InvokeOptions): async.Operation<types.StopDataCollectionByAgentIdsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopDataCollectionByAgentIds as schema.OperationSchema, input, options) as async.Operation<types.StopDataCollectionByAgentIdsOutput>
 end
 
-function C:updateApplication(input: types.UpdateApplicationInput, options: any): async.Operation<types.UpdateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateApplication, input, options) as async.Operation<types.UpdateApplicationOutput>
+function C:updateApplication(input: types.UpdateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApplication as schema.OperationSchema, input, options) as async.Operation<types.UpdateApplicationOutput>
 end
 
 return M

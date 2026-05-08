@@ -8,47 +8,50 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("costoptimizationhub.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("costoptimizationhub.schemas")
 local traits = require("smithy.traits")
 local types = require("costoptimizationhub.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    getPreferences: function(Client, types.GetPreferencesInput, any): async.Operation<types.GetPreferencesOutput>
-    getRecommendation: function(Client, types.GetRecommendationInput, any): async.Operation<types.GetRecommendationOutput>
-    listEfficiencyMetrics: function(Client, types.ListEfficiencyMetricsInput, any): async.Operation<types.ListEfficiencyMetricsOutput>
-    listEnrollmentStatuses: function(Client, types.ListEnrollmentStatusesInput, any): async.Operation<types.ListEnrollmentStatusesOutput>
-    listRecommendations: function(Client, types.ListRecommendationsInput, any): async.Operation<types.ListRecommendationsOutput>
-    listRecommendationSummaries: function(Client, types.ListRecommendationSummariesInput, any): async.Operation<types.ListRecommendationSummariesOutput>
-    updateEnrollmentStatus: function(Client, types.UpdateEnrollmentStatusInput, any): async.Operation<types.UpdateEnrollmentStatusOutput>
-    updatePreferences: function(Client, types.UpdatePreferencesInput, any): async.Operation<types.UpdatePreferencesOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    getPreferences: function(Client, types.GetPreferencesInput, ? base_client.InvokeOptions): async.Operation<types.GetPreferencesOutput>
+    getRecommendation: function(Client, types.GetRecommendationInput, ? base_client.InvokeOptions): async.Operation<types.GetRecommendationOutput>
+    listEfficiencyMetrics: function(Client, types.ListEfficiencyMetricsInput, ? base_client.InvokeOptions): async.Operation<types.ListEfficiencyMetricsOutput>
+    listEnrollmentStatuses: function(Client, types.ListEnrollmentStatusesInput, ? base_client.InvokeOptions): async.Operation<types.ListEnrollmentStatusesOutput>
+    listRecommendations: function(Client, types.ListRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.ListRecommendationsOutput>
+    listRecommendationSummaries: function(Client, types.ListRecommendationSummariesInput, ? base_client.InvokeOptions): async.Operation<types.ListRecommendationSummariesOutput>
+    updateEnrollmentStatus: function(Client, types.UpdateEnrollmentStatusInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEnrollmentStatusOutput>
+    updatePreferences: function(Client, types.UpdatePreferencesInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePreferencesOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "CostOptimizationHubService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "cost-optimization-hub", signing_region = c.region } }
                 else
@@ -67,36 +70,36 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:getPreferences(input: types.GetPreferencesInput, options: any): async.Operation<types.GetPreferencesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPreferences, input, options) as async.Operation<types.GetPreferencesOutput>
+function C:getPreferences(input: types.GetPreferencesInput, options?: base_client.InvokeOptions): async.Operation<types.GetPreferencesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPreferences as schema.OperationSchema, input, options) as async.Operation<types.GetPreferencesOutput>
 end
 
-function C:getRecommendation(input: types.GetRecommendationInput, options: any): async.Operation<types.GetRecommendationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRecommendation, input, options) as async.Operation<types.GetRecommendationOutput>
+function C:getRecommendation(input: types.GetRecommendationInput, options?: base_client.InvokeOptions): async.Operation<types.GetRecommendationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRecommendation as schema.OperationSchema, input, options) as async.Operation<types.GetRecommendationOutput>
 end
 
-function C:listEfficiencyMetrics(input: types.ListEfficiencyMetricsInput, options: any): async.Operation<types.ListEfficiencyMetricsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEfficiencyMetrics, input, options) as async.Operation<types.ListEfficiencyMetricsOutput>
+function C:listEfficiencyMetrics(input: types.ListEfficiencyMetricsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEfficiencyMetricsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEfficiencyMetrics as schema.OperationSchema, input, options) as async.Operation<types.ListEfficiencyMetricsOutput>
 end
 
-function C:listEnrollmentStatuses(input: types.ListEnrollmentStatusesInput, options: any): async.Operation<types.ListEnrollmentStatusesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEnrollmentStatuses, input, options) as async.Operation<types.ListEnrollmentStatusesOutput>
+function C:listEnrollmentStatuses(input: types.ListEnrollmentStatusesInput, options?: base_client.InvokeOptions): async.Operation<types.ListEnrollmentStatusesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEnrollmentStatuses as schema.OperationSchema, input, options) as async.Operation<types.ListEnrollmentStatusesOutput>
 end
 
-function C:listRecommendations(input: types.ListRecommendationsInput, options: any): async.Operation<types.ListRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRecommendations, input, options) as async.Operation<types.ListRecommendationsOutput>
+function C:listRecommendations(input: types.ListRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecommendations as schema.OperationSchema, input, options) as async.Operation<types.ListRecommendationsOutput>
 end
 
-function C:listRecommendationSummaries(input: types.ListRecommendationSummariesInput, options: any): async.Operation<types.ListRecommendationSummariesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRecommendationSummaries, input, options) as async.Operation<types.ListRecommendationSummariesOutput>
+function C:listRecommendationSummaries(input: types.ListRecommendationSummariesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecommendationSummariesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecommendationSummaries as schema.OperationSchema, input, options) as async.Operation<types.ListRecommendationSummariesOutput>
 end
 
-function C:updateEnrollmentStatus(input: types.UpdateEnrollmentStatusInput, options: any): async.Operation<types.UpdateEnrollmentStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEnrollmentStatus, input, options) as async.Operation<types.UpdateEnrollmentStatusOutput>
+function C:updateEnrollmentStatus(input: types.UpdateEnrollmentStatusInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEnrollmentStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEnrollmentStatus as schema.OperationSchema, input, options) as async.Operation<types.UpdateEnrollmentStatusOutput>
 end
 
-function C:updatePreferences(input: types.UpdatePreferencesInput, options: any): async.Operation<types.UpdatePreferencesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePreferences, input, options) as async.Operation<types.UpdatePreferencesOutput>
+function C:updatePreferences(input: types.UpdatePreferencesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePreferencesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePreferences as schema.OperationSchema, input, options) as async.Operation<types.UpdatePreferencesOutput>
 end
 
 return M

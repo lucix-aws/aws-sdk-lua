@@ -8,51 +8,54 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("dsql.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("dsql.schemas")
 local traits = require("smithy.traits")
 local types = require("dsql.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createCluster: function(Client, types.CreateClusterInput, any): async.Operation<types.CreateClusterOutput>
-    deleteCluster: function(Client, types.DeleteClusterInput, any): async.Operation<types.DeleteClusterOutput>
-    deleteClusterPolicy: function(Client, types.DeleteClusterPolicyInput, any): async.Operation<types.DeleteClusterPolicyOutput>
-    getCluster: function(Client, types.GetClusterInput, any): async.Operation<types.GetClusterOutput>
-    getClusterPolicy: function(Client, types.GetClusterPolicyInput, any): async.Operation<types.GetClusterPolicyOutput>
-    getVpcEndpointServiceName: function(Client, types.GetVpcEndpointServiceNameInput, any): async.Operation<types.GetVpcEndpointServiceNameOutput>
-    listClusters: function(Client, types.ListClustersInput, any): async.Operation<types.ListClustersOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putClusterPolicy: function(Client, types.PutClusterPolicyInput, any): async.Operation<types.PutClusterPolicyOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateCluster: function(Client, types.UpdateClusterInput, any): async.Operation<types.UpdateClusterOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createCluster: function(Client, types.CreateClusterInput, ? base_client.InvokeOptions): async.Operation<types.CreateClusterOutput>
+    deleteCluster: function(Client, types.DeleteClusterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteClusterOutput>
+    deleteClusterPolicy: function(Client, types.DeleteClusterPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteClusterPolicyOutput>
+    getCluster: function(Client, types.GetClusterInput, ? base_client.InvokeOptions): async.Operation<types.GetClusterOutput>
+    getClusterPolicy: function(Client, types.GetClusterPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetClusterPolicyOutput>
+    getVpcEndpointServiceName: function(Client, types.GetVpcEndpointServiceNameInput, ? base_client.InvokeOptions): async.Operation<types.GetVpcEndpointServiceNameOutput>
+    listClusters: function(Client, types.ListClustersInput, ? base_client.InvokeOptions): async.Operation<types.ListClustersOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putClusterPolicy: function(Client, types.PutClusterPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutClusterPolicyOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateCluster: function(Client, types.UpdateClusterInput, ? base_client.InvokeOptions): async.Operation<types.UpdateClusterOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "DSQL"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "dsql", signing_region = c.region } }
                 else
@@ -71,52 +74,52 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createCluster(input: types.CreateClusterInput, options: any): async.Operation<types.CreateClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCluster, input, options) as async.Operation<types.CreateClusterOutput>
+function C:createCluster(input: types.CreateClusterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCluster as schema.OperationSchema, input, options) as async.Operation<types.CreateClusterOutput>
 end
 
-function C:deleteCluster(input: types.DeleteClusterInput, options: any): async.Operation<types.DeleteClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCluster, input, options) as async.Operation<types.DeleteClusterOutput>
+function C:deleteCluster(input: types.DeleteClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCluster as schema.OperationSchema, input, options) as async.Operation<types.DeleteClusterOutput>
 end
 
-function C:deleteClusterPolicy(input: types.DeleteClusterPolicyInput, options: any): async.Operation<types.DeleteClusterPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteClusterPolicy, input, options) as async.Operation<types.DeleteClusterPolicyOutput>
+function C:deleteClusterPolicy(input: types.DeleteClusterPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteClusterPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteClusterPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteClusterPolicyOutput>
 end
 
-function C:getCluster(input: types.GetClusterInput, options: any): async.Operation<types.GetClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCluster, input, options) as async.Operation<types.GetClusterOutput>
+function C:getCluster(input: types.GetClusterInput, options?: base_client.InvokeOptions): async.Operation<types.GetClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCluster as schema.OperationSchema, input, options) as async.Operation<types.GetClusterOutput>
 end
 
-function C:getClusterPolicy(input: types.GetClusterPolicyInput, options: any): async.Operation<types.GetClusterPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetClusterPolicy, input, options) as async.Operation<types.GetClusterPolicyOutput>
+function C:getClusterPolicy(input: types.GetClusterPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetClusterPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetClusterPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetClusterPolicyOutput>
 end
 
-function C:getVpcEndpointServiceName(input: types.GetVpcEndpointServiceNameInput, options: any): async.Operation<types.GetVpcEndpointServiceNameOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetVpcEndpointServiceName, input, options) as async.Operation<types.GetVpcEndpointServiceNameOutput>
+function C:getVpcEndpointServiceName(input: types.GetVpcEndpointServiceNameInput, options?: base_client.InvokeOptions): async.Operation<types.GetVpcEndpointServiceNameOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVpcEndpointServiceName as schema.OperationSchema, input, options) as async.Operation<types.GetVpcEndpointServiceNameOutput>
 end
 
-function C:listClusters(input: types.ListClustersInput, options: any): async.Operation<types.ListClustersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListClusters, input, options) as async.Operation<types.ListClustersOutput>
+function C:listClusters(input: types.ListClustersInput, options?: base_client.InvokeOptions): async.Operation<types.ListClustersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListClusters as schema.OperationSchema, input, options) as async.Operation<types.ListClustersOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putClusterPolicy(input: types.PutClusterPolicyInput, options: any): async.Operation<types.PutClusterPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutClusterPolicy, input, options) as async.Operation<types.PutClusterPolicyOutput>
+function C:putClusterPolicy(input: types.PutClusterPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutClusterPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutClusterPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutClusterPolicyOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateCluster(input: types.UpdateClusterInput, options: any): async.Operation<types.UpdateClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCluster, input, options) as async.Operation<types.UpdateClusterOutput>
+function C:updateCluster(input: types.UpdateClusterInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCluster as schema.OperationSchema, input, options) as async.Operation<types.UpdateClusterOutput>
 end
 
 return M

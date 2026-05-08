@@ -8,112 +8,115 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("vpclattice.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("vpclattice.schemas")
 local traits = require("smithy.traits")
 local types = require("vpclattice.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchUpdateRule: function(Client, types.BatchUpdateRuleInput, any): async.Operation<types.BatchUpdateRuleOutput>
-    createAccessLogSubscription: function(Client, types.CreateAccessLogSubscriptionInput, any): async.Operation<types.CreateAccessLogSubscriptionOutput>
-    createListener: function(Client, types.CreateListenerInput, any): async.Operation<types.CreateListenerOutput>
-    createResourceConfiguration: function(Client, types.CreateResourceConfigurationInput, any): async.Operation<types.CreateResourceConfigurationOutput>
-    createResourceGateway: function(Client, types.CreateResourceGatewayInput, any): async.Operation<types.CreateResourceGatewayOutput>
-    createRule: function(Client, types.CreateRuleInput, any): async.Operation<types.CreateRuleOutput>
-    createService: function(Client, types.CreateServiceInput, any): async.Operation<types.CreateServiceOutput>
-    createServiceNetwork: function(Client, types.CreateServiceNetworkInput, any): async.Operation<types.CreateServiceNetworkOutput>
-    createServiceNetworkResourceAssociation: function(Client, types.CreateServiceNetworkResourceAssociationInput, any): async.Operation<types.CreateServiceNetworkResourceAssociationOutput>
-    createServiceNetworkServiceAssociation: function(Client, types.CreateServiceNetworkServiceAssociationInput, any): async.Operation<types.CreateServiceNetworkServiceAssociationOutput>
-    createServiceNetworkVpcAssociation: function(Client, types.CreateServiceNetworkVpcAssociationInput, any): async.Operation<types.CreateServiceNetworkVpcAssociationOutput>
-    createTargetGroup: function(Client, types.CreateTargetGroupInput, any): async.Operation<types.CreateTargetGroupOutput>
-    deleteAccessLogSubscription: function(Client, types.DeleteAccessLogSubscriptionInput, any): async.Operation<types.DeleteAccessLogSubscriptionOutput>
-    deleteAuthPolicy: function(Client, types.DeleteAuthPolicyInput, any): async.Operation<types.DeleteAuthPolicyOutput>
-    deleteDomainVerification: function(Client, types.DeleteDomainVerificationInput, any): async.Operation<types.DeleteDomainVerificationOutput>
-    deleteListener: function(Client, types.DeleteListenerInput, any): async.Operation<types.DeleteListenerOutput>
-    deleteResourceConfiguration: function(Client, types.DeleteResourceConfigurationInput, any): async.Operation<types.DeleteResourceConfigurationOutput>
-    deleteResourceEndpointAssociation: function(Client, types.DeleteResourceEndpointAssociationInput, any): async.Operation<types.DeleteResourceEndpointAssociationOutput>
-    deleteResourceGateway: function(Client, types.DeleteResourceGatewayInput, any): async.Operation<types.DeleteResourceGatewayOutput>
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, any): async.Operation<types.DeleteResourcePolicyOutput>
-    deleteRule: function(Client, types.DeleteRuleInput, any): async.Operation<types.DeleteRuleOutput>
-    deleteService: function(Client, types.DeleteServiceInput, any): async.Operation<types.DeleteServiceOutput>
-    deleteServiceNetwork: function(Client, types.DeleteServiceNetworkInput, any): async.Operation<types.DeleteServiceNetworkOutput>
-    deleteServiceNetworkResourceAssociation: function(Client, types.DeleteServiceNetworkResourceAssociationInput, any): async.Operation<types.DeleteServiceNetworkResourceAssociationOutput>
-    deleteServiceNetworkServiceAssociation: function(Client, types.DeleteServiceNetworkServiceAssociationInput, any): async.Operation<types.DeleteServiceNetworkServiceAssociationOutput>
-    deleteServiceNetworkVpcAssociation: function(Client, types.DeleteServiceNetworkVpcAssociationInput, any): async.Operation<types.DeleteServiceNetworkVpcAssociationOutput>
-    deleteTargetGroup: function(Client, types.DeleteTargetGroupInput, any): async.Operation<types.DeleteTargetGroupOutput>
-    deregisterTargets: function(Client, types.DeregisterTargetsInput, any): async.Operation<types.DeregisterTargetsOutput>
-    getAccessLogSubscription: function(Client, types.GetAccessLogSubscriptionInput, any): async.Operation<types.GetAccessLogSubscriptionOutput>
-    getAuthPolicy: function(Client, types.GetAuthPolicyInput, any): async.Operation<types.GetAuthPolicyOutput>
-    getDomainVerification: function(Client, types.GetDomainVerificationInput, any): async.Operation<types.GetDomainVerificationOutput>
-    getListener: function(Client, types.GetListenerInput, any): async.Operation<types.GetListenerOutput>
-    getResourceConfiguration: function(Client, types.GetResourceConfigurationInput, any): async.Operation<types.GetResourceConfigurationOutput>
-    getResourceGateway: function(Client, types.GetResourceGatewayInput, any): async.Operation<types.GetResourceGatewayOutput>
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput, any): async.Operation<types.GetResourcePolicyOutput>
-    getRule: function(Client, types.GetRuleInput, any): async.Operation<types.GetRuleOutput>
-    getService: function(Client, types.GetServiceInput, any): async.Operation<types.GetServiceOutput>
-    getServiceNetwork: function(Client, types.GetServiceNetworkInput, any): async.Operation<types.GetServiceNetworkOutput>
-    getServiceNetworkResourceAssociation: function(Client, types.GetServiceNetworkResourceAssociationInput, any): async.Operation<types.GetServiceNetworkResourceAssociationOutput>
-    getServiceNetworkServiceAssociation: function(Client, types.GetServiceNetworkServiceAssociationInput, any): async.Operation<types.GetServiceNetworkServiceAssociationOutput>
-    getServiceNetworkVpcAssociation: function(Client, types.GetServiceNetworkVpcAssociationInput, any): async.Operation<types.GetServiceNetworkVpcAssociationOutput>
-    getTargetGroup: function(Client, types.GetTargetGroupInput, any): async.Operation<types.GetTargetGroupOutput>
-    listAccessLogSubscriptions: function(Client, types.ListAccessLogSubscriptionsInput, any): async.Operation<types.ListAccessLogSubscriptionsOutput>
-    listDomainVerifications: function(Client, types.ListDomainVerificationsInput, any): async.Operation<types.ListDomainVerificationsOutput>
-    listListeners: function(Client, types.ListListenersInput, any): async.Operation<types.ListListenersOutput>
-    listResourceConfigurations: function(Client, types.ListResourceConfigurationsInput, any): async.Operation<types.ListResourceConfigurationsOutput>
-    listResourceEndpointAssociations: function(Client, types.ListResourceEndpointAssociationsInput, any): async.Operation<types.ListResourceEndpointAssociationsOutput>
-    listResourceGateways: function(Client, types.ListResourceGatewaysInput, any): async.Operation<types.ListResourceGatewaysOutput>
-    listRules: function(Client, types.ListRulesInput, any): async.Operation<types.ListRulesOutput>
-    listServiceNetworkResourceAssociations: function(Client, types.ListServiceNetworkResourceAssociationsInput, any): async.Operation<types.ListServiceNetworkResourceAssociationsOutput>
-    listServiceNetworks: function(Client, types.ListServiceNetworksInput, any): async.Operation<types.ListServiceNetworksOutput>
-    listServiceNetworkServiceAssociations: function(Client, types.ListServiceNetworkServiceAssociationsInput, any): async.Operation<types.ListServiceNetworkServiceAssociationsOutput>
-    listServiceNetworkVpcAssociations: function(Client, types.ListServiceNetworkVpcAssociationsInput, any): async.Operation<types.ListServiceNetworkVpcAssociationsOutput>
-    listServiceNetworkVpcEndpointAssociations: function(Client, types.ListServiceNetworkVpcEndpointAssociationsInput, any): async.Operation<types.ListServiceNetworkVpcEndpointAssociationsOutput>
-    listServices: function(Client, types.ListServicesInput, any): async.Operation<types.ListServicesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTargetGroups: function(Client, types.ListTargetGroupsInput, any): async.Operation<types.ListTargetGroupsOutput>
-    listTargets: function(Client, types.ListTargetsInput, any): async.Operation<types.ListTargetsOutput>
-    putAuthPolicy: function(Client, types.PutAuthPolicyInput, any): async.Operation<types.PutAuthPolicyOutput>
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput, any): async.Operation<types.PutResourcePolicyOutput>
-    registerTargets: function(Client, types.RegisterTargetsInput, any): async.Operation<types.RegisterTargetsOutput>
-    startDomainVerification: function(Client, types.StartDomainVerificationInput, any): async.Operation<types.StartDomainVerificationOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAccessLogSubscription: function(Client, types.UpdateAccessLogSubscriptionInput, any): async.Operation<types.UpdateAccessLogSubscriptionOutput>
-    updateListener: function(Client, types.UpdateListenerInput, any): async.Operation<types.UpdateListenerOutput>
-    updateResourceConfiguration: function(Client, types.UpdateResourceConfigurationInput, any): async.Operation<types.UpdateResourceConfigurationOutput>
-    updateResourceGateway: function(Client, types.UpdateResourceGatewayInput, any): async.Operation<types.UpdateResourceGatewayOutput>
-    updateRule: function(Client, types.UpdateRuleInput, any): async.Operation<types.UpdateRuleOutput>
-    updateService: function(Client, types.UpdateServiceInput, any): async.Operation<types.UpdateServiceOutput>
-    updateServiceNetwork: function(Client, types.UpdateServiceNetworkInput, any): async.Operation<types.UpdateServiceNetworkOutput>
-    updateServiceNetworkVpcAssociation: function(Client, types.UpdateServiceNetworkVpcAssociationInput, any): async.Operation<types.UpdateServiceNetworkVpcAssociationOutput>
-    updateTargetGroup: function(Client, types.UpdateTargetGroupInput, any): async.Operation<types.UpdateTargetGroupOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchUpdateRule: function(Client, types.BatchUpdateRuleInput, ? base_client.InvokeOptions): async.Operation<types.BatchUpdateRuleOutput>
+    createAccessLogSubscription: function(Client, types.CreateAccessLogSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.CreateAccessLogSubscriptionOutput>
+    createListener: function(Client, types.CreateListenerInput, ? base_client.InvokeOptions): async.Operation<types.CreateListenerOutput>
+    createResourceConfiguration: function(Client, types.CreateResourceConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateResourceConfigurationOutput>
+    createResourceGateway: function(Client, types.CreateResourceGatewayInput, ? base_client.InvokeOptions): async.Operation<types.CreateResourceGatewayOutput>
+    createRule: function(Client, types.CreateRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateRuleOutput>
+    createService: function(Client, types.CreateServiceInput, ? base_client.InvokeOptions): async.Operation<types.CreateServiceOutput>
+    createServiceNetwork: function(Client, types.CreateServiceNetworkInput, ? base_client.InvokeOptions): async.Operation<types.CreateServiceNetworkOutput>
+    createServiceNetworkResourceAssociation: function(Client, types.CreateServiceNetworkResourceAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateServiceNetworkResourceAssociationOutput>
+    createServiceNetworkServiceAssociation: function(Client, types.CreateServiceNetworkServiceAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateServiceNetworkServiceAssociationOutput>
+    createServiceNetworkVpcAssociation: function(Client, types.CreateServiceNetworkVpcAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateServiceNetworkVpcAssociationOutput>
+    createTargetGroup: function(Client, types.CreateTargetGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateTargetGroupOutput>
+    deleteAccessLogSubscription: function(Client, types.DeleteAccessLogSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccessLogSubscriptionOutput>
+    deleteAuthPolicy: function(Client, types.DeleteAuthPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAuthPolicyOutput>
+    deleteDomainVerification: function(Client, types.DeleteDomainVerificationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDomainVerificationOutput>
+    deleteListener: function(Client, types.DeleteListenerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteListenerOutput>
+    deleteResourceConfiguration: function(Client, types.DeleteResourceConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourceConfigurationOutput>
+    deleteResourceEndpointAssociation: function(Client, types.DeleteResourceEndpointAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourceEndpointAssociationOutput>
+    deleteResourceGateway: function(Client, types.DeleteResourceGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourceGatewayOutput>
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    deleteRule: function(Client, types.DeleteRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRuleOutput>
+    deleteService: function(Client, types.DeleteServiceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteServiceOutput>
+    deleteServiceNetwork: function(Client, types.DeleteServiceNetworkInput, ? base_client.InvokeOptions): async.Operation<types.DeleteServiceNetworkOutput>
+    deleteServiceNetworkResourceAssociation: function(Client, types.DeleteServiceNetworkResourceAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteServiceNetworkResourceAssociationOutput>
+    deleteServiceNetworkServiceAssociation: function(Client, types.DeleteServiceNetworkServiceAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteServiceNetworkServiceAssociationOutput>
+    deleteServiceNetworkVpcAssociation: function(Client, types.DeleteServiceNetworkVpcAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteServiceNetworkVpcAssociationOutput>
+    deleteTargetGroup: function(Client, types.DeleteTargetGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTargetGroupOutput>
+    deregisterTargets: function(Client, types.DeregisterTargetsInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterTargetsOutput>
+    getAccessLogSubscription: function(Client, types.GetAccessLogSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessLogSubscriptionOutput>
+    getAuthPolicy: function(Client, types.GetAuthPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetAuthPolicyOutput>
+    getDomainVerification: function(Client, types.GetDomainVerificationInput, ? base_client.InvokeOptions): async.Operation<types.GetDomainVerificationOutput>
+    getListener: function(Client, types.GetListenerInput, ? base_client.InvokeOptions): async.Operation<types.GetListenerOutput>
+    getResourceConfiguration: function(Client, types.GetResourceConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetResourceConfigurationOutput>
+    getResourceGateway: function(Client, types.GetResourceGatewayInput, ? base_client.InvokeOptions): async.Operation<types.GetResourceGatewayOutput>
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    getRule: function(Client, types.GetRuleInput, ? base_client.InvokeOptions): async.Operation<types.GetRuleOutput>
+    getService: function(Client, types.GetServiceInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceOutput>
+    getServiceNetwork: function(Client, types.GetServiceNetworkInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceNetworkOutput>
+    getServiceNetworkResourceAssociation: function(Client, types.GetServiceNetworkResourceAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceNetworkResourceAssociationOutput>
+    getServiceNetworkServiceAssociation: function(Client, types.GetServiceNetworkServiceAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceNetworkServiceAssociationOutput>
+    getServiceNetworkVpcAssociation: function(Client, types.GetServiceNetworkVpcAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceNetworkVpcAssociationOutput>
+    getTargetGroup: function(Client, types.GetTargetGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetTargetGroupOutput>
+    listAccessLogSubscriptions: function(Client, types.ListAccessLogSubscriptionsInput, ? base_client.InvokeOptions): async.Operation<types.ListAccessLogSubscriptionsOutput>
+    listDomainVerifications: function(Client, types.ListDomainVerificationsInput, ? base_client.InvokeOptions): async.Operation<types.ListDomainVerificationsOutput>
+    listListeners: function(Client, types.ListListenersInput, ? base_client.InvokeOptions): async.Operation<types.ListListenersOutput>
+    listResourceConfigurations: function(Client, types.ListResourceConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceConfigurationsOutput>
+    listResourceEndpointAssociations: function(Client, types.ListResourceEndpointAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceEndpointAssociationsOutput>
+    listResourceGateways: function(Client, types.ListResourceGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceGatewaysOutput>
+    listRules: function(Client, types.ListRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListRulesOutput>
+    listServiceNetworkResourceAssociations: function(Client, types.ListServiceNetworkResourceAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListServiceNetworkResourceAssociationsOutput>
+    listServiceNetworks: function(Client, types.ListServiceNetworksInput, ? base_client.InvokeOptions): async.Operation<types.ListServiceNetworksOutput>
+    listServiceNetworkServiceAssociations: function(Client, types.ListServiceNetworkServiceAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListServiceNetworkServiceAssociationsOutput>
+    listServiceNetworkVpcAssociations: function(Client, types.ListServiceNetworkVpcAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListServiceNetworkVpcAssociationsOutput>
+    listServiceNetworkVpcEndpointAssociations: function(Client, types.ListServiceNetworkVpcEndpointAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListServiceNetworkVpcEndpointAssociationsOutput>
+    listServices: function(Client, types.ListServicesInput, ? base_client.InvokeOptions): async.Operation<types.ListServicesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTargetGroups: function(Client, types.ListTargetGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListTargetGroupsOutput>
+    listTargets: function(Client, types.ListTargetsInput, ? base_client.InvokeOptions): async.Operation<types.ListTargetsOutput>
+    putAuthPolicy: function(Client, types.PutAuthPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutAuthPolicyOutput>
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    registerTargets: function(Client, types.RegisterTargetsInput, ? base_client.InvokeOptions): async.Operation<types.RegisterTargetsOutput>
+    startDomainVerification: function(Client, types.StartDomainVerificationInput, ? base_client.InvokeOptions): async.Operation<types.StartDomainVerificationOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAccessLogSubscription: function(Client, types.UpdateAccessLogSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAccessLogSubscriptionOutput>
+    updateListener: function(Client, types.UpdateListenerInput, ? base_client.InvokeOptions): async.Operation<types.UpdateListenerOutput>
+    updateResourceConfiguration: function(Client, types.UpdateResourceConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResourceConfigurationOutput>
+    updateResourceGateway: function(Client, types.UpdateResourceGatewayInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResourceGatewayOutput>
+    updateRule: function(Client, types.UpdateRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRuleOutput>
+    updateService: function(Client, types.UpdateServiceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServiceOutput>
+    updateServiceNetwork: function(Client, types.UpdateServiceNetworkInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServiceNetworkOutput>
+    updateServiceNetworkVpcAssociation: function(Client, types.UpdateServiceNetworkVpcAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServiceNetworkVpcAssociationOutput>
+    updateTargetGroup: function(Client, types.UpdateTargetGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTargetGroupOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "MercuryControlPlane"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "vpc-lattice", signing_region = c.region } }
                 else
@@ -132,296 +135,296 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchUpdateRule(input: types.BatchUpdateRuleInput, options: any): async.Operation<types.BatchUpdateRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchUpdateRule, input, options) as async.Operation<types.BatchUpdateRuleOutput>
+function C:batchUpdateRule(input: types.BatchUpdateRuleInput, options?: base_client.InvokeOptions): async.Operation<types.BatchUpdateRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchUpdateRule as schema.OperationSchema, input, options) as async.Operation<types.BatchUpdateRuleOutput>
 end
 
-function C:createAccessLogSubscription(input: types.CreateAccessLogSubscriptionInput, options: any): async.Operation<types.CreateAccessLogSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAccessLogSubscription, input, options) as async.Operation<types.CreateAccessLogSubscriptionOutput>
+function C:createAccessLogSubscription(input: types.CreateAccessLogSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAccessLogSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAccessLogSubscription as schema.OperationSchema, input, options) as async.Operation<types.CreateAccessLogSubscriptionOutput>
 end
 
-function C:createListener(input: types.CreateListenerInput, options: any): async.Operation<types.CreateListenerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateListener, input, options) as async.Operation<types.CreateListenerOutput>
+function C:createListener(input: types.CreateListenerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateListenerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateListener as schema.OperationSchema, input, options) as async.Operation<types.CreateListenerOutput>
 end
 
-function C:createResourceConfiguration(input: types.CreateResourceConfigurationInput, options: any): async.Operation<types.CreateResourceConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateResourceConfiguration, input, options) as async.Operation<types.CreateResourceConfigurationOutput>
+function C:createResourceConfiguration(input: types.CreateResourceConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateResourceConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateResourceConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateResourceConfigurationOutput>
 end
 
-function C:createResourceGateway(input: types.CreateResourceGatewayInput, options: any): async.Operation<types.CreateResourceGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateResourceGateway, input, options) as async.Operation<types.CreateResourceGatewayOutput>
+function C:createResourceGateway(input: types.CreateResourceGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.CreateResourceGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateResourceGateway as schema.OperationSchema, input, options) as async.Operation<types.CreateResourceGatewayOutput>
 end
 
-function C:createRule(input: types.CreateRuleInput, options: any): async.Operation<types.CreateRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRule, input, options) as async.Operation<types.CreateRuleOutput>
+function C:createRule(input: types.CreateRuleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRule as schema.OperationSchema, input, options) as async.Operation<types.CreateRuleOutput>
 end
 
-function C:createService(input: types.CreateServiceInput, options: any): async.Operation<types.CreateServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateService, input, options) as async.Operation<types.CreateServiceOutput>
+function C:createService(input: types.CreateServiceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateService as schema.OperationSchema, input, options) as async.Operation<types.CreateServiceOutput>
 end
 
-function C:createServiceNetwork(input: types.CreateServiceNetworkInput, options: any): async.Operation<types.CreateServiceNetworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateServiceNetwork, input, options) as async.Operation<types.CreateServiceNetworkOutput>
+function C:createServiceNetwork(input: types.CreateServiceNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.CreateServiceNetworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateServiceNetwork as schema.OperationSchema, input, options) as async.Operation<types.CreateServiceNetworkOutput>
 end
 
-function C:createServiceNetworkResourceAssociation(input: types.CreateServiceNetworkResourceAssociationInput, options: any): async.Operation<types.CreateServiceNetworkResourceAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateServiceNetworkResourceAssociation, input, options) as async.Operation<types.CreateServiceNetworkResourceAssociationOutput>
+function C:createServiceNetworkResourceAssociation(input: types.CreateServiceNetworkResourceAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateServiceNetworkResourceAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateServiceNetworkResourceAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreateServiceNetworkResourceAssociationOutput>
 end
 
-function C:createServiceNetworkServiceAssociation(input: types.CreateServiceNetworkServiceAssociationInput, options: any): async.Operation<types.CreateServiceNetworkServiceAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateServiceNetworkServiceAssociation, input, options) as async.Operation<types.CreateServiceNetworkServiceAssociationOutput>
+function C:createServiceNetworkServiceAssociation(input: types.CreateServiceNetworkServiceAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateServiceNetworkServiceAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateServiceNetworkServiceAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreateServiceNetworkServiceAssociationOutput>
 end
 
-function C:createServiceNetworkVpcAssociation(input: types.CreateServiceNetworkVpcAssociationInput, options: any): async.Operation<types.CreateServiceNetworkVpcAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateServiceNetworkVpcAssociation, input, options) as async.Operation<types.CreateServiceNetworkVpcAssociationOutput>
+function C:createServiceNetworkVpcAssociation(input: types.CreateServiceNetworkVpcAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateServiceNetworkVpcAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateServiceNetworkVpcAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreateServiceNetworkVpcAssociationOutput>
 end
 
-function C:createTargetGroup(input: types.CreateTargetGroupInput, options: any): async.Operation<types.CreateTargetGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTargetGroup, input, options) as async.Operation<types.CreateTargetGroupOutput>
+function C:createTargetGroup(input: types.CreateTargetGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTargetGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTargetGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateTargetGroupOutput>
 end
 
-function C:deleteAccessLogSubscription(input: types.DeleteAccessLogSubscriptionInput, options: any): async.Operation<types.DeleteAccessLogSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAccessLogSubscription, input, options) as async.Operation<types.DeleteAccessLogSubscriptionOutput>
+function C:deleteAccessLogSubscription(input: types.DeleteAccessLogSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAccessLogSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAccessLogSubscription as schema.OperationSchema, input, options) as async.Operation<types.DeleteAccessLogSubscriptionOutput>
 end
 
-function C:deleteAuthPolicy(input: types.DeleteAuthPolicyInput, options: any): async.Operation<types.DeleteAuthPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAuthPolicy, input, options) as async.Operation<types.DeleteAuthPolicyOutput>
+function C:deleteAuthPolicy(input: types.DeleteAuthPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAuthPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAuthPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteAuthPolicyOutput>
 end
 
-function C:deleteDomainVerification(input: types.DeleteDomainVerificationInput, options: any): async.Operation<types.DeleteDomainVerificationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDomainVerification, input, options) as async.Operation<types.DeleteDomainVerificationOutput>
+function C:deleteDomainVerification(input: types.DeleteDomainVerificationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDomainVerificationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDomainVerification as schema.OperationSchema, input, options) as async.Operation<types.DeleteDomainVerificationOutput>
 end
 
-function C:deleteListener(input: types.DeleteListenerInput, options: any): async.Operation<types.DeleteListenerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteListener, input, options) as async.Operation<types.DeleteListenerOutput>
+function C:deleteListener(input: types.DeleteListenerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteListenerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteListener as schema.OperationSchema, input, options) as async.Operation<types.DeleteListenerOutput>
 end
 
-function C:deleteResourceConfiguration(input: types.DeleteResourceConfigurationInput, options: any): async.Operation<types.DeleteResourceConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourceConfiguration, input, options) as async.Operation<types.DeleteResourceConfigurationOutput>
+function C:deleteResourceConfiguration(input: types.DeleteResourceConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourceConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourceConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourceConfigurationOutput>
 end
 
-function C:deleteResourceEndpointAssociation(input: types.DeleteResourceEndpointAssociationInput, options: any): async.Operation<types.DeleteResourceEndpointAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourceEndpointAssociation, input, options) as async.Operation<types.DeleteResourceEndpointAssociationOutput>
+function C:deleteResourceEndpointAssociation(input: types.DeleteResourceEndpointAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourceEndpointAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourceEndpointAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourceEndpointAssociationOutput>
 end
 
-function C:deleteResourceGateway(input: types.DeleteResourceGatewayInput, options: any): async.Operation<types.DeleteResourceGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourceGateway, input, options) as async.Operation<types.DeleteResourceGatewayOutput>
+function C:deleteResourceGateway(input: types.DeleteResourceGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourceGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourceGateway as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourceGatewayOutput>
 end
 
-function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options: any): async.Operation<types.DeleteResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicy, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
+function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
 end
 
-function C:deleteRule(input: types.DeleteRuleInput, options: any): async.Operation<types.DeleteRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRule, input, options) as async.Operation<types.DeleteRuleOutput>
+function C:deleteRule(input: types.DeleteRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRule as schema.OperationSchema, input, options) as async.Operation<types.DeleteRuleOutput>
 end
 
-function C:deleteService(input: types.DeleteServiceInput, options: any): async.Operation<types.DeleteServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteService, input, options) as async.Operation<types.DeleteServiceOutput>
+function C:deleteService(input: types.DeleteServiceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteService as schema.OperationSchema, input, options) as async.Operation<types.DeleteServiceOutput>
 end
 
-function C:deleteServiceNetwork(input: types.DeleteServiceNetworkInput, options: any): async.Operation<types.DeleteServiceNetworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteServiceNetwork, input, options) as async.Operation<types.DeleteServiceNetworkOutput>
+function C:deleteServiceNetwork(input: types.DeleteServiceNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteServiceNetworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteServiceNetwork as schema.OperationSchema, input, options) as async.Operation<types.DeleteServiceNetworkOutput>
 end
 
-function C:deleteServiceNetworkResourceAssociation(input: types.DeleteServiceNetworkResourceAssociationInput, options: any): async.Operation<types.DeleteServiceNetworkResourceAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteServiceNetworkResourceAssociation, input, options) as async.Operation<types.DeleteServiceNetworkResourceAssociationOutput>
+function C:deleteServiceNetworkResourceAssociation(input: types.DeleteServiceNetworkResourceAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteServiceNetworkResourceAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteServiceNetworkResourceAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteServiceNetworkResourceAssociationOutput>
 end
 
-function C:deleteServiceNetworkServiceAssociation(input: types.DeleteServiceNetworkServiceAssociationInput, options: any): async.Operation<types.DeleteServiceNetworkServiceAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteServiceNetworkServiceAssociation, input, options) as async.Operation<types.DeleteServiceNetworkServiceAssociationOutput>
+function C:deleteServiceNetworkServiceAssociation(input: types.DeleteServiceNetworkServiceAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteServiceNetworkServiceAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteServiceNetworkServiceAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteServiceNetworkServiceAssociationOutput>
 end
 
-function C:deleteServiceNetworkVpcAssociation(input: types.DeleteServiceNetworkVpcAssociationInput, options: any): async.Operation<types.DeleteServiceNetworkVpcAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteServiceNetworkVpcAssociation, input, options) as async.Operation<types.DeleteServiceNetworkVpcAssociationOutput>
+function C:deleteServiceNetworkVpcAssociation(input: types.DeleteServiceNetworkVpcAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteServiceNetworkVpcAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteServiceNetworkVpcAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteServiceNetworkVpcAssociationOutput>
 end
 
-function C:deleteTargetGroup(input: types.DeleteTargetGroupInput, options: any): async.Operation<types.DeleteTargetGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTargetGroup, input, options) as async.Operation<types.DeleteTargetGroupOutput>
+function C:deleteTargetGroup(input: types.DeleteTargetGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTargetGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTargetGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteTargetGroupOutput>
 end
 
-function C:deregisterTargets(input: types.DeregisterTargetsInput, options: any): async.Operation<types.DeregisterTargetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterTargets, input, options) as async.Operation<types.DeregisterTargetsOutput>
+function C:deregisterTargets(input: types.DeregisterTargetsInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterTargetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterTargets as schema.OperationSchema, input, options) as async.Operation<types.DeregisterTargetsOutput>
 end
 
-function C:getAccessLogSubscription(input: types.GetAccessLogSubscriptionInput, options: any): async.Operation<types.GetAccessLogSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccessLogSubscription, input, options) as async.Operation<types.GetAccessLogSubscriptionOutput>
+function C:getAccessLogSubscription(input: types.GetAccessLogSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccessLogSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccessLogSubscription as schema.OperationSchema, input, options) as async.Operation<types.GetAccessLogSubscriptionOutput>
 end
 
-function C:getAuthPolicy(input: types.GetAuthPolicyInput, options: any): async.Operation<types.GetAuthPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAuthPolicy, input, options) as async.Operation<types.GetAuthPolicyOutput>
+function C:getAuthPolicy(input: types.GetAuthPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetAuthPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAuthPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetAuthPolicyOutput>
 end
 
-function C:getDomainVerification(input: types.GetDomainVerificationInput, options: any): async.Operation<types.GetDomainVerificationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDomainVerification, input, options) as async.Operation<types.GetDomainVerificationOutput>
+function C:getDomainVerification(input: types.GetDomainVerificationInput, options?: base_client.InvokeOptions): async.Operation<types.GetDomainVerificationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDomainVerification as schema.OperationSchema, input, options) as async.Operation<types.GetDomainVerificationOutput>
 end
 
-function C:getListener(input: types.GetListenerInput, options: any): async.Operation<types.GetListenerOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetListener, input, options) as async.Operation<types.GetListenerOutput>
+function C:getListener(input: types.GetListenerInput, options?: base_client.InvokeOptions): async.Operation<types.GetListenerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetListener as schema.OperationSchema, input, options) as async.Operation<types.GetListenerOutput>
 end
 
-function C:getResourceConfiguration(input: types.GetResourceConfigurationInput, options: any): async.Operation<types.GetResourceConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourceConfiguration, input, options) as async.Operation<types.GetResourceConfigurationOutput>
+function C:getResourceConfiguration(input: types.GetResourceConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourceConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourceConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetResourceConfigurationOutput>
 end
 
-function C:getResourceGateway(input: types.GetResourceGatewayInput, options: any): async.Operation<types.GetResourceGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourceGateway, input, options) as async.Operation<types.GetResourceGatewayOutput>
+function C:getResourceGateway(input: types.GetResourceGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourceGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourceGateway as schema.OperationSchema, input, options) as async.Operation<types.GetResourceGatewayOutput>
 end
 
-function C:getResourcePolicy(input: types.GetResourcePolicyInput, options: any): async.Operation<types.GetResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicy, input, options) as async.Operation<types.GetResourcePolicyOutput>
+function C:getResourcePolicy(input: types.GetResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePolicyOutput>
 end
 
-function C:getRule(input: types.GetRuleInput, options: any): async.Operation<types.GetRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRule, input, options) as async.Operation<types.GetRuleOutput>
+function C:getRule(input: types.GetRuleInput, options?: base_client.InvokeOptions): async.Operation<types.GetRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRule as schema.OperationSchema, input, options) as async.Operation<types.GetRuleOutput>
 end
 
-function C:getService(input: types.GetServiceInput, options: any): async.Operation<types.GetServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetService, input, options) as async.Operation<types.GetServiceOutput>
+function C:getService(input: types.GetServiceInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetService as schema.OperationSchema, input, options) as async.Operation<types.GetServiceOutput>
 end
 
-function C:getServiceNetwork(input: types.GetServiceNetworkInput, options: any): async.Operation<types.GetServiceNetworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetServiceNetwork, input, options) as async.Operation<types.GetServiceNetworkOutput>
+function C:getServiceNetwork(input: types.GetServiceNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceNetworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetServiceNetwork as schema.OperationSchema, input, options) as async.Operation<types.GetServiceNetworkOutput>
 end
 
-function C:getServiceNetworkResourceAssociation(input: types.GetServiceNetworkResourceAssociationInput, options: any): async.Operation<types.GetServiceNetworkResourceAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetServiceNetworkResourceAssociation, input, options) as async.Operation<types.GetServiceNetworkResourceAssociationOutput>
+function C:getServiceNetworkResourceAssociation(input: types.GetServiceNetworkResourceAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceNetworkResourceAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetServiceNetworkResourceAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetServiceNetworkResourceAssociationOutput>
 end
 
-function C:getServiceNetworkServiceAssociation(input: types.GetServiceNetworkServiceAssociationInput, options: any): async.Operation<types.GetServiceNetworkServiceAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetServiceNetworkServiceAssociation, input, options) as async.Operation<types.GetServiceNetworkServiceAssociationOutput>
+function C:getServiceNetworkServiceAssociation(input: types.GetServiceNetworkServiceAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceNetworkServiceAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetServiceNetworkServiceAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetServiceNetworkServiceAssociationOutput>
 end
 
-function C:getServiceNetworkVpcAssociation(input: types.GetServiceNetworkVpcAssociationInput, options: any): async.Operation<types.GetServiceNetworkVpcAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetServiceNetworkVpcAssociation, input, options) as async.Operation<types.GetServiceNetworkVpcAssociationOutput>
+function C:getServiceNetworkVpcAssociation(input: types.GetServiceNetworkVpcAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceNetworkVpcAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetServiceNetworkVpcAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetServiceNetworkVpcAssociationOutput>
 end
 
-function C:getTargetGroup(input: types.GetTargetGroupInput, options: any): async.Operation<types.GetTargetGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTargetGroup, input, options) as async.Operation<types.GetTargetGroupOutput>
+function C:getTargetGroup(input: types.GetTargetGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetTargetGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTargetGroup as schema.OperationSchema, input, options) as async.Operation<types.GetTargetGroupOutput>
 end
 
-function C:listAccessLogSubscriptions(input: types.ListAccessLogSubscriptionsInput, options: any): async.Operation<types.ListAccessLogSubscriptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccessLogSubscriptions, input, options) as async.Operation<types.ListAccessLogSubscriptionsOutput>
+function C:listAccessLogSubscriptions(input: types.ListAccessLogSubscriptionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccessLogSubscriptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccessLogSubscriptions as schema.OperationSchema, input, options) as async.Operation<types.ListAccessLogSubscriptionsOutput>
 end
 
-function C:listDomainVerifications(input: types.ListDomainVerificationsInput, options: any): async.Operation<types.ListDomainVerificationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDomainVerifications, input, options) as async.Operation<types.ListDomainVerificationsOutput>
+function C:listDomainVerifications(input: types.ListDomainVerificationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDomainVerificationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDomainVerifications as schema.OperationSchema, input, options) as async.Operation<types.ListDomainVerificationsOutput>
 end
 
-function C:listListeners(input: types.ListListenersInput, options: any): async.Operation<types.ListListenersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListListeners, input, options) as async.Operation<types.ListListenersOutput>
+function C:listListeners(input: types.ListListenersInput, options?: base_client.InvokeOptions): async.Operation<types.ListListenersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListListeners as schema.OperationSchema, input, options) as async.Operation<types.ListListenersOutput>
 end
 
-function C:listResourceConfigurations(input: types.ListResourceConfigurationsInput, options: any): async.Operation<types.ListResourceConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResourceConfigurations, input, options) as async.Operation<types.ListResourceConfigurationsOutput>
+function C:listResourceConfigurations(input: types.ListResourceConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourceConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourceConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListResourceConfigurationsOutput>
 end
 
-function C:listResourceEndpointAssociations(input: types.ListResourceEndpointAssociationsInput, options: any): async.Operation<types.ListResourceEndpointAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResourceEndpointAssociations, input, options) as async.Operation<types.ListResourceEndpointAssociationsOutput>
+function C:listResourceEndpointAssociations(input: types.ListResourceEndpointAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourceEndpointAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourceEndpointAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListResourceEndpointAssociationsOutput>
 end
 
-function C:listResourceGateways(input: types.ListResourceGatewaysInput, options: any): async.Operation<types.ListResourceGatewaysOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResourceGateways, input, options) as async.Operation<types.ListResourceGatewaysOutput>
+function C:listResourceGateways(input: types.ListResourceGatewaysInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourceGatewaysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourceGateways as schema.OperationSchema, input, options) as async.Operation<types.ListResourceGatewaysOutput>
 end
 
-function C:listRules(input: types.ListRulesInput, options: any): async.Operation<types.ListRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRules, input, options) as async.Operation<types.ListRulesOutput>
+function C:listRules(input: types.ListRulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRules as schema.OperationSchema, input, options) as async.Operation<types.ListRulesOutput>
 end
 
-function C:listServiceNetworkResourceAssociations(input: types.ListServiceNetworkResourceAssociationsInput, options: any): async.Operation<types.ListServiceNetworkResourceAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServiceNetworkResourceAssociations, input, options) as async.Operation<types.ListServiceNetworkResourceAssociationsOutput>
+function C:listServiceNetworkResourceAssociations(input: types.ListServiceNetworkResourceAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListServiceNetworkResourceAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServiceNetworkResourceAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListServiceNetworkResourceAssociationsOutput>
 end
 
-function C:listServiceNetworks(input: types.ListServiceNetworksInput, options: any): async.Operation<types.ListServiceNetworksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServiceNetworks, input, options) as async.Operation<types.ListServiceNetworksOutput>
+function C:listServiceNetworks(input: types.ListServiceNetworksInput, options?: base_client.InvokeOptions): async.Operation<types.ListServiceNetworksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServiceNetworks as schema.OperationSchema, input, options) as async.Operation<types.ListServiceNetworksOutput>
 end
 
-function C:listServiceNetworkServiceAssociations(input: types.ListServiceNetworkServiceAssociationsInput, options: any): async.Operation<types.ListServiceNetworkServiceAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServiceNetworkServiceAssociations, input, options) as async.Operation<types.ListServiceNetworkServiceAssociationsOutput>
+function C:listServiceNetworkServiceAssociations(input: types.ListServiceNetworkServiceAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListServiceNetworkServiceAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServiceNetworkServiceAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListServiceNetworkServiceAssociationsOutput>
 end
 
-function C:listServiceNetworkVpcAssociations(input: types.ListServiceNetworkVpcAssociationsInput, options: any): async.Operation<types.ListServiceNetworkVpcAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServiceNetworkVpcAssociations, input, options) as async.Operation<types.ListServiceNetworkVpcAssociationsOutput>
+function C:listServiceNetworkVpcAssociations(input: types.ListServiceNetworkVpcAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListServiceNetworkVpcAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServiceNetworkVpcAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListServiceNetworkVpcAssociationsOutput>
 end
 
-function C:listServiceNetworkVpcEndpointAssociations(input: types.ListServiceNetworkVpcEndpointAssociationsInput, options: any): async.Operation<types.ListServiceNetworkVpcEndpointAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServiceNetworkVpcEndpointAssociations, input, options) as async.Operation<types.ListServiceNetworkVpcEndpointAssociationsOutput>
+function C:listServiceNetworkVpcEndpointAssociations(input: types.ListServiceNetworkVpcEndpointAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListServiceNetworkVpcEndpointAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServiceNetworkVpcEndpointAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListServiceNetworkVpcEndpointAssociationsOutput>
 end
 
-function C:listServices(input: types.ListServicesInput, options: any): async.Operation<types.ListServicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServices, input, options) as async.Operation<types.ListServicesOutput>
+function C:listServices(input: types.ListServicesInput, options?: base_client.InvokeOptions): async.Operation<types.ListServicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServices as schema.OperationSchema, input, options) as async.Operation<types.ListServicesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTargetGroups(input: types.ListTargetGroupsInput, options: any): async.Operation<types.ListTargetGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTargetGroups, input, options) as async.Operation<types.ListTargetGroupsOutput>
+function C:listTargetGroups(input: types.ListTargetGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTargetGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTargetGroups as schema.OperationSchema, input, options) as async.Operation<types.ListTargetGroupsOutput>
 end
 
-function C:listTargets(input: types.ListTargetsInput, options: any): async.Operation<types.ListTargetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTargets, input, options) as async.Operation<types.ListTargetsOutput>
+function C:listTargets(input: types.ListTargetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTargetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTargets as schema.OperationSchema, input, options) as async.Operation<types.ListTargetsOutput>
 end
 
-function C:putAuthPolicy(input: types.PutAuthPolicyInput, options: any): async.Operation<types.PutAuthPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAuthPolicy, input, options) as async.Operation<types.PutAuthPolicyOutput>
+function C:putAuthPolicy(input: types.PutAuthPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutAuthPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAuthPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutAuthPolicyOutput>
 end
 
-function C:putResourcePolicy(input: types.PutResourcePolicyInput, options: any): async.Operation<types.PutResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutResourcePolicy, input, options) as async.Operation<types.PutResourcePolicyOutput>
+function C:putResourcePolicy(input: types.PutResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutResourcePolicyOutput>
 end
 
-function C:registerTargets(input: types.RegisterTargetsInput, options: any): async.Operation<types.RegisterTargetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterTargets, input, options) as async.Operation<types.RegisterTargetsOutput>
+function C:registerTargets(input: types.RegisterTargetsInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterTargetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterTargets as schema.OperationSchema, input, options) as async.Operation<types.RegisterTargetsOutput>
 end
 
-function C:startDomainVerification(input: types.StartDomainVerificationInput, options: any): async.Operation<types.StartDomainVerificationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartDomainVerification, input, options) as async.Operation<types.StartDomainVerificationOutput>
+function C:startDomainVerification(input: types.StartDomainVerificationInput, options?: base_client.InvokeOptions): async.Operation<types.StartDomainVerificationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDomainVerification as schema.OperationSchema, input, options) as async.Operation<types.StartDomainVerificationOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAccessLogSubscription(input: types.UpdateAccessLogSubscriptionInput, options: any): async.Operation<types.UpdateAccessLogSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAccessLogSubscription, input, options) as async.Operation<types.UpdateAccessLogSubscriptionOutput>
+function C:updateAccessLogSubscription(input: types.UpdateAccessLogSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAccessLogSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAccessLogSubscription as schema.OperationSchema, input, options) as async.Operation<types.UpdateAccessLogSubscriptionOutput>
 end
 
-function C:updateListener(input: types.UpdateListenerInput, options: any): async.Operation<types.UpdateListenerOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateListener, input, options) as async.Operation<types.UpdateListenerOutput>
+function C:updateListener(input: types.UpdateListenerInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateListenerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateListener as schema.OperationSchema, input, options) as async.Operation<types.UpdateListenerOutput>
 end
 
-function C:updateResourceConfiguration(input: types.UpdateResourceConfigurationInput, options: any): async.Operation<types.UpdateResourceConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateResourceConfiguration, input, options) as async.Operation<types.UpdateResourceConfigurationOutput>
+function C:updateResourceConfiguration(input: types.UpdateResourceConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateResourceConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateResourceConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateResourceConfigurationOutput>
 end
 
-function C:updateResourceGateway(input: types.UpdateResourceGatewayInput, options: any): async.Operation<types.UpdateResourceGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateResourceGateway, input, options) as async.Operation<types.UpdateResourceGatewayOutput>
+function C:updateResourceGateway(input: types.UpdateResourceGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateResourceGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateResourceGateway as schema.OperationSchema, input, options) as async.Operation<types.UpdateResourceGatewayOutput>
 end
 
-function C:updateRule(input: types.UpdateRuleInput, options: any): async.Operation<types.UpdateRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRule, input, options) as async.Operation<types.UpdateRuleOutput>
+function C:updateRule(input: types.UpdateRuleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRule as schema.OperationSchema, input, options) as async.Operation<types.UpdateRuleOutput>
 end
 
-function C:updateService(input: types.UpdateServiceInput, options: any): async.Operation<types.UpdateServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateService, input, options) as async.Operation<types.UpdateServiceOutput>
+function C:updateService(input: types.UpdateServiceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateService as schema.OperationSchema, input, options) as async.Operation<types.UpdateServiceOutput>
 end
 
-function C:updateServiceNetwork(input: types.UpdateServiceNetworkInput, options: any): async.Operation<types.UpdateServiceNetworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateServiceNetwork, input, options) as async.Operation<types.UpdateServiceNetworkOutput>
+function C:updateServiceNetwork(input: types.UpdateServiceNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateServiceNetworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateServiceNetwork as schema.OperationSchema, input, options) as async.Operation<types.UpdateServiceNetworkOutput>
 end
 
-function C:updateServiceNetworkVpcAssociation(input: types.UpdateServiceNetworkVpcAssociationInput, options: any): async.Operation<types.UpdateServiceNetworkVpcAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateServiceNetworkVpcAssociation, input, options) as async.Operation<types.UpdateServiceNetworkVpcAssociationOutput>
+function C:updateServiceNetworkVpcAssociation(input: types.UpdateServiceNetworkVpcAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateServiceNetworkVpcAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateServiceNetworkVpcAssociation as schema.OperationSchema, input, options) as async.Operation<types.UpdateServiceNetworkVpcAssociationOutput>
 end
 
-function C:updateTargetGroup(input: types.UpdateTargetGroupInput, options: any): async.Operation<types.UpdateTargetGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTargetGroup, input, options) as async.Operation<types.UpdateTargetGroupOutput>
+function C:updateTargetGroup(input: types.UpdateTargetGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTargetGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTargetGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateTargetGroupOutput>
 end
 
 return M

@@ -8,67 +8,70 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("controltower.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("controltower.schemas")
 local traits = require("smithy.traits")
 local types = require("controltower.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createLandingZone: function(Client, types.CreateLandingZoneInput, any): async.Operation<types.CreateLandingZoneOutput>
-    deleteLandingZone: function(Client, types.DeleteLandingZoneInput, any): async.Operation<types.DeleteLandingZoneOutput>
-    disableBaseline: function(Client, types.DisableBaselineInput, any): async.Operation<types.DisableBaselineOutput>
-    disableControl: function(Client, types.DisableControlInput, any): async.Operation<types.DisableControlOutput>
-    enableBaseline: function(Client, types.EnableBaselineInput, any): async.Operation<types.EnableBaselineOutput>
-    enableControl: function(Client, types.EnableControlInput, any): async.Operation<types.EnableControlOutput>
-    getBaseline: function(Client, types.GetBaselineInput, any): async.Operation<types.GetBaselineOutput>
-    getBaselineOperation: function(Client, types.GetBaselineOperationInput, any): async.Operation<types.GetBaselineOperationOutput>
-    getControlOperation: function(Client, types.GetControlOperationInput, any): async.Operation<types.GetControlOperationOutput>
-    getEnabledBaseline: function(Client, types.GetEnabledBaselineInput, any): async.Operation<types.GetEnabledBaselineOutput>
-    getEnabledControl: function(Client, types.GetEnabledControlInput, any): async.Operation<types.GetEnabledControlOutput>
-    getLandingZone: function(Client, types.GetLandingZoneInput, any): async.Operation<types.GetLandingZoneOutput>
-    getLandingZoneOperation: function(Client, types.GetLandingZoneOperationInput, any): async.Operation<types.GetLandingZoneOperationOutput>
-    listBaselines: function(Client, types.ListBaselinesInput, any): async.Operation<types.ListBaselinesOutput>
-    listControlOperations: function(Client, types.ListControlOperationsInput, any): async.Operation<types.ListControlOperationsOutput>
-    listEnabledBaselines: function(Client, types.ListEnabledBaselinesInput, any): async.Operation<types.ListEnabledBaselinesOutput>
-    listEnabledControls: function(Client, types.ListEnabledControlsInput, any): async.Operation<types.ListEnabledControlsOutput>
-    listLandingZoneOperations: function(Client, types.ListLandingZoneOperationsInput, any): async.Operation<types.ListLandingZoneOperationsOutput>
-    listLandingZones: function(Client, types.ListLandingZonesInput, any): async.Operation<types.ListLandingZonesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    resetEnabledBaseline: function(Client, types.ResetEnabledBaselineInput, any): async.Operation<types.ResetEnabledBaselineOutput>
-    resetEnabledControl: function(Client, types.ResetEnabledControlInput, any): async.Operation<types.ResetEnabledControlOutput>
-    resetLandingZone: function(Client, types.ResetLandingZoneInput, any): async.Operation<types.ResetLandingZoneOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateEnabledBaseline: function(Client, types.UpdateEnabledBaselineInput, any): async.Operation<types.UpdateEnabledBaselineOutput>
-    updateEnabledControl: function(Client, types.UpdateEnabledControlInput, any): async.Operation<types.UpdateEnabledControlOutput>
-    updateLandingZone: function(Client, types.UpdateLandingZoneInput, any): async.Operation<types.UpdateLandingZoneOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createLandingZone: function(Client, types.CreateLandingZoneInput, ? base_client.InvokeOptions): async.Operation<types.CreateLandingZoneOutput>
+    deleteLandingZone: function(Client, types.DeleteLandingZoneInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLandingZoneOutput>
+    disableBaseline: function(Client, types.DisableBaselineInput, ? base_client.InvokeOptions): async.Operation<types.DisableBaselineOutput>
+    disableControl: function(Client, types.DisableControlInput, ? base_client.InvokeOptions): async.Operation<types.DisableControlOutput>
+    enableBaseline: function(Client, types.EnableBaselineInput, ? base_client.InvokeOptions): async.Operation<types.EnableBaselineOutput>
+    enableControl: function(Client, types.EnableControlInput, ? base_client.InvokeOptions): async.Operation<types.EnableControlOutput>
+    getBaseline: function(Client, types.GetBaselineInput, ? base_client.InvokeOptions): async.Operation<types.GetBaselineOutput>
+    getBaselineOperation: function(Client, types.GetBaselineOperationInput, ? base_client.InvokeOptions): async.Operation<types.GetBaselineOperationOutput>
+    getControlOperation: function(Client, types.GetControlOperationInput, ? base_client.InvokeOptions): async.Operation<types.GetControlOperationOutput>
+    getEnabledBaseline: function(Client, types.GetEnabledBaselineInput, ? base_client.InvokeOptions): async.Operation<types.GetEnabledBaselineOutput>
+    getEnabledControl: function(Client, types.GetEnabledControlInput, ? base_client.InvokeOptions): async.Operation<types.GetEnabledControlOutput>
+    getLandingZone: function(Client, types.GetLandingZoneInput, ? base_client.InvokeOptions): async.Operation<types.GetLandingZoneOutput>
+    getLandingZoneOperation: function(Client, types.GetLandingZoneOperationInput, ? base_client.InvokeOptions): async.Operation<types.GetLandingZoneOperationOutput>
+    listBaselines: function(Client, types.ListBaselinesInput, ? base_client.InvokeOptions): async.Operation<types.ListBaselinesOutput>
+    listControlOperations: function(Client, types.ListControlOperationsInput, ? base_client.InvokeOptions): async.Operation<types.ListControlOperationsOutput>
+    listEnabledBaselines: function(Client, types.ListEnabledBaselinesInput, ? base_client.InvokeOptions): async.Operation<types.ListEnabledBaselinesOutput>
+    listEnabledControls: function(Client, types.ListEnabledControlsInput, ? base_client.InvokeOptions): async.Operation<types.ListEnabledControlsOutput>
+    listLandingZoneOperations: function(Client, types.ListLandingZoneOperationsInput, ? base_client.InvokeOptions): async.Operation<types.ListLandingZoneOperationsOutput>
+    listLandingZones: function(Client, types.ListLandingZonesInput, ? base_client.InvokeOptions): async.Operation<types.ListLandingZonesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    resetEnabledBaseline: function(Client, types.ResetEnabledBaselineInput, ? base_client.InvokeOptions): async.Operation<types.ResetEnabledBaselineOutput>
+    resetEnabledControl: function(Client, types.ResetEnabledControlInput, ? base_client.InvokeOptions): async.Operation<types.ResetEnabledControlOutput>
+    resetLandingZone: function(Client, types.ResetLandingZoneInput, ? base_client.InvokeOptions): async.Operation<types.ResetLandingZoneOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateEnabledBaseline: function(Client, types.UpdateEnabledBaselineInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEnabledBaselineOutput>
+    updateEnabledControl: function(Client, types.UpdateEnabledControlInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEnabledControlOutput>
+    updateLandingZone: function(Client, types.UpdateLandingZoneInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLandingZoneOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSControlTowerApis"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "controltower", signing_region = c.region } }
                 else
@@ -87,116 +90,116 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createLandingZone(input: types.CreateLandingZoneInput, options: any): async.Operation<types.CreateLandingZoneOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLandingZone, input, options) as async.Operation<types.CreateLandingZoneOutput>
+function C:createLandingZone(input: types.CreateLandingZoneInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLandingZoneOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLandingZone as schema.OperationSchema, input, options) as async.Operation<types.CreateLandingZoneOutput>
 end
 
-function C:deleteLandingZone(input: types.DeleteLandingZoneInput, options: any): async.Operation<types.DeleteLandingZoneOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLandingZone, input, options) as async.Operation<types.DeleteLandingZoneOutput>
+function C:deleteLandingZone(input: types.DeleteLandingZoneInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLandingZoneOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLandingZone as schema.OperationSchema, input, options) as async.Operation<types.DeleteLandingZoneOutput>
 end
 
-function C:disableBaseline(input: types.DisableBaselineInput, options: any): async.Operation<types.DisableBaselineOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableBaseline, input, options) as async.Operation<types.DisableBaselineOutput>
+function C:disableBaseline(input: types.DisableBaselineInput, options?: base_client.InvokeOptions): async.Operation<types.DisableBaselineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableBaseline as schema.OperationSchema, input, options) as async.Operation<types.DisableBaselineOutput>
 end
 
-function C:disableControl(input: types.DisableControlInput, options: any): async.Operation<types.DisableControlOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableControl, input, options) as async.Operation<types.DisableControlOutput>
+function C:disableControl(input: types.DisableControlInput, options?: base_client.InvokeOptions): async.Operation<types.DisableControlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableControl as schema.OperationSchema, input, options) as async.Operation<types.DisableControlOutput>
 end
 
-function C:enableBaseline(input: types.EnableBaselineInput, options: any): async.Operation<types.EnableBaselineOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableBaseline, input, options) as async.Operation<types.EnableBaselineOutput>
+function C:enableBaseline(input: types.EnableBaselineInput, options?: base_client.InvokeOptions): async.Operation<types.EnableBaselineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableBaseline as schema.OperationSchema, input, options) as async.Operation<types.EnableBaselineOutput>
 end
 
-function C:enableControl(input: types.EnableControlInput, options: any): async.Operation<types.EnableControlOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableControl, input, options) as async.Operation<types.EnableControlOutput>
+function C:enableControl(input: types.EnableControlInput, options?: base_client.InvokeOptions): async.Operation<types.EnableControlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableControl as schema.OperationSchema, input, options) as async.Operation<types.EnableControlOutput>
 end
 
-function C:getBaseline(input: types.GetBaselineInput, options: any): async.Operation<types.GetBaselineOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBaseline, input, options) as async.Operation<types.GetBaselineOutput>
+function C:getBaseline(input: types.GetBaselineInput, options?: base_client.InvokeOptions): async.Operation<types.GetBaselineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBaseline as schema.OperationSchema, input, options) as async.Operation<types.GetBaselineOutput>
 end
 
-function C:getBaselineOperation(input: types.GetBaselineOperationInput, options: any): async.Operation<types.GetBaselineOperationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBaselineOperation, input, options) as async.Operation<types.GetBaselineOperationOutput>
+function C:getBaselineOperation(input: types.GetBaselineOperationInput, options?: base_client.InvokeOptions): async.Operation<types.GetBaselineOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBaselineOperation as schema.OperationSchema, input, options) as async.Operation<types.GetBaselineOperationOutput>
 end
 
-function C:getControlOperation(input: types.GetControlOperationInput, options: any): async.Operation<types.GetControlOperationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetControlOperation, input, options) as async.Operation<types.GetControlOperationOutput>
+function C:getControlOperation(input: types.GetControlOperationInput, options?: base_client.InvokeOptions): async.Operation<types.GetControlOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetControlOperation as schema.OperationSchema, input, options) as async.Operation<types.GetControlOperationOutput>
 end
 
-function C:getEnabledBaseline(input: types.GetEnabledBaselineInput, options: any): async.Operation<types.GetEnabledBaselineOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEnabledBaseline, input, options) as async.Operation<types.GetEnabledBaselineOutput>
+function C:getEnabledBaseline(input: types.GetEnabledBaselineInput, options?: base_client.InvokeOptions): async.Operation<types.GetEnabledBaselineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEnabledBaseline as schema.OperationSchema, input, options) as async.Operation<types.GetEnabledBaselineOutput>
 end
 
-function C:getEnabledControl(input: types.GetEnabledControlInput, options: any): async.Operation<types.GetEnabledControlOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEnabledControl, input, options) as async.Operation<types.GetEnabledControlOutput>
+function C:getEnabledControl(input: types.GetEnabledControlInput, options?: base_client.InvokeOptions): async.Operation<types.GetEnabledControlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEnabledControl as schema.OperationSchema, input, options) as async.Operation<types.GetEnabledControlOutput>
 end
 
-function C:getLandingZone(input: types.GetLandingZoneInput, options: any): async.Operation<types.GetLandingZoneOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLandingZone, input, options) as async.Operation<types.GetLandingZoneOutput>
+function C:getLandingZone(input: types.GetLandingZoneInput, options?: base_client.InvokeOptions): async.Operation<types.GetLandingZoneOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLandingZone as schema.OperationSchema, input, options) as async.Operation<types.GetLandingZoneOutput>
 end
 
-function C:getLandingZoneOperation(input: types.GetLandingZoneOperationInput, options: any): async.Operation<types.GetLandingZoneOperationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLandingZoneOperation, input, options) as async.Operation<types.GetLandingZoneOperationOutput>
+function C:getLandingZoneOperation(input: types.GetLandingZoneOperationInput, options?: base_client.InvokeOptions): async.Operation<types.GetLandingZoneOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLandingZoneOperation as schema.OperationSchema, input, options) as async.Operation<types.GetLandingZoneOperationOutput>
 end
 
-function C:listBaselines(input: types.ListBaselinesInput, options: any): async.Operation<types.ListBaselinesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBaselines, input, options) as async.Operation<types.ListBaselinesOutput>
+function C:listBaselines(input: types.ListBaselinesInput, options?: base_client.InvokeOptions): async.Operation<types.ListBaselinesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBaselines as schema.OperationSchema, input, options) as async.Operation<types.ListBaselinesOutput>
 end
 
-function C:listControlOperations(input: types.ListControlOperationsInput, options: any): async.Operation<types.ListControlOperationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListControlOperations, input, options) as async.Operation<types.ListControlOperationsOutput>
+function C:listControlOperations(input: types.ListControlOperationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListControlOperationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListControlOperations as schema.OperationSchema, input, options) as async.Operation<types.ListControlOperationsOutput>
 end
 
-function C:listEnabledBaselines(input: types.ListEnabledBaselinesInput, options: any): async.Operation<types.ListEnabledBaselinesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEnabledBaselines, input, options) as async.Operation<types.ListEnabledBaselinesOutput>
+function C:listEnabledBaselines(input: types.ListEnabledBaselinesInput, options?: base_client.InvokeOptions): async.Operation<types.ListEnabledBaselinesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEnabledBaselines as schema.OperationSchema, input, options) as async.Operation<types.ListEnabledBaselinesOutput>
 end
 
-function C:listEnabledControls(input: types.ListEnabledControlsInput, options: any): async.Operation<types.ListEnabledControlsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEnabledControls, input, options) as async.Operation<types.ListEnabledControlsOutput>
+function C:listEnabledControls(input: types.ListEnabledControlsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEnabledControlsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEnabledControls as schema.OperationSchema, input, options) as async.Operation<types.ListEnabledControlsOutput>
 end
 
-function C:listLandingZoneOperations(input: types.ListLandingZoneOperationsInput, options: any): async.Operation<types.ListLandingZoneOperationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLandingZoneOperations, input, options) as async.Operation<types.ListLandingZoneOperationsOutput>
+function C:listLandingZoneOperations(input: types.ListLandingZoneOperationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLandingZoneOperationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLandingZoneOperations as schema.OperationSchema, input, options) as async.Operation<types.ListLandingZoneOperationsOutput>
 end
 
-function C:listLandingZones(input: types.ListLandingZonesInput, options: any): async.Operation<types.ListLandingZonesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLandingZones, input, options) as async.Operation<types.ListLandingZonesOutput>
+function C:listLandingZones(input: types.ListLandingZonesInput, options?: base_client.InvokeOptions): async.Operation<types.ListLandingZonesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLandingZones as schema.OperationSchema, input, options) as async.Operation<types.ListLandingZonesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:resetEnabledBaseline(input: types.ResetEnabledBaselineInput, options: any): async.Operation<types.ResetEnabledBaselineOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResetEnabledBaseline, input, options) as async.Operation<types.ResetEnabledBaselineOutput>
+function C:resetEnabledBaseline(input: types.ResetEnabledBaselineInput, options?: base_client.InvokeOptions): async.Operation<types.ResetEnabledBaselineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResetEnabledBaseline as schema.OperationSchema, input, options) as async.Operation<types.ResetEnabledBaselineOutput>
 end
 
-function C:resetEnabledControl(input: types.ResetEnabledControlInput, options: any): async.Operation<types.ResetEnabledControlOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResetEnabledControl, input, options) as async.Operation<types.ResetEnabledControlOutput>
+function C:resetEnabledControl(input: types.ResetEnabledControlInput, options?: base_client.InvokeOptions): async.Operation<types.ResetEnabledControlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResetEnabledControl as schema.OperationSchema, input, options) as async.Operation<types.ResetEnabledControlOutput>
 end
 
-function C:resetLandingZone(input: types.ResetLandingZoneInput, options: any): async.Operation<types.ResetLandingZoneOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResetLandingZone, input, options) as async.Operation<types.ResetLandingZoneOutput>
+function C:resetLandingZone(input: types.ResetLandingZoneInput, options?: base_client.InvokeOptions): async.Operation<types.ResetLandingZoneOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResetLandingZone as schema.OperationSchema, input, options) as async.Operation<types.ResetLandingZoneOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateEnabledBaseline(input: types.UpdateEnabledBaselineInput, options: any): async.Operation<types.UpdateEnabledBaselineOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEnabledBaseline, input, options) as async.Operation<types.UpdateEnabledBaselineOutput>
+function C:updateEnabledBaseline(input: types.UpdateEnabledBaselineInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEnabledBaselineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEnabledBaseline as schema.OperationSchema, input, options) as async.Operation<types.UpdateEnabledBaselineOutput>
 end
 
-function C:updateEnabledControl(input: types.UpdateEnabledControlInput, options: any): async.Operation<types.UpdateEnabledControlOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEnabledControl, input, options) as async.Operation<types.UpdateEnabledControlOutput>
+function C:updateEnabledControl(input: types.UpdateEnabledControlInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEnabledControlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEnabledControl as schema.OperationSchema, input, options) as async.Operation<types.UpdateEnabledControlOutput>
 end
 
-function C:updateLandingZone(input: types.UpdateLandingZoneInput, options: any): async.Operation<types.UpdateLandingZoneOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLandingZone, input, options) as async.Operation<types.UpdateLandingZoneOutput>
+function C:updateLandingZone(input: types.UpdateLandingZoneInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLandingZoneOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLandingZone as schema.OperationSchema, input, options) as async.Operation<types.UpdateLandingZoneOutput>
 end
 
 return M

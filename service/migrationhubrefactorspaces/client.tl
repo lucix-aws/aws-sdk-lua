@@ -8,63 +8,66 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("migrationhubrefactorspaces.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("migrationhubrefactorspaces.schemas")
 local traits = require("smithy.traits")
 local types = require("migrationhubrefactorspaces.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createApplication: function(Client, types.CreateApplicationInput, any): async.Operation<types.CreateApplicationOutput>
-    createEnvironment: function(Client, types.CreateEnvironmentInput, any): async.Operation<types.CreateEnvironmentOutput>
-    createRoute: function(Client, types.CreateRouteInput, any): async.Operation<types.CreateRouteOutput>
-    createService: function(Client, types.CreateServiceInput, any): async.Operation<types.CreateServiceOutput>
-    deleteApplication: function(Client, types.DeleteApplicationInput, any): async.Operation<types.DeleteApplicationOutput>
-    deleteEnvironment: function(Client, types.DeleteEnvironmentInput, any): async.Operation<types.DeleteEnvironmentOutput>
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, any): async.Operation<types.DeleteResourcePolicyOutput>
-    deleteRoute: function(Client, types.DeleteRouteInput, any): async.Operation<types.DeleteRouteOutput>
-    deleteService: function(Client, types.DeleteServiceInput, any): async.Operation<types.DeleteServiceOutput>
-    getApplication: function(Client, types.GetApplicationInput, any): async.Operation<types.GetApplicationOutput>
-    getEnvironment: function(Client, types.GetEnvironmentInput, any): async.Operation<types.GetEnvironmentOutput>
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput, any): async.Operation<types.GetResourcePolicyOutput>
-    getRoute: function(Client, types.GetRouteInput, any): async.Operation<types.GetRouteOutput>
-    getService: function(Client, types.GetServiceInput, any): async.Operation<types.GetServiceOutput>
-    listApplications: function(Client, types.ListApplicationsInput, any): async.Operation<types.ListApplicationsOutput>
-    listEnvironments: function(Client, types.ListEnvironmentsInput, any): async.Operation<types.ListEnvironmentsOutput>
-    listEnvironmentVpcs: function(Client, types.ListEnvironmentVpcsInput, any): async.Operation<types.ListEnvironmentVpcsOutput>
-    listRoutes: function(Client, types.ListRoutesInput, any): async.Operation<types.ListRoutesOutput>
-    listServices: function(Client, types.ListServicesInput, any): async.Operation<types.ListServicesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput, any): async.Operation<types.PutResourcePolicyOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateRoute: function(Client, types.UpdateRouteInput, any): async.Operation<types.UpdateRouteOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createApplication: function(Client, types.CreateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    createEnvironment: function(Client, types.CreateEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateEnvironmentOutput>
+    createRoute: function(Client, types.CreateRouteInput, ? base_client.InvokeOptions): async.Operation<types.CreateRouteOutput>
+    createService: function(Client, types.CreateServiceInput, ? base_client.InvokeOptions): async.Operation<types.CreateServiceOutput>
+    deleteApplication: function(Client, types.DeleteApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
+    deleteEnvironment: function(Client, types.DeleteEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentOutput>
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    deleteRoute: function(Client, types.DeleteRouteInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRouteOutput>
+    deleteService: function(Client, types.DeleteServiceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteServiceOutput>
+    getApplication: function(Client, types.GetApplicationInput, ? base_client.InvokeOptions): async.Operation<types.GetApplicationOutput>
+    getEnvironment: function(Client, types.GetEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.GetEnvironmentOutput>
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    getRoute: function(Client, types.GetRouteInput, ? base_client.InvokeOptions): async.Operation<types.GetRouteOutput>
+    getService: function(Client, types.GetServiceInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceOutput>
+    listApplications: function(Client, types.ListApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    listEnvironments: function(Client, types.ListEnvironmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListEnvironmentsOutput>
+    listEnvironmentVpcs: function(Client, types.ListEnvironmentVpcsInput, ? base_client.InvokeOptions): async.Operation<types.ListEnvironmentVpcsOutput>
+    listRoutes: function(Client, types.ListRoutesInput, ? base_client.InvokeOptions): async.Operation<types.ListRoutesOutput>
+    listServices: function(Client, types.ListServicesInput, ? base_client.InvokeOptions): async.Operation<types.ListServicesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateRoute: function(Client, types.UpdateRouteInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRouteOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "RefactorSpaces"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "refactor-spaces", signing_region = c.region } }
                 else
@@ -83,100 +86,100 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createApplication(input: types.CreateApplicationInput, options: any): async.Operation<types.CreateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateApplication, input, options) as async.Operation<types.CreateApplicationOutput>
+function C:createApplication(input: types.CreateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApplication as schema.OperationSchema, input, options) as async.Operation<types.CreateApplicationOutput>
 end
 
-function C:createEnvironment(input: types.CreateEnvironmentInput, options: any): async.Operation<types.CreateEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEnvironment, input, options) as async.Operation<types.CreateEnvironmentOutput>
+function C:createEnvironment(input: types.CreateEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEnvironment as schema.OperationSchema, input, options) as async.Operation<types.CreateEnvironmentOutput>
 end
 
-function C:createRoute(input: types.CreateRouteInput, options: any): async.Operation<types.CreateRouteOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRoute, input, options) as async.Operation<types.CreateRouteOutput>
+function C:createRoute(input: types.CreateRouteInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRouteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRoute as schema.OperationSchema, input, options) as async.Operation<types.CreateRouteOutput>
 end
 
-function C:createService(input: types.CreateServiceInput, options: any): async.Operation<types.CreateServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateService, input, options) as async.Operation<types.CreateServiceOutput>
+function C:createService(input: types.CreateServiceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateService as schema.OperationSchema, input, options) as async.Operation<types.CreateServiceOutput>
 end
 
-function C:deleteApplication(input: types.DeleteApplicationInput, options: any): async.Operation<types.DeleteApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApplication, input, options) as async.Operation<types.DeleteApplicationOutput>
+function C:deleteApplication(input: types.DeleteApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplication as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationOutput>
 end
 
-function C:deleteEnvironment(input: types.DeleteEnvironmentInput, options: any): async.Operation<types.DeleteEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEnvironment, input, options) as async.Operation<types.DeleteEnvironmentOutput>
+function C:deleteEnvironment(input: types.DeleteEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEnvironment as schema.OperationSchema, input, options) as async.Operation<types.DeleteEnvironmentOutput>
 end
 
-function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options: any): async.Operation<types.DeleteResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicy, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
+function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
 end
 
-function C:deleteRoute(input: types.DeleteRouteInput, options: any): async.Operation<types.DeleteRouteOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRoute, input, options) as async.Operation<types.DeleteRouteOutput>
+function C:deleteRoute(input: types.DeleteRouteInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRouteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRoute as schema.OperationSchema, input, options) as async.Operation<types.DeleteRouteOutput>
 end
 
-function C:deleteService(input: types.DeleteServiceInput, options: any): async.Operation<types.DeleteServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteService, input, options) as async.Operation<types.DeleteServiceOutput>
+function C:deleteService(input: types.DeleteServiceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteService as schema.OperationSchema, input, options) as async.Operation<types.DeleteServiceOutput>
 end
 
-function C:getApplication(input: types.GetApplicationInput, options: any): async.Operation<types.GetApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetApplication, input, options) as async.Operation<types.GetApplicationOutput>
+function C:getApplication(input: types.GetApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.GetApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetApplication as schema.OperationSchema, input, options) as async.Operation<types.GetApplicationOutput>
 end
 
-function C:getEnvironment(input: types.GetEnvironmentInput, options: any): async.Operation<types.GetEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEnvironment, input, options) as async.Operation<types.GetEnvironmentOutput>
+function C:getEnvironment(input: types.GetEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.GetEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEnvironment as schema.OperationSchema, input, options) as async.Operation<types.GetEnvironmentOutput>
 end
 
-function C:getResourcePolicy(input: types.GetResourcePolicyInput, options: any): async.Operation<types.GetResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicy, input, options) as async.Operation<types.GetResourcePolicyOutput>
+function C:getResourcePolicy(input: types.GetResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePolicyOutput>
 end
 
-function C:getRoute(input: types.GetRouteInput, options: any): async.Operation<types.GetRouteOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRoute, input, options) as async.Operation<types.GetRouteOutput>
+function C:getRoute(input: types.GetRouteInput, options?: base_client.InvokeOptions): async.Operation<types.GetRouteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRoute as schema.OperationSchema, input, options) as async.Operation<types.GetRouteOutput>
 end
 
-function C:getService(input: types.GetServiceInput, options: any): async.Operation<types.GetServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetService, input, options) as async.Operation<types.GetServiceOutput>
+function C:getService(input: types.GetServiceInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetService as schema.OperationSchema, input, options) as async.Operation<types.GetServiceOutput>
 end
 
-function C:listApplications(input: types.ListApplicationsInput, options: any): async.Operation<types.ListApplicationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplications, input, options) as async.Operation<types.ListApplicationsOutput>
+function C:listApplications(input: types.ListApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplications as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationsOutput>
 end
 
-function C:listEnvironments(input: types.ListEnvironmentsInput, options: any): async.Operation<types.ListEnvironmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEnvironments, input, options) as async.Operation<types.ListEnvironmentsOutput>
+function C:listEnvironments(input: types.ListEnvironmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEnvironmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEnvironments as schema.OperationSchema, input, options) as async.Operation<types.ListEnvironmentsOutput>
 end
 
-function C:listEnvironmentVpcs(input: types.ListEnvironmentVpcsInput, options: any): async.Operation<types.ListEnvironmentVpcsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEnvironmentVpcs, input, options) as async.Operation<types.ListEnvironmentVpcsOutput>
+function C:listEnvironmentVpcs(input: types.ListEnvironmentVpcsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEnvironmentVpcsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEnvironmentVpcs as schema.OperationSchema, input, options) as async.Operation<types.ListEnvironmentVpcsOutput>
 end
 
-function C:listRoutes(input: types.ListRoutesInput, options: any): async.Operation<types.ListRoutesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRoutes, input, options) as async.Operation<types.ListRoutesOutput>
+function C:listRoutes(input: types.ListRoutesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRoutesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRoutes as schema.OperationSchema, input, options) as async.Operation<types.ListRoutesOutput>
 end
 
-function C:listServices(input: types.ListServicesInput, options: any): async.Operation<types.ListServicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServices, input, options) as async.Operation<types.ListServicesOutput>
+function C:listServices(input: types.ListServicesInput, options?: base_client.InvokeOptions): async.Operation<types.ListServicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServices as schema.OperationSchema, input, options) as async.Operation<types.ListServicesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putResourcePolicy(input: types.PutResourcePolicyInput, options: any): async.Operation<types.PutResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutResourcePolicy, input, options) as async.Operation<types.PutResourcePolicyOutput>
+function C:putResourcePolicy(input: types.PutResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutResourcePolicyOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateRoute(input: types.UpdateRouteInput, options: any): async.Operation<types.UpdateRouteOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRoute, input, options) as async.Operation<types.UpdateRouteOutput>
+function C:updateRoute(input: types.UpdateRouteInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRouteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRoute as schema.OperationSchema, input, options) as async.Operation<types.UpdateRouteOutput>
 end
 
 return M

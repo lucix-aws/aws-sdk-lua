@@ -8,86 +8,89 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("elasticbeanstalk.endpoint_rules")
 local query_protocol = require("smithy.protocol.awsquery")
+local schema = require("smithy.schema")
 local schemas = require("elasticbeanstalk.schemas")
 local traits = require("smithy.traits")
 local types = require("elasticbeanstalk.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    abortEnvironmentUpdate: function(Client, types.AbortEnvironmentUpdateInput, any): async.Operation<types.AbortEnvironmentUpdateOutput>
-    applyEnvironmentManagedAction: function(Client, types.ApplyEnvironmentManagedActionInput, any): async.Operation<types.ApplyEnvironmentManagedActionOutput>
-    associateEnvironmentOperationsRole: function(Client, types.AssociateEnvironmentOperationsRoleInput, any): async.Operation<types.AssociateEnvironmentOperationsRoleOutput>
-    checkDNSAvailability: function(Client, types.CheckDNSAvailabilityInput, any): async.Operation<types.CheckDNSAvailabilityOutput>
-    composeEnvironments: function(Client, types.ComposeEnvironmentsInput, any): async.Operation<types.ComposeEnvironmentsOutput>
-    createApplication: function(Client, types.CreateApplicationInput, any): async.Operation<types.CreateApplicationOutput>
-    createApplicationVersion: function(Client, types.CreateApplicationVersionInput, any): async.Operation<types.CreateApplicationVersionOutput>
-    createConfigurationTemplate: function(Client, types.CreateConfigurationTemplateInput, any): async.Operation<types.CreateConfigurationTemplateOutput>
-    createEnvironment: function(Client, types.CreateEnvironmentInput, any): async.Operation<types.CreateEnvironmentOutput>
-    createPlatformVersion: function(Client, types.CreatePlatformVersionInput, any): async.Operation<types.CreatePlatformVersionOutput>
-    createStorageLocation: function(Client, types.CreateStorageLocationInput, any): async.Operation<types.CreateStorageLocationOutput>
-    deleteApplication: function(Client, types.DeleteApplicationInput, any): async.Operation<types.DeleteApplicationOutput>
-    deleteApplicationVersion: function(Client, types.DeleteApplicationVersionInput, any): async.Operation<types.DeleteApplicationVersionOutput>
-    deleteConfigurationTemplate: function(Client, types.DeleteConfigurationTemplateInput, any): async.Operation<types.DeleteConfigurationTemplateOutput>
-    deleteEnvironmentConfiguration: function(Client, types.DeleteEnvironmentConfigurationInput, any): async.Operation<types.DeleteEnvironmentConfigurationOutput>
-    deletePlatformVersion: function(Client, types.DeletePlatformVersionInput, any): async.Operation<types.DeletePlatformVersionOutput>
-    describeAccountAttributes: function(Client, types.DescribeAccountAttributesInput, any): async.Operation<types.DescribeAccountAttributesOutput>
-    describeApplications: function(Client, types.DescribeApplicationsInput, any): async.Operation<types.DescribeApplicationsOutput>
-    describeApplicationVersions: function(Client, types.DescribeApplicationVersionsInput, any): async.Operation<types.DescribeApplicationVersionsOutput>
-    describeConfigurationOptions: function(Client, types.DescribeConfigurationOptionsInput, any): async.Operation<types.DescribeConfigurationOptionsOutput>
-    describeConfigurationSettings: function(Client, types.DescribeConfigurationSettingsInput, any): async.Operation<types.DescribeConfigurationSettingsOutput>
-    describeEnvironmentHealth: function(Client, types.DescribeEnvironmentHealthInput, any): async.Operation<types.DescribeEnvironmentHealthOutput>
-    describeEnvironmentManagedActionHistory: function(Client, types.DescribeEnvironmentManagedActionHistoryInput, any): async.Operation<types.DescribeEnvironmentManagedActionHistoryOutput>
-    describeEnvironmentManagedActions: function(Client, types.DescribeEnvironmentManagedActionsInput, any): async.Operation<types.DescribeEnvironmentManagedActionsOutput>
-    describeEnvironmentResources: function(Client, types.DescribeEnvironmentResourcesInput, any): async.Operation<types.DescribeEnvironmentResourcesOutput>
-    describeEnvironments: function(Client, types.DescribeEnvironmentsInput, any): async.Operation<types.DescribeEnvironmentsOutput>
-    describeEvents: function(Client, types.DescribeEventsInput, any): async.Operation<types.DescribeEventsOutput>
-    describeInstancesHealth: function(Client, types.DescribeInstancesHealthInput, any): async.Operation<types.DescribeInstancesHealthOutput>
-    describePlatformVersion: function(Client, types.DescribePlatformVersionInput, any): async.Operation<types.DescribePlatformVersionOutput>
-    disassociateEnvironmentOperationsRole: function(Client, types.DisassociateEnvironmentOperationsRoleInput, any): async.Operation<types.DisassociateEnvironmentOperationsRoleOutput>
-    listAvailableSolutionStacks: function(Client, types.ListAvailableSolutionStacksInput, any): async.Operation<types.ListAvailableSolutionStacksOutput>
-    listPlatformBranches: function(Client, types.ListPlatformBranchesInput, any): async.Operation<types.ListPlatformBranchesOutput>
-    listPlatformVersions: function(Client, types.ListPlatformVersionsInput, any): async.Operation<types.ListPlatformVersionsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    rebuildEnvironment: function(Client, types.RebuildEnvironmentInput, any): async.Operation<types.RebuildEnvironmentOutput>
-    requestEnvironmentInfo: function(Client, types.RequestEnvironmentInfoInput, any): async.Operation<types.RequestEnvironmentInfoOutput>
-    restartAppServer: function(Client, types.RestartAppServerInput, any): async.Operation<types.RestartAppServerOutput>
-    retrieveEnvironmentInfo: function(Client, types.RetrieveEnvironmentInfoInput, any): async.Operation<types.RetrieveEnvironmentInfoOutput>
-    swapEnvironmentCNAMEs: function(Client, types.SwapEnvironmentCNAMEsInput, any): async.Operation<types.SwapEnvironmentCNAMEsOutput>
-    terminateEnvironment: function(Client, types.TerminateEnvironmentInput, any): async.Operation<types.TerminateEnvironmentOutput>
-    updateApplication: function(Client, types.UpdateApplicationInput, any): async.Operation<types.UpdateApplicationOutput>
-    updateApplicationResourceLifecycle: function(Client, types.UpdateApplicationResourceLifecycleInput, any): async.Operation<types.UpdateApplicationResourceLifecycleOutput>
-    updateApplicationVersion: function(Client, types.UpdateApplicationVersionInput, any): async.Operation<types.UpdateApplicationVersionOutput>
-    updateConfigurationTemplate: function(Client, types.UpdateConfigurationTemplateInput, any): async.Operation<types.UpdateConfigurationTemplateOutput>
-    updateEnvironment: function(Client, types.UpdateEnvironmentInput, any): async.Operation<types.UpdateEnvironmentOutput>
-    updateTagsForResource: function(Client, types.UpdateTagsForResourceInput, any): async.Operation<types.UpdateTagsForResourceOutput>
-    validateConfigurationSettings: function(Client, types.ValidateConfigurationSettingsInput, any): async.Operation<types.ValidateConfigurationSettingsOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    abortEnvironmentUpdate: function(Client, types.AbortEnvironmentUpdateInput, ? base_client.InvokeOptions): async.Operation<types.AbortEnvironmentUpdateOutput>
+    applyEnvironmentManagedAction: function(Client, types.ApplyEnvironmentManagedActionInput, ? base_client.InvokeOptions): async.Operation<types.ApplyEnvironmentManagedActionOutput>
+    associateEnvironmentOperationsRole: function(Client, types.AssociateEnvironmentOperationsRoleInput, ? base_client.InvokeOptions): async.Operation<types.AssociateEnvironmentOperationsRoleOutput>
+    checkDNSAvailability: function(Client, types.CheckDNSAvailabilityInput, ? base_client.InvokeOptions): async.Operation<types.CheckDNSAvailabilityOutput>
+    composeEnvironments: function(Client, types.ComposeEnvironmentsInput, ? base_client.InvokeOptions): async.Operation<types.ComposeEnvironmentsOutput>
+    createApplication: function(Client, types.CreateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    createApplicationVersion: function(Client, types.CreateApplicationVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationVersionOutput>
+    createConfigurationTemplate: function(Client, types.CreateConfigurationTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfigurationTemplateOutput>
+    createEnvironment: function(Client, types.CreateEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateEnvironmentOutput>
+    createPlatformVersion: function(Client, types.CreatePlatformVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreatePlatformVersionOutput>
+    createStorageLocation: function(Client, types.CreateStorageLocationInput, ? base_client.InvokeOptions): async.Operation<types.CreateStorageLocationOutput>
+    deleteApplication: function(Client, types.DeleteApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
+    deleteApplicationVersion: function(Client, types.DeleteApplicationVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationVersionOutput>
+    deleteConfigurationTemplate: function(Client, types.DeleteConfigurationTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfigurationTemplateOutput>
+    deleteEnvironmentConfiguration: function(Client, types.DeleteEnvironmentConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentConfigurationOutput>
+    deletePlatformVersion: function(Client, types.DeletePlatformVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeletePlatformVersionOutput>
+    describeAccountAttributes: function(Client, types.DescribeAccountAttributesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAccountAttributesOutput>
+    describeApplications: function(Client, types.DescribeApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeApplicationsOutput>
+    describeApplicationVersions: function(Client, types.DescribeApplicationVersionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeApplicationVersionsOutput>
+    describeConfigurationOptions: function(Client, types.DescribeConfigurationOptionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConfigurationOptionsOutput>
+    describeConfigurationSettings: function(Client, types.DescribeConfigurationSettingsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConfigurationSettingsOutput>
+    describeEnvironmentHealth: function(Client, types.DescribeEnvironmentHealthInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEnvironmentHealthOutput>
+    describeEnvironmentManagedActionHistory: function(Client, types.DescribeEnvironmentManagedActionHistoryInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEnvironmentManagedActionHistoryOutput>
+    describeEnvironmentManagedActions: function(Client, types.DescribeEnvironmentManagedActionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEnvironmentManagedActionsOutput>
+    describeEnvironmentResources: function(Client, types.DescribeEnvironmentResourcesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEnvironmentResourcesOutput>
+    describeEnvironments: function(Client, types.DescribeEnvironmentsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEnvironmentsOutput>
+    describeEvents: function(Client, types.DescribeEventsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEventsOutput>
+    describeInstancesHealth: function(Client, types.DescribeInstancesHealthInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstancesHealthOutput>
+    describePlatformVersion: function(Client, types.DescribePlatformVersionInput, ? base_client.InvokeOptions): async.Operation<types.DescribePlatformVersionOutput>
+    disassociateEnvironmentOperationsRole: function(Client, types.DisassociateEnvironmentOperationsRoleInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateEnvironmentOperationsRoleOutput>
+    listAvailableSolutionStacks: function(Client, types.ListAvailableSolutionStacksInput, ? base_client.InvokeOptions): async.Operation<types.ListAvailableSolutionStacksOutput>
+    listPlatformBranches: function(Client, types.ListPlatformBranchesInput, ? base_client.InvokeOptions): async.Operation<types.ListPlatformBranchesOutput>
+    listPlatformVersions: function(Client, types.ListPlatformVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListPlatformVersionsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    rebuildEnvironment: function(Client, types.RebuildEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.RebuildEnvironmentOutput>
+    requestEnvironmentInfo: function(Client, types.RequestEnvironmentInfoInput, ? base_client.InvokeOptions): async.Operation<types.RequestEnvironmentInfoOutput>
+    restartAppServer: function(Client, types.RestartAppServerInput, ? base_client.InvokeOptions): async.Operation<types.RestartAppServerOutput>
+    retrieveEnvironmentInfo: function(Client, types.RetrieveEnvironmentInfoInput, ? base_client.InvokeOptions): async.Operation<types.RetrieveEnvironmentInfoOutput>
+    swapEnvironmentCNAMEs: function(Client, types.SwapEnvironmentCNAMEsInput, ? base_client.InvokeOptions): async.Operation<types.SwapEnvironmentCNAMEsOutput>
+    terminateEnvironment: function(Client, types.TerminateEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.TerminateEnvironmentOutput>
+    updateApplication: function(Client, types.UpdateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
+    updateApplicationResourceLifecycle: function(Client, types.UpdateApplicationResourceLifecycleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApplicationResourceLifecycleOutput>
+    updateApplicationVersion: function(Client, types.UpdateApplicationVersionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApplicationVersionOutput>
+    updateConfigurationTemplate: function(Client, types.UpdateConfigurationTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfigurationTemplateOutput>
+    updateEnvironment: function(Client, types.UpdateEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEnvironmentOutput>
+    updateTagsForResource: function(Client, types.UpdateTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTagsForResourceOutput>
+    validateConfigurationSettings: function(Client, types.ValidateConfigurationSettingsInput, ? base_client.InvokeOptions): async.Operation<types.ValidateConfigurationSettingsOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSElasticBeanstalkService"
-    if not c.protocol then c.protocol = query_protocol.new("awsQuery") end
+    if not c.protocol then c.protocol = query_protocol.new("awsQuery") as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "elasticbeanstalk", signing_region = c.region } }
                 else
@@ -106,192 +109,192 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:abortEnvironmentUpdate(input: types.AbortEnvironmentUpdateInput, options: any): async.Operation<types.AbortEnvironmentUpdateOutput>
-    return self:invokeOperation(schemas.Service, schemas.AbortEnvironmentUpdate, input, options) as async.Operation<types.AbortEnvironmentUpdateOutput>
+function C:abortEnvironmentUpdate(input: types.AbortEnvironmentUpdateInput, options?: base_client.InvokeOptions): async.Operation<types.AbortEnvironmentUpdateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AbortEnvironmentUpdate as schema.OperationSchema, input, options) as async.Operation<types.AbortEnvironmentUpdateOutput>
 end
 
-function C:applyEnvironmentManagedAction(input: types.ApplyEnvironmentManagedActionInput, options: any): async.Operation<types.ApplyEnvironmentManagedActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ApplyEnvironmentManagedAction, input, options) as async.Operation<types.ApplyEnvironmentManagedActionOutput>
+function C:applyEnvironmentManagedAction(input: types.ApplyEnvironmentManagedActionInput, options?: base_client.InvokeOptions): async.Operation<types.ApplyEnvironmentManagedActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ApplyEnvironmentManagedAction as schema.OperationSchema, input, options) as async.Operation<types.ApplyEnvironmentManagedActionOutput>
 end
 
-function C:associateEnvironmentOperationsRole(input: types.AssociateEnvironmentOperationsRoleInput, options: any): async.Operation<types.AssociateEnvironmentOperationsRoleOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateEnvironmentOperationsRole, input, options) as async.Operation<types.AssociateEnvironmentOperationsRoleOutput>
+function C:associateEnvironmentOperationsRole(input: types.AssociateEnvironmentOperationsRoleInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateEnvironmentOperationsRoleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateEnvironmentOperationsRole as schema.OperationSchema, input, options) as async.Operation<types.AssociateEnvironmentOperationsRoleOutput>
 end
 
-function C:checkDNSAvailability(input: types.CheckDNSAvailabilityInput, options: any): async.Operation<types.CheckDNSAvailabilityOutput>
-    return self:invokeOperation(schemas.Service, schemas.CheckDNSAvailability, input, options) as async.Operation<types.CheckDNSAvailabilityOutput>
+function C:checkDNSAvailability(input: types.CheckDNSAvailabilityInput, options?: base_client.InvokeOptions): async.Operation<types.CheckDNSAvailabilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CheckDNSAvailability as schema.OperationSchema, input, options) as async.Operation<types.CheckDNSAvailabilityOutput>
 end
 
-function C:composeEnvironments(input: types.ComposeEnvironmentsInput, options: any): async.Operation<types.ComposeEnvironmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ComposeEnvironments, input, options) as async.Operation<types.ComposeEnvironmentsOutput>
+function C:composeEnvironments(input: types.ComposeEnvironmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ComposeEnvironmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ComposeEnvironments as schema.OperationSchema, input, options) as async.Operation<types.ComposeEnvironmentsOutput>
 end
 
-function C:createApplication(input: types.CreateApplicationInput, options: any): async.Operation<types.CreateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateApplication, input, options) as async.Operation<types.CreateApplicationOutput>
+function C:createApplication(input: types.CreateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApplication as schema.OperationSchema, input, options) as async.Operation<types.CreateApplicationOutput>
 end
 
-function C:createApplicationVersion(input: types.CreateApplicationVersionInput, options: any): async.Operation<types.CreateApplicationVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateApplicationVersion, input, options) as async.Operation<types.CreateApplicationVersionOutput>
+function C:createApplicationVersion(input: types.CreateApplicationVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApplicationVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApplicationVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateApplicationVersionOutput>
 end
 
-function C:createConfigurationTemplate(input: types.CreateConfigurationTemplateInput, options: any): async.Operation<types.CreateConfigurationTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConfigurationTemplate, input, options) as async.Operation<types.CreateConfigurationTemplateOutput>
+function C:createConfigurationTemplate(input: types.CreateConfigurationTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConfigurationTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConfigurationTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateConfigurationTemplateOutput>
 end
 
-function C:createEnvironment(input: types.CreateEnvironmentInput, options: any): async.Operation<types.CreateEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEnvironment, input, options) as async.Operation<types.CreateEnvironmentOutput>
+function C:createEnvironment(input: types.CreateEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEnvironment as schema.OperationSchema, input, options) as async.Operation<types.CreateEnvironmentOutput>
 end
 
-function C:createPlatformVersion(input: types.CreatePlatformVersionInput, options: any): async.Operation<types.CreatePlatformVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePlatformVersion, input, options) as async.Operation<types.CreatePlatformVersionOutput>
+function C:createPlatformVersion(input: types.CreatePlatformVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePlatformVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePlatformVersion as schema.OperationSchema, input, options) as async.Operation<types.CreatePlatformVersionOutput>
 end
 
-function C:createStorageLocation(input: types.CreateStorageLocationInput, options: any): async.Operation<types.CreateStorageLocationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateStorageLocation, input, options) as async.Operation<types.CreateStorageLocationOutput>
+function C:createStorageLocation(input: types.CreateStorageLocationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateStorageLocationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateStorageLocation as schema.OperationSchema, input, options) as async.Operation<types.CreateStorageLocationOutput>
 end
 
-function C:deleteApplication(input: types.DeleteApplicationInput, options: any): async.Operation<types.DeleteApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApplication, input, options) as async.Operation<types.DeleteApplicationOutput>
+function C:deleteApplication(input: types.DeleteApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplication as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationOutput>
 end
 
-function C:deleteApplicationVersion(input: types.DeleteApplicationVersionInput, options: any): async.Operation<types.DeleteApplicationVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApplicationVersion, input, options) as async.Operation<types.DeleteApplicationVersionOutput>
+function C:deleteApplicationVersion(input: types.DeleteApplicationVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplicationVersion as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationVersionOutput>
 end
 
-function C:deleteConfigurationTemplate(input: types.DeleteConfigurationTemplateInput, options: any): async.Operation<types.DeleteConfigurationTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConfigurationTemplate, input, options) as async.Operation<types.DeleteConfigurationTemplateOutput>
+function C:deleteConfigurationTemplate(input: types.DeleteConfigurationTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConfigurationTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConfigurationTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteConfigurationTemplateOutput>
 end
 
-function C:deleteEnvironmentConfiguration(input: types.DeleteEnvironmentConfigurationInput, options: any): async.Operation<types.DeleteEnvironmentConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEnvironmentConfiguration, input, options) as async.Operation<types.DeleteEnvironmentConfigurationOutput>
+function C:deleteEnvironmentConfiguration(input: types.DeleteEnvironmentConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEnvironmentConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteEnvironmentConfigurationOutput>
 end
 
-function C:deletePlatformVersion(input: types.DeletePlatformVersionInput, options: any): async.Operation<types.DeletePlatformVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePlatformVersion, input, options) as async.Operation<types.DeletePlatformVersionOutput>
+function C:deletePlatformVersion(input: types.DeletePlatformVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePlatformVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePlatformVersion as schema.OperationSchema, input, options) as async.Operation<types.DeletePlatformVersionOutput>
 end
 
-function C:describeAccountAttributes(input: types.DescribeAccountAttributesInput, options: any): async.Operation<types.DescribeAccountAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAccountAttributes, input, options) as async.Operation<types.DescribeAccountAttributesOutput>
+function C:describeAccountAttributes(input: types.DescribeAccountAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAccountAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAccountAttributes as schema.OperationSchema, input, options) as async.Operation<types.DescribeAccountAttributesOutput>
 end
 
-function C:describeApplications(input: types.DescribeApplicationsInput, options: any): async.Operation<types.DescribeApplicationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeApplications, input, options) as async.Operation<types.DescribeApplicationsOutput>
+function C:describeApplications(input: types.DescribeApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeApplicationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeApplications as schema.OperationSchema, input, options) as async.Operation<types.DescribeApplicationsOutput>
 end
 
-function C:describeApplicationVersions(input: types.DescribeApplicationVersionsInput, options: any): async.Operation<types.DescribeApplicationVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeApplicationVersions, input, options) as async.Operation<types.DescribeApplicationVersionsOutput>
+function C:describeApplicationVersions(input: types.DescribeApplicationVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeApplicationVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeApplicationVersions as schema.OperationSchema, input, options) as async.Operation<types.DescribeApplicationVersionsOutput>
 end
 
-function C:describeConfigurationOptions(input: types.DescribeConfigurationOptionsInput, options: any): async.Operation<types.DescribeConfigurationOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeConfigurationOptions, input, options) as async.Operation<types.DescribeConfigurationOptionsOutput>
+function C:describeConfigurationOptions(input: types.DescribeConfigurationOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeConfigurationOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeConfigurationOptions as schema.OperationSchema, input, options) as async.Operation<types.DescribeConfigurationOptionsOutput>
 end
 
-function C:describeConfigurationSettings(input: types.DescribeConfigurationSettingsInput, options: any): async.Operation<types.DescribeConfigurationSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeConfigurationSettings, input, options) as async.Operation<types.DescribeConfigurationSettingsOutput>
+function C:describeConfigurationSettings(input: types.DescribeConfigurationSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeConfigurationSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeConfigurationSettings as schema.OperationSchema, input, options) as async.Operation<types.DescribeConfigurationSettingsOutput>
 end
 
-function C:describeEnvironmentHealth(input: types.DescribeEnvironmentHealthInput, options: any): async.Operation<types.DescribeEnvironmentHealthOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEnvironmentHealth, input, options) as async.Operation<types.DescribeEnvironmentHealthOutput>
+function C:describeEnvironmentHealth(input: types.DescribeEnvironmentHealthInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEnvironmentHealthOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEnvironmentHealth as schema.OperationSchema, input, options) as async.Operation<types.DescribeEnvironmentHealthOutput>
 end
 
-function C:describeEnvironmentManagedActionHistory(input: types.DescribeEnvironmentManagedActionHistoryInput, options: any): async.Operation<types.DescribeEnvironmentManagedActionHistoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEnvironmentManagedActionHistory, input, options) as async.Operation<types.DescribeEnvironmentManagedActionHistoryOutput>
+function C:describeEnvironmentManagedActionHistory(input: types.DescribeEnvironmentManagedActionHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEnvironmentManagedActionHistoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEnvironmentManagedActionHistory as schema.OperationSchema, input, options) as async.Operation<types.DescribeEnvironmentManagedActionHistoryOutput>
 end
 
-function C:describeEnvironmentManagedActions(input: types.DescribeEnvironmentManagedActionsInput, options: any): async.Operation<types.DescribeEnvironmentManagedActionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEnvironmentManagedActions, input, options) as async.Operation<types.DescribeEnvironmentManagedActionsOutput>
+function C:describeEnvironmentManagedActions(input: types.DescribeEnvironmentManagedActionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEnvironmentManagedActionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEnvironmentManagedActions as schema.OperationSchema, input, options) as async.Operation<types.DescribeEnvironmentManagedActionsOutput>
 end
 
-function C:describeEnvironmentResources(input: types.DescribeEnvironmentResourcesInput, options: any): async.Operation<types.DescribeEnvironmentResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEnvironmentResources, input, options) as async.Operation<types.DescribeEnvironmentResourcesOutput>
+function C:describeEnvironmentResources(input: types.DescribeEnvironmentResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEnvironmentResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEnvironmentResources as schema.OperationSchema, input, options) as async.Operation<types.DescribeEnvironmentResourcesOutput>
 end
 
-function C:describeEnvironments(input: types.DescribeEnvironmentsInput, options: any): async.Operation<types.DescribeEnvironmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEnvironments, input, options) as async.Operation<types.DescribeEnvironmentsOutput>
+function C:describeEnvironments(input: types.DescribeEnvironmentsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEnvironmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEnvironments as schema.OperationSchema, input, options) as async.Operation<types.DescribeEnvironmentsOutput>
 end
 
-function C:describeEvents(input: types.DescribeEventsInput, options: any): async.Operation<types.DescribeEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEvents, input, options) as async.Operation<types.DescribeEventsOutput>
+function C:describeEvents(input: types.DescribeEventsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEvents as schema.OperationSchema, input, options) as async.Operation<types.DescribeEventsOutput>
 end
 
-function C:describeInstancesHealth(input: types.DescribeInstancesHealthInput, options: any): async.Operation<types.DescribeInstancesHealthOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInstancesHealth, input, options) as async.Operation<types.DescribeInstancesHealthOutput>
+function C:describeInstancesHealth(input: types.DescribeInstancesHealthInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInstancesHealthOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInstancesHealth as schema.OperationSchema, input, options) as async.Operation<types.DescribeInstancesHealthOutput>
 end
 
-function C:describePlatformVersion(input: types.DescribePlatformVersionInput, options: any): async.Operation<types.DescribePlatformVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePlatformVersion, input, options) as async.Operation<types.DescribePlatformVersionOutput>
+function C:describePlatformVersion(input: types.DescribePlatformVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePlatformVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePlatformVersion as schema.OperationSchema, input, options) as async.Operation<types.DescribePlatformVersionOutput>
 end
 
-function C:disassociateEnvironmentOperationsRole(input: types.DisassociateEnvironmentOperationsRoleInput, options: any): async.Operation<types.DisassociateEnvironmentOperationsRoleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateEnvironmentOperationsRole, input, options) as async.Operation<types.DisassociateEnvironmentOperationsRoleOutput>
+function C:disassociateEnvironmentOperationsRole(input: types.DisassociateEnvironmentOperationsRoleInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateEnvironmentOperationsRoleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateEnvironmentOperationsRole as schema.OperationSchema, input, options) as async.Operation<types.DisassociateEnvironmentOperationsRoleOutput>
 end
 
-function C:listAvailableSolutionStacks(input: types.ListAvailableSolutionStacksInput, options: any): async.Operation<types.ListAvailableSolutionStacksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAvailableSolutionStacks, input, options) as async.Operation<types.ListAvailableSolutionStacksOutput>
+function C:listAvailableSolutionStacks(input: types.ListAvailableSolutionStacksInput, options?: base_client.InvokeOptions): async.Operation<types.ListAvailableSolutionStacksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAvailableSolutionStacks as schema.OperationSchema, input, options) as async.Operation<types.ListAvailableSolutionStacksOutput>
 end
 
-function C:listPlatformBranches(input: types.ListPlatformBranchesInput, options: any): async.Operation<types.ListPlatformBranchesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPlatformBranches, input, options) as async.Operation<types.ListPlatformBranchesOutput>
+function C:listPlatformBranches(input: types.ListPlatformBranchesInput, options?: base_client.InvokeOptions): async.Operation<types.ListPlatformBranchesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPlatformBranches as schema.OperationSchema, input, options) as async.Operation<types.ListPlatformBranchesOutput>
 end
 
-function C:listPlatformVersions(input: types.ListPlatformVersionsInput, options: any): async.Operation<types.ListPlatformVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPlatformVersions, input, options) as async.Operation<types.ListPlatformVersionsOutput>
+function C:listPlatformVersions(input: types.ListPlatformVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPlatformVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPlatformVersions as schema.OperationSchema, input, options) as async.Operation<types.ListPlatformVersionsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:rebuildEnvironment(input: types.RebuildEnvironmentInput, options: any): async.Operation<types.RebuildEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.RebuildEnvironment, input, options) as async.Operation<types.RebuildEnvironmentOutput>
+function C:rebuildEnvironment(input: types.RebuildEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.RebuildEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RebuildEnvironment as schema.OperationSchema, input, options) as async.Operation<types.RebuildEnvironmentOutput>
 end
 
-function C:requestEnvironmentInfo(input: types.RequestEnvironmentInfoInput, options: any): async.Operation<types.RequestEnvironmentInfoOutput>
-    return self:invokeOperation(schemas.Service, schemas.RequestEnvironmentInfo, input, options) as async.Operation<types.RequestEnvironmentInfoOutput>
+function C:requestEnvironmentInfo(input: types.RequestEnvironmentInfoInput, options?: base_client.InvokeOptions): async.Operation<types.RequestEnvironmentInfoOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RequestEnvironmentInfo as schema.OperationSchema, input, options) as async.Operation<types.RequestEnvironmentInfoOutput>
 end
 
-function C:restartAppServer(input: types.RestartAppServerInput, options: any): async.Operation<types.RestartAppServerOutput>
-    return self:invokeOperation(schemas.Service, schemas.RestartAppServer, input, options) as async.Operation<types.RestartAppServerOutput>
+function C:restartAppServer(input: types.RestartAppServerInput, options?: base_client.InvokeOptions): async.Operation<types.RestartAppServerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestartAppServer as schema.OperationSchema, input, options) as async.Operation<types.RestartAppServerOutput>
 end
 
-function C:retrieveEnvironmentInfo(input: types.RetrieveEnvironmentInfoInput, options: any): async.Operation<types.RetrieveEnvironmentInfoOutput>
-    return self:invokeOperation(schemas.Service, schemas.RetrieveEnvironmentInfo, input, options) as async.Operation<types.RetrieveEnvironmentInfoOutput>
+function C:retrieveEnvironmentInfo(input: types.RetrieveEnvironmentInfoInput, options?: base_client.InvokeOptions): async.Operation<types.RetrieveEnvironmentInfoOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RetrieveEnvironmentInfo as schema.OperationSchema, input, options) as async.Operation<types.RetrieveEnvironmentInfoOutput>
 end
 
-function C:swapEnvironmentCNAMEs(input: types.SwapEnvironmentCNAMEsInput, options: any): async.Operation<types.SwapEnvironmentCNAMEsOutput>
-    return self:invokeOperation(schemas.Service, schemas.SwapEnvironmentCNAMEs, input, options) as async.Operation<types.SwapEnvironmentCNAMEsOutput>
+function C:swapEnvironmentCNAMEs(input: types.SwapEnvironmentCNAMEsInput, options?: base_client.InvokeOptions): async.Operation<types.SwapEnvironmentCNAMEsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SwapEnvironmentCNAMEs as schema.OperationSchema, input, options) as async.Operation<types.SwapEnvironmentCNAMEsOutput>
 end
 
-function C:terminateEnvironment(input: types.TerminateEnvironmentInput, options: any): async.Operation<types.TerminateEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.TerminateEnvironment, input, options) as async.Operation<types.TerminateEnvironmentOutput>
+function C:terminateEnvironment(input: types.TerminateEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.TerminateEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TerminateEnvironment as schema.OperationSchema, input, options) as async.Operation<types.TerminateEnvironmentOutput>
 end
 
-function C:updateApplication(input: types.UpdateApplicationInput, options: any): async.Operation<types.UpdateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateApplication, input, options) as async.Operation<types.UpdateApplicationOutput>
+function C:updateApplication(input: types.UpdateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApplication as schema.OperationSchema, input, options) as async.Operation<types.UpdateApplicationOutput>
 end
 
-function C:updateApplicationResourceLifecycle(input: types.UpdateApplicationResourceLifecycleInput, options: any): async.Operation<types.UpdateApplicationResourceLifecycleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateApplicationResourceLifecycle, input, options) as async.Operation<types.UpdateApplicationResourceLifecycleOutput>
+function C:updateApplicationResourceLifecycle(input: types.UpdateApplicationResourceLifecycleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApplicationResourceLifecycleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApplicationResourceLifecycle as schema.OperationSchema, input, options) as async.Operation<types.UpdateApplicationResourceLifecycleOutput>
 end
 
-function C:updateApplicationVersion(input: types.UpdateApplicationVersionInput, options: any): async.Operation<types.UpdateApplicationVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateApplicationVersion, input, options) as async.Operation<types.UpdateApplicationVersionOutput>
+function C:updateApplicationVersion(input: types.UpdateApplicationVersionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApplicationVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApplicationVersion as schema.OperationSchema, input, options) as async.Operation<types.UpdateApplicationVersionOutput>
 end
 
-function C:updateConfigurationTemplate(input: types.UpdateConfigurationTemplateInput, options: any): async.Operation<types.UpdateConfigurationTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConfigurationTemplate, input, options) as async.Operation<types.UpdateConfigurationTemplateOutput>
+function C:updateConfigurationTemplate(input: types.UpdateConfigurationTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConfigurationTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConfigurationTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateConfigurationTemplateOutput>
 end
 
-function C:updateEnvironment(input: types.UpdateEnvironmentInput, options: any): async.Operation<types.UpdateEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEnvironment, input, options) as async.Operation<types.UpdateEnvironmentOutput>
+function C:updateEnvironment(input: types.UpdateEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEnvironment as schema.OperationSchema, input, options) as async.Operation<types.UpdateEnvironmentOutput>
 end
 
-function C:updateTagsForResource(input: types.UpdateTagsForResourceInput, options: any): async.Operation<types.UpdateTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTagsForResource, input, options) as async.Operation<types.UpdateTagsForResourceOutput>
+function C:updateTagsForResource(input: types.UpdateTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.UpdateTagsForResourceOutput>
 end
 
-function C:validateConfigurationSettings(input: types.ValidateConfigurationSettingsInput, options: any): async.Operation<types.ValidateConfigurationSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ValidateConfigurationSettings, input, options) as async.Operation<types.ValidateConfigurationSettingsOutput>
+function C:validateConfigurationSettings(input: types.ValidateConfigurationSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.ValidateConfigurationSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ValidateConfigurationSettings as schema.OperationSchema, input, options) as async.Operation<types.ValidateConfigurationSettingsOutput>
 end
 
 return M

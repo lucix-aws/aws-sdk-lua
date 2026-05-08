@@ -8,83 +8,86 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("codepipeline.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("codepipeline.schemas")
 local traits = require("smithy.traits")
 local types = require("codepipeline.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    acknowledgeJob: function(Client, types.AcknowledgeJobInput, any): async.Operation<types.AcknowledgeJobOutput>
-    acknowledgeThirdPartyJob: function(Client, types.AcknowledgeThirdPartyJobInput, any): async.Operation<types.AcknowledgeThirdPartyJobOutput>
-    createCustomActionType: function(Client, types.CreateCustomActionTypeInput, any): async.Operation<types.CreateCustomActionTypeOutput>
-    createPipeline: function(Client, types.CreatePipelineInput, any): async.Operation<types.CreatePipelineOutput>
-    deleteCustomActionType: function(Client, types.DeleteCustomActionTypeInput, any): async.Operation<types.DeleteCustomActionTypeOutput>
-    deletePipeline: function(Client, types.DeletePipelineInput, any): async.Operation<types.DeletePipelineOutput>
-    deleteWebhook: function(Client, types.DeleteWebhookInput, any): async.Operation<types.DeleteWebhookOutput>
-    deregisterWebhookWithThirdParty: function(Client, types.DeregisterWebhookWithThirdPartyInput, any): async.Operation<types.DeregisterWebhookWithThirdPartyOutput>
-    disableStageTransition: function(Client, types.DisableStageTransitionInput, any): async.Operation<types.DisableStageTransitionOutput>
-    enableStageTransition: function(Client, types.EnableStageTransitionInput, any): async.Operation<types.EnableStageTransitionOutput>
-    getActionType: function(Client, types.GetActionTypeInput, any): async.Operation<types.GetActionTypeOutput>
-    getJobDetails: function(Client, types.GetJobDetailsInput, any): async.Operation<types.GetJobDetailsOutput>
-    getPipeline: function(Client, types.GetPipelineInput, any): async.Operation<types.GetPipelineOutput>
-    getPipelineExecution: function(Client, types.GetPipelineExecutionInput, any): async.Operation<types.GetPipelineExecutionOutput>
-    getPipelineState: function(Client, types.GetPipelineStateInput, any): async.Operation<types.GetPipelineStateOutput>
-    getThirdPartyJobDetails: function(Client, types.GetThirdPartyJobDetailsInput, any): async.Operation<types.GetThirdPartyJobDetailsOutput>
-    listActionExecutions: function(Client, types.ListActionExecutionsInput, any): async.Operation<types.ListActionExecutionsOutput>
-    listActionTypes: function(Client, types.ListActionTypesInput, any): async.Operation<types.ListActionTypesOutput>
-    listDeployActionExecutionTargets: function(Client, types.ListDeployActionExecutionTargetsInput, any): async.Operation<types.ListDeployActionExecutionTargetsOutput>
-    listPipelineExecutions: function(Client, types.ListPipelineExecutionsInput, any): async.Operation<types.ListPipelineExecutionsOutput>
-    listPipelines: function(Client, types.ListPipelinesInput, any): async.Operation<types.ListPipelinesOutput>
-    listRuleExecutions: function(Client, types.ListRuleExecutionsInput, any): async.Operation<types.ListRuleExecutionsOutput>
-    listRuleTypes: function(Client, types.ListRuleTypesInput, any): async.Operation<types.ListRuleTypesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listWebhooks: function(Client, types.ListWebhooksInput, any): async.Operation<types.ListWebhooksOutput>
-    overrideStageCondition: function(Client, types.OverrideStageConditionInput, any): async.Operation<types.OverrideStageConditionOutput>
-    pollForJobs: function(Client, types.PollForJobsInput, any): async.Operation<types.PollForJobsOutput>
-    pollForThirdPartyJobs: function(Client, types.PollForThirdPartyJobsInput, any): async.Operation<types.PollForThirdPartyJobsOutput>
-    putActionRevision: function(Client, types.PutActionRevisionInput, any): async.Operation<types.PutActionRevisionOutput>
-    putApprovalResult: function(Client, types.PutApprovalResultInput, any): async.Operation<types.PutApprovalResultOutput>
-    putJobFailureResult: function(Client, types.PutJobFailureResultInput, any): async.Operation<types.PutJobFailureResultOutput>
-    putJobSuccessResult: function(Client, types.PutJobSuccessResultInput, any): async.Operation<types.PutJobSuccessResultOutput>
-    putThirdPartyJobFailureResult: function(Client, types.PutThirdPartyJobFailureResultInput, any): async.Operation<types.PutThirdPartyJobFailureResultOutput>
-    putThirdPartyJobSuccessResult: function(Client, types.PutThirdPartyJobSuccessResultInput, any): async.Operation<types.PutThirdPartyJobSuccessResultOutput>
-    putWebhook: function(Client, types.PutWebhookInput, any): async.Operation<types.PutWebhookOutput>
-    registerWebhookWithThirdParty: function(Client, types.RegisterWebhookWithThirdPartyInput, any): async.Operation<types.RegisterWebhookWithThirdPartyOutput>
-    retryStageExecution: function(Client, types.RetryStageExecutionInput, any): async.Operation<types.RetryStageExecutionOutput>
-    rollbackStage: function(Client, types.RollbackStageInput, any): async.Operation<types.RollbackStageOutput>
-    startPipelineExecution: function(Client, types.StartPipelineExecutionInput, any): async.Operation<types.StartPipelineExecutionOutput>
-    stopPipelineExecution: function(Client, types.StopPipelineExecutionInput, any): async.Operation<types.StopPipelineExecutionOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateActionType: function(Client, types.UpdateActionTypeInput, any): async.Operation<types.UpdateActionTypeOutput>
-    updatePipeline: function(Client, types.UpdatePipelineInput, any): async.Operation<types.UpdatePipelineOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    acknowledgeJob: function(Client, types.AcknowledgeJobInput, ? base_client.InvokeOptions): async.Operation<types.AcknowledgeJobOutput>
+    acknowledgeThirdPartyJob: function(Client, types.AcknowledgeThirdPartyJobInput, ? base_client.InvokeOptions): async.Operation<types.AcknowledgeThirdPartyJobOutput>
+    createCustomActionType: function(Client, types.CreateCustomActionTypeInput, ? base_client.InvokeOptions): async.Operation<types.CreateCustomActionTypeOutput>
+    createPipeline: function(Client, types.CreatePipelineInput, ? base_client.InvokeOptions): async.Operation<types.CreatePipelineOutput>
+    deleteCustomActionType: function(Client, types.DeleteCustomActionTypeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCustomActionTypeOutput>
+    deletePipeline: function(Client, types.DeletePipelineInput, ? base_client.InvokeOptions): async.Operation<types.DeletePipelineOutput>
+    deleteWebhook: function(Client, types.DeleteWebhookInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWebhookOutput>
+    deregisterWebhookWithThirdParty: function(Client, types.DeregisterWebhookWithThirdPartyInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterWebhookWithThirdPartyOutput>
+    disableStageTransition: function(Client, types.DisableStageTransitionInput, ? base_client.InvokeOptions): async.Operation<types.DisableStageTransitionOutput>
+    enableStageTransition: function(Client, types.EnableStageTransitionInput, ? base_client.InvokeOptions): async.Operation<types.EnableStageTransitionOutput>
+    getActionType: function(Client, types.GetActionTypeInput, ? base_client.InvokeOptions): async.Operation<types.GetActionTypeOutput>
+    getJobDetails: function(Client, types.GetJobDetailsInput, ? base_client.InvokeOptions): async.Operation<types.GetJobDetailsOutput>
+    getPipeline: function(Client, types.GetPipelineInput, ? base_client.InvokeOptions): async.Operation<types.GetPipelineOutput>
+    getPipelineExecution: function(Client, types.GetPipelineExecutionInput, ? base_client.InvokeOptions): async.Operation<types.GetPipelineExecutionOutput>
+    getPipelineState: function(Client, types.GetPipelineStateInput, ? base_client.InvokeOptions): async.Operation<types.GetPipelineStateOutput>
+    getThirdPartyJobDetails: function(Client, types.GetThirdPartyJobDetailsInput, ? base_client.InvokeOptions): async.Operation<types.GetThirdPartyJobDetailsOutput>
+    listActionExecutions: function(Client, types.ListActionExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListActionExecutionsOutput>
+    listActionTypes: function(Client, types.ListActionTypesInput, ? base_client.InvokeOptions): async.Operation<types.ListActionTypesOutput>
+    listDeployActionExecutionTargets: function(Client, types.ListDeployActionExecutionTargetsInput, ? base_client.InvokeOptions): async.Operation<types.ListDeployActionExecutionTargetsOutput>
+    listPipelineExecutions: function(Client, types.ListPipelineExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListPipelineExecutionsOutput>
+    listPipelines: function(Client, types.ListPipelinesInput, ? base_client.InvokeOptions): async.Operation<types.ListPipelinesOutput>
+    listRuleExecutions: function(Client, types.ListRuleExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListRuleExecutionsOutput>
+    listRuleTypes: function(Client, types.ListRuleTypesInput, ? base_client.InvokeOptions): async.Operation<types.ListRuleTypesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listWebhooks: function(Client, types.ListWebhooksInput, ? base_client.InvokeOptions): async.Operation<types.ListWebhooksOutput>
+    overrideStageCondition: function(Client, types.OverrideStageConditionInput, ? base_client.InvokeOptions): async.Operation<types.OverrideStageConditionOutput>
+    pollForJobs: function(Client, types.PollForJobsInput, ? base_client.InvokeOptions): async.Operation<types.PollForJobsOutput>
+    pollForThirdPartyJobs: function(Client, types.PollForThirdPartyJobsInput, ? base_client.InvokeOptions): async.Operation<types.PollForThirdPartyJobsOutput>
+    putActionRevision: function(Client, types.PutActionRevisionInput, ? base_client.InvokeOptions): async.Operation<types.PutActionRevisionOutput>
+    putApprovalResult: function(Client, types.PutApprovalResultInput, ? base_client.InvokeOptions): async.Operation<types.PutApprovalResultOutput>
+    putJobFailureResult: function(Client, types.PutJobFailureResultInput, ? base_client.InvokeOptions): async.Operation<types.PutJobFailureResultOutput>
+    putJobSuccessResult: function(Client, types.PutJobSuccessResultInput, ? base_client.InvokeOptions): async.Operation<types.PutJobSuccessResultOutput>
+    putThirdPartyJobFailureResult: function(Client, types.PutThirdPartyJobFailureResultInput, ? base_client.InvokeOptions): async.Operation<types.PutThirdPartyJobFailureResultOutput>
+    putThirdPartyJobSuccessResult: function(Client, types.PutThirdPartyJobSuccessResultInput, ? base_client.InvokeOptions): async.Operation<types.PutThirdPartyJobSuccessResultOutput>
+    putWebhook: function(Client, types.PutWebhookInput, ? base_client.InvokeOptions): async.Operation<types.PutWebhookOutput>
+    registerWebhookWithThirdParty: function(Client, types.RegisterWebhookWithThirdPartyInput, ? base_client.InvokeOptions): async.Operation<types.RegisterWebhookWithThirdPartyOutput>
+    retryStageExecution: function(Client, types.RetryStageExecutionInput, ? base_client.InvokeOptions): async.Operation<types.RetryStageExecutionOutput>
+    rollbackStage: function(Client, types.RollbackStageInput, ? base_client.InvokeOptions): async.Operation<types.RollbackStageOutput>
+    startPipelineExecution: function(Client, types.StartPipelineExecutionInput, ? base_client.InvokeOptions): async.Operation<types.StartPipelineExecutionOutput>
+    stopPipelineExecution: function(Client, types.StopPipelineExecutionInput, ? base_client.InvokeOptions): async.Operation<types.StopPipelineExecutionOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateActionType: function(Client, types.UpdateActionTypeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateActionTypeOutput>
+    updatePipeline: function(Client, types.UpdatePipelineInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePipelineOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "CodePipeline_20150709"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "codepipeline", signing_region = c.region } }
                 else
@@ -103,180 +106,180 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:acknowledgeJob(input: types.AcknowledgeJobInput, options: any): async.Operation<types.AcknowledgeJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcknowledgeJob, input, options) as async.Operation<types.AcknowledgeJobOutput>
+function C:acknowledgeJob(input: types.AcknowledgeJobInput, options?: base_client.InvokeOptions): async.Operation<types.AcknowledgeJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcknowledgeJob as schema.OperationSchema, input, options) as async.Operation<types.AcknowledgeJobOutput>
 end
 
-function C:acknowledgeThirdPartyJob(input: types.AcknowledgeThirdPartyJobInput, options: any): async.Operation<types.AcknowledgeThirdPartyJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcknowledgeThirdPartyJob, input, options) as async.Operation<types.AcknowledgeThirdPartyJobOutput>
+function C:acknowledgeThirdPartyJob(input: types.AcknowledgeThirdPartyJobInput, options?: base_client.InvokeOptions): async.Operation<types.AcknowledgeThirdPartyJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcknowledgeThirdPartyJob as schema.OperationSchema, input, options) as async.Operation<types.AcknowledgeThirdPartyJobOutput>
 end
 
-function C:createCustomActionType(input: types.CreateCustomActionTypeInput, options: any): async.Operation<types.CreateCustomActionTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCustomActionType, input, options) as async.Operation<types.CreateCustomActionTypeOutput>
+function C:createCustomActionType(input: types.CreateCustomActionTypeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCustomActionTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCustomActionType as schema.OperationSchema, input, options) as async.Operation<types.CreateCustomActionTypeOutput>
 end
 
-function C:createPipeline(input: types.CreatePipelineInput, options: any): async.Operation<types.CreatePipelineOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePipeline, input, options) as async.Operation<types.CreatePipelineOutput>
+function C:createPipeline(input: types.CreatePipelineInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePipelineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePipeline as schema.OperationSchema, input, options) as async.Operation<types.CreatePipelineOutput>
 end
 
-function C:deleteCustomActionType(input: types.DeleteCustomActionTypeInput, options: any): async.Operation<types.DeleteCustomActionTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCustomActionType, input, options) as async.Operation<types.DeleteCustomActionTypeOutput>
+function C:deleteCustomActionType(input: types.DeleteCustomActionTypeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCustomActionTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCustomActionType as schema.OperationSchema, input, options) as async.Operation<types.DeleteCustomActionTypeOutput>
 end
 
-function C:deletePipeline(input: types.DeletePipelineInput, options: any): async.Operation<types.DeletePipelineOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePipeline, input, options) as async.Operation<types.DeletePipelineOutput>
+function C:deletePipeline(input: types.DeletePipelineInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePipelineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePipeline as schema.OperationSchema, input, options) as async.Operation<types.DeletePipelineOutput>
 end
 
-function C:deleteWebhook(input: types.DeleteWebhookInput, options: any): async.Operation<types.DeleteWebhookOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWebhook, input, options) as async.Operation<types.DeleteWebhookOutput>
+function C:deleteWebhook(input: types.DeleteWebhookInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWebhookOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWebhook as schema.OperationSchema, input, options) as async.Operation<types.DeleteWebhookOutput>
 end
 
-function C:deregisterWebhookWithThirdParty(input: types.DeregisterWebhookWithThirdPartyInput, options: any): async.Operation<types.DeregisterWebhookWithThirdPartyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterWebhookWithThirdParty, input, options) as async.Operation<types.DeregisterWebhookWithThirdPartyOutput>
+function C:deregisterWebhookWithThirdParty(input: types.DeregisterWebhookWithThirdPartyInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterWebhookWithThirdPartyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterWebhookWithThirdParty as schema.OperationSchema, input, options) as async.Operation<types.DeregisterWebhookWithThirdPartyOutput>
 end
 
-function C:disableStageTransition(input: types.DisableStageTransitionInput, options: any): async.Operation<types.DisableStageTransitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableStageTransition, input, options) as async.Operation<types.DisableStageTransitionOutput>
+function C:disableStageTransition(input: types.DisableStageTransitionInput, options?: base_client.InvokeOptions): async.Operation<types.DisableStageTransitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableStageTransition as schema.OperationSchema, input, options) as async.Operation<types.DisableStageTransitionOutput>
 end
 
-function C:enableStageTransition(input: types.EnableStageTransitionInput, options: any): async.Operation<types.EnableStageTransitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableStageTransition, input, options) as async.Operation<types.EnableStageTransitionOutput>
+function C:enableStageTransition(input: types.EnableStageTransitionInput, options?: base_client.InvokeOptions): async.Operation<types.EnableStageTransitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableStageTransition as schema.OperationSchema, input, options) as async.Operation<types.EnableStageTransitionOutput>
 end
 
-function C:getActionType(input: types.GetActionTypeInput, options: any): async.Operation<types.GetActionTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetActionType, input, options) as async.Operation<types.GetActionTypeOutput>
+function C:getActionType(input: types.GetActionTypeInput, options?: base_client.InvokeOptions): async.Operation<types.GetActionTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetActionType as schema.OperationSchema, input, options) as async.Operation<types.GetActionTypeOutput>
 end
 
-function C:getJobDetails(input: types.GetJobDetailsInput, options: any): async.Operation<types.GetJobDetailsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetJobDetails, input, options) as async.Operation<types.GetJobDetailsOutput>
+function C:getJobDetails(input: types.GetJobDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.GetJobDetailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetJobDetails as schema.OperationSchema, input, options) as async.Operation<types.GetJobDetailsOutput>
 end
 
-function C:getPipeline(input: types.GetPipelineInput, options: any): async.Operation<types.GetPipelineOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPipeline, input, options) as async.Operation<types.GetPipelineOutput>
+function C:getPipeline(input: types.GetPipelineInput, options?: base_client.InvokeOptions): async.Operation<types.GetPipelineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPipeline as schema.OperationSchema, input, options) as async.Operation<types.GetPipelineOutput>
 end
 
-function C:getPipelineExecution(input: types.GetPipelineExecutionInput, options: any): async.Operation<types.GetPipelineExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPipelineExecution, input, options) as async.Operation<types.GetPipelineExecutionOutput>
+function C:getPipelineExecution(input: types.GetPipelineExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.GetPipelineExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPipelineExecution as schema.OperationSchema, input, options) as async.Operation<types.GetPipelineExecutionOutput>
 end
 
-function C:getPipelineState(input: types.GetPipelineStateInput, options: any): async.Operation<types.GetPipelineStateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPipelineState, input, options) as async.Operation<types.GetPipelineStateOutput>
+function C:getPipelineState(input: types.GetPipelineStateInput, options?: base_client.InvokeOptions): async.Operation<types.GetPipelineStateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPipelineState as schema.OperationSchema, input, options) as async.Operation<types.GetPipelineStateOutput>
 end
 
-function C:getThirdPartyJobDetails(input: types.GetThirdPartyJobDetailsInput, options: any): async.Operation<types.GetThirdPartyJobDetailsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetThirdPartyJobDetails, input, options) as async.Operation<types.GetThirdPartyJobDetailsOutput>
+function C:getThirdPartyJobDetails(input: types.GetThirdPartyJobDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.GetThirdPartyJobDetailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetThirdPartyJobDetails as schema.OperationSchema, input, options) as async.Operation<types.GetThirdPartyJobDetailsOutput>
 end
 
-function C:listActionExecutions(input: types.ListActionExecutionsInput, options: any): async.Operation<types.ListActionExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListActionExecutions, input, options) as async.Operation<types.ListActionExecutionsOutput>
+function C:listActionExecutions(input: types.ListActionExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListActionExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListActionExecutions as schema.OperationSchema, input, options) as async.Operation<types.ListActionExecutionsOutput>
 end
 
-function C:listActionTypes(input: types.ListActionTypesInput, options: any): async.Operation<types.ListActionTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListActionTypes, input, options) as async.Operation<types.ListActionTypesOutput>
+function C:listActionTypes(input: types.ListActionTypesInput, options?: base_client.InvokeOptions): async.Operation<types.ListActionTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListActionTypes as schema.OperationSchema, input, options) as async.Operation<types.ListActionTypesOutput>
 end
 
-function C:listDeployActionExecutionTargets(input: types.ListDeployActionExecutionTargetsInput, options: any): async.Operation<types.ListDeployActionExecutionTargetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDeployActionExecutionTargets, input, options) as async.Operation<types.ListDeployActionExecutionTargetsOutput>
+function C:listDeployActionExecutionTargets(input: types.ListDeployActionExecutionTargetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDeployActionExecutionTargetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDeployActionExecutionTargets as schema.OperationSchema, input, options) as async.Operation<types.ListDeployActionExecutionTargetsOutput>
 end
 
-function C:listPipelineExecutions(input: types.ListPipelineExecutionsInput, options: any): async.Operation<types.ListPipelineExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPipelineExecutions, input, options) as async.Operation<types.ListPipelineExecutionsOutput>
+function C:listPipelineExecutions(input: types.ListPipelineExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPipelineExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPipelineExecutions as schema.OperationSchema, input, options) as async.Operation<types.ListPipelineExecutionsOutput>
 end
 
-function C:listPipelines(input: types.ListPipelinesInput, options: any): async.Operation<types.ListPipelinesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPipelines, input, options) as async.Operation<types.ListPipelinesOutput>
+function C:listPipelines(input: types.ListPipelinesInput, options?: base_client.InvokeOptions): async.Operation<types.ListPipelinesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPipelines as schema.OperationSchema, input, options) as async.Operation<types.ListPipelinesOutput>
 end
 
-function C:listRuleExecutions(input: types.ListRuleExecutionsInput, options: any): async.Operation<types.ListRuleExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRuleExecutions, input, options) as async.Operation<types.ListRuleExecutionsOutput>
+function C:listRuleExecutions(input: types.ListRuleExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRuleExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRuleExecutions as schema.OperationSchema, input, options) as async.Operation<types.ListRuleExecutionsOutput>
 end
 
-function C:listRuleTypes(input: types.ListRuleTypesInput, options: any): async.Operation<types.ListRuleTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRuleTypes, input, options) as async.Operation<types.ListRuleTypesOutput>
+function C:listRuleTypes(input: types.ListRuleTypesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRuleTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRuleTypes as schema.OperationSchema, input, options) as async.Operation<types.ListRuleTypesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listWebhooks(input: types.ListWebhooksInput, options: any): async.Operation<types.ListWebhooksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWebhooks, input, options) as async.Operation<types.ListWebhooksOutput>
+function C:listWebhooks(input: types.ListWebhooksInput, options?: base_client.InvokeOptions): async.Operation<types.ListWebhooksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWebhooks as schema.OperationSchema, input, options) as async.Operation<types.ListWebhooksOutput>
 end
 
-function C:overrideStageCondition(input: types.OverrideStageConditionInput, options: any): async.Operation<types.OverrideStageConditionOutput>
-    return self:invokeOperation(schemas.Service, schemas.OverrideStageCondition, input, options) as async.Operation<types.OverrideStageConditionOutput>
+function C:overrideStageCondition(input: types.OverrideStageConditionInput, options?: base_client.InvokeOptions): async.Operation<types.OverrideStageConditionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.OverrideStageCondition as schema.OperationSchema, input, options) as async.Operation<types.OverrideStageConditionOutput>
 end
 
-function C:pollForJobs(input: types.PollForJobsInput, options: any): async.Operation<types.PollForJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PollForJobs, input, options) as async.Operation<types.PollForJobsOutput>
+function C:pollForJobs(input: types.PollForJobsInput, options?: base_client.InvokeOptions): async.Operation<types.PollForJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PollForJobs as schema.OperationSchema, input, options) as async.Operation<types.PollForJobsOutput>
 end
 
-function C:pollForThirdPartyJobs(input: types.PollForThirdPartyJobsInput, options: any): async.Operation<types.PollForThirdPartyJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PollForThirdPartyJobs, input, options) as async.Operation<types.PollForThirdPartyJobsOutput>
+function C:pollForThirdPartyJobs(input: types.PollForThirdPartyJobsInput, options?: base_client.InvokeOptions): async.Operation<types.PollForThirdPartyJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PollForThirdPartyJobs as schema.OperationSchema, input, options) as async.Operation<types.PollForThirdPartyJobsOutput>
 end
 
-function C:putActionRevision(input: types.PutActionRevisionInput, options: any): async.Operation<types.PutActionRevisionOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutActionRevision, input, options) as async.Operation<types.PutActionRevisionOutput>
+function C:putActionRevision(input: types.PutActionRevisionInput, options?: base_client.InvokeOptions): async.Operation<types.PutActionRevisionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutActionRevision as schema.OperationSchema, input, options) as async.Operation<types.PutActionRevisionOutput>
 end
 
-function C:putApprovalResult(input: types.PutApprovalResultInput, options: any): async.Operation<types.PutApprovalResultOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutApprovalResult, input, options) as async.Operation<types.PutApprovalResultOutput>
+function C:putApprovalResult(input: types.PutApprovalResultInput, options?: base_client.InvokeOptions): async.Operation<types.PutApprovalResultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutApprovalResult as schema.OperationSchema, input, options) as async.Operation<types.PutApprovalResultOutput>
 end
 
-function C:putJobFailureResult(input: types.PutJobFailureResultInput, options: any): async.Operation<types.PutJobFailureResultOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutJobFailureResult, input, options) as async.Operation<types.PutJobFailureResultOutput>
+function C:putJobFailureResult(input: types.PutJobFailureResultInput, options?: base_client.InvokeOptions): async.Operation<types.PutJobFailureResultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutJobFailureResult as schema.OperationSchema, input, options) as async.Operation<types.PutJobFailureResultOutput>
 end
 
-function C:putJobSuccessResult(input: types.PutJobSuccessResultInput, options: any): async.Operation<types.PutJobSuccessResultOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutJobSuccessResult, input, options) as async.Operation<types.PutJobSuccessResultOutput>
+function C:putJobSuccessResult(input: types.PutJobSuccessResultInput, options?: base_client.InvokeOptions): async.Operation<types.PutJobSuccessResultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutJobSuccessResult as schema.OperationSchema, input, options) as async.Operation<types.PutJobSuccessResultOutput>
 end
 
-function C:putThirdPartyJobFailureResult(input: types.PutThirdPartyJobFailureResultInput, options: any): async.Operation<types.PutThirdPartyJobFailureResultOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutThirdPartyJobFailureResult, input, options) as async.Operation<types.PutThirdPartyJobFailureResultOutput>
+function C:putThirdPartyJobFailureResult(input: types.PutThirdPartyJobFailureResultInput, options?: base_client.InvokeOptions): async.Operation<types.PutThirdPartyJobFailureResultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutThirdPartyJobFailureResult as schema.OperationSchema, input, options) as async.Operation<types.PutThirdPartyJobFailureResultOutput>
 end
 
-function C:putThirdPartyJobSuccessResult(input: types.PutThirdPartyJobSuccessResultInput, options: any): async.Operation<types.PutThirdPartyJobSuccessResultOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutThirdPartyJobSuccessResult, input, options) as async.Operation<types.PutThirdPartyJobSuccessResultOutput>
+function C:putThirdPartyJobSuccessResult(input: types.PutThirdPartyJobSuccessResultInput, options?: base_client.InvokeOptions): async.Operation<types.PutThirdPartyJobSuccessResultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutThirdPartyJobSuccessResult as schema.OperationSchema, input, options) as async.Operation<types.PutThirdPartyJobSuccessResultOutput>
 end
 
-function C:putWebhook(input: types.PutWebhookInput, options: any): async.Operation<types.PutWebhookOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutWebhook, input, options) as async.Operation<types.PutWebhookOutput>
+function C:putWebhook(input: types.PutWebhookInput, options?: base_client.InvokeOptions): async.Operation<types.PutWebhookOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutWebhook as schema.OperationSchema, input, options) as async.Operation<types.PutWebhookOutput>
 end
 
-function C:registerWebhookWithThirdParty(input: types.RegisterWebhookWithThirdPartyInput, options: any): async.Operation<types.RegisterWebhookWithThirdPartyOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterWebhookWithThirdParty, input, options) as async.Operation<types.RegisterWebhookWithThirdPartyOutput>
+function C:registerWebhookWithThirdParty(input: types.RegisterWebhookWithThirdPartyInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterWebhookWithThirdPartyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterWebhookWithThirdParty as schema.OperationSchema, input, options) as async.Operation<types.RegisterWebhookWithThirdPartyOutput>
 end
 
-function C:retryStageExecution(input: types.RetryStageExecutionInput, options: any): async.Operation<types.RetryStageExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.RetryStageExecution, input, options) as async.Operation<types.RetryStageExecutionOutput>
+function C:retryStageExecution(input: types.RetryStageExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.RetryStageExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RetryStageExecution as schema.OperationSchema, input, options) as async.Operation<types.RetryStageExecutionOutput>
 end
 
-function C:rollbackStage(input: types.RollbackStageInput, options: any): async.Operation<types.RollbackStageOutput>
-    return self:invokeOperation(schemas.Service, schemas.RollbackStage, input, options) as async.Operation<types.RollbackStageOutput>
+function C:rollbackStage(input: types.RollbackStageInput, options?: base_client.InvokeOptions): async.Operation<types.RollbackStageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RollbackStage as schema.OperationSchema, input, options) as async.Operation<types.RollbackStageOutput>
 end
 
-function C:startPipelineExecution(input: types.StartPipelineExecutionInput, options: any): async.Operation<types.StartPipelineExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartPipelineExecution, input, options) as async.Operation<types.StartPipelineExecutionOutput>
+function C:startPipelineExecution(input: types.StartPipelineExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.StartPipelineExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartPipelineExecution as schema.OperationSchema, input, options) as async.Operation<types.StartPipelineExecutionOutput>
 end
 
-function C:stopPipelineExecution(input: types.StopPipelineExecutionInput, options: any): async.Operation<types.StopPipelineExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopPipelineExecution, input, options) as async.Operation<types.StopPipelineExecutionOutput>
+function C:stopPipelineExecution(input: types.StopPipelineExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.StopPipelineExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopPipelineExecution as schema.OperationSchema, input, options) as async.Operation<types.StopPipelineExecutionOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateActionType(input: types.UpdateActionTypeInput, options: any): async.Operation<types.UpdateActionTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateActionType, input, options) as async.Operation<types.UpdateActionTypeOutput>
+function C:updateActionType(input: types.UpdateActionTypeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateActionTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateActionType as schema.OperationSchema, input, options) as async.Operation<types.UpdateActionTypeOutput>
 end
 
-function C:updatePipeline(input: types.UpdatePipelineInput, options: any): async.Operation<types.UpdatePipelineOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePipeline, input, options) as async.Operation<types.UpdatePipelineOutput>
+function C:updatePipeline(input: types.UpdatePipelineInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePipelineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePipeline as schema.OperationSchema, input, options) as async.Operation<types.UpdatePipelineOutput>
 end
 
 return M

@@ -8,115 +8,118 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("ecs.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("ecs.schemas")
 local traits = require("smithy.traits")
 local types = require("ecs.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createCapacityProvider: function(Client, types.CreateCapacityProviderInput, any): async.Operation<types.CreateCapacityProviderOutput>
-    createCluster: function(Client, types.CreateClusterInput, any): async.Operation<types.CreateClusterOutput>
-    createDaemon: function(Client, types.CreateDaemonInput, any): async.Operation<types.CreateDaemonOutput>
-    createExpressGatewayService: function(Client, types.CreateExpressGatewayServiceInput, any): async.Operation<types.CreateExpressGatewayServiceOutput>
-    createService: function(Client, types.CreateServiceInput, any): async.Operation<types.CreateServiceOutput>
-    createTaskSet: function(Client, types.CreateTaskSetInput, any): async.Operation<types.CreateTaskSetOutput>
-    deleteAccountSetting: function(Client, types.DeleteAccountSettingInput, any): async.Operation<types.DeleteAccountSettingOutput>
-    deleteAttributes: function(Client, types.DeleteAttributesInput, any): async.Operation<types.DeleteAttributesOutput>
-    deleteCapacityProvider: function(Client, types.DeleteCapacityProviderInput, any): async.Operation<types.DeleteCapacityProviderOutput>
-    deleteCluster: function(Client, types.DeleteClusterInput, any): async.Operation<types.DeleteClusterOutput>
-    deleteDaemon: function(Client, types.DeleteDaemonInput, any): async.Operation<types.DeleteDaemonOutput>
-    deleteDaemonTaskDefinition: function(Client, types.DeleteDaemonTaskDefinitionInput, any): async.Operation<types.DeleteDaemonTaskDefinitionOutput>
-    deleteExpressGatewayService: function(Client, types.DeleteExpressGatewayServiceInput, any): async.Operation<types.DeleteExpressGatewayServiceOutput>
-    deleteService: function(Client, types.DeleteServiceInput, any): async.Operation<types.DeleteServiceOutput>
-    deleteTaskDefinitions: function(Client, types.DeleteTaskDefinitionsInput, any): async.Operation<types.DeleteTaskDefinitionsOutput>
-    deleteTaskSet: function(Client, types.DeleteTaskSetInput, any): async.Operation<types.DeleteTaskSetOutput>
-    deregisterContainerInstance: function(Client, types.DeregisterContainerInstanceInput, any): async.Operation<types.DeregisterContainerInstanceOutput>
-    deregisterTaskDefinition: function(Client, types.DeregisterTaskDefinitionInput, any): async.Operation<types.DeregisterTaskDefinitionOutput>
-    describeCapacityProviders: function(Client, types.DescribeCapacityProvidersInput, any): async.Operation<types.DescribeCapacityProvidersOutput>
-    describeClusters: function(Client, types.DescribeClustersInput, any): async.Operation<types.DescribeClustersOutput>
-    describeContainerInstances: function(Client, types.DescribeContainerInstancesInput, any): async.Operation<types.DescribeContainerInstancesOutput>
-    describeDaemon: function(Client, types.DescribeDaemonInput, any): async.Operation<types.DescribeDaemonOutput>
-    describeDaemonDeployments: function(Client, types.DescribeDaemonDeploymentsInput, any): async.Operation<types.DescribeDaemonDeploymentsOutput>
-    describeDaemonRevisions: function(Client, types.DescribeDaemonRevisionsInput, any): async.Operation<types.DescribeDaemonRevisionsOutput>
-    describeDaemonTaskDefinition: function(Client, types.DescribeDaemonTaskDefinitionInput, any): async.Operation<types.DescribeDaemonTaskDefinitionOutput>
-    describeExpressGatewayService: function(Client, types.DescribeExpressGatewayServiceInput, any): async.Operation<types.DescribeExpressGatewayServiceOutput>
-    describeServiceDeployments: function(Client, types.DescribeServiceDeploymentsInput, any): async.Operation<types.DescribeServiceDeploymentsOutput>
-    describeServiceRevisions: function(Client, types.DescribeServiceRevisionsInput, any): async.Operation<types.DescribeServiceRevisionsOutput>
-    describeServices: function(Client, types.DescribeServicesInput, any): async.Operation<types.DescribeServicesOutput>
-    describeTaskDefinition: function(Client, types.DescribeTaskDefinitionInput, any): async.Operation<types.DescribeTaskDefinitionOutput>
-    describeTasks: function(Client, types.DescribeTasksInput, any): async.Operation<types.DescribeTasksOutput>
-    describeTaskSets: function(Client, types.DescribeTaskSetsInput, any): async.Operation<types.DescribeTaskSetsOutput>
-    discoverPollEndpoint: function(Client, types.DiscoverPollEndpointInput, any): async.Operation<types.DiscoverPollEndpointOutput>
-    executeCommand: function(Client, types.ExecuteCommandInput, any): async.Operation<types.ExecuteCommandOutput>
-    getTaskProtection: function(Client, types.GetTaskProtectionInput, any): async.Operation<types.GetTaskProtectionOutput>
-    listAccountSettings: function(Client, types.ListAccountSettingsInput, any): async.Operation<types.ListAccountSettingsOutput>
-    listAttributes: function(Client, types.ListAttributesInput, any): async.Operation<types.ListAttributesOutput>
-    listClusters: function(Client, types.ListClustersInput, any): async.Operation<types.ListClustersOutput>
-    listContainerInstances: function(Client, types.ListContainerInstancesInput, any): async.Operation<types.ListContainerInstancesOutput>
-    listDaemonDeployments: function(Client, types.ListDaemonDeploymentsInput, any): async.Operation<types.ListDaemonDeploymentsOutput>
-    listDaemons: function(Client, types.ListDaemonsInput, any): async.Operation<types.ListDaemonsOutput>
-    listDaemonTaskDefinitions: function(Client, types.ListDaemonTaskDefinitionsInput, any): async.Operation<types.ListDaemonTaskDefinitionsOutput>
-    listServiceDeployments: function(Client, types.ListServiceDeploymentsInput, any): async.Operation<types.ListServiceDeploymentsOutput>
-    listServices: function(Client, types.ListServicesInput, any): async.Operation<types.ListServicesOutput>
-    listServicesByNamespace: function(Client, types.ListServicesByNamespaceInput, any): async.Operation<types.ListServicesByNamespaceOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTaskDefinitionFamilies: function(Client, types.ListTaskDefinitionFamiliesInput, any): async.Operation<types.ListTaskDefinitionFamiliesOutput>
-    listTaskDefinitions: function(Client, types.ListTaskDefinitionsInput, any): async.Operation<types.ListTaskDefinitionsOutput>
-    listTasks: function(Client, types.ListTasksInput, any): async.Operation<types.ListTasksOutput>
-    putAccountSetting: function(Client, types.PutAccountSettingInput, any): async.Operation<types.PutAccountSettingOutput>
-    putAccountSettingDefault: function(Client, types.PutAccountSettingDefaultInput, any): async.Operation<types.PutAccountSettingDefaultOutput>
-    putAttributes: function(Client, types.PutAttributesInput, any): async.Operation<types.PutAttributesOutput>
-    putClusterCapacityProviders: function(Client, types.PutClusterCapacityProvidersInput, any): async.Operation<types.PutClusterCapacityProvidersOutput>
-    registerContainerInstance: function(Client, types.RegisterContainerInstanceInput, any): async.Operation<types.RegisterContainerInstanceOutput>
-    registerDaemonTaskDefinition: function(Client, types.RegisterDaemonTaskDefinitionInput, any): async.Operation<types.RegisterDaemonTaskDefinitionOutput>
-    registerTaskDefinition: function(Client, types.RegisterTaskDefinitionInput, any): async.Operation<types.RegisterTaskDefinitionOutput>
-    runTask: function(Client, types.RunTaskInput, any): async.Operation<types.RunTaskOutput>
-    startTask: function(Client, types.StartTaskInput, any): async.Operation<types.StartTaskOutput>
-    stopServiceDeployment: function(Client, types.StopServiceDeploymentInput, any): async.Operation<types.StopServiceDeploymentOutput>
-    stopTask: function(Client, types.StopTaskInput, any): async.Operation<types.StopTaskOutput>
-    submitAttachmentStateChanges: function(Client, types.SubmitAttachmentStateChangesInput, any): async.Operation<types.SubmitAttachmentStateChangesOutput>
-    submitContainerStateChange: function(Client, types.SubmitContainerStateChangeInput, any): async.Operation<types.SubmitContainerStateChangeOutput>
-    submitTaskStateChange: function(Client, types.SubmitTaskStateChangeInput, any): async.Operation<types.SubmitTaskStateChangeOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateCapacityProvider: function(Client, types.UpdateCapacityProviderInput, any): async.Operation<types.UpdateCapacityProviderOutput>
-    updateCluster: function(Client, types.UpdateClusterInput, any): async.Operation<types.UpdateClusterOutput>
-    updateClusterSettings: function(Client, types.UpdateClusterSettingsInput, any): async.Operation<types.UpdateClusterSettingsOutput>
-    updateContainerAgent: function(Client, types.UpdateContainerAgentInput, any): async.Operation<types.UpdateContainerAgentOutput>
-    updateContainerInstancesState: function(Client, types.UpdateContainerInstancesStateInput, any): async.Operation<types.UpdateContainerInstancesStateOutput>
-    updateDaemon: function(Client, types.UpdateDaemonInput, any): async.Operation<types.UpdateDaemonOutput>
-    updateExpressGatewayService: function(Client, types.UpdateExpressGatewayServiceInput, any): async.Operation<types.UpdateExpressGatewayServiceOutput>
-    updateService: function(Client, types.UpdateServiceInput, any): async.Operation<types.UpdateServiceOutput>
-    updateServicePrimaryTaskSet: function(Client, types.UpdateServicePrimaryTaskSetInput, any): async.Operation<types.UpdateServicePrimaryTaskSetOutput>
-    updateTaskProtection: function(Client, types.UpdateTaskProtectionInput, any): async.Operation<types.UpdateTaskProtectionOutput>
-    updateTaskSet: function(Client, types.UpdateTaskSetInput, any): async.Operation<types.UpdateTaskSetOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createCapacityProvider: function(Client, types.CreateCapacityProviderInput, ? base_client.InvokeOptions): async.Operation<types.CreateCapacityProviderOutput>
+    createCluster: function(Client, types.CreateClusterInput, ? base_client.InvokeOptions): async.Operation<types.CreateClusterOutput>
+    createDaemon: function(Client, types.CreateDaemonInput, ? base_client.InvokeOptions): async.Operation<types.CreateDaemonOutput>
+    createExpressGatewayService: function(Client, types.CreateExpressGatewayServiceInput, ? base_client.InvokeOptions): async.Operation<types.CreateExpressGatewayServiceOutput>
+    createService: function(Client, types.CreateServiceInput, ? base_client.InvokeOptions): async.Operation<types.CreateServiceOutput>
+    createTaskSet: function(Client, types.CreateTaskSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateTaskSetOutput>
+    deleteAccountSetting: function(Client, types.DeleteAccountSettingInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccountSettingOutput>
+    deleteAttributes: function(Client, types.DeleteAttributesInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAttributesOutput>
+    deleteCapacityProvider: function(Client, types.DeleteCapacityProviderInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCapacityProviderOutput>
+    deleteCluster: function(Client, types.DeleteClusterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteClusterOutput>
+    deleteDaemon: function(Client, types.DeleteDaemonInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDaemonOutput>
+    deleteDaemonTaskDefinition: function(Client, types.DeleteDaemonTaskDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDaemonTaskDefinitionOutput>
+    deleteExpressGatewayService: function(Client, types.DeleteExpressGatewayServiceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteExpressGatewayServiceOutput>
+    deleteService: function(Client, types.DeleteServiceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteServiceOutput>
+    deleteTaskDefinitions: function(Client, types.DeleteTaskDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTaskDefinitionsOutput>
+    deleteTaskSet: function(Client, types.DeleteTaskSetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTaskSetOutput>
+    deregisterContainerInstance: function(Client, types.DeregisterContainerInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterContainerInstanceOutput>
+    deregisterTaskDefinition: function(Client, types.DeregisterTaskDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterTaskDefinitionOutput>
+    describeCapacityProviders: function(Client, types.DescribeCapacityProvidersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCapacityProvidersOutput>
+    describeClusters: function(Client, types.DescribeClustersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClustersOutput>
+    describeContainerInstances: function(Client, types.DescribeContainerInstancesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeContainerInstancesOutput>
+    describeDaemon: function(Client, types.DescribeDaemonInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDaemonOutput>
+    describeDaemonDeployments: function(Client, types.DescribeDaemonDeploymentsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDaemonDeploymentsOutput>
+    describeDaemonRevisions: function(Client, types.DescribeDaemonRevisionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDaemonRevisionsOutput>
+    describeDaemonTaskDefinition: function(Client, types.DescribeDaemonTaskDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDaemonTaskDefinitionOutput>
+    describeExpressGatewayService: function(Client, types.DescribeExpressGatewayServiceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeExpressGatewayServiceOutput>
+    describeServiceDeployments: function(Client, types.DescribeServiceDeploymentsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeServiceDeploymentsOutput>
+    describeServiceRevisions: function(Client, types.DescribeServiceRevisionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeServiceRevisionsOutput>
+    describeServices: function(Client, types.DescribeServicesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeServicesOutput>
+    describeTaskDefinition: function(Client, types.DescribeTaskDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTaskDefinitionOutput>
+    describeTasks: function(Client, types.DescribeTasksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTasksOutput>
+    describeTaskSets: function(Client, types.DescribeTaskSetsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTaskSetsOutput>
+    discoverPollEndpoint: function(Client, types.DiscoverPollEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DiscoverPollEndpointOutput>
+    executeCommand: function(Client, types.ExecuteCommandInput, ? base_client.InvokeOptions): async.Operation<types.ExecuteCommandOutput>
+    getTaskProtection: function(Client, types.GetTaskProtectionInput, ? base_client.InvokeOptions): async.Operation<types.GetTaskProtectionOutput>
+    listAccountSettings: function(Client, types.ListAccountSettingsInput, ? base_client.InvokeOptions): async.Operation<types.ListAccountSettingsOutput>
+    listAttributes: function(Client, types.ListAttributesInput, ? base_client.InvokeOptions): async.Operation<types.ListAttributesOutput>
+    listClusters: function(Client, types.ListClustersInput, ? base_client.InvokeOptions): async.Operation<types.ListClustersOutput>
+    listContainerInstances: function(Client, types.ListContainerInstancesInput, ? base_client.InvokeOptions): async.Operation<types.ListContainerInstancesOutput>
+    listDaemonDeployments: function(Client, types.ListDaemonDeploymentsInput, ? base_client.InvokeOptions): async.Operation<types.ListDaemonDeploymentsOutput>
+    listDaemons: function(Client, types.ListDaemonsInput, ? base_client.InvokeOptions): async.Operation<types.ListDaemonsOutput>
+    listDaemonTaskDefinitions: function(Client, types.ListDaemonTaskDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.ListDaemonTaskDefinitionsOutput>
+    listServiceDeployments: function(Client, types.ListServiceDeploymentsInput, ? base_client.InvokeOptions): async.Operation<types.ListServiceDeploymentsOutput>
+    listServices: function(Client, types.ListServicesInput, ? base_client.InvokeOptions): async.Operation<types.ListServicesOutput>
+    listServicesByNamespace: function(Client, types.ListServicesByNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.ListServicesByNamespaceOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTaskDefinitionFamilies: function(Client, types.ListTaskDefinitionFamiliesInput, ? base_client.InvokeOptions): async.Operation<types.ListTaskDefinitionFamiliesOutput>
+    listTaskDefinitions: function(Client, types.ListTaskDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.ListTaskDefinitionsOutput>
+    listTasks: function(Client, types.ListTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListTasksOutput>
+    putAccountSetting: function(Client, types.PutAccountSettingInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountSettingOutput>
+    putAccountSettingDefault: function(Client, types.PutAccountSettingDefaultInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountSettingDefaultOutput>
+    putAttributes: function(Client, types.PutAttributesInput, ? base_client.InvokeOptions): async.Operation<types.PutAttributesOutput>
+    putClusterCapacityProviders: function(Client, types.PutClusterCapacityProvidersInput, ? base_client.InvokeOptions): async.Operation<types.PutClusterCapacityProvidersOutput>
+    registerContainerInstance: function(Client, types.RegisterContainerInstanceInput, ? base_client.InvokeOptions): async.Operation<types.RegisterContainerInstanceOutput>
+    registerDaemonTaskDefinition: function(Client, types.RegisterDaemonTaskDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.RegisterDaemonTaskDefinitionOutput>
+    registerTaskDefinition: function(Client, types.RegisterTaskDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.RegisterTaskDefinitionOutput>
+    runTask: function(Client, types.RunTaskInput, ? base_client.InvokeOptions): async.Operation<types.RunTaskOutput>
+    startTask: function(Client, types.StartTaskInput, ? base_client.InvokeOptions): async.Operation<types.StartTaskOutput>
+    stopServiceDeployment: function(Client, types.StopServiceDeploymentInput, ? base_client.InvokeOptions): async.Operation<types.StopServiceDeploymentOutput>
+    stopTask: function(Client, types.StopTaskInput, ? base_client.InvokeOptions): async.Operation<types.StopTaskOutput>
+    submitAttachmentStateChanges: function(Client, types.SubmitAttachmentStateChangesInput, ? base_client.InvokeOptions): async.Operation<types.SubmitAttachmentStateChangesOutput>
+    submitContainerStateChange: function(Client, types.SubmitContainerStateChangeInput, ? base_client.InvokeOptions): async.Operation<types.SubmitContainerStateChangeOutput>
+    submitTaskStateChange: function(Client, types.SubmitTaskStateChangeInput, ? base_client.InvokeOptions): async.Operation<types.SubmitTaskStateChangeOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateCapacityProvider: function(Client, types.UpdateCapacityProviderInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCapacityProviderOutput>
+    updateCluster: function(Client, types.UpdateClusterInput, ? base_client.InvokeOptions): async.Operation<types.UpdateClusterOutput>
+    updateClusterSettings: function(Client, types.UpdateClusterSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateClusterSettingsOutput>
+    updateContainerAgent: function(Client, types.UpdateContainerAgentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContainerAgentOutput>
+    updateContainerInstancesState: function(Client, types.UpdateContainerInstancesStateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContainerInstancesStateOutput>
+    updateDaemon: function(Client, types.UpdateDaemonInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDaemonOutput>
+    updateExpressGatewayService: function(Client, types.UpdateExpressGatewayServiceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateExpressGatewayServiceOutput>
+    updateService: function(Client, types.UpdateServiceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServiceOutput>
+    updateServicePrimaryTaskSet: function(Client, types.UpdateServicePrimaryTaskSetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServicePrimaryTaskSetOutput>
+    updateTaskProtection: function(Client, types.UpdateTaskProtectionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTaskProtectionOutput>
+    updateTaskSet: function(Client, types.UpdateTaskSetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTaskSetOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonEC2ContainerServiceV20141113"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ecs", signing_region = c.region } }
                 else
@@ -135,308 +138,308 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createCapacityProvider(input: types.CreateCapacityProviderInput, options: any): async.Operation<types.CreateCapacityProviderOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCapacityProvider, input, options) as async.Operation<types.CreateCapacityProviderOutput>
+function C:createCapacityProvider(input: types.CreateCapacityProviderInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCapacityProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCapacityProvider as schema.OperationSchema, input, options) as async.Operation<types.CreateCapacityProviderOutput>
 end
 
-function C:createCluster(input: types.CreateClusterInput, options: any): async.Operation<types.CreateClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCluster, input, options) as async.Operation<types.CreateClusterOutput>
+function C:createCluster(input: types.CreateClusterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCluster as schema.OperationSchema, input, options) as async.Operation<types.CreateClusterOutput>
 end
 
-function C:createDaemon(input: types.CreateDaemonInput, options: any): async.Operation<types.CreateDaemonOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDaemon, input, options) as async.Operation<types.CreateDaemonOutput>
+function C:createDaemon(input: types.CreateDaemonInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDaemonOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDaemon as schema.OperationSchema, input, options) as async.Operation<types.CreateDaemonOutput>
 end
 
-function C:createExpressGatewayService(input: types.CreateExpressGatewayServiceInput, options: any): async.Operation<types.CreateExpressGatewayServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateExpressGatewayService, input, options) as async.Operation<types.CreateExpressGatewayServiceOutput>
+function C:createExpressGatewayService(input: types.CreateExpressGatewayServiceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateExpressGatewayServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateExpressGatewayService as schema.OperationSchema, input, options) as async.Operation<types.CreateExpressGatewayServiceOutput>
 end
 
-function C:createService(input: types.CreateServiceInput, options: any): async.Operation<types.CreateServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateService, input, options) as async.Operation<types.CreateServiceOutput>
+function C:createService(input: types.CreateServiceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateService as schema.OperationSchema, input, options) as async.Operation<types.CreateServiceOutput>
 end
 
-function C:createTaskSet(input: types.CreateTaskSetInput, options: any): async.Operation<types.CreateTaskSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTaskSet, input, options) as async.Operation<types.CreateTaskSetOutput>
+function C:createTaskSet(input: types.CreateTaskSetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTaskSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTaskSet as schema.OperationSchema, input, options) as async.Operation<types.CreateTaskSetOutput>
 end
 
-function C:deleteAccountSetting(input: types.DeleteAccountSettingInput, options: any): async.Operation<types.DeleteAccountSettingOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAccountSetting, input, options) as async.Operation<types.DeleteAccountSettingOutput>
+function C:deleteAccountSetting(input: types.DeleteAccountSettingInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAccountSettingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAccountSetting as schema.OperationSchema, input, options) as async.Operation<types.DeleteAccountSettingOutput>
 end
 
-function C:deleteAttributes(input: types.DeleteAttributesInput, options: any): async.Operation<types.DeleteAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAttributes, input, options) as async.Operation<types.DeleteAttributesOutput>
+function C:deleteAttributes(input: types.DeleteAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAttributes as schema.OperationSchema, input, options) as async.Operation<types.DeleteAttributesOutput>
 end
 
-function C:deleteCapacityProvider(input: types.DeleteCapacityProviderInput, options: any): async.Operation<types.DeleteCapacityProviderOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCapacityProvider, input, options) as async.Operation<types.DeleteCapacityProviderOutput>
+function C:deleteCapacityProvider(input: types.DeleteCapacityProviderInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCapacityProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCapacityProvider as schema.OperationSchema, input, options) as async.Operation<types.DeleteCapacityProviderOutput>
 end
 
-function C:deleteCluster(input: types.DeleteClusterInput, options: any): async.Operation<types.DeleteClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCluster, input, options) as async.Operation<types.DeleteClusterOutput>
+function C:deleteCluster(input: types.DeleteClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCluster as schema.OperationSchema, input, options) as async.Operation<types.DeleteClusterOutput>
 end
 
-function C:deleteDaemon(input: types.DeleteDaemonInput, options: any): async.Operation<types.DeleteDaemonOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDaemon, input, options) as async.Operation<types.DeleteDaemonOutput>
+function C:deleteDaemon(input: types.DeleteDaemonInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDaemonOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDaemon as schema.OperationSchema, input, options) as async.Operation<types.DeleteDaemonOutput>
 end
 
-function C:deleteDaemonTaskDefinition(input: types.DeleteDaemonTaskDefinitionInput, options: any): async.Operation<types.DeleteDaemonTaskDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDaemonTaskDefinition, input, options) as async.Operation<types.DeleteDaemonTaskDefinitionOutput>
+function C:deleteDaemonTaskDefinition(input: types.DeleteDaemonTaskDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDaemonTaskDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDaemonTaskDefinition as schema.OperationSchema, input, options) as async.Operation<types.DeleteDaemonTaskDefinitionOutput>
 end
 
-function C:deleteExpressGatewayService(input: types.DeleteExpressGatewayServiceInput, options: any): async.Operation<types.DeleteExpressGatewayServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteExpressGatewayService, input, options) as async.Operation<types.DeleteExpressGatewayServiceOutput>
+function C:deleteExpressGatewayService(input: types.DeleteExpressGatewayServiceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteExpressGatewayServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteExpressGatewayService as schema.OperationSchema, input, options) as async.Operation<types.DeleteExpressGatewayServiceOutput>
 end
 
-function C:deleteService(input: types.DeleteServiceInput, options: any): async.Operation<types.DeleteServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteService, input, options) as async.Operation<types.DeleteServiceOutput>
+function C:deleteService(input: types.DeleteServiceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteService as schema.OperationSchema, input, options) as async.Operation<types.DeleteServiceOutput>
 end
 
-function C:deleteTaskDefinitions(input: types.DeleteTaskDefinitionsInput, options: any): async.Operation<types.DeleteTaskDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTaskDefinitions, input, options) as async.Operation<types.DeleteTaskDefinitionsOutput>
+function C:deleteTaskDefinitions(input: types.DeleteTaskDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTaskDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTaskDefinitions as schema.OperationSchema, input, options) as async.Operation<types.DeleteTaskDefinitionsOutput>
 end
 
-function C:deleteTaskSet(input: types.DeleteTaskSetInput, options: any): async.Operation<types.DeleteTaskSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTaskSet, input, options) as async.Operation<types.DeleteTaskSetOutput>
+function C:deleteTaskSet(input: types.DeleteTaskSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTaskSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTaskSet as schema.OperationSchema, input, options) as async.Operation<types.DeleteTaskSetOutput>
 end
 
-function C:deregisterContainerInstance(input: types.DeregisterContainerInstanceInput, options: any): async.Operation<types.DeregisterContainerInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterContainerInstance, input, options) as async.Operation<types.DeregisterContainerInstanceOutput>
+function C:deregisterContainerInstance(input: types.DeregisterContainerInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterContainerInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterContainerInstance as schema.OperationSchema, input, options) as async.Operation<types.DeregisterContainerInstanceOutput>
 end
 
-function C:deregisterTaskDefinition(input: types.DeregisterTaskDefinitionInput, options: any): async.Operation<types.DeregisterTaskDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterTaskDefinition, input, options) as async.Operation<types.DeregisterTaskDefinitionOutput>
+function C:deregisterTaskDefinition(input: types.DeregisterTaskDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterTaskDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterTaskDefinition as schema.OperationSchema, input, options) as async.Operation<types.DeregisterTaskDefinitionOutput>
 end
 
-function C:describeCapacityProviders(input: types.DescribeCapacityProvidersInput, options: any): async.Operation<types.DescribeCapacityProvidersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCapacityProviders, input, options) as async.Operation<types.DescribeCapacityProvidersOutput>
+function C:describeCapacityProviders(input: types.DescribeCapacityProvidersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCapacityProvidersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCapacityProviders as schema.OperationSchema, input, options) as async.Operation<types.DescribeCapacityProvidersOutput>
 end
 
-function C:describeClusters(input: types.DescribeClustersInput, options: any): async.Operation<types.DescribeClustersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeClusters, input, options) as async.Operation<types.DescribeClustersOutput>
+function C:describeClusters(input: types.DescribeClustersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeClustersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeClusters as schema.OperationSchema, input, options) as async.Operation<types.DescribeClustersOutput>
 end
 
-function C:describeContainerInstances(input: types.DescribeContainerInstancesInput, options: any): async.Operation<types.DescribeContainerInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeContainerInstances, input, options) as async.Operation<types.DescribeContainerInstancesOutput>
+function C:describeContainerInstances(input: types.DescribeContainerInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeContainerInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeContainerInstances as schema.OperationSchema, input, options) as async.Operation<types.DescribeContainerInstancesOutput>
 end
 
-function C:describeDaemon(input: types.DescribeDaemonInput, options: any): async.Operation<types.DescribeDaemonOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDaemon, input, options) as async.Operation<types.DescribeDaemonOutput>
+function C:describeDaemon(input: types.DescribeDaemonInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDaemonOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDaemon as schema.OperationSchema, input, options) as async.Operation<types.DescribeDaemonOutput>
 end
 
-function C:describeDaemonDeployments(input: types.DescribeDaemonDeploymentsInput, options: any): async.Operation<types.DescribeDaemonDeploymentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDaemonDeployments, input, options) as async.Operation<types.DescribeDaemonDeploymentsOutput>
+function C:describeDaemonDeployments(input: types.DescribeDaemonDeploymentsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDaemonDeploymentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDaemonDeployments as schema.OperationSchema, input, options) as async.Operation<types.DescribeDaemonDeploymentsOutput>
 end
 
-function C:describeDaemonRevisions(input: types.DescribeDaemonRevisionsInput, options: any): async.Operation<types.DescribeDaemonRevisionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDaemonRevisions, input, options) as async.Operation<types.DescribeDaemonRevisionsOutput>
+function C:describeDaemonRevisions(input: types.DescribeDaemonRevisionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDaemonRevisionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDaemonRevisions as schema.OperationSchema, input, options) as async.Operation<types.DescribeDaemonRevisionsOutput>
 end
 
-function C:describeDaemonTaskDefinition(input: types.DescribeDaemonTaskDefinitionInput, options: any): async.Operation<types.DescribeDaemonTaskDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDaemonTaskDefinition, input, options) as async.Operation<types.DescribeDaemonTaskDefinitionOutput>
+function C:describeDaemonTaskDefinition(input: types.DescribeDaemonTaskDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDaemonTaskDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDaemonTaskDefinition as schema.OperationSchema, input, options) as async.Operation<types.DescribeDaemonTaskDefinitionOutput>
 end
 
-function C:describeExpressGatewayService(input: types.DescribeExpressGatewayServiceInput, options: any): async.Operation<types.DescribeExpressGatewayServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeExpressGatewayService, input, options) as async.Operation<types.DescribeExpressGatewayServiceOutput>
+function C:describeExpressGatewayService(input: types.DescribeExpressGatewayServiceInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeExpressGatewayServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeExpressGatewayService as schema.OperationSchema, input, options) as async.Operation<types.DescribeExpressGatewayServiceOutput>
 end
 
-function C:describeServiceDeployments(input: types.DescribeServiceDeploymentsInput, options: any): async.Operation<types.DescribeServiceDeploymentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeServiceDeployments, input, options) as async.Operation<types.DescribeServiceDeploymentsOutput>
+function C:describeServiceDeployments(input: types.DescribeServiceDeploymentsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeServiceDeploymentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeServiceDeployments as schema.OperationSchema, input, options) as async.Operation<types.DescribeServiceDeploymentsOutput>
 end
 
-function C:describeServiceRevisions(input: types.DescribeServiceRevisionsInput, options: any): async.Operation<types.DescribeServiceRevisionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeServiceRevisions, input, options) as async.Operation<types.DescribeServiceRevisionsOutput>
+function C:describeServiceRevisions(input: types.DescribeServiceRevisionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeServiceRevisionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeServiceRevisions as schema.OperationSchema, input, options) as async.Operation<types.DescribeServiceRevisionsOutput>
 end
 
-function C:describeServices(input: types.DescribeServicesInput, options: any): async.Operation<types.DescribeServicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeServices, input, options) as async.Operation<types.DescribeServicesOutput>
+function C:describeServices(input: types.DescribeServicesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeServicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeServices as schema.OperationSchema, input, options) as async.Operation<types.DescribeServicesOutput>
 end
 
-function C:describeTaskDefinition(input: types.DescribeTaskDefinitionInput, options: any): async.Operation<types.DescribeTaskDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTaskDefinition, input, options) as async.Operation<types.DescribeTaskDefinitionOutput>
+function C:describeTaskDefinition(input: types.DescribeTaskDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTaskDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTaskDefinition as schema.OperationSchema, input, options) as async.Operation<types.DescribeTaskDefinitionOutput>
 end
 
-function C:describeTasks(input: types.DescribeTasksInput, options: any): async.Operation<types.DescribeTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTasks, input, options) as async.Operation<types.DescribeTasksOutput>
+function C:describeTasks(input: types.DescribeTasksInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTasks as schema.OperationSchema, input, options) as async.Operation<types.DescribeTasksOutput>
 end
 
-function C:describeTaskSets(input: types.DescribeTaskSetsInput, options: any): async.Operation<types.DescribeTaskSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTaskSets, input, options) as async.Operation<types.DescribeTaskSetsOutput>
+function C:describeTaskSets(input: types.DescribeTaskSetsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTaskSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTaskSets as schema.OperationSchema, input, options) as async.Operation<types.DescribeTaskSetsOutput>
 end
 
-function C:discoverPollEndpoint(input: types.DiscoverPollEndpointInput, options: any): async.Operation<types.DiscoverPollEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.DiscoverPollEndpoint, input, options) as async.Operation<types.DiscoverPollEndpointOutput>
+function C:discoverPollEndpoint(input: types.DiscoverPollEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.DiscoverPollEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DiscoverPollEndpoint as schema.OperationSchema, input, options) as async.Operation<types.DiscoverPollEndpointOutput>
 end
 
-function C:executeCommand(input: types.ExecuteCommandInput, options: any): async.Operation<types.ExecuteCommandOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExecuteCommand, input, options) as async.Operation<types.ExecuteCommandOutput>
+function C:executeCommand(input: types.ExecuteCommandInput, options?: base_client.InvokeOptions): async.Operation<types.ExecuteCommandOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExecuteCommand as schema.OperationSchema, input, options) as async.Operation<types.ExecuteCommandOutput>
 end
 
-function C:getTaskProtection(input: types.GetTaskProtectionInput, options: any): async.Operation<types.GetTaskProtectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTaskProtection, input, options) as async.Operation<types.GetTaskProtectionOutput>
+function C:getTaskProtection(input: types.GetTaskProtectionInput, options?: base_client.InvokeOptions): async.Operation<types.GetTaskProtectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTaskProtection as schema.OperationSchema, input, options) as async.Operation<types.GetTaskProtectionOutput>
 end
 
-function C:listAccountSettings(input: types.ListAccountSettingsInput, options: any): async.Operation<types.ListAccountSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccountSettings, input, options) as async.Operation<types.ListAccountSettingsOutput>
+function C:listAccountSettings(input: types.ListAccountSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccountSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccountSettings as schema.OperationSchema, input, options) as async.Operation<types.ListAccountSettingsOutput>
 end
 
-function C:listAttributes(input: types.ListAttributesInput, options: any): async.Operation<types.ListAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAttributes, input, options) as async.Operation<types.ListAttributesOutput>
+function C:listAttributes(input: types.ListAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAttributes as schema.OperationSchema, input, options) as async.Operation<types.ListAttributesOutput>
 end
 
-function C:listClusters(input: types.ListClustersInput, options: any): async.Operation<types.ListClustersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListClusters, input, options) as async.Operation<types.ListClustersOutput>
+function C:listClusters(input: types.ListClustersInput, options?: base_client.InvokeOptions): async.Operation<types.ListClustersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListClusters as schema.OperationSchema, input, options) as async.Operation<types.ListClustersOutput>
 end
 
-function C:listContainerInstances(input: types.ListContainerInstancesInput, options: any): async.Operation<types.ListContainerInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListContainerInstances, input, options) as async.Operation<types.ListContainerInstancesOutput>
+function C:listContainerInstances(input: types.ListContainerInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.ListContainerInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListContainerInstances as schema.OperationSchema, input, options) as async.Operation<types.ListContainerInstancesOutput>
 end
 
-function C:listDaemonDeployments(input: types.ListDaemonDeploymentsInput, options: any): async.Operation<types.ListDaemonDeploymentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDaemonDeployments, input, options) as async.Operation<types.ListDaemonDeploymentsOutput>
+function C:listDaemonDeployments(input: types.ListDaemonDeploymentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDaemonDeploymentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDaemonDeployments as schema.OperationSchema, input, options) as async.Operation<types.ListDaemonDeploymentsOutput>
 end
 
-function C:listDaemons(input: types.ListDaemonsInput, options: any): async.Operation<types.ListDaemonsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDaemons, input, options) as async.Operation<types.ListDaemonsOutput>
+function C:listDaemons(input: types.ListDaemonsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDaemonsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDaemons as schema.OperationSchema, input, options) as async.Operation<types.ListDaemonsOutput>
 end
 
-function C:listDaemonTaskDefinitions(input: types.ListDaemonTaskDefinitionsInput, options: any): async.Operation<types.ListDaemonTaskDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDaemonTaskDefinitions, input, options) as async.Operation<types.ListDaemonTaskDefinitionsOutput>
+function C:listDaemonTaskDefinitions(input: types.ListDaemonTaskDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDaemonTaskDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDaemonTaskDefinitions as schema.OperationSchema, input, options) as async.Operation<types.ListDaemonTaskDefinitionsOutput>
 end
 
-function C:listServiceDeployments(input: types.ListServiceDeploymentsInput, options: any): async.Operation<types.ListServiceDeploymentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServiceDeployments, input, options) as async.Operation<types.ListServiceDeploymentsOutput>
+function C:listServiceDeployments(input: types.ListServiceDeploymentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListServiceDeploymentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServiceDeployments as schema.OperationSchema, input, options) as async.Operation<types.ListServiceDeploymentsOutput>
 end
 
-function C:listServices(input: types.ListServicesInput, options: any): async.Operation<types.ListServicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServices, input, options) as async.Operation<types.ListServicesOutput>
+function C:listServices(input: types.ListServicesInput, options?: base_client.InvokeOptions): async.Operation<types.ListServicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServices as schema.OperationSchema, input, options) as async.Operation<types.ListServicesOutput>
 end
 
-function C:listServicesByNamespace(input: types.ListServicesByNamespaceInput, options: any): async.Operation<types.ListServicesByNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServicesByNamespace, input, options) as async.Operation<types.ListServicesByNamespaceOutput>
+function C:listServicesByNamespace(input: types.ListServicesByNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.ListServicesByNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServicesByNamespace as schema.OperationSchema, input, options) as async.Operation<types.ListServicesByNamespaceOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTaskDefinitionFamilies(input: types.ListTaskDefinitionFamiliesInput, options: any): async.Operation<types.ListTaskDefinitionFamiliesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTaskDefinitionFamilies, input, options) as async.Operation<types.ListTaskDefinitionFamiliesOutput>
+function C:listTaskDefinitionFamilies(input: types.ListTaskDefinitionFamiliesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTaskDefinitionFamiliesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTaskDefinitionFamilies as schema.OperationSchema, input, options) as async.Operation<types.ListTaskDefinitionFamiliesOutput>
 end
 
-function C:listTaskDefinitions(input: types.ListTaskDefinitionsInput, options: any): async.Operation<types.ListTaskDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTaskDefinitions, input, options) as async.Operation<types.ListTaskDefinitionsOutput>
+function C:listTaskDefinitions(input: types.ListTaskDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTaskDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTaskDefinitions as schema.OperationSchema, input, options) as async.Operation<types.ListTaskDefinitionsOutput>
 end
 
-function C:listTasks(input: types.ListTasksInput, options: any): async.Operation<types.ListTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTasks, input, options) as async.Operation<types.ListTasksOutput>
+function C:listTasks(input: types.ListTasksInput, options?: base_client.InvokeOptions): async.Operation<types.ListTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTasks as schema.OperationSchema, input, options) as async.Operation<types.ListTasksOutput>
 end
 
-function C:putAccountSetting(input: types.PutAccountSettingInput, options: any): async.Operation<types.PutAccountSettingOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAccountSetting, input, options) as async.Operation<types.PutAccountSettingOutput>
+function C:putAccountSetting(input: types.PutAccountSettingInput, options?: base_client.InvokeOptions): async.Operation<types.PutAccountSettingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAccountSetting as schema.OperationSchema, input, options) as async.Operation<types.PutAccountSettingOutput>
 end
 
-function C:putAccountSettingDefault(input: types.PutAccountSettingDefaultInput, options: any): async.Operation<types.PutAccountSettingDefaultOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAccountSettingDefault, input, options) as async.Operation<types.PutAccountSettingDefaultOutput>
+function C:putAccountSettingDefault(input: types.PutAccountSettingDefaultInput, options?: base_client.InvokeOptions): async.Operation<types.PutAccountSettingDefaultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAccountSettingDefault as schema.OperationSchema, input, options) as async.Operation<types.PutAccountSettingDefaultOutput>
 end
 
-function C:putAttributes(input: types.PutAttributesInput, options: any): async.Operation<types.PutAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAttributes, input, options) as async.Operation<types.PutAttributesOutput>
+function C:putAttributes(input: types.PutAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.PutAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAttributes as schema.OperationSchema, input, options) as async.Operation<types.PutAttributesOutput>
 end
 
-function C:putClusterCapacityProviders(input: types.PutClusterCapacityProvidersInput, options: any): async.Operation<types.PutClusterCapacityProvidersOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutClusterCapacityProviders, input, options) as async.Operation<types.PutClusterCapacityProvidersOutput>
+function C:putClusterCapacityProviders(input: types.PutClusterCapacityProvidersInput, options?: base_client.InvokeOptions): async.Operation<types.PutClusterCapacityProvidersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutClusterCapacityProviders as schema.OperationSchema, input, options) as async.Operation<types.PutClusterCapacityProvidersOutput>
 end
 
-function C:registerContainerInstance(input: types.RegisterContainerInstanceInput, options: any): async.Operation<types.RegisterContainerInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterContainerInstance, input, options) as async.Operation<types.RegisterContainerInstanceOutput>
+function C:registerContainerInstance(input: types.RegisterContainerInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterContainerInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterContainerInstance as schema.OperationSchema, input, options) as async.Operation<types.RegisterContainerInstanceOutput>
 end
 
-function C:registerDaemonTaskDefinition(input: types.RegisterDaemonTaskDefinitionInput, options: any): async.Operation<types.RegisterDaemonTaskDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterDaemonTaskDefinition, input, options) as async.Operation<types.RegisterDaemonTaskDefinitionOutput>
+function C:registerDaemonTaskDefinition(input: types.RegisterDaemonTaskDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterDaemonTaskDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterDaemonTaskDefinition as schema.OperationSchema, input, options) as async.Operation<types.RegisterDaemonTaskDefinitionOutput>
 end
 
-function C:registerTaskDefinition(input: types.RegisterTaskDefinitionInput, options: any): async.Operation<types.RegisterTaskDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterTaskDefinition, input, options) as async.Operation<types.RegisterTaskDefinitionOutput>
+function C:registerTaskDefinition(input: types.RegisterTaskDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterTaskDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterTaskDefinition as schema.OperationSchema, input, options) as async.Operation<types.RegisterTaskDefinitionOutput>
 end
 
-function C:runTask(input: types.RunTaskInput, options: any): async.Operation<types.RunTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.RunTask, input, options) as async.Operation<types.RunTaskOutput>
+function C:runTask(input: types.RunTaskInput, options?: base_client.InvokeOptions): async.Operation<types.RunTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RunTask as schema.OperationSchema, input, options) as async.Operation<types.RunTaskOutput>
 end
 
-function C:startTask(input: types.StartTaskInput, options: any): async.Operation<types.StartTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartTask, input, options) as async.Operation<types.StartTaskOutput>
+function C:startTask(input: types.StartTaskInput, options?: base_client.InvokeOptions): async.Operation<types.StartTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartTask as schema.OperationSchema, input, options) as async.Operation<types.StartTaskOutput>
 end
 
-function C:stopServiceDeployment(input: types.StopServiceDeploymentInput, options: any): async.Operation<types.StopServiceDeploymentOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopServiceDeployment, input, options) as async.Operation<types.StopServiceDeploymentOutput>
+function C:stopServiceDeployment(input: types.StopServiceDeploymentInput, options?: base_client.InvokeOptions): async.Operation<types.StopServiceDeploymentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopServiceDeployment as schema.OperationSchema, input, options) as async.Operation<types.StopServiceDeploymentOutput>
 end
 
-function C:stopTask(input: types.StopTaskInput, options: any): async.Operation<types.StopTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopTask, input, options) as async.Operation<types.StopTaskOutput>
+function C:stopTask(input: types.StopTaskInput, options?: base_client.InvokeOptions): async.Operation<types.StopTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopTask as schema.OperationSchema, input, options) as async.Operation<types.StopTaskOutput>
 end
 
-function C:submitAttachmentStateChanges(input: types.SubmitAttachmentStateChangesInput, options: any): async.Operation<types.SubmitAttachmentStateChangesOutput>
-    return self:invokeOperation(schemas.Service, schemas.SubmitAttachmentStateChanges, input, options) as async.Operation<types.SubmitAttachmentStateChangesOutput>
+function C:submitAttachmentStateChanges(input: types.SubmitAttachmentStateChangesInput, options?: base_client.InvokeOptions): async.Operation<types.SubmitAttachmentStateChangesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SubmitAttachmentStateChanges as schema.OperationSchema, input, options) as async.Operation<types.SubmitAttachmentStateChangesOutput>
 end
 
-function C:submitContainerStateChange(input: types.SubmitContainerStateChangeInput, options: any): async.Operation<types.SubmitContainerStateChangeOutput>
-    return self:invokeOperation(schemas.Service, schemas.SubmitContainerStateChange, input, options) as async.Operation<types.SubmitContainerStateChangeOutput>
+function C:submitContainerStateChange(input: types.SubmitContainerStateChangeInput, options?: base_client.InvokeOptions): async.Operation<types.SubmitContainerStateChangeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SubmitContainerStateChange as schema.OperationSchema, input, options) as async.Operation<types.SubmitContainerStateChangeOutput>
 end
 
-function C:submitTaskStateChange(input: types.SubmitTaskStateChangeInput, options: any): async.Operation<types.SubmitTaskStateChangeOutput>
-    return self:invokeOperation(schemas.Service, schemas.SubmitTaskStateChange, input, options) as async.Operation<types.SubmitTaskStateChangeOutput>
+function C:submitTaskStateChange(input: types.SubmitTaskStateChangeInput, options?: base_client.InvokeOptions): async.Operation<types.SubmitTaskStateChangeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SubmitTaskStateChange as schema.OperationSchema, input, options) as async.Operation<types.SubmitTaskStateChangeOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateCapacityProvider(input: types.UpdateCapacityProviderInput, options: any): async.Operation<types.UpdateCapacityProviderOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCapacityProvider, input, options) as async.Operation<types.UpdateCapacityProviderOutput>
+function C:updateCapacityProvider(input: types.UpdateCapacityProviderInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCapacityProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCapacityProvider as schema.OperationSchema, input, options) as async.Operation<types.UpdateCapacityProviderOutput>
 end
 
-function C:updateCluster(input: types.UpdateClusterInput, options: any): async.Operation<types.UpdateClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCluster, input, options) as async.Operation<types.UpdateClusterOutput>
+function C:updateCluster(input: types.UpdateClusterInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCluster as schema.OperationSchema, input, options) as async.Operation<types.UpdateClusterOutput>
 end
 
-function C:updateClusterSettings(input: types.UpdateClusterSettingsInput, options: any): async.Operation<types.UpdateClusterSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateClusterSettings, input, options) as async.Operation<types.UpdateClusterSettingsOutput>
+function C:updateClusterSettings(input: types.UpdateClusterSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateClusterSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateClusterSettings as schema.OperationSchema, input, options) as async.Operation<types.UpdateClusterSettingsOutput>
 end
 
-function C:updateContainerAgent(input: types.UpdateContainerAgentInput, options: any): async.Operation<types.UpdateContainerAgentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateContainerAgent, input, options) as async.Operation<types.UpdateContainerAgentOutput>
+function C:updateContainerAgent(input: types.UpdateContainerAgentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateContainerAgentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateContainerAgent as schema.OperationSchema, input, options) as async.Operation<types.UpdateContainerAgentOutput>
 end
 
-function C:updateContainerInstancesState(input: types.UpdateContainerInstancesStateInput, options: any): async.Operation<types.UpdateContainerInstancesStateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateContainerInstancesState, input, options) as async.Operation<types.UpdateContainerInstancesStateOutput>
+function C:updateContainerInstancesState(input: types.UpdateContainerInstancesStateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateContainerInstancesStateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateContainerInstancesState as schema.OperationSchema, input, options) as async.Operation<types.UpdateContainerInstancesStateOutput>
 end
 
-function C:updateDaemon(input: types.UpdateDaemonInput, options: any): async.Operation<types.UpdateDaemonOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDaemon, input, options) as async.Operation<types.UpdateDaemonOutput>
+function C:updateDaemon(input: types.UpdateDaemonInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDaemonOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDaemon as schema.OperationSchema, input, options) as async.Operation<types.UpdateDaemonOutput>
 end
 
-function C:updateExpressGatewayService(input: types.UpdateExpressGatewayServiceInput, options: any): async.Operation<types.UpdateExpressGatewayServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateExpressGatewayService, input, options) as async.Operation<types.UpdateExpressGatewayServiceOutput>
+function C:updateExpressGatewayService(input: types.UpdateExpressGatewayServiceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateExpressGatewayServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateExpressGatewayService as schema.OperationSchema, input, options) as async.Operation<types.UpdateExpressGatewayServiceOutput>
 end
 
-function C:updateService(input: types.UpdateServiceInput, options: any): async.Operation<types.UpdateServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateService, input, options) as async.Operation<types.UpdateServiceOutput>
+function C:updateService(input: types.UpdateServiceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateService as schema.OperationSchema, input, options) as async.Operation<types.UpdateServiceOutput>
 end
 
-function C:updateServicePrimaryTaskSet(input: types.UpdateServicePrimaryTaskSetInput, options: any): async.Operation<types.UpdateServicePrimaryTaskSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateServicePrimaryTaskSet, input, options) as async.Operation<types.UpdateServicePrimaryTaskSetOutput>
+function C:updateServicePrimaryTaskSet(input: types.UpdateServicePrimaryTaskSetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateServicePrimaryTaskSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateServicePrimaryTaskSet as schema.OperationSchema, input, options) as async.Operation<types.UpdateServicePrimaryTaskSetOutput>
 end
 
-function C:updateTaskProtection(input: types.UpdateTaskProtectionInput, options: any): async.Operation<types.UpdateTaskProtectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTaskProtection, input, options) as async.Operation<types.UpdateTaskProtectionOutput>
+function C:updateTaskProtection(input: types.UpdateTaskProtectionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTaskProtectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTaskProtection as schema.OperationSchema, input, options) as async.Operation<types.UpdateTaskProtectionOutput>
 end
 
-function C:updateTaskSet(input: types.UpdateTaskSetInput, options: any): async.Operation<types.UpdateTaskSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTaskSet, input, options) as async.Operation<types.UpdateTaskSetOutput>
+function C:updateTaskSet(input: types.UpdateTaskSetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTaskSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTaskSet as schema.OperationSchema, input, options) as async.Operation<types.UpdateTaskSetOutput>
 end
 
 return M

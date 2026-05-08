@@ -8,77 +8,80 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("appmesh.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("appmesh.schemas")
 local traits = require("smithy.traits")
 local types = require("appmesh.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createGatewayRoute: function(Client, types.CreateGatewayRouteInput, any): async.Operation<types.CreateGatewayRouteOutput>
-    createMesh: function(Client, types.CreateMeshInput, any): async.Operation<types.CreateMeshOutput>
-    createRoute: function(Client, types.CreateRouteInput, any): async.Operation<types.CreateRouteOutput>
-    createVirtualGateway: function(Client, types.CreateVirtualGatewayInput, any): async.Operation<types.CreateVirtualGatewayOutput>
-    createVirtualNode: function(Client, types.CreateVirtualNodeInput, any): async.Operation<types.CreateVirtualNodeOutput>
-    createVirtualRouter: function(Client, types.CreateVirtualRouterInput, any): async.Operation<types.CreateVirtualRouterOutput>
-    createVirtualService: function(Client, types.CreateVirtualServiceInput, any): async.Operation<types.CreateVirtualServiceOutput>
-    deleteGatewayRoute: function(Client, types.DeleteGatewayRouteInput, any): async.Operation<types.DeleteGatewayRouteOutput>
-    deleteMesh: function(Client, types.DeleteMeshInput, any): async.Operation<types.DeleteMeshOutput>
-    deleteRoute: function(Client, types.DeleteRouteInput, any): async.Operation<types.DeleteRouteOutput>
-    deleteVirtualGateway: function(Client, types.DeleteVirtualGatewayInput, any): async.Operation<types.DeleteVirtualGatewayOutput>
-    deleteVirtualNode: function(Client, types.DeleteVirtualNodeInput, any): async.Operation<types.DeleteVirtualNodeOutput>
-    deleteVirtualRouter: function(Client, types.DeleteVirtualRouterInput, any): async.Operation<types.DeleteVirtualRouterOutput>
-    deleteVirtualService: function(Client, types.DeleteVirtualServiceInput, any): async.Operation<types.DeleteVirtualServiceOutput>
-    describeGatewayRoute: function(Client, types.DescribeGatewayRouteInput, any): async.Operation<types.DescribeGatewayRouteOutput>
-    describeMesh: function(Client, types.DescribeMeshInput, any): async.Operation<types.DescribeMeshOutput>
-    describeRoute: function(Client, types.DescribeRouteInput, any): async.Operation<types.DescribeRouteOutput>
-    describeVirtualGateway: function(Client, types.DescribeVirtualGatewayInput, any): async.Operation<types.DescribeVirtualGatewayOutput>
-    describeVirtualNode: function(Client, types.DescribeVirtualNodeInput, any): async.Operation<types.DescribeVirtualNodeOutput>
-    describeVirtualRouter: function(Client, types.DescribeVirtualRouterInput, any): async.Operation<types.DescribeVirtualRouterOutput>
-    describeVirtualService: function(Client, types.DescribeVirtualServiceInput, any): async.Operation<types.DescribeVirtualServiceOutput>
-    listGatewayRoutes: function(Client, types.ListGatewayRoutesInput, any): async.Operation<types.ListGatewayRoutesOutput>
-    listMeshes: function(Client, types.ListMeshesInput, any): async.Operation<types.ListMeshesOutput>
-    listRoutes: function(Client, types.ListRoutesInput, any): async.Operation<types.ListRoutesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listVirtualGateways: function(Client, types.ListVirtualGatewaysInput, any): async.Operation<types.ListVirtualGatewaysOutput>
-    listVirtualNodes: function(Client, types.ListVirtualNodesInput, any): async.Operation<types.ListVirtualNodesOutput>
-    listVirtualRouters: function(Client, types.ListVirtualRoutersInput, any): async.Operation<types.ListVirtualRoutersOutput>
-    listVirtualServices: function(Client, types.ListVirtualServicesInput, any): async.Operation<types.ListVirtualServicesOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateGatewayRoute: function(Client, types.UpdateGatewayRouteInput, any): async.Operation<types.UpdateGatewayRouteOutput>
-    updateMesh: function(Client, types.UpdateMeshInput, any): async.Operation<types.UpdateMeshOutput>
-    updateRoute: function(Client, types.UpdateRouteInput, any): async.Operation<types.UpdateRouteOutput>
-    updateVirtualGateway: function(Client, types.UpdateVirtualGatewayInput, any): async.Operation<types.UpdateVirtualGatewayOutput>
-    updateVirtualNode: function(Client, types.UpdateVirtualNodeInput, any): async.Operation<types.UpdateVirtualNodeOutput>
-    updateVirtualRouter: function(Client, types.UpdateVirtualRouterInput, any): async.Operation<types.UpdateVirtualRouterOutput>
-    updateVirtualService: function(Client, types.UpdateVirtualServiceInput, any): async.Operation<types.UpdateVirtualServiceOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createGatewayRoute: function(Client, types.CreateGatewayRouteInput, ? base_client.InvokeOptions): async.Operation<types.CreateGatewayRouteOutput>
+    createMesh: function(Client, types.CreateMeshInput, ? base_client.InvokeOptions): async.Operation<types.CreateMeshOutput>
+    createRoute: function(Client, types.CreateRouteInput, ? base_client.InvokeOptions): async.Operation<types.CreateRouteOutput>
+    createVirtualGateway: function(Client, types.CreateVirtualGatewayInput, ? base_client.InvokeOptions): async.Operation<types.CreateVirtualGatewayOutput>
+    createVirtualNode: function(Client, types.CreateVirtualNodeInput, ? base_client.InvokeOptions): async.Operation<types.CreateVirtualNodeOutput>
+    createVirtualRouter: function(Client, types.CreateVirtualRouterInput, ? base_client.InvokeOptions): async.Operation<types.CreateVirtualRouterOutput>
+    createVirtualService: function(Client, types.CreateVirtualServiceInput, ? base_client.InvokeOptions): async.Operation<types.CreateVirtualServiceOutput>
+    deleteGatewayRoute: function(Client, types.DeleteGatewayRouteInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGatewayRouteOutput>
+    deleteMesh: function(Client, types.DeleteMeshInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMeshOutput>
+    deleteRoute: function(Client, types.DeleteRouteInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRouteOutput>
+    deleteVirtualGateway: function(Client, types.DeleteVirtualGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVirtualGatewayOutput>
+    deleteVirtualNode: function(Client, types.DeleteVirtualNodeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVirtualNodeOutput>
+    deleteVirtualRouter: function(Client, types.DeleteVirtualRouterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVirtualRouterOutput>
+    deleteVirtualService: function(Client, types.DeleteVirtualServiceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVirtualServiceOutput>
+    describeGatewayRoute: function(Client, types.DescribeGatewayRouteInput, ? base_client.InvokeOptions): async.Operation<types.DescribeGatewayRouteOutput>
+    describeMesh: function(Client, types.DescribeMeshInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMeshOutput>
+    describeRoute: function(Client, types.DescribeRouteInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRouteOutput>
+    describeVirtualGateway: function(Client, types.DescribeVirtualGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVirtualGatewayOutput>
+    describeVirtualNode: function(Client, types.DescribeVirtualNodeInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVirtualNodeOutput>
+    describeVirtualRouter: function(Client, types.DescribeVirtualRouterInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVirtualRouterOutput>
+    describeVirtualService: function(Client, types.DescribeVirtualServiceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVirtualServiceOutput>
+    listGatewayRoutes: function(Client, types.ListGatewayRoutesInput, ? base_client.InvokeOptions): async.Operation<types.ListGatewayRoutesOutput>
+    listMeshes: function(Client, types.ListMeshesInput, ? base_client.InvokeOptions): async.Operation<types.ListMeshesOutput>
+    listRoutes: function(Client, types.ListRoutesInput, ? base_client.InvokeOptions): async.Operation<types.ListRoutesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listVirtualGateways: function(Client, types.ListVirtualGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.ListVirtualGatewaysOutput>
+    listVirtualNodes: function(Client, types.ListVirtualNodesInput, ? base_client.InvokeOptions): async.Operation<types.ListVirtualNodesOutput>
+    listVirtualRouters: function(Client, types.ListVirtualRoutersInput, ? base_client.InvokeOptions): async.Operation<types.ListVirtualRoutersOutput>
+    listVirtualServices: function(Client, types.ListVirtualServicesInput, ? base_client.InvokeOptions): async.Operation<types.ListVirtualServicesOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateGatewayRoute: function(Client, types.UpdateGatewayRouteInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGatewayRouteOutput>
+    updateMesh: function(Client, types.UpdateMeshInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMeshOutput>
+    updateRoute: function(Client, types.UpdateRouteInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRouteOutput>
+    updateVirtualGateway: function(Client, types.UpdateVirtualGatewayInput, ? base_client.InvokeOptions): async.Operation<types.UpdateVirtualGatewayOutput>
+    updateVirtualNode: function(Client, types.UpdateVirtualNodeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateVirtualNodeOutput>
+    updateVirtualRouter: function(Client, types.UpdateVirtualRouterInput, ? base_client.InvokeOptions): async.Operation<types.UpdateVirtualRouterOutput>
+    updateVirtualService: function(Client, types.UpdateVirtualServiceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateVirtualServiceOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AppMesh"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "appmesh", signing_region = c.region } }
                 else
@@ -97,156 +100,156 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createGatewayRoute(input: types.CreateGatewayRouteInput, options: any): async.Operation<types.CreateGatewayRouteOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateGatewayRoute, input, options) as async.Operation<types.CreateGatewayRouteOutput>
+function C:createGatewayRoute(input: types.CreateGatewayRouteInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGatewayRouteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGatewayRoute as schema.OperationSchema, input, options) as async.Operation<types.CreateGatewayRouteOutput>
 end
 
-function C:createMesh(input: types.CreateMeshInput, options: any): async.Operation<types.CreateMeshOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMesh, input, options) as async.Operation<types.CreateMeshOutput>
+function C:createMesh(input: types.CreateMeshInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMeshOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMesh as schema.OperationSchema, input, options) as async.Operation<types.CreateMeshOutput>
 end
 
-function C:createRoute(input: types.CreateRouteInput, options: any): async.Operation<types.CreateRouteOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRoute, input, options) as async.Operation<types.CreateRouteOutput>
+function C:createRoute(input: types.CreateRouteInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRouteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRoute as schema.OperationSchema, input, options) as async.Operation<types.CreateRouteOutput>
 end
 
-function C:createVirtualGateway(input: types.CreateVirtualGatewayInput, options: any): async.Operation<types.CreateVirtualGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVirtualGateway, input, options) as async.Operation<types.CreateVirtualGatewayOutput>
+function C:createVirtualGateway(input: types.CreateVirtualGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVirtualGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVirtualGateway as schema.OperationSchema, input, options) as async.Operation<types.CreateVirtualGatewayOutput>
 end
 
-function C:createVirtualNode(input: types.CreateVirtualNodeInput, options: any): async.Operation<types.CreateVirtualNodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVirtualNode, input, options) as async.Operation<types.CreateVirtualNodeOutput>
+function C:createVirtualNode(input: types.CreateVirtualNodeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVirtualNodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVirtualNode as schema.OperationSchema, input, options) as async.Operation<types.CreateVirtualNodeOutput>
 end
 
-function C:createVirtualRouter(input: types.CreateVirtualRouterInput, options: any): async.Operation<types.CreateVirtualRouterOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVirtualRouter, input, options) as async.Operation<types.CreateVirtualRouterOutput>
+function C:createVirtualRouter(input: types.CreateVirtualRouterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVirtualRouterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVirtualRouter as schema.OperationSchema, input, options) as async.Operation<types.CreateVirtualRouterOutput>
 end
 
-function C:createVirtualService(input: types.CreateVirtualServiceInput, options: any): async.Operation<types.CreateVirtualServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVirtualService, input, options) as async.Operation<types.CreateVirtualServiceOutput>
+function C:createVirtualService(input: types.CreateVirtualServiceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVirtualServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVirtualService as schema.OperationSchema, input, options) as async.Operation<types.CreateVirtualServiceOutput>
 end
 
-function C:deleteGatewayRoute(input: types.DeleteGatewayRouteInput, options: any): async.Operation<types.DeleteGatewayRouteOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteGatewayRoute, input, options) as async.Operation<types.DeleteGatewayRouteOutput>
+function C:deleteGatewayRoute(input: types.DeleteGatewayRouteInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGatewayRouteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGatewayRoute as schema.OperationSchema, input, options) as async.Operation<types.DeleteGatewayRouteOutput>
 end
 
-function C:deleteMesh(input: types.DeleteMeshInput, options: any): async.Operation<types.DeleteMeshOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMesh, input, options) as async.Operation<types.DeleteMeshOutput>
+function C:deleteMesh(input: types.DeleteMeshInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMeshOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMesh as schema.OperationSchema, input, options) as async.Operation<types.DeleteMeshOutput>
 end
 
-function C:deleteRoute(input: types.DeleteRouteInput, options: any): async.Operation<types.DeleteRouteOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRoute, input, options) as async.Operation<types.DeleteRouteOutput>
+function C:deleteRoute(input: types.DeleteRouteInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRouteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRoute as schema.OperationSchema, input, options) as async.Operation<types.DeleteRouteOutput>
 end
 
-function C:deleteVirtualGateway(input: types.DeleteVirtualGatewayInput, options: any): async.Operation<types.DeleteVirtualGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVirtualGateway, input, options) as async.Operation<types.DeleteVirtualGatewayOutput>
+function C:deleteVirtualGateway(input: types.DeleteVirtualGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVirtualGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVirtualGateway as schema.OperationSchema, input, options) as async.Operation<types.DeleteVirtualGatewayOutput>
 end
 
-function C:deleteVirtualNode(input: types.DeleteVirtualNodeInput, options: any): async.Operation<types.DeleteVirtualNodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVirtualNode, input, options) as async.Operation<types.DeleteVirtualNodeOutput>
+function C:deleteVirtualNode(input: types.DeleteVirtualNodeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVirtualNodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVirtualNode as schema.OperationSchema, input, options) as async.Operation<types.DeleteVirtualNodeOutput>
 end
 
-function C:deleteVirtualRouter(input: types.DeleteVirtualRouterInput, options: any): async.Operation<types.DeleteVirtualRouterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVirtualRouter, input, options) as async.Operation<types.DeleteVirtualRouterOutput>
+function C:deleteVirtualRouter(input: types.DeleteVirtualRouterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVirtualRouterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVirtualRouter as schema.OperationSchema, input, options) as async.Operation<types.DeleteVirtualRouterOutput>
 end
 
-function C:deleteVirtualService(input: types.DeleteVirtualServiceInput, options: any): async.Operation<types.DeleteVirtualServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVirtualService, input, options) as async.Operation<types.DeleteVirtualServiceOutput>
+function C:deleteVirtualService(input: types.DeleteVirtualServiceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVirtualServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVirtualService as schema.OperationSchema, input, options) as async.Operation<types.DeleteVirtualServiceOutput>
 end
 
-function C:describeGatewayRoute(input: types.DescribeGatewayRouteInput, options: any): async.Operation<types.DescribeGatewayRouteOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeGatewayRoute, input, options) as async.Operation<types.DescribeGatewayRouteOutput>
+function C:describeGatewayRoute(input: types.DescribeGatewayRouteInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeGatewayRouteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeGatewayRoute as schema.OperationSchema, input, options) as async.Operation<types.DescribeGatewayRouteOutput>
 end
 
-function C:describeMesh(input: types.DescribeMeshInput, options: any): async.Operation<types.DescribeMeshOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeMesh, input, options) as async.Operation<types.DescribeMeshOutput>
+function C:describeMesh(input: types.DescribeMeshInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMeshOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMesh as schema.OperationSchema, input, options) as async.Operation<types.DescribeMeshOutput>
 end
 
-function C:describeRoute(input: types.DescribeRouteInput, options: any): async.Operation<types.DescribeRouteOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRoute, input, options) as async.Operation<types.DescribeRouteOutput>
+function C:describeRoute(input: types.DescribeRouteInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRouteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRoute as schema.OperationSchema, input, options) as async.Operation<types.DescribeRouteOutput>
 end
 
-function C:describeVirtualGateway(input: types.DescribeVirtualGatewayInput, options: any): async.Operation<types.DescribeVirtualGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVirtualGateway, input, options) as async.Operation<types.DescribeVirtualGatewayOutput>
+function C:describeVirtualGateway(input: types.DescribeVirtualGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVirtualGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVirtualGateway as schema.OperationSchema, input, options) as async.Operation<types.DescribeVirtualGatewayOutput>
 end
 
-function C:describeVirtualNode(input: types.DescribeVirtualNodeInput, options: any): async.Operation<types.DescribeVirtualNodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVirtualNode, input, options) as async.Operation<types.DescribeVirtualNodeOutput>
+function C:describeVirtualNode(input: types.DescribeVirtualNodeInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVirtualNodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVirtualNode as schema.OperationSchema, input, options) as async.Operation<types.DescribeVirtualNodeOutput>
 end
 
-function C:describeVirtualRouter(input: types.DescribeVirtualRouterInput, options: any): async.Operation<types.DescribeVirtualRouterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVirtualRouter, input, options) as async.Operation<types.DescribeVirtualRouterOutput>
+function C:describeVirtualRouter(input: types.DescribeVirtualRouterInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVirtualRouterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVirtualRouter as schema.OperationSchema, input, options) as async.Operation<types.DescribeVirtualRouterOutput>
 end
 
-function C:describeVirtualService(input: types.DescribeVirtualServiceInput, options: any): async.Operation<types.DescribeVirtualServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVirtualService, input, options) as async.Operation<types.DescribeVirtualServiceOutput>
+function C:describeVirtualService(input: types.DescribeVirtualServiceInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVirtualServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVirtualService as schema.OperationSchema, input, options) as async.Operation<types.DescribeVirtualServiceOutput>
 end
 
-function C:listGatewayRoutes(input: types.ListGatewayRoutesInput, options: any): async.Operation<types.ListGatewayRoutesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGatewayRoutes, input, options) as async.Operation<types.ListGatewayRoutesOutput>
+function C:listGatewayRoutes(input: types.ListGatewayRoutesInput, options?: base_client.InvokeOptions): async.Operation<types.ListGatewayRoutesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGatewayRoutes as schema.OperationSchema, input, options) as async.Operation<types.ListGatewayRoutesOutput>
 end
 
-function C:listMeshes(input: types.ListMeshesInput, options: any): async.Operation<types.ListMeshesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMeshes, input, options) as async.Operation<types.ListMeshesOutput>
+function C:listMeshes(input: types.ListMeshesInput, options?: base_client.InvokeOptions): async.Operation<types.ListMeshesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMeshes as schema.OperationSchema, input, options) as async.Operation<types.ListMeshesOutput>
 end
 
-function C:listRoutes(input: types.ListRoutesInput, options: any): async.Operation<types.ListRoutesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRoutes, input, options) as async.Operation<types.ListRoutesOutput>
+function C:listRoutes(input: types.ListRoutesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRoutesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRoutes as schema.OperationSchema, input, options) as async.Operation<types.ListRoutesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listVirtualGateways(input: types.ListVirtualGatewaysInput, options: any): async.Operation<types.ListVirtualGatewaysOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVirtualGateways, input, options) as async.Operation<types.ListVirtualGatewaysOutput>
+function C:listVirtualGateways(input: types.ListVirtualGatewaysInput, options?: base_client.InvokeOptions): async.Operation<types.ListVirtualGatewaysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVirtualGateways as schema.OperationSchema, input, options) as async.Operation<types.ListVirtualGatewaysOutput>
 end
 
-function C:listVirtualNodes(input: types.ListVirtualNodesInput, options: any): async.Operation<types.ListVirtualNodesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVirtualNodes, input, options) as async.Operation<types.ListVirtualNodesOutput>
+function C:listVirtualNodes(input: types.ListVirtualNodesInput, options?: base_client.InvokeOptions): async.Operation<types.ListVirtualNodesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVirtualNodes as schema.OperationSchema, input, options) as async.Operation<types.ListVirtualNodesOutput>
 end
 
-function C:listVirtualRouters(input: types.ListVirtualRoutersInput, options: any): async.Operation<types.ListVirtualRoutersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVirtualRouters, input, options) as async.Operation<types.ListVirtualRoutersOutput>
+function C:listVirtualRouters(input: types.ListVirtualRoutersInput, options?: base_client.InvokeOptions): async.Operation<types.ListVirtualRoutersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVirtualRouters as schema.OperationSchema, input, options) as async.Operation<types.ListVirtualRoutersOutput>
 end
 
-function C:listVirtualServices(input: types.ListVirtualServicesInput, options: any): async.Operation<types.ListVirtualServicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVirtualServices, input, options) as async.Operation<types.ListVirtualServicesOutput>
+function C:listVirtualServices(input: types.ListVirtualServicesInput, options?: base_client.InvokeOptions): async.Operation<types.ListVirtualServicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVirtualServices as schema.OperationSchema, input, options) as async.Operation<types.ListVirtualServicesOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateGatewayRoute(input: types.UpdateGatewayRouteInput, options: any): async.Operation<types.UpdateGatewayRouteOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateGatewayRoute, input, options) as async.Operation<types.UpdateGatewayRouteOutput>
+function C:updateGatewayRoute(input: types.UpdateGatewayRouteInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGatewayRouteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGatewayRoute as schema.OperationSchema, input, options) as async.Operation<types.UpdateGatewayRouteOutput>
 end
 
-function C:updateMesh(input: types.UpdateMeshInput, options: any): async.Operation<types.UpdateMeshOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateMesh, input, options) as async.Operation<types.UpdateMeshOutput>
+function C:updateMesh(input: types.UpdateMeshInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMeshOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMesh as schema.OperationSchema, input, options) as async.Operation<types.UpdateMeshOutput>
 end
 
-function C:updateRoute(input: types.UpdateRouteInput, options: any): async.Operation<types.UpdateRouteOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRoute, input, options) as async.Operation<types.UpdateRouteOutput>
+function C:updateRoute(input: types.UpdateRouteInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRouteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRoute as schema.OperationSchema, input, options) as async.Operation<types.UpdateRouteOutput>
 end
 
-function C:updateVirtualGateway(input: types.UpdateVirtualGatewayInput, options: any): async.Operation<types.UpdateVirtualGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateVirtualGateway, input, options) as async.Operation<types.UpdateVirtualGatewayOutput>
+function C:updateVirtualGateway(input: types.UpdateVirtualGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateVirtualGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateVirtualGateway as schema.OperationSchema, input, options) as async.Operation<types.UpdateVirtualGatewayOutput>
 end
 
-function C:updateVirtualNode(input: types.UpdateVirtualNodeInput, options: any): async.Operation<types.UpdateVirtualNodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateVirtualNode, input, options) as async.Operation<types.UpdateVirtualNodeOutput>
+function C:updateVirtualNode(input: types.UpdateVirtualNodeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateVirtualNodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateVirtualNode as schema.OperationSchema, input, options) as async.Operation<types.UpdateVirtualNodeOutput>
 end
 
-function C:updateVirtualRouter(input: types.UpdateVirtualRouterInput, options: any): async.Operation<types.UpdateVirtualRouterOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateVirtualRouter, input, options) as async.Operation<types.UpdateVirtualRouterOutput>
+function C:updateVirtualRouter(input: types.UpdateVirtualRouterInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateVirtualRouterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateVirtualRouter as schema.OperationSchema, input, options) as async.Operation<types.UpdateVirtualRouterOutput>
 end
 
-function C:updateVirtualService(input: types.UpdateVirtualServiceInput, options: any): async.Operation<types.UpdateVirtualServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateVirtualService, input, options) as async.Operation<types.UpdateVirtualServiceOutput>
+function C:updateVirtualService(input: types.UpdateVirtualServiceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateVirtualServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateVirtualService as schema.OperationSchema, input, options) as async.Operation<types.UpdateVirtualServiceOutput>
 end
 
 return M

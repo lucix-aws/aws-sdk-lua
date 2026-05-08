@@ -8,53 +8,56 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("health.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("health.schemas")
 local traits = require("smithy.traits")
 local types = require("health.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    describeAffectedAccountsForOrganization: function(Client, types.DescribeAffectedAccountsForOrganizationInput, any): async.Operation<types.DescribeAffectedAccountsForOrganizationOutput>
-    describeAffectedEntities: function(Client, types.DescribeAffectedEntitiesInput, any): async.Operation<types.DescribeAffectedEntitiesOutput>
-    describeAffectedEntitiesForOrganization: function(Client, types.DescribeAffectedEntitiesForOrganizationInput, any): async.Operation<types.DescribeAffectedEntitiesForOrganizationOutput>
-    describeEntityAggregates: function(Client, types.DescribeEntityAggregatesInput, any): async.Operation<types.DescribeEntityAggregatesOutput>
-    describeEntityAggregatesForOrganization: function(Client, types.DescribeEntityAggregatesForOrganizationInput, any): async.Operation<types.DescribeEntityAggregatesForOrganizationOutput>
-    describeEventAggregates: function(Client, types.DescribeEventAggregatesInput, any): async.Operation<types.DescribeEventAggregatesOutput>
-    describeEventDetails: function(Client, types.DescribeEventDetailsInput, any): async.Operation<types.DescribeEventDetailsOutput>
-    describeEventDetailsForOrganization: function(Client, types.DescribeEventDetailsForOrganizationInput, any): async.Operation<types.DescribeEventDetailsForOrganizationOutput>
-    describeEvents: function(Client, types.DescribeEventsInput, any): async.Operation<types.DescribeEventsOutput>
-    describeEventsForOrganization: function(Client, types.DescribeEventsForOrganizationInput, any): async.Operation<types.DescribeEventsForOrganizationOutput>
-    describeEventTypes: function(Client, types.DescribeEventTypesInput, any): async.Operation<types.DescribeEventTypesOutput>
-    describeHealthServiceStatusForOrganization: function(Client, types.DescribeHealthServiceStatusForOrganizationInput, any): async.Operation<types.DescribeHealthServiceStatusForOrganizationOutput>
-    disableHealthServiceAccessForOrganization: function(Client, types.DisableHealthServiceAccessForOrganizationInput, any): async.Operation<types.DisableHealthServiceAccessForOrganizationOutput>
-    enableHealthServiceAccessForOrganization: function(Client, types.EnableHealthServiceAccessForOrganizationInput, any): async.Operation<types.EnableHealthServiceAccessForOrganizationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    describeAffectedAccountsForOrganization: function(Client, types.DescribeAffectedAccountsForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAffectedAccountsForOrganizationOutput>
+    describeAffectedEntities: function(Client, types.DescribeAffectedEntitiesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAffectedEntitiesOutput>
+    describeAffectedEntitiesForOrganization: function(Client, types.DescribeAffectedEntitiesForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAffectedEntitiesForOrganizationOutput>
+    describeEntityAggregates: function(Client, types.DescribeEntityAggregatesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEntityAggregatesOutput>
+    describeEntityAggregatesForOrganization: function(Client, types.DescribeEntityAggregatesForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEntityAggregatesForOrganizationOutput>
+    describeEventAggregates: function(Client, types.DescribeEventAggregatesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEventAggregatesOutput>
+    describeEventDetails: function(Client, types.DescribeEventDetailsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEventDetailsOutput>
+    describeEventDetailsForOrganization: function(Client, types.DescribeEventDetailsForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEventDetailsForOrganizationOutput>
+    describeEvents: function(Client, types.DescribeEventsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEventsOutput>
+    describeEventsForOrganization: function(Client, types.DescribeEventsForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEventsForOrganizationOutput>
+    describeEventTypes: function(Client, types.DescribeEventTypesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEventTypesOutput>
+    describeHealthServiceStatusForOrganization: function(Client, types.DescribeHealthServiceStatusForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeHealthServiceStatusForOrganizationOutput>
+    disableHealthServiceAccessForOrganization: function(Client, types.DisableHealthServiceAccessForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.DisableHealthServiceAccessForOrganizationOutput>
+    enableHealthServiceAccessForOrganization: function(Client, types.EnableHealthServiceAccessForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.EnableHealthServiceAccessForOrganizationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSHealth_20160804"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "health", signing_region = c.region } }
                 else
@@ -73,60 +76,60 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:describeAffectedAccountsForOrganization(input: types.DescribeAffectedAccountsForOrganizationInput, options: any): async.Operation<types.DescribeAffectedAccountsForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAffectedAccountsForOrganization, input, options) as async.Operation<types.DescribeAffectedAccountsForOrganizationOutput>
+function C:describeAffectedAccountsForOrganization(input: types.DescribeAffectedAccountsForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAffectedAccountsForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAffectedAccountsForOrganization as schema.OperationSchema, input, options) as async.Operation<types.DescribeAffectedAccountsForOrganizationOutput>
 end
 
-function C:describeAffectedEntities(input: types.DescribeAffectedEntitiesInput, options: any): async.Operation<types.DescribeAffectedEntitiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAffectedEntities, input, options) as async.Operation<types.DescribeAffectedEntitiesOutput>
+function C:describeAffectedEntities(input: types.DescribeAffectedEntitiesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAffectedEntitiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAffectedEntities as schema.OperationSchema, input, options) as async.Operation<types.DescribeAffectedEntitiesOutput>
 end
 
-function C:describeAffectedEntitiesForOrganization(input: types.DescribeAffectedEntitiesForOrganizationInput, options: any): async.Operation<types.DescribeAffectedEntitiesForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAffectedEntitiesForOrganization, input, options) as async.Operation<types.DescribeAffectedEntitiesForOrganizationOutput>
+function C:describeAffectedEntitiesForOrganization(input: types.DescribeAffectedEntitiesForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAffectedEntitiesForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAffectedEntitiesForOrganization as schema.OperationSchema, input, options) as async.Operation<types.DescribeAffectedEntitiesForOrganizationOutput>
 end
 
-function C:describeEntityAggregates(input: types.DescribeEntityAggregatesInput, options: any): async.Operation<types.DescribeEntityAggregatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEntityAggregates, input, options) as async.Operation<types.DescribeEntityAggregatesOutput>
+function C:describeEntityAggregates(input: types.DescribeEntityAggregatesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEntityAggregatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEntityAggregates as schema.OperationSchema, input, options) as async.Operation<types.DescribeEntityAggregatesOutput>
 end
 
-function C:describeEntityAggregatesForOrganization(input: types.DescribeEntityAggregatesForOrganizationInput, options: any): async.Operation<types.DescribeEntityAggregatesForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEntityAggregatesForOrganization, input, options) as async.Operation<types.DescribeEntityAggregatesForOrganizationOutput>
+function C:describeEntityAggregatesForOrganization(input: types.DescribeEntityAggregatesForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEntityAggregatesForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEntityAggregatesForOrganization as schema.OperationSchema, input, options) as async.Operation<types.DescribeEntityAggregatesForOrganizationOutput>
 end
 
-function C:describeEventAggregates(input: types.DescribeEventAggregatesInput, options: any): async.Operation<types.DescribeEventAggregatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEventAggregates, input, options) as async.Operation<types.DescribeEventAggregatesOutput>
+function C:describeEventAggregates(input: types.DescribeEventAggregatesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEventAggregatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEventAggregates as schema.OperationSchema, input, options) as async.Operation<types.DescribeEventAggregatesOutput>
 end
 
-function C:describeEventDetails(input: types.DescribeEventDetailsInput, options: any): async.Operation<types.DescribeEventDetailsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEventDetails, input, options) as async.Operation<types.DescribeEventDetailsOutput>
+function C:describeEventDetails(input: types.DescribeEventDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEventDetailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEventDetails as schema.OperationSchema, input, options) as async.Operation<types.DescribeEventDetailsOutput>
 end
 
-function C:describeEventDetailsForOrganization(input: types.DescribeEventDetailsForOrganizationInput, options: any): async.Operation<types.DescribeEventDetailsForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEventDetailsForOrganization, input, options) as async.Operation<types.DescribeEventDetailsForOrganizationOutput>
+function C:describeEventDetailsForOrganization(input: types.DescribeEventDetailsForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEventDetailsForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEventDetailsForOrganization as schema.OperationSchema, input, options) as async.Operation<types.DescribeEventDetailsForOrganizationOutput>
 end
 
-function C:describeEvents(input: types.DescribeEventsInput, options: any): async.Operation<types.DescribeEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEvents, input, options) as async.Operation<types.DescribeEventsOutput>
+function C:describeEvents(input: types.DescribeEventsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEvents as schema.OperationSchema, input, options) as async.Operation<types.DescribeEventsOutput>
 end
 
-function C:describeEventsForOrganization(input: types.DescribeEventsForOrganizationInput, options: any): async.Operation<types.DescribeEventsForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEventsForOrganization, input, options) as async.Operation<types.DescribeEventsForOrganizationOutput>
+function C:describeEventsForOrganization(input: types.DescribeEventsForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEventsForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEventsForOrganization as schema.OperationSchema, input, options) as async.Operation<types.DescribeEventsForOrganizationOutput>
 end
 
-function C:describeEventTypes(input: types.DescribeEventTypesInput, options: any): async.Operation<types.DescribeEventTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEventTypes, input, options) as async.Operation<types.DescribeEventTypesOutput>
+function C:describeEventTypes(input: types.DescribeEventTypesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEventTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEventTypes as schema.OperationSchema, input, options) as async.Operation<types.DescribeEventTypesOutput>
 end
 
-function C:describeHealthServiceStatusForOrganization(input: types.DescribeHealthServiceStatusForOrganizationInput, options: any): async.Operation<types.DescribeHealthServiceStatusForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeHealthServiceStatusForOrganization, input, options) as async.Operation<types.DescribeHealthServiceStatusForOrganizationOutput>
+function C:describeHealthServiceStatusForOrganization(input: types.DescribeHealthServiceStatusForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeHealthServiceStatusForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeHealthServiceStatusForOrganization as schema.OperationSchema, input, options) as async.Operation<types.DescribeHealthServiceStatusForOrganizationOutput>
 end
 
-function C:disableHealthServiceAccessForOrganization(input: types.DisableHealthServiceAccessForOrganizationInput, options: any): async.Operation<types.DisableHealthServiceAccessForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableHealthServiceAccessForOrganization, input, options) as async.Operation<types.DisableHealthServiceAccessForOrganizationOutput>
+function C:disableHealthServiceAccessForOrganization(input: types.DisableHealthServiceAccessForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.DisableHealthServiceAccessForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableHealthServiceAccessForOrganization as schema.OperationSchema, input, options) as async.Operation<types.DisableHealthServiceAccessForOrganizationOutput>
 end
 
-function C:enableHealthServiceAccessForOrganization(input: types.EnableHealthServiceAccessForOrganizationInput, options: any): async.Operation<types.EnableHealthServiceAccessForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableHealthServiceAccessForOrganization, input, options) as async.Operation<types.EnableHealthServiceAccessForOrganizationOutput>
+function C:enableHealthServiceAccessForOrganization(input: types.EnableHealthServiceAccessForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.EnableHealthServiceAccessForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableHealthServiceAccessForOrganization as schema.OperationSchema, input, options) as async.Operation<types.EnableHealthServiceAccessForOrganizationOutput>
 end
 
 return M

@@ -8,99 +8,102 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("mailmanager.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("mailmanager.schemas")
 local traits = require("smithy.traits")
 local types = require("mailmanager.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createAddonInstance: function(Client, types.CreateAddonInstanceInput, any): async.Operation<types.CreateAddonInstanceOutput>
-    createAddonSubscription: function(Client, types.CreateAddonSubscriptionInput, any): async.Operation<types.CreateAddonSubscriptionOutput>
-    createAddressList: function(Client, types.CreateAddressListInput, any): async.Operation<types.CreateAddressListOutput>
-    createAddressListImportJob: function(Client, types.CreateAddressListImportJobInput, any): async.Operation<types.CreateAddressListImportJobOutput>
-    createArchive: function(Client, types.CreateArchiveInput, any): async.Operation<types.CreateArchiveOutput>
-    createIngressPoint: function(Client, types.CreateIngressPointInput, any): async.Operation<types.CreateIngressPointOutput>
-    createRelay: function(Client, types.CreateRelayInput, any): async.Operation<types.CreateRelayOutput>
-    createRuleSet: function(Client, types.CreateRuleSetInput, any): async.Operation<types.CreateRuleSetOutput>
-    createTrafficPolicy: function(Client, types.CreateTrafficPolicyInput, any): async.Operation<types.CreateTrafficPolicyOutput>
-    deleteAddonInstance: function(Client, types.DeleteAddonInstanceInput, any): async.Operation<types.DeleteAddonInstanceOutput>
-    deleteAddonSubscription: function(Client, types.DeleteAddonSubscriptionInput, any): async.Operation<types.DeleteAddonSubscriptionOutput>
-    deleteAddressList: function(Client, types.DeleteAddressListInput, any): async.Operation<types.DeleteAddressListOutput>
-    deleteArchive: function(Client, types.DeleteArchiveInput, any): async.Operation<types.DeleteArchiveOutput>
-    deleteIngressPoint: function(Client, types.DeleteIngressPointInput, any): async.Operation<types.DeleteIngressPointOutput>
-    deleteRelay: function(Client, types.DeleteRelayInput, any): async.Operation<types.DeleteRelayOutput>
-    deleteRuleSet: function(Client, types.DeleteRuleSetInput, any): async.Operation<types.DeleteRuleSetOutput>
-    deleteTrafficPolicy: function(Client, types.DeleteTrafficPolicyInput, any): async.Operation<types.DeleteTrafficPolicyOutput>
-    deregisterMemberFromAddressList: function(Client, types.DeregisterMemberFromAddressListInput, any): async.Operation<types.DeregisterMemberFromAddressListOutput>
-    getAddonInstance: function(Client, types.GetAddonInstanceInput, any): async.Operation<types.GetAddonInstanceOutput>
-    getAddonSubscription: function(Client, types.GetAddonSubscriptionInput, any): async.Operation<types.GetAddonSubscriptionOutput>
-    getAddressList: function(Client, types.GetAddressListInput, any): async.Operation<types.GetAddressListOutput>
-    getAddressListImportJob: function(Client, types.GetAddressListImportJobInput, any): async.Operation<types.GetAddressListImportJobOutput>
-    getArchive: function(Client, types.GetArchiveInput, any): async.Operation<types.GetArchiveOutput>
-    getArchiveExport: function(Client, types.GetArchiveExportInput, any): async.Operation<types.GetArchiveExportOutput>
-    getArchiveMessage: function(Client, types.GetArchiveMessageInput, any): async.Operation<types.GetArchiveMessageOutput>
-    getArchiveMessageContent: function(Client, types.GetArchiveMessageContentInput, any): async.Operation<types.GetArchiveMessageContentOutput>
-    getArchiveSearch: function(Client, types.GetArchiveSearchInput, any): async.Operation<types.GetArchiveSearchOutput>
-    getArchiveSearchResults: function(Client, types.GetArchiveSearchResultsInput, any): async.Operation<types.GetArchiveSearchResultsOutput>
-    getIngressPoint: function(Client, types.GetIngressPointInput, any): async.Operation<types.GetIngressPointOutput>
-    getMemberOfAddressList: function(Client, types.GetMemberOfAddressListInput, any): async.Operation<types.GetMemberOfAddressListOutput>
-    getRelay: function(Client, types.GetRelayInput, any): async.Operation<types.GetRelayOutput>
-    getRuleSet: function(Client, types.GetRuleSetInput, any): async.Operation<types.GetRuleSetOutput>
-    getTrafficPolicy: function(Client, types.GetTrafficPolicyInput, any): async.Operation<types.GetTrafficPolicyOutput>
-    listAddonInstances: function(Client, types.ListAddonInstancesInput, any): async.Operation<types.ListAddonInstancesOutput>
-    listAddonSubscriptions: function(Client, types.ListAddonSubscriptionsInput, any): async.Operation<types.ListAddonSubscriptionsOutput>
-    listAddressListImportJobs: function(Client, types.ListAddressListImportJobsInput, any): async.Operation<types.ListAddressListImportJobsOutput>
-    listAddressLists: function(Client, types.ListAddressListsInput, any): async.Operation<types.ListAddressListsOutput>
-    listArchiveExports: function(Client, types.ListArchiveExportsInput, any): async.Operation<types.ListArchiveExportsOutput>
-    listArchives: function(Client, types.ListArchivesInput, any): async.Operation<types.ListArchivesOutput>
-    listArchiveSearches: function(Client, types.ListArchiveSearchesInput, any): async.Operation<types.ListArchiveSearchesOutput>
-    listIngressPoints: function(Client, types.ListIngressPointsInput, any): async.Operation<types.ListIngressPointsOutput>
-    listMembersOfAddressList: function(Client, types.ListMembersOfAddressListInput, any): async.Operation<types.ListMembersOfAddressListOutput>
-    listRelays: function(Client, types.ListRelaysInput, any): async.Operation<types.ListRelaysOutput>
-    listRuleSets: function(Client, types.ListRuleSetsInput, any): async.Operation<types.ListRuleSetsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTrafficPolicies: function(Client, types.ListTrafficPoliciesInput, any): async.Operation<types.ListTrafficPoliciesOutput>
-    registerMemberToAddressList: function(Client, types.RegisterMemberToAddressListInput, any): async.Operation<types.RegisterMemberToAddressListOutput>
-    startAddressListImportJob: function(Client, types.StartAddressListImportJobInput, any): async.Operation<types.StartAddressListImportJobOutput>
-    startArchiveExport: function(Client, types.StartArchiveExportInput, any): async.Operation<types.StartArchiveExportOutput>
-    startArchiveSearch: function(Client, types.StartArchiveSearchInput, any): async.Operation<types.StartArchiveSearchOutput>
-    stopAddressListImportJob: function(Client, types.StopAddressListImportJobInput, any): async.Operation<types.StopAddressListImportJobOutput>
-    stopArchiveExport: function(Client, types.StopArchiveExportInput, any): async.Operation<types.StopArchiveExportOutput>
-    stopArchiveSearch: function(Client, types.StopArchiveSearchInput, any): async.Operation<types.StopArchiveSearchOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateArchive: function(Client, types.UpdateArchiveInput, any): async.Operation<types.UpdateArchiveOutput>
-    updateIngressPoint: function(Client, types.UpdateIngressPointInput, any): async.Operation<types.UpdateIngressPointOutput>
-    updateRelay: function(Client, types.UpdateRelayInput, any): async.Operation<types.UpdateRelayOutput>
-    updateRuleSet: function(Client, types.UpdateRuleSetInput, any): async.Operation<types.UpdateRuleSetOutput>
-    updateTrafficPolicy: function(Client, types.UpdateTrafficPolicyInput, any): async.Operation<types.UpdateTrafficPolicyOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createAddonInstance: function(Client, types.CreateAddonInstanceInput, ? base_client.InvokeOptions): async.Operation<types.CreateAddonInstanceOutput>
+    createAddonSubscription: function(Client, types.CreateAddonSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.CreateAddonSubscriptionOutput>
+    createAddressList: function(Client, types.CreateAddressListInput, ? base_client.InvokeOptions): async.Operation<types.CreateAddressListOutput>
+    createAddressListImportJob: function(Client, types.CreateAddressListImportJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateAddressListImportJobOutput>
+    createArchive: function(Client, types.CreateArchiveInput, ? base_client.InvokeOptions): async.Operation<types.CreateArchiveOutput>
+    createIngressPoint: function(Client, types.CreateIngressPointInput, ? base_client.InvokeOptions): async.Operation<types.CreateIngressPointOutput>
+    createRelay: function(Client, types.CreateRelayInput, ? base_client.InvokeOptions): async.Operation<types.CreateRelayOutput>
+    createRuleSet: function(Client, types.CreateRuleSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateRuleSetOutput>
+    createTrafficPolicy: function(Client, types.CreateTrafficPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateTrafficPolicyOutput>
+    deleteAddonInstance: function(Client, types.DeleteAddonInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAddonInstanceOutput>
+    deleteAddonSubscription: function(Client, types.DeleteAddonSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAddonSubscriptionOutput>
+    deleteAddressList: function(Client, types.DeleteAddressListInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAddressListOutput>
+    deleteArchive: function(Client, types.DeleteArchiveInput, ? base_client.InvokeOptions): async.Operation<types.DeleteArchiveOutput>
+    deleteIngressPoint: function(Client, types.DeleteIngressPointInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIngressPointOutput>
+    deleteRelay: function(Client, types.DeleteRelayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRelayOutput>
+    deleteRuleSet: function(Client, types.DeleteRuleSetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRuleSetOutput>
+    deleteTrafficPolicy: function(Client, types.DeleteTrafficPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTrafficPolicyOutput>
+    deregisterMemberFromAddressList: function(Client, types.DeregisterMemberFromAddressListInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterMemberFromAddressListOutput>
+    getAddonInstance: function(Client, types.GetAddonInstanceInput, ? base_client.InvokeOptions): async.Operation<types.GetAddonInstanceOutput>
+    getAddonSubscription: function(Client, types.GetAddonSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.GetAddonSubscriptionOutput>
+    getAddressList: function(Client, types.GetAddressListInput, ? base_client.InvokeOptions): async.Operation<types.GetAddressListOutput>
+    getAddressListImportJob: function(Client, types.GetAddressListImportJobInput, ? base_client.InvokeOptions): async.Operation<types.GetAddressListImportJobOutput>
+    getArchive: function(Client, types.GetArchiveInput, ? base_client.InvokeOptions): async.Operation<types.GetArchiveOutput>
+    getArchiveExport: function(Client, types.GetArchiveExportInput, ? base_client.InvokeOptions): async.Operation<types.GetArchiveExportOutput>
+    getArchiveMessage: function(Client, types.GetArchiveMessageInput, ? base_client.InvokeOptions): async.Operation<types.GetArchiveMessageOutput>
+    getArchiveMessageContent: function(Client, types.GetArchiveMessageContentInput, ? base_client.InvokeOptions): async.Operation<types.GetArchiveMessageContentOutput>
+    getArchiveSearch: function(Client, types.GetArchiveSearchInput, ? base_client.InvokeOptions): async.Operation<types.GetArchiveSearchOutput>
+    getArchiveSearchResults: function(Client, types.GetArchiveSearchResultsInput, ? base_client.InvokeOptions): async.Operation<types.GetArchiveSearchResultsOutput>
+    getIngressPoint: function(Client, types.GetIngressPointInput, ? base_client.InvokeOptions): async.Operation<types.GetIngressPointOutput>
+    getMemberOfAddressList: function(Client, types.GetMemberOfAddressListInput, ? base_client.InvokeOptions): async.Operation<types.GetMemberOfAddressListOutput>
+    getRelay: function(Client, types.GetRelayInput, ? base_client.InvokeOptions): async.Operation<types.GetRelayOutput>
+    getRuleSet: function(Client, types.GetRuleSetInput, ? base_client.InvokeOptions): async.Operation<types.GetRuleSetOutput>
+    getTrafficPolicy: function(Client, types.GetTrafficPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetTrafficPolicyOutput>
+    listAddonInstances: function(Client, types.ListAddonInstancesInput, ? base_client.InvokeOptions): async.Operation<types.ListAddonInstancesOutput>
+    listAddonSubscriptions: function(Client, types.ListAddonSubscriptionsInput, ? base_client.InvokeOptions): async.Operation<types.ListAddonSubscriptionsOutput>
+    listAddressListImportJobs: function(Client, types.ListAddressListImportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListAddressListImportJobsOutput>
+    listAddressLists: function(Client, types.ListAddressListsInput, ? base_client.InvokeOptions): async.Operation<types.ListAddressListsOutput>
+    listArchiveExports: function(Client, types.ListArchiveExportsInput, ? base_client.InvokeOptions): async.Operation<types.ListArchiveExportsOutput>
+    listArchives: function(Client, types.ListArchivesInput, ? base_client.InvokeOptions): async.Operation<types.ListArchivesOutput>
+    listArchiveSearches: function(Client, types.ListArchiveSearchesInput, ? base_client.InvokeOptions): async.Operation<types.ListArchiveSearchesOutput>
+    listIngressPoints: function(Client, types.ListIngressPointsInput, ? base_client.InvokeOptions): async.Operation<types.ListIngressPointsOutput>
+    listMembersOfAddressList: function(Client, types.ListMembersOfAddressListInput, ? base_client.InvokeOptions): async.Operation<types.ListMembersOfAddressListOutput>
+    listRelays: function(Client, types.ListRelaysInput, ? base_client.InvokeOptions): async.Operation<types.ListRelaysOutput>
+    listRuleSets: function(Client, types.ListRuleSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListRuleSetsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTrafficPolicies: function(Client, types.ListTrafficPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListTrafficPoliciesOutput>
+    registerMemberToAddressList: function(Client, types.RegisterMemberToAddressListInput, ? base_client.InvokeOptions): async.Operation<types.RegisterMemberToAddressListOutput>
+    startAddressListImportJob: function(Client, types.StartAddressListImportJobInput, ? base_client.InvokeOptions): async.Operation<types.StartAddressListImportJobOutput>
+    startArchiveExport: function(Client, types.StartArchiveExportInput, ? base_client.InvokeOptions): async.Operation<types.StartArchiveExportOutput>
+    startArchiveSearch: function(Client, types.StartArchiveSearchInput, ? base_client.InvokeOptions): async.Operation<types.StartArchiveSearchOutput>
+    stopAddressListImportJob: function(Client, types.StopAddressListImportJobInput, ? base_client.InvokeOptions): async.Operation<types.StopAddressListImportJobOutput>
+    stopArchiveExport: function(Client, types.StopArchiveExportInput, ? base_client.InvokeOptions): async.Operation<types.StopArchiveExportOutput>
+    stopArchiveSearch: function(Client, types.StopArchiveSearchInput, ? base_client.InvokeOptions): async.Operation<types.StopArchiveSearchOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateArchive: function(Client, types.UpdateArchiveInput, ? base_client.InvokeOptions): async.Operation<types.UpdateArchiveOutput>
+    updateIngressPoint: function(Client, types.UpdateIngressPointInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIngressPointOutput>
+    updateRelay: function(Client, types.UpdateRelayInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRelayOutput>
+    updateRuleSet: function(Client, types.UpdateRuleSetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRuleSetOutput>
+    updateTrafficPolicy: function(Client, types.UpdateTrafficPolicyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTrafficPolicyOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "MailManagerSvc"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ses", signing_region = c.region } }
                 else
@@ -119,244 +122,244 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createAddonInstance(input: types.CreateAddonInstanceInput, options: any): async.Operation<types.CreateAddonInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAddonInstance, input, options) as async.Operation<types.CreateAddonInstanceOutput>
+function C:createAddonInstance(input: types.CreateAddonInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAddonInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAddonInstance as schema.OperationSchema, input, options) as async.Operation<types.CreateAddonInstanceOutput>
 end
 
-function C:createAddonSubscription(input: types.CreateAddonSubscriptionInput, options: any): async.Operation<types.CreateAddonSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAddonSubscription, input, options) as async.Operation<types.CreateAddonSubscriptionOutput>
+function C:createAddonSubscription(input: types.CreateAddonSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAddonSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAddonSubscription as schema.OperationSchema, input, options) as async.Operation<types.CreateAddonSubscriptionOutput>
 end
 
-function C:createAddressList(input: types.CreateAddressListInput, options: any): async.Operation<types.CreateAddressListOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAddressList, input, options) as async.Operation<types.CreateAddressListOutput>
+function C:createAddressList(input: types.CreateAddressListInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAddressListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAddressList as schema.OperationSchema, input, options) as async.Operation<types.CreateAddressListOutput>
 end
 
-function C:createAddressListImportJob(input: types.CreateAddressListImportJobInput, options: any): async.Operation<types.CreateAddressListImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAddressListImportJob, input, options) as async.Operation<types.CreateAddressListImportJobOutput>
+function C:createAddressListImportJob(input: types.CreateAddressListImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAddressListImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAddressListImportJob as schema.OperationSchema, input, options) as async.Operation<types.CreateAddressListImportJobOutput>
 end
 
-function C:createArchive(input: types.CreateArchiveInput, options: any): async.Operation<types.CreateArchiveOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateArchive, input, options) as async.Operation<types.CreateArchiveOutput>
+function C:createArchive(input: types.CreateArchiveInput, options?: base_client.InvokeOptions): async.Operation<types.CreateArchiveOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateArchive as schema.OperationSchema, input, options) as async.Operation<types.CreateArchiveOutput>
 end
 
-function C:createIngressPoint(input: types.CreateIngressPointInput, options: any): async.Operation<types.CreateIngressPointOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIngressPoint, input, options) as async.Operation<types.CreateIngressPointOutput>
+function C:createIngressPoint(input: types.CreateIngressPointInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIngressPointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIngressPoint as schema.OperationSchema, input, options) as async.Operation<types.CreateIngressPointOutput>
 end
 
-function C:createRelay(input: types.CreateRelayInput, options: any): async.Operation<types.CreateRelayOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRelay, input, options) as async.Operation<types.CreateRelayOutput>
+function C:createRelay(input: types.CreateRelayInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRelayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRelay as schema.OperationSchema, input, options) as async.Operation<types.CreateRelayOutput>
 end
 
-function C:createRuleSet(input: types.CreateRuleSetInput, options: any): async.Operation<types.CreateRuleSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRuleSet, input, options) as async.Operation<types.CreateRuleSetOutput>
+function C:createRuleSet(input: types.CreateRuleSetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRuleSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRuleSet as schema.OperationSchema, input, options) as async.Operation<types.CreateRuleSetOutput>
 end
 
-function C:createTrafficPolicy(input: types.CreateTrafficPolicyInput, options: any): async.Operation<types.CreateTrafficPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTrafficPolicy, input, options) as async.Operation<types.CreateTrafficPolicyOutput>
+function C:createTrafficPolicy(input: types.CreateTrafficPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTrafficPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTrafficPolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateTrafficPolicyOutput>
 end
 
-function C:deleteAddonInstance(input: types.DeleteAddonInstanceInput, options: any): async.Operation<types.DeleteAddonInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAddonInstance, input, options) as async.Operation<types.DeleteAddonInstanceOutput>
+function C:deleteAddonInstance(input: types.DeleteAddonInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAddonInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAddonInstance as schema.OperationSchema, input, options) as async.Operation<types.DeleteAddonInstanceOutput>
 end
 
-function C:deleteAddonSubscription(input: types.DeleteAddonSubscriptionInput, options: any): async.Operation<types.DeleteAddonSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAddonSubscription, input, options) as async.Operation<types.DeleteAddonSubscriptionOutput>
+function C:deleteAddonSubscription(input: types.DeleteAddonSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAddonSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAddonSubscription as schema.OperationSchema, input, options) as async.Operation<types.DeleteAddonSubscriptionOutput>
 end
 
-function C:deleteAddressList(input: types.DeleteAddressListInput, options: any): async.Operation<types.DeleteAddressListOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAddressList, input, options) as async.Operation<types.DeleteAddressListOutput>
+function C:deleteAddressList(input: types.DeleteAddressListInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAddressListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAddressList as schema.OperationSchema, input, options) as async.Operation<types.DeleteAddressListOutput>
 end
 
-function C:deleteArchive(input: types.DeleteArchiveInput, options: any): async.Operation<types.DeleteArchiveOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteArchive, input, options) as async.Operation<types.DeleteArchiveOutput>
+function C:deleteArchive(input: types.DeleteArchiveInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteArchiveOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteArchive as schema.OperationSchema, input, options) as async.Operation<types.DeleteArchiveOutput>
 end
 
-function C:deleteIngressPoint(input: types.DeleteIngressPointInput, options: any): async.Operation<types.DeleteIngressPointOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIngressPoint, input, options) as async.Operation<types.DeleteIngressPointOutput>
+function C:deleteIngressPoint(input: types.DeleteIngressPointInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIngressPointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIngressPoint as schema.OperationSchema, input, options) as async.Operation<types.DeleteIngressPointOutput>
 end
 
-function C:deleteRelay(input: types.DeleteRelayInput, options: any): async.Operation<types.DeleteRelayOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRelay, input, options) as async.Operation<types.DeleteRelayOutput>
+function C:deleteRelay(input: types.DeleteRelayInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRelayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRelay as schema.OperationSchema, input, options) as async.Operation<types.DeleteRelayOutput>
 end
 
-function C:deleteRuleSet(input: types.DeleteRuleSetInput, options: any): async.Operation<types.DeleteRuleSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRuleSet, input, options) as async.Operation<types.DeleteRuleSetOutput>
+function C:deleteRuleSet(input: types.DeleteRuleSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRuleSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRuleSet as schema.OperationSchema, input, options) as async.Operation<types.DeleteRuleSetOutput>
 end
 
-function C:deleteTrafficPolicy(input: types.DeleteTrafficPolicyInput, options: any): async.Operation<types.DeleteTrafficPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTrafficPolicy, input, options) as async.Operation<types.DeleteTrafficPolicyOutput>
+function C:deleteTrafficPolicy(input: types.DeleteTrafficPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTrafficPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTrafficPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteTrafficPolicyOutput>
 end
 
-function C:deregisterMemberFromAddressList(input: types.DeregisterMemberFromAddressListInput, options: any): async.Operation<types.DeregisterMemberFromAddressListOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterMemberFromAddressList, input, options) as async.Operation<types.DeregisterMemberFromAddressListOutput>
+function C:deregisterMemberFromAddressList(input: types.DeregisterMemberFromAddressListInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterMemberFromAddressListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterMemberFromAddressList as schema.OperationSchema, input, options) as async.Operation<types.DeregisterMemberFromAddressListOutput>
 end
 
-function C:getAddonInstance(input: types.GetAddonInstanceInput, options: any): async.Operation<types.GetAddonInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAddonInstance, input, options) as async.Operation<types.GetAddonInstanceOutput>
+function C:getAddonInstance(input: types.GetAddonInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.GetAddonInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAddonInstance as schema.OperationSchema, input, options) as async.Operation<types.GetAddonInstanceOutput>
 end
 
-function C:getAddonSubscription(input: types.GetAddonSubscriptionInput, options: any): async.Operation<types.GetAddonSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAddonSubscription, input, options) as async.Operation<types.GetAddonSubscriptionOutput>
+function C:getAddonSubscription(input: types.GetAddonSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.GetAddonSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAddonSubscription as schema.OperationSchema, input, options) as async.Operation<types.GetAddonSubscriptionOutput>
 end
 
-function C:getAddressList(input: types.GetAddressListInput, options: any): async.Operation<types.GetAddressListOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAddressList, input, options) as async.Operation<types.GetAddressListOutput>
+function C:getAddressList(input: types.GetAddressListInput, options?: base_client.InvokeOptions): async.Operation<types.GetAddressListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAddressList as schema.OperationSchema, input, options) as async.Operation<types.GetAddressListOutput>
 end
 
-function C:getAddressListImportJob(input: types.GetAddressListImportJobInput, options: any): async.Operation<types.GetAddressListImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAddressListImportJob, input, options) as async.Operation<types.GetAddressListImportJobOutput>
+function C:getAddressListImportJob(input: types.GetAddressListImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetAddressListImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAddressListImportJob as schema.OperationSchema, input, options) as async.Operation<types.GetAddressListImportJobOutput>
 end
 
-function C:getArchive(input: types.GetArchiveInput, options: any): async.Operation<types.GetArchiveOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetArchive, input, options) as async.Operation<types.GetArchiveOutput>
+function C:getArchive(input: types.GetArchiveInput, options?: base_client.InvokeOptions): async.Operation<types.GetArchiveOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetArchive as schema.OperationSchema, input, options) as async.Operation<types.GetArchiveOutput>
 end
 
-function C:getArchiveExport(input: types.GetArchiveExportInput, options: any): async.Operation<types.GetArchiveExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetArchiveExport, input, options) as async.Operation<types.GetArchiveExportOutput>
+function C:getArchiveExport(input: types.GetArchiveExportInput, options?: base_client.InvokeOptions): async.Operation<types.GetArchiveExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetArchiveExport as schema.OperationSchema, input, options) as async.Operation<types.GetArchiveExportOutput>
 end
 
-function C:getArchiveMessage(input: types.GetArchiveMessageInput, options: any): async.Operation<types.GetArchiveMessageOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetArchiveMessage, input, options) as async.Operation<types.GetArchiveMessageOutput>
+function C:getArchiveMessage(input: types.GetArchiveMessageInput, options?: base_client.InvokeOptions): async.Operation<types.GetArchiveMessageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetArchiveMessage as schema.OperationSchema, input, options) as async.Operation<types.GetArchiveMessageOutput>
 end
 
-function C:getArchiveMessageContent(input: types.GetArchiveMessageContentInput, options: any): async.Operation<types.GetArchiveMessageContentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetArchiveMessageContent, input, options) as async.Operation<types.GetArchiveMessageContentOutput>
+function C:getArchiveMessageContent(input: types.GetArchiveMessageContentInput, options?: base_client.InvokeOptions): async.Operation<types.GetArchiveMessageContentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetArchiveMessageContent as schema.OperationSchema, input, options) as async.Operation<types.GetArchiveMessageContentOutput>
 end
 
-function C:getArchiveSearch(input: types.GetArchiveSearchInput, options: any): async.Operation<types.GetArchiveSearchOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetArchiveSearch, input, options) as async.Operation<types.GetArchiveSearchOutput>
+function C:getArchiveSearch(input: types.GetArchiveSearchInput, options?: base_client.InvokeOptions): async.Operation<types.GetArchiveSearchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetArchiveSearch as schema.OperationSchema, input, options) as async.Operation<types.GetArchiveSearchOutput>
 end
 
-function C:getArchiveSearchResults(input: types.GetArchiveSearchResultsInput, options: any): async.Operation<types.GetArchiveSearchResultsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetArchiveSearchResults, input, options) as async.Operation<types.GetArchiveSearchResultsOutput>
+function C:getArchiveSearchResults(input: types.GetArchiveSearchResultsInput, options?: base_client.InvokeOptions): async.Operation<types.GetArchiveSearchResultsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetArchiveSearchResults as schema.OperationSchema, input, options) as async.Operation<types.GetArchiveSearchResultsOutput>
 end
 
-function C:getIngressPoint(input: types.GetIngressPointInput, options: any): async.Operation<types.GetIngressPointOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIngressPoint, input, options) as async.Operation<types.GetIngressPointOutput>
+function C:getIngressPoint(input: types.GetIngressPointInput, options?: base_client.InvokeOptions): async.Operation<types.GetIngressPointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIngressPoint as schema.OperationSchema, input, options) as async.Operation<types.GetIngressPointOutput>
 end
 
-function C:getMemberOfAddressList(input: types.GetMemberOfAddressListInput, options: any): async.Operation<types.GetMemberOfAddressListOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMemberOfAddressList, input, options) as async.Operation<types.GetMemberOfAddressListOutput>
+function C:getMemberOfAddressList(input: types.GetMemberOfAddressListInput, options?: base_client.InvokeOptions): async.Operation<types.GetMemberOfAddressListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMemberOfAddressList as schema.OperationSchema, input, options) as async.Operation<types.GetMemberOfAddressListOutput>
 end
 
-function C:getRelay(input: types.GetRelayInput, options: any): async.Operation<types.GetRelayOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRelay, input, options) as async.Operation<types.GetRelayOutput>
+function C:getRelay(input: types.GetRelayInput, options?: base_client.InvokeOptions): async.Operation<types.GetRelayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRelay as schema.OperationSchema, input, options) as async.Operation<types.GetRelayOutput>
 end
 
-function C:getRuleSet(input: types.GetRuleSetInput, options: any): async.Operation<types.GetRuleSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRuleSet, input, options) as async.Operation<types.GetRuleSetOutput>
+function C:getRuleSet(input: types.GetRuleSetInput, options?: base_client.InvokeOptions): async.Operation<types.GetRuleSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRuleSet as schema.OperationSchema, input, options) as async.Operation<types.GetRuleSetOutput>
 end
 
-function C:getTrafficPolicy(input: types.GetTrafficPolicyInput, options: any): async.Operation<types.GetTrafficPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTrafficPolicy, input, options) as async.Operation<types.GetTrafficPolicyOutput>
+function C:getTrafficPolicy(input: types.GetTrafficPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetTrafficPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTrafficPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetTrafficPolicyOutput>
 end
 
-function C:listAddonInstances(input: types.ListAddonInstancesInput, options: any): async.Operation<types.ListAddonInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAddonInstances, input, options) as async.Operation<types.ListAddonInstancesOutput>
+function C:listAddonInstances(input: types.ListAddonInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAddonInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAddonInstances as schema.OperationSchema, input, options) as async.Operation<types.ListAddonInstancesOutput>
 end
 
-function C:listAddonSubscriptions(input: types.ListAddonSubscriptionsInput, options: any): async.Operation<types.ListAddonSubscriptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAddonSubscriptions, input, options) as async.Operation<types.ListAddonSubscriptionsOutput>
+function C:listAddonSubscriptions(input: types.ListAddonSubscriptionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAddonSubscriptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAddonSubscriptions as schema.OperationSchema, input, options) as async.Operation<types.ListAddonSubscriptionsOutput>
 end
 
-function C:listAddressListImportJobs(input: types.ListAddressListImportJobsInput, options: any): async.Operation<types.ListAddressListImportJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAddressListImportJobs, input, options) as async.Operation<types.ListAddressListImportJobsOutput>
+function C:listAddressListImportJobs(input: types.ListAddressListImportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAddressListImportJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAddressListImportJobs as schema.OperationSchema, input, options) as async.Operation<types.ListAddressListImportJobsOutput>
 end
 
-function C:listAddressLists(input: types.ListAddressListsInput, options: any): async.Operation<types.ListAddressListsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAddressLists, input, options) as async.Operation<types.ListAddressListsOutput>
+function C:listAddressLists(input: types.ListAddressListsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAddressListsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAddressLists as schema.OperationSchema, input, options) as async.Operation<types.ListAddressListsOutput>
 end
 
-function C:listArchiveExports(input: types.ListArchiveExportsInput, options: any): async.Operation<types.ListArchiveExportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListArchiveExports, input, options) as async.Operation<types.ListArchiveExportsOutput>
+function C:listArchiveExports(input: types.ListArchiveExportsInput, options?: base_client.InvokeOptions): async.Operation<types.ListArchiveExportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListArchiveExports as schema.OperationSchema, input, options) as async.Operation<types.ListArchiveExportsOutput>
 end
 
-function C:listArchives(input: types.ListArchivesInput, options: any): async.Operation<types.ListArchivesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListArchives, input, options) as async.Operation<types.ListArchivesOutput>
+function C:listArchives(input: types.ListArchivesInput, options?: base_client.InvokeOptions): async.Operation<types.ListArchivesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListArchives as schema.OperationSchema, input, options) as async.Operation<types.ListArchivesOutput>
 end
 
-function C:listArchiveSearches(input: types.ListArchiveSearchesInput, options: any): async.Operation<types.ListArchiveSearchesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListArchiveSearches, input, options) as async.Operation<types.ListArchiveSearchesOutput>
+function C:listArchiveSearches(input: types.ListArchiveSearchesInput, options?: base_client.InvokeOptions): async.Operation<types.ListArchiveSearchesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListArchiveSearches as schema.OperationSchema, input, options) as async.Operation<types.ListArchiveSearchesOutput>
 end
 
-function C:listIngressPoints(input: types.ListIngressPointsInput, options: any): async.Operation<types.ListIngressPointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIngressPoints, input, options) as async.Operation<types.ListIngressPointsOutput>
+function C:listIngressPoints(input: types.ListIngressPointsInput, options?: base_client.InvokeOptions): async.Operation<types.ListIngressPointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIngressPoints as schema.OperationSchema, input, options) as async.Operation<types.ListIngressPointsOutput>
 end
 
-function C:listMembersOfAddressList(input: types.ListMembersOfAddressListInput, options: any): async.Operation<types.ListMembersOfAddressListOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMembersOfAddressList, input, options) as async.Operation<types.ListMembersOfAddressListOutput>
+function C:listMembersOfAddressList(input: types.ListMembersOfAddressListInput, options?: base_client.InvokeOptions): async.Operation<types.ListMembersOfAddressListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMembersOfAddressList as schema.OperationSchema, input, options) as async.Operation<types.ListMembersOfAddressListOutput>
 end
 
-function C:listRelays(input: types.ListRelaysInput, options: any): async.Operation<types.ListRelaysOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRelays, input, options) as async.Operation<types.ListRelaysOutput>
+function C:listRelays(input: types.ListRelaysInput, options?: base_client.InvokeOptions): async.Operation<types.ListRelaysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRelays as schema.OperationSchema, input, options) as async.Operation<types.ListRelaysOutput>
 end
 
-function C:listRuleSets(input: types.ListRuleSetsInput, options: any): async.Operation<types.ListRuleSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRuleSets, input, options) as async.Operation<types.ListRuleSetsOutput>
+function C:listRuleSets(input: types.ListRuleSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRuleSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRuleSets as schema.OperationSchema, input, options) as async.Operation<types.ListRuleSetsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTrafficPolicies(input: types.ListTrafficPoliciesInput, options: any): async.Operation<types.ListTrafficPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTrafficPolicies, input, options) as async.Operation<types.ListTrafficPoliciesOutput>
+function C:listTrafficPolicies(input: types.ListTrafficPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTrafficPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTrafficPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListTrafficPoliciesOutput>
 end
 
-function C:registerMemberToAddressList(input: types.RegisterMemberToAddressListInput, options: any): async.Operation<types.RegisterMemberToAddressListOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterMemberToAddressList, input, options) as async.Operation<types.RegisterMemberToAddressListOutput>
+function C:registerMemberToAddressList(input: types.RegisterMemberToAddressListInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterMemberToAddressListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterMemberToAddressList as schema.OperationSchema, input, options) as async.Operation<types.RegisterMemberToAddressListOutput>
 end
 
-function C:startAddressListImportJob(input: types.StartAddressListImportJobInput, options: any): async.Operation<types.StartAddressListImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartAddressListImportJob, input, options) as async.Operation<types.StartAddressListImportJobOutput>
+function C:startAddressListImportJob(input: types.StartAddressListImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartAddressListImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartAddressListImportJob as schema.OperationSchema, input, options) as async.Operation<types.StartAddressListImportJobOutput>
 end
 
-function C:startArchiveExport(input: types.StartArchiveExportInput, options: any): async.Operation<types.StartArchiveExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartArchiveExport, input, options) as async.Operation<types.StartArchiveExportOutput>
+function C:startArchiveExport(input: types.StartArchiveExportInput, options?: base_client.InvokeOptions): async.Operation<types.StartArchiveExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartArchiveExport as schema.OperationSchema, input, options) as async.Operation<types.StartArchiveExportOutput>
 end
 
-function C:startArchiveSearch(input: types.StartArchiveSearchInput, options: any): async.Operation<types.StartArchiveSearchOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartArchiveSearch, input, options) as async.Operation<types.StartArchiveSearchOutput>
+function C:startArchiveSearch(input: types.StartArchiveSearchInput, options?: base_client.InvokeOptions): async.Operation<types.StartArchiveSearchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartArchiveSearch as schema.OperationSchema, input, options) as async.Operation<types.StartArchiveSearchOutput>
 end
 
-function C:stopAddressListImportJob(input: types.StopAddressListImportJobInput, options: any): async.Operation<types.StopAddressListImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopAddressListImportJob, input, options) as async.Operation<types.StopAddressListImportJobOutput>
+function C:stopAddressListImportJob(input: types.StopAddressListImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopAddressListImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopAddressListImportJob as schema.OperationSchema, input, options) as async.Operation<types.StopAddressListImportJobOutput>
 end
 
-function C:stopArchiveExport(input: types.StopArchiveExportInput, options: any): async.Operation<types.StopArchiveExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopArchiveExport, input, options) as async.Operation<types.StopArchiveExportOutput>
+function C:stopArchiveExport(input: types.StopArchiveExportInput, options?: base_client.InvokeOptions): async.Operation<types.StopArchiveExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopArchiveExport as schema.OperationSchema, input, options) as async.Operation<types.StopArchiveExportOutput>
 end
 
-function C:stopArchiveSearch(input: types.StopArchiveSearchInput, options: any): async.Operation<types.StopArchiveSearchOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopArchiveSearch, input, options) as async.Operation<types.StopArchiveSearchOutput>
+function C:stopArchiveSearch(input: types.StopArchiveSearchInput, options?: base_client.InvokeOptions): async.Operation<types.StopArchiveSearchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopArchiveSearch as schema.OperationSchema, input, options) as async.Operation<types.StopArchiveSearchOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateArchive(input: types.UpdateArchiveInput, options: any): async.Operation<types.UpdateArchiveOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateArchive, input, options) as async.Operation<types.UpdateArchiveOutput>
+function C:updateArchive(input: types.UpdateArchiveInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateArchiveOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateArchive as schema.OperationSchema, input, options) as async.Operation<types.UpdateArchiveOutput>
 end
 
-function C:updateIngressPoint(input: types.UpdateIngressPointInput, options: any): async.Operation<types.UpdateIngressPointOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateIngressPoint, input, options) as async.Operation<types.UpdateIngressPointOutput>
+function C:updateIngressPoint(input: types.UpdateIngressPointInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIngressPointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIngressPoint as schema.OperationSchema, input, options) as async.Operation<types.UpdateIngressPointOutput>
 end
 
-function C:updateRelay(input: types.UpdateRelayInput, options: any): async.Operation<types.UpdateRelayOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRelay, input, options) as async.Operation<types.UpdateRelayOutput>
+function C:updateRelay(input: types.UpdateRelayInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRelayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRelay as schema.OperationSchema, input, options) as async.Operation<types.UpdateRelayOutput>
 end
 
-function C:updateRuleSet(input: types.UpdateRuleSetInput, options: any): async.Operation<types.UpdateRuleSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRuleSet, input, options) as async.Operation<types.UpdateRuleSetOutput>
+function C:updateRuleSet(input: types.UpdateRuleSetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRuleSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRuleSet as schema.OperationSchema, input, options) as async.Operation<types.UpdateRuleSetOutput>
 end
 
-function C:updateTrafficPolicy(input: types.UpdateTrafficPolicyInput, options: any): async.Operation<types.UpdateTrafficPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTrafficPolicy, input, options) as async.Operation<types.UpdateTrafficPolicyOutput>
+function C:updateTrafficPolicy(input: types.UpdateTrafficPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTrafficPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTrafficPolicy as schema.OperationSchema, input, options) as async.Operation<types.UpdateTrafficPolicyOutput>
 end
 
 return M

@@ -8,102 +8,105 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("directconnect.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("directconnect.schemas")
 local traits = require("smithy.traits")
 local types = require("directconnect.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    acceptDirectConnectGatewayAssociationProposal: function(Client, types.AcceptDirectConnectGatewayAssociationProposalInput, any): async.Operation<types.AcceptDirectConnectGatewayAssociationProposalOutput>
-    allocateConnectionOnInterconnect: function(Client, types.AllocateConnectionOnInterconnectInput, any): async.Operation<types.AllocateConnectionOnInterconnectOutput>
-    allocateHostedConnection: function(Client, types.AllocateHostedConnectionInput, any): async.Operation<types.AllocateHostedConnectionOutput>
-    allocatePrivateVirtualInterface: function(Client, types.AllocatePrivateVirtualInterfaceInput, any): async.Operation<types.AllocatePrivateVirtualInterfaceOutput>
-    allocatePublicVirtualInterface: function(Client, types.AllocatePublicVirtualInterfaceInput, any): async.Operation<types.AllocatePublicVirtualInterfaceOutput>
-    allocateTransitVirtualInterface: function(Client, types.AllocateTransitVirtualInterfaceInput, any): async.Operation<types.AllocateTransitVirtualInterfaceOutput>
-    associateConnectionWithLag: function(Client, types.AssociateConnectionWithLagInput, any): async.Operation<types.AssociateConnectionWithLagOutput>
-    associateHostedConnection: function(Client, types.AssociateHostedConnectionInput, any): async.Operation<types.AssociateHostedConnectionOutput>
-    associateMacSecKey: function(Client, types.AssociateMacSecKeyInput, any): async.Operation<types.AssociateMacSecKeyOutput>
-    associateVirtualInterface: function(Client, types.AssociateVirtualInterfaceInput, any): async.Operation<types.AssociateVirtualInterfaceOutput>
-    confirmConnection: function(Client, types.ConfirmConnectionInput, any): async.Operation<types.ConfirmConnectionOutput>
-    confirmCustomerAgreement: function(Client, types.ConfirmCustomerAgreementInput, any): async.Operation<types.ConfirmCustomerAgreementOutput>
-    confirmPrivateVirtualInterface: function(Client, types.ConfirmPrivateVirtualInterfaceInput, any): async.Operation<types.ConfirmPrivateVirtualInterfaceOutput>
-    confirmPublicVirtualInterface: function(Client, types.ConfirmPublicVirtualInterfaceInput, any): async.Operation<types.ConfirmPublicVirtualInterfaceOutput>
-    confirmTransitVirtualInterface: function(Client, types.ConfirmTransitVirtualInterfaceInput, any): async.Operation<types.ConfirmTransitVirtualInterfaceOutput>
-    createBGPPeer: function(Client, types.CreateBGPPeerInput, any): async.Operation<types.CreateBGPPeerOutput>
-    createConnection: function(Client, types.CreateConnectionInput, any): async.Operation<types.CreateConnectionOutput>
-    createDirectConnectGateway: function(Client, types.CreateDirectConnectGatewayInput, any): async.Operation<types.CreateDirectConnectGatewayOutput>
-    createDirectConnectGatewayAssociation: function(Client, types.CreateDirectConnectGatewayAssociationInput, any): async.Operation<types.CreateDirectConnectGatewayAssociationOutput>
-    createDirectConnectGatewayAssociationProposal: function(Client, types.CreateDirectConnectGatewayAssociationProposalInput, any): async.Operation<types.CreateDirectConnectGatewayAssociationProposalOutput>
-    createInterconnect: function(Client, types.CreateInterconnectInput, any): async.Operation<types.CreateInterconnectOutput>
-    createLag: function(Client, types.CreateLagInput, any): async.Operation<types.CreateLagOutput>
-    createPrivateVirtualInterface: function(Client, types.CreatePrivateVirtualInterfaceInput, any): async.Operation<types.CreatePrivateVirtualInterfaceOutput>
-    createPublicVirtualInterface: function(Client, types.CreatePublicVirtualInterfaceInput, any): async.Operation<types.CreatePublicVirtualInterfaceOutput>
-    createTransitVirtualInterface: function(Client, types.CreateTransitVirtualInterfaceInput, any): async.Operation<types.CreateTransitVirtualInterfaceOutput>
-    deleteBGPPeer: function(Client, types.DeleteBGPPeerInput, any): async.Operation<types.DeleteBGPPeerOutput>
-    deleteConnection: function(Client, types.DeleteConnectionInput, any): async.Operation<types.DeleteConnectionOutput>
-    deleteDirectConnectGateway: function(Client, types.DeleteDirectConnectGatewayInput, any): async.Operation<types.DeleteDirectConnectGatewayOutput>
-    deleteDirectConnectGatewayAssociation: function(Client, types.DeleteDirectConnectGatewayAssociationInput, any): async.Operation<types.DeleteDirectConnectGatewayAssociationOutput>
-    deleteDirectConnectGatewayAssociationProposal: function(Client, types.DeleteDirectConnectGatewayAssociationProposalInput, any): async.Operation<types.DeleteDirectConnectGatewayAssociationProposalOutput>
-    deleteInterconnect: function(Client, types.DeleteInterconnectInput, any): async.Operation<types.DeleteInterconnectOutput>
-    deleteLag: function(Client, types.DeleteLagInput, any): async.Operation<types.DeleteLagOutput>
-    deleteVirtualInterface: function(Client, types.DeleteVirtualInterfaceInput, any): async.Operation<types.DeleteVirtualInterfaceOutput>
-    describeConnectionLoa: function(Client, types.DescribeConnectionLoaInput, any): async.Operation<types.DescribeConnectionLoaOutput>
-    describeConnections: function(Client, types.DescribeConnectionsInput, any): async.Operation<types.DescribeConnectionsOutput>
-    describeConnectionsOnInterconnect: function(Client, types.DescribeConnectionsOnInterconnectInput, any): async.Operation<types.DescribeConnectionsOnInterconnectOutput>
-    describeCustomerMetadata: function(Client, types.DescribeCustomerMetadataInput, any): async.Operation<types.DescribeCustomerMetadataOutput>
-    describeDirectConnectGatewayAssociationProposals: function(Client, types.DescribeDirectConnectGatewayAssociationProposalsInput, any): async.Operation<types.DescribeDirectConnectGatewayAssociationProposalsOutput>
-    describeDirectConnectGatewayAssociations: function(Client, types.DescribeDirectConnectGatewayAssociationsInput, any): async.Operation<types.DescribeDirectConnectGatewayAssociationsOutput>
-    describeDirectConnectGatewayAttachments: function(Client, types.DescribeDirectConnectGatewayAttachmentsInput, any): async.Operation<types.DescribeDirectConnectGatewayAttachmentsOutput>
-    describeDirectConnectGateways: function(Client, types.DescribeDirectConnectGatewaysInput, any): async.Operation<types.DescribeDirectConnectGatewaysOutput>
-    describeHostedConnections: function(Client, types.DescribeHostedConnectionsInput, any): async.Operation<types.DescribeHostedConnectionsOutput>
-    describeInterconnectLoa: function(Client, types.DescribeInterconnectLoaInput, any): async.Operation<types.DescribeInterconnectLoaOutput>
-    describeInterconnects: function(Client, types.DescribeInterconnectsInput, any): async.Operation<types.DescribeInterconnectsOutput>
-    describeLags: function(Client, types.DescribeLagsInput, any): async.Operation<types.DescribeLagsOutput>
-    describeLoa: function(Client, types.DescribeLoaInput, any): async.Operation<types.DescribeLoaOutput>
-    describeLocations: function(Client, types.DescribeLocationsInput, any): async.Operation<types.DescribeLocationsOutput>
-    describeRouterConfiguration: function(Client, types.DescribeRouterConfigurationInput, any): async.Operation<types.DescribeRouterConfigurationOutput>
-    describeTags: function(Client, types.DescribeTagsInput, any): async.Operation<types.DescribeTagsOutput>
-    describeVirtualGateways: function(Client, types.DescribeVirtualGatewaysInput, any): async.Operation<types.DescribeVirtualGatewaysOutput>
-    describeVirtualInterfaces: function(Client, types.DescribeVirtualInterfacesInput, any): async.Operation<types.DescribeVirtualInterfacesOutput>
-    disassociateConnectionFromLag: function(Client, types.DisassociateConnectionFromLagInput, any): async.Operation<types.DisassociateConnectionFromLagOutput>
-    disassociateMacSecKey: function(Client, types.DisassociateMacSecKeyInput, any): async.Operation<types.DisassociateMacSecKeyOutput>
-    listVirtualInterfaceTestHistory: function(Client, types.ListVirtualInterfaceTestHistoryInput, any): async.Operation<types.ListVirtualInterfaceTestHistoryOutput>
-    startBgpFailoverTest: function(Client, types.StartBgpFailoverTestInput, any): async.Operation<types.StartBgpFailoverTestOutput>
-    stopBgpFailoverTest: function(Client, types.StopBgpFailoverTestInput, any): async.Operation<types.StopBgpFailoverTestOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateConnection: function(Client, types.UpdateConnectionInput, any): async.Operation<types.UpdateConnectionOutput>
-    updateDirectConnectGateway: function(Client, types.UpdateDirectConnectGatewayInput, any): async.Operation<types.UpdateDirectConnectGatewayOutput>
-    updateDirectConnectGatewayAssociation: function(Client, types.UpdateDirectConnectGatewayAssociationInput, any): async.Operation<types.UpdateDirectConnectGatewayAssociationOutput>
-    updateLag: function(Client, types.UpdateLagInput, any): async.Operation<types.UpdateLagOutput>
-    updateVirtualInterfaceAttributes: function(Client, types.UpdateVirtualInterfaceAttributesInput, any): async.Operation<types.UpdateVirtualInterfaceAttributesOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    acceptDirectConnectGatewayAssociationProposal: function(Client, types.AcceptDirectConnectGatewayAssociationProposalInput, ? base_client.InvokeOptions): async.Operation<types.AcceptDirectConnectGatewayAssociationProposalOutput>
+    allocateConnectionOnInterconnect: function(Client, types.AllocateConnectionOnInterconnectInput, ? base_client.InvokeOptions): async.Operation<types.AllocateConnectionOnInterconnectOutput>
+    allocateHostedConnection: function(Client, types.AllocateHostedConnectionInput, ? base_client.InvokeOptions): async.Operation<types.AllocateHostedConnectionOutput>
+    allocatePrivateVirtualInterface: function(Client, types.AllocatePrivateVirtualInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.AllocatePrivateVirtualInterfaceOutput>
+    allocatePublicVirtualInterface: function(Client, types.AllocatePublicVirtualInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.AllocatePublicVirtualInterfaceOutput>
+    allocateTransitVirtualInterface: function(Client, types.AllocateTransitVirtualInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.AllocateTransitVirtualInterfaceOutput>
+    associateConnectionWithLag: function(Client, types.AssociateConnectionWithLagInput, ? base_client.InvokeOptions): async.Operation<types.AssociateConnectionWithLagOutput>
+    associateHostedConnection: function(Client, types.AssociateHostedConnectionInput, ? base_client.InvokeOptions): async.Operation<types.AssociateHostedConnectionOutput>
+    associateMacSecKey: function(Client, types.AssociateMacSecKeyInput, ? base_client.InvokeOptions): async.Operation<types.AssociateMacSecKeyOutput>
+    associateVirtualInterface: function(Client, types.AssociateVirtualInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.AssociateVirtualInterfaceOutput>
+    confirmConnection: function(Client, types.ConfirmConnectionInput, ? base_client.InvokeOptions): async.Operation<types.ConfirmConnectionOutput>
+    confirmCustomerAgreement: function(Client, types.ConfirmCustomerAgreementInput, ? base_client.InvokeOptions): async.Operation<types.ConfirmCustomerAgreementOutput>
+    confirmPrivateVirtualInterface: function(Client, types.ConfirmPrivateVirtualInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.ConfirmPrivateVirtualInterfaceOutput>
+    confirmPublicVirtualInterface: function(Client, types.ConfirmPublicVirtualInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.ConfirmPublicVirtualInterfaceOutput>
+    confirmTransitVirtualInterface: function(Client, types.ConfirmTransitVirtualInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.ConfirmTransitVirtualInterfaceOutput>
+    createBGPPeer: function(Client, types.CreateBGPPeerInput, ? base_client.InvokeOptions): async.Operation<types.CreateBGPPeerOutput>
+    createConnection: function(Client, types.CreateConnectionInput, ? base_client.InvokeOptions): async.Operation<types.CreateConnectionOutput>
+    createDirectConnectGateway: function(Client, types.CreateDirectConnectGatewayInput, ? base_client.InvokeOptions): async.Operation<types.CreateDirectConnectGatewayOutput>
+    createDirectConnectGatewayAssociation: function(Client, types.CreateDirectConnectGatewayAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateDirectConnectGatewayAssociationOutput>
+    createDirectConnectGatewayAssociationProposal: function(Client, types.CreateDirectConnectGatewayAssociationProposalInput, ? base_client.InvokeOptions): async.Operation<types.CreateDirectConnectGatewayAssociationProposalOutput>
+    createInterconnect: function(Client, types.CreateInterconnectInput, ? base_client.InvokeOptions): async.Operation<types.CreateInterconnectOutput>
+    createLag: function(Client, types.CreateLagInput, ? base_client.InvokeOptions): async.Operation<types.CreateLagOutput>
+    createPrivateVirtualInterface: function(Client, types.CreatePrivateVirtualInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.CreatePrivateVirtualInterfaceOutput>
+    createPublicVirtualInterface: function(Client, types.CreatePublicVirtualInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.CreatePublicVirtualInterfaceOutput>
+    createTransitVirtualInterface: function(Client, types.CreateTransitVirtualInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitVirtualInterfaceOutput>
+    deleteBGPPeer: function(Client, types.DeleteBGPPeerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBGPPeerOutput>
+    deleteConnection: function(Client, types.DeleteConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConnectionOutput>
+    deleteDirectConnectGateway: function(Client, types.DeleteDirectConnectGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDirectConnectGatewayOutput>
+    deleteDirectConnectGatewayAssociation: function(Client, types.DeleteDirectConnectGatewayAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDirectConnectGatewayAssociationOutput>
+    deleteDirectConnectGatewayAssociationProposal: function(Client, types.DeleteDirectConnectGatewayAssociationProposalInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDirectConnectGatewayAssociationProposalOutput>
+    deleteInterconnect: function(Client, types.DeleteInterconnectInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInterconnectOutput>
+    deleteLag: function(Client, types.DeleteLagInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLagOutput>
+    deleteVirtualInterface: function(Client, types.DeleteVirtualInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVirtualInterfaceOutput>
+    describeConnectionLoa: function(Client, types.DescribeConnectionLoaInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConnectionLoaOutput>
+    describeConnections: function(Client, types.DescribeConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConnectionsOutput>
+    describeConnectionsOnInterconnect: function(Client, types.DescribeConnectionsOnInterconnectInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConnectionsOnInterconnectOutput>
+    describeCustomerMetadata: function(Client, types.DescribeCustomerMetadataInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCustomerMetadataOutput>
+    describeDirectConnectGatewayAssociationProposals: function(Client, types.DescribeDirectConnectGatewayAssociationProposalsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDirectConnectGatewayAssociationProposalsOutput>
+    describeDirectConnectGatewayAssociations: function(Client, types.DescribeDirectConnectGatewayAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDirectConnectGatewayAssociationsOutput>
+    describeDirectConnectGatewayAttachments: function(Client, types.DescribeDirectConnectGatewayAttachmentsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDirectConnectGatewayAttachmentsOutput>
+    describeDirectConnectGateways: function(Client, types.DescribeDirectConnectGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDirectConnectGatewaysOutput>
+    describeHostedConnections: function(Client, types.DescribeHostedConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeHostedConnectionsOutput>
+    describeInterconnectLoa: function(Client, types.DescribeInterconnectLoaInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInterconnectLoaOutput>
+    describeInterconnects: function(Client, types.DescribeInterconnectsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInterconnectsOutput>
+    describeLags: function(Client, types.DescribeLagsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLagsOutput>
+    describeLoa: function(Client, types.DescribeLoaInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLoaOutput>
+    describeLocations: function(Client, types.DescribeLocationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLocationsOutput>
+    describeRouterConfiguration: function(Client, types.DescribeRouterConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRouterConfigurationOutput>
+    describeTags: function(Client, types.DescribeTagsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTagsOutput>
+    describeVirtualGateways: function(Client, types.DescribeVirtualGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVirtualGatewaysOutput>
+    describeVirtualInterfaces: function(Client, types.DescribeVirtualInterfacesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVirtualInterfacesOutput>
+    disassociateConnectionFromLag: function(Client, types.DisassociateConnectionFromLagInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateConnectionFromLagOutput>
+    disassociateMacSecKey: function(Client, types.DisassociateMacSecKeyInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateMacSecKeyOutput>
+    listVirtualInterfaceTestHistory: function(Client, types.ListVirtualInterfaceTestHistoryInput, ? base_client.InvokeOptions): async.Operation<types.ListVirtualInterfaceTestHistoryOutput>
+    startBgpFailoverTest: function(Client, types.StartBgpFailoverTestInput, ? base_client.InvokeOptions): async.Operation<types.StartBgpFailoverTestOutput>
+    stopBgpFailoverTest: function(Client, types.StopBgpFailoverTestInput, ? base_client.InvokeOptions): async.Operation<types.StopBgpFailoverTestOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateConnection: function(Client, types.UpdateConnectionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConnectionOutput>
+    updateDirectConnectGateway: function(Client, types.UpdateDirectConnectGatewayInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDirectConnectGatewayOutput>
+    updateDirectConnectGatewayAssociation: function(Client, types.UpdateDirectConnectGatewayAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDirectConnectGatewayAssociationOutput>
+    updateLag: function(Client, types.UpdateLagInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLagOutput>
+    updateVirtualInterfaceAttributes: function(Client, types.UpdateVirtualInterfaceAttributesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateVirtualInterfaceAttributesOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "OvertureService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "directconnect", signing_region = c.region } }
                 else
@@ -122,256 +125,256 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:acceptDirectConnectGatewayAssociationProposal(input: types.AcceptDirectConnectGatewayAssociationProposalInput, options: any): async.Operation<types.AcceptDirectConnectGatewayAssociationProposalOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptDirectConnectGatewayAssociationProposal, input, options) as async.Operation<types.AcceptDirectConnectGatewayAssociationProposalOutput>
+function C:acceptDirectConnectGatewayAssociationProposal(input: types.AcceptDirectConnectGatewayAssociationProposalInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptDirectConnectGatewayAssociationProposalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptDirectConnectGatewayAssociationProposal as schema.OperationSchema, input, options) as async.Operation<types.AcceptDirectConnectGatewayAssociationProposalOutput>
 end
 
-function C:allocateConnectionOnInterconnect(input: types.AllocateConnectionOnInterconnectInput, options: any): async.Operation<types.AllocateConnectionOnInterconnectOutput>
-    return self:invokeOperation(schemas.Service, schemas.AllocateConnectionOnInterconnect, input, options) as async.Operation<types.AllocateConnectionOnInterconnectOutput>
+function C:allocateConnectionOnInterconnect(input: types.AllocateConnectionOnInterconnectInput, options?: base_client.InvokeOptions): async.Operation<types.AllocateConnectionOnInterconnectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AllocateConnectionOnInterconnect as schema.OperationSchema, input, options) as async.Operation<types.AllocateConnectionOnInterconnectOutput>
 end
 
-function C:allocateHostedConnection(input: types.AllocateHostedConnectionInput, options: any): async.Operation<types.AllocateHostedConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.AllocateHostedConnection, input, options) as async.Operation<types.AllocateHostedConnectionOutput>
+function C:allocateHostedConnection(input: types.AllocateHostedConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.AllocateHostedConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AllocateHostedConnection as schema.OperationSchema, input, options) as async.Operation<types.AllocateHostedConnectionOutput>
 end
 
-function C:allocatePrivateVirtualInterface(input: types.AllocatePrivateVirtualInterfaceInput, options: any): async.Operation<types.AllocatePrivateVirtualInterfaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.AllocatePrivateVirtualInterface, input, options) as async.Operation<types.AllocatePrivateVirtualInterfaceOutput>
+function C:allocatePrivateVirtualInterface(input: types.AllocatePrivateVirtualInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.AllocatePrivateVirtualInterfaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AllocatePrivateVirtualInterface as schema.OperationSchema, input, options) as async.Operation<types.AllocatePrivateVirtualInterfaceOutput>
 end
 
-function C:allocatePublicVirtualInterface(input: types.AllocatePublicVirtualInterfaceInput, options: any): async.Operation<types.AllocatePublicVirtualInterfaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.AllocatePublicVirtualInterface, input, options) as async.Operation<types.AllocatePublicVirtualInterfaceOutput>
+function C:allocatePublicVirtualInterface(input: types.AllocatePublicVirtualInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.AllocatePublicVirtualInterfaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AllocatePublicVirtualInterface as schema.OperationSchema, input, options) as async.Operation<types.AllocatePublicVirtualInterfaceOutput>
 end
 
-function C:allocateTransitVirtualInterface(input: types.AllocateTransitVirtualInterfaceInput, options: any): async.Operation<types.AllocateTransitVirtualInterfaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.AllocateTransitVirtualInterface, input, options) as async.Operation<types.AllocateTransitVirtualInterfaceOutput>
+function C:allocateTransitVirtualInterface(input: types.AllocateTransitVirtualInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.AllocateTransitVirtualInterfaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AllocateTransitVirtualInterface as schema.OperationSchema, input, options) as async.Operation<types.AllocateTransitVirtualInterfaceOutput>
 end
 
-function C:associateConnectionWithLag(input: types.AssociateConnectionWithLagInput, options: any): async.Operation<types.AssociateConnectionWithLagOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateConnectionWithLag, input, options) as async.Operation<types.AssociateConnectionWithLagOutput>
+function C:associateConnectionWithLag(input: types.AssociateConnectionWithLagInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateConnectionWithLagOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateConnectionWithLag as schema.OperationSchema, input, options) as async.Operation<types.AssociateConnectionWithLagOutput>
 end
 
-function C:associateHostedConnection(input: types.AssociateHostedConnectionInput, options: any): async.Operation<types.AssociateHostedConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateHostedConnection, input, options) as async.Operation<types.AssociateHostedConnectionOutput>
+function C:associateHostedConnection(input: types.AssociateHostedConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateHostedConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateHostedConnection as schema.OperationSchema, input, options) as async.Operation<types.AssociateHostedConnectionOutput>
 end
 
-function C:associateMacSecKey(input: types.AssociateMacSecKeyInput, options: any): async.Operation<types.AssociateMacSecKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateMacSecKey, input, options) as async.Operation<types.AssociateMacSecKeyOutput>
+function C:associateMacSecKey(input: types.AssociateMacSecKeyInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateMacSecKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateMacSecKey as schema.OperationSchema, input, options) as async.Operation<types.AssociateMacSecKeyOutput>
 end
 
-function C:associateVirtualInterface(input: types.AssociateVirtualInterfaceInput, options: any): async.Operation<types.AssociateVirtualInterfaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateVirtualInterface, input, options) as async.Operation<types.AssociateVirtualInterfaceOutput>
+function C:associateVirtualInterface(input: types.AssociateVirtualInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateVirtualInterfaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateVirtualInterface as schema.OperationSchema, input, options) as async.Operation<types.AssociateVirtualInterfaceOutput>
 end
 
-function C:confirmConnection(input: types.ConfirmConnectionInput, options: any): async.Operation<types.ConfirmConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ConfirmConnection, input, options) as async.Operation<types.ConfirmConnectionOutput>
+function C:confirmConnection(input: types.ConfirmConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.ConfirmConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ConfirmConnection as schema.OperationSchema, input, options) as async.Operation<types.ConfirmConnectionOutput>
 end
 
-function C:confirmCustomerAgreement(input: types.ConfirmCustomerAgreementInput, options: any): async.Operation<types.ConfirmCustomerAgreementOutput>
-    return self:invokeOperation(schemas.Service, schemas.ConfirmCustomerAgreement, input, options) as async.Operation<types.ConfirmCustomerAgreementOutput>
+function C:confirmCustomerAgreement(input: types.ConfirmCustomerAgreementInput, options?: base_client.InvokeOptions): async.Operation<types.ConfirmCustomerAgreementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ConfirmCustomerAgreement as schema.OperationSchema, input, options) as async.Operation<types.ConfirmCustomerAgreementOutput>
 end
 
-function C:confirmPrivateVirtualInterface(input: types.ConfirmPrivateVirtualInterfaceInput, options: any): async.Operation<types.ConfirmPrivateVirtualInterfaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ConfirmPrivateVirtualInterface, input, options) as async.Operation<types.ConfirmPrivateVirtualInterfaceOutput>
+function C:confirmPrivateVirtualInterface(input: types.ConfirmPrivateVirtualInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.ConfirmPrivateVirtualInterfaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ConfirmPrivateVirtualInterface as schema.OperationSchema, input, options) as async.Operation<types.ConfirmPrivateVirtualInterfaceOutput>
 end
 
-function C:confirmPublicVirtualInterface(input: types.ConfirmPublicVirtualInterfaceInput, options: any): async.Operation<types.ConfirmPublicVirtualInterfaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ConfirmPublicVirtualInterface, input, options) as async.Operation<types.ConfirmPublicVirtualInterfaceOutput>
+function C:confirmPublicVirtualInterface(input: types.ConfirmPublicVirtualInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.ConfirmPublicVirtualInterfaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ConfirmPublicVirtualInterface as schema.OperationSchema, input, options) as async.Operation<types.ConfirmPublicVirtualInterfaceOutput>
 end
 
-function C:confirmTransitVirtualInterface(input: types.ConfirmTransitVirtualInterfaceInput, options: any): async.Operation<types.ConfirmTransitVirtualInterfaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ConfirmTransitVirtualInterface, input, options) as async.Operation<types.ConfirmTransitVirtualInterfaceOutput>
+function C:confirmTransitVirtualInterface(input: types.ConfirmTransitVirtualInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.ConfirmTransitVirtualInterfaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ConfirmTransitVirtualInterface as schema.OperationSchema, input, options) as async.Operation<types.ConfirmTransitVirtualInterfaceOutput>
 end
 
-function C:createBGPPeer(input: types.CreateBGPPeerInput, options: any): async.Operation<types.CreateBGPPeerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBGPPeer, input, options) as async.Operation<types.CreateBGPPeerOutput>
+function C:createBGPPeer(input: types.CreateBGPPeerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBGPPeerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBGPPeer as schema.OperationSchema, input, options) as async.Operation<types.CreateBGPPeerOutput>
 end
 
-function C:createConnection(input: types.CreateConnectionInput, options: any): async.Operation<types.CreateConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConnection, input, options) as async.Operation<types.CreateConnectionOutput>
+function C:createConnection(input: types.CreateConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConnection as schema.OperationSchema, input, options) as async.Operation<types.CreateConnectionOutput>
 end
 
-function C:createDirectConnectGateway(input: types.CreateDirectConnectGatewayInput, options: any): async.Operation<types.CreateDirectConnectGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDirectConnectGateway, input, options) as async.Operation<types.CreateDirectConnectGatewayOutput>
+function C:createDirectConnectGateway(input: types.CreateDirectConnectGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDirectConnectGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDirectConnectGateway as schema.OperationSchema, input, options) as async.Operation<types.CreateDirectConnectGatewayOutput>
 end
 
-function C:createDirectConnectGatewayAssociation(input: types.CreateDirectConnectGatewayAssociationInput, options: any): async.Operation<types.CreateDirectConnectGatewayAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDirectConnectGatewayAssociation, input, options) as async.Operation<types.CreateDirectConnectGatewayAssociationOutput>
+function C:createDirectConnectGatewayAssociation(input: types.CreateDirectConnectGatewayAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDirectConnectGatewayAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDirectConnectGatewayAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreateDirectConnectGatewayAssociationOutput>
 end
 
-function C:createDirectConnectGatewayAssociationProposal(input: types.CreateDirectConnectGatewayAssociationProposalInput, options: any): async.Operation<types.CreateDirectConnectGatewayAssociationProposalOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDirectConnectGatewayAssociationProposal, input, options) as async.Operation<types.CreateDirectConnectGatewayAssociationProposalOutput>
+function C:createDirectConnectGatewayAssociationProposal(input: types.CreateDirectConnectGatewayAssociationProposalInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDirectConnectGatewayAssociationProposalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDirectConnectGatewayAssociationProposal as schema.OperationSchema, input, options) as async.Operation<types.CreateDirectConnectGatewayAssociationProposalOutput>
 end
 
-function C:createInterconnect(input: types.CreateInterconnectInput, options: any): async.Operation<types.CreateInterconnectOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateInterconnect, input, options) as async.Operation<types.CreateInterconnectOutput>
+function C:createInterconnect(input: types.CreateInterconnectInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInterconnectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInterconnect as schema.OperationSchema, input, options) as async.Operation<types.CreateInterconnectOutput>
 end
 
-function C:createLag(input: types.CreateLagInput, options: any): async.Operation<types.CreateLagOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLag, input, options) as async.Operation<types.CreateLagOutput>
+function C:createLag(input: types.CreateLagInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLagOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLag as schema.OperationSchema, input, options) as async.Operation<types.CreateLagOutput>
 end
 
-function C:createPrivateVirtualInterface(input: types.CreatePrivateVirtualInterfaceInput, options: any): async.Operation<types.CreatePrivateVirtualInterfaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePrivateVirtualInterface, input, options) as async.Operation<types.CreatePrivateVirtualInterfaceOutput>
+function C:createPrivateVirtualInterface(input: types.CreatePrivateVirtualInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePrivateVirtualInterfaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePrivateVirtualInterface as schema.OperationSchema, input, options) as async.Operation<types.CreatePrivateVirtualInterfaceOutput>
 end
 
-function C:createPublicVirtualInterface(input: types.CreatePublicVirtualInterfaceInput, options: any): async.Operation<types.CreatePublicVirtualInterfaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePublicVirtualInterface, input, options) as async.Operation<types.CreatePublicVirtualInterfaceOutput>
+function C:createPublicVirtualInterface(input: types.CreatePublicVirtualInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePublicVirtualInterfaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePublicVirtualInterface as schema.OperationSchema, input, options) as async.Operation<types.CreatePublicVirtualInterfaceOutput>
 end
 
-function C:createTransitVirtualInterface(input: types.CreateTransitVirtualInterfaceInput, options: any): async.Operation<types.CreateTransitVirtualInterfaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTransitVirtualInterface, input, options) as async.Operation<types.CreateTransitVirtualInterfaceOutput>
+function C:createTransitVirtualInterface(input: types.CreateTransitVirtualInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTransitVirtualInterfaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTransitVirtualInterface as schema.OperationSchema, input, options) as async.Operation<types.CreateTransitVirtualInterfaceOutput>
 end
 
-function C:deleteBGPPeer(input: types.DeleteBGPPeerInput, options: any): async.Operation<types.DeleteBGPPeerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBGPPeer, input, options) as async.Operation<types.DeleteBGPPeerOutput>
+function C:deleteBGPPeer(input: types.DeleteBGPPeerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBGPPeerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBGPPeer as schema.OperationSchema, input, options) as async.Operation<types.DeleteBGPPeerOutput>
 end
 
-function C:deleteConnection(input: types.DeleteConnectionInput, options: any): async.Operation<types.DeleteConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConnection, input, options) as async.Operation<types.DeleteConnectionOutput>
+function C:deleteConnection(input: types.DeleteConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConnection as schema.OperationSchema, input, options) as async.Operation<types.DeleteConnectionOutput>
 end
 
-function C:deleteDirectConnectGateway(input: types.DeleteDirectConnectGatewayInput, options: any): async.Operation<types.DeleteDirectConnectGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDirectConnectGateway, input, options) as async.Operation<types.DeleteDirectConnectGatewayOutput>
+function C:deleteDirectConnectGateway(input: types.DeleteDirectConnectGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDirectConnectGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDirectConnectGateway as schema.OperationSchema, input, options) as async.Operation<types.DeleteDirectConnectGatewayOutput>
 end
 
-function C:deleteDirectConnectGatewayAssociation(input: types.DeleteDirectConnectGatewayAssociationInput, options: any): async.Operation<types.DeleteDirectConnectGatewayAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDirectConnectGatewayAssociation, input, options) as async.Operation<types.DeleteDirectConnectGatewayAssociationOutput>
+function C:deleteDirectConnectGatewayAssociation(input: types.DeleteDirectConnectGatewayAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDirectConnectGatewayAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDirectConnectGatewayAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteDirectConnectGatewayAssociationOutput>
 end
 
-function C:deleteDirectConnectGatewayAssociationProposal(input: types.DeleteDirectConnectGatewayAssociationProposalInput, options: any): async.Operation<types.DeleteDirectConnectGatewayAssociationProposalOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDirectConnectGatewayAssociationProposal, input, options) as async.Operation<types.DeleteDirectConnectGatewayAssociationProposalOutput>
+function C:deleteDirectConnectGatewayAssociationProposal(input: types.DeleteDirectConnectGatewayAssociationProposalInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDirectConnectGatewayAssociationProposalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDirectConnectGatewayAssociationProposal as schema.OperationSchema, input, options) as async.Operation<types.DeleteDirectConnectGatewayAssociationProposalOutput>
 end
 
-function C:deleteInterconnect(input: types.DeleteInterconnectInput, options: any): async.Operation<types.DeleteInterconnectOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteInterconnect, input, options) as async.Operation<types.DeleteInterconnectOutput>
+function C:deleteInterconnect(input: types.DeleteInterconnectInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteInterconnectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInterconnect as schema.OperationSchema, input, options) as async.Operation<types.DeleteInterconnectOutput>
 end
 
-function C:deleteLag(input: types.DeleteLagInput, options: any): async.Operation<types.DeleteLagOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLag, input, options) as async.Operation<types.DeleteLagOutput>
+function C:deleteLag(input: types.DeleteLagInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLagOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLag as schema.OperationSchema, input, options) as async.Operation<types.DeleteLagOutput>
 end
 
-function C:deleteVirtualInterface(input: types.DeleteVirtualInterfaceInput, options: any): async.Operation<types.DeleteVirtualInterfaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVirtualInterface, input, options) as async.Operation<types.DeleteVirtualInterfaceOutput>
+function C:deleteVirtualInterface(input: types.DeleteVirtualInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVirtualInterfaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVirtualInterface as schema.OperationSchema, input, options) as async.Operation<types.DeleteVirtualInterfaceOutput>
 end
 
-function C:describeConnectionLoa(input: types.DescribeConnectionLoaInput, options: any): async.Operation<types.DescribeConnectionLoaOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeConnectionLoa, input, options) as async.Operation<types.DescribeConnectionLoaOutput>
+function C:describeConnectionLoa(input: types.DescribeConnectionLoaInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeConnectionLoaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeConnectionLoa as schema.OperationSchema, input, options) as async.Operation<types.DescribeConnectionLoaOutput>
 end
 
-function C:describeConnections(input: types.DescribeConnectionsInput, options: any): async.Operation<types.DescribeConnectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeConnections, input, options) as async.Operation<types.DescribeConnectionsOutput>
+function C:describeConnections(input: types.DescribeConnectionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeConnectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeConnections as schema.OperationSchema, input, options) as async.Operation<types.DescribeConnectionsOutput>
 end
 
-function C:describeConnectionsOnInterconnect(input: types.DescribeConnectionsOnInterconnectInput, options: any): async.Operation<types.DescribeConnectionsOnInterconnectOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeConnectionsOnInterconnect, input, options) as async.Operation<types.DescribeConnectionsOnInterconnectOutput>
+function C:describeConnectionsOnInterconnect(input: types.DescribeConnectionsOnInterconnectInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeConnectionsOnInterconnectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeConnectionsOnInterconnect as schema.OperationSchema, input, options) as async.Operation<types.DescribeConnectionsOnInterconnectOutput>
 end
 
-function C:describeCustomerMetadata(input: types.DescribeCustomerMetadataInput, options: any): async.Operation<types.DescribeCustomerMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCustomerMetadata, input, options) as async.Operation<types.DescribeCustomerMetadataOutput>
+function C:describeCustomerMetadata(input: types.DescribeCustomerMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCustomerMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCustomerMetadata as schema.OperationSchema, input, options) as async.Operation<types.DescribeCustomerMetadataOutput>
 end
 
-function C:describeDirectConnectGatewayAssociationProposals(input: types.DescribeDirectConnectGatewayAssociationProposalsInput, options: any): async.Operation<types.DescribeDirectConnectGatewayAssociationProposalsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDirectConnectGatewayAssociationProposals, input, options) as async.Operation<types.DescribeDirectConnectGatewayAssociationProposalsOutput>
+function C:describeDirectConnectGatewayAssociationProposals(input: types.DescribeDirectConnectGatewayAssociationProposalsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDirectConnectGatewayAssociationProposalsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDirectConnectGatewayAssociationProposals as schema.OperationSchema, input, options) as async.Operation<types.DescribeDirectConnectGatewayAssociationProposalsOutput>
 end
 
-function C:describeDirectConnectGatewayAssociations(input: types.DescribeDirectConnectGatewayAssociationsInput, options: any): async.Operation<types.DescribeDirectConnectGatewayAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDirectConnectGatewayAssociations, input, options) as async.Operation<types.DescribeDirectConnectGatewayAssociationsOutput>
+function C:describeDirectConnectGatewayAssociations(input: types.DescribeDirectConnectGatewayAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDirectConnectGatewayAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDirectConnectGatewayAssociations as schema.OperationSchema, input, options) as async.Operation<types.DescribeDirectConnectGatewayAssociationsOutput>
 end
 
-function C:describeDirectConnectGatewayAttachments(input: types.DescribeDirectConnectGatewayAttachmentsInput, options: any): async.Operation<types.DescribeDirectConnectGatewayAttachmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDirectConnectGatewayAttachments, input, options) as async.Operation<types.DescribeDirectConnectGatewayAttachmentsOutput>
+function C:describeDirectConnectGatewayAttachments(input: types.DescribeDirectConnectGatewayAttachmentsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDirectConnectGatewayAttachmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDirectConnectGatewayAttachments as schema.OperationSchema, input, options) as async.Operation<types.DescribeDirectConnectGatewayAttachmentsOutput>
 end
 
-function C:describeDirectConnectGateways(input: types.DescribeDirectConnectGatewaysInput, options: any): async.Operation<types.DescribeDirectConnectGatewaysOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDirectConnectGateways, input, options) as async.Operation<types.DescribeDirectConnectGatewaysOutput>
+function C:describeDirectConnectGateways(input: types.DescribeDirectConnectGatewaysInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDirectConnectGatewaysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDirectConnectGateways as schema.OperationSchema, input, options) as async.Operation<types.DescribeDirectConnectGatewaysOutput>
 end
 
-function C:describeHostedConnections(input: types.DescribeHostedConnectionsInput, options: any): async.Operation<types.DescribeHostedConnectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeHostedConnections, input, options) as async.Operation<types.DescribeHostedConnectionsOutput>
+function C:describeHostedConnections(input: types.DescribeHostedConnectionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeHostedConnectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeHostedConnections as schema.OperationSchema, input, options) as async.Operation<types.DescribeHostedConnectionsOutput>
 end
 
-function C:describeInterconnectLoa(input: types.DescribeInterconnectLoaInput, options: any): async.Operation<types.DescribeInterconnectLoaOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInterconnectLoa, input, options) as async.Operation<types.DescribeInterconnectLoaOutput>
+function C:describeInterconnectLoa(input: types.DescribeInterconnectLoaInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInterconnectLoaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInterconnectLoa as schema.OperationSchema, input, options) as async.Operation<types.DescribeInterconnectLoaOutput>
 end
 
-function C:describeInterconnects(input: types.DescribeInterconnectsInput, options: any): async.Operation<types.DescribeInterconnectsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInterconnects, input, options) as async.Operation<types.DescribeInterconnectsOutput>
+function C:describeInterconnects(input: types.DescribeInterconnectsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInterconnectsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInterconnects as schema.OperationSchema, input, options) as async.Operation<types.DescribeInterconnectsOutput>
 end
 
-function C:describeLags(input: types.DescribeLagsInput, options: any): async.Operation<types.DescribeLagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLags, input, options) as async.Operation<types.DescribeLagsOutput>
+function C:describeLags(input: types.DescribeLagsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLags as schema.OperationSchema, input, options) as async.Operation<types.DescribeLagsOutput>
 end
 
-function C:describeLoa(input: types.DescribeLoaInput, options: any): async.Operation<types.DescribeLoaOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLoa, input, options) as async.Operation<types.DescribeLoaOutput>
+function C:describeLoa(input: types.DescribeLoaInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLoaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLoa as schema.OperationSchema, input, options) as async.Operation<types.DescribeLoaOutput>
 end
 
-function C:describeLocations(input: types.DescribeLocationsInput, options: any): async.Operation<types.DescribeLocationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLocations, input, options) as async.Operation<types.DescribeLocationsOutput>
+function C:describeLocations(input: types.DescribeLocationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLocationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLocations as schema.OperationSchema, input, options) as async.Operation<types.DescribeLocationsOutput>
 end
 
-function C:describeRouterConfiguration(input: types.DescribeRouterConfigurationInput, options: any): async.Operation<types.DescribeRouterConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRouterConfiguration, input, options) as async.Operation<types.DescribeRouterConfigurationOutput>
+function C:describeRouterConfiguration(input: types.DescribeRouterConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRouterConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRouterConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeRouterConfigurationOutput>
 end
 
-function C:describeTags(input: types.DescribeTagsInput, options: any): async.Operation<types.DescribeTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTags, input, options) as async.Operation<types.DescribeTagsOutput>
+function C:describeTags(input: types.DescribeTagsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTags as schema.OperationSchema, input, options) as async.Operation<types.DescribeTagsOutput>
 end
 
-function C:describeVirtualGateways(input: types.DescribeVirtualGatewaysInput, options: any): async.Operation<types.DescribeVirtualGatewaysOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVirtualGateways, input, options) as async.Operation<types.DescribeVirtualGatewaysOutput>
+function C:describeVirtualGateways(input: types.DescribeVirtualGatewaysInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVirtualGatewaysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVirtualGateways as schema.OperationSchema, input, options) as async.Operation<types.DescribeVirtualGatewaysOutput>
 end
 
-function C:describeVirtualInterfaces(input: types.DescribeVirtualInterfacesInput, options: any): async.Operation<types.DescribeVirtualInterfacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVirtualInterfaces, input, options) as async.Operation<types.DescribeVirtualInterfacesOutput>
+function C:describeVirtualInterfaces(input: types.DescribeVirtualInterfacesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVirtualInterfacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVirtualInterfaces as schema.OperationSchema, input, options) as async.Operation<types.DescribeVirtualInterfacesOutput>
 end
 
-function C:disassociateConnectionFromLag(input: types.DisassociateConnectionFromLagInput, options: any): async.Operation<types.DisassociateConnectionFromLagOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateConnectionFromLag, input, options) as async.Operation<types.DisassociateConnectionFromLagOutput>
+function C:disassociateConnectionFromLag(input: types.DisassociateConnectionFromLagInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateConnectionFromLagOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateConnectionFromLag as schema.OperationSchema, input, options) as async.Operation<types.DisassociateConnectionFromLagOutput>
 end
 
-function C:disassociateMacSecKey(input: types.DisassociateMacSecKeyInput, options: any): async.Operation<types.DisassociateMacSecKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateMacSecKey, input, options) as async.Operation<types.DisassociateMacSecKeyOutput>
+function C:disassociateMacSecKey(input: types.DisassociateMacSecKeyInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateMacSecKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateMacSecKey as schema.OperationSchema, input, options) as async.Operation<types.DisassociateMacSecKeyOutput>
 end
 
-function C:listVirtualInterfaceTestHistory(input: types.ListVirtualInterfaceTestHistoryInput, options: any): async.Operation<types.ListVirtualInterfaceTestHistoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVirtualInterfaceTestHistory, input, options) as async.Operation<types.ListVirtualInterfaceTestHistoryOutput>
+function C:listVirtualInterfaceTestHistory(input: types.ListVirtualInterfaceTestHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.ListVirtualInterfaceTestHistoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVirtualInterfaceTestHistory as schema.OperationSchema, input, options) as async.Operation<types.ListVirtualInterfaceTestHistoryOutput>
 end
 
-function C:startBgpFailoverTest(input: types.StartBgpFailoverTestInput, options: any): async.Operation<types.StartBgpFailoverTestOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartBgpFailoverTest, input, options) as async.Operation<types.StartBgpFailoverTestOutput>
+function C:startBgpFailoverTest(input: types.StartBgpFailoverTestInput, options?: base_client.InvokeOptions): async.Operation<types.StartBgpFailoverTestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartBgpFailoverTest as schema.OperationSchema, input, options) as async.Operation<types.StartBgpFailoverTestOutput>
 end
 
-function C:stopBgpFailoverTest(input: types.StopBgpFailoverTestInput, options: any): async.Operation<types.StopBgpFailoverTestOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopBgpFailoverTest, input, options) as async.Operation<types.StopBgpFailoverTestOutput>
+function C:stopBgpFailoverTest(input: types.StopBgpFailoverTestInput, options?: base_client.InvokeOptions): async.Operation<types.StopBgpFailoverTestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopBgpFailoverTest as schema.OperationSchema, input, options) as async.Operation<types.StopBgpFailoverTestOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateConnection(input: types.UpdateConnectionInput, options: any): async.Operation<types.UpdateConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConnection, input, options) as async.Operation<types.UpdateConnectionOutput>
+function C:updateConnection(input: types.UpdateConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConnection as schema.OperationSchema, input, options) as async.Operation<types.UpdateConnectionOutput>
 end
 
-function C:updateDirectConnectGateway(input: types.UpdateDirectConnectGatewayInput, options: any): async.Operation<types.UpdateDirectConnectGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDirectConnectGateway, input, options) as async.Operation<types.UpdateDirectConnectGatewayOutput>
+function C:updateDirectConnectGateway(input: types.UpdateDirectConnectGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDirectConnectGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDirectConnectGateway as schema.OperationSchema, input, options) as async.Operation<types.UpdateDirectConnectGatewayOutput>
 end
 
-function C:updateDirectConnectGatewayAssociation(input: types.UpdateDirectConnectGatewayAssociationInput, options: any): async.Operation<types.UpdateDirectConnectGatewayAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDirectConnectGatewayAssociation, input, options) as async.Operation<types.UpdateDirectConnectGatewayAssociationOutput>
+function C:updateDirectConnectGatewayAssociation(input: types.UpdateDirectConnectGatewayAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDirectConnectGatewayAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDirectConnectGatewayAssociation as schema.OperationSchema, input, options) as async.Operation<types.UpdateDirectConnectGatewayAssociationOutput>
 end
 
-function C:updateLag(input: types.UpdateLagInput, options: any): async.Operation<types.UpdateLagOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLag, input, options) as async.Operation<types.UpdateLagOutput>
+function C:updateLag(input: types.UpdateLagInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLagOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLag as schema.OperationSchema, input, options) as async.Operation<types.UpdateLagOutput>
 end
 
-function C:updateVirtualInterfaceAttributes(input: types.UpdateVirtualInterfaceAttributesInput, options: any): async.Operation<types.UpdateVirtualInterfaceAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateVirtualInterfaceAttributes, input, options) as async.Operation<types.UpdateVirtualInterfaceAttributesOutput>
+function C:updateVirtualInterfaceAttributes(input: types.UpdateVirtualInterfaceAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateVirtualInterfaceAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateVirtualInterfaceAttributes as schema.OperationSchema, input, options) as async.Operation<types.UpdateVirtualInterfaceAttributesOutput>
 end
 
 return M

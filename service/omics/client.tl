@@ -8,146 +8,149 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("omics.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("omics.schemas")
 local traits = require("smithy.traits")
 local types = require("omics.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    abortMultipartReadSetUpload: function(Client, types.AbortMultipartReadSetUploadInput, any): async.Operation<types.AbortMultipartReadSetUploadOutput>
-    acceptShare: function(Client, types.AcceptShareInput, any): async.Operation<types.AcceptShareOutput>
-    batchDeleteReadSet: function(Client, types.BatchDeleteReadSetInput, any): async.Operation<types.BatchDeleteReadSetOutput>
-    cancelAnnotationImportJob: function(Client, types.CancelAnnotationImportJobInput, any): async.Operation<types.CancelAnnotationImportJobOutput>
-    cancelRun: function(Client, types.CancelRunInput, any): async.Operation<types.CancelRunOutput>
-    cancelRunBatch: function(Client, types.CancelRunBatchInput, any): async.Operation<types.CancelRunBatchOutput>
-    cancelVariantImportJob: function(Client, types.CancelVariantImportJobInput, any): async.Operation<types.CancelVariantImportJobOutput>
-    completeMultipartReadSetUpload: function(Client, types.CompleteMultipartReadSetUploadInput, any): async.Operation<types.CompleteMultipartReadSetUploadOutput>
-    createAnnotationStore: function(Client, types.CreateAnnotationStoreInput, any): async.Operation<types.CreateAnnotationStoreOutput>
-    createAnnotationStoreVersion: function(Client, types.CreateAnnotationStoreVersionInput, any): async.Operation<types.CreateAnnotationStoreVersionOutput>
-    createConfiguration: function(Client, types.CreateConfigurationInput, any): async.Operation<types.CreateConfigurationOutput>
-    createMultipartReadSetUpload: function(Client, types.CreateMultipartReadSetUploadInput, any): async.Operation<types.CreateMultipartReadSetUploadOutput>
-    createReferenceStore: function(Client, types.CreateReferenceStoreInput, any): async.Operation<types.CreateReferenceStoreOutput>
-    createRunCache: function(Client, types.CreateRunCacheInput, any): async.Operation<types.CreateRunCacheOutput>
-    createRunGroup: function(Client, types.CreateRunGroupInput, any): async.Operation<types.CreateRunGroupOutput>
-    createSequenceStore: function(Client, types.CreateSequenceStoreInput, any): async.Operation<types.CreateSequenceStoreOutput>
-    createShare: function(Client, types.CreateShareInput, any): async.Operation<types.CreateShareOutput>
-    createVariantStore: function(Client, types.CreateVariantStoreInput, any): async.Operation<types.CreateVariantStoreOutput>
-    createWorkflow: function(Client, types.CreateWorkflowInput, any): async.Operation<types.CreateWorkflowOutput>
-    createWorkflowVersion: function(Client, types.CreateWorkflowVersionInput, any): async.Operation<types.CreateWorkflowVersionOutput>
-    deleteAnnotationStore: function(Client, types.DeleteAnnotationStoreInput, any): async.Operation<types.DeleteAnnotationStoreOutput>
-    deleteAnnotationStoreVersions: function(Client, types.DeleteAnnotationStoreVersionsInput, any): async.Operation<types.DeleteAnnotationStoreVersionsOutput>
-    deleteBatch: function(Client, types.DeleteBatchInput, any): async.Operation<types.DeleteBatchOutput>
-    deleteConfiguration: function(Client, types.DeleteConfigurationInput, any): async.Operation<types.DeleteConfigurationOutput>
-    deleteReference: function(Client, types.DeleteReferenceInput, any): async.Operation<types.DeleteReferenceOutput>
-    deleteReferenceStore: function(Client, types.DeleteReferenceStoreInput, any): async.Operation<types.DeleteReferenceStoreOutput>
-    deleteRun: function(Client, types.DeleteRunInput, any): async.Operation<types.DeleteRunOutput>
-    deleteRunBatch: function(Client, types.DeleteRunBatchInput, any): async.Operation<types.DeleteRunBatchOutput>
-    deleteRunCache: function(Client, types.DeleteRunCacheInput, any): async.Operation<types.DeleteRunCacheOutput>
-    deleteRunGroup: function(Client, types.DeleteRunGroupInput, any): async.Operation<types.DeleteRunGroupOutput>
-    deleteS3AccessPolicy: function(Client, types.DeleteS3AccessPolicyInput, any): async.Operation<types.DeleteS3AccessPolicyOutput>
-    deleteSequenceStore: function(Client, types.DeleteSequenceStoreInput, any): async.Operation<types.DeleteSequenceStoreOutput>
-    deleteShare: function(Client, types.DeleteShareInput, any): async.Operation<types.DeleteShareOutput>
-    deleteVariantStore: function(Client, types.DeleteVariantStoreInput, any): async.Operation<types.DeleteVariantStoreOutput>
-    deleteWorkflow: function(Client, types.DeleteWorkflowInput, any): async.Operation<types.DeleteWorkflowOutput>
-    deleteWorkflowVersion: function(Client, types.DeleteWorkflowVersionInput, any): async.Operation<types.DeleteWorkflowVersionOutput>
-    getAnnotationImportJob: function(Client, types.GetAnnotationImportJobInput, any): async.Operation<types.GetAnnotationImportJobOutput>
-    getAnnotationStore: function(Client, types.GetAnnotationStoreInput, any): async.Operation<types.GetAnnotationStoreOutput>
-    getAnnotationStoreVersion: function(Client, types.GetAnnotationStoreVersionInput, any): async.Operation<types.GetAnnotationStoreVersionOutput>
-    getBatch: function(Client, types.GetBatchInput, any): async.Operation<types.GetBatchOutput>
-    getConfiguration: function(Client, types.GetConfigurationInput, any): async.Operation<types.GetConfigurationOutput>
-    getReadSet: function(Client, types.GetReadSetInput, any): async.Operation<types.GetReadSetOutput>
-    getReadSetActivationJob: function(Client, types.GetReadSetActivationJobInput, any): async.Operation<types.GetReadSetActivationJobOutput>
-    getReadSetExportJob: function(Client, types.GetReadSetExportJobInput, any): async.Operation<types.GetReadSetExportJobOutput>
-    getReadSetImportJob: function(Client, types.GetReadSetImportJobInput, any): async.Operation<types.GetReadSetImportJobOutput>
-    getReadSetMetadata: function(Client, types.GetReadSetMetadataInput, any): async.Operation<types.GetReadSetMetadataOutput>
-    getReference: function(Client, types.GetReferenceInput, any): async.Operation<types.GetReferenceOutput>
-    getReferenceImportJob: function(Client, types.GetReferenceImportJobInput, any): async.Operation<types.GetReferenceImportJobOutput>
-    getReferenceMetadata: function(Client, types.GetReferenceMetadataInput, any): async.Operation<types.GetReferenceMetadataOutput>
-    getReferenceStore: function(Client, types.GetReferenceStoreInput, any): async.Operation<types.GetReferenceStoreOutput>
-    getRun: function(Client, types.GetRunInput, any): async.Operation<types.GetRunOutput>
-    getRunCache: function(Client, types.GetRunCacheInput, any): async.Operation<types.GetRunCacheOutput>
-    getRunGroup: function(Client, types.GetRunGroupInput, any): async.Operation<types.GetRunGroupOutput>
-    getRunTask: function(Client, types.GetRunTaskInput, any): async.Operation<types.GetRunTaskOutput>
-    getS3AccessPolicy: function(Client, types.GetS3AccessPolicyInput, any): async.Operation<types.GetS3AccessPolicyOutput>
-    getSequenceStore: function(Client, types.GetSequenceStoreInput, any): async.Operation<types.GetSequenceStoreOutput>
-    getShare: function(Client, types.GetShareInput, any): async.Operation<types.GetShareOutput>
-    getVariantImportJob: function(Client, types.GetVariantImportJobInput, any): async.Operation<types.GetVariantImportJobOutput>
-    getVariantStore: function(Client, types.GetVariantStoreInput, any): async.Operation<types.GetVariantStoreOutput>
-    getWorkflow: function(Client, types.GetWorkflowInput, any): async.Operation<types.GetWorkflowOutput>
-    getWorkflowVersion: function(Client, types.GetWorkflowVersionInput, any): async.Operation<types.GetWorkflowVersionOutput>
-    listAnnotationImportJobs: function(Client, types.ListAnnotationImportJobsInput, any): async.Operation<types.ListAnnotationImportJobsOutput>
-    listAnnotationStores: function(Client, types.ListAnnotationStoresInput, any): async.Operation<types.ListAnnotationStoresOutput>
-    listAnnotationStoreVersions: function(Client, types.ListAnnotationStoreVersionsInput, any): async.Operation<types.ListAnnotationStoreVersionsOutput>
-    listBatch: function(Client, types.ListBatchInput, any): async.Operation<types.ListBatchOutput>
-    listConfigurations: function(Client, types.ListConfigurationsInput, any): async.Operation<types.ListConfigurationsOutput>
-    listMultipartReadSetUploads: function(Client, types.ListMultipartReadSetUploadsInput, any): async.Operation<types.ListMultipartReadSetUploadsOutput>
-    listReadSetActivationJobs: function(Client, types.ListReadSetActivationJobsInput, any): async.Operation<types.ListReadSetActivationJobsOutput>
-    listReadSetExportJobs: function(Client, types.ListReadSetExportJobsInput, any): async.Operation<types.ListReadSetExportJobsOutput>
-    listReadSetImportJobs: function(Client, types.ListReadSetImportJobsInput, any): async.Operation<types.ListReadSetImportJobsOutput>
-    listReadSets: function(Client, types.ListReadSetsInput, any): async.Operation<types.ListReadSetsOutput>
-    listReadSetUploadParts: function(Client, types.ListReadSetUploadPartsInput, any): async.Operation<types.ListReadSetUploadPartsOutput>
-    listReferenceImportJobs: function(Client, types.ListReferenceImportJobsInput, any): async.Operation<types.ListReferenceImportJobsOutput>
-    listReferences: function(Client, types.ListReferencesInput, any): async.Operation<types.ListReferencesOutput>
-    listReferenceStores: function(Client, types.ListReferenceStoresInput, any): async.Operation<types.ListReferenceStoresOutput>
-    listRunCaches: function(Client, types.ListRunCachesInput, any): async.Operation<types.ListRunCachesOutput>
-    listRunGroups: function(Client, types.ListRunGroupsInput, any): async.Operation<types.ListRunGroupsOutput>
-    listRuns: function(Client, types.ListRunsInput, any): async.Operation<types.ListRunsOutput>
-    listRunsInBatch: function(Client, types.ListRunsInBatchInput, any): async.Operation<types.ListRunsInBatchOutput>
-    listRunTasks: function(Client, types.ListRunTasksInput, any): async.Operation<types.ListRunTasksOutput>
-    listSequenceStores: function(Client, types.ListSequenceStoresInput, any): async.Operation<types.ListSequenceStoresOutput>
-    listShares: function(Client, types.ListSharesInput, any): async.Operation<types.ListSharesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listVariantImportJobs: function(Client, types.ListVariantImportJobsInput, any): async.Operation<types.ListVariantImportJobsOutput>
-    listVariantStores: function(Client, types.ListVariantStoresInput, any): async.Operation<types.ListVariantStoresOutput>
-    listWorkflows: function(Client, types.ListWorkflowsInput, any): async.Operation<types.ListWorkflowsOutput>
-    listWorkflowVersions: function(Client, types.ListWorkflowVersionsInput, any): async.Operation<types.ListWorkflowVersionsOutput>
-    putS3AccessPolicy: function(Client, types.PutS3AccessPolicyInput, any): async.Operation<types.PutS3AccessPolicyOutput>
-    startAnnotationImportJob: function(Client, types.StartAnnotationImportJobInput, any): async.Operation<types.StartAnnotationImportJobOutput>
-    startReadSetActivationJob: function(Client, types.StartReadSetActivationJobInput, any): async.Operation<types.StartReadSetActivationJobOutput>
-    startReadSetExportJob: function(Client, types.StartReadSetExportJobInput, any): async.Operation<types.StartReadSetExportJobOutput>
-    startReadSetImportJob: function(Client, types.StartReadSetImportJobInput, any): async.Operation<types.StartReadSetImportJobOutput>
-    startReferenceImportJob: function(Client, types.StartReferenceImportJobInput, any): async.Operation<types.StartReferenceImportJobOutput>
-    startRun: function(Client, types.StartRunInput, any): async.Operation<types.StartRunOutput>
-    startRunBatch: function(Client, types.StartRunBatchInput, any): async.Operation<types.StartRunBatchOutput>
-    startVariantImportJob: function(Client, types.StartVariantImportJobInput, any): async.Operation<types.StartVariantImportJobOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAnnotationStore: function(Client, types.UpdateAnnotationStoreInput, any): async.Operation<types.UpdateAnnotationStoreOutput>
-    updateAnnotationStoreVersion: function(Client, types.UpdateAnnotationStoreVersionInput, any): async.Operation<types.UpdateAnnotationStoreVersionOutput>
-    updateRunCache: function(Client, types.UpdateRunCacheInput, any): async.Operation<types.UpdateRunCacheOutput>
-    updateRunGroup: function(Client, types.UpdateRunGroupInput, any): async.Operation<types.UpdateRunGroupOutput>
-    updateSequenceStore: function(Client, types.UpdateSequenceStoreInput, any): async.Operation<types.UpdateSequenceStoreOutput>
-    updateVariantStore: function(Client, types.UpdateVariantStoreInput, any): async.Operation<types.UpdateVariantStoreOutput>
-    updateWorkflow: function(Client, types.UpdateWorkflowInput, any): async.Operation<types.UpdateWorkflowOutput>
-    updateWorkflowVersion: function(Client, types.UpdateWorkflowVersionInput, any): async.Operation<types.UpdateWorkflowVersionOutput>
-    uploadReadSetPart: function(Client, types.UploadReadSetPartInput, any): async.Operation<types.UploadReadSetPartOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    abortMultipartReadSetUpload: function(Client, types.AbortMultipartReadSetUploadInput, ? base_client.InvokeOptions): async.Operation<types.AbortMultipartReadSetUploadOutput>
+    acceptShare: function(Client, types.AcceptShareInput, ? base_client.InvokeOptions): async.Operation<types.AcceptShareOutput>
+    batchDeleteReadSet: function(Client, types.BatchDeleteReadSetInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteReadSetOutput>
+    cancelAnnotationImportJob: function(Client, types.CancelAnnotationImportJobInput, ? base_client.InvokeOptions): async.Operation<types.CancelAnnotationImportJobOutput>
+    cancelRun: function(Client, types.CancelRunInput, ? base_client.InvokeOptions): async.Operation<types.CancelRunOutput>
+    cancelRunBatch: function(Client, types.CancelRunBatchInput, ? base_client.InvokeOptions): async.Operation<types.CancelRunBatchOutput>
+    cancelVariantImportJob: function(Client, types.CancelVariantImportJobInput, ? base_client.InvokeOptions): async.Operation<types.CancelVariantImportJobOutput>
+    completeMultipartReadSetUpload: function(Client, types.CompleteMultipartReadSetUploadInput, ? base_client.InvokeOptions): async.Operation<types.CompleteMultipartReadSetUploadOutput>
+    createAnnotationStore: function(Client, types.CreateAnnotationStoreInput, ? base_client.InvokeOptions): async.Operation<types.CreateAnnotationStoreOutput>
+    createAnnotationStoreVersion: function(Client, types.CreateAnnotationStoreVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateAnnotationStoreVersionOutput>
+    createConfiguration: function(Client, types.CreateConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfigurationOutput>
+    createMultipartReadSetUpload: function(Client, types.CreateMultipartReadSetUploadInput, ? base_client.InvokeOptions): async.Operation<types.CreateMultipartReadSetUploadOutput>
+    createReferenceStore: function(Client, types.CreateReferenceStoreInput, ? base_client.InvokeOptions): async.Operation<types.CreateReferenceStoreOutput>
+    createRunCache: function(Client, types.CreateRunCacheInput, ? base_client.InvokeOptions): async.Operation<types.CreateRunCacheOutput>
+    createRunGroup: function(Client, types.CreateRunGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateRunGroupOutput>
+    createSequenceStore: function(Client, types.CreateSequenceStoreInput, ? base_client.InvokeOptions): async.Operation<types.CreateSequenceStoreOutput>
+    createShare: function(Client, types.CreateShareInput, ? base_client.InvokeOptions): async.Operation<types.CreateShareOutput>
+    createVariantStore: function(Client, types.CreateVariantStoreInput, ? base_client.InvokeOptions): async.Operation<types.CreateVariantStoreOutput>
+    createWorkflow: function(Client, types.CreateWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkflowOutput>
+    createWorkflowVersion: function(Client, types.CreateWorkflowVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkflowVersionOutput>
+    deleteAnnotationStore: function(Client, types.DeleteAnnotationStoreInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAnnotationStoreOutput>
+    deleteAnnotationStoreVersions: function(Client, types.DeleteAnnotationStoreVersionsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAnnotationStoreVersionsOutput>
+    deleteBatch: function(Client, types.DeleteBatchInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBatchOutput>
+    deleteConfiguration: function(Client, types.DeleteConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfigurationOutput>
+    deleteReference: function(Client, types.DeleteReferenceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteReferenceOutput>
+    deleteReferenceStore: function(Client, types.DeleteReferenceStoreInput, ? base_client.InvokeOptions): async.Operation<types.DeleteReferenceStoreOutput>
+    deleteRun: function(Client, types.DeleteRunInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRunOutput>
+    deleteRunBatch: function(Client, types.DeleteRunBatchInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRunBatchOutput>
+    deleteRunCache: function(Client, types.DeleteRunCacheInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRunCacheOutput>
+    deleteRunGroup: function(Client, types.DeleteRunGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRunGroupOutput>
+    deleteS3AccessPolicy: function(Client, types.DeleteS3AccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteS3AccessPolicyOutput>
+    deleteSequenceStore: function(Client, types.DeleteSequenceStoreInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSequenceStoreOutput>
+    deleteShare: function(Client, types.DeleteShareInput, ? base_client.InvokeOptions): async.Operation<types.DeleteShareOutput>
+    deleteVariantStore: function(Client, types.DeleteVariantStoreInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVariantStoreOutput>
+    deleteWorkflow: function(Client, types.DeleteWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWorkflowOutput>
+    deleteWorkflowVersion: function(Client, types.DeleteWorkflowVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWorkflowVersionOutput>
+    getAnnotationImportJob: function(Client, types.GetAnnotationImportJobInput, ? base_client.InvokeOptions): async.Operation<types.GetAnnotationImportJobOutput>
+    getAnnotationStore: function(Client, types.GetAnnotationStoreInput, ? base_client.InvokeOptions): async.Operation<types.GetAnnotationStoreOutput>
+    getAnnotationStoreVersion: function(Client, types.GetAnnotationStoreVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetAnnotationStoreVersionOutput>
+    getBatch: function(Client, types.GetBatchInput, ? base_client.InvokeOptions): async.Operation<types.GetBatchOutput>
+    getConfiguration: function(Client, types.GetConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetConfigurationOutput>
+    getReadSet: function(Client, types.GetReadSetInput, ? base_client.InvokeOptions): async.Operation<types.GetReadSetOutput>
+    getReadSetActivationJob: function(Client, types.GetReadSetActivationJobInput, ? base_client.InvokeOptions): async.Operation<types.GetReadSetActivationJobOutput>
+    getReadSetExportJob: function(Client, types.GetReadSetExportJobInput, ? base_client.InvokeOptions): async.Operation<types.GetReadSetExportJobOutput>
+    getReadSetImportJob: function(Client, types.GetReadSetImportJobInput, ? base_client.InvokeOptions): async.Operation<types.GetReadSetImportJobOutput>
+    getReadSetMetadata: function(Client, types.GetReadSetMetadataInput, ? base_client.InvokeOptions): async.Operation<types.GetReadSetMetadataOutput>
+    getReference: function(Client, types.GetReferenceInput, ? base_client.InvokeOptions): async.Operation<types.GetReferenceOutput>
+    getReferenceImportJob: function(Client, types.GetReferenceImportJobInput, ? base_client.InvokeOptions): async.Operation<types.GetReferenceImportJobOutput>
+    getReferenceMetadata: function(Client, types.GetReferenceMetadataInput, ? base_client.InvokeOptions): async.Operation<types.GetReferenceMetadataOutput>
+    getReferenceStore: function(Client, types.GetReferenceStoreInput, ? base_client.InvokeOptions): async.Operation<types.GetReferenceStoreOutput>
+    getRun: function(Client, types.GetRunInput, ? base_client.InvokeOptions): async.Operation<types.GetRunOutput>
+    getRunCache: function(Client, types.GetRunCacheInput, ? base_client.InvokeOptions): async.Operation<types.GetRunCacheOutput>
+    getRunGroup: function(Client, types.GetRunGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetRunGroupOutput>
+    getRunTask: function(Client, types.GetRunTaskInput, ? base_client.InvokeOptions): async.Operation<types.GetRunTaskOutput>
+    getS3AccessPolicy: function(Client, types.GetS3AccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetS3AccessPolicyOutput>
+    getSequenceStore: function(Client, types.GetSequenceStoreInput, ? base_client.InvokeOptions): async.Operation<types.GetSequenceStoreOutput>
+    getShare: function(Client, types.GetShareInput, ? base_client.InvokeOptions): async.Operation<types.GetShareOutput>
+    getVariantImportJob: function(Client, types.GetVariantImportJobInput, ? base_client.InvokeOptions): async.Operation<types.GetVariantImportJobOutput>
+    getVariantStore: function(Client, types.GetVariantStoreInput, ? base_client.InvokeOptions): async.Operation<types.GetVariantStoreOutput>
+    getWorkflow: function(Client, types.GetWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkflowOutput>
+    getWorkflowVersion: function(Client, types.GetWorkflowVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkflowVersionOutput>
+    listAnnotationImportJobs: function(Client, types.ListAnnotationImportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListAnnotationImportJobsOutput>
+    listAnnotationStores: function(Client, types.ListAnnotationStoresInput, ? base_client.InvokeOptions): async.Operation<types.ListAnnotationStoresOutput>
+    listAnnotationStoreVersions: function(Client, types.ListAnnotationStoreVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListAnnotationStoreVersionsOutput>
+    listBatch: function(Client, types.ListBatchInput, ? base_client.InvokeOptions): async.Operation<types.ListBatchOutput>
+    listConfigurations: function(Client, types.ListConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListConfigurationsOutput>
+    listMultipartReadSetUploads: function(Client, types.ListMultipartReadSetUploadsInput, ? base_client.InvokeOptions): async.Operation<types.ListMultipartReadSetUploadsOutput>
+    listReadSetActivationJobs: function(Client, types.ListReadSetActivationJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListReadSetActivationJobsOutput>
+    listReadSetExportJobs: function(Client, types.ListReadSetExportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListReadSetExportJobsOutput>
+    listReadSetImportJobs: function(Client, types.ListReadSetImportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListReadSetImportJobsOutput>
+    listReadSets: function(Client, types.ListReadSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListReadSetsOutput>
+    listReadSetUploadParts: function(Client, types.ListReadSetUploadPartsInput, ? base_client.InvokeOptions): async.Operation<types.ListReadSetUploadPartsOutput>
+    listReferenceImportJobs: function(Client, types.ListReferenceImportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListReferenceImportJobsOutput>
+    listReferences: function(Client, types.ListReferencesInput, ? base_client.InvokeOptions): async.Operation<types.ListReferencesOutput>
+    listReferenceStores: function(Client, types.ListReferenceStoresInput, ? base_client.InvokeOptions): async.Operation<types.ListReferenceStoresOutput>
+    listRunCaches: function(Client, types.ListRunCachesInput, ? base_client.InvokeOptions): async.Operation<types.ListRunCachesOutput>
+    listRunGroups: function(Client, types.ListRunGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListRunGroupsOutput>
+    listRuns: function(Client, types.ListRunsInput, ? base_client.InvokeOptions): async.Operation<types.ListRunsOutput>
+    listRunsInBatch: function(Client, types.ListRunsInBatchInput, ? base_client.InvokeOptions): async.Operation<types.ListRunsInBatchOutput>
+    listRunTasks: function(Client, types.ListRunTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListRunTasksOutput>
+    listSequenceStores: function(Client, types.ListSequenceStoresInput, ? base_client.InvokeOptions): async.Operation<types.ListSequenceStoresOutput>
+    listShares: function(Client, types.ListSharesInput, ? base_client.InvokeOptions): async.Operation<types.ListSharesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listVariantImportJobs: function(Client, types.ListVariantImportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListVariantImportJobsOutput>
+    listVariantStores: function(Client, types.ListVariantStoresInput, ? base_client.InvokeOptions): async.Operation<types.ListVariantStoresOutput>
+    listWorkflows: function(Client, types.ListWorkflowsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkflowsOutput>
+    listWorkflowVersions: function(Client, types.ListWorkflowVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkflowVersionsOutput>
+    putS3AccessPolicy: function(Client, types.PutS3AccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutS3AccessPolicyOutput>
+    startAnnotationImportJob: function(Client, types.StartAnnotationImportJobInput, ? base_client.InvokeOptions): async.Operation<types.StartAnnotationImportJobOutput>
+    startReadSetActivationJob: function(Client, types.StartReadSetActivationJobInput, ? base_client.InvokeOptions): async.Operation<types.StartReadSetActivationJobOutput>
+    startReadSetExportJob: function(Client, types.StartReadSetExportJobInput, ? base_client.InvokeOptions): async.Operation<types.StartReadSetExportJobOutput>
+    startReadSetImportJob: function(Client, types.StartReadSetImportJobInput, ? base_client.InvokeOptions): async.Operation<types.StartReadSetImportJobOutput>
+    startReferenceImportJob: function(Client, types.StartReferenceImportJobInput, ? base_client.InvokeOptions): async.Operation<types.StartReferenceImportJobOutput>
+    startRun: function(Client, types.StartRunInput, ? base_client.InvokeOptions): async.Operation<types.StartRunOutput>
+    startRunBatch: function(Client, types.StartRunBatchInput, ? base_client.InvokeOptions): async.Operation<types.StartRunBatchOutput>
+    startVariantImportJob: function(Client, types.StartVariantImportJobInput, ? base_client.InvokeOptions): async.Operation<types.StartVariantImportJobOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAnnotationStore: function(Client, types.UpdateAnnotationStoreInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAnnotationStoreOutput>
+    updateAnnotationStoreVersion: function(Client, types.UpdateAnnotationStoreVersionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAnnotationStoreVersionOutput>
+    updateRunCache: function(Client, types.UpdateRunCacheInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRunCacheOutput>
+    updateRunGroup: function(Client, types.UpdateRunGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRunGroupOutput>
+    updateSequenceStore: function(Client, types.UpdateSequenceStoreInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSequenceStoreOutput>
+    updateVariantStore: function(Client, types.UpdateVariantStoreInput, ? base_client.InvokeOptions): async.Operation<types.UpdateVariantStoreOutput>
+    updateWorkflow: function(Client, types.UpdateWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWorkflowOutput>
+    updateWorkflowVersion: function(Client, types.UpdateWorkflowVersionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWorkflowVersionOutput>
+    uploadReadSetPart: function(Client, types.UploadReadSetPartInput, ? base_client.InvokeOptions): async.Operation<types.UploadReadSetPartOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "Omics"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "omics", signing_region = c.region } }
                 else
@@ -166,432 +169,432 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:abortMultipartReadSetUpload(input: types.AbortMultipartReadSetUploadInput, options: any): async.Operation<types.AbortMultipartReadSetUploadOutput>
-    return self:invokeOperation(schemas.Service, schemas.AbortMultipartReadSetUpload, input, options) as async.Operation<types.AbortMultipartReadSetUploadOutput>
+function C:abortMultipartReadSetUpload(input: types.AbortMultipartReadSetUploadInput, options?: base_client.InvokeOptions): async.Operation<types.AbortMultipartReadSetUploadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AbortMultipartReadSetUpload as schema.OperationSchema, input, options) as async.Operation<types.AbortMultipartReadSetUploadOutput>
 end
 
-function C:acceptShare(input: types.AcceptShareInput, options: any): async.Operation<types.AcceptShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptShare, input, options) as async.Operation<types.AcceptShareOutput>
+function C:acceptShare(input: types.AcceptShareInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptShare as schema.OperationSchema, input, options) as async.Operation<types.AcceptShareOutput>
 end
 
-function C:batchDeleteReadSet(input: types.BatchDeleteReadSetInput, options: any): async.Operation<types.BatchDeleteReadSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDeleteReadSet, input, options) as async.Operation<types.BatchDeleteReadSetOutput>
+function C:batchDeleteReadSet(input: types.BatchDeleteReadSetInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteReadSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteReadSet as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteReadSetOutput>
 end
 
-function C:cancelAnnotationImportJob(input: types.CancelAnnotationImportJobInput, options: any): async.Operation<types.CancelAnnotationImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelAnnotationImportJob, input, options) as async.Operation<types.CancelAnnotationImportJobOutput>
+function C:cancelAnnotationImportJob(input: types.CancelAnnotationImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.CancelAnnotationImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelAnnotationImportJob as schema.OperationSchema, input, options) as async.Operation<types.CancelAnnotationImportJobOutput>
 end
 
-function C:cancelRun(input: types.CancelRunInput, options: any): async.Operation<types.CancelRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelRun, input, options) as async.Operation<types.CancelRunOutput>
+function C:cancelRun(input: types.CancelRunInput, options?: base_client.InvokeOptions): async.Operation<types.CancelRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelRun as schema.OperationSchema, input, options) as async.Operation<types.CancelRunOutput>
 end
 
-function C:cancelRunBatch(input: types.CancelRunBatchInput, options: any): async.Operation<types.CancelRunBatchOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelRunBatch, input, options) as async.Operation<types.CancelRunBatchOutput>
+function C:cancelRunBatch(input: types.CancelRunBatchInput, options?: base_client.InvokeOptions): async.Operation<types.CancelRunBatchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelRunBatch as schema.OperationSchema, input, options) as async.Operation<types.CancelRunBatchOutput>
 end
 
-function C:cancelVariantImportJob(input: types.CancelVariantImportJobInput, options: any): async.Operation<types.CancelVariantImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelVariantImportJob, input, options) as async.Operation<types.CancelVariantImportJobOutput>
+function C:cancelVariantImportJob(input: types.CancelVariantImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.CancelVariantImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelVariantImportJob as schema.OperationSchema, input, options) as async.Operation<types.CancelVariantImportJobOutput>
 end
 
-function C:completeMultipartReadSetUpload(input: types.CompleteMultipartReadSetUploadInput, options: any): async.Operation<types.CompleteMultipartReadSetUploadOutput>
-    return self:invokeOperation(schemas.Service, schemas.CompleteMultipartReadSetUpload, input, options) as async.Operation<types.CompleteMultipartReadSetUploadOutput>
+function C:completeMultipartReadSetUpload(input: types.CompleteMultipartReadSetUploadInput, options?: base_client.InvokeOptions): async.Operation<types.CompleteMultipartReadSetUploadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CompleteMultipartReadSetUpload as schema.OperationSchema, input, options) as async.Operation<types.CompleteMultipartReadSetUploadOutput>
 end
 
-function C:createAnnotationStore(input: types.CreateAnnotationStoreInput, options: any): async.Operation<types.CreateAnnotationStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAnnotationStore, input, options) as async.Operation<types.CreateAnnotationStoreOutput>
+function C:createAnnotationStore(input: types.CreateAnnotationStoreInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAnnotationStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAnnotationStore as schema.OperationSchema, input, options) as async.Operation<types.CreateAnnotationStoreOutput>
 end
 
-function C:createAnnotationStoreVersion(input: types.CreateAnnotationStoreVersionInput, options: any): async.Operation<types.CreateAnnotationStoreVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAnnotationStoreVersion, input, options) as async.Operation<types.CreateAnnotationStoreVersionOutput>
+function C:createAnnotationStoreVersion(input: types.CreateAnnotationStoreVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAnnotationStoreVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAnnotationStoreVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateAnnotationStoreVersionOutput>
 end
 
-function C:createConfiguration(input: types.CreateConfigurationInput, options: any): async.Operation<types.CreateConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConfiguration, input, options) as async.Operation<types.CreateConfigurationOutput>
+function C:createConfiguration(input: types.CreateConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateConfigurationOutput>
 end
 
-function C:createMultipartReadSetUpload(input: types.CreateMultipartReadSetUploadInput, options: any): async.Operation<types.CreateMultipartReadSetUploadOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMultipartReadSetUpload, input, options) as async.Operation<types.CreateMultipartReadSetUploadOutput>
+function C:createMultipartReadSetUpload(input: types.CreateMultipartReadSetUploadInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMultipartReadSetUploadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMultipartReadSetUpload as schema.OperationSchema, input, options) as async.Operation<types.CreateMultipartReadSetUploadOutput>
 end
 
-function C:createReferenceStore(input: types.CreateReferenceStoreInput, options: any): async.Operation<types.CreateReferenceStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateReferenceStore, input, options) as async.Operation<types.CreateReferenceStoreOutput>
+function C:createReferenceStore(input: types.CreateReferenceStoreInput, options?: base_client.InvokeOptions): async.Operation<types.CreateReferenceStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateReferenceStore as schema.OperationSchema, input, options) as async.Operation<types.CreateReferenceStoreOutput>
 end
 
-function C:createRunCache(input: types.CreateRunCacheInput, options: any): async.Operation<types.CreateRunCacheOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRunCache, input, options) as async.Operation<types.CreateRunCacheOutput>
+function C:createRunCache(input: types.CreateRunCacheInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRunCacheOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRunCache as schema.OperationSchema, input, options) as async.Operation<types.CreateRunCacheOutput>
 end
 
-function C:createRunGroup(input: types.CreateRunGroupInput, options: any): async.Operation<types.CreateRunGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRunGroup, input, options) as async.Operation<types.CreateRunGroupOutput>
+function C:createRunGroup(input: types.CreateRunGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRunGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRunGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateRunGroupOutput>
 end
 
-function C:createSequenceStore(input: types.CreateSequenceStoreInput, options: any): async.Operation<types.CreateSequenceStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSequenceStore, input, options) as async.Operation<types.CreateSequenceStoreOutput>
+function C:createSequenceStore(input: types.CreateSequenceStoreInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSequenceStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSequenceStore as schema.OperationSchema, input, options) as async.Operation<types.CreateSequenceStoreOutput>
 end
 
-function C:createShare(input: types.CreateShareInput, options: any): async.Operation<types.CreateShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateShare, input, options) as async.Operation<types.CreateShareOutput>
+function C:createShare(input: types.CreateShareInput, options?: base_client.InvokeOptions): async.Operation<types.CreateShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateShare as schema.OperationSchema, input, options) as async.Operation<types.CreateShareOutput>
 end
 
-function C:createVariantStore(input: types.CreateVariantStoreInput, options: any): async.Operation<types.CreateVariantStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVariantStore, input, options) as async.Operation<types.CreateVariantStoreOutput>
+function C:createVariantStore(input: types.CreateVariantStoreInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVariantStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVariantStore as schema.OperationSchema, input, options) as async.Operation<types.CreateVariantStoreOutput>
 end
 
-function C:createWorkflow(input: types.CreateWorkflowInput, options: any): async.Operation<types.CreateWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWorkflow, input, options) as async.Operation<types.CreateWorkflowOutput>
+function C:createWorkflow(input: types.CreateWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWorkflow as schema.OperationSchema, input, options) as async.Operation<types.CreateWorkflowOutput>
 end
 
-function C:createWorkflowVersion(input: types.CreateWorkflowVersionInput, options: any): async.Operation<types.CreateWorkflowVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWorkflowVersion, input, options) as async.Operation<types.CreateWorkflowVersionOutput>
+function C:createWorkflowVersion(input: types.CreateWorkflowVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWorkflowVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWorkflowVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateWorkflowVersionOutput>
 end
 
-function C:deleteAnnotationStore(input: types.DeleteAnnotationStoreInput, options: any): async.Operation<types.DeleteAnnotationStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAnnotationStore, input, options) as async.Operation<types.DeleteAnnotationStoreOutput>
+function C:deleteAnnotationStore(input: types.DeleteAnnotationStoreInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAnnotationStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAnnotationStore as schema.OperationSchema, input, options) as async.Operation<types.DeleteAnnotationStoreOutput>
 end
 
-function C:deleteAnnotationStoreVersions(input: types.DeleteAnnotationStoreVersionsInput, options: any): async.Operation<types.DeleteAnnotationStoreVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAnnotationStoreVersions, input, options) as async.Operation<types.DeleteAnnotationStoreVersionsOutput>
+function C:deleteAnnotationStoreVersions(input: types.DeleteAnnotationStoreVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAnnotationStoreVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAnnotationStoreVersions as schema.OperationSchema, input, options) as async.Operation<types.DeleteAnnotationStoreVersionsOutput>
 end
 
-function C:deleteBatch(input: types.DeleteBatchInput, options: any): async.Operation<types.DeleteBatchOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBatch, input, options) as async.Operation<types.DeleteBatchOutput>
+function C:deleteBatch(input: types.DeleteBatchInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBatchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBatch as schema.OperationSchema, input, options) as async.Operation<types.DeleteBatchOutput>
 end
 
-function C:deleteConfiguration(input: types.DeleteConfigurationInput, options: any): async.Operation<types.DeleteConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConfiguration, input, options) as async.Operation<types.DeleteConfigurationOutput>
+function C:deleteConfiguration(input: types.DeleteConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteConfigurationOutput>
 end
 
-function C:deleteReference(input: types.DeleteReferenceInput, options: any): async.Operation<types.DeleteReferenceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteReference, input, options) as async.Operation<types.DeleteReferenceOutput>
+function C:deleteReference(input: types.DeleteReferenceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteReferenceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteReference as schema.OperationSchema, input, options) as async.Operation<types.DeleteReferenceOutput>
 end
 
-function C:deleteReferenceStore(input: types.DeleteReferenceStoreInput, options: any): async.Operation<types.DeleteReferenceStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteReferenceStore, input, options) as async.Operation<types.DeleteReferenceStoreOutput>
+function C:deleteReferenceStore(input: types.DeleteReferenceStoreInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteReferenceStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteReferenceStore as schema.OperationSchema, input, options) as async.Operation<types.DeleteReferenceStoreOutput>
 end
 
-function C:deleteRun(input: types.DeleteRunInput, options: any): async.Operation<types.DeleteRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRun, input, options) as async.Operation<types.DeleteRunOutput>
+function C:deleteRun(input: types.DeleteRunInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRun as schema.OperationSchema, input, options) as async.Operation<types.DeleteRunOutput>
 end
 
-function C:deleteRunBatch(input: types.DeleteRunBatchInput, options: any): async.Operation<types.DeleteRunBatchOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRunBatch, input, options) as async.Operation<types.DeleteRunBatchOutput>
+function C:deleteRunBatch(input: types.DeleteRunBatchInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRunBatchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRunBatch as schema.OperationSchema, input, options) as async.Operation<types.DeleteRunBatchOutput>
 end
 
-function C:deleteRunCache(input: types.DeleteRunCacheInput, options: any): async.Operation<types.DeleteRunCacheOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRunCache, input, options) as async.Operation<types.DeleteRunCacheOutput>
+function C:deleteRunCache(input: types.DeleteRunCacheInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRunCacheOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRunCache as schema.OperationSchema, input, options) as async.Operation<types.DeleteRunCacheOutput>
 end
 
-function C:deleteRunGroup(input: types.DeleteRunGroupInput, options: any): async.Operation<types.DeleteRunGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRunGroup, input, options) as async.Operation<types.DeleteRunGroupOutput>
+function C:deleteRunGroup(input: types.DeleteRunGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRunGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRunGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteRunGroupOutput>
 end
 
-function C:deleteS3AccessPolicy(input: types.DeleteS3AccessPolicyInput, options: any): async.Operation<types.DeleteS3AccessPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteS3AccessPolicy, input, options) as async.Operation<types.DeleteS3AccessPolicyOutput>
+function C:deleteS3AccessPolicy(input: types.DeleteS3AccessPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteS3AccessPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteS3AccessPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteS3AccessPolicyOutput>
 end
 
-function C:deleteSequenceStore(input: types.DeleteSequenceStoreInput, options: any): async.Operation<types.DeleteSequenceStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSequenceStore, input, options) as async.Operation<types.DeleteSequenceStoreOutput>
+function C:deleteSequenceStore(input: types.DeleteSequenceStoreInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSequenceStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSequenceStore as schema.OperationSchema, input, options) as async.Operation<types.DeleteSequenceStoreOutput>
 end
 
-function C:deleteShare(input: types.DeleteShareInput, options: any): async.Operation<types.DeleteShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteShare, input, options) as async.Operation<types.DeleteShareOutput>
+function C:deleteShare(input: types.DeleteShareInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteShare as schema.OperationSchema, input, options) as async.Operation<types.DeleteShareOutput>
 end
 
-function C:deleteVariantStore(input: types.DeleteVariantStoreInput, options: any): async.Operation<types.DeleteVariantStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVariantStore, input, options) as async.Operation<types.DeleteVariantStoreOutput>
+function C:deleteVariantStore(input: types.DeleteVariantStoreInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVariantStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVariantStore as schema.OperationSchema, input, options) as async.Operation<types.DeleteVariantStoreOutput>
 end
 
-function C:deleteWorkflow(input: types.DeleteWorkflowInput, options: any): async.Operation<types.DeleteWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWorkflow, input, options) as async.Operation<types.DeleteWorkflowOutput>
+function C:deleteWorkflow(input: types.DeleteWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWorkflow as schema.OperationSchema, input, options) as async.Operation<types.DeleteWorkflowOutput>
 end
 
-function C:deleteWorkflowVersion(input: types.DeleteWorkflowVersionInput, options: any): async.Operation<types.DeleteWorkflowVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWorkflowVersion, input, options) as async.Operation<types.DeleteWorkflowVersionOutput>
+function C:deleteWorkflowVersion(input: types.DeleteWorkflowVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWorkflowVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWorkflowVersion as schema.OperationSchema, input, options) as async.Operation<types.DeleteWorkflowVersionOutput>
 end
 
-function C:getAnnotationImportJob(input: types.GetAnnotationImportJobInput, options: any): async.Operation<types.GetAnnotationImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAnnotationImportJob, input, options) as async.Operation<types.GetAnnotationImportJobOutput>
+function C:getAnnotationImportJob(input: types.GetAnnotationImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetAnnotationImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAnnotationImportJob as schema.OperationSchema, input, options) as async.Operation<types.GetAnnotationImportJobOutput>
 end
 
-function C:getAnnotationStore(input: types.GetAnnotationStoreInput, options: any): async.Operation<types.GetAnnotationStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAnnotationStore, input, options) as async.Operation<types.GetAnnotationStoreOutput>
+function C:getAnnotationStore(input: types.GetAnnotationStoreInput, options?: base_client.InvokeOptions): async.Operation<types.GetAnnotationStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAnnotationStore as schema.OperationSchema, input, options) as async.Operation<types.GetAnnotationStoreOutput>
 end
 
-function C:getAnnotationStoreVersion(input: types.GetAnnotationStoreVersionInput, options: any): async.Operation<types.GetAnnotationStoreVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAnnotationStoreVersion, input, options) as async.Operation<types.GetAnnotationStoreVersionOutput>
+function C:getAnnotationStoreVersion(input: types.GetAnnotationStoreVersionInput, options?: base_client.InvokeOptions): async.Operation<types.GetAnnotationStoreVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAnnotationStoreVersion as schema.OperationSchema, input, options) as async.Operation<types.GetAnnotationStoreVersionOutput>
 end
 
-function C:getBatch(input: types.GetBatchInput, options: any): async.Operation<types.GetBatchOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBatch, input, options) as async.Operation<types.GetBatchOutput>
+function C:getBatch(input: types.GetBatchInput, options?: base_client.InvokeOptions): async.Operation<types.GetBatchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBatch as schema.OperationSchema, input, options) as async.Operation<types.GetBatchOutput>
 end
 
-function C:getConfiguration(input: types.GetConfigurationInput, options: any): async.Operation<types.GetConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConfiguration, input, options) as async.Operation<types.GetConfigurationOutput>
+function C:getConfiguration(input: types.GetConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetConfigurationOutput>
 end
 
-function C:getReadSet(input: types.GetReadSetInput, options: any): async.Operation<types.GetReadSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReadSet, input, options) as async.Operation<types.GetReadSetOutput>
+function C:getReadSet(input: types.GetReadSetInput, options?: base_client.InvokeOptions): async.Operation<types.GetReadSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReadSet as schema.OperationSchema, input, options) as async.Operation<types.GetReadSetOutput>
 end
 
-function C:getReadSetActivationJob(input: types.GetReadSetActivationJobInput, options: any): async.Operation<types.GetReadSetActivationJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReadSetActivationJob, input, options) as async.Operation<types.GetReadSetActivationJobOutput>
+function C:getReadSetActivationJob(input: types.GetReadSetActivationJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetReadSetActivationJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReadSetActivationJob as schema.OperationSchema, input, options) as async.Operation<types.GetReadSetActivationJobOutput>
 end
 
-function C:getReadSetExportJob(input: types.GetReadSetExportJobInput, options: any): async.Operation<types.GetReadSetExportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReadSetExportJob, input, options) as async.Operation<types.GetReadSetExportJobOutput>
+function C:getReadSetExportJob(input: types.GetReadSetExportJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetReadSetExportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReadSetExportJob as schema.OperationSchema, input, options) as async.Operation<types.GetReadSetExportJobOutput>
 end
 
-function C:getReadSetImportJob(input: types.GetReadSetImportJobInput, options: any): async.Operation<types.GetReadSetImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReadSetImportJob, input, options) as async.Operation<types.GetReadSetImportJobOutput>
+function C:getReadSetImportJob(input: types.GetReadSetImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetReadSetImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReadSetImportJob as schema.OperationSchema, input, options) as async.Operation<types.GetReadSetImportJobOutput>
 end
 
-function C:getReadSetMetadata(input: types.GetReadSetMetadataInput, options: any): async.Operation<types.GetReadSetMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReadSetMetadata, input, options) as async.Operation<types.GetReadSetMetadataOutput>
+function C:getReadSetMetadata(input: types.GetReadSetMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.GetReadSetMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReadSetMetadata as schema.OperationSchema, input, options) as async.Operation<types.GetReadSetMetadataOutput>
 end
 
-function C:getReference(input: types.GetReferenceInput, options: any): async.Operation<types.GetReferenceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReference, input, options) as async.Operation<types.GetReferenceOutput>
+function C:getReference(input: types.GetReferenceInput, options?: base_client.InvokeOptions): async.Operation<types.GetReferenceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReference as schema.OperationSchema, input, options) as async.Operation<types.GetReferenceOutput>
 end
 
-function C:getReferenceImportJob(input: types.GetReferenceImportJobInput, options: any): async.Operation<types.GetReferenceImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReferenceImportJob, input, options) as async.Operation<types.GetReferenceImportJobOutput>
+function C:getReferenceImportJob(input: types.GetReferenceImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetReferenceImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReferenceImportJob as schema.OperationSchema, input, options) as async.Operation<types.GetReferenceImportJobOutput>
 end
 
-function C:getReferenceMetadata(input: types.GetReferenceMetadataInput, options: any): async.Operation<types.GetReferenceMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReferenceMetadata, input, options) as async.Operation<types.GetReferenceMetadataOutput>
+function C:getReferenceMetadata(input: types.GetReferenceMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.GetReferenceMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReferenceMetadata as schema.OperationSchema, input, options) as async.Operation<types.GetReferenceMetadataOutput>
 end
 
-function C:getReferenceStore(input: types.GetReferenceStoreInput, options: any): async.Operation<types.GetReferenceStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReferenceStore, input, options) as async.Operation<types.GetReferenceStoreOutput>
+function C:getReferenceStore(input: types.GetReferenceStoreInput, options?: base_client.InvokeOptions): async.Operation<types.GetReferenceStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReferenceStore as schema.OperationSchema, input, options) as async.Operation<types.GetReferenceStoreOutput>
 end
 
-function C:getRun(input: types.GetRunInput, options: any): async.Operation<types.GetRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRun, input, options) as async.Operation<types.GetRunOutput>
+function C:getRun(input: types.GetRunInput, options?: base_client.InvokeOptions): async.Operation<types.GetRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRun as schema.OperationSchema, input, options) as async.Operation<types.GetRunOutput>
 end
 
-function C:getRunCache(input: types.GetRunCacheInput, options: any): async.Operation<types.GetRunCacheOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRunCache, input, options) as async.Operation<types.GetRunCacheOutput>
+function C:getRunCache(input: types.GetRunCacheInput, options?: base_client.InvokeOptions): async.Operation<types.GetRunCacheOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRunCache as schema.OperationSchema, input, options) as async.Operation<types.GetRunCacheOutput>
 end
 
-function C:getRunGroup(input: types.GetRunGroupInput, options: any): async.Operation<types.GetRunGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRunGroup, input, options) as async.Operation<types.GetRunGroupOutput>
+function C:getRunGroup(input: types.GetRunGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetRunGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRunGroup as schema.OperationSchema, input, options) as async.Operation<types.GetRunGroupOutput>
 end
 
-function C:getRunTask(input: types.GetRunTaskInput, options: any): async.Operation<types.GetRunTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRunTask, input, options) as async.Operation<types.GetRunTaskOutput>
+function C:getRunTask(input: types.GetRunTaskInput, options?: base_client.InvokeOptions): async.Operation<types.GetRunTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRunTask as schema.OperationSchema, input, options) as async.Operation<types.GetRunTaskOutput>
 end
 
-function C:getS3AccessPolicy(input: types.GetS3AccessPolicyInput, options: any): async.Operation<types.GetS3AccessPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetS3AccessPolicy, input, options) as async.Operation<types.GetS3AccessPolicyOutput>
+function C:getS3AccessPolicy(input: types.GetS3AccessPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetS3AccessPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetS3AccessPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetS3AccessPolicyOutput>
 end
 
-function C:getSequenceStore(input: types.GetSequenceStoreInput, options: any): async.Operation<types.GetSequenceStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSequenceStore, input, options) as async.Operation<types.GetSequenceStoreOutput>
+function C:getSequenceStore(input: types.GetSequenceStoreInput, options?: base_client.InvokeOptions): async.Operation<types.GetSequenceStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSequenceStore as schema.OperationSchema, input, options) as async.Operation<types.GetSequenceStoreOutput>
 end
 
-function C:getShare(input: types.GetShareInput, options: any): async.Operation<types.GetShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetShare, input, options) as async.Operation<types.GetShareOutput>
+function C:getShare(input: types.GetShareInput, options?: base_client.InvokeOptions): async.Operation<types.GetShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetShare as schema.OperationSchema, input, options) as async.Operation<types.GetShareOutput>
 end
 
-function C:getVariantImportJob(input: types.GetVariantImportJobInput, options: any): async.Operation<types.GetVariantImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetVariantImportJob, input, options) as async.Operation<types.GetVariantImportJobOutput>
+function C:getVariantImportJob(input: types.GetVariantImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetVariantImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVariantImportJob as schema.OperationSchema, input, options) as async.Operation<types.GetVariantImportJobOutput>
 end
 
-function C:getVariantStore(input: types.GetVariantStoreInput, options: any): async.Operation<types.GetVariantStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetVariantStore, input, options) as async.Operation<types.GetVariantStoreOutput>
+function C:getVariantStore(input: types.GetVariantStoreInput, options?: base_client.InvokeOptions): async.Operation<types.GetVariantStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVariantStore as schema.OperationSchema, input, options) as async.Operation<types.GetVariantStoreOutput>
 end
 
-function C:getWorkflow(input: types.GetWorkflowInput, options: any): async.Operation<types.GetWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWorkflow, input, options) as async.Operation<types.GetWorkflowOutput>
+function C:getWorkflow(input: types.GetWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.GetWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWorkflow as schema.OperationSchema, input, options) as async.Operation<types.GetWorkflowOutput>
 end
 
-function C:getWorkflowVersion(input: types.GetWorkflowVersionInput, options: any): async.Operation<types.GetWorkflowVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWorkflowVersion, input, options) as async.Operation<types.GetWorkflowVersionOutput>
+function C:getWorkflowVersion(input: types.GetWorkflowVersionInput, options?: base_client.InvokeOptions): async.Operation<types.GetWorkflowVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWorkflowVersion as schema.OperationSchema, input, options) as async.Operation<types.GetWorkflowVersionOutput>
 end
 
-function C:listAnnotationImportJobs(input: types.ListAnnotationImportJobsInput, options: any): async.Operation<types.ListAnnotationImportJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAnnotationImportJobs, input, options) as async.Operation<types.ListAnnotationImportJobsOutput>
+function C:listAnnotationImportJobs(input: types.ListAnnotationImportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAnnotationImportJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAnnotationImportJobs as schema.OperationSchema, input, options) as async.Operation<types.ListAnnotationImportJobsOutput>
 end
 
-function C:listAnnotationStores(input: types.ListAnnotationStoresInput, options: any): async.Operation<types.ListAnnotationStoresOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAnnotationStores, input, options) as async.Operation<types.ListAnnotationStoresOutput>
+function C:listAnnotationStores(input: types.ListAnnotationStoresInput, options?: base_client.InvokeOptions): async.Operation<types.ListAnnotationStoresOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAnnotationStores as schema.OperationSchema, input, options) as async.Operation<types.ListAnnotationStoresOutput>
 end
 
-function C:listAnnotationStoreVersions(input: types.ListAnnotationStoreVersionsInput, options: any): async.Operation<types.ListAnnotationStoreVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAnnotationStoreVersions, input, options) as async.Operation<types.ListAnnotationStoreVersionsOutput>
+function C:listAnnotationStoreVersions(input: types.ListAnnotationStoreVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAnnotationStoreVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAnnotationStoreVersions as schema.OperationSchema, input, options) as async.Operation<types.ListAnnotationStoreVersionsOutput>
 end
 
-function C:listBatch(input: types.ListBatchInput, options: any): async.Operation<types.ListBatchOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBatch, input, options) as async.Operation<types.ListBatchOutput>
+function C:listBatch(input: types.ListBatchInput, options?: base_client.InvokeOptions): async.Operation<types.ListBatchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBatch as schema.OperationSchema, input, options) as async.Operation<types.ListBatchOutput>
 end
 
-function C:listConfigurations(input: types.ListConfigurationsInput, options: any): async.Operation<types.ListConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConfigurations, input, options) as async.Operation<types.ListConfigurationsOutput>
+function C:listConfigurations(input: types.ListConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListConfigurationsOutput>
 end
 
-function C:listMultipartReadSetUploads(input: types.ListMultipartReadSetUploadsInput, options: any): async.Operation<types.ListMultipartReadSetUploadsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMultipartReadSetUploads, input, options) as async.Operation<types.ListMultipartReadSetUploadsOutput>
+function C:listMultipartReadSetUploads(input: types.ListMultipartReadSetUploadsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMultipartReadSetUploadsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMultipartReadSetUploads as schema.OperationSchema, input, options) as async.Operation<types.ListMultipartReadSetUploadsOutput>
 end
 
-function C:listReadSetActivationJobs(input: types.ListReadSetActivationJobsInput, options: any): async.Operation<types.ListReadSetActivationJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReadSetActivationJobs, input, options) as async.Operation<types.ListReadSetActivationJobsOutput>
+function C:listReadSetActivationJobs(input: types.ListReadSetActivationJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListReadSetActivationJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReadSetActivationJobs as schema.OperationSchema, input, options) as async.Operation<types.ListReadSetActivationJobsOutput>
 end
 
-function C:listReadSetExportJobs(input: types.ListReadSetExportJobsInput, options: any): async.Operation<types.ListReadSetExportJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReadSetExportJobs, input, options) as async.Operation<types.ListReadSetExportJobsOutput>
+function C:listReadSetExportJobs(input: types.ListReadSetExportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListReadSetExportJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReadSetExportJobs as schema.OperationSchema, input, options) as async.Operation<types.ListReadSetExportJobsOutput>
 end
 
-function C:listReadSetImportJobs(input: types.ListReadSetImportJobsInput, options: any): async.Operation<types.ListReadSetImportJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReadSetImportJobs, input, options) as async.Operation<types.ListReadSetImportJobsOutput>
+function C:listReadSetImportJobs(input: types.ListReadSetImportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListReadSetImportJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReadSetImportJobs as schema.OperationSchema, input, options) as async.Operation<types.ListReadSetImportJobsOutput>
 end
 
-function C:listReadSets(input: types.ListReadSetsInput, options: any): async.Operation<types.ListReadSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReadSets, input, options) as async.Operation<types.ListReadSetsOutput>
+function C:listReadSets(input: types.ListReadSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListReadSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReadSets as schema.OperationSchema, input, options) as async.Operation<types.ListReadSetsOutput>
 end
 
-function C:listReadSetUploadParts(input: types.ListReadSetUploadPartsInput, options: any): async.Operation<types.ListReadSetUploadPartsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReadSetUploadParts, input, options) as async.Operation<types.ListReadSetUploadPartsOutput>
+function C:listReadSetUploadParts(input: types.ListReadSetUploadPartsInput, options?: base_client.InvokeOptions): async.Operation<types.ListReadSetUploadPartsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReadSetUploadParts as schema.OperationSchema, input, options) as async.Operation<types.ListReadSetUploadPartsOutput>
 end
 
-function C:listReferenceImportJobs(input: types.ListReferenceImportJobsInput, options: any): async.Operation<types.ListReferenceImportJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReferenceImportJobs, input, options) as async.Operation<types.ListReferenceImportJobsOutput>
+function C:listReferenceImportJobs(input: types.ListReferenceImportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListReferenceImportJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReferenceImportJobs as schema.OperationSchema, input, options) as async.Operation<types.ListReferenceImportJobsOutput>
 end
 
-function C:listReferences(input: types.ListReferencesInput, options: any): async.Operation<types.ListReferencesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReferences, input, options) as async.Operation<types.ListReferencesOutput>
+function C:listReferences(input: types.ListReferencesInput, options?: base_client.InvokeOptions): async.Operation<types.ListReferencesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReferences as schema.OperationSchema, input, options) as async.Operation<types.ListReferencesOutput>
 end
 
-function C:listReferenceStores(input: types.ListReferenceStoresInput, options: any): async.Operation<types.ListReferenceStoresOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReferenceStores, input, options) as async.Operation<types.ListReferenceStoresOutput>
+function C:listReferenceStores(input: types.ListReferenceStoresInput, options?: base_client.InvokeOptions): async.Operation<types.ListReferenceStoresOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReferenceStores as schema.OperationSchema, input, options) as async.Operation<types.ListReferenceStoresOutput>
 end
 
-function C:listRunCaches(input: types.ListRunCachesInput, options: any): async.Operation<types.ListRunCachesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRunCaches, input, options) as async.Operation<types.ListRunCachesOutput>
+function C:listRunCaches(input: types.ListRunCachesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRunCachesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRunCaches as schema.OperationSchema, input, options) as async.Operation<types.ListRunCachesOutput>
 end
 
-function C:listRunGroups(input: types.ListRunGroupsInput, options: any): async.Operation<types.ListRunGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRunGroups, input, options) as async.Operation<types.ListRunGroupsOutput>
+function C:listRunGroups(input: types.ListRunGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRunGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRunGroups as schema.OperationSchema, input, options) as async.Operation<types.ListRunGroupsOutput>
 end
 
-function C:listRuns(input: types.ListRunsInput, options: any): async.Operation<types.ListRunsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRuns, input, options) as async.Operation<types.ListRunsOutput>
+function C:listRuns(input: types.ListRunsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRunsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRuns as schema.OperationSchema, input, options) as async.Operation<types.ListRunsOutput>
 end
 
-function C:listRunsInBatch(input: types.ListRunsInBatchInput, options: any): async.Operation<types.ListRunsInBatchOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRunsInBatch, input, options) as async.Operation<types.ListRunsInBatchOutput>
+function C:listRunsInBatch(input: types.ListRunsInBatchInput, options?: base_client.InvokeOptions): async.Operation<types.ListRunsInBatchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRunsInBatch as schema.OperationSchema, input, options) as async.Operation<types.ListRunsInBatchOutput>
 end
 
-function C:listRunTasks(input: types.ListRunTasksInput, options: any): async.Operation<types.ListRunTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRunTasks, input, options) as async.Operation<types.ListRunTasksOutput>
+function C:listRunTasks(input: types.ListRunTasksInput, options?: base_client.InvokeOptions): async.Operation<types.ListRunTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRunTasks as schema.OperationSchema, input, options) as async.Operation<types.ListRunTasksOutput>
 end
 
-function C:listSequenceStores(input: types.ListSequenceStoresInput, options: any): async.Operation<types.ListSequenceStoresOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSequenceStores, input, options) as async.Operation<types.ListSequenceStoresOutput>
+function C:listSequenceStores(input: types.ListSequenceStoresInput, options?: base_client.InvokeOptions): async.Operation<types.ListSequenceStoresOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSequenceStores as schema.OperationSchema, input, options) as async.Operation<types.ListSequenceStoresOutput>
 end
 
-function C:listShares(input: types.ListSharesInput, options: any): async.Operation<types.ListSharesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListShares, input, options) as async.Operation<types.ListSharesOutput>
+function C:listShares(input: types.ListSharesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSharesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListShares as schema.OperationSchema, input, options) as async.Operation<types.ListSharesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listVariantImportJobs(input: types.ListVariantImportJobsInput, options: any): async.Operation<types.ListVariantImportJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVariantImportJobs, input, options) as async.Operation<types.ListVariantImportJobsOutput>
+function C:listVariantImportJobs(input: types.ListVariantImportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListVariantImportJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVariantImportJobs as schema.OperationSchema, input, options) as async.Operation<types.ListVariantImportJobsOutput>
 end
 
-function C:listVariantStores(input: types.ListVariantStoresInput, options: any): async.Operation<types.ListVariantStoresOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVariantStores, input, options) as async.Operation<types.ListVariantStoresOutput>
+function C:listVariantStores(input: types.ListVariantStoresInput, options?: base_client.InvokeOptions): async.Operation<types.ListVariantStoresOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVariantStores as schema.OperationSchema, input, options) as async.Operation<types.ListVariantStoresOutput>
 end
 
-function C:listWorkflows(input: types.ListWorkflowsInput, options: any): async.Operation<types.ListWorkflowsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWorkflows, input, options) as async.Operation<types.ListWorkflowsOutput>
+function C:listWorkflows(input: types.ListWorkflowsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkflowsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkflows as schema.OperationSchema, input, options) as async.Operation<types.ListWorkflowsOutput>
 end
 
-function C:listWorkflowVersions(input: types.ListWorkflowVersionsInput, options: any): async.Operation<types.ListWorkflowVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWorkflowVersions, input, options) as async.Operation<types.ListWorkflowVersionsOutput>
+function C:listWorkflowVersions(input: types.ListWorkflowVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkflowVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkflowVersions as schema.OperationSchema, input, options) as async.Operation<types.ListWorkflowVersionsOutput>
 end
 
-function C:putS3AccessPolicy(input: types.PutS3AccessPolicyInput, options: any): async.Operation<types.PutS3AccessPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutS3AccessPolicy, input, options) as async.Operation<types.PutS3AccessPolicyOutput>
+function C:putS3AccessPolicy(input: types.PutS3AccessPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutS3AccessPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutS3AccessPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutS3AccessPolicyOutput>
 end
 
-function C:startAnnotationImportJob(input: types.StartAnnotationImportJobInput, options: any): async.Operation<types.StartAnnotationImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartAnnotationImportJob, input, options) as async.Operation<types.StartAnnotationImportJobOutput>
+function C:startAnnotationImportJob(input: types.StartAnnotationImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartAnnotationImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartAnnotationImportJob as schema.OperationSchema, input, options) as async.Operation<types.StartAnnotationImportJobOutput>
 end
 
-function C:startReadSetActivationJob(input: types.StartReadSetActivationJobInput, options: any): async.Operation<types.StartReadSetActivationJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartReadSetActivationJob, input, options) as async.Operation<types.StartReadSetActivationJobOutput>
+function C:startReadSetActivationJob(input: types.StartReadSetActivationJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartReadSetActivationJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartReadSetActivationJob as schema.OperationSchema, input, options) as async.Operation<types.StartReadSetActivationJobOutput>
 end
 
-function C:startReadSetExportJob(input: types.StartReadSetExportJobInput, options: any): async.Operation<types.StartReadSetExportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartReadSetExportJob, input, options) as async.Operation<types.StartReadSetExportJobOutput>
+function C:startReadSetExportJob(input: types.StartReadSetExportJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartReadSetExportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartReadSetExportJob as schema.OperationSchema, input, options) as async.Operation<types.StartReadSetExportJobOutput>
 end
 
-function C:startReadSetImportJob(input: types.StartReadSetImportJobInput, options: any): async.Operation<types.StartReadSetImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartReadSetImportJob, input, options) as async.Operation<types.StartReadSetImportJobOutput>
+function C:startReadSetImportJob(input: types.StartReadSetImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartReadSetImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartReadSetImportJob as schema.OperationSchema, input, options) as async.Operation<types.StartReadSetImportJobOutput>
 end
 
-function C:startReferenceImportJob(input: types.StartReferenceImportJobInput, options: any): async.Operation<types.StartReferenceImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartReferenceImportJob, input, options) as async.Operation<types.StartReferenceImportJobOutput>
+function C:startReferenceImportJob(input: types.StartReferenceImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartReferenceImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartReferenceImportJob as schema.OperationSchema, input, options) as async.Operation<types.StartReferenceImportJobOutput>
 end
 
-function C:startRun(input: types.StartRunInput, options: any): async.Operation<types.StartRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartRun, input, options) as async.Operation<types.StartRunOutput>
+function C:startRun(input: types.StartRunInput, options?: base_client.InvokeOptions): async.Operation<types.StartRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartRun as schema.OperationSchema, input, options) as async.Operation<types.StartRunOutput>
 end
 
-function C:startRunBatch(input: types.StartRunBatchInput, options: any): async.Operation<types.StartRunBatchOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartRunBatch, input, options) as async.Operation<types.StartRunBatchOutput>
+function C:startRunBatch(input: types.StartRunBatchInput, options?: base_client.InvokeOptions): async.Operation<types.StartRunBatchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartRunBatch as schema.OperationSchema, input, options) as async.Operation<types.StartRunBatchOutput>
 end
 
-function C:startVariantImportJob(input: types.StartVariantImportJobInput, options: any): async.Operation<types.StartVariantImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartVariantImportJob, input, options) as async.Operation<types.StartVariantImportJobOutput>
+function C:startVariantImportJob(input: types.StartVariantImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartVariantImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartVariantImportJob as schema.OperationSchema, input, options) as async.Operation<types.StartVariantImportJobOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAnnotationStore(input: types.UpdateAnnotationStoreInput, options: any): async.Operation<types.UpdateAnnotationStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAnnotationStore, input, options) as async.Operation<types.UpdateAnnotationStoreOutput>
+function C:updateAnnotationStore(input: types.UpdateAnnotationStoreInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAnnotationStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAnnotationStore as schema.OperationSchema, input, options) as async.Operation<types.UpdateAnnotationStoreOutput>
 end
 
-function C:updateAnnotationStoreVersion(input: types.UpdateAnnotationStoreVersionInput, options: any): async.Operation<types.UpdateAnnotationStoreVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAnnotationStoreVersion, input, options) as async.Operation<types.UpdateAnnotationStoreVersionOutput>
+function C:updateAnnotationStoreVersion(input: types.UpdateAnnotationStoreVersionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAnnotationStoreVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAnnotationStoreVersion as schema.OperationSchema, input, options) as async.Operation<types.UpdateAnnotationStoreVersionOutput>
 end
 
-function C:updateRunCache(input: types.UpdateRunCacheInput, options: any): async.Operation<types.UpdateRunCacheOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRunCache, input, options) as async.Operation<types.UpdateRunCacheOutput>
+function C:updateRunCache(input: types.UpdateRunCacheInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRunCacheOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRunCache as schema.OperationSchema, input, options) as async.Operation<types.UpdateRunCacheOutput>
 end
 
-function C:updateRunGroup(input: types.UpdateRunGroupInput, options: any): async.Operation<types.UpdateRunGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRunGroup, input, options) as async.Operation<types.UpdateRunGroupOutput>
+function C:updateRunGroup(input: types.UpdateRunGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRunGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRunGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateRunGroupOutput>
 end
 
-function C:updateSequenceStore(input: types.UpdateSequenceStoreInput, options: any): async.Operation<types.UpdateSequenceStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSequenceStore, input, options) as async.Operation<types.UpdateSequenceStoreOutput>
+function C:updateSequenceStore(input: types.UpdateSequenceStoreInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSequenceStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSequenceStore as schema.OperationSchema, input, options) as async.Operation<types.UpdateSequenceStoreOutput>
 end
 
-function C:updateVariantStore(input: types.UpdateVariantStoreInput, options: any): async.Operation<types.UpdateVariantStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateVariantStore, input, options) as async.Operation<types.UpdateVariantStoreOutput>
+function C:updateVariantStore(input: types.UpdateVariantStoreInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateVariantStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateVariantStore as schema.OperationSchema, input, options) as async.Operation<types.UpdateVariantStoreOutput>
 end
 
-function C:updateWorkflow(input: types.UpdateWorkflowInput, options: any): async.Operation<types.UpdateWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateWorkflow, input, options) as async.Operation<types.UpdateWorkflowOutput>
+function C:updateWorkflow(input: types.UpdateWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWorkflow as schema.OperationSchema, input, options) as async.Operation<types.UpdateWorkflowOutput>
 end
 
-function C:updateWorkflowVersion(input: types.UpdateWorkflowVersionInput, options: any): async.Operation<types.UpdateWorkflowVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateWorkflowVersion, input, options) as async.Operation<types.UpdateWorkflowVersionOutput>
+function C:updateWorkflowVersion(input: types.UpdateWorkflowVersionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWorkflowVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWorkflowVersion as schema.OperationSchema, input, options) as async.Operation<types.UpdateWorkflowVersionOutput>
 end
 
-function C:uploadReadSetPart(input: types.UploadReadSetPartInput, options: any): async.Operation<types.UploadReadSetPartOutput>
-    return self:invokeOperation(schemas.Service, schemas.UploadReadSetPart, input, options) as async.Operation<types.UploadReadSetPartOutput>
+function C:uploadReadSetPart(input: types.UploadReadSetPartInput, options?: base_client.InvokeOptions): async.Operation<types.UploadReadSetPartOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UploadReadSetPart as schema.OperationSchema, input, options) as async.Operation<types.UploadReadSetPartOutput>
 end
 
 return M

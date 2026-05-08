@@ -8,116 +8,119 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("devicefarm.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("devicefarm.schemas")
 local traits = require("smithy.traits")
 local types = require("devicefarm.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createDevicePool: function(Client, types.CreateDevicePoolInput, any): async.Operation<types.CreateDevicePoolOutput>
-    createInstanceProfile: function(Client, types.CreateInstanceProfileInput, any): async.Operation<types.CreateInstanceProfileOutput>
-    createNetworkProfile: function(Client, types.CreateNetworkProfileInput, any): async.Operation<types.CreateNetworkProfileOutput>
-    createProject: function(Client, types.CreateProjectInput, any): async.Operation<types.CreateProjectOutput>
-    createRemoteAccessSession: function(Client, types.CreateRemoteAccessSessionInput, any): async.Operation<types.CreateRemoteAccessSessionOutput>
-    createTestGridProject: function(Client, types.CreateTestGridProjectInput, any): async.Operation<types.CreateTestGridProjectOutput>
-    createTestGridUrl: function(Client, types.CreateTestGridUrlInput, any): async.Operation<types.CreateTestGridUrlOutput>
-    createUpload: function(Client, types.CreateUploadInput, any): async.Operation<types.CreateUploadOutput>
-    createVPCEConfiguration: function(Client, types.CreateVPCEConfigurationInput, any): async.Operation<types.CreateVPCEConfigurationOutput>
-    deleteDevicePool: function(Client, types.DeleteDevicePoolInput, any): async.Operation<types.DeleteDevicePoolOutput>
-    deleteInstanceProfile: function(Client, types.DeleteInstanceProfileInput, any): async.Operation<types.DeleteInstanceProfileOutput>
-    deleteNetworkProfile: function(Client, types.DeleteNetworkProfileInput, any): async.Operation<types.DeleteNetworkProfileOutput>
-    deleteProject: function(Client, types.DeleteProjectInput, any): async.Operation<types.DeleteProjectOutput>
-    deleteRemoteAccessSession: function(Client, types.DeleteRemoteAccessSessionInput, any): async.Operation<types.DeleteRemoteAccessSessionOutput>
-    deleteRun: function(Client, types.DeleteRunInput, any): async.Operation<types.DeleteRunOutput>
-    deleteTestGridProject: function(Client, types.DeleteTestGridProjectInput, any): async.Operation<types.DeleteTestGridProjectOutput>
-    deleteUpload: function(Client, types.DeleteUploadInput, any): async.Operation<types.DeleteUploadOutput>
-    deleteVPCEConfiguration: function(Client, types.DeleteVPCEConfigurationInput, any): async.Operation<types.DeleteVPCEConfigurationOutput>
-    getAccountSettings: function(Client, types.GetAccountSettingsInput, any): async.Operation<types.GetAccountSettingsOutput>
-    getDevice: function(Client, types.GetDeviceInput, any): async.Operation<types.GetDeviceOutput>
-    getDeviceInstance: function(Client, types.GetDeviceInstanceInput, any): async.Operation<types.GetDeviceInstanceOutput>
-    getDevicePool: function(Client, types.GetDevicePoolInput, any): async.Operation<types.GetDevicePoolOutput>
-    getDevicePoolCompatibility: function(Client, types.GetDevicePoolCompatibilityInput, any): async.Operation<types.GetDevicePoolCompatibilityOutput>
-    getInstanceProfile: function(Client, types.GetInstanceProfileInput, any): async.Operation<types.GetInstanceProfileOutput>
-    getJob: function(Client, types.GetJobInput, any): async.Operation<types.GetJobOutput>
-    getNetworkProfile: function(Client, types.GetNetworkProfileInput, any): async.Operation<types.GetNetworkProfileOutput>
-    getOfferingStatus: function(Client, types.GetOfferingStatusInput, any): async.Operation<types.GetOfferingStatusOutput>
-    getProject: function(Client, types.GetProjectInput, any): async.Operation<types.GetProjectOutput>
-    getRemoteAccessSession: function(Client, types.GetRemoteAccessSessionInput, any): async.Operation<types.GetRemoteAccessSessionOutput>
-    getRun: function(Client, types.GetRunInput, any): async.Operation<types.GetRunOutput>
-    getSuite: function(Client, types.GetSuiteInput, any): async.Operation<types.GetSuiteOutput>
-    getTest: function(Client, types.GetTestInput, any): async.Operation<types.GetTestOutput>
-    getTestGridProject: function(Client, types.GetTestGridProjectInput, any): async.Operation<types.GetTestGridProjectOutput>
-    getTestGridSession: function(Client, types.GetTestGridSessionInput, any): async.Operation<types.GetTestGridSessionOutput>
-    getUpload: function(Client, types.GetUploadInput, any): async.Operation<types.GetUploadOutput>
-    getVPCEConfiguration: function(Client, types.GetVPCEConfigurationInput, any): async.Operation<types.GetVPCEConfigurationOutput>
-    installToRemoteAccessSession: function(Client, types.InstallToRemoteAccessSessionInput, any): async.Operation<types.InstallToRemoteAccessSessionOutput>
-    listArtifacts: function(Client, types.ListArtifactsInput, any): async.Operation<types.ListArtifactsOutput>
-    listDeviceInstances: function(Client, types.ListDeviceInstancesInput, any): async.Operation<types.ListDeviceInstancesOutput>
-    listDevicePools: function(Client, types.ListDevicePoolsInput, any): async.Operation<types.ListDevicePoolsOutput>
-    listDevices: function(Client, types.ListDevicesInput, any): async.Operation<types.ListDevicesOutput>
-    listInstanceProfiles: function(Client, types.ListInstanceProfilesInput, any): async.Operation<types.ListInstanceProfilesOutput>
-    listJobs: function(Client, types.ListJobsInput, any): async.Operation<types.ListJobsOutput>
-    listNetworkProfiles: function(Client, types.ListNetworkProfilesInput, any): async.Operation<types.ListNetworkProfilesOutput>
-    listOfferingPromotions: function(Client, types.ListOfferingPromotionsInput, any): async.Operation<types.ListOfferingPromotionsOutput>
-    listOfferings: function(Client, types.ListOfferingsInput, any): async.Operation<types.ListOfferingsOutput>
-    listOfferingTransactions: function(Client, types.ListOfferingTransactionsInput, any): async.Operation<types.ListOfferingTransactionsOutput>
-    listProjects: function(Client, types.ListProjectsInput, any): async.Operation<types.ListProjectsOutput>
-    listRemoteAccessSessions: function(Client, types.ListRemoteAccessSessionsInput, any): async.Operation<types.ListRemoteAccessSessionsOutput>
-    listRuns: function(Client, types.ListRunsInput, any): async.Operation<types.ListRunsOutput>
-    listSamples: function(Client, types.ListSamplesInput, any): async.Operation<types.ListSamplesOutput>
-    listSuites: function(Client, types.ListSuitesInput, any): async.Operation<types.ListSuitesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTestGridProjects: function(Client, types.ListTestGridProjectsInput, any): async.Operation<types.ListTestGridProjectsOutput>
-    listTestGridSessionActions: function(Client, types.ListTestGridSessionActionsInput, any): async.Operation<types.ListTestGridSessionActionsOutput>
-    listTestGridSessionArtifacts: function(Client, types.ListTestGridSessionArtifactsInput, any): async.Operation<types.ListTestGridSessionArtifactsOutput>
-    listTestGridSessions: function(Client, types.ListTestGridSessionsInput, any): async.Operation<types.ListTestGridSessionsOutput>
-    listTests: function(Client, types.ListTestsInput, any): async.Operation<types.ListTestsOutput>
-    listUniqueProblems: function(Client, types.ListUniqueProblemsInput, any): async.Operation<types.ListUniqueProblemsOutput>
-    listUploads: function(Client, types.ListUploadsInput, any): async.Operation<types.ListUploadsOutput>
-    listVPCEConfigurations: function(Client, types.ListVPCEConfigurationsInput, any): async.Operation<types.ListVPCEConfigurationsOutput>
-    purchaseOffering: function(Client, types.PurchaseOfferingInput, any): async.Operation<types.PurchaseOfferingOutput>
-    renewOffering: function(Client, types.RenewOfferingInput, any): async.Operation<types.RenewOfferingOutput>
-    scheduleRun: function(Client, types.ScheduleRunInput, any): async.Operation<types.ScheduleRunOutput>
-    stopJob: function(Client, types.StopJobInput, any): async.Operation<types.StopJobOutput>
-    stopRemoteAccessSession: function(Client, types.StopRemoteAccessSessionInput, any): async.Operation<types.StopRemoteAccessSessionOutput>
-    stopRun: function(Client, types.StopRunInput, any): async.Operation<types.StopRunOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateDeviceInstance: function(Client, types.UpdateDeviceInstanceInput, any): async.Operation<types.UpdateDeviceInstanceOutput>
-    updateDevicePool: function(Client, types.UpdateDevicePoolInput, any): async.Operation<types.UpdateDevicePoolOutput>
-    updateInstanceProfile: function(Client, types.UpdateInstanceProfileInput, any): async.Operation<types.UpdateInstanceProfileOutput>
-    updateNetworkProfile: function(Client, types.UpdateNetworkProfileInput, any): async.Operation<types.UpdateNetworkProfileOutput>
-    updateProject: function(Client, types.UpdateProjectInput, any): async.Operation<types.UpdateProjectOutput>
-    updateTestGridProject: function(Client, types.UpdateTestGridProjectInput, any): async.Operation<types.UpdateTestGridProjectOutput>
-    updateUpload: function(Client, types.UpdateUploadInput, any): async.Operation<types.UpdateUploadOutput>
-    updateVPCEConfiguration: function(Client, types.UpdateVPCEConfigurationInput, any): async.Operation<types.UpdateVPCEConfigurationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createDevicePool: function(Client, types.CreateDevicePoolInput, ? base_client.InvokeOptions): async.Operation<types.CreateDevicePoolOutput>
+    createInstanceProfile: function(Client, types.CreateInstanceProfileInput, ? base_client.InvokeOptions): async.Operation<types.CreateInstanceProfileOutput>
+    createNetworkProfile: function(Client, types.CreateNetworkProfileInput, ? base_client.InvokeOptions): async.Operation<types.CreateNetworkProfileOutput>
+    createProject: function(Client, types.CreateProjectInput, ? base_client.InvokeOptions): async.Operation<types.CreateProjectOutput>
+    createRemoteAccessSession: function(Client, types.CreateRemoteAccessSessionInput, ? base_client.InvokeOptions): async.Operation<types.CreateRemoteAccessSessionOutput>
+    createTestGridProject: function(Client, types.CreateTestGridProjectInput, ? base_client.InvokeOptions): async.Operation<types.CreateTestGridProjectOutput>
+    createTestGridUrl: function(Client, types.CreateTestGridUrlInput, ? base_client.InvokeOptions): async.Operation<types.CreateTestGridUrlOutput>
+    createUpload: function(Client, types.CreateUploadInput, ? base_client.InvokeOptions): async.Operation<types.CreateUploadOutput>
+    createVPCEConfiguration: function(Client, types.CreateVPCEConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateVPCEConfigurationOutput>
+    deleteDevicePool: function(Client, types.DeleteDevicePoolInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDevicePoolOutput>
+    deleteInstanceProfile: function(Client, types.DeleteInstanceProfileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInstanceProfileOutput>
+    deleteNetworkProfile: function(Client, types.DeleteNetworkProfileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNetworkProfileOutput>
+    deleteProject: function(Client, types.DeleteProjectInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProjectOutput>
+    deleteRemoteAccessSession: function(Client, types.DeleteRemoteAccessSessionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRemoteAccessSessionOutput>
+    deleteRun: function(Client, types.DeleteRunInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRunOutput>
+    deleteTestGridProject: function(Client, types.DeleteTestGridProjectInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTestGridProjectOutput>
+    deleteUpload: function(Client, types.DeleteUploadInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUploadOutput>
+    deleteVPCEConfiguration: function(Client, types.DeleteVPCEConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVPCEConfigurationOutput>
+    getAccountSettings: function(Client, types.GetAccountSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountSettingsOutput>
+    getDevice: function(Client, types.GetDeviceInput, ? base_client.InvokeOptions): async.Operation<types.GetDeviceOutput>
+    getDeviceInstance: function(Client, types.GetDeviceInstanceInput, ? base_client.InvokeOptions): async.Operation<types.GetDeviceInstanceOutput>
+    getDevicePool: function(Client, types.GetDevicePoolInput, ? base_client.InvokeOptions): async.Operation<types.GetDevicePoolOutput>
+    getDevicePoolCompatibility: function(Client, types.GetDevicePoolCompatibilityInput, ? base_client.InvokeOptions): async.Operation<types.GetDevicePoolCompatibilityOutput>
+    getInstanceProfile: function(Client, types.GetInstanceProfileInput, ? base_client.InvokeOptions): async.Operation<types.GetInstanceProfileOutput>
+    getJob: function(Client, types.GetJobInput, ? base_client.InvokeOptions): async.Operation<types.GetJobOutput>
+    getNetworkProfile: function(Client, types.GetNetworkProfileInput, ? base_client.InvokeOptions): async.Operation<types.GetNetworkProfileOutput>
+    getOfferingStatus: function(Client, types.GetOfferingStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetOfferingStatusOutput>
+    getProject: function(Client, types.GetProjectInput, ? base_client.InvokeOptions): async.Operation<types.GetProjectOutput>
+    getRemoteAccessSession: function(Client, types.GetRemoteAccessSessionInput, ? base_client.InvokeOptions): async.Operation<types.GetRemoteAccessSessionOutput>
+    getRun: function(Client, types.GetRunInput, ? base_client.InvokeOptions): async.Operation<types.GetRunOutput>
+    getSuite: function(Client, types.GetSuiteInput, ? base_client.InvokeOptions): async.Operation<types.GetSuiteOutput>
+    getTest: function(Client, types.GetTestInput, ? base_client.InvokeOptions): async.Operation<types.GetTestOutput>
+    getTestGridProject: function(Client, types.GetTestGridProjectInput, ? base_client.InvokeOptions): async.Operation<types.GetTestGridProjectOutput>
+    getTestGridSession: function(Client, types.GetTestGridSessionInput, ? base_client.InvokeOptions): async.Operation<types.GetTestGridSessionOutput>
+    getUpload: function(Client, types.GetUploadInput, ? base_client.InvokeOptions): async.Operation<types.GetUploadOutput>
+    getVPCEConfiguration: function(Client, types.GetVPCEConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetVPCEConfigurationOutput>
+    installToRemoteAccessSession: function(Client, types.InstallToRemoteAccessSessionInput, ? base_client.InvokeOptions): async.Operation<types.InstallToRemoteAccessSessionOutput>
+    listArtifacts: function(Client, types.ListArtifactsInput, ? base_client.InvokeOptions): async.Operation<types.ListArtifactsOutput>
+    listDeviceInstances: function(Client, types.ListDeviceInstancesInput, ? base_client.InvokeOptions): async.Operation<types.ListDeviceInstancesOutput>
+    listDevicePools: function(Client, types.ListDevicePoolsInput, ? base_client.InvokeOptions): async.Operation<types.ListDevicePoolsOutput>
+    listDevices: function(Client, types.ListDevicesInput, ? base_client.InvokeOptions): async.Operation<types.ListDevicesOutput>
+    listInstanceProfiles: function(Client, types.ListInstanceProfilesInput, ? base_client.InvokeOptions): async.Operation<types.ListInstanceProfilesOutput>
+    listJobs: function(Client, types.ListJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListJobsOutput>
+    listNetworkProfiles: function(Client, types.ListNetworkProfilesInput, ? base_client.InvokeOptions): async.Operation<types.ListNetworkProfilesOutput>
+    listOfferingPromotions: function(Client, types.ListOfferingPromotionsInput, ? base_client.InvokeOptions): async.Operation<types.ListOfferingPromotionsOutput>
+    listOfferings: function(Client, types.ListOfferingsInput, ? base_client.InvokeOptions): async.Operation<types.ListOfferingsOutput>
+    listOfferingTransactions: function(Client, types.ListOfferingTransactionsInput, ? base_client.InvokeOptions): async.Operation<types.ListOfferingTransactionsOutput>
+    listProjects: function(Client, types.ListProjectsInput, ? base_client.InvokeOptions): async.Operation<types.ListProjectsOutput>
+    listRemoteAccessSessions: function(Client, types.ListRemoteAccessSessionsInput, ? base_client.InvokeOptions): async.Operation<types.ListRemoteAccessSessionsOutput>
+    listRuns: function(Client, types.ListRunsInput, ? base_client.InvokeOptions): async.Operation<types.ListRunsOutput>
+    listSamples: function(Client, types.ListSamplesInput, ? base_client.InvokeOptions): async.Operation<types.ListSamplesOutput>
+    listSuites: function(Client, types.ListSuitesInput, ? base_client.InvokeOptions): async.Operation<types.ListSuitesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTestGridProjects: function(Client, types.ListTestGridProjectsInput, ? base_client.InvokeOptions): async.Operation<types.ListTestGridProjectsOutput>
+    listTestGridSessionActions: function(Client, types.ListTestGridSessionActionsInput, ? base_client.InvokeOptions): async.Operation<types.ListTestGridSessionActionsOutput>
+    listTestGridSessionArtifacts: function(Client, types.ListTestGridSessionArtifactsInput, ? base_client.InvokeOptions): async.Operation<types.ListTestGridSessionArtifactsOutput>
+    listTestGridSessions: function(Client, types.ListTestGridSessionsInput, ? base_client.InvokeOptions): async.Operation<types.ListTestGridSessionsOutput>
+    listTests: function(Client, types.ListTestsInput, ? base_client.InvokeOptions): async.Operation<types.ListTestsOutput>
+    listUniqueProblems: function(Client, types.ListUniqueProblemsInput, ? base_client.InvokeOptions): async.Operation<types.ListUniqueProblemsOutput>
+    listUploads: function(Client, types.ListUploadsInput, ? base_client.InvokeOptions): async.Operation<types.ListUploadsOutput>
+    listVPCEConfigurations: function(Client, types.ListVPCEConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListVPCEConfigurationsOutput>
+    purchaseOffering: function(Client, types.PurchaseOfferingInput, ? base_client.InvokeOptions): async.Operation<types.PurchaseOfferingOutput>
+    renewOffering: function(Client, types.RenewOfferingInput, ? base_client.InvokeOptions): async.Operation<types.RenewOfferingOutput>
+    scheduleRun: function(Client, types.ScheduleRunInput, ? base_client.InvokeOptions): async.Operation<types.ScheduleRunOutput>
+    stopJob: function(Client, types.StopJobInput, ? base_client.InvokeOptions): async.Operation<types.StopJobOutput>
+    stopRemoteAccessSession: function(Client, types.StopRemoteAccessSessionInput, ? base_client.InvokeOptions): async.Operation<types.StopRemoteAccessSessionOutput>
+    stopRun: function(Client, types.StopRunInput, ? base_client.InvokeOptions): async.Operation<types.StopRunOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateDeviceInstance: function(Client, types.UpdateDeviceInstanceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDeviceInstanceOutput>
+    updateDevicePool: function(Client, types.UpdateDevicePoolInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDevicePoolOutput>
+    updateInstanceProfile: function(Client, types.UpdateInstanceProfileInput, ? base_client.InvokeOptions): async.Operation<types.UpdateInstanceProfileOutput>
+    updateNetworkProfile: function(Client, types.UpdateNetworkProfileInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNetworkProfileOutput>
+    updateProject: function(Client, types.UpdateProjectInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProjectOutput>
+    updateTestGridProject: function(Client, types.UpdateTestGridProjectInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTestGridProjectOutput>
+    updateUpload: function(Client, types.UpdateUploadInput, ? base_client.InvokeOptions): async.Operation<types.UpdateUploadOutput>
+    updateVPCEConfiguration: function(Client, types.UpdateVPCEConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateVPCEConfigurationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "DeviceFarm_20150623"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "devicefarm", signing_region = c.region } }
                 else
@@ -136,312 +139,312 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createDevicePool(input: types.CreateDevicePoolInput, options: any): async.Operation<types.CreateDevicePoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDevicePool, input, options) as async.Operation<types.CreateDevicePoolOutput>
+function C:createDevicePool(input: types.CreateDevicePoolInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDevicePoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDevicePool as schema.OperationSchema, input, options) as async.Operation<types.CreateDevicePoolOutput>
 end
 
-function C:createInstanceProfile(input: types.CreateInstanceProfileInput, options: any): async.Operation<types.CreateInstanceProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateInstanceProfile, input, options) as async.Operation<types.CreateInstanceProfileOutput>
+function C:createInstanceProfile(input: types.CreateInstanceProfileInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInstanceProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInstanceProfile as schema.OperationSchema, input, options) as async.Operation<types.CreateInstanceProfileOutput>
 end
 
-function C:createNetworkProfile(input: types.CreateNetworkProfileInput, options: any): async.Operation<types.CreateNetworkProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNetworkProfile, input, options) as async.Operation<types.CreateNetworkProfileOutput>
+function C:createNetworkProfile(input: types.CreateNetworkProfileInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNetworkProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNetworkProfile as schema.OperationSchema, input, options) as async.Operation<types.CreateNetworkProfileOutput>
 end
 
-function C:createProject(input: types.CreateProjectInput, options: any): async.Operation<types.CreateProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProject, input, options) as async.Operation<types.CreateProjectOutput>
+function C:createProject(input: types.CreateProjectInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProject as schema.OperationSchema, input, options) as async.Operation<types.CreateProjectOutput>
 end
 
-function C:createRemoteAccessSession(input: types.CreateRemoteAccessSessionInput, options: any): async.Operation<types.CreateRemoteAccessSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRemoteAccessSession, input, options) as async.Operation<types.CreateRemoteAccessSessionOutput>
+function C:createRemoteAccessSession(input: types.CreateRemoteAccessSessionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRemoteAccessSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRemoteAccessSession as schema.OperationSchema, input, options) as async.Operation<types.CreateRemoteAccessSessionOutput>
 end
 
-function C:createTestGridProject(input: types.CreateTestGridProjectInput, options: any): async.Operation<types.CreateTestGridProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTestGridProject, input, options) as async.Operation<types.CreateTestGridProjectOutput>
+function C:createTestGridProject(input: types.CreateTestGridProjectInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTestGridProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTestGridProject as schema.OperationSchema, input, options) as async.Operation<types.CreateTestGridProjectOutput>
 end
 
-function C:createTestGridUrl(input: types.CreateTestGridUrlInput, options: any): async.Operation<types.CreateTestGridUrlOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTestGridUrl, input, options) as async.Operation<types.CreateTestGridUrlOutput>
+function C:createTestGridUrl(input: types.CreateTestGridUrlInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTestGridUrlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTestGridUrl as schema.OperationSchema, input, options) as async.Operation<types.CreateTestGridUrlOutput>
 end
 
-function C:createUpload(input: types.CreateUploadInput, options: any): async.Operation<types.CreateUploadOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateUpload, input, options) as async.Operation<types.CreateUploadOutput>
+function C:createUpload(input: types.CreateUploadInput, options?: base_client.InvokeOptions): async.Operation<types.CreateUploadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateUpload as schema.OperationSchema, input, options) as async.Operation<types.CreateUploadOutput>
 end
 
-function C:createVPCEConfiguration(input: types.CreateVPCEConfigurationInput, options: any): async.Operation<types.CreateVPCEConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVPCEConfiguration, input, options) as async.Operation<types.CreateVPCEConfigurationOutput>
+function C:createVPCEConfiguration(input: types.CreateVPCEConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVPCEConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVPCEConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateVPCEConfigurationOutput>
 end
 
-function C:deleteDevicePool(input: types.DeleteDevicePoolInput, options: any): async.Operation<types.DeleteDevicePoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDevicePool, input, options) as async.Operation<types.DeleteDevicePoolOutput>
+function C:deleteDevicePool(input: types.DeleteDevicePoolInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDevicePoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDevicePool as schema.OperationSchema, input, options) as async.Operation<types.DeleteDevicePoolOutput>
 end
 
-function C:deleteInstanceProfile(input: types.DeleteInstanceProfileInput, options: any): async.Operation<types.DeleteInstanceProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteInstanceProfile, input, options) as async.Operation<types.DeleteInstanceProfileOutput>
+function C:deleteInstanceProfile(input: types.DeleteInstanceProfileInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteInstanceProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInstanceProfile as schema.OperationSchema, input, options) as async.Operation<types.DeleteInstanceProfileOutput>
 end
 
-function C:deleteNetworkProfile(input: types.DeleteNetworkProfileInput, options: any): async.Operation<types.DeleteNetworkProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNetworkProfile, input, options) as async.Operation<types.DeleteNetworkProfileOutput>
+function C:deleteNetworkProfile(input: types.DeleteNetworkProfileInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNetworkProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNetworkProfile as schema.OperationSchema, input, options) as async.Operation<types.DeleteNetworkProfileOutput>
 end
 
-function C:deleteProject(input: types.DeleteProjectInput, options: any): async.Operation<types.DeleteProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProject, input, options) as async.Operation<types.DeleteProjectOutput>
+function C:deleteProject(input: types.DeleteProjectInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProject as schema.OperationSchema, input, options) as async.Operation<types.DeleteProjectOutput>
 end
 
-function C:deleteRemoteAccessSession(input: types.DeleteRemoteAccessSessionInput, options: any): async.Operation<types.DeleteRemoteAccessSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRemoteAccessSession, input, options) as async.Operation<types.DeleteRemoteAccessSessionOutput>
+function C:deleteRemoteAccessSession(input: types.DeleteRemoteAccessSessionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRemoteAccessSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRemoteAccessSession as schema.OperationSchema, input, options) as async.Operation<types.DeleteRemoteAccessSessionOutput>
 end
 
-function C:deleteRun(input: types.DeleteRunInput, options: any): async.Operation<types.DeleteRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRun, input, options) as async.Operation<types.DeleteRunOutput>
+function C:deleteRun(input: types.DeleteRunInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRun as schema.OperationSchema, input, options) as async.Operation<types.DeleteRunOutput>
 end
 
-function C:deleteTestGridProject(input: types.DeleteTestGridProjectInput, options: any): async.Operation<types.DeleteTestGridProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTestGridProject, input, options) as async.Operation<types.DeleteTestGridProjectOutput>
+function C:deleteTestGridProject(input: types.DeleteTestGridProjectInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTestGridProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTestGridProject as schema.OperationSchema, input, options) as async.Operation<types.DeleteTestGridProjectOutput>
 end
 
-function C:deleteUpload(input: types.DeleteUploadInput, options: any): async.Operation<types.DeleteUploadOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteUpload, input, options) as async.Operation<types.DeleteUploadOutput>
+function C:deleteUpload(input: types.DeleteUploadInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteUploadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteUpload as schema.OperationSchema, input, options) as async.Operation<types.DeleteUploadOutput>
 end
 
-function C:deleteVPCEConfiguration(input: types.DeleteVPCEConfigurationInput, options: any): async.Operation<types.DeleteVPCEConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVPCEConfiguration, input, options) as async.Operation<types.DeleteVPCEConfigurationOutput>
+function C:deleteVPCEConfiguration(input: types.DeleteVPCEConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVPCEConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVPCEConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteVPCEConfigurationOutput>
 end
 
-function C:getAccountSettings(input: types.GetAccountSettingsInput, options: any): async.Operation<types.GetAccountSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccountSettings, input, options) as async.Operation<types.GetAccountSettingsOutput>
+function C:getAccountSettings(input: types.GetAccountSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccountSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccountSettings as schema.OperationSchema, input, options) as async.Operation<types.GetAccountSettingsOutput>
 end
 
-function C:getDevice(input: types.GetDeviceInput, options: any): async.Operation<types.GetDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDevice, input, options) as async.Operation<types.GetDeviceOutput>
+function C:getDevice(input: types.GetDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.GetDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDevice as schema.OperationSchema, input, options) as async.Operation<types.GetDeviceOutput>
 end
 
-function C:getDeviceInstance(input: types.GetDeviceInstanceInput, options: any): async.Operation<types.GetDeviceInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDeviceInstance, input, options) as async.Operation<types.GetDeviceInstanceOutput>
+function C:getDeviceInstance(input: types.GetDeviceInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.GetDeviceInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDeviceInstance as schema.OperationSchema, input, options) as async.Operation<types.GetDeviceInstanceOutput>
 end
 
-function C:getDevicePool(input: types.GetDevicePoolInput, options: any): async.Operation<types.GetDevicePoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDevicePool, input, options) as async.Operation<types.GetDevicePoolOutput>
+function C:getDevicePool(input: types.GetDevicePoolInput, options?: base_client.InvokeOptions): async.Operation<types.GetDevicePoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDevicePool as schema.OperationSchema, input, options) as async.Operation<types.GetDevicePoolOutput>
 end
 
-function C:getDevicePoolCompatibility(input: types.GetDevicePoolCompatibilityInput, options: any): async.Operation<types.GetDevicePoolCompatibilityOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDevicePoolCompatibility, input, options) as async.Operation<types.GetDevicePoolCompatibilityOutput>
+function C:getDevicePoolCompatibility(input: types.GetDevicePoolCompatibilityInput, options?: base_client.InvokeOptions): async.Operation<types.GetDevicePoolCompatibilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDevicePoolCompatibility as schema.OperationSchema, input, options) as async.Operation<types.GetDevicePoolCompatibilityOutput>
 end
 
-function C:getInstanceProfile(input: types.GetInstanceProfileInput, options: any): async.Operation<types.GetInstanceProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInstanceProfile, input, options) as async.Operation<types.GetInstanceProfileOutput>
+function C:getInstanceProfile(input: types.GetInstanceProfileInput, options?: base_client.InvokeOptions): async.Operation<types.GetInstanceProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInstanceProfile as schema.OperationSchema, input, options) as async.Operation<types.GetInstanceProfileOutput>
 end
 
-function C:getJob(input: types.GetJobInput, options: any): async.Operation<types.GetJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetJob, input, options) as async.Operation<types.GetJobOutput>
+function C:getJob(input: types.GetJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetJob as schema.OperationSchema, input, options) as async.Operation<types.GetJobOutput>
 end
 
-function C:getNetworkProfile(input: types.GetNetworkProfileInput, options: any): async.Operation<types.GetNetworkProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNetworkProfile, input, options) as async.Operation<types.GetNetworkProfileOutput>
+function C:getNetworkProfile(input: types.GetNetworkProfileInput, options?: base_client.InvokeOptions): async.Operation<types.GetNetworkProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNetworkProfile as schema.OperationSchema, input, options) as async.Operation<types.GetNetworkProfileOutput>
 end
 
-function C:getOfferingStatus(input: types.GetOfferingStatusInput, options: any): async.Operation<types.GetOfferingStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOfferingStatus, input, options) as async.Operation<types.GetOfferingStatusOutput>
+function C:getOfferingStatus(input: types.GetOfferingStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetOfferingStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOfferingStatus as schema.OperationSchema, input, options) as async.Operation<types.GetOfferingStatusOutput>
 end
 
-function C:getProject(input: types.GetProjectInput, options: any): async.Operation<types.GetProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetProject, input, options) as async.Operation<types.GetProjectOutput>
+function C:getProject(input: types.GetProjectInput, options?: base_client.InvokeOptions): async.Operation<types.GetProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProject as schema.OperationSchema, input, options) as async.Operation<types.GetProjectOutput>
 end
 
-function C:getRemoteAccessSession(input: types.GetRemoteAccessSessionInput, options: any): async.Operation<types.GetRemoteAccessSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRemoteAccessSession, input, options) as async.Operation<types.GetRemoteAccessSessionOutput>
+function C:getRemoteAccessSession(input: types.GetRemoteAccessSessionInput, options?: base_client.InvokeOptions): async.Operation<types.GetRemoteAccessSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRemoteAccessSession as schema.OperationSchema, input, options) as async.Operation<types.GetRemoteAccessSessionOutput>
 end
 
-function C:getRun(input: types.GetRunInput, options: any): async.Operation<types.GetRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRun, input, options) as async.Operation<types.GetRunOutput>
+function C:getRun(input: types.GetRunInput, options?: base_client.InvokeOptions): async.Operation<types.GetRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRun as schema.OperationSchema, input, options) as async.Operation<types.GetRunOutput>
 end
 
-function C:getSuite(input: types.GetSuiteInput, options: any): async.Operation<types.GetSuiteOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSuite, input, options) as async.Operation<types.GetSuiteOutput>
+function C:getSuite(input: types.GetSuiteInput, options?: base_client.InvokeOptions): async.Operation<types.GetSuiteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSuite as schema.OperationSchema, input, options) as async.Operation<types.GetSuiteOutput>
 end
 
-function C:getTest(input: types.GetTestInput, options: any): async.Operation<types.GetTestOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTest, input, options) as async.Operation<types.GetTestOutput>
+function C:getTest(input: types.GetTestInput, options?: base_client.InvokeOptions): async.Operation<types.GetTestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTest as schema.OperationSchema, input, options) as async.Operation<types.GetTestOutput>
 end
 
-function C:getTestGridProject(input: types.GetTestGridProjectInput, options: any): async.Operation<types.GetTestGridProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTestGridProject, input, options) as async.Operation<types.GetTestGridProjectOutput>
+function C:getTestGridProject(input: types.GetTestGridProjectInput, options?: base_client.InvokeOptions): async.Operation<types.GetTestGridProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTestGridProject as schema.OperationSchema, input, options) as async.Operation<types.GetTestGridProjectOutput>
 end
 
-function C:getTestGridSession(input: types.GetTestGridSessionInput, options: any): async.Operation<types.GetTestGridSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTestGridSession, input, options) as async.Operation<types.GetTestGridSessionOutput>
+function C:getTestGridSession(input: types.GetTestGridSessionInput, options?: base_client.InvokeOptions): async.Operation<types.GetTestGridSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTestGridSession as schema.OperationSchema, input, options) as async.Operation<types.GetTestGridSessionOutput>
 end
 
-function C:getUpload(input: types.GetUploadInput, options: any): async.Operation<types.GetUploadOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetUpload, input, options) as async.Operation<types.GetUploadOutput>
+function C:getUpload(input: types.GetUploadInput, options?: base_client.InvokeOptions): async.Operation<types.GetUploadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetUpload as schema.OperationSchema, input, options) as async.Operation<types.GetUploadOutput>
 end
 
-function C:getVPCEConfiguration(input: types.GetVPCEConfigurationInput, options: any): async.Operation<types.GetVPCEConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetVPCEConfiguration, input, options) as async.Operation<types.GetVPCEConfigurationOutput>
+function C:getVPCEConfiguration(input: types.GetVPCEConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetVPCEConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVPCEConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetVPCEConfigurationOutput>
 end
 
-function C:installToRemoteAccessSession(input: types.InstallToRemoteAccessSessionInput, options: any): async.Operation<types.InstallToRemoteAccessSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.InstallToRemoteAccessSession, input, options) as async.Operation<types.InstallToRemoteAccessSessionOutput>
+function C:installToRemoteAccessSession(input: types.InstallToRemoteAccessSessionInput, options?: base_client.InvokeOptions): async.Operation<types.InstallToRemoteAccessSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InstallToRemoteAccessSession as schema.OperationSchema, input, options) as async.Operation<types.InstallToRemoteAccessSessionOutput>
 end
 
-function C:listArtifacts(input: types.ListArtifactsInput, options: any): async.Operation<types.ListArtifactsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListArtifacts, input, options) as async.Operation<types.ListArtifactsOutput>
+function C:listArtifacts(input: types.ListArtifactsInput, options?: base_client.InvokeOptions): async.Operation<types.ListArtifactsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListArtifacts as schema.OperationSchema, input, options) as async.Operation<types.ListArtifactsOutput>
 end
 
-function C:listDeviceInstances(input: types.ListDeviceInstancesInput, options: any): async.Operation<types.ListDeviceInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDeviceInstances, input, options) as async.Operation<types.ListDeviceInstancesOutput>
+function C:listDeviceInstances(input: types.ListDeviceInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDeviceInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDeviceInstances as schema.OperationSchema, input, options) as async.Operation<types.ListDeviceInstancesOutput>
 end
 
-function C:listDevicePools(input: types.ListDevicePoolsInput, options: any): async.Operation<types.ListDevicePoolsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDevicePools, input, options) as async.Operation<types.ListDevicePoolsOutput>
+function C:listDevicePools(input: types.ListDevicePoolsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDevicePoolsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDevicePools as schema.OperationSchema, input, options) as async.Operation<types.ListDevicePoolsOutput>
 end
 
-function C:listDevices(input: types.ListDevicesInput, options: any): async.Operation<types.ListDevicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDevices, input, options) as async.Operation<types.ListDevicesOutput>
+function C:listDevices(input: types.ListDevicesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDevicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDevices as schema.OperationSchema, input, options) as async.Operation<types.ListDevicesOutput>
 end
 
-function C:listInstanceProfiles(input: types.ListInstanceProfilesInput, options: any): async.Operation<types.ListInstanceProfilesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInstanceProfiles, input, options) as async.Operation<types.ListInstanceProfilesOutput>
+function C:listInstanceProfiles(input: types.ListInstanceProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.ListInstanceProfilesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInstanceProfiles as schema.OperationSchema, input, options) as async.Operation<types.ListInstanceProfilesOutput>
 end
 
-function C:listJobs(input: types.ListJobsInput, options: any): async.Operation<types.ListJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListJobs, input, options) as async.Operation<types.ListJobsOutput>
+function C:listJobs(input: types.ListJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListJobs as schema.OperationSchema, input, options) as async.Operation<types.ListJobsOutput>
 end
 
-function C:listNetworkProfiles(input: types.ListNetworkProfilesInput, options: any): async.Operation<types.ListNetworkProfilesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNetworkProfiles, input, options) as async.Operation<types.ListNetworkProfilesOutput>
+function C:listNetworkProfiles(input: types.ListNetworkProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.ListNetworkProfilesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNetworkProfiles as schema.OperationSchema, input, options) as async.Operation<types.ListNetworkProfilesOutput>
 end
 
-function C:listOfferingPromotions(input: types.ListOfferingPromotionsInput, options: any): async.Operation<types.ListOfferingPromotionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOfferingPromotions, input, options) as async.Operation<types.ListOfferingPromotionsOutput>
+function C:listOfferingPromotions(input: types.ListOfferingPromotionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListOfferingPromotionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOfferingPromotions as schema.OperationSchema, input, options) as async.Operation<types.ListOfferingPromotionsOutput>
 end
 
-function C:listOfferings(input: types.ListOfferingsInput, options: any): async.Operation<types.ListOfferingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOfferings, input, options) as async.Operation<types.ListOfferingsOutput>
+function C:listOfferings(input: types.ListOfferingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListOfferingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOfferings as schema.OperationSchema, input, options) as async.Operation<types.ListOfferingsOutput>
 end
 
-function C:listOfferingTransactions(input: types.ListOfferingTransactionsInput, options: any): async.Operation<types.ListOfferingTransactionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOfferingTransactions, input, options) as async.Operation<types.ListOfferingTransactionsOutput>
+function C:listOfferingTransactions(input: types.ListOfferingTransactionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListOfferingTransactionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOfferingTransactions as schema.OperationSchema, input, options) as async.Operation<types.ListOfferingTransactionsOutput>
 end
 
-function C:listProjects(input: types.ListProjectsInput, options: any): async.Operation<types.ListProjectsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProjects, input, options) as async.Operation<types.ListProjectsOutput>
+function C:listProjects(input: types.ListProjectsInput, options?: base_client.InvokeOptions): async.Operation<types.ListProjectsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProjects as schema.OperationSchema, input, options) as async.Operation<types.ListProjectsOutput>
 end
 
-function C:listRemoteAccessSessions(input: types.ListRemoteAccessSessionsInput, options: any): async.Operation<types.ListRemoteAccessSessionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRemoteAccessSessions, input, options) as async.Operation<types.ListRemoteAccessSessionsOutput>
+function C:listRemoteAccessSessions(input: types.ListRemoteAccessSessionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRemoteAccessSessionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRemoteAccessSessions as schema.OperationSchema, input, options) as async.Operation<types.ListRemoteAccessSessionsOutput>
 end
 
-function C:listRuns(input: types.ListRunsInput, options: any): async.Operation<types.ListRunsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRuns, input, options) as async.Operation<types.ListRunsOutput>
+function C:listRuns(input: types.ListRunsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRunsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRuns as schema.OperationSchema, input, options) as async.Operation<types.ListRunsOutput>
 end
 
-function C:listSamples(input: types.ListSamplesInput, options: any): async.Operation<types.ListSamplesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSamples, input, options) as async.Operation<types.ListSamplesOutput>
+function C:listSamples(input: types.ListSamplesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSamplesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSamples as schema.OperationSchema, input, options) as async.Operation<types.ListSamplesOutput>
 end
 
-function C:listSuites(input: types.ListSuitesInput, options: any): async.Operation<types.ListSuitesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSuites, input, options) as async.Operation<types.ListSuitesOutput>
+function C:listSuites(input: types.ListSuitesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSuitesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSuites as schema.OperationSchema, input, options) as async.Operation<types.ListSuitesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTestGridProjects(input: types.ListTestGridProjectsInput, options: any): async.Operation<types.ListTestGridProjectsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTestGridProjects, input, options) as async.Operation<types.ListTestGridProjectsOutput>
+function C:listTestGridProjects(input: types.ListTestGridProjectsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTestGridProjectsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTestGridProjects as schema.OperationSchema, input, options) as async.Operation<types.ListTestGridProjectsOutput>
 end
 
-function C:listTestGridSessionActions(input: types.ListTestGridSessionActionsInput, options: any): async.Operation<types.ListTestGridSessionActionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTestGridSessionActions, input, options) as async.Operation<types.ListTestGridSessionActionsOutput>
+function C:listTestGridSessionActions(input: types.ListTestGridSessionActionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTestGridSessionActionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTestGridSessionActions as schema.OperationSchema, input, options) as async.Operation<types.ListTestGridSessionActionsOutput>
 end
 
-function C:listTestGridSessionArtifacts(input: types.ListTestGridSessionArtifactsInput, options: any): async.Operation<types.ListTestGridSessionArtifactsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTestGridSessionArtifacts, input, options) as async.Operation<types.ListTestGridSessionArtifactsOutput>
+function C:listTestGridSessionArtifacts(input: types.ListTestGridSessionArtifactsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTestGridSessionArtifactsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTestGridSessionArtifacts as schema.OperationSchema, input, options) as async.Operation<types.ListTestGridSessionArtifactsOutput>
 end
 
-function C:listTestGridSessions(input: types.ListTestGridSessionsInput, options: any): async.Operation<types.ListTestGridSessionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTestGridSessions, input, options) as async.Operation<types.ListTestGridSessionsOutput>
+function C:listTestGridSessions(input: types.ListTestGridSessionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTestGridSessionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTestGridSessions as schema.OperationSchema, input, options) as async.Operation<types.ListTestGridSessionsOutput>
 end
 
-function C:listTests(input: types.ListTestsInput, options: any): async.Operation<types.ListTestsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTests, input, options) as async.Operation<types.ListTestsOutput>
+function C:listTests(input: types.ListTestsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTestsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTests as schema.OperationSchema, input, options) as async.Operation<types.ListTestsOutput>
 end
 
-function C:listUniqueProblems(input: types.ListUniqueProblemsInput, options: any): async.Operation<types.ListUniqueProblemsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListUniqueProblems, input, options) as async.Operation<types.ListUniqueProblemsOutput>
+function C:listUniqueProblems(input: types.ListUniqueProblemsInput, options?: base_client.InvokeOptions): async.Operation<types.ListUniqueProblemsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUniqueProblems as schema.OperationSchema, input, options) as async.Operation<types.ListUniqueProblemsOutput>
 end
 
-function C:listUploads(input: types.ListUploadsInput, options: any): async.Operation<types.ListUploadsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListUploads, input, options) as async.Operation<types.ListUploadsOutput>
+function C:listUploads(input: types.ListUploadsInput, options?: base_client.InvokeOptions): async.Operation<types.ListUploadsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUploads as schema.OperationSchema, input, options) as async.Operation<types.ListUploadsOutput>
 end
 
-function C:listVPCEConfigurations(input: types.ListVPCEConfigurationsInput, options: any): async.Operation<types.ListVPCEConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVPCEConfigurations, input, options) as async.Operation<types.ListVPCEConfigurationsOutput>
+function C:listVPCEConfigurations(input: types.ListVPCEConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListVPCEConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVPCEConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListVPCEConfigurationsOutput>
 end
 
-function C:purchaseOffering(input: types.PurchaseOfferingInput, options: any): async.Operation<types.PurchaseOfferingOutput>
-    return self:invokeOperation(schemas.Service, schemas.PurchaseOffering, input, options) as async.Operation<types.PurchaseOfferingOutput>
+function C:purchaseOffering(input: types.PurchaseOfferingInput, options?: base_client.InvokeOptions): async.Operation<types.PurchaseOfferingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PurchaseOffering as schema.OperationSchema, input, options) as async.Operation<types.PurchaseOfferingOutput>
 end
 
-function C:renewOffering(input: types.RenewOfferingInput, options: any): async.Operation<types.RenewOfferingOutput>
-    return self:invokeOperation(schemas.Service, schemas.RenewOffering, input, options) as async.Operation<types.RenewOfferingOutput>
+function C:renewOffering(input: types.RenewOfferingInput, options?: base_client.InvokeOptions): async.Operation<types.RenewOfferingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RenewOffering as schema.OperationSchema, input, options) as async.Operation<types.RenewOfferingOutput>
 end
 
-function C:scheduleRun(input: types.ScheduleRunInput, options: any): async.Operation<types.ScheduleRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.ScheduleRun, input, options) as async.Operation<types.ScheduleRunOutput>
+function C:scheduleRun(input: types.ScheduleRunInput, options?: base_client.InvokeOptions): async.Operation<types.ScheduleRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ScheduleRun as schema.OperationSchema, input, options) as async.Operation<types.ScheduleRunOutput>
 end
 
-function C:stopJob(input: types.StopJobInput, options: any): async.Operation<types.StopJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopJob, input, options) as async.Operation<types.StopJobOutput>
+function C:stopJob(input: types.StopJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopJob as schema.OperationSchema, input, options) as async.Operation<types.StopJobOutput>
 end
 
-function C:stopRemoteAccessSession(input: types.StopRemoteAccessSessionInput, options: any): async.Operation<types.StopRemoteAccessSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopRemoteAccessSession, input, options) as async.Operation<types.StopRemoteAccessSessionOutput>
+function C:stopRemoteAccessSession(input: types.StopRemoteAccessSessionInput, options?: base_client.InvokeOptions): async.Operation<types.StopRemoteAccessSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopRemoteAccessSession as schema.OperationSchema, input, options) as async.Operation<types.StopRemoteAccessSessionOutput>
 end
 
-function C:stopRun(input: types.StopRunInput, options: any): async.Operation<types.StopRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopRun, input, options) as async.Operation<types.StopRunOutput>
+function C:stopRun(input: types.StopRunInput, options?: base_client.InvokeOptions): async.Operation<types.StopRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopRun as schema.OperationSchema, input, options) as async.Operation<types.StopRunOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateDeviceInstance(input: types.UpdateDeviceInstanceInput, options: any): async.Operation<types.UpdateDeviceInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDeviceInstance, input, options) as async.Operation<types.UpdateDeviceInstanceOutput>
+function C:updateDeviceInstance(input: types.UpdateDeviceInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDeviceInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDeviceInstance as schema.OperationSchema, input, options) as async.Operation<types.UpdateDeviceInstanceOutput>
 end
 
-function C:updateDevicePool(input: types.UpdateDevicePoolInput, options: any): async.Operation<types.UpdateDevicePoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDevicePool, input, options) as async.Operation<types.UpdateDevicePoolOutput>
+function C:updateDevicePool(input: types.UpdateDevicePoolInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDevicePoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDevicePool as schema.OperationSchema, input, options) as async.Operation<types.UpdateDevicePoolOutput>
 end
 
-function C:updateInstanceProfile(input: types.UpdateInstanceProfileInput, options: any): async.Operation<types.UpdateInstanceProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateInstanceProfile, input, options) as async.Operation<types.UpdateInstanceProfileOutput>
+function C:updateInstanceProfile(input: types.UpdateInstanceProfileInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateInstanceProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateInstanceProfile as schema.OperationSchema, input, options) as async.Operation<types.UpdateInstanceProfileOutput>
 end
 
-function C:updateNetworkProfile(input: types.UpdateNetworkProfileInput, options: any): async.Operation<types.UpdateNetworkProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateNetworkProfile, input, options) as async.Operation<types.UpdateNetworkProfileOutput>
+function C:updateNetworkProfile(input: types.UpdateNetworkProfileInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNetworkProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNetworkProfile as schema.OperationSchema, input, options) as async.Operation<types.UpdateNetworkProfileOutput>
 end
 
-function C:updateProject(input: types.UpdateProjectInput, options: any): async.Operation<types.UpdateProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProject, input, options) as async.Operation<types.UpdateProjectOutput>
+function C:updateProject(input: types.UpdateProjectInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProject as schema.OperationSchema, input, options) as async.Operation<types.UpdateProjectOutput>
 end
 
-function C:updateTestGridProject(input: types.UpdateTestGridProjectInput, options: any): async.Operation<types.UpdateTestGridProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTestGridProject, input, options) as async.Operation<types.UpdateTestGridProjectOutput>
+function C:updateTestGridProject(input: types.UpdateTestGridProjectInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTestGridProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTestGridProject as schema.OperationSchema, input, options) as async.Operation<types.UpdateTestGridProjectOutput>
 end
 
-function C:updateUpload(input: types.UpdateUploadInput, options: any): async.Operation<types.UpdateUploadOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateUpload, input, options) as async.Operation<types.UpdateUploadOutput>
+function C:updateUpload(input: types.UpdateUploadInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateUploadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateUpload as schema.OperationSchema, input, options) as async.Operation<types.UpdateUploadOutput>
 end
 
-function C:updateVPCEConfiguration(input: types.UpdateVPCEConfigurationInput, options: any): async.Operation<types.UpdateVPCEConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateVPCEConfiguration, input, options) as async.Operation<types.UpdateVPCEConfigurationOutput>
+function C:updateVPCEConfiguration(input: types.UpdateVPCEConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateVPCEConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateVPCEConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateVPCEConfigurationOutput>
 end
 
 return M

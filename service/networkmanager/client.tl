@@ -8,134 +8,137 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("networkmanager.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("networkmanager.schemas")
 local traits = require("smithy.traits")
 local types = require("networkmanager.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    acceptAttachment: function(Client, types.AcceptAttachmentInput, any): async.Operation<types.AcceptAttachmentOutput>
-    associateConnectPeer: function(Client, types.AssociateConnectPeerInput, any): async.Operation<types.AssociateConnectPeerOutput>
-    associateCustomerGateway: function(Client, types.AssociateCustomerGatewayInput, any): async.Operation<types.AssociateCustomerGatewayOutput>
-    associateLink: function(Client, types.AssociateLinkInput, any): async.Operation<types.AssociateLinkOutput>
-    associateTransitGatewayConnectPeer: function(Client, types.AssociateTransitGatewayConnectPeerInput, any): async.Operation<types.AssociateTransitGatewayConnectPeerOutput>
-    createConnectAttachment: function(Client, types.CreateConnectAttachmentInput, any): async.Operation<types.CreateConnectAttachmentOutput>
-    createConnection: function(Client, types.CreateConnectionInput, any): async.Operation<types.CreateConnectionOutput>
-    createConnectPeer: function(Client, types.CreateConnectPeerInput, any): async.Operation<types.CreateConnectPeerOutput>
-    createCoreNetwork: function(Client, types.CreateCoreNetworkInput, any): async.Operation<types.CreateCoreNetworkOutput>
-    createCoreNetworkPrefixListAssociation: function(Client, types.CreateCoreNetworkPrefixListAssociationInput, any): async.Operation<types.CreateCoreNetworkPrefixListAssociationOutput>
-    createDevice: function(Client, types.CreateDeviceInput, any): async.Operation<types.CreateDeviceOutput>
-    createDirectConnectGatewayAttachment: function(Client, types.CreateDirectConnectGatewayAttachmentInput, any): async.Operation<types.CreateDirectConnectGatewayAttachmentOutput>
-    createGlobalNetwork: function(Client, types.CreateGlobalNetworkInput, any): async.Operation<types.CreateGlobalNetworkOutput>
-    createLink: function(Client, types.CreateLinkInput, any): async.Operation<types.CreateLinkOutput>
-    createSite: function(Client, types.CreateSiteInput, any): async.Operation<types.CreateSiteOutput>
-    createSiteToSiteVpnAttachment: function(Client, types.CreateSiteToSiteVpnAttachmentInput, any): async.Operation<types.CreateSiteToSiteVpnAttachmentOutput>
-    createTransitGatewayPeering: function(Client, types.CreateTransitGatewayPeeringInput, any): async.Operation<types.CreateTransitGatewayPeeringOutput>
-    createTransitGatewayRouteTableAttachment: function(Client, types.CreateTransitGatewayRouteTableAttachmentInput, any): async.Operation<types.CreateTransitGatewayRouteTableAttachmentOutput>
-    createVpcAttachment: function(Client, types.CreateVpcAttachmentInput, any): async.Operation<types.CreateVpcAttachmentOutput>
-    deleteAttachment: function(Client, types.DeleteAttachmentInput, any): async.Operation<types.DeleteAttachmentOutput>
-    deleteConnection: function(Client, types.DeleteConnectionInput, any): async.Operation<types.DeleteConnectionOutput>
-    deleteConnectPeer: function(Client, types.DeleteConnectPeerInput, any): async.Operation<types.DeleteConnectPeerOutput>
-    deleteCoreNetwork: function(Client, types.DeleteCoreNetworkInput, any): async.Operation<types.DeleteCoreNetworkOutput>
-    deleteCoreNetworkPolicyVersion: function(Client, types.DeleteCoreNetworkPolicyVersionInput, any): async.Operation<types.DeleteCoreNetworkPolicyVersionOutput>
-    deleteCoreNetworkPrefixListAssociation: function(Client, types.DeleteCoreNetworkPrefixListAssociationInput, any): async.Operation<types.DeleteCoreNetworkPrefixListAssociationOutput>
-    deleteDevice: function(Client, types.DeleteDeviceInput, any): async.Operation<types.DeleteDeviceOutput>
-    deleteGlobalNetwork: function(Client, types.DeleteGlobalNetworkInput, any): async.Operation<types.DeleteGlobalNetworkOutput>
-    deleteLink: function(Client, types.DeleteLinkInput, any): async.Operation<types.DeleteLinkOutput>
-    deletePeering: function(Client, types.DeletePeeringInput, any): async.Operation<types.DeletePeeringOutput>
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, any): async.Operation<types.DeleteResourcePolicyOutput>
-    deleteSite: function(Client, types.DeleteSiteInput, any): async.Operation<types.DeleteSiteOutput>
-    deregisterTransitGateway: function(Client, types.DeregisterTransitGatewayInput, any): async.Operation<types.DeregisterTransitGatewayOutput>
-    describeGlobalNetworks: function(Client, types.DescribeGlobalNetworksInput, any): async.Operation<types.DescribeGlobalNetworksOutput>
-    disassociateConnectPeer: function(Client, types.DisassociateConnectPeerInput, any): async.Operation<types.DisassociateConnectPeerOutput>
-    disassociateCustomerGateway: function(Client, types.DisassociateCustomerGatewayInput, any): async.Operation<types.DisassociateCustomerGatewayOutput>
-    disassociateLink: function(Client, types.DisassociateLinkInput, any): async.Operation<types.DisassociateLinkOutput>
-    disassociateTransitGatewayConnectPeer: function(Client, types.DisassociateTransitGatewayConnectPeerInput, any): async.Operation<types.DisassociateTransitGatewayConnectPeerOutput>
-    executeCoreNetworkChangeSet: function(Client, types.ExecuteCoreNetworkChangeSetInput, any): async.Operation<types.ExecuteCoreNetworkChangeSetOutput>
-    getConnectAttachment: function(Client, types.GetConnectAttachmentInput, any): async.Operation<types.GetConnectAttachmentOutput>
-    getConnections: function(Client, types.GetConnectionsInput, any): async.Operation<types.GetConnectionsOutput>
-    getConnectPeer: function(Client, types.GetConnectPeerInput, any): async.Operation<types.GetConnectPeerOutput>
-    getConnectPeerAssociations: function(Client, types.GetConnectPeerAssociationsInput, any): async.Operation<types.GetConnectPeerAssociationsOutput>
-    getCoreNetwork: function(Client, types.GetCoreNetworkInput, any): async.Operation<types.GetCoreNetworkOutput>
-    getCoreNetworkChangeEvents: function(Client, types.GetCoreNetworkChangeEventsInput, any): async.Operation<types.GetCoreNetworkChangeEventsOutput>
-    getCoreNetworkChangeSet: function(Client, types.GetCoreNetworkChangeSetInput, any): async.Operation<types.GetCoreNetworkChangeSetOutput>
-    getCoreNetworkPolicy: function(Client, types.GetCoreNetworkPolicyInput, any): async.Operation<types.GetCoreNetworkPolicyOutput>
-    getCustomerGatewayAssociations: function(Client, types.GetCustomerGatewayAssociationsInput, any): async.Operation<types.GetCustomerGatewayAssociationsOutput>
-    getDevices: function(Client, types.GetDevicesInput, any): async.Operation<types.GetDevicesOutput>
-    getDirectConnectGatewayAttachment: function(Client, types.GetDirectConnectGatewayAttachmentInput, any): async.Operation<types.GetDirectConnectGatewayAttachmentOutput>
-    getLinkAssociations: function(Client, types.GetLinkAssociationsInput, any): async.Operation<types.GetLinkAssociationsOutput>
-    getLinks: function(Client, types.GetLinksInput, any): async.Operation<types.GetLinksOutput>
-    getNetworkResourceCounts: function(Client, types.GetNetworkResourceCountsInput, any): async.Operation<types.GetNetworkResourceCountsOutput>
-    getNetworkResourceRelationships: function(Client, types.GetNetworkResourceRelationshipsInput, any): async.Operation<types.GetNetworkResourceRelationshipsOutput>
-    getNetworkResources: function(Client, types.GetNetworkResourcesInput, any): async.Operation<types.GetNetworkResourcesOutput>
-    getNetworkRoutes: function(Client, types.GetNetworkRoutesInput, any): async.Operation<types.GetNetworkRoutesOutput>
-    getNetworkTelemetry: function(Client, types.GetNetworkTelemetryInput, any): async.Operation<types.GetNetworkTelemetryOutput>
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput, any): async.Operation<types.GetResourcePolicyOutput>
-    getRouteAnalysis: function(Client, types.GetRouteAnalysisInput, any): async.Operation<types.GetRouteAnalysisOutput>
-    getSites: function(Client, types.GetSitesInput, any): async.Operation<types.GetSitesOutput>
-    getSiteToSiteVpnAttachment: function(Client, types.GetSiteToSiteVpnAttachmentInput, any): async.Operation<types.GetSiteToSiteVpnAttachmentOutput>
-    getTransitGatewayConnectPeerAssociations: function(Client, types.GetTransitGatewayConnectPeerAssociationsInput, any): async.Operation<types.GetTransitGatewayConnectPeerAssociationsOutput>
-    getTransitGatewayPeering: function(Client, types.GetTransitGatewayPeeringInput, any): async.Operation<types.GetTransitGatewayPeeringOutput>
-    getTransitGatewayRegistrations: function(Client, types.GetTransitGatewayRegistrationsInput, any): async.Operation<types.GetTransitGatewayRegistrationsOutput>
-    getTransitGatewayRouteTableAttachment: function(Client, types.GetTransitGatewayRouteTableAttachmentInput, any): async.Operation<types.GetTransitGatewayRouteTableAttachmentOutput>
-    getVpcAttachment: function(Client, types.GetVpcAttachmentInput, any): async.Operation<types.GetVpcAttachmentOutput>
-    listAttachmentRoutingPolicyAssociations: function(Client, types.ListAttachmentRoutingPolicyAssociationsInput, any): async.Operation<types.ListAttachmentRoutingPolicyAssociationsOutput>
-    listAttachments: function(Client, types.ListAttachmentsInput, any): async.Operation<types.ListAttachmentsOutput>
-    listConnectPeers: function(Client, types.ListConnectPeersInput, any): async.Operation<types.ListConnectPeersOutput>
-    listCoreNetworkPolicyVersions: function(Client, types.ListCoreNetworkPolicyVersionsInput, any): async.Operation<types.ListCoreNetworkPolicyVersionsOutput>
-    listCoreNetworkPrefixListAssociations: function(Client, types.ListCoreNetworkPrefixListAssociationsInput, any): async.Operation<types.ListCoreNetworkPrefixListAssociationsOutput>
-    listCoreNetworkRoutingInformation: function(Client, types.ListCoreNetworkRoutingInformationInput, any): async.Operation<types.ListCoreNetworkRoutingInformationOutput>
-    listCoreNetworks: function(Client, types.ListCoreNetworksInput, any): async.Operation<types.ListCoreNetworksOutput>
-    listOrganizationServiceAccessStatus: function(Client, types.ListOrganizationServiceAccessStatusInput, any): async.Operation<types.ListOrganizationServiceAccessStatusOutput>
-    listPeerings: function(Client, types.ListPeeringsInput, any): async.Operation<types.ListPeeringsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putAttachmentRoutingPolicyLabel: function(Client, types.PutAttachmentRoutingPolicyLabelInput, any): async.Operation<types.PutAttachmentRoutingPolicyLabelOutput>
-    putCoreNetworkPolicy: function(Client, types.PutCoreNetworkPolicyInput, any): async.Operation<types.PutCoreNetworkPolicyOutput>
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput, any): async.Operation<types.PutResourcePolicyOutput>
-    registerTransitGateway: function(Client, types.RegisterTransitGatewayInput, any): async.Operation<types.RegisterTransitGatewayOutput>
-    rejectAttachment: function(Client, types.RejectAttachmentInput, any): async.Operation<types.RejectAttachmentOutput>
-    removeAttachmentRoutingPolicyLabel: function(Client, types.RemoveAttachmentRoutingPolicyLabelInput, any): async.Operation<types.RemoveAttachmentRoutingPolicyLabelOutput>
-    restoreCoreNetworkPolicyVersion: function(Client, types.RestoreCoreNetworkPolicyVersionInput, any): async.Operation<types.RestoreCoreNetworkPolicyVersionOutput>
-    startOrganizationServiceAccessUpdate: function(Client, types.StartOrganizationServiceAccessUpdateInput, any): async.Operation<types.StartOrganizationServiceAccessUpdateOutput>
-    startRouteAnalysis: function(Client, types.StartRouteAnalysisInput, any): async.Operation<types.StartRouteAnalysisOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateConnection: function(Client, types.UpdateConnectionInput, any): async.Operation<types.UpdateConnectionOutput>
-    updateCoreNetwork: function(Client, types.UpdateCoreNetworkInput, any): async.Operation<types.UpdateCoreNetworkOutput>
-    updateDevice: function(Client, types.UpdateDeviceInput, any): async.Operation<types.UpdateDeviceOutput>
-    updateDirectConnectGatewayAttachment: function(Client, types.UpdateDirectConnectGatewayAttachmentInput, any): async.Operation<types.UpdateDirectConnectGatewayAttachmentOutput>
-    updateGlobalNetwork: function(Client, types.UpdateGlobalNetworkInput, any): async.Operation<types.UpdateGlobalNetworkOutput>
-    updateLink: function(Client, types.UpdateLinkInput, any): async.Operation<types.UpdateLinkOutput>
-    updateNetworkResourceMetadata: function(Client, types.UpdateNetworkResourceMetadataInput, any): async.Operation<types.UpdateNetworkResourceMetadataOutput>
-    updateSite: function(Client, types.UpdateSiteInput, any): async.Operation<types.UpdateSiteOutput>
-    updateVpcAttachment: function(Client, types.UpdateVpcAttachmentInput, any): async.Operation<types.UpdateVpcAttachmentOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    acceptAttachment: function(Client, types.AcceptAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.AcceptAttachmentOutput>
+    associateConnectPeer: function(Client, types.AssociateConnectPeerInput, ? base_client.InvokeOptions): async.Operation<types.AssociateConnectPeerOutput>
+    associateCustomerGateway: function(Client, types.AssociateCustomerGatewayInput, ? base_client.InvokeOptions): async.Operation<types.AssociateCustomerGatewayOutput>
+    associateLink: function(Client, types.AssociateLinkInput, ? base_client.InvokeOptions): async.Operation<types.AssociateLinkOutput>
+    associateTransitGatewayConnectPeer: function(Client, types.AssociateTransitGatewayConnectPeerInput, ? base_client.InvokeOptions): async.Operation<types.AssociateTransitGatewayConnectPeerOutput>
+    createConnectAttachment: function(Client, types.CreateConnectAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateConnectAttachmentOutput>
+    createConnection: function(Client, types.CreateConnectionInput, ? base_client.InvokeOptions): async.Operation<types.CreateConnectionOutput>
+    createConnectPeer: function(Client, types.CreateConnectPeerInput, ? base_client.InvokeOptions): async.Operation<types.CreateConnectPeerOutput>
+    createCoreNetwork: function(Client, types.CreateCoreNetworkInput, ? base_client.InvokeOptions): async.Operation<types.CreateCoreNetworkOutput>
+    createCoreNetworkPrefixListAssociation: function(Client, types.CreateCoreNetworkPrefixListAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateCoreNetworkPrefixListAssociationOutput>
+    createDevice: function(Client, types.CreateDeviceInput, ? base_client.InvokeOptions): async.Operation<types.CreateDeviceOutput>
+    createDirectConnectGatewayAttachment: function(Client, types.CreateDirectConnectGatewayAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateDirectConnectGatewayAttachmentOutput>
+    createGlobalNetwork: function(Client, types.CreateGlobalNetworkInput, ? base_client.InvokeOptions): async.Operation<types.CreateGlobalNetworkOutput>
+    createLink: function(Client, types.CreateLinkInput, ? base_client.InvokeOptions): async.Operation<types.CreateLinkOutput>
+    createSite: function(Client, types.CreateSiteInput, ? base_client.InvokeOptions): async.Operation<types.CreateSiteOutput>
+    createSiteToSiteVpnAttachment: function(Client, types.CreateSiteToSiteVpnAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateSiteToSiteVpnAttachmentOutput>
+    createTransitGatewayPeering: function(Client, types.CreateTransitGatewayPeeringInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayPeeringOutput>
+    createTransitGatewayRouteTableAttachment: function(Client, types.CreateTransitGatewayRouteTableAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayRouteTableAttachmentOutput>
+    createVpcAttachment: function(Client, types.CreateVpcAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateVpcAttachmentOutput>
+    deleteAttachment: function(Client, types.DeleteAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAttachmentOutput>
+    deleteConnection: function(Client, types.DeleteConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConnectionOutput>
+    deleteConnectPeer: function(Client, types.DeleteConnectPeerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConnectPeerOutput>
+    deleteCoreNetwork: function(Client, types.DeleteCoreNetworkInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCoreNetworkOutput>
+    deleteCoreNetworkPolicyVersion: function(Client, types.DeleteCoreNetworkPolicyVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCoreNetworkPolicyVersionOutput>
+    deleteCoreNetworkPrefixListAssociation: function(Client, types.DeleteCoreNetworkPrefixListAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCoreNetworkPrefixListAssociationOutput>
+    deleteDevice: function(Client, types.DeleteDeviceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDeviceOutput>
+    deleteGlobalNetwork: function(Client, types.DeleteGlobalNetworkInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGlobalNetworkOutput>
+    deleteLink: function(Client, types.DeleteLinkInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLinkOutput>
+    deletePeering: function(Client, types.DeletePeeringInput, ? base_client.InvokeOptions): async.Operation<types.DeletePeeringOutput>
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    deleteSite: function(Client, types.DeleteSiteInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSiteOutput>
+    deregisterTransitGateway: function(Client, types.DeregisterTransitGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterTransitGatewayOutput>
+    describeGlobalNetworks: function(Client, types.DescribeGlobalNetworksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeGlobalNetworksOutput>
+    disassociateConnectPeer: function(Client, types.DisassociateConnectPeerInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateConnectPeerOutput>
+    disassociateCustomerGateway: function(Client, types.DisassociateCustomerGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateCustomerGatewayOutput>
+    disassociateLink: function(Client, types.DisassociateLinkInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateLinkOutput>
+    disassociateTransitGatewayConnectPeer: function(Client, types.DisassociateTransitGatewayConnectPeerInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateTransitGatewayConnectPeerOutput>
+    executeCoreNetworkChangeSet: function(Client, types.ExecuteCoreNetworkChangeSetInput, ? base_client.InvokeOptions): async.Operation<types.ExecuteCoreNetworkChangeSetOutput>
+    getConnectAttachment: function(Client, types.GetConnectAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectAttachmentOutput>
+    getConnections: function(Client, types.GetConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectionsOutput>
+    getConnectPeer: function(Client, types.GetConnectPeerInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectPeerOutput>
+    getConnectPeerAssociations: function(Client, types.GetConnectPeerAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectPeerAssociationsOutput>
+    getCoreNetwork: function(Client, types.GetCoreNetworkInput, ? base_client.InvokeOptions): async.Operation<types.GetCoreNetworkOutput>
+    getCoreNetworkChangeEvents: function(Client, types.GetCoreNetworkChangeEventsInput, ? base_client.InvokeOptions): async.Operation<types.GetCoreNetworkChangeEventsOutput>
+    getCoreNetworkChangeSet: function(Client, types.GetCoreNetworkChangeSetInput, ? base_client.InvokeOptions): async.Operation<types.GetCoreNetworkChangeSetOutput>
+    getCoreNetworkPolicy: function(Client, types.GetCoreNetworkPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetCoreNetworkPolicyOutput>
+    getCustomerGatewayAssociations: function(Client, types.GetCustomerGatewayAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.GetCustomerGatewayAssociationsOutput>
+    getDevices: function(Client, types.GetDevicesInput, ? base_client.InvokeOptions): async.Operation<types.GetDevicesOutput>
+    getDirectConnectGatewayAttachment: function(Client, types.GetDirectConnectGatewayAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.GetDirectConnectGatewayAttachmentOutput>
+    getLinkAssociations: function(Client, types.GetLinkAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.GetLinkAssociationsOutput>
+    getLinks: function(Client, types.GetLinksInput, ? base_client.InvokeOptions): async.Operation<types.GetLinksOutput>
+    getNetworkResourceCounts: function(Client, types.GetNetworkResourceCountsInput, ? base_client.InvokeOptions): async.Operation<types.GetNetworkResourceCountsOutput>
+    getNetworkResourceRelationships: function(Client, types.GetNetworkResourceRelationshipsInput, ? base_client.InvokeOptions): async.Operation<types.GetNetworkResourceRelationshipsOutput>
+    getNetworkResources: function(Client, types.GetNetworkResourcesInput, ? base_client.InvokeOptions): async.Operation<types.GetNetworkResourcesOutput>
+    getNetworkRoutes: function(Client, types.GetNetworkRoutesInput, ? base_client.InvokeOptions): async.Operation<types.GetNetworkRoutesOutput>
+    getNetworkTelemetry: function(Client, types.GetNetworkTelemetryInput, ? base_client.InvokeOptions): async.Operation<types.GetNetworkTelemetryOutput>
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    getRouteAnalysis: function(Client, types.GetRouteAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.GetRouteAnalysisOutput>
+    getSites: function(Client, types.GetSitesInput, ? base_client.InvokeOptions): async.Operation<types.GetSitesOutput>
+    getSiteToSiteVpnAttachment: function(Client, types.GetSiteToSiteVpnAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.GetSiteToSiteVpnAttachmentOutput>
+    getTransitGatewayConnectPeerAssociations: function(Client, types.GetTransitGatewayConnectPeerAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.GetTransitGatewayConnectPeerAssociationsOutput>
+    getTransitGatewayPeering: function(Client, types.GetTransitGatewayPeeringInput, ? base_client.InvokeOptions): async.Operation<types.GetTransitGatewayPeeringOutput>
+    getTransitGatewayRegistrations: function(Client, types.GetTransitGatewayRegistrationsInput, ? base_client.InvokeOptions): async.Operation<types.GetTransitGatewayRegistrationsOutput>
+    getTransitGatewayRouteTableAttachment: function(Client, types.GetTransitGatewayRouteTableAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.GetTransitGatewayRouteTableAttachmentOutput>
+    getVpcAttachment: function(Client, types.GetVpcAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.GetVpcAttachmentOutput>
+    listAttachmentRoutingPolicyAssociations: function(Client, types.ListAttachmentRoutingPolicyAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListAttachmentRoutingPolicyAssociationsOutput>
+    listAttachments: function(Client, types.ListAttachmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListAttachmentsOutput>
+    listConnectPeers: function(Client, types.ListConnectPeersInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectPeersOutput>
+    listCoreNetworkPolicyVersions: function(Client, types.ListCoreNetworkPolicyVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListCoreNetworkPolicyVersionsOutput>
+    listCoreNetworkPrefixListAssociations: function(Client, types.ListCoreNetworkPrefixListAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListCoreNetworkPrefixListAssociationsOutput>
+    listCoreNetworkRoutingInformation: function(Client, types.ListCoreNetworkRoutingInformationInput, ? base_client.InvokeOptions): async.Operation<types.ListCoreNetworkRoutingInformationOutput>
+    listCoreNetworks: function(Client, types.ListCoreNetworksInput, ? base_client.InvokeOptions): async.Operation<types.ListCoreNetworksOutput>
+    listOrganizationServiceAccessStatus: function(Client, types.ListOrganizationServiceAccessStatusInput, ? base_client.InvokeOptions): async.Operation<types.ListOrganizationServiceAccessStatusOutput>
+    listPeerings: function(Client, types.ListPeeringsInput, ? base_client.InvokeOptions): async.Operation<types.ListPeeringsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putAttachmentRoutingPolicyLabel: function(Client, types.PutAttachmentRoutingPolicyLabelInput, ? base_client.InvokeOptions): async.Operation<types.PutAttachmentRoutingPolicyLabelOutput>
+    putCoreNetworkPolicy: function(Client, types.PutCoreNetworkPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutCoreNetworkPolicyOutput>
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    registerTransitGateway: function(Client, types.RegisterTransitGatewayInput, ? base_client.InvokeOptions): async.Operation<types.RegisterTransitGatewayOutput>
+    rejectAttachment: function(Client, types.RejectAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.RejectAttachmentOutput>
+    removeAttachmentRoutingPolicyLabel: function(Client, types.RemoveAttachmentRoutingPolicyLabelInput, ? base_client.InvokeOptions): async.Operation<types.RemoveAttachmentRoutingPolicyLabelOutput>
+    restoreCoreNetworkPolicyVersion: function(Client, types.RestoreCoreNetworkPolicyVersionInput, ? base_client.InvokeOptions): async.Operation<types.RestoreCoreNetworkPolicyVersionOutput>
+    startOrganizationServiceAccessUpdate: function(Client, types.StartOrganizationServiceAccessUpdateInput, ? base_client.InvokeOptions): async.Operation<types.StartOrganizationServiceAccessUpdateOutput>
+    startRouteAnalysis: function(Client, types.StartRouteAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.StartRouteAnalysisOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateConnection: function(Client, types.UpdateConnectionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConnectionOutput>
+    updateCoreNetwork: function(Client, types.UpdateCoreNetworkInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCoreNetworkOutput>
+    updateDevice: function(Client, types.UpdateDeviceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDeviceOutput>
+    updateDirectConnectGatewayAttachment: function(Client, types.UpdateDirectConnectGatewayAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDirectConnectGatewayAttachmentOutput>
+    updateGlobalNetwork: function(Client, types.UpdateGlobalNetworkInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGlobalNetworkOutput>
+    updateLink: function(Client, types.UpdateLinkInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLinkOutput>
+    updateNetworkResourceMetadata: function(Client, types.UpdateNetworkResourceMetadataInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNetworkResourceMetadataOutput>
+    updateSite: function(Client, types.UpdateSiteInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSiteOutput>
+    updateVpcAttachment: function(Client, types.UpdateVpcAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateVpcAttachmentOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "NetworkManager"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "networkmanager", signing_region = c.region } }
                 else
@@ -154,384 +157,384 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:acceptAttachment(input: types.AcceptAttachmentInput, options: any): async.Operation<types.AcceptAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptAttachment, input, options) as async.Operation<types.AcceptAttachmentOutput>
+function C:acceptAttachment(input: types.AcceptAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptAttachment as schema.OperationSchema, input, options) as async.Operation<types.AcceptAttachmentOutput>
 end
 
-function C:associateConnectPeer(input: types.AssociateConnectPeerInput, options: any): async.Operation<types.AssociateConnectPeerOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateConnectPeer, input, options) as async.Operation<types.AssociateConnectPeerOutput>
+function C:associateConnectPeer(input: types.AssociateConnectPeerInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateConnectPeerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateConnectPeer as schema.OperationSchema, input, options) as async.Operation<types.AssociateConnectPeerOutput>
 end
 
-function C:associateCustomerGateway(input: types.AssociateCustomerGatewayInput, options: any): async.Operation<types.AssociateCustomerGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateCustomerGateway, input, options) as async.Operation<types.AssociateCustomerGatewayOutput>
+function C:associateCustomerGateway(input: types.AssociateCustomerGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateCustomerGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateCustomerGateway as schema.OperationSchema, input, options) as async.Operation<types.AssociateCustomerGatewayOutput>
 end
 
-function C:associateLink(input: types.AssociateLinkInput, options: any): async.Operation<types.AssociateLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateLink, input, options) as async.Operation<types.AssociateLinkOutput>
+function C:associateLink(input: types.AssociateLinkInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateLink as schema.OperationSchema, input, options) as async.Operation<types.AssociateLinkOutput>
 end
 
-function C:associateTransitGatewayConnectPeer(input: types.AssociateTransitGatewayConnectPeerInput, options: any): async.Operation<types.AssociateTransitGatewayConnectPeerOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateTransitGatewayConnectPeer, input, options) as async.Operation<types.AssociateTransitGatewayConnectPeerOutput>
+function C:associateTransitGatewayConnectPeer(input: types.AssociateTransitGatewayConnectPeerInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateTransitGatewayConnectPeerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateTransitGatewayConnectPeer as schema.OperationSchema, input, options) as async.Operation<types.AssociateTransitGatewayConnectPeerOutput>
 end
 
-function C:createConnectAttachment(input: types.CreateConnectAttachmentInput, options: any): async.Operation<types.CreateConnectAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConnectAttachment, input, options) as async.Operation<types.CreateConnectAttachmentOutput>
+function C:createConnectAttachment(input: types.CreateConnectAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConnectAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConnectAttachment as schema.OperationSchema, input, options) as async.Operation<types.CreateConnectAttachmentOutput>
 end
 
-function C:createConnection(input: types.CreateConnectionInput, options: any): async.Operation<types.CreateConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConnection, input, options) as async.Operation<types.CreateConnectionOutput>
+function C:createConnection(input: types.CreateConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConnection as schema.OperationSchema, input, options) as async.Operation<types.CreateConnectionOutput>
 end
 
-function C:createConnectPeer(input: types.CreateConnectPeerInput, options: any): async.Operation<types.CreateConnectPeerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConnectPeer, input, options) as async.Operation<types.CreateConnectPeerOutput>
+function C:createConnectPeer(input: types.CreateConnectPeerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConnectPeerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConnectPeer as schema.OperationSchema, input, options) as async.Operation<types.CreateConnectPeerOutput>
 end
 
-function C:createCoreNetwork(input: types.CreateCoreNetworkInput, options: any): async.Operation<types.CreateCoreNetworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCoreNetwork, input, options) as async.Operation<types.CreateCoreNetworkOutput>
+function C:createCoreNetwork(input: types.CreateCoreNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCoreNetworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCoreNetwork as schema.OperationSchema, input, options) as async.Operation<types.CreateCoreNetworkOutput>
 end
 
-function C:createCoreNetworkPrefixListAssociation(input: types.CreateCoreNetworkPrefixListAssociationInput, options: any): async.Operation<types.CreateCoreNetworkPrefixListAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCoreNetworkPrefixListAssociation, input, options) as async.Operation<types.CreateCoreNetworkPrefixListAssociationOutput>
+function C:createCoreNetworkPrefixListAssociation(input: types.CreateCoreNetworkPrefixListAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCoreNetworkPrefixListAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCoreNetworkPrefixListAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreateCoreNetworkPrefixListAssociationOutput>
 end
 
-function C:createDevice(input: types.CreateDeviceInput, options: any): async.Operation<types.CreateDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDevice, input, options) as async.Operation<types.CreateDeviceOutput>
+function C:createDevice(input: types.CreateDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDevice as schema.OperationSchema, input, options) as async.Operation<types.CreateDeviceOutput>
 end
 
-function C:createDirectConnectGatewayAttachment(input: types.CreateDirectConnectGatewayAttachmentInput, options: any): async.Operation<types.CreateDirectConnectGatewayAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDirectConnectGatewayAttachment, input, options) as async.Operation<types.CreateDirectConnectGatewayAttachmentOutput>
+function C:createDirectConnectGatewayAttachment(input: types.CreateDirectConnectGatewayAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDirectConnectGatewayAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDirectConnectGatewayAttachment as schema.OperationSchema, input, options) as async.Operation<types.CreateDirectConnectGatewayAttachmentOutput>
 end
 
-function C:createGlobalNetwork(input: types.CreateGlobalNetworkInput, options: any): async.Operation<types.CreateGlobalNetworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateGlobalNetwork, input, options) as async.Operation<types.CreateGlobalNetworkOutput>
+function C:createGlobalNetwork(input: types.CreateGlobalNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGlobalNetworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGlobalNetwork as schema.OperationSchema, input, options) as async.Operation<types.CreateGlobalNetworkOutput>
 end
 
-function C:createLink(input: types.CreateLinkInput, options: any): async.Operation<types.CreateLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLink, input, options) as async.Operation<types.CreateLinkOutput>
+function C:createLink(input: types.CreateLinkInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLink as schema.OperationSchema, input, options) as async.Operation<types.CreateLinkOutput>
 end
 
-function C:createSite(input: types.CreateSiteInput, options: any): async.Operation<types.CreateSiteOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSite, input, options) as async.Operation<types.CreateSiteOutput>
+function C:createSite(input: types.CreateSiteInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSiteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSite as schema.OperationSchema, input, options) as async.Operation<types.CreateSiteOutput>
 end
 
-function C:createSiteToSiteVpnAttachment(input: types.CreateSiteToSiteVpnAttachmentInput, options: any): async.Operation<types.CreateSiteToSiteVpnAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSiteToSiteVpnAttachment, input, options) as async.Operation<types.CreateSiteToSiteVpnAttachmentOutput>
+function C:createSiteToSiteVpnAttachment(input: types.CreateSiteToSiteVpnAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSiteToSiteVpnAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSiteToSiteVpnAttachment as schema.OperationSchema, input, options) as async.Operation<types.CreateSiteToSiteVpnAttachmentOutput>
 end
 
-function C:createTransitGatewayPeering(input: types.CreateTransitGatewayPeeringInput, options: any): async.Operation<types.CreateTransitGatewayPeeringOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTransitGatewayPeering, input, options) as async.Operation<types.CreateTransitGatewayPeeringOutput>
+function C:createTransitGatewayPeering(input: types.CreateTransitGatewayPeeringInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayPeeringOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTransitGatewayPeering as schema.OperationSchema, input, options) as async.Operation<types.CreateTransitGatewayPeeringOutput>
 end
 
-function C:createTransitGatewayRouteTableAttachment(input: types.CreateTransitGatewayRouteTableAttachmentInput, options: any): async.Operation<types.CreateTransitGatewayRouteTableAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTransitGatewayRouteTableAttachment, input, options) as async.Operation<types.CreateTransitGatewayRouteTableAttachmentOutput>
+function C:createTransitGatewayRouteTableAttachment(input: types.CreateTransitGatewayRouteTableAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayRouteTableAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTransitGatewayRouteTableAttachment as schema.OperationSchema, input, options) as async.Operation<types.CreateTransitGatewayRouteTableAttachmentOutput>
 end
 
-function C:createVpcAttachment(input: types.CreateVpcAttachmentInput, options: any): async.Operation<types.CreateVpcAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVpcAttachment, input, options) as async.Operation<types.CreateVpcAttachmentOutput>
+function C:createVpcAttachment(input: types.CreateVpcAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVpcAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVpcAttachment as schema.OperationSchema, input, options) as async.Operation<types.CreateVpcAttachmentOutput>
 end
 
-function C:deleteAttachment(input: types.DeleteAttachmentInput, options: any): async.Operation<types.DeleteAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAttachment, input, options) as async.Operation<types.DeleteAttachmentOutput>
+function C:deleteAttachment(input: types.DeleteAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAttachment as schema.OperationSchema, input, options) as async.Operation<types.DeleteAttachmentOutput>
 end
 
-function C:deleteConnection(input: types.DeleteConnectionInput, options: any): async.Operation<types.DeleteConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConnection, input, options) as async.Operation<types.DeleteConnectionOutput>
+function C:deleteConnection(input: types.DeleteConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConnection as schema.OperationSchema, input, options) as async.Operation<types.DeleteConnectionOutput>
 end
 
-function C:deleteConnectPeer(input: types.DeleteConnectPeerInput, options: any): async.Operation<types.DeleteConnectPeerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConnectPeer, input, options) as async.Operation<types.DeleteConnectPeerOutput>
+function C:deleteConnectPeer(input: types.DeleteConnectPeerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConnectPeerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConnectPeer as schema.OperationSchema, input, options) as async.Operation<types.DeleteConnectPeerOutput>
 end
 
-function C:deleteCoreNetwork(input: types.DeleteCoreNetworkInput, options: any): async.Operation<types.DeleteCoreNetworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCoreNetwork, input, options) as async.Operation<types.DeleteCoreNetworkOutput>
+function C:deleteCoreNetwork(input: types.DeleteCoreNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCoreNetworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCoreNetwork as schema.OperationSchema, input, options) as async.Operation<types.DeleteCoreNetworkOutput>
 end
 
-function C:deleteCoreNetworkPolicyVersion(input: types.DeleteCoreNetworkPolicyVersionInput, options: any): async.Operation<types.DeleteCoreNetworkPolicyVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCoreNetworkPolicyVersion, input, options) as async.Operation<types.DeleteCoreNetworkPolicyVersionOutput>
+function C:deleteCoreNetworkPolicyVersion(input: types.DeleteCoreNetworkPolicyVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCoreNetworkPolicyVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCoreNetworkPolicyVersion as schema.OperationSchema, input, options) as async.Operation<types.DeleteCoreNetworkPolicyVersionOutput>
 end
 
-function C:deleteCoreNetworkPrefixListAssociation(input: types.DeleteCoreNetworkPrefixListAssociationInput, options: any): async.Operation<types.DeleteCoreNetworkPrefixListAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCoreNetworkPrefixListAssociation, input, options) as async.Operation<types.DeleteCoreNetworkPrefixListAssociationOutput>
+function C:deleteCoreNetworkPrefixListAssociation(input: types.DeleteCoreNetworkPrefixListAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCoreNetworkPrefixListAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCoreNetworkPrefixListAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteCoreNetworkPrefixListAssociationOutput>
 end
 
-function C:deleteDevice(input: types.DeleteDeviceInput, options: any): async.Operation<types.DeleteDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDevice, input, options) as async.Operation<types.DeleteDeviceOutput>
+function C:deleteDevice(input: types.DeleteDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDevice as schema.OperationSchema, input, options) as async.Operation<types.DeleteDeviceOutput>
 end
 
-function C:deleteGlobalNetwork(input: types.DeleteGlobalNetworkInput, options: any): async.Operation<types.DeleteGlobalNetworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteGlobalNetwork, input, options) as async.Operation<types.DeleteGlobalNetworkOutput>
+function C:deleteGlobalNetwork(input: types.DeleteGlobalNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGlobalNetworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGlobalNetwork as schema.OperationSchema, input, options) as async.Operation<types.DeleteGlobalNetworkOutput>
 end
 
-function C:deleteLink(input: types.DeleteLinkInput, options: any): async.Operation<types.DeleteLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLink, input, options) as async.Operation<types.DeleteLinkOutput>
+function C:deleteLink(input: types.DeleteLinkInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLink as schema.OperationSchema, input, options) as async.Operation<types.DeleteLinkOutput>
 end
 
-function C:deletePeering(input: types.DeletePeeringInput, options: any): async.Operation<types.DeletePeeringOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePeering, input, options) as async.Operation<types.DeletePeeringOutput>
+function C:deletePeering(input: types.DeletePeeringInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePeeringOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePeering as schema.OperationSchema, input, options) as async.Operation<types.DeletePeeringOutput>
 end
 
-function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options: any): async.Operation<types.DeleteResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicy, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
+function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
 end
 
-function C:deleteSite(input: types.DeleteSiteInput, options: any): async.Operation<types.DeleteSiteOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSite, input, options) as async.Operation<types.DeleteSiteOutput>
+function C:deleteSite(input: types.DeleteSiteInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSiteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSite as schema.OperationSchema, input, options) as async.Operation<types.DeleteSiteOutput>
 end
 
-function C:deregisterTransitGateway(input: types.DeregisterTransitGatewayInput, options: any): async.Operation<types.DeregisterTransitGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterTransitGateway, input, options) as async.Operation<types.DeregisterTransitGatewayOutput>
+function C:deregisterTransitGateway(input: types.DeregisterTransitGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterTransitGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterTransitGateway as schema.OperationSchema, input, options) as async.Operation<types.DeregisterTransitGatewayOutput>
 end
 
-function C:describeGlobalNetworks(input: types.DescribeGlobalNetworksInput, options: any): async.Operation<types.DescribeGlobalNetworksOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeGlobalNetworks, input, options) as async.Operation<types.DescribeGlobalNetworksOutput>
+function C:describeGlobalNetworks(input: types.DescribeGlobalNetworksInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeGlobalNetworksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeGlobalNetworks as schema.OperationSchema, input, options) as async.Operation<types.DescribeGlobalNetworksOutput>
 end
 
-function C:disassociateConnectPeer(input: types.DisassociateConnectPeerInput, options: any): async.Operation<types.DisassociateConnectPeerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateConnectPeer, input, options) as async.Operation<types.DisassociateConnectPeerOutput>
+function C:disassociateConnectPeer(input: types.DisassociateConnectPeerInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateConnectPeerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateConnectPeer as schema.OperationSchema, input, options) as async.Operation<types.DisassociateConnectPeerOutput>
 end
 
-function C:disassociateCustomerGateway(input: types.DisassociateCustomerGatewayInput, options: any): async.Operation<types.DisassociateCustomerGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateCustomerGateway, input, options) as async.Operation<types.DisassociateCustomerGatewayOutput>
+function C:disassociateCustomerGateway(input: types.DisassociateCustomerGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateCustomerGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateCustomerGateway as schema.OperationSchema, input, options) as async.Operation<types.DisassociateCustomerGatewayOutput>
 end
 
-function C:disassociateLink(input: types.DisassociateLinkInput, options: any): async.Operation<types.DisassociateLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateLink, input, options) as async.Operation<types.DisassociateLinkOutput>
+function C:disassociateLink(input: types.DisassociateLinkInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateLink as schema.OperationSchema, input, options) as async.Operation<types.DisassociateLinkOutput>
 end
 
-function C:disassociateTransitGatewayConnectPeer(input: types.DisassociateTransitGatewayConnectPeerInput, options: any): async.Operation<types.DisassociateTransitGatewayConnectPeerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateTransitGatewayConnectPeer, input, options) as async.Operation<types.DisassociateTransitGatewayConnectPeerOutput>
+function C:disassociateTransitGatewayConnectPeer(input: types.DisassociateTransitGatewayConnectPeerInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateTransitGatewayConnectPeerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateTransitGatewayConnectPeer as schema.OperationSchema, input, options) as async.Operation<types.DisassociateTransitGatewayConnectPeerOutput>
 end
 
-function C:executeCoreNetworkChangeSet(input: types.ExecuteCoreNetworkChangeSetInput, options: any): async.Operation<types.ExecuteCoreNetworkChangeSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExecuteCoreNetworkChangeSet, input, options) as async.Operation<types.ExecuteCoreNetworkChangeSetOutput>
+function C:executeCoreNetworkChangeSet(input: types.ExecuteCoreNetworkChangeSetInput, options?: base_client.InvokeOptions): async.Operation<types.ExecuteCoreNetworkChangeSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExecuteCoreNetworkChangeSet as schema.OperationSchema, input, options) as async.Operation<types.ExecuteCoreNetworkChangeSetOutput>
 end
 
-function C:getConnectAttachment(input: types.GetConnectAttachmentInput, options: any): async.Operation<types.GetConnectAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConnectAttachment, input, options) as async.Operation<types.GetConnectAttachmentOutput>
+function C:getConnectAttachment(input: types.GetConnectAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.GetConnectAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConnectAttachment as schema.OperationSchema, input, options) as async.Operation<types.GetConnectAttachmentOutput>
 end
 
-function C:getConnections(input: types.GetConnectionsInput, options: any): async.Operation<types.GetConnectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConnections, input, options) as async.Operation<types.GetConnectionsOutput>
+function C:getConnections(input: types.GetConnectionsInput, options?: base_client.InvokeOptions): async.Operation<types.GetConnectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConnections as schema.OperationSchema, input, options) as async.Operation<types.GetConnectionsOutput>
 end
 
-function C:getConnectPeer(input: types.GetConnectPeerInput, options: any): async.Operation<types.GetConnectPeerOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConnectPeer, input, options) as async.Operation<types.GetConnectPeerOutput>
+function C:getConnectPeer(input: types.GetConnectPeerInput, options?: base_client.InvokeOptions): async.Operation<types.GetConnectPeerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConnectPeer as schema.OperationSchema, input, options) as async.Operation<types.GetConnectPeerOutput>
 end
 
-function C:getConnectPeerAssociations(input: types.GetConnectPeerAssociationsInput, options: any): async.Operation<types.GetConnectPeerAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConnectPeerAssociations, input, options) as async.Operation<types.GetConnectPeerAssociationsOutput>
+function C:getConnectPeerAssociations(input: types.GetConnectPeerAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetConnectPeerAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConnectPeerAssociations as schema.OperationSchema, input, options) as async.Operation<types.GetConnectPeerAssociationsOutput>
 end
 
-function C:getCoreNetwork(input: types.GetCoreNetworkInput, options: any): async.Operation<types.GetCoreNetworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCoreNetwork, input, options) as async.Operation<types.GetCoreNetworkOutput>
+function C:getCoreNetwork(input: types.GetCoreNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.GetCoreNetworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCoreNetwork as schema.OperationSchema, input, options) as async.Operation<types.GetCoreNetworkOutput>
 end
 
-function C:getCoreNetworkChangeEvents(input: types.GetCoreNetworkChangeEventsInput, options: any): async.Operation<types.GetCoreNetworkChangeEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCoreNetworkChangeEvents, input, options) as async.Operation<types.GetCoreNetworkChangeEventsOutput>
+function C:getCoreNetworkChangeEvents(input: types.GetCoreNetworkChangeEventsInput, options?: base_client.InvokeOptions): async.Operation<types.GetCoreNetworkChangeEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCoreNetworkChangeEvents as schema.OperationSchema, input, options) as async.Operation<types.GetCoreNetworkChangeEventsOutput>
 end
 
-function C:getCoreNetworkChangeSet(input: types.GetCoreNetworkChangeSetInput, options: any): async.Operation<types.GetCoreNetworkChangeSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCoreNetworkChangeSet, input, options) as async.Operation<types.GetCoreNetworkChangeSetOutput>
+function C:getCoreNetworkChangeSet(input: types.GetCoreNetworkChangeSetInput, options?: base_client.InvokeOptions): async.Operation<types.GetCoreNetworkChangeSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCoreNetworkChangeSet as schema.OperationSchema, input, options) as async.Operation<types.GetCoreNetworkChangeSetOutput>
 end
 
-function C:getCoreNetworkPolicy(input: types.GetCoreNetworkPolicyInput, options: any): async.Operation<types.GetCoreNetworkPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCoreNetworkPolicy, input, options) as async.Operation<types.GetCoreNetworkPolicyOutput>
+function C:getCoreNetworkPolicy(input: types.GetCoreNetworkPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetCoreNetworkPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCoreNetworkPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetCoreNetworkPolicyOutput>
 end
 
-function C:getCustomerGatewayAssociations(input: types.GetCustomerGatewayAssociationsInput, options: any): async.Operation<types.GetCustomerGatewayAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCustomerGatewayAssociations, input, options) as async.Operation<types.GetCustomerGatewayAssociationsOutput>
+function C:getCustomerGatewayAssociations(input: types.GetCustomerGatewayAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetCustomerGatewayAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCustomerGatewayAssociations as schema.OperationSchema, input, options) as async.Operation<types.GetCustomerGatewayAssociationsOutput>
 end
 
-function C:getDevices(input: types.GetDevicesInput, options: any): async.Operation<types.GetDevicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDevices, input, options) as async.Operation<types.GetDevicesOutput>
+function C:getDevices(input: types.GetDevicesInput, options?: base_client.InvokeOptions): async.Operation<types.GetDevicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDevices as schema.OperationSchema, input, options) as async.Operation<types.GetDevicesOutput>
 end
 
-function C:getDirectConnectGatewayAttachment(input: types.GetDirectConnectGatewayAttachmentInput, options: any): async.Operation<types.GetDirectConnectGatewayAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDirectConnectGatewayAttachment, input, options) as async.Operation<types.GetDirectConnectGatewayAttachmentOutput>
+function C:getDirectConnectGatewayAttachment(input: types.GetDirectConnectGatewayAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.GetDirectConnectGatewayAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDirectConnectGatewayAttachment as schema.OperationSchema, input, options) as async.Operation<types.GetDirectConnectGatewayAttachmentOutput>
 end
 
-function C:getLinkAssociations(input: types.GetLinkAssociationsInput, options: any): async.Operation<types.GetLinkAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLinkAssociations, input, options) as async.Operation<types.GetLinkAssociationsOutput>
+function C:getLinkAssociations(input: types.GetLinkAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetLinkAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLinkAssociations as schema.OperationSchema, input, options) as async.Operation<types.GetLinkAssociationsOutput>
 end
 
-function C:getLinks(input: types.GetLinksInput, options: any): async.Operation<types.GetLinksOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLinks, input, options) as async.Operation<types.GetLinksOutput>
+function C:getLinks(input: types.GetLinksInput, options?: base_client.InvokeOptions): async.Operation<types.GetLinksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLinks as schema.OperationSchema, input, options) as async.Operation<types.GetLinksOutput>
 end
 
-function C:getNetworkResourceCounts(input: types.GetNetworkResourceCountsInput, options: any): async.Operation<types.GetNetworkResourceCountsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNetworkResourceCounts, input, options) as async.Operation<types.GetNetworkResourceCountsOutput>
+function C:getNetworkResourceCounts(input: types.GetNetworkResourceCountsInput, options?: base_client.InvokeOptions): async.Operation<types.GetNetworkResourceCountsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNetworkResourceCounts as schema.OperationSchema, input, options) as async.Operation<types.GetNetworkResourceCountsOutput>
 end
 
-function C:getNetworkResourceRelationships(input: types.GetNetworkResourceRelationshipsInput, options: any): async.Operation<types.GetNetworkResourceRelationshipsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNetworkResourceRelationships, input, options) as async.Operation<types.GetNetworkResourceRelationshipsOutput>
+function C:getNetworkResourceRelationships(input: types.GetNetworkResourceRelationshipsInput, options?: base_client.InvokeOptions): async.Operation<types.GetNetworkResourceRelationshipsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNetworkResourceRelationships as schema.OperationSchema, input, options) as async.Operation<types.GetNetworkResourceRelationshipsOutput>
 end
 
-function C:getNetworkResources(input: types.GetNetworkResourcesInput, options: any): async.Operation<types.GetNetworkResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNetworkResources, input, options) as async.Operation<types.GetNetworkResourcesOutput>
+function C:getNetworkResources(input: types.GetNetworkResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.GetNetworkResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNetworkResources as schema.OperationSchema, input, options) as async.Operation<types.GetNetworkResourcesOutput>
 end
 
-function C:getNetworkRoutes(input: types.GetNetworkRoutesInput, options: any): async.Operation<types.GetNetworkRoutesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNetworkRoutes, input, options) as async.Operation<types.GetNetworkRoutesOutput>
+function C:getNetworkRoutes(input: types.GetNetworkRoutesInput, options?: base_client.InvokeOptions): async.Operation<types.GetNetworkRoutesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNetworkRoutes as schema.OperationSchema, input, options) as async.Operation<types.GetNetworkRoutesOutput>
 end
 
-function C:getNetworkTelemetry(input: types.GetNetworkTelemetryInput, options: any): async.Operation<types.GetNetworkTelemetryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNetworkTelemetry, input, options) as async.Operation<types.GetNetworkTelemetryOutput>
+function C:getNetworkTelemetry(input: types.GetNetworkTelemetryInput, options?: base_client.InvokeOptions): async.Operation<types.GetNetworkTelemetryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNetworkTelemetry as schema.OperationSchema, input, options) as async.Operation<types.GetNetworkTelemetryOutput>
 end
 
-function C:getResourcePolicy(input: types.GetResourcePolicyInput, options: any): async.Operation<types.GetResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicy, input, options) as async.Operation<types.GetResourcePolicyOutput>
+function C:getResourcePolicy(input: types.GetResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePolicyOutput>
 end
 
-function C:getRouteAnalysis(input: types.GetRouteAnalysisInput, options: any): async.Operation<types.GetRouteAnalysisOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRouteAnalysis, input, options) as async.Operation<types.GetRouteAnalysisOutput>
+function C:getRouteAnalysis(input: types.GetRouteAnalysisInput, options?: base_client.InvokeOptions): async.Operation<types.GetRouteAnalysisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRouteAnalysis as schema.OperationSchema, input, options) as async.Operation<types.GetRouteAnalysisOutput>
 end
 
-function C:getSites(input: types.GetSitesInput, options: any): async.Operation<types.GetSitesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSites, input, options) as async.Operation<types.GetSitesOutput>
+function C:getSites(input: types.GetSitesInput, options?: base_client.InvokeOptions): async.Operation<types.GetSitesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSites as schema.OperationSchema, input, options) as async.Operation<types.GetSitesOutput>
 end
 
-function C:getSiteToSiteVpnAttachment(input: types.GetSiteToSiteVpnAttachmentInput, options: any): async.Operation<types.GetSiteToSiteVpnAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSiteToSiteVpnAttachment, input, options) as async.Operation<types.GetSiteToSiteVpnAttachmentOutput>
+function C:getSiteToSiteVpnAttachment(input: types.GetSiteToSiteVpnAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.GetSiteToSiteVpnAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSiteToSiteVpnAttachment as schema.OperationSchema, input, options) as async.Operation<types.GetSiteToSiteVpnAttachmentOutput>
 end
 
-function C:getTransitGatewayConnectPeerAssociations(input: types.GetTransitGatewayConnectPeerAssociationsInput, options: any): async.Operation<types.GetTransitGatewayConnectPeerAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTransitGatewayConnectPeerAssociations, input, options) as async.Operation<types.GetTransitGatewayConnectPeerAssociationsOutput>
+function C:getTransitGatewayConnectPeerAssociations(input: types.GetTransitGatewayConnectPeerAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetTransitGatewayConnectPeerAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTransitGatewayConnectPeerAssociations as schema.OperationSchema, input, options) as async.Operation<types.GetTransitGatewayConnectPeerAssociationsOutput>
 end
 
-function C:getTransitGatewayPeering(input: types.GetTransitGatewayPeeringInput, options: any): async.Operation<types.GetTransitGatewayPeeringOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTransitGatewayPeering, input, options) as async.Operation<types.GetTransitGatewayPeeringOutput>
+function C:getTransitGatewayPeering(input: types.GetTransitGatewayPeeringInput, options?: base_client.InvokeOptions): async.Operation<types.GetTransitGatewayPeeringOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTransitGatewayPeering as schema.OperationSchema, input, options) as async.Operation<types.GetTransitGatewayPeeringOutput>
 end
 
-function C:getTransitGatewayRegistrations(input: types.GetTransitGatewayRegistrationsInput, options: any): async.Operation<types.GetTransitGatewayRegistrationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTransitGatewayRegistrations, input, options) as async.Operation<types.GetTransitGatewayRegistrationsOutput>
+function C:getTransitGatewayRegistrations(input: types.GetTransitGatewayRegistrationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetTransitGatewayRegistrationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTransitGatewayRegistrations as schema.OperationSchema, input, options) as async.Operation<types.GetTransitGatewayRegistrationsOutput>
 end
 
-function C:getTransitGatewayRouteTableAttachment(input: types.GetTransitGatewayRouteTableAttachmentInput, options: any): async.Operation<types.GetTransitGatewayRouteTableAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTransitGatewayRouteTableAttachment, input, options) as async.Operation<types.GetTransitGatewayRouteTableAttachmentOutput>
+function C:getTransitGatewayRouteTableAttachment(input: types.GetTransitGatewayRouteTableAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.GetTransitGatewayRouteTableAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTransitGatewayRouteTableAttachment as schema.OperationSchema, input, options) as async.Operation<types.GetTransitGatewayRouteTableAttachmentOutput>
 end
 
-function C:getVpcAttachment(input: types.GetVpcAttachmentInput, options: any): async.Operation<types.GetVpcAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetVpcAttachment, input, options) as async.Operation<types.GetVpcAttachmentOutput>
+function C:getVpcAttachment(input: types.GetVpcAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.GetVpcAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVpcAttachment as schema.OperationSchema, input, options) as async.Operation<types.GetVpcAttachmentOutput>
 end
 
-function C:listAttachmentRoutingPolicyAssociations(input: types.ListAttachmentRoutingPolicyAssociationsInput, options: any): async.Operation<types.ListAttachmentRoutingPolicyAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAttachmentRoutingPolicyAssociations, input, options) as async.Operation<types.ListAttachmentRoutingPolicyAssociationsOutput>
+function C:listAttachmentRoutingPolicyAssociations(input: types.ListAttachmentRoutingPolicyAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAttachmentRoutingPolicyAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAttachmentRoutingPolicyAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListAttachmentRoutingPolicyAssociationsOutput>
 end
 
-function C:listAttachments(input: types.ListAttachmentsInput, options: any): async.Operation<types.ListAttachmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAttachments, input, options) as async.Operation<types.ListAttachmentsOutput>
+function C:listAttachments(input: types.ListAttachmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAttachmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAttachments as schema.OperationSchema, input, options) as async.Operation<types.ListAttachmentsOutput>
 end
 
-function C:listConnectPeers(input: types.ListConnectPeersInput, options: any): async.Operation<types.ListConnectPeersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConnectPeers, input, options) as async.Operation<types.ListConnectPeersOutput>
+function C:listConnectPeers(input: types.ListConnectPeersInput, options?: base_client.InvokeOptions): async.Operation<types.ListConnectPeersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConnectPeers as schema.OperationSchema, input, options) as async.Operation<types.ListConnectPeersOutput>
 end
 
-function C:listCoreNetworkPolicyVersions(input: types.ListCoreNetworkPolicyVersionsInput, options: any): async.Operation<types.ListCoreNetworkPolicyVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCoreNetworkPolicyVersions, input, options) as async.Operation<types.ListCoreNetworkPolicyVersionsOutput>
+function C:listCoreNetworkPolicyVersions(input: types.ListCoreNetworkPolicyVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCoreNetworkPolicyVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCoreNetworkPolicyVersions as schema.OperationSchema, input, options) as async.Operation<types.ListCoreNetworkPolicyVersionsOutput>
 end
 
-function C:listCoreNetworkPrefixListAssociations(input: types.ListCoreNetworkPrefixListAssociationsInput, options: any): async.Operation<types.ListCoreNetworkPrefixListAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCoreNetworkPrefixListAssociations, input, options) as async.Operation<types.ListCoreNetworkPrefixListAssociationsOutput>
+function C:listCoreNetworkPrefixListAssociations(input: types.ListCoreNetworkPrefixListAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCoreNetworkPrefixListAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCoreNetworkPrefixListAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListCoreNetworkPrefixListAssociationsOutput>
 end
 
-function C:listCoreNetworkRoutingInformation(input: types.ListCoreNetworkRoutingInformationInput, options: any): async.Operation<types.ListCoreNetworkRoutingInformationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCoreNetworkRoutingInformation, input, options) as async.Operation<types.ListCoreNetworkRoutingInformationOutput>
+function C:listCoreNetworkRoutingInformation(input: types.ListCoreNetworkRoutingInformationInput, options?: base_client.InvokeOptions): async.Operation<types.ListCoreNetworkRoutingInformationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCoreNetworkRoutingInformation as schema.OperationSchema, input, options) as async.Operation<types.ListCoreNetworkRoutingInformationOutput>
 end
 
-function C:listCoreNetworks(input: types.ListCoreNetworksInput, options: any): async.Operation<types.ListCoreNetworksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCoreNetworks, input, options) as async.Operation<types.ListCoreNetworksOutput>
+function C:listCoreNetworks(input: types.ListCoreNetworksInput, options?: base_client.InvokeOptions): async.Operation<types.ListCoreNetworksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCoreNetworks as schema.OperationSchema, input, options) as async.Operation<types.ListCoreNetworksOutput>
 end
 
-function C:listOrganizationServiceAccessStatus(input: types.ListOrganizationServiceAccessStatusInput, options: any): async.Operation<types.ListOrganizationServiceAccessStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOrganizationServiceAccessStatus, input, options) as async.Operation<types.ListOrganizationServiceAccessStatusOutput>
+function C:listOrganizationServiceAccessStatus(input: types.ListOrganizationServiceAccessStatusInput, options?: base_client.InvokeOptions): async.Operation<types.ListOrganizationServiceAccessStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOrganizationServiceAccessStatus as schema.OperationSchema, input, options) as async.Operation<types.ListOrganizationServiceAccessStatusOutput>
 end
 
-function C:listPeerings(input: types.ListPeeringsInput, options: any): async.Operation<types.ListPeeringsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPeerings, input, options) as async.Operation<types.ListPeeringsOutput>
+function C:listPeerings(input: types.ListPeeringsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPeeringsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPeerings as schema.OperationSchema, input, options) as async.Operation<types.ListPeeringsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putAttachmentRoutingPolicyLabel(input: types.PutAttachmentRoutingPolicyLabelInput, options: any): async.Operation<types.PutAttachmentRoutingPolicyLabelOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAttachmentRoutingPolicyLabel, input, options) as async.Operation<types.PutAttachmentRoutingPolicyLabelOutput>
+function C:putAttachmentRoutingPolicyLabel(input: types.PutAttachmentRoutingPolicyLabelInput, options?: base_client.InvokeOptions): async.Operation<types.PutAttachmentRoutingPolicyLabelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAttachmentRoutingPolicyLabel as schema.OperationSchema, input, options) as async.Operation<types.PutAttachmentRoutingPolicyLabelOutput>
 end
 
-function C:putCoreNetworkPolicy(input: types.PutCoreNetworkPolicyInput, options: any): async.Operation<types.PutCoreNetworkPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutCoreNetworkPolicy, input, options) as async.Operation<types.PutCoreNetworkPolicyOutput>
+function C:putCoreNetworkPolicy(input: types.PutCoreNetworkPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutCoreNetworkPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutCoreNetworkPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutCoreNetworkPolicyOutput>
 end
 
-function C:putResourcePolicy(input: types.PutResourcePolicyInput, options: any): async.Operation<types.PutResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutResourcePolicy, input, options) as async.Operation<types.PutResourcePolicyOutput>
+function C:putResourcePolicy(input: types.PutResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutResourcePolicyOutput>
 end
 
-function C:registerTransitGateway(input: types.RegisterTransitGatewayInput, options: any): async.Operation<types.RegisterTransitGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterTransitGateway, input, options) as async.Operation<types.RegisterTransitGatewayOutput>
+function C:registerTransitGateway(input: types.RegisterTransitGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterTransitGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterTransitGateway as schema.OperationSchema, input, options) as async.Operation<types.RegisterTransitGatewayOutput>
 end
 
-function C:rejectAttachment(input: types.RejectAttachmentInput, options: any): async.Operation<types.RejectAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.RejectAttachment, input, options) as async.Operation<types.RejectAttachmentOutput>
+function C:rejectAttachment(input: types.RejectAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.RejectAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RejectAttachment as schema.OperationSchema, input, options) as async.Operation<types.RejectAttachmentOutput>
 end
 
-function C:removeAttachmentRoutingPolicyLabel(input: types.RemoveAttachmentRoutingPolicyLabelInput, options: any): async.Operation<types.RemoveAttachmentRoutingPolicyLabelOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveAttachmentRoutingPolicyLabel, input, options) as async.Operation<types.RemoveAttachmentRoutingPolicyLabelOutput>
+function C:removeAttachmentRoutingPolicyLabel(input: types.RemoveAttachmentRoutingPolicyLabelInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveAttachmentRoutingPolicyLabelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveAttachmentRoutingPolicyLabel as schema.OperationSchema, input, options) as async.Operation<types.RemoveAttachmentRoutingPolicyLabelOutput>
 end
 
-function C:restoreCoreNetworkPolicyVersion(input: types.RestoreCoreNetworkPolicyVersionInput, options: any): async.Operation<types.RestoreCoreNetworkPolicyVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.RestoreCoreNetworkPolicyVersion, input, options) as async.Operation<types.RestoreCoreNetworkPolicyVersionOutput>
+function C:restoreCoreNetworkPolicyVersion(input: types.RestoreCoreNetworkPolicyVersionInput, options?: base_client.InvokeOptions): async.Operation<types.RestoreCoreNetworkPolicyVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestoreCoreNetworkPolicyVersion as schema.OperationSchema, input, options) as async.Operation<types.RestoreCoreNetworkPolicyVersionOutput>
 end
 
-function C:startOrganizationServiceAccessUpdate(input: types.StartOrganizationServiceAccessUpdateInput, options: any): async.Operation<types.StartOrganizationServiceAccessUpdateOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartOrganizationServiceAccessUpdate, input, options) as async.Operation<types.StartOrganizationServiceAccessUpdateOutput>
+function C:startOrganizationServiceAccessUpdate(input: types.StartOrganizationServiceAccessUpdateInput, options?: base_client.InvokeOptions): async.Operation<types.StartOrganizationServiceAccessUpdateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartOrganizationServiceAccessUpdate as schema.OperationSchema, input, options) as async.Operation<types.StartOrganizationServiceAccessUpdateOutput>
 end
 
-function C:startRouteAnalysis(input: types.StartRouteAnalysisInput, options: any): async.Operation<types.StartRouteAnalysisOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartRouteAnalysis, input, options) as async.Operation<types.StartRouteAnalysisOutput>
+function C:startRouteAnalysis(input: types.StartRouteAnalysisInput, options?: base_client.InvokeOptions): async.Operation<types.StartRouteAnalysisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartRouteAnalysis as schema.OperationSchema, input, options) as async.Operation<types.StartRouteAnalysisOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateConnection(input: types.UpdateConnectionInput, options: any): async.Operation<types.UpdateConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConnection, input, options) as async.Operation<types.UpdateConnectionOutput>
+function C:updateConnection(input: types.UpdateConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConnection as schema.OperationSchema, input, options) as async.Operation<types.UpdateConnectionOutput>
 end
 
-function C:updateCoreNetwork(input: types.UpdateCoreNetworkInput, options: any): async.Operation<types.UpdateCoreNetworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCoreNetwork, input, options) as async.Operation<types.UpdateCoreNetworkOutput>
+function C:updateCoreNetwork(input: types.UpdateCoreNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCoreNetworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCoreNetwork as schema.OperationSchema, input, options) as async.Operation<types.UpdateCoreNetworkOutput>
 end
 
-function C:updateDevice(input: types.UpdateDeviceInput, options: any): async.Operation<types.UpdateDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDevice, input, options) as async.Operation<types.UpdateDeviceOutput>
+function C:updateDevice(input: types.UpdateDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDevice as schema.OperationSchema, input, options) as async.Operation<types.UpdateDeviceOutput>
 end
 
-function C:updateDirectConnectGatewayAttachment(input: types.UpdateDirectConnectGatewayAttachmentInput, options: any): async.Operation<types.UpdateDirectConnectGatewayAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDirectConnectGatewayAttachment, input, options) as async.Operation<types.UpdateDirectConnectGatewayAttachmentOutput>
+function C:updateDirectConnectGatewayAttachment(input: types.UpdateDirectConnectGatewayAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDirectConnectGatewayAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDirectConnectGatewayAttachment as schema.OperationSchema, input, options) as async.Operation<types.UpdateDirectConnectGatewayAttachmentOutput>
 end
 
-function C:updateGlobalNetwork(input: types.UpdateGlobalNetworkInput, options: any): async.Operation<types.UpdateGlobalNetworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateGlobalNetwork, input, options) as async.Operation<types.UpdateGlobalNetworkOutput>
+function C:updateGlobalNetwork(input: types.UpdateGlobalNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGlobalNetworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGlobalNetwork as schema.OperationSchema, input, options) as async.Operation<types.UpdateGlobalNetworkOutput>
 end
 
-function C:updateLink(input: types.UpdateLinkInput, options: any): async.Operation<types.UpdateLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLink, input, options) as async.Operation<types.UpdateLinkOutput>
+function C:updateLink(input: types.UpdateLinkInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLink as schema.OperationSchema, input, options) as async.Operation<types.UpdateLinkOutput>
 end
 
-function C:updateNetworkResourceMetadata(input: types.UpdateNetworkResourceMetadataInput, options: any): async.Operation<types.UpdateNetworkResourceMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateNetworkResourceMetadata, input, options) as async.Operation<types.UpdateNetworkResourceMetadataOutput>
+function C:updateNetworkResourceMetadata(input: types.UpdateNetworkResourceMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNetworkResourceMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNetworkResourceMetadata as schema.OperationSchema, input, options) as async.Operation<types.UpdateNetworkResourceMetadataOutput>
 end
 
-function C:updateSite(input: types.UpdateSiteInput, options: any): async.Operation<types.UpdateSiteOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSite, input, options) as async.Operation<types.UpdateSiteOutput>
+function C:updateSite(input: types.UpdateSiteInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSiteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSite as schema.OperationSchema, input, options) as async.Operation<types.UpdateSiteOutput>
 end
 
-function C:updateVpcAttachment(input: types.UpdateVpcAttachmentInput, options: any): async.Operation<types.UpdateVpcAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateVpcAttachment, input, options) as async.Operation<types.UpdateVpcAttachmentOutput>
+function C:updateVpcAttachment(input: types.UpdateVpcAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateVpcAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateVpcAttachment as schema.OperationSchema, input, options) as async.Operation<types.UpdateVpcAttachmentOutput>
 end
 
 return M

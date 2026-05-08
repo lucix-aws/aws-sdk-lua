@@ -8,67 +8,70 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("machinelearning.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("machinelearning.schemas")
 local traits = require("smithy.traits")
 local types = require("machinelearning.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    addTags: function(Client, types.AddTagsInput, any): async.Operation<types.AddTagsOutput>
-    createBatchPrediction: function(Client, types.CreateBatchPredictionInput, any): async.Operation<types.CreateBatchPredictionOutput>
-    createDataSourceFromRDS: function(Client, types.CreateDataSourceFromRDSInput, any): async.Operation<types.CreateDataSourceFromRDSOutput>
-    createDataSourceFromRedshift: function(Client, types.CreateDataSourceFromRedshiftInput, any): async.Operation<types.CreateDataSourceFromRedshiftOutput>
-    createDataSourceFromS3: function(Client, types.CreateDataSourceFromS3Input, any): async.Operation<types.CreateDataSourceFromS3Output>
-    createEvaluation: function(Client, types.CreateEvaluationInput, any): async.Operation<types.CreateEvaluationOutput>
-    createMLModel: function(Client, types.CreateMLModelInput, any): async.Operation<types.CreateMLModelOutput>
-    createRealtimeEndpoint: function(Client, types.CreateRealtimeEndpointInput, any): async.Operation<types.CreateRealtimeEndpointOutput>
-    deleteBatchPrediction: function(Client, types.DeleteBatchPredictionInput, any): async.Operation<types.DeleteBatchPredictionOutput>
-    deleteDataSource: function(Client, types.DeleteDataSourceInput, any): async.Operation<types.DeleteDataSourceOutput>
-    deleteEvaluation: function(Client, types.DeleteEvaluationInput, any): async.Operation<types.DeleteEvaluationOutput>
-    deleteMLModel: function(Client, types.DeleteMLModelInput, any): async.Operation<types.DeleteMLModelOutput>
-    deleteRealtimeEndpoint: function(Client, types.DeleteRealtimeEndpointInput, any): async.Operation<types.DeleteRealtimeEndpointOutput>
-    deleteTags: function(Client, types.DeleteTagsInput, any): async.Operation<types.DeleteTagsOutput>
-    describeBatchPredictions: function(Client, types.DescribeBatchPredictionsInput, any): async.Operation<types.DescribeBatchPredictionsOutput>
-    describeDataSources: function(Client, types.DescribeDataSourcesInput, any): async.Operation<types.DescribeDataSourcesOutput>
-    describeEvaluations: function(Client, types.DescribeEvaluationsInput, any): async.Operation<types.DescribeEvaluationsOutput>
-    describeMLModels: function(Client, types.DescribeMLModelsInput, any): async.Operation<types.DescribeMLModelsOutput>
-    describeTags: function(Client, types.DescribeTagsInput, any): async.Operation<types.DescribeTagsOutput>
-    getBatchPrediction: function(Client, types.GetBatchPredictionInput, any): async.Operation<types.GetBatchPredictionOutput>
-    getDataSource: function(Client, types.GetDataSourceInput, any): async.Operation<types.GetDataSourceOutput>
-    getEvaluation: function(Client, types.GetEvaluationInput, any): async.Operation<types.GetEvaluationOutput>
-    getMLModel: function(Client, types.GetMLModelInput, any): async.Operation<types.GetMLModelOutput>
-    predict: function(Client, types.PredictInput, any): async.Operation<types.PredictOutput>
-    updateBatchPrediction: function(Client, types.UpdateBatchPredictionInput, any): async.Operation<types.UpdateBatchPredictionOutput>
-    updateDataSource: function(Client, types.UpdateDataSourceInput, any): async.Operation<types.UpdateDataSourceOutput>
-    updateEvaluation: function(Client, types.UpdateEvaluationInput, any): async.Operation<types.UpdateEvaluationOutput>
-    updateMLModel: function(Client, types.UpdateMLModelInput, any): async.Operation<types.UpdateMLModelOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    addTags: function(Client, types.AddTagsInput, ? base_client.InvokeOptions): async.Operation<types.AddTagsOutput>
+    createBatchPrediction: function(Client, types.CreateBatchPredictionInput, ? base_client.InvokeOptions): async.Operation<types.CreateBatchPredictionOutput>
+    createDataSourceFromRDS: function(Client, types.CreateDataSourceFromRDSInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataSourceFromRDSOutput>
+    createDataSourceFromRedshift: function(Client, types.CreateDataSourceFromRedshiftInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataSourceFromRedshiftOutput>
+    createDataSourceFromS3: function(Client, types.CreateDataSourceFromS3Input, ? base_client.InvokeOptions): async.Operation<types.CreateDataSourceFromS3Output>
+    createEvaluation: function(Client, types.CreateEvaluationInput, ? base_client.InvokeOptions): async.Operation<types.CreateEvaluationOutput>
+    createMLModel: function(Client, types.CreateMLModelInput, ? base_client.InvokeOptions): async.Operation<types.CreateMLModelOutput>
+    createRealtimeEndpoint: function(Client, types.CreateRealtimeEndpointInput, ? base_client.InvokeOptions): async.Operation<types.CreateRealtimeEndpointOutput>
+    deleteBatchPrediction: function(Client, types.DeleteBatchPredictionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBatchPredictionOutput>
+    deleteDataSource: function(Client, types.DeleteDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataSourceOutput>
+    deleteEvaluation: function(Client, types.DeleteEvaluationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEvaluationOutput>
+    deleteMLModel: function(Client, types.DeleteMLModelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMLModelOutput>
+    deleteRealtimeEndpoint: function(Client, types.DeleteRealtimeEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRealtimeEndpointOutput>
+    deleteTags: function(Client, types.DeleteTagsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTagsOutput>
+    describeBatchPredictions: function(Client, types.DescribeBatchPredictionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBatchPredictionsOutput>
+    describeDataSources: function(Client, types.DescribeDataSourcesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDataSourcesOutput>
+    describeEvaluations: function(Client, types.DescribeEvaluationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEvaluationsOutput>
+    describeMLModels: function(Client, types.DescribeMLModelsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMLModelsOutput>
+    describeTags: function(Client, types.DescribeTagsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTagsOutput>
+    getBatchPrediction: function(Client, types.GetBatchPredictionInput, ? base_client.InvokeOptions): async.Operation<types.GetBatchPredictionOutput>
+    getDataSource: function(Client, types.GetDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.GetDataSourceOutput>
+    getEvaluation: function(Client, types.GetEvaluationInput, ? base_client.InvokeOptions): async.Operation<types.GetEvaluationOutput>
+    getMLModel: function(Client, types.GetMLModelInput, ? base_client.InvokeOptions): async.Operation<types.GetMLModelOutput>
+    predict: function(Client, types.PredictInput, ? base_client.InvokeOptions): async.Operation<types.PredictOutput>
+    updateBatchPrediction: function(Client, types.UpdateBatchPredictionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBatchPredictionOutput>
+    updateDataSource: function(Client, types.UpdateDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataSourceOutput>
+    updateEvaluation: function(Client, types.UpdateEvaluationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEvaluationOutput>
+    updateMLModel: function(Client, types.UpdateMLModelInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMLModelOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonML_20141212"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "machinelearning", signing_region = c.region } }
                 else
@@ -87,116 +90,116 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:addTags(input: types.AddTagsInput, options: any): async.Operation<types.AddTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddTags, input, options) as async.Operation<types.AddTagsOutput>
+function C:addTags(input: types.AddTagsInput, options?: base_client.InvokeOptions): async.Operation<types.AddTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddTags as schema.OperationSchema, input, options) as async.Operation<types.AddTagsOutput>
 end
 
-function C:createBatchPrediction(input: types.CreateBatchPredictionInput, options: any): async.Operation<types.CreateBatchPredictionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBatchPrediction, input, options) as async.Operation<types.CreateBatchPredictionOutput>
+function C:createBatchPrediction(input: types.CreateBatchPredictionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBatchPredictionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBatchPrediction as schema.OperationSchema, input, options) as async.Operation<types.CreateBatchPredictionOutput>
 end
 
-function C:createDataSourceFromRDS(input: types.CreateDataSourceFromRDSInput, options: any): async.Operation<types.CreateDataSourceFromRDSOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataSourceFromRDS, input, options) as async.Operation<types.CreateDataSourceFromRDSOutput>
+function C:createDataSourceFromRDS(input: types.CreateDataSourceFromRDSInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataSourceFromRDSOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataSourceFromRDS as schema.OperationSchema, input, options) as async.Operation<types.CreateDataSourceFromRDSOutput>
 end
 
-function C:createDataSourceFromRedshift(input: types.CreateDataSourceFromRedshiftInput, options: any): async.Operation<types.CreateDataSourceFromRedshiftOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataSourceFromRedshift, input, options) as async.Operation<types.CreateDataSourceFromRedshiftOutput>
+function C:createDataSourceFromRedshift(input: types.CreateDataSourceFromRedshiftInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataSourceFromRedshiftOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataSourceFromRedshift as schema.OperationSchema, input, options) as async.Operation<types.CreateDataSourceFromRedshiftOutput>
 end
 
-function C:createDataSourceFromS3(input: types.CreateDataSourceFromS3Input, options: any): async.Operation<types.CreateDataSourceFromS3Output>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataSourceFromS3, input, options) as async.Operation<types.CreateDataSourceFromS3Output>
+function C:createDataSourceFromS3(input: types.CreateDataSourceFromS3Input, options?: base_client.InvokeOptions): async.Operation<types.CreateDataSourceFromS3Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataSourceFromS3 as schema.OperationSchema, input, options) as async.Operation<types.CreateDataSourceFromS3Output>
 end
 
-function C:createEvaluation(input: types.CreateEvaluationInput, options: any): async.Operation<types.CreateEvaluationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEvaluation, input, options) as async.Operation<types.CreateEvaluationOutput>
+function C:createEvaluation(input: types.CreateEvaluationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEvaluationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEvaluation as schema.OperationSchema, input, options) as async.Operation<types.CreateEvaluationOutput>
 end
 
-function C:createMLModel(input: types.CreateMLModelInput, options: any): async.Operation<types.CreateMLModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMLModel, input, options) as async.Operation<types.CreateMLModelOutput>
+function C:createMLModel(input: types.CreateMLModelInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMLModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMLModel as schema.OperationSchema, input, options) as async.Operation<types.CreateMLModelOutput>
 end
 
-function C:createRealtimeEndpoint(input: types.CreateRealtimeEndpointInput, options: any): async.Operation<types.CreateRealtimeEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRealtimeEndpoint, input, options) as async.Operation<types.CreateRealtimeEndpointOutput>
+function C:createRealtimeEndpoint(input: types.CreateRealtimeEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRealtimeEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRealtimeEndpoint as schema.OperationSchema, input, options) as async.Operation<types.CreateRealtimeEndpointOutput>
 end
 
-function C:deleteBatchPrediction(input: types.DeleteBatchPredictionInput, options: any): async.Operation<types.DeleteBatchPredictionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBatchPrediction, input, options) as async.Operation<types.DeleteBatchPredictionOutput>
+function C:deleteBatchPrediction(input: types.DeleteBatchPredictionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBatchPredictionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBatchPrediction as schema.OperationSchema, input, options) as async.Operation<types.DeleteBatchPredictionOutput>
 end
 
-function C:deleteDataSource(input: types.DeleteDataSourceInput, options: any): async.Operation<types.DeleteDataSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDataSource, input, options) as async.Operation<types.DeleteDataSourceOutput>
+function C:deleteDataSource(input: types.DeleteDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDataSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataSource as schema.OperationSchema, input, options) as async.Operation<types.DeleteDataSourceOutput>
 end
 
-function C:deleteEvaluation(input: types.DeleteEvaluationInput, options: any): async.Operation<types.DeleteEvaluationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEvaluation, input, options) as async.Operation<types.DeleteEvaluationOutput>
+function C:deleteEvaluation(input: types.DeleteEvaluationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEvaluationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEvaluation as schema.OperationSchema, input, options) as async.Operation<types.DeleteEvaluationOutput>
 end
 
-function C:deleteMLModel(input: types.DeleteMLModelInput, options: any): async.Operation<types.DeleteMLModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMLModel, input, options) as async.Operation<types.DeleteMLModelOutput>
+function C:deleteMLModel(input: types.DeleteMLModelInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMLModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMLModel as schema.OperationSchema, input, options) as async.Operation<types.DeleteMLModelOutput>
 end
 
-function C:deleteRealtimeEndpoint(input: types.DeleteRealtimeEndpointInput, options: any): async.Operation<types.DeleteRealtimeEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRealtimeEndpoint, input, options) as async.Operation<types.DeleteRealtimeEndpointOutput>
+function C:deleteRealtimeEndpoint(input: types.DeleteRealtimeEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRealtimeEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRealtimeEndpoint as schema.OperationSchema, input, options) as async.Operation<types.DeleteRealtimeEndpointOutput>
 end
 
-function C:deleteTags(input: types.DeleteTagsInput, options: any): async.Operation<types.DeleteTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTags, input, options) as async.Operation<types.DeleteTagsOutput>
+function C:deleteTags(input: types.DeleteTagsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTags as schema.OperationSchema, input, options) as async.Operation<types.DeleteTagsOutput>
 end
 
-function C:describeBatchPredictions(input: types.DescribeBatchPredictionsInput, options: any): async.Operation<types.DescribeBatchPredictionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeBatchPredictions, input, options) as async.Operation<types.DescribeBatchPredictionsOutput>
+function C:describeBatchPredictions(input: types.DescribeBatchPredictionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBatchPredictionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeBatchPredictions as schema.OperationSchema, input, options) as async.Operation<types.DescribeBatchPredictionsOutput>
 end
 
-function C:describeDataSources(input: types.DescribeDataSourcesInput, options: any): async.Operation<types.DescribeDataSourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDataSources, input, options) as async.Operation<types.DescribeDataSourcesOutput>
+function C:describeDataSources(input: types.DescribeDataSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDataSourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDataSources as schema.OperationSchema, input, options) as async.Operation<types.DescribeDataSourcesOutput>
 end
 
-function C:describeEvaluations(input: types.DescribeEvaluationsInput, options: any): async.Operation<types.DescribeEvaluationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEvaluations, input, options) as async.Operation<types.DescribeEvaluationsOutput>
+function C:describeEvaluations(input: types.DescribeEvaluationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEvaluationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEvaluations as schema.OperationSchema, input, options) as async.Operation<types.DescribeEvaluationsOutput>
 end
 
-function C:describeMLModels(input: types.DescribeMLModelsInput, options: any): async.Operation<types.DescribeMLModelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeMLModels, input, options) as async.Operation<types.DescribeMLModelsOutput>
+function C:describeMLModels(input: types.DescribeMLModelsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMLModelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMLModels as schema.OperationSchema, input, options) as async.Operation<types.DescribeMLModelsOutput>
 end
 
-function C:describeTags(input: types.DescribeTagsInput, options: any): async.Operation<types.DescribeTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTags, input, options) as async.Operation<types.DescribeTagsOutput>
+function C:describeTags(input: types.DescribeTagsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTags as schema.OperationSchema, input, options) as async.Operation<types.DescribeTagsOutput>
 end
 
-function C:getBatchPrediction(input: types.GetBatchPredictionInput, options: any): async.Operation<types.GetBatchPredictionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBatchPrediction, input, options) as async.Operation<types.GetBatchPredictionOutput>
+function C:getBatchPrediction(input: types.GetBatchPredictionInput, options?: base_client.InvokeOptions): async.Operation<types.GetBatchPredictionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBatchPrediction as schema.OperationSchema, input, options) as async.Operation<types.GetBatchPredictionOutput>
 end
 
-function C:getDataSource(input: types.GetDataSourceInput, options: any): async.Operation<types.GetDataSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataSource, input, options) as async.Operation<types.GetDataSourceOutput>
+function C:getDataSource(input: types.GetDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataSource as schema.OperationSchema, input, options) as async.Operation<types.GetDataSourceOutput>
 end
 
-function C:getEvaluation(input: types.GetEvaluationInput, options: any): async.Operation<types.GetEvaluationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEvaluation, input, options) as async.Operation<types.GetEvaluationOutput>
+function C:getEvaluation(input: types.GetEvaluationInput, options?: base_client.InvokeOptions): async.Operation<types.GetEvaluationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEvaluation as schema.OperationSchema, input, options) as async.Operation<types.GetEvaluationOutput>
 end
 
-function C:getMLModel(input: types.GetMLModelInput, options: any): async.Operation<types.GetMLModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMLModel, input, options) as async.Operation<types.GetMLModelOutput>
+function C:getMLModel(input: types.GetMLModelInput, options?: base_client.InvokeOptions): async.Operation<types.GetMLModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMLModel as schema.OperationSchema, input, options) as async.Operation<types.GetMLModelOutput>
 end
 
-function C:predict(input: types.PredictInput, options: any): async.Operation<types.PredictOutput>
-    return self:invokeOperation(schemas.Service, schemas.Predict, input, options) as async.Operation<types.PredictOutput>
+function C:predict(input: types.PredictInput, options?: base_client.InvokeOptions): async.Operation<types.PredictOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Predict as schema.OperationSchema, input, options) as async.Operation<types.PredictOutput>
 end
 
-function C:updateBatchPrediction(input: types.UpdateBatchPredictionInput, options: any): async.Operation<types.UpdateBatchPredictionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateBatchPrediction, input, options) as async.Operation<types.UpdateBatchPredictionOutput>
+function C:updateBatchPrediction(input: types.UpdateBatchPredictionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBatchPredictionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBatchPrediction as schema.OperationSchema, input, options) as async.Operation<types.UpdateBatchPredictionOutput>
 end
 
-function C:updateDataSource(input: types.UpdateDataSourceInput, options: any): async.Operation<types.UpdateDataSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDataSource, input, options) as async.Operation<types.UpdateDataSourceOutput>
+function C:updateDataSource(input: types.UpdateDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDataSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDataSource as schema.OperationSchema, input, options) as async.Operation<types.UpdateDataSourceOutput>
 end
 
-function C:updateEvaluation(input: types.UpdateEvaluationInput, options: any): async.Operation<types.UpdateEvaluationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEvaluation, input, options) as async.Operation<types.UpdateEvaluationOutput>
+function C:updateEvaluation(input: types.UpdateEvaluationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEvaluationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEvaluation as schema.OperationSchema, input, options) as async.Operation<types.UpdateEvaluationOutput>
 end
 
-function C:updateMLModel(input: types.UpdateMLModelInput, options: any): async.Operation<types.UpdateMLModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateMLModel, input, options) as async.Operation<types.UpdateMLModelOutput>
+function C:updateMLModel(input: types.UpdateMLModelInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMLModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMLModel as schema.OperationSchema, input, options) as async.Operation<types.UpdateMLModelOutput>
 end
 
 return M

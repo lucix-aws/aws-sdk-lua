@@ -8,79 +8,82 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("groundstation.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("groundstation.schemas")
 local traits = require("smithy.traits")
 local types = require("groundstation.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    cancelContact: function(Client, types.CancelContactInput, any): async.Operation<types.CancelContactOutput>
-    createConfig: function(Client, types.CreateConfigInput, any): async.Operation<types.CreateConfigOutput>
-    createDataflowEndpointGroup: function(Client, types.CreateDataflowEndpointGroupInput, any): async.Operation<types.CreateDataflowEndpointGroupOutput>
-    createDataflowEndpointGroupV2: function(Client, types.CreateDataflowEndpointGroupV2Input, any): async.Operation<types.CreateDataflowEndpointGroupV2Output>
-    createEphemeris: function(Client, types.CreateEphemerisInput, any): async.Operation<types.CreateEphemerisOutput>
-    createMissionProfile: function(Client, types.CreateMissionProfileInput, any): async.Operation<types.CreateMissionProfileOutput>
-    deleteConfig: function(Client, types.DeleteConfigInput, any): async.Operation<types.DeleteConfigOutput>
-    deleteDataflowEndpointGroup: function(Client, types.DeleteDataflowEndpointGroupInput, any): async.Operation<types.DeleteDataflowEndpointGroupOutput>
-    deleteEphemeris: function(Client, types.DeleteEphemerisInput, any): async.Operation<types.DeleteEphemerisOutput>
-    deleteMissionProfile: function(Client, types.DeleteMissionProfileInput, any): async.Operation<types.DeleteMissionProfileOutput>
-    describeContact: function(Client, types.DescribeContactInput, any): async.Operation<types.DescribeContactOutput>
-    describeContactVersion: function(Client, types.DescribeContactVersionInput, any): async.Operation<types.DescribeContactVersionOutput>
-    describeEphemeris: function(Client, types.DescribeEphemerisInput, any): async.Operation<types.DescribeEphemerisOutput>
-    getAgentConfiguration: function(Client, types.GetAgentConfigurationInput, any): async.Operation<types.GetAgentConfigurationOutput>
-    getAgentTaskResponseUrl: function(Client, types.GetAgentTaskResponseUrlInput, any): async.Operation<types.GetAgentTaskResponseUrlOutput>
-    getConfig: function(Client, types.GetConfigInput, any): async.Operation<types.GetConfigOutput>
-    getDataflowEndpointGroup: function(Client, types.GetDataflowEndpointGroupInput, any): async.Operation<types.GetDataflowEndpointGroupOutput>
-    getMinuteUsage: function(Client, types.GetMinuteUsageInput, any): async.Operation<types.GetMinuteUsageOutput>
-    getMissionProfile: function(Client, types.GetMissionProfileInput, any): async.Operation<types.GetMissionProfileOutput>
-    getSatellite: function(Client, types.GetSatelliteInput, any): async.Operation<types.GetSatelliteOutput>
-    listAntennas: function(Client, types.ListAntennasInput, any): async.Operation<types.ListAntennasOutput>
-    listConfigs: function(Client, types.ListConfigsInput, any): async.Operation<types.ListConfigsOutput>
-    listContacts: function(Client, types.ListContactsInput, any): async.Operation<types.ListContactsOutput>
-    listContactVersions: function(Client, types.ListContactVersionsInput, any): async.Operation<types.ListContactVersionsOutput>
-    listDataflowEndpointGroups: function(Client, types.ListDataflowEndpointGroupsInput, any): async.Operation<types.ListDataflowEndpointGroupsOutput>
-    listEphemerides: function(Client, types.ListEphemeridesInput, any): async.Operation<types.ListEphemeridesOutput>
-    listGroundStationReservations: function(Client, types.ListGroundStationReservationsInput, any): async.Operation<types.ListGroundStationReservationsOutput>
-    listGroundStations: function(Client, types.ListGroundStationsInput, any): async.Operation<types.ListGroundStationsOutput>
-    listMissionProfiles: function(Client, types.ListMissionProfilesInput, any): async.Operation<types.ListMissionProfilesOutput>
-    listSatellites: function(Client, types.ListSatellitesInput, any): async.Operation<types.ListSatellitesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    registerAgent: function(Client, types.RegisterAgentInput, any): async.Operation<types.RegisterAgentOutput>
-    reserveContact: function(Client, types.ReserveContactInput, any): async.Operation<types.ReserveContactOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAgentStatus: function(Client, types.UpdateAgentStatusInput, any): async.Operation<types.UpdateAgentStatusOutput>
-    updateConfig: function(Client, types.UpdateConfigInput, any): async.Operation<types.UpdateConfigOutput>
-    updateContact: function(Client, types.UpdateContactInput, any): async.Operation<types.UpdateContactOutput>
-    updateEphemeris: function(Client, types.UpdateEphemerisInput, any): async.Operation<types.UpdateEphemerisOutput>
-    updateMissionProfile: function(Client, types.UpdateMissionProfileInput, any): async.Operation<types.UpdateMissionProfileOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    cancelContact: function(Client, types.CancelContactInput, ? base_client.InvokeOptions): async.Operation<types.CancelContactOutput>
+    createConfig: function(Client, types.CreateConfigInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfigOutput>
+    createDataflowEndpointGroup: function(Client, types.CreateDataflowEndpointGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataflowEndpointGroupOutput>
+    createDataflowEndpointGroupV2: function(Client, types.CreateDataflowEndpointGroupV2Input, ? base_client.InvokeOptions): async.Operation<types.CreateDataflowEndpointGroupV2Output>
+    createEphemeris: function(Client, types.CreateEphemerisInput, ? base_client.InvokeOptions): async.Operation<types.CreateEphemerisOutput>
+    createMissionProfile: function(Client, types.CreateMissionProfileInput, ? base_client.InvokeOptions): async.Operation<types.CreateMissionProfileOutput>
+    deleteConfig: function(Client, types.DeleteConfigInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfigOutput>
+    deleteDataflowEndpointGroup: function(Client, types.DeleteDataflowEndpointGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataflowEndpointGroupOutput>
+    deleteEphemeris: function(Client, types.DeleteEphemerisInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEphemerisOutput>
+    deleteMissionProfile: function(Client, types.DeleteMissionProfileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMissionProfileOutput>
+    describeContact: function(Client, types.DescribeContactInput, ? base_client.InvokeOptions): async.Operation<types.DescribeContactOutput>
+    describeContactVersion: function(Client, types.DescribeContactVersionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeContactVersionOutput>
+    describeEphemeris: function(Client, types.DescribeEphemerisInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEphemerisOutput>
+    getAgentConfiguration: function(Client, types.GetAgentConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetAgentConfigurationOutput>
+    getAgentTaskResponseUrl: function(Client, types.GetAgentTaskResponseUrlInput, ? base_client.InvokeOptions): async.Operation<types.GetAgentTaskResponseUrlOutput>
+    getConfig: function(Client, types.GetConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetConfigOutput>
+    getDataflowEndpointGroup: function(Client, types.GetDataflowEndpointGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetDataflowEndpointGroupOutput>
+    getMinuteUsage: function(Client, types.GetMinuteUsageInput, ? base_client.InvokeOptions): async.Operation<types.GetMinuteUsageOutput>
+    getMissionProfile: function(Client, types.GetMissionProfileInput, ? base_client.InvokeOptions): async.Operation<types.GetMissionProfileOutput>
+    getSatellite: function(Client, types.GetSatelliteInput, ? base_client.InvokeOptions): async.Operation<types.GetSatelliteOutput>
+    listAntennas: function(Client, types.ListAntennasInput, ? base_client.InvokeOptions): async.Operation<types.ListAntennasOutput>
+    listConfigs: function(Client, types.ListConfigsInput, ? base_client.InvokeOptions): async.Operation<types.ListConfigsOutput>
+    listContacts: function(Client, types.ListContactsInput, ? base_client.InvokeOptions): async.Operation<types.ListContactsOutput>
+    listContactVersions: function(Client, types.ListContactVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListContactVersionsOutput>
+    listDataflowEndpointGroups: function(Client, types.ListDataflowEndpointGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataflowEndpointGroupsOutput>
+    listEphemerides: function(Client, types.ListEphemeridesInput, ? base_client.InvokeOptions): async.Operation<types.ListEphemeridesOutput>
+    listGroundStationReservations: function(Client, types.ListGroundStationReservationsInput, ? base_client.InvokeOptions): async.Operation<types.ListGroundStationReservationsOutput>
+    listGroundStations: function(Client, types.ListGroundStationsInput, ? base_client.InvokeOptions): async.Operation<types.ListGroundStationsOutput>
+    listMissionProfiles: function(Client, types.ListMissionProfilesInput, ? base_client.InvokeOptions): async.Operation<types.ListMissionProfilesOutput>
+    listSatellites: function(Client, types.ListSatellitesInput, ? base_client.InvokeOptions): async.Operation<types.ListSatellitesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    registerAgent: function(Client, types.RegisterAgentInput, ? base_client.InvokeOptions): async.Operation<types.RegisterAgentOutput>
+    reserveContact: function(Client, types.ReserveContactInput, ? base_client.InvokeOptions): async.Operation<types.ReserveContactOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAgentStatus: function(Client, types.UpdateAgentStatusInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAgentStatusOutput>
+    updateConfig: function(Client, types.UpdateConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfigOutput>
+    updateContact: function(Client, types.UpdateContactInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContactOutput>
+    updateEphemeris: function(Client, types.UpdateEphemerisInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEphemerisOutput>
+    updateMissionProfile: function(Client, types.UpdateMissionProfileInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMissionProfileOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "GroundStation"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "groundstation", signing_region = c.region } }
                 else
@@ -99,164 +102,164 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:cancelContact(input: types.CancelContactInput, options: any): async.Operation<types.CancelContactOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelContact, input, options) as async.Operation<types.CancelContactOutput>
+function C:cancelContact(input: types.CancelContactInput, options?: base_client.InvokeOptions): async.Operation<types.CancelContactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelContact as schema.OperationSchema, input, options) as async.Operation<types.CancelContactOutput>
 end
 
-function C:createConfig(input: types.CreateConfigInput, options: any): async.Operation<types.CreateConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConfig, input, options) as async.Operation<types.CreateConfigOutput>
+function C:createConfig(input: types.CreateConfigInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConfig as schema.OperationSchema, input, options) as async.Operation<types.CreateConfigOutput>
 end
 
-function C:createDataflowEndpointGroup(input: types.CreateDataflowEndpointGroupInput, options: any): async.Operation<types.CreateDataflowEndpointGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataflowEndpointGroup, input, options) as async.Operation<types.CreateDataflowEndpointGroupOutput>
+function C:createDataflowEndpointGroup(input: types.CreateDataflowEndpointGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataflowEndpointGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataflowEndpointGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateDataflowEndpointGroupOutput>
 end
 
-function C:createDataflowEndpointGroupV2(input: types.CreateDataflowEndpointGroupV2Input, options: any): async.Operation<types.CreateDataflowEndpointGroupV2Output>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataflowEndpointGroupV2, input, options) as async.Operation<types.CreateDataflowEndpointGroupV2Output>
+function C:createDataflowEndpointGroupV2(input: types.CreateDataflowEndpointGroupV2Input, options?: base_client.InvokeOptions): async.Operation<types.CreateDataflowEndpointGroupV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataflowEndpointGroupV2 as schema.OperationSchema, input, options) as async.Operation<types.CreateDataflowEndpointGroupV2Output>
 end
 
-function C:createEphemeris(input: types.CreateEphemerisInput, options: any): async.Operation<types.CreateEphemerisOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEphemeris, input, options) as async.Operation<types.CreateEphemerisOutput>
+function C:createEphemeris(input: types.CreateEphemerisInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEphemerisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEphemeris as schema.OperationSchema, input, options) as async.Operation<types.CreateEphemerisOutput>
 end
 
-function C:createMissionProfile(input: types.CreateMissionProfileInput, options: any): async.Operation<types.CreateMissionProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMissionProfile, input, options) as async.Operation<types.CreateMissionProfileOutput>
+function C:createMissionProfile(input: types.CreateMissionProfileInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMissionProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMissionProfile as schema.OperationSchema, input, options) as async.Operation<types.CreateMissionProfileOutput>
 end
 
-function C:deleteConfig(input: types.DeleteConfigInput, options: any): async.Operation<types.DeleteConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConfig, input, options) as async.Operation<types.DeleteConfigOutput>
+function C:deleteConfig(input: types.DeleteConfigInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConfig as schema.OperationSchema, input, options) as async.Operation<types.DeleteConfigOutput>
 end
 
-function C:deleteDataflowEndpointGroup(input: types.DeleteDataflowEndpointGroupInput, options: any): async.Operation<types.DeleteDataflowEndpointGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDataflowEndpointGroup, input, options) as async.Operation<types.DeleteDataflowEndpointGroupOutput>
+function C:deleteDataflowEndpointGroup(input: types.DeleteDataflowEndpointGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDataflowEndpointGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataflowEndpointGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteDataflowEndpointGroupOutput>
 end
 
-function C:deleteEphemeris(input: types.DeleteEphemerisInput, options: any): async.Operation<types.DeleteEphemerisOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEphemeris, input, options) as async.Operation<types.DeleteEphemerisOutput>
+function C:deleteEphemeris(input: types.DeleteEphemerisInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEphemerisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEphemeris as schema.OperationSchema, input, options) as async.Operation<types.DeleteEphemerisOutput>
 end
 
-function C:deleteMissionProfile(input: types.DeleteMissionProfileInput, options: any): async.Operation<types.DeleteMissionProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMissionProfile, input, options) as async.Operation<types.DeleteMissionProfileOutput>
+function C:deleteMissionProfile(input: types.DeleteMissionProfileInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMissionProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMissionProfile as schema.OperationSchema, input, options) as async.Operation<types.DeleteMissionProfileOutput>
 end
 
-function C:describeContact(input: types.DescribeContactInput, options: any): async.Operation<types.DescribeContactOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeContact, input, options) as async.Operation<types.DescribeContactOutput>
+function C:describeContact(input: types.DescribeContactInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeContactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeContact as schema.OperationSchema, input, options) as async.Operation<types.DescribeContactOutput>
 end
 
-function C:describeContactVersion(input: types.DescribeContactVersionInput, options: any): async.Operation<types.DescribeContactVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeContactVersion, input, options) as async.Operation<types.DescribeContactVersionOutput>
+function C:describeContactVersion(input: types.DescribeContactVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeContactVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeContactVersion as schema.OperationSchema, input, options) as async.Operation<types.DescribeContactVersionOutput>
 end
 
-function C:describeEphemeris(input: types.DescribeEphemerisInput, options: any): async.Operation<types.DescribeEphemerisOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEphemeris, input, options) as async.Operation<types.DescribeEphemerisOutput>
+function C:describeEphemeris(input: types.DescribeEphemerisInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEphemerisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEphemeris as schema.OperationSchema, input, options) as async.Operation<types.DescribeEphemerisOutput>
 end
 
-function C:getAgentConfiguration(input: types.GetAgentConfigurationInput, options: any): async.Operation<types.GetAgentConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAgentConfiguration, input, options) as async.Operation<types.GetAgentConfigurationOutput>
+function C:getAgentConfiguration(input: types.GetAgentConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetAgentConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAgentConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetAgentConfigurationOutput>
 end
 
-function C:getAgentTaskResponseUrl(input: types.GetAgentTaskResponseUrlInput, options: any): async.Operation<types.GetAgentTaskResponseUrlOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAgentTaskResponseUrl, input, options) as async.Operation<types.GetAgentTaskResponseUrlOutput>
+function C:getAgentTaskResponseUrl(input: types.GetAgentTaskResponseUrlInput, options?: base_client.InvokeOptions): async.Operation<types.GetAgentTaskResponseUrlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAgentTaskResponseUrl as schema.OperationSchema, input, options) as async.Operation<types.GetAgentTaskResponseUrlOutput>
 end
 
-function C:getConfig(input: types.GetConfigInput, options: any): async.Operation<types.GetConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConfig, input, options) as async.Operation<types.GetConfigOutput>
+function C:getConfig(input: types.GetConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConfig as schema.OperationSchema, input, options) as async.Operation<types.GetConfigOutput>
 end
 
-function C:getDataflowEndpointGroup(input: types.GetDataflowEndpointGroupInput, options: any): async.Operation<types.GetDataflowEndpointGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataflowEndpointGroup, input, options) as async.Operation<types.GetDataflowEndpointGroupOutput>
+function C:getDataflowEndpointGroup(input: types.GetDataflowEndpointGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataflowEndpointGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataflowEndpointGroup as schema.OperationSchema, input, options) as async.Operation<types.GetDataflowEndpointGroupOutput>
 end
 
-function C:getMinuteUsage(input: types.GetMinuteUsageInput, options: any): async.Operation<types.GetMinuteUsageOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMinuteUsage, input, options) as async.Operation<types.GetMinuteUsageOutput>
+function C:getMinuteUsage(input: types.GetMinuteUsageInput, options?: base_client.InvokeOptions): async.Operation<types.GetMinuteUsageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMinuteUsage as schema.OperationSchema, input, options) as async.Operation<types.GetMinuteUsageOutput>
 end
 
-function C:getMissionProfile(input: types.GetMissionProfileInput, options: any): async.Operation<types.GetMissionProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMissionProfile, input, options) as async.Operation<types.GetMissionProfileOutput>
+function C:getMissionProfile(input: types.GetMissionProfileInput, options?: base_client.InvokeOptions): async.Operation<types.GetMissionProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMissionProfile as schema.OperationSchema, input, options) as async.Operation<types.GetMissionProfileOutput>
 end
 
-function C:getSatellite(input: types.GetSatelliteInput, options: any): async.Operation<types.GetSatelliteOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSatellite, input, options) as async.Operation<types.GetSatelliteOutput>
+function C:getSatellite(input: types.GetSatelliteInput, options?: base_client.InvokeOptions): async.Operation<types.GetSatelliteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSatellite as schema.OperationSchema, input, options) as async.Operation<types.GetSatelliteOutput>
 end
 
-function C:listAntennas(input: types.ListAntennasInput, options: any): async.Operation<types.ListAntennasOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAntennas, input, options) as async.Operation<types.ListAntennasOutput>
+function C:listAntennas(input: types.ListAntennasInput, options?: base_client.InvokeOptions): async.Operation<types.ListAntennasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAntennas as schema.OperationSchema, input, options) as async.Operation<types.ListAntennasOutput>
 end
 
-function C:listConfigs(input: types.ListConfigsInput, options: any): async.Operation<types.ListConfigsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConfigs, input, options) as async.Operation<types.ListConfigsOutput>
+function C:listConfigs(input: types.ListConfigsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConfigsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConfigs as schema.OperationSchema, input, options) as async.Operation<types.ListConfigsOutput>
 end
 
-function C:listContacts(input: types.ListContactsInput, options: any): async.Operation<types.ListContactsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListContacts, input, options) as async.Operation<types.ListContactsOutput>
+function C:listContacts(input: types.ListContactsInput, options?: base_client.InvokeOptions): async.Operation<types.ListContactsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListContacts as schema.OperationSchema, input, options) as async.Operation<types.ListContactsOutput>
 end
 
-function C:listContactVersions(input: types.ListContactVersionsInput, options: any): async.Operation<types.ListContactVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListContactVersions, input, options) as async.Operation<types.ListContactVersionsOutput>
+function C:listContactVersions(input: types.ListContactVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListContactVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListContactVersions as schema.OperationSchema, input, options) as async.Operation<types.ListContactVersionsOutput>
 end
 
-function C:listDataflowEndpointGroups(input: types.ListDataflowEndpointGroupsInput, options: any): async.Operation<types.ListDataflowEndpointGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDataflowEndpointGroups, input, options) as async.Operation<types.ListDataflowEndpointGroupsOutput>
+function C:listDataflowEndpointGroups(input: types.ListDataflowEndpointGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataflowEndpointGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataflowEndpointGroups as schema.OperationSchema, input, options) as async.Operation<types.ListDataflowEndpointGroupsOutput>
 end
 
-function C:listEphemerides(input: types.ListEphemeridesInput, options: any): async.Operation<types.ListEphemeridesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEphemerides, input, options) as async.Operation<types.ListEphemeridesOutput>
+function C:listEphemerides(input: types.ListEphemeridesInput, options?: base_client.InvokeOptions): async.Operation<types.ListEphemeridesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEphemerides as schema.OperationSchema, input, options) as async.Operation<types.ListEphemeridesOutput>
 end
 
-function C:listGroundStationReservations(input: types.ListGroundStationReservationsInput, options: any): async.Operation<types.ListGroundStationReservationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGroundStationReservations, input, options) as async.Operation<types.ListGroundStationReservationsOutput>
+function C:listGroundStationReservations(input: types.ListGroundStationReservationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListGroundStationReservationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGroundStationReservations as schema.OperationSchema, input, options) as async.Operation<types.ListGroundStationReservationsOutput>
 end
 
-function C:listGroundStations(input: types.ListGroundStationsInput, options: any): async.Operation<types.ListGroundStationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGroundStations, input, options) as async.Operation<types.ListGroundStationsOutput>
+function C:listGroundStations(input: types.ListGroundStationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListGroundStationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGroundStations as schema.OperationSchema, input, options) as async.Operation<types.ListGroundStationsOutput>
 end
 
-function C:listMissionProfiles(input: types.ListMissionProfilesInput, options: any): async.Operation<types.ListMissionProfilesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMissionProfiles, input, options) as async.Operation<types.ListMissionProfilesOutput>
+function C:listMissionProfiles(input: types.ListMissionProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.ListMissionProfilesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMissionProfiles as schema.OperationSchema, input, options) as async.Operation<types.ListMissionProfilesOutput>
 end
 
-function C:listSatellites(input: types.ListSatellitesInput, options: any): async.Operation<types.ListSatellitesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSatellites, input, options) as async.Operation<types.ListSatellitesOutput>
+function C:listSatellites(input: types.ListSatellitesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSatellitesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSatellites as schema.OperationSchema, input, options) as async.Operation<types.ListSatellitesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:registerAgent(input: types.RegisterAgentInput, options: any): async.Operation<types.RegisterAgentOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterAgent, input, options) as async.Operation<types.RegisterAgentOutput>
+function C:registerAgent(input: types.RegisterAgentInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterAgentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterAgent as schema.OperationSchema, input, options) as async.Operation<types.RegisterAgentOutput>
 end
 
-function C:reserveContact(input: types.ReserveContactInput, options: any): async.Operation<types.ReserveContactOutput>
-    return self:invokeOperation(schemas.Service, schemas.ReserveContact, input, options) as async.Operation<types.ReserveContactOutput>
+function C:reserveContact(input: types.ReserveContactInput, options?: base_client.InvokeOptions): async.Operation<types.ReserveContactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReserveContact as schema.OperationSchema, input, options) as async.Operation<types.ReserveContactOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAgentStatus(input: types.UpdateAgentStatusInput, options: any): async.Operation<types.UpdateAgentStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAgentStatus, input, options) as async.Operation<types.UpdateAgentStatusOutput>
+function C:updateAgentStatus(input: types.UpdateAgentStatusInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAgentStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAgentStatus as schema.OperationSchema, input, options) as async.Operation<types.UpdateAgentStatusOutput>
 end
 
-function C:updateConfig(input: types.UpdateConfigInput, options: any): async.Operation<types.UpdateConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConfig, input, options) as async.Operation<types.UpdateConfigOutput>
+function C:updateConfig(input: types.UpdateConfigInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConfig as schema.OperationSchema, input, options) as async.Operation<types.UpdateConfigOutput>
 end
 
-function C:updateContact(input: types.UpdateContactInput, options: any): async.Operation<types.UpdateContactOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateContact, input, options) as async.Operation<types.UpdateContactOutput>
+function C:updateContact(input: types.UpdateContactInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateContactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateContact as schema.OperationSchema, input, options) as async.Operation<types.UpdateContactOutput>
 end
 
-function C:updateEphemeris(input: types.UpdateEphemerisInput, options: any): async.Operation<types.UpdateEphemerisOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEphemeris, input, options) as async.Operation<types.UpdateEphemerisOutput>
+function C:updateEphemeris(input: types.UpdateEphemerisInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEphemerisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEphemeris as schema.OperationSchema, input, options) as async.Operation<types.UpdateEphemerisOutput>
 end
 
-function C:updateMissionProfile(input: types.UpdateMissionProfileInput, options: any): async.Operation<types.UpdateMissionProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateMissionProfile, input, options) as async.Operation<types.UpdateMissionProfileOutput>
+function C:updateMissionProfile(input: types.UpdateMissionProfileInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMissionProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMissionProfile as schema.OperationSchema, input, options) as async.Operation<types.UpdateMissionProfileOutput>
 end
 
 return M

@@ -8,113 +8,116 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("appsync.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("appsync.schemas")
 local traits = require("smithy.traits")
 local types = require("appsync.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateApi: function(Client, types.AssociateApiInput, any): async.Operation<types.AssociateApiOutput>
-    associateMergedGraphqlApi: function(Client, types.AssociateMergedGraphqlApiInput, any): async.Operation<types.AssociateMergedGraphqlApiOutput>
-    associateSourceGraphqlApi: function(Client, types.AssociateSourceGraphqlApiInput, any): async.Operation<types.AssociateSourceGraphqlApiOutput>
-    createApi: function(Client, types.CreateApiInput, any): async.Operation<types.CreateApiOutput>
-    createApiCache: function(Client, types.CreateApiCacheInput, any): async.Operation<types.CreateApiCacheOutput>
-    createApiKey: function(Client, types.CreateApiKeyInput, any): async.Operation<types.CreateApiKeyOutput>
-    createChannelNamespace: function(Client, types.CreateChannelNamespaceInput, any): async.Operation<types.CreateChannelNamespaceOutput>
-    createDataSource: function(Client, types.CreateDataSourceInput, any): async.Operation<types.CreateDataSourceOutput>
-    createDomainName: function(Client, types.CreateDomainNameInput, any): async.Operation<types.CreateDomainNameOutput>
-    createFunction: function(Client, types.CreateFunctionInput, any): async.Operation<types.CreateFunctionOutput>
-    createGraphqlApi: function(Client, types.CreateGraphqlApiInput, any): async.Operation<types.CreateGraphqlApiOutput>
-    createResolver: function(Client, types.CreateResolverInput, any): async.Operation<types.CreateResolverOutput>
-    createType: function(Client, types.CreateTypeInput, any): async.Operation<types.CreateTypeOutput>
-    deleteApi: function(Client, types.DeleteApiInput, any): async.Operation<types.DeleteApiOutput>
-    deleteApiCache: function(Client, types.DeleteApiCacheInput, any): async.Operation<types.DeleteApiCacheOutput>
-    deleteApiKey: function(Client, types.DeleteApiKeyInput, any): async.Operation<types.DeleteApiKeyOutput>
-    deleteChannelNamespace: function(Client, types.DeleteChannelNamespaceInput, any): async.Operation<types.DeleteChannelNamespaceOutput>
-    deleteDataSource: function(Client, types.DeleteDataSourceInput, any): async.Operation<types.DeleteDataSourceOutput>
-    deleteDomainName: function(Client, types.DeleteDomainNameInput, any): async.Operation<types.DeleteDomainNameOutput>
-    deleteFunction: function(Client, types.DeleteFunctionInput, any): async.Operation<types.DeleteFunctionOutput>
-    deleteGraphqlApi: function(Client, types.DeleteGraphqlApiInput, any): async.Operation<types.DeleteGraphqlApiOutput>
-    deleteResolver: function(Client, types.DeleteResolverInput, any): async.Operation<types.DeleteResolverOutput>
-    deleteType: function(Client, types.DeleteTypeInput, any): async.Operation<types.DeleteTypeOutput>
-    disassociateApi: function(Client, types.DisassociateApiInput, any): async.Operation<types.DisassociateApiOutput>
-    disassociateMergedGraphqlApi: function(Client, types.DisassociateMergedGraphqlApiInput, any): async.Operation<types.DisassociateMergedGraphqlApiOutput>
-    disassociateSourceGraphqlApi: function(Client, types.DisassociateSourceGraphqlApiInput, any): async.Operation<types.DisassociateSourceGraphqlApiOutput>
-    evaluateCode: function(Client, types.EvaluateCodeInput, any): async.Operation<types.EvaluateCodeOutput>
-    evaluateMappingTemplate: function(Client, types.EvaluateMappingTemplateInput, any): async.Operation<types.EvaluateMappingTemplateOutput>
-    flushApiCache: function(Client, types.FlushApiCacheInput, any): async.Operation<types.FlushApiCacheOutput>
-    getApi: function(Client, types.GetApiInput, any): async.Operation<types.GetApiOutput>
-    getApiAssociation: function(Client, types.GetApiAssociationInput, any): async.Operation<types.GetApiAssociationOutput>
-    getApiCache: function(Client, types.GetApiCacheInput, any): async.Operation<types.GetApiCacheOutput>
-    getChannelNamespace: function(Client, types.GetChannelNamespaceInput, any): async.Operation<types.GetChannelNamespaceOutput>
-    getDataSource: function(Client, types.GetDataSourceInput, any): async.Operation<types.GetDataSourceOutput>
-    getDataSourceIntrospection: function(Client, types.GetDataSourceIntrospectionInput, any): async.Operation<types.GetDataSourceIntrospectionOutput>
-    getDomainName: function(Client, types.GetDomainNameInput, any): async.Operation<types.GetDomainNameOutput>
-    getFunction: function(Client, types.GetFunctionInput, any): async.Operation<types.GetFunctionOutput>
-    getGraphqlApi: function(Client, types.GetGraphqlApiInput, any): async.Operation<types.GetGraphqlApiOutput>
-    getGraphqlApiEnvironmentVariables: function(Client, types.GetGraphqlApiEnvironmentVariablesInput, any): async.Operation<types.GetGraphqlApiEnvironmentVariablesOutput>
-    getIntrospectionSchema: function(Client, types.GetIntrospectionSchemaInput, any): async.Operation<types.GetIntrospectionSchemaOutput>
-    getResolver: function(Client, types.GetResolverInput, any): async.Operation<types.GetResolverOutput>
-    getSchemaCreationStatus: function(Client, types.GetSchemaCreationStatusInput, any): async.Operation<types.GetSchemaCreationStatusOutput>
-    getSourceApiAssociation: function(Client, types.GetSourceApiAssociationInput, any): async.Operation<types.GetSourceApiAssociationOutput>
-    getType: function(Client, types.GetTypeInput, any): async.Operation<types.GetTypeOutput>
-    listApiKeys: function(Client, types.ListApiKeysInput, any): async.Operation<types.ListApiKeysOutput>
-    listApis: function(Client, types.ListApisInput, any): async.Operation<types.ListApisOutput>
-    listChannelNamespaces: function(Client, types.ListChannelNamespacesInput, any): async.Operation<types.ListChannelNamespacesOutput>
-    listDataSources: function(Client, types.ListDataSourcesInput, any): async.Operation<types.ListDataSourcesOutput>
-    listDomainNames: function(Client, types.ListDomainNamesInput, any): async.Operation<types.ListDomainNamesOutput>
-    listFunctions: function(Client, types.ListFunctionsInput, any): async.Operation<types.ListFunctionsOutput>
-    listGraphqlApis: function(Client, types.ListGraphqlApisInput, any): async.Operation<types.ListGraphqlApisOutput>
-    listResolvers: function(Client, types.ListResolversInput, any): async.Operation<types.ListResolversOutput>
-    listResolversByFunction: function(Client, types.ListResolversByFunctionInput, any): async.Operation<types.ListResolversByFunctionOutput>
-    listSourceApiAssociations: function(Client, types.ListSourceApiAssociationsInput, any): async.Operation<types.ListSourceApiAssociationsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTypes: function(Client, types.ListTypesInput, any): async.Operation<types.ListTypesOutput>
-    listTypesByAssociation: function(Client, types.ListTypesByAssociationInput, any): async.Operation<types.ListTypesByAssociationOutput>
-    putGraphqlApiEnvironmentVariables: function(Client, types.PutGraphqlApiEnvironmentVariablesInput, any): async.Operation<types.PutGraphqlApiEnvironmentVariablesOutput>
-    startDataSourceIntrospection: function(Client, types.StartDataSourceIntrospectionInput, any): async.Operation<types.StartDataSourceIntrospectionOutput>
-    startSchemaCreation: function(Client, types.StartSchemaCreationInput, any): async.Operation<types.StartSchemaCreationOutput>
-    startSchemaMerge: function(Client, types.StartSchemaMergeInput, any): async.Operation<types.StartSchemaMergeOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateApi: function(Client, types.UpdateApiInput, any): async.Operation<types.UpdateApiOutput>
-    updateApiCache: function(Client, types.UpdateApiCacheInput, any): async.Operation<types.UpdateApiCacheOutput>
-    updateApiKey: function(Client, types.UpdateApiKeyInput, any): async.Operation<types.UpdateApiKeyOutput>
-    updateChannelNamespace: function(Client, types.UpdateChannelNamespaceInput, any): async.Operation<types.UpdateChannelNamespaceOutput>
-    updateDataSource: function(Client, types.UpdateDataSourceInput, any): async.Operation<types.UpdateDataSourceOutput>
-    updateDomainName: function(Client, types.UpdateDomainNameInput, any): async.Operation<types.UpdateDomainNameOutput>
-    updateFunction: function(Client, types.UpdateFunctionInput, any): async.Operation<types.UpdateFunctionOutput>
-    updateGraphqlApi: function(Client, types.UpdateGraphqlApiInput, any): async.Operation<types.UpdateGraphqlApiOutput>
-    updateResolver: function(Client, types.UpdateResolverInput, any): async.Operation<types.UpdateResolverOutput>
-    updateSourceApiAssociation: function(Client, types.UpdateSourceApiAssociationInput, any): async.Operation<types.UpdateSourceApiAssociationOutput>
-    updateType: function(Client, types.UpdateTypeInput, any): async.Operation<types.UpdateTypeOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateApi: function(Client, types.AssociateApiInput, ? base_client.InvokeOptions): async.Operation<types.AssociateApiOutput>
+    associateMergedGraphqlApi: function(Client, types.AssociateMergedGraphqlApiInput, ? base_client.InvokeOptions): async.Operation<types.AssociateMergedGraphqlApiOutput>
+    associateSourceGraphqlApi: function(Client, types.AssociateSourceGraphqlApiInput, ? base_client.InvokeOptions): async.Operation<types.AssociateSourceGraphqlApiOutput>
+    createApi: function(Client, types.CreateApiInput, ? base_client.InvokeOptions): async.Operation<types.CreateApiOutput>
+    createApiCache: function(Client, types.CreateApiCacheInput, ? base_client.InvokeOptions): async.Operation<types.CreateApiCacheOutput>
+    createApiKey: function(Client, types.CreateApiKeyInput, ? base_client.InvokeOptions): async.Operation<types.CreateApiKeyOutput>
+    createChannelNamespace: function(Client, types.CreateChannelNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.CreateChannelNamespaceOutput>
+    createDataSource: function(Client, types.CreateDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataSourceOutput>
+    createDomainName: function(Client, types.CreateDomainNameInput, ? base_client.InvokeOptions): async.Operation<types.CreateDomainNameOutput>
+    createFunction: function(Client, types.CreateFunctionInput, ? base_client.InvokeOptions): async.Operation<types.CreateFunctionOutput>
+    createGraphqlApi: function(Client, types.CreateGraphqlApiInput, ? base_client.InvokeOptions): async.Operation<types.CreateGraphqlApiOutput>
+    createResolver: function(Client, types.CreateResolverInput, ? base_client.InvokeOptions): async.Operation<types.CreateResolverOutput>
+    createType: function(Client, types.CreateTypeInput, ? base_client.InvokeOptions): async.Operation<types.CreateTypeOutput>
+    deleteApi: function(Client, types.DeleteApiInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApiOutput>
+    deleteApiCache: function(Client, types.DeleteApiCacheInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApiCacheOutput>
+    deleteApiKey: function(Client, types.DeleteApiKeyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApiKeyOutput>
+    deleteChannelNamespace: function(Client, types.DeleteChannelNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteChannelNamespaceOutput>
+    deleteDataSource: function(Client, types.DeleteDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataSourceOutput>
+    deleteDomainName: function(Client, types.DeleteDomainNameInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDomainNameOutput>
+    deleteFunction: function(Client, types.DeleteFunctionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFunctionOutput>
+    deleteGraphqlApi: function(Client, types.DeleteGraphqlApiInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGraphqlApiOutput>
+    deleteResolver: function(Client, types.DeleteResolverInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResolverOutput>
+    deleteType: function(Client, types.DeleteTypeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTypeOutput>
+    disassociateApi: function(Client, types.DisassociateApiInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateApiOutput>
+    disassociateMergedGraphqlApi: function(Client, types.DisassociateMergedGraphqlApiInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateMergedGraphqlApiOutput>
+    disassociateSourceGraphqlApi: function(Client, types.DisassociateSourceGraphqlApiInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateSourceGraphqlApiOutput>
+    evaluateCode: function(Client, types.EvaluateCodeInput, ? base_client.InvokeOptions): async.Operation<types.EvaluateCodeOutput>
+    evaluateMappingTemplate: function(Client, types.EvaluateMappingTemplateInput, ? base_client.InvokeOptions): async.Operation<types.EvaluateMappingTemplateOutput>
+    flushApiCache: function(Client, types.FlushApiCacheInput, ? base_client.InvokeOptions): async.Operation<types.FlushApiCacheOutput>
+    getApi: function(Client, types.GetApiInput, ? base_client.InvokeOptions): async.Operation<types.GetApiOutput>
+    getApiAssociation: function(Client, types.GetApiAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetApiAssociationOutput>
+    getApiCache: function(Client, types.GetApiCacheInput, ? base_client.InvokeOptions): async.Operation<types.GetApiCacheOutput>
+    getChannelNamespace: function(Client, types.GetChannelNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.GetChannelNamespaceOutput>
+    getDataSource: function(Client, types.GetDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.GetDataSourceOutput>
+    getDataSourceIntrospection: function(Client, types.GetDataSourceIntrospectionInput, ? base_client.InvokeOptions): async.Operation<types.GetDataSourceIntrospectionOutput>
+    getDomainName: function(Client, types.GetDomainNameInput, ? base_client.InvokeOptions): async.Operation<types.GetDomainNameOutput>
+    getFunction: function(Client, types.GetFunctionInput, ? base_client.InvokeOptions): async.Operation<types.GetFunctionOutput>
+    getGraphqlApi: function(Client, types.GetGraphqlApiInput, ? base_client.InvokeOptions): async.Operation<types.GetGraphqlApiOutput>
+    getGraphqlApiEnvironmentVariables: function(Client, types.GetGraphqlApiEnvironmentVariablesInput, ? base_client.InvokeOptions): async.Operation<types.GetGraphqlApiEnvironmentVariablesOutput>
+    getIntrospectionSchema: function(Client, types.GetIntrospectionSchemaInput, ? base_client.InvokeOptions): async.Operation<types.GetIntrospectionSchemaOutput>
+    getResolver: function(Client, types.GetResolverInput, ? base_client.InvokeOptions): async.Operation<types.GetResolverOutput>
+    getSchemaCreationStatus: function(Client, types.GetSchemaCreationStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetSchemaCreationStatusOutput>
+    getSourceApiAssociation: function(Client, types.GetSourceApiAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetSourceApiAssociationOutput>
+    getType: function(Client, types.GetTypeInput, ? base_client.InvokeOptions): async.Operation<types.GetTypeOutput>
+    listApiKeys: function(Client, types.ListApiKeysInput, ? base_client.InvokeOptions): async.Operation<types.ListApiKeysOutput>
+    listApis: function(Client, types.ListApisInput, ? base_client.InvokeOptions): async.Operation<types.ListApisOutput>
+    listChannelNamespaces: function(Client, types.ListChannelNamespacesInput, ? base_client.InvokeOptions): async.Operation<types.ListChannelNamespacesOutput>
+    listDataSources: function(Client, types.ListDataSourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListDataSourcesOutput>
+    listDomainNames: function(Client, types.ListDomainNamesInput, ? base_client.InvokeOptions): async.Operation<types.ListDomainNamesOutput>
+    listFunctions: function(Client, types.ListFunctionsInput, ? base_client.InvokeOptions): async.Operation<types.ListFunctionsOutput>
+    listGraphqlApis: function(Client, types.ListGraphqlApisInput, ? base_client.InvokeOptions): async.Operation<types.ListGraphqlApisOutput>
+    listResolvers: function(Client, types.ListResolversInput, ? base_client.InvokeOptions): async.Operation<types.ListResolversOutput>
+    listResolversByFunction: function(Client, types.ListResolversByFunctionInput, ? base_client.InvokeOptions): async.Operation<types.ListResolversByFunctionOutput>
+    listSourceApiAssociations: function(Client, types.ListSourceApiAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListSourceApiAssociationsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTypes: function(Client, types.ListTypesInput, ? base_client.InvokeOptions): async.Operation<types.ListTypesOutput>
+    listTypesByAssociation: function(Client, types.ListTypesByAssociationInput, ? base_client.InvokeOptions): async.Operation<types.ListTypesByAssociationOutput>
+    putGraphqlApiEnvironmentVariables: function(Client, types.PutGraphqlApiEnvironmentVariablesInput, ? base_client.InvokeOptions): async.Operation<types.PutGraphqlApiEnvironmentVariablesOutput>
+    startDataSourceIntrospection: function(Client, types.StartDataSourceIntrospectionInput, ? base_client.InvokeOptions): async.Operation<types.StartDataSourceIntrospectionOutput>
+    startSchemaCreation: function(Client, types.StartSchemaCreationInput, ? base_client.InvokeOptions): async.Operation<types.StartSchemaCreationOutput>
+    startSchemaMerge: function(Client, types.StartSchemaMergeInput, ? base_client.InvokeOptions): async.Operation<types.StartSchemaMergeOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateApi: function(Client, types.UpdateApiInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApiOutput>
+    updateApiCache: function(Client, types.UpdateApiCacheInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApiCacheOutput>
+    updateApiKey: function(Client, types.UpdateApiKeyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApiKeyOutput>
+    updateChannelNamespace: function(Client, types.UpdateChannelNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateChannelNamespaceOutput>
+    updateDataSource: function(Client, types.UpdateDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataSourceOutput>
+    updateDomainName: function(Client, types.UpdateDomainNameInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDomainNameOutput>
+    updateFunction: function(Client, types.UpdateFunctionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFunctionOutput>
+    updateGraphqlApi: function(Client, types.UpdateGraphqlApiInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGraphqlApiOutput>
+    updateResolver: function(Client, types.UpdateResolverInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResolverOutput>
+    updateSourceApiAssociation: function(Client, types.UpdateSourceApiAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSourceApiAssociationOutput>
+    updateType: function(Client, types.UpdateTypeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTypeOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSDeepdishControlPlaneService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "appsync", signing_region = c.region } }
                 else
@@ -133,300 +136,300 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateApi(input: types.AssociateApiInput, options: any): async.Operation<types.AssociateApiOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateApi, input, options) as async.Operation<types.AssociateApiOutput>
+function C:associateApi(input: types.AssociateApiInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateApiOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateApi as schema.OperationSchema, input, options) as async.Operation<types.AssociateApiOutput>
 end
 
-function C:associateMergedGraphqlApi(input: types.AssociateMergedGraphqlApiInput, options: any): async.Operation<types.AssociateMergedGraphqlApiOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateMergedGraphqlApi, input, options) as async.Operation<types.AssociateMergedGraphqlApiOutput>
+function C:associateMergedGraphqlApi(input: types.AssociateMergedGraphqlApiInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateMergedGraphqlApiOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateMergedGraphqlApi as schema.OperationSchema, input, options) as async.Operation<types.AssociateMergedGraphqlApiOutput>
 end
 
-function C:associateSourceGraphqlApi(input: types.AssociateSourceGraphqlApiInput, options: any): async.Operation<types.AssociateSourceGraphqlApiOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateSourceGraphqlApi, input, options) as async.Operation<types.AssociateSourceGraphqlApiOutput>
+function C:associateSourceGraphqlApi(input: types.AssociateSourceGraphqlApiInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateSourceGraphqlApiOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateSourceGraphqlApi as schema.OperationSchema, input, options) as async.Operation<types.AssociateSourceGraphqlApiOutput>
 end
 
-function C:createApi(input: types.CreateApiInput, options: any): async.Operation<types.CreateApiOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateApi, input, options) as async.Operation<types.CreateApiOutput>
+function C:createApi(input: types.CreateApiInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApiOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApi as schema.OperationSchema, input, options) as async.Operation<types.CreateApiOutput>
 end
 
-function C:createApiCache(input: types.CreateApiCacheInput, options: any): async.Operation<types.CreateApiCacheOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateApiCache, input, options) as async.Operation<types.CreateApiCacheOutput>
+function C:createApiCache(input: types.CreateApiCacheInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApiCacheOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApiCache as schema.OperationSchema, input, options) as async.Operation<types.CreateApiCacheOutput>
 end
 
-function C:createApiKey(input: types.CreateApiKeyInput, options: any): async.Operation<types.CreateApiKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateApiKey, input, options) as async.Operation<types.CreateApiKeyOutput>
+function C:createApiKey(input: types.CreateApiKeyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApiKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApiKey as schema.OperationSchema, input, options) as async.Operation<types.CreateApiKeyOutput>
 end
 
-function C:createChannelNamespace(input: types.CreateChannelNamespaceInput, options: any): async.Operation<types.CreateChannelNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateChannelNamespace, input, options) as async.Operation<types.CreateChannelNamespaceOutput>
+function C:createChannelNamespace(input: types.CreateChannelNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateChannelNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateChannelNamespace as schema.OperationSchema, input, options) as async.Operation<types.CreateChannelNamespaceOutput>
 end
 
-function C:createDataSource(input: types.CreateDataSourceInput, options: any): async.Operation<types.CreateDataSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataSource, input, options) as async.Operation<types.CreateDataSourceOutput>
+function C:createDataSource(input: types.CreateDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataSource as schema.OperationSchema, input, options) as async.Operation<types.CreateDataSourceOutput>
 end
 
-function C:createDomainName(input: types.CreateDomainNameInput, options: any): async.Operation<types.CreateDomainNameOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDomainName, input, options) as async.Operation<types.CreateDomainNameOutput>
+function C:createDomainName(input: types.CreateDomainNameInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDomainNameOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDomainName as schema.OperationSchema, input, options) as async.Operation<types.CreateDomainNameOutput>
 end
 
-function C:createFunction(input: types.CreateFunctionInput, options: any): async.Operation<types.CreateFunctionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFunction, input, options) as async.Operation<types.CreateFunctionOutput>
+function C:createFunction(input: types.CreateFunctionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFunctionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFunction as schema.OperationSchema, input, options) as async.Operation<types.CreateFunctionOutput>
 end
 
-function C:createGraphqlApi(input: types.CreateGraphqlApiInput, options: any): async.Operation<types.CreateGraphqlApiOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateGraphqlApi, input, options) as async.Operation<types.CreateGraphqlApiOutput>
+function C:createGraphqlApi(input: types.CreateGraphqlApiInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGraphqlApiOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGraphqlApi as schema.OperationSchema, input, options) as async.Operation<types.CreateGraphqlApiOutput>
 end
 
-function C:createResolver(input: types.CreateResolverInput, options: any): async.Operation<types.CreateResolverOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateResolver, input, options) as async.Operation<types.CreateResolverOutput>
+function C:createResolver(input: types.CreateResolverInput, options?: base_client.InvokeOptions): async.Operation<types.CreateResolverOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateResolver as schema.OperationSchema, input, options) as async.Operation<types.CreateResolverOutput>
 end
 
-function C:createType(input: types.CreateTypeInput, options: any): async.Operation<types.CreateTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateType, input, options) as async.Operation<types.CreateTypeOutput>
+function C:createType(input: types.CreateTypeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateType as schema.OperationSchema, input, options) as async.Operation<types.CreateTypeOutput>
 end
 
-function C:deleteApi(input: types.DeleteApiInput, options: any): async.Operation<types.DeleteApiOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApi, input, options) as async.Operation<types.DeleteApiOutput>
+function C:deleteApi(input: types.DeleteApiInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApiOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApi as schema.OperationSchema, input, options) as async.Operation<types.DeleteApiOutput>
 end
 
-function C:deleteApiCache(input: types.DeleteApiCacheInput, options: any): async.Operation<types.DeleteApiCacheOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApiCache, input, options) as async.Operation<types.DeleteApiCacheOutput>
+function C:deleteApiCache(input: types.DeleteApiCacheInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApiCacheOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApiCache as schema.OperationSchema, input, options) as async.Operation<types.DeleteApiCacheOutput>
 end
 
-function C:deleteApiKey(input: types.DeleteApiKeyInput, options: any): async.Operation<types.DeleteApiKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApiKey, input, options) as async.Operation<types.DeleteApiKeyOutput>
+function C:deleteApiKey(input: types.DeleteApiKeyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApiKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApiKey as schema.OperationSchema, input, options) as async.Operation<types.DeleteApiKeyOutput>
 end
 
-function C:deleteChannelNamespace(input: types.DeleteChannelNamespaceInput, options: any): async.Operation<types.DeleteChannelNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteChannelNamespace, input, options) as async.Operation<types.DeleteChannelNamespaceOutput>
+function C:deleteChannelNamespace(input: types.DeleteChannelNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteChannelNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteChannelNamespace as schema.OperationSchema, input, options) as async.Operation<types.DeleteChannelNamespaceOutput>
 end
 
-function C:deleteDataSource(input: types.DeleteDataSourceInput, options: any): async.Operation<types.DeleteDataSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDataSource, input, options) as async.Operation<types.DeleteDataSourceOutput>
+function C:deleteDataSource(input: types.DeleteDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDataSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataSource as schema.OperationSchema, input, options) as async.Operation<types.DeleteDataSourceOutput>
 end
 
-function C:deleteDomainName(input: types.DeleteDomainNameInput, options: any): async.Operation<types.DeleteDomainNameOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDomainName, input, options) as async.Operation<types.DeleteDomainNameOutput>
+function C:deleteDomainName(input: types.DeleteDomainNameInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDomainNameOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDomainName as schema.OperationSchema, input, options) as async.Operation<types.DeleteDomainNameOutput>
 end
 
-function C:deleteFunction(input: types.DeleteFunctionInput, options: any): async.Operation<types.DeleteFunctionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFunction, input, options) as async.Operation<types.DeleteFunctionOutput>
+function C:deleteFunction(input: types.DeleteFunctionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFunctionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFunction as schema.OperationSchema, input, options) as async.Operation<types.DeleteFunctionOutput>
 end
 
-function C:deleteGraphqlApi(input: types.DeleteGraphqlApiInput, options: any): async.Operation<types.DeleteGraphqlApiOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteGraphqlApi, input, options) as async.Operation<types.DeleteGraphqlApiOutput>
+function C:deleteGraphqlApi(input: types.DeleteGraphqlApiInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGraphqlApiOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGraphqlApi as schema.OperationSchema, input, options) as async.Operation<types.DeleteGraphqlApiOutput>
 end
 
-function C:deleteResolver(input: types.DeleteResolverInput, options: any): async.Operation<types.DeleteResolverOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResolver, input, options) as async.Operation<types.DeleteResolverOutput>
+function C:deleteResolver(input: types.DeleteResolverInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResolverOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResolver as schema.OperationSchema, input, options) as async.Operation<types.DeleteResolverOutput>
 end
 
-function C:deleteType(input: types.DeleteTypeInput, options: any): async.Operation<types.DeleteTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteType, input, options) as async.Operation<types.DeleteTypeOutput>
+function C:deleteType(input: types.DeleteTypeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteType as schema.OperationSchema, input, options) as async.Operation<types.DeleteTypeOutput>
 end
 
-function C:disassociateApi(input: types.DisassociateApiInput, options: any): async.Operation<types.DisassociateApiOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateApi, input, options) as async.Operation<types.DisassociateApiOutput>
+function C:disassociateApi(input: types.DisassociateApiInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateApiOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateApi as schema.OperationSchema, input, options) as async.Operation<types.DisassociateApiOutput>
 end
 
-function C:disassociateMergedGraphqlApi(input: types.DisassociateMergedGraphqlApiInput, options: any): async.Operation<types.DisassociateMergedGraphqlApiOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateMergedGraphqlApi, input, options) as async.Operation<types.DisassociateMergedGraphqlApiOutput>
+function C:disassociateMergedGraphqlApi(input: types.DisassociateMergedGraphqlApiInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateMergedGraphqlApiOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateMergedGraphqlApi as schema.OperationSchema, input, options) as async.Operation<types.DisassociateMergedGraphqlApiOutput>
 end
 
-function C:disassociateSourceGraphqlApi(input: types.DisassociateSourceGraphqlApiInput, options: any): async.Operation<types.DisassociateSourceGraphqlApiOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateSourceGraphqlApi, input, options) as async.Operation<types.DisassociateSourceGraphqlApiOutput>
+function C:disassociateSourceGraphqlApi(input: types.DisassociateSourceGraphqlApiInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateSourceGraphqlApiOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateSourceGraphqlApi as schema.OperationSchema, input, options) as async.Operation<types.DisassociateSourceGraphqlApiOutput>
 end
 
-function C:evaluateCode(input: types.EvaluateCodeInput, options: any): async.Operation<types.EvaluateCodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.EvaluateCode, input, options) as async.Operation<types.EvaluateCodeOutput>
+function C:evaluateCode(input: types.EvaluateCodeInput, options?: base_client.InvokeOptions): async.Operation<types.EvaluateCodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EvaluateCode as schema.OperationSchema, input, options) as async.Operation<types.EvaluateCodeOutput>
 end
 
-function C:evaluateMappingTemplate(input: types.EvaluateMappingTemplateInput, options: any): async.Operation<types.EvaluateMappingTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.EvaluateMappingTemplate, input, options) as async.Operation<types.EvaluateMappingTemplateOutput>
+function C:evaluateMappingTemplate(input: types.EvaluateMappingTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.EvaluateMappingTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EvaluateMappingTemplate as schema.OperationSchema, input, options) as async.Operation<types.EvaluateMappingTemplateOutput>
 end
 
-function C:flushApiCache(input: types.FlushApiCacheInput, options: any): async.Operation<types.FlushApiCacheOutput>
-    return self:invokeOperation(schemas.Service, schemas.FlushApiCache, input, options) as async.Operation<types.FlushApiCacheOutput>
+function C:flushApiCache(input: types.FlushApiCacheInput, options?: base_client.InvokeOptions): async.Operation<types.FlushApiCacheOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.FlushApiCache as schema.OperationSchema, input, options) as async.Operation<types.FlushApiCacheOutput>
 end
 
-function C:getApi(input: types.GetApiInput, options: any): async.Operation<types.GetApiOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetApi, input, options) as async.Operation<types.GetApiOutput>
+function C:getApi(input: types.GetApiInput, options?: base_client.InvokeOptions): async.Operation<types.GetApiOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetApi as schema.OperationSchema, input, options) as async.Operation<types.GetApiOutput>
 end
 
-function C:getApiAssociation(input: types.GetApiAssociationInput, options: any): async.Operation<types.GetApiAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetApiAssociation, input, options) as async.Operation<types.GetApiAssociationOutput>
+function C:getApiAssociation(input: types.GetApiAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetApiAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetApiAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetApiAssociationOutput>
 end
 
-function C:getApiCache(input: types.GetApiCacheInput, options: any): async.Operation<types.GetApiCacheOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetApiCache, input, options) as async.Operation<types.GetApiCacheOutput>
+function C:getApiCache(input: types.GetApiCacheInput, options?: base_client.InvokeOptions): async.Operation<types.GetApiCacheOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetApiCache as schema.OperationSchema, input, options) as async.Operation<types.GetApiCacheOutput>
 end
 
-function C:getChannelNamespace(input: types.GetChannelNamespaceInput, options: any): async.Operation<types.GetChannelNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetChannelNamespace, input, options) as async.Operation<types.GetChannelNamespaceOutput>
+function C:getChannelNamespace(input: types.GetChannelNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.GetChannelNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetChannelNamespace as schema.OperationSchema, input, options) as async.Operation<types.GetChannelNamespaceOutput>
 end
 
-function C:getDataSource(input: types.GetDataSourceInput, options: any): async.Operation<types.GetDataSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataSource, input, options) as async.Operation<types.GetDataSourceOutput>
+function C:getDataSource(input: types.GetDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataSource as schema.OperationSchema, input, options) as async.Operation<types.GetDataSourceOutput>
 end
 
-function C:getDataSourceIntrospection(input: types.GetDataSourceIntrospectionInput, options: any): async.Operation<types.GetDataSourceIntrospectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataSourceIntrospection, input, options) as async.Operation<types.GetDataSourceIntrospectionOutput>
+function C:getDataSourceIntrospection(input: types.GetDataSourceIntrospectionInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataSourceIntrospectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataSourceIntrospection as schema.OperationSchema, input, options) as async.Operation<types.GetDataSourceIntrospectionOutput>
 end
 
-function C:getDomainName(input: types.GetDomainNameInput, options: any): async.Operation<types.GetDomainNameOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDomainName, input, options) as async.Operation<types.GetDomainNameOutput>
+function C:getDomainName(input: types.GetDomainNameInput, options?: base_client.InvokeOptions): async.Operation<types.GetDomainNameOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDomainName as schema.OperationSchema, input, options) as async.Operation<types.GetDomainNameOutput>
 end
 
-function C:getFunction(input: types.GetFunctionInput, options: any): async.Operation<types.GetFunctionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFunction, input, options) as async.Operation<types.GetFunctionOutput>
+function C:getFunction(input: types.GetFunctionInput, options?: base_client.InvokeOptions): async.Operation<types.GetFunctionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFunction as schema.OperationSchema, input, options) as async.Operation<types.GetFunctionOutput>
 end
 
-function C:getGraphqlApi(input: types.GetGraphqlApiInput, options: any): async.Operation<types.GetGraphqlApiOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetGraphqlApi, input, options) as async.Operation<types.GetGraphqlApiOutput>
+function C:getGraphqlApi(input: types.GetGraphqlApiInput, options?: base_client.InvokeOptions): async.Operation<types.GetGraphqlApiOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGraphqlApi as schema.OperationSchema, input, options) as async.Operation<types.GetGraphqlApiOutput>
 end
 
-function C:getGraphqlApiEnvironmentVariables(input: types.GetGraphqlApiEnvironmentVariablesInput, options: any): async.Operation<types.GetGraphqlApiEnvironmentVariablesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetGraphqlApiEnvironmentVariables, input, options) as async.Operation<types.GetGraphqlApiEnvironmentVariablesOutput>
+function C:getGraphqlApiEnvironmentVariables(input: types.GetGraphqlApiEnvironmentVariablesInput, options?: base_client.InvokeOptions): async.Operation<types.GetGraphqlApiEnvironmentVariablesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGraphqlApiEnvironmentVariables as schema.OperationSchema, input, options) as async.Operation<types.GetGraphqlApiEnvironmentVariablesOutput>
 end
 
-function C:getIntrospectionSchema(input: types.GetIntrospectionSchemaInput, options: any): async.Operation<types.GetIntrospectionSchemaOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIntrospectionSchema, input, options) as async.Operation<types.GetIntrospectionSchemaOutput>
+function C:getIntrospectionSchema(input: types.GetIntrospectionSchemaInput, options?: base_client.InvokeOptions): async.Operation<types.GetIntrospectionSchemaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIntrospectionSchema as schema.OperationSchema, input, options) as async.Operation<types.GetIntrospectionSchemaOutput>
 end
 
-function C:getResolver(input: types.GetResolverInput, options: any): async.Operation<types.GetResolverOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResolver, input, options) as async.Operation<types.GetResolverOutput>
+function C:getResolver(input: types.GetResolverInput, options?: base_client.InvokeOptions): async.Operation<types.GetResolverOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResolver as schema.OperationSchema, input, options) as async.Operation<types.GetResolverOutput>
 end
 
-function C:getSchemaCreationStatus(input: types.GetSchemaCreationStatusInput, options: any): async.Operation<types.GetSchemaCreationStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSchemaCreationStatus, input, options) as async.Operation<types.GetSchemaCreationStatusOutput>
+function C:getSchemaCreationStatus(input: types.GetSchemaCreationStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetSchemaCreationStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSchemaCreationStatus as schema.OperationSchema, input, options) as async.Operation<types.GetSchemaCreationStatusOutput>
 end
 
-function C:getSourceApiAssociation(input: types.GetSourceApiAssociationInput, options: any): async.Operation<types.GetSourceApiAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSourceApiAssociation, input, options) as async.Operation<types.GetSourceApiAssociationOutput>
+function C:getSourceApiAssociation(input: types.GetSourceApiAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetSourceApiAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSourceApiAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetSourceApiAssociationOutput>
 end
 
-function C:getType(input: types.GetTypeInput, options: any): async.Operation<types.GetTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetType, input, options) as async.Operation<types.GetTypeOutput>
+function C:getType(input: types.GetTypeInput, options?: base_client.InvokeOptions): async.Operation<types.GetTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetType as schema.OperationSchema, input, options) as async.Operation<types.GetTypeOutput>
 end
 
-function C:listApiKeys(input: types.ListApiKeysInput, options: any): async.Operation<types.ListApiKeysOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApiKeys, input, options) as async.Operation<types.ListApiKeysOutput>
+function C:listApiKeys(input: types.ListApiKeysInput, options?: base_client.InvokeOptions): async.Operation<types.ListApiKeysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApiKeys as schema.OperationSchema, input, options) as async.Operation<types.ListApiKeysOutput>
 end
 
-function C:listApis(input: types.ListApisInput, options: any): async.Operation<types.ListApisOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApis, input, options) as async.Operation<types.ListApisOutput>
+function C:listApis(input: types.ListApisInput, options?: base_client.InvokeOptions): async.Operation<types.ListApisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApis as schema.OperationSchema, input, options) as async.Operation<types.ListApisOutput>
 end
 
-function C:listChannelNamespaces(input: types.ListChannelNamespacesInput, options: any): async.Operation<types.ListChannelNamespacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListChannelNamespaces, input, options) as async.Operation<types.ListChannelNamespacesOutput>
+function C:listChannelNamespaces(input: types.ListChannelNamespacesInput, options?: base_client.InvokeOptions): async.Operation<types.ListChannelNamespacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListChannelNamespaces as schema.OperationSchema, input, options) as async.Operation<types.ListChannelNamespacesOutput>
 end
 
-function C:listDataSources(input: types.ListDataSourcesInput, options: any): async.Operation<types.ListDataSourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDataSources, input, options) as async.Operation<types.ListDataSourcesOutput>
+function C:listDataSources(input: types.ListDataSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataSourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataSources as schema.OperationSchema, input, options) as async.Operation<types.ListDataSourcesOutput>
 end
 
-function C:listDomainNames(input: types.ListDomainNamesInput, options: any): async.Operation<types.ListDomainNamesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDomainNames, input, options) as async.Operation<types.ListDomainNamesOutput>
+function C:listDomainNames(input: types.ListDomainNamesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDomainNamesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDomainNames as schema.OperationSchema, input, options) as async.Operation<types.ListDomainNamesOutput>
 end
 
-function C:listFunctions(input: types.ListFunctionsInput, options: any): async.Operation<types.ListFunctionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFunctions, input, options) as async.Operation<types.ListFunctionsOutput>
+function C:listFunctions(input: types.ListFunctionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFunctionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFunctions as schema.OperationSchema, input, options) as async.Operation<types.ListFunctionsOutput>
 end
 
-function C:listGraphqlApis(input: types.ListGraphqlApisInput, options: any): async.Operation<types.ListGraphqlApisOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGraphqlApis, input, options) as async.Operation<types.ListGraphqlApisOutput>
+function C:listGraphqlApis(input: types.ListGraphqlApisInput, options?: base_client.InvokeOptions): async.Operation<types.ListGraphqlApisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGraphqlApis as schema.OperationSchema, input, options) as async.Operation<types.ListGraphqlApisOutput>
 end
 
-function C:listResolvers(input: types.ListResolversInput, options: any): async.Operation<types.ListResolversOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResolvers, input, options) as async.Operation<types.ListResolversOutput>
+function C:listResolvers(input: types.ListResolversInput, options?: base_client.InvokeOptions): async.Operation<types.ListResolversOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResolvers as schema.OperationSchema, input, options) as async.Operation<types.ListResolversOutput>
 end
 
-function C:listResolversByFunction(input: types.ListResolversByFunctionInput, options: any): async.Operation<types.ListResolversByFunctionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResolversByFunction, input, options) as async.Operation<types.ListResolversByFunctionOutput>
+function C:listResolversByFunction(input: types.ListResolversByFunctionInput, options?: base_client.InvokeOptions): async.Operation<types.ListResolversByFunctionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResolversByFunction as schema.OperationSchema, input, options) as async.Operation<types.ListResolversByFunctionOutput>
 end
 
-function C:listSourceApiAssociations(input: types.ListSourceApiAssociationsInput, options: any): async.Operation<types.ListSourceApiAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSourceApiAssociations, input, options) as async.Operation<types.ListSourceApiAssociationsOutput>
+function C:listSourceApiAssociations(input: types.ListSourceApiAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSourceApiAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSourceApiAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListSourceApiAssociationsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTypes(input: types.ListTypesInput, options: any): async.Operation<types.ListTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTypes, input, options) as async.Operation<types.ListTypesOutput>
+function C:listTypes(input: types.ListTypesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTypes as schema.OperationSchema, input, options) as async.Operation<types.ListTypesOutput>
 end
 
-function C:listTypesByAssociation(input: types.ListTypesByAssociationInput, options: any): async.Operation<types.ListTypesByAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTypesByAssociation, input, options) as async.Operation<types.ListTypesByAssociationOutput>
+function C:listTypesByAssociation(input: types.ListTypesByAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.ListTypesByAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTypesByAssociation as schema.OperationSchema, input, options) as async.Operation<types.ListTypesByAssociationOutput>
 end
 
-function C:putGraphqlApiEnvironmentVariables(input: types.PutGraphqlApiEnvironmentVariablesInput, options: any): async.Operation<types.PutGraphqlApiEnvironmentVariablesOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutGraphqlApiEnvironmentVariables, input, options) as async.Operation<types.PutGraphqlApiEnvironmentVariablesOutput>
+function C:putGraphqlApiEnvironmentVariables(input: types.PutGraphqlApiEnvironmentVariablesInput, options?: base_client.InvokeOptions): async.Operation<types.PutGraphqlApiEnvironmentVariablesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutGraphqlApiEnvironmentVariables as schema.OperationSchema, input, options) as async.Operation<types.PutGraphqlApiEnvironmentVariablesOutput>
 end
 
-function C:startDataSourceIntrospection(input: types.StartDataSourceIntrospectionInput, options: any): async.Operation<types.StartDataSourceIntrospectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartDataSourceIntrospection, input, options) as async.Operation<types.StartDataSourceIntrospectionOutput>
+function C:startDataSourceIntrospection(input: types.StartDataSourceIntrospectionInput, options?: base_client.InvokeOptions): async.Operation<types.StartDataSourceIntrospectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDataSourceIntrospection as schema.OperationSchema, input, options) as async.Operation<types.StartDataSourceIntrospectionOutput>
 end
 
-function C:startSchemaCreation(input: types.StartSchemaCreationInput, options: any): async.Operation<types.StartSchemaCreationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartSchemaCreation, input, options) as async.Operation<types.StartSchemaCreationOutput>
+function C:startSchemaCreation(input: types.StartSchemaCreationInput, options?: base_client.InvokeOptions): async.Operation<types.StartSchemaCreationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartSchemaCreation as schema.OperationSchema, input, options) as async.Operation<types.StartSchemaCreationOutput>
 end
 
-function C:startSchemaMerge(input: types.StartSchemaMergeInput, options: any): async.Operation<types.StartSchemaMergeOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartSchemaMerge, input, options) as async.Operation<types.StartSchemaMergeOutput>
+function C:startSchemaMerge(input: types.StartSchemaMergeInput, options?: base_client.InvokeOptions): async.Operation<types.StartSchemaMergeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartSchemaMerge as schema.OperationSchema, input, options) as async.Operation<types.StartSchemaMergeOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateApi(input: types.UpdateApiInput, options: any): async.Operation<types.UpdateApiOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateApi, input, options) as async.Operation<types.UpdateApiOutput>
+function C:updateApi(input: types.UpdateApiInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApiOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApi as schema.OperationSchema, input, options) as async.Operation<types.UpdateApiOutput>
 end
 
-function C:updateApiCache(input: types.UpdateApiCacheInput, options: any): async.Operation<types.UpdateApiCacheOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateApiCache, input, options) as async.Operation<types.UpdateApiCacheOutput>
+function C:updateApiCache(input: types.UpdateApiCacheInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApiCacheOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApiCache as schema.OperationSchema, input, options) as async.Operation<types.UpdateApiCacheOutput>
 end
 
-function C:updateApiKey(input: types.UpdateApiKeyInput, options: any): async.Operation<types.UpdateApiKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateApiKey, input, options) as async.Operation<types.UpdateApiKeyOutput>
+function C:updateApiKey(input: types.UpdateApiKeyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApiKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApiKey as schema.OperationSchema, input, options) as async.Operation<types.UpdateApiKeyOutput>
 end
 
-function C:updateChannelNamespace(input: types.UpdateChannelNamespaceInput, options: any): async.Operation<types.UpdateChannelNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateChannelNamespace, input, options) as async.Operation<types.UpdateChannelNamespaceOutput>
+function C:updateChannelNamespace(input: types.UpdateChannelNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateChannelNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateChannelNamespace as schema.OperationSchema, input, options) as async.Operation<types.UpdateChannelNamespaceOutput>
 end
 
-function C:updateDataSource(input: types.UpdateDataSourceInput, options: any): async.Operation<types.UpdateDataSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDataSource, input, options) as async.Operation<types.UpdateDataSourceOutput>
+function C:updateDataSource(input: types.UpdateDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDataSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDataSource as schema.OperationSchema, input, options) as async.Operation<types.UpdateDataSourceOutput>
 end
 
-function C:updateDomainName(input: types.UpdateDomainNameInput, options: any): async.Operation<types.UpdateDomainNameOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDomainName, input, options) as async.Operation<types.UpdateDomainNameOutput>
+function C:updateDomainName(input: types.UpdateDomainNameInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDomainNameOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDomainName as schema.OperationSchema, input, options) as async.Operation<types.UpdateDomainNameOutput>
 end
 
-function C:updateFunction(input: types.UpdateFunctionInput, options: any): async.Operation<types.UpdateFunctionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFunction, input, options) as async.Operation<types.UpdateFunctionOutput>
+function C:updateFunction(input: types.UpdateFunctionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFunctionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFunction as schema.OperationSchema, input, options) as async.Operation<types.UpdateFunctionOutput>
 end
 
-function C:updateGraphqlApi(input: types.UpdateGraphqlApiInput, options: any): async.Operation<types.UpdateGraphqlApiOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateGraphqlApi, input, options) as async.Operation<types.UpdateGraphqlApiOutput>
+function C:updateGraphqlApi(input: types.UpdateGraphqlApiInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGraphqlApiOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGraphqlApi as schema.OperationSchema, input, options) as async.Operation<types.UpdateGraphqlApiOutput>
 end
 
-function C:updateResolver(input: types.UpdateResolverInput, options: any): async.Operation<types.UpdateResolverOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateResolver, input, options) as async.Operation<types.UpdateResolverOutput>
+function C:updateResolver(input: types.UpdateResolverInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateResolverOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateResolver as schema.OperationSchema, input, options) as async.Operation<types.UpdateResolverOutput>
 end
 
-function C:updateSourceApiAssociation(input: types.UpdateSourceApiAssociationInput, options: any): async.Operation<types.UpdateSourceApiAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSourceApiAssociation, input, options) as async.Operation<types.UpdateSourceApiAssociationOutput>
+function C:updateSourceApiAssociation(input: types.UpdateSourceApiAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSourceApiAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSourceApiAssociation as schema.OperationSchema, input, options) as async.Operation<types.UpdateSourceApiAssociationOutput>
 end
 
-function C:updateType(input: types.UpdateTypeInput, options: any): async.Operation<types.UpdateTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateType, input, options) as async.Operation<types.UpdateTypeOutput>
+function C:updateType(input: types.UpdateTypeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateType as schema.OperationSchema, input, options) as async.Operation<types.UpdateTypeOutput>
 end
 
 return M

@@ -8,58 +8,61 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("datapipeline.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("datapipeline.schemas")
 local traits = require("smithy.traits")
 local types = require("datapipeline.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    activatePipeline: function(Client, types.ActivatePipelineInput, any): async.Operation<types.ActivatePipelineOutput>
-    addTags: function(Client, types.AddTagsInput, any): async.Operation<types.AddTagsOutput>
-    createPipeline: function(Client, types.CreatePipelineInput, any): async.Operation<types.CreatePipelineOutput>
-    deactivatePipeline: function(Client, types.DeactivatePipelineInput, any): async.Operation<types.DeactivatePipelineOutput>
-    deletePipeline: function(Client, types.DeletePipelineInput, any): async.Operation<types.DeletePipelineOutput>
-    describeObjects: function(Client, types.DescribeObjectsInput, any): async.Operation<types.DescribeObjectsOutput>
-    describePipelines: function(Client, types.DescribePipelinesInput, any): async.Operation<types.DescribePipelinesOutput>
-    evaluateExpression: function(Client, types.EvaluateExpressionInput, any): async.Operation<types.EvaluateExpressionOutput>
-    getPipelineDefinition: function(Client, types.GetPipelineDefinitionInput, any): async.Operation<types.GetPipelineDefinitionOutput>
-    listPipelines: function(Client, types.ListPipelinesInput, any): async.Operation<types.ListPipelinesOutput>
-    pollForTask: function(Client, types.PollForTaskInput, any): async.Operation<types.PollForTaskOutput>
-    putPipelineDefinition: function(Client, types.PutPipelineDefinitionInput, any): async.Operation<types.PutPipelineDefinitionOutput>
-    queryObjects: function(Client, types.QueryObjectsInput, any): async.Operation<types.QueryObjectsOutput>
-    removeTags: function(Client, types.RemoveTagsInput, any): async.Operation<types.RemoveTagsOutput>
-    reportTaskProgress: function(Client, types.ReportTaskProgressInput, any): async.Operation<types.ReportTaskProgressOutput>
-    reportTaskRunnerHeartbeat: function(Client, types.ReportTaskRunnerHeartbeatInput, any): async.Operation<types.ReportTaskRunnerHeartbeatOutput>
-    setStatus: function(Client, types.SetStatusInput, any): async.Operation<types.SetStatusOutput>
-    setTaskStatus: function(Client, types.SetTaskStatusInput, any): async.Operation<types.SetTaskStatusOutput>
-    validatePipelineDefinition: function(Client, types.ValidatePipelineDefinitionInput, any): async.Operation<types.ValidatePipelineDefinitionOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    activatePipeline: function(Client, types.ActivatePipelineInput, ? base_client.InvokeOptions): async.Operation<types.ActivatePipelineOutput>
+    addTags: function(Client, types.AddTagsInput, ? base_client.InvokeOptions): async.Operation<types.AddTagsOutput>
+    createPipeline: function(Client, types.CreatePipelineInput, ? base_client.InvokeOptions): async.Operation<types.CreatePipelineOutput>
+    deactivatePipeline: function(Client, types.DeactivatePipelineInput, ? base_client.InvokeOptions): async.Operation<types.DeactivatePipelineOutput>
+    deletePipeline: function(Client, types.DeletePipelineInput, ? base_client.InvokeOptions): async.Operation<types.DeletePipelineOutput>
+    describeObjects: function(Client, types.DescribeObjectsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeObjectsOutput>
+    describePipelines: function(Client, types.DescribePipelinesInput, ? base_client.InvokeOptions): async.Operation<types.DescribePipelinesOutput>
+    evaluateExpression: function(Client, types.EvaluateExpressionInput, ? base_client.InvokeOptions): async.Operation<types.EvaluateExpressionOutput>
+    getPipelineDefinition: function(Client, types.GetPipelineDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.GetPipelineDefinitionOutput>
+    listPipelines: function(Client, types.ListPipelinesInput, ? base_client.InvokeOptions): async.Operation<types.ListPipelinesOutput>
+    pollForTask: function(Client, types.PollForTaskInput, ? base_client.InvokeOptions): async.Operation<types.PollForTaskOutput>
+    putPipelineDefinition: function(Client, types.PutPipelineDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.PutPipelineDefinitionOutput>
+    queryObjects: function(Client, types.QueryObjectsInput, ? base_client.InvokeOptions): async.Operation<types.QueryObjectsOutput>
+    removeTags: function(Client, types.RemoveTagsInput, ? base_client.InvokeOptions): async.Operation<types.RemoveTagsOutput>
+    reportTaskProgress: function(Client, types.ReportTaskProgressInput, ? base_client.InvokeOptions): async.Operation<types.ReportTaskProgressOutput>
+    reportTaskRunnerHeartbeat: function(Client, types.ReportTaskRunnerHeartbeatInput, ? base_client.InvokeOptions): async.Operation<types.ReportTaskRunnerHeartbeatOutput>
+    setStatus: function(Client, types.SetStatusInput, ? base_client.InvokeOptions): async.Operation<types.SetStatusOutput>
+    setTaskStatus: function(Client, types.SetTaskStatusInput, ? base_client.InvokeOptions): async.Operation<types.SetTaskStatusOutput>
+    validatePipelineDefinition: function(Client, types.ValidatePipelineDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.ValidatePipelineDefinitionOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "DataPipeline"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "datapipeline", signing_region = c.region } }
                 else
@@ -78,80 +81,80 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:activatePipeline(input: types.ActivatePipelineInput, options: any): async.Operation<types.ActivatePipelineOutput>
-    return self:invokeOperation(schemas.Service, schemas.ActivatePipeline, input, options) as async.Operation<types.ActivatePipelineOutput>
+function C:activatePipeline(input: types.ActivatePipelineInput, options?: base_client.InvokeOptions): async.Operation<types.ActivatePipelineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ActivatePipeline as schema.OperationSchema, input, options) as async.Operation<types.ActivatePipelineOutput>
 end
 
-function C:addTags(input: types.AddTagsInput, options: any): async.Operation<types.AddTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddTags, input, options) as async.Operation<types.AddTagsOutput>
+function C:addTags(input: types.AddTagsInput, options?: base_client.InvokeOptions): async.Operation<types.AddTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddTags as schema.OperationSchema, input, options) as async.Operation<types.AddTagsOutput>
 end
 
-function C:createPipeline(input: types.CreatePipelineInput, options: any): async.Operation<types.CreatePipelineOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePipeline, input, options) as async.Operation<types.CreatePipelineOutput>
+function C:createPipeline(input: types.CreatePipelineInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePipelineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePipeline as schema.OperationSchema, input, options) as async.Operation<types.CreatePipelineOutput>
 end
 
-function C:deactivatePipeline(input: types.DeactivatePipelineInput, options: any): async.Operation<types.DeactivatePipelineOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeactivatePipeline, input, options) as async.Operation<types.DeactivatePipelineOutput>
+function C:deactivatePipeline(input: types.DeactivatePipelineInput, options?: base_client.InvokeOptions): async.Operation<types.DeactivatePipelineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeactivatePipeline as schema.OperationSchema, input, options) as async.Operation<types.DeactivatePipelineOutput>
 end
 
-function C:deletePipeline(input: types.DeletePipelineInput, options: any): async.Operation<types.DeletePipelineOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePipeline, input, options) as async.Operation<types.DeletePipelineOutput>
+function C:deletePipeline(input: types.DeletePipelineInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePipelineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePipeline as schema.OperationSchema, input, options) as async.Operation<types.DeletePipelineOutput>
 end
 
-function C:describeObjects(input: types.DescribeObjectsInput, options: any): async.Operation<types.DescribeObjectsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeObjects, input, options) as async.Operation<types.DescribeObjectsOutput>
+function C:describeObjects(input: types.DescribeObjectsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeObjectsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeObjects as schema.OperationSchema, input, options) as async.Operation<types.DescribeObjectsOutput>
 end
 
-function C:describePipelines(input: types.DescribePipelinesInput, options: any): async.Operation<types.DescribePipelinesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePipelines, input, options) as async.Operation<types.DescribePipelinesOutput>
+function C:describePipelines(input: types.DescribePipelinesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePipelinesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePipelines as schema.OperationSchema, input, options) as async.Operation<types.DescribePipelinesOutput>
 end
 
-function C:evaluateExpression(input: types.EvaluateExpressionInput, options: any): async.Operation<types.EvaluateExpressionOutput>
-    return self:invokeOperation(schemas.Service, schemas.EvaluateExpression, input, options) as async.Operation<types.EvaluateExpressionOutput>
+function C:evaluateExpression(input: types.EvaluateExpressionInput, options?: base_client.InvokeOptions): async.Operation<types.EvaluateExpressionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EvaluateExpression as schema.OperationSchema, input, options) as async.Operation<types.EvaluateExpressionOutput>
 end
 
-function C:getPipelineDefinition(input: types.GetPipelineDefinitionInput, options: any): async.Operation<types.GetPipelineDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPipelineDefinition, input, options) as async.Operation<types.GetPipelineDefinitionOutput>
+function C:getPipelineDefinition(input: types.GetPipelineDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.GetPipelineDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPipelineDefinition as schema.OperationSchema, input, options) as async.Operation<types.GetPipelineDefinitionOutput>
 end
 
-function C:listPipelines(input: types.ListPipelinesInput, options: any): async.Operation<types.ListPipelinesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPipelines, input, options) as async.Operation<types.ListPipelinesOutput>
+function C:listPipelines(input: types.ListPipelinesInput, options?: base_client.InvokeOptions): async.Operation<types.ListPipelinesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPipelines as schema.OperationSchema, input, options) as async.Operation<types.ListPipelinesOutput>
 end
 
-function C:pollForTask(input: types.PollForTaskInput, options: any): async.Operation<types.PollForTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.PollForTask, input, options) as async.Operation<types.PollForTaskOutput>
+function C:pollForTask(input: types.PollForTaskInput, options?: base_client.InvokeOptions): async.Operation<types.PollForTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PollForTask as schema.OperationSchema, input, options) as async.Operation<types.PollForTaskOutput>
 end
 
-function C:putPipelineDefinition(input: types.PutPipelineDefinitionInput, options: any): async.Operation<types.PutPipelineDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutPipelineDefinition, input, options) as async.Operation<types.PutPipelineDefinitionOutput>
+function C:putPipelineDefinition(input: types.PutPipelineDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.PutPipelineDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutPipelineDefinition as schema.OperationSchema, input, options) as async.Operation<types.PutPipelineDefinitionOutput>
 end
 
-function C:queryObjects(input: types.QueryObjectsInput, options: any): async.Operation<types.QueryObjectsOutput>
-    return self:invokeOperation(schemas.Service, schemas.QueryObjects, input, options) as async.Operation<types.QueryObjectsOutput>
+function C:queryObjects(input: types.QueryObjectsInput, options?: base_client.InvokeOptions): async.Operation<types.QueryObjectsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.QueryObjects as schema.OperationSchema, input, options) as async.Operation<types.QueryObjectsOutput>
 end
 
-function C:removeTags(input: types.RemoveTagsInput, options: any): async.Operation<types.RemoveTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveTags, input, options) as async.Operation<types.RemoveTagsOutput>
+function C:removeTags(input: types.RemoveTagsInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveTags as schema.OperationSchema, input, options) as async.Operation<types.RemoveTagsOutput>
 end
 
-function C:reportTaskProgress(input: types.ReportTaskProgressInput, options: any): async.Operation<types.ReportTaskProgressOutput>
-    return self:invokeOperation(schemas.Service, schemas.ReportTaskProgress, input, options) as async.Operation<types.ReportTaskProgressOutput>
+function C:reportTaskProgress(input: types.ReportTaskProgressInput, options?: base_client.InvokeOptions): async.Operation<types.ReportTaskProgressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReportTaskProgress as schema.OperationSchema, input, options) as async.Operation<types.ReportTaskProgressOutput>
 end
 
-function C:reportTaskRunnerHeartbeat(input: types.ReportTaskRunnerHeartbeatInput, options: any): async.Operation<types.ReportTaskRunnerHeartbeatOutput>
-    return self:invokeOperation(schemas.Service, schemas.ReportTaskRunnerHeartbeat, input, options) as async.Operation<types.ReportTaskRunnerHeartbeatOutput>
+function C:reportTaskRunnerHeartbeat(input: types.ReportTaskRunnerHeartbeatInput, options?: base_client.InvokeOptions): async.Operation<types.ReportTaskRunnerHeartbeatOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReportTaskRunnerHeartbeat as schema.OperationSchema, input, options) as async.Operation<types.ReportTaskRunnerHeartbeatOutput>
 end
 
-function C:setStatus(input: types.SetStatusInput, options: any): async.Operation<types.SetStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetStatus, input, options) as async.Operation<types.SetStatusOutput>
+function C:setStatus(input: types.SetStatusInput, options?: base_client.InvokeOptions): async.Operation<types.SetStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetStatus as schema.OperationSchema, input, options) as async.Operation<types.SetStatusOutput>
 end
 
-function C:setTaskStatus(input: types.SetTaskStatusInput, options: any): async.Operation<types.SetTaskStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetTaskStatus, input, options) as async.Operation<types.SetTaskStatusOutput>
+function C:setTaskStatus(input: types.SetTaskStatusInput, options?: base_client.InvokeOptions): async.Operation<types.SetTaskStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetTaskStatus as schema.OperationSchema, input, options) as async.Operation<types.SetTaskStatusOutput>
 end
 
-function C:validatePipelineDefinition(input: types.ValidatePipelineDefinitionInput, options: any): async.Operation<types.ValidatePipelineDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ValidatePipelineDefinition, input, options) as async.Operation<types.ValidatePipelineDefinitionOutput>
+function C:validatePipelineDefinition(input: types.ValidatePipelineDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.ValidatePipelineDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ValidatePipelineDefinition as schema.OperationSchema, input, options) as async.Operation<types.ValidatePipelineDefinitionOutput>
 end
 
 return M

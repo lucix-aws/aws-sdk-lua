@@ -8,114 +8,117 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("workspacesweb.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("workspacesweb.schemas")
 local traits = require("smithy.traits")
 local types = require("workspacesweb.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateBrowserSettings: function(Client, types.AssociateBrowserSettingsInput, any): async.Operation<types.AssociateBrowserSettingsOutput>
-    associateDataProtectionSettings: function(Client, types.AssociateDataProtectionSettingsInput, any): async.Operation<types.AssociateDataProtectionSettingsOutput>
-    associateIpAccessSettings: function(Client, types.AssociateIpAccessSettingsInput, any): async.Operation<types.AssociateIpAccessSettingsOutput>
-    associateNetworkSettings: function(Client, types.AssociateNetworkSettingsInput, any): async.Operation<types.AssociateNetworkSettingsOutput>
-    associateSessionLogger: function(Client, types.AssociateSessionLoggerInput, any): async.Operation<types.AssociateSessionLoggerOutput>
-    associateTrustStore: function(Client, types.AssociateTrustStoreInput, any): async.Operation<types.AssociateTrustStoreOutput>
-    associateUserAccessLoggingSettings: function(Client, types.AssociateUserAccessLoggingSettingsInput, any): async.Operation<types.AssociateUserAccessLoggingSettingsOutput>
-    associateUserSettings: function(Client, types.AssociateUserSettingsInput, any): async.Operation<types.AssociateUserSettingsOutput>
-    createBrowserSettings: function(Client, types.CreateBrowserSettingsInput, any): async.Operation<types.CreateBrowserSettingsOutput>
-    createDataProtectionSettings: function(Client, types.CreateDataProtectionSettingsInput, any): async.Operation<types.CreateDataProtectionSettingsOutput>
-    createIdentityProvider: function(Client, types.CreateIdentityProviderInput, any): async.Operation<types.CreateIdentityProviderOutput>
-    createIpAccessSettings: function(Client, types.CreateIpAccessSettingsInput, any): async.Operation<types.CreateIpAccessSettingsOutput>
-    createNetworkSettings: function(Client, types.CreateNetworkSettingsInput, any): async.Operation<types.CreateNetworkSettingsOutput>
-    createPortal: function(Client, types.CreatePortalInput, any): async.Operation<types.CreatePortalOutput>
-    createSessionLogger: function(Client, types.CreateSessionLoggerInput, any): async.Operation<types.CreateSessionLoggerOutput>
-    createTrustStore: function(Client, types.CreateTrustStoreInput, any): async.Operation<types.CreateTrustStoreOutput>
-    createUserAccessLoggingSettings: function(Client, types.CreateUserAccessLoggingSettingsInput, any): async.Operation<types.CreateUserAccessLoggingSettingsOutput>
-    createUserSettings: function(Client, types.CreateUserSettingsInput, any): async.Operation<types.CreateUserSettingsOutput>
-    deleteBrowserSettings: function(Client, types.DeleteBrowserSettingsInput, any): async.Operation<types.DeleteBrowserSettingsOutput>
-    deleteDataProtectionSettings: function(Client, types.DeleteDataProtectionSettingsInput, any): async.Operation<types.DeleteDataProtectionSettingsOutput>
-    deleteIdentityProvider: function(Client, types.DeleteIdentityProviderInput, any): async.Operation<types.DeleteIdentityProviderOutput>
-    deleteIpAccessSettings: function(Client, types.DeleteIpAccessSettingsInput, any): async.Operation<types.DeleteIpAccessSettingsOutput>
-    deleteNetworkSettings: function(Client, types.DeleteNetworkSettingsInput, any): async.Operation<types.DeleteNetworkSettingsOutput>
-    deletePortal: function(Client, types.DeletePortalInput, any): async.Operation<types.DeletePortalOutput>
-    deleteSessionLogger: function(Client, types.DeleteSessionLoggerInput, any): async.Operation<types.DeleteSessionLoggerOutput>
-    deleteTrustStore: function(Client, types.DeleteTrustStoreInput, any): async.Operation<types.DeleteTrustStoreOutput>
-    deleteUserAccessLoggingSettings: function(Client, types.DeleteUserAccessLoggingSettingsInput, any): async.Operation<types.DeleteUserAccessLoggingSettingsOutput>
-    deleteUserSettings: function(Client, types.DeleteUserSettingsInput, any): async.Operation<types.DeleteUserSettingsOutput>
-    disassociateBrowserSettings: function(Client, types.DisassociateBrowserSettingsInput, any): async.Operation<types.DisassociateBrowserSettingsOutput>
-    disassociateDataProtectionSettings: function(Client, types.DisassociateDataProtectionSettingsInput, any): async.Operation<types.DisassociateDataProtectionSettingsOutput>
-    disassociateIpAccessSettings: function(Client, types.DisassociateIpAccessSettingsInput, any): async.Operation<types.DisassociateIpAccessSettingsOutput>
-    disassociateNetworkSettings: function(Client, types.DisassociateNetworkSettingsInput, any): async.Operation<types.DisassociateNetworkSettingsOutput>
-    disassociateSessionLogger: function(Client, types.DisassociateSessionLoggerInput, any): async.Operation<types.DisassociateSessionLoggerOutput>
-    disassociateTrustStore: function(Client, types.DisassociateTrustStoreInput, any): async.Operation<types.DisassociateTrustStoreOutput>
-    disassociateUserAccessLoggingSettings: function(Client, types.DisassociateUserAccessLoggingSettingsInput, any): async.Operation<types.DisassociateUserAccessLoggingSettingsOutput>
-    disassociateUserSettings: function(Client, types.DisassociateUserSettingsInput, any): async.Operation<types.DisassociateUserSettingsOutput>
-    expireSession: function(Client, types.ExpireSessionInput, any): async.Operation<types.ExpireSessionOutput>
-    getBrowserSettings: function(Client, types.GetBrowserSettingsInput, any): async.Operation<types.GetBrowserSettingsOutput>
-    getDataProtectionSettings: function(Client, types.GetDataProtectionSettingsInput, any): async.Operation<types.GetDataProtectionSettingsOutput>
-    getIdentityProvider: function(Client, types.GetIdentityProviderInput, any): async.Operation<types.GetIdentityProviderOutput>
-    getIpAccessSettings: function(Client, types.GetIpAccessSettingsInput, any): async.Operation<types.GetIpAccessSettingsOutput>
-    getNetworkSettings: function(Client, types.GetNetworkSettingsInput, any): async.Operation<types.GetNetworkSettingsOutput>
-    getPortal: function(Client, types.GetPortalInput, any): async.Operation<types.GetPortalOutput>
-    getPortalServiceProviderMetadata: function(Client, types.GetPortalServiceProviderMetadataInput, any): async.Operation<types.GetPortalServiceProviderMetadataOutput>
-    getSession: function(Client, types.GetSessionInput, any): async.Operation<types.GetSessionOutput>
-    getSessionLogger: function(Client, types.GetSessionLoggerInput, any): async.Operation<types.GetSessionLoggerOutput>
-    getTrustStore: function(Client, types.GetTrustStoreInput, any): async.Operation<types.GetTrustStoreOutput>
-    getTrustStoreCertificate: function(Client, types.GetTrustStoreCertificateInput, any): async.Operation<types.GetTrustStoreCertificateOutput>
-    getUserAccessLoggingSettings: function(Client, types.GetUserAccessLoggingSettingsInput, any): async.Operation<types.GetUserAccessLoggingSettingsOutput>
-    getUserSettings: function(Client, types.GetUserSettingsInput, any): async.Operation<types.GetUserSettingsOutput>
-    listBrowserSettings: function(Client, types.ListBrowserSettingsInput, any): async.Operation<types.ListBrowserSettingsOutput>
-    listDataProtectionSettings: function(Client, types.ListDataProtectionSettingsInput, any): async.Operation<types.ListDataProtectionSettingsOutput>
-    listIdentityProviders: function(Client, types.ListIdentityProvidersInput, any): async.Operation<types.ListIdentityProvidersOutput>
-    listIpAccessSettings: function(Client, types.ListIpAccessSettingsInput, any): async.Operation<types.ListIpAccessSettingsOutput>
-    listNetworkSettings: function(Client, types.ListNetworkSettingsInput, any): async.Operation<types.ListNetworkSettingsOutput>
-    listPortals: function(Client, types.ListPortalsInput, any): async.Operation<types.ListPortalsOutput>
-    listSessionLoggers: function(Client, types.ListSessionLoggersInput, any): async.Operation<types.ListSessionLoggersOutput>
-    listSessions: function(Client, types.ListSessionsInput, any): async.Operation<types.ListSessionsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTrustStoreCertificates: function(Client, types.ListTrustStoreCertificatesInput, any): async.Operation<types.ListTrustStoreCertificatesOutput>
-    listTrustStores: function(Client, types.ListTrustStoresInput, any): async.Operation<types.ListTrustStoresOutput>
-    listUserAccessLoggingSettings: function(Client, types.ListUserAccessLoggingSettingsInput, any): async.Operation<types.ListUserAccessLoggingSettingsOutput>
-    listUserSettings: function(Client, types.ListUserSettingsInput, any): async.Operation<types.ListUserSettingsOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateBrowserSettings: function(Client, types.UpdateBrowserSettingsInput, any): async.Operation<types.UpdateBrowserSettingsOutput>
-    updateDataProtectionSettings: function(Client, types.UpdateDataProtectionSettingsInput, any): async.Operation<types.UpdateDataProtectionSettingsOutput>
-    updateIdentityProvider: function(Client, types.UpdateIdentityProviderInput, any): async.Operation<types.UpdateIdentityProviderOutput>
-    updateIpAccessSettings: function(Client, types.UpdateIpAccessSettingsInput, any): async.Operation<types.UpdateIpAccessSettingsOutput>
-    updateNetworkSettings: function(Client, types.UpdateNetworkSettingsInput, any): async.Operation<types.UpdateNetworkSettingsOutput>
-    updatePortal: function(Client, types.UpdatePortalInput, any): async.Operation<types.UpdatePortalOutput>
-    updateSessionLogger: function(Client, types.UpdateSessionLoggerInput, any): async.Operation<types.UpdateSessionLoggerOutput>
-    updateTrustStore: function(Client, types.UpdateTrustStoreInput, any): async.Operation<types.UpdateTrustStoreOutput>
-    updateUserAccessLoggingSettings: function(Client, types.UpdateUserAccessLoggingSettingsInput, any): async.Operation<types.UpdateUserAccessLoggingSettingsOutput>
-    updateUserSettings: function(Client, types.UpdateUserSettingsInput, any): async.Operation<types.UpdateUserSettingsOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateBrowserSettings: function(Client, types.AssociateBrowserSettingsInput, ? base_client.InvokeOptions): async.Operation<types.AssociateBrowserSettingsOutput>
+    associateDataProtectionSettings: function(Client, types.AssociateDataProtectionSettingsInput, ? base_client.InvokeOptions): async.Operation<types.AssociateDataProtectionSettingsOutput>
+    associateIpAccessSettings: function(Client, types.AssociateIpAccessSettingsInput, ? base_client.InvokeOptions): async.Operation<types.AssociateIpAccessSettingsOutput>
+    associateNetworkSettings: function(Client, types.AssociateNetworkSettingsInput, ? base_client.InvokeOptions): async.Operation<types.AssociateNetworkSettingsOutput>
+    associateSessionLogger: function(Client, types.AssociateSessionLoggerInput, ? base_client.InvokeOptions): async.Operation<types.AssociateSessionLoggerOutput>
+    associateTrustStore: function(Client, types.AssociateTrustStoreInput, ? base_client.InvokeOptions): async.Operation<types.AssociateTrustStoreOutput>
+    associateUserAccessLoggingSettings: function(Client, types.AssociateUserAccessLoggingSettingsInput, ? base_client.InvokeOptions): async.Operation<types.AssociateUserAccessLoggingSettingsOutput>
+    associateUserSettings: function(Client, types.AssociateUserSettingsInput, ? base_client.InvokeOptions): async.Operation<types.AssociateUserSettingsOutput>
+    createBrowserSettings: function(Client, types.CreateBrowserSettingsInput, ? base_client.InvokeOptions): async.Operation<types.CreateBrowserSettingsOutput>
+    createDataProtectionSettings: function(Client, types.CreateDataProtectionSettingsInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataProtectionSettingsOutput>
+    createIdentityProvider: function(Client, types.CreateIdentityProviderInput, ? base_client.InvokeOptions): async.Operation<types.CreateIdentityProviderOutput>
+    createIpAccessSettings: function(Client, types.CreateIpAccessSettingsInput, ? base_client.InvokeOptions): async.Operation<types.CreateIpAccessSettingsOutput>
+    createNetworkSettings: function(Client, types.CreateNetworkSettingsInput, ? base_client.InvokeOptions): async.Operation<types.CreateNetworkSettingsOutput>
+    createPortal: function(Client, types.CreatePortalInput, ? base_client.InvokeOptions): async.Operation<types.CreatePortalOutput>
+    createSessionLogger: function(Client, types.CreateSessionLoggerInput, ? base_client.InvokeOptions): async.Operation<types.CreateSessionLoggerOutput>
+    createTrustStore: function(Client, types.CreateTrustStoreInput, ? base_client.InvokeOptions): async.Operation<types.CreateTrustStoreOutput>
+    createUserAccessLoggingSettings: function(Client, types.CreateUserAccessLoggingSettingsInput, ? base_client.InvokeOptions): async.Operation<types.CreateUserAccessLoggingSettingsOutput>
+    createUserSettings: function(Client, types.CreateUserSettingsInput, ? base_client.InvokeOptions): async.Operation<types.CreateUserSettingsOutput>
+    deleteBrowserSettings: function(Client, types.DeleteBrowserSettingsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBrowserSettingsOutput>
+    deleteDataProtectionSettings: function(Client, types.DeleteDataProtectionSettingsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataProtectionSettingsOutput>
+    deleteIdentityProvider: function(Client, types.DeleteIdentityProviderInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIdentityProviderOutput>
+    deleteIpAccessSettings: function(Client, types.DeleteIpAccessSettingsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIpAccessSettingsOutput>
+    deleteNetworkSettings: function(Client, types.DeleteNetworkSettingsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNetworkSettingsOutput>
+    deletePortal: function(Client, types.DeletePortalInput, ? base_client.InvokeOptions): async.Operation<types.DeletePortalOutput>
+    deleteSessionLogger: function(Client, types.DeleteSessionLoggerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSessionLoggerOutput>
+    deleteTrustStore: function(Client, types.DeleteTrustStoreInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTrustStoreOutput>
+    deleteUserAccessLoggingSettings: function(Client, types.DeleteUserAccessLoggingSettingsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUserAccessLoggingSettingsOutput>
+    deleteUserSettings: function(Client, types.DeleteUserSettingsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUserSettingsOutput>
+    disassociateBrowserSettings: function(Client, types.DisassociateBrowserSettingsInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateBrowserSettingsOutput>
+    disassociateDataProtectionSettings: function(Client, types.DisassociateDataProtectionSettingsInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateDataProtectionSettingsOutput>
+    disassociateIpAccessSettings: function(Client, types.DisassociateIpAccessSettingsInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateIpAccessSettingsOutput>
+    disassociateNetworkSettings: function(Client, types.DisassociateNetworkSettingsInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateNetworkSettingsOutput>
+    disassociateSessionLogger: function(Client, types.DisassociateSessionLoggerInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateSessionLoggerOutput>
+    disassociateTrustStore: function(Client, types.DisassociateTrustStoreInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateTrustStoreOutput>
+    disassociateUserAccessLoggingSettings: function(Client, types.DisassociateUserAccessLoggingSettingsInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateUserAccessLoggingSettingsOutput>
+    disassociateUserSettings: function(Client, types.DisassociateUserSettingsInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateUserSettingsOutput>
+    expireSession: function(Client, types.ExpireSessionInput, ? base_client.InvokeOptions): async.Operation<types.ExpireSessionOutput>
+    getBrowserSettings: function(Client, types.GetBrowserSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetBrowserSettingsOutput>
+    getDataProtectionSettings: function(Client, types.GetDataProtectionSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetDataProtectionSettingsOutput>
+    getIdentityProvider: function(Client, types.GetIdentityProviderInput, ? base_client.InvokeOptions): async.Operation<types.GetIdentityProviderOutput>
+    getIpAccessSettings: function(Client, types.GetIpAccessSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetIpAccessSettingsOutput>
+    getNetworkSettings: function(Client, types.GetNetworkSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetNetworkSettingsOutput>
+    getPortal: function(Client, types.GetPortalInput, ? base_client.InvokeOptions): async.Operation<types.GetPortalOutput>
+    getPortalServiceProviderMetadata: function(Client, types.GetPortalServiceProviderMetadataInput, ? base_client.InvokeOptions): async.Operation<types.GetPortalServiceProviderMetadataOutput>
+    getSession: function(Client, types.GetSessionInput, ? base_client.InvokeOptions): async.Operation<types.GetSessionOutput>
+    getSessionLogger: function(Client, types.GetSessionLoggerInput, ? base_client.InvokeOptions): async.Operation<types.GetSessionLoggerOutput>
+    getTrustStore: function(Client, types.GetTrustStoreInput, ? base_client.InvokeOptions): async.Operation<types.GetTrustStoreOutput>
+    getTrustStoreCertificate: function(Client, types.GetTrustStoreCertificateInput, ? base_client.InvokeOptions): async.Operation<types.GetTrustStoreCertificateOutput>
+    getUserAccessLoggingSettings: function(Client, types.GetUserAccessLoggingSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetUserAccessLoggingSettingsOutput>
+    getUserSettings: function(Client, types.GetUserSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetUserSettingsOutput>
+    listBrowserSettings: function(Client, types.ListBrowserSettingsInput, ? base_client.InvokeOptions): async.Operation<types.ListBrowserSettingsOutput>
+    listDataProtectionSettings: function(Client, types.ListDataProtectionSettingsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataProtectionSettingsOutput>
+    listIdentityProviders: function(Client, types.ListIdentityProvidersInput, ? base_client.InvokeOptions): async.Operation<types.ListIdentityProvidersOutput>
+    listIpAccessSettings: function(Client, types.ListIpAccessSettingsInput, ? base_client.InvokeOptions): async.Operation<types.ListIpAccessSettingsOutput>
+    listNetworkSettings: function(Client, types.ListNetworkSettingsInput, ? base_client.InvokeOptions): async.Operation<types.ListNetworkSettingsOutput>
+    listPortals: function(Client, types.ListPortalsInput, ? base_client.InvokeOptions): async.Operation<types.ListPortalsOutput>
+    listSessionLoggers: function(Client, types.ListSessionLoggersInput, ? base_client.InvokeOptions): async.Operation<types.ListSessionLoggersOutput>
+    listSessions: function(Client, types.ListSessionsInput, ? base_client.InvokeOptions): async.Operation<types.ListSessionsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTrustStoreCertificates: function(Client, types.ListTrustStoreCertificatesInput, ? base_client.InvokeOptions): async.Operation<types.ListTrustStoreCertificatesOutput>
+    listTrustStores: function(Client, types.ListTrustStoresInput, ? base_client.InvokeOptions): async.Operation<types.ListTrustStoresOutput>
+    listUserAccessLoggingSettings: function(Client, types.ListUserAccessLoggingSettingsInput, ? base_client.InvokeOptions): async.Operation<types.ListUserAccessLoggingSettingsOutput>
+    listUserSettings: function(Client, types.ListUserSettingsInput, ? base_client.InvokeOptions): async.Operation<types.ListUserSettingsOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateBrowserSettings: function(Client, types.UpdateBrowserSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBrowserSettingsOutput>
+    updateDataProtectionSettings: function(Client, types.UpdateDataProtectionSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataProtectionSettingsOutput>
+    updateIdentityProvider: function(Client, types.UpdateIdentityProviderInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIdentityProviderOutput>
+    updateIpAccessSettings: function(Client, types.UpdateIpAccessSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIpAccessSettingsOutput>
+    updateNetworkSettings: function(Client, types.UpdateNetworkSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNetworkSettingsOutput>
+    updatePortal: function(Client, types.UpdatePortalInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePortalOutput>
+    updateSessionLogger: function(Client, types.UpdateSessionLoggerInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSessionLoggerOutput>
+    updateTrustStore: function(Client, types.UpdateTrustStoreInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTrustStoreOutput>
+    updateUserAccessLoggingSettings: function(Client, types.UpdateUserAccessLoggingSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateUserAccessLoggingSettingsOutput>
+    updateUserSettings: function(Client, types.UpdateUserSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateUserSettingsOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSErmineControlPlaneService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "workspaces-web", signing_region = c.region } }
                 else
@@ -134,304 +137,304 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateBrowserSettings(input: types.AssociateBrowserSettingsInput, options: any): async.Operation<types.AssociateBrowserSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateBrowserSettings, input, options) as async.Operation<types.AssociateBrowserSettingsOutput>
+function C:associateBrowserSettings(input: types.AssociateBrowserSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateBrowserSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateBrowserSettings as schema.OperationSchema, input, options) as async.Operation<types.AssociateBrowserSettingsOutput>
 end
 
-function C:associateDataProtectionSettings(input: types.AssociateDataProtectionSettingsInput, options: any): async.Operation<types.AssociateDataProtectionSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateDataProtectionSettings, input, options) as async.Operation<types.AssociateDataProtectionSettingsOutput>
+function C:associateDataProtectionSettings(input: types.AssociateDataProtectionSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateDataProtectionSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateDataProtectionSettings as schema.OperationSchema, input, options) as async.Operation<types.AssociateDataProtectionSettingsOutput>
 end
 
-function C:associateIpAccessSettings(input: types.AssociateIpAccessSettingsInput, options: any): async.Operation<types.AssociateIpAccessSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateIpAccessSettings, input, options) as async.Operation<types.AssociateIpAccessSettingsOutput>
+function C:associateIpAccessSettings(input: types.AssociateIpAccessSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateIpAccessSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateIpAccessSettings as schema.OperationSchema, input, options) as async.Operation<types.AssociateIpAccessSettingsOutput>
 end
 
-function C:associateNetworkSettings(input: types.AssociateNetworkSettingsInput, options: any): async.Operation<types.AssociateNetworkSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateNetworkSettings, input, options) as async.Operation<types.AssociateNetworkSettingsOutput>
+function C:associateNetworkSettings(input: types.AssociateNetworkSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateNetworkSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateNetworkSettings as schema.OperationSchema, input, options) as async.Operation<types.AssociateNetworkSettingsOutput>
 end
 
-function C:associateSessionLogger(input: types.AssociateSessionLoggerInput, options: any): async.Operation<types.AssociateSessionLoggerOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateSessionLogger, input, options) as async.Operation<types.AssociateSessionLoggerOutput>
+function C:associateSessionLogger(input: types.AssociateSessionLoggerInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateSessionLoggerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateSessionLogger as schema.OperationSchema, input, options) as async.Operation<types.AssociateSessionLoggerOutput>
 end
 
-function C:associateTrustStore(input: types.AssociateTrustStoreInput, options: any): async.Operation<types.AssociateTrustStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateTrustStore, input, options) as async.Operation<types.AssociateTrustStoreOutput>
+function C:associateTrustStore(input: types.AssociateTrustStoreInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateTrustStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateTrustStore as schema.OperationSchema, input, options) as async.Operation<types.AssociateTrustStoreOutput>
 end
 
-function C:associateUserAccessLoggingSettings(input: types.AssociateUserAccessLoggingSettingsInput, options: any): async.Operation<types.AssociateUserAccessLoggingSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateUserAccessLoggingSettings, input, options) as async.Operation<types.AssociateUserAccessLoggingSettingsOutput>
+function C:associateUserAccessLoggingSettings(input: types.AssociateUserAccessLoggingSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateUserAccessLoggingSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateUserAccessLoggingSettings as schema.OperationSchema, input, options) as async.Operation<types.AssociateUserAccessLoggingSettingsOutput>
 end
 
-function C:associateUserSettings(input: types.AssociateUserSettingsInput, options: any): async.Operation<types.AssociateUserSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateUserSettings, input, options) as async.Operation<types.AssociateUserSettingsOutput>
+function C:associateUserSettings(input: types.AssociateUserSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateUserSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateUserSettings as schema.OperationSchema, input, options) as async.Operation<types.AssociateUserSettingsOutput>
 end
 
-function C:createBrowserSettings(input: types.CreateBrowserSettingsInput, options: any): async.Operation<types.CreateBrowserSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBrowserSettings, input, options) as async.Operation<types.CreateBrowserSettingsOutput>
+function C:createBrowserSettings(input: types.CreateBrowserSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBrowserSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBrowserSettings as schema.OperationSchema, input, options) as async.Operation<types.CreateBrowserSettingsOutput>
 end
 
-function C:createDataProtectionSettings(input: types.CreateDataProtectionSettingsInput, options: any): async.Operation<types.CreateDataProtectionSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataProtectionSettings, input, options) as async.Operation<types.CreateDataProtectionSettingsOutput>
+function C:createDataProtectionSettings(input: types.CreateDataProtectionSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataProtectionSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataProtectionSettings as schema.OperationSchema, input, options) as async.Operation<types.CreateDataProtectionSettingsOutput>
 end
 
-function C:createIdentityProvider(input: types.CreateIdentityProviderInput, options: any): async.Operation<types.CreateIdentityProviderOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIdentityProvider, input, options) as async.Operation<types.CreateIdentityProviderOutput>
+function C:createIdentityProvider(input: types.CreateIdentityProviderInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIdentityProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIdentityProvider as schema.OperationSchema, input, options) as async.Operation<types.CreateIdentityProviderOutput>
 end
 
-function C:createIpAccessSettings(input: types.CreateIpAccessSettingsInput, options: any): async.Operation<types.CreateIpAccessSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIpAccessSettings, input, options) as async.Operation<types.CreateIpAccessSettingsOutput>
+function C:createIpAccessSettings(input: types.CreateIpAccessSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIpAccessSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIpAccessSettings as schema.OperationSchema, input, options) as async.Operation<types.CreateIpAccessSettingsOutput>
 end
 
-function C:createNetworkSettings(input: types.CreateNetworkSettingsInput, options: any): async.Operation<types.CreateNetworkSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNetworkSettings, input, options) as async.Operation<types.CreateNetworkSettingsOutput>
+function C:createNetworkSettings(input: types.CreateNetworkSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNetworkSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNetworkSettings as schema.OperationSchema, input, options) as async.Operation<types.CreateNetworkSettingsOutput>
 end
 
-function C:createPortal(input: types.CreatePortalInput, options: any): async.Operation<types.CreatePortalOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePortal, input, options) as async.Operation<types.CreatePortalOutput>
+function C:createPortal(input: types.CreatePortalInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePortalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePortal as schema.OperationSchema, input, options) as async.Operation<types.CreatePortalOutput>
 end
 
-function C:createSessionLogger(input: types.CreateSessionLoggerInput, options: any): async.Operation<types.CreateSessionLoggerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSessionLogger, input, options) as async.Operation<types.CreateSessionLoggerOutput>
+function C:createSessionLogger(input: types.CreateSessionLoggerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSessionLoggerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSessionLogger as schema.OperationSchema, input, options) as async.Operation<types.CreateSessionLoggerOutput>
 end
 
-function C:createTrustStore(input: types.CreateTrustStoreInput, options: any): async.Operation<types.CreateTrustStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTrustStore, input, options) as async.Operation<types.CreateTrustStoreOutput>
+function C:createTrustStore(input: types.CreateTrustStoreInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTrustStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTrustStore as schema.OperationSchema, input, options) as async.Operation<types.CreateTrustStoreOutput>
 end
 
-function C:createUserAccessLoggingSettings(input: types.CreateUserAccessLoggingSettingsInput, options: any): async.Operation<types.CreateUserAccessLoggingSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateUserAccessLoggingSettings, input, options) as async.Operation<types.CreateUserAccessLoggingSettingsOutput>
+function C:createUserAccessLoggingSettings(input: types.CreateUserAccessLoggingSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.CreateUserAccessLoggingSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateUserAccessLoggingSettings as schema.OperationSchema, input, options) as async.Operation<types.CreateUserAccessLoggingSettingsOutput>
 end
 
-function C:createUserSettings(input: types.CreateUserSettingsInput, options: any): async.Operation<types.CreateUserSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateUserSettings, input, options) as async.Operation<types.CreateUserSettingsOutput>
+function C:createUserSettings(input: types.CreateUserSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.CreateUserSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateUserSettings as schema.OperationSchema, input, options) as async.Operation<types.CreateUserSettingsOutput>
 end
 
-function C:deleteBrowserSettings(input: types.DeleteBrowserSettingsInput, options: any): async.Operation<types.DeleteBrowserSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBrowserSettings, input, options) as async.Operation<types.DeleteBrowserSettingsOutput>
+function C:deleteBrowserSettings(input: types.DeleteBrowserSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBrowserSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBrowserSettings as schema.OperationSchema, input, options) as async.Operation<types.DeleteBrowserSettingsOutput>
 end
 
-function C:deleteDataProtectionSettings(input: types.DeleteDataProtectionSettingsInput, options: any): async.Operation<types.DeleteDataProtectionSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDataProtectionSettings, input, options) as async.Operation<types.DeleteDataProtectionSettingsOutput>
+function C:deleteDataProtectionSettings(input: types.DeleteDataProtectionSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDataProtectionSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataProtectionSettings as schema.OperationSchema, input, options) as async.Operation<types.DeleteDataProtectionSettingsOutput>
 end
 
-function C:deleteIdentityProvider(input: types.DeleteIdentityProviderInput, options: any): async.Operation<types.DeleteIdentityProviderOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIdentityProvider, input, options) as async.Operation<types.DeleteIdentityProviderOutput>
+function C:deleteIdentityProvider(input: types.DeleteIdentityProviderInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIdentityProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIdentityProvider as schema.OperationSchema, input, options) as async.Operation<types.DeleteIdentityProviderOutput>
 end
 
-function C:deleteIpAccessSettings(input: types.DeleteIpAccessSettingsInput, options: any): async.Operation<types.DeleteIpAccessSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIpAccessSettings, input, options) as async.Operation<types.DeleteIpAccessSettingsOutput>
+function C:deleteIpAccessSettings(input: types.DeleteIpAccessSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIpAccessSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIpAccessSettings as schema.OperationSchema, input, options) as async.Operation<types.DeleteIpAccessSettingsOutput>
 end
 
-function C:deleteNetworkSettings(input: types.DeleteNetworkSettingsInput, options: any): async.Operation<types.DeleteNetworkSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNetworkSettings, input, options) as async.Operation<types.DeleteNetworkSettingsOutput>
+function C:deleteNetworkSettings(input: types.DeleteNetworkSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNetworkSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNetworkSettings as schema.OperationSchema, input, options) as async.Operation<types.DeleteNetworkSettingsOutput>
 end
 
-function C:deletePortal(input: types.DeletePortalInput, options: any): async.Operation<types.DeletePortalOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePortal, input, options) as async.Operation<types.DeletePortalOutput>
+function C:deletePortal(input: types.DeletePortalInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePortalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePortal as schema.OperationSchema, input, options) as async.Operation<types.DeletePortalOutput>
 end
 
-function C:deleteSessionLogger(input: types.DeleteSessionLoggerInput, options: any): async.Operation<types.DeleteSessionLoggerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSessionLogger, input, options) as async.Operation<types.DeleteSessionLoggerOutput>
+function C:deleteSessionLogger(input: types.DeleteSessionLoggerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSessionLoggerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSessionLogger as schema.OperationSchema, input, options) as async.Operation<types.DeleteSessionLoggerOutput>
 end
 
-function C:deleteTrustStore(input: types.DeleteTrustStoreInput, options: any): async.Operation<types.DeleteTrustStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTrustStore, input, options) as async.Operation<types.DeleteTrustStoreOutput>
+function C:deleteTrustStore(input: types.DeleteTrustStoreInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTrustStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTrustStore as schema.OperationSchema, input, options) as async.Operation<types.DeleteTrustStoreOutput>
 end
 
-function C:deleteUserAccessLoggingSettings(input: types.DeleteUserAccessLoggingSettingsInput, options: any): async.Operation<types.DeleteUserAccessLoggingSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteUserAccessLoggingSettings, input, options) as async.Operation<types.DeleteUserAccessLoggingSettingsOutput>
+function C:deleteUserAccessLoggingSettings(input: types.DeleteUserAccessLoggingSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteUserAccessLoggingSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteUserAccessLoggingSettings as schema.OperationSchema, input, options) as async.Operation<types.DeleteUserAccessLoggingSettingsOutput>
 end
 
-function C:deleteUserSettings(input: types.DeleteUserSettingsInput, options: any): async.Operation<types.DeleteUserSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteUserSettings, input, options) as async.Operation<types.DeleteUserSettingsOutput>
+function C:deleteUserSettings(input: types.DeleteUserSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteUserSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteUserSettings as schema.OperationSchema, input, options) as async.Operation<types.DeleteUserSettingsOutput>
 end
 
-function C:disassociateBrowserSettings(input: types.DisassociateBrowserSettingsInput, options: any): async.Operation<types.DisassociateBrowserSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateBrowserSettings, input, options) as async.Operation<types.DisassociateBrowserSettingsOutput>
+function C:disassociateBrowserSettings(input: types.DisassociateBrowserSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateBrowserSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateBrowserSettings as schema.OperationSchema, input, options) as async.Operation<types.DisassociateBrowserSettingsOutput>
 end
 
-function C:disassociateDataProtectionSettings(input: types.DisassociateDataProtectionSettingsInput, options: any): async.Operation<types.DisassociateDataProtectionSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateDataProtectionSettings, input, options) as async.Operation<types.DisassociateDataProtectionSettingsOutput>
+function C:disassociateDataProtectionSettings(input: types.DisassociateDataProtectionSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateDataProtectionSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateDataProtectionSettings as schema.OperationSchema, input, options) as async.Operation<types.DisassociateDataProtectionSettingsOutput>
 end
 
-function C:disassociateIpAccessSettings(input: types.DisassociateIpAccessSettingsInput, options: any): async.Operation<types.DisassociateIpAccessSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateIpAccessSettings, input, options) as async.Operation<types.DisassociateIpAccessSettingsOutput>
+function C:disassociateIpAccessSettings(input: types.DisassociateIpAccessSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateIpAccessSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateIpAccessSettings as schema.OperationSchema, input, options) as async.Operation<types.DisassociateIpAccessSettingsOutput>
 end
 
-function C:disassociateNetworkSettings(input: types.DisassociateNetworkSettingsInput, options: any): async.Operation<types.DisassociateNetworkSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateNetworkSettings, input, options) as async.Operation<types.DisassociateNetworkSettingsOutput>
+function C:disassociateNetworkSettings(input: types.DisassociateNetworkSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateNetworkSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateNetworkSettings as schema.OperationSchema, input, options) as async.Operation<types.DisassociateNetworkSettingsOutput>
 end
 
-function C:disassociateSessionLogger(input: types.DisassociateSessionLoggerInput, options: any): async.Operation<types.DisassociateSessionLoggerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateSessionLogger, input, options) as async.Operation<types.DisassociateSessionLoggerOutput>
+function C:disassociateSessionLogger(input: types.DisassociateSessionLoggerInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateSessionLoggerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateSessionLogger as schema.OperationSchema, input, options) as async.Operation<types.DisassociateSessionLoggerOutput>
 end
 
-function C:disassociateTrustStore(input: types.DisassociateTrustStoreInput, options: any): async.Operation<types.DisassociateTrustStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateTrustStore, input, options) as async.Operation<types.DisassociateTrustStoreOutput>
+function C:disassociateTrustStore(input: types.DisassociateTrustStoreInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateTrustStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateTrustStore as schema.OperationSchema, input, options) as async.Operation<types.DisassociateTrustStoreOutput>
 end
 
-function C:disassociateUserAccessLoggingSettings(input: types.DisassociateUserAccessLoggingSettingsInput, options: any): async.Operation<types.DisassociateUserAccessLoggingSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateUserAccessLoggingSettings, input, options) as async.Operation<types.DisassociateUserAccessLoggingSettingsOutput>
+function C:disassociateUserAccessLoggingSettings(input: types.DisassociateUserAccessLoggingSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateUserAccessLoggingSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateUserAccessLoggingSettings as schema.OperationSchema, input, options) as async.Operation<types.DisassociateUserAccessLoggingSettingsOutput>
 end
 
-function C:disassociateUserSettings(input: types.DisassociateUserSettingsInput, options: any): async.Operation<types.DisassociateUserSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateUserSettings, input, options) as async.Operation<types.DisassociateUserSettingsOutput>
+function C:disassociateUserSettings(input: types.DisassociateUserSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateUserSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateUserSettings as schema.OperationSchema, input, options) as async.Operation<types.DisassociateUserSettingsOutput>
 end
 
-function C:expireSession(input: types.ExpireSessionInput, options: any): async.Operation<types.ExpireSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExpireSession, input, options) as async.Operation<types.ExpireSessionOutput>
+function C:expireSession(input: types.ExpireSessionInput, options?: base_client.InvokeOptions): async.Operation<types.ExpireSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExpireSession as schema.OperationSchema, input, options) as async.Operation<types.ExpireSessionOutput>
 end
 
-function C:getBrowserSettings(input: types.GetBrowserSettingsInput, options: any): async.Operation<types.GetBrowserSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBrowserSettings, input, options) as async.Operation<types.GetBrowserSettingsOutput>
+function C:getBrowserSettings(input: types.GetBrowserSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetBrowserSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBrowserSettings as schema.OperationSchema, input, options) as async.Operation<types.GetBrowserSettingsOutput>
 end
 
-function C:getDataProtectionSettings(input: types.GetDataProtectionSettingsInput, options: any): async.Operation<types.GetDataProtectionSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataProtectionSettings, input, options) as async.Operation<types.GetDataProtectionSettingsOutput>
+function C:getDataProtectionSettings(input: types.GetDataProtectionSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataProtectionSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataProtectionSettings as schema.OperationSchema, input, options) as async.Operation<types.GetDataProtectionSettingsOutput>
 end
 
-function C:getIdentityProvider(input: types.GetIdentityProviderInput, options: any): async.Operation<types.GetIdentityProviderOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIdentityProvider, input, options) as async.Operation<types.GetIdentityProviderOutput>
+function C:getIdentityProvider(input: types.GetIdentityProviderInput, options?: base_client.InvokeOptions): async.Operation<types.GetIdentityProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIdentityProvider as schema.OperationSchema, input, options) as async.Operation<types.GetIdentityProviderOutput>
 end
 
-function C:getIpAccessSettings(input: types.GetIpAccessSettingsInput, options: any): async.Operation<types.GetIpAccessSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIpAccessSettings, input, options) as async.Operation<types.GetIpAccessSettingsOutput>
+function C:getIpAccessSettings(input: types.GetIpAccessSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetIpAccessSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIpAccessSettings as schema.OperationSchema, input, options) as async.Operation<types.GetIpAccessSettingsOutput>
 end
 
-function C:getNetworkSettings(input: types.GetNetworkSettingsInput, options: any): async.Operation<types.GetNetworkSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNetworkSettings, input, options) as async.Operation<types.GetNetworkSettingsOutput>
+function C:getNetworkSettings(input: types.GetNetworkSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetNetworkSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNetworkSettings as schema.OperationSchema, input, options) as async.Operation<types.GetNetworkSettingsOutput>
 end
 
-function C:getPortal(input: types.GetPortalInput, options: any): async.Operation<types.GetPortalOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPortal, input, options) as async.Operation<types.GetPortalOutput>
+function C:getPortal(input: types.GetPortalInput, options?: base_client.InvokeOptions): async.Operation<types.GetPortalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPortal as schema.OperationSchema, input, options) as async.Operation<types.GetPortalOutput>
 end
 
-function C:getPortalServiceProviderMetadata(input: types.GetPortalServiceProviderMetadataInput, options: any): async.Operation<types.GetPortalServiceProviderMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPortalServiceProviderMetadata, input, options) as async.Operation<types.GetPortalServiceProviderMetadataOutput>
+function C:getPortalServiceProviderMetadata(input: types.GetPortalServiceProviderMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.GetPortalServiceProviderMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPortalServiceProviderMetadata as schema.OperationSchema, input, options) as async.Operation<types.GetPortalServiceProviderMetadataOutput>
 end
 
-function C:getSession(input: types.GetSessionInput, options: any): async.Operation<types.GetSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSession, input, options) as async.Operation<types.GetSessionOutput>
+function C:getSession(input: types.GetSessionInput, options?: base_client.InvokeOptions): async.Operation<types.GetSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSession as schema.OperationSchema, input, options) as async.Operation<types.GetSessionOutput>
 end
 
-function C:getSessionLogger(input: types.GetSessionLoggerInput, options: any): async.Operation<types.GetSessionLoggerOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSessionLogger, input, options) as async.Operation<types.GetSessionLoggerOutput>
+function C:getSessionLogger(input: types.GetSessionLoggerInput, options?: base_client.InvokeOptions): async.Operation<types.GetSessionLoggerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSessionLogger as schema.OperationSchema, input, options) as async.Operation<types.GetSessionLoggerOutput>
 end
 
-function C:getTrustStore(input: types.GetTrustStoreInput, options: any): async.Operation<types.GetTrustStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTrustStore, input, options) as async.Operation<types.GetTrustStoreOutput>
+function C:getTrustStore(input: types.GetTrustStoreInput, options?: base_client.InvokeOptions): async.Operation<types.GetTrustStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTrustStore as schema.OperationSchema, input, options) as async.Operation<types.GetTrustStoreOutput>
 end
 
-function C:getTrustStoreCertificate(input: types.GetTrustStoreCertificateInput, options: any): async.Operation<types.GetTrustStoreCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTrustStoreCertificate, input, options) as async.Operation<types.GetTrustStoreCertificateOutput>
+function C:getTrustStoreCertificate(input: types.GetTrustStoreCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.GetTrustStoreCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTrustStoreCertificate as schema.OperationSchema, input, options) as async.Operation<types.GetTrustStoreCertificateOutput>
 end
 
-function C:getUserAccessLoggingSettings(input: types.GetUserAccessLoggingSettingsInput, options: any): async.Operation<types.GetUserAccessLoggingSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetUserAccessLoggingSettings, input, options) as async.Operation<types.GetUserAccessLoggingSettingsOutput>
+function C:getUserAccessLoggingSettings(input: types.GetUserAccessLoggingSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetUserAccessLoggingSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetUserAccessLoggingSettings as schema.OperationSchema, input, options) as async.Operation<types.GetUserAccessLoggingSettingsOutput>
 end
 
-function C:getUserSettings(input: types.GetUserSettingsInput, options: any): async.Operation<types.GetUserSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetUserSettings, input, options) as async.Operation<types.GetUserSettingsOutput>
+function C:getUserSettings(input: types.GetUserSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetUserSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetUserSettings as schema.OperationSchema, input, options) as async.Operation<types.GetUserSettingsOutput>
 end
 
-function C:listBrowserSettings(input: types.ListBrowserSettingsInput, options: any): async.Operation<types.ListBrowserSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBrowserSettings, input, options) as async.Operation<types.ListBrowserSettingsOutput>
+function C:listBrowserSettings(input: types.ListBrowserSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBrowserSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBrowserSettings as schema.OperationSchema, input, options) as async.Operation<types.ListBrowserSettingsOutput>
 end
 
-function C:listDataProtectionSettings(input: types.ListDataProtectionSettingsInput, options: any): async.Operation<types.ListDataProtectionSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDataProtectionSettings, input, options) as async.Operation<types.ListDataProtectionSettingsOutput>
+function C:listDataProtectionSettings(input: types.ListDataProtectionSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataProtectionSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataProtectionSettings as schema.OperationSchema, input, options) as async.Operation<types.ListDataProtectionSettingsOutput>
 end
 
-function C:listIdentityProviders(input: types.ListIdentityProvidersInput, options: any): async.Operation<types.ListIdentityProvidersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIdentityProviders, input, options) as async.Operation<types.ListIdentityProvidersOutput>
+function C:listIdentityProviders(input: types.ListIdentityProvidersInput, options?: base_client.InvokeOptions): async.Operation<types.ListIdentityProvidersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIdentityProviders as schema.OperationSchema, input, options) as async.Operation<types.ListIdentityProvidersOutput>
 end
 
-function C:listIpAccessSettings(input: types.ListIpAccessSettingsInput, options: any): async.Operation<types.ListIpAccessSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIpAccessSettings, input, options) as async.Operation<types.ListIpAccessSettingsOutput>
+function C:listIpAccessSettings(input: types.ListIpAccessSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListIpAccessSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIpAccessSettings as schema.OperationSchema, input, options) as async.Operation<types.ListIpAccessSettingsOutput>
 end
 
-function C:listNetworkSettings(input: types.ListNetworkSettingsInput, options: any): async.Operation<types.ListNetworkSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNetworkSettings, input, options) as async.Operation<types.ListNetworkSettingsOutput>
+function C:listNetworkSettings(input: types.ListNetworkSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListNetworkSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNetworkSettings as schema.OperationSchema, input, options) as async.Operation<types.ListNetworkSettingsOutput>
 end
 
-function C:listPortals(input: types.ListPortalsInput, options: any): async.Operation<types.ListPortalsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPortals, input, options) as async.Operation<types.ListPortalsOutput>
+function C:listPortals(input: types.ListPortalsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPortalsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPortals as schema.OperationSchema, input, options) as async.Operation<types.ListPortalsOutput>
 end
 
-function C:listSessionLoggers(input: types.ListSessionLoggersInput, options: any): async.Operation<types.ListSessionLoggersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSessionLoggers, input, options) as async.Operation<types.ListSessionLoggersOutput>
+function C:listSessionLoggers(input: types.ListSessionLoggersInput, options?: base_client.InvokeOptions): async.Operation<types.ListSessionLoggersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSessionLoggers as schema.OperationSchema, input, options) as async.Operation<types.ListSessionLoggersOutput>
 end
 
-function C:listSessions(input: types.ListSessionsInput, options: any): async.Operation<types.ListSessionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSessions, input, options) as async.Operation<types.ListSessionsOutput>
+function C:listSessions(input: types.ListSessionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSessionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSessions as schema.OperationSchema, input, options) as async.Operation<types.ListSessionsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTrustStoreCertificates(input: types.ListTrustStoreCertificatesInput, options: any): async.Operation<types.ListTrustStoreCertificatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTrustStoreCertificates, input, options) as async.Operation<types.ListTrustStoreCertificatesOutput>
+function C:listTrustStoreCertificates(input: types.ListTrustStoreCertificatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTrustStoreCertificatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTrustStoreCertificates as schema.OperationSchema, input, options) as async.Operation<types.ListTrustStoreCertificatesOutput>
 end
 
-function C:listTrustStores(input: types.ListTrustStoresInput, options: any): async.Operation<types.ListTrustStoresOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTrustStores, input, options) as async.Operation<types.ListTrustStoresOutput>
+function C:listTrustStores(input: types.ListTrustStoresInput, options?: base_client.InvokeOptions): async.Operation<types.ListTrustStoresOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTrustStores as schema.OperationSchema, input, options) as async.Operation<types.ListTrustStoresOutput>
 end
 
-function C:listUserAccessLoggingSettings(input: types.ListUserAccessLoggingSettingsInput, options: any): async.Operation<types.ListUserAccessLoggingSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListUserAccessLoggingSettings, input, options) as async.Operation<types.ListUserAccessLoggingSettingsOutput>
+function C:listUserAccessLoggingSettings(input: types.ListUserAccessLoggingSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListUserAccessLoggingSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUserAccessLoggingSettings as schema.OperationSchema, input, options) as async.Operation<types.ListUserAccessLoggingSettingsOutput>
 end
 
-function C:listUserSettings(input: types.ListUserSettingsInput, options: any): async.Operation<types.ListUserSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListUserSettings, input, options) as async.Operation<types.ListUserSettingsOutput>
+function C:listUserSettings(input: types.ListUserSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListUserSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUserSettings as schema.OperationSchema, input, options) as async.Operation<types.ListUserSettingsOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateBrowserSettings(input: types.UpdateBrowserSettingsInput, options: any): async.Operation<types.UpdateBrowserSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateBrowserSettings, input, options) as async.Operation<types.UpdateBrowserSettingsOutput>
+function C:updateBrowserSettings(input: types.UpdateBrowserSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBrowserSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBrowserSettings as schema.OperationSchema, input, options) as async.Operation<types.UpdateBrowserSettingsOutput>
 end
 
-function C:updateDataProtectionSettings(input: types.UpdateDataProtectionSettingsInput, options: any): async.Operation<types.UpdateDataProtectionSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDataProtectionSettings, input, options) as async.Operation<types.UpdateDataProtectionSettingsOutput>
+function C:updateDataProtectionSettings(input: types.UpdateDataProtectionSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDataProtectionSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDataProtectionSettings as schema.OperationSchema, input, options) as async.Operation<types.UpdateDataProtectionSettingsOutput>
 end
 
-function C:updateIdentityProvider(input: types.UpdateIdentityProviderInput, options: any): async.Operation<types.UpdateIdentityProviderOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateIdentityProvider, input, options) as async.Operation<types.UpdateIdentityProviderOutput>
+function C:updateIdentityProvider(input: types.UpdateIdentityProviderInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIdentityProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIdentityProvider as schema.OperationSchema, input, options) as async.Operation<types.UpdateIdentityProviderOutput>
 end
 
-function C:updateIpAccessSettings(input: types.UpdateIpAccessSettingsInput, options: any): async.Operation<types.UpdateIpAccessSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateIpAccessSettings, input, options) as async.Operation<types.UpdateIpAccessSettingsOutput>
+function C:updateIpAccessSettings(input: types.UpdateIpAccessSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIpAccessSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIpAccessSettings as schema.OperationSchema, input, options) as async.Operation<types.UpdateIpAccessSettingsOutput>
 end
 
-function C:updateNetworkSettings(input: types.UpdateNetworkSettingsInput, options: any): async.Operation<types.UpdateNetworkSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateNetworkSettings, input, options) as async.Operation<types.UpdateNetworkSettingsOutput>
+function C:updateNetworkSettings(input: types.UpdateNetworkSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNetworkSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNetworkSettings as schema.OperationSchema, input, options) as async.Operation<types.UpdateNetworkSettingsOutput>
 end
 
-function C:updatePortal(input: types.UpdatePortalInput, options: any): async.Operation<types.UpdatePortalOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePortal, input, options) as async.Operation<types.UpdatePortalOutput>
+function C:updatePortal(input: types.UpdatePortalInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePortalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePortal as schema.OperationSchema, input, options) as async.Operation<types.UpdatePortalOutput>
 end
 
-function C:updateSessionLogger(input: types.UpdateSessionLoggerInput, options: any): async.Operation<types.UpdateSessionLoggerOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSessionLogger, input, options) as async.Operation<types.UpdateSessionLoggerOutput>
+function C:updateSessionLogger(input: types.UpdateSessionLoggerInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSessionLoggerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSessionLogger as schema.OperationSchema, input, options) as async.Operation<types.UpdateSessionLoggerOutput>
 end
 
-function C:updateTrustStore(input: types.UpdateTrustStoreInput, options: any): async.Operation<types.UpdateTrustStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTrustStore, input, options) as async.Operation<types.UpdateTrustStoreOutput>
+function C:updateTrustStore(input: types.UpdateTrustStoreInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTrustStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTrustStore as schema.OperationSchema, input, options) as async.Operation<types.UpdateTrustStoreOutput>
 end
 
-function C:updateUserAccessLoggingSettings(input: types.UpdateUserAccessLoggingSettingsInput, options: any): async.Operation<types.UpdateUserAccessLoggingSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateUserAccessLoggingSettings, input, options) as async.Operation<types.UpdateUserAccessLoggingSettingsOutput>
+function C:updateUserAccessLoggingSettings(input: types.UpdateUserAccessLoggingSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateUserAccessLoggingSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateUserAccessLoggingSettings as schema.OperationSchema, input, options) as async.Operation<types.UpdateUserAccessLoggingSettingsOutput>
 end
 
-function C:updateUserSettings(input: types.UpdateUserSettingsInput, options: any): async.Operation<types.UpdateUserSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateUserSettings, input, options) as async.Operation<types.UpdateUserSettingsOutput>
+function C:updateUserSettings(input: types.UpdateUserSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateUserSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateUserSettings as schema.OperationSchema, input, options) as async.Operation<types.UpdateUserSettingsOutput>
 end
 
 return M

@@ -8,134 +8,137 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("mgn.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("mgn.schemas")
 local traits = require("smithy.traits")
 local types = require("mgn.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    archiveApplication: function(Client, types.ArchiveApplicationInput, any): async.Operation<types.ArchiveApplicationOutput>
-    archiveWave: function(Client, types.ArchiveWaveInput, any): async.Operation<types.ArchiveWaveOutput>
-    associateApplications: function(Client, types.AssociateApplicationsInput, any): async.Operation<types.AssociateApplicationsOutput>
-    associateSourceServers: function(Client, types.AssociateSourceServersInput, any): async.Operation<types.AssociateSourceServersOutput>
-    changeServerLifeCycleState: function(Client, types.ChangeServerLifeCycleStateInput, any): async.Operation<types.ChangeServerLifeCycleStateOutput>
-    createApplication: function(Client, types.CreateApplicationInput, any): async.Operation<types.CreateApplicationOutput>
-    createConnector: function(Client, types.CreateConnectorInput, any): async.Operation<types.CreateConnectorOutput>
-    createLaunchConfigurationTemplate: function(Client, types.CreateLaunchConfigurationTemplateInput, any): async.Operation<types.CreateLaunchConfigurationTemplateOutput>
-    createNetworkMigrationDefinition: function(Client, types.CreateNetworkMigrationDefinitionInput, any): async.Operation<types.CreateNetworkMigrationDefinitionOutput>
-    createReplicationConfigurationTemplate: function(Client, types.CreateReplicationConfigurationTemplateInput, any): async.Operation<types.CreateReplicationConfigurationTemplateOutput>
-    createWave: function(Client, types.CreateWaveInput, any): async.Operation<types.CreateWaveOutput>
-    deleteApplication: function(Client, types.DeleteApplicationInput, any): async.Operation<types.DeleteApplicationOutput>
-    deleteConnector: function(Client, types.DeleteConnectorInput, any): async.Operation<types.DeleteConnectorOutput>
-    deleteJob: function(Client, types.DeleteJobInput, any): async.Operation<types.DeleteJobOutput>
-    deleteLaunchConfigurationTemplate: function(Client, types.DeleteLaunchConfigurationTemplateInput, any): async.Operation<types.DeleteLaunchConfigurationTemplateOutput>
-    deleteNetworkMigrationDefinition: function(Client, types.DeleteNetworkMigrationDefinitionInput, any): async.Operation<types.DeleteNetworkMigrationDefinitionOutput>
-    deleteReplicationConfigurationTemplate: function(Client, types.DeleteReplicationConfigurationTemplateInput, any): async.Operation<types.DeleteReplicationConfigurationTemplateOutput>
-    deleteSourceServer: function(Client, types.DeleteSourceServerInput, any): async.Operation<types.DeleteSourceServerOutput>
-    deleteVcenterClient: function(Client, types.DeleteVcenterClientInput, any): async.Operation<types.DeleteVcenterClientOutput>
-    deleteWave: function(Client, types.DeleteWaveInput, any): async.Operation<types.DeleteWaveOutput>
-    describeJobLogItems: function(Client, types.DescribeJobLogItemsInput, any): async.Operation<types.DescribeJobLogItemsOutput>
-    describeJobs: function(Client, types.DescribeJobsInput, any): async.Operation<types.DescribeJobsOutput>
-    describeLaunchConfigurationTemplates: function(Client, types.DescribeLaunchConfigurationTemplatesInput, any): async.Operation<types.DescribeLaunchConfigurationTemplatesOutput>
-    describeReplicationConfigurationTemplates: function(Client, types.DescribeReplicationConfigurationTemplatesInput, any): async.Operation<types.DescribeReplicationConfigurationTemplatesOutput>
-    describeSourceServers: function(Client, types.DescribeSourceServersInput, any): async.Operation<types.DescribeSourceServersOutput>
-    describeVcenterClients: function(Client, types.DescribeVcenterClientsInput, any): async.Operation<types.DescribeVcenterClientsOutput>
-    disassociateApplications: function(Client, types.DisassociateApplicationsInput, any): async.Operation<types.DisassociateApplicationsOutput>
-    disassociateSourceServers: function(Client, types.DisassociateSourceServersInput, any): async.Operation<types.DisassociateSourceServersOutput>
-    disconnectFromService: function(Client, types.DisconnectFromServiceInput, any): async.Operation<types.DisconnectFromServiceOutput>
-    finalizeCutover: function(Client, types.FinalizeCutoverInput, any): async.Operation<types.FinalizeCutoverOutput>
-    getLaunchConfiguration: function(Client, types.GetLaunchConfigurationInput, any): async.Operation<types.GetLaunchConfigurationOutput>
-    getNetworkMigrationDefinition: function(Client, types.GetNetworkMigrationDefinitionInput, any): async.Operation<types.GetNetworkMigrationDefinitionOutput>
-    getNetworkMigrationMapperSegmentConstruct: function(Client, types.GetNetworkMigrationMapperSegmentConstructInput, any): async.Operation<types.GetNetworkMigrationMapperSegmentConstructOutput>
-    getReplicationConfiguration: function(Client, types.GetReplicationConfigurationInput, any): async.Operation<types.GetReplicationConfigurationOutput>
-    initializeService: function(Client, types.InitializeServiceInput, any): async.Operation<types.InitializeServiceOutput>
-    listApplications: function(Client, types.ListApplicationsInput, any): async.Operation<types.ListApplicationsOutput>
-    listConnectors: function(Client, types.ListConnectorsInput, any): async.Operation<types.ListConnectorsOutput>
-    listExportErrors: function(Client, types.ListExportErrorsInput, any): async.Operation<types.ListExportErrorsOutput>
-    listExports: function(Client, types.ListExportsInput, any): async.Operation<types.ListExportsOutput>
-    listImportErrors: function(Client, types.ListImportErrorsInput, any): async.Operation<types.ListImportErrorsOutput>
-    listImportFileEnrichments: function(Client, types.ListImportFileEnrichmentsInput, any): async.Operation<types.ListImportFileEnrichmentsOutput>
-    listImports: function(Client, types.ListImportsInput, any): async.Operation<types.ListImportsOutput>
-    listManagedAccounts: function(Client, types.ListManagedAccountsInput, any): async.Operation<types.ListManagedAccountsOutput>
-    listNetworkMigrationAnalyses: function(Client, types.ListNetworkMigrationAnalysesInput, any): async.Operation<types.ListNetworkMigrationAnalysesOutput>
-    listNetworkMigrationAnalysisResults: function(Client, types.ListNetworkMigrationAnalysisResultsInput, any): async.Operation<types.ListNetworkMigrationAnalysisResultsOutput>
-    listNetworkMigrationCodeGenerations: function(Client, types.ListNetworkMigrationCodeGenerationsInput, any): async.Operation<types.ListNetworkMigrationCodeGenerationsOutput>
-    listNetworkMigrationCodeGenerationSegments: function(Client, types.ListNetworkMigrationCodeGenerationSegmentsInput, any): async.Operation<types.ListNetworkMigrationCodeGenerationSegmentsOutput>
-    listNetworkMigrationDefinitions: function(Client, types.ListNetworkMigrationDefinitionsInput, any): async.Operation<types.ListNetworkMigrationDefinitionsOutput>
-    listNetworkMigrationDeployedStacks: function(Client, types.ListNetworkMigrationDeployedStacksInput, any): async.Operation<types.ListNetworkMigrationDeployedStacksOutput>
-    listNetworkMigrationDeployments: function(Client, types.ListNetworkMigrationDeploymentsInput, any): async.Operation<types.ListNetworkMigrationDeploymentsOutput>
-    listNetworkMigrationExecutions: function(Client, types.ListNetworkMigrationExecutionsInput, any): async.Operation<types.ListNetworkMigrationExecutionsOutput>
-    listNetworkMigrationMapperSegmentConstructs: function(Client, types.ListNetworkMigrationMapperSegmentConstructsInput, any): async.Operation<types.ListNetworkMigrationMapperSegmentConstructsOutput>
-    listNetworkMigrationMapperSegments: function(Client, types.ListNetworkMigrationMapperSegmentsInput, any): async.Operation<types.ListNetworkMigrationMapperSegmentsOutput>
-    listNetworkMigrationMappings: function(Client, types.ListNetworkMigrationMappingsInput, any): async.Operation<types.ListNetworkMigrationMappingsOutput>
-    listNetworkMigrationMappingUpdates: function(Client, types.ListNetworkMigrationMappingUpdatesInput, any): async.Operation<types.ListNetworkMigrationMappingUpdatesOutput>
-    listSourceServerActions: function(Client, types.ListSourceServerActionsInput, any): async.Operation<types.ListSourceServerActionsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTemplateActions: function(Client, types.ListTemplateActionsInput, any): async.Operation<types.ListTemplateActionsOutput>
-    listWaves: function(Client, types.ListWavesInput, any): async.Operation<types.ListWavesOutput>
-    markAsArchived: function(Client, types.MarkAsArchivedInput, any): async.Operation<types.MarkAsArchivedOutput>
-    pauseReplication: function(Client, types.PauseReplicationInput, any): async.Operation<types.PauseReplicationOutput>
-    putSourceServerAction: function(Client, types.PutSourceServerActionInput, any): async.Operation<types.PutSourceServerActionOutput>
-    putTemplateAction: function(Client, types.PutTemplateActionInput, any): async.Operation<types.PutTemplateActionOutput>
-    removeSourceServerAction: function(Client, types.RemoveSourceServerActionInput, any): async.Operation<types.RemoveSourceServerActionOutput>
-    removeTemplateAction: function(Client, types.RemoveTemplateActionInput, any): async.Operation<types.RemoveTemplateActionOutput>
-    resumeReplication: function(Client, types.ResumeReplicationInput, any): async.Operation<types.ResumeReplicationOutput>
-    retryDataReplication: function(Client, types.RetryDataReplicationInput, any): async.Operation<types.RetryDataReplicationOutput>
-    startCutover: function(Client, types.StartCutoverInput, any): async.Operation<types.StartCutoverOutput>
-    startExport: function(Client, types.StartExportInput, any): async.Operation<types.StartExportOutput>
-    startImport: function(Client, types.StartImportInput, any): async.Operation<types.StartImportOutput>
-    startImportFileEnrichment: function(Client, types.StartImportFileEnrichmentInput, any): async.Operation<types.StartImportFileEnrichmentOutput>
-    startNetworkMigrationAnalysis: function(Client, types.StartNetworkMigrationAnalysisInput, any): async.Operation<types.StartNetworkMigrationAnalysisOutput>
-    startNetworkMigrationCodeGeneration: function(Client, types.StartNetworkMigrationCodeGenerationInput, any): async.Operation<types.StartNetworkMigrationCodeGenerationOutput>
-    startNetworkMigrationDeployment: function(Client, types.StartNetworkMigrationDeploymentInput, any): async.Operation<types.StartNetworkMigrationDeploymentOutput>
-    startNetworkMigrationMapping: function(Client, types.StartNetworkMigrationMappingInput, any): async.Operation<types.StartNetworkMigrationMappingOutput>
-    startNetworkMigrationMappingUpdate: function(Client, types.StartNetworkMigrationMappingUpdateInput, any): async.Operation<types.StartNetworkMigrationMappingUpdateOutput>
-    startReplication: function(Client, types.StartReplicationInput, any): async.Operation<types.StartReplicationOutput>
-    startTest: function(Client, types.StartTestInput, any): async.Operation<types.StartTestOutput>
-    stopReplication: function(Client, types.StopReplicationInput, any): async.Operation<types.StopReplicationOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    terminateTargetInstances: function(Client, types.TerminateTargetInstancesInput, any): async.Operation<types.TerminateTargetInstancesOutput>
-    unarchiveApplication: function(Client, types.UnarchiveApplicationInput, any): async.Operation<types.UnarchiveApplicationOutput>
-    unarchiveWave: function(Client, types.UnarchiveWaveInput, any): async.Operation<types.UnarchiveWaveOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateApplication: function(Client, types.UpdateApplicationInput, any): async.Operation<types.UpdateApplicationOutput>
-    updateConnector: function(Client, types.UpdateConnectorInput, any): async.Operation<types.UpdateConnectorOutput>
-    updateLaunchConfiguration: function(Client, types.UpdateLaunchConfigurationInput, any): async.Operation<types.UpdateLaunchConfigurationOutput>
-    updateLaunchConfigurationTemplate: function(Client, types.UpdateLaunchConfigurationTemplateInput, any): async.Operation<types.UpdateLaunchConfigurationTemplateOutput>
-    updateNetworkMigrationDefinition: function(Client, types.UpdateNetworkMigrationDefinitionInput, any): async.Operation<types.UpdateNetworkMigrationDefinitionOutput>
-    updateNetworkMigrationMapperSegment: function(Client, types.UpdateNetworkMigrationMapperSegmentInput, any): async.Operation<types.UpdateNetworkMigrationMapperSegmentOutput>
-    updateReplicationConfiguration: function(Client, types.UpdateReplicationConfigurationInput, any): async.Operation<types.UpdateReplicationConfigurationOutput>
-    updateReplicationConfigurationTemplate: function(Client, types.UpdateReplicationConfigurationTemplateInput, any): async.Operation<types.UpdateReplicationConfigurationTemplateOutput>
-    updateSourceServer: function(Client, types.UpdateSourceServerInput, any): async.Operation<types.UpdateSourceServerOutput>
-    updateSourceServerReplicationType: function(Client, types.UpdateSourceServerReplicationTypeInput, any): async.Operation<types.UpdateSourceServerReplicationTypeOutput>
-    updateWave: function(Client, types.UpdateWaveInput, any): async.Operation<types.UpdateWaveOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    archiveApplication: function(Client, types.ArchiveApplicationInput, ? base_client.InvokeOptions): async.Operation<types.ArchiveApplicationOutput>
+    archiveWave: function(Client, types.ArchiveWaveInput, ? base_client.InvokeOptions): async.Operation<types.ArchiveWaveOutput>
+    associateApplications: function(Client, types.AssociateApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.AssociateApplicationsOutput>
+    associateSourceServers: function(Client, types.AssociateSourceServersInput, ? base_client.InvokeOptions): async.Operation<types.AssociateSourceServersOutput>
+    changeServerLifeCycleState: function(Client, types.ChangeServerLifeCycleStateInput, ? base_client.InvokeOptions): async.Operation<types.ChangeServerLifeCycleStateOutput>
+    createApplication: function(Client, types.CreateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    createConnector: function(Client, types.CreateConnectorInput, ? base_client.InvokeOptions): async.Operation<types.CreateConnectorOutput>
+    createLaunchConfigurationTemplate: function(Client, types.CreateLaunchConfigurationTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateLaunchConfigurationTemplateOutput>
+    createNetworkMigrationDefinition: function(Client, types.CreateNetworkMigrationDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.CreateNetworkMigrationDefinitionOutput>
+    createReplicationConfigurationTemplate: function(Client, types.CreateReplicationConfigurationTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateReplicationConfigurationTemplateOutput>
+    createWave: function(Client, types.CreateWaveInput, ? base_client.InvokeOptions): async.Operation<types.CreateWaveOutput>
+    deleteApplication: function(Client, types.DeleteApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
+    deleteConnector: function(Client, types.DeleteConnectorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConnectorOutput>
+    deleteJob: function(Client, types.DeleteJobInput, ? base_client.InvokeOptions): async.Operation<types.DeleteJobOutput>
+    deleteLaunchConfigurationTemplate: function(Client, types.DeleteLaunchConfigurationTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLaunchConfigurationTemplateOutput>
+    deleteNetworkMigrationDefinition: function(Client, types.DeleteNetworkMigrationDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNetworkMigrationDefinitionOutput>
+    deleteReplicationConfigurationTemplate: function(Client, types.DeleteReplicationConfigurationTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteReplicationConfigurationTemplateOutput>
+    deleteSourceServer: function(Client, types.DeleteSourceServerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSourceServerOutput>
+    deleteVcenterClient: function(Client, types.DeleteVcenterClientInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVcenterClientOutput>
+    deleteWave: function(Client, types.DeleteWaveInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWaveOutput>
+    describeJobLogItems: function(Client, types.DescribeJobLogItemsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeJobLogItemsOutput>
+    describeJobs: function(Client, types.DescribeJobsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeJobsOutput>
+    describeLaunchConfigurationTemplates: function(Client, types.DescribeLaunchConfigurationTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLaunchConfigurationTemplatesOutput>
+    describeReplicationConfigurationTemplates: function(Client, types.DescribeReplicationConfigurationTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeReplicationConfigurationTemplatesOutput>
+    describeSourceServers: function(Client, types.DescribeSourceServersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSourceServersOutput>
+    describeVcenterClients: function(Client, types.DescribeVcenterClientsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVcenterClientsOutput>
+    disassociateApplications: function(Client, types.DisassociateApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateApplicationsOutput>
+    disassociateSourceServers: function(Client, types.DisassociateSourceServersInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateSourceServersOutput>
+    disconnectFromService: function(Client, types.DisconnectFromServiceInput, ? base_client.InvokeOptions): async.Operation<types.DisconnectFromServiceOutput>
+    finalizeCutover: function(Client, types.FinalizeCutoverInput, ? base_client.InvokeOptions): async.Operation<types.FinalizeCutoverOutput>
+    getLaunchConfiguration: function(Client, types.GetLaunchConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetLaunchConfigurationOutput>
+    getNetworkMigrationDefinition: function(Client, types.GetNetworkMigrationDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.GetNetworkMigrationDefinitionOutput>
+    getNetworkMigrationMapperSegmentConstruct: function(Client, types.GetNetworkMigrationMapperSegmentConstructInput, ? base_client.InvokeOptions): async.Operation<types.GetNetworkMigrationMapperSegmentConstructOutput>
+    getReplicationConfiguration: function(Client, types.GetReplicationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetReplicationConfigurationOutput>
+    initializeService: function(Client, types.InitializeServiceInput, ? base_client.InvokeOptions): async.Operation<types.InitializeServiceOutput>
+    listApplications: function(Client, types.ListApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    listConnectors: function(Client, types.ListConnectorsInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectorsOutput>
+    listExportErrors: function(Client, types.ListExportErrorsInput, ? base_client.InvokeOptions): async.Operation<types.ListExportErrorsOutput>
+    listExports: function(Client, types.ListExportsInput, ? base_client.InvokeOptions): async.Operation<types.ListExportsOutput>
+    listImportErrors: function(Client, types.ListImportErrorsInput, ? base_client.InvokeOptions): async.Operation<types.ListImportErrorsOutput>
+    listImportFileEnrichments: function(Client, types.ListImportFileEnrichmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListImportFileEnrichmentsOutput>
+    listImports: function(Client, types.ListImportsInput, ? base_client.InvokeOptions): async.Operation<types.ListImportsOutput>
+    listManagedAccounts: function(Client, types.ListManagedAccountsInput, ? base_client.InvokeOptions): async.Operation<types.ListManagedAccountsOutput>
+    listNetworkMigrationAnalyses: function(Client, types.ListNetworkMigrationAnalysesInput, ? base_client.InvokeOptions): async.Operation<types.ListNetworkMigrationAnalysesOutput>
+    listNetworkMigrationAnalysisResults: function(Client, types.ListNetworkMigrationAnalysisResultsInput, ? base_client.InvokeOptions): async.Operation<types.ListNetworkMigrationAnalysisResultsOutput>
+    listNetworkMigrationCodeGenerations: function(Client, types.ListNetworkMigrationCodeGenerationsInput, ? base_client.InvokeOptions): async.Operation<types.ListNetworkMigrationCodeGenerationsOutput>
+    listNetworkMigrationCodeGenerationSegments: function(Client, types.ListNetworkMigrationCodeGenerationSegmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListNetworkMigrationCodeGenerationSegmentsOutput>
+    listNetworkMigrationDefinitions: function(Client, types.ListNetworkMigrationDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.ListNetworkMigrationDefinitionsOutput>
+    listNetworkMigrationDeployedStacks: function(Client, types.ListNetworkMigrationDeployedStacksInput, ? base_client.InvokeOptions): async.Operation<types.ListNetworkMigrationDeployedStacksOutput>
+    listNetworkMigrationDeployments: function(Client, types.ListNetworkMigrationDeploymentsInput, ? base_client.InvokeOptions): async.Operation<types.ListNetworkMigrationDeploymentsOutput>
+    listNetworkMigrationExecutions: function(Client, types.ListNetworkMigrationExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListNetworkMigrationExecutionsOutput>
+    listNetworkMigrationMapperSegmentConstructs: function(Client, types.ListNetworkMigrationMapperSegmentConstructsInput, ? base_client.InvokeOptions): async.Operation<types.ListNetworkMigrationMapperSegmentConstructsOutput>
+    listNetworkMigrationMapperSegments: function(Client, types.ListNetworkMigrationMapperSegmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListNetworkMigrationMapperSegmentsOutput>
+    listNetworkMigrationMappings: function(Client, types.ListNetworkMigrationMappingsInput, ? base_client.InvokeOptions): async.Operation<types.ListNetworkMigrationMappingsOutput>
+    listNetworkMigrationMappingUpdates: function(Client, types.ListNetworkMigrationMappingUpdatesInput, ? base_client.InvokeOptions): async.Operation<types.ListNetworkMigrationMappingUpdatesOutput>
+    listSourceServerActions: function(Client, types.ListSourceServerActionsInput, ? base_client.InvokeOptions): async.Operation<types.ListSourceServerActionsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTemplateActions: function(Client, types.ListTemplateActionsInput, ? base_client.InvokeOptions): async.Operation<types.ListTemplateActionsOutput>
+    listWaves: function(Client, types.ListWavesInput, ? base_client.InvokeOptions): async.Operation<types.ListWavesOutput>
+    markAsArchived: function(Client, types.MarkAsArchivedInput, ? base_client.InvokeOptions): async.Operation<types.MarkAsArchivedOutput>
+    pauseReplication: function(Client, types.PauseReplicationInput, ? base_client.InvokeOptions): async.Operation<types.PauseReplicationOutput>
+    putSourceServerAction: function(Client, types.PutSourceServerActionInput, ? base_client.InvokeOptions): async.Operation<types.PutSourceServerActionOutput>
+    putTemplateAction: function(Client, types.PutTemplateActionInput, ? base_client.InvokeOptions): async.Operation<types.PutTemplateActionOutput>
+    removeSourceServerAction: function(Client, types.RemoveSourceServerActionInput, ? base_client.InvokeOptions): async.Operation<types.RemoveSourceServerActionOutput>
+    removeTemplateAction: function(Client, types.RemoveTemplateActionInput, ? base_client.InvokeOptions): async.Operation<types.RemoveTemplateActionOutput>
+    resumeReplication: function(Client, types.ResumeReplicationInput, ? base_client.InvokeOptions): async.Operation<types.ResumeReplicationOutput>
+    retryDataReplication: function(Client, types.RetryDataReplicationInput, ? base_client.InvokeOptions): async.Operation<types.RetryDataReplicationOutput>
+    startCutover: function(Client, types.StartCutoverInput, ? base_client.InvokeOptions): async.Operation<types.StartCutoverOutput>
+    startExport: function(Client, types.StartExportInput, ? base_client.InvokeOptions): async.Operation<types.StartExportOutput>
+    startImport: function(Client, types.StartImportInput, ? base_client.InvokeOptions): async.Operation<types.StartImportOutput>
+    startImportFileEnrichment: function(Client, types.StartImportFileEnrichmentInput, ? base_client.InvokeOptions): async.Operation<types.StartImportFileEnrichmentOutput>
+    startNetworkMigrationAnalysis: function(Client, types.StartNetworkMigrationAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.StartNetworkMigrationAnalysisOutput>
+    startNetworkMigrationCodeGeneration: function(Client, types.StartNetworkMigrationCodeGenerationInput, ? base_client.InvokeOptions): async.Operation<types.StartNetworkMigrationCodeGenerationOutput>
+    startNetworkMigrationDeployment: function(Client, types.StartNetworkMigrationDeploymentInput, ? base_client.InvokeOptions): async.Operation<types.StartNetworkMigrationDeploymentOutput>
+    startNetworkMigrationMapping: function(Client, types.StartNetworkMigrationMappingInput, ? base_client.InvokeOptions): async.Operation<types.StartNetworkMigrationMappingOutput>
+    startNetworkMigrationMappingUpdate: function(Client, types.StartNetworkMigrationMappingUpdateInput, ? base_client.InvokeOptions): async.Operation<types.StartNetworkMigrationMappingUpdateOutput>
+    startReplication: function(Client, types.StartReplicationInput, ? base_client.InvokeOptions): async.Operation<types.StartReplicationOutput>
+    startTest: function(Client, types.StartTestInput, ? base_client.InvokeOptions): async.Operation<types.StartTestOutput>
+    stopReplication: function(Client, types.StopReplicationInput, ? base_client.InvokeOptions): async.Operation<types.StopReplicationOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    terminateTargetInstances: function(Client, types.TerminateTargetInstancesInput, ? base_client.InvokeOptions): async.Operation<types.TerminateTargetInstancesOutput>
+    unarchiveApplication: function(Client, types.UnarchiveApplicationInput, ? base_client.InvokeOptions): async.Operation<types.UnarchiveApplicationOutput>
+    unarchiveWave: function(Client, types.UnarchiveWaveInput, ? base_client.InvokeOptions): async.Operation<types.UnarchiveWaveOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateApplication: function(Client, types.UpdateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
+    updateConnector: function(Client, types.UpdateConnectorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConnectorOutput>
+    updateLaunchConfiguration: function(Client, types.UpdateLaunchConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLaunchConfigurationOutput>
+    updateLaunchConfigurationTemplate: function(Client, types.UpdateLaunchConfigurationTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLaunchConfigurationTemplateOutput>
+    updateNetworkMigrationDefinition: function(Client, types.UpdateNetworkMigrationDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNetworkMigrationDefinitionOutput>
+    updateNetworkMigrationMapperSegment: function(Client, types.UpdateNetworkMigrationMapperSegmentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNetworkMigrationMapperSegmentOutput>
+    updateReplicationConfiguration: function(Client, types.UpdateReplicationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateReplicationConfigurationOutput>
+    updateReplicationConfigurationTemplate: function(Client, types.UpdateReplicationConfigurationTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateReplicationConfigurationTemplateOutput>
+    updateSourceServer: function(Client, types.UpdateSourceServerInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSourceServerOutput>
+    updateSourceServerReplicationType: function(Client, types.UpdateSourceServerReplicationTypeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSourceServerReplicationTypeOutput>
+    updateWave: function(Client, types.UpdateWaveInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWaveOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "ApplicationMigrationService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "mgn", signing_region = c.region } }
                 else
@@ -154,384 +157,384 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:archiveApplication(input: types.ArchiveApplicationInput, options: any): async.Operation<types.ArchiveApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ArchiveApplication, input, options) as async.Operation<types.ArchiveApplicationOutput>
+function C:archiveApplication(input: types.ArchiveApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.ArchiveApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ArchiveApplication as schema.OperationSchema, input, options) as async.Operation<types.ArchiveApplicationOutput>
 end
 
-function C:archiveWave(input: types.ArchiveWaveInput, options: any): async.Operation<types.ArchiveWaveOutput>
-    return self:invokeOperation(schemas.Service, schemas.ArchiveWave, input, options) as async.Operation<types.ArchiveWaveOutput>
+function C:archiveWave(input: types.ArchiveWaveInput, options?: base_client.InvokeOptions): async.Operation<types.ArchiveWaveOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ArchiveWave as schema.OperationSchema, input, options) as async.Operation<types.ArchiveWaveOutput>
 end
 
-function C:associateApplications(input: types.AssociateApplicationsInput, options: any): async.Operation<types.AssociateApplicationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateApplications, input, options) as async.Operation<types.AssociateApplicationsOutput>
+function C:associateApplications(input: types.AssociateApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateApplicationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateApplications as schema.OperationSchema, input, options) as async.Operation<types.AssociateApplicationsOutput>
 end
 
-function C:associateSourceServers(input: types.AssociateSourceServersInput, options: any): async.Operation<types.AssociateSourceServersOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateSourceServers, input, options) as async.Operation<types.AssociateSourceServersOutput>
+function C:associateSourceServers(input: types.AssociateSourceServersInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateSourceServersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateSourceServers as schema.OperationSchema, input, options) as async.Operation<types.AssociateSourceServersOutput>
 end
 
-function C:changeServerLifeCycleState(input: types.ChangeServerLifeCycleStateInput, options: any): async.Operation<types.ChangeServerLifeCycleStateOutput>
-    return self:invokeOperation(schemas.Service, schemas.ChangeServerLifeCycleState, input, options) as async.Operation<types.ChangeServerLifeCycleStateOutput>
+function C:changeServerLifeCycleState(input: types.ChangeServerLifeCycleStateInput, options?: base_client.InvokeOptions): async.Operation<types.ChangeServerLifeCycleStateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ChangeServerLifeCycleState as schema.OperationSchema, input, options) as async.Operation<types.ChangeServerLifeCycleStateOutput>
 end
 
-function C:createApplication(input: types.CreateApplicationInput, options: any): async.Operation<types.CreateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateApplication, input, options) as async.Operation<types.CreateApplicationOutput>
+function C:createApplication(input: types.CreateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApplication as schema.OperationSchema, input, options) as async.Operation<types.CreateApplicationOutput>
 end
 
-function C:createConnector(input: types.CreateConnectorInput, options: any): async.Operation<types.CreateConnectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConnector, input, options) as async.Operation<types.CreateConnectorOutput>
+function C:createConnector(input: types.CreateConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConnector as schema.OperationSchema, input, options) as async.Operation<types.CreateConnectorOutput>
 end
 
-function C:createLaunchConfigurationTemplate(input: types.CreateLaunchConfigurationTemplateInput, options: any): async.Operation<types.CreateLaunchConfigurationTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLaunchConfigurationTemplate, input, options) as async.Operation<types.CreateLaunchConfigurationTemplateOutput>
+function C:createLaunchConfigurationTemplate(input: types.CreateLaunchConfigurationTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLaunchConfigurationTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLaunchConfigurationTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateLaunchConfigurationTemplateOutput>
 end
 
-function C:createNetworkMigrationDefinition(input: types.CreateNetworkMigrationDefinitionInput, options: any): async.Operation<types.CreateNetworkMigrationDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNetworkMigrationDefinition, input, options) as async.Operation<types.CreateNetworkMigrationDefinitionOutput>
+function C:createNetworkMigrationDefinition(input: types.CreateNetworkMigrationDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNetworkMigrationDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNetworkMigrationDefinition as schema.OperationSchema, input, options) as async.Operation<types.CreateNetworkMigrationDefinitionOutput>
 end
 
-function C:createReplicationConfigurationTemplate(input: types.CreateReplicationConfigurationTemplateInput, options: any): async.Operation<types.CreateReplicationConfigurationTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateReplicationConfigurationTemplate, input, options) as async.Operation<types.CreateReplicationConfigurationTemplateOutput>
+function C:createReplicationConfigurationTemplate(input: types.CreateReplicationConfigurationTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateReplicationConfigurationTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateReplicationConfigurationTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateReplicationConfigurationTemplateOutput>
 end
 
-function C:createWave(input: types.CreateWaveInput, options: any): async.Operation<types.CreateWaveOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWave, input, options) as async.Operation<types.CreateWaveOutput>
+function C:createWave(input: types.CreateWaveInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWaveOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWave as schema.OperationSchema, input, options) as async.Operation<types.CreateWaveOutput>
 end
 
-function C:deleteApplication(input: types.DeleteApplicationInput, options: any): async.Operation<types.DeleteApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApplication, input, options) as async.Operation<types.DeleteApplicationOutput>
+function C:deleteApplication(input: types.DeleteApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplication as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationOutput>
 end
 
-function C:deleteConnector(input: types.DeleteConnectorInput, options: any): async.Operation<types.DeleteConnectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConnector, input, options) as async.Operation<types.DeleteConnectorOutput>
+function C:deleteConnector(input: types.DeleteConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConnector as schema.OperationSchema, input, options) as async.Operation<types.DeleteConnectorOutput>
 end
 
-function C:deleteJob(input: types.DeleteJobInput, options: any): async.Operation<types.DeleteJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteJob, input, options) as async.Operation<types.DeleteJobOutput>
+function C:deleteJob(input: types.DeleteJobInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteJob as schema.OperationSchema, input, options) as async.Operation<types.DeleteJobOutput>
 end
 
-function C:deleteLaunchConfigurationTemplate(input: types.DeleteLaunchConfigurationTemplateInput, options: any): async.Operation<types.DeleteLaunchConfigurationTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLaunchConfigurationTemplate, input, options) as async.Operation<types.DeleteLaunchConfigurationTemplateOutput>
+function C:deleteLaunchConfigurationTemplate(input: types.DeleteLaunchConfigurationTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLaunchConfigurationTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLaunchConfigurationTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteLaunchConfigurationTemplateOutput>
 end
 
-function C:deleteNetworkMigrationDefinition(input: types.DeleteNetworkMigrationDefinitionInput, options: any): async.Operation<types.DeleteNetworkMigrationDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNetworkMigrationDefinition, input, options) as async.Operation<types.DeleteNetworkMigrationDefinitionOutput>
+function C:deleteNetworkMigrationDefinition(input: types.DeleteNetworkMigrationDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNetworkMigrationDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNetworkMigrationDefinition as schema.OperationSchema, input, options) as async.Operation<types.DeleteNetworkMigrationDefinitionOutput>
 end
 
-function C:deleteReplicationConfigurationTemplate(input: types.DeleteReplicationConfigurationTemplateInput, options: any): async.Operation<types.DeleteReplicationConfigurationTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteReplicationConfigurationTemplate, input, options) as async.Operation<types.DeleteReplicationConfigurationTemplateOutput>
+function C:deleteReplicationConfigurationTemplate(input: types.DeleteReplicationConfigurationTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteReplicationConfigurationTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteReplicationConfigurationTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteReplicationConfigurationTemplateOutput>
 end
 
-function C:deleteSourceServer(input: types.DeleteSourceServerInput, options: any): async.Operation<types.DeleteSourceServerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSourceServer, input, options) as async.Operation<types.DeleteSourceServerOutput>
+function C:deleteSourceServer(input: types.DeleteSourceServerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSourceServerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSourceServer as schema.OperationSchema, input, options) as async.Operation<types.DeleteSourceServerOutput>
 end
 
-function C:deleteVcenterClient(input: types.DeleteVcenterClientInput, options: any): async.Operation<types.DeleteVcenterClientOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVcenterClient, input, options) as async.Operation<types.DeleteVcenterClientOutput>
+function C:deleteVcenterClient(input: types.DeleteVcenterClientInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVcenterClientOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVcenterClient as schema.OperationSchema, input, options) as async.Operation<types.DeleteVcenterClientOutput>
 end
 
-function C:deleteWave(input: types.DeleteWaveInput, options: any): async.Operation<types.DeleteWaveOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWave, input, options) as async.Operation<types.DeleteWaveOutput>
+function C:deleteWave(input: types.DeleteWaveInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWaveOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWave as schema.OperationSchema, input, options) as async.Operation<types.DeleteWaveOutput>
 end
 
-function C:describeJobLogItems(input: types.DescribeJobLogItemsInput, options: any): async.Operation<types.DescribeJobLogItemsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeJobLogItems, input, options) as async.Operation<types.DescribeJobLogItemsOutput>
+function C:describeJobLogItems(input: types.DescribeJobLogItemsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeJobLogItemsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeJobLogItems as schema.OperationSchema, input, options) as async.Operation<types.DescribeJobLogItemsOutput>
 end
 
-function C:describeJobs(input: types.DescribeJobsInput, options: any): async.Operation<types.DescribeJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeJobs, input, options) as async.Operation<types.DescribeJobsOutput>
+function C:describeJobs(input: types.DescribeJobsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeJobs as schema.OperationSchema, input, options) as async.Operation<types.DescribeJobsOutput>
 end
 
-function C:describeLaunchConfigurationTemplates(input: types.DescribeLaunchConfigurationTemplatesInput, options: any): async.Operation<types.DescribeLaunchConfigurationTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLaunchConfigurationTemplates, input, options) as async.Operation<types.DescribeLaunchConfigurationTemplatesOutput>
+function C:describeLaunchConfigurationTemplates(input: types.DescribeLaunchConfigurationTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLaunchConfigurationTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLaunchConfigurationTemplates as schema.OperationSchema, input, options) as async.Operation<types.DescribeLaunchConfigurationTemplatesOutput>
 end
 
-function C:describeReplicationConfigurationTemplates(input: types.DescribeReplicationConfigurationTemplatesInput, options: any): async.Operation<types.DescribeReplicationConfigurationTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeReplicationConfigurationTemplates, input, options) as async.Operation<types.DescribeReplicationConfigurationTemplatesOutput>
+function C:describeReplicationConfigurationTemplates(input: types.DescribeReplicationConfigurationTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeReplicationConfigurationTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeReplicationConfigurationTemplates as schema.OperationSchema, input, options) as async.Operation<types.DescribeReplicationConfigurationTemplatesOutput>
 end
 
-function C:describeSourceServers(input: types.DescribeSourceServersInput, options: any): async.Operation<types.DescribeSourceServersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSourceServers, input, options) as async.Operation<types.DescribeSourceServersOutput>
+function C:describeSourceServers(input: types.DescribeSourceServersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSourceServersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSourceServers as schema.OperationSchema, input, options) as async.Operation<types.DescribeSourceServersOutput>
 end
 
-function C:describeVcenterClients(input: types.DescribeVcenterClientsInput, options: any): async.Operation<types.DescribeVcenterClientsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVcenterClients, input, options) as async.Operation<types.DescribeVcenterClientsOutput>
+function C:describeVcenterClients(input: types.DescribeVcenterClientsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVcenterClientsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVcenterClients as schema.OperationSchema, input, options) as async.Operation<types.DescribeVcenterClientsOutput>
 end
 
-function C:disassociateApplications(input: types.DisassociateApplicationsInput, options: any): async.Operation<types.DisassociateApplicationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateApplications, input, options) as async.Operation<types.DisassociateApplicationsOutput>
+function C:disassociateApplications(input: types.DisassociateApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateApplicationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateApplications as schema.OperationSchema, input, options) as async.Operation<types.DisassociateApplicationsOutput>
 end
 
-function C:disassociateSourceServers(input: types.DisassociateSourceServersInput, options: any): async.Operation<types.DisassociateSourceServersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateSourceServers, input, options) as async.Operation<types.DisassociateSourceServersOutput>
+function C:disassociateSourceServers(input: types.DisassociateSourceServersInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateSourceServersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateSourceServers as schema.OperationSchema, input, options) as async.Operation<types.DisassociateSourceServersOutput>
 end
 
-function C:disconnectFromService(input: types.DisconnectFromServiceInput, options: any): async.Operation<types.DisconnectFromServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisconnectFromService, input, options) as async.Operation<types.DisconnectFromServiceOutput>
+function C:disconnectFromService(input: types.DisconnectFromServiceInput, options?: base_client.InvokeOptions): async.Operation<types.DisconnectFromServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisconnectFromService as schema.OperationSchema, input, options) as async.Operation<types.DisconnectFromServiceOutput>
 end
 
-function C:finalizeCutover(input: types.FinalizeCutoverInput, options: any): async.Operation<types.FinalizeCutoverOutput>
-    return self:invokeOperation(schemas.Service, schemas.FinalizeCutover, input, options) as async.Operation<types.FinalizeCutoverOutput>
+function C:finalizeCutover(input: types.FinalizeCutoverInput, options?: base_client.InvokeOptions): async.Operation<types.FinalizeCutoverOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.FinalizeCutover as schema.OperationSchema, input, options) as async.Operation<types.FinalizeCutoverOutput>
 end
 
-function C:getLaunchConfiguration(input: types.GetLaunchConfigurationInput, options: any): async.Operation<types.GetLaunchConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLaunchConfiguration, input, options) as async.Operation<types.GetLaunchConfigurationOutput>
+function C:getLaunchConfiguration(input: types.GetLaunchConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetLaunchConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLaunchConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetLaunchConfigurationOutput>
 end
 
-function C:getNetworkMigrationDefinition(input: types.GetNetworkMigrationDefinitionInput, options: any): async.Operation<types.GetNetworkMigrationDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNetworkMigrationDefinition, input, options) as async.Operation<types.GetNetworkMigrationDefinitionOutput>
+function C:getNetworkMigrationDefinition(input: types.GetNetworkMigrationDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.GetNetworkMigrationDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNetworkMigrationDefinition as schema.OperationSchema, input, options) as async.Operation<types.GetNetworkMigrationDefinitionOutput>
 end
 
-function C:getNetworkMigrationMapperSegmentConstruct(input: types.GetNetworkMigrationMapperSegmentConstructInput, options: any): async.Operation<types.GetNetworkMigrationMapperSegmentConstructOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNetworkMigrationMapperSegmentConstruct, input, options) as async.Operation<types.GetNetworkMigrationMapperSegmentConstructOutput>
+function C:getNetworkMigrationMapperSegmentConstruct(input: types.GetNetworkMigrationMapperSegmentConstructInput, options?: base_client.InvokeOptions): async.Operation<types.GetNetworkMigrationMapperSegmentConstructOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNetworkMigrationMapperSegmentConstruct as schema.OperationSchema, input, options) as async.Operation<types.GetNetworkMigrationMapperSegmentConstructOutput>
 end
 
-function C:getReplicationConfiguration(input: types.GetReplicationConfigurationInput, options: any): async.Operation<types.GetReplicationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReplicationConfiguration, input, options) as async.Operation<types.GetReplicationConfigurationOutput>
+function C:getReplicationConfiguration(input: types.GetReplicationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetReplicationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReplicationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetReplicationConfigurationOutput>
 end
 
-function C:initializeService(input: types.InitializeServiceInput, options: any): async.Operation<types.InitializeServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.InitializeService, input, options) as async.Operation<types.InitializeServiceOutput>
+function C:initializeService(input: types.InitializeServiceInput, options?: base_client.InvokeOptions): async.Operation<types.InitializeServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InitializeService as schema.OperationSchema, input, options) as async.Operation<types.InitializeServiceOutput>
 end
 
-function C:listApplications(input: types.ListApplicationsInput, options: any): async.Operation<types.ListApplicationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplications, input, options) as async.Operation<types.ListApplicationsOutput>
+function C:listApplications(input: types.ListApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplications as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationsOutput>
 end
 
-function C:listConnectors(input: types.ListConnectorsInput, options: any): async.Operation<types.ListConnectorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConnectors, input, options) as async.Operation<types.ListConnectorsOutput>
+function C:listConnectors(input: types.ListConnectorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConnectorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConnectors as schema.OperationSchema, input, options) as async.Operation<types.ListConnectorsOutput>
 end
 
-function C:listExportErrors(input: types.ListExportErrorsInput, options: any): async.Operation<types.ListExportErrorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListExportErrors, input, options) as async.Operation<types.ListExportErrorsOutput>
+function C:listExportErrors(input: types.ListExportErrorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExportErrorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExportErrors as schema.OperationSchema, input, options) as async.Operation<types.ListExportErrorsOutput>
 end
 
-function C:listExports(input: types.ListExportsInput, options: any): async.Operation<types.ListExportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListExports, input, options) as async.Operation<types.ListExportsOutput>
+function C:listExports(input: types.ListExportsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExports as schema.OperationSchema, input, options) as async.Operation<types.ListExportsOutput>
 end
 
-function C:listImportErrors(input: types.ListImportErrorsInput, options: any): async.Operation<types.ListImportErrorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListImportErrors, input, options) as async.Operation<types.ListImportErrorsOutput>
+function C:listImportErrors(input: types.ListImportErrorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListImportErrorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListImportErrors as schema.OperationSchema, input, options) as async.Operation<types.ListImportErrorsOutput>
 end
 
-function C:listImportFileEnrichments(input: types.ListImportFileEnrichmentsInput, options: any): async.Operation<types.ListImportFileEnrichmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListImportFileEnrichments, input, options) as async.Operation<types.ListImportFileEnrichmentsOutput>
+function C:listImportFileEnrichments(input: types.ListImportFileEnrichmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListImportFileEnrichmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListImportFileEnrichments as schema.OperationSchema, input, options) as async.Operation<types.ListImportFileEnrichmentsOutput>
 end
 
-function C:listImports(input: types.ListImportsInput, options: any): async.Operation<types.ListImportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListImports, input, options) as async.Operation<types.ListImportsOutput>
+function C:listImports(input: types.ListImportsInput, options?: base_client.InvokeOptions): async.Operation<types.ListImportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListImports as schema.OperationSchema, input, options) as async.Operation<types.ListImportsOutput>
 end
 
-function C:listManagedAccounts(input: types.ListManagedAccountsInput, options: any): async.Operation<types.ListManagedAccountsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListManagedAccounts, input, options) as async.Operation<types.ListManagedAccountsOutput>
+function C:listManagedAccounts(input: types.ListManagedAccountsInput, options?: base_client.InvokeOptions): async.Operation<types.ListManagedAccountsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListManagedAccounts as schema.OperationSchema, input, options) as async.Operation<types.ListManagedAccountsOutput>
 end
 
-function C:listNetworkMigrationAnalyses(input: types.ListNetworkMigrationAnalysesInput, options: any): async.Operation<types.ListNetworkMigrationAnalysesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNetworkMigrationAnalyses, input, options) as async.Operation<types.ListNetworkMigrationAnalysesOutput>
+function C:listNetworkMigrationAnalyses(input: types.ListNetworkMigrationAnalysesInput, options?: base_client.InvokeOptions): async.Operation<types.ListNetworkMigrationAnalysesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNetworkMigrationAnalyses as schema.OperationSchema, input, options) as async.Operation<types.ListNetworkMigrationAnalysesOutput>
 end
 
-function C:listNetworkMigrationAnalysisResults(input: types.ListNetworkMigrationAnalysisResultsInput, options: any): async.Operation<types.ListNetworkMigrationAnalysisResultsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNetworkMigrationAnalysisResults, input, options) as async.Operation<types.ListNetworkMigrationAnalysisResultsOutput>
+function C:listNetworkMigrationAnalysisResults(input: types.ListNetworkMigrationAnalysisResultsInput, options?: base_client.InvokeOptions): async.Operation<types.ListNetworkMigrationAnalysisResultsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNetworkMigrationAnalysisResults as schema.OperationSchema, input, options) as async.Operation<types.ListNetworkMigrationAnalysisResultsOutput>
 end
 
-function C:listNetworkMigrationCodeGenerations(input: types.ListNetworkMigrationCodeGenerationsInput, options: any): async.Operation<types.ListNetworkMigrationCodeGenerationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNetworkMigrationCodeGenerations, input, options) as async.Operation<types.ListNetworkMigrationCodeGenerationsOutput>
+function C:listNetworkMigrationCodeGenerations(input: types.ListNetworkMigrationCodeGenerationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListNetworkMigrationCodeGenerationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNetworkMigrationCodeGenerations as schema.OperationSchema, input, options) as async.Operation<types.ListNetworkMigrationCodeGenerationsOutput>
 end
 
-function C:listNetworkMigrationCodeGenerationSegments(input: types.ListNetworkMigrationCodeGenerationSegmentsInput, options: any): async.Operation<types.ListNetworkMigrationCodeGenerationSegmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNetworkMigrationCodeGenerationSegments, input, options) as async.Operation<types.ListNetworkMigrationCodeGenerationSegmentsOutput>
+function C:listNetworkMigrationCodeGenerationSegments(input: types.ListNetworkMigrationCodeGenerationSegmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListNetworkMigrationCodeGenerationSegmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNetworkMigrationCodeGenerationSegments as schema.OperationSchema, input, options) as async.Operation<types.ListNetworkMigrationCodeGenerationSegmentsOutput>
 end
 
-function C:listNetworkMigrationDefinitions(input: types.ListNetworkMigrationDefinitionsInput, options: any): async.Operation<types.ListNetworkMigrationDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNetworkMigrationDefinitions, input, options) as async.Operation<types.ListNetworkMigrationDefinitionsOutput>
+function C:listNetworkMigrationDefinitions(input: types.ListNetworkMigrationDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListNetworkMigrationDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNetworkMigrationDefinitions as schema.OperationSchema, input, options) as async.Operation<types.ListNetworkMigrationDefinitionsOutput>
 end
 
-function C:listNetworkMigrationDeployedStacks(input: types.ListNetworkMigrationDeployedStacksInput, options: any): async.Operation<types.ListNetworkMigrationDeployedStacksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNetworkMigrationDeployedStacks, input, options) as async.Operation<types.ListNetworkMigrationDeployedStacksOutput>
+function C:listNetworkMigrationDeployedStacks(input: types.ListNetworkMigrationDeployedStacksInput, options?: base_client.InvokeOptions): async.Operation<types.ListNetworkMigrationDeployedStacksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNetworkMigrationDeployedStacks as schema.OperationSchema, input, options) as async.Operation<types.ListNetworkMigrationDeployedStacksOutput>
 end
 
-function C:listNetworkMigrationDeployments(input: types.ListNetworkMigrationDeploymentsInput, options: any): async.Operation<types.ListNetworkMigrationDeploymentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNetworkMigrationDeployments, input, options) as async.Operation<types.ListNetworkMigrationDeploymentsOutput>
+function C:listNetworkMigrationDeployments(input: types.ListNetworkMigrationDeploymentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListNetworkMigrationDeploymentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNetworkMigrationDeployments as schema.OperationSchema, input, options) as async.Operation<types.ListNetworkMigrationDeploymentsOutput>
 end
 
-function C:listNetworkMigrationExecutions(input: types.ListNetworkMigrationExecutionsInput, options: any): async.Operation<types.ListNetworkMigrationExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNetworkMigrationExecutions, input, options) as async.Operation<types.ListNetworkMigrationExecutionsOutput>
+function C:listNetworkMigrationExecutions(input: types.ListNetworkMigrationExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListNetworkMigrationExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNetworkMigrationExecutions as schema.OperationSchema, input, options) as async.Operation<types.ListNetworkMigrationExecutionsOutput>
 end
 
-function C:listNetworkMigrationMapperSegmentConstructs(input: types.ListNetworkMigrationMapperSegmentConstructsInput, options: any): async.Operation<types.ListNetworkMigrationMapperSegmentConstructsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNetworkMigrationMapperSegmentConstructs, input, options) as async.Operation<types.ListNetworkMigrationMapperSegmentConstructsOutput>
+function C:listNetworkMigrationMapperSegmentConstructs(input: types.ListNetworkMigrationMapperSegmentConstructsInput, options?: base_client.InvokeOptions): async.Operation<types.ListNetworkMigrationMapperSegmentConstructsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNetworkMigrationMapperSegmentConstructs as schema.OperationSchema, input, options) as async.Operation<types.ListNetworkMigrationMapperSegmentConstructsOutput>
 end
 
-function C:listNetworkMigrationMapperSegments(input: types.ListNetworkMigrationMapperSegmentsInput, options: any): async.Operation<types.ListNetworkMigrationMapperSegmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNetworkMigrationMapperSegments, input, options) as async.Operation<types.ListNetworkMigrationMapperSegmentsOutput>
+function C:listNetworkMigrationMapperSegments(input: types.ListNetworkMigrationMapperSegmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListNetworkMigrationMapperSegmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNetworkMigrationMapperSegments as schema.OperationSchema, input, options) as async.Operation<types.ListNetworkMigrationMapperSegmentsOutput>
 end
 
-function C:listNetworkMigrationMappings(input: types.ListNetworkMigrationMappingsInput, options: any): async.Operation<types.ListNetworkMigrationMappingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNetworkMigrationMappings, input, options) as async.Operation<types.ListNetworkMigrationMappingsOutput>
+function C:listNetworkMigrationMappings(input: types.ListNetworkMigrationMappingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListNetworkMigrationMappingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNetworkMigrationMappings as schema.OperationSchema, input, options) as async.Operation<types.ListNetworkMigrationMappingsOutput>
 end
 
-function C:listNetworkMigrationMappingUpdates(input: types.ListNetworkMigrationMappingUpdatesInput, options: any): async.Operation<types.ListNetworkMigrationMappingUpdatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNetworkMigrationMappingUpdates, input, options) as async.Operation<types.ListNetworkMigrationMappingUpdatesOutput>
+function C:listNetworkMigrationMappingUpdates(input: types.ListNetworkMigrationMappingUpdatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListNetworkMigrationMappingUpdatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNetworkMigrationMappingUpdates as schema.OperationSchema, input, options) as async.Operation<types.ListNetworkMigrationMappingUpdatesOutput>
 end
 
-function C:listSourceServerActions(input: types.ListSourceServerActionsInput, options: any): async.Operation<types.ListSourceServerActionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSourceServerActions, input, options) as async.Operation<types.ListSourceServerActionsOutput>
+function C:listSourceServerActions(input: types.ListSourceServerActionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSourceServerActionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSourceServerActions as schema.OperationSchema, input, options) as async.Operation<types.ListSourceServerActionsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTemplateActions(input: types.ListTemplateActionsInput, options: any): async.Operation<types.ListTemplateActionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTemplateActions, input, options) as async.Operation<types.ListTemplateActionsOutput>
+function C:listTemplateActions(input: types.ListTemplateActionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTemplateActionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTemplateActions as schema.OperationSchema, input, options) as async.Operation<types.ListTemplateActionsOutput>
 end
 
-function C:listWaves(input: types.ListWavesInput, options: any): async.Operation<types.ListWavesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWaves, input, options) as async.Operation<types.ListWavesOutput>
+function C:listWaves(input: types.ListWavesInput, options?: base_client.InvokeOptions): async.Operation<types.ListWavesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWaves as schema.OperationSchema, input, options) as async.Operation<types.ListWavesOutput>
 end
 
-function C:markAsArchived(input: types.MarkAsArchivedInput, options: any): async.Operation<types.MarkAsArchivedOutput>
-    return self:invokeOperation(schemas.Service, schemas.MarkAsArchived, input, options) as async.Operation<types.MarkAsArchivedOutput>
+function C:markAsArchived(input: types.MarkAsArchivedInput, options?: base_client.InvokeOptions): async.Operation<types.MarkAsArchivedOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.MarkAsArchived as schema.OperationSchema, input, options) as async.Operation<types.MarkAsArchivedOutput>
 end
 
-function C:pauseReplication(input: types.PauseReplicationInput, options: any): async.Operation<types.PauseReplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PauseReplication, input, options) as async.Operation<types.PauseReplicationOutput>
+function C:pauseReplication(input: types.PauseReplicationInput, options?: base_client.InvokeOptions): async.Operation<types.PauseReplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PauseReplication as schema.OperationSchema, input, options) as async.Operation<types.PauseReplicationOutput>
 end
 
-function C:putSourceServerAction(input: types.PutSourceServerActionInput, options: any): async.Operation<types.PutSourceServerActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutSourceServerAction, input, options) as async.Operation<types.PutSourceServerActionOutput>
+function C:putSourceServerAction(input: types.PutSourceServerActionInput, options?: base_client.InvokeOptions): async.Operation<types.PutSourceServerActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutSourceServerAction as schema.OperationSchema, input, options) as async.Operation<types.PutSourceServerActionOutput>
 end
 
-function C:putTemplateAction(input: types.PutTemplateActionInput, options: any): async.Operation<types.PutTemplateActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutTemplateAction, input, options) as async.Operation<types.PutTemplateActionOutput>
+function C:putTemplateAction(input: types.PutTemplateActionInput, options?: base_client.InvokeOptions): async.Operation<types.PutTemplateActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutTemplateAction as schema.OperationSchema, input, options) as async.Operation<types.PutTemplateActionOutput>
 end
 
-function C:removeSourceServerAction(input: types.RemoveSourceServerActionInput, options: any): async.Operation<types.RemoveSourceServerActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveSourceServerAction, input, options) as async.Operation<types.RemoveSourceServerActionOutput>
+function C:removeSourceServerAction(input: types.RemoveSourceServerActionInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveSourceServerActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveSourceServerAction as schema.OperationSchema, input, options) as async.Operation<types.RemoveSourceServerActionOutput>
 end
 
-function C:removeTemplateAction(input: types.RemoveTemplateActionInput, options: any): async.Operation<types.RemoveTemplateActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveTemplateAction, input, options) as async.Operation<types.RemoveTemplateActionOutput>
+function C:removeTemplateAction(input: types.RemoveTemplateActionInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveTemplateActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveTemplateAction as schema.OperationSchema, input, options) as async.Operation<types.RemoveTemplateActionOutput>
 end
 
-function C:resumeReplication(input: types.ResumeReplicationInput, options: any): async.Operation<types.ResumeReplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResumeReplication, input, options) as async.Operation<types.ResumeReplicationOutput>
+function C:resumeReplication(input: types.ResumeReplicationInput, options?: base_client.InvokeOptions): async.Operation<types.ResumeReplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResumeReplication as schema.OperationSchema, input, options) as async.Operation<types.ResumeReplicationOutput>
 end
 
-function C:retryDataReplication(input: types.RetryDataReplicationInput, options: any): async.Operation<types.RetryDataReplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.RetryDataReplication, input, options) as async.Operation<types.RetryDataReplicationOutput>
+function C:retryDataReplication(input: types.RetryDataReplicationInput, options?: base_client.InvokeOptions): async.Operation<types.RetryDataReplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RetryDataReplication as schema.OperationSchema, input, options) as async.Operation<types.RetryDataReplicationOutput>
 end
 
-function C:startCutover(input: types.StartCutoverInput, options: any): async.Operation<types.StartCutoverOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartCutover, input, options) as async.Operation<types.StartCutoverOutput>
+function C:startCutover(input: types.StartCutoverInput, options?: base_client.InvokeOptions): async.Operation<types.StartCutoverOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartCutover as schema.OperationSchema, input, options) as async.Operation<types.StartCutoverOutput>
 end
 
-function C:startExport(input: types.StartExportInput, options: any): async.Operation<types.StartExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartExport, input, options) as async.Operation<types.StartExportOutput>
+function C:startExport(input: types.StartExportInput, options?: base_client.InvokeOptions): async.Operation<types.StartExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartExport as schema.OperationSchema, input, options) as async.Operation<types.StartExportOutput>
 end
 
-function C:startImport(input: types.StartImportInput, options: any): async.Operation<types.StartImportOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartImport, input, options) as async.Operation<types.StartImportOutput>
+function C:startImport(input: types.StartImportInput, options?: base_client.InvokeOptions): async.Operation<types.StartImportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartImport as schema.OperationSchema, input, options) as async.Operation<types.StartImportOutput>
 end
 
-function C:startImportFileEnrichment(input: types.StartImportFileEnrichmentInput, options: any): async.Operation<types.StartImportFileEnrichmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartImportFileEnrichment, input, options) as async.Operation<types.StartImportFileEnrichmentOutput>
+function C:startImportFileEnrichment(input: types.StartImportFileEnrichmentInput, options?: base_client.InvokeOptions): async.Operation<types.StartImportFileEnrichmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartImportFileEnrichment as schema.OperationSchema, input, options) as async.Operation<types.StartImportFileEnrichmentOutput>
 end
 
-function C:startNetworkMigrationAnalysis(input: types.StartNetworkMigrationAnalysisInput, options: any): async.Operation<types.StartNetworkMigrationAnalysisOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartNetworkMigrationAnalysis, input, options) as async.Operation<types.StartNetworkMigrationAnalysisOutput>
+function C:startNetworkMigrationAnalysis(input: types.StartNetworkMigrationAnalysisInput, options?: base_client.InvokeOptions): async.Operation<types.StartNetworkMigrationAnalysisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartNetworkMigrationAnalysis as schema.OperationSchema, input, options) as async.Operation<types.StartNetworkMigrationAnalysisOutput>
 end
 
-function C:startNetworkMigrationCodeGeneration(input: types.StartNetworkMigrationCodeGenerationInput, options: any): async.Operation<types.StartNetworkMigrationCodeGenerationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartNetworkMigrationCodeGeneration, input, options) as async.Operation<types.StartNetworkMigrationCodeGenerationOutput>
+function C:startNetworkMigrationCodeGeneration(input: types.StartNetworkMigrationCodeGenerationInput, options?: base_client.InvokeOptions): async.Operation<types.StartNetworkMigrationCodeGenerationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartNetworkMigrationCodeGeneration as schema.OperationSchema, input, options) as async.Operation<types.StartNetworkMigrationCodeGenerationOutput>
 end
 
-function C:startNetworkMigrationDeployment(input: types.StartNetworkMigrationDeploymentInput, options: any): async.Operation<types.StartNetworkMigrationDeploymentOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartNetworkMigrationDeployment, input, options) as async.Operation<types.StartNetworkMigrationDeploymentOutput>
+function C:startNetworkMigrationDeployment(input: types.StartNetworkMigrationDeploymentInput, options?: base_client.InvokeOptions): async.Operation<types.StartNetworkMigrationDeploymentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartNetworkMigrationDeployment as schema.OperationSchema, input, options) as async.Operation<types.StartNetworkMigrationDeploymentOutput>
 end
 
-function C:startNetworkMigrationMapping(input: types.StartNetworkMigrationMappingInput, options: any): async.Operation<types.StartNetworkMigrationMappingOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartNetworkMigrationMapping, input, options) as async.Operation<types.StartNetworkMigrationMappingOutput>
+function C:startNetworkMigrationMapping(input: types.StartNetworkMigrationMappingInput, options?: base_client.InvokeOptions): async.Operation<types.StartNetworkMigrationMappingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartNetworkMigrationMapping as schema.OperationSchema, input, options) as async.Operation<types.StartNetworkMigrationMappingOutput>
 end
 
-function C:startNetworkMigrationMappingUpdate(input: types.StartNetworkMigrationMappingUpdateInput, options: any): async.Operation<types.StartNetworkMigrationMappingUpdateOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartNetworkMigrationMappingUpdate, input, options) as async.Operation<types.StartNetworkMigrationMappingUpdateOutput>
+function C:startNetworkMigrationMappingUpdate(input: types.StartNetworkMigrationMappingUpdateInput, options?: base_client.InvokeOptions): async.Operation<types.StartNetworkMigrationMappingUpdateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartNetworkMigrationMappingUpdate as schema.OperationSchema, input, options) as async.Operation<types.StartNetworkMigrationMappingUpdateOutput>
 end
 
-function C:startReplication(input: types.StartReplicationInput, options: any): async.Operation<types.StartReplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartReplication, input, options) as async.Operation<types.StartReplicationOutput>
+function C:startReplication(input: types.StartReplicationInput, options?: base_client.InvokeOptions): async.Operation<types.StartReplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartReplication as schema.OperationSchema, input, options) as async.Operation<types.StartReplicationOutput>
 end
 
-function C:startTest(input: types.StartTestInput, options: any): async.Operation<types.StartTestOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartTest, input, options) as async.Operation<types.StartTestOutput>
+function C:startTest(input: types.StartTestInput, options?: base_client.InvokeOptions): async.Operation<types.StartTestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartTest as schema.OperationSchema, input, options) as async.Operation<types.StartTestOutput>
 end
 
-function C:stopReplication(input: types.StopReplicationInput, options: any): async.Operation<types.StopReplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopReplication, input, options) as async.Operation<types.StopReplicationOutput>
+function C:stopReplication(input: types.StopReplicationInput, options?: base_client.InvokeOptions): async.Operation<types.StopReplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopReplication as schema.OperationSchema, input, options) as async.Operation<types.StopReplicationOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:terminateTargetInstances(input: types.TerminateTargetInstancesInput, options: any): async.Operation<types.TerminateTargetInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.TerminateTargetInstances, input, options) as async.Operation<types.TerminateTargetInstancesOutput>
+function C:terminateTargetInstances(input: types.TerminateTargetInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.TerminateTargetInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TerminateTargetInstances as schema.OperationSchema, input, options) as async.Operation<types.TerminateTargetInstancesOutput>
 end
 
-function C:unarchiveApplication(input: types.UnarchiveApplicationInput, options: any): async.Operation<types.UnarchiveApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UnarchiveApplication, input, options) as async.Operation<types.UnarchiveApplicationOutput>
+function C:unarchiveApplication(input: types.UnarchiveApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.UnarchiveApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UnarchiveApplication as schema.OperationSchema, input, options) as async.Operation<types.UnarchiveApplicationOutput>
 end
 
-function C:unarchiveWave(input: types.UnarchiveWaveInput, options: any): async.Operation<types.UnarchiveWaveOutput>
-    return self:invokeOperation(schemas.Service, schemas.UnarchiveWave, input, options) as async.Operation<types.UnarchiveWaveOutput>
+function C:unarchiveWave(input: types.UnarchiveWaveInput, options?: base_client.InvokeOptions): async.Operation<types.UnarchiveWaveOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UnarchiveWave as schema.OperationSchema, input, options) as async.Operation<types.UnarchiveWaveOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateApplication(input: types.UpdateApplicationInput, options: any): async.Operation<types.UpdateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateApplication, input, options) as async.Operation<types.UpdateApplicationOutput>
+function C:updateApplication(input: types.UpdateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApplication as schema.OperationSchema, input, options) as async.Operation<types.UpdateApplicationOutput>
 end
 
-function C:updateConnector(input: types.UpdateConnectorInput, options: any): async.Operation<types.UpdateConnectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConnector, input, options) as async.Operation<types.UpdateConnectorOutput>
+function C:updateConnector(input: types.UpdateConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConnector as schema.OperationSchema, input, options) as async.Operation<types.UpdateConnectorOutput>
 end
 
-function C:updateLaunchConfiguration(input: types.UpdateLaunchConfigurationInput, options: any): async.Operation<types.UpdateLaunchConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLaunchConfiguration, input, options) as async.Operation<types.UpdateLaunchConfigurationOutput>
+function C:updateLaunchConfiguration(input: types.UpdateLaunchConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLaunchConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLaunchConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateLaunchConfigurationOutput>
 end
 
-function C:updateLaunchConfigurationTemplate(input: types.UpdateLaunchConfigurationTemplateInput, options: any): async.Operation<types.UpdateLaunchConfigurationTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLaunchConfigurationTemplate, input, options) as async.Operation<types.UpdateLaunchConfigurationTemplateOutput>
+function C:updateLaunchConfigurationTemplate(input: types.UpdateLaunchConfigurationTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLaunchConfigurationTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLaunchConfigurationTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateLaunchConfigurationTemplateOutput>
 end
 
-function C:updateNetworkMigrationDefinition(input: types.UpdateNetworkMigrationDefinitionInput, options: any): async.Operation<types.UpdateNetworkMigrationDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateNetworkMigrationDefinition, input, options) as async.Operation<types.UpdateNetworkMigrationDefinitionOutput>
+function C:updateNetworkMigrationDefinition(input: types.UpdateNetworkMigrationDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNetworkMigrationDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNetworkMigrationDefinition as schema.OperationSchema, input, options) as async.Operation<types.UpdateNetworkMigrationDefinitionOutput>
 end
 
-function C:updateNetworkMigrationMapperSegment(input: types.UpdateNetworkMigrationMapperSegmentInput, options: any): async.Operation<types.UpdateNetworkMigrationMapperSegmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateNetworkMigrationMapperSegment, input, options) as async.Operation<types.UpdateNetworkMigrationMapperSegmentOutput>
+function C:updateNetworkMigrationMapperSegment(input: types.UpdateNetworkMigrationMapperSegmentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNetworkMigrationMapperSegmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNetworkMigrationMapperSegment as schema.OperationSchema, input, options) as async.Operation<types.UpdateNetworkMigrationMapperSegmentOutput>
 end
 
-function C:updateReplicationConfiguration(input: types.UpdateReplicationConfigurationInput, options: any): async.Operation<types.UpdateReplicationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateReplicationConfiguration, input, options) as async.Operation<types.UpdateReplicationConfigurationOutput>
+function C:updateReplicationConfiguration(input: types.UpdateReplicationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateReplicationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateReplicationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateReplicationConfigurationOutput>
 end
 
-function C:updateReplicationConfigurationTemplate(input: types.UpdateReplicationConfigurationTemplateInput, options: any): async.Operation<types.UpdateReplicationConfigurationTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateReplicationConfigurationTemplate, input, options) as async.Operation<types.UpdateReplicationConfigurationTemplateOutput>
+function C:updateReplicationConfigurationTemplate(input: types.UpdateReplicationConfigurationTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateReplicationConfigurationTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateReplicationConfigurationTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateReplicationConfigurationTemplateOutput>
 end
 
-function C:updateSourceServer(input: types.UpdateSourceServerInput, options: any): async.Operation<types.UpdateSourceServerOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSourceServer, input, options) as async.Operation<types.UpdateSourceServerOutput>
+function C:updateSourceServer(input: types.UpdateSourceServerInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSourceServerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSourceServer as schema.OperationSchema, input, options) as async.Operation<types.UpdateSourceServerOutput>
 end
 
-function C:updateSourceServerReplicationType(input: types.UpdateSourceServerReplicationTypeInput, options: any): async.Operation<types.UpdateSourceServerReplicationTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSourceServerReplicationType, input, options) as async.Operation<types.UpdateSourceServerReplicationTypeOutput>
+function C:updateSourceServerReplicationType(input: types.UpdateSourceServerReplicationTypeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSourceServerReplicationTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSourceServerReplicationType as schema.OperationSchema, input, options) as async.Operation<types.UpdateSourceServerReplicationTypeOutput>
 end
 
-function C:updateWave(input: types.UpdateWaveInput, options: any): async.Operation<types.UpdateWaveOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateWave, input, options) as async.Operation<types.UpdateWaveOutput>
+function C:updateWave(input: types.UpdateWaveInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWaveOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWave as schema.OperationSchema, input, options) as async.Operation<types.UpdateWaveOutput>
 end
 
 return M

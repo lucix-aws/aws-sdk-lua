@@ -8,161 +8,164 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("cognitoidentityprovider.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("cognitoidentityprovider.schemas")
 local traits = require("smithy.traits")
 local types = require("cognitoidentityprovider.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    addCustomAttributes: function(Client, types.AddCustomAttributesInput, any): async.Operation<types.AddCustomAttributesOutput>
-    addUserPoolClientSecret: function(Client, types.AddUserPoolClientSecretInput, any): async.Operation<types.AddUserPoolClientSecretOutput>
-    adminAddUserToGroup: function(Client, types.AdminAddUserToGroupInput, any): async.Operation<types.AdminAddUserToGroupOutput>
-    adminConfirmSignUp: function(Client, types.AdminConfirmSignUpInput, any): async.Operation<types.AdminConfirmSignUpOutput>
-    adminCreateUser: function(Client, types.AdminCreateUserInput, any): async.Operation<types.AdminCreateUserOutput>
-    adminDeleteUser: function(Client, types.AdminDeleteUserInput, any): async.Operation<types.AdminDeleteUserOutput>
-    adminDeleteUserAttributes: function(Client, types.AdminDeleteUserAttributesInput, any): async.Operation<types.AdminDeleteUserAttributesOutput>
-    adminDisableProviderForUser: function(Client, types.AdminDisableProviderForUserInput, any): async.Operation<types.AdminDisableProviderForUserOutput>
-    adminDisableUser: function(Client, types.AdminDisableUserInput, any): async.Operation<types.AdminDisableUserOutput>
-    adminEnableUser: function(Client, types.AdminEnableUserInput, any): async.Operation<types.AdminEnableUserOutput>
-    adminForgetDevice: function(Client, types.AdminForgetDeviceInput, any): async.Operation<types.AdminForgetDeviceOutput>
-    adminGetDevice: function(Client, types.AdminGetDeviceInput, any): async.Operation<types.AdminGetDeviceOutput>
-    adminGetUser: function(Client, types.AdminGetUserInput, any): async.Operation<types.AdminGetUserOutput>
-    adminInitiateAuth: function(Client, types.AdminInitiateAuthInput, any): async.Operation<types.AdminInitiateAuthOutput>
-    adminLinkProviderForUser: function(Client, types.AdminLinkProviderForUserInput, any): async.Operation<types.AdminLinkProviderForUserOutput>
-    adminListDevices: function(Client, types.AdminListDevicesInput, any): async.Operation<types.AdminListDevicesOutput>
-    adminListGroupsForUser: function(Client, types.AdminListGroupsForUserInput, any): async.Operation<types.AdminListGroupsForUserOutput>
-    adminListUserAuthEvents: function(Client, types.AdminListUserAuthEventsInput, any): async.Operation<types.AdminListUserAuthEventsOutput>
-    adminRemoveUserFromGroup: function(Client, types.AdminRemoveUserFromGroupInput, any): async.Operation<types.AdminRemoveUserFromGroupOutput>
-    adminResetUserPassword: function(Client, types.AdminResetUserPasswordInput, any): async.Operation<types.AdminResetUserPasswordOutput>
-    adminRespondToAuthChallenge: function(Client, types.AdminRespondToAuthChallengeInput, any): async.Operation<types.AdminRespondToAuthChallengeOutput>
-    adminSetUserMFAPreference: function(Client, types.AdminSetUserMFAPreferenceInput, any): async.Operation<types.AdminSetUserMFAPreferenceOutput>
-    adminSetUserPassword: function(Client, types.AdminSetUserPasswordInput, any): async.Operation<types.AdminSetUserPasswordOutput>
-    adminSetUserSettings: function(Client, types.AdminSetUserSettingsInput, any): async.Operation<types.AdminSetUserSettingsOutput>
-    adminUpdateAuthEventFeedback: function(Client, types.AdminUpdateAuthEventFeedbackInput, any): async.Operation<types.AdminUpdateAuthEventFeedbackOutput>
-    adminUpdateDeviceStatus: function(Client, types.AdminUpdateDeviceStatusInput, any): async.Operation<types.AdminUpdateDeviceStatusOutput>
-    adminUpdateUserAttributes: function(Client, types.AdminUpdateUserAttributesInput, any): async.Operation<types.AdminUpdateUserAttributesOutput>
-    adminUserGlobalSignOut: function(Client, types.AdminUserGlobalSignOutInput, any): async.Operation<types.AdminUserGlobalSignOutOutput>
-    associateSoftwareToken: function(Client, types.AssociateSoftwareTokenInput, any): async.Operation<types.AssociateSoftwareTokenOutput>
-    changePassword: function(Client, types.ChangePasswordInput, any): async.Operation<types.ChangePasswordOutput>
-    completeWebAuthnRegistration: function(Client, types.CompleteWebAuthnRegistrationInput, any): async.Operation<types.CompleteWebAuthnRegistrationOutput>
-    confirmDevice: function(Client, types.ConfirmDeviceInput, any): async.Operation<types.ConfirmDeviceOutput>
-    confirmForgotPassword: function(Client, types.ConfirmForgotPasswordInput, any): async.Operation<types.ConfirmForgotPasswordOutput>
-    confirmSignUp: function(Client, types.ConfirmSignUpInput, any): async.Operation<types.ConfirmSignUpOutput>
-    createGroup: function(Client, types.CreateGroupInput, any): async.Operation<types.CreateGroupOutput>
-    createIdentityProvider: function(Client, types.CreateIdentityProviderInput, any): async.Operation<types.CreateIdentityProviderOutput>
-    createManagedLoginBranding: function(Client, types.CreateManagedLoginBrandingInput, any): async.Operation<types.CreateManagedLoginBrandingOutput>
-    createResourceServer: function(Client, types.CreateResourceServerInput, any): async.Operation<types.CreateResourceServerOutput>
-    createTerms: function(Client, types.CreateTermsInput, any): async.Operation<types.CreateTermsOutput>
-    createUserImportJob: function(Client, types.CreateUserImportJobInput, any): async.Operation<types.CreateUserImportJobOutput>
-    createUserPool: function(Client, types.CreateUserPoolInput, any): async.Operation<types.CreateUserPoolOutput>
-    createUserPoolClient: function(Client, types.CreateUserPoolClientInput, any): async.Operation<types.CreateUserPoolClientOutput>
-    createUserPoolDomain: function(Client, types.CreateUserPoolDomainInput, any): async.Operation<types.CreateUserPoolDomainOutput>
-    deleteGroup: function(Client, types.DeleteGroupInput, any): async.Operation<types.DeleteGroupOutput>
-    deleteIdentityProvider: function(Client, types.DeleteIdentityProviderInput, any): async.Operation<types.DeleteIdentityProviderOutput>
-    deleteManagedLoginBranding: function(Client, types.DeleteManagedLoginBrandingInput, any): async.Operation<types.DeleteManagedLoginBrandingOutput>
-    deleteResourceServer: function(Client, types.DeleteResourceServerInput, any): async.Operation<types.DeleteResourceServerOutput>
-    deleteTerms: function(Client, types.DeleteTermsInput, any): async.Operation<types.DeleteTermsOutput>
-    deleteUser: function(Client, types.DeleteUserInput, any): async.Operation<types.DeleteUserOutput>
-    deleteUserAttributes: function(Client, types.DeleteUserAttributesInput, any): async.Operation<types.DeleteUserAttributesOutput>
-    deleteUserPool: function(Client, types.DeleteUserPoolInput, any): async.Operation<types.DeleteUserPoolOutput>
-    deleteUserPoolClient: function(Client, types.DeleteUserPoolClientInput, any): async.Operation<types.DeleteUserPoolClientOutput>
-    deleteUserPoolClientSecret: function(Client, types.DeleteUserPoolClientSecretInput, any): async.Operation<types.DeleteUserPoolClientSecretOutput>
-    deleteUserPoolDomain: function(Client, types.DeleteUserPoolDomainInput, any): async.Operation<types.DeleteUserPoolDomainOutput>
-    deleteWebAuthnCredential: function(Client, types.DeleteWebAuthnCredentialInput, any): async.Operation<types.DeleteWebAuthnCredentialOutput>
-    describeIdentityProvider: function(Client, types.DescribeIdentityProviderInput, any): async.Operation<types.DescribeIdentityProviderOutput>
-    describeManagedLoginBranding: function(Client, types.DescribeManagedLoginBrandingInput, any): async.Operation<types.DescribeManagedLoginBrandingOutput>
-    describeManagedLoginBrandingByClient: function(Client, types.DescribeManagedLoginBrandingByClientInput, any): async.Operation<types.DescribeManagedLoginBrandingByClientOutput>
-    describeResourceServer: function(Client, types.DescribeResourceServerInput, any): async.Operation<types.DescribeResourceServerOutput>
-    describeRiskConfiguration: function(Client, types.DescribeRiskConfigurationInput, any): async.Operation<types.DescribeRiskConfigurationOutput>
-    describeTerms: function(Client, types.DescribeTermsInput, any): async.Operation<types.DescribeTermsOutput>
-    describeUserImportJob: function(Client, types.DescribeUserImportJobInput, any): async.Operation<types.DescribeUserImportJobOutput>
-    describeUserPool: function(Client, types.DescribeUserPoolInput, any): async.Operation<types.DescribeUserPoolOutput>
-    describeUserPoolClient: function(Client, types.DescribeUserPoolClientInput, any): async.Operation<types.DescribeUserPoolClientOutput>
-    describeUserPoolDomain: function(Client, types.DescribeUserPoolDomainInput, any): async.Operation<types.DescribeUserPoolDomainOutput>
-    forgetDevice: function(Client, types.ForgetDeviceInput, any): async.Operation<types.ForgetDeviceOutput>
-    forgotPassword: function(Client, types.ForgotPasswordInput, any): async.Operation<types.ForgotPasswordOutput>
-    getCSVHeader: function(Client, types.GetCSVHeaderInput, any): async.Operation<types.GetCSVHeaderOutput>
-    getDevice: function(Client, types.GetDeviceInput, any): async.Operation<types.GetDeviceOutput>
-    getGroup: function(Client, types.GetGroupInput, any): async.Operation<types.GetGroupOutput>
-    getIdentityProviderByIdentifier: function(Client, types.GetIdentityProviderByIdentifierInput, any): async.Operation<types.GetIdentityProviderByIdentifierOutput>
-    getLogDeliveryConfiguration: function(Client, types.GetLogDeliveryConfigurationInput, any): async.Operation<types.GetLogDeliveryConfigurationOutput>
-    getSigningCertificate: function(Client, types.GetSigningCertificateInput, any): async.Operation<types.GetSigningCertificateOutput>
-    getTokensFromRefreshToken: function(Client, types.GetTokensFromRefreshTokenInput, any): async.Operation<types.GetTokensFromRefreshTokenOutput>
-    getUICustomization: function(Client, types.GetUICustomizationInput, any): async.Operation<types.GetUICustomizationOutput>
-    getUser: function(Client, types.GetUserInput, any): async.Operation<types.GetUserOutput>
-    getUserAttributeVerificationCode: function(Client, types.GetUserAttributeVerificationCodeInput, any): async.Operation<types.GetUserAttributeVerificationCodeOutput>
-    getUserAuthFactors: function(Client, types.GetUserAuthFactorsInput, any): async.Operation<types.GetUserAuthFactorsOutput>
-    getUserPoolMfaConfig: function(Client, types.GetUserPoolMfaConfigInput, any): async.Operation<types.GetUserPoolMfaConfigOutput>
-    globalSignOut: function(Client, types.GlobalSignOutInput, any): async.Operation<types.GlobalSignOutOutput>
-    initiateAuth: function(Client, types.InitiateAuthInput, any): async.Operation<types.InitiateAuthOutput>
-    listDevices: function(Client, types.ListDevicesInput, any): async.Operation<types.ListDevicesOutput>
-    listGroups: function(Client, types.ListGroupsInput, any): async.Operation<types.ListGroupsOutput>
-    listIdentityProviders: function(Client, types.ListIdentityProvidersInput, any): async.Operation<types.ListIdentityProvidersOutput>
-    listResourceServers: function(Client, types.ListResourceServersInput, any): async.Operation<types.ListResourceServersOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTerms: function(Client, types.ListTermsInput, any): async.Operation<types.ListTermsOutput>
-    listUserImportJobs: function(Client, types.ListUserImportJobsInput, any): async.Operation<types.ListUserImportJobsOutput>
-    listUserPoolClients: function(Client, types.ListUserPoolClientsInput, any): async.Operation<types.ListUserPoolClientsOutput>
-    listUserPoolClientSecrets: function(Client, types.ListUserPoolClientSecretsInput, any): async.Operation<types.ListUserPoolClientSecretsOutput>
-    listUserPools: function(Client, types.ListUserPoolsInput, any): async.Operation<types.ListUserPoolsOutput>
-    listUsers: function(Client, types.ListUsersInput, any): async.Operation<types.ListUsersOutput>
-    listUsersInGroup: function(Client, types.ListUsersInGroupInput, any): async.Operation<types.ListUsersInGroupOutput>
-    listWebAuthnCredentials: function(Client, types.ListWebAuthnCredentialsInput, any): async.Operation<types.ListWebAuthnCredentialsOutput>
-    resendConfirmationCode: function(Client, types.ResendConfirmationCodeInput, any): async.Operation<types.ResendConfirmationCodeOutput>
-    respondToAuthChallenge: function(Client, types.RespondToAuthChallengeInput, any): async.Operation<types.RespondToAuthChallengeOutput>
-    revokeToken: function(Client, types.RevokeTokenInput, any): async.Operation<types.RevokeTokenOutput>
-    setLogDeliveryConfiguration: function(Client, types.SetLogDeliveryConfigurationInput, any): async.Operation<types.SetLogDeliveryConfigurationOutput>
-    setRiskConfiguration: function(Client, types.SetRiskConfigurationInput, any): async.Operation<types.SetRiskConfigurationOutput>
-    setUICustomization: function(Client, types.SetUICustomizationInput, any): async.Operation<types.SetUICustomizationOutput>
-    setUserMFAPreference: function(Client, types.SetUserMFAPreferenceInput, any): async.Operation<types.SetUserMFAPreferenceOutput>
-    setUserPoolMfaConfig: function(Client, types.SetUserPoolMfaConfigInput, any): async.Operation<types.SetUserPoolMfaConfigOutput>
-    setUserSettings: function(Client, types.SetUserSettingsInput, any): async.Operation<types.SetUserSettingsOutput>
-    signUp: function(Client, types.SignUpInput, any): async.Operation<types.SignUpOutput>
-    startUserImportJob: function(Client, types.StartUserImportJobInput, any): async.Operation<types.StartUserImportJobOutput>
-    startWebAuthnRegistration: function(Client, types.StartWebAuthnRegistrationInput, any): async.Operation<types.StartWebAuthnRegistrationOutput>
-    stopUserImportJob: function(Client, types.StopUserImportJobInput, any): async.Operation<types.StopUserImportJobOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAuthEventFeedback: function(Client, types.UpdateAuthEventFeedbackInput, any): async.Operation<types.UpdateAuthEventFeedbackOutput>
-    updateDeviceStatus: function(Client, types.UpdateDeviceStatusInput, any): async.Operation<types.UpdateDeviceStatusOutput>
-    updateGroup: function(Client, types.UpdateGroupInput, any): async.Operation<types.UpdateGroupOutput>
-    updateIdentityProvider: function(Client, types.UpdateIdentityProviderInput, any): async.Operation<types.UpdateIdentityProviderOutput>
-    updateManagedLoginBranding: function(Client, types.UpdateManagedLoginBrandingInput, any): async.Operation<types.UpdateManagedLoginBrandingOutput>
-    updateResourceServer: function(Client, types.UpdateResourceServerInput, any): async.Operation<types.UpdateResourceServerOutput>
-    updateTerms: function(Client, types.UpdateTermsInput, any): async.Operation<types.UpdateTermsOutput>
-    updateUserAttributes: function(Client, types.UpdateUserAttributesInput, any): async.Operation<types.UpdateUserAttributesOutput>
-    updateUserPool: function(Client, types.UpdateUserPoolInput, any): async.Operation<types.UpdateUserPoolOutput>
-    updateUserPoolClient: function(Client, types.UpdateUserPoolClientInput, any): async.Operation<types.UpdateUserPoolClientOutput>
-    updateUserPoolDomain: function(Client, types.UpdateUserPoolDomainInput, any): async.Operation<types.UpdateUserPoolDomainOutput>
-    verifySoftwareToken: function(Client, types.VerifySoftwareTokenInput, any): async.Operation<types.VerifySoftwareTokenOutput>
-    verifyUserAttribute: function(Client, types.VerifyUserAttributeInput, any): async.Operation<types.VerifyUserAttributeOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    addCustomAttributes: function(Client, types.AddCustomAttributesInput, ? base_client.InvokeOptions): async.Operation<types.AddCustomAttributesOutput>
+    addUserPoolClientSecret: function(Client, types.AddUserPoolClientSecretInput, ? base_client.InvokeOptions): async.Operation<types.AddUserPoolClientSecretOutput>
+    adminAddUserToGroup: function(Client, types.AdminAddUserToGroupInput, ? base_client.InvokeOptions): async.Operation<types.AdminAddUserToGroupOutput>
+    adminConfirmSignUp: function(Client, types.AdminConfirmSignUpInput, ? base_client.InvokeOptions): async.Operation<types.AdminConfirmSignUpOutput>
+    adminCreateUser: function(Client, types.AdminCreateUserInput, ? base_client.InvokeOptions): async.Operation<types.AdminCreateUserOutput>
+    adminDeleteUser: function(Client, types.AdminDeleteUserInput, ? base_client.InvokeOptions): async.Operation<types.AdminDeleteUserOutput>
+    adminDeleteUserAttributes: function(Client, types.AdminDeleteUserAttributesInput, ? base_client.InvokeOptions): async.Operation<types.AdminDeleteUserAttributesOutput>
+    adminDisableProviderForUser: function(Client, types.AdminDisableProviderForUserInput, ? base_client.InvokeOptions): async.Operation<types.AdminDisableProviderForUserOutput>
+    adminDisableUser: function(Client, types.AdminDisableUserInput, ? base_client.InvokeOptions): async.Operation<types.AdminDisableUserOutput>
+    adminEnableUser: function(Client, types.AdminEnableUserInput, ? base_client.InvokeOptions): async.Operation<types.AdminEnableUserOutput>
+    adminForgetDevice: function(Client, types.AdminForgetDeviceInput, ? base_client.InvokeOptions): async.Operation<types.AdminForgetDeviceOutput>
+    adminGetDevice: function(Client, types.AdminGetDeviceInput, ? base_client.InvokeOptions): async.Operation<types.AdminGetDeviceOutput>
+    adminGetUser: function(Client, types.AdminGetUserInput, ? base_client.InvokeOptions): async.Operation<types.AdminGetUserOutput>
+    adminInitiateAuth: function(Client, types.AdminInitiateAuthInput, ? base_client.InvokeOptions): async.Operation<types.AdminInitiateAuthOutput>
+    adminLinkProviderForUser: function(Client, types.AdminLinkProviderForUserInput, ? base_client.InvokeOptions): async.Operation<types.AdminLinkProviderForUserOutput>
+    adminListDevices: function(Client, types.AdminListDevicesInput, ? base_client.InvokeOptions): async.Operation<types.AdminListDevicesOutput>
+    adminListGroupsForUser: function(Client, types.AdminListGroupsForUserInput, ? base_client.InvokeOptions): async.Operation<types.AdminListGroupsForUserOutput>
+    adminListUserAuthEvents: function(Client, types.AdminListUserAuthEventsInput, ? base_client.InvokeOptions): async.Operation<types.AdminListUserAuthEventsOutput>
+    adminRemoveUserFromGroup: function(Client, types.AdminRemoveUserFromGroupInput, ? base_client.InvokeOptions): async.Operation<types.AdminRemoveUserFromGroupOutput>
+    adminResetUserPassword: function(Client, types.AdminResetUserPasswordInput, ? base_client.InvokeOptions): async.Operation<types.AdminResetUserPasswordOutput>
+    adminRespondToAuthChallenge: function(Client, types.AdminRespondToAuthChallengeInput, ? base_client.InvokeOptions): async.Operation<types.AdminRespondToAuthChallengeOutput>
+    adminSetUserMFAPreference: function(Client, types.AdminSetUserMFAPreferenceInput, ? base_client.InvokeOptions): async.Operation<types.AdminSetUserMFAPreferenceOutput>
+    adminSetUserPassword: function(Client, types.AdminSetUserPasswordInput, ? base_client.InvokeOptions): async.Operation<types.AdminSetUserPasswordOutput>
+    adminSetUserSettings: function(Client, types.AdminSetUserSettingsInput, ? base_client.InvokeOptions): async.Operation<types.AdminSetUserSettingsOutput>
+    adminUpdateAuthEventFeedback: function(Client, types.AdminUpdateAuthEventFeedbackInput, ? base_client.InvokeOptions): async.Operation<types.AdminUpdateAuthEventFeedbackOutput>
+    adminUpdateDeviceStatus: function(Client, types.AdminUpdateDeviceStatusInput, ? base_client.InvokeOptions): async.Operation<types.AdminUpdateDeviceStatusOutput>
+    adminUpdateUserAttributes: function(Client, types.AdminUpdateUserAttributesInput, ? base_client.InvokeOptions): async.Operation<types.AdminUpdateUserAttributesOutput>
+    adminUserGlobalSignOut: function(Client, types.AdminUserGlobalSignOutInput, ? base_client.InvokeOptions): async.Operation<types.AdminUserGlobalSignOutOutput>
+    associateSoftwareToken: function(Client, types.AssociateSoftwareTokenInput, ? base_client.InvokeOptions): async.Operation<types.AssociateSoftwareTokenOutput>
+    changePassword: function(Client, types.ChangePasswordInput, ? base_client.InvokeOptions): async.Operation<types.ChangePasswordOutput>
+    completeWebAuthnRegistration: function(Client, types.CompleteWebAuthnRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.CompleteWebAuthnRegistrationOutput>
+    confirmDevice: function(Client, types.ConfirmDeviceInput, ? base_client.InvokeOptions): async.Operation<types.ConfirmDeviceOutput>
+    confirmForgotPassword: function(Client, types.ConfirmForgotPasswordInput, ? base_client.InvokeOptions): async.Operation<types.ConfirmForgotPasswordOutput>
+    confirmSignUp: function(Client, types.ConfirmSignUpInput, ? base_client.InvokeOptions): async.Operation<types.ConfirmSignUpOutput>
+    createGroup: function(Client, types.CreateGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateGroupOutput>
+    createIdentityProvider: function(Client, types.CreateIdentityProviderInput, ? base_client.InvokeOptions): async.Operation<types.CreateIdentityProviderOutput>
+    createManagedLoginBranding: function(Client, types.CreateManagedLoginBrandingInput, ? base_client.InvokeOptions): async.Operation<types.CreateManagedLoginBrandingOutput>
+    createResourceServer: function(Client, types.CreateResourceServerInput, ? base_client.InvokeOptions): async.Operation<types.CreateResourceServerOutput>
+    createTerms: function(Client, types.CreateTermsInput, ? base_client.InvokeOptions): async.Operation<types.CreateTermsOutput>
+    createUserImportJob: function(Client, types.CreateUserImportJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateUserImportJobOutput>
+    createUserPool: function(Client, types.CreateUserPoolInput, ? base_client.InvokeOptions): async.Operation<types.CreateUserPoolOutput>
+    createUserPoolClient: function(Client, types.CreateUserPoolClientInput, ? base_client.InvokeOptions): async.Operation<types.CreateUserPoolClientOutput>
+    createUserPoolDomain: function(Client, types.CreateUserPoolDomainInput, ? base_client.InvokeOptions): async.Operation<types.CreateUserPoolDomainOutput>
+    deleteGroup: function(Client, types.DeleteGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGroupOutput>
+    deleteIdentityProvider: function(Client, types.DeleteIdentityProviderInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIdentityProviderOutput>
+    deleteManagedLoginBranding: function(Client, types.DeleteManagedLoginBrandingInput, ? base_client.InvokeOptions): async.Operation<types.DeleteManagedLoginBrandingOutput>
+    deleteResourceServer: function(Client, types.DeleteResourceServerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourceServerOutput>
+    deleteTerms: function(Client, types.DeleteTermsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTermsOutput>
+    deleteUser: function(Client, types.DeleteUserInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUserOutput>
+    deleteUserAttributes: function(Client, types.DeleteUserAttributesInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUserAttributesOutput>
+    deleteUserPool: function(Client, types.DeleteUserPoolInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUserPoolOutput>
+    deleteUserPoolClient: function(Client, types.DeleteUserPoolClientInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUserPoolClientOutput>
+    deleteUserPoolClientSecret: function(Client, types.DeleteUserPoolClientSecretInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUserPoolClientSecretOutput>
+    deleteUserPoolDomain: function(Client, types.DeleteUserPoolDomainInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUserPoolDomainOutput>
+    deleteWebAuthnCredential: function(Client, types.DeleteWebAuthnCredentialInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWebAuthnCredentialOutput>
+    describeIdentityProvider: function(Client, types.DescribeIdentityProviderInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIdentityProviderOutput>
+    describeManagedLoginBranding: function(Client, types.DescribeManagedLoginBrandingInput, ? base_client.InvokeOptions): async.Operation<types.DescribeManagedLoginBrandingOutput>
+    describeManagedLoginBrandingByClient: function(Client, types.DescribeManagedLoginBrandingByClientInput, ? base_client.InvokeOptions): async.Operation<types.DescribeManagedLoginBrandingByClientOutput>
+    describeResourceServer: function(Client, types.DescribeResourceServerInput, ? base_client.InvokeOptions): async.Operation<types.DescribeResourceServerOutput>
+    describeRiskConfiguration: function(Client, types.DescribeRiskConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRiskConfigurationOutput>
+    describeTerms: function(Client, types.DescribeTermsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTermsOutput>
+    describeUserImportJob: function(Client, types.DescribeUserImportJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeUserImportJobOutput>
+    describeUserPool: function(Client, types.DescribeUserPoolInput, ? base_client.InvokeOptions): async.Operation<types.DescribeUserPoolOutput>
+    describeUserPoolClient: function(Client, types.DescribeUserPoolClientInput, ? base_client.InvokeOptions): async.Operation<types.DescribeUserPoolClientOutput>
+    describeUserPoolDomain: function(Client, types.DescribeUserPoolDomainInput, ? base_client.InvokeOptions): async.Operation<types.DescribeUserPoolDomainOutput>
+    forgetDevice: function(Client, types.ForgetDeviceInput, ? base_client.InvokeOptions): async.Operation<types.ForgetDeviceOutput>
+    forgotPassword: function(Client, types.ForgotPasswordInput, ? base_client.InvokeOptions): async.Operation<types.ForgotPasswordOutput>
+    getCSVHeader: function(Client, types.GetCSVHeaderInput, ? base_client.InvokeOptions): async.Operation<types.GetCSVHeaderOutput>
+    getDevice: function(Client, types.GetDeviceInput, ? base_client.InvokeOptions): async.Operation<types.GetDeviceOutput>
+    getGroup: function(Client, types.GetGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetGroupOutput>
+    getIdentityProviderByIdentifier: function(Client, types.GetIdentityProviderByIdentifierInput, ? base_client.InvokeOptions): async.Operation<types.GetIdentityProviderByIdentifierOutput>
+    getLogDeliveryConfiguration: function(Client, types.GetLogDeliveryConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetLogDeliveryConfigurationOutput>
+    getSigningCertificate: function(Client, types.GetSigningCertificateInput, ? base_client.InvokeOptions): async.Operation<types.GetSigningCertificateOutput>
+    getTokensFromRefreshToken: function(Client, types.GetTokensFromRefreshTokenInput, ? base_client.InvokeOptions): async.Operation<types.GetTokensFromRefreshTokenOutput>
+    getUICustomization: function(Client, types.GetUICustomizationInput, ? base_client.InvokeOptions): async.Operation<types.GetUICustomizationOutput>
+    getUser: function(Client, types.GetUserInput, ? base_client.InvokeOptions): async.Operation<types.GetUserOutput>
+    getUserAttributeVerificationCode: function(Client, types.GetUserAttributeVerificationCodeInput, ? base_client.InvokeOptions): async.Operation<types.GetUserAttributeVerificationCodeOutput>
+    getUserAuthFactors: function(Client, types.GetUserAuthFactorsInput, ? base_client.InvokeOptions): async.Operation<types.GetUserAuthFactorsOutput>
+    getUserPoolMfaConfig: function(Client, types.GetUserPoolMfaConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetUserPoolMfaConfigOutput>
+    globalSignOut: function(Client, types.GlobalSignOutInput, ? base_client.InvokeOptions): async.Operation<types.GlobalSignOutOutput>
+    initiateAuth: function(Client, types.InitiateAuthInput, ? base_client.InvokeOptions): async.Operation<types.InitiateAuthOutput>
+    listDevices: function(Client, types.ListDevicesInput, ? base_client.InvokeOptions): async.Operation<types.ListDevicesOutput>
+    listGroups: function(Client, types.ListGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListGroupsOutput>
+    listIdentityProviders: function(Client, types.ListIdentityProvidersInput, ? base_client.InvokeOptions): async.Operation<types.ListIdentityProvidersOutput>
+    listResourceServers: function(Client, types.ListResourceServersInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceServersOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTerms: function(Client, types.ListTermsInput, ? base_client.InvokeOptions): async.Operation<types.ListTermsOutput>
+    listUserImportJobs: function(Client, types.ListUserImportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListUserImportJobsOutput>
+    listUserPoolClients: function(Client, types.ListUserPoolClientsInput, ? base_client.InvokeOptions): async.Operation<types.ListUserPoolClientsOutput>
+    listUserPoolClientSecrets: function(Client, types.ListUserPoolClientSecretsInput, ? base_client.InvokeOptions): async.Operation<types.ListUserPoolClientSecretsOutput>
+    listUserPools: function(Client, types.ListUserPoolsInput, ? base_client.InvokeOptions): async.Operation<types.ListUserPoolsOutput>
+    listUsers: function(Client, types.ListUsersInput, ? base_client.InvokeOptions): async.Operation<types.ListUsersOutput>
+    listUsersInGroup: function(Client, types.ListUsersInGroupInput, ? base_client.InvokeOptions): async.Operation<types.ListUsersInGroupOutput>
+    listWebAuthnCredentials: function(Client, types.ListWebAuthnCredentialsInput, ? base_client.InvokeOptions): async.Operation<types.ListWebAuthnCredentialsOutput>
+    resendConfirmationCode: function(Client, types.ResendConfirmationCodeInput, ? base_client.InvokeOptions): async.Operation<types.ResendConfirmationCodeOutput>
+    respondToAuthChallenge: function(Client, types.RespondToAuthChallengeInput, ? base_client.InvokeOptions): async.Operation<types.RespondToAuthChallengeOutput>
+    revokeToken: function(Client, types.RevokeTokenInput, ? base_client.InvokeOptions): async.Operation<types.RevokeTokenOutput>
+    setLogDeliveryConfiguration: function(Client, types.SetLogDeliveryConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.SetLogDeliveryConfigurationOutput>
+    setRiskConfiguration: function(Client, types.SetRiskConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.SetRiskConfigurationOutput>
+    setUICustomization: function(Client, types.SetUICustomizationInput, ? base_client.InvokeOptions): async.Operation<types.SetUICustomizationOutput>
+    setUserMFAPreference: function(Client, types.SetUserMFAPreferenceInput, ? base_client.InvokeOptions): async.Operation<types.SetUserMFAPreferenceOutput>
+    setUserPoolMfaConfig: function(Client, types.SetUserPoolMfaConfigInput, ? base_client.InvokeOptions): async.Operation<types.SetUserPoolMfaConfigOutput>
+    setUserSettings: function(Client, types.SetUserSettingsInput, ? base_client.InvokeOptions): async.Operation<types.SetUserSettingsOutput>
+    signUp: function(Client, types.SignUpInput, ? base_client.InvokeOptions): async.Operation<types.SignUpOutput>
+    startUserImportJob: function(Client, types.StartUserImportJobInput, ? base_client.InvokeOptions): async.Operation<types.StartUserImportJobOutput>
+    startWebAuthnRegistration: function(Client, types.StartWebAuthnRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.StartWebAuthnRegistrationOutput>
+    stopUserImportJob: function(Client, types.StopUserImportJobInput, ? base_client.InvokeOptions): async.Operation<types.StopUserImportJobOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAuthEventFeedback: function(Client, types.UpdateAuthEventFeedbackInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAuthEventFeedbackOutput>
+    updateDeviceStatus: function(Client, types.UpdateDeviceStatusInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDeviceStatusOutput>
+    updateGroup: function(Client, types.UpdateGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGroupOutput>
+    updateIdentityProvider: function(Client, types.UpdateIdentityProviderInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIdentityProviderOutput>
+    updateManagedLoginBranding: function(Client, types.UpdateManagedLoginBrandingInput, ? base_client.InvokeOptions): async.Operation<types.UpdateManagedLoginBrandingOutput>
+    updateResourceServer: function(Client, types.UpdateResourceServerInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResourceServerOutput>
+    updateTerms: function(Client, types.UpdateTermsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTermsOutput>
+    updateUserAttributes: function(Client, types.UpdateUserAttributesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateUserAttributesOutput>
+    updateUserPool: function(Client, types.UpdateUserPoolInput, ? base_client.InvokeOptions): async.Operation<types.UpdateUserPoolOutput>
+    updateUserPoolClient: function(Client, types.UpdateUserPoolClientInput, ? base_client.InvokeOptions): async.Operation<types.UpdateUserPoolClientOutput>
+    updateUserPoolDomain: function(Client, types.UpdateUserPoolDomainInput, ? base_client.InvokeOptions): async.Operation<types.UpdateUserPoolDomainOutput>
+    verifySoftwareToken: function(Client, types.VerifySoftwareTokenInput, ? base_client.InvokeOptions): async.Operation<types.VerifySoftwareTokenOutput>
+    verifyUserAttribute: function(Client, types.VerifyUserAttributeInput, ? base_client.InvokeOptions): async.Operation<types.VerifyUserAttributeOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSCognitoIdentityProviderService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "cognito-idp", signing_region = c.region } }
                 else
@@ -181,492 +184,492 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:addCustomAttributes(input: types.AddCustomAttributesInput, options: any): async.Operation<types.AddCustomAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddCustomAttributes, input, options) as async.Operation<types.AddCustomAttributesOutput>
+function C:addCustomAttributes(input: types.AddCustomAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.AddCustomAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddCustomAttributes as schema.OperationSchema, input, options) as async.Operation<types.AddCustomAttributesOutput>
 end
 
-function C:addUserPoolClientSecret(input: types.AddUserPoolClientSecretInput, options: any): async.Operation<types.AddUserPoolClientSecretOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddUserPoolClientSecret, input, options) as async.Operation<types.AddUserPoolClientSecretOutput>
+function C:addUserPoolClientSecret(input: types.AddUserPoolClientSecretInput, options?: base_client.InvokeOptions): async.Operation<types.AddUserPoolClientSecretOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddUserPoolClientSecret as schema.OperationSchema, input, options) as async.Operation<types.AddUserPoolClientSecretOutput>
 end
 
-function C:adminAddUserToGroup(input: types.AdminAddUserToGroupInput, options: any): async.Operation<types.AdminAddUserToGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdminAddUserToGroup, input, options) as async.Operation<types.AdminAddUserToGroupOutput>
+function C:adminAddUserToGroup(input: types.AdminAddUserToGroupInput, options?: base_client.InvokeOptions): async.Operation<types.AdminAddUserToGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminAddUserToGroup as schema.OperationSchema, input, options) as async.Operation<types.AdminAddUserToGroupOutput>
 end
 
-function C:adminConfirmSignUp(input: types.AdminConfirmSignUpInput, options: any): async.Operation<types.AdminConfirmSignUpOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdminConfirmSignUp, input, options) as async.Operation<types.AdminConfirmSignUpOutput>
+function C:adminConfirmSignUp(input: types.AdminConfirmSignUpInput, options?: base_client.InvokeOptions): async.Operation<types.AdminConfirmSignUpOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminConfirmSignUp as schema.OperationSchema, input, options) as async.Operation<types.AdminConfirmSignUpOutput>
 end
 
-function C:adminCreateUser(input: types.AdminCreateUserInput, options: any): async.Operation<types.AdminCreateUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdminCreateUser, input, options) as async.Operation<types.AdminCreateUserOutput>
+function C:adminCreateUser(input: types.AdminCreateUserInput, options?: base_client.InvokeOptions): async.Operation<types.AdminCreateUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminCreateUser as schema.OperationSchema, input, options) as async.Operation<types.AdminCreateUserOutput>
 end
 
-function C:adminDeleteUser(input: types.AdminDeleteUserInput, options: any): async.Operation<types.AdminDeleteUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdminDeleteUser, input, options) as async.Operation<types.AdminDeleteUserOutput>
+function C:adminDeleteUser(input: types.AdminDeleteUserInput, options?: base_client.InvokeOptions): async.Operation<types.AdminDeleteUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminDeleteUser as schema.OperationSchema, input, options) as async.Operation<types.AdminDeleteUserOutput>
 end
 
-function C:adminDeleteUserAttributes(input: types.AdminDeleteUserAttributesInput, options: any): async.Operation<types.AdminDeleteUserAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdminDeleteUserAttributes, input, options) as async.Operation<types.AdminDeleteUserAttributesOutput>
+function C:adminDeleteUserAttributes(input: types.AdminDeleteUserAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.AdminDeleteUserAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminDeleteUserAttributes as schema.OperationSchema, input, options) as async.Operation<types.AdminDeleteUserAttributesOutput>
 end
 
-function C:adminDisableProviderForUser(input: types.AdminDisableProviderForUserInput, options: any): async.Operation<types.AdminDisableProviderForUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdminDisableProviderForUser, input, options) as async.Operation<types.AdminDisableProviderForUserOutput>
+function C:adminDisableProviderForUser(input: types.AdminDisableProviderForUserInput, options?: base_client.InvokeOptions): async.Operation<types.AdminDisableProviderForUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminDisableProviderForUser as schema.OperationSchema, input, options) as async.Operation<types.AdminDisableProviderForUserOutput>
 end
 
-function C:adminDisableUser(input: types.AdminDisableUserInput, options: any): async.Operation<types.AdminDisableUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdminDisableUser, input, options) as async.Operation<types.AdminDisableUserOutput>
+function C:adminDisableUser(input: types.AdminDisableUserInput, options?: base_client.InvokeOptions): async.Operation<types.AdminDisableUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminDisableUser as schema.OperationSchema, input, options) as async.Operation<types.AdminDisableUserOutput>
 end
 
-function C:adminEnableUser(input: types.AdminEnableUserInput, options: any): async.Operation<types.AdminEnableUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdminEnableUser, input, options) as async.Operation<types.AdminEnableUserOutput>
+function C:adminEnableUser(input: types.AdminEnableUserInput, options?: base_client.InvokeOptions): async.Operation<types.AdminEnableUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminEnableUser as schema.OperationSchema, input, options) as async.Operation<types.AdminEnableUserOutput>
 end
 
-function C:adminForgetDevice(input: types.AdminForgetDeviceInput, options: any): async.Operation<types.AdminForgetDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdminForgetDevice, input, options) as async.Operation<types.AdminForgetDeviceOutput>
+function C:adminForgetDevice(input: types.AdminForgetDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.AdminForgetDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminForgetDevice as schema.OperationSchema, input, options) as async.Operation<types.AdminForgetDeviceOutput>
 end
 
-function C:adminGetDevice(input: types.AdminGetDeviceInput, options: any): async.Operation<types.AdminGetDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdminGetDevice, input, options) as async.Operation<types.AdminGetDeviceOutput>
+function C:adminGetDevice(input: types.AdminGetDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.AdminGetDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminGetDevice as schema.OperationSchema, input, options) as async.Operation<types.AdminGetDeviceOutput>
 end
 
-function C:adminGetUser(input: types.AdminGetUserInput, options: any): async.Operation<types.AdminGetUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdminGetUser, input, options) as async.Operation<types.AdminGetUserOutput>
+function C:adminGetUser(input: types.AdminGetUserInput, options?: base_client.InvokeOptions): async.Operation<types.AdminGetUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminGetUser as schema.OperationSchema, input, options) as async.Operation<types.AdminGetUserOutput>
 end
 
-function C:adminInitiateAuth(input: types.AdminInitiateAuthInput, options: any): async.Operation<types.AdminInitiateAuthOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdminInitiateAuth, input, options) as async.Operation<types.AdminInitiateAuthOutput>
+function C:adminInitiateAuth(input: types.AdminInitiateAuthInput, options?: base_client.InvokeOptions): async.Operation<types.AdminInitiateAuthOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminInitiateAuth as schema.OperationSchema, input, options) as async.Operation<types.AdminInitiateAuthOutput>
 end
 
-function C:adminLinkProviderForUser(input: types.AdminLinkProviderForUserInput, options: any): async.Operation<types.AdminLinkProviderForUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdminLinkProviderForUser, input, options) as async.Operation<types.AdminLinkProviderForUserOutput>
+function C:adminLinkProviderForUser(input: types.AdminLinkProviderForUserInput, options?: base_client.InvokeOptions): async.Operation<types.AdminLinkProviderForUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminLinkProviderForUser as schema.OperationSchema, input, options) as async.Operation<types.AdminLinkProviderForUserOutput>
 end
 
-function C:adminListDevices(input: types.AdminListDevicesInput, options: any): async.Operation<types.AdminListDevicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdminListDevices, input, options) as async.Operation<types.AdminListDevicesOutput>
+function C:adminListDevices(input: types.AdminListDevicesInput, options?: base_client.InvokeOptions): async.Operation<types.AdminListDevicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminListDevices as schema.OperationSchema, input, options) as async.Operation<types.AdminListDevicesOutput>
 end
 
-function C:adminListGroupsForUser(input: types.AdminListGroupsForUserInput, options: any): async.Operation<types.AdminListGroupsForUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdminListGroupsForUser, input, options) as async.Operation<types.AdminListGroupsForUserOutput>
+function C:adminListGroupsForUser(input: types.AdminListGroupsForUserInput, options?: base_client.InvokeOptions): async.Operation<types.AdminListGroupsForUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminListGroupsForUser as schema.OperationSchema, input, options) as async.Operation<types.AdminListGroupsForUserOutput>
 end
 
-function C:adminListUserAuthEvents(input: types.AdminListUserAuthEventsInput, options: any): async.Operation<types.AdminListUserAuthEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdminListUserAuthEvents, input, options) as async.Operation<types.AdminListUserAuthEventsOutput>
+function C:adminListUserAuthEvents(input: types.AdminListUserAuthEventsInput, options?: base_client.InvokeOptions): async.Operation<types.AdminListUserAuthEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminListUserAuthEvents as schema.OperationSchema, input, options) as async.Operation<types.AdminListUserAuthEventsOutput>
 end
 
-function C:adminRemoveUserFromGroup(input: types.AdminRemoveUserFromGroupInput, options: any): async.Operation<types.AdminRemoveUserFromGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdminRemoveUserFromGroup, input, options) as async.Operation<types.AdminRemoveUserFromGroupOutput>
+function C:adminRemoveUserFromGroup(input: types.AdminRemoveUserFromGroupInput, options?: base_client.InvokeOptions): async.Operation<types.AdminRemoveUserFromGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminRemoveUserFromGroup as schema.OperationSchema, input, options) as async.Operation<types.AdminRemoveUserFromGroupOutput>
 end
 
-function C:adminResetUserPassword(input: types.AdminResetUserPasswordInput, options: any): async.Operation<types.AdminResetUserPasswordOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdminResetUserPassword, input, options) as async.Operation<types.AdminResetUserPasswordOutput>
+function C:adminResetUserPassword(input: types.AdminResetUserPasswordInput, options?: base_client.InvokeOptions): async.Operation<types.AdminResetUserPasswordOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminResetUserPassword as schema.OperationSchema, input, options) as async.Operation<types.AdminResetUserPasswordOutput>
 end
 
-function C:adminRespondToAuthChallenge(input: types.AdminRespondToAuthChallengeInput, options: any): async.Operation<types.AdminRespondToAuthChallengeOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdminRespondToAuthChallenge, input, options) as async.Operation<types.AdminRespondToAuthChallengeOutput>
+function C:adminRespondToAuthChallenge(input: types.AdminRespondToAuthChallengeInput, options?: base_client.InvokeOptions): async.Operation<types.AdminRespondToAuthChallengeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminRespondToAuthChallenge as schema.OperationSchema, input, options) as async.Operation<types.AdminRespondToAuthChallengeOutput>
 end
 
-function C:adminSetUserMFAPreference(input: types.AdminSetUserMFAPreferenceInput, options: any): async.Operation<types.AdminSetUserMFAPreferenceOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdminSetUserMFAPreference, input, options) as async.Operation<types.AdminSetUserMFAPreferenceOutput>
+function C:adminSetUserMFAPreference(input: types.AdminSetUserMFAPreferenceInput, options?: base_client.InvokeOptions): async.Operation<types.AdminSetUserMFAPreferenceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminSetUserMFAPreference as schema.OperationSchema, input, options) as async.Operation<types.AdminSetUserMFAPreferenceOutput>
 end
 
-function C:adminSetUserPassword(input: types.AdminSetUserPasswordInput, options: any): async.Operation<types.AdminSetUserPasswordOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdminSetUserPassword, input, options) as async.Operation<types.AdminSetUserPasswordOutput>
+function C:adminSetUserPassword(input: types.AdminSetUserPasswordInput, options?: base_client.InvokeOptions): async.Operation<types.AdminSetUserPasswordOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminSetUserPassword as schema.OperationSchema, input, options) as async.Operation<types.AdminSetUserPasswordOutput>
 end
 
-function C:adminSetUserSettings(input: types.AdminSetUserSettingsInput, options: any): async.Operation<types.AdminSetUserSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdminSetUserSettings, input, options) as async.Operation<types.AdminSetUserSettingsOutput>
+function C:adminSetUserSettings(input: types.AdminSetUserSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.AdminSetUserSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminSetUserSettings as schema.OperationSchema, input, options) as async.Operation<types.AdminSetUserSettingsOutput>
 end
 
-function C:adminUpdateAuthEventFeedback(input: types.AdminUpdateAuthEventFeedbackInput, options: any): async.Operation<types.AdminUpdateAuthEventFeedbackOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdminUpdateAuthEventFeedback, input, options) as async.Operation<types.AdminUpdateAuthEventFeedbackOutput>
+function C:adminUpdateAuthEventFeedback(input: types.AdminUpdateAuthEventFeedbackInput, options?: base_client.InvokeOptions): async.Operation<types.AdminUpdateAuthEventFeedbackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminUpdateAuthEventFeedback as schema.OperationSchema, input, options) as async.Operation<types.AdminUpdateAuthEventFeedbackOutput>
 end
 
-function C:adminUpdateDeviceStatus(input: types.AdminUpdateDeviceStatusInput, options: any): async.Operation<types.AdminUpdateDeviceStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdminUpdateDeviceStatus, input, options) as async.Operation<types.AdminUpdateDeviceStatusOutput>
+function C:adminUpdateDeviceStatus(input: types.AdminUpdateDeviceStatusInput, options?: base_client.InvokeOptions): async.Operation<types.AdminUpdateDeviceStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminUpdateDeviceStatus as schema.OperationSchema, input, options) as async.Operation<types.AdminUpdateDeviceStatusOutput>
 end
 
-function C:adminUpdateUserAttributes(input: types.AdminUpdateUserAttributesInput, options: any): async.Operation<types.AdminUpdateUserAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdminUpdateUserAttributes, input, options) as async.Operation<types.AdminUpdateUserAttributesOutput>
+function C:adminUpdateUserAttributes(input: types.AdminUpdateUserAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.AdminUpdateUserAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminUpdateUserAttributes as schema.OperationSchema, input, options) as async.Operation<types.AdminUpdateUserAttributesOutput>
 end
 
-function C:adminUserGlobalSignOut(input: types.AdminUserGlobalSignOutInput, options: any): async.Operation<types.AdminUserGlobalSignOutOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdminUserGlobalSignOut, input, options) as async.Operation<types.AdminUserGlobalSignOutOutput>
+function C:adminUserGlobalSignOut(input: types.AdminUserGlobalSignOutInput, options?: base_client.InvokeOptions): async.Operation<types.AdminUserGlobalSignOutOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminUserGlobalSignOut as schema.OperationSchema, input, options) as async.Operation<types.AdminUserGlobalSignOutOutput>
 end
 
-function C:associateSoftwareToken(input: types.AssociateSoftwareTokenInput, options: any): async.Operation<types.AssociateSoftwareTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateSoftwareToken, input, options) as async.Operation<types.AssociateSoftwareTokenOutput>
+function C:associateSoftwareToken(input: types.AssociateSoftwareTokenInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateSoftwareTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateSoftwareToken as schema.OperationSchema, input, options) as async.Operation<types.AssociateSoftwareTokenOutput>
 end
 
-function C:changePassword(input: types.ChangePasswordInput, options: any): async.Operation<types.ChangePasswordOutput>
-    return self:invokeOperation(schemas.Service, schemas.ChangePassword, input, options) as async.Operation<types.ChangePasswordOutput>
+function C:changePassword(input: types.ChangePasswordInput, options?: base_client.InvokeOptions): async.Operation<types.ChangePasswordOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ChangePassword as schema.OperationSchema, input, options) as async.Operation<types.ChangePasswordOutput>
 end
 
-function C:completeWebAuthnRegistration(input: types.CompleteWebAuthnRegistrationInput, options: any): async.Operation<types.CompleteWebAuthnRegistrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CompleteWebAuthnRegistration, input, options) as async.Operation<types.CompleteWebAuthnRegistrationOutput>
+function C:completeWebAuthnRegistration(input: types.CompleteWebAuthnRegistrationInput, options?: base_client.InvokeOptions): async.Operation<types.CompleteWebAuthnRegistrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CompleteWebAuthnRegistration as schema.OperationSchema, input, options) as async.Operation<types.CompleteWebAuthnRegistrationOutput>
 end
 
-function C:confirmDevice(input: types.ConfirmDeviceInput, options: any): async.Operation<types.ConfirmDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ConfirmDevice, input, options) as async.Operation<types.ConfirmDeviceOutput>
+function C:confirmDevice(input: types.ConfirmDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.ConfirmDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ConfirmDevice as schema.OperationSchema, input, options) as async.Operation<types.ConfirmDeviceOutput>
 end
 
-function C:confirmForgotPassword(input: types.ConfirmForgotPasswordInput, options: any): async.Operation<types.ConfirmForgotPasswordOutput>
-    return self:invokeOperation(schemas.Service, schemas.ConfirmForgotPassword, input, options) as async.Operation<types.ConfirmForgotPasswordOutput>
+function C:confirmForgotPassword(input: types.ConfirmForgotPasswordInput, options?: base_client.InvokeOptions): async.Operation<types.ConfirmForgotPasswordOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ConfirmForgotPassword as schema.OperationSchema, input, options) as async.Operation<types.ConfirmForgotPasswordOutput>
 end
 
-function C:confirmSignUp(input: types.ConfirmSignUpInput, options: any): async.Operation<types.ConfirmSignUpOutput>
-    return self:invokeOperation(schemas.Service, schemas.ConfirmSignUp, input, options) as async.Operation<types.ConfirmSignUpOutput>
+function C:confirmSignUp(input: types.ConfirmSignUpInput, options?: base_client.InvokeOptions): async.Operation<types.ConfirmSignUpOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ConfirmSignUp as schema.OperationSchema, input, options) as async.Operation<types.ConfirmSignUpOutput>
 end
 
-function C:createGroup(input: types.CreateGroupInput, options: any): async.Operation<types.CreateGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateGroup, input, options) as async.Operation<types.CreateGroupOutput>
+function C:createGroup(input: types.CreateGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateGroupOutput>
 end
 
-function C:createIdentityProvider(input: types.CreateIdentityProviderInput, options: any): async.Operation<types.CreateIdentityProviderOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIdentityProvider, input, options) as async.Operation<types.CreateIdentityProviderOutput>
+function C:createIdentityProvider(input: types.CreateIdentityProviderInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIdentityProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIdentityProvider as schema.OperationSchema, input, options) as async.Operation<types.CreateIdentityProviderOutput>
 end
 
-function C:createManagedLoginBranding(input: types.CreateManagedLoginBrandingInput, options: any): async.Operation<types.CreateManagedLoginBrandingOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateManagedLoginBranding, input, options) as async.Operation<types.CreateManagedLoginBrandingOutput>
+function C:createManagedLoginBranding(input: types.CreateManagedLoginBrandingInput, options?: base_client.InvokeOptions): async.Operation<types.CreateManagedLoginBrandingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateManagedLoginBranding as schema.OperationSchema, input, options) as async.Operation<types.CreateManagedLoginBrandingOutput>
 end
 
-function C:createResourceServer(input: types.CreateResourceServerInput, options: any): async.Operation<types.CreateResourceServerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateResourceServer, input, options) as async.Operation<types.CreateResourceServerOutput>
+function C:createResourceServer(input: types.CreateResourceServerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateResourceServerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateResourceServer as schema.OperationSchema, input, options) as async.Operation<types.CreateResourceServerOutput>
 end
 
-function C:createTerms(input: types.CreateTermsInput, options: any): async.Operation<types.CreateTermsOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTerms, input, options) as async.Operation<types.CreateTermsOutput>
+function C:createTerms(input: types.CreateTermsInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTermsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTerms as schema.OperationSchema, input, options) as async.Operation<types.CreateTermsOutput>
 end
 
-function C:createUserImportJob(input: types.CreateUserImportJobInput, options: any): async.Operation<types.CreateUserImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateUserImportJob, input, options) as async.Operation<types.CreateUserImportJobOutput>
+function C:createUserImportJob(input: types.CreateUserImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateUserImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateUserImportJob as schema.OperationSchema, input, options) as async.Operation<types.CreateUserImportJobOutput>
 end
 
-function C:createUserPool(input: types.CreateUserPoolInput, options: any): async.Operation<types.CreateUserPoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateUserPool, input, options) as async.Operation<types.CreateUserPoolOutput>
+function C:createUserPool(input: types.CreateUserPoolInput, options?: base_client.InvokeOptions): async.Operation<types.CreateUserPoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateUserPool as schema.OperationSchema, input, options) as async.Operation<types.CreateUserPoolOutput>
 end
 
-function C:createUserPoolClient(input: types.CreateUserPoolClientInput, options: any): async.Operation<types.CreateUserPoolClientOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateUserPoolClient, input, options) as async.Operation<types.CreateUserPoolClientOutput>
+function C:createUserPoolClient(input: types.CreateUserPoolClientInput, options?: base_client.InvokeOptions): async.Operation<types.CreateUserPoolClientOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateUserPoolClient as schema.OperationSchema, input, options) as async.Operation<types.CreateUserPoolClientOutput>
 end
 
-function C:createUserPoolDomain(input: types.CreateUserPoolDomainInput, options: any): async.Operation<types.CreateUserPoolDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateUserPoolDomain, input, options) as async.Operation<types.CreateUserPoolDomainOutput>
+function C:createUserPoolDomain(input: types.CreateUserPoolDomainInput, options?: base_client.InvokeOptions): async.Operation<types.CreateUserPoolDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateUserPoolDomain as schema.OperationSchema, input, options) as async.Operation<types.CreateUserPoolDomainOutput>
 end
 
-function C:deleteGroup(input: types.DeleteGroupInput, options: any): async.Operation<types.DeleteGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteGroup, input, options) as async.Operation<types.DeleteGroupOutput>
+function C:deleteGroup(input: types.DeleteGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteGroupOutput>
 end
 
-function C:deleteIdentityProvider(input: types.DeleteIdentityProviderInput, options: any): async.Operation<types.DeleteIdentityProviderOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIdentityProvider, input, options) as async.Operation<types.DeleteIdentityProviderOutput>
+function C:deleteIdentityProvider(input: types.DeleteIdentityProviderInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIdentityProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIdentityProvider as schema.OperationSchema, input, options) as async.Operation<types.DeleteIdentityProviderOutput>
 end
 
-function C:deleteManagedLoginBranding(input: types.DeleteManagedLoginBrandingInput, options: any): async.Operation<types.DeleteManagedLoginBrandingOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteManagedLoginBranding, input, options) as async.Operation<types.DeleteManagedLoginBrandingOutput>
+function C:deleteManagedLoginBranding(input: types.DeleteManagedLoginBrandingInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteManagedLoginBrandingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteManagedLoginBranding as schema.OperationSchema, input, options) as async.Operation<types.DeleteManagedLoginBrandingOutput>
 end
 
-function C:deleteResourceServer(input: types.DeleteResourceServerInput, options: any): async.Operation<types.DeleteResourceServerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourceServer, input, options) as async.Operation<types.DeleteResourceServerOutput>
+function C:deleteResourceServer(input: types.DeleteResourceServerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourceServerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourceServer as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourceServerOutput>
 end
 
-function C:deleteTerms(input: types.DeleteTermsInput, options: any): async.Operation<types.DeleteTermsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTerms, input, options) as async.Operation<types.DeleteTermsOutput>
+function C:deleteTerms(input: types.DeleteTermsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTermsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTerms as schema.OperationSchema, input, options) as async.Operation<types.DeleteTermsOutput>
 end
 
-function C:deleteUser(input: types.DeleteUserInput, options: any): async.Operation<types.DeleteUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteUser, input, options) as async.Operation<types.DeleteUserOutput>
+function C:deleteUser(input: types.DeleteUserInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteUser as schema.OperationSchema, input, options) as async.Operation<types.DeleteUserOutput>
 end
 
-function C:deleteUserAttributes(input: types.DeleteUserAttributesInput, options: any): async.Operation<types.DeleteUserAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteUserAttributes, input, options) as async.Operation<types.DeleteUserAttributesOutput>
+function C:deleteUserAttributes(input: types.DeleteUserAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteUserAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteUserAttributes as schema.OperationSchema, input, options) as async.Operation<types.DeleteUserAttributesOutput>
 end
 
-function C:deleteUserPool(input: types.DeleteUserPoolInput, options: any): async.Operation<types.DeleteUserPoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteUserPool, input, options) as async.Operation<types.DeleteUserPoolOutput>
+function C:deleteUserPool(input: types.DeleteUserPoolInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteUserPoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteUserPool as schema.OperationSchema, input, options) as async.Operation<types.DeleteUserPoolOutput>
 end
 
-function C:deleteUserPoolClient(input: types.DeleteUserPoolClientInput, options: any): async.Operation<types.DeleteUserPoolClientOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteUserPoolClient, input, options) as async.Operation<types.DeleteUserPoolClientOutput>
+function C:deleteUserPoolClient(input: types.DeleteUserPoolClientInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteUserPoolClientOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteUserPoolClient as schema.OperationSchema, input, options) as async.Operation<types.DeleteUserPoolClientOutput>
 end
 
-function C:deleteUserPoolClientSecret(input: types.DeleteUserPoolClientSecretInput, options: any): async.Operation<types.DeleteUserPoolClientSecretOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteUserPoolClientSecret, input, options) as async.Operation<types.DeleteUserPoolClientSecretOutput>
+function C:deleteUserPoolClientSecret(input: types.DeleteUserPoolClientSecretInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteUserPoolClientSecretOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteUserPoolClientSecret as schema.OperationSchema, input, options) as async.Operation<types.DeleteUserPoolClientSecretOutput>
 end
 
-function C:deleteUserPoolDomain(input: types.DeleteUserPoolDomainInput, options: any): async.Operation<types.DeleteUserPoolDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteUserPoolDomain, input, options) as async.Operation<types.DeleteUserPoolDomainOutput>
+function C:deleteUserPoolDomain(input: types.DeleteUserPoolDomainInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteUserPoolDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteUserPoolDomain as schema.OperationSchema, input, options) as async.Operation<types.DeleteUserPoolDomainOutput>
 end
 
-function C:deleteWebAuthnCredential(input: types.DeleteWebAuthnCredentialInput, options: any): async.Operation<types.DeleteWebAuthnCredentialOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWebAuthnCredential, input, options) as async.Operation<types.DeleteWebAuthnCredentialOutput>
+function C:deleteWebAuthnCredential(input: types.DeleteWebAuthnCredentialInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWebAuthnCredentialOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWebAuthnCredential as schema.OperationSchema, input, options) as async.Operation<types.DeleteWebAuthnCredentialOutput>
 end
 
-function C:describeIdentityProvider(input: types.DescribeIdentityProviderInput, options: any): async.Operation<types.DescribeIdentityProviderOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeIdentityProvider, input, options) as async.Operation<types.DescribeIdentityProviderOutput>
+function C:describeIdentityProvider(input: types.DescribeIdentityProviderInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIdentityProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIdentityProvider as schema.OperationSchema, input, options) as async.Operation<types.DescribeIdentityProviderOutput>
 end
 
-function C:describeManagedLoginBranding(input: types.DescribeManagedLoginBrandingInput, options: any): async.Operation<types.DescribeManagedLoginBrandingOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeManagedLoginBranding, input, options) as async.Operation<types.DescribeManagedLoginBrandingOutput>
+function C:describeManagedLoginBranding(input: types.DescribeManagedLoginBrandingInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeManagedLoginBrandingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeManagedLoginBranding as schema.OperationSchema, input, options) as async.Operation<types.DescribeManagedLoginBrandingOutput>
 end
 
-function C:describeManagedLoginBrandingByClient(input: types.DescribeManagedLoginBrandingByClientInput, options: any): async.Operation<types.DescribeManagedLoginBrandingByClientOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeManagedLoginBrandingByClient, input, options) as async.Operation<types.DescribeManagedLoginBrandingByClientOutput>
+function C:describeManagedLoginBrandingByClient(input: types.DescribeManagedLoginBrandingByClientInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeManagedLoginBrandingByClientOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeManagedLoginBrandingByClient as schema.OperationSchema, input, options) as async.Operation<types.DescribeManagedLoginBrandingByClientOutput>
 end
 
-function C:describeResourceServer(input: types.DescribeResourceServerInput, options: any): async.Operation<types.DescribeResourceServerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeResourceServer, input, options) as async.Operation<types.DescribeResourceServerOutput>
+function C:describeResourceServer(input: types.DescribeResourceServerInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeResourceServerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeResourceServer as schema.OperationSchema, input, options) as async.Operation<types.DescribeResourceServerOutput>
 end
 
-function C:describeRiskConfiguration(input: types.DescribeRiskConfigurationInput, options: any): async.Operation<types.DescribeRiskConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRiskConfiguration, input, options) as async.Operation<types.DescribeRiskConfigurationOutput>
+function C:describeRiskConfiguration(input: types.DescribeRiskConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRiskConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRiskConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeRiskConfigurationOutput>
 end
 
-function C:describeTerms(input: types.DescribeTermsInput, options: any): async.Operation<types.DescribeTermsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTerms, input, options) as async.Operation<types.DescribeTermsOutput>
+function C:describeTerms(input: types.DescribeTermsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTermsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTerms as schema.OperationSchema, input, options) as async.Operation<types.DescribeTermsOutput>
 end
 
-function C:describeUserImportJob(input: types.DescribeUserImportJobInput, options: any): async.Operation<types.DescribeUserImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeUserImportJob, input, options) as async.Operation<types.DescribeUserImportJobOutput>
+function C:describeUserImportJob(input: types.DescribeUserImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeUserImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeUserImportJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeUserImportJobOutput>
 end
 
-function C:describeUserPool(input: types.DescribeUserPoolInput, options: any): async.Operation<types.DescribeUserPoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeUserPool, input, options) as async.Operation<types.DescribeUserPoolOutput>
+function C:describeUserPool(input: types.DescribeUserPoolInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeUserPoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeUserPool as schema.OperationSchema, input, options) as async.Operation<types.DescribeUserPoolOutput>
 end
 
-function C:describeUserPoolClient(input: types.DescribeUserPoolClientInput, options: any): async.Operation<types.DescribeUserPoolClientOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeUserPoolClient, input, options) as async.Operation<types.DescribeUserPoolClientOutput>
+function C:describeUserPoolClient(input: types.DescribeUserPoolClientInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeUserPoolClientOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeUserPoolClient as schema.OperationSchema, input, options) as async.Operation<types.DescribeUserPoolClientOutput>
 end
 
-function C:describeUserPoolDomain(input: types.DescribeUserPoolDomainInput, options: any): async.Operation<types.DescribeUserPoolDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeUserPoolDomain, input, options) as async.Operation<types.DescribeUserPoolDomainOutput>
+function C:describeUserPoolDomain(input: types.DescribeUserPoolDomainInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeUserPoolDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeUserPoolDomain as schema.OperationSchema, input, options) as async.Operation<types.DescribeUserPoolDomainOutput>
 end
 
-function C:forgetDevice(input: types.ForgetDeviceInput, options: any): async.Operation<types.ForgetDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ForgetDevice, input, options) as async.Operation<types.ForgetDeviceOutput>
+function C:forgetDevice(input: types.ForgetDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.ForgetDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ForgetDevice as schema.OperationSchema, input, options) as async.Operation<types.ForgetDeviceOutput>
 end
 
-function C:forgotPassword(input: types.ForgotPasswordInput, options: any): async.Operation<types.ForgotPasswordOutput>
-    return self:invokeOperation(schemas.Service, schemas.ForgotPassword, input, options) as async.Operation<types.ForgotPasswordOutput>
+function C:forgotPassword(input: types.ForgotPasswordInput, options?: base_client.InvokeOptions): async.Operation<types.ForgotPasswordOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ForgotPassword as schema.OperationSchema, input, options) as async.Operation<types.ForgotPasswordOutput>
 end
 
-function C:getCSVHeader(input: types.GetCSVHeaderInput, options: any): async.Operation<types.GetCSVHeaderOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCSVHeader, input, options) as async.Operation<types.GetCSVHeaderOutput>
+function C:getCSVHeader(input: types.GetCSVHeaderInput, options?: base_client.InvokeOptions): async.Operation<types.GetCSVHeaderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCSVHeader as schema.OperationSchema, input, options) as async.Operation<types.GetCSVHeaderOutput>
 end
 
-function C:getDevice(input: types.GetDeviceInput, options: any): async.Operation<types.GetDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDevice, input, options) as async.Operation<types.GetDeviceOutput>
+function C:getDevice(input: types.GetDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.GetDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDevice as schema.OperationSchema, input, options) as async.Operation<types.GetDeviceOutput>
 end
 
-function C:getGroup(input: types.GetGroupInput, options: any): async.Operation<types.GetGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetGroup, input, options) as async.Operation<types.GetGroupOutput>
+function C:getGroup(input: types.GetGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGroup as schema.OperationSchema, input, options) as async.Operation<types.GetGroupOutput>
 end
 
-function C:getIdentityProviderByIdentifier(input: types.GetIdentityProviderByIdentifierInput, options: any): async.Operation<types.GetIdentityProviderByIdentifierOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIdentityProviderByIdentifier, input, options) as async.Operation<types.GetIdentityProviderByIdentifierOutput>
+function C:getIdentityProviderByIdentifier(input: types.GetIdentityProviderByIdentifierInput, options?: base_client.InvokeOptions): async.Operation<types.GetIdentityProviderByIdentifierOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIdentityProviderByIdentifier as schema.OperationSchema, input, options) as async.Operation<types.GetIdentityProviderByIdentifierOutput>
 end
 
-function C:getLogDeliveryConfiguration(input: types.GetLogDeliveryConfigurationInput, options: any): async.Operation<types.GetLogDeliveryConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLogDeliveryConfiguration, input, options) as async.Operation<types.GetLogDeliveryConfigurationOutput>
+function C:getLogDeliveryConfiguration(input: types.GetLogDeliveryConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetLogDeliveryConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLogDeliveryConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetLogDeliveryConfigurationOutput>
 end
 
-function C:getSigningCertificate(input: types.GetSigningCertificateInput, options: any): async.Operation<types.GetSigningCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSigningCertificate, input, options) as async.Operation<types.GetSigningCertificateOutput>
+function C:getSigningCertificate(input: types.GetSigningCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.GetSigningCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSigningCertificate as schema.OperationSchema, input, options) as async.Operation<types.GetSigningCertificateOutput>
 end
 
-function C:getTokensFromRefreshToken(input: types.GetTokensFromRefreshTokenInput, options: any): async.Operation<types.GetTokensFromRefreshTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTokensFromRefreshToken, input, options) as async.Operation<types.GetTokensFromRefreshTokenOutput>
+function C:getTokensFromRefreshToken(input: types.GetTokensFromRefreshTokenInput, options?: base_client.InvokeOptions): async.Operation<types.GetTokensFromRefreshTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTokensFromRefreshToken as schema.OperationSchema, input, options) as async.Operation<types.GetTokensFromRefreshTokenOutput>
 end
 
-function C:getUICustomization(input: types.GetUICustomizationInput, options: any): async.Operation<types.GetUICustomizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetUICustomization, input, options) as async.Operation<types.GetUICustomizationOutput>
+function C:getUICustomization(input: types.GetUICustomizationInput, options?: base_client.InvokeOptions): async.Operation<types.GetUICustomizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetUICustomization as schema.OperationSchema, input, options) as async.Operation<types.GetUICustomizationOutput>
 end
 
-function C:getUser(input: types.GetUserInput, options: any): async.Operation<types.GetUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetUser, input, options) as async.Operation<types.GetUserOutput>
+function C:getUser(input: types.GetUserInput, options?: base_client.InvokeOptions): async.Operation<types.GetUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetUser as schema.OperationSchema, input, options) as async.Operation<types.GetUserOutput>
 end
 
-function C:getUserAttributeVerificationCode(input: types.GetUserAttributeVerificationCodeInput, options: any): async.Operation<types.GetUserAttributeVerificationCodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetUserAttributeVerificationCode, input, options) as async.Operation<types.GetUserAttributeVerificationCodeOutput>
+function C:getUserAttributeVerificationCode(input: types.GetUserAttributeVerificationCodeInput, options?: base_client.InvokeOptions): async.Operation<types.GetUserAttributeVerificationCodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetUserAttributeVerificationCode as schema.OperationSchema, input, options) as async.Operation<types.GetUserAttributeVerificationCodeOutput>
 end
 
-function C:getUserAuthFactors(input: types.GetUserAuthFactorsInput, options: any): async.Operation<types.GetUserAuthFactorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetUserAuthFactors, input, options) as async.Operation<types.GetUserAuthFactorsOutput>
+function C:getUserAuthFactors(input: types.GetUserAuthFactorsInput, options?: base_client.InvokeOptions): async.Operation<types.GetUserAuthFactorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetUserAuthFactors as schema.OperationSchema, input, options) as async.Operation<types.GetUserAuthFactorsOutput>
 end
 
-function C:getUserPoolMfaConfig(input: types.GetUserPoolMfaConfigInput, options: any): async.Operation<types.GetUserPoolMfaConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetUserPoolMfaConfig, input, options) as async.Operation<types.GetUserPoolMfaConfigOutput>
+function C:getUserPoolMfaConfig(input: types.GetUserPoolMfaConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetUserPoolMfaConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetUserPoolMfaConfig as schema.OperationSchema, input, options) as async.Operation<types.GetUserPoolMfaConfigOutput>
 end
 
-function C:globalSignOut(input: types.GlobalSignOutInput, options: any): async.Operation<types.GlobalSignOutOutput>
-    return self:invokeOperation(schemas.Service, schemas.GlobalSignOut, input, options) as async.Operation<types.GlobalSignOutOutput>
+function C:globalSignOut(input: types.GlobalSignOutInput, options?: base_client.InvokeOptions): async.Operation<types.GlobalSignOutOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GlobalSignOut as schema.OperationSchema, input, options) as async.Operation<types.GlobalSignOutOutput>
 end
 
-function C:initiateAuth(input: types.InitiateAuthInput, options: any): async.Operation<types.InitiateAuthOutput>
-    return self:invokeOperation(schemas.Service, schemas.InitiateAuth, input, options) as async.Operation<types.InitiateAuthOutput>
+function C:initiateAuth(input: types.InitiateAuthInput, options?: base_client.InvokeOptions): async.Operation<types.InitiateAuthOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InitiateAuth as schema.OperationSchema, input, options) as async.Operation<types.InitiateAuthOutput>
 end
 
-function C:listDevices(input: types.ListDevicesInput, options: any): async.Operation<types.ListDevicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDevices, input, options) as async.Operation<types.ListDevicesOutput>
+function C:listDevices(input: types.ListDevicesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDevicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDevices as schema.OperationSchema, input, options) as async.Operation<types.ListDevicesOutput>
 end
 
-function C:listGroups(input: types.ListGroupsInput, options: any): async.Operation<types.ListGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGroups, input, options) as async.Operation<types.ListGroupsOutput>
+function C:listGroups(input: types.ListGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGroups as schema.OperationSchema, input, options) as async.Operation<types.ListGroupsOutput>
 end
 
-function C:listIdentityProviders(input: types.ListIdentityProvidersInput, options: any): async.Operation<types.ListIdentityProvidersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIdentityProviders, input, options) as async.Operation<types.ListIdentityProvidersOutput>
+function C:listIdentityProviders(input: types.ListIdentityProvidersInput, options?: base_client.InvokeOptions): async.Operation<types.ListIdentityProvidersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIdentityProviders as schema.OperationSchema, input, options) as async.Operation<types.ListIdentityProvidersOutput>
 end
 
-function C:listResourceServers(input: types.ListResourceServersInput, options: any): async.Operation<types.ListResourceServersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResourceServers, input, options) as async.Operation<types.ListResourceServersOutput>
+function C:listResourceServers(input: types.ListResourceServersInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourceServersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourceServers as schema.OperationSchema, input, options) as async.Operation<types.ListResourceServersOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTerms(input: types.ListTermsInput, options: any): async.Operation<types.ListTermsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTerms, input, options) as async.Operation<types.ListTermsOutput>
+function C:listTerms(input: types.ListTermsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTermsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTerms as schema.OperationSchema, input, options) as async.Operation<types.ListTermsOutput>
 end
 
-function C:listUserImportJobs(input: types.ListUserImportJobsInput, options: any): async.Operation<types.ListUserImportJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListUserImportJobs, input, options) as async.Operation<types.ListUserImportJobsOutput>
+function C:listUserImportJobs(input: types.ListUserImportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListUserImportJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUserImportJobs as schema.OperationSchema, input, options) as async.Operation<types.ListUserImportJobsOutput>
 end
 
-function C:listUserPoolClients(input: types.ListUserPoolClientsInput, options: any): async.Operation<types.ListUserPoolClientsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListUserPoolClients, input, options) as async.Operation<types.ListUserPoolClientsOutput>
+function C:listUserPoolClients(input: types.ListUserPoolClientsInput, options?: base_client.InvokeOptions): async.Operation<types.ListUserPoolClientsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUserPoolClients as schema.OperationSchema, input, options) as async.Operation<types.ListUserPoolClientsOutput>
 end
 
-function C:listUserPoolClientSecrets(input: types.ListUserPoolClientSecretsInput, options: any): async.Operation<types.ListUserPoolClientSecretsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListUserPoolClientSecrets, input, options) as async.Operation<types.ListUserPoolClientSecretsOutput>
+function C:listUserPoolClientSecrets(input: types.ListUserPoolClientSecretsInput, options?: base_client.InvokeOptions): async.Operation<types.ListUserPoolClientSecretsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUserPoolClientSecrets as schema.OperationSchema, input, options) as async.Operation<types.ListUserPoolClientSecretsOutput>
 end
 
-function C:listUserPools(input: types.ListUserPoolsInput, options: any): async.Operation<types.ListUserPoolsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListUserPools, input, options) as async.Operation<types.ListUserPoolsOutput>
+function C:listUserPools(input: types.ListUserPoolsInput, options?: base_client.InvokeOptions): async.Operation<types.ListUserPoolsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUserPools as schema.OperationSchema, input, options) as async.Operation<types.ListUserPoolsOutput>
 end
 
-function C:listUsers(input: types.ListUsersInput, options: any): async.Operation<types.ListUsersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListUsers, input, options) as async.Operation<types.ListUsersOutput>
+function C:listUsers(input: types.ListUsersInput, options?: base_client.InvokeOptions): async.Operation<types.ListUsersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUsers as schema.OperationSchema, input, options) as async.Operation<types.ListUsersOutput>
 end
 
-function C:listUsersInGroup(input: types.ListUsersInGroupInput, options: any): async.Operation<types.ListUsersInGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListUsersInGroup, input, options) as async.Operation<types.ListUsersInGroupOutput>
+function C:listUsersInGroup(input: types.ListUsersInGroupInput, options?: base_client.InvokeOptions): async.Operation<types.ListUsersInGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUsersInGroup as schema.OperationSchema, input, options) as async.Operation<types.ListUsersInGroupOutput>
 end
 
-function C:listWebAuthnCredentials(input: types.ListWebAuthnCredentialsInput, options: any): async.Operation<types.ListWebAuthnCredentialsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWebAuthnCredentials, input, options) as async.Operation<types.ListWebAuthnCredentialsOutput>
+function C:listWebAuthnCredentials(input: types.ListWebAuthnCredentialsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWebAuthnCredentialsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWebAuthnCredentials as schema.OperationSchema, input, options) as async.Operation<types.ListWebAuthnCredentialsOutput>
 end
 
-function C:resendConfirmationCode(input: types.ResendConfirmationCodeInput, options: any): async.Operation<types.ResendConfirmationCodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResendConfirmationCode, input, options) as async.Operation<types.ResendConfirmationCodeOutput>
+function C:resendConfirmationCode(input: types.ResendConfirmationCodeInput, options?: base_client.InvokeOptions): async.Operation<types.ResendConfirmationCodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResendConfirmationCode as schema.OperationSchema, input, options) as async.Operation<types.ResendConfirmationCodeOutput>
 end
 
-function C:respondToAuthChallenge(input: types.RespondToAuthChallengeInput, options: any): async.Operation<types.RespondToAuthChallengeOutput>
-    return self:invokeOperation(schemas.Service, schemas.RespondToAuthChallenge, input, options) as async.Operation<types.RespondToAuthChallengeOutput>
+function C:respondToAuthChallenge(input: types.RespondToAuthChallengeInput, options?: base_client.InvokeOptions): async.Operation<types.RespondToAuthChallengeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RespondToAuthChallenge as schema.OperationSchema, input, options) as async.Operation<types.RespondToAuthChallengeOutput>
 end
 
-function C:revokeToken(input: types.RevokeTokenInput, options: any): async.Operation<types.RevokeTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.RevokeToken, input, options) as async.Operation<types.RevokeTokenOutput>
+function C:revokeToken(input: types.RevokeTokenInput, options?: base_client.InvokeOptions): async.Operation<types.RevokeTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RevokeToken as schema.OperationSchema, input, options) as async.Operation<types.RevokeTokenOutput>
 end
 
-function C:setLogDeliveryConfiguration(input: types.SetLogDeliveryConfigurationInput, options: any): async.Operation<types.SetLogDeliveryConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetLogDeliveryConfiguration, input, options) as async.Operation<types.SetLogDeliveryConfigurationOutput>
+function C:setLogDeliveryConfiguration(input: types.SetLogDeliveryConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.SetLogDeliveryConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetLogDeliveryConfiguration as schema.OperationSchema, input, options) as async.Operation<types.SetLogDeliveryConfigurationOutput>
 end
 
-function C:setRiskConfiguration(input: types.SetRiskConfigurationInput, options: any): async.Operation<types.SetRiskConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetRiskConfiguration, input, options) as async.Operation<types.SetRiskConfigurationOutput>
+function C:setRiskConfiguration(input: types.SetRiskConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.SetRiskConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetRiskConfiguration as schema.OperationSchema, input, options) as async.Operation<types.SetRiskConfigurationOutput>
 end
 
-function C:setUICustomization(input: types.SetUICustomizationInput, options: any): async.Operation<types.SetUICustomizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetUICustomization, input, options) as async.Operation<types.SetUICustomizationOutput>
+function C:setUICustomization(input: types.SetUICustomizationInput, options?: base_client.InvokeOptions): async.Operation<types.SetUICustomizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetUICustomization as schema.OperationSchema, input, options) as async.Operation<types.SetUICustomizationOutput>
 end
 
-function C:setUserMFAPreference(input: types.SetUserMFAPreferenceInput, options: any): async.Operation<types.SetUserMFAPreferenceOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetUserMFAPreference, input, options) as async.Operation<types.SetUserMFAPreferenceOutput>
+function C:setUserMFAPreference(input: types.SetUserMFAPreferenceInput, options?: base_client.InvokeOptions): async.Operation<types.SetUserMFAPreferenceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetUserMFAPreference as schema.OperationSchema, input, options) as async.Operation<types.SetUserMFAPreferenceOutput>
 end
 
-function C:setUserPoolMfaConfig(input: types.SetUserPoolMfaConfigInput, options: any): async.Operation<types.SetUserPoolMfaConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetUserPoolMfaConfig, input, options) as async.Operation<types.SetUserPoolMfaConfigOutput>
+function C:setUserPoolMfaConfig(input: types.SetUserPoolMfaConfigInput, options?: base_client.InvokeOptions): async.Operation<types.SetUserPoolMfaConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetUserPoolMfaConfig as schema.OperationSchema, input, options) as async.Operation<types.SetUserPoolMfaConfigOutput>
 end
 
-function C:setUserSettings(input: types.SetUserSettingsInput, options: any): async.Operation<types.SetUserSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetUserSettings, input, options) as async.Operation<types.SetUserSettingsOutput>
+function C:setUserSettings(input: types.SetUserSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.SetUserSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetUserSettings as schema.OperationSchema, input, options) as async.Operation<types.SetUserSettingsOutput>
 end
 
-function C:signUp(input: types.SignUpInput, options: any): async.Operation<types.SignUpOutput>
-    return self:invokeOperation(schemas.Service, schemas.SignUp, input, options) as async.Operation<types.SignUpOutput>
+function C:signUp(input: types.SignUpInput, options?: base_client.InvokeOptions): async.Operation<types.SignUpOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SignUp as schema.OperationSchema, input, options) as async.Operation<types.SignUpOutput>
 end
 
-function C:startUserImportJob(input: types.StartUserImportJobInput, options: any): async.Operation<types.StartUserImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartUserImportJob, input, options) as async.Operation<types.StartUserImportJobOutput>
+function C:startUserImportJob(input: types.StartUserImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartUserImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartUserImportJob as schema.OperationSchema, input, options) as async.Operation<types.StartUserImportJobOutput>
 end
 
-function C:startWebAuthnRegistration(input: types.StartWebAuthnRegistrationInput, options: any): async.Operation<types.StartWebAuthnRegistrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartWebAuthnRegistration, input, options) as async.Operation<types.StartWebAuthnRegistrationOutput>
+function C:startWebAuthnRegistration(input: types.StartWebAuthnRegistrationInput, options?: base_client.InvokeOptions): async.Operation<types.StartWebAuthnRegistrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartWebAuthnRegistration as schema.OperationSchema, input, options) as async.Operation<types.StartWebAuthnRegistrationOutput>
 end
 
-function C:stopUserImportJob(input: types.StopUserImportJobInput, options: any): async.Operation<types.StopUserImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopUserImportJob, input, options) as async.Operation<types.StopUserImportJobOutput>
+function C:stopUserImportJob(input: types.StopUserImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopUserImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopUserImportJob as schema.OperationSchema, input, options) as async.Operation<types.StopUserImportJobOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAuthEventFeedback(input: types.UpdateAuthEventFeedbackInput, options: any): async.Operation<types.UpdateAuthEventFeedbackOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAuthEventFeedback, input, options) as async.Operation<types.UpdateAuthEventFeedbackOutput>
+function C:updateAuthEventFeedback(input: types.UpdateAuthEventFeedbackInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAuthEventFeedbackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAuthEventFeedback as schema.OperationSchema, input, options) as async.Operation<types.UpdateAuthEventFeedbackOutput>
 end
 
-function C:updateDeviceStatus(input: types.UpdateDeviceStatusInput, options: any): async.Operation<types.UpdateDeviceStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDeviceStatus, input, options) as async.Operation<types.UpdateDeviceStatusOutput>
+function C:updateDeviceStatus(input: types.UpdateDeviceStatusInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDeviceStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDeviceStatus as schema.OperationSchema, input, options) as async.Operation<types.UpdateDeviceStatusOutput>
 end
 
-function C:updateGroup(input: types.UpdateGroupInput, options: any): async.Operation<types.UpdateGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateGroup, input, options) as async.Operation<types.UpdateGroupOutput>
+function C:updateGroup(input: types.UpdateGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateGroupOutput>
 end
 
-function C:updateIdentityProvider(input: types.UpdateIdentityProviderInput, options: any): async.Operation<types.UpdateIdentityProviderOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateIdentityProvider, input, options) as async.Operation<types.UpdateIdentityProviderOutput>
+function C:updateIdentityProvider(input: types.UpdateIdentityProviderInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIdentityProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIdentityProvider as schema.OperationSchema, input, options) as async.Operation<types.UpdateIdentityProviderOutput>
 end
 
-function C:updateManagedLoginBranding(input: types.UpdateManagedLoginBrandingInput, options: any): async.Operation<types.UpdateManagedLoginBrandingOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateManagedLoginBranding, input, options) as async.Operation<types.UpdateManagedLoginBrandingOutput>
+function C:updateManagedLoginBranding(input: types.UpdateManagedLoginBrandingInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateManagedLoginBrandingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateManagedLoginBranding as schema.OperationSchema, input, options) as async.Operation<types.UpdateManagedLoginBrandingOutput>
 end
 
-function C:updateResourceServer(input: types.UpdateResourceServerInput, options: any): async.Operation<types.UpdateResourceServerOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateResourceServer, input, options) as async.Operation<types.UpdateResourceServerOutput>
+function C:updateResourceServer(input: types.UpdateResourceServerInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateResourceServerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateResourceServer as schema.OperationSchema, input, options) as async.Operation<types.UpdateResourceServerOutput>
 end
 
-function C:updateTerms(input: types.UpdateTermsInput, options: any): async.Operation<types.UpdateTermsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTerms, input, options) as async.Operation<types.UpdateTermsOutput>
+function C:updateTerms(input: types.UpdateTermsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTermsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTerms as schema.OperationSchema, input, options) as async.Operation<types.UpdateTermsOutput>
 end
 
-function C:updateUserAttributes(input: types.UpdateUserAttributesInput, options: any): async.Operation<types.UpdateUserAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateUserAttributes, input, options) as async.Operation<types.UpdateUserAttributesOutput>
+function C:updateUserAttributes(input: types.UpdateUserAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateUserAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateUserAttributes as schema.OperationSchema, input, options) as async.Operation<types.UpdateUserAttributesOutput>
 end
 
-function C:updateUserPool(input: types.UpdateUserPoolInput, options: any): async.Operation<types.UpdateUserPoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateUserPool, input, options) as async.Operation<types.UpdateUserPoolOutput>
+function C:updateUserPool(input: types.UpdateUserPoolInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateUserPoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateUserPool as schema.OperationSchema, input, options) as async.Operation<types.UpdateUserPoolOutput>
 end
 
-function C:updateUserPoolClient(input: types.UpdateUserPoolClientInput, options: any): async.Operation<types.UpdateUserPoolClientOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateUserPoolClient, input, options) as async.Operation<types.UpdateUserPoolClientOutput>
+function C:updateUserPoolClient(input: types.UpdateUserPoolClientInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateUserPoolClientOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateUserPoolClient as schema.OperationSchema, input, options) as async.Operation<types.UpdateUserPoolClientOutput>
 end
 
-function C:updateUserPoolDomain(input: types.UpdateUserPoolDomainInput, options: any): async.Operation<types.UpdateUserPoolDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateUserPoolDomain, input, options) as async.Operation<types.UpdateUserPoolDomainOutput>
+function C:updateUserPoolDomain(input: types.UpdateUserPoolDomainInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateUserPoolDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateUserPoolDomain as schema.OperationSchema, input, options) as async.Operation<types.UpdateUserPoolDomainOutput>
 end
 
-function C:verifySoftwareToken(input: types.VerifySoftwareTokenInput, options: any): async.Operation<types.VerifySoftwareTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.VerifySoftwareToken, input, options) as async.Operation<types.VerifySoftwareTokenOutput>
+function C:verifySoftwareToken(input: types.VerifySoftwareTokenInput, options?: base_client.InvokeOptions): async.Operation<types.VerifySoftwareTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.VerifySoftwareToken as schema.OperationSchema, input, options) as async.Operation<types.VerifySoftwareTokenOutput>
 end
 
-function C:verifyUserAttribute(input: types.VerifyUserAttributeInput, options: any): async.Operation<types.VerifyUserAttributeOutput>
-    return self:invokeOperation(schemas.Service, schemas.VerifyUserAttribute, input, options) as async.Operation<types.VerifyUserAttributeOutput>
+function C:verifyUserAttribute(input: types.VerifyUserAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.VerifyUserAttributeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.VerifyUserAttribute as schema.OperationSchema, input, options) as async.Operation<types.VerifyUserAttributeOutput>
 end
 
 return M

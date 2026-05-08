@@ -8,58 +8,61 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("keyspaces.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("keyspaces.schemas")
 local traits = require("smithy.traits")
 local types = require("keyspaces.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createKeyspace: function(Client, types.CreateKeyspaceInput, any): async.Operation<types.CreateKeyspaceOutput>
-    createTable: function(Client, types.CreateTableInput, any): async.Operation<types.CreateTableOutput>
-    createType: function(Client, types.CreateTypeInput, any): async.Operation<types.CreateTypeOutput>
-    deleteKeyspace: function(Client, types.DeleteKeyspaceInput, any): async.Operation<types.DeleteKeyspaceOutput>
-    deleteTable: function(Client, types.DeleteTableInput, any): async.Operation<types.DeleteTableOutput>
-    deleteType: function(Client, types.DeleteTypeInput, any): async.Operation<types.DeleteTypeOutput>
-    getKeyspace: function(Client, types.GetKeyspaceInput, any): async.Operation<types.GetKeyspaceOutput>
-    getTable: function(Client, types.GetTableInput, any): async.Operation<types.GetTableOutput>
-    getTableAutoScalingSettings: function(Client, types.GetTableAutoScalingSettingsInput, any): async.Operation<types.GetTableAutoScalingSettingsOutput>
-    getType: function(Client, types.GetTypeInput, any): async.Operation<types.GetTypeOutput>
-    listKeyspaces: function(Client, types.ListKeyspacesInput, any): async.Operation<types.ListKeyspacesOutput>
-    listTables: function(Client, types.ListTablesInput, any): async.Operation<types.ListTablesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTypes: function(Client, types.ListTypesInput, any): async.Operation<types.ListTypesOutput>
-    restoreTable: function(Client, types.RestoreTableInput, any): async.Operation<types.RestoreTableOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateKeyspace: function(Client, types.UpdateKeyspaceInput, any): async.Operation<types.UpdateKeyspaceOutput>
-    updateTable: function(Client, types.UpdateTableInput, any): async.Operation<types.UpdateTableOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createKeyspace: function(Client, types.CreateKeyspaceInput, ? base_client.InvokeOptions): async.Operation<types.CreateKeyspaceOutput>
+    createTable: function(Client, types.CreateTableInput, ? base_client.InvokeOptions): async.Operation<types.CreateTableOutput>
+    createType: function(Client, types.CreateTypeInput, ? base_client.InvokeOptions): async.Operation<types.CreateTypeOutput>
+    deleteKeyspace: function(Client, types.DeleteKeyspaceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKeyspaceOutput>
+    deleteTable: function(Client, types.DeleteTableInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTableOutput>
+    deleteType: function(Client, types.DeleteTypeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTypeOutput>
+    getKeyspace: function(Client, types.GetKeyspaceInput, ? base_client.InvokeOptions): async.Operation<types.GetKeyspaceOutput>
+    getTable: function(Client, types.GetTableInput, ? base_client.InvokeOptions): async.Operation<types.GetTableOutput>
+    getTableAutoScalingSettings: function(Client, types.GetTableAutoScalingSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetTableAutoScalingSettingsOutput>
+    getType: function(Client, types.GetTypeInput, ? base_client.InvokeOptions): async.Operation<types.GetTypeOutput>
+    listKeyspaces: function(Client, types.ListKeyspacesInput, ? base_client.InvokeOptions): async.Operation<types.ListKeyspacesOutput>
+    listTables: function(Client, types.ListTablesInput, ? base_client.InvokeOptions): async.Operation<types.ListTablesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTypes: function(Client, types.ListTypesInput, ? base_client.InvokeOptions): async.Operation<types.ListTypesOutput>
+    restoreTable: function(Client, types.RestoreTableInput, ? base_client.InvokeOptions): async.Operation<types.RestoreTableOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateKeyspace: function(Client, types.UpdateKeyspaceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateKeyspaceOutput>
+    updateTable: function(Client, types.UpdateTableInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTableOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "KeyspacesService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "cassandra", signing_region = c.region } }
                 else
@@ -78,80 +81,80 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createKeyspace(input: types.CreateKeyspaceInput, options: any): async.Operation<types.CreateKeyspaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateKeyspace, input, options) as async.Operation<types.CreateKeyspaceOutput>
+function C:createKeyspace(input: types.CreateKeyspaceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateKeyspaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateKeyspace as schema.OperationSchema, input, options) as async.Operation<types.CreateKeyspaceOutput>
 end
 
-function C:createTable(input: types.CreateTableInput, options: any): async.Operation<types.CreateTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTable, input, options) as async.Operation<types.CreateTableOutput>
+function C:createTable(input: types.CreateTableInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTable as schema.OperationSchema, input, options) as async.Operation<types.CreateTableOutput>
 end
 
-function C:createType(input: types.CreateTypeInput, options: any): async.Operation<types.CreateTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateType, input, options) as async.Operation<types.CreateTypeOutput>
+function C:createType(input: types.CreateTypeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateType as schema.OperationSchema, input, options) as async.Operation<types.CreateTypeOutput>
 end
 
-function C:deleteKeyspace(input: types.DeleteKeyspaceInput, options: any): async.Operation<types.DeleteKeyspaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteKeyspace, input, options) as async.Operation<types.DeleteKeyspaceOutput>
+function C:deleteKeyspace(input: types.DeleteKeyspaceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteKeyspaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteKeyspace as schema.OperationSchema, input, options) as async.Operation<types.DeleteKeyspaceOutput>
 end
 
-function C:deleteTable(input: types.DeleteTableInput, options: any): async.Operation<types.DeleteTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTable, input, options) as async.Operation<types.DeleteTableOutput>
+function C:deleteTable(input: types.DeleteTableInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTable as schema.OperationSchema, input, options) as async.Operation<types.DeleteTableOutput>
 end
 
-function C:deleteType(input: types.DeleteTypeInput, options: any): async.Operation<types.DeleteTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteType, input, options) as async.Operation<types.DeleteTypeOutput>
+function C:deleteType(input: types.DeleteTypeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteType as schema.OperationSchema, input, options) as async.Operation<types.DeleteTypeOutput>
 end
 
-function C:getKeyspace(input: types.GetKeyspaceInput, options: any): async.Operation<types.GetKeyspaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetKeyspace, input, options) as async.Operation<types.GetKeyspaceOutput>
+function C:getKeyspace(input: types.GetKeyspaceInput, options?: base_client.InvokeOptions): async.Operation<types.GetKeyspaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetKeyspace as schema.OperationSchema, input, options) as async.Operation<types.GetKeyspaceOutput>
 end
 
-function C:getTable(input: types.GetTableInput, options: any): async.Operation<types.GetTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTable, input, options) as async.Operation<types.GetTableOutput>
+function C:getTable(input: types.GetTableInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTable as schema.OperationSchema, input, options) as async.Operation<types.GetTableOutput>
 end
 
-function C:getTableAutoScalingSettings(input: types.GetTableAutoScalingSettingsInput, options: any): async.Operation<types.GetTableAutoScalingSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTableAutoScalingSettings, input, options) as async.Operation<types.GetTableAutoScalingSettingsOutput>
+function C:getTableAutoScalingSettings(input: types.GetTableAutoScalingSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableAutoScalingSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTableAutoScalingSettings as schema.OperationSchema, input, options) as async.Operation<types.GetTableAutoScalingSettingsOutput>
 end
 
-function C:getType(input: types.GetTypeInput, options: any): async.Operation<types.GetTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetType, input, options) as async.Operation<types.GetTypeOutput>
+function C:getType(input: types.GetTypeInput, options?: base_client.InvokeOptions): async.Operation<types.GetTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetType as schema.OperationSchema, input, options) as async.Operation<types.GetTypeOutput>
 end
 
-function C:listKeyspaces(input: types.ListKeyspacesInput, options: any): async.Operation<types.ListKeyspacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListKeyspaces, input, options) as async.Operation<types.ListKeyspacesOutput>
+function C:listKeyspaces(input: types.ListKeyspacesInput, options?: base_client.InvokeOptions): async.Operation<types.ListKeyspacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListKeyspaces as schema.OperationSchema, input, options) as async.Operation<types.ListKeyspacesOutput>
 end
 
-function C:listTables(input: types.ListTablesInput, options: any): async.Operation<types.ListTablesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTables, input, options) as async.Operation<types.ListTablesOutput>
+function C:listTables(input: types.ListTablesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTablesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTables as schema.OperationSchema, input, options) as async.Operation<types.ListTablesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTypes(input: types.ListTypesInput, options: any): async.Operation<types.ListTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTypes, input, options) as async.Operation<types.ListTypesOutput>
+function C:listTypes(input: types.ListTypesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTypes as schema.OperationSchema, input, options) as async.Operation<types.ListTypesOutput>
 end
 
-function C:restoreTable(input: types.RestoreTableInput, options: any): async.Operation<types.RestoreTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.RestoreTable, input, options) as async.Operation<types.RestoreTableOutput>
+function C:restoreTable(input: types.RestoreTableInput, options?: base_client.InvokeOptions): async.Operation<types.RestoreTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestoreTable as schema.OperationSchema, input, options) as async.Operation<types.RestoreTableOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateKeyspace(input: types.UpdateKeyspaceInput, options: any): async.Operation<types.UpdateKeyspaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateKeyspace, input, options) as async.Operation<types.UpdateKeyspaceOutput>
+function C:updateKeyspace(input: types.UpdateKeyspaceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateKeyspaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateKeyspace as schema.OperationSchema, input, options) as async.Operation<types.UpdateKeyspaceOutput>
 end
 
-function C:updateTable(input: types.UpdateTableInput, options: any): async.Operation<types.UpdateTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTable, input, options) as async.Operation<types.UpdateTableOutput>
+function C:updateTable(input: types.UpdateTableInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTable as schema.OperationSchema, input, options) as async.Operation<types.UpdateTableOutput>
 end
 
 return M

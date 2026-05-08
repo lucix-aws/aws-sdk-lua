@@ -8,55 +8,58 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("taxsettings.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("taxsettings.schemas")
 local traits = require("smithy.traits")
 local types = require("taxsettings.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchDeleteTaxRegistration: function(Client, types.BatchDeleteTaxRegistrationInput, any): async.Operation<types.BatchDeleteTaxRegistrationOutput>
-    batchGetTaxExemptions: function(Client, types.BatchGetTaxExemptionsInput, any): async.Operation<types.BatchGetTaxExemptionsOutput>
-    batchPutTaxRegistration: function(Client, types.BatchPutTaxRegistrationInput, any): async.Operation<types.BatchPutTaxRegistrationOutput>
-    deleteSupplementalTaxRegistration: function(Client, types.DeleteSupplementalTaxRegistrationInput, any): async.Operation<types.DeleteSupplementalTaxRegistrationOutput>
-    deleteTaxRegistration: function(Client, types.DeleteTaxRegistrationInput, any): async.Operation<types.DeleteTaxRegistrationOutput>
-    getTaxExemptionTypes: function(Client, types.GetTaxExemptionTypesInput, any): async.Operation<types.GetTaxExemptionTypesOutput>
-    getTaxInheritance: function(Client, types.GetTaxInheritanceInput, any): async.Operation<types.GetTaxInheritanceOutput>
-    getTaxRegistration: function(Client, types.GetTaxRegistrationInput, any): async.Operation<types.GetTaxRegistrationOutput>
-    getTaxRegistrationDocument: function(Client, types.GetTaxRegistrationDocumentInput, any): async.Operation<types.GetTaxRegistrationDocumentOutput>
-    listSupplementalTaxRegistrations: function(Client, types.ListSupplementalTaxRegistrationsInput, any): async.Operation<types.ListSupplementalTaxRegistrationsOutput>
-    listTaxExemptions: function(Client, types.ListTaxExemptionsInput, any): async.Operation<types.ListTaxExemptionsOutput>
-    listTaxRegistrations: function(Client, types.ListTaxRegistrationsInput, any): async.Operation<types.ListTaxRegistrationsOutput>
-    putSupplementalTaxRegistration: function(Client, types.PutSupplementalTaxRegistrationInput, any): async.Operation<types.PutSupplementalTaxRegistrationOutput>
-    putTaxExemption: function(Client, types.PutTaxExemptionInput, any): async.Operation<types.PutTaxExemptionOutput>
-    putTaxInheritance: function(Client, types.PutTaxInheritanceInput, any): async.Operation<types.PutTaxInheritanceOutput>
-    putTaxRegistration: function(Client, types.PutTaxRegistrationInput, any): async.Operation<types.PutTaxRegistrationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchDeleteTaxRegistration: function(Client, types.BatchDeleteTaxRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteTaxRegistrationOutput>
+    batchGetTaxExemptions: function(Client, types.BatchGetTaxExemptionsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetTaxExemptionsOutput>
+    batchPutTaxRegistration: function(Client, types.BatchPutTaxRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.BatchPutTaxRegistrationOutput>
+    deleteSupplementalTaxRegistration: function(Client, types.DeleteSupplementalTaxRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSupplementalTaxRegistrationOutput>
+    deleteTaxRegistration: function(Client, types.DeleteTaxRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTaxRegistrationOutput>
+    getTaxExemptionTypes: function(Client, types.GetTaxExemptionTypesInput, ? base_client.InvokeOptions): async.Operation<types.GetTaxExemptionTypesOutput>
+    getTaxInheritance: function(Client, types.GetTaxInheritanceInput, ? base_client.InvokeOptions): async.Operation<types.GetTaxInheritanceOutput>
+    getTaxRegistration: function(Client, types.GetTaxRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.GetTaxRegistrationOutput>
+    getTaxRegistrationDocument: function(Client, types.GetTaxRegistrationDocumentInput, ? base_client.InvokeOptions): async.Operation<types.GetTaxRegistrationDocumentOutput>
+    listSupplementalTaxRegistrations: function(Client, types.ListSupplementalTaxRegistrationsInput, ? base_client.InvokeOptions): async.Operation<types.ListSupplementalTaxRegistrationsOutput>
+    listTaxExemptions: function(Client, types.ListTaxExemptionsInput, ? base_client.InvokeOptions): async.Operation<types.ListTaxExemptionsOutput>
+    listTaxRegistrations: function(Client, types.ListTaxRegistrationsInput, ? base_client.InvokeOptions): async.Operation<types.ListTaxRegistrationsOutput>
+    putSupplementalTaxRegistration: function(Client, types.PutSupplementalTaxRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.PutSupplementalTaxRegistrationOutput>
+    putTaxExemption: function(Client, types.PutTaxExemptionInput, ? base_client.InvokeOptions): async.Operation<types.PutTaxExemptionOutput>
+    putTaxInheritance: function(Client, types.PutTaxInheritanceInput, ? base_client.InvokeOptions): async.Operation<types.PutTaxInheritanceOutput>
+    putTaxRegistration: function(Client, types.PutTaxRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.PutTaxRegistrationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "TaxSettings"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "tax", signing_region = c.region } }
                 else
@@ -75,68 +78,68 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchDeleteTaxRegistration(input: types.BatchDeleteTaxRegistrationInput, options: any): async.Operation<types.BatchDeleteTaxRegistrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDeleteTaxRegistration, input, options) as async.Operation<types.BatchDeleteTaxRegistrationOutput>
+function C:batchDeleteTaxRegistration(input: types.BatchDeleteTaxRegistrationInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteTaxRegistrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteTaxRegistration as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteTaxRegistrationOutput>
 end
 
-function C:batchGetTaxExemptions(input: types.BatchGetTaxExemptionsInput, options: any): async.Operation<types.BatchGetTaxExemptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetTaxExemptions, input, options) as async.Operation<types.BatchGetTaxExemptionsOutput>
+function C:batchGetTaxExemptions(input: types.BatchGetTaxExemptionsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetTaxExemptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetTaxExemptions as schema.OperationSchema, input, options) as async.Operation<types.BatchGetTaxExemptionsOutput>
 end
 
-function C:batchPutTaxRegistration(input: types.BatchPutTaxRegistrationInput, options: any): async.Operation<types.BatchPutTaxRegistrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchPutTaxRegistration, input, options) as async.Operation<types.BatchPutTaxRegistrationOutput>
+function C:batchPutTaxRegistration(input: types.BatchPutTaxRegistrationInput, options?: base_client.InvokeOptions): async.Operation<types.BatchPutTaxRegistrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchPutTaxRegistration as schema.OperationSchema, input, options) as async.Operation<types.BatchPutTaxRegistrationOutput>
 end
 
-function C:deleteSupplementalTaxRegistration(input: types.DeleteSupplementalTaxRegistrationInput, options: any): async.Operation<types.DeleteSupplementalTaxRegistrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSupplementalTaxRegistration, input, options) as async.Operation<types.DeleteSupplementalTaxRegistrationOutput>
+function C:deleteSupplementalTaxRegistration(input: types.DeleteSupplementalTaxRegistrationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSupplementalTaxRegistrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSupplementalTaxRegistration as schema.OperationSchema, input, options) as async.Operation<types.DeleteSupplementalTaxRegistrationOutput>
 end
 
-function C:deleteTaxRegistration(input: types.DeleteTaxRegistrationInput, options: any): async.Operation<types.DeleteTaxRegistrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTaxRegistration, input, options) as async.Operation<types.DeleteTaxRegistrationOutput>
+function C:deleteTaxRegistration(input: types.DeleteTaxRegistrationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTaxRegistrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTaxRegistration as schema.OperationSchema, input, options) as async.Operation<types.DeleteTaxRegistrationOutput>
 end
 
-function C:getTaxExemptionTypes(input: types.GetTaxExemptionTypesInput, options: any): async.Operation<types.GetTaxExemptionTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTaxExemptionTypes, input, options) as async.Operation<types.GetTaxExemptionTypesOutput>
+function C:getTaxExemptionTypes(input: types.GetTaxExemptionTypesInput, options?: base_client.InvokeOptions): async.Operation<types.GetTaxExemptionTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTaxExemptionTypes as schema.OperationSchema, input, options) as async.Operation<types.GetTaxExemptionTypesOutput>
 end
 
-function C:getTaxInheritance(input: types.GetTaxInheritanceInput, options: any): async.Operation<types.GetTaxInheritanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTaxInheritance, input, options) as async.Operation<types.GetTaxInheritanceOutput>
+function C:getTaxInheritance(input: types.GetTaxInheritanceInput, options?: base_client.InvokeOptions): async.Operation<types.GetTaxInheritanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTaxInheritance as schema.OperationSchema, input, options) as async.Operation<types.GetTaxInheritanceOutput>
 end
 
-function C:getTaxRegistration(input: types.GetTaxRegistrationInput, options: any): async.Operation<types.GetTaxRegistrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTaxRegistration, input, options) as async.Operation<types.GetTaxRegistrationOutput>
+function C:getTaxRegistration(input: types.GetTaxRegistrationInput, options?: base_client.InvokeOptions): async.Operation<types.GetTaxRegistrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTaxRegistration as schema.OperationSchema, input, options) as async.Operation<types.GetTaxRegistrationOutput>
 end
 
-function C:getTaxRegistrationDocument(input: types.GetTaxRegistrationDocumentInput, options: any): async.Operation<types.GetTaxRegistrationDocumentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTaxRegistrationDocument, input, options) as async.Operation<types.GetTaxRegistrationDocumentOutput>
+function C:getTaxRegistrationDocument(input: types.GetTaxRegistrationDocumentInput, options?: base_client.InvokeOptions): async.Operation<types.GetTaxRegistrationDocumentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTaxRegistrationDocument as schema.OperationSchema, input, options) as async.Operation<types.GetTaxRegistrationDocumentOutput>
 end
 
-function C:listSupplementalTaxRegistrations(input: types.ListSupplementalTaxRegistrationsInput, options: any): async.Operation<types.ListSupplementalTaxRegistrationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSupplementalTaxRegistrations, input, options) as async.Operation<types.ListSupplementalTaxRegistrationsOutput>
+function C:listSupplementalTaxRegistrations(input: types.ListSupplementalTaxRegistrationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSupplementalTaxRegistrationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSupplementalTaxRegistrations as schema.OperationSchema, input, options) as async.Operation<types.ListSupplementalTaxRegistrationsOutput>
 end
 
-function C:listTaxExemptions(input: types.ListTaxExemptionsInput, options: any): async.Operation<types.ListTaxExemptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTaxExemptions, input, options) as async.Operation<types.ListTaxExemptionsOutput>
+function C:listTaxExemptions(input: types.ListTaxExemptionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTaxExemptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTaxExemptions as schema.OperationSchema, input, options) as async.Operation<types.ListTaxExemptionsOutput>
 end
 
-function C:listTaxRegistrations(input: types.ListTaxRegistrationsInput, options: any): async.Operation<types.ListTaxRegistrationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTaxRegistrations, input, options) as async.Operation<types.ListTaxRegistrationsOutput>
+function C:listTaxRegistrations(input: types.ListTaxRegistrationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTaxRegistrationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTaxRegistrations as schema.OperationSchema, input, options) as async.Operation<types.ListTaxRegistrationsOutput>
 end
 
-function C:putSupplementalTaxRegistration(input: types.PutSupplementalTaxRegistrationInput, options: any): async.Operation<types.PutSupplementalTaxRegistrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutSupplementalTaxRegistration, input, options) as async.Operation<types.PutSupplementalTaxRegistrationOutput>
+function C:putSupplementalTaxRegistration(input: types.PutSupplementalTaxRegistrationInput, options?: base_client.InvokeOptions): async.Operation<types.PutSupplementalTaxRegistrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutSupplementalTaxRegistration as schema.OperationSchema, input, options) as async.Operation<types.PutSupplementalTaxRegistrationOutput>
 end
 
-function C:putTaxExemption(input: types.PutTaxExemptionInput, options: any): async.Operation<types.PutTaxExemptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutTaxExemption, input, options) as async.Operation<types.PutTaxExemptionOutput>
+function C:putTaxExemption(input: types.PutTaxExemptionInput, options?: base_client.InvokeOptions): async.Operation<types.PutTaxExemptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutTaxExemption as schema.OperationSchema, input, options) as async.Operation<types.PutTaxExemptionOutput>
 end
 
-function C:putTaxInheritance(input: types.PutTaxInheritanceInput, options: any): async.Operation<types.PutTaxInheritanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutTaxInheritance, input, options) as async.Operation<types.PutTaxInheritanceOutput>
+function C:putTaxInheritance(input: types.PutTaxInheritanceInput, options?: base_client.InvokeOptions): async.Operation<types.PutTaxInheritanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutTaxInheritance as schema.OperationSchema, input, options) as async.Operation<types.PutTaxInheritanceOutput>
 end
 
-function C:putTaxRegistration(input: types.PutTaxRegistrationInput, options: any): async.Operation<types.PutTaxRegistrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutTaxRegistration, input, options) as async.Operation<types.PutTaxRegistrationOutput>
+function C:putTaxRegistration(input: types.PutTaxRegistrationInput, options?: base_client.InvokeOptions): async.Operation<types.PutTaxRegistrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutTaxRegistration as schema.OperationSchema, input, options) as async.Operation<types.PutTaxRegistrationOutput>
 end
 
 return M

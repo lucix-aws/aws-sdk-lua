@@ -8,200 +8,203 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("lightsail.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("lightsail.schemas")
 local traits = require("smithy.traits")
 local types = require("lightsail.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    allocateStaticIp: function(Client, types.AllocateStaticIpInput, any): async.Operation<types.AllocateStaticIpOutput>
-    attachCertificateToDistribution: function(Client, types.AttachCertificateToDistributionInput, any): async.Operation<types.AttachCertificateToDistributionOutput>
-    attachDisk: function(Client, types.AttachDiskInput, any): async.Operation<types.AttachDiskOutput>
-    attachInstancesToLoadBalancer: function(Client, types.AttachInstancesToLoadBalancerInput, any): async.Operation<types.AttachInstancesToLoadBalancerOutput>
-    attachLoadBalancerTlsCertificate: function(Client, types.AttachLoadBalancerTlsCertificateInput, any): async.Operation<types.AttachLoadBalancerTlsCertificateOutput>
-    attachStaticIp: function(Client, types.AttachStaticIpInput, any): async.Operation<types.AttachStaticIpOutput>
-    closeInstancePublicPorts: function(Client, types.CloseInstancePublicPortsInput, any): async.Operation<types.CloseInstancePublicPortsOutput>
-    copySnapshot: function(Client, types.CopySnapshotInput, any): async.Operation<types.CopySnapshotOutput>
-    createBucket: function(Client, types.CreateBucketInput, any): async.Operation<types.CreateBucketOutput>
-    createBucketAccessKey: function(Client, types.CreateBucketAccessKeyInput, any): async.Operation<types.CreateBucketAccessKeyOutput>
-    createCertificate: function(Client, types.CreateCertificateInput, any): async.Operation<types.CreateCertificateOutput>
-    createCloudFormationStack: function(Client, types.CreateCloudFormationStackInput, any): async.Operation<types.CreateCloudFormationStackOutput>
-    createContactMethod: function(Client, types.CreateContactMethodInput, any): async.Operation<types.CreateContactMethodOutput>
-    createContainerService: function(Client, types.CreateContainerServiceInput, any): async.Operation<types.CreateContainerServiceOutput>
-    createContainerServiceDeployment: function(Client, types.CreateContainerServiceDeploymentInput, any): async.Operation<types.CreateContainerServiceDeploymentOutput>
-    createContainerServiceRegistryLogin: function(Client, types.CreateContainerServiceRegistryLoginInput, any): async.Operation<types.CreateContainerServiceRegistryLoginOutput>
-    createDisk: function(Client, types.CreateDiskInput, any): async.Operation<types.CreateDiskOutput>
-    createDiskFromSnapshot: function(Client, types.CreateDiskFromSnapshotInput, any): async.Operation<types.CreateDiskFromSnapshotOutput>
-    createDiskSnapshot: function(Client, types.CreateDiskSnapshotInput, any): async.Operation<types.CreateDiskSnapshotOutput>
-    createDistribution: function(Client, types.CreateDistributionInput, any): async.Operation<types.CreateDistributionOutput>
-    createDomain: function(Client, types.CreateDomainInput, any): async.Operation<types.CreateDomainOutput>
-    createDomainEntry: function(Client, types.CreateDomainEntryInput, any): async.Operation<types.CreateDomainEntryOutput>
-    createGUISessionAccessDetails: function(Client, types.CreateGUISessionAccessDetailsInput, any): async.Operation<types.CreateGUISessionAccessDetailsOutput>
-    createInstances: function(Client, types.CreateInstancesInput, any): async.Operation<types.CreateInstancesOutput>
-    createInstancesFromSnapshot: function(Client, types.CreateInstancesFromSnapshotInput, any): async.Operation<types.CreateInstancesFromSnapshotOutput>
-    createInstanceSnapshot: function(Client, types.CreateInstanceSnapshotInput, any): async.Operation<types.CreateInstanceSnapshotOutput>
-    createKeyPair: function(Client, types.CreateKeyPairInput, any): async.Operation<types.CreateKeyPairOutput>
-    createLoadBalancer: function(Client, types.CreateLoadBalancerInput, any): async.Operation<types.CreateLoadBalancerOutput>
-    createLoadBalancerTlsCertificate: function(Client, types.CreateLoadBalancerTlsCertificateInput, any): async.Operation<types.CreateLoadBalancerTlsCertificateOutput>
-    createRelationalDatabase: function(Client, types.CreateRelationalDatabaseInput, any): async.Operation<types.CreateRelationalDatabaseOutput>
-    createRelationalDatabaseFromSnapshot: function(Client, types.CreateRelationalDatabaseFromSnapshotInput, any): async.Operation<types.CreateRelationalDatabaseFromSnapshotOutput>
-    createRelationalDatabaseSnapshot: function(Client, types.CreateRelationalDatabaseSnapshotInput, any): async.Operation<types.CreateRelationalDatabaseSnapshotOutput>
-    deleteAlarm: function(Client, types.DeleteAlarmInput, any): async.Operation<types.DeleteAlarmOutput>
-    deleteAutoSnapshot: function(Client, types.DeleteAutoSnapshotInput, any): async.Operation<types.DeleteAutoSnapshotOutput>
-    deleteBucket: function(Client, types.DeleteBucketInput, any): async.Operation<types.DeleteBucketOutput>
-    deleteBucketAccessKey: function(Client, types.DeleteBucketAccessKeyInput, any): async.Operation<types.DeleteBucketAccessKeyOutput>
-    deleteCertificate: function(Client, types.DeleteCertificateInput, any): async.Operation<types.DeleteCertificateOutput>
-    deleteContactMethod: function(Client, types.DeleteContactMethodInput, any): async.Operation<types.DeleteContactMethodOutput>
-    deleteContainerImage: function(Client, types.DeleteContainerImageInput, any): async.Operation<types.DeleteContainerImageOutput>
-    deleteContainerService: function(Client, types.DeleteContainerServiceInput, any): async.Operation<types.DeleteContainerServiceOutput>
-    deleteDisk: function(Client, types.DeleteDiskInput, any): async.Operation<types.DeleteDiskOutput>
-    deleteDiskSnapshot: function(Client, types.DeleteDiskSnapshotInput, any): async.Operation<types.DeleteDiskSnapshotOutput>
-    deleteDistribution: function(Client, types.DeleteDistributionInput, any): async.Operation<types.DeleteDistributionOutput>
-    deleteDomain: function(Client, types.DeleteDomainInput, any): async.Operation<types.DeleteDomainOutput>
-    deleteDomainEntry: function(Client, types.DeleteDomainEntryInput, any): async.Operation<types.DeleteDomainEntryOutput>
-    deleteInstance: function(Client, types.DeleteInstanceInput, any): async.Operation<types.DeleteInstanceOutput>
-    deleteInstanceSnapshot: function(Client, types.DeleteInstanceSnapshotInput, any): async.Operation<types.DeleteInstanceSnapshotOutput>
-    deleteKeyPair: function(Client, types.DeleteKeyPairInput, any): async.Operation<types.DeleteKeyPairOutput>
-    deleteKnownHostKeys: function(Client, types.DeleteKnownHostKeysInput, any): async.Operation<types.DeleteKnownHostKeysOutput>
-    deleteLoadBalancer: function(Client, types.DeleteLoadBalancerInput, any): async.Operation<types.DeleteLoadBalancerOutput>
-    deleteLoadBalancerTlsCertificate: function(Client, types.DeleteLoadBalancerTlsCertificateInput, any): async.Operation<types.DeleteLoadBalancerTlsCertificateOutput>
-    deleteRelationalDatabase: function(Client, types.DeleteRelationalDatabaseInput, any): async.Operation<types.DeleteRelationalDatabaseOutput>
-    deleteRelationalDatabaseSnapshot: function(Client, types.DeleteRelationalDatabaseSnapshotInput, any): async.Operation<types.DeleteRelationalDatabaseSnapshotOutput>
-    detachCertificateFromDistribution: function(Client, types.DetachCertificateFromDistributionInput, any): async.Operation<types.DetachCertificateFromDistributionOutput>
-    detachDisk: function(Client, types.DetachDiskInput, any): async.Operation<types.DetachDiskOutput>
-    detachInstancesFromLoadBalancer: function(Client, types.DetachInstancesFromLoadBalancerInput, any): async.Operation<types.DetachInstancesFromLoadBalancerOutput>
-    detachStaticIp: function(Client, types.DetachStaticIpInput, any): async.Operation<types.DetachStaticIpOutput>
-    disableAddOn: function(Client, types.DisableAddOnInput, any): async.Operation<types.DisableAddOnOutput>
-    downloadDefaultKeyPair: function(Client, types.DownloadDefaultKeyPairInput, any): async.Operation<types.DownloadDefaultKeyPairOutput>
-    enableAddOn: function(Client, types.EnableAddOnInput, any): async.Operation<types.EnableAddOnOutput>
-    exportSnapshot: function(Client, types.ExportSnapshotInput, any): async.Operation<types.ExportSnapshotOutput>
-    getActiveNames: function(Client, types.GetActiveNamesInput, any): async.Operation<types.GetActiveNamesOutput>
-    getAlarms: function(Client, types.GetAlarmsInput, any): async.Operation<types.GetAlarmsOutput>
-    getAutoSnapshots: function(Client, types.GetAutoSnapshotsInput, any): async.Operation<types.GetAutoSnapshotsOutput>
-    getBlueprints: function(Client, types.GetBlueprintsInput, any): async.Operation<types.GetBlueprintsOutput>
-    getBucketAccessKeys: function(Client, types.GetBucketAccessKeysInput, any): async.Operation<types.GetBucketAccessKeysOutput>
-    getBucketBundles: function(Client, types.GetBucketBundlesInput, any): async.Operation<types.GetBucketBundlesOutput>
-    getBucketMetricData: function(Client, types.GetBucketMetricDataInput, any): async.Operation<types.GetBucketMetricDataOutput>
-    getBuckets: function(Client, types.GetBucketsInput, any): async.Operation<types.GetBucketsOutput>
-    getBundles: function(Client, types.GetBundlesInput, any): async.Operation<types.GetBundlesOutput>
-    getCertificates: function(Client, types.GetCertificatesInput, any): async.Operation<types.GetCertificatesOutput>
-    getCloudFormationStackRecords: function(Client, types.GetCloudFormationStackRecordsInput, any): async.Operation<types.GetCloudFormationStackRecordsOutput>
-    getContactMethods: function(Client, types.GetContactMethodsInput, any): async.Operation<types.GetContactMethodsOutput>
-    getContainerAPIMetadata: function(Client, types.GetContainerAPIMetadataInput, any): async.Operation<types.GetContainerAPIMetadataOutput>
-    getContainerImages: function(Client, types.GetContainerImagesInput, any): async.Operation<types.GetContainerImagesOutput>
-    getContainerLog: function(Client, types.GetContainerLogInput, any): async.Operation<types.GetContainerLogOutput>
-    getContainerServiceDeployments: function(Client, types.GetContainerServiceDeploymentsInput, any): async.Operation<types.GetContainerServiceDeploymentsOutput>
-    getContainerServiceMetricData: function(Client, types.GetContainerServiceMetricDataInput, any): async.Operation<types.GetContainerServiceMetricDataOutput>
-    getContainerServicePowers: function(Client, types.GetContainerServicePowersInput, any): async.Operation<types.GetContainerServicePowersOutput>
-    getContainerServices: function(Client, types.GetContainerServicesInput, any): async.Operation<types.GetContainerServicesOutput>
-    getCostEstimate: function(Client, types.GetCostEstimateInput, any): async.Operation<types.GetCostEstimateOutput>
-    getDisk: function(Client, types.GetDiskInput, any): async.Operation<types.GetDiskOutput>
-    getDisks: function(Client, types.GetDisksInput, any): async.Operation<types.GetDisksOutput>
-    getDiskSnapshot: function(Client, types.GetDiskSnapshotInput, any): async.Operation<types.GetDiskSnapshotOutput>
-    getDiskSnapshots: function(Client, types.GetDiskSnapshotsInput, any): async.Operation<types.GetDiskSnapshotsOutput>
-    getDistributionBundles: function(Client, types.GetDistributionBundlesInput, any): async.Operation<types.GetDistributionBundlesOutput>
-    getDistributionLatestCacheReset: function(Client, types.GetDistributionLatestCacheResetInput, any): async.Operation<types.GetDistributionLatestCacheResetOutput>
-    getDistributionMetricData: function(Client, types.GetDistributionMetricDataInput, any): async.Operation<types.GetDistributionMetricDataOutput>
-    getDistributions: function(Client, types.GetDistributionsInput, any): async.Operation<types.GetDistributionsOutput>
-    getDomain: function(Client, types.GetDomainInput, any): async.Operation<types.GetDomainOutput>
-    getDomains: function(Client, types.GetDomainsInput, any): async.Operation<types.GetDomainsOutput>
-    getExportSnapshotRecords: function(Client, types.GetExportSnapshotRecordsInput, any): async.Operation<types.GetExportSnapshotRecordsOutput>
-    getInstance: function(Client, types.GetInstanceInput, any): async.Operation<types.GetInstanceOutput>
-    getInstanceAccessDetails: function(Client, types.GetInstanceAccessDetailsInput, any): async.Operation<types.GetInstanceAccessDetailsOutput>
-    getInstanceMetricData: function(Client, types.GetInstanceMetricDataInput, any): async.Operation<types.GetInstanceMetricDataOutput>
-    getInstancePortStates: function(Client, types.GetInstancePortStatesInput, any): async.Operation<types.GetInstancePortStatesOutput>
-    getInstances: function(Client, types.GetInstancesInput, any): async.Operation<types.GetInstancesOutput>
-    getInstanceSnapshot: function(Client, types.GetInstanceSnapshotInput, any): async.Operation<types.GetInstanceSnapshotOutput>
-    getInstanceSnapshots: function(Client, types.GetInstanceSnapshotsInput, any): async.Operation<types.GetInstanceSnapshotsOutput>
-    getInstanceState: function(Client, types.GetInstanceStateInput, any): async.Operation<types.GetInstanceStateOutput>
-    getKeyPair: function(Client, types.GetKeyPairInput, any): async.Operation<types.GetKeyPairOutput>
-    getKeyPairs: function(Client, types.GetKeyPairsInput, any): async.Operation<types.GetKeyPairsOutput>
-    getLoadBalancer: function(Client, types.GetLoadBalancerInput, any): async.Operation<types.GetLoadBalancerOutput>
-    getLoadBalancerMetricData: function(Client, types.GetLoadBalancerMetricDataInput, any): async.Operation<types.GetLoadBalancerMetricDataOutput>
-    getLoadBalancers: function(Client, types.GetLoadBalancersInput, any): async.Operation<types.GetLoadBalancersOutput>
-    getLoadBalancerTlsCertificates: function(Client, types.GetLoadBalancerTlsCertificatesInput, any): async.Operation<types.GetLoadBalancerTlsCertificatesOutput>
-    getLoadBalancerTlsPolicies: function(Client, types.GetLoadBalancerTlsPoliciesInput, any): async.Operation<types.GetLoadBalancerTlsPoliciesOutput>
-    getOperation: function(Client, types.GetOperationInput, any): async.Operation<types.GetOperationOutput>
-    getOperations: function(Client, types.GetOperationsInput, any): async.Operation<types.GetOperationsOutput>
-    getOperationsForResource: function(Client, types.GetOperationsForResourceInput, any): async.Operation<types.GetOperationsForResourceOutput>
-    getRegions: function(Client, types.GetRegionsInput, any): async.Operation<types.GetRegionsOutput>
-    getRelationalDatabase: function(Client, types.GetRelationalDatabaseInput, any): async.Operation<types.GetRelationalDatabaseOutput>
-    getRelationalDatabaseBlueprints: function(Client, types.GetRelationalDatabaseBlueprintsInput, any): async.Operation<types.GetRelationalDatabaseBlueprintsOutput>
-    getRelationalDatabaseBundles: function(Client, types.GetRelationalDatabaseBundlesInput, any): async.Operation<types.GetRelationalDatabaseBundlesOutput>
-    getRelationalDatabaseEvents: function(Client, types.GetRelationalDatabaseEventsInput, any): async.Operation<types.GetRelationalDatabaseEventsOutput>
-    getRelationalDatabaseLogEvents: function(Client, types.GetRelationalDatabaseLogEventsInput, any): async.Operation<types.GetRelationalDatabaseLogEventsOutput>
-    getRelationalDatabaseLogStreams: function(Client, types.GetRelationalDatabaseLogStreamsInput, any): async.Operation<types.GetRelationalDatabaseLogStreamsOutput>
-    getRelationalDatabaseMasterUserPassword: function(Client, types.GetRelationalDatabaseMasterUserPasswordInput, any): async.Operation<types.GetRelationalDatabaseMasterUserPasswordOutput>
-    getRelationalDatabaseMetricData: function(Client, types.GetRelationalDatabaseMetricDataInput, any): async.Operation<types.GetRelationalDatabaseMetricDataOutput>
-    getRelationalDatabaseParameters: function(Client, types.GetRelationalDatabaseParametersInput, any): async.Operation<types.GetRelationalDatabaseParametersOutput>
-    getRelationalDatabases: function(Client, types.GetRelationalDatabasesInput, any): async.Operation<types.GetRelationalDatabasesOutput>
-    getRelationalDatabaseSnapshot: function(Client, types.GetRelationalDatabaseSnapshotInput, any): async.Operation<types.GetRelationalDatabaseSnapshotOutput>
-    getRelationalDatabaseSnapshots: function(Client, types.GetRelationalDatabaseSnapshotsInput, any): async.Operation<types.GetRelationalDatabaseSnapshotsOutput>
-    getSetupHistory: function(Client, types.GetSetupHistoryInput, any): async.Operation<types.GetSetupHistoryOutput>
-    getStaticIp: function(Client, types.GetStaticIpInput, any): async.Operation<types.GetStaticIpOutput>
-    getStaticIps: function(Client, types.GetStaticIpsInput, any): async.Operation<types.GetStaticIpsOutput>
-    importKeyPair: function(Client, types.ImportKeyPairInput, any): async.Operation<types.ImportKeyPairOutput>
-    isVpcPeered: function(Client, types.IsVpcPeeredInput, any): async.Operation<types.IsVpcPeeredOutput>
-    openInstancePublicPorts: function(Client, types.OpenInstancePublicPortsInput, any): async.Operation<types.OpenInstancePublicPortsOutput>
-    peerVpc: function(Client, types.PeerVpcInput, any): async.Operation<types.PeerVpcOutput>
-    putAlarm: function(Client, types.PutAlarmInput, any): async.Operation<types.PutAlarmOutput>
-    putInstancePublicPorts: function(Client, types.PutInstancePublicPortsInput, any): async.Operation<types.PutInstancePublicPortsOutput>
-    rebootInstance: function(Client, types.RebootInstanceInput, any): async.Operation<types.RebootInstanceOutput>
-    rebootRelationalDatabase: function(Client, types.RebootRelationalDatabaseInput, any): async.Operation<types.RebootRelationalDatabaseOutput>
-    registerContainerImage: function(Client, types.RegisterContainerImageInput, any): async.Operation<types.RegisterContainerImageOutput>
-    releaseStaticIp: function(Client, types.ReleaseStaticIpInput, any): async.Operation<types.ReleaseStaticIpOutput>
-    resetDistributionCache: function(Client, types.ResetDistributionCacheInput, any): async.Operation<types.ResetDistributionCacheOutput>
-    sendContactMethodVerification: function(Client, types.SendContactMethodVerificationInput, any): async.Operation<types.SendContactMethodVerificationOutput>
-    setIpAddressType: function(Client, types.SetIpAddressTypeInput, any): async.Operation<types.SetIpAddressTypeOutput>
-    setResourceAccessForBucket: function(Client, types.SetResourceAccessForBucketInput, any): async.Operation<types.SetResourceAccessForBucketOutput>
-    setupInstanceHttps: function(Client, types.SetupInstanceHttpsInput, any): async.Operation<types.SetupInstanceHttpsOutput>
-    startGUISession: function(Client, types.StartGUISessionInput, any): async.Operation<types.StartGUISessionOutput>
-    startInstance: function(Client, types.StartInstanceInput, any): async.Operation<types.StartInstanceOutput>
-    startRelationalDatabase: function(Client, types.StartRelationalDatabaseInput, any): async.Operation<types.StartRelationalDatabaseOutput>
-    stopGUISession: function(Client, types.StopGUISessionInput, any): async.Operation<types.StopGUISessionOutput>
-    stopInstance: function(Client, types.StopInstanceInput, any): async.Operation<types.StopInstanceOutput>
-    stopRelationalDatabase: function(Client, types.StopRelationalDatabaseInput, any): async.Operation<types.StopRelationalDatabaseOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    testAlarm: function(Client, types.TestAlarmInput, any): async.Operation<types.TestAlarmOutput>
-    unpeerVpc: function(Client, types.UnpeerVpcInput, any): async.Operation<types.UnpeerVpcOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateBucket: function(Client, types.UpdateBucketInput, any): async.Operation<types.UpdateBucketOutput>
-    updateBucketBundle: function(Client, types.UpdateBucketBundleInput, any): async.Operation<types.UpdateBucketBundleOutput>
-    updateContainerService: function(Client, types.UpdateContainerServiceInput, any): async.Operation<types.UpdateContainerServiceOutput>
-    updateDistribution: function(Client, types.UpdateDistributionInput, any): async.Operation<types.UpdateDistributionOutput>
-    updateDistributionBundle: function(Client, types.UpdateDistributionBundleInput, any): async.Operation<types.UpdateDistributionBundleOutput>
-    updateDomainEntry: function(Client, types.UpdateDomainEntryInput, any): async.Operation<types.UpdateDomainEntryOutput>
-    updateInstanceMetadataOptions: function(Client, types.UpdateInstanceMetadataOptionsInput, any): async.Operation<types.UpdateInstanceMetadataOptionsOutput>
-    updateLoadBalancerAttribute: function(Client, types.UpdateLoadBalancerAttributeInput, any): async.Operation<types.UpdateLoadBalancerAttributeOutput>
-    updateRelationalDatabase: function(Client, types.UpdateRelationalDatabaseInput, any): async.Operation<types.UpdateRelationalDatabaseOutput>
-    updateRelationalDatabaseParameters: function(Client, types.UpdateRelationalDatabaseParametersInput, any): async.Operation<types.UpdateRelationalDatabaseParametersOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    allocateStaticIp: function(Client, types.AllocateStaticIpInput, ? base_client.InvokeOptions): async.Operation<types.AllocateStaticIpOutput>
+    attachCertificateToDistribution: function(Client, types.AttachCertificateToDistributionInput, ? base_client.InvokeOptions): async.Operation<types.AttachCertificateToDistributionOutput>
+    attachDisk: function(Client, types.AttachDiskInput, ? base_client.InvokeOptions): async.Operation<types.AttachDiskOutput>
+    attachInstancesToLoadBalancer: function(Client, types.AttachInstancesToLoadBalancerInput, ? base_client.InvokeOptions): async.Operation<types.AttachInstancesToLoadBalancerOutput>
+    attachLoadBalancerTlsCertificate: function(Client, types.AttachLoadBalancerTlsCertificateInput, ? base_client.InvokeOptions): async.Operation<types.AttachLoadBalancerTlsCertificateOutput>
+    attachStaticIp: function(Client, types.AttachStaticIpInput, ? base_client.InvokeOptions): async.Operation<types.AttachStaticIpOutput>
+    closeInstancePublicPorts: function(Client, types.CloseInstancePublicPortsInput, ? base_client.InvokeOptions): async.Operation<types.CloseInstancePublicPortsOutput>
+    copySnapshot: function(Client, types.CopySnapshotInput, ? base_client.InvokeOptions): async.Operation<types.CopySnapshotOutput>
+    createBucket: function(Client, types.CreateBucketInput, ? base_client.InvokeOptions): async.Operation<types.CreateBucketOutput>
+    createBucketAccessKey: function(Client, types.CreateBucketAccessKeyInput, ? base_client.InvokeOptions): async.Operation<types.CreateBucketAccessKeyOutput>
+    createCertificate: function(Client, types.CreateCertificateInput, ? base_client.InvokeOptions): async.Operation<types.CreateCertificateOutput>
+    createCloudFormationStack: function(Client, types.CreateCloudFormationStackInput, ? base_client.InvokeOptions): async.Operation<types.CreateCloudFormationStackOutput>
+    createContactMethod: function(Client, types.CreateContactMethodInput, ? base_client.InvokeOptions): async.Operation<types.CreateContactMethodOutput>
+    createContainerService: function(Client, types.CreateContainerServiceInput, ? base_client.InvokeOptions): async.Operation<types.CreateContainerServiceOutput>
+    createContainerServiceDeployment: function(Client, types.CreateContainerServiceDeploymentInput, ? base_client.InvokeOptions): async.Operation<types.CreateContainerServiceDeploymentOutput>
+    createContainerServiceRegistryLogin: function(Client, types.CreateContainerServiceRegistryLoginInput, ? base_client.InvokeOptions): async.Operation<types.CreateContainerServiceRegistryLoginOutput>
+    createDisk: function(Client, types.CreateDiskInput, ? base_client.InvokeOptions): async.Operation<types.CreateDiskOutput>
+    createDiskFromSnapshot: function(Client, types.CreateDiskFromSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.CreateDiskFromSnapshotOutput>
+    createDiskSnapshot: function(Client, types.CreateDiskSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.CreateDiskSnapshotOutput>
+    createDistribution: function(Client, types.CreateDistributionInput, ? base_client.InvokeOptions): async.Operation<types.CreateDistributionOutput>
+    createDomain: function(Client, types.CreateDomainInput, ? base_client.InvokeOptions): async.Operation<types.CreateDomainOutput>
+    createDomainEntry: function(Client, types.CreateDomainEntryInput, ? base_client.InvokeOptions): async.Operation<types.CreateDomainEntryOutput>
+    createGUISessionAccessDetails: function(Client, types.CreateGUISessionAccessDetailsInput, ? base_client.InvokeOptions): async.Operation<types.CreateGUISessionAccessDetailsOutput>
+    createInstances: function(Client, types.CreateInstancesInput, ? base_client.InvokeOptions): async.Operation<types.CreateInstancesOutput>
+    createInstancesFromSnapshot: function(Client, types.CreateInstancesFromSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.CreateInstancesFromSnapshotOutput>
+    createInstanceSnapshot: function(Client, types.CreateInstanceSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.CreateInstanceSnapshotOutput>
+    createKeyPair: function(Client, types.CreateKeyPairInput, ? base_client.InvokeOptions): async.Operation<types.CreateKeyPairOutput>
+    createLoadBalancer: function(Client, types.CreateLoadBalancerInput, ? base_client.InvokeOptions): async.Operation<types.CreateLoadBalancerOutput>
+    createLoadBalancerTlsCertificate: function(Client, types.CreateLoadBalancerTlsCertificateInput, ? base_client.InvokeOptions): async.Operation<types.CreateLoadBalancerTlsCertificateOutput>
+    createRelationalDatabase: function(Client, types.CreateRelationalDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.CreateRelationalDatabaseOutput>
+    createRelationalDatabaseFromSnapshot: function(Client, types.CreateRelationalDatabaseFromSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.CreateRelationalDatabaseFromSnapshotOutput>
+    createRelationalDatabaseSnapshot: function(Client, types.CreateRelationalDatabaseSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.CreateRelationalDatabaseSnapshotOutput>
+    deleteAlarm: function(Client, types.DeleteAlarmInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAlarmOutput>
+    deleteAutoSnapshot: function(Client, types.DeleteAutoSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAutoSnapshotOutput>
+    deleteBucket: function(Client, types.DeleteBucketInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBucketOutput>
+    deleteBucketAccessKey: function(Client, types.DeleteBucketAccessKeyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBucketAccessKeyOutput>
+    deleteCertificate: function(Client, types.DeleteCertificateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCertificateOutput>
+    deleteContactMethod: function(Client, types.DeleteContactMethodInput, ? base_client.InvokeOptions): async.Operation<types.DeleteContactMethodOutput>
+    deleteContainerImage: function(Client, types.DeleteContainerImageInput, ? base_client.InvokeOptions): async.Operation<types.DeleteContainerImageOutput>
+    deleteContainerService: function(Client, types.DeleteContainerServiceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteContainerServiceOutput>
+    deleteDisk: function(Client, types.DeleteDiskInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDiskOutput>
+    deleteDiskSnapshot: function(Client, types.DeleteDiskSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDiskSnapshotOutput>
+    deleteDistribution: function(Client, types.DeleteDistributionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDistributionOutput>
+    deleteDomain: function(Client, types.DeleteDomainInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDomainOutput>
+    deleteDomainEntry: function(Client, types.DeleteDomainEntryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDomainEntryOutput>
+    deleteInstance: function(Client, types.DeleteInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInstanceOutput>
+    deleteInstanceSnapshot: function(Client, types.DeleteInstanceSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInstanceSnapshotOutput>
+    deleteKeyPair: function(Client, types.DeleteKeyPairInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKeyPairOutput>
+    deleteKnownHostKeys: function(Client, types.DeleteKnownHostKeysInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKnownHostKeysOutput>
+    deleteLoadBalancer: function(Client, types.DeleteLoadBalancerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLoadBalancerOutput>
+    deleteLoadBalancerTlsCertificate: function(Client, types.DeleteLoadBalancerTlsCertificateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLoadBalancerTlsCertificateOutput>
+    deleteRelationalDatabase: function(Client, types.DeleteRelationalDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRelationalDatabaseOutput>
+    deleteRelationalDatabaseSnapshot: function(Client, types.DeleteRelationalDatabaseSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRelationalDatabaseSnapshotOutput>
+    detachCertificateFromDistribution: function(Client, types.DetachCertificateFromDistributionInput, ? base_client.InvokeOptions): async.Operation<types.DetachCertificateFromDistributionOutput>
+    detachDisk: function(Client, types.DetachDiskInput, ? base_client.InvokeOptions): async.Operation<types.DetachDiskOutput>
+    detachInstancesFromLoadBalancer: function(Client, types.DetachInstancesFromLoadBalancerInput, ? base_client.InvokeOptions): async.Operation<types.DetachInstancesFromLoadBalancerOutput>
+    detachStaticIp: function(Client, types.DetachStaticIpInput, ? base_client.InvokeOptions): async.Operation<types.DetachStaticIpOutput>
+    disableAddOn: function(Client, types.DisableAddOnInput, ? base_client.InvokeOptions): async.Operation<types.DisableAddOnOutput>
+    downloadDefaultKeyPair: function(Client, types.DownloadDefaultKeyPairInput, ? base_client.InvokeOptions): async.Operation<types.DownloadDefaultKeyPairOutput>
+    enableAddOn: function(Client, types.EnableAddOnInput, ? base_client.InvokeOptions): async.Operation<types.EnableAddOnOutput>
+    exportSnapshot: function(Client, types.ExportSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.ExportSnapshotOutput>
+    getActiveNames: function(Client, types.GetActiveNamesInput, ? base_client.InvokeOptions): async.Operation<types.GetActiveNamesOutput>
+    getAlarms: function(Client, types.GetAlarmsInput, ? base_client.InvokeOptions): async.Operation<types.GetAlarmsOutput>
+    getAutoSnapshots: function(Client, types.GetAutoSnapshotsInput, ? base_client.InvokeOptions): async.Operation<types.GetAutoSnapshotsOutput>
+    getBlueprints: function(Client, types.GetBlueprintsInput, ? base_client.InvokeOptions): async.Operation<types.GetBlueprintsOutput>
+    getBucketAccessKeys: function(Client, types.GetBucketAccessKeysInput, ? base_client.InvokeOptions): async.Operation<types.GetBucketAccessKeysOutput>
+    getBucketBundles: function(Client, types.GetBucketBundlesInput, ? base_client.InvokeOptions): async.Operation<types.GetBucketBundlesOutput>
+    getBucketMetricData: function(Client, types.GetBucketMetricDataInput, ? base_client.InvokeOptions): async.Operation<types.GetBucketMetricDataOutput>
+    getBuckets: function(Client, types.GetBucketsInput, ? base_client.InvokeOptions): async.Operation<types.GetBucketsOutput>
+    getBundles: function(Client, types.GetBundlesInput, ? base_client.InvokeOptions): async.Operation<types.GetBundlesOutput>
+    getCertificates: function(Client, types.GetCertificatesInput, ? base_client.InvokeOptions): async.Operation<types.GetCertificatesOutput>
+    getCloudFormationStackRecords: function(Client, types.GetCloudFormationStackRecordsInput, ? base_client.InvokeOptions): async.Operation<types.GetCloudFormationStackRecordsOutput>
+    getContactMethods: function(Client, types.GetContactMethodsInput, ? base_client.InvokeOptions): async.Operation<types.GetContactMethodsOutput>
+    getContainerAPIMetadata: function(Client, types.GetContainerAPIMetadataInput, ? base_client.InvokeOptions): async.Operation<types.GetContainerAPIMetadataOutput>
+    getContainerImages: function(Client, types.GetContainerImagesInput, ? base_client.InvokeOptions): async.Operation<types.GetContainerImagesOutput>
+    getContainerLog: function(Client, types.GetContainerLogInput, ? base_client.InvokeOptions): async.Operation<types.GetContainerLogOutput>
+    getContainerServiceDeployments: function(Client, types.GetContainerServiceDeploymentsInput, ? base_client.InvokeOptions): async.Operation<types.GetContainerServiceDeploymentsOutput>
+    getContainerServiceMetricData: function(Client, types.GetContainerServiceMetricDataInput, ? base_client.InvokeOptions): async.Operation<types.GetContainerServiceMetricDataOutput>
+    getContainerServicePowers: function(Client, types.GetContainerServicePowersInput, ? base_client.InvokeOptions): async.Operation<types.GetContainerServicePowersOutput>
+    getContainerServices: function(Client, types.GetContainerServicesInput, ? base_client.InvokeOptions): async.Operation<types.GetContainerServicesOutput>
+    getCostEstimate: function(Client, types.GetCostEstimateInput, ? base_client.InvokeOptions): async.Operation<types.GetCostEstimateOutput>
+    getDisk: function(Client, types.GetDiskInput, ? base_client.InvokeOptions): async.Operation<types.GetDiskOutput>
+    getDisks: function(Client, types.GetDisksInput, ? base_client.InvokeOptions): async.Operation<types.GetDisksOutput>
+    getDiskSnapshot: function(Client, types.GetDiskSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.GetDiskSnapshotOutput>
+    getDiskSnapshots: function(Client, types.GetDiskSnapshotsInput, ? base_client.InvokeOptions): async.Operation<types.GetDiskSnapshotsOutput>
+    getDistributionBundles: function(Client, types.GetDistributionBundlesInput, ? base_client.InvokeOptions): async.Operation<types.GetDistributionBundlesOutput>
+    getDistributionLatestCacheReset: function(Client, types.GetDistributionLatestCacheResetInput, ? base_client.InvokeOptions): async.Operation<types.GetDistributionLatestCacheResetOutput>
+    getDistributionMetricData: function(Client, types.GetDistributionMetricDataInput, ? base_client.InvokeOptions): async.Operation<types.GetDistributionMetricDataOutput>
+    getDistributions: function(Client, types.GetDistributionsInput, ? base_client.InvokeOptions): async.Operation<types.GetDistributionsOutput>
+    getDomain: function(Client, types.GetDomainInput, ? base_client.InvokeOptions): async.Operation<types.GetDomainOutput>
+    getDomains: function(Client, types.GetDomainsInput, ? base_client.InvokeOptions): async.Operation<types.GetDomainsOutput>
+    getExportSnapshotRecords: function(Client, types.GetExportSnapshotRecordsInput, ? base_client.InvokeOptions): async.Operation<types.GetExportSnapshotRecordsOutput>
+    getInstance: function(Client, types.GetInstanceInput, ? base_client.InvokeOptions): async.Operation<types.GetInstanceOutput>
+    getInstanceAccessDetails: function(Client, types.GetInstanceAccessDetailsInput, ? base_client.InvokeOptions): async.Operation<types.GetInstanceAccessDetailsOutput>
+    getInstanceMetricData: function(Client, types.GetInstanceMetricDataInput, ? base_client.InvokeOptions): async.Operation<types.GetInstanceMetricDataOutput>
+    getInstancePortStates: function(Client, types.GetInstancePortStatesInput, ? base_client.InvokeOptions): async.Operation<types.GetInstancePortStatesOutput>
+    getInstances: function(Client, types.GetInstancesInput, ? base_client.InvokeOptions): async.Operation<types.GetInstancesOutput>
+    getInstanceSnapshot: function(Client, types.GetInstanceSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.GetInstanceSnapshotOutput>
+    getInstanceSnapshots: function(Client, types.GetInstanceSnapshotsInput, ? base_client.InvokeOptions): async.Operation<types.GetInstanceSnapshotsOutput>
+    getInstanceState: function(Client, types.GetInstanceStateInput, ? base_client.InvokeOptions): async.Operation<types.GetInstanceStateOutput>
+    getKeyPair: function(Client, types.GetKeyPairInput, ? base_client.InvokeOptions): async.Operation<types.GetKeyPairOutput>
+    getKeyPairs: function(Client, types.GetKeyPairsInput, ? base_client.InvokeOptions): async.Operation<types.GetKeyPairsOutput>
+    getLoadBalancer: function(Client, types.GetLoadBalancerInput, ? base_client.InvokeOptions): async.Operation<types.GetLoadBalancerOutput>
+    getLoadBalancerMetricData: function(Client, types.GetLoadBalancerMetricDataInput, ? base_client.InvokeOptions): async.Operation<types.GetLoadBalancerMetricDataOutput>
+    getLoadBalancers: function(Client, types.GetLoadBalancersInput, ? base_client.InvokeOptions): async.Operation<types.GetLoadBalancersOutput>
+    getLoadBalancerTlsCertificates: function(Client, types.GetLoadBalancerTlsCertificatesInput, ? base_client.InvokeOptions): async.Operation<types.GetLoadBalancerTlsCertificatesOutput>
+    getLoadBalancerTlsPolicies: function(Client, types.GetLoadBalancerTlsPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.GetLoadBalancerTlsPoliciesOutput>
+    getOperation: function(Client, types.GetOperationInput, ? base_client.InvokeOptions): async.Operation<types.GetOperationOutput>
+    getOperations: function(Client, types.GetOperationsInput, ? base_client.InvokeOptions): async.Operation<types.GetOperationsOutput>
+    getOperationsForResource: function(Client, types.GetOperationsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.GetOperationsForResourceOutput>
+    getRegions: function(Client, types.GetRegionsInput, ? base_client.InvokeOptions): async.Operation<types.GetRegionsOutput>
+    getRelationalDatabase: function(Client, types.GetRelationalDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.GetRelationalDatabaseOutput>
+    getRelationalDatabaseBlueprints: function(Client, types.GetRelationalDatabaseBlueprintsInput, ? base_client.InvokeOptions): async.Operation<types.GetRelationalDatabaseBlueprintsOutput>
+    getRelationalDatabaseBundles: function(Client, types.GetRelationalDatabaseBundlesInput, ? base_client.InvokeOptions): async.Operation<types.GetRelationalDatabaseBundlesOutput>
+    getRelationalDatabaseEvents: function(Client, types.GetRelationalDatabaseEventsInput, ? base_client.InvokeOptions): async.Operation<types.GetRelationalDatabaseEventsOutput>
+    getRelationalDatabaseLogEvents: function(Client, types.GetRelationalDatabaseLogEventsInput, ? base_client.InvokeOptions): async.Operation<types.GetRelationalDatabaseLogEventsOutput>
+    getRelationalDatabaseLogStreams: function(Client, types.GetRelationalDatabaseLogStreamsInput, ? base_client.InvokeOptions): async.Operation<types.GetRelationalDatabaseLogStreamsOutput>
+    getRelationalDatabaseMasterUserPassword: function(Client, types.GetRelationalDatabaseMasterUserPasswordInput, ? base_client.InvokeOptions): async.Operation<types.GetRelationalDatabaseMasterUserPasswordOutput>
+    getRelationalDatabaseMetricData: function(Client, types.GetRelationalDatabaseMetricDataInput, ? base_client.InvokeOptions): async.Operation<types.GetRelationalDatabaseMetricDataOutput>
+    getRelationalDatabaseParameters: function(Client, types.GetRelationalDatabaseParametersInput, ? base_client.InvokeOptions): async.Operation<types.GetRelationalDatabaseParametersOutput>
+    getRelationalDatabases: function(Client, types.GetRelationalDatabasesInput, ? base_client.InvokeOptions): async.Operation<types.GetRelationalDatabasesOutput>
+    getRelationalDatabaseSnapshot: function(Client, types.GetRelationalDatabaseSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.GetRelationalDatabaseSnapshotOutput>
+    getRelationalDatabaseSnapshots: function(Client, types.GetRelationalDatabaseSnapshotsInput, ? base_client.InvokeOptions): async.Operation<types.GetRelationalDatabaseSnapshotsOutput>
+    getSetupHistory: function(Client, types.GetSetupHistoryInput, ? base_client.InvokeOptions): async.Operation<types.GetSetupHistoryOutput>
+    getStaticIp: function(Client, types.GetStaticIpInput, ? base_client.InvokeOptions): async.Operation<types.GetStaticIpOutput>
+    getStaticIps: function(Client, types.GetStaticIpsInput, ? base_client.InvokeOptions): async.Operation<types.GetStaticIpsOutput>
+    importKeyPair: function(Client, types.ImportKeyPairInput, ? base_client.InvokeOptions): async.Operation<types.ImportKeyPairOutput>
+    isVpcPeered: function(Client, types.IsVpcPeeredInput, ? base_client.InvokeOptions): async.Operation<types.IsVpcPeeredOutput>
+    openInstancePublicPorts: function(Client, types.OpenInstancePublicPortsInput, ? base_client.InvokeOptions): async.Operation<types.OpenInstancePublicPortsOutput>
+    peerVpc: function(Client, types.PeerVpcInput, ? base_client.InvokeOptions): async.Operation<types.PeerVpcOutput>
+    putAlarm: function(Client, types.PutAlarmInput, ? base_client.InvokeOptions): async.Operation<types.PutAlarmOutput>
+    putInstancePublicPorts: function(Client, types.PutInstancePublicPortsInput, ? base_client.InvokeOptions): async.Operation<types.PutInstancePublicPortsOutput>
+    rebootInstance: function(Client, types.RebootInstanceInput, ? base_client.InvokeOptions): async.Operation<types.RebootInstanceOutput>
+    rebootRelationalDatabase: function(Client, types.RebootRelationalDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.RebootRelationalDatabaseOutput>
+    registerContainerImage: function(Client, types.RegisterContainerImageInput, ? base_client.InvokeOptions): async.Operation<types.RegisterContainerImageOutput>
+    releaseStaticIp: function(Client, types.ReleaseStaticIpInput, ? base_client.InvokeOptions): async.Operation<types.ReleaseStaticIpOutput>
+    resetDistributionCache: function(Client, types.ResetDistributionCacheInput, ? base_client.InvokeOptions): async.Operation<types.ResetDistributionCacheOutput>
+    sendContactMethodVerification: function(Client, types.SendContactMethodVerificationInput, ? base_client.InvokeOptions): async.Operation<types.SendContactMethodVerificationOutput>
+    setIpAddressType: function(Client, types.SetIpAddressTypeInput, ? base_client.InvokeOptions): async.Operation<types.SetIpAddressTypeOutput>
+    setResourceAccessForBucket: function(Client, types.SetResourceAccessForBucketInput, ? base_client.InvokeOptions): async.Operation<types.SetResourceAccessForBucketOutput>
+    setupInstanceHttps: function(Client, types.SetupInstanceHttpsInput, ? base_client.InvokeOptions): async.Operation<types.SetupInstanceHttpsOutput>
+    startGUISession: function(Client, types.StartGUISessionInput, ? base_client.InvokeOptions): async.Operation<types.StartGUISessionOutput>
+    startInstance: function(Client, types.StartInstanceInput, ? base_client.InvokeOptions): async.Operation<types.StartInstanceOutput>
+    startRelationalDatabase: function(Client, types.StartRelationalDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.StartRelationalDatabaseOutput>
+    stopGUISession: function(Client, types.StopGUISessionInput, ? base_client.InvokeOptions): async.Operation<types.StopGUISessionOutput>
+    stopInstance: function(Client, types.StopInstanceInput, ? base_client.InvokeOptions): async.Operation<types.StopInstanceOutput>
+    stopRelationalDatabase: function(Client, types.StopRelationalDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.StopRelationalDatabaseOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    testAlarm: function(Client, types.TestAlarmInput, ? base_client.InvokeOptions): async.Operation<types.TestAlarmOutput>
+    unpeerVpc: function(Client, types.UnpeerVpcInput, ? base_client.InvokeOptions): async.Operation<types.UnpeerVpcOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateBucket: function(Client, types.UpdateBucketInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBucketOutput>
+    updateBucketBundle: function(Client, types.UpdateBucketBundleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBucketBundleOutput>
+    updateContainerService: function(Client, types.UpdateContainerServiceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContainerServiceOutput>
+    updateDistribution: function(Client, types.UpdateDistributionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDistributionOutput>
+    updateDistributionBundle: function(Client, types.UpdateDistributionBundleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDistributionBundleOutput>
+    updateDomainEntry: function(Client, types.UpdateDomainEntryInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDomainEntryOutput>
+    updateInstanceMetadataOptions: function(Client, types.UpdateInstanceMetadataOptionsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateInstanceMetadataOptionsOutput>
+    updateLoadBalancerAttribute: function(Client, types.UpdateLoadBalancerAttributeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLoadBalancerAttributeOutput>
+    updateRelationalDatabase: function(Client, types.UpdateRelationalDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRelationalDatabaseOutput>
+    updateRelationalDatabaseParameters: function(Client, types.UpdateRelationalDatabaseParametersInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRelationalDatabaseParametersOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "Lightsail_20161128"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "lightsail", signing_region = c.region } }
                 else
@@ -220,648 +223,648 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:allocateStaticIp(input: types.AllocateStaticIpInput, options: any): async.Operation<types.AllocateStaticIpOutput>
-    return self:invokeOperation(schemas.Service, schemas.AllocateStaticIp, input, options) as async.Operation<types.AllocateStaticIpOutput>
+function C:allocateStaticIp(input: types.AllocateStaticIpInput, options?: base_client.InvokeOptions): async.Operation<types.AllocateStaticIpOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AllocateStaticIp as schema.OperationSchema, input, options) as async.Operation<types.AllocateStaticIpOutput>
 end
 
-function C:attachCertificateToDistribution(input: types.AttachCertificateToDistributionInput, options: any): async.Operation<types.AttachCertificateToDistributionOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachCertificateToDistribution, input, options) as async.Operation<types.AttachCertificateToDistributionOutput>
+function C:attachCertificateToDistribution(input: types.AttachCertificateToDistributionInput, options?: base_client.InvokeOptions): async.Operation<types.AttachCertificateToDistributionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachCertificateToDistribution as schema.OperationSchema, input, options) as async.Operation<types.AttachCertificateToDistributionOutput>
 end
 
-function C:attachDisk(input: types.AttachDiskInput, options: any): async.Operation<types.AttachDiskOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachDisk, input, options) as async.Operation<types.AttachDiskOutput>
+function C:attachDisk(input: types.AttachDiskInput, options?: base_client.InvokeOptions): async.Operation<types.AttachDiskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachDisk as schema.OperationSchema, input, options) as async.Operation<types.AttachDiskOutput>
 end
 
-function C:attachInstancesToLoadBalancer(input: types.AttachInstancesToLoadBalancerInput, options: any): async.Operation<types.AttachInstancesToLoadBalancerOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachInstancesToLoadBalancer, input, options) as async.Operation<types.AttachInstancesToLoadBalancerOutput>
+function C:attachInstancesToLoadBalancer(input: types.AttachInstancesToLoadBalancerInput, options?: base_client.InvokeOptions): async.Operation<types.AttachInstancesToLoadBalancerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachInstancesToLoadBalancer as schema.OperationSchema, input, options) as async.Operation<types.AttachInstancesToLoadBalancerOutput>
 end
 
-function C:attachLoadBalancerTlsCertificate(input: types.AttachLoadBalancerTlsCertificateInput, options: any): async.Operation<types.AttachLoadBalancerTlsCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachLoadBalancerTlsCertificate, input, options) as async.Operation<types.AttachLoadBalancerTlsCertificateOutput>
+function C:attachLoadBalancerTlsCertificate(input: types.AttachLoadBalancerTlsCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.AttachLoadBalancerTlsCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachLoadBalancerTlsCertificate as schema.OperationSchema, input, options) as async.Operation<types.AttachLoadBalancerTlsCertificateOutput>
 end
 
-function C:attachStaticIp(input: types.AttachStaticIpInput, options: any): async.Operation<types.AttachStaticIpOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachStaticIp, input, options) as async.Operation<types.AttachStaticIpOutput>
+function C:attachStaticIp(input: types.AttachStaticIpInput, options?: base_client.InvokeOptions): async.Operation<types.AttachStaticIpOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachStaticIp as schema.OperationSchema, input, options) as async.Operation<types.AttachStaticIpOutput>
 end
 
-function C:closeInstancePublicPorts(input: types.CloseInstancePublicPortsInput, options: any): async.Operation<types.CloseInstancePublicPortsOutput>
-    return self:invokeOperation(schemas.Service, schemas.CloseInstancePublicPorts, input, options) as async.Operation<types.CloseInstancePublicPortsOutput>
+function C:closeInstancePublicPorts(input: types.CloseInstancePublicPortsInput, options?: base_client.InvokeOptions): async.Operation<types.CloseInstancePublicPortsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CloseInstancePublicPorts as schema.OperationSchema, input, options) as async.Operation<types.CloseInstancePublicPortsOutput>
 end
 
-function C:copySnapshot(input: types.CopySnapshotInput, options: any): async.Operation<types.CopySnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.CopySnapshot, input, options) as async.Operation<types.CopySnapshotOutput>
+function C:copySnapshot(input: types.CopySnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.CopySnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CopySnapshot as schema.OperationSchema, input, options) as async.Operation<types.CopySnapshotOutput>
 end
 
-function C:createBucket(input: types.CreateBucketInput, options: any): async.Operation<types.CreateBucketOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBucket, input, options) as async.Operation<types.CreateBucketOutput>
+function C:createBucket(input: types.CreateBucketInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBucketOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBucket as schema.OperationSchema, input, options) as async.Operation<types.CreateBucketOutput>
 end
 
-function C:createBucketAccessKey(input: types.CreateBucketAccessKeyInput, options: any): async.Operation<types.CreateBucketAccessKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBucketAccessKey, input, options) as async.Operation<types.CreateBucketAccessKeyOutput>
+function C:createBucketAccessKey(input: types.CreateBucketAccessKeyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBucketAccessKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBucketAccessKey as schema.OperationSchema, input, options) as async.Operation<types.CreateBucketAccessKeyOutput>
 end
 
-function C:createCertificate(input: types.CreateCertificateInput, options: any): async.Operation<types.CreateCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCertificate, input, options) as async.Operation<types.CreateCertificateOutput>
+function C:createCertificate(input: types.CreateCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCertificate as schema.OperationSchema, input, options) as async.Operation<types.CreateCertificateOutput>
 end
 
-function C:createCloudFormationStack(input: types.CreateCloudFormationStackInput, options: any): async.Operation<types.CreateCloudFormationStackOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCloudFormationStack, input, options) as async.Operation<types.CreateCloudFormationStackOutput>
+function C:createCloudFormationStack(input: types.CreateCloudFormationStackInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCloudFormationStackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCloudFormationStack as schema.OperationSchema, input, options) as async.Operation<types.CreateCloudFormationStackOutput>
 end
 
-function C:createContactMethod(input: types.CreateContactMethodInput, options: any): async.Operation<types.CreateContactMethodOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateContactMethod, input, options) as async.Operation<types.CreateContactMethodOutput>
+function C:createContactMethod(input: types.CreateContactMethodInput, options?: base_client.InvokeOptions): async.Operation<types.CreateContactMethodOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateContactMethod as schema.OperationSchema, input, options) as async.Operation<types.CreateContactMethodOutput>
 end
 
-function C:createContainerService(input: types.CreateContainerServiceInput, options: any): async.Operation<types.CreateContainerServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateContainerService, input, options) as async.Operation<types.CreateContainerServiceOutput>
+function C:createContainerService(input: types.CreateContainerServiceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateContainerServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateContainerService as schema.OperationSchema, input, options) as async.Operation<types.CreateContainerServiceOutput>
 end
 
-function C:createContainerServiceDeployment(input: types.CreateContainerServiceDeploymentInput, options: any): async.Operation<types.CreateContainerServiceDeploymentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateContainerServiceDeployment, input, options) as async.Operation<types.CreateContainerServiceDeploymentOutput>
+function C:createContainerServiceDeployment(input: types.CreateContainerServiceDeploymentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateContainerServiceDeploymentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateContainerServiceDeployment as schema.OperationSchema, input, options) as async.Operation<types.CreateContainerServiceDeploymentOutput>
 end
 
-function C:createContainerServiceRegistryLogin(input: types.CreateContainerServiceRegistryLoginInput, options: any): async.Operation<types.CreateContainerServiceRegistryLoginOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateContainerServiceRegistryLogin, input, options) as async.Operation<types.CreateContainerServiceRegistryLoginOutput>
+function C:createContainerServiceRegistryLogin(input: types.CreateContainerServiceRegistryLoginInput, options?: base_client.InvokeOptions): async.Operation<types.CreateContainerServiceRegistryLoginOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateContainerServiceRegistryLogin as schema.OperationSchema, input, options) as async.Operation<types.CreateContainerServiceRegistryLoginOutput>
 end
 
-function C:createDisk(input: types.CreateDiskInput, options: any): async.Operation<types.CreateDiskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDisk, input, options) as async.Operation<types.CreateDiskOutput>
+function C:createDisk(input: types.CreateDiskInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDiskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDisk as schema.OperationSchema, input, options) as async.Operation<types.CreateDiskOutput>
 end
 
-function C:createDiskFromSnapshot(input: types.CreateDiskFromSnapshotInput, options: any): async.Operation<types.CreateDiskFromSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDiskFromSnapshot, input, options) as async.Operation<types.CreateDiskFromSnapshotOutput>
+function C:createDiskFromSnapshot(input: types.CreateDiskFromSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDiskFromSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDiskFromSnapshot as schema.OperationSchema, input, options) as async.Operation<types.CreateDiskFromSnapshotOutput>
 end
 
-function C:createDiskSnapshot(input: types.CreateDiskSnapshotInput, options: any): async.Operation<types.CreateDiskSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDiskSnapshot, input, options) as async.Operation<types.CreateDiskSnapshotOutput>
+function C:createDiskSnapshot(input: types.CreateDiskSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDiskSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDiskSnapshot as schema.OperationSchema, input, options) as async.Operation<types.CreateDiskSnapshotOutput>
 end
 
-function C:createDistribution(input: types.CreateDistributionInput, options: any): async.Operation<types.CreateDistributionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDistribution, input, options) as async.Operation<types.CreateDistributionOutput>
+function C:createDistribution(input: types.CreateDistributionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDistributionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDistribution as schema.OperationSchema, input, options) as async.Operation<types.CreateDistributionOutput>
 end
 
-function C:createDomain(input: types.CreateDomainInput, options: any): async.Operation<types.CreateDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDomain, input, options) as async.Operation<types.CreateDomainOutput>
+function C:createDomain(input: types.CreateDomainInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDomain as schema.OperationSchema, input, options) as async.Operation<types.CreateDomainOutput>
 end
 
-function C:createDomainEntry(input: types.CreateDomainEntryInput, options: any): async.Operation<types.CreateDomainEntryOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDomainEntry, input, options) as async.Operation<types.CreateDomainEntryOutput>
+function C:createDomainEntry(input: types.CreateDomainEntryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDomainEntryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDomainEntry as schema.OperationSchema, input, options) as async.Operation<types.CreateDomainEntryOutput>
 end
 
-function C:createGUISessionAccessDetails(input: types.CreateGUISessionAccessDetailsInput, options: any): async.Operation<types.CreateGUISessionAccessDetailsOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateGUISessionAccessDetails, input, options) as async.Operation<types.CreateGUISessionAccessDetailsOutput>
+function C:createGUISessionAccessDetails(input: types.CreateGUISessionAccessDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGUISessionAccessDetailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGUISessionAccessDetails as schema.OperationSchema, input, options) as async.Operation<types.CreateGUISessionAccessDetailsOutput>
 end
 
-function C:createInstances(input: types.CreateInstancesInput, options: any): async.Operation<types.CreateInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateInstances, input, options) as async.Operation<types.CreateInstancesOutput>
+function C:createInstances(input: types.CreateInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInstances as schema.OperationSchema, input, options) as async.Operation<types.CreateInstancesOutput>
 end
 
-function C:createInstancesFromSnapshot(input: types.CreateInstancesFromSnapshotInput, options: any): async.Operation<types.CreateInstancesFromSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateInstancesFromSnapshot, input, options) as async.Operation<types.CreateInstancesFromSnapshotOutput>
+function C:createInstancesFromSnapshot(input: types.CreateInstancesFromSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInstancesFromSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInstancesFromSnapshot as schema.OperationSchema, input, options) as async.Operation<types.CreateInstancesFromSnapshotOutput>
 end
 
-function C:createInstanceSnapshot(input: types.CreateInstanceSnapshotInput, options: any): async.Operation<types.CreateInstanceSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateInstanceSnapshot, input, options) as async.Operation<types.CreateInstanceSnapshotOutput>
+function C:createInstanceSnapshot(input: types.CreateInstanceSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInstanceSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInstanceSnapshot as schema.OperationSchema, input, options) as async.Operation<types.CreateInstanceSnapshotOutput>
 end
 
-function C:createKeyPair(input: types.CreateKeyPairInput, options: any): async.Operation<types.CreateKeyPairOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateKeyPair, input, options) as async.Operation<types.CreateKeyPairOutput>
+function C:createKeyPair(input: types.CreateKeyPairInput, options?: base_client.InvokeOptions): async.Operation<types.CreateKeyPairOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateKeyPair as schema.OperationSchema, input, options) as async.Operation<types.CreateKeyPairOutput>
 end
 
-function C:createLoadBalancer(input: types.CreateLoadBalancerInput, options: any): async.Operation<types.CreateLoadBalancerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLoadBalancer, input, options) as async.Operation<types.CreateLoadBalancerOutput>
+function C:createLoadBalancer(input: types.CreateLoadBalancerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLoadBalancerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLoadBalancer as schema.OperationSchema, input, options) as async.Operation<types.CreateLoadBalancerOutput>
 end
 
-function C:createLoadBalancerTlsCertificate(input: types.CreateLoadBalancerTlsCertificateInput, options: any): async.Operation<types.CreateLoadBalancerTlsCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLoadBalancerTlsCertificate, input, options) as async.Operation<types.CreateLoadBalancerTlsCertificateOutput>
+function C:createLoadBalancerTlsCertificate(input: types.CreateLoadBalancerTlsCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLoadBalancerTlsCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLoadBalancerTlsCertificate as schema.OperationSchema, input, options) as async.Operation<types.CreateLoadBalancerTlsCertificateOutput>
 end
 
-function C:createRelationalDatabase(input: types.CreateRelationalDatabaseInput, options: any): async.Operation<types.CreateRelationalDatabaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRelationalDatabase, input, options) as async.Operation<types.CreateRelationalDatabaseOutput>
+function C:createRelationalDatabase(input: types.CreateRelationalDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRelationalDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRelationalDatabase as schema.OperationSchema, input, options) as async.Operation<types.CreateRelationalDatabaseOutput>
 end
 
-function C:createRelationalDatabaseFromSnapshot(input: types.CreateRelationalDatabaseFromSnapshotInput, options: any): async.Operation<types.CreateRelationalDatabaseFromSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRelationalDatabaseFromSnapshot, input, options) as async.Operation<types.CreateRelationalDatabaseFromSnapshotOutput>
+function C:createRelationalDatabaseFromSnapshot(input: types.CreateRelationalDatabaseFromSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRelationalDatabaseFromSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRelationalDatabaseFromSnapshot as schema.OperationSchema, input, options) as async.Operation<types.CreateRelationalDatabaseFromSnapshotOutput>
 end
 
-function C:createRelationalDatabaseSnapshot(input: types.CreateRelationalDatabaseSnapshotInput, options: any): async.Operation<types.CreateRelationalDatabaseSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRelationalDatabaseSnapshot, input, options) as async.Operation<types.CreateRelationalDatabaseSnapshotOutput>
+function C:createRelationalDatabaseSnapshot(input: types.CreateRelationalDatabaseSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRelationalDatabaseSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRelationalDatabaseSnapshot as schema.OperationSchema, input, options) as async.Operation<types.CreateRelationalDatabaseSnapshotOutput>
 end
 
-function C:deleteAlarm(input: types.DeleteAlarmInput, options: any): async.Operation<types.DeleteAlarmOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAlarm, input, options) as async.Operation<types.DeleteAlarmOutput>
+function C:deleteAlarm(input: types.DeleteAlarmInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAlarmOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAlarm as schema.OperationSchema, input, options) as async.Operation<types.DeleteAlarmOutput>
 end
 
-function C:deleteAutoSnapshot(input: types.DeleteAutoSnapshotInput, options: any): async.Operation<types.DeleteAutoSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAutoSnapshot, input, options) as async.Operation<types.DeleteAutoSnapshotOutput>
+function C:deleteAutoSnapshot(input: types.DeleteAutoSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAutoSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAutoSnapshot as schema.OperationSchema, input, options) as async.Operation<types.DeleteAutoSnapshotOutput>
 end
 
-function C:deleteBucket(input: types.DeleteBucketInput, options: any): async.Operation<types.DeleteBucketOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBucket, input, options) as async.Operation<types.DeleteBucketOutput>
+function C:deleteBucket(input: types.DeleteBucketInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBucketOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBucket as schema.OperationSchema, input, options) as async.Operation<types.DeleteBucketOutput>
 end
 
-function C:deleteBucketAccessKey(input: types.DeleteBucketAccessKeyInput, options: any): async.Operation<types.DeleteBucketAccessKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBucketAccessKey, input, options) as async.Operation<types.DeleteBucketAccessKeyOutput>
+function C:deleteBucketAccessKey(input: types.DeleteBucketAccessKeyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBucketAccessKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBucketAccessKey as schema.OperationSchema, input, options) as async.Operation<types.DeleteBucketAccessKeyOutput>
 end
 
-function C:deleteCertificate(input: types.DeleteCertificateInput, options: any): async.Operation<types.DeleteCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCertificate, input, options) as async.Operation<types.DeleteCertificateOutput>
+function C:deleteCertificate(input: types.DeleteCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCertificate as schema.OperationSchema, input, options) as async.Operation<types.DeleteCertificateOutput>
 end
 
-function C:deleteContactMethod(input: types.DeleteContactMethodInput, options: any): async.Operation<types.DeleteContactMethodOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteContactMethod, input, options) as async.Operation<types.DeleteContactMethodOutput>
+function C:deleteContactMethod(input: types.DeleteContactMethodInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteContactMethodOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteContactMethod as schema.OperationSchema, input, options) as async.Operation<types.DeleteContactMethodOutput>
 end
 
-function C:deleteContainerImage(input: types.DeleteContainerImageInput, options: any): async.Operation<types.DeleteContainerImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteContainerImage, input, options) as async.Operation<types.DeleteContainerImageOutput>
+function C:deleteContainerImage(input: types.DeleteContainerImageInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteContainerImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteContainerImage as schema.OperationSchema, input, options) as async.Operation<types.DeleteContainerImageOutput>
 end
 
-function C:deleteContainerService(input: types.DeleteContainerServiceInput, options: any): async.Operation<types.DeleteContainerServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteContainerService, input, options) as async.Operation<types.DeleteContainerServiceOutput>
+function C:deleteContainerService(input: types.DeleteContainerServiceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteContainerServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteContainerService as schema.OperationSchema, input, options) as async.Operation<types.DeleteContainerServiceOutput>
 end
 
-function C:deleteDisk(input: types.DeleteDiskInput, options: any): async.Operation<types.DeleteDiskOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDisk, input, options) as async.Operation<types.DeleteDiskOutput>
+function C:deleteDisk(input: types.DeleteDiskInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDiskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDisk as schema.OperationSchema, input, options) as async.Operation<types.DeleteDiskOutput>
 end
 
-function C:deleteDiskSnapshot(input: types.DeleteDiskSnapshotInput, options: any): async.Operation<types.DeleteDiskSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDiskSnapshot, input, options) as async.Operation<types.DeleteDiskSnapshotOutput>
+function C:deleteDiskSnapshot(input: types.DeleteDiskSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDiskSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDiskSnapshot as schema.OperationSchema, input, options) as async.Operation<types.DeleteDiskSnapshotOutput>
 end
 
-function C:deleteDistribution(input: types.DeleteDistributionInput, options: any): async.Operation<types.DeleteDistributionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDistribution, input, options) as async.Operation<types.DeleteDistributionOutput>
+function C:deleteDistribution(input: types.DeleteDistributionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDistributionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDistribution as schema.OperationSchema, input, options) as async.Operation<types.DeleteDistributionOutput>
 end
 
-function C:deleteDomain(input: types.DeleteDomainInput, options: any): async.Operation<types.DeleteDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDomain, input, options) as async.Operation<types.DeleteDomainOutput>
+function C:deleteDomain(input: types.DeleteDomainInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDomain as schema.OperationSchema, input, options) as async.Operation<types.DeleteDomainOutput>
 end
 
-function C:deleteDomainEntry(input: types.DeleteDomainEntryInput, options: any): async.Operation<types.DeleteDomainEntryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDomainEntry, input, options) as async.Operation<types.DeleteDomainEntryOutput>
+function C:deleteDomainEntry(input: types.DeleteDomainEntryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDomainEntryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDomainEntry as schema.OperationSchema, input, options) as async.Operation<types.DeleteDomainEntryOutput>
 end
 
-function C:deleteInstance(input: types.DeleteInstanceInput, options: any): async.Operation<types.DeleteInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteInstance, input, options) as async.Operation<types.DeleteInstanceOutput>
+function C:deleteInstance(input: types.DeleteInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInstance as schema.OperationSchema, input, options) as async.Operation<types.DeleteInstanceOutput>
 end
 
-function C:deleteInstanceSnapshot(input: types.DeleteInstanceSnapshotInput, options: any): async.Operation<types.DeleteInstanceSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteInstanceSnapshot, input, options) as async.Operation<types.DeleteInstanceSnapshotOutput>
+function C:deleteInstanceSnapshot(input: types.DeleteInstanceSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteInstanceSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInstanceSnapshot as schema.OperationSchema, input, options) as async.Operation<types.DeleteInstanceSnapshotOutput>
 end
 
-function C:deleteKeyPair(input: types.DeleteKeyPairInput, options: any): async.Operation<types.DeleteKeyPairOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteKeyPair, input, options) as async.Operation<types.DeleteKeyPairOutput>
+function C:deleteKeyPair(input: types.DeleteKeyPairInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteKeyPairOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteKeyPair as schema.OperationSchema, input, options) as async.Operation<types.DeleteKeyPairOutput>
 end
 
-function C:deleteKnownHostKeys(input: types.DeleteKnownHostKeysInput, options: any): async.Operation<types.DeleteKnownHostKeysOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteKnownHostKeys, input, options) as async.Operation<types.DeleteKnownHostKeysOutput>
+function C:deleteKnownHostKeys(input: types.DeleteKnownHostKeysInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteKnownHostKeysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteKnownHostKeys as schema.OperationSchema, input, options) as async.Operation<types.DeleteKnownHostKeysOutput>
 end
 
-function C:deleteLoadBalancer(input: types.DeleteLoadBalancerInput, options: any): async.Operation<types.DeleteLoadBalancerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLoadBalancer, input, options) as async.Operation<types.DeleteLoadBalancerOutput>
+function C:deleteLoadBalancer(input: types.DeleteLoadBalancerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLoadBalancerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLoadBalancer as schema.OperationSchema, input, options) as async.Operation<types.DeleteLoadBalancerOutput>
 end
 
-function C:deleteLoadBalancerTlsCertificate(input: types.DeleteLoadBalancerTlsCertificateInput, options: any): async.Operation<types.DeleteLoadBalancerTlsCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLoadBalancerTlsCertificate, input, options) as async.Operation<types.DeleteLoadBalancerTlsCertificateOutput>
+function C:deleteLoadBalancerTlsCertificate(input: types.DeleteLoadBalancerTlsCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLoadBalancerTlsCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLoadBalancerTlsCertificate as schema.OperationSchema, input, options) as async.Operation<types.DeleteLoadBalancerTlsCertificateOutput>
 end
 
-function C:deleteRelationalDatabase(input: types.DeleteRelationalDatabaseInput, options: any): async.Operation<types.DeleteRelationalDatabaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRelationalDatabase, input, options) as async.Operation<types.DeleteRelationalDatabaseOutput>
+function C:deleteRelationalDatabase(input: types.DeleteRelationalDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRelationalDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRelationalDatabase as schema.OperationSchema, input, options) as async.Operation<types.DeleteRelationalDatabaseOutput>
 end
 
-function C:deleteRelationalDatabaseSnapshot(input: types.DeleteRelationalDatabaseSnapshotInput, options: any): async.Operation<types.DeleteRelationalDatabaseSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRelationalDatabaseSnapshot, input, options) as async.Operation<types.DeleteRelationalDatabaseSnapshotOutput>
+function C:deleteRelationalDatabaseSnapshot(input: types.DeleteRelationalDatabaseSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRelationalDatabaseSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRelationalDatabaseSnapshot as schema.OperationSchema, input, options) as async.Operation<types.DeleteRelationalDatabaseSnapshotOutput>
 end
 
-function C:detachCertificateFromDistribution(input: types.DetachCertificateFromDistributionInput, options: any): async.Operation<types.DetachCertificateFromDistributionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetachCertificateFromDistribution, input, options) as async.Operation<types.DetachCertificateFromDistributionOutput>
+function C:detachCertificateFromDistribution(input: types.DetachCertificateFromDistributionInput, options?: base_client.InvokeOptions): async.Operation<types.DetachCertificateFromDistributionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachCertificateFromDistribution as schema.OperationSchema, input, options) as async.Operation<types.DetachCertificateFromDistributionOutput>
 end
 
-function C:detachDisk(input: types.DetachDiskInput, options: any): async.Operation<types.DetachDiskOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetachDisk, input, options) as async.Operation<types.DetachDiskOutput>
+function C:detachDisk(input: types.DetachDiskInput, options?: base_client.InvokeOptions): async.Operation<types.DetachDiskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachDisk as schema.OperationSchema, input, options) as async.Operation<types.DetachDiskOutput>
 end
 
-function C:detachInstancesFromLoadBalancer(input: types.DetachInstancesFromLoadBalancerInput, options: any): async.Operation<types.DetachInstancesFromLoadBalancerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetachInstancesFromLoadBalancer, input, options) as async.Operation<types.DetachInstancesFromLoadBalancerOutput>
+function C:detachInstancesFromLoadBalancer(input: types.DetachInstancesFromLoadBalancerInput, options?: base_client.InvokeOptions): async.Operation<types.DetachInstancesFromLoadBalancerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachInstancesFromLoadBalancer as schema.OperationSchema, input, options) as async.Operation<types.DetachInstancesFromLoadBalancerOutput>
 end
 
-function C:detachStaticIp(input: types.DetachStaticIpInput, options: any): async.Operation<types.DetachStaticIpOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetachStaticIp, input, options) as async.Operation<types.DetachStaticIpOutput>
+function C:detachStaticIp(input: types.DetachStaticIpInput, options?: base_client.InvokeOptions): async.Operation<types.DetachStaticIpOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachStaticIp as schema.OperationSchema, input, options) as async.Operation<types.DetachStaticIpOutput>
 end
 
-function C:disableAddOn(input: types.DisableAddOnInput, options: any): async.Operation<types.DisableAddOnOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableAddOn, input, options) as async.Operation<types.DisableAddOnOutput>
+function C:disableAddOn(input: types.DisableAddOnInput, options?: base_client.InvokeOptions): async.Operation<types.DisableAddOnOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableAddOn as schema.OperationSchema, input, options) as async.Operation<types.DisableAddOnOutput>
 end
 
-function C:downloadDefaultKeyPair(input: types.DownloadDefaultKeyPairInput, options: any): async.Operation<types.DownloadDefaultKeyPairOutput>
-    return self:invokeOperation(schemas.Service, schemas.DownloadDefaultKeyPair, input, options) as async.Operation<types.DownloadDefaultKeyPairOutput>
+function C:downloadDefaultKeyPair(input: types.DownloadDefaultKeyPairInput, options?: base_client.InvokeOptions): async.Operation<types.DownloadDefaultKeyPairOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DownloadDefaultKeyPair as schema.OperationSchema, input, options) as async.Operation<types.DownloadDefaultKeyPairOutput>
 end
 
-function C:enableAddOn(input: types.EnableAddOnInput, options: any): async.Operation<types.EnableAddOnOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableAddOn, input, options) as async.Operation<types.EnableAddOnOutput>
+function C:enableAddOn(input: types.EnableAddOnInput, options?: base_client.InvokeOptions): async.Operation<types.EnableAddOnOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableAddOn as schema.OperationSchema, input, options) as async.Operation<types.EnableAddOnOutput>
 end
 
-function C:exportSnapshot(input: types.ExportSnapshotInput, options: any): async.Operation<types.ExportSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExportSnapshot, input, options) as async.Operation<types.ExportSnapshotOutput>
+function C:exportSnapshot(input: types.ExportSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.ExportSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportSnapshot as schema.OperationSchema, input, options) as async.Operation<types.ExportSnapshotOutput>
 end
 
-function C:getActiveNames(input: types.GetActiveNamesInput, options: any): async.Operation<types.GetActiveNamesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetActiveNames, input, options) as async.Operation<types.GetActiveNamesOutput>
+function C:getActiveNames(input: types.GetActiveNamesInput, options?: base_client.InvokeOptions): async.Operation<types.GetActiveNamesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetActiveNames as schema.OperationSchema, input, options) as async.Operation<types.GetActiveNamesOutput>
 end
 
-function C:getAlarms(input: types.GetAlarmsInput, options: any): async.Operation<types.GetAlarmsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAlarms, input, options) as async.Operation<types.GetAlarmsOutput>
+function C:getAlarms(input: types.GetAlarmsInput, options?: base_client.InvokeOptions): async.Operation<types.GetAlarmsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAlarms as schema.OperationSchema, input, options) as async.Operation<types.GetAlarmsOutput>
 end
 
-function C:getAutoSnapshots(input: types.GetAutoSnapshotsInput, options: any): async.Operation<types.GetAutoSnapshotsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAutoSnapshots, input, options) as async.Operation<types.GetAutoSnapshotsOutput>
+function C:getAutoSnapshots(input: types.GetAutoSnapshotsInput, options?: base_client.InvokeOptions): async.Operation<types.GetAutoSnapshotsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAutoSnapshots as schema.OperationSchema, input, options) as async.Operation<types.GetAutoSnapshotsOutput>
 end
 
-function C:getBlueprints(input: types.GetBlueprintsInput, options: any): async.Operation<types.GetBlueprintsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBlueprints, input, options) as async.Operation<types.GetBlueprintsOutput>
+function C:getBlueprints(input: types.GetBlueprintsInput, options?: base_client.InvokeOptions): async.Operation<types.GetBlueprintsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBlueprints as schema.OperationSchema, input, options) as async.Operation<types.GetBlueprintsOutput>
 end
 
-function C:getBucketAccessKeys(input: types.GetBucketAccessKeysInput, options: any): async.Operation<types.GetBucketAccessKeysOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBucketAccessKeys, input, options) as async.Operation<types.GetBucketAccessKeysOutput>
+function C:getBucketAccessKeys(input: types.GetBucketAccessKeysInput, options?: base_client.InvokeOptions): async.Operation<types.GetBucketAccessKeysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBucketAccessKeys as schema.OperationSchema, input, options) as async.Operation<types.GetBucketAccessKeysOutput>
 end
 
-function C:getBucketBundles(input: types.GetBucketBundlesInput, options: any): async.Operation<types.GetBucketBundlesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBucketBundles, input, options) as async.Operation<types.GetBucketBundlesOutput>
+function C:getBucketBundles(input: types.GetBucketBundlesInput, options?: base_client.InvokeOptions): async.Operation<types.GetBucketBundlesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBucketBundles as schema.OperationSchema, input, options) as async.Operation<types.GetBucketBundlesOutput>
 end
 
-function C:getBucketMetricData(input: types.GetBucketMetricDataInput, options: any): async.Operation<types.GetBucketMetricDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBucketMetricData, input, options) as async.Operation<types.GetBucketMetricDataOutput>
+function C:getBucketMetricData(input: types.GetBucketMetricDataInput, options?: base_client.InvokeOptions): async.Operation<types.GetBucketMetricDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBucketMetricData as schema.OperationSchema, input, options) as async.Operation<types.GetBucketMetricDataOutput>
 end
 
-function C:getBuckets(input: types.GetBucketsInput, options: any): async.Operation<types.GetBucketsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBuckets, input, options) as async.Operation<types.GetBucketsOutput>
+function C:getBuckets(input: types.GetBucketsInput, options?: base_client.InvokeOptions): async.Operation<types.GetBucketsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBuckets as schema.OperationSchema, input, options) as async.Operation<types.GetBucketsOutput>
 end
 
-function C:getBundles(input: types.GetBundlesInput, options: any): async.Operation<types.GetBundlesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBundles, input, options) as async.Operation<types.GetBundlesOutput>
+function C:getBundles(input: types.GetBundlesInput, options?: base_client.InvokeOptions): async.Operation<types.GetBundlesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBundles as schema.OperationSchema, input, options) as async.Operation<types.GetBundlesOutput>
 end
 
-function C:getCertificates(input: types.GetCertificatesInput, options: any): async.Operation<types.GetCertificatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCertificates, input, options) as async.Operation<types.GetCertificatesOutput>
+function C:getCertificates(input: types.GetCertificatesInput, options?: base_client.InvokeOptions): async.Operation<types.GetCertificatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCertificates as schema.OperationSchema, input, options) as async.Operation<types.GetCertificatesOutput>
 end
 
-function C:getCloudFormationStackRecords(input: types.GetCloudFormationStackRecordsInput, options: any): async.Operation<types.GetCloudFormationStackRecordsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCloudFormationStackRecords, input, options) as async.Operation<types.GetCloudFormationStackRecordsOutput>
+function C:getCloudFormationStackRecords(input: types.GetCloudFormationStackRecordsInput, options?: base_client.InvokeOptions): async.Operation<types.GetCloudFormationStackRecordsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCloudFormationStackRecords as schema.OperationSchema, input, options) as async.Operation<types.GetCloudFormationStackRecordsOutput>
 end
 
-function C:getContactMethods(input: types.GetContactMethodsInput, options: any): async.Operation<types.GetContactMethodsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetContactMethods, input, options) as async.Operation<types.GetContactMethodsOutput>
+function C:getContactMethods(input: types.GetContactMethodsInput, options?: base_client.InvokeOptions): async.Operation<types.GetContactMethodsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetContactMethods as schema.OperationSchema, input, options) as async.Operation<types.GetContactMethodsOutput>
 end
 
-function C:getContainerAPIMetadata(input: types.GetContainerAPIMetadataInput, options: any): async.Operation<types.GetContainerAPIMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetContainerAPIMetadata, input, options) as async.Operation<types.GetContainerAPIMetadataOutput>
+function C:getContainerAPIMetadata(input: types.GetContainerAPIMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.GetContainerAPIMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetContainerAPIMetadata as schema.OperationSchema, input, options) as async.Operation<types.GetContainerAPIMetadataOutput>
 end
 
-function C:getContainerImages(input: types.GetContainerImagesInput, options: any): async.Operation<types.GetContainerImagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetContainerImages, input, options) as async.Operation<types.GetContainerImagesOutput>
+function C:getContainerImages(input: types.GetContainerImagesInput, options?: base_client.InvokeOptions): async.Operation<types.GetContainerImagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetContainerImages as schema.OperationSchema, input, options) as async.Operation<types.GetContainerImagesOutput>
 end
 
-function C:getContainerLog(input: types.GetContainerLogInput, options: any): async.Operation<types.GetContainerLogOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetContainerLog, input, options) as async.Operation<types.GetContainerLogOutput>
+function C:getContainerLog(input: types.GetContainerLogInput, options?: base_client.InvokeOptions): async.Operation<types.GetContainerLogOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetContainerLog as schema.OperationSchema, input, options) as async.Operation<types.GetContainerLogOutput>
 end
 
-function C:getContainerServiceDeployments(input: types.GetContainerServiceDeploymentsInput, options: any): async.Operation<types.GetContainerServiceDeploymentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetContainerServiceDeployments, input, options) as async.Operation<types.GetContainerServiceDeploymentsOutput>
+function C:getContainerServiceDeployments(input: types.GetContainerServiceDeploymentsInput, options?: base_client.InvokeOptions): async.Operation<types.GetContainerServiceDeploymentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetContainerServiceDeployments as schema.OperationSchema, input, options) as async.Operation<types.GetContainerServiceDeploymentsOutput>
 end
 
-function C:getContainerServiceMetricData(input: types.GetContainerServiceMetricDataInput, options: any): async.Operation<types.GetContainerServiceMetricDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetContainerServiceMetricData, input, options) as async.Operation<types.GetContainerServiceMetricDataOutput>
+function C:getContainerServiceMetricData(input: types.GetContainerServiceMetricDataInput, options?: base_client.InvokeOptions): async.Operation<types.GetContainerServiceMetricDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetContainerServiceMetricData as schema.OperationSchema, input, options) as async.Operation<types.GetContainerServiceMetricDataOutput>
 end
 
-function C:getContainerServicePowers(input: types.GetContainerServicePowersInput, options: any): async.Operation<types.GetContainerServicePowersOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetContainerServicePowers, input, options) as async.Operation<types.GetContainerServicePowersOutput>
+function C:getContainerServicePowers(input: types.GetContainerServicePowersInput, options?: base_client.InvokeOptions): async.Operation<types.GetContainerServicePowersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetContainerServicePowers as schema.OperationSchema, input, options) as async.Operation<types.GetContainerServicePowersOutput>
 end
 
-function C:getContainerServices(input: types.GetContainerServicesInput, options: any): async.Operation<types.GetContainerServicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetContainerServices, input, options) as async.Operation<types.GetContainerServicesOutput>
+function C:getContainerServices(input: types.GetContainerServicesInput, options?: base_client.InvokeOptions): async.Operation<types.GetContainerServicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetContainerServices as schema.OperationSchema, input, options) as async.Operation<types.GetContainerServicesOutput>
 end
 
-function C:getCostEstimate(input: types.GetCostEstimateInput, options: any): async.Operation<types.GetCostEstimateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCostEstimate, input, options) as async.Operation<types.GetCostEstimateOutput>
+function C:getCostEstimate(input: types.GetCostEstimateInput, options?: base_client.InvokeOptions): async.Operation<types.GetCostEstimateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCostEstimate as schema.OperationSchema, input, options) as async.Operation<types.GetCostEstimateOutput>
 end
 
-function C:getDisk(input: types.GetDiskInput, options: any): async.Operation<types.GetDiskOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDisk, input, options) as async.Operation<types.GetDiskOutput>
+function C:getDisk(input: types.GetDiskInput, options?: base_client.InvokeOptions): async.Operation<types.GetDiskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDisk as schema.OperationSchema, input, options) as async.Operation<types.GetDiskOutput>
 end
 
-function C:getDisks(input: types.GetDisksInput, options: any): async.Operation<types.GetDisksOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDisks, input, options) as async.Operation<types.GetDisksOutput>
+function C:getDisks(input: types.GetDisksInput, options?: base_client.InvokeOptions): async.Operation<types.GetDisksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDisks as schema.OperationSchema, input, options) as async.Operation<types.GetDisksOutput>
 end
 
-function C:getDiskSnapshot(input: types.GetDiskSnapshotInput, options: any): async.Operation<types.GetDiskSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDiskSnapshot, input, options) as async.Operation<types.GetDiskSnapshotOutput>
+function C:getDiskSnapshot(input: types.GetDiskSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.GetDiskSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDiskSnapshot as schema.OperationSchema, input, options) as async.Operation<types.GetDiskSnapshotOutput>
 end
 
-function C:getDiskSnapshots(input: types.GetDiskSnapshotsInput, options: any): async.Operation<types.GetDiskSnapshotsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDiskSnapshots, input, options) as async.Operation<types.GetDiskSnapshotsOutput>
+function C:getDiskSnapshots(input: types.GetDiskSnapshotsInput, options?: base_client.InvokeOptions): async.Operation<types.GetDiskSnapshotsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDiskSnapshots as schema.OperationSchema, input, options) as async.Operation<types.GetDiskSnapshotsOutput>
 end
 
-function C:getDistributionBundles(input: types.GetDistributionBundlesInput, options: any): async.Operation<types.GetDistributionBundlesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDistributionBundles, input, options) as async.Operation<types.GetDistributionBundlesOutput>
+function C:getDistributionBundles(input: types.GetDistributionBundlesInput, options?: base_client.InvokeOptions): async.Operation<types.GetDistributionBundlesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDistributionBundles as schema.OperationSchema, input, options) as async.Operation<types.GetDistributionBundlesOutput>
 end
 
-function C:getDistributionLatestCacheReset(input: types.GetDistributionLatestCacheResetInput, options: any): async.Operation<types.GetDistributionLatestCacheResetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDistributionLatestCacheReset, input, options) as async.Operation<types.GetDistributionLatestCacheResetOutput>
+function C:getDistributionLatestCacheReset(input: types.GetDistributionLatestCacheResetInput, options?: base_client.InvokeOptions): async.Operation<types.GetDistributionLatestCacheResetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDistributionLatestCacheReset as schema.OperationSchema, input, options) as async.Operation<types.GetDistributionLatestCacheResetOutput>
 end
 
-function C:getDistributionMetricData(input: types.GetDistributionMetricDataInput, options: any): async.Operation<types.GetDistributionMetricDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDistributionMetricData, input, options) as async.Operation<types.GetDistributionMetricDataOutput>
+function C:getDistributionMetricData(input: types.GetDistributionMetricDataInput, options?: base_client.InvokeOptions): async.Operation<types.GetDistributionMetricDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDistributionMetricData as schema.OperationSchema, input, options) as async.Operation<types.GetDistributionMetricDataOutput>
 end
 
-function C:getDistributions(input: types.GetDistributionsInput, options: any): async.Operation<types.GetDistributionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDistributions, input, options) as async.Operation<types.GetDistributionsOutput>
+function C:getDistributions(input: types.GetDistributionsInput, options?: base_client.InvokeOptions): async.Operation<types.GetDistributionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDistributions as schema.OperationSchema, input, options) as async.Operation<types.GetDistributionsOutput>
 end
 
-function C:getDomain(input: types.GetDomainInput, options: any): async.Operation<types.GetDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDomain, input, options) as async.Operation<types.GetDomainOutput>
+function C:getDomain(input: types.GetDomainInput, options?: base_client.InvokeOptions): async.Operation<types.GetDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDomain as schema.OperationSchema, input, options) as async.Operation<types.GetDomainOutput>
 end
 
-function C:getDomains(input: types.GetDomainsInput, options: any): async.Operation<types.GetDomainsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDomains, input, options) as async.Operation<types.GetDomainsOutput>
+function C:getDomains(input: types.GetDomainsInput, options?: base_client.InvokeOptions): async.Operation<types.GetDomainsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDomains as schema.OperationSchema, input, options) as async.Operation<types.GetDomainsOutput>
 end
 
-function C:getExportSnapshotRecords(input: types.GetExportSnapshotRecordsInput, options: any): async.Operation<types.GetExportSnapshotRecordsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetExportSnapshotRecords, input, options) as async.Operation<types.GetExportSnapshotRecordsOutput>
+function C:getExportSnapshotRecords(input: types.GetExportSnapshotRecordsInput, options?: base_client.InvokeOptions): async.Operation<types.GetExportSnapshotRecordsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetExportSnapshotRecords as schema.OperationSchema, input, options) as async.Operation<types.GetExportSnapshotRecordsOutput>
 end
 
-function C:getInstance(input: types.GetInstanceInput, options: any): async.Operation<types.GetInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInstance, input, options) as async.Operation<types.GetInstanceOutput>
+function C:getInstance(input: types.GetInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.GetInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInstance as schema.OperationSchema, input, options) as async.Operation<types.GetInstanceOutput>
 end
 
-function C:getInstanceAccessDetails(input: types.GetInstanceAccessDetailsInput, options: any): async.Operation<types.GetInstanceAccessDetailsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInstanceAccessDetails, input, options) as async.Operation<types.GetInstanceAccessDetailsOutput>
+function C:getInstanceAccessDetails(input: types.GetInstanceAccessDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.GetInstanceAccessDetailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInstanceAccessDetails as schema.OperationSchema, input, options) as async.Operation<types.GetInstanceAccessDetailsOutput>
 end
 
-function C:getInstanceMetricData(input: types.GetInstanceMetricDataInput, options: any): async.Operation<types.GetInstanceMetricDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInstanceMetricData, input, options) as async.Operation<types.GetInstanceMetricDataOutput>
+function C:getInstanceMetricData(input: types.GetInstanceMetricDataInput, options?: base_client.InvokeOptions): async.Operation<types.GetInstanceMetricDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInstanceMetricData as schema.OperationSchema, input, options) as async.Operation<types.GetInstanceMetricDataOutput>
 end
 
-function C:getInstancePortStates(input: types.GetInstancePortStatesInput, options: any): async.Operation<types.GetInstancePortStatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInstancePortStates, input, options) as async.Operation<types.GetInstancePortStatesOutput>
+function C:getInstancePortStates(input: types.GetInstancePortStatesInput, options?: base_client.InvokeOptions): async.Operation<types.GetInstancePortStatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInstancePortStates as schema.OperationSchema, input, options) as async.Operation<types.GetInstancePortStatesOutput>
 end
 
-function C:getInstances(input: types.GetInstancesInput, options: any): async.Operation<types.GetInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInstances, input, options) as async.Operation<types.GetInstancesOutput>
+function C:getInstances(input: types.GetInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.GetInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInstances as schema.OperationSchema, input, options) as async.Operation<types.GetInstancesOutput>
 end
 
-function C:getInstanceSnapshot(input: types.GetInstanceSnapshotInput, options: any): async.Operation<types.GetInstanceSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInstanceSnapshot, input, options) as async.Operation<types.GetInstanceSnapshotOutput>
+function C:getInstanceSnapshot(input: types.GetInstanceSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.GetInstanceSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInstanceSnapshot as schema.OperationSchema, input, options) as async.Operation<types.GetInstanceSnapshotOutput>
 end
 
-function C:getInstanceSnapshots(input: types.GetInstanceSnapshotsInput, options: any): async.Operation<types.GetInstanceSnapshotsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInstanceSnapshots, input, options) as async.Operation<types.GetInstanceSnapshotsOutput>
+function C:getInstanceSnapshots(input: types.GetInstanceSnapshotsInput, options?: base_client.InvokeOptions): async.Operation<types.GetInstanceSnapshotsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInstanceSnapshots as schema.OperationSchema, input, options) as async.Operation<types.GetInstanceSnapshotsOutput>
 end
 
-function C:getInstanceState(input: types.GetInstanceStateInput, options: any): async.Operation<types.GetInstanceStateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInstanceState, input, options) as async.Operation<types.GetInstanceStateOutput>
+function C:getInstanceState(input: types.GetInstanceStateInput, options?: base_client.InvokeOptions): async.Operation<types.GetInstanceStateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInstanceState as schema.OperationSchema, input, options) as async.Operation<types.GetInstanceStateOutput>
 end
 
-function C:getKeyPair(input: types.GetKeyPairInput, options: any): async.Operation<types.GetKeyPairOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetKeyPair, input, options) as async.Operation<types.GetKeyPairOutput>
+function C:getKeyPair(input: types.GetKeyPairInput, options?: base_client.InvokeOptions): async.Operation<types.GetKeyPairOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetKeyPair as schema.OperationSchema, input, options) as async.Operation<types.GetKeyPairOutput>
 end
 
-function C:getKeyPairs(input: types.GetKeyPairsInput, options: any): async.Operation<types.GetKeyPairsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetKeyPairs, input, options) as async.Operation<types.GetKeyPairsOutput>
+function C:getKeyPairs(input: types.GetKeyPairsInput, options?: base_client.InvokeOptions): async.Operation<types.GetKeyPairsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetKeyPairs as schema.OperationSchema, input, options) as async.Operation<types.GetKeyPairsOutput>
 end
 
-function C:getLoadBalancer(input: types.GetLoadBalancerInput, options: any): async.Operation<types.GetLoadBalancerOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLoadBalancer, input, options) as async.Operation<types.GetLoadBalancerOutput>
+function C:getLoadBalancer(input: types.GetLoadBalancerInput, options?: base_client.InvokeOptions): async.Operation<types.GetLoadBalancerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLoadBalancer as schema.OperationSchema, input, options) as async.Operation<types.GetLoadBalancerOutput>
 end
 
-function C:getLoadBalancerMetricData(input: types.GetLoadBalancerMetricDataInput, options: any): async.Operation<types.GetLoadBalancerMetricDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLoadBalancerMetricData, input, options) as async.Operation<types.GetLoadBalancerMetricDataOutput>
+function C:getLoadBalancerMetricData(input: types.GetLoadBalancerMetricDataInput, options?: base_client.InvokeOptions): async.Operation<types.GetLoadBalancerMetricDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLoadBalancerMetricData as schema.OperationSchema, input, options) as async.Operation<types.GetLoadBalancerMetricDataOutput>
 end
 
-function C:getLoadBalancers(input: types.GetLoadBalancersInput, options: any): async.Operation<types.GetLoadBalancersOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLoadBalancers, input, options) as async.Operation<types.GetLoadBalancersOutput>
+function C:getLoadBalancers(input: types.GetLoadBalancersInput, options?: base_client.InvokeOptions): async.Operation<types.GetLoadBalancersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLoadBalancers as schema.OperationSchema, input, options) as async.Operation<types.GetLoadBalancersOutput>
 end
 
-function C:getLoadBalancerTlsCertificates(input: types.GetLoadBalancerTlsCertificatesInput, options: any): async.Operation<types.GetLoadBalancerTlsCertificatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLoadBalancerTlsCertificates, input, options) as async.Operation<types.GetLoadBalancerTlsCertificatesOutput>
+function C:getLoadBalancerTlsCertificates(input: types.GetLoadBalancerTlsCertificatesInput, options?: base_client.InvokeOptions): async.Operation<types.GetLoadBalancerTlsCertificatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLoadBalancerTlsCertificates as schema.OperationSchema, input, options) as async.Operation<types.GetLoadBalancerTlsCertificatesOutput>
 end
 
-function C:getLoadBalancerTlsPolicies(input: types.GetLoadBalancerTlsPoliciesInput, options: any): async.Operation<types.GetLoadBalancerTlsPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLoadBalancerTlsPolicies, input, options) as async.Operation<types.GetLoadBalancerTlsPoliciesOutput>
+function C:getLoadBalancerTlsPolicies(input: types.GetLoadBalancerTlsPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.GetLoadBalancerTlsPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLoadBalancerTlsPolicies as schema.OperationSchema, input, options) as async.Operation<types.GetLoadBalancerTlsPoliciesOutput>
 end
 
-function C:getOperation(input: types.GetOperationInput, options: any): async.Operation<types.GetOperationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOperation, input, options) as async.Operation<types.GetOperationOutput>
+function C:getOperation(input: types.GetOperationInput, options?: base_client.InvokeOptions): async.Operation<types.GetOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOperation as schema.OperationSchema, input, options) as async.Operation<types.GetOperationOutput>
 end
 
-function C:getOperations(input: types.GetOperationsInput, options: any): async.Operation<types.GetOperationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOperations, input, options) as async.Operation<types.GetOperationsOutput>
+function C:getOperations(input: types.GetOperationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetOperationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOperations as schema.OperationSchema, input, options) as async.Operation<types.GetOperationsOutput>
 end
 
-function C:getOperationsForResource(input: types.GetOperationsForResourceInput, options: any): async.Operation<types.GetOperationsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOperationsForResource, input, options) as async.Operation<types.GetOperationsForResourceOutput>
+function C:getOperationsForResource(input: types.GetOperationsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.GetOperationsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOperationsForResource as schema.OperationSchema, input, options) as async.Operation<types.GetOperationsForResourceOutput>
 end
 
-function C:getRegions(input: types.GetRegionsInput, options: any): async.Operation<types.GetRegionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRegions, input, options) as async.Operation<types.GetRegionsOutput>
+function C:getRegions(input: types.GetRegionsInput, options?: base_client.InvokeOptions): async.Operation<types.GetRegionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRegions as schema.OperationSchema, input, options) as async.Operation<types.GetRegionsOutput>
 end
 
-function C:getRelationalDatabase(input: types.GetRelationalDatabaseInput, options: any): async.Operation<types.GetRelationalDatabaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRelationalDatabase, input, options) as async.Operation<types.GetRelationalDatabaseOutput>
+function C:getRelationalDatabase(input: types.GetRelationalDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.GetRelationalDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRelationalDatabase as schema.OperationSchema, input, options) as async.Operation<types.GetRelationalDatabaseOutput>
 end
 
-function C:getRelationalDatabaseBlueprints(input: types.GetRelationalDatabaseBlueprintsInput, options: any): async.Operation<types.GetRelationalDatabaseBlueprintsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRelationalDatabaseBlueprints, input, options) as async.Operation<types.GetRelationalDatabaseBlueprintsOutput>
+function C:getRelationalDatabaseBlueprints(input: types.GetRelationalDatabaseBlueprintsInput, options?: base_client.InvokeOptions): async.Operation<types.GetRelationalDatabaseBlueprintsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRelationalDatabaseBlueprints as schema.OperationSchema, input, options) as async.Operation<types.GetRelationalDatabaseBlueprintsOutput>
 end
 
-function C:getRelationalDatabaseBundles(input: types.GetRelationalDatabaseBundlesInput, options: any): async.Operation<types.GetRelationalDatabaseBundlesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRelationalDatabaseBundles, input, options) as async.Operation<types.GetRelationalDatabaseBundlesOutput>
+function C:getRelationalDatabaseBundles(input: types.GetRelationalDatabaseBundlesInput, options?: base_client.InvokeOptions): async.Operation<types.GetRelationalDatabaseBundlesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRelationalDatabaseBundles as schema.OperationSchema, input, options) as async.Operation<types.GetRelationalDatabaseBundlesOutput>
 end
 
-function C:getRelationalDatabaseEvents(input: types.GetRelationalDatabaseEventsInput, options: any): async.Operation<types.GetRelationalDatabaseEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRelationalDatabaseEvents, input, options) as async.Operation<types.GetRelationalDatabaseEventsOutput>
+function C:getRelationalDatabaseEvents(input: types.GetRelationalDatabaseEventsInput, options?: base_client.InvokeOptions): async.Operation<types.GetRelationalDatabaseEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRelationalDatabaseEvents as schema.OperationSchema, input, options) as async.Operation<types.GetRelationalDatabaseEventsOutput>
 end
 
-function C:getRelationalDatabaseLogEvents(input: types.GetRelationalDatabaseLogEventsInput, options: any): async.Operation<types.GetRelationalDatabaseLogEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRelationalDatabaseLogEvents, input, options) as async.Operation<types.GetRelationalDatabaseLogEventsOutput>
+function C:getRelationalDatabaseLogEvents(input: types.GetRelationalDatabaseLogEventsInput, options?: base_client.InvokeOptions): async.Operation<types.GetRelationalDatabaseLogEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRelationalDatabaseLogEvents as schema.OperationSchema, input, options) as async.Operation<types.GetRelationalDatabaseLogEventsOutput>
 end
 
-function C:getRelationalDatabaseLogStreams(input: types.GetRelationalDatabaseLogStreamsInput, options: any): async.Operation<types.GetRelationalDatabaseLogStreamsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRelationalDatabaseLogStreams, input, options) as async.Operation<types.GetRelationalDatabaseLogStreamsOutput>
+function C:getRelationalDatabaseLogStreams(input: types.GetRelationalDatabaseLogStreamsInput, options?: base_client.InvokeOptions): async.Operation<types.GetRelationalDatabaseLogStreamsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRelationalDatabaseLogStreams as schema.OperationSchema, input, options) as async.Operation<types.GetRelationalDatabaseLogStreamsOutput>
 end
 
-function C:getRelationalDatabaseMasterUserPassword(input: types.GetRelationalDatabaseMasterUserPasswordInput, options: any): async.Operation<types.GetRelationalDatabaseMasterUserPasswordOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRelationalDatabaseMasterUserPassword, input, options) as async.Operation<types.GetRelationalDatabaseMasterUserPasswordOutput>
+function C:getRelationalDatabaseMasterUserPassword(input: types.GetRelationalDatabaseMasterUserPasswordInput, options?: base_client.InvokeOptions): async.Operation<types.GetRelationalDatabaseMasterUserPasswordOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRelationalDatabaseMasterUserPassword as schema.OperationSchema, input, options) as async.Operation<types.GetRelationalDatabaseMasterUserPasswordOutput>
 end
 
-function C:getRelationalDatabaseMetricData(input: types.GetRelationalDatabaseMetricDataInput, options: any): async.Operation<types.GetRelationalDatabaseMetricDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRelationalDatabaseMetricData, input, options) as async.Operation<types.GetRelationalDatabaseMetricDataOutput>
+function C:getRelationalDatabaseMetricData(input: types.GetRelationalDatabaseMetricDataInput, options?: base_client.InvokeOptions): async.Operation<types.GetRelationalDatabaseMetricDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRelationalDatabaseMetricData as schema.OperationSchema, input, options) as async.Operation<types.GetRelationalDatabaseMetricDataOutput>
 end
 
-function C:getRelationalDatabaseParameters(input: types.GetRelationalDatabaseParametersInput, options: any): async.Operation<types.GetRelationalDatabaseParametersOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRelationalDatabaseParameters, input, options) as async.Operation<types.GetRelationalDatabaseParametersOutput>
+function C:getRelationalDatabaseParameters(input: types.GetRelationalDatabaseParametersInput, options?: base_client.InvokeOptions): async.Operation<types.GetRelationalDatabaseParametersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRelationalDatabaseParameters as schema.OperationSchema, input, options) as async.Operation<types.GetRelationalDatabaseParametersOutput>
 end
 
-function C:getRelationalDatabases(input: types.GetRelationalDatabasesInput, options: any): async.Operation<types.GetRelationalDatabasesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRelationalDatabases, input, options) as async.Operation<types.GetRelationalDatabasesOutput>
+function C:getRelationalDatabases(input: types.GetRelationalDatabasesInput, options?: base_client.InvokeOptions): async.Operation<types.GetRelationalDatabasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRelationalDatabases as schema.OperationSchema, input, options) as async.Operation<types.GetRelationalDatabasesOutput>
 end
 
-function C:getRelationalDatabaseSnapshot(input: types.GetRelationalDatabaseSnapshotInput, options: any): async.Operation<types.GetRelationalDatabaseSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRelationalDatabaseSnapshot, input, options) as async.Operation<types.GetRelationalDatabaseSnapshotOutput>
+function C:getRelationalDatabaseSnapshot(input: types.GetRelationalDatabaseSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.GetRelationalDatabaseSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRelationalDatabaseSnapshot as schema.OperationSchema, input, options) as async.Operation<types.GetRelationalDatabaseSnapshotOutput>
 end
 
-function C:getRelationalDatabaseSnapshots(input: types.GetRelationalDatabaseSnapshotsInput, options: any): async.Operation<types.GetRelationalDatabaseSnapshotsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRelationalDatabaseSnapshots, input, options) as async.Operation<types.GetRelationalDatabaseSnapshotsOutput>
+function C:getRelationalDatabaseSnapshots(input: types.GetRelationalDatabaseSnapshotsInput, options?: base_client.InvokeOptions): async.Operation<types.GetRelationalDatabaseSnapshotsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRelationalDatabaseSnapshots as schema.OperationSchema, input, options) as async.Operation<types.GetRelationalDatabaseSnapshotsOutput>
 end
 
-function C:getSetupHistory(input: types.GetSetupHistoryInput, options: any): async.Operation<types.GetSetupHistoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSetupHistory, input, options) as async.Operation<types.GetSetupHistoryOutput>
+function C:getSetupHistory(input: types.GetSetupHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.GetSetupHistoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSetupHistory as schema.OperationSchema, input, options) as async.Operation<types.GetSetupHistoryOutput>
 end
 
-function C:getStaticIp(input: types.GetStaticIpInput, options: any): async.Operation<types.GetStaticIpOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetStaticIp, input, options) as async.Operation<types.GetStaticIpOutput>
+function C:getStaticIp(input: types.GetStaticIpInput, options?: base_client.InvokeOptions): async.Operation<types.GetStaticIpOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetStaticIp as schema.OperationSchema, input, options) as async.Operation<types.GetStaticIpOutput>
 end
 
-function C:getStaticIps(input: types.GetStaticIpsInput, options: any): async.Operation<types.GetStaticIpsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetStaticIps, input, options) as async.Operation<types.GetStaticIpsOutput>
+function C:getStaticIps(input: types.GetStaticIpsInput, options?: base_client.InvokeOptions): async.Operation<types.GetStaticIpsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetStaticIps as schema.OperationSchema, input, options) as async.Operation<types.GetStaticIpsOutput>
 end
 
-function C:importKeyPair(input: types.ImportKeyPairInput, options: any): async.Operation<types.ImportKeyPairOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportKeyPair, input, options) as async.Operation<types.ImportKeyPairOutput>
+function C:importKeyPair(input: types.ImportKeyPairInput, options?: base_client.InvokeOptions): async.Operation<types.ImportKeyPairOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportKeyPair as schema.OperationSchema, input, options) as async.Operation<types.ImportKeyPairOutput>
 end
 
-function C:isVpcPeered(input: types.IsVpcPeeredInput, options: any): async.Operation<types.IsVpcPeeredOutput>
-    return self:invokeOperation(schemas.Service, schemas.IsVpcPeered, input, options) as async.Operation<types.IsVpcPeeredOutput>
+function C:isVpcPeered(input: types.IsVpcPeeredInput, options?: base_client.InvokeOptions): async.Operation<types.IsVpcPeeredOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.IsVpcPeered as schema.OperationSchema, input, options) as async.Operation<types.IsVpcPeeredOutput>
 end
 
-function C:openInstancePublicPorts(input: types.OpenInstancePublicPortsInput, options: any): async.Operation<types.OpenInstancePublicPortsOutput>
-    return self:invokeOperation(schemas.Service, schemas.OpenInstancePublicPorts, input, options) as async.Operation<types.OpenInstancePublicPortsOutput>
+function C:openInstancePublicPorts(input: types.OpenInstancePublicPortsInput, options?: base_client.InvokeOptions): async.Operation<types.OpenInstancePublicPortsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.OpenInstancePublicPorts as schema.OperationSchema, input, options) as async.Operation<types.OpenInstancePublicPortsOutput>
 end
 
-function C:peerVpc(input: types.PeerVpcInput, options: any): async.Operation<types.PeerVpcOutput>
-    return self:invokeOperation(schemas.Service, schemas.PeerVpc, input, options) as async.Operation<types.PeerVpcOutput>
+function C:peerVpc(input: types.PeerVpcInput, options?: base_client.InvokeOptions): async.Operation<types.PeerVpcOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PeerVpc as schema.OperationSchema, input, options) as async.Operation<types.PeerVpcOutput>
 end
 
-function C:putAlarm(input: types.PutAlarmInput, options: any): async.Operation<types.PutAlarmOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAlarm, input, options) as async.Operation<types.PutAlarmOutput>
+function C:putAlarm(input: types.PutAlarmInput, options?: base_client.InvokeOptions): async.Operation<types.PutAlarmOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAlarm as schema.OperationSchema, input, options) as async.Operation<types.PutAlarmOutput>
 end
 
-function C:putInstancePublicPorts(input: types.PutInstancePublicPortsInput, options: any): async.Operation<types.PutInstancePublicPortsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutInstancePublicPorts, input, options) as async.Operation<types.PutInstancePublicPortsOutput>
+function C:putInstancePublicPorts(input: types.PutInstancePublicPortsInput, options?: base_client.InvokeOptions): async.Operation<types.PutInstancePublicPortsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutInstancePublicPorts as schema.OperationSchema, input, options) as async.Operation<types.PutInstancePublicPortsOutput>
 end
 
-function C:rebootInstance(input: types.RebootInstanceInput, options: any): async.Operation<types.RebootInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.RebootInstance, input, options) as async.Operation<types.RebootInstanceOutput>
+function C:rebootInstance(input: types.RebootInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.RebootInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RebootInstance as schema.OperationSchema, input, options) as async.Operation<types.RebootInstanceOutput>
 end
 
-function C:rebootRelationalDatabase(input: types.RebootRelationalDatabaseInput, options: any): async.Operation<types.RebootRelationalDatabaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.RebootRelationalDatabase, input, options) as async.Operation<types.RebootRelationalDatabaseOutput>
+function C:rebootRelationalDatabase(input: types.RebootRelationalDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.RebootRelationalDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RebootRelationalDatabase as schema.OperationSchema, input, options) as async.Operation<types.RebootRelationalDatabaseOutput>
 end
 
-function C:registerContainerImage(input: types.RegisterContainerImageInput, options: any): async.Operation<types.RegisterContainerImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterContainerImage, input, options) as async.Operation<types.RegisterContainerImageOutput>
+function C:registerContainerImage(input: types.RegisterContainerImageInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterContainerImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterContainerImage as schema.OperationSchema, input, options) as async.Operation<types.RegisterContainerImageOutput>
 end
 
-function C:releaseStaticIp(input: types.ReleaseStaticIpInput, options: any): async.Operation<types.ReleaseStaticIpOutput>
-    return self:invokeOperation(schemas.Service, schemas.ReleaseStaticIp, input, options) as async.Operation<types.ReleaseStaticIpOutput>
+function C:releaseStaticIp(input: types.ReleaseStaticIpInput, options?: base_client.InvokeOptions): async.Operation<types.ReleaseStaticIpOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReleaseStaticIp as schema.OperationSchema, input, options) as async.Operation<types.ReleaseStaticIpOutput>
 end
 
-function C:resetDistributionCache(input: types.ResetDistributionCacheInput, options: any): async.Operation<types.ResetDistributionCacheOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResetDistributionCache, input, options) as async.Operation<types.ResetDistributionCacheOutput>
+function C:resetDistributionCache(input: types.ResetDistributionCacheInput, options?: base_client.InvokeOptions): async.Operation<types.ResetDistributionCacheOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResetDistributionCache as schema.OperationSchema, input, options) as async.Operation<types.ResetDistributionCacheOutput>
 end
 
-function C:sendContactMethodVerification(input: types.SendContactMethodVerificationInput, options: any): async.Operation<types.SendContactMethodVerificationOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendContactMethodVerification, input, options) as async.Operation<types.SendContactMethodVerificationOutput>
+function C:sendContactMethodVerification(input: types.SendContactMethodVerificationInput, options?: base_client.InvokeOptions): async.Operation<types.SendContactMethodVerificationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendContactMethodVerification as schema.OperationSchema, input, options) as async.Operation<types.SendContactMethodVerificationOutput>
 end
 
-function C:setIpAddressType(input: types.SetIpAddressTypeInput, options: any): async.Operation<types.SetIpAddressTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetIpAddressType, input, options) as async.Operation<types.SetIpAddressTypeOutput>
+function C:setIpAddressType(input: types.SetIpAddressTypeInput, options?: base_client.InvokeOptions): async.Operation<types.SetIpAddressTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetIpAddressType as schema.OperationSchema, input, options) as async.Operation<types.SetIpAddressTypeOutput>
 end
 
-function C:setResourceAccessForBucket(input: types.SetResourceAccessForBucketInput, options: any): async.Operation<types.SetResourceAccessForBucketOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetResourceAccessForBucket, input, options) as async.Operation<types.SetResourceAccessForBucketOutput>
+function C:setResourceAccessForBucket(input: types.SetResourceAccessForBucketInput, options?: base_client.InvokeOptions): async.Operation<types.SetResourceAccessForBucketOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetResourceAccessForBucket as schema.OperationSchema, input, options) as async.Operation<types.SetResourceAccessForBucketOutput>
 end
 
-function C:setupInstanceHttps(input: types.SetupInstanceHttpsInput, options: any): async.Operation<types.SetupInstanceHttpsOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetupInstanceHttps, input, options) as async.Operation<types.SetupInstanceHttpsOutput>
+function C:setupInstanceHttps(input: types.SetupInstanceHttpsInput, options?: base_client.InvokeOptions): async.Operation<types.SetupInstanceHttpsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetupInstanceHttps as schema.OperationSchema, input, options) as async.Operation<types.SetupInstanceHttpsOutput>
 end
 
-function C:startGUISession(input: types.StartGUISessionInput, options: any): async.Operation<types.StartGUISessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartGUISession, input, options) as async.Operation<types.StartGUISessionOutput>
+function C:startGUISession(input: types.StartGUISessionInput, options?: base_client.InvokeOptions): async.Operation<types.StartGUISessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartGUISession as schema.OperationSchema, input, options) as async.Operation<types.StartGUISessionOutput>
 end
 
-function C:startInstance(input: types.StartInstanceInput, options: any): async.Operation<types.StartInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartInstance, input, options) as async.Operation<types.StartInstanceOutput>
+function C:startInstance(input: types.StartInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.StartInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartInstance as schema.OperationSchema, input, options) as async.Operation<types.StartInstanceOutput>
 end
 
-function C:startRelationalDatabase(input: types.StartRelationalDatabaseInput, options: any): async.Operation<types.StartRelationalDatabaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartRelationalDatabase, input, options) as async.Operation<types.StartRelationalDatabaseOutput>
+function C:startRelationalDatabase(input: types.StartRelationalDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.StartRelationalDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartRelationalDatabase as schema.OperationSchema, input, options) as async.Operation<types.StartRelationalDatabaseOutput>
 end
 
-function C:stopGUISession(input: types.StopGUISessionInput, options: any): async.Operation<types.StopGUISessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopGUISession, input, options) as async.Operation<types.StopGUISessionOutput>
+function C:stopGUISession(input: types.StopGUISessionInput, options?: base_client.InvokeOptions): async.Operation<types.StopGUISessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopGUISession as schema.OperationSchema, input, options) as async.Operation<types.StopGUISessionOutput>
 end
 
-function C:stopInstance(input: types.StopInstanceInput, options: any): async.Operation<types.StopInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopInstance, input, options) as async.Operation<types.StopInstanceOutput>
+function C:stopInstance(input: types.StopInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.StopInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopInstance as schema.OperationSchema, input, options) as async.Operation<types.StopInstanceOutput>
 end
 
-function C:stopRelationalDatabase(input: types.StopRelationalDatabaseInput, options: any): async.Operation<types.StopRelationalDatabaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopRelationalDatabase, input, options) as async.Operation<types.StopRelationalDatabaseOutput>
+function C:stopRelationalDatabase(input: types.StopRelationalDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.StopRelationalDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopRelationalDatabase as schema.OperationSchema, input, options) as async.Operation<types.StopRelationalDatabaseOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:testAlarm(input: types.TestAlarmInput, options: any): async.Operation<types.TestAlarmOutput>
-    return self:invokeOperation(schemas.Service, schemas.TestAlarm, input, options) as async.Operation<types.TestAlarmOutput>
+function C:testAlarm(input: types.TestAlarmInput, options?: base_client.InvokeOptions): async.Operation<types.TestAlarmOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TestAlarm as schema.OperationSchema, input, options) as async.Operation<types.TestAlarmOutput>
 end
 
-function C:unpeerVpc(input: types.UnpeerVpcInput, options: any): async.Operation<types.UnpeerVpcOutput>
-    return self:invokeOperation(schemas.Service, schemas.UnpeerVpc, input, options) as async.Operation<types.UnpeerVpcOutput>
+function C:unpeerVpc(input: types.UnpeerVpcInput, options?: base_client.InvokeOptions): async.Operation<types.UnpeerVpcOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UnpeerVpc as schema.OperationSchema, input, options) as async.Operation<types.UnpeerVpcOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateBucket(input: types.UpdateBucketInput, options: any): async.Operation<types.UpdateBucketOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateBucket, input, options) as async.Operation<types.UpdateBucketOutput>
+function C:updateBucket(input: types.UpdateBucketInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBucketOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBucket as schema.OperationSchema, input, options) as async.Operation<types.UpdateBucketOutput>
 end
 
-function C:updateBucketBundle(input: types.UpdateBucketBundleInput, options: any): async.Operation<types.UpdateBucketBundleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateBucketBundle, input, options) as async.Operation<types.UpdateBucketBundleOutput>
+function C:updateBucketBundle(input: types.UpdateBucketBundleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBucketBundleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBucketBundle as schema.OperationSchema, input, options) as async.Operation<types.UpdateBucketBundleOutput>
 end
 
-function C:updateContainerService(input: types.UpdateContainerServiceInput, options: any): async.Operation<types.UpdateContainerServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateContainerService, input, options) as async.Operation<types.UpdateContainerServiceOutput>
+function C:updateContainerService(input: types.UpdateContainerServiceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateContainerServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateContainerService as schema.OperationSchema, input, options) as async.Operation<types.UpdateContainerServiceOutput>
 end
 
-function C:updateDistribution(input: types.UpdateDistributionInput, options: any): async.Operation<types.UpdateDistributionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDistribution, input, options) as async.Operation<types.UpdateDistributionOutput>
+function C:updateDistribution(input: types.UpdateDistributionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDistributionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDistribution as schema.OperationSchema, input, options) as async.Operation<types.UpdateDistributionOutput>
 end
 
-function C:updateDistributionBundle(input: types.UpdateDistributionBundleInput, options: any): async.Operation<types.UpdateDistributionBundleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDistributionBundle, input, options) as async.Operation<types.UpdateDistributionBundleOutput>
+function C:updateDistributionBundle(input: types.UpdateDistributionBundleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDistributionBundleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDistributionBundle as schema.OperationSchema, input, options) as async.Operation<types.UpdateDistributionBundleOutput>
 end
 
-function C:updateDomainEntry(input: types.UpdateDomainEntryInput, options: any): async.Operation<types.UpdateDomainEntryOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDomainEntry, input, options) as async.Operation<types.UpdateDomainEntryOutput>
+function C:updateDomainEntry(input: types.UpdateDomainEntryInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDomainEntryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDomainEntry as schema.OperationSchema, input, options) as async.Operation<types.UpdateDomainEntryOutput>
 end
 
-function C:updateInstanceMetadataOptions(input: types.UpdateInstanceMetadataOptionsInput, options: any): async.Operation<types.UpdateInstanceMetadataOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateInstanceMetadataOptions, input, options) as async.Operation<types.UpdateInstanceMetadataOptionsOutput>
+function C:updateInstanceMetadataOptions(input: types.UpdateInstanceMetadataOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateInstanceMetadataOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateInstanceMetadataOptions as schema.OperationSchema, input, options) as async.Operation<types.UpdateInstanceMetadataOptionsOutput>
 end
 
-function C:updateLoadBalancerAttribute(input: types.UpdateLoadBalancerAttributeInput, options: any): async.Operation<types.UpdateLoadBalancerAttributeOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLoadBalancerAttribute, input, options) as async.Operation<types.UpdateLoadBalancerAttributeOutput>
+function C:updateLoadBalancerAttribute(input: types.UpdateLoadBalancerAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLoadBalancerAttributeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLoadBalancerAttribute as schema.OperationSchema, input, options) as async.Operation<types.UpdateLoadBalancerAttributeOutput>
 end
 
-function C:updateRelationalDatabase(input: types.UpdateRelationalDatabaseInput, options: any): async.Operation<types.UpdateRelationalDatabaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRelationalDatabase, input, options) as async.Operation<types.UpdateRelationalDatabaseOutput>
+function C:updateRelationalDatabase(input: types.UpdateRelationalDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRelationalDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRelationalDatabase as schema.OperationSchema, input, options) as async.Operation<types.UpdateRelationalDatabaseOutput>
 end
 
-function C:updateRelationalDatabaseParameters(input: types.UpdateRelationalDatabaseParametersInput, options: any): async.Operation<types.UpdateRelationalDatabaseParametersOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRelationalDatabaseParameters, input, options) as async.Operation<types.UpdateRelationalDatabaseParametersOutput>
+function C:updateRelationalDatabaseParameters(input: types.UpdateRelationalDatabaseParametersInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRelationalDatabaseParametersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRelationalDatabaseParameters as schema.OperationSchema, input, options) as async.Operation<types.UpdateRelationalDatabaseParametersOutput>
 end
 
 return M

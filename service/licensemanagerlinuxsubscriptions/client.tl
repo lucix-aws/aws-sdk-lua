@@ -8,50 +8,53 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("licensemanagerlinuxsubscriptions.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("licensemanagerlinuxsubscriptions.schemas")
 local traits = require("smithy.traits")
 local types = require("licensemanagerlinuxsubscriptions.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    deregisterSubscriptionProvider: function(Client, types.DeregisterSubscriptionProviderInput, any): async.Operation<types.DeregisterSubscriptionProviderOutput>
-    getRegisteredSubscriptionProvider: function(Client, types.GetRegisteredSubscriptionProviderInput, any): async.Operation<types.GetRegisteredSubscriptionProviderOutput>
-    getServiceSettings: function(Client, types.GetServiceSettingsInput, any): async.Operation<types.GetServiceSettingsOutput>
-    listLinuxSubscriptionInstances: function(Client, types.ListLinuxSubscriptionInstancesInput, any): async.Operation<types.ListLinuxSubscriptionInstancesOutput>
-    listLinuxSubscriptions: function(Client, types.ListLinuxSubscriptionsInput, any): async.Operation<types.ListLinuxSubscriptionsOutput>
-    listRegisteredSubscriptionProviders: function(Client, types.ListRegisteredSubscriptionProvidersInput, any): async.Operation<types.ListRegisteredSubscriptionProvidersOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    registerSubscriptionProvider: function(Client, types.RegisterSubscriptionProviderInput, any): async.Operation<types.RegisterSubscriptionProviderOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateServiceSettings: function(Client, types.UpdateServiceSettingsInput, any): async.Operation<types.UpdateServiceSettingsOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    deregisterSubscriptionProvider: function(Client, types.DeregisterSubscriptionProviderInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterSubscriptionProviderOutput>
+    getRegisteredSubscriptionProvider: function(Client, types.GetRegisteredSubscriptionProviderInput, ? base_client.InvokeOptions): async.Operation<types.GetRegisteredSubscriptionProviderOutput>
+    getServiceSettings: function(Client, types.GetServiceSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceSettingsOutput>
+    listLinuxSubscriptionInstances: function(Client, types.ListLinuxSubscriptionInstancesInput, ? base_client.InvokeOptions): async.Operation<types.ListLinuxSubscriptionInstancesOutput>
+    listLinuxSubscriptions: function(Client, types.ListLinuxSubscriptionsInput, ? base_client.InvokeOptions): async.Operation<types.ListLinuxSubscriptionsOutput>
+    listRegisteredSubscriptionProviders: function(Client, types.ListRegisteredSubscriptionProvidersInput, ? base_client.InvokeOptions): async.Operation<types.ListRegisteredSubscriptionProvidersOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    registerSubscriptionProvider: function(Client, types.RegisterSubscriptionProviderInput, ? base_client.InvokeOptions): async.Operation<types.RegisterSubscriptionProviderOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateServiceSettings: function(Client, types.UpdateServiceSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServiceSettingsOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "LicenseManagerLinuxSubscriptions"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "license-manager-linux-subscriptions", signing_region = c.region } }
                 else
@@ -70,48 +73,48 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:deregisterSubscriptionProvider(input: types.DeregisterSubscriptionProviderInput, options: any): async.Operation<types.DeregisterSubscriptionProviderOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterSubscriptionProvider, input, options) as async.Operation<types.DeregisterSubscriptionProviderOutput>
+function C:deregisterSubscriptionProvider(input: types.DeregisterSubscriptionProviderInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterSubscriptionProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterSubscriptionProvider as schema.OperationSchema, input, options) as async.Operation<types.DeregisterSubscriptionProviderOutput>
 end
 
-function C:getRegisteredSubscriptionProvider(input: types.GetRegisteredSubscriptionProviderInput, options: any): async.Operation<types.GetRegisteredSubscriptionProviderOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRegisteredSubscriptionProvider, input, options) as async.Operation<types.GetRegisteredSubscriptionProviderOutput>
+function C:getRegisteredSubscriptionProvider(input: types.GetRegisteredSubscriptionProviderInput, options?: base_client.InvokeOptions): async.Operation<types.GetRegisteredSubscriptionProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRegisteredSubscriptionProvider as schema.OperationSchema, input, options) as async.Operation<types.GetRegisteredSubscriptionProviderOutput>
 end
 
-function C:getServiceSettings(input: types.GetServiceSettingsInput, options: any): async.Operation<types.GetServiceSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetServiceSettings, input, options) as async.Operation<types.GetServiceSettingsOutput>
+function C:getServiceSettings(input: types.GetServiceSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetServiceSettings as schema.OperationSchema, input, options) as async.Operation<types.GetServiceSettingsOutput>
 end
 
-function C:listLinuxSubscriptionInstances(input: types.ListLinuxSubscriptionInstancesInput, options: any): async.Operation<types.ListLinuxSubscriptionInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLinuxSubscriptionInstances, input, options) as async.Operation<types.ListLinuxSubscriptionInstancesOutput>
+function C:listLinuxSubscriptionInstances(input: types.ListLinuxSubscriptionInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.ListLinuxSubscriptionInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLinuxSubscriptionInstances as schema.OperationSchema, input, options) as async.Operation<types.ListLinuxSubscriptionInstancesOutput>
 end
 
-function C:listLinuxSubscriptions(input: types.ListLinuxSubscriptionsInput, options: any): async.Operation<types.ListLinuxSubscriptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLinuxSubscriptions, input, options) as async.Operation<types.ListLinuxSubscriptionsOutput>
+function C:listLinuxSubscriptions(input: types.ListLinuxSubscriptionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLinuxSubscriptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLinuxSubscriptions as schema.OperationSchema, input, options) as async.Operation<types.ListLinuxSubscriptionsOutput>
 end
 
-function C:listRegisteredSubscriptionProviders(input: types.ListRegisteredSubscriptionProvidersInput, options: any): async.Operation<types.ListRegisteredSubscriptionProvidersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRegisteredSubscriptionProviders, input, options) as async.Operation<types.ListRegisteredSubscriptionProvidersOutput>
+function C:listRegisteredSubscriptionProviders(input: types.ListRegisteredSubscriptionProvidersInput, options?: base_client.InvokeOptions): async.Operation<types.ListRegisteredSubscriptionProvidersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRegisteredSubscriptionProviders as schema.OperationSchema, input, options) as async.Operation<types.ListRegisteredSubscriptionProvidersOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:registerSubscriptionProvider(input: types.RegisterSubscriptionProviderInput, options: any): async.Operation<types.RegisterSubscriptionProviderOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterSubscriptionProvider, input, options) as async.Operation<types.RegisterSubscriptionProviderOutput>
+function C:registerSubscriptionProvider(input: types.RegisterSubscriptionProviderInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterSubscriptionProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterSubscriptionProvider as schema.OperationSchema, input, options) as async.Operation<types.RegisterSubscriptionProviderOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateServiceSettings(input: types.UpdateServiceSettingsInput, options: any): async.Operation<types.UpdateServiceSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateServiceSettings, input, options) as async.Operation<types.UpdateServiceSettingsOutput>
+function C:updateServiceSettings(input: types.UpdateServiceSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateServiceSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateServiceSettings as schema.OperationSchema, input, options) as async.Operation<types.UpdateServiceSettingsOutput>
 end
 
 return M

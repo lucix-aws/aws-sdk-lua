@@ -8,97 +8,100 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("ecr.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("ecr.schemas")
 local traits = require("smithy.traits")
 local types = require("ecr.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchCheckLayerAvailability: function(Client, types.BatchCheckLayerAvailabilityInput, any): async.Operation<types.BatchCheckLayerAvailabilityOutput>
-    batchDeleteImage: function(Client, types.BatchDeleteImageInput, any): async.Operation<types.BatchDeleteImageOutput>
-    batchGetImage: function(Client, types.BatchGetImageInput, any): async.Operation<types.BatchGetImageOutput>
-    batchGetRepositoryScanningConfiguration: function(Client, types.BatchGetRepositoryScanningConfigurationInput, any): async.Operation<types.BatchGetRepositoryScanningConfigurationOutput>
-    completeLayerUpload: function(Client, types.CompleteLayerUploadInput, any): async.Operation<types.CompleteLayerUploadOutput>
-    createPullThroughCacheRule: function(Client, types.CreatePullThroughCacheRuleInput, any): async.Operation<types.CreatePullThroughCacheRuleOutput>
-    createRepository: function(Client, types.CreateRepositoryInput, any): async.Operation<types.CreateRepositoryOutput>
-    createRepositoryCreationTemplate: function(Client, types.CreateRepositoryCreationTemplateInput, any): async.Operation<types.CreateRepositoryCreationTemplateOutput>
-    deleteLifecyclePolicy: function(Client, types.DeleteLifecyclePolicyInput, any): async.Operation<types.DeleteLifecyclePolicyOutput>
-    deletePullThroughCacheRule: function(Client, types.DeletePullThroughCacheRuleInput, any): async.Operation<types.DeletePullThroughCacheRuleOutput>
-    deleteRegistryPolicy: function(Client, types.DeleteRegistryPolicyInput, any): async.Operation<types.DeleteRegistryPolicyOutput>
-    deleteRepository: function(Client, types.DeleteRepositoryInput, any): async.Operation<types.DeleteRepositoryOutput>
-    deleteRepositoryCreationTemplate: function(Client, types.DeleteRepositoryCreationTemplateInput, any): async.Operation<types.DeleteRepositoryCreationTemplateOutput>
-    deleteRepositoryPolicy: function(Client, types.DeleteRepositoryPolicyInput, any): async.Operation<types.DeleteRepositoryPolicyOutput>
-    deleteSigningConfiguration: function(Client, types.DeleteSigningConfigurationInput, any): async.Operation<types.DeleteSigningConfigurationOutput>
-    deregisterPullTimeUpdateExclusion: function(Client, types.DeregisterPullTimeUpdateExclusionInput, any): async.Operation<types.DeregisterPullTimeUpdateExclusionOutput>
-    describeImageReplicationStatus: function(Client, types.DescribeImageReplicationStatusInput, any): async.Operation<types.DescribeImageReplicationStatusOutput>
-    describeImages: function(Client, types.DescribeImagesInput, any): async.Operation<types.DescribeImagesOutput>
-    describeImageScanFindings: function(Client, types.DescribeImageScanFindingsInput, any): async.Operation<types.DescribeImageScanFindingsOutput>
-    describeImageSigningStatus: function(Client, types.DescribeImageSigningStatusInput, any): async.Operation<types.DescribeImageSigningStatusOutput>
-    describePullThroughCacheRules: function(Client, types.DescribePullThroughCacheRulesInput, any): async.Operation<types.DescribePullThroughCacheRulesOutput>
-    describeRegistry: function(Client, types.DescribeRegistryInput, any): async.Operation<types.DescribeRegistryOutput>
-    describeRepositories: function(Client, types.DescribeRepositoriesInput, any): async.Operation<types.DescribeRepositoriesOutput>
-    describeRepositoryCreationTemplates: function(Client, types.DescribeRepositoryCreationTemplatesInput, any): async.Operation<types.DescribeRepositoryCreationTemplatesOutput>
-    getAccountSetting: function(Client, types.GetAccountSettingInput, any): async.Operation<types.GetAccountSettingOutput>
-    getAuthorizationToken: function(Client, types.GetAuthorizationTokenInput, any): async.Operation<types.GetAuthorizationTokenOutput>
-    getDownloadUrlForLayer: function(Client, types.GetDownloadUrlForLayerInput, any): async.Operation<types.GetDownloadUrlForLayerOutput>
-    getLifecyclePolicy: function(Client, types.GetLifecyclePolicyInput, any): async.Operation<types.GetLifecyclePolicyOutput>
-    getLifecyclePolicyPreview: function(Client, types.GetLifecyclePolicyPreviewInput, any): async.Operation<types.GetLifecyclePolicyPreviewOutput>
-    getRegistryPolicy: function(Client, types.GetRegistryPolicyInput, any): async.Operation<types.GetRegistryPolicyOutput>
-    getRegistryScanningConfiguration: function(Client, types.GetRegistryScanningConfigurationInput, any): async.Operation<types.GetRegistryScanningConfigurationOutput>
-    getRepositoryPolicy: function(Client, types.GetRepositoryPolicyInput, any): async.Operation<types.GetRepositoryPolicyOutput>
-    getSigningConfiguration: function(Client, types.GetSigningConfigurationInput, any): async.Operation<types.GetSigningConfigurationOutput>
-    initiateLayerUpload: function(Client, types.InitiateLayerUploadInput, any): async.Operation<types.InitiateLayerUploadOutput>
-    listImageReferrers: function(Client, types.ListImageReferrersInput, any): async.Operation<types.ListImageReferrersOutput>
-    listImages: function(Client, types.ListImagesInput, any): async.Operation<types.ListImagesOutput>
-    listPullTimeUpdateExclusions: function(Client, types.ListPullTimeUpdateExclusionsInput, any): async.Operation<types.ListPullTimeUpdateExclusionsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putAccountSetting: function(Client, types.PutAccountSettingInput, any): async.Operation<types.PutAccountSettingOutput>
-    putImage: function(Client, types.PutImageInput, any): async.Operation<types.PutImageOutput>
-    putImageScanningConfiguration: function(Client, types.PutImageScanningConfigurationInput, any): async.Operation<types.PutImageScanningConfigurationOutput>
-    putImageTagMutability: function(Client, types.PutImageTagMutabilityInput, any): async.Operation<types.PutImageTagMutabilityOutput>
-    putLifecyclePolicy: function(Client, types.PutLifecyclePolicyInput, any): async.Operation<types.PutLifecyclePolicyOutput>
-    putRegistryPolicy: function(Client, types.PutRegistryPolicyInput, any): async.Operation<types.PutRegistryPolicyOutput>
-    putRegistryScanningConfiguration: function(Client, types.PutRegistryScanningConfigurationInput, any): async.Operation<types.PutRegistryScanningConfigurationOutput>
-    putReplicationConfiguration: function(Client, types.PutReplicationConfigurationInput, any): async.Operation<types.PutReplicationConfigurationOutput>
-    putSigningConfiguration: function(Client, types.PutSigningConfigurationInput, any): async.Operation<types.PutSigningConfigurationOutput>
-    registerPullTimeUpdateExclusion: function(Client, types.RegisterPullTimeUpdateExclusionInput, any): async.Operation<types.RegisterPullTimeUpdateExclusionOutput>
-    setRepositoryPolicy: function(Client, types.SetRepositoryPolicyInput, any): async.Operation<types.SetRepositoryPolicyOutput>
-    startImageScan: function(Client, types.StartImageScanInput, any): async.Operation<types.StartImageScanOutput>
-    startLifecyclePolicyPreview: function(Client, types.StartLifecyclePolicyPreviewInput, any): async.Operation<types.StartLifecyclePolicyPreviewOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateImageStorageClass: function(Client, types.UpdateImageStorageClassInput, any): async.Operation<types.UpdateImageStorageClassOutput>
-    updatePullThroughCacheRule: function(Client, types.UpdatePullThroughCacheRuleInput, any): async.Operation<types.UpdatePullThroughCacheRuleOutput>
-    updateRepositoryCreationTemplate: function(Client, types.UpdateRepositoryCreationTemplateInput, any): async.Operation<types.UpdateRepositoryCreationTemplateOutput>
-    uploadLayerPart: function(Client, types.UploadLayerPartInput, any): async.Operation<types.UploadLayerPartOutput>
-    validatePullThroughCacheRule: function(Client, types.ValidatePullThroughCacheRuleInput, any): async.Operation<types.ValidatePullThroughCacheRuleOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchCheckLayerAvailability: function(Client, types.BatchCheckLayerAvailabilityInput, ? base_client.InvokeOptions): async.Operation<types.BatchCheckLayerAvailabilityOutput>
+    batchDeleteImage: function(Client, types.BatchDeleteImageInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteImageOutput>
+    batchGetImage: function(Client, types.BatchGetImageInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetImageOutput>
+    batchGetRepositoryScanningConfiguration: function(Client, types.BatchGetRepositoryScanningConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetRepositoryScanningConfigurationOutput>
+    completeLayerUpload: function(Client, types.CompleteLayerUploadInput, ? base_client.InvokeOptions): async.Operation<types.CompleteLayerUploadOutput>
+    createPullThroughCacheRule: function(Client, types.CreatePullThroughCacheRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreatePullThroughCacheRuleOutput>
+    createRepository: function(Client, types.CreateRepositoryInput, ? base_client.InvokeOptions): async.Operation<types.CreateRepositoryOutput>
+    createRepositoryCreationTemplate: function(Client, types.CreateRepositoryCreationTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateRepositoryCreationTemplateOutput>
+    deleteLifecyclePolicy: function(Client, types.DeleteLifecyclePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLifecyclePolicyOutput>
+    deletePullThroughCacheRule: function(Client, types.DeletePullThroughCacheRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeletePullThroughCacheRuleOutput>
+    deleteRegistryPolicy: function(Client, types.DeleteRegistryPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRegistryPolicyOutput>
+    deleteRepository: function(Client, types.DeleteRepositoryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRepositoryOutput>
+    deleteRepositoryCreationTemplate: function(Client, types.DeleteRepositoryCreationTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRepositoryCreationTemplateOutput>
+    deleteRepositoryPolicy: function(Client, types.DeleteRepositoryPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRepositoryPolicyOutput>
+    deleteSigningConfiguration: function(Client, types.DeleteSigningConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSigningConfigurationOutput>
+    deregisterPullTimeUpdateExclusion: function(Client, types.DeregisterPullTimeUpdateExclusionInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterPullTimeUpdateExclusionOutput>
+    describeImageReplicationStatus: function(Client, types.DescribeImageReplicationStatusInput, ? base_client.InvokeOptions): async.Operation<types.DescribeImageReplicationStatusOutput>
+    describeImages: function(Client, types.DescribeImagesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeImagesOutput>
+    describeImageScanFindings: function(Client, types.DescribeImageScanFindingsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeImageScanFindingsOutput>
+    describeImageSigningStatus: function(Client, types.DescribeImageSigningStatusInput, ? base_client.InvokeOptions): async.Operation<types.DescribeImageSigningStatusOutput>
+    describePullThroughCacheRules: function(Client, types.DescribePullThroughCacheRulesInput, ? base_client.InvokeOptions): async.Operation<types.DescribePullThroughCacheRulesOutput>
+    describeRegistry: function(Client, types.DescribeRegistryInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRegistryOutput>
+    describeRepositories: function(Client, types.DescribeRepositoriesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRepositoriesOutput>
+    describeRepositoryCreationTemplates: function(Client, types.DescribeRepositoryCreationTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRepositoryCreationTemplatesOutput>
+    getAccountSetting: function(Client, types.GetAccountSettingInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountSettingOutput>
+    getAuthorizationToken: function(Client, types.GetAuthorizationTokenInput, ? base_client.InvokeOptions): async.Operation<types.GetAuthorizationTokenOutput>
+    getDownloadUrlForLayer: function(Client, types.GetDownloadUrlForLayerInput, ? base_client.InvokeOptions): async.Operation<types.GetDownloadUrlForLayerOutput>
+    getLifecyclePolicy: function(Client, types.GetLifecyclePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetLifecyclePolicyOutput>
+    getLifecyclePolicyPreview: function(Client, types.GetLifecyclePolicyPreviewInput, ? base_client.InvokeOptions): async.Operation<types.GetLifecyclePolicyPreviewOutput>
+    getRegistryPolicy: function(Client, types.GetRegistryPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetRegistryPolicyOutput>
+    getRegistryScanningConfiguration: function(Client, types.GetRegistryScanningConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetRegistryScanningConfigurationOutput>
+    getRepositoryPolicy: function(Client, types.GetRepositoryPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetRepositoryPolicyOutput>
+    getSigningConfiguration: function(Client, types.GetSigningConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetSigningConfigurationOutput>
+    initiateLayerUpload: function(Client, types.InitiateLayerUploadInput, ? base_client.InvokeOptions): async.Operation<types.InitiateLayerUploadOutput>
+    listImageReferrers: function(Client, types.ListImageReferrersInput, ? base_client.InvokeOptions): async.Operation<types.ListImageReferrersOutput>
+    listImages: function(Client, types.ListImagesInput, ? base_client.InvokeOptions): async.Operation<types.ListImagesOutput>
+    listPullTimeUpdateExclusions: function(Client, types.ListPullTimeUpdateExclusionsInput, ? base_client.InvokeOptions): async.Operation<types.ListPullTimeUpdateExclusionsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putAccountSetting: function(Client, types.PutAccountSettingInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountSettingOutput>
+    putImage: function(Client, types.PutImageInput, ? base_client.InvokeOptions): async.Operation<types.PutImageOutput>
+    putImageScanningConfiguration: function(Client, types.PutImageScanningConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutImageScanningConfigurationOutput>
+    putImageTagMutability: function(Client, types.PutImageTagMutabilityInput, ? base_client.InvokeOptions): async.Operation<types.PutImageTagMutabilityOutput>
+    putLifecyclePolicy: function(Client, types.PutLifecyclePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutLifecyclePolicyOutput>
+    putRegistryPolicy: function(Client, types.PutRegistryPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutRegistryPolicyOutput>
+    putRegistryScanningConfiguration: function(Client, types.PutRegistryScanningConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutRegistryScanningConfigurationOutput>
+    putReplicationConfiguration: function(Client, types.PutReplicationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutReplicationConfigurationOutput>
+    putSigningConfiguration: function(Client, types.PutSigningConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutSigningConfigurationOutput>
+    registerPullTimeUpdateExclusion: function(Client, types.RegisterPullTimeUpdateExclusionInput, ? base_client.InvokeOptions): async.Operation<types.RegisterPullTimeUpdateExclusionOutput>
+    setRepositoryPolicy: function(Client, types.SetRepositoryPolicyInput, ? base_client.InvokeOptions): async.Operation<types.SetRepositoryPolicyOutput>
+    startImageScan: function(Client, types.StartImageScanInput, ? base_client.InvokeOptions): async.Operation<types.StartImageScanOutput>
+    startLifecyclePolicyPreview: function(Client, types.StartLifecyclePolicyPreviewInput, ? base_client.InvokeOptions): async.Operation<types.StartLifecyclePolicyPreviewOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateImageStorageClass: function(Client, types.UpdateImageStorageClassInput, ? base_client.InvokeOptions): async.Operation<types.UpdateImageStorageClassOutput>
+    updatePullThroughCacheRule: function(Client, types.UpdatePullThroughCacheRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePullThroughCacheRuleOutput>
+    updateRepositoryCreationTemplate: function(Client, types.UpdateRepositoryCreationTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRepositoryCreationTemplateOutput>
+    uploadLayerPart: function(Client, types.UploadLayerPartInput, ? base_client.InvokeOptions): async.Operation<types.UploadLayerPartOutput>
+    validatePullThroughCacheRule: function(Client, types.ValidatePullThroughCacheRuleInput, ? base_client.InvokeOptions): async.Operation<types.ValidatePullThroughCacheRuleOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonEC2ContainerRegistry_V20150921"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ecr", signing_region = c.region } }
                 else
@@ -117,236 +120,236 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchCheckLayerAvailability(input: types.BatchCheckLayerAvailabilityInput, options: any): async.Operation<types.BatchCheckLayerAvailabilityOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchCheckLayerAvailability, input, options) as async.Operation<types.BatchCheckLayerAvailabilityOutput>
+function C:batchCheckLayerAvailability(input: types.BatchCheckLayerAvailabilityInput, options?: base_client.InvokeOptions): async.Operation<types.BatchCheckLayerAvailabilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchCheckLayerAvailability as schema.OperationSchema, input, options) as async.Operation<types.BatchCheckLayerAvailabilityOutput>
 end
 
-function C:batchDeleteImage(input: types.BatchDeleteImageInput, options: any): async.Operation<types.BatchDeleteImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDeleteImage, input, options) as async.Operation<types.BatchDeleteImageOutput>
+function C:batchDeleteImage(input: types.BatchDeleteImageInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteImage as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteImageOutput>
 end
 
-function C:batchGetImage(input: types.BatchGetImageInput, options: any): async.Operation<types.BatchGetImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetImage, input, options) as async.Operation<types.BatchGetImageOutput>
+function C:batchGetImage(input: types.BatchGetImageInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetImage as schema.OperationSchema, input, options) as async.Operation<types.BatchGetImageOutput>
 end
 
-function C:batchGetRepositoryScanningConfiguration(input: types.BatchGetRepositoryScanningConfigurationInput, options: any): async.Operation<types.BatchGetRepositoryScanningConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetRepositoryScanningConfiguration, input, options) as async.Operation<types.BatchGetRepositoryScanningConfigurationOutput>
+function C:batchGetRepositoryScanningConfiguration(input: types.BatchGetRepositoryScanningConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetRepositoryScanningConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetRepositoryScanningConfiguration as schema.OperationSchema, input, options) as async.Operation<types.BatchGetRepositoryScanningConfigurationOutput>
 end
 
-function C:completeLayerUpload(input: types.CompleteLayerUploadInput, options: any): async.Operation<types.CompleteLayerUploadOutput>
-    return self:invokeOperation(schemas.Service, schemas.CompleteLayerUpload, input, options) as async.Operation<types.CompleteLayerUploadOutput>
+function C:completeLayerUpload(input: types.CompleteLayerUploadInput, options?: base_client.InvokeOptions): async.Operation<types.CompleteLayerUploadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CompleteLayerUpload as schema.OperationSchema, input, options) as async.Operation<types.CompleteLayerUploadOutput>
 end
 
-function C:createPullThroughCacheRule(input: types.CreatePullThroughCacheRuleInput, options: any): async.Operation<types.CreatePullThroughCacheRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePullThroughCacheRule, input, options) as async.Operation<types.CreatePullThroughCacheRuleOutput>
+function C:createPullThroughCacheRule(input: types.CreatePullThroughCacheRuleInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePullThroughCacheRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePullThroughCacheRule as schema.OperationSchema, input, options) as async.Operation<types.CreatePullThroughCacheRuleOutput>
 end
 
-function C:createRepository(input: types.CreateRepositoryInput, options: any): async.Operation<types.CreateRepositoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRepository, input, options) as async.Operation<types.CreateRepositoryOutput>
+function C:createRepository(input: types.CreateRepositoryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRepositoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRepository as schema.OperationSchema, input, options) as async.Operation<types.CreateRepositoryOutput>
 end
 
-function C:createRepositoryCreationTemplate(input: types.CreateRepositoryCreationTemplateInput, options: any): async.Operation<types.CreateRepositoryCreationTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRepositoryCreationTemplate, input, options) as async.Operation<types.CreateRepositoryCreationTemplateOutput>
+function C:createRepositoryCreationTemplate(input: types.CreateRepositoryCreationTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRepositoryCreationTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRepositoryCreationTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateRepositoryCreationTemplateOutput>
 end
 
-function C:deleteLifecyclePolicy(input: types.DeleteLifecyclePolicyInput, options: any): async.Operation<types.DeleteLifecyclePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLifecyclePolicy, input, options) as async.Operation<types.DeleteLifecyclePolicyOutput>
+function C:deleteLifecyclePolicy(input: types.DeleteLifecyclePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLifecyclePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLifecyclePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteLifecyclePolicyOutput>
 end
 
-function C:deletePullThroughCacheRule(input: types.DeletePullThroughCacheRuleInput, options: any): async.Operation<types.DeletePullThroughCacheRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePullThroughCacheRule, input, options) as async.Operation<types.DeletePullThroughCacheRuleOutput>
+function C:deletePullThroughCacheRule(input: types.DeletePullThroughCacheRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePullThroughCacheRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePullThroughCacheRule as schema.OperationSchema, input, options) as async.Operation<types.DeletePullThroughCacheRuleOutput>
 end
 
-function C:deleteRegistryPolicy(input: types.DeleteRegistryPolicyInput, options: any): async.Operation<types.DeleteRegistryPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRegistryPolicy, input, options) as async.Operation<types.DeleteRegistryPolicyOutput>
+function C:deleteRegistryPolicy(input: types.DeleteRegistryPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRegistryPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRegistryPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteRegistryPolicyOutput>
 end
 
-function C:deleteRepository(input: types.DeleteRepositoryInput, options: any): async.Operation<types.DeleteRepositoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRepository, input, options) as async.Operation<types.DeleteRepositoryOutput>
+function C:deleteRepository(input: types.DeleteRepositoryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRepositoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRepository as schema.OperationSchema, input, options) as async.Operation<types.DeleteRepositoryOutput>
 end
 
-function C:deleteRepositoryCreationTemplate(input: types.DeleteRepositoryCreationTemplateInput, options: any): async.Operation<types.DeleteRepositoryCreationTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRepositoryCreationTemplate, input, options) as async.Operation<types.DeleteRepositoryCreationTemplateOutput>
+function C:deleteRepositoryCreationTemplate(input: types.DeleteRepositoryCreationTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRepositoryCreationTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRepositoryCreationTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteRepositoryCreationTemplateOutput>
 end
 
-function C:deleteRepositoryPolicy(input: types.DeleteRepositoryPolicyInput, options: any): async.Operation<types.DeleteRepositoryPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRepositoryPolicy, input, options) as async.Operation<types.DeleteRepositoryPolicyOutput>
+function C:deleteRepositoryPolicy(input: types.DeleteRepositoryPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRepositoryPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRepositoryPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteRepositoryPolicyOutput>
 end
 
-function C:deleteSigningConfiguration(input: types.DeleteSigningConfigurationInput, options: any): async.Operation<types.DeleteSigningConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSigningConfiguration, input, options) as async.Operation<types.DeleteSigningConfigurationOutput>
+function C:deleteSigningConfiguration(input: types.DeleteSigningConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSigningConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSigningConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteSigningConfigurationOutput>
 end
 
-function C:deregisterPullTimeUpdateExclusion(input: types.DeregisterPullTimeUpdateExclusionInput, options: any): async.Operation<types.DeregisterPullTimeUpdateExclusionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterPullTimeUpdateExclusion, input, options) as async.Operation<types.DeregisterPullTimeUpdateExclusionOutput>
+function C:deregisterPullTimeUpdateExclusion(input: types.DeregisterPullTimeUpdateExclusionInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterPullTimeUpdateExclusionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterPullTimeUpdateExclusion as schema.OperationSchema, input, options) as async.Operation<types.DeregisterPullTimeUpdateExclusionOutput>
 end
 
-function C:describeImageReplicationStatus(input: types.DescribeImageReplicationStatusInput, options: any): async.Operation<types.DescribeImageReplicationStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeImageReplicationStatus, input, options) as async.Operation<types.DescribeImageReplicationStatusOutput>
+function C:describeImageReplicationStatus(input: types.DescribeImageReplicationStatusInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeImageReplicationStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeImageReplicationStatus as schema.OperationSchema, input, options) as async.Operation<types.DescribeImageReplicationStatusOutput>
 end
 
-function C:describeImages(input: types.DescribeImagesInput, options: any): async.Operation<types.DescribeImagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeImages, input, options) as async.Operation<types.DescribeImagesOutput>
+function C:describeImages(input: types.DescribeImagesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeImagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeImages as schema.OperationSchema, input, options) as async.Operation<types.DescribeImagesOutput>
 end
 
-function C:describeImageScanFindings(input: types.DescribeImageScanFindingsInput, options: any): async.Operation<types.DescribeImageScanFindingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeImageScanFindings, input, options) as async.Operation<types.DescribeImageScanFindingsOutput>
+function C:describeImageScanFindings(input: types.DescribeImageScanFindingsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeImageScanFindingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeImageScanFindings as schema.OperationSchema, input, options) as async.Operation<types.DescribeImageScanFindingsOutput>
 end
 
-function C:describeImageSigningStatus(input: types.DescribeImageSigningStatusInput, options: any): async.Operation<types.DescribeImageSigningStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeImageSigningStatus, input, options) as async.Operation<types.DescribeImageSigningStatusOutput>
+function C:describeImageSigningStatus(input: types.DescribeImageSigningStatusInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeImageSigningStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeImageSigningStatus as schema.OperationSchema, input, options) as async.Operation<types.DescribeImageSigningStatusOutput>
 end
 
-function C:describePullThroughCacheRules(input: types.DescribePullThroughCacheRulesInput, options: any): async.Operation<types.DescribePullThroughCacheRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePullThroughCacheRules, input, options) as async.Operation<types.DescribePullThroughCacheRulesOutput>
+function C:describePullThroughCacheRules(input: types.DescribePullThroughCacheRulesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePullThroughCacheRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePullThroughCacheRules as schema.OperationSchema, input, options) as async.Operation<types.DescribePullThroughCacheRulesOutput>
 end
 
-function C:describeRegistry(input: types.DescribeRegistryInput, options: any): async.Operation<types.DescribeRegistryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRegistry, input, options) as async.Operation<types.DescribeRegistryOutput>
+function C:describeRegistry(input: types.DescribeRegistryInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRegistryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRegistry as schema.OperationSchema, input, options) as async.Operation<types.DescribeRegistryOutput>
 end
 
-function C:describeRepositories(input: types.DescribeRepositoriesInput, options: any): async.Operation<types.DescribeRepositoriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRepositories, input, options) as async.Operation<types.DescribeRepositoriesOutput>
+function C:describeRepositories(input: types.DescribeRepositoriesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRepositoriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRepositories as schema.OperationSchema, input, options) as async.Operation<types.DescribeRepositoriesOutput>
 end
 
-function C:describeRepositoryCreationTemplates(input: types.DescribeRepositoryCreationTemplatesInput, options: any): async.Operation<types.DescribeRepositoryCreationTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRepositoryCreationTemplates, input, options) as async.Operation<types.DescribeRepositoryCreationTemplatesOutput>
+function C:describeRepositoryCreationTemplates(input: types.DescribeRepositoryCreationTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRepositoryCreationTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRepositoryCreationTemplates as schema.OperationSchema, input, options) as async.Operation<types.DescribeRepositoryCreationTemplatesOutput>
 end
 
-function C:getAccountSetting(input: types.GetAccountSettingInput, options: any): async.Operation<types.GetAccountSettingOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccountSetting, input, options) as async.Operation<types.GetAccountSettingOutput>
+function C:getAccountSetting(input: types.GetAccountSettingInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccountSettingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccountSetting as schema.OperationSchema, input, options) as async.Operation<types.GetAccountSettingOutput>
 end
 
-function C:getAuthorizationToken(input: types.GetAuthorizationTokenInput, options: any): async.Operation<types.GetAuthorizationTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAuthorizationToken, input, options) as async.Operation<types.GetAuthorizationTokenOutput>
+function C:getAuthorizationToken(input: types.GetAuthorizationTokenInput, options?: base_client.InvokeOptions): async.Operation<types.GetAuthorizationTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAuthorizationToken as schema.OperationSchema, input, options) as async.Operation<types.GetAuthorizationTokenOutput>
 end
 
-function C:getDownloadUrlForLayer(input: types.GetDownloadUrlForLayerInput, options: any): async.Operation<types.GetDownloadUrlForLayerOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDownloadUrlForLayer, input, options) as async.Operation<types.GetDownloadUrlForLayerOutput>
+function C:getDownloadUrlForLayer(input: types.GetDownloadUrlForLayerInput, options?: base_client.InvokeOptions): async.Operation<types.GetDownloadUrlForLayerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDownloadUrlForLayer as schema.OperationSchema, input, options) as async.Operation<types.GetDownloadUrlForLayerOutput>
 end
 
-function C:getLifecyclePolicy(input: types.GetLifecyclePolicyInput, options: any): async.Operation<types.GetLifecyclePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLifecyclePolicy, input, options) as async.Operation<types.GetLifecyclePolicyOutput>
+function C:getLifecyclePolicy(input: types.GetLifecyclePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetLifecyclePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLifecyclePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetLifecyclePolicyOutput>
 end
 
-function C:getLifecyclePolicyPreview(input: types.GetLifecyclePolicyPreviewInput, options: any): async.Operation<types.GetLifecyclePolicyPreviewOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLifecyclePolicyPreview, input, options) as async.Operation<types.GetLifecyclePolicyPreviewOutput>
+function C:getLifecyclePolicyPreview(input: types.GetLifecyclePolicyPreviewInput, options?: base_client.InvokeOptions): async.Operation<types.GetLifecyclePolicyPreviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLifecyclePolicyPreview as schema.OperationSchema, input, options) as async.Operation<types.GetLifecyclePolicyPreviewOutput>
 end
 
-function C:getRegistryPolicy(input: types.GetRegistryPolicyInput, options: any): async.Operation<types.GetRegistryPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRegistryPolicy, input, options) as async.Operation<types.GetRegistryPolicyOutput>
+function C:getRegistryPolicy(input: types.GetRegistryPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetRegistryPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRegistryPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetRegistryPolicyOutput>
 end
 
-function C:getRegistryScanningConfiguration(input: types.GetRegistryScanningConfigurationInput, options: any): async.Operation<types.GetRegistryScanningConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRegistryScanningConfiguration, input, options) as async.Operation<types.GetRegistryScanningConfigurationOutput>
+function C:getRegistryScanningConfiguration(input: types.GetRegistryScanningConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetRegistryScanningConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRegistryScanningConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetRegistryScanningConfigurationOutput>
 end
 
-function C:getRepositoryPolicy(input: types.GetRepositoryPolicyInput, options: any): async.Operation<types.GetRepositoryPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRepositoryPolicy, input, options) as async.Operation<types.GetRepositoryPolicyOutput>
+function C:getRepositoryPolicy(input: types.GetRepositoryPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetRepositoryPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRepositoryPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetRepositoryPolicyOutput>
 end
 
-function C:getSigningConfiguration(input: types.GetSigningConfigurationInput, options: any): async.Operation<types.GetSigningConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSigningConfiguration, input, options) as async.Operation<types.GetSigningConfigurationOutput>
+function C:getSigningConfiguration(input: types.GetSigningConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetSigningConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSigningConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetSigningConfigurationOutput>
 end
 
-function C:initiateLayerUpload(input: types.InitiateLayerUploadInput, options: any): async.Operation<types.InitiateLayerUploadOutput>
-    return self:invokeOperation(schemas.Service, schemas.InitiateLayerUpload, input, options) as async.Operation<types.InitiateLayerUploadOutput>
+function C:initiateLayerUpload(input: types.InitiateLayerUploadInput, options?: base_client.InvokeOptions): async.Operation<types.InitiateLayerUploadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InitiateLayerUpload as schema.OperationSchema, input, options) as async.Operation<types.InitiateLayerUploadOutput>
 end
 
-function C:listImageReferrers(input: types.ListImageReferrersInput, options: any): async.Operation<types.ListImageReferrersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListImageReferrers, input, options) as async.Operation<types.ListImageReferrersOutput>
+function C:listImageReferrers(input: types.ListImageReferrersInput, options?: base_client.InvokeOptions): async.Operation<types.ListImageReferrersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListImageReferrers as schema.OperationSchema, input, options) as async.Operation<types.ListImageReferrersOutput>
 end
 
-function C:listImages(input: types.ListImagesInput, options: any): async.Operation<types.ListImagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListImages, input, options) as async.Operation<types.ListImagesOutput>
+function C:listImages(input: types.ListImagesInput, options?: base_client.InvokeOptions): async.Operation<types.ListImagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListImages as schema.OperationSchema, input, options) as async.Operation<types.ListImagesOutput>
 end
 
-function C:listPullTimeUpdateExclusions(input: types.ListPullTimeUpdateExclusionsInput, options: any): async.Operation<types.ListPullTimeUpdateExclusionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPullTimeUpdateExclusions, input, options) as async.Operation<types.ListPullTimeUpdateExclusionsOutput>
+function C:listPullTimeUpdateExclusions(input: types.ListPullTimeUpdateExclusionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPullTimeUpdateExclusionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPullTimeUpdateExclusions as schema.OperationSchema, input, options) as async.Operation<types.ListPullTimeUpdateExclusionsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putAccountSetting(input: types.PutAccountSettingInput, options: any): async.Operation<types.PutAccountSettingOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAccountSetting, input, options) as async.Operation<types.PutAccountSettingOutput>
+function C:putAccountSetting(input: types.PutAccountSettingInput, options?: base_client.InvokeOptions): async.Operation<types.PutAccountSettingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAccountSetting as schema.OperationSchema, input, options) as async.Operation<types.PutAccountSettingOutput>
 end
 
-function C:putImage(input: types.PutImageInput, options: any): async.Operation<types.PutImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutImage, input, options) as async.Operation<types.PutImageOutput>
+function C:putImage(input: types.PutImageInput, options?: base_client.InvokeOptions): async.Operation<types.PutImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutImage as schema.OperationSchema, input, options) as async.Operation<types.PutImageOutput>
 end
 
-function C:putImageScanningConfiguration(input: types.PutImageScanningConfigurationInput, options: any): async.Operation<types.PutImageScanningConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutImageScanningConfiguration, input, options) as async.Operation<types.PutImageScanningConfigurationOutput>
+function C:putImageScanningConfiguration(input: types.PutImageScanningConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutImageScanningConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutImageScanningConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutImageScanningConfigurationOutput>
 end
 
-function C:putImageTagMutability(input: types.PutImageTagMutabilityInput, options: any): async.Operation<types.PutImageTagMutabilityOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutImageTagMutability, input, options) as async.Operation<types.PutImageTagMutabilityOutput>
+function C:putImageTagMutability(input: types.PutImageTagMutabilityInput, options?: base_client.InvokeOptions): async.Operation<types.PutImageTagMutabilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutImageTagMutability as schema.OperationSchema, input, options) as async.Operation<types.PutImageTagMutabilityOutput>
 end
 
-function C:putLifecyclePolicy(input: types.PutLifecyclePolicyInput, options: any): async.Operation<types.PutLifecyclePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutLifecyclePolicy, input, options) as async.Operation<types.PutLifecyclePolicyOutput>
+function C:putLifecyclePolicy(input: types.PutLifecyclePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutLifecyclePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutLifecyclePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutLifecyclePolicyOutput>
 end
 
-function C:putRegistryPolicy(input: types.PutRegistryPolicyInput, options: any): async.Operation<types.PutRegistryPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutRegistryPolicy, input, options) as async.Operation<types.PutRegistryPolicyOutput>
+function C:putRegistryPolicy(input: types.PutRegistryPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutRegistryPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutRegistryPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutRegistryPolicyOutput>
 end
 
-function C:putRegistryScanningConfiguration(input: types.PutRegistryScanningConfigurationInput, options: any): async.Operation<types.PutRegistryScanningConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutRegistryScanningConfiguration, input, options) as async.Operation<types.PutRegistryScanningConfigurationOutput>
+function C:putRegistryScanningConfiguration(input: types.PutRegistryScanningConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutRegistryScanningConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutRegistryScanningConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutRegistryScanningConfigurationOutput>
 end
 
-function C:putReplicationConfiguration(input: types.PutReplicationConfigurationInput, options: any): async.Operation<types.PutReplicationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutReplicationConfiguration, input, options) as async.Operation<types.PutReplicationConfigurationOutput>
+function C:putReplicationConfiguration(input: types.PutReplicationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutReplicationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutReplicationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutReplicationConfigurationOutput>
 end
 
-function C:putSigningConfiguration(input: types.PutSigningConfigurationInput, options: any): async.Operation<types.PutSigningConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutSigningConfiguration, input, options) as async.Operation<types.PutSigningConfigurationOutput>
+function C:putSigningConfiguration(input: types.PutSigningConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutSigningConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutSigningConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutSigningConfigurationOutput>
 end
 
-function C:registerPullTimeUpdateExclusion(input: types.RegisterPullTimeUpdateExclusionInput, options: any): async.Operation<types.RegisterPullTimeUpdateExclusionOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterPullTimeUpdateExclusion, input, options) as async.Operation<types.RegisterPullTimeUpdateExclusionOutput>
+function C:registerPullTimeUpdateExclusion(input: types.RegisterPullTimeUpdateExclusionInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterPullTimeUpdateExclusionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterPullTimeUpdateExclusion as schema.OperationSchema, input, options) as async.Operation<types.RegisterPullTimeUpdateExclusionOutput>
 end
 
-function C:setRepositoryPolicy(input: types.SetRepositoryPolicyInput, options: any): async.Operation<types.SetRepositoryPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetRepositoryPolicy, input, options) as async.Operation<types.SetRepositoryPolicyOutput>
+function C:setRepositoryPolicy(input: types.SetRepositoryPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.SetRepositoryPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetRepositoryPolicy as schema.OperationSchema, input, options) as async.Operation<types.SetRepositoryPolicyOutput>
 end
 
-function C:startImageScan(input: types.StartImageScanInput, options: any): async.Operation<types.StartImageScanOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartImageScan, input, options) as async.Operation<types.StartImageScanOutput>
+function C:startImageScan(input: types.StartImageScanInput, options?: base_client.InvokeOptions): async.Operation<types.StartImageScanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartImageScan as schema.OperationSchema, input, options) as async.Operation<types.StartImageScanOutput>
 end
 
-function C:startLifecyclePolicyPreview(input: types.StartLifecyclePolicyPreviewInput, options: any): async.Operation<types.StartLifecyclePolicyPreviewOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartLifecyclePolicyPreview, input, options) as async.Operation<types.StartLifecyclePolicyPreviewOutput>
+function C:startLifecyclePolicyPreview(input: types.StartLifecyclePolicyPreviewInput, options?: base_client.InvokeOptions): async.Operation<types.StartLifecyclePolicyPreviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartLifecyclePolicyPreview as schema.OperationSchema, input, options) as async.Operation<types.StartLifecyclePolicyPreviewOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateImageStorageClass(input: types.UpdateImageStorageClassInput, options: any): async.Operation<types.UpdateImageStorageClassOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateImageStorageClass, input, options) as async.Operation<types.UpdateImageStorageClassOutput>
+function C:updateImageStorageClass(input: types.UpdateImageStorageClassInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateImageStorageClassOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateImageStorageClass as schema.OperationSchema, input, options) as async.Operation<types.UpdateImageStorageClassOutput>
 end
 
-function C:updatePullThroughCacheRule(input: types.UpdatePullThroughCacheRuleInput, options: any): async.Operation<types.UpdatePullThroughCacheRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePullThroughCacheRule, input, options) as async.Operation<types.UpdatePullThroughCacheRuleOutput>
+function C:updatePullThroughCacheRule(input: types.UpdatePullThroughCacheRuleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePullThroughCacheRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePullThroughCacheRule as schema.OperationSchema, input, options) as async.Operation<types.UpdatePullThroughCacheRuleOutput>
 end
 
-function C:updateRepositoryCreationTemplate(input: types.UpdateRepositoryCreationTemplateInput, options: any): async.Operation<types.UpdateRepositoryCreationTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRepositoryCreationTemplate, input, options) as async.Operation<types.UpdateRepositoryCreationTemplateOutput>
+function C:updateRepositoryCreationTemplate(input: types.UpdateRepositoryCreationTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRepositoryCreationTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRepositoryCreationTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateRepositoryCreationTemplateOutput>
 end
 
-function C:uploadLayerPart(input: types.UploadLayerPartInput, options: any): async.Operation<types.UploadLayerPartOutput>
-    return self:invokeOperation(schemas.Service, schemas.UploadLayerPart, input, options) as async.Operation<types.UploadLayerPartOutput>
+function C:uploadLayerPart(input: types.UploadLayerPartInput, options?: base_client.InvokeOptions): async.Operation<types.UploadLayerPartOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UploadLayerPart as schema.OperationSchema, input, options) as async.Operation<types.UploadLayerPartOutput>
 end
 
-function C:validatePullThroughCacheRule(input: types.ValidatePullThroughCacheRuleInput, options: any): async.Operation<types.ValidatePullThroughCacheRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.ValidatePullThroughCacheRule, input, options) as async.Operation<types.ValidatePullThroughCacheRuleOutput>
+function C:validatePullThroughCacheRule(input: types.ValidatePullThroughCacheRuleInput, options?: base_client.InvokeOptions): async.Operation<types.ValidatePullThroughCacheRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ValidatePullThroughCacheRule as schema.OperationSchema, input, options) as async.Operation<types.ValidatePullThroughCacheRuleOutput>
 end
 
 return M

@@ -8,64 +8,67 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("marketplaceagreement.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("marketplaceagreement.schemas")
 local traits = require("smithy.traits")
 local types = require("marketplaceagreement.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    acceptAgreementCancellationRequest: function(Client, types.AcceptAgreementCancellationRequestInput, any): async.Operation<types.AcceptAgreementCancellationRequestOutput>
-    acceptAgreementPaymentRequest: function(Client, types.AcceptAgreementPaymentRequestInput, any): async.Operation<types.AcceptAgreementPaymentRequestOutput>
-    acceptAgreementRequest: function(Client, types.AcceptAgreementRequestInput, any): async.Operation<types.AcceptAgreementRequestOutput>
-    batchCreateBillingAdjustmentRequest: function(Client, types.BatchCreateBillingAdjustmentRequestInput, any): async.Operation<types.BatchCreateBillingAdjustmentRequestOutput>
-    cancelAgreement: function(Client, types.CancelAgreementInput, any): async.Operation<types.CancelAgreementOutput>
-    cancelAgreementCancellationRequest: function(Client, types.CancelAgreementCancellationRequestInput, any): async.Operation<types.CancelAgreementCancellationRequestOutput>
-    cancelAgreementPaymentRequest: function(Client, types.CancelAgreementPaymentRequestInput, any): async.Operation<types.CancelAgreementPaymentRequestOutput>
-    createAgreementRequest: function(Client, types.CreateAgreementRequestInput, any): async.Operation<types.CreateAgreementRequestOutput>
-    describeAgreement: function(Client, types.DescribeAgreementInput, any): async.Operation<types.DescribeAgreementOutput>
-    getAgreementCancellationRequest: function(Client, types.GetAgreementCancellationRequestInput, any): async.Operation<types.GetAgreementCancellationRequestOutput>
-    getAgreementEntitlements: function(Client, types.GetAgreementEntitlementsInput, any): async.Operation<types.GetAgreementEntitlementsOutput>
-    getAgreementPaymentRequest: function(Client, types.GetAgreementPaymentRequestInput, any): async.Operation<types.GetAgreementPaymentRequestOutput>
-    getAgreementTerms: function(Client, types.GetAgreementTermsInput, any): async.Operation<types.GetAgreementTermsOutput>
-    getBillingAdjustmentRequest: function(Client, types.GetBillingAdjustmentRequestInput, any): async.Operation<types.GetBillingAdjustmentRequestOutput>
-    listAgreementCancellationRequests: function(Client, types.ListAgreementCancellationRequestsInput, any): async.Operation<types.ListAgreementCancellationRequestsOutput>
-    listAgreementCharges: function(Client, types.ListAgreementChargesInput, any): async.Operation<types.ListAgreementChargesOutput>
-    listAgreementInvoiceLineItems: function(Client, types.ListAgreementInvoiceLineItemsInput, any): async.Operation<types.ListAgreementInvoiceLineItemsOutput>
-    listAgreementPaymentRequests: function(Client, types.ListAgreementPaymentRequestsInput, any): async.Operation<types.ListAgreementPaymentRequestsOutput>
-    listBillingAdjustmentRequests: function(Client, types.ListBillingAdjustmentRequestsInput, any): async.Operation<types.ListBillingAdjustmentRequestsOutput>
-    rejectAgreementCancellationRequest: function(Client, types.RejectAgreementCancellationRequestInput, any): async.Operation<types.RejectAgreementCancellationRequestOutput>
-    rejectAgreementPaymentRequest: function(Client, types.RejectAgreementPaymentRequestInput, any): async.Operation<types.RejectAgreementPaymentRequestOutput>
-    searchAgreements: function(Client, types.SearchAgreementsInput, any): async.Operation<types.SearchAgreementsOutput>
-    sendAgreementCancellationRequest: function(Client, types.SendAgreementCancellationRequestInput, any): async.Operation<types.SendAgreementCancellationRequestOutput>
-    sendAgreementPaymentRequest: function(Client, types.SendAgreementPaymentRequestInput, any): async.Operation<types.SendAgreementPaymentRequestOutput>
-    updatePurchaseOrders: function(Client, types.UpdatePurchaseOrdersInput, any): async.Operation<types.UpdatePurchaseOrdersOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    acceptAgreementCancellationRequest: function(Client, types.AcceptAgreementCancellationRequestInput, ? base_client.InvokeOptions): async.Operation<types.AcceptAgreementCancellationRequestOutput>
+    acceptAgreementPaymentRequest: function(Client, types.AcceptAgreementPaymentRequestInput, ? base_client.InvokeOptions): async.Operation<types.AcceptAgreementPaymentRequestOutput>
+    acceptAgreementRequest: function(Client, types.AcceptAgreementRequestInput, ? base_client.InvokeOptions): async.Operation<types.AcceptAgreementRequestOutput>
+    batchCreateBillingAdjustmentRequest: function(Client, types.BatchCreateBillingAdjustmentRequestInput, ? base_client.InvokeOptions): async.Operation<types.BatchCreateBillingAdjustmentRequestOutput>
+    cancelAgreement: function(Client, types.CancelAgreementInput, ? base_client.InvokeOptions): async.Operation<types.CancelAgreementOutput>
+    cancelAgreementCancellationRequest: function(Client, types.CancelAgreementCancellationRequestInput, ? base_client.InvokeOptions): async.Operation<types.CancelAgreementCancellationRequestOutput>
+    cancelAgreementPaymentRequest: function(Client, types.CancelAgreementPaymentRequestInput, ? base_client.InvokeOptions): async.Operation<types.CancelAgreementPaymentRequestOutput>
+    createAgreementRequest: function(Client, types.CreateAgreementRequestInput, ? base_client.InvokeOptions): async.Operation<types.CreateAgreementRequestOutput>
+    describeAgreement: function(Client, types.DescribeAgreementInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAgreementOutput>
+    getAgreementCancellationRequest: function(Client, types.GetAgreementCancellationRequestInput, ? base_client.InvokeOptions): async.Operation<types.GetAgreementCancellationRequestOutput>
+    getAgreementEntitlements: function(Client, types.GetAgreementEntitlementsInput, ? base_client.InvokeOptions): async.Operation<types.GetAgreementEntitlementsOutput>
+    getAgreementPaymentRequest: function(Client, types.GetAgreementPaymentRequestInput, ? base_client.InvokeOptions): async.Operation<types.GetAgreementPaymentRequestOutput>
+    getAgreementTerms: function(Client, types.GetAgreementTermsInput, ? base_client.InvokeOptions): async.Operation<types.GetAgreementTermsOutput>
+    getBillingAdjustmentRequest: function(Client, types.GetBillingAdjustmentRequestInput, ? base_client.InvokeOptions): async.Operation<types.GetBillingAdjustmentRequestOutput>
+    listAgreementCancellationRequests: function(Client, types.ListAgreementCancellationRequestsInput, ? base_client.InvokeOptions): async.Operation<types.ListAgreementCancellationRequestsOutput>
+    listAgreementCharges: function(Client, types.ListAgreementChargesInput, ? base_client.InvokeOptions): async.Operation<types.ListAgreementChargesOutput>
+    listAgreementInvoiceLineItems: function(Client, types.ListAgreementInvoiceLineItemsInput, ? base_client.InvokeOptions): async.Operation<types.ListAgreementInvoiceLineItemsOutput>
+    listAgreementPaymentRequests: function(Client, types.ListAgreementPaymentRequestsInput, ? base_client.InvokeOptions): async.Operation<types.ListAgreementPaymentRequestsOutput>
+    listBillingAdjustmentRequests: function(Client, types.ListBillingAdjustmentRequestsInput, ? base_client.InvokeOptions): async.Operation<types.ListBillingAdjustmentRequestsOutput>
+    rejectAgreementCancellationRequest: function(Client, types.RejectAgreementCancellationRequestInput, ? base_client.InvokeOptions): async.Operation<types.RejectAgreementCancellationRequestOutput>
+    rejectAgreementPaymentRequest: function(Client, types.RejectAgreementPaymentRequestInput, ? base_client.InvokeOptions): async.Operation<types.RejectAgreementPaymentRequestOutput>
+    searchAgreements: function(Client, types.SearchAgreementsInput, ? base_client.InvokeOptions): async.Operation<types.SearchAgreementsOutput>
+    sendAgreementCancellationRequest: function(Client, types.SendAgreementCancellationRequestInput, ? base_client.InvokeOptions): async.Operation<types.SendAgreementCancellationRequestOutput>
+    sendAgreementPaymentRequest: function(Client, types.SendAgreementPaymentRequestInput, ? base_client.InvokeOptions): async.Operation<types.SendAgreementPaymentRequestOutput>
+    updatePurchaseOrders: function(Client, types.UpdatePurchaseOrdersInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePurchaseOrdersOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSMPCommerceService_v20200301"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "aws-marketplace", signing_region = c.region } }
                 else
@@ -84,104 +87,104 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:acceptAgreementCancellationRequest(input: types.AcceptAgreementCancellationRequestInput, options: any): async.Operation<types.AcceptAgreementCancellationRequestOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptAgreementCancellationRequest, input, options) as async.Operation<types.AcceptAgreementCancellationRequestOutput>
+function C:acceptAgreementCancellationRequest(input: types.AcceptAgreementCancellationRequestInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptAgreementCancellationRequestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptAgreementCancellationRequest as schema.OperationSchema, input, options) as async.Operation<types.AcceptAgreementCancellationRequestOutput>
 end
 
-function C:acceptAgreementPaymentRequest(input: types.AcceptAgreementPaymentRequestInput, options: any): async.Operation<types.AcceptAgreementPaymentRequestOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptAgreementPaymentRequest, input, options) as async.Operation<types.AcceptAgreementPaymentRequestOutput>
+function C:acceptAgreementPaymentRequest(input: types.AcceptAgreementPaymentRequestInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptAgreementPaymentRequestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptAgreementPaymentRequest as schema.OperationSchema, input, options) as async.Operation<types.AcceptAgreementPaymentRequestOutput>
 end
 
-function C:acceptAgreementRequest(input: types.AcceptAgreementRequestInput, options: any): async.Operation<types.AcceptAgreementRequestOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptAgreementRequest, input, options) as async.Operation<types.AcceptAgreementRequestOutput>
+function C:acceptAgreementRequest(input: types.AcceptAgreementRequestInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptAgreementRequestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptAgreementRequest as schema.OperationSchema, input, options) as async.Operation<types.AcceptAgreementRequestOutput>
 end
 
-function C:batchCreateBillingAdjustmentRequest(input: types.BatchCreateBillingAdjustmentRequestInput, options: any): async.Operation<types.BatchCreateBillingAdjustmentRequestOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchCreateBillingAdjustmentRequest, input, options) as async.Operation<types.BatchCreateBillingAdjustmentRequestOutput>
+function C:batchCreateBillingAdjustmentRequest(input: types.BatchCreateBillingAdjustmentRequestInput, options?: base_client.InvokeOptions): async.Operation<types.BatchCreateBillingAdjustmentRequestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchCreateBillingAdjustmentRequest as schema.OperationSchema, input, options) as async.Operation<types.BatchCreateBillingAdjustmentRequestOutput>
 end
 
-function C:cancelAgreement(input: types.CancelAgreementInput, options: any): async.Operation<types.CancelAgreementOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelAgreement, input, options) as async.Operation<types.CancelAgreementOutput>
+function C:cancelAgreement(input: types.CancelAgreementInput, options?: base_client.InvokeOptions): async.Operation<types.CancelAgreementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelAgreement as schema.OperationSchema, input, options) as async.Operation<types.CancelAgreementOutput>
 end
 
-function C:cancelAgreementCancellationRequest(input: types.CancelAgreementCancellationRequestInput, options: any): async.Operation<types.CancelAgreementCancellationRequestOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelAgreementCancellationRequest, input, options) as async.Operation<types.CancelAgreementCancellationRequestOutput>
+function C:cancelAgreementCancellationRequest(input: types.CancelAgreementCancellationRequestInput, options?: base_client.InvokeOptions): async.Operation<types.CancelAgreementCancellationRequestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelAgreementCancellationRequest as schema.OperationSchema, input, options) as async.Operation<types.CancelAgreementCancellationRequestOutput>
 end
 
-function C:cancelAgreementPaymentRequest(input: types.CancelAgreementPaymentRequestInput, options: any): async.Operation<types.CancelAgreementPaymentRequestOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelAgreementPaymentRequest, input, options) as async.Operation<types.CancelAgreementPaymentRequestOutput>
+function C:cancelAgreementPaymentRequest(input: types.CancelAgreementPaymentRequestInput, options?: base_client.InvokeOptions): async.Operation<types.CancelAgreementPaymentRequestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelAgreementPaymentRequest as schema.OperationSchema, input, options) as async.Operation<types.CancelAgreementPaymentRequestOutput>
 end
 
-function C:createAgreementRequest(input: types.CreateAgreementRequestInput, options: any): async.Operation<types.CreateAgreementRequestOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAgreementRequest, input, options) as async.Operation<types.CreateAgreementRequestOutput>
+function C:createAgreementRequest(input: types.CreateAgreementRequestInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAgreementRequestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAgreementRequest as schema.OperationSchema, input, options) as async.Operation<types.CreateAgreementRequestOutput>
 end
 
-function C:describeAgreement(input: types.DescribeAgreementInput, options: any): async.Operation<types.DescribeAgreementOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAgreement, input, options) as async.Operation<types.DescribeAgreementOutput>
+function C:describeAgreement(input: types.DescribeAgreementInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAgreementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAgreement as schema.OperationSchema, input, options) as async.Operation<types.DescribeAgreementOutput>
 end
 
-function C:getAgreementCancellationRequest(input: types.GetAgreementCancellationRequestInput, options: any): async.Operation<types.GetAgreementCancellationRequestOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAgreementCancellationRequest, input, options) as async.Operation<types.GetAgreementCancellationRequestOutput>
+function C:getAgreementCancellationRequest(input: types.GetAgreementCancellationRequestInput, options?: base_client.InvokeOptions): async.Operation<types.GetAgreementCancellationRequestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAgreementCancellationRequest as schema.OperationSchema, input, options) as async.Operation<types.GetAgreementCancellationRequestOutput>
 end
 
-function C:getAgreementEntitlements(input: types.GetAgreementEntitlementsInput, options: any): async.Operation<types.GetAgreementEntitlementsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAgreementEntitlements, input, options) as async.Operation<types.GetAgreementEntitlementsOutput>
+function C:getAgreementEntitlements(input: types.GetAgreementEntitlementsInput, options?: base_client.InvokeOptions): async.Operation<types.GetAgreementEntitlementsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAgreementEntitlements as schema.OperationSchema, input, options) as async.Operation<types.GetAgreementEntitlementsOutput>
 end
 
-function C:getAgreementPaymentRequest(input: types.GetAgreementPaymentRequestInput, options: any): async.Operation<types.GetAgreementPaymentRequestOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAgreementPaymentRequest, input, options) as async.Operation<types.GetAgreementPaymentRequestOutput>
+function C:getAgreementPaymentRequest(input: types.GetAgreementPaymentRequestInput, options?: base_client.InvokeOptions): async.Operation<types.GetAgreementPaymentRequestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAgreementPaymentRequest as schema.OperationSchema, input, options) as async.Operation<types.GetAgreementPaymentRequestOutput>
 end
 
-function C:getAgreementTerms(input: types.GetAgreementTermsInput, options: any): async.Operation<types.GetAgreementTermsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAgreementTerms, input, options) as async.Operation<types.GetAgreementTermsOutput>
+function C:getAgreementTerms(input: types.GetAgreementTermsInput, options?: base_client.InvokeOptions): async.Operation<types.GetAgreementTermsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAgreementTerms as schema.OperationSchema, input, options) as async.Operation<types.GetAgreementTermsOutput>
 end
 
-function C:getBillingAdjustmentRequest(input: types.GetBillingAdjustmentRequestInput, options: any): async.Operation<types.GetBillingAdjustmentRequestOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBillingAdjustmentRequest, input, options) as async.Operation<types.GetBillingAdjustmentRequestOutput>
+function C:getBillingAdjustmentRequest(input: types.GetBillingAdjustmentRequestInput, options?: base_client.InvokeOptions): async.Operation<types.GetBillingAdjustmentRequestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBillingAdjustmentRequest as schema.OperationSchema, input, options) as async.Operation<types.GetBillingAdjustmentRequestOutput>
 end
 
-function C:listAgreementCancellationRequests(input: types.ListAgreementCancellationRequestsInput, options: any): async.Operation<types.ListAgreementCancellationRequestsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAgreementCancellationRequests, input, options) as async.Operation<types.ListAgreementCancellationRequestsOutput>
+function C:listAgreementCancellationRequests(input: types.ListAgreementCancellationRequestsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAgreementCancellationRequestsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAgreementCancellationRequests as schema.OperationSchema, input, options) as async.Operation<types.ListAgreementCancellationRequestsOutput>
 end
 
-function C:listAgreementCharges(input: types.ListAgreementChargesInput, options: any): async.Operation<types.ListAgreementChargesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAgreementCharges, input, options) as async.Operation<types.ListAgreementChargesOutput>
+function C:listAgreementCharges(input: types.ListAgreementChargesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAgreementChargesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAgreementCharges as schema.OperationSchema, input, options) as async.Operation<types.ListAgreementChargesOutput>
 end
 
-function C:listAgreementInvoiceLineItems(input: types.ListAgreementInvoiceLineItemsInput, options: any): async.Operation<types.ListAgreementInvoiceLineItemsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAgreementInvoiceLineItems, input, options) as async.Operation<types.ListAgreementInvoiceLineItemsOutput>
+function C:listAgreementInvoiceLineItems(input: types.ListAgreementInvoiceLineItemsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAgreementInvoiceLineItemsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAgreementInvoiceLineItems as schema.OperationSchema, input, options) as async.Operation<types.ListAgreementInvoiceLineItemsOutput>
 end
 
-function C:listAgreementPaymentRequests(input: types.ListAgreementPaymentRequestsInput, options: any): async.Operation<types.ListAgreementPaymentRequestsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAgreementPaymentRequests, input, options) as async.Operation<types.ListAgreementPaymentRequestsOutput>
+function C:listAgreementPaymentRequests(input: types.ListAgreementPaymentRequestsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAgreementPaymentRequestsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAgreementPaymentRequests as schema.OperationSchema, input, options) as async.Operation<types.ListAgreementPaymentRequestsOutput>
 end
 
-function C:listBillingAdjustmentRequests(input: types.ListBillingAdjustmentRequestsInput, options: any): async.Operation<types.ListBillingAdjustmentRequestsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBillingAdjustmentRequests, input, options) as async.Operation<types.ListBillingAdjustmentRequestsOutput>
+function C:listBillingAdjustmentRequests(input: types.ListBillingAdjustmentRequestsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBillingAdjustmentRequestsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBillingAdjustmentRequests as schema.OperationSchema, input, options) as async.Operation<types.ListBillingAdjustmentRequestsOutput>
 end
 
-function C:rejectAgreementCancellationRequest(input: types.RejectAgreementCancellationRequestInput, options: any): async.Operation<types.RejectAgreementCancellationRequestOutput>
-    return self:invokeOperation(schemas.Service, schemas.RejectAgreementCancellationRequest, input, options) as async.Operation<types.RejectAgreementCancellationRequestOutput>
+function C:rejectAgreementCancellationRequest(input: types.RejectAgreementCancellationRequestInput, options?: base_client.InvokeOptions): async.Operation<types.RejectAgreementCancellationRequestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RejectAgreementCancellationRequest as schema.OperationSchema, input, options) as async.Operation<types.RejectAgreementCancellationRequestOutput>
 end
 
-function C:rejectAgreementPaymentRequest(input: types.RejectAgreementPaymentRequestInput, options: any): async.Operation<types.RejectAgreementPaymentRequestOutput>
-    return self:invokeOperation(schemas.Service, schemas.RejectAgreementPaymentRequest, input, options) as async.Operation<types.RejectAgreementPaymentRequestOutput>
+function C:rejectAgreementPaymentRequest(input: types.RejectAgreementPaymentRequestInput, options?: base_client.InvokeOptions): async.Operation<types.RejectAgreementPaymentRequestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RejectAgreementPaymentRequest as schema.OperationSchema, input, options) as async.Operation<types.RejectAgreementPaymentRequestOutput>
 end
 
-function C:searchAgreements(input: types.SearchAgreementsInput, options: any): async.Operation<types.SearchAgreementsOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchAgreements, input, options) as async.Operation<types.SearchAgreementsOutput>
+function C:searchAgreements(input: types.SearchAgreementsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchAgreementsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchAgreements as schema.OperationSchema, input, options) as async.Operation<types.SearchAgreementsOutput>
 end
 
-function C:sendAgreementCancellationRequest(input: types.SendAgreementCancellationRequestInput, options: any): async.Operation<types.SendAgreementCancellationRequestOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendAgreementCancellationRequest, input, options) as async.Operation<types.SendAgreementCancellationRequestOutput>
+function C:sendAgreementCancellationRequest(input: types.SendAgreementCancellationRequestInput, options?: base_client.InvokeOptions): async.Operation<types.SendAgreementCancellationRequestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendAgreementCancellationRequest as schema.OperationSchema, input, options) as async.Operation<types.SendAgreementCancellationRequestOutput>
 end
 
-function C:sendAgreementPaymentRequest(input: types.SendAgreementPaymentRequestInput, options: any): async.Operation<types.SendAgreementPaymentRequestOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendAgreementPaymentRequest, input, options) as async.Operation<types.SendAgreementPaymentRequestOutput>
+function C:sendAgreementPaymentRequest(input: types.SendAgreementPaymentRequestInput, options?: base_client.InvokeOptions): async.Operation<types.SendAgreementPaymentRequestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendAgreementPaymentRequest as schema.OperationSchema, input, options) as async.Operation<types.SendAgreementPaymentRequestOutput>
 end
 
-function C:updatePurchaseOrders(input: types.UpdatePurchaseOrdersInput, options: any): async.Operation<types.UpdatePurchaseOrdersOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePurchaseOrders, input, options) as async.Operation<types.UpdatePurchaseOrdersOutput>
+function C:updatePurchaseOrders(input: types.UpdatePurchaseOrdersInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePurchaseOrdersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePurchaseOrders as schema.OperationSchema, input, options) as async.Operation<types.UpdatePurchaseOrdersOutput>
 end
 
 return M

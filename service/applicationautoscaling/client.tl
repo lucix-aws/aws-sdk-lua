@@ -8,53 +8,56 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("applicationautoscaling.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("applicationautoscaling.schemas")
 local traits = require("smithy.traits")
 local types = require("applicationautoscaling.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    deleteScalingPolicy: function(Client, types.DeleteScalingPolicyInput, any): async.Operation<types.DeleteScalingPolicyOutput>
-    deleteScheduledAction: function(Client, types.DeleteScheduledActionInput, any): async.Operation<types.DeleteScheduledActionOutput>
-    deregisterScalableTarget: function(Client, types.DeregisterScalableTargetInput, any): async.Operation<types.DeregisterScalableTargetOutput>
-    describeScalableTargets: function(Client, types.DescribeScalableTargetsInput, any): async.Operation<types.DescribeScalableTargetsOutput>
-    describeScalingActivities: function(Client, types.DescribeScalingActivitiesInput, any): async.Operation<types.DescribeScalingActivitiesOutput>
-    describeScalingPolicies: function(Client, types.DescribeScalingPoliciesInput, any): async.Operation<types.DescribeScalingPoliciesOutput>
-    describeScheduledActions: function(Client, types.DescribeScheduledActionsInput, any): async.Operation<types.DescribeScheduledActionsOutput>
-    getPredictiveScalingForecast: function(Client, types.GetPredictiveScalingForecastInput, any): async.Operation<types.GetPredictiveScalingForecastOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putScalingPolicy: function(Client, types.PutScalingPolicyInput, any): async.Operation<types.PutScalingPolicyOutput>
-    putScheduledAction: function(Client, types.PutScheduledActionInput, any): async.Operation<types.PutScheduledActionOutput>
-    registerScalableTarget: function(Client, types.RegisterScalableTargetInput, any): async.Operation<types.RegisterScalableTargetOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    deleteScalingPolicy: function(Client, types.DeleteScalingPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteScalingPolicyOutput>
+    deleteScheduledAction: function(Client, types.DeleteScheduledActionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteScheduledActionOutput>
+    deregisterScalableTarget: function(Client, types.DeregisterScalableTargetInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterScalableTargetOutput>
+    describeScalableTargets: function(Client, types.DescribeScalableTargetsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeScalableTargetsOutput>
+    describeScalingActivities: function(Client, types.DescribeScalingActivitiesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeScalingActivitiesOutput>
+    describeScalingPolicies: function(Client, types.DescribeScalingPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeScalingPoliciesOutput>
+    describeScheduledActions: function(Client, types.DescribeScheduledActionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeScheduledActionsOutput>
+    getPredictiveScalingForecast: function(Client, types.GetPredictiveScalingForecastInput, ? base_client.InvokeOptions): async.Operation<types.GetPredictiveScalingForecastOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putScalingPolicy: function(Client, types.PutScalingPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutScalingPolicyOutput>
+    putScheduledAction: function(Client, types.PutScheduledActionInput, ? base_client.InvokeOptions): async.Operation<types.PutScheduledActionOutput>
+    registerScalableTarget: function(Client, types.RegisterScalableTargetInput, ? base_client.InvokeOptions): async.Operation<types.RegisterScalableTargetOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AnyScaleFrontendService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "application-autoscaling", signing_region = c.region } }
                 else
@@ -73,60 +76,60 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:deleteScalingPolicy(input: types.DeleteScalingPolicyInput, options: any): async.Operation<types.DeleteScalingPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteScalingPolicy, input, options) as async.Operation<types.DeleteScalingPolicyOutput>
+function C:deleteScalingPolicy(input: types.DeleteScalingPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteScalingPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteScalingPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteScalingPolicyOutput>
 end
 
-function C:deleteScheduledAction(input: types.DeleteScheduledActionInput, options: any): async.Operation<types.DeleteScheduledActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteScheduledAction, input, options) as async.Operation<types.DeleteScheduledActionOutput>
+function C:deleteScheduledAction(input: types.DeleteScheduledActionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteScheduledActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteScheduledAction as schema.OperationSchema, input, options) as async.Operation<types.DeleteScheduledActionOutput>
 end
 
-function C:deregisterScalableTarget(input: types.DeregisterScalableTargetInput, options: any): async.Operation<types.DeregisterScalableTargetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterScalableTarget, input, options) as async.Operation<types.DeregisterScalableTargetOutput>
+function C:deregisterScalableTarget(input: types.DeregisterScalableTargetInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterScalableTargetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterScalableTarget as schema.OperationSchema, input, options) as async.Operation<types.DeregisterScalableTargetOutput>
 end
 
-function C:describeScalableTargets(input: types.DescribeScalableTargetsInput, options: any): async.Operation<types.DescribeScalableTargetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeScalableTargets, input, options) as async.Operation<types.DescribeScalableTargetsOutput>
+function C:describeScalableTargets(input: types.DescribeScalableTargetsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeScalableTargetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeScalableTargets as schema.OperationSchema, input, options) as async.Operation<types.DescribeScalableTargetsOutput>
 end
 
-function C:describeScalingActivities(input: types.DescribeScalingActivitiesInput, options: any): async.Operation<types.DescribeScalingActivitiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeScalingActivities, input, options) as async.Operation<types.DescribeScalingActivitiesOutput>
+function C:describeScalingActivities(input: types.DescribeScalingActivitiesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeScalingActivitiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeScalingActivities as schema.OperationSchema, input, options) as async.Operation<types.DescribeScalingActivitiesOutput>
 end
 
-function C:describeScalingPolicies(input: types.DescribeScalingPoliciesInput, options: any): async.Operation<types.DescribeScalingPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeScalingPolicies, input, options) as async.Operation<types.DescribeScalingPoliciesOutput>
+function C:describeScalingPolicies(input: types.DescribeScalingPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeScalingPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeScalingPolicies as schema.OperationSchema, input, options) as async.Operation<types.DescribeScalingPoliciesOutput>
 end
 
-function C:describeScheduledActions(input: types.DescribeScheduledActionsInput, options: any): async.Operation<types.DescribeScheduledActionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeScheduledActions, input, options) as async.Operation<types.DescribeScheduledActionsOutput>
+function C:describeScheduledActions(input: types.DescribeScheduledActionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeScheduledActionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeScheduledActions as schema.OperationSchema, input, options) as async.Operation<types.DescribeScheduledActionsOutput>
 end
 
-function C:getPredictiveScalingForecast(input: types.GetPredictiveScalingForecastInput, options: any): async.Operation<types.GetPredictiveScalingForecastOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPredictiveScalingForecast, input, options) as async.Operation<types.GetPredictiveScalingForecastOutput>
+function C:getPredictiveScalingForecast(input: types.GetPredictiveScalingForecastInput, options?: base_client.InvokeOptions): async.Operation<types.GetPredictiveScalingForecastOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPredictiveScalingForecast as schema.OperationSchema, input, options) as async.Operation<types.GetPredictiveScalingForecastOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putScalingPolicy(input: types.PutScalingPolicyInput, options: any): async.Operation<types.PutScalingPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutScalingPolicy, input, options) as async.Operation<types.PutScalingPolicyOutput>
+function C:putScalingPolicy(input: types.PutScalingPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutScalingPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutScalingPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutScalingPolicyOutput>
 end
 
-function C:putScheduledAction(input: types.PutScheduledActionInput, options: any): async.Operation<types.PutScheduledActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutScheduledAction, input, options) as async.Operation<types.PutScheduledActionOutput>
+function C:putScheduledAction(input: types.PutScheduledActionInput, options?: base_client.InvokeOptions): async.Operation<types.PutScheduledActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutScheduledAction as schema.OperationSchema, input, options) as async.Operation<types.PutScheduledActionOutput>
 end
 
-function C:registerScalableTarget(input: types.RegisterScalableTargetInput, options: any): async.Operation<types.RegisterScalableTargetOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterScalableTarget, input, options) as async.Operation<types.RegisterScalableTargetOutput>
+function C:registerScalableTarget(input: types.RegisterScalableTargetInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterScalableTargetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterScalableTarget as schema.OperationSchema, input, options) as async.Operation<types.RegisterScalableTargetOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
 return M

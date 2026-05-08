@@ -8,78 +8,81 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("notifications.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("notifications.schemas")
 local traits = require("smithy.traits")
 local types = require("notifications.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateChannel: function(Client, types.AssociateChannelInput, any): async.Operation<types.AssociateChannelOutput>
-    associateManagedNotificationAccountContact: function(Client, types.AssociateManagedNotificationAccountContactInput, any): async.Operation<types.AssociateManagedNotificationAccountContactOutput>
-    associateManagedNotificationAdditionalChannel: function(Client, types.AssociateManagedNotificationAdditionalChannelInput, any): async.Operation<types.AssociateManagedNotificationAdditionalChannelOutput>
-    associateOrganizationalUnit: function(Client, types.AssociateOrganizationalUnitInput, any): async.Operation<types.AssociateOrganizationalUnitOutput>
-    createEventRule: function(Client, types.CreateEventRuleInput, any): async.Operation<types.CreateEventRuleOutput>
-    createNotificationConfiguration: function(Client, types.CreateNotificationConfigurationInput, any): async.Operation<types.CreateNotificationConfigurationOutput>
-    deleteEventRule: function(Client, types.DeleteEventRuleInput, any): async.Operation<types.DeleteEventRuleOutput>
-    deleteNotificationConfiguration: function(Client, types.DeleteNotificationConfigurationInput, any): async.Operation<types.DeleteNotificationConfigurationOutput>
-    deregisterNotificationHub: function(Client, types.DeregisterNotificationHubInput, any): async.Operation<types.DeregisterNotificationHubOutput>
-    disableNotificationsAccessForOrganization: function(Client, types.DisableNotificationsAccessForOrganizationInput, any): async.Operation<types.DisableNotificationsAccessForOrganizationOutput>
-    disassociateChannel: function(Client, types.DisassociateChannelInput, any): async.Operation<types.DisassociateChannelOutput>
-    disassociateManagedNotificationAccountContact: function(Client, types.DisassociateManagedNotificationAccountContactInput, any): async.Operation<types.DisassociateManagedNotificationAccountContactOutput>
-    disassociateManagedNotificationAdditionalChannel: function(Client, types.DisassociateManagedNotificationAdditionalChannelInput, any): async.Operation<types.DisassociateManagedNotificationAdditionalChannelOutput>
-    disassociateOrganizationalUnit: function(Client, types.DisassociateOrganizationalUnitInput, any): async.Operation<types.DisassociateOrganizationalUnitOutput>
-    enableNotificationsAccessForOrganization: function(Client, types.EnableNotificationsAccessForOrganizationInput, any): async.Operation<types.EnableNotificationsAccessForOrganizationOutput>
-    getEventRule: function(Client, types.GetEventRuleInput, any): async.Operation<types.GetEventRuleOutput>
-    getManagedNotificationChildEvent: function(Client, types.GetManagedNotificationChildEventInput, any): async.Operation<types.GetManagedNotificationChildEventOutput>
-    getManagedNotificationConfiguration: function(Client, types.GetManagedNotificationConfigurationInput, any): async.Operation<types.GetManagedNotificationConfigurationOutput>
-    getManagedNotificationEvent: function(Client, types.GetManagedNotificationEventInput, any): async.Operation<types.GetManagedNotificationEventOutput>
-    getNotificationConfiguration: function(Client, types.GetNotificationConfigurationInput, any): async.Operation<types.GetNotificationConfigurationOutput>
-    getNotificationEvent: function(Client, types.GetNotificationEventInput, any): async.Operation<types.GetNotificationEventOutput>
-    getNotificationsAccessForOrganization: function(Client, types.GetNotificationsAccessForOrganizationInput, any): async.Operation<types.GetNotificationsAccessForOrganizationOutput>
-    listChannels: function(Client, types.ListChannelsInput, any): async.Operation<types.ListChannelsOutput>
-    listEventRules: function(Client, types.ListEventRulesInput, any): async.Operation<types.ListEventRulesOutput>
-    listManagedNotificationChannelAssociations: function(Client, types.ListManagedNotificationChannelAssociationsInput, any): async.Operation<types.ListManagedNotificationChannelAssociationsOutput>
-    listManagedNotificationChildEvents: function(Client, types.ListManagedNotificationChildEventsInput, any): async.Operation<types.ListManagedNotificationChildEventsOutput>
-    listManagedNotificationConfigurations: function(Client, types.ListManagedNotificationConfigurationsInput, any): async.Operation<types.ListManagedNotificationConfigurationsOutput>
-    listManagedNotificationEvents: function(Client, types.ListManagedNotificationEventsInput, any): async.Operation<types.ListManagedNotificationEventsOutput>
-    listMemberAccounts: function(Client, types.ListMemberAccountsInput, any): async.Operation<types.ListMemberAccountsOutput>
-    listNotificationConfigurations: function(Client, types.ListNotificationConfigurationsInput, any): async.Operation<types.ListNotificationConfigurationsOutput>
-    listNotificationEvents: function(Client, types.ListNotificationEventsInput, any): async.Operation<types.ListNotificationEventsOutput>
-    listNotificationHubs: function(Client, types.ListNotificationHubsInput, any): async.Operation<types.ListNotificationHubsOutput>
-    listOrganizationalUnits: function(Client, types.ListOrganizationalUnitsInput, any): async.Operation<types.ListOrganizationalUnitsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    registerNotificationHub: function(Client, types.RegisterNotificationHubInput, any): async.Operation<types.RegisterNotificationHubOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateEventRule: function(Client, types.UpdateEventRuleInput, any): async.Operation<types.UpdateEventRuleOutput>
-    updateNotificationConfiguration: function(Client, types.UpdateNotificationConfigurationInput, any): async.Operation<types.UpdateNotificationConfigurationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateChannel: function(Client, types.AssociateChannelInput, ? base_client.InvokeOptions): async.Operation<types.AssociateChannelOutput>
+    associateManagedNotificationAccountContact: function(Client, types.AssociateManagedNotificationAccountContactInput, ? base_client.InvokeOptions): async.Operation<types.AssociateManagedNotificationAccountContactOutput>
+    associateManagedNotificationAdditionalChannel: function(Client, types.AssociateManagedNotificationAdditionalChannelInput, ? base_client.InvokeOptions): async.Operation<types.AssociateManagedNotificationAdditionalChannelOutput>
+    associateOrganizationalUnit: function(Client, types.AssociateOrganizationalUnitInput, ? base_client.InvokeOptions): async.Operation<types.AssociateOrganizationalUnitOutput>
+    createEventRule: function(Client, types.CreateEventRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateEventRuleOutput>
+    createNotificationConfiguration: function(Client, types.CreateNotificationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateNotificationConfigurationOutput>
+    deleteEventRule: function(Client, types.DeleteEventRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEventRuleOutput>
+    deleteNotificationConfiguration: function(Client, types.DeleteNotificationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNotificationConfigurationOutput>
+    deregisterNotificationHub: function(Client, types.DeregisterNotificationHubInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterNotificationHubOutput>
+    disableNotificationsAccessForOrganization: function(Client, types.DisableNotificationsAccessForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.DisableNotificationsAccessForOrganizationOutput>
+    disassociateChannel: function(Client, types.DisassociateChannelInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateChannelOutput>
+    disassociateManagedNotificationAccountContact: function(Client, types.DisassociateManagedNotificationAccountContactInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateManagedNotificationAccountContactOutput>
+    disassociateManagedNotificationAdditionalChannel: function(Client, types.DisassociateManagedNotificationAdditionalChannelInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateManagedNotificationAdditionalChannelOutput>
+    disassociateOrganizationalUnit: function(Client, types.DisassociateOrganizationalUnitInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateOrganizationalUnitOutput>
+    enableNotificationsAccessForOrganization: function(Client, types.EnableNotificationsAccessForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.EnableNotificationsAccessForOrganizationOutput>
+    getEventRule: function(Client, types.GetEventRuleInput, ? base_client.InvokeOptions): async.Operation<types.GetEventRuleOutput>
+    getManagedNotificationChildEvent: function(Client, types.GetManagedNotificationChildEventInput, ? base_client.InvokeOptions): async.Operation<types.GetManagedNotificationChildEventOutput>
+    getManagedNotificationConfiguration: function(Client, types.GetManagedNotificationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetManagedNotificationConfigurationOutput>
+    getManagedNotificationEvent: function(Client, types.GetManagedNotificationEventInput, ? base_client.InvokeOptions): async.Operation<types.GetManagedNotificationEventOutput>
+    getNotificationConfiguration: function(Client, types.GetNotificationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetNotificationConfigurationOutput>
+    getNotificationEvent: function(Client, types.GetNotificationEventInput, ? base_client.InvokeOptions): async.Operation<types.GetNotificationEventOutput>
+    getNotificationsAccessForOrganization: function(Client, types.GetNotificationsAccessForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.GetNotificationsAccessForOrganizationOutput>
+    listChannels: function(Client, types.ListChannelsInput, ? base_client.InvokeOptions): async.Operation<types.ListChannelsOutput>
+    listEventRules: function(Client, types.ListEventRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListEventRulesOutput>
+    listManagedNotificationChannelAssociations: function(Client, types.ListManagedNotificationChannelAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListManagedNotificationChannelAssociationsOutput>
+    listManagedNotificationChildEvents: function(Client, types.ListManagedNotificationChildEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListManagedNotificationChildEventsOutput>
+    listManagedNotificationConfigurations: function(Client, types.ListManagedNotificationConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListManagedNotificationConfigurationsOutput>
+    listManagedNotificationEvents: function(Client, types.ListManagedNotificationEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListManagedNotificationEventsOutput>
+    listMemberAccounts: function(Client, types.ListMemberAccountsInput, ? base_client.InvokeOptions): async.Operation<types.ListMemberAccountsOutput>
+    listNotificationConfigurations: function(Client, types.ListNotificationConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListNotificationConfigurationsOutput>
+    listNotificationEvents: function(Client, types.ListNotificationEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListNotificationEventsOutput>
+    listNotificationHubs: function(Client, types.ListNotificationHubsInput, ? base_client.InvokeOptions): async.Operation<types.ListNotificationHubsOutput>
+    listOrganizationalUnits: function(Client, types.ListOrganizationalUnitsInput, ? base_client.InvokeOptions): async.Operation<types.ListOrganizationalUnitsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    registerNotificationHub: function(Client, types.RegisterNotificationHubInput, ? base_client.InvokeOptions): async.Operation<types.RegisterNotificationHubOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateEventRule: function(Client, types.UpdateEventRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEventRuleOutput>
+    updateNotificationConfiguration: function(Client, types.UpdateNotificationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNotificationConfigurationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "Notifications"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "notifications", signing_region = c.region } }
                 else
@@ -98,160 +101,160 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateChannel(input: types.AssociateChannelInput, options: any): async.Operation<types.AssociateChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateChannel, input, options) as async.Operation<types.AssociateChannelOutput>
+function C:associateChannel(input: types.AssociateChannelInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateChannel as schema.OperationSchema, input, options) as async.Operation<types.AssociateChannelOutput>
 end
 
-function C:associateManagedNotificationAccountContact(input: types.AssociateManagedNotificationAccountContactInput, options: any): async.Operation<types.AssociateManagedNotificationAccountContactOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateManagedNotificationAccountContact, input, options) as async.Operation<types.AssociateManagedNotificationAccountContactOutput>
+function C:associateManagedNotificationAccountContact(input: types.AssociateManagedNotificationAccountContactInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateManagedNotificationAccountContactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateManagedNotificationAccountContact as schema.OperationSchema, input, options) as async.Operation<types.AssociateManagedNotificationAccountContactOutput>
 end
 
-function C:associateManagedNotificationAdditionalChannel(input: types.AssociateManagedNotificationAdditionalChannelInput, options: any): async.Operation<types.AssociateManagedNotificationAdditionalChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateManagedNotificationAdditionalChannel, input, options) as async.Operation<types.AssociateManagedNotificationAdditionalChannelOutput>
+function C:associateManagedNotificationAdditionalChannel(input: types.AssociateManagedNotificationAdditionalChannelInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateManagedNotificationAdditionalChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateManagedNotificationAdditionalChannel as schema.OperationSchema, input, options) as async.Operation<types.AssociateManagedNotificationAdditionalChannelOutput>
 end
 
-function C:associateOrganizationalUnit(input: types.AssociateOrganizationalUnitInput, options: any): async.Operation<types.AssociateOrganizationalUnitOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateOrganizationalUnit, input, options) as async.Operation<types.AssociateOrganizationalUnitOutput>
+function C:associateOrganizationalUnit(input: types.AssociateOrganizationalUnitInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateOrganizationalUnitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateOrganizationalUnit as schema.OperationSchema, input, options) as async.Operation<types.AssociateOrganizationalUnitOutput>
 end
 
-function C:createEventRule(input: types.CreateEventRuleInput, options: any): async.Operation<types.CreateEventRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEventRule, input, options) as async.Operation<types.CreateEventRuleOutput>
+function C:createEventRule(input: types.CreateEventRuleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEventRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEventRule as schema.OperationSchema, input, options) as async.Operation<types.CreateEventRuleOutput>
 end
 
-function C:createNotificationConfiguration(input: types.CreateNotificationConfigurationInput, options: any): async.Operation<types.CreateNotificationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNotificationConfiguration, input, options) as async.Operation<types.CreateNotificationConfigurationOutput>
+function C:createNotificationConfiguration(input: types.CreateNotificationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNotificationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNotificationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateNotificationConfigurationOutput>
 end
 
-function C:deleteEventRule(input: types.DeleteEventRuleInput, options: any): async.Operation<types.DeleteEventRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEventRule, input, options) as async.Operation<types.DeleteEventRuleOutput>
+function C:deleteEventRule(input: types.DeleteEventRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEventRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEventRule as schema.OperationSchema, input, options) as async.Operation<types.DeleteEventRuleOutput>
 end
 
-function C:deleteNotificationConfiguration(input: types.DeleteNotificationConfigurationInput, options: any): async.Operation<types.DeleteNotificationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNotificationConfiguration, input, options) as async.Operation<types.DeleteNotificationConfigurationOutput>
+function C:deleteNotificationConfiguration(input: types.DeleteNotificationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNotificationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNotificationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteNotificationConfigurationOutput>
 end
 
-function C:deregisterNotificationHub(input: types.DeregisterNotificationHubInput, options: any): async.Operation<types.DeregisterNotificationHubOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterNotificationHub, input, options) as async.Operation<types.DeregisterNotificationHubOutput>
+function C:deregisterNotificationHub(input: types.DeregisterNotificationHubInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterNotificationHubOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterNotificationHub as schema.OperationSchema, input, options) as async.Operation<types.DeregisterNotificationHubOutput>
 end
 
-function C:disableNotificationsAccessForOrganization(input: types.DisableNotificationsAccessForOrganizationInput, options: any): async.Operation<types.DisableNotificationsAccessForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableNotificationsAccessForOrganization, input, options) as async.Operation<types.DisableNotificationsAccessForOrganizationOutput>
+function C:disableNotificationsAccessForOrganization(input: types.DisableNotificationsAccessForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.DisableNotificationsAccessForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableNotificationsAccessForOrganization as schema.OperationSchema, input, options) as async.Operation<types.DisableNotificationsAccessForOrganizationOutput>
 end
 
-function C:disassociateChannel(input: types.DisassociateChannelInput, options: any): async.Operation<types.DisassociateChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateChannel, input, options) as async.Operation<types.DisassociateChannelOutput>
+function C:disassociateChannel(input: types.DisassociateChannelInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateChannel as schema.OperationSchema, input, options) as async.Operation<types.DisassociateChannelOutput>
 end
 
-function C:disassociateManagedNotificationAccountContact(input: types.DisassociateManagedNotificationAccountContactInput, options: any): async.Operation<types.DisassociateManagedNotificationAccountContactOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateManagedNotificationAccountContact, input, options) as async.Operation<types.DisassociateManagedNotificationAccountContactOutput>
+function C:disassociateManagedNotificationAccountContact(input: types.DisassociateManagedNotificationAccountContactInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateManagedNotificationAccountContactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateManagedNotificationAccountContact as schema.OperationSchema, input, options) as async.Operation<types.DisassociateManagedNotificationAccountContactOutput>
 end
 
-function C:disassociateManagedNotificationAdditionalChannel(input: types.DisassociateManagedNotificationAdditionalChannelInput, options: any): async.Operation<types.DisassociateManagedNotificationAdditionalChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateManagedNotificationAdditionalChannel, input, options) as async.Operation<types.DisassociateManagedNotificationAdditionalChannelOutput>
+function C:disassociateManagedNotificationAdditionalChannel(input: types.DisassociateManagedNotificationAdditionalChannelInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateManagedNotificationAdditionalChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateManagedNotificationAdditionalChannel as schema.OperationSchema, input, options) as async.Operation<types.DisassociateManagedNotificationAdditionalChannelOutput>
 end
 
-function C:disassociateOrganizationalUnit(input: types.DisassociateOrganizationalUnitInput, options: any): async.Operation<types.DisassociateOrganizationalUnitOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateOrganizationalUnit, input, options) as async.Operation<types.DisassociateOrganizationalUnitOutput>
+function C:disassociateOrganizationalUnit(input: types.DisassociateOrganizationalUnitInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateOrganizationalUnitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateOrganizationalUnit as schema.OperationSchema, input, options) as async.Operation<types.DisassociateOrganizationalUnitOutput>
 end
 
-function C:enableNotificationsAccessForOrganization(input: types.EnableNotificationsAccessForOrganizationInput, options: any): async.Operation<types.EnableNotificationsAccessForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableNotificationsAccessForOrganization, input, options) as async.Operation<types.EnableNotificationsAccessForOrganizationOutput>
+function C:enableNotificationsAccessForOrganization(input: types.EnableNotificationsAccessForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.EnableNotificationsAccessForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableNotificationsAccessForOrganization as schema.OperationSchema, input, options) as async.Operation<types.EnableNotificationsAccessForOrganizationOutput>
 end
 
-function C:getEventRule(input: types.GetEventRuleInput, options: any): async.Operation<types.GetEventRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEventRule, input, options) as async.Operation<types.GetEventRuleOutput>
+function C:getEventRule(input: types.GetEventRuleInput, options?: base_client.InvokeOptions): async.Operation<types.GetEventRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEventRule as schema.OperationSchema, input, options) as async.Operation<types.GetEventRuleOutput>
 end
 
-function C:getManagedNotificationChildEvent(input: types.GetManagedNotificationChildEventInput, options: any): async.Operation<types.GetManagedNotificationChildEventOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetManagedNotificationChildEvent, input, options) as async.Operation<types.GetManagedNotificationChildEventOutput>
+function C:getManagedNotificationChildEvent(input: types.GetManagedNotificationChildEventInput, options?: base_client.InvokeOptions): async.Operation<types.GetManagedNotificationChildEventOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetManagedNotificationChildEvent as schema.OperationSchema, input, options) as async.Operation<types.GetManagedNotificationChildEventOutput>
 end
 
-function C:getManagedNotificationConfiguration(input: types.GetManagedNotificationConfigurationInput, options: any): async.Operation<types.GetManagedNotificationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetManagedNotificationConfiguration, input, options) as async.Operation<types.GetManagedNotificationConfigurationOutput>
+function C:getManagedNotificationConfiguration(input: types.GetManagedNotificationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetManagedNotificationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetManagedNotificationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetManagedNotificationConfigurationOutput>
 end
 
-function C:getManagedNotificationEvent(input: types.GetManagedNotificationEventInput, options: any): async.Operation<types.GetManagedNotificationEventOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetManagedNotificationEvent, input, options) as async.Operation<types.GetManagedNotificationEventOutput>
+function C:getManagedNotificationEvent(input: types.GetManagedNotificationEventInput, options?: base_client.InvokeOptions): async.Operation<types.GetManagedNotificationEventOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetManagedNotificationEvent as schema.OperationSchema, input, options) as async.Operation<types.GetManagedNotificationEventOutput>
 end
 
-function C:getNotificationConfiguration(input: types.GetNotificationConfigurationInput, options: any): async.Operation<types.GetNotificationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNotificationConfiguration, input, options) as async.Operation<types.GetNotificationConfigurationOutput>
+function C:getNotificationConfiguration(input: types.GetNotificationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetNotificationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNotificationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetNotificationConfigurationOutput>
 end
 
-function C:getNotificationEvent(input: types.GetNotificationEventInput, options: any): async.Operation<types.GetNotificationEventOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNotificationEvent, input, options) as async.Operation<types.GetNotificationEventOutput>
+function C:getNotificationEvent(input: types.GetNotificationEventInput, options?: base_client.InvokeOptions): async.Operation<types.GetNotificationEventOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNotificationEvent as schema.OperationSchema, input, options) as async.Operation<types.GetNotificationEventOutput>
 end
 
-function C:getNotificationsAccessForOrganization(input: types.GetNotificationsAccessForOrganizationInput, options: any): async.Operation<types.GetNotificationsAccessForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNotificationsAccessForOrganization, input, options) as async.Operation<types.GetNotificationsAccessForOrganizationOutput>
+function C:getNotificationsAccessForOrganization(input: types.GetNotificationsAccessForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.GetNotificationsAccessForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNotificationsAccessForOrganization as schema.OperationSchema, input, options) as async.Operation<types.GetNotificationsAccessForOrganizationOutput>
 end
 
-function C:listChannels(input: types.ListChannelsInput, options: any): async.Operation<types.ListChannelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListChannels, input, options) as async.Operation<types.ListChannelsOutput>
+function C:listChannels(input: types.ListChannelsInput, options?: base_client.InvokeOptions): async.Operation<types.ListChannelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListChannels as schema.OperationSchema, input, options) as async.Operation<types.ListChannelsOutput>
 end
 
-function C:listEventRules(input: types.ListEventRulesInput, options: any): async.Operation<types.ListEventRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEventRules, input, options) as async.Operation<types.ListEventRulesOutput>
+function C:listEventRules(input: types.ListEventRulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListEventRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEventRules as schema.OperationSchema, input, options) as async.Operation<types.ListEventRulesOutput>
 end
 
-function C:listManagedNotificationChannelAssociations(input: types.ListManagedNotificationChannelAssociationsInput, options: any): async.Operation<types.ListManagedNotificationChannelAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListManagedNotificationChannelAssociations, input, options) as async.Operation<types.ListManagedNotificationChannelAssociationsOutput>
+function C:listManagedNotificationChannelAssociations(input: types.ListManagedNotificationChannelAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListManagedNotificationChannelAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListManagedNotificationChannelAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListManagedNotificationChannelAssociationsOutput>
 end
 
-function C:listManagedNotificationChildEvents(input: types.ListManagedNotificationChildEventsInput, options: any): async.Operation<types.ListManagedNotificationChildEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListManagedNotificationChildEvents, input, options) as async.Operation<types.ListManagedNotificationChildEventsOutput>
+function C:listManagedNotificationChildEvents(input: types.ListManagedNotificationChildEventsInput, options?: base_client.InvokeOptions): async.Operation<types.ListManagedNotificationChildEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListManagedNotificationChildEvents as schema.OperationSchema, input, options) as async.Operation<types.ListManagedNotificationChildEventsOutput>
 end
 
-function C:listManagedNotificationConfigurations(input: types.ListManagedNotificationConfigurationsInput, options: any): async.Operation<types.ListManagedNotificationConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListManagedNotificationConfigurations, input, options) as async.Operation<types.ListManagedNotificationConfigurationsOutput>
+function C:listManagedNotificationConfigurations(input: types.ListManagedNotificationConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListManagedNotificationConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListManagedNotificationConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListManagedNotificationConfigurationsOutput>
 end
 
-function C:listManagedNotificationEvents(input: types.ListManagedNotificationEventsInput, options: any): async.Operation<types.ListManagedNotificationEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListManagedNotificationEvents, input, options) as async.Operation<types.ListManagedNotificationEventsOutput>
+function C:listManagedNotificationEvents(input: types.ListManagedNotificationEventsInput, options?: base_client.InvokeOptions): async.Operation<types.ListManagedNotificationEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListManagedNotificationEvents as schema.OperationSchema, input, options) as async.Operation<types.ListManagedNotificationEventsOutput>
 end
 
-function C:listMemberAccounts(input: types.ListMemberAccountsInput, options: any): async.Operation<types.ListMemberAccountsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMemberAccounts, input, options) as async.Operation<types.ListMemberAccountsOutput>
+function C:listMemberAccounts(input: types.ListMemberAccountsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMemberAccountsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMemberAccounts as schema.OperationSchema, input, options) as async.Operation<types.ListMemberAccountsOutput>
 end
 
-function C:listNotificationConfigurations(input: types.ListNotificationConfigurationsInput, options: any): async.Operation<types.ListNotificationConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNotificationConfigurations, input, options) as async.Operation<types.ListNotificationConfigurationsOutput>
+function C:listNotificationConfigurations(input: types.ListNotificationConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListNotificationConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNotificationConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListNotificationConfigurationsOutput>
 end
 
-function C:listNotificationEvents(input: types.ListNotificationEventsInput, options: any): async.Operation<types.ListNotificationEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNotificationEvents, input, options) as async.Operation<types.ListNotificationEventsOutput>
+function C:listNotificationEvents(input: types.ListNotificationEventsInput, options?: base_client.InvokeOptions): async.Operation<types.ListNotificationEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNotificationEvents as schema.OperationSchema, input, options) as async.Operation<types.ListNotificationEventsOutput>
 end
 
-function C:listNotificationHubs(input: types.ListNotificationHubsInput, options: any): async.Operation<types.ListNotificationHubsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNotificationHubs, input, options) as async.Operation<types.ListNotificationHubsOutput>
+function C:listNotificationHubs(input: types.ListNotificationHubsInput, options?: base_client.InvokeOptions): async.Operation<types.ListNotificationHubsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNotificationHubs as schema.OperationSchema, input, options) as async.Operation<types.ListNotificationHubsOutput>
 end
 
-function C:listOrganizationalUnits(input: types.ListOrganizationalUnitsInput, options: any): async.Operation<types.ListOrganizationalUnitsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOrganizationalUnits, input, options) as async.Operation<types.ListOrganizationalUnitsOutput>
+function C:listOrganizationalUnits(input: types.ListOrganizationalUnitsInput, options?: base_client.InvokeOptions): async.Operation<types.ListOrganizationalUnitsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOrganizationalUnits as schema.OperationSchema, input, options) as async.Operation<types.ListOrganizationalUnitsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:registerNotificationHub(input: types.RegisterNotificationHubInput, options: any): async.Operation<types.RegisterNotificationHubOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterNotificationHub, input, options) as async.Operation<types.RegisterNotificationHubOutput>
+function C:registerNotificationHub(input: types.RegisterNotificationHubInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterNotificationHubOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterNotificationHub as schema.OperationSchema, input, options) as async.Operation<types.RegisterNotificationHubOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateEventRule(input: types.UpdateEventRuleInput, options: any): async.Operation<types.UpdateEventRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEventRule, input, options) as async.Operation<types.UpdateEventRuleOutput>
+function C:updateEventRule(input: types.UpdateEventRuleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEventRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEventRule as schema.OperationSchema, input, options) as async.Operation<types.UpdateEventRuleOutput>
 end
 
-function C:updateNotificationConfiguration(input: types.UpdateNotificationConfigurationInput, options: any): async.Operation<types.UpdateNotificationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateNotificationConfiguration, input, options) as async.Operation<types.UpdateNotificationConfigurationOutput>
+function C:updateNotificationConfiguration(input: types.UpdateNotificationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNotificationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNotificationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateNotificationConfigurationOutput>
 end
 
 return M

@@ -8,109 +8,112 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("athena.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("athena.schemas")
 local traits = require("smithy.traits")
 local types = require("athena.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchGetNamedQuery: function(Client, types.BatchGetNamedQueryInput, any): async.Operation<types.BatchGetNamedQueryOutput>
-    batchGetPreparedStatement: function(Client, types.BatchGetPreparedStatementInput, any): async.Operation<types.BatchGetPreparedStatementOutput>
-    batchGetQueryExecution: function(Client, types.BatchGetQueryExecutionInput, any): async.Operation<types.BatchGetQueryExecutionOutput>
-    cancelCapacityReservation: function(Client, types.CancelCapacityReservationInput, any): async.Operation<types.CancelCapacityReservationOutput>
-    createCapacityReservation: function(Client, types.CreateCapacityReservationInput, any): async.Operation<types.CreateCapacityReservationOutput>
-    createDataCatalog: function(Client, types.CreateDataCatalogInput, any): async.Operation<types.CreateDataCatalogOutput>
-    createNamedQuery: function(Client, types.CreateNamedQueryInput, any): async.Operation<types.CreateNamedQueryOutput>
-    createNotebook: function(Client, types.CreateNotebookInput, any): async.Operation<types.CreateNotebookOutput>
-    createPreparedStatement: function(Client, types.CreatePreparedStatementInput, any): async.Operation<types.CreatePreparedStatementOutput>
-    createPresignedNotebookUrl: function(Client, types.CreatePresignedNotebookUrlInput, any): async.Operation<types.CreatePresignedNotebookUrlOutput>
-    createWorkGroup: function(Client, types.CreateWorkGroupInput, any): async.Operation<types.CreateWorkGroupOutput>
-    deleteCapacityReservation: function(Client, types.DeleteCapacityReservationInput, any): async.Operation<types.DeleteCapacityReservationOutput>
-    deleteDataCatalog: function(Client, types.DeleteDataCatalogInput, any): async.Operation<types.DeleteDataCatalogOutput>
-    deleteNamedQuery: function(Client, types.DeleteNamedQueryInput, any): async.Operation<types.DeleteNamedQueryOutput>
-    deleteNotebook: function(Client, types.DeleteNotebookInput, any): async.Operation<types.DeleteNotebookOutput>
-    deletePreparedStatement: function(Client, types.DeletePreparedStatementInput, any): async.Operation<types.DeletePreparedStatementOutput>
-    deleteWorkGroup: function(Client, types.DeleteWorkGroupInput, any): async.Operation<types.DeleteWorkGroupOutput>
-    exportNotebook: function(Client, types.ExportNotebookInput, any): async.Operation<types.ExportNotebookOutput>
-    getCalculationExecution: function(Client, types.GetCalculationExecutionInput, any): async.Operation<types.GetCalculationExecutionOutput>
-    getCalculationExecutionCode: function(Client, types.GetCalculationExecutionCodeInput, any): async.Operation<types.GetCalculationExecutionCodeOutput>
-    getCalculationExecutionStatus: function(Client, types.GetCalculationExecutionStatusInput, any): async.Operation<types.GetCalculationExecutionStatusOutput>
-    getCapacityAssignmentConfiguration: function(Client, types.GetCapacityAssignmentConfigurationInput, any): async.Operation<types.GetCapacityAssignmentConfigurationOutput>
-    getCapacityReservation: function(Client, types.GetCapacityReservationInput, any): async.Operation<types.GetCapacityReservationOutput>
-    getDatabase: function(Client, types.GetDatabaseInput, any): async.Operation<types.GetDatabaseOutput>
-    getDataCatalog: function(Client, types.GetDataCatalogInput, any): async.Operation<types.GetDataCatalogOutput>
-    getNamedQuery: function(Client, types.GetNamedQueryInput, any): async.Operation<types.GetNamedQueryOutput>
-    getNotebookMetadata: function(Client, types.GetNotebookMetadataInput, any): async.Operation<types.GetNotebookMetadataOutput>
-    getPreparedStatement: function(Client, types.GetPreparedStatementInput, any): async.Operation<types.GetPreparedStatementOutput>
-    getQueryExecution: function(Client, types.GetQueryExecutionInput, any): async.Operation<types.GetQueryExecutionOutput>
-    getQueryResults: function(Client, types.GetQueryResultsInput, any): async.Operation<types.GetQueryResultsOutput>
-    getQueryRuntimeStatistics: function(Client, types.GetQueryRuntimeStatisticsInput, any): async.Operation<types.GetQueryRuntimeStatisticsOutput>
-    getResourceDashboard: function(Client, types.GetResourceDashboardInput, any): async.Operation<types.GetResourceDashboardOutput>
-    getSession: function(Client, types.GetSessionInput, any): async.Operation<types.GetSessionOutput>
-    getSessionEndpoint: function(Client, types.GetSessionEndpointInput, any): async.Operation<types.GetSessionEndpointOutput>
-    getSessionStatus: function(Client, types.GetSessionStatusInput, any): async.Operation<types.GetSessionStatusOutput>
-    getTableMetadata: function(Client, types.GetTableMetadataInput, any): async.Operation<types.GetTableMetadataOutput>
-    getWorkGroup: function(Client, types.GetWorkGroupInput, any): async.Operation<types.GetWorkGroupOutput>
-    importNotebook: function(Client, types.ImportNotebookInput, any): async.Operation<types.ImportNotebookOutput>
-    listApplicationDPUSizes: function(Client, types.ListApplicationDPUSizesInput, any): async.Operation<types.ListApplicationDPUSizesOutput>
-    listCalculationExecutions: function(Client, types.ListCalculationExecutionsInput, any): async.Operation<types.ListCalculationExecutionsOutput>
-    listCapacityReservations: function(Client, types.ListCapacityReservationsInput, any): async.Operation<types.ListCapacityReservationsOutput>
-    listDatabases: function(Client, types.ListDatabasesInput, any): async.Operation<types.ListDatabasesOutput>
-    listDataCatalogs: function(Client, types.ListDataCatalogsInput, any): async.Operation<types.ListDataCatalogsOutput>
-    listEngineVersions: function(Client, types.ListEngineVersionsInput, any): async.Operation<types.ListEngineVersionsOutput>
-    listExecutors: function(Client, types.ListExecutorsInput, any): async.Operation<types.ListExecutorsOutput>
-    listNamedQueries: function(Client, types.ListNamedQueriesInput, any): async.Operation<types.ListNamedQueriesOutput>
-    listNotebookMetadata: function(Client, types.ListNotebookMetadataInput, any): async.Operation<types.ListNotebookMetadataOutput>
-    listNotebookSessions: function(Client, types.ListNotebookSessionsInput, any): async.Operation<types.ListNotebookSessionsOutput>
-    listPreparedStatements: function(Client, types.ListPreparedStatementsInput, any): async.Operation<types.ListPreparedStatementsOutput>
-    listQueryExecutions: function(Client, types.ListQueryExecutionsInput, any): async.Operation<types.ListQueryExecutionsOutput>
-    listSessions: function(Client, types.ListSessionsInput, any): async.Operation<types.ListSessionsOutput>
-    listTableMetadata: function(Client, types.ListTableMetadataInput, any): async.Operation<types.ListTableMetadataOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listWorkGroups: function(Client, types.ListWorkGroupsInput, any): async.Operation<types.ListWorkGroupsOutput>
-    putCapacityAssignmentConfiguration: function(Client, types.PutCapacityAssignmentConfigurationInput, any): async.Operation<types.PutCapacityAssignmentConfigurationOutput>
-    startCalculationExecution: function(Client, types.StartCalculationExecutionInput, any): async.Operation<types.StartCalculationExecutionOutput>
-    startQueryExecution: function(Client, types.StartQueryExecutionInput, any): async.Operation<types.StartQueryExecutionOutput>
-    startSession: function(Client, types.StartSessionInput, any): async.Operation<types.StartSessionOutput>
-    stopCalculationExecution: function(Client, types.StopCalculationExecutionInput, any): async.Operation<types.StopCalculationExecutionOutput>
-    stopQueryExecution: function(Client, types.StopQueryExecutionInput, any): async.Operation<types.StopQueryExecutionOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    terminateSession: function(Client, types.TerminateSessionInput, any): async.Operation<types.TerminateSessionOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateCapacityReservation: function(Client, types.UpdateCapacityReservationInput, any): async.Operation<types.UpdateCapacityReservationOutput>
-    updateDataCatalog: function(Client, types.UpdateDataCatalogInput, any): async.Operation<types.UpdateDataCatalogOutput>
-    updateNamedQuery: function(Client, types.UpdateNamedQueryInput, any): async.Operation<types.UpdateNamedQueryOutput>
-    updateNotebook: function(Client, types.UpdateNotebookInput, any): async.Operation<types.UpdateNotebookOutput>
-    updateNotebookMetadata: function(Client, types.UpdateNotebookMetadataInput, any): async.Operation<types.UpdateNotebookMetadataOutput>
-    updatePreparedStatement: function(Client, types.UpdatePreparedStatementInput, any): async.Operation<types.UpdatePreparedStatementOutput>
-    updateWorkGroup: function(Client, types.UpdateWorkGroupInput, any): async.Operation<types.UpdateWorkGroupOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchGetNamedQuery: function(Client, types.BatchGetNamedQueryInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetNamedQueryOutput>
+    batchGetPreparedStatement: function(Client, types.BatchGetPreparedStatementInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetPreparedStatementOutput>
+    batchGetQueryExecution: function(Client, types.BatchGetQueryExecutionInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetQueryExecutionOutput>
+    cancelCapacityReservation: function(Client, types.CancelCapacityReservationInput, ? base_client.InvokeOptions): async.Operation<types.CancelCapacityReservationOutput>
+    createCapacityReservation: function(Client, types.CreateCapacityReservationInput, ? base_client.InvokeOptions): async.Operation<types.CreateCapacityReservationOutput>
+    createDataCatalog: function(Client, types.CreateDataCatalogInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataCatalogOutput>
+    createNamedQuery: function(Client, types.CreateNamedQueryInput, ? base_client.InvokeOptions): async.Operation<types.CreateNamedQueryOutput>
+    createNotebook: function(Client, types.CreateNotebookInput, ? base_client.InvokeOptions): async.Operation<types.CreateNotebookOutput>
+    createPreparedStatement: function(Client, types.CreatePreparedStatementInput, ? base_client.InvokeOptions): async.Operation<types.CreatePreparedStatementOutput>
+    createPresignedNotebookUrl: function(Client, types.CreatePresignedNotebookUrlInput, ? base_client.InvokeOptions): async.Operation<types.CreatePresignedNotebookUrlOutput>
+    createWorkGroup: function(Client, types.CreateWorkGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkGroupOutput>
+    deleteCapacityReservation: function(Client, types.DeleteCapacityReservationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCapacityReservationOutput>
+    deleteDataCatalog: function(Client, types.DeleteDataCatalogInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataCatalogOutput>
+    deleteNamedQuery: function(Client, types.DeleteNamedQueryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNamedQueryOutput>
+    deleteNotebook: function(Client, types.DeleteNotebookInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNotebookOutput>
+    deletePreparedStatement: function(Client, types.DeletePreparedStatementInput, ? base_client.InvokeOptions): async.Operation<types.DeletePreparedStatementOutput>
+    deleteWorkGroup: function(Client, types.DeleteWorkGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWorkGroupOutput>
+    exportNotebook: function(Client, types.ExportNotebookInput, ? base_client.InvokeOptions): async.Operation<types.ExportNotebookOutput>
+    getCalculationExecution: function(Client, types.GetCalculationExecutionInput, ? base_client.InvokeOptions): async.Operation<types.GetCalculationExecutionOutput>
+    getCalculationExecutionCode: function(Client, types.GetCalculationExecutionCodeInput, ? base_client.InvokeOptions): async.Operation<types.GetCalculationExecutionCodeOutput>
+    getCalculationExecutionStatus: function(Client, types.GetCalculationExecutionStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetCalculationExecutionStatusOutput>
+    getCapacityAssignmentConfiguration: function(Client, types.GetCapacityAssignmentConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetCapacityAssignmentConfigurationOutput>
+    getCapacityReservation: function(Client, types.GetCapacityReservationInput, ? base_client.InvokeOptions): async.Operation<types.GetCapacityReservationOutput>
+    getDatabase: function(Client, types.GetDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.GetDatabaseOutput>
+    getDataCatalog: function(Client, types.GetDataCatalogInput, ? base_client.InvokeOptions): async.Operation<types.GetDataCatalogOutput>
+    getNamedQuery: function(Client, types.GetNamedQueryInput, ? base_client.InvokeOptions): async.Operation<types.GetNamedQueryOutput>
+    getNotebookMetadata: function(Client, types.GetNotebookMetadataInput, ? base_client.InvokeOptions): async.Operation<types.GetNotebookMetadataOutput>
+    getPreparedStatement: function(Client, types.GetPreparedStatementInput, ? base_client.InvokeOptions): async.Operation<types.GetPreparedStatementOutput>
+    getQueryExecution: function(Client, types.GetQueryExecutionInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryExecutionOutput>
+    getQueryResults: function(Client, types.GetQueryResultsInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryResultsOutput>
+    getQueryRuntimeStatistics: function(Client, types.GetQueryRuntimeStatisticsInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryRuntimeStatisticsOutput>
+    getResourceDashboard: function(Client, types.GetResourceDashboardInput, ? base_client.InvokeOptions): async.Operation<types.GetResourceDashboardOutput>
+    getSession: function(Client, types.GetSessionInput, ? base_client.InvokeOptions): async.Operation<types.GetSessionOutput>
+    getSessionEndpoint: function(Client, types.GetSessionEndpointInput, ? base_client.InvokeOptions): async.Operation<types.GetSessionEndpointOutput>
+    getSessionStatus: function(Client, types.GetSessionStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetSessionStatusOutput>
+    getTableMetadata: function(Client, types.GetTableMetadataInput, ? base_client.InvokeOptions): async.Operation<types.GetTableMetadataOutput>
+    getWorkGroup: function(Client, types.GetWorkGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkGroupOutput>
+    importNotebook: function(Client, types.ImportNotebookInput, ? base_client.InvokeOptions): async.Operation<types.ImportNotebookOutput>
+    listApplicationDPUSizes: function(Client, types.ListApplicationDPUSizesInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationDPUSizesOutput>
+    listCalculationExecutions: function(Client, types.ListCalculationExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListCalculationExecutionsOutput>
+    listCapacityReservations: function(Client, types.ListCapacityReservationsInput, ? base_client.InvokeOptions): async.Operation<types.ListCapacityReservationsOutput>
+    listDatabases: function(Client, types.ListDatabasesInput, ? base_client.InvokeOptions): async.Operation<types.ListDatabasesOutput>
+    listDataCatalogs: function(Client, types.ListDataCatalogsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataCatalogsOutput>
+    listEngineVersions: function(Client, types.ListEngineVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListEngineVersionsOutput>
+    listExecutors: function(Client, types.ListExecutorsInput, ? base_client.InvokeOptions): async.Operation<types.ListExecutorsOutput>
+    listNamedQueries: function(Client, types.ListNamedQueriesInput, ? base_client.InvokeOptions): async.Operation<types.ListNamedQueriesOutput>
+    listNotebookMetadata: function(Client, types.ListNotebookMetadataInput, ? base_client.InvokeOptions): async.Operation<types.ListNotebookMetadataOutput>
+    listNotebookSessions: function(Client, types.ListNotebookSessionsInput, ? base_client.InvokeOptions): async.Operation<types.ListNotebookSessionsOutput>
+    listPreparedStatements: function(Client, types.ListPreparedStatementsInput, ? base_client.InvokeOptions): async.Operation<types.ListPreparedStatementsOutput>
+    listQueryExecutions: function(Client, types.ListQueryExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListQueryExecutionsOutput>
+    listSessions: function(Client, types.ListSessionsInput, ? base_client.InvokeOptions): async.Operation<types.ListSessionsOutput>
+    listTableMetadata: function(Client, types.ListTableMetadataInput, ? base_client.InvokeOptions): async.Operation<types.ListTableMetadataOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listWorkGroups: function(Client, types.ListWorkGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkGroupsOutput>
+    putCapacityAssignmentConfiguration: function(Client, types.PutCapacityAssignmentConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutCapacityAssignmentConfigurationOutput>
+    startCalculationExecution: function(Client, types.StartCalculationExecutionInput, ? base_client.InvokeOptions): async.Operation<types.StartCalculationExecutionOutput>
+    startQueryExecution: function(Client, types.StartQueryExecutionInput, ? base_client.InvokeOptions): async.Operation<types.StartQueryExecutionOutput>
+    startSession: function(Client, types.StartSessionInput, ? base_client.InvokeOptions): async.Operation<types.StartSessionOutput>
+    stopCalculationExecution: function(Client, types.StopCalculationExecutionInput, ? base_client.InvokeOptions): async.Operation<types.StopCalculationExecutionOutput>
+    stopQueryExecution: function(Client, types.StopQueryExecutionInput, ? base_client.InvokeOptions): async.Operation<types.StopQueryExecutionOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    terminateSession: function(Client, types.TerminateSessionInput, ? base_client.InvokeOptions): async.Operation<types.TerminateSessionOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateCapacityReservation: function(Client, types.UpdateCapacityReservationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCapacityReservationOutput>
+    updateDataCatalog: function(Client, types.UpdateDataCatalogInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataCatalogOutput>
+    updateNamedQuery: function(Client, types.UpdateNamedQueryInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNamedQueryOutput>
+    updateNotebook: function(Client, types.UpdateNotebookInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNotebookOutput>
+    updateNotebookMetadata: function(Client, types.UpdateNotebookMetadataInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNotebookMetadataOutput>
+    updatePreparedStatement: function(Client, types.UpdatePreparedStatementInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePreparedStatementOutput>
+    updateWorkGroup: function(Client, types.UpdateWorkGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWorkGroupOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonAthena"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "athena", signing_region = c.region } }
                 else
@@ -129,284 +132,284 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchGetNamedQuery(input: types.BatchGetNamedQueryInput, options: any): async.Operation<types.BatchGetNamedQueryOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetNamedQuery, input, options) as async.Operation<types.BatchGetNamedQueryOutput>
+function C:batchGetNamedQuery(input: types.BatchGetNamedQueryInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetNamedQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetNamedQuery as schema.OperationSchema, input, options) as async.Operation<types.BatchGetNamedQueryOutput>
 end
 
-function C:batchGetPreparedStatement(input: types.BatchGetPreparedStatementInput, options: any): async.Operation<types.BatchGetPreparedStatementOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetPreparedStatement, input, options) as async.Operation<types.BatchGetPreparedStatementOutput>
+function C:batchGetPreparedStatement(input: types.BatchGetPreparedStatementInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetPreparedStatementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetPreparedStatement as schema.OperationSchema, input, options) as async.Operation<types.BatchGetPreparedStatementOutput>
 end
 
-function C:batchGetQueryExecution(input: types.BatchGetQueryExecutionInput, options: any): async.Operation<types.BatchGetQueryExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetQueryExecution, input, options) as async.Operation<types.BatchGetQueryExecutionOutput>
+function C:batchGetQueryExecution(input: types.BatchGetQueryExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetQueryExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetQueryExecution as schema.OperationSchema, input, options) as async.Operation<types.BatchGetQueryExecutionOutput>
 end
 
-function C:cancelCapacityReservation(input: types.CancelCapacityReservationInput, options: any): async.Operation<types.CancelCapacityReservationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelCapacityReservation, input, options) as async.Operation<types.CancelCapacityReservationOutput>
+function C:cancelCapacityReservation(input: types.CancelCapacityReservationInput, options?: base_client.InvokeOptions): async.Operation<types.CancelCapacityReservationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelCapacityReservation as schema.OperationSchema, input, options) as async.Operation<types.CancelCapacityReservationOutput>
 end
 
-function C:createCapacityReservation(input: types.CreateCapacityReservationInput, options: any): async.Operation<types.CreateCapacityReservationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCapacityReservation, input, options) as async.Operation<types.CreateCapacityReservationOutput>
+function C:createCapacityReservation(input: types.CreateCapacityReservationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCapacityReservationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCapacityReservation as schema.OperationSchema, input, options) as async.Operation<types.CreateCapacityReservationOutput>
 end
 
-function C:createDataCatalog(input: types.CreateDataCatalogInput, options: any): async.Operation<types.CreateDataCatalogOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataCatalog, input, options) as async.Operation<types.CreateDataCatalogOutput>
+function C:createDataCatalog(input: types.CreateDataCatalogInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataCatalogOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataCatalog as schema.OperationSchema, input, options) as async.Operation<types.CreateDataCatalogOutput>
 end
 
-function C:createNamedQuery(input: types.CreateNamedQueryInput, options: any): async.Operation<types.CreateNamedQueryOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNamedQuery, input, options) as async.Operation<types.CreateNamedQueryOutput>
+function C:createNamedQuery(input: types.CreateNamedQueryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNamedQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNamedQuery as schema.OperationSchema, input, options) as async.Operation<types.CreateNamedQueryOutput>
 end
 
-function C:createNotebook(input: types.CreateNotebookInput, options: any): async.Operation<types.CreateNotebookOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNotebook, input, options) as async.Operation<types.CreateNotebookOutput>
+function C:createNotebook(input: types.CreateNotebookInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNotebookOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNotebook as schema.OperationSchema, input, options) as async.Operation<types.CreateNotebookOutput>
 end
 
-function C:createPreparedStatement(input: types.CreatePreparedStatementInput, options: any): async.Operation<types.CreatePreparedStatementOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePreparedStatement, input, options) as async.Operation<types.CreatePreparedStatementOutput>
+function C:createPreparedStatement(input: types.CreatePreparedStatementInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePreparedStatementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePreparedStatement as schema.OperationSchema, input, options) as async.Operation<types.CreatePreparedStatementOutput>
 end
 
-function C:createPresignedNotebookUrl(input: types.CreatePresignedNotebookUrlInput, options: any): async.Operation<types.CreatePresignedNotebookUrlOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePresignedNotebookUrl, input, options) as async.Operation<types.CreatePresignedNotebookUrlOutput>
+function C:createPresignedNotebookUrl(input: types.CreatePresignedNotebookUrlInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePresignedNotebookUrlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePresignedNotebookUrl as schema.OperationSchema, input, options) as async.Operation<types.CreatePresignedNotebookUrlOutput>
 end
 
-function C:createWorkGroup(input: types.CreateWorkGroupInput, options: any): async.Operation<types.CreateWorkGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWorkGroup, input, options) as async.Operation<types.CreateWorkGroupOutput>
+function C:createWorkGroup(input: types.CreateWorkGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWorkGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWorkGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateWorkGroupOutput>
 end
 
-function C:deleteCapacityReservation(input: types.DeleteCapacityReservationInput, options: any): async.Operation<types.DeleteCapacityReservationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCapacityReservation, input, options) as async.Operation<types.DeleteCapacityReservationOutput>
+function C:deleteCapacityReservation(input: types.DeleteCapacityReservationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCapacityReservationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCapacityReservation as schema.OperationSchema, input, options) as async.Operation<types.DeleteCapacityReservationOutput>
 end
 
-function C:deleteDataCatalog(input: types.DeleteDataCatalogInput, options: any): async.Operation<types.DeleteDataCatalogOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDataCatalog, input, options) as async.Operation<types.DeleteDataCatalogOutput>
+function C:deleteDataCatalog(input: types.DeleteDataCatalogInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDataCatalogOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataCatalog as schema.OperationSchema, input, options) as async.Operation<types.DeleteDataCatalogOutput>
 end
 
-function C:deleteNamedQuery(input: types.DeleteNamedQueryInput, options: any): async.Operation<types.DeleteNamedQueryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNamedQuery, input, options) as async.Operation<types.DeleteNamedQueryOutput>
+function C:deleteNamedQuery(input: types.DeleteNamedQueryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNamedQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNamedQuery as schema.OperationSchema, input, options) as async.Operation<types.DeleteNamedQueryOutput>
 end
 
-function C:deleteNotebook(input: types.DeleteNotebookInput, options: any): async.Operation<types.DeleteNotebookOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNotebook, input, options) as async.Operation<types.DeleteNotebookOutput>
+function C:deleteNotebook(input: types.DeleteNotebookInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNotebookOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNotebook as schema.OperationSchema, input, options) as async.Operation<types.DeleteNotebookOutput>
 end
 
-function C:deletePreparedStatement(input: types.DeletePreparedStatementInput, options: any): async.Operation<types.DeletePreparedStatementOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePreparedStatement, input, options) as async.Operation<types.DeletePreparedStatementOutput>
+function C:deletePreparedStatement(input: types.DeletePreparedStatementInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePreparedStatementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePreparedStatement as schema.OperationSchema, input, options) as async.Operation<types.DeletePreparedStatementOutput>
 end
 
-function C:deleteWorkGroup(input: types.DeleteWorkGroupInput, options: any): async.Operation<types.DeleteWorkGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWorkGroup, input, options) as async.Operation<types.DeleteWorkGroupOutput>
+function C:deleteWorkGroup(input: types.DeleteWorkGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWorkGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWorkGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteWorkGroupOutput>
 end
 
-function C:exportNotebook(input: types.ExportNotebookInput, options: any): async.Operation<types.ExportNotebookOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExportNotebook, input, options) as async.Operation<types.ExportNotebookOutput>
+function C:exportNotebook(input: types.ExportNotebookInput, options?: base_client.InvokeOptions): async.Operation<types.ExportNotebookOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportNotebook as schema.OperationSchema, input, options) as async.Operation<types.ExportNotebookOutput>
 end
 
-function C:getCalculationExecution(input: types.GetCalculationExecutionInput, options: any): async.Operation<types.GetCalculationExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCalculationExecution, input, options) as async.Operation<types.GetCalculationExecutionOutput>
+function C:getCalculationExecution(input: types.GetCalculationExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.GetCalculationExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCalculationExecution as schema.OperationSchema, input, options) as async.Operation<types.GetCalculationExecutionOutput>
 end
 
-function C:getCalculationExecutionCode(input: types.GetCalculationExecutionCodeInput, options: any): async.Operation<types.GetCalculationExecutionCodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCalculationExecutionCode, input, options) as async.Operation<types.GetCalculationExecutionCodeOutput>
+function C:getCalculationExecutionCode(input: types.GetCalculationExecutionCodeInput, options?: base_client.InvokeOptions): async.Operation<types.GetCalculationExecutionCodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCalculationExecutionCode as schema.OperationSchema, input, options) as async.Operation<types.GetCalculationExecutionCodeOutput>
 end
 
-function C:getCalculationExecutionStatus(input: types.GetCalculationExecutionStatusInput, options: any): async.Operation<types.GetCalculationExecutionStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCalculationExecutionStatus, input, options) as async.Operation<types.GetCalculationExecutionStatusOutput>
+function C:getCalculationExecutionStatus(input: types.GetCalculationExecutionStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetCalculationExecutionStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCalculationExecutionStatus as schema.OperationSchema, input, options) as async.Operation<types.GetCalculationExecutionStatusOutput>
 end
 
-function C:getCapacityAssignmentConfiguration(input: types.GetCapacityAssignmentConfigurationInput, options: any): async.Operation<types.GetCapacityAssignmentConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCapacityAssignmentConfiguration, input, options) as async.Operation<types.GetCapacityAssignmentConfigurationOutput>
+function C:getCapacityAssignmentConfiguration(input: types.GetCapacityAssignmentConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetCapacityAssignmentConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCapacityAssignmentConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetCapacityAssignmentConfigurationOutput>
 end
 
-function C:getCapacityReservation(input: types.GetCapacityReservationInput, options: any): async.Operation<types.GetCapacityReservationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCapacityReservation, input, options) as async.Operation<types.GetCapacityReservationOutput>
+function C:getCapacityReservation(input: types.GetCapacityReservationInput, options?: base_client.InvokeOptions): async.Operation<types.GetCapacityReservationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCapacityReservation as schema.OperationSchema, input, options) as async.Operation<types.GetCapacityReservationOutput>
 end
 
-function C:getDatabase(input: types.GetDatabaseInput, options: any): async.Operation<types.GetDatabaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDatabase, input, options) as async.Operation<types.GetDatabaseOutput>
+function C:getDatabase(input: types.GetDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.GetDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDatabase as schema.OperationSchema, input, options) as async.Operation<types.GetDatabaseOutput>
 end
 
-function C:getDataCatalog(input: types.GetDataCatalogInput, options: any): async.Operation<types.GetDataCatalogOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataCatalog, input, options) as async.Operation<types.GetDataCatalogOutput>
+function C:getDataCatalog(input: types.GetDataCatalogInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataCatalogOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataCatalog as schema.OperationSchema, input, options) as async.Operation<types.GetDataCatalogOutput>
 end
 
-function C:getNamedQuery(input: types.GetNamedQueryInput, options: any): async.Operation<types.GetNamedQueryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNamedQuery, input, options) as async.Operation<types.GetNamedQueryOutput>
+function C:getNamedQuery(input: types.GetNamedQueryInput, options?: base_client.InvokeOptions): async.Operation<types.GetNamedQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNamedQuery as schema.OperationSchema, input, options) as async.Operation<types.GetNamedQueryOutput>
 end
 
-function C:getNotebookMetadata(input: types.GetNotebookMetadataInput, options: any): async.Operation<types.GetNotebookMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNotebookMetadata, input, options) as async.Operation<types.GetNotebookMetadataOutput>
+function C:getNotebookMetadata(input: types.GetNotebookMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.GetNotebookMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNotebookMetadata as schema.OperationSchema, input, options) as async.Operation<types.GetNotebookMetadataOutput>
 end
 
-function C:getPreparedStatement(input: types.GetPreparedStatementInput, options: any): async.Operation<types.GetPreparedStatementOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPreparedStatement, input, options) as async.Operation<types.GetPreparedStatementOutput>
+function C:getPreparedStatement(input: types.GetPreparedStatementInput, options?: base_client.InvokeOptions): async.Operation<types.GetPreparedStatementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPreparedStatement as schema.OperationSchema, input, options) as async.Operation<types.GetPreparedStatementOutput>
 end
 
-function C:getQueryExecution(input: types.GetQueryExecutionInput, options: any): async.Operation<types.GetQueryExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetQueryExecution, input, options) as async.Operation<types.GetQueryExecutionOutput>
+function C:getQueryExecution(input: types.GetQueryExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.GetQueryExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQueryExecution as schema.OperationSchema, input, options) as async.Operation<types.GetQueryExecutionOutput>
 end
 
-function C:getQueryResults(input: types.GetQueryResultsInput, options: any): async.Operation<types.GetQueryResultsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetQueryResults, input, options) as async.Operation<types.GetQueryResultsOutput>
+function C:getQueryResults(input: types.GetQueryResultsInput, options?: base_client.InvokeOptions): async.Operation<types.GetQueryResultsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQueryResults as schema.OperationSchema, input, options) as async.Operation<types.GetQueryResultsOutput>
 end
 
-function C:getQueryRuntimeStatistics(input: types.GetQueryRuntimeStatisticsInput, options: any): async.Operation<types.GetQueryRuntimeStatisticsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetQueryRuntimeStatistics, input, options) as async.Operation<types.GetQueryRuntimeStatisticsOutput>
+function C:getQueryRuntimeStatistics(input: types.GetQueryRuntimeStatisticsInput, options?: base_client.InvokeOptions): async.Operation<types.GetQueryRuntimeStatisticsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQueryRuntimeStatistics as schema.OperationSchema, input, options) as async.Operation<types.GetQueryRuntimeStatisticsOutput>
 end
 
-function C:getResourceDashboard(input: types.GetResourceDashboardInput, options: any): async.Operation<types.GetResourceDashboardOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourceDashboard, input, options) as async.Operation<types.GetResourceDashboardOutput>
+function C:getResourceDashboard(input: types.GetResourceDashboardInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourceDashboardOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourceDashboard as schema.OperationSchema, input, options) as async.Operation<types.GetResourceDashboardOutput>
 end
 
-function C:getSession(input: types.GetSessionInput, options: any): async.Operation<types.GetSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSession, input, options) as async.Operation<types.GetSessionOutput>
+function C:getSession(input: types.GetSessionInput, options?: base_client.InvokeOptions): async.Operation<types.GetSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSession as schema.OperationSchema, input, options) as async.Operation<types.GetSessionOutput>
 end
 
-function C:getSessionEndpoint(input: types.GetSessionEndpointInput, options: any): async.Operation<types.GetSessionEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSessionEndpoint, input, options) as async.Operation<types.GetSessionEndpointOutput>
+function C:getSessionEndpoint(input: types.GetSessionEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.GetSessionEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSessionEndpoint as schema.OperationSchema, input, options) as async.Operation<types.GetSessionEndpointOutput>
 end
 
-function C:getSessionStatus(input: types.GetSessionStatusInput, options: any): async.Operation<types.GetSessionStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSessionStatus, input, options) as async.Operation<types.GetSessionStatusOutput>
+function C:getSessionStatus(input: types.GetSessionStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetSessionStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSessionStatus as schema.OperationSchema, input, options) as async.Operation<types.GetSessionStatusOutput>
 end
 
-function C:getTableMetadata(input: types.GetTableMetadataInput, options: any): async.Operation<types.GetTableMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTableMetadata, input, options) as async.Operation<types.GetTableMetadataOutput>
+function C:getTableMetadata(input: types.GetTableMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTableMetadata as schema.OperationSchema, input, options) as async.Operation<types.GetTableMetadataOutput>
 end
 
-function C:getWorkGroup(input: types.GetWorkGroupInput, options: any): async.Operation<types.GetWorkGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWorkGroup, input, options) as async.Operation<types.GetWorkGroupOutput>
+function C:getWorkGroup(input: types.GetWorkGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetWorkGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWorkGroup as schema.OperationSchema, input, options) as async.Operation<types.GetWorkGroupOutput>
 end
 
-function C:importNotebook(input: types.ImportNotebookInput, options: any): async.Operation<types.ImportNotebookOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportNotebook, input, options) as async.Operation<types.ImportNotebookOutput>
+function C:importNotebook(input: types.ImportNotebookInput, options?: base_client.InvokeOptions): async.Operation<types.ImportNotebookOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportNotebook as schema.OperationSchema, input, options) as async.Operation<types.ImportNotebookOutput>
 end
 
-function C:listApplicationDPUSizes(input: types.ListApplicationDPUSizesInput, options: any): async.Operation<types.ListApplicationDPUSizesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplicationDPUSizes, input, options) as async.Operation<types.ListApplicationDPUSizesOutput>
+function C:listApplicationDPUSizes(input: types.ListApplicationDPUSizesInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationDPUSizesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplicationDPUSizes as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationDPUSizesOutput>
 end
 
-function C:listCalculationExecutions(input: types.ListCalculationExecutionsInput, options: any): async.Operation<types.ListCalculationExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCalculationExecutions, input, options) as async.Operation<types.ListCalculationExecutionsOutput>
+function C:listCalculationExecutions(input: types.ListCalculationExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCalculationExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCalculationExecutions as schema.OperationSchema, input, options) as async.Operation<types.ListCalculationExecutionsOutput>
 end
 
-function C:listCapacityReservations(input: types.ListCapacityReservationsInput, options: any): async.Operation<types.ListCapacityReservationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCapacityReservations, input, options) as async.Operation<types.ListCapacityReservationsOutput>
+function C:listCapacityReservations(input: types.ListCapacityReservationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCapacityReservationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCapacityReservations as schema.OperationSchema, input, options) as async.Operation<types.ListCapacityReservationsOutput>
 end
 
-function C:listDatabases(input: types.ListDatabasesInput, options: any): async.Operation<types.ListDatabasesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDatabases, input, options) as async.Operation<types.ListDatabasesOutput>
+function C:listDatabases(input: types.ListDatabasesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDatabasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDatabases as schema.OperationSchema, input, options) as async.Operation<types.ListDatabasesOutput>
 end
 
-function C:listDataCatalogs(input: types.ListDataCatalogsInput, options: any): async.Operation<types.ListDataCatalogsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDataCatalogs, input, options) as async.Operation<types.ListDataCatalogsOutput>
+function C:listDataCatalogs(input: types.ListDataCatalogsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataCatalogsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataCatalogs as schema.OperationSchema, input, options) as async.Operation<types.ListDataCatalogsOutput>
 end
 
-function C:listEngineVersions(input: types.ListEngineVersionsInput, options: any): async.Operation<types.ListEngineVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEngineVersions, input, options) as async.Operation<types.ListEngineVersionsOutput>
+function C:listEngineVersions(input: types.ListEngineVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEngineVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEngineVersions as schema.OperationSchema, input, options) as async.Operation<types.ListEngineVersionsOutput>
 end
 
-function C:listExecutors(input: types.ListExecutorsInput, options: any): async.Operation<types.ListExecutorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListExecutors, input, options) as async.Operation<types.ListExecutorsOutput>
+function C:listExecutors(input: types.ListExecutorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExecutorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExecutors as schema.OperationSchema, input, options) as async.Operation<types.ListExecutorsOutput>
 end
 
-function C:listNamedQueries(input: types.ListNamedQueriesInput, options: any): async.Operation<types.ListNamedQueriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNamedQueries, input, options) as async.Operation<types.ListNamedQueriesOutput>
+function C:listNamedQueries(input: types.ListNamedQueriesInput, options?: base_client.InvokeOptions): async.Operation<types.ListNamedQueriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNamedQueries as schema.OperationSchema, input, options) as async.Operation<types.ListNamedQueriesOutput>
 end
 
-function C:listNotebookMetadata(input: types.ListNotebookMetadataInput, options: any): async.Operation<types.ListNotebookMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNotebookMetadata, input, options) as async.Operation<types.ListNotebookMetadataOutput>
+function C:listNotebookMetadata(input: types.ListNotebookMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.ListNotebookMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNotebookMetadata as schema.OperationSchema, input, options) as async.Operation<types.ListNotebookMetadataOutput>
 end
 
-function C:listNotebookSessions(input: types.ListNotebookSessionsInput, options: any): async.Operation<types.ListNotebookSessionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNotebookSessions, input, options) as async.Operation<types.ListNotebookSessionsOutput>
+function C:listNotebookSessions(input: types.ListNotebookSessionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListNotebookSessionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNotebookSessions as schema.OperationSchema, input, options) as async.Operation<types.ListNotebookSessionsOutput>
 end
 
-function C:listPreparedStatements(input: types.ListPreparedStatementsInput, options: any): async.Operation<types.ListPreparedStatementsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPreparedStatements, input, options) as async.Operation<types.ListPreparedStatementsOutput>
+function C:listPreparedStatements(input: types.ListPreparedStatementsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPreparedStatementsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPreparedStatements as schema.OperationSchema, input, options) as async.Operation<types.ListPreparedStatementsOutput>
 end
 
-function C:listQueryExecutions(input: types.ListQueryExecutionsInput, options: any): async.Operation<types.ListQueryExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListQueryExecutions, input, options) as async.Operation<types.ListQueryExecutionsOutput>
+function C:listQueryExecutions(input: types.ListQueryExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListQueryExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListQueryExecutions as schema.OperationSchema, input, options) as async.Operation<types.ListQueryExecutionsOutput>
 end
 
-function C:listSessions(input: types.ListSessionsInput, options: any): async.Operation<types.ListSessionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSessions, input, options) as async.Operation<types.ListSessionsOutput>
+function C:listSessions(input: types.ListSessionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSessionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSessions as schema.OperationSchema, input, options) as async.Operation<types.ListSessionsOutput>
 end
 
-function C:listTableMetadata(input: types.ListTableMetadataInput, options: any): async.Operation<types.ListTableMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTableMetadata, input, options) as async.Operation<types.ListTableMetadataOutput>
+function C:listTableMetadata(input: types.ListTableMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.ListTableMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTableMetadata as schema.OperationSchema, input, options) as async.Operation<types.ListTableMetadataOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listWorkGroups(input: types.ListWorkGroupsInput, options: any): async.Operation<types.ListWorkGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWorkGroups, input, options) as async.Operation<types.ListWorkGroupsOutput>
+function C:listWorkGroups(input: types.ListWorkGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkGroups as schema.OperationSchema, input, options) as async.Operation<types.ListWorkGroupsOutput>
 end
 
-function C:putCapacityAssignmentConfiguration(input: types.PutCapacityAssignmentConfigurationInput, options: any): async.Operation<types.PutCapacityAssignmentConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutCapacityAssignmentConfiguration, input, options) as async.Operation<types.PutCapacityAssignmentConfigurationOutput>
+function C:putCapacityAssignmentConfiguration(input: types.PutCapacityAssignmentConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutCapacityAssignmentConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutCapacityAssignmentConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutCapacityAssignmentConfigurationOutput>
 end
 
-function C:startCalculationExecution(input: types.StartCalculationExecutionInput, options: any): async.Operation<types.StartCalculationExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartCalculationExecution, input, options) as async.Operation<types.StartCalculationExecutionOutput>
+function C:startCalculationExecution(input: types.StartCalculationExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.StartCalculationExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartCalculationExecution as schema.OperationSchema, input, options) as async.Operation<types.StartCalculationExecutionOutput>
 end
 
-function C:startQueryExecution(input: types.StartQueryExecutionInput, options: any): async.Operation<types.StartQueryExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartQueryExecution, input, options) as async.Operation<types.StartQueryExecutionOutput>
+function C:startQueryExecution(input: types.StartQueryExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.StartQueryExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartQueryExecution as schema.OperationSchema, input, options) as async.Operation<types.StartQueryExecutionOutput>
 end
 
-function C:startSession(input: types.StartSessionInput, options: any): async.Operation<types.StartSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartSession, input, options) as async.Operation<types.StartSessionOutput>
+function C:startSession(input: types.StartSessionInput, options?: base_client.InvokeOptions): async.Operation<types.StartSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartSession as schema.OperationSchema, input, options) as async.Operation<types.StartSessionOutput>
 end
 
-function C:stopCalculationExecution(input: types.StopCalculationExecutionInput, options: any): async.Operation<types.StopCalculationExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopCalculationExecution, input, options) as async.Operation<types.StopCalculationExecutionOutput>
+function C:stopCalculationExecution(input: types.StopCalculationExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.StopCalculationExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopCalculationExecution as schema.OperationSchema, input, options) as async.Operation<types.StopCalculationExecutionOutput>
 end
 
-function C:stopQueryExecution(input: types.StopQueryExecutionInput, options: any): async.Operation<types.StopQueryExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopQueryExecution, input, options) as async.Operation<types.StopQueryExecutionOutput>
+function C:stopQueryExecution(input: types.StopQueryExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.StopQueryExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopQueryExecution as schema.OperationSchema, input, options) as async.Operation<types.StopQueryExecutionOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:terminateSession(input: types.TerminateSessionInput, options: any): async.Operation<types.TerminateSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.TerminateSession, input, options) as async.Operation<types.TerminateSessionOutput>
+function C:terminateSession(input: types.TerminateSessionInput, options?: base_client.InvokeOptions): async.Operation<types.TerminateSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TerminateSession as schema.OperationSchema, input, options) as async.Operation<types.TerminateSessionOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateCapacityReservation(input: types.UpdateCapacityReservationInput, options: any): async.Operation<types.UpdateCapacityReservationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCapacityReservation, input, options) as async.Operation<types.UpdateCapacityReservationOutput>
+function C:updateCapacityReservation(input: types.UpdateCapacityReservationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCapacityReservationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCapacityReservation as schema.OperationSchema, input, options) as async.Operation<types.UpdateCapacityReservationOutput>
 end
 
-function C:updateDataCatalog(input: types.UpdateDataCatalogInput, options: any): async.Operation<types.UpdateDataCatalogOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDataCatalog, input, options) as async.Operation<types.UpdateDataCatalogOutput>
+function C:updateDataCatalog(input: types.UpdateDataCatalogInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDataCatalogOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDataCatalog as schema.OperationSchema, input, options) as async.Operation<types.UpdateDataCatalogOutput>
 end
 
-function C:updateNamedQuery(input: types.UpdateNamedQueryInput, options: any): async.Operation<types.UpdateNamedQueryOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateNamedQuery, input, options) as async.Operation<types.UpdateNamedQueryOutput>
+function C:updateNamedQuery(input: types.UpdateNamedQueryInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNamedQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNamedQuery as schema.OperationSchema, input, options) as async.Operation<types.UpdateNamedQueryOutput>
 end
 
-function C:updateNotebook(input: types.UpdateNotebookInput, options: any): async.Operation<types.UpdateNotebookOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateNotebook, input, options) as async.Operation<types.UpdateNotebookOutput>
+function C:updateNotebook(input: types.UpdateNotebookInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNotebookOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNotebook as schema.OperationSchema, input, options) as async.Operation<types.UpdateNotebookOutput>
 end
 
-function C:updateNotebookMetadata(input: types.UpdateNotebookMetadataInput, options: any): async.Operation<types.UpdateNotebookMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateNotebookMetadata, input, options) as async.Operation<types.UpdateNotebookMetadataOutput>
+function C:updateNotebookMetadata(input: types.UpdateNotebookMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNotebookMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNotebookMetadata as schema.OperationSchema, input, options) as async.Operation<types.UpdateNotebookMetadataOutput>
 end
 
-function C:updatePreparedStatement(input: types.UpdatePreparedStatementInput, options: any): async.Operation<types.UpdatePreparedStatementOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePreparedStatement, input, options) as async.Operation<types.UpdatePreparedStatementOutput>
+function C:updatePreparedStatement(input: types.UpdatePreparedStatementInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePreparedStatementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePreparedStatement as schema.OperationSchema, input, options) as async.Operation<types.UpdatePreparedStatementOutput>
 end
 
-function C:updateWorkGroup(input: types.UpdateWorkGroupInput, options: any): async.Operation<types.UpdateWorkGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateWorkGroup, input, options) as async.Operation<types.UpdateWorkGroupOutput>
+function C:updateWorkGroup(input: types.UpdateWorkGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWorkGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWorkGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateWorkGroupOutput>
 end
 
 return M

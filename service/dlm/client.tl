@@ -8,47 +8,50 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("dlm.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("dlm.schemas")
 local traits = require("smithy.traits")
 local types = require("dlm.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createLifecyclePolicy: function(Client, types.CreateLifecyclePolicyInput, any): async.Operation<types.CreateLifecyclePolicyOutput>
-    deleteLifecyclePolicy: function(Client, types.DeleteLifecyclePolicyInput, any): async.Operation<types.DeleteLifecyclePolicyOutput>
-    getLifecyclePolicies: function(Client, types.GetLifecyclePoliciesInput, any): async.Operation<types.GetLifecyclePoliciesOutput>
-    getLifecyclePolicy: function(Client, types.GetLifecyclePolicyInput, any): async.Operation<types.GetLifecyclePolicyOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateLifecyclePolicy: function(Client, types.UpdateLifecyclePolicyInput, any): async.Operation<types.UpdateLifecyclePolicyOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createLifecyclePolicy: function(Client, types.CreateLifecyclePolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateLifecyclePolicyOutput>
+    deleteLifecyclePolicy: function(Client, types.DeleteLifecyclePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLifecyclePolicyOutput>
+    getLifecyclePolicies: function(Client, types.GetLifecyclePoliciesInput, ? base_client.InvokeOptions): async.Operation<types.GetLifecyclePoliciesOutput>
+    getLifecyclePolicy: function(Client, types.GetLifecyclePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetLifecyclePolicyOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateLifecyclePolicy: function(Client, types.UpdateLifecyclePolicyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLifecyclePolicyOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "dlm_20180112"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "dlm", signing_region = c.region } }
                 else
@@ -67,36 +70,36 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createLifecyclePolicy(input: types.CreateLifecyclePolicyInput, options: any): async.Operation<types.CreateLifecyclePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLifecyclePolicy, input, options) as async.Operation<types.CreateLifecyclePolicyOutput>
+function C:createLifecyclePolicy(input: types.CreateLifecyclePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLifecyclePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLifecyclePolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateLifecyclePolicyOutput>
 end
 
-function C:deleteLifecyclePolicy(input: types.DeleteLifecyclePolicyInput, options: any): async.Operation<types.DeleteLifecyclePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLifecyclePolicy, input, options) as async.Operation<types.DeleteLifecyclePolicyOutput>
+function C:deleteLifecyclePolicy(input: types.DeleteLifecyclePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLifecyclePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLifecyclePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteLifecyclePolicyOutput>
 end
 
-function C:getLifecyclePolicies(input: types.GetLifecyclePoliciesInput, options: any): async.Operation<types.GetLifecyclePoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLifecyclePolicies, input, options) as async.Operation<types.GetLifecyclePoliciesOutput>
+function C:getLifecyclePolicies(input: types.GetLifecyclePoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.GetLifecyclePoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLifecyclePolicies as schema.OperationSchema, input, options) as async.Operation<types.GetLifecyclePoliciesOutput>
 end
 
-function C:getLifecyclePolicy(input: types.GetLifecyclePolicyInput, options: any): async.Operation<types.GetLifecyclePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLifecyclePolicy, input, options) as async.Operation<types.GetLifecyclePolicyOutput>
+function C:getLifecyclePolicy(input: types.GetLifecyclePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetLifecyclePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLifecyclePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetLifecyclePolicyOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateLifecyclePolicy(input: types.UpdateLifecyclePolicyInput, options: any): async.Operation<types.UpdateLifecyclePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLifecyclePolicy, input, options) as async.Operation<types.UpdateLifecyclePolicyOutput>
+function C:updateLifecyclePolicy(input: types.UpdateLifecyclePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLifecyclePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLifecyclePolicy as schema.OperationSchema, input, options) as async.Operation<types.UpdateLifecyclePolicyOutput>
 end
 
 return M

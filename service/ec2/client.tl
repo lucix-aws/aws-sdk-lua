@@ -8,802 +8,805 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("ec2.endpoint_rules")
 local query_protocol = require("smithy.protocol.ec2query")
+local schema = require("smithy.schema")
 local schemas = require("ec2.schemas")
 local traits = require("smithy.traits")
 local types = require("ec2.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    acceptAddressTransfer: function(Client, types.AcceptAddressTransferInput, any): async.Operation<types.AcceptAddressTransferOutput>
-    acceptCapacityReservationBillingOwnership: function(Client, types.AcceptCapacityReservationBillingOwnershipInput, any): async.Operation<types.AcceptCapacityReservationBillingOwnershipOutput>
-    acceptReservedInstancesExchangeQuote: function(Client, types.AcceptReservedInstancesExchangeQuoteInput, any): async.Operation<types.AcceptReservedInstancesExchangeQuoteOutput>
-    acceptTransitGatewayClientVpnAttachment: function(Client, types.AcceptTransitGatewayClientVpnAttachmentInput, any): async.Operation<types.AcceptTransitGatewayClientVpnAttachmentOutput>
-    acceptTransitGatewayMulticastDomainAssociations: function(Client, types.AcceptTransitGatewayMulticastDomainAssociationsInput, any): async.Operation<types.AcceptTransitGatewayMulticastDomainAssociationsOutput>
-    acceptTransitGatewayPeeringAttachment: function(Client, types.AcceptTransitGatewayPeeringAttachmentInput, any): async.Operation<types.AcceptTransitGatewayPeeringAttachmentOutput>
-    acceptTransitGatewayVpcAttachment: function(Client, types.AcceptTransitGatewayVpcAttachmentInput, any): async.Operation<types.AcceptTransitGatewayVpcAttachmentOutput>
-    acceptVpcEndpointConnections: function(Client, types.AcceptVpcEndpointConnectionsInput, any): async.Operation<types.AcceptVpcEndpointConnectionsOutput>
-    acceptVpcPeeringConnection: function(Client, types.AcceptVpcPeeringConnectionInput, any): async.Operation<types.AcceptVpcPeeringConnectionOutput>
-    advertiseByoipCidr: function(Client, types.AdvertiseByoipCidrInput, any): async.Operation<types.AdvertiseByoipCidrOutput>
-    allocateAddress: function(Client, types.AllocateAddressInput, any): async.Operation<types.AllocateAddressOutput>
-    allocateHosts: function(Client, types.AllocateHostsInput, any): async.Operation<types.AllocateHostsOutput>
-    allocateIpamPoolCidr: function(Client, types.AllocateIpamPoolCidrInput, any): async.Operation<types.AllocateIpamPoolCidrOutput>
-    applySecurityGroupsToClientVpnTargetNetwork: function(Client, types.ApplySecurityGroupsToClientVpnTargetNetworkInput, any): async.Operation<types.ApplySecurityGroupsToClientVpnTargetNetworkOutput>
-    assignIpv6Addresses: function(Client, types.AssignIpv6AddressesInput, any): async.Operation<types.AssignIpv6AddressesOutput>
-    assignPrivateIpAddresses: function(Client, types.AssignPrivateIpAddressesInput, any): async.Operation<types.AssignPrivateIpAddressesOutput>
-    assignPrivateNatGatewayAddress: function(Client, types.AssignPrivateNatGatewayAddressInput, any): async.Operation<types.AssignPrivateNatGatewayAddressOutput>
-    associateAddress: function(Client, types.AssociateAddressInput, any): async.Operation<types.AssociateAddressOutput>
-    associateCapacityReservationBillingOwner: function(Client, types.AssociateCapacityReservationBillingOwnerInput, any): async.Operation<types.AssociateCapacityReservationBillingOwnerOutput>
-    associateClientVpnTargetNetwork: function(Client, types.AssociateClientVpnTargetNetworkInput, any): async.Operation<types.AssociateClientVpnTargetNetworkOutput>
-    associateDhcpOptions: function(Client, types.AssociateDhcpOptionsInput, any): async.Operation<types.AssociateDhcpOptionsOutput>
-    associateEnclaveCertificateIamRole: function(Client, types.AssociateEnclaveCertificateIamRoleInput, any): async.Operation<types.AssociateEnclaveCertificateIamRoleOutput>
-    associateIamInstanceProfile: function(Client, types.AssociateIamInstanceProfileInput, any): async.Operation<types.AssociateIamInstanceProfileOutput>
-    associateInstanceEventWindow: function(Client, types.AssociateInstanceEventWindowInput, any): async.Operation<types.AssociateInstanceEventWindowOutput>
-    associateIpamByoasn: function(Client, types.AssociateIpamByoasnInput, any): async.Operation<types.AssociateIpamByoasnOutput>
-    associateIpamResourceDiscovery: function(Client, types.AssociateIpamResourceDiscoveryInput, any): async.Operation<types.AssociateIpamResourceDiscoveryOutput>
-    associateNatGatewayAddress: function(Client, types.AssociateNatGatewayAddressInput, any): async.Operation<types.AssociateNatGatewayAddressOutput>
-    associateRouteServer: function(Client, types.AssociateRouteServerInput, any): async.Operation<types.AssociateRouteServerOutput>
-    associateRouteTable: function(Client, types.AssociateRouteTableInput, any): async.Operation<types.AssociateRouteTableOutput>
-    associateSecurityGroupVpc: function(Client, types.AssociateSecurityGroupVpcInput, any): async.Operation<types.AssociateSecurityGroupVpcOutput>
-    associateSubnetCidrBlock: function(Client, types.AssociateSubnetCidrBlockInput, any): async.Operation<types.AssociateSubnetCidrBlockOutput>
-    associateTransitGatewayMulticastDomain: function(Client, types.AssociateTransitGatewayMulticastDomainInput, any): async.Operation<types.AssociateTransitGatewayMulticastDomainOutput>
-    associateTransitGatewayPolicyTable: function(Client, types.AssociateTransitGatewayPolicyTableInput, any): async.Operation<types.AssociateTransitGatewayPolicyTableOutput>
-    associateTransitGatewayRouteTable: function(Client, types.AssociateTransitGatewayRouteTableInput, any): async.Operation<types.AssociateTransitGatewayRouteTableOutput>
-    associateTrunkInterface: function(Client, types.AssociateTrunkInterfaceInput, any): async.Operation<types.AssociateTrunkInterfaceOutput>
-    associateVpcCidrBlock: function(Client, types.AssociateVpcCidrBlockInput, any): async.Operation<types.AssociateVpcCidrBlockOutput>
-    attachClassicLinkVpc: function(Client, types.AttachClassicLinkVpcInput, any): async.Operation<types.AttachClassicLinkVpcOutput>
-    attachInternetGateway: function(Client, types.AttachInternetGatewayInput, any): async.Operation<types.AttachInternetGatewayOutput>
-    attachNetworkInterface: function(Client, types.AttachNetworkInterfaceInput, any): async.Operation<types.AttachNetworkInterfaceOutput>
-    attachVerifiedAccessTrustProvider: function(Client, types.AttachVerifiedAccessTrustProviderInput, any): async.Operation<types.AttachVerifiedAccessTrustProviderOutput>
-    attachVolume: function(Client, types.AttachVolumeInput, any): async.Operation<types.AttachVolumeOutput>
-    attachVpnGateway: function(Client, types.AttachVpnGatewayInput, any): async.Operation<types.AttachVpnGatewayOutput>
-    authorizeClientVpnIngress: function(Client, types.AuthorizeClientVpnIngressInput, any): async.Operation<types.AuthorizeClientVpnIngressOutput>
-    authorizeSecurityGroupEgress: function(Client, types.AuthorizeSecurityGroupEgressInput, any): async.Operation<types.AuthorizeSecurityGroupEgressOutput>
-    authorizeSecurityGroupIngress: function(Client, types.AuthorizeSecurityGroupIngressInput, any): async.Operation<types.AuthorizeSecurityGroupIngressOutput>
-    bundleInstance: function(Client, types.BundleInstanceInput, any): async.Operation<types.BundleInstanceOutput>
-    cancelBundleTask: function(Client, types.CancelBundleTaskInput, any): async.Operation<types.CancelBundleTaskOutput>
-    cancelCapacityReservation: function(Client, types.CancelCapacityReservationInput, any): async.Operation<types.CancelCapacityReservationOutput>
-    cancelCapacityReservationFleets: function(Client, types.CancelCapacityReservationFleetsInput, any): async.Operation<types.CancelCapacityReservationFleetsOutput>
-    cancelConversionTask: function(Client, types.CancelConversionTaskInput, any): async.Operation<types.CancelConversionTaskOutput>
-    cancelDeclarativePoliciesReport: function(Client, types.CancelDeclarativePoliciesReportInput, any): async.Operation<types.CancelDeclarativePoliciesReportOutput>
-    cancelExportTask: function(Client, types.CancelExportTaskInput, any): async.Operation<types.CancelExportTaskOutput>
-    cancelImageLaunchPermission: function(Client, types.CancelImageLaunchPermissionInput, any): async.Operation<types.CancelImageLaunchPermissionOutput>
-    cancelImportTask: function(Client, types.CancelImportTaskInput, any): async.Operation<types.CancelImportTaskOutput>
-    cancelReservedInstancesListing: function(Client, types.CancelReservedInstancesListingInput, any): async.Operation<types.CancelReservedInstancesListingOutput>
-    cancelSpotFleetRequests: function(Client, types.CancelSpotFleetRequestsInput, any): async.Operation<types.CancelSpotFleetRequestsOutput>
-    cancelSpotInstanceRequests: function(Client, types.CancelSpotInstanceRequestsInput, any): async.Operation<types.CancelSpotInstanceRequestsOutput>
-    confirmProductInstance: function(Client, types.ConfirmProductInstanceInput, any): async.Operation<types.ConfirmProductInstanceOutput>
-    copyFpgaImage: function(Client, types.CopyFpgaImageInput, any): async.Operation<types.CopyFpgaImageOutput>
-    copyImage: function(Client, types.CopyImageInput, any): async.Operation<types.CopyImageOutput>
-    copySnapshot: function(Client, types.CopySnapshotInput, any): async.Operation<types.CopySnapshotOutput>
-    copyVolumes: function(Client, types.CopyVolumesInput, any): async.Operation<types.CopyVolumesOutput>
-    createCapacityManagerDataExport: function(Client, types.CreateCapacityManagerDataExportInput, any): async.Operation<types.CreateCapacityManagerDataExportOutput>
-    createCapacityReservation: function(Client, types.CreateCapacityReservationInput, any): async.Operation<types.CreateCapacityReservationOutput>
-    createCapacityReservationBySplitting: function(Client, types.CreateCapacityReservationBySplittingInput, any): async.Operation<types.CreateCapacityReservationBySplittingOutput>
-    createCapacityReservationFleet: function(Client, types.CreateCapacityReservationFleetInput, any): async.Operation<types.CreateCapacityReservationFleetOutput>
-    createCarrierGateway: function(Client, types.CreateCarrierGatewayInput, any): async.Operation<types.CreateCarrierGatewayOutput>
-    createClientVpnEndpoint: function(Client, types.CreateClientVpnEndpointInput, any): async.Operation<types.CreateClientVpnEndpointOutput>
-    createClientVpnRoute: function(Client, types.CreateClientVpnRouteInput, any): async.Operation<types.CreateClientVpnRouteOutput>
-    createCoipCidr: function(Client, types.CreateCoipCidrInput, any): async.Operation<types.CreateCoipCidrOutput>
-    createCoipPool: function(Client, types.CreateCoipPoolInput, any): async.Operation<types.CreateCoipPoolOutput>
-    createCustomerGateway: function(Client, types.CreateCustomerGatewayInput, any): async.Operation<types.CreateCustomerGatewayOutput>
-    createDefaultSubnet: function(Client, types.CreateDefaultSubnetInput, any): async.Operation<types.CreateDefaultSubnetOutput>
-    createDefaultVpc: function(Client, types.CreateDefaultVpcInput, any): async.Operation<types.CreateDefaultVpcOutput>
-    createDelegateMacVolumeOwnershipTask: function(Client, types.CreateDelegateMacVolumeOwnershipTaskInput, any): async.Operation<types.CreateDelegateMacVolumeOwnershipTaskOutput>
-    createDhcpOptions: function(Client, types.CreateDhcpOptionsInput, any): async.Operation<types.CreateDhcpOptionsOutput>
-    createEgressOnlyInternetGateway: function(Client, types.CreateEgressOnlyInternetGatewayInput, any): async.Operation<types.CreateEgressOnlyInternetGatewayOutput>
-    createFleet: function(Client, types.CreateFleetInput, any): async.Operation<types.CreateFleetOutput>
-    createFlowLogs: function(Client, types.CreateFlowLogsInput, any): async.Operation<types.CreateFlowLogsOutput>
-    createFpgaImage: function(Client, types.CreateFpgaImageInput, any): async.Operation<types.CreateFpgaImageOutput>
-    createImage: function(Client, types.CreateImageInput, any): async.Operation<types.CreateImageOutput>
-    createImageUsageReport: function(Client, types.CreateImageUsageReportInput, any): async.Operation<types.CreateImageUsageReportOutput>
-    createInstanceConnectEndpoint: function(Client, types.CreateInstanceConnectEndpointInput, any): async.Operation<types.CreateInstanceConnectEndpointOutput>
-    createInstanceEventWindow: function(Client, types.CreateInstanceEventWindowInput, any): async.Operation<types.CreateInstanceEventWindowOutput>
-    createInstanceExportTask: function(Client, types.CreateInstanceExportTaskInput, any): async.Operation<types.CreateInstanceExportTaskOutput>
-    createInternetGateway: function(Client, types.CreateInternetGatewayInput, any): async.Operation<types.CreateInternetGatewayOutput>
-    createInterruptibleCapacityReservationAllocation: function(Client, types.CreateInterruptibleCapacityReservationAllocationInput, any): async.Operation<types.CreateInterruptibleCapacityReservationAllocationOutput>
-    createIpam: function(Client, types.CreateIpamInput, any): async.Operation<types.CreateIpamOutput>
-    createIpamExternalResourceVerificationToken: function(Client, types.CreateIpamExternalResourceVerificationTokenInput, any): async.Operation<types.CreateIpamExternalResourceVerificationTokenOutput>
-    createIpamPolicy: function(Client, types.CreateIpamPolicyInput, any): async.Operation<types.CreateIpamPolicyOutput>
-    createIpamPool: function(Client, types.CreateIpamPoolInput, any): async.Operation<types.CreateIpamPoolOutput>
-    createIpamPrefixListResolver: function(Client, types.CreateIpamPrefixListResolverInput, any): async.Operation<types.CreateIpamPrefixListResolverOutput>
-    createIpamPrefixListResolverTarget: function(Client, types.CreateIpamPrefixListResolverTargetInput, any): async.Operation<types.CreateIpamPrefixListResolverTargetOutput>
-    createIpamResourceDiscovery: function(Client, types.CreateIpamResourceDiscoveryInput, any): async.Operation<types.CreateIpamResourceDiscoveryOutput>
-    createIpamScope: function(Client, types.CreateIpamScopeInput, any): async.Operation<types.CreateIpamScopeOutput>
-    createKeyPair: function(Client, types.CreateKeyPairInput, any): async.Operation<types.CreateKeyPairOutput>
-    createLaunchTemplate: function(Client, types.CreateLaunchTemplateInput, any): async.Operation<types.CreateLaunchTemplateOutput>
-    createLaunchTemplateVersion: function(Client, types.CreateLaunchTemplateVersionInput, any): async.Operation<types.CreateLaunchTemplateVersionOutput>
-    createLocalGatewayRoute: function(Client, types.CreateLocalGatewayRouteInput, any): async.Operation<types.CreateLocalGatewayRouteOutput>
-    createLocalGatewayRouteTable: function(Client, types.CreateLocalGatewayRouteTableInput, any): async.Operation<types.CreateLocalGatewayRouteTableOutput>
-    createLocalGatewayRouteTableVirtualInterfaceGroupAssociation: function(Client, types.CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationInput, any): async.Operation<types.CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationOutput>
-    createLocalGatewayRouteTableVpcAssociation: function(Client, types.CreateLocalGatewayRouteTableVpcAssociationInput, any): async.Operation<types.CreateLocalGatewayRouteTableVpcAssociationOutput>
-    createLocalGatewayVirtualInterface: function(Client, types.CreateLocalGatewayVirtualInterfaceInput, any): async.Operation<types.CreateLocalGatewayVirtualInterfaceOutput>
-    createLocalGatewayVirtualInterfaceGroup: function(Client, types.CreateLocalGatewayVirtualInterfaceGroupInput, any): async.Operation<types.CreateLocalGatewayVirtualInterfaceGroupOutput>
-    createMacSystemIntegrityProtectionModificationTask: function(Client, types.CreateMacSystemIntegrityProtectionModificationTaskInput, any): async.Operation<types.CreateMacSystemIntegrityProtectionModificationTaskOutput>
-    createManagedPrefixList: function(Client, types.CreateManagedPrefixListInput, any): async.Operation<types.CreateManagedPrefixListOutput>
-    createNatGateway: function(Client, types.CreateNatGatewayInput, any): async.Operation<types.CreateNatGatewayOutput>
-    createNetworkAcl: function(Client, types.CreateNetworkAclInput, any): async.Operation<types.CreateNetworkAclOutput>
-    createNetworkAclEntry: function(Client, types.CreateNetworkAclEntryInput, any): async.Operation<types.CreateNetworkAclEntryOutput>
-    createNetworkInsightsAccessScope: function(Client, types.CreateNetworkInsightsAccessScopeInput, any): async.Operation<types.CreateNetworkInsightsAccessScopeOutput>
-    createNetworkInsightsPath: function(Client, types.CreateNetworkInsightsPathInput, any): async.Operation<types.CreateNetworkInsightsPathOutput>
-    createNetworkInterface: function(Client, types.CreateNetworkInterfaceInput, any): async.Operation<types.CreateNetworkInterfaceOutput>
-    createNetworkInterfacePermission: function(Client, types.CreateNetworkInterfacePermissionInput, any): async.Operation<types.CreateNetworkInterfacePermissionOutput>
-    createPlacementGroup: function(Client, types.CreatePlacementGroupInput, any): async.Operation<types.CreatePlacementGroupOutput>
-    createPublicIpv4Pool: function(Client, types.CreatePublicIpv4PoolInput, any): async.Operation<types.CreatePublicIpv4PoolOutput>
-    createReplaceRootVolumeTask: function(Client, types.CreateReplaceRootVolumeTaskInput, any): async.Operation<types.CreateReplaceRootVolumeTaskOutput>
-    createReservedInstancesListing: function(Client, types.CreateReservedInstancesListingInput, any): async.Operation<types.CreateReservedInstancesListingOutput>
-    createRestoreImageTask: function(Client, types.CreateRestoreImageTaskInput, any): async.Operation<types.CreateRestoreImageTaskOutput>
-    createRoute: function(Client, types.CreateRouteInput, any): async.Operation<types.CreateRouteOutput>
-    createRouteServer: function(Client, types.CreateRouteServerInput, any): async.Operation<types.CreateRouteServerOutput>
-    createRouteServerEndpoint: function(Client, types.CreateRouteServerEndpointInput, any): async.Operation<types.CreateRouteServerEndpointOutput>
-    createRouteServerPeer: function(Client, types.CreateRouteServerPeerInput, any): async.Operation<types.CreateRouteServerPeerOutput>
-    createRouteTable: function(Client, types.CreateRouteTableInput, any): async.Operation<types.CreateRouteTableOutput>
-    createSecondaryNetwork: function(Client, types.CreateSecondaryNetworkInput, any): async.Operation<types.CreateSecondaryNetworkOutput>
-    createSecondarySubnet: function(Client, types.CreateSecondarySubnetInput, any): async.Operation<types.CreateSecondarySubnetOutput>
-    createSecurityGroup: function(Client, types.CreateSecurityGroupInput, any): async.Operation<types.CreateSecurityGroupOutput>
-    createSnapshot: function(Client, types.CreateSnapshotInput, any): async.Operation<types.CreateSnapshotOutput>
-    createSnapshots: function(Client, types.CreateSnapshotsInput, any): async.Operation<types.CreateSnapshotsOutput>
-    createSpotDatafeedSubscription: function(Client, types.CreateSpotDatafeedSubscriptionInput, any): async.Operation<types.CreateSpotDatafeedSubscriptionOutput>
-    createStoreImageTask: function(Client, types.CreateStoreImageTaskInput, any): async.Operation<types.CreateStoreImageTaskOutput>
-    createSubnet: function(Client, types.CreateSubnetInput, any): async.Operation<types.CreateSubnetOutput>
-    createSubnetCidrReservation: function(Client, types.CreateSubnetCidrReservationInput, any): async.Operation<types.CreateSubnetCidrReservationOutput>
-    createTags: function(Client, types.CreateTagsInput, any): async.Operation<types.CreateTagsOutput>
-    createTrafficMirrorFilter: function(Client, types.CreateTrafficMirrorFilterInput, any): async.Operation<types.CreateTrafficMirrorFilterOutput>
-    createTrafficMirrorFilterRule: function(Client, types.CreateTrafficMirrorFilterRuleInput, any): async.Operation<types.CreateTrafficMirrorFilterRuleOutput>
-    createTrafficMirrorSession: function(Client, types.CreateTrafficMirrorSessionInput, any): async.Operation<types.CreateTrafficMirrorSessionOutput>
-    createTrafficMirrorTarget: function(Client, types.CreateTrafficMirrorTargetInput, any): async.Operation<types.CreateTrafficMirrorTargetOutput>
-    createTransitGateway: function(Client, types.CreateTransitGatewayInput, any): async.Operation<types.CreateTransitGatewayOutput>
-    createTransitGatewayConnect: function(Client, types.CreateTransitGatewayConnectInput, any): async.Operation<types.CreateTransitGatewayConnectOutput>
-    createTransitGatewayConnectPeer: function(Client, types.CreateTransitGatewayConnectPeerInput, any): async.Operation<types.CreateTransitGatewayConnectPeerOutput>
-    createTransitGatewayMeteringPolicy: function(Client, types.CreateTransitGatewayMeteringPolicyInput, any): async.Operation<types.CreateTransitGatewayMeteringPolicyOutput>
-    createTransitGatewayMeteringPolicyEntry: function(Client, types.CreateTransitGatewayMeteringPolicyEntryInput, any): async.Operation<types.CreateTransitGatewayMeteringPolicyEntryOutput>
-    createTransitGatewayMulticastDomain: function(Client, types.CreateTransitGatewayMulticastDomainInput, any): async.Operation<types.CreateTransitGatewayMulticastDomainOutput>
-    createTransitGatewayPeeringAttachment: function(Client, types.CreateTransitGatewayPeeringAttachmentInput, any): async.Operation<types.CreateTransitGatewayPeeringAttachmentOutput>
-    createTransitGatewayPolicyTable: function(Client, types.CreateTransitGatewayPolicyTableInput, any): async.Operation<types.CreateTransitGatewayPolicyTableOutput>
-    createTransitGatewayPrefixListReference: function(Client, types.CreateTransitGatewayPrefixListReferenceInput, any): async.Operation<types.CreateTransitGatewayPrefixListReferenceOutput>
-    createTransitGatewayRoute: function(Client, types.CreateTransitGatewayRouteInput, any): async.Operation<types.CreateTransitGatewayRouteOutput>
-    createTransitGatewayRouteTable: function(Client, types.CreateTransitGatewayRouteTableInput, any): async.Operation<types.CreateTransitGatewayRouteTableOutput>
-    createTransitGatewayRouteTableAnnouncement: function(Client, types.CreateTransitGatewayRouteTableAnnouncementInput, any): async.Operation<types.CreateTransitGatewayRouteTableAnnouncementOutput>
-    createTransitGatewayVpcAttachment: function(Client, types.CreateTransitGatewayVpcAttachmentInput, any): async.Operation<types.CreateTransitGatewayVpcAttachmentOutput>
-    createVerifiedAccessEndpoint: function(Client, types.CreateVerifiedAccessEndpointInput, any): async.Operation<types.CreateVerifiedAccessEndpointOutput>
-    createVerifiedAccessGroup: function(Client, types.CreateVerifiedAccessGroupInput, any): async.Operation<types.CreateVerifiedAccessGroupOutput>
-    createVerifiedAccessInstance: function(Client, types.CreateVerifiedAccessInstanceInput, any): async.Operation<types.CreateVerifiedAccessInstanceOutput>
-    createVerifiedAccessTrustProvider: function(Client, types.CreateVerifiedAccessTrustProviderInput, any): async.Operation<types.CreateVerifiedAccessTrustProviderOutput>
-    createVolume: function(Client, types.CreateVolumeInput, any): async.Operation<types.CreateVolumeOutput>
-    createVpc: function(Client, types.CreateVpcInput, any): async.Operation<types.CreateVpcOutput>
-    createVpcBlockPublicAccessExclusion: function(Client, types.CreateVpcBlockPublicAccessExclusionInput, any): async.Operation<types.CreateVpcBlockPublicAccessExclusionOutput>
-    createVpcEncryptionControl: function(Client, types.CreateVpcEncryptionControlInput, any): async.Operation<types.CreateVpcEncryptionControlOutput>
-    createVpcEndpoint: function(Client, types.CreateVpcEndpointInput, any): async.Operation<types.CreateVpcEndpointOutput>
-    createVpcEndpointConnectionNotification: function(Client, types.CreateVpcEndpointConnectionNotificationInput, any): async.Operation<types.CreateVpcEndpointConnectionNotificationOutput>
-    createVpcEndpointServiceConfiguration: function(Client, types.CreateVpcEndpointServiceConfigurationInput, any): async.Operation<types.CreateVpcEndpointServiceConfigurationOutput>
-    createVpcPeeringConnection: function(Client, types.CreateVpcPeeringConnectionInput, any): async.Operation<types.CreateVpcPeeringConnectionOutput>
-    createVpnConcentrator: function(Client, types.CreateVpnConcentratorInput, any): async.Operation<types.CreateVpnConcentratorOutput>
-    createVpnConnection: function(Client, types.CreateVpnConnectionInput, any): async.Operation<types.CreateVpnConnectionOutput>
-    createVpnConnectionRoute: function(Client, types.CreateVpnConnectionRouteInput, any): async.Operation<types.CreateVpnConnectionRouteOutput>
-    createVpnGateway: function(Client, types.CreateVpnGatewayInput, any): async.Operation<types.CreateVpnGatewayOutput>
-    deleteCapacityManagerDataExport: function(Client, types.DeleteCapacityManagerDataExportInput, any): async.Operation<types.DeleteCapacityManagerDataExportOutput>
-    deleteCarrierGateway: function(Client, types.DeleteCarrierGatewayInput, any): async.Operation<types.DeleteCarrierGatewayOutput>
-    deleteClientVpnEndpoint: function(Client, types.DeleteClientVpnEndpointInput, any): async.Operation<types.DeleteClientVpnEndpointOutput>
-    deleteClientVpnRoute: function(Client, types.DeleteClientVpnRouteInput, any): async.Operation<types.DeleteClientVpnRouteOutput>
-    deleteCoipCidr: function(Client, types.DeleteCoipCidrInput, any): async.Operation<types.DeleteCoipCidrOutput>
-    deleteCoipPool: function(Client, types.DeleteCoipPoolInput, any): async.Operation<types.DeleteCoipPoolOutput>
-    deleteCustomerGateway: function(Client, types.DeleteCustomerGatewayInput, any): async.Operation<types.DeleteCustomerGatewayOutput>
-    deleteDhcpOptions: function(Client, types.DeleteDhcpOptionsInput, any): async.Operation<types.DeleteDhcpOptionsOutput>
-    deleteEgressOnlyInternetGateway: function(Client, types.DeleteEgressOnlyInternetGatewayInput, any): async.Operation<types.DeleteEgressOnlyInternetGatewayOutput>
-    deleteFleets: function(Client, types.DeleteFleetsInput, any): async.Operation<types.DeleteFleetsOutput>
-    deleteFlowLogs: function(Client, types.DeleteFlowLogsInput, any): async.Operation<types.DeleteFlowLogsOutput>
-    deleteFpgaImage: function(Client, types.DeleteFpgaImageInput, any): async.Operation<types.DeleteFpgaImageOutput>
-    deleteImageUsageReport: function(Client, types.DeleteImageUsageReportInput, any): async.Operation<types.DeleteImageUsageReportOutput>
-    deleteInstanceConnectEndpoint: function(Client, types.DeleteInstanceConnectEndpointInput, any): async.Operation<types.DeleteInstanceConnectEndpointOutput>
-    deleteInstanceEventWindow: function(Client, types.DeleteInstanceEventWindowInput, any): async.Operation<types.DeleteInstanceEventWindowOutput>
-    deleteInternetGateway: function(Client, types.DeleteInternetGatewayInput, any): async.Operation<types.DeleteInternetGatewayOutput>
-    deleteIpam: function(Client, types.DeleteIpamInput, any): async.Operation<types.DeleteIpamOutput>
-    deleteIpamExternalResourceVerificationToken: function(Client, types.DeleteIpamExternalResourceVerificationTokenInput, any): async.Operation<types.DeleteIpamExternalResourceVerificationTokenOutput>
-    deleteIpamPolicy: function(Client, types.DeleteIpamPolicyInput, any): async.Operation<types.DeleteIpamPolicyOutput>
-    deleteIpamPool: function(Client, types.DeleteIpamPoolInput, any): async.Operation<types.DeleteIpamPoolOutput>
-    deleteIpamPrefixListResolver: function(Client, types.DeleteIpamPrefixListResolverInput, any): async.Operation<types.DeleteIpamPrefixListResolverOutput>
-    deleteIpamPrefixListResolverTarget: function(Client, types.DeleteIpamPrefixListResolverTargetInput, any): async.Operation<types.DeleteIpamPrefixListResolverTargetOutput>
-    deleteIpamResourceDiscovery: function(Client, types.DeleteIpamResourceDiscoveryInput, any): async.Operation<types.DeleteIpamResourceDiscoveryOutput>
-    deleteIpamScope: function(Client, types.DeleteIpamScopeInput, any): async.Operation<types.DeleteIpamScopeOutput>
-    deleteKeyPair: function(Client, types.DeleteKeyPairInput, any): async.Operation<types.DeleteKeyPairOutput>
-    deleteLaunchTemplate: function(Client, types.DeleteLaunchTemplateInput, any): async.Operation<types.DeleteLaunchTemplateOutput>
-    deleteLaunchTemplateVersions: function(Client, types.DeleteLaunchTemplateVersionsInput, any): async.Operation<types.DeleteLaunchTemplateVersionsOutput>
-    deleteLocalGatewayRoute: function(Client, types.DeleteLocalGatewayRouteInput, any): async.Operation<types.DeleteLocalGatewayRouteOutput>
-    deleteLocalGatewayRouteTable: function(Client, types.DeleteLocalGatewayRouteTableInput, any): async.Operation<types.DeleteLocalGatewayRouteTableOutput>
-    deleteLocalGatewayRouteTableVirtualInterfaceGroupAssociation: function(Client, types.DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationInput, any): async.Operation<types.DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationOutput>
-    deleteLocalGatewayRouteTableVpcAssociation: function(Client, types.DeleteLocalGatewayRouteTableVpcAssociationInput, any): async.Operation<types.DeleteLocalGatewayRouteTableVpcAssociationOutput>
-    deleteLocalGatewayVirtualInterface: function(Client, types.DeleteLocalGatewayVirtualInterfaceInput, any): async.Operation<types.DeleteLocalGatewayVirtualInterfaceOutput>
-    deleteLocalGatewayVirtualInterfaceGroup: function(Client, types.DeleteLocalGatewayVirtualInterfaceGroupInput, any): async.Operation<types.DeleteLocalGatewayVirtualInterfaceGroupOutput>
-    deleteManagedPrefixList: function(Client, types.DeleteManagedPrefixListInput, any): async.Operation<types.DeleteManagedPrefixListOutput>
-    deleteNatGateway: function(Client, types.DeleteNatGatewayInput, any): async.Operation<types.DeleteNatGatewayOutput>
-    deleteNetworkAcl: function(Client, types.DeleteNetworkAclInput, any): async.Operation<types.DeleteNetworkAclOutput>
-    deleteNetworkAclEntry: function(Client, types.DeleteNetworkAclEntryInput, any): async.Operation<types.DeleteNetworkAclEntryOutput>
-    deleteNetworkInsightsAccessScope: function(Client, types.DeleteNetworkInsightsAccessScopeInput, any): async.Operation<types.DeleteNetworkInsightsAccessScopeOutput>
-    deleteNetworkInsightsAccessScopeAnalysis: function(Client, types.DeleteNetworkInsightsAccessScopeAnalysisInput, any): async.Operation<types.DeleteNetworkInsightsAccessScopeAnalysisOutput>
-    deleteNetworkInsightsAnalysis: function(Client, types.DeleteNetworkInsightsAnalysisInput, any): async.Operation<types.DeleteNetworkInsightsAnalysisOutput>
-    deleteNetworkInsightsPath: function(Client, types.DeleteNetworkInsightsPathInput, any): async.Operation<types.DeleteNetworkInsightsPathOutput>
-    deleteNetworkInterface: function(Client, types.DeleteNetworkInterfaceInput, any): async.Operation<types.DeleteNetworkInterfaceOutput>
-    deleteNetworkInterfacePermission: function(Client, types.DeleteNetworkInterfacePermissionInput, any): async.Operation<types.DeleteNetworkInterfacePermissionOutput>
-    deletePlacementGroup: function(Client, types.DeletePlacementGroupInput, any): async.Operation<types.DeletePlacementGroupOutput>
-    deletePublicIpv4Pool: function(Client, types.DeletePublicIpv4PoolInput, any): async.Operation<types.DeletePublicIpv4PoolOutput>
-    deleteQueuedReservedInstances: function(Client, types.DeleteQueuedReservedInstancesInput, any): async.Operation<types.DeleteQueuedReservedInstancesOutput>
-    deleteRoute: function(Client, types.DeleteRouteInput, any): async.Operation<types.DeleteRouteOutput>
-    deleteRouteServer: function(Client, types.DeleteRouteServerInput, any): async.Operation<types.DeleteRouteServerOutput>
-    deleteRouteServerEndpoint: function(Client, types.DeleteRouteServerEndpointInput, any): async.Operation<types.DeleteRouteServerEndpointOutput>
-    deleteRouteServerPeer: function(Client, types.DeleteRouteServerPeerInput, any): async.Operation<types.DeleteRouteServerPeerOutput>
-    deleteRouteTable: function(Client, types.DeleteRouteTableInput, any): async.Operation<types.DeleteRouteTableOutput>
-    deleteSecondaryNetwork: function(Client, types.DeleteSecondaryNetworkInput, any): async.Operation<types.DeleteSecondaryNetworkOutput>
-    deleteSecondarySubnet: function(Client, types.DeleteSecondarySubnetInput, any): async.Operation<types.DeleteSecondarySubnetOutput>
-    deleteSecurityGroup: function(Client, types.DeleteSecurityGroupInput, any): async.Operation<types.DeleteSecurityGroupOutput>
-    deleteSnapshot: function(Client, types.DeleteSnapshotInput, any): async.Operation<types.DeleteSnapshotOutput>
-    deleteSpotDatafeedSubscription: function(Client, types.DeleteSpotDatafeedSubscriptionInput, any): async.Operation<types.DeleteSpotDatafeedSubscriptionOutput>
-    deleteSubnet: function(Client, types.DeleteSubnetInput, any): async.Operation<types.DeleteSubnetOutput>
-    deleteSubnetCidrReservation: function(Client, types.DeleteSubnetCidrReservationInput, any): async.Operation<types.DeleteSubnetCidrReservationOutput>
-    deleteTags: function(Client, types.DeleteTagsInput, any): async.Operation<types.DeleteTagsOutput>
-    deleteTrafficMirrorFilter: function(Client, types.DeleteTrafficMirrorFilterInput, any): async.Operation<types.DeleteTrafficMirrorFilterOutput>
-    deleteTrafficMirrorFilterRule: function(Client, types.DeleteTrafficMirrorFilterRuleInput, any): async.Operation<types.DeleteTrafficMirrorFilterRuleOutput>
-    deleteTrafficMirrorSession: function(Client, types.DeleteTrafficMirrorSessionInput, any): async.Operation<types.DeleteTrafficMirrorSessionOutput>
-    deleteTrafficMirrorTarget: function(Client, types.DeleteTrafficMirrorTargetInput, any): async.Operation<types.DeleteTrafficMirrorTargetOutput>
-    deleteTransitGateway: function(Client, types.DeleteTransitGatewayInput, any): async.Operation<types.DeleteTransitGatewayOutput>
-    deleteTransitGatewayClientVpnAttachment: function(Client, types.DeleteTransitGatewayClientVpnAttachmentInput, any): async.Operation<types.DeleteTransitGatewayClientVpnAttachmentOutput>
-    deleteTransitGatewayConnect: function(Client, types.DeleteTransitGatewayConnectInput, any): async.Operation<types.DeleteTransitGatewayConnectOutput>
-    deleteTransitGatewayConnectPeer: function(Client, types.DeleteTransitGatewayConnectPeerInput, any): async.Operation<types.DeleteTransitGatewayConnectPeerOutput>
-    deleteTransitGatewayMeteringPolicy: function(Client, types.DeleteTransitGatewayMeteringPolicyInput, any): async.Operation<types.DeleteTransitGatewayMeteringPolicyOutput>
-    deleteTransitGatewayMeteringPolicyEntry: function(Client, types.DeleteTransitGatewayMeteringPolicyEntryInput, any): async.Operation<types.DeleteTransitGatewayMeteringPolicyEntryOutput>
-    deleteTransitGatewayMulticastDomain: function(Client, types.DeleteTransitGatewayMulticastDomainInput, any): async.Operation<types.DeleteTransitGatewayMulticastDomainOutput>
-    deleteTransitGatewayPeeringAttachment: function(Client, types.DeleteTransitGatewayPeeringAttachmentInput, any): async.Operation<types.DeleteTransitGatewayPeeringAttachmentOutput>
-    deleteTransitGatewayPolicyTable: function(Client, types.DeleteTransitGatewayPolicyTableInput, any): async.Operation<types.DeleteTransitGatewayPolicyTableOutput>
-    deleteTransitGatewayPrefixListReference: function(Client, types.DeleteTransitGatewayPrefixListReferenceInput, any): async.Operation<types.DeleteTransitGatewayPrefixListReferenceOutput>
-    deleteTransitGatewayRoute: function(Client, types.DeleteTransitGatewayRouteInput, any): async.Operation<types.DeleteTransitGatewayRouteOutput>
-    deleteTransitGatewayRouteTable: function(Client, types.DeleteTransitGatewayRouteTableInput, any): async.Operation<types.DeleteTransitGatewayRouteTableOutput>
-    deleteTransitGatewayRouteTableAnnouncement: function(Client, types.DeleteTransitGatewayRouteTableAnnouncementInput, any): async.Operation<types.DeleteTransitGatewayRouteTableAnnouncementOutput>
-    deleteTransitGatewayVpcAttachment: function(Client, types.DeleteTransitGatewayVpcAttachmentInput, any): async.Operation<types.DeleteTransitGatewayVpcAttachmentOutput>
-    deleteVerifiedAccessEndpoint: function(Client, types.DeleteVerifiedAccessEndpointInput, any): async.Operation<types.DeleteVerifiedAccessEndpointOutput>
-    deleteVerifiedAccessGroup: function(Client, types.DeleteVerifiedAccessGroupInput, any): async.Operation<types.DeleteVerifiedAccessGroupOutput>
-    deleteVerifiedAccessInstance: function(Client, types.DeleteVerifiedAccessInstanceInput, any): async.Operation<types.DeleteVerifiedAccessInstanceOutput>
-    deleteVerifiedAccessTrustProvider: function(Client, types.DeleteVerifiedAccessTrustProviderInput, any): async.Operation<types.DeleteVerifiedAccessTrustProviderOutput>
-    deleteVolume: function(Client, types.DeleteVolumeInput, any): async.Operation<types.DeleteVolumeOutput>
-    deleteVpc: function(Client, types.DeleteVpcInput, any): async.Operation<types.DeleteVpcOutput>
-    deleteVpcBlockPublicAccessExclusion: function(Client, types.DeleteVpcBlockPublicAccessExclusionInput, any): async.Operation<types.DeleteVpcBlockPublicAccessExclusionOutput>
-    deleteVpcEncryptionControl: function(Client, types.DeleteVpcEncryptionControlInput, any): async.Operation<types.DeleteVpcEncryptionControlOutput>
-    deleteVpcEndpointConnectionNotifications: function(Client, types.DeleteVpcEndpointConnectionNotificationsInput, any): async.Operation<types.DeleteVpcEndpointConnectionNotificationsOutput>
-    deleteVpcEndpoints: function(Client, types.DeleteVpcEndpointsInput, any): async.Operation<types.DeleteVpcEndpointsOutput>
-    deleteVpcEndpointServiceConfigurations: function(Client, types.DeleteVpcEndpointServiceConfigurationsInput, any): async.Operation<types.DeleteVpcEndpointServiceConfigurationsOutput>
-    deleteVpcPeeringConnection: function(Client, types.DeleteVpcPeeringConnectionInput, any): async.Operation<types.DeleteVpcPeeringConnectionOutput>
-    deleteVpnConcentrator: function(Client, types.DeleteVpnConcentratorInput, any): async.Operation<types.DeleteVpnConcentratorOutput>
-    deleteVpnConnection: function(Client, types.DeleteVpnConnectionInput, any): async.Operation<types.DeleteVpnConnectionOutput>
-    deleteVpnConnectionRoute: function(Client, types.DeleteVpnConnectionRouteInput, any): async.Operation<types.DeleteVpnConnectionRouteOutput>
-    deleteVpnGateway: function(Client, types.DeleteVpnGatewayInput, any): async.Operation<types.DeleteVpnGatewayOutput>
-    deprovisionByoipCidr: function(Client, types.DeprovisionByoipCidrInput, any): async.Operation<types.DeprovisionByoipCidrOutput>
-    deprovisionIpamByoasn: function(Client, types.DeprovisionIpamByoasnInput, any): async.Operation<types.DeprovisionIpamByoasnOutput>
-    deprovisionIpamPoolCidr: function(Client, types.DeprovisionIpamPoolCidrInput, any): async.Operation<types.DeprovisionIpamPoolCidrOutput>
-    deprovisionPublicIpv4PoolCidr: function(Client, types.DeprovisionPublicIpv4PoolCidrInput, any): async.Operation<types.DeprovisionPublicIpv4PoolCidrOutput>
-    deregisterImage: function(Client, types.DeregisterImageInput, any): async.Operation<types.DeregisterImageOutput>
-    deregisterInstanceEventNotificationAttributes: function(Client, types.DeregisterInstanceEventNotificationAttributesInput, any): async.Operation<types.DeregisterInstanceEventNotificationAttributesOutput>
-    deregisterTransitGatewayMulticastGroupMembers: function(Client, types.DeregisterTransitGatewayMulticastGroupMembersInput, any): async.Operation<types.DeregisterTransitGatewayMulticastGroupMembersOutput>
-    deregisterTransitGatewayMulticastGroupSources: function(Client, types.DeregisterTransitGatewayMulticastGroupSourcesInput, any): async.Operation<types.DeregisterTransitGatewayMulticastGroupSourcesOutput>
-    describeAccountAttributes: function(Client, types.DescribeAccountAttributesInput, any): async.Operation<types.DescribeAccountAttributesOutput>
-    describeAddresses: function(Client, types.DescribeAddressesInput, any): async.Operation<types.DescribeAddressesOutput>
-    describeAddressesAttribute: function(Client, types.DescribeAddressesAttributeInput, any): async.Operation<types.DescribeAddressesAttributeOutput>
-    describeAddressTransfers: function(Client, types.DescribeAddressTransfersInput, any): async.Operation<types.DescribeAddressTransfersOutput>
-    describeAggregateIdFormat: function(Client, types.DescribeAggregateIdFormatInput, any): async.Operation<types.DescribeAggregateIdFormatOutput>
-    describeAvailabilityZones: function(Client, types.DescribeAvailabilityZonesInput, any): async.Operation<types.DescribeAvailabilityZonesOutput>
-    describeAwsNetworkPerformanceMetricSubscriptions: function(Client, types.DescribeAwsNetworkPerformanceMetricSubscriptionsInput, any): async.Operation<types.DescribeAwsNetworkPerformanceMetricSubscriptionsOutput>
-    describeBundleTasks: function(Client, types.DescribeBundleTasksInput, any): async.Operation<types.DescribeBundleTasksOutput>
-    describeByoipCidrs: function(Client, types.DescribeByoipCidrsInput, any): async.Operation<types.DescribeByoipCidrsOutput>
-    describeCapacityBlockExtensionHistory: function(Client, types.DescribeCapacityBlockExtensionHistoryInput, any): async.Operation<types.DescribeCapacityBlockExtensionHistoryOutput>
-    describeCapacityBlockExtensionOfferings: function(Client, types.DescribeCapacityBlockExtensionOfferingsInput, any): async.Operation<types.DescribeCapacityBlockExtensionOfferingsOutput>
-    describeCapacityBlockOfferings: function(Client, types.DescribeCapacityBlockOfferingsInput, any): async.Operation<types.DescribeCapacityBlockOfferingsOutput>
-    describeCapacityBlocks: function(Client, types.DescribeCapacityBlocksInput, any): async.Operation<types.DescribeCapacityBlocksOutput>
-    describeCapacityBlockStatus: function(Client, types.DescribeCapacityBlockStatusInput, any): async.Operation<types.DescribeCapacityBlockStatusOutput>
-    describeCapacityManagerDataExports: function(Client, types.DescribeCapacityManagerDataExportsInput, any): async.Operation<types.DescribeCapacityManagerDataExportsOutput>
-    describeCapacityReservationBillingRequests: function(Client, types.DescribeCapacityReservationBillingRequestsInput, any): async.Operation<types.DescribeCapacityReservationBillingRequestsOutput>
-    describeCapacityReservationFleets: function(Client, types.DescribeCapacityReservationFleetsInput, any): async.Operation<types.DescribeCapacityReservationFleetsOutput>
-    describeCapacityReservations: function(Client, types.DescribeCapacityReservationsInput, any): async.Operation<types.DescribeCapacityReservationsOutput>
-    describeCapacityReservationTopology: function(Client, types.DescribeCapacityReservationTopologyInput, any): async.Operation<types.DescribeCapacityReservationTopologyOutput>
-    describeCarrierGateways: function(Client, types.DescribeCarrierGatewaysInput, any): async.Operation<types.DescribeCarrierGatewaysOutput>
-    describeClassicLinkInstances: function(Client, types.DescribeClassicLinkInstancesInput, any): async.Operation<types.DescribeClassicLinkInstancesOutput>
-    describeClientVpnAuthorizationRules: function(Client, types.DescribeClientVpnAuthorizationRulesInput, any): async.Operation<types.DescribeClientVpnAuthorizationRulesOutput>
-    describeClientVpnConnections: function(Client, types.DescribeClientVpnConnectionsInput, any): async.Operation<types.DescribeClientVpnConnectionsOutput>
-    describeClientVpnEndpoints: function(Client, types.DescribeClientVpnEndpointsInput, any): async.Operation<types.DescribeClientVpnEndpointsOutput>
-    describeClientVpnRoutes: function(Client, types.DescribeClientVpnRoutesInput, any): async.Operation<types.DescribeClientVpnRoutesOutput>
-    describeClientVpnTargetNetworks: function(Client, types.DescribeClientVpnTargetNetworksInput, any): async.Operation<types.DescribeClientVpnTargetNetworksOutput>
-    describeCoipPools: function(Client, types.DescribeCoipPoolsInput, any): async.Operation<types.DescribeCoipPoolsOutput>
-    describeConversionTasks: function(Client, types.DescribeConversionTasksInput, any): async.Operation<types.DescribeConversionTasksOutput>
-    describeCustomerGateways: function(Client, types.DescribeCustomerGatewaysInput, any): async.Operation<types.DescribeCustomerGatewaysOutput>
-    describeDeclarativePoliciesReports: function(Client, types.DescribeDeclarativePoliciesReportsInput, any): async.Operation<types.DescribeDeclarativePoliciesReportsOutput>
-    describeDhcpOptions: function(Client, types.DescribeDhcpOptionsInput, any): async.Operation<types.DescribeDhcpOptionsOutput>
-    describeEgressOnlyInternetGateways: function(Client, types.DescribeEgressOnlyInternetGatewaysInput, any): async.Operation<types.DescribeEgressOnlyInternetGatewaysOutput>
-    describeElasticGpus: function(Client, types.DescribeElasticGpusInput, any): async.Operation<types.DescribeElasticGpusOutput>
-    describeExportImageTasks: function(Client, types.DescribeExportImageTasksInput, any): async.Operation<types.DescribeExportImageTasksOutput>
-    describeExportTasks: function(Client, types.DescribeExportTasksInput, any): async.Operation<types.DescribeExportTasksOutput>
-    describeFastLaunchImages: function(Client, types.DescribeFastLaunchImagesInput, any): async.Operation<types.DescribeFastLaunchImagesOutput>
-    describeFastSnapshotRestores: function(Client, types.DescribeFastSnapshotRestoresInput, any): async.Operation<types.DescribeFastSnapshotRestoresOutput>
-    describeFleetHistory: function(Client, types.DescribeFleetHistoryInput, any): async.Operation<types.DescribeFleetHistoryOutput>
-    describeFleetInstances: function(Client, types.DescribeFleetInstancesInput, any): async.Operation<types.DescribeFleetInstancesOutput>
-    describeFleets: function(Client, types.DescribeFleetsInput, any): async.Operation<types.DescribeFleetsOutput>
-    describeFlowLogs: function(Client, types.DescribeFlowLogsInput, any): async.Operation<types.DescribeFlowLogsOutput>
-    describeFpgaImageAttribute: function(Client, types.DescribeFpgaImageAttributeInput, any): async.Operation<types.DescribeFpgaImageAttributeOutput>
-    describeFpgaImages: function(Client, types.DescribeFpgaImagesInput, any): async.Operation<types.DescribeFpgaImagesOutput>
-    describeHostReservationOfferings: function(Client, types.DescribeHostReservationOfferingsInput, any): async.Operation<types.DescribeHostReservationOfferingsOutput>
-    describeHostReservations: function(Client, types.DescribeHostReservationsInput, any): async.Operation<types.DescribeHostReservationsOutput>
-    describeHosts: function(Client, types.DescribeHostsInput, any): async.Operation<types.DescribeHostsOutput>
-    describeIamInstanceProfileAssociations: function(Client, types.DescribeIamInstanceProfileAssociationsInput, any): async.Operation<types.DescribeIamInstanceProfileAssociationsOutput>
-    describeIdentityIdFormat: function(Client, types.DescribeIdentityIdFormatInput, any): async.Operation<types.DescribeIdentityIdFormatOutput>
-    describeIdFormat: function(Client, types.DescribeIdFormatInput, any): async.Operation<types.DescribeIdFormatOutput>
-    describeImageAttribute: function(Client, types.DescribeImageAttributeInput, any): async.Operation<types.DescribeImageAttributeOutput>
-    describeImageReferences: function(Client, types.DescribeImageReferencesInput, any): async.Operation<types.DescribeImageReferencesOutput>
-    describeImages: function(Client, types.DescribeImagesInput, any): async.Operation<types.DescribeImagesOutput>
-    describeImageUsageReportEntries: function(Client, types.DescribeImageUsageReportEntriesInput, any): async.Operation<types.DescribeImageUsageReportEntriesOutput>
-    describeImageUsageReports: function(Client, types.DescribeImageUsageReportsInput, any): async.Operation<types.DescribeImageUsageReportsOutput>
-    describeImportImageTasks: function(Client, types.DescribeImportImageTasksInput, any): async.Operation<types.DescribeImportImageTasksOutput>
-    describeImportSnapshotTasks: function(Client, types.DescribeImportSnapshotTasksInput, any): async.Operation<types.DescribeImportSnapshotTasksOutput>
-    describeInstanceAttribute: function(Client, types.DescribeInstanceAttributeInput, any): async.Operation<types.DescribeInstanceAttributeOutput>
-    describeInstanceConnectEndpoints: function(Client, types.DescribeInstanceConnectEndpointsInput, any): async.Operation<types.DescribeInstanceConnectEndpointsOutput>
-    describeInstanceCreditSpecifications: function(Client, types.DescribeInstanceCreditSpecificationsInput, any): async.Operation<types.DescribeInstanceCreditSpecificationsOutput>
-    describeInstanceEventNotificationAttributes: function(Client, types.DescribeInstanceEventNotificationAttributesInput, any): async.Operation<types.DescribeInstanceEventNotificationAttributesOutput>
-    describeInstanceEventWindows: function(Client, types.DescribeInstanceEventWindowsInput, any): async.Operation<types.DescribeInstanceEventWindowsOutput>
-    describeInstanceImageMetadata: function(Client, types.DescribeInstanceImageMetadataInput, any): async.Operation<types.DescribeInstanceImageMetadataOutput>
-    describeInstances: function(Client, types.DescribeInstancesInput, any): async.Operation<types.DescribeInstancesOutput>
-    describeInstanceSqlHaHistoryStates: function(Client, types.DescribeInstanceSqlHaHistoryStatesInput, any): async.Operation<types.DescribeInstanceSqlHaHistoryStatesOutput>
-    describeInstanceSqlHaStates: function(Client, types.DescribeInstanceSqlHaStatesInput, any): async.Operation<types.DescribeInstanceSqlHaStatesOutput>
-    describeInstanceStatus: function(Client, types.DescribeInstanceStatusInput, any): async.Operation<types.DescribeInstanceStatusOutput>
-    describeInstanceTopology: function(Client, types.DescribeInstanceTopologyInput, any): async.Operation<types.DescribeInstanceTopologyOutput>
-    describeInstanceTypeOfferings: function(Client, types.DescribeInstanceTypeOfferingsInput, any): async.Operation<types.DescribeInstanceTypeOfferingsOutput>
-    describeInstanceTypes: function(Client, types.DescribeInstanceTypesInput, any): async.Operation<types.DescribeInstanceTypesOutput>
-    describeInternetGateways: function(Client, types.DescribeInternetGatewaysInput, any): async.Operation<types.DescribeInternetGatewaysOutput>
-    describeIpamByoasn: function(Client, types.DescribeIpamByoasnInput, any): async.Operation<types.DescribeIpamByoasnOutput>
-    describeIpamExternalResourceVerificationTokens: function(Client, types.DescribeIpamExternalResourceVerificationTokensInput, any): async.Operation<types.DescribeIpamExternalResourceVerificationTokensOutput>
-    describeIpamPolicies: function(Client, types.DescribeIpamPoliciesInput, any): async.Operation<types.DescribeIpamPoliciesOutput>
-    describeIpamPools: function(Client, types.DescribeIpamPoolsInput, any): async.Operation<types.DescribeIpamPoolsOutput>
-    describeIpamPrefixListResolvers: function(Client, types.DescribeIpamPrefixListResolversInput, any): async.Operation<types.DescribeIpamPrefixListResolversOutput>
-    describeIpamPrefixListResolverTargets: function(Client, types.DescribeIpamPrefixListResolverTargetsInput, any): async.Operation<types.DescribeIpamPrefixListResolverTargetsOutput>
-    describeIpamResourceDiscoveries: function(Client, types.DescribeIpamResourceDiscoveriesInput, any): async.Operation<types.DescribeIpamResourceDiscoveriesOutput>
-    describeIpamResourceDiscoveryAssociations: function(Client, types.DescribeIpamResourceDiscoveryAssociationsInput, any): async.Operation<types.DescribeIpamResourceDiscoveryAssociationsOutput>
-    describeIpams: function(Client, types.DescribeIpamsInput, any): async.Operation<types.DescribeIpamsOutput>
-    describeIpamScopes: function(Client, types.DescribeIpamScopesInput, any): async.Operation<types.DescribeIpamScopesOutput>
-    describeIpv6Pools: function(Client, types.DescribeIpv6PoolsInput, any): async.Operation<types.DescribeIpv6PoolsOutput>
-    describeKeyPairs: function(Client, types.DescribeKeyPairsInput, any): async.Operation<types.DescribeKeyPairsOutput>
-    describeLaunchTemplates: function(Client, types.DescribeLaunchTemplatesInput, any): async.Operation<types.DescribeLaunchTemplatesOutput>
-    describeLaunchTemplateVersions: function(Client, types.DescribeLaunchTemplateVersionsInput, any): async.Operation<types.DescribeLaunchTemplateVersionsOutput>
-    describeLocalGatewayRouteTables: function(Client, types.DescribeLocalGatewayRouteTablesInput, any): async.Operation<types.DescribeLocalGatewayRouteTablesOutput>
-    describeLocalGatewayRouteTableVirtualInterfaceGroupAssociations: function(Client, types.DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsInput, any): async.Operation<types.DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsOutput>
-    describeLocalGatewayRouteTableVpcAssociations: function(Client, types.DescribeLocalGatewayRouteTableVpcAssociationsInput, any): async.Operation<types.DescribeLocalGatewayRouteTableVpcAssociationsOutput>
-    describeLocalGateways: function(Client, types.DescribeLocalGatewaysInput, any): async.Operation<types.DescribeLocalGatewaysOutput>
-    describeLocalGatewayVirtualInterfaceGroups: function(Client, types.DescribeLocalGatewayVirtualInterfaceGroupsInput, any): async.Operation<types.DescribeLocalGatewayVirtualInterfaceGroupsOutput>
-    describeLocalGatewayVirtualInterfaces: function(Client, types.DescribeLocalGatewayVirtualInterfacesInput, any): async.Operation<types.DescribeLocalGatewayVirtualInterfacesOutput>
-    describeLockedSnapshots: function(Client, types.DescribeLockedSnapshotsInput, any): async.Operation<types.DescribeLockedSnapshotsOutput>
-    describeMacHosts: function(Client, types.DescribeMacHostsInput, any): async.Operation<types.DescribeMacHostsOutput>
-    describeMacModificationTasks: function(Client, types.DescribeMacModificationTasksInput, any): async.Operation<types.DescribeMacModificationTasksOutput>
-    describeManagedPrefixLists: function(Client, types.DescribeManagedPrefixListsInput, any): async.Operation<types.DescribeManagedPrefixListsOutput>
-    describeMovingAddresses: function(Client, types.DescribeMovingAddressesInput, any): async.Operation<types.DescribeMovingAddressesOutput>
-    describeNatGateways: function(Client, types.DescribeNatGatewaysInput, any): async.Operation<types.DescribeNatGatewaysOutput>
-    describeNetworkAcls: function(Client, types.DescribeNetworkAclsInput, any): async.Operation<types.DescribeNetworkAclsOutput>
-    describeNetworkInsightsAccessScopeAnalyses: function(Client, types.DescribeNetworkInsightsAccessScopeAnalysesInput, any): async.Operation<types.DescribeNetworkInsightsAccessScopeAnalysesOutput>
-    describeNetworkInsightsAccessScopes: function(Client, types.DescribeNetworkInsightsAccessScopesInput, any): async.Operation<types.DescribeNetworkInsightsAccessScopesOutput>
-    describeNetworkInsightsAnalyses: function(Client, types.DescribeNetworkInsightsAnalysesInput, any): async.Operation<types.DescribeNetworkInsightsAnalysesOutput>
-    describeNetworkInsightsPaths: function(Client, types.DescribeNetworkInsightsPathsInput, any): async.Operation<types.DescribeNetworkInsightsPathsOutput>
-    describeNetworkInterfaceAttribute: function(Client, types.DescribeNetworkInterfaceAttributeInput, any): async.Operation<types.DescribeNetworkInterfaceAttributeOutput>
-    describeNetworkInterfacePermissions: function(Client, types.DescribeNetworkInterfacePermissionsInput, any): async.Operation<types.DescribeNetworkInterfacePermissionsOutput>
-    describeNetworkInterfaces: function(Client, types.DescribeNetworkInterfacesInput, any): async.Operation<types.DescribeNetworkInterfacesOutput>
-    describeOutpostLags: function(Client, types.DescribeOutpostLagsInput, any): async.Operation<types.DescribeOutpostLagsOutput>
-    describePlacementGroups: function(Client, types.DescribePlacementGroupsInput, any): async.Operation<types.DescribePlacementGroupsOutput>
-    describePrefixLists: function(Client, types.DescribePrefixListsInput, any): async.Operation<types.DescribePrefixListsOutput>
-    describePrincipalIdFormat: function(Client, types.DescribePrincipalIdFormatInput, any): async.Operation<types.DescribePrincipalIdFormatOutput>
-    describePublicIpv4Pools: function(Client, types.DescribePublicIpv4PoolsInput, any): async.Operation<types.DescribePublicIpv4PoolsOutput>
-    describeRegions: function(Client, types.DescribeRegionsInput, any): async.Operation<types.DescribeRegionsOutput>
-    describeReplaceRootVolumeTasks: function(Client, types.DescribeReplaceRootVolumeTasksInput, any): async.Operation<types.DescribeReplaceRootVolumeTasksOutput>
-    describeReservedInstances: function(Client, types.DescribeReservedInstancesInput, any): async.Operation<types.DescribeReservedInstancesOutput>
-    describeReservedInstancesListings: function(Client, types.DescribeReservedInstancesListingsInput, any): async.Operation<types.DescribeReservedInstancesListingsOutput>
-    describeReservedInstancesModifications: function(Client, types.DescribeReservedInstancesModificationsInput, any): async.Operation<types.DescribeReservedInstancesModificationsOutput>
-    describeReservedInstancesOfferings: function(Client, types.DescribeReservedInstancesOfferingsInput, any): async.Operation<types.DescribeReservedInstancesOfferingsOutput>
-    describeRouteServerEndpoints: function(Client, types.DescribeRouteServerEndpointsInput, any): async.Operation<types.DescribeRouteServerEndpointsOutput>
-    describeRouteServerPeers: function(Client, types.DescribeRouteServerPeersInput, any): async.Operation<types.DescribeRouteServerPeersOutput>
-    describeRouteServers: function(Client, types.DescribeRouteServersInput, any): async.Operation<types.DescribeRouteServersOutput>
-    describeRouteTables: function(Client, types.DescribeRouteTablesInput, any): async.Operation<types.DescribeRouteTablesOutput>
-    describeScheduledInstanceAvailability: function(Client, types.DescribeScheduledInstanceAvailabilityInput, any): async.Operation<types.DescribeScheduledInstanceAvailabilityOutput>
-    describeScheduledInstances: function(Client, types.DescribeScheduledInstancesInput, any): async.Operation<types.DescribeScheduledInstancesOutput>
-    describeSecondaryInterfaces: function(Client, types.DescribeSecondaryInterfacesInput, any): async.Operation<types.DescribeSecondaryInterfacesOutput>
-    describeSecondaryNetworks: function(Client, types.DescribeSecondaryNetworksInput, any): async.Operation<types.DescribeSecondaryNetworksOutput>
-    describeSecondarySubnets: function(Client, types.DescribeSecondarySubnetsInput, any): async.Operation<types.DescribeSecondarySubnetsOutput>
-    describeSecurityGroupReferences: function(Client, types.DescribeSecurityGroupReferencesInput, any): async.Operation<types.DescribeSecurityGroupReferencesOutput>
-    describeSecurityGroupRules: function(Client, types.DescribeSecurityGroupRulesInput, any): async.Operation<types.DescribeSecurityGroupRulesOutput>
-    describeSecurityGroups: function(Client, types.DescribeSecurityGroupsInput, any): async.Operation<types.DescribeSecurityGroupsOutput>
-    describeSecurityGroupVpcAssociations: function(Client, types.DescribeSecurityGroupVpcAssociationsInput, any): async.Operation<types.DescribeSecurityGroupVpcAssociationsOutput>
-    describeServiceLinkVirtualInterfaces: function(Client, types.DescribeServiceLinkVirtualInterfacesInput, any): async.Operation<types.DescribeServiceLinkVirtualInterfacesOutput>
-    describeSnapshotAttribute: function(Client, types.DescribeSnapshotAttributeInput, any): async.Operation<types.DescribeSnapshotAttributeOutput>
-    describeSnapshots: function(Client, types.DescribeSnapshotsInput, any): async.Operation<types.DescribeSnapshotsOutput>
-    describeSnapshotTierStatus: function(Client, types.DescribeSnapshotTierStatusInput, any): async.Operation<types.DescribeSnapshotTierStatusOutput>
-    describeSpotDatafeedSubscription: function(Client, types.DescribeSpotDatafeedSubscriptionInput, any): async.Operation<types.DescribeSpotDatafeedSubscriptionOutput>
-    describeSpotFleetInstances: function(Client, types.DescribeSpotFleetInstancesInput, any): async.Operation<types.DescribeSpotFleetInstancesOutput>
-    describeSpotFleetRequestHistory: function(Client, types.DescribeSpotFleetRequestHistoryInput, any): async.Operation<types.DescribeSpotFleetRequestHistoryOutput>
-    describeSpotFleetRequests: function(Client, types.DescribeSpotFleetRequestsInput, any): async.Operation<types.DescribeSpotFleetRequestsOutput>
-    describeSpotInstanceRequests: function(Client, types.DescribeSpotInstanceRequestsInput, any): async.Operation<types.DescribeSpotInstanceRequestsOutput>
-    describeSpotPriceHistory: function(Client, types.DescribeSpotPriceHistoryInput, any): async.Operation<types.DescribeSpotPriceHistoryOutput>
-    describeStaleSecurityGroups: function(Client, types.DescribeStaleSecurityGroupsInput, any): async.Operation<types.DescribeStaleSecurityGroupsOutput>
-    describeStoreImageTasks: function(Client, types.DescribeStoreImageTasksInput, any): async.Operation<types.DescribeStoreImageTasksOutput>
-    describeSubnets: function(Client, types.DescribeSubnetsInput, any): async.Operation<types.DescribeSubnetsOutput>
-    describeTags: function(Client, types.DescribeTagsInput, any): async.Operation<types.DescribeTagsOutput>
-    describeTrafficMirrorFilterRules: function(Client, types.DescribeTrafficMirrorFilterRulesInput, any): async.Operation<types.DescribeTrafficMirrorFilterRulesOutput>
-    describeTrafficMirrorFilters: function(Client, types.DescribeTrafficMirrorFiltersInput, any): async.Operation<types.DescribeTrafficMirrorFiltersOutput>
-    describeTrafficMirrorSessions: function(Client, types.DescribeTrafficMirrorSessionsInput, any): async.Operation<types.DescribeTrafficMirrorSessionsOutput>
-    describeTrafficMirrorTargets: function(Client, types.DescribeTrafficMirrorTargetsInput, any): async.Operation<types.DescribeTrafficMirrorTargetsOutput>
-    describeTransitGatewayAttachments: function(Client, types.DescribeTransitGatewayAttachmentsInput, any): async.Operation<types.DescribeTransitGatewayAttachmentsOutput>
-    describeTransitGatewayConnectPeers: function(Client, types.DescribeTransitGatewayConnectPeersInput, any): async.Operation<types.DescribeTransitGatewayConnectPeersOutput>
-    describeTransitGatewayConnects: function(Client, types.DescribeTransitGatewayConnectsInput, any): async.Operation<types.DescribeTransitGatewayConnectsOutput>
-    describeTransitGatewayMeteringPolicies: function(Client, types.DescribeTransitGatewayMeteringPoliciesInput, any): async.Operation<types.DescribeTransitGatewayMeteringPoliciesOutput>
-    describeTransitGatewayMulticastDomains: function(Client, types.DescribeTransitGatewayMulticastDomainsInput, any): async.Operation<types.DescribeTransitGatewayMulticastDomainsOutput>
-    describeTransitGatewayPeeringAttachments: function(Client, types.DescribeTransitGatewayPeeringAttachmentsInput, any): async.Operation<types.DescribeTransitGatewayPeeringAttachmentsOutput>
-    describeTransitGatewayPolicyTables: function(Client, types.DescribeTransitGatewayPolicyTablesInput, any): async.Operation<types.DescribeTransitGatewayPolicyTablesOutput>
-    describeTransitGatewayRouteTableAnnouncements: function(Client, types.DescribeTransitGatewayRouteTableAnnouncementsInput, any): async.Operation<types.DescribeTransitGatewayRouteTableAnnouncementsOutput>
-    describeTransitGatewayRouteTables: function(Client, types.DescribeTransitGatewayRouteTablesInput, any): async.Operation<types.DescribeTransitGatewayRouteTablesOutput>
-    describeTransitGateways: function(Client, types.DescribeTransitGatewaysInput, any): async.Operation<types.DescribeTransitGatewaysOutput>
-    describeTransitGatewayVpcAttachments: function(Client, types.DescribeTransitGatewayVpcAttachmentsInput, any): async.Operation<types.DescribeTransitGatewayVpcAttachmentsOutput>
-    describeTrunkInterfaceAssociations: function(Client, types.DescribeTrunkInterfaceAssociationsInput, any): async.Operation<types.DescribeTrunkInterfaceAssociationsOutput>
-    describeVerifiedAccessEndpoints: function(Client, types.DescribeVerifiedAccessEndpointsInput, any): async.Operation<types.DescribeVerifiedAccessEndpointsOutput>
-    describeVerifiedAccessGroups: function(Client, types.DescribeVerifiedAccessGroupsInput, any): async.Operation<types.DescribeVerifiedAccessGroupsOutput>
-    describeVerifiedAccessInstanceLoggingConfigurations: function(Client, types.DescribeVerifiedAccessInstanceLoggingConfigurationsInput, any): async.Operation<types.DescribeVerifiedAccessInstanceLoggingConfigurationsOutput>
-    describeVerifiedAccessInstances: function(Client, types.DescribeVerifiedAccessInstancesInput, any): async.Operation<types.DescribeVerifiedAccessInstancesOutput>
-    describeVerifiedAccessTrustProviders: function(Client, types.DescribeVerifiedAccessTrustProvidersInput, any): async.Operation<types.DescribeVerifiedAccessTrustProvidersOutput>
-    describeVolumeAttribute: function(Client, types.DescribeVolumeAttributeInput, any): async.Operation<types.DescribeVolumeAttributeOutput>
-    describeVolumes: function(Client, types.DescribeVolumesInput, any): async.Operation<types.DescribeVolumesOutput>
-    describeVolumesModifications: function(Client, types.DescribeVolumesModificationsInput, any): async.Operation<types.DescribeVolumesModificationsOutput>
-    describeVolumeStatus: function(Client, types.DescribeVolumeStatusInput, any): async.Operation<types.DescribeVolumeStatusOutput>
-    describeVpcAttribute: function(Client, types.DescribeVpcAttributeInput, any): async.Operation<types.DescribeVpcAttributeOutput>
-    describeVpcBlockPublicAccessExclusions: function(Client, types.DescribeVpcBlockPublicAccessExclusionsInput, any): async.Operation<types.DescribeVpcBlockPublicAccessExclusionsOutput>
-    describeVpcBlockPublicAccessOptions: function(Client, types.DescribeVpcBlockPublicAccessOptionsInput, any): async.Operation<types.DescribeVpcBlockPublicAccessOptionsOutput>
-    describeVpcClassicLink: function(Client, types.DescribeVpcClassicLinkInput, any): async.Operation<types.DescribeVpcClassicLinkOutput>
-    describeVpcClassicLinkDnsSupport: function(Client, types.DescribeVpcClassicLinkDnsSupportInput, any): async.Operation<types.DescribeVpcClassicLinkDnsSupportOutput>
-    describeVpcEncryptionControls: function(Client, types.DescribeVpcEncryptionControlsInput, any): async.Operation<types.DescribeVpcEncryptionControlsOutput>
-    describeVpcEndpointAssociations: function(Client, types.DescribeVpcEndpointAssociationsInput, any): async.Operation<types.DescribeVpcEndpointAssociationsOutput>
-    describeVpcEndpointConnectionNotifications: function(Client, types.DescribeVpcEndpointConnectionNotificationsInput, any): async.Operation<types.DescribeVpcEndpointConnectionNotificationsOutput>
-    describeVpcEndpointConnections: function(Client, types.DescribeVpcEndpointConnectionsInput, any): async.Operation<types.DescribeVpcEndpointConnectionsOutput>
-    describeVpcEndpoints: function(Client, types.DescribeVpcEndpointsInput, any): async.Operation<types.DescribeVpcEndpointsOutput>
-    describeVpcEndpointServiceConfigurations: function(Client, types.DescribeVpcEndpointServiceConfigurationsInput, any): async.Operation<types.DescribeVpcEndpointServiceConfigurationsOutput>
-    describeVpcEndpointServicePermissions: function(Client, types.DescribeVpcEndpointServicePermissionsInput, any): async.Operation<types.DescribeVpcEndpointServicePermissionsOutput>
-    describeVpcEndpointServices: function(Client, types.DescribeVpcEndpointServicesInput, any): async.Operation<types.DescribeVpcEndpointServicesOutput>
-    describeVpcPeeringConnections: function(Client, types.DescribeVpcPeeringConnectionsInput, any): async.Operation<types.DescribeVpcPeeringConnectionsOutput>
-    describeVpcs: function(Client, types.DescribeVpcsInput, any): async.Operation<types.DescribeVpcsOutput>
-    describeVpnConcentrators: function(Client, types.DescribeVpnConcentratorsInput, any): async.Operation<types.DescribeVpnConcentratorsOutput>
-    describeVpnConnections: function(Client, types.DescribeVpnConnectionsInput, any): async.Operation<types.DescribeVpnConnectionsOutput>
-    describeVpnGateways: function(Client, types.DescribeVpnGatewaysInput, any): async.Operation<types.DescribeVpnGatewaysOutput>
-    detachClassicLinkVpc: function(Client, types.DetachClassicLinkVpcInput, any): async.Operation<types.DetachClassicLinkVpcOutput>
-    detachInternetGateway: function(Client, types.DetachInternetGatewayInput, any): async.Operation<types.DetachInternetGatewayOutput>
-    detachNetworkInterface: function(Client, types.DetachNetworkInterfaceInput, any): async.Operation<types.DetachNetworkInterfaceOutput>
-    detachVerifiedAccessTrustProvider: function(Client, types.DetachVerifiedAccessTrustProviderInput, any): async.Operation<types.DetachVerifiedAccessTrustProviderOutput>
-    detachVolume: function(Client, types.DetachVolumeInput, any): async.Operation<types.DetachVolumeOutput>
-    detachVpnGateway: function(Client, types.DetachVpnGatewayInput, any): async.Operation<types.DetachVpnGatewayOutput>
-    disableAddressTransfer: function(Client, types.DisableAddressTransferInput, any): async.Operation<types.DisableAddressTransferOutput>
-    disableAllowedImagesSettings: function(Client, types.DisableAllowedImagesSettingsInput, any): async.Operation<types.DisableAllowedImagesSettingsOutput>
-    disableAwsNetworkPerformanceMetricSubscription: function(Client, types.DisableAwsNetworkPerformanceMetricSubscriptionInput, any): async.Operation<types.DisableAwsNetworkPerformanceMetricSubscriptionOutput>
-    disableCapacityManager: function(Client, types.DisableCapacityManagerInput, any): async.Operation<types.DisableCapacityManagerOutput>
-    disableEbsEncryptionByDefault: function(Client, types.DisableEbsEncryptionByDefaultInput, any): async.Operation<types.DisableEbsEncryptionByDefaultOutput>
-    disableFastLaunch: function(Client, types.DisableFastLaunchInput, any): async.Operation<types.DisableFastLaunchOutput>
-    disableFastSnapshotRestores: function(Client, types.DisableFastSnapshotRestoresInput, any): async.Operation<types.DisableFastSnapshotRestoresOutput>
-    disableImage: function(Client, types.DisableImageInput, any): async.Operation<types.DisableImageOutput>
-    disableImageBlockPublicAccess: function(Client, types.DisableImageBlockPublicAccessInput, any): async.Operation<types.DisableImageBlockPublicAccessOutput>
-    disableImageDeprecation: function(Client, types.DisableImageDeprecationInput, any): async.Operation<types.DisableImageDeprecationOutput>
-    disableImageDeregistrationProtection: function(Client, types.DisableImageDeregistrationProtectionInput, any): async.Operation<types.DisableImageDeregistrationProtectionOutput>
-    disableInstanceSqlHaStandbyDetections: function(Client, types.DisableInstanceSqlHaStandbyDetectionsInput, any): async.Operation<types.DisableInstanceSqlHaStandbyDetectionsOutput>
-    disableIpamOrganizationAdminAccount: function(Client, types.DisableIpamOrganizationAdminAccountInput, any): async.Operation<types.DisableIpamOrganizationAdminAccountOutput>
-    disableIpamPolicy: function(Client, types.DisableIpamPolicyInput, any): async.Operation<types.DisableIpamPolicyOutput>
-    disableRouteServerPropagation: function(Client, types.DisableRouteServerPropagationInput, any): async.Operation<types.DisableRouteServerPropagationOutput>
-    disableSerialConsoleAccess: function(Client, types.DisableSerialConsoleAccessInput, any): async.Operation<types.DisableSerialConsoleAccessOutput>
-    disableSnapshotBlockPublicAccess: function(Client, types.DisableSnapshotBlockPublicAccessInput, any): async.Operation<types.DisableSnapshotBlockPublicAccessOutput>
-    disableTransitGatewayRouteTablePropagation: function(Client, types.DisableTransitGatewayRouteTablePropagationInput, any): async.Operation<types.DisableTransitGatewayRouteTablePropagationOutput>
-    disableVgwRoutePropagation: function(Client, types.DisableVgwRoutePropagationInput, any): async.Operation<types.DisableVgwRoutePropagationOutput>
-    disableVpcClassicLink: function(Client, types.DisableVpcClassicLinkInput, any): async.Operation<types.DisableVpcClassicLinkOutput>
-    disableVpcClassicLinkDnsSupport: function(Client, types.DisableVpcClassicLinkDnsSupportInput, any): async.Operation<types.DisableVpcClassicLinkDnsSupportOutput>
-    disassociateAddress: function(Client, types.DisassociateAddressInput, any): async.Operation<types.DisassociateAddressOutput>
-    disassociateCapacityReservationBillingOwner: function(Client, types.DisassociateCapacityReservationBillingOwnerInput, any): async.Operation<types.DisassociateCapacityReservationBillingOwnerOutput>
-    disassociateClientVpnTargetNetwork: function(Client, types.DisassociateClientVpnTargetNetworkInput, any): async.Operation<types.DisassociateClientVpnTargetNetworkOutput>
-    disassociateEnclaveCertificateIamRole: function(Client, types.DisassociateEnclaveCertificateIamRoleInput, any): async.Operation<types.DisassociateEnclaveCertificateIamRoleOutput>
-    disassociateIamInstanceProfile: function(Client, types.DisassociateIamInstanceProfileInput, any): async.Operation<types.DisassociateIamInstanceProfileOutput>
-    disassociateInstanceEventWindow: function(Client, types.DisassociateInstanceEventWindowInput, any): async.Operation<types.DisassociateInstanceEventWindowOutput>
-    disassociateIpamByoasn: function(Client, types.DisassociateIpamByoasnInput, any): async.Operation<types.DisassociateIpamByoasnOutput>
-    disassociateIpamResourceDiscovery: function(Client, types.DisassociateIpamResourceDiscoveryInput, any): async.Operation<types.DisassociateIpamResourceDiscoveryOutput>
-    disassociateNatGatewayAddress: function(Client, types.DisassociateNatGatewayAddressInput, any): async.Operation<types.DisassociateNatGatewayAddressOutput>
-    disassociateRouteServer: function(Client, types.DisassociateRouteServerInput, any): async.Operation<types.DisassociateRouteServerOutput>
-    disassociateRouteTable: function(Client, types.DisassociateRouteTableInput, any): async.Operation<types.DisassociateRouteTableOutput>
-    disassociateSecurityGroupVpc: function(Client, types.DisassociateSecurityGroupVpcInput, any): async.Operation<types.DisassociateSecurityGroupVpcOutput>
-    disassociateSubnetCidrBlock: function(Client, types.DisassociateSubnetCidrBlockInput, any): async.Operation<types.DisassociateSubnetCidrBlockOutput>
-    disassociateTransitGatewayMulticastDomain: function(Client, types.DisassociateTransitGatewayMulticastDomainInput, any): async.Operation<types.DisassociateTransitGatewayMulticastDomainOutput>
-    disassociateTransitGatewayPolicyTable: function(Client, types.DisassociateTransitGatewayPolicyTableInput, any): async.Operation<types.DisassociateTransitGatewayPolicyTableOutput>
-    disassociateTransitGatewayRouteTable: function(Client, types.DisassociateTransitGatewayRouteTableInput, any): async.Operation<types.DisassociateTransitGatewayRouteTableOutput>
-    disassociateTrunkInterface: function(Client, types.DisassociateTrunkInterfaceInput, any): async.Operation<types.DisassociateTrunkInterfaceOutput>
-    disassociateVpcCidrBlock: function(Client, types.DisassociateVpcCidrBlockInput, any): async.Operation<types.DisassociateVpcCidrBlockOutput>
-    enableAddressTransfer: function(Client, types.EnableAddressTransferInput, any): async.Operation<types.EnableAddressTransferOutput>
-    enableAllowedImagesSettings: function(Client, types.EnableAllowedImagesSettingsInput, any): async.Operation<types.EnableAllowedImagesSettingsOutput>
-    enableAwsNetworkPerformanceMetricSubscription: function(Client, types.EnableAwsNetworkPerformanceMetricSubscriptionInput, any): async.Operation<types.EnableAwsNetworkPerformanceMetricSubscriptionOutput>
-    enableCapacityManager: function(Client, types.EnableCapacityManagerInput, any): async.Operation<types.EnableCapacityManagerOutput>
-    enableEbsEncryptionByDefault: function(Client, types.EnableEbsEncryptionByDefaultInput, any): async.Operation<types.EnableEbsEncryptionByDefaultOutput>
-    enableFastLaunch: function(Client, types.EnableFastLaunchInput, any): async.Operation<types.EnableFastLaunchOutput>
-    enableFastSnapshotRestores: function(Client, types.EnableFastSnapshotRestoresInput, any): async.Operation<types.EnableFastSnapshotRestoresOutput>
-    enableImage: function(Client, types.EnableImageInput, any): async.Operation<types.EnableImageOutput>
-    enableImageBlockPublicAccess: function(Client, types.EnableImageBlockPublicAccessInput, any): async.Operation<types.EnableImageBlockPublicAccessOutput>
-    enableImageDeprecation: function(Client, types.EnableImageDeprecationInput, any): async.Operation<types.EnableImageDeprecationOutput>
-    enableImageDeregistrationProtection: function(Client, types.EnableImageDeregistrationProtectionInput, any): async.Operation<types.EnableImageDeregistrationProtectionOutput>
-    enableInstanceSqlHaStandbyDetections: function(Client, types.EnableInstanceSqlHaStandbyDetectionsInput, any): async.Operation<types.EnableInstanceSqlHaStandbyDetectionsOutput>
-    enableIpamOrganizationAdminAccount: function(Client, types.EnableIpamOrganizationAdminAccountInput, any): async.Operation<types.EnableIpamOrganizationAdminAccountOutput>
-    enableIpamPolicy: function(Client, types.EnableIpamPolicyInput, any): async.Operation<types.EnableIpamPolicyOutput>
-    enableReachabilityAnalyzerOrganizationSharing: function(Client, types.EnableReachabilityAnalyzerOrganizationSharingInput, any): async.Operation<types.EnableReachabilityAnalyzerOrganizationSharingOutput>
-    enableRouteServerPropagation: function(Client, types.EnableRouteServerPropagationInput, any): async.Operation<types.EnableRouteServerPropagationOutput>
-    enableSerialConsoleAccess: function(Client, types.EnableSerialConsoleAccessInput, any): async.Operation<types.EnableSerialConsoleAccessOutput>
-    enableSnapshotBlockPublicAccess: function(Client, types.EnableSnapshotBlockPublicAccessInput, any): async.Operation<types.EnableSnapshotBlockPublicAccessOutput>
-    enableTransitGatewayRouteTablePropagation: function(Client, types.EnableTransitGatewayRouteTablePropagationInput, any): async.Operation<types.EnableTransitGatewayRouteTablePropagationOutput>
-    enableVgwRoutePropagation: function(Client, types.EnableVgwRoutePropagationInput, any): async.Operation<types.EnableVgwRoutePropagationOutput>
-    enableVolumeIO: function(Client, types.EnableVolumeIOInput, any): async.Operation<types.EnableVolumeIOOutput>
-    enableVpcClassicLink: function(Client, types.EnableVpcClassicLinkInput, any): async.Operation<types.EnableVpcClassicLinkOutput>
-    enableVpcClassicLinkDnsSupport: function(Client, types.EnableVpcClassicLinkDnsSupportInput, any): async.Operation<types.EnableVpcClassicLinkDnsSupportOutput>
-    exportClientVpnClientCertificateRevocationList: function(Client, types.ExportClientVpnClientCertificateRevocationListInput, any): async.Operation<types.ExportClientVpnClientCertificateRevocationListOutput>
-    exportClientVpnClientConfiguration: function(Client, types.ExportClientVpnClientConfigurationInput, any): async.Operation<types.ExportClientVpnClientConfigurationOutput>
-    exportImage: function(Client, types.ExportImageInput, any): async.Operation<types.ExportImageOutput>
-    exportTransitGatewayRoutes: function(Client, types.ExportTransitGatewayRoutesInput, any): async.Operation<types.ExportTransitGatewayRoutesOutput>
-    exportVerifiedAccessInstanceClientConfiguration: function(Client, types.ExportVerifiedAccessInstanceClientConfigurationInput, any): async.Operation<types.ExportVerifiedAccessInstanceClientConfigurationOutput>
-    getActiveVpnTunnelStatus: function(Client, types.GetActiveVpnTunnelStatusInput, any): async.Operation<types.GetActiveVpnTunnelStatusOutput>
-    getAllowedImagesSettings: function(Client, types.GetAllowedImagesSettingsInput, any): async.Operation<types.GetAllowedImagesSettingsOutput>
-    getAssociatedEnclaveCertificateIamRoles: function(Client, types.GetAssociatedEnclaveCertificateIamRolesInput, any): async.Operation<types.GetAssociatedEnclaveCertificateIamRolesOutput>
-    getAssociatedIpv6PoolCidrs: function(Client, types.GetAssociatedIpv6PoolCidrsInput, any): async.Operation<types.GetAssociatedIpv6PoolCidrsOutput>
-    getAwsNetworkPerformanceData: function(Client, types.GetAwsNetworkPerformanceDataInput, any): async.Operation<types.GetAwsNetworkPerformanceDataOutput>
-    getCapacityManagerAttributes: function(Client, types.GetCapacityManagerAttributesInput, any): async.Operation<types.GetCapacityManagerAttributesOutput>
-    getCapacityManagerMetricData: function(Client, types.GetCapacityManagerMetricDataInput, any): async.Operation<types.GetCapacityManagerMetricDataOutput>
-    getCapacityManagerMetricDimensions: function(Client, types.GetCapacityManagerMetricDimensionsInput, any): async.Operation<types.GetCapacityManagerMetricDimensionsOutput>
-    getCapacityManagerMonitoredTagKeys: function(Client, types.GetCapacityManagerMonitoredTagKeysInput, any): async.Operation<types.GetCapacityManagerMonitoredTagKeysOutput>
-    getCapacityReservationUsage: function(Client, types.GetCapacityReservationUsageInput, any): async.Operation<types.GetCapacityReservationUsageOutput>
-    getCoipPoolUsage: function(Client, types.GetCoipPoolUsageInput, any): async.Operation<types.GetCoipPoolUsageOutput>
-    getConsoleOutput: function(Client, types.GetConsoleOutputInput, any): async.Operation<types.GetConsoleOutputOutput>
-    getConsoleScreenshot: function(Client, types.GetConsoleScreenshotInput, any): async.Operation<types.GetConsoleScreenshotOutput>
-    getDeclarativePoliciesReportSummary: function(Client, types.GetDeclarativePoliciesReportSummaryInput, any): async.Operation<types.GetDeclarativePoliciesReportSummaryOutput>
-    getDefaultCreditSpecification: function(Client, types.GetDefaultCreditSpecificationInput, any): async.Operation<types.GetDefaultCreditSpecificationOutput>
-    getEbsDefaultKmsKeyId: function(Client, types.GetEbsDefaultKmsKeyIdInput, any): async.Operation<types.GetEbsDefaultKmsKeyIdOutput>
-    getEbsEncryptionByDefault: function(Client, types.GetEbsEncryptionByDefaultInput, any): async.Operation<types.GetEbsEncryptionByDefaultOutput>
-    getEnabledIpamPolicy: function(Client, types.GetEnabledIpamPolicyInput, any): async.Operation<types.GetEnabledIpamPolicyOutput>
-    getFlowLogsIntegrationTemplate: function(Client, types.GetFlowLogsIntegrationTemplateInput, any): async.Operation<types.GetFlowLogsIntegrationTemplateOutput>
-    getGroupsForCapacityReservation: function(Client, types.GetGroupsForCapacityReservationInput, any): async.Operation<types.GetGroupsForCapacityReservationOutput>
-    getHostReservationPurchasePreview: function(Client, types.GetHostReservationPurchasePreviewInput, any): async.Operation<types.GetHostReservationPurchasePreviewOutput>
-    getImageAncestry: function(Client, types.GetImageAncestryInput, any): async.Operation<types.GetImageAncestryOutput>
-    getImageBlockPublicAccessState: function(Client, types.GetImageBlockPublicAccessStateInput, any): async.Operation<types.GetImageBlockPublicAccessStateOutput>
-    getInstanceMetadataDefaults: function(Client, types.GetInstanceMetadataDefaultsInput, any): async.Operation<types.GetInstanceMetadataDefaultsOutput>
-    getInstanceTpmEkPub: function(Client, types.GetInstanceTpmEkPubInput, any): async.Operation<types.GetInstanceTpmEkPubOutput>
-    getInstanceTypesFromInstanceRequirements: function(Client, types.GetInstanceTypesFromInstanceRequirementsInput, any): async.Operation<types.GetInstanceTypesFromInstanceRequirementsOutput>
-    getInstanceUefiData: function(Client, types.GetInstanceUefiDataInput, any): async.Operation<types.GetInstanceUefiDataOutput>
-    getIpamAddressHistory: function(Client, types.GetIpamAddressHistoryInput, any): async.Operation<types.GetIpamAddressHistoryOutput>
-    getIpamDiscoveredAccounts: function(Client, types.GetIpamDiscoveredAccountsInput, any): async.Operation<types.GetIpamDiscoveredAccountsOutput>
-    getIpamDiscoveredPublicAddresses: function(Client, types.GetIpamDiscoveredPublicAddressesInput, any): async.Operation<types.GetIpamDiscoveredPublicAddressesOutput>
-    getIpamDiscoveredResourceCidrs: function(Client, types.GetIpamDiscoveredResourceCidrsInput, any): async.Operation<types.GetIpamDiscoveredResourceCidrsOutput>
-    getIpamPolicyAllocationRules: function(Client, types.GetIpamPolicyAllocationRulesInput, any): async.Operation<types.GetIpamPolicyAllocationRulesOutput>
-    getIpamPolicyOrganizationTargets: function(Client, types.GetIpamPolicyOrganizationTargetsInput, any): async.Operation<types.GetIpamPolicyOrganizationTargetsOutput>
-    getIpamPoolAllocations: function(Client, types.GetIpamPoolAllocationsInput, any): async.Operation<types.GetIpamPoolAllocationsOutput>
-    getIpamPoolCidrs: function(Client, types.GetIpamPoolCidrsInput, any): async.Operation<types.GetIpamPoolCidrsOutput>
-    getIpamPrefixListResolverRules: function(Client, types.GetIpamPrefixListResolverRulesInput, any): async.Operation<types.GetIpamPrefixListResolverRulesOutput>
-    getIpamPrefixListResolverVersionEntries: function(Client, types.GetIpamPrefixListResolverVersionEntriesInput, any): async.Operation<types.GetIpamPrefixListResolverVersionEntriesOutput>
-    getIpamPrefixListResolverVersions: function(Client, types.GetIpamPrefixListResolverVersionsInput, any): async.Operation<types.GetIpamPrefixListResolverVersionsOutput>
-    getIpamResourceCidrs: function(Client, types.GetIpamResourceCidrsInput, any): async.Operation<types.GetIpamResourceCidrsOutput>
-    getLaunchTemplateData: function(Client, types.GetLaunchTemplateDataInput, any): async.Operation<types.GetLaunchTemplateDataOutput>
-    getManagedPrefixListAssociations: function(Client, types.GetManagedPrefixListAssociationsInput, any): async.Operation<types.GetManagedPrefixListAssociationsOutput>
-    getManagedPrefixListEntries: function(Client, types.GetManagedPrefixListEntriesInput, any): async.Operation<types.GetManagedPrefixListEntriesOutput>
-    getManagedResourceVisibility: function(Client, types.GetManagedResourceVisibilityInput, any): async.Operation<types.GetManagedResourceVisibilityOutput>
-    getNetworkInsightsAccessScopeAnalysisFindings: function(Client, types.GetNetworkInsightsAccessScopeAnalysisFindingsInput, any): async.Operation<types.GetNetworkInsightsAccessScopeAnalysisFindingsOutput>
-    getNetworkInsightsAccessScopeContent: function(Client, types.GetNetworkInsightsAccessScopeContentInput, any): async.Operation<types.GetNetworkInsightsAccessScopeContentOutput>
-    getPasswordData: function(Client, types.GetPasswordDataInput, any): async.Operation<types.GetPasswordDataOutput>
-    getReservedInstancesExchangeQuote: function(Client, types.GetReservedInstancesExchangeQuoteInput, any): async.Operation<types.GetReservedInstancesExchangeQuoteOutput>
-    getRouteServerAssociations: function(Client, types.GetRouteServerAssociationsInput, any): async.Operation<types.GetRouteServerAssociationsOutput>
-    getRouteServerPropagations: function(Client, types.GetRouteServerPropagationsInput, any): async.Operation<types.GetRouteServerPropagationsOutput>
-    getRouteServerRoutingDatabase: function(Client, types.GetRouteServerRoutingDatabaseInput, any): async.Operation<types.GetRouteServerRoutingDatabaseOutput>
-    getSecurityGroupsForVpc: function(Client, types.GetSecurityGroupsForVpcInput, any): async.Operation<types.GetSecurityGroupsForVpcOutput>
-    getSerialConsoleAccessStatus: function(Client, types.GetSerialConsoleAccessStatusInput, any): async.Operation<types.GetSerialConsoleAccessStatusOutput>
-    getSnapshotBlockPublicAccessState: function(Client, types.GetSnapshotBlockPublicAccessStateInput, any): async.Operation<types.GetSnapshotBlockPublicAccessStateOutput>
-    getSpotPlacementScores: function(Client, types.GetSpotPlacementScoresInput, any): async.Operation<types.GetSpotPlacementScoresOutput>
-    getSubnetCidrReservations: function(Client, types.GetSubnetCidrReservationsInput, any): async.Operation<types.GetSubnetCidrReservationsOutput>
-    getTransitGatewayAttachmentPropagations: function(Client, types.GetTransitGatewayAttachmentPropagationsInput, any): async.Operation<types.GetTransitGatewayAttachmentPropagationsOutput>
-    getTransitGatewayMeteringPolicyEntries: function(Client, types.GetTransitGatewayMeteringPolicyEntriesInput, any): async.Operation<types.GetTransitGatewayMeteringPolicyEntriesOutput>
-    getTransitGatewayMulticastDomainAssociations: function(Client, types.GetTransitGatewayMulticastDomainAssociationsInput, any): async.Operation<types.GetTransitGatewayMulticastDomainAssociationsOutput>
-    getTransitGatewayPolicyTableAssociations: function(Client, types.GetTransitGatewayPolicyTableAssociationsInput, any): async.Operation<types.GetTransitGatewayPolicyTableAssociationsOutput>
-    getTransitGatewayPolicyTableEntries: function(Client, types.GetTransitGatewayPolicyTableEntriesInput, any): async.Operation<types.GetTransitGatewayPolicyTableEntriesOutput>
-    getTransitGatewayPrefixListReferences: function(Client, types.GetTransitGatewayPrefixListReferencesInput, any): async.Operation<types.GetTransitGatewayPrefixListReferencesOutput>
-    getTransitGatewayRouteTableAssociations: function(Client, types.GetTransitGatewayRouteTableAssociationsInput, any): async.Operation<types.GetTransitGatewayRouteTableAssociationsOutput>
-    getTransitGatewayRouteTablePropagations: function(Client, types.GetTransitGatewayRouteTablePropagationsInput, any): async.Operation<types.GetTransitGatewayRouteTablePropagationsOutput>
-    getVerifiedAccessEndpointPolicy: function(Client, types.GetVerifiedAccessEndpointPolicyInput, any): async.Operation<types.GetVerifiedAccessEndpointPolicyOutput>
-    getVerifiedAccessEndpointTargets: function(Client, types.GetVerifiedAccessEndpointTargetsInput, any): async.Operation<types.GetVerifiedAccessEndpointTargetsOutput>
-    getVerifiedAccessGroupPolicy: function(Client, types.GetVerifiedAccessGroupPolicyInput, any): async.Operation<types.GetVerifiedAccessGroupPolicyOutput>
-    getVpcResourcesBlockingEncryptionEnforcement: function(Client, types.GetVpcResourcesBlockingEncryptionEnforcementInput, any): async.Operation<types.GetVpcResourcesBlockingEncryptionEnforcementOutput>
-    getVpnConnectionDeviceSampleConfiguration: function(Client, types.GetVpnConnectionDeviceSampleConfigurationInput, any): async.Operation<types.GetVpnConnectionDeviceSampleConfigurationOutput>
-    getVpnConnectionDeviceTypes: function(Client, types.GetVpnConnectionDeviceTypesInput, any): async.Operation<types.GetVpnConnectionDeviceTypesOutput>
-    getVpnTunnelReplacementStatus: function(Client, types.GetVpnTunnelReplacementStatusInput, any): async.Operation<types.GetVpnTunnelReplacementStatusOutput>
-    importClientVpnClientCertificateRevocationList: function(Client, types.ImportClientVpnClientCertificateRevocationListInput, any): async.Operation<types.ImportClientVpnClientCertificateRevocationListOutput>
-    importImage: function(Client, types.ImportImageInput, any): async.Operation<types.ImportImageOutput>
-    importInstance: function(Client, types.ImportInstanceInput, any): async.Operation<types.ImportInstanceOutput>
-    importKeyPair: function(Client, types.ImportKeyPairInput, any): async.Operation<types.ImportKeyPairOutput>
-    importSnapshot: function(Client, types.ImportSnapshotInput, any): async.Operation<types.ImportSnapshotOutput>
-    importVolume: function(Client, types.ImportVolumeInput, any): async.Operation<types.ImportVolumeOutput>
-    listImagesInRecycleBin: function(Client, types.ListImagesInRecycleBinInput, any): async.Operation<types.ListImagesInRecycleBinOutput>
-    listSnapshotsInRecycleBin: function(Client, types.ListSnapshotsInRecycleBinInput, any): async.Operation<types.ListSnapshotsInRecycleBinOutput>
-    listVolumesInRecycleBin: function(Client, types.ListVolumesInRecycleBinInput, any): async.Operation<types.ListVolumesInRecycleBinOutput>
-    lockSnapshot: function(Client, types.LockSnapshotInput, any): async.Operation<types.LockSnapshotOutput>
-    modifyAddressAttribute: function(Client, types.ModifyAddressAttributeInput, any): async.Operation<types.ModifyAddressAttributeOutput>
-    modifyAvailabilityZoneGroup: function(Client, types.ModifyAvailabilityZoneGroupInput, any): async.Operation<types.ModifyAvailabilityZoneGroupOutput>
-    modifyCapacityReservation: function(Client, types.ModifyCapacityReservationInput, any): async.Operation<types.ModifyCapacityReservationOutput>
-    modifyCapacityReservationFleet: function(Client, types.ModifyCapacityReservationFleetInput, any): async.Operation<types.ModifyCapacityReservationFleetOutput>
-    modifyClientVpnEndpoint: function(Client, types.ModifyClientVpnEndpointInput, any): async.Operation<types.ModifyClientVpnEndpointOutput>
-    modifyDefaultCreditSpecification: function(Client, types.ModifyDefaultCreditSpecificationInput, any): async.Operation<types.ModifyDefaultCreditSpecificationOutput>
-    modifyEbsDefaultKmsKeyId: function(Client, types.ModifyEbsDefaultKmsKeyIdInput, any): async.Operation<types.ModifyEbsDefaultKmsKeyIdOutput>
-    modifyFleet: function(Client, types.ModifyFleetInput, any): async.Operation<types.ModifyFleetOutput>
-    modifyFpgaImageAttribute: function(Client, types.ModifyFpgaImageAttributeInput, any): async.Operation<types.ModifyFpgaImageAttributeOutput>
-    modifyHosts: function(Client, types.ModifyHostsInput, any): async.Operation<types.ModifyHostsOutput>
-    modifyIdentityIdFormat: function(Client, types.ModifyIdentityIdFormatInput, any): async.Operation<types.ModifyIdentityIdFormatOutput>
-    modifyIdFormat: function(Client, types.ModifyIdFormatInput, any): async.Operation<types.ModifyIdFormatOutput>
-    modifyImageAttribute: function(Client, types.ModifyImageAttributeInput, any): async.Operation<types.ModifyImageAttributeOutput>
-    modifyInstanceAttribute: function(Client, types.ModifyInstanceAttributeInput, any): async.Operation<types.ModifyInstanceAttributeOutput>
-    modifyInstanceCapacityReservationAttributes: function(Client, types.ModifyInstanceCapacityReservationAttributesInput, any): async.Operation<types.ModifyInstanceCapacityReservationAttributesOutput>
-    modifyInstanceConnectEndpoint: function(Client, types.ModifyInstanceConnectEndpointInput, any): async.Operation<types.ModifyInstanceConnectEndpointOutput>
-    modifyInstanceCpuOptions: function(Client, types.ModifyInstanceCpuOptionsInput, any): async.Operation<types.ModifyInstanceCpuOptionsOutput>
-    modifyInstanceCreditSpecification: function(Client, types.ModifyInstanceCreditSpecificationInput, any): async.Operation<types.ModifyInstanceCreditSpecificationOutput>
-    modifyInstanceEventStartTime: function(Client, types.ModifyInstanceEventStartTimeInput, any): async.Operation<types.ModifyInstanceEventStartTimeOutput>
-    modifyInstanceEventWindow: function(Client, types.ModifyInstanceEventWindowInput, any): async.Operation<types.ModifyInstanceEventWindowOutput>
-    modifyInstanceMaintenanceOptions: function(Client, types.ModifyInstanceMaintenanceOptionsInput, any): async.Operation<types.ModifyInstanceMaintenanceOptionsOutput>
-    modifyInstanceMetadataDefaults: function(Client, types.ModifyInstanceMetadataDefaultsInput, any): async.Operation<types.ModifyInstanceMetadataDefaultsOutput>
-    modifyInstanceMetadataOptions: function(Client, types.ModifyInstanceMetadataOptionsInput, any): async.Operation<types.ModifyInstanceMetadataOptionsOutput>
-    modifyInstanceNetworkPerformanceOptions: function(Client, types.ModifyInstanceNetworkPerformanceOptionsInput, any): async.Operation<types.ModifyInstanceNetworkPerformanceOptionsOutput>
-    modifyInstancePlacement: function(Client, types.ModifyInstancePlacementInput, any): async.Operation<types.ModifyInstancePlacementOutput>
-    modifyIpam: function(Client, types.ModifyIpamInput, any): async.Operation<types.ModifyIpamOutput>
-    modifyIpamPolicyAllocationRules: function(Client, types.ModifyIpamPolicyAllocationRulesInput, any): async.Operation<types.ModifyIpamPolicyAllocationRulesOutput>
-    modifyIpamPool: function(Client, types.ModifyIpamPoolInput, any): async.Operation<types.ModifyIpamPoolOutput>
-    modifyIpamPrefixListResolver: function(Client, types.ModifyIpamPrefixListResolverInput, any): async.Operation<types.ModifyIpamPrefixListResolverOutput>
-    modifyIpamPrefixListResolverTarget: function(Client, types.ModifyIpamPrefixListResolverTargetInput, any): async.Operation<types.ModifyIpamPrefixListResolverTargetOutput>
-    modifyIpamResourceCidr: function(Client, types.ModifyIpamResourceCidrInput, any): async.Operation<types.ModifyIpamResourceCidrOutput>
-    modifyIpamResourceDiscovery: function(Client, types.ModifyIpamResourceDiscoveryInput, any): async.Operation<types.ModifyIpamResourceDiscoveryOutput>
-    modifyIpamScope: function(Client, types.ModifyIpamScopeInput, any): async.Operation<types.ModifyIpamScopeOutput>
-    modifyLaunchTemplate: function(Client, types.ModifyLaunchTemplateInput, any): async.Operation<types.ModifyLaunchTemplateOutput>
-    modifyLocalGatewayRoute: function(Client, types.ModifyLocalGatewayRouteInput, any): async.Operation<types.ModifyLocalGatewayRouteOutput>
-    modifyManagedPrefixList: function(Client, types.ModifyManagedPrefixListInput, any): async.Operation<types.ModifyManagedPrefixListOutput>
-    modifyManagedResourceVisibility: function(Client, types.ModifyManagedResourceVisibilityInput, any): async.Operation<types.ModifyManagedResourceVisibilityOutput>
-    modifyNetworkInterfaceAttribute: function(Client, types.ModifyNetworkInterfaceAttributeInput, any): async.Operation<types.ModifyNetworkInterfaceAttributeOutput>
-    modifyPrivateDnsNameOptions: function(Client, types.ModifyPrivateDnsNameOptionsInput, any): async.Operation<types.ModifyPrivateDnsNameOptionsOutput>
-    modifyPublicIpDnsNameOptions: function(Client, types.ModifyPublicIpDnsNameOptionsInput, any): async.Operation<types.ModifyPublicIpDnsNameOptionsOutput>
-    modifyReservedInstances: function(Client, types.ModifyReservedInstancesInput, any): async.Operation<types.ModifyReservedInstancesOutput>
-    modifyRouteServer: function(Client, types.ModifyRouteServerInput, any): async.Operation<types.ModifyRouteServerOutput>
-    modifySecurityGroupRules: function(Client, types.ModifySecurityGroupRulesInput, any): async.Operation<types.ModifySecurityGroupRulesOutput>
-    modifySnapshotAttribute: function(Client, types.ModifySnapshotAttributeInput, any): async.Operation<types.ModifySnapshotAttributeOutput>
-    modifySnapshotTier: function(Client, types.ModifySnapshotTierInput, any): async.Operation<types.ModifySnapshotTierOutput>
-    modifySpotFleetRequest: function(Client, types.ModifySpotFleetRequestInput, any): async.Operation<types.ModifySpotFleetRequestOutput>
-    modifySubnetAttribute: function(Client, types.ModifySubnetAttributeInput, any): async.Operation<types.ModifySubnetAttributeOutput>
-    modifyTrafficMirrorFilterNetworkServices: function(Client, types.ModifyTrafficMirrorFilterNetworkServicesInput, any): async.Operation<types.ModifyTrafficMirrorFilterNetworkServicesOutput>
-    modifyTrafficMirrorFilterRule: function(Client, types.ModifyTrafficMirrorFilterRuleInput, any): async.Operation<types.ModifyTrafficMirrorFilterRuleOutput>
-    modifyTrafficMirrorSession: function(Client, types.ModifyTrafficMirrorSessionInput, any): async.Operation<types.ModifyTrafficMirrorSessionOutput>
-    modifyTransitGateway: function(Client, types.ModifyTransitGatewayInput, any): async.Operation<types.ModifyTransitGatewayOutput>
-    modifyTransitGatewayMeteringPolicy: function(Client, types.ModifyTransitGatewayMeteringPolicyInput, any): async.Operation<types.ModifyTransitGatewayMeteringPolicyOutput>
-    modifyTransitGatewayPrefixListReference: function(Client, types.ModifyTransitGatewayPrefixListReferenceInput, any): async.Operation<types.ModifyTransitGatewayPrefixListReferenceOutput>
-    modifyTransitGatewayVpcAttachment: function(Client, types.ModifyTransitGatewayVpcAttachmentInput, any): async.Operation<types.ModifyTransitGatewayVpcAttachmentOutput>
-    modifyVerifiedAccessEndpoint: function(Client, types.ModifyVerifiedAccessEndpointInput, any): async.Operation<types.ModifyVerifiedAccessEndpointOutput>
-    modifyVerifiedAccessEndpointPolicy: function(Client, types.ModifyVerifiedAccessEndpointPolicyInput, any): async.Operation<types.ModifyVerifiedAccessEndpointPolicyOutput>
-    modifyVerifiedAccessGroup: function(Client, types.ModifyVerifiedAccessGroupInput, any): async.Operation<types.ModifyVerifiedAccessGroupOutput>
-    modifyVerifiedAccessGroupPolicy: function(Client, types.ModifyVerifiedAccessGroupPolicyInput, any): async.Operation<types.ModifyVerifiedAccessGroupPolicyOutput>
-    modifyVerifiedAccessInstance: function(Client, types.ModifyVerifiedAccessInstanceInput, any): async.Operation<types.ModifyVerifiedAccessInstanceOutput>
-    modifyVerifiedAccessInstanceLoggingConfiguration: function(Client, types.ModifyVerifiedAccessInstanceLoggingConfigurationInput, any): async.Operation<types.ModifyVerifiedAccessInstanceLoggingConfigurationOutput>
-    modifyVerifiedAccessTrustProvider: function(Client, types.ModifyVerifiedAccessTrustProviderInput, any): async.Operation<types.ModifyVerifiedAccessTrustProviderOutput>
-    modifyVolume: function(Client, types.ModifyVolumeInput, any): async.Operation<types.ModifyVolumeOutput>
-    modifyVolumeAttribute: function(Client, types.ModifyVolumeAttributeInput, any): async.Operation<types.ModifyVolumeAttributeOutput>
-    modifyVpcAttribute: function(Client, types.ModifyVpcAttributeInput, any): async.Operation<types.ModifyVpcAttributeOutput>
-    modifyVpcBlockPublicAccessExclusion: function(Client, types.ModifyVpcBlockPublicAccessExclusionInput, any): async.Operation<types.ModifyVpcBlockPublicAccessExclusionOutput>
-    modifyVpcBlockPublicAccessOptions: function(Client, types.ModifyVpcBlockPublicAccessOptionsInput, any): async.Operation<types.ModifyVpcBlockPublicAccessOptionsOutput>
-    modifyVpcEncryptionControl: function(Client, types.ModifyVpcEncryptionControlInput, any): async.Operation<types.ModifyVpcEncryptionControlOutput>
-    modifyVpcEndpoint: function(Client, types.ModifyVpcEndpointInput, any): async.Operation<types.ModifyVpcEndpointOutput>
-    modifyVpcEndpointConnectionNotification: function(Client, types.ModifyVpcEndpointConnectionNotificationInput, any): async.Operation<types.ModifyVpcEndpointConnectionNotificationOutput>
-    modifyVpcEndpointServiceConfiguration: function(Client, types.ModifyVpcEndpointServiceConfigurationInput, any): async.Operation<types.ModifyVpcEndpointServiceConfigurationOutput>
-    modifyVpcEndpointServicePayerResponsibility: function(Client, types.ModifyVpcEndpointServicePayerResponsibilityInput, any): async.Operation<types.ModifyVpcEndpointServicePayerResponsibilityOutput>
-    modifyVpcEndpointServicePermissions: function(Client, types.ModifyVpcEndpointServicePermissionsInput, any): async.Operation<types.ModifyVpcEndpointServicePermissionsOutput>
-    modifyVpcPeeringConnectionOptions: function(Client, types.ModifyVpcPeeringConnectionOptionsInput, any): async.Operation<types.ModifyVpcPeeringConnectionOptionsOutput>
-    modifyVpcTenancy: function(Client, types.ModifyVpcTenancyInput, any): async.Operation<types.ModifyVpcTenancyOutput>
-    modifyVpnConnection: function(Client, types.ModifyVpnConnectionInput, any): async.Operation<types.ModifyVpnConnectionOutput>
-    modifyVpnConnectionOptions: function(Client, types.ModifyVpnConnectionOptionsInput, any): async.Operation<types.ModifyVpnConnectionOptionsOutput>
-    modifyVpnTunnelCertificate: function(Client, types.ModifyVpnTunnelCertificateInput, any): async.Operation<types.ModifyVpnTunnelCertificateOutput>
-    modifyVpnTunnelOptions: function(Client, types.ModifyVpnTunnelOptionsInput, any): async.Operation<types.ModifyVpnTunnelOptionsOutput>
-    monitorInstances: function(Client, types.MonitorInstancesInput, any): async.Operation<types.MonitorInstancesOutput>
-    moveAddressToVpc: function(Client, types.MoveAddressToVpcInput, any): async.Operation<types.MoveAddressToVpcOutput>
-    moveByoipCidrToIpam: function(Client, types.MoveByoipCidrToIpamInput, any): async.Operation<types.MoveByoipCidrToIpamOutput>
-    moveCapacityReservationInstances: function(Client, types.MoveCapacityReservationInstancesInput, any): async.Operation<types.MoveCapacityReservationInstancesOutput>
-    provisionByoipCidr: function(Client, types.ProvisionByoipCidrInput, any): async.Operation<types.ProvisionByoipCidrOutput>
-    provisionIpamByoasn: function(Client, types.ProvisionIpamByoasnInput, any): async.Operation<types.ProvisionIpamByoasnOutput>
-    provisionIpamPoolCidr: function(Client, types.ProvisionIpamPoolCidrInput, any): async.Operation<types.ProvisionIpamPoolCidrOutput>
-    provisionPublicIpv4PoolCidr: function(Client, types.ProvisionPublicIpv4PoolCidrInput, any): async.Operation<types.ProvisionPublicIpv4PoolCidrOutput>
-    purchaseCapacityBlock: function(Client, types.PurchaseCapacityBlockInput, any): async.Operation<types.PurchaseCapacityBlockOutput>
-    purchaseCapacityBlockExtension: function(Client, types.PurchaseCapacityBlockExtensionInput, any): async.Operation<types.PurchaseCapacityBlockExtensionOutput>
-    purchaseHostReservation: function(Client, types.PurchaseHostReservationInput, any): async.Operation<types.PurchaseHostReservationOutput>
-    purchaseReservedInstancesOffering: function(Client, types.PurchaseReservedInstancesOfferingInput, any): async.Operation<types.PurchaseReservedInstancesOfferingOutput>
-    purchaseScheduledInstances: function(Client, types.PurchaseScheduledInstancesInput, any): async.Operation<types.PurchaseScheduledInstancesOutput>
-    rebootInstances: function(Client, types.RebootInstancesInput, any): async.Operation<types.RebootInstancesOutput>
-    registerImage: function(Client, types.RegisterImageInput, any): async.Operation<types.RegisterImageOutput>
-    registerInstanceEventNotificationAttributes: function(Client, types.RegisterInstanceEventNotificationAttributesInput, any): async.Operation<types.RegisterInstanceEventNotificationAttributesOutput>
-    registerTransitGatewayMulticastGroupMembers: function(Client, types.RegisterTransitGatewayMulticastGroupMembersInput, any): async.Operation<types.RegisterTransitGatewayMulticastGroupMembersOutput>
-    registerTransitGatewayMulticastGroupSources: function(Client, types.RegisterTransitGatewayMulticastGroupSourcesInput, any): async.Operation<types.RegisterTransitGatewayMulticastGroupSourcesOutput>
-    rejectCapacityReservationBillingOwnership: function(Client, types.RejectCapacityReservationBillingOwnershipInput, any): async.Operation<types.RejectCapacityReservationBillingOwnershipOutput>
-    rejectTransitGatewayClientVpnAttachment: function(Client, types.RejectTransitGatewayClientVpnAttachmentInput, any): async.Operation<types.RejectTransitGatewayClientVpnAttachmentOutput>
-    rejectTransitGatewayMulticastDomainAssociations: function(Client, types.RejectTransitGatewayMulticastDomainAssociationsInput, any): async.Operation<types.RejectTransitGatewayMulticastDomainAssociationsOutput>
-    rejectTransitGatewayPeeringAttachment: function(Client, types.RejectTransitGatewayPeeringAttachmentInput, any): async.Operation<types.RejectTransitGatewayPeeringAttachmentOutput>
-    rejectTransitGatewayVpcAttachment: function(Client, types.RejectTransitGatewayVpcAttachmentInput, any): async.Operation<types.RejectTransitGatewayVpcAttachmentOutput>
-    rejectVpcEndpointConnections: function(Client, types.RejectVpcEndpointConnectionsInput, any): async.Operation<types.RejectVpcEndpointConnectionsOutput>
-    rejectVpcPeeringConnection: function(Client, types.RejectVpcPeeringConnectionInput, any): async.Operation<types.RejectVpcPeeringConnectionOutput>
-    releaseAddress: function(Client, types.ReleaseAddressInput, any): async.Operation<types.ReleaseAddressOutput>
-    releaseHosts: function(Client, types.ReleaseHostsInput, any): async.Operation<types.ReleaseHostsOutput>
-    releaseIpamPoolAllocation: function(Client, types.ReleaseIpamPoolAllocationInput, any): async.Operation<types.ReleaseIpamPoolAllocationOutput>
-    replaceIamInstanceProfileAssociation: function(Client, types.ReplaceIamInstanceProfileAssociationInput, any): async.Operation<types.ReplaceIamInstanceProfileAssociationOutput>
-    replaceImageCriteriaInAllowedImagesSettings: function(Client, types.ReplaceImageCriteriaInAllowedImagesSettingsInput, any): async.Operation<types.ReplaceImageCriteriaInAllowedImagesSettingsOutput>
-    replaceNetworkAclAssociation: function(Client, types.ReplaceNetworkAclAssociationInput, any): async.Operation<types.ReplaceNetworkAclAssociationOutput>
-    replaceNetworkAclEntry: function(Client, types.ReplaceNetworkAclEntryInput, any): async.Operation<types.ReplaceNetworkAclEntryOutput>
-    replaceRoute: function(Client, types.ReplaceRouteInput, any): async.Operation<types.ReplaceRouteOutput>
-    replaceRouteTableAssociation: function(Client, types.ReplaceRouteTableAssociationInput, any): async.Operation<types.ReplaceRouteTableAssociationOutput>
-    replaceTransitGatewayRoute: function(Client, types.ReplaceTransitGatewayRouteInput, any): async.Operation<types.ReplaceTransitGatewayRouteOutput>
-    replaceVpnTunnel: function(Client, types.ReplaceVpnTunnelInput, any): async.Operation<types.ReplaceVpnTunnelOutput>
-    reportInstanceStatus: function(Client, types.ReportInstanceStatusInput, any): async.Operation<types.ReportInstanceStatusOutput>
-    requestSpotFleet: function(Client, types.RequestSpotFleetInput, any): async.Operation<types.RequestSpotFleetOutput>
-    requestSpotInstances: function(Client, types.RequestSpotInstancesInput, any): async.Operation<types.RequestSpotInstancesOutput>
-    resetAddressAttribute: function(Client, types.ResetAddressAttributeInput, any): async.Operation<types.ResetAddressAttributeOutput>
-    resetEbsDefaultKmsKeyId: function(Client, types.ResetEbsDefaultKmsKeyIdInput, any): async.Operation<types.ResetEbsDefaultKmsKeyIdOutput>
-    resetFpgaImageAttribute: function(Client, types.ResetFpgaImageAttributeInput, any): async.Operation<types.ResetFpgaImageAttributeOutput>
-    resetImageAttribute: function(Client, types.ResetImageAttributeInput, any): async.Operation<types.ResetImageAttributeOutput>
-    resetInstanceAttribute: function(Client, types.ResetInstanceAttributeInput, any): async.Operation<types.ResetInstanceAttributeOutput>
-    resetNetworkInterfaceAttribute: function(Client, types.ResetNetworkInterfaceAttributeInput, any): async.Operation<types.ResetNetworkInterfaceAttributeOutput>
-    resetSnapshotAttribute: function(Client, types.ResetSnapshotAttributeInput, any): async.Operation<types.ResetSnapshotAttributeOutput>
-    restoreAddressToClassic: function(Client, types.RestoreAddressToClassicInput, any): async.Operation<types.RestoreAddressToClassicOutput>
-    restoreImageFromRecycleBin: function(Client, types.RestoreImageFromRecycleBinInput, any): async.Operation<types.RestoreImageFromRecycleBinOutput>
-    restoreManagedPrefixListVersion: function(Client, types.RestoreManagedPrefixListVersionInput, any): async.Operation<types.RestoreManagedPrefixListVersionOutput>
-    restoreSnapshotFromRecycleBin: function(Client, types.RestoreSnapshotFromRecycleBinInput, any): async.Operation<types.RestoreSnapshotFromRecycleBinOutput>
-    restoreSnapshotTier: function(Client, types.RestoreSnapshotTierInput, any): async.Operation<types.RestoreSnapshotTierOutput>
-    restoreVolumeFromRecycleBin: function(Client, types.RestoreVolumeFromRecycleBinInput, any): async.Operation<types.RestoreVolumeFromRecycleBinOutput>
-    revokeClientVpnIngress: function(Client, types.RevokeClientVpnIngressInput, any): async.Operation<types.RevokeClientVpnIngressOutput>
-    revokeSecurityGroupEgress: function(Client, types.RevokeSecurityGroupEgressInput, any): async.Operation<types.RevokeSecurityGroupEgressOutput>
-    revokeSecurityGroupIngress: function(Client, types.RevokeSecurityGroupIngressInput, any): async.Operation<types.RevokeSecurityGroupIngressOutput>
-    runInstances: function(Client, types.RunInstancesInput, any): async.Operation<types.RunInstancesOutput>
-    runScheduledInstances: function(Client, types.RunScheduledInstancesInput, any): async.Operation<types.RunScheduledInstancesOutput>
-    searchLocalGatewayRoutes: function(Client, types.SearchLocalGatewayRoutesInput, any): async.Operation<types.SearchLocalGatewayRoutesOutput>
-    searchTransitGatewayMulticastGroups: function(Client, types.SearchTransitGatewayMulticastGroupsInput, any): async.Operation<types.SearchTransitGatewayMulticastGroupsOutput>
-    searchTransitGatewayRoutes: function(Client, types.SearchTransitGatewayRoutesInput, any): async.Operation<types.SearchTransitGatewayRoutesOutput>
-    sendDiagnosticInterrupt: function(Client, types.SendDiagnosticInterruptInput, any): async.Operation<types.SendDiagnosticInterruptOutput>
-    startDeclarativePoliciesReport: function(Client, types.StartDeclarativePoliciesReportInput, any): async.Operation<types.StartDeclarativePoliciesReportOutput>
-    startInstances: function(Client, types.StartInstancesInput, any): async.Operation<types.StartInstancesOutput>
-    startNetworkInsightsAccessScopeAnalysis: function(Client, types.StartNetworkInsightsAccessScopeAnalysisInput, any): async.Operation<types.StartNetworkInsightsAccessScopeAnalysisOutput>
-    startNetworkInsightsAnalysis: function(Client, types.StartNetworkInsightsAnalysisInput, any): async.Operation<types.StartNetworkInsightsAnalysisOutput>
-    startVpcEndpointServicePrivateDnsVerification: function(Client, types.StartVpcEndpointServicePrivateDnsVerificationInput, any): async.Operation<types.StartVpcEndpointServicePrivateDnsVerificationOutput>
-    stopInstances: function(Client, types.StopInstancesInput, any): async.Operation<types.StopInstancesOutput>
-    terminateClientVpnConnections: function(Client, types.TerminateClientVpnConnectionsInput, any): async.Operation<types.TerminateClientVpnConnectionsOutput>
-    terminateInstances: function(Client, types.TerminateInstancesInput, any): async.Operation<types.TerminateInstancesOutput>
-    unassignIpv6Addresses: function(Client, types.UnassignIpv6AddressesInput, any): async.Operation<types.UnassignIpv6AddressesOutput>
-    unassignPrivateIpAddresses: function(Client, types.UnassignPrivateIpAddressesInput, any): async.Operation<types.UnassignPrivateIpAddressesOutput>
-    unassignPrivateNatGatewayAddress: function(Client, types.UnassignPrivateNatGatewayAddressInput, any): async.Operation<types.UnassignPrivateNatGatewayAddressOutput>
-    unlockSnapshot: function(Client, types.UnlockSnapshotInput, any): async.Operation<types.UnlockSnapshotOutput>
-    unmonitorInstances: function(Client, types.UnmonitorInstancesInput, any): async.Operation<types.UnmonitorInstancesOutput>
-    updateCapacityManagerMonitoredTagKeys: function(Client, types.UpdateCapacityManagerMonitoredTagKeysInput, any): async.Operation<types.UpdateCapacityManagerMonitoredTagKeysOutput>
-    updateCapacityManagerOrganizationsAccess: function(Client, types.UpdateCapacityManagerOrganizationsAccessInput, any): async.Operation<types.UpdateCapacityManagerOrganizationsAccessOutput>
-    updateInterruptibleCapacityReservationAllocation: function(Client, types.UpdateInterruptibleCapacityReservationAllocationInput, any): async.Operation<types.UpdateInterruptibleCapacityReservationAllocationOutput>
-    updateSecurityGroupRuleDescriptionsEgress: function(Client, types.UpdateSecurityGroupRuleDescriptionsEgressInput, any): async.Operation<types.UpdateSecurityGroupRuleDescriptionsEgressOutput>
-    updateSecurityGroupRuleDescriptionsIngress: function(Client, types.UpdateSecurityGroupRuleDescriptionsIngressInput, any): async.Operation<types.UpdateSecurityGroupRuleDescriptionsIngressOutput>
-    withdrawByoipCidr: function(Client, types.WithdrawByoipCidrInput, any): async.Operation<types.WithdrawByoipCidrOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    acceptAddressTransfer: function(Client, types.AcceptAddressTransferInput, ? base_client.InvokeOptions): async.Operation<types.AcceptAddressTransferOutput>
+    acceptCapacityReservationBillingOwnership: function(Client, types.AcceptCapacityReservationBillingOwnershipInput, ? base_client.InvokeOptions): async.Operation<types.AcceptCapacityReservationBillingOwnershipOutput>
+    acceptReservedInstancesExchangeQuote: function(Client, types.AcceptReservedInstancesExchangeQuoteInput, ? base_client.InvokeOptions): async.Operation<types.AcceptReservedInstancesExchangeQuoteOutput>
+    acceptTransitGatewayClientVpnAttachment: function(Client, types.AcceptTransitGatewayClientVpnAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.AcceptTransitGatewayClientVpnAttachmentOutput>
+    acceptTransitGatewayMulticastDomainAssociations: function(Client, types.AcceptTransitGatewayMulticastDomainAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.AcceptTransitGatewayMulticastDomainAssociationsOutput>
+    acceptTransitGatewayPeeringAttachment: function(Client, types.AcceptTransitGatewayPeeringAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.AcceptTransitGatewayPeeringAttachmentOutput>
+    acceptTransitGatewayVpcAttachment: function(Client, types.AcceptTransitGatewayVpcAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.AcceptTransitGatewayVpcAttachmentOutput>
+    acceptVpcEndpointConnections: function(Client, types.AcceptVpcEndpointConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.AcceptVpcEndpointConnectionsOutput>
+    acceptVpcPeeringConnection: function(Client, types.AcceptVpcPeeringConnectionInput, ? base_client.InvokeOptions): async.Operation<types.AcceptVpcPeeringConnectionOutput>
+    advertiseByoipCidr: function(Client, types.AdvertiseByoipCidrInput, ? base_client.InvokeOptions): async.Operation<types.AdvertiseByoipCidrOutput>
+    allocateAddress: function(Client, types.AllocateAddressInput, ? base_client.InvokeOptions): async.Operation<types.AllocateAddressOutput>
+    allocateHosts: function(Client, types.AllocateHostsInput, ? base_client.InvokeOptions): async.Operation<types.AllocateHostsOutput>
+    allocateIpamPoolCidr: function(Client, types.AllocateIpamPoolCidrInput, ? base_client.InvokeOptions): async.Operation<types.AllocateIpamPoolCidrOutput>
+    applySecurityGroupsToClientVpnTargetNetwork: function(Client, types.ApplySecurityGroupsToClientVpnTargetNetworkInput, ? base_client.InvokeOptions): async.Operation<types.ApplySecurityGroupsToClientVpnTargetNetworkOutput>
+    assignIpv6Addresses: function(Client, types.AssignIpv6AddressesInput, ? base_client.InvokeOptions): async.Operation<types.AssignIpv6AddressesOutput>
+    assignPrivateIpAddresses: function(Client, types.AssignPrivateIpAddressesInput, ? base_client.InvokeOptions): async.Operation<types.AssignPrivateIpAddressesOutput>
+    assignPrivateNatGatewayAddress: function(Client, types.AssignPrivateNatGatewayAddressInput, ? base_client.InvokeOptions): async.Operation<types.AssignPrivateNatGatewayAddressOutput>
+    associateAddress: function(Client, types.AssociateAddressInput, ? base_client.InvokeOptions): async.Operation<types.AssociateAddressOutput>
+    associateCapacityReservationBillingOwner: function(Client, types.AssociateCapacityReservationBillingOwnerInput, ? base_client.InvokeOptions): async.Operation<types.AssociateCapacityReservationBillingOwnerOutput>
+    associateClientVpnTargetNetwork: function(Client, types.AssociateClientVpnTargetNetworkInput, ? base_client.InvokeOptions): async.Operation<types.AssociateClientVpnTargetNetworkOutput>
+    associateDhcpOptions: function(Client, types.AssociateDhcpOptionsInput, ? base_client.InvokeOptions): async.Operation<types.AssociateDhcpOptionsOutput>
+    associateEnclaveCertificateIamRole: function(Client, types.AssociateEnclaveCertificateIamRoleInput, ? base_client.InvokeOptions): async.Operation<types.AssociateEnclaveCertificateIamRoleOutput>
+    associateIamInstanceProfile: function(Client, types.AssociateIamInstanceProfileInput, ? base_client.InvokeOptions): async.Operation<types.AssociateIamInstanceProfileOutput>
+    associateInstanceEventWindow: function(Client, types.AssociateInstanceEventWindowInput, ? base_client.InvokeOptions): async.Operation<types.AssociateInstanceEventWindowOutput>
+    associateIpamByoasn: function(Client, types.AssociateIpamByoasnInput, ? base_client.InvokeOptions): async.Operation<types.AssociateIpamByoasnOutput>
+    associateIpamResourceDiscovery: function(Client, types.AssociateIpamResourceDiscoveryInput, ? base_client.InvokeOptions): async.Operation<types.AssociateIpamResourceDiscoveryOutput>
+    associateNatGatewayAddress: function(Client, types.AssociateNatGatewayAddressInput, ? base_client.InvokeOptions): async.Operation<types.AssociateNatGatewayAddressOutput>
+    associateRouteServer: function(Client, types.AssociateRouteServerInput, ? base_client.InvokeOptions): async.Operation<types.AssociateRouteServerOutput>
+    associateRouteTable: function(Client, types.AssociateRouteTableInput, ? base_client.InvokeOptions): async.Operation<types.AssociateRouteTableOutput>
+    associateSecurityGroupVpc: function(Client, types.AssociateSecurityGroupVpcInput, ? base_client.InvokeOptions): async.Operation<types.AssociateSecurityGroupVpcOutput>
+    associateSubnetCidrBlock: function(Client, types.AssociateSubnetCidrBlockInput, ? base_client.InvokeOptions): async.Operation<types.AssociateSubnetCidrBlockOutput>
+    associateTransitGatewayMulticastDomain: function(Client, types.AssociateTransitGatewayMulticastDomainInput, ? base_client.InvokeOptions): async.Operation<types.AssociateTransitGatewayMulticastDomainOutput>
+    associateTransitGatewayPolicyTable: function(Client, types.AssociateTransitGatewayPolicyTableInput, ? base_client.InvokeOptions): async.Operation<types.AssociateTransitGatewayPolicyTableOutput>
+    associateTransitGatewayRouteTable: function(Client, types.AssociateTransitGatewayRouteTableInput, ? base_client.InvokeOptions): async.Operation<types.AssociateTransitGatewayRouteTableOutput>
+    associateTrunkInterface: function(Client, types.AssociateTrunkInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.AssociateTrunkInterfaceOutput>
+    associateVpcCidrBlock: function(Client, types.AssociateVpcCidrBlockInput, ? base_client.InvokeOptions): async.Operation<types.AssociateVpcCidrBlockOutput>
+    attachClassicLinkVpc: function(Client, types.AttachClassicLinkVpcInput, ? base_client.InvokeOptions): async.Operation<types.AttachClassicLinkVpcOutput>
+    attachInternetGateway: function(Client, types.AttachInternetGatewayInput, ? base_client.InvokeOptions): async.Operation<types.AttachInternetGatewayOutput>
+    attachNetworkInterface: function(Client, types.AttachNetworkInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.AttachNetworkInterfaceOutput>
+    attachVerifiedAccessTrustProvider: function(Client, types.AttachVerifiedAccessTrustProviderInput, ? base_client.InvokeOptions): async.Operation<types.AttachVerifiedAccessTrustProviderOutput>
+    attachVolume: function(Client, types.AttachVolumeInput, ? base_client.InvokeOptions): async.Operation<types.AttachVolumeOutput>
+    attachVpnGateway: function(Client, types.AttachVpnGatewayInput, ? base_client.InvokeOptions): async.Operation<types.AttachVpnGatewayOutput>
+    authorizeClientVpnIngress: function(Client, types.AuthorizeClientVpnIngressInput, ? base_client.InvokeOptions): async.Operation<types.AuthorizeClientVpnIngressOutput>
+    authorizeSecurityGroupEgress: function(Client, types.AuthorizeSecurityGroupEgressInput, ? base_client.InvokeOptions): async.Operation<types.AuthorizeSecurityGroupEgressOutput>
+    authorizeSecurityGroupIngress: function(Client, types.AuthorizeSecurityGroupIngressInput, ? base_client.InvokeOptions): async.Operation<types.AuthorizeSecurityGroupIngressOutput>
+    bundleInstance: function(Client, types.BundleInstanceInput, ? base_client.InvokeOptions): async.Operation<types.BundleInstanceOutput>
+    cancelBundleTask: function(Client, types.CancelBundleTaskInput, ? base_client.InvokeOptions): async.Operation<types.CancelBundleTaskOutput>
+    cancelCapacityReservation: function(Client, types.CancelCapacityReservationInput, ? base_client.InvokeOptions): async.Operation<types.CancelCapacityReservationOutput>
+    cancelCapacityReservationFleets: function(Client, types.CancelCapacityReservationFleetsInput, ? base_client.InvokeOptions): async.Operation<types.CancelCapacityReservationFleetsOutput>
+    cancelConversionTask: function(Client, types.CancelConversionTaskInput, ? base_client.InvokeOptions): async.Operation<types.CancelConversionTaskOutput>
+    cancelDeclarativePoliciesReport: function(Client, types.CancelDeclarativePoliciesReportInput, ? base_client.InvokeOptions): async.Operation<types.CancelDeclarativePoliciesReportOutput>
+    cancelExportTask: function(Client, types.CancelExportTaskInput, ? base_client.InvokeOptions): async.Operation<types.CancelExportTaskOutput>
+    cancelImageLaunchPermission: function(Client, types.CancelImageLaunchPermissionInput, ? base_client.InvokeOptions): async.Operation<types.CancelImageLaunchPermissionOutput>
+    cancelImportTask: function(Client, types.CancelImportTaskInput, ? base_client.InvokeOptions): async.Operation<types.CancelImportTaskOutput>
+    cancelReservedInstancesListing: function(Client, types.CancelReservedInstancesListingInput, ? base_client.InvokeOptions): async.Operation<types.CancelReservedInstancesListingOutput>
+    cancelSpotFleetRequests: function(Client, types.CancelSpotFleetRequestsInput, ? base_client.InvokeOptions): async.Operation<types.CancelSpotFleetRequestsOutput>
+    cancelSpotInstanceRequests: function(Client, types.CancelSpotInstanceRequestsInput, ? base_client.InvokeOptions): async.Operation<types.CancelSpotInstanceRequestsOutput>
+    confirmProductInstance: function(Client, types.ConfirmProductInstanceInput, ? base_client.InvokeOptions): async.Operation<types.ConfirmProductInstanceOutput>
+    copyFpgaImage: function(Client, types.CopyFpgaImageInput, ? base_client.InvokeOptions): async.Operation<types.CopyFpgaImageOutput>
+    copyImage: function(Client, types.CopyImageInput, ? base_client.InvokeOptions): async.Operation<types.CopyImageOutput>
+    copySnapshot: function(Client, types.CopySnapshotInput, ? base_client.InvokeOptions): async.Operation<types.CopySnapshotOutput>
+    copyVolumes: function(Client, types.CopyVolumesInput, ? base_client.InvokeOptions): async.Operation<types.CopyVolumesOutput>
+    createCapacityManagerDataExport: function(Client, types.CreateCapacityManagerDataExportInput, ? base_client.InvokeOptions): async.Operation<types.CreateCapacityManagerDataExportOutput>
+    createCapacityReservation: function(Client, types.CreateCapacityReservationInput, ? base_client.InvokeOptions): async.Operation<types.CreateCapacityReservationOutput>
+    createCapacityReservationBySplitting: function(Client, types.CreateCapacityReservationBySplittingInput, ? base_client.InvokeOptions): async.Operation<types.CreateCapacityReservationBySplittingOutput>
+    createCapacityReservationFleet: function(Client, types.CreateCapacityReservationFleetInput, ? base_client.InvokeOptions): async.Operation<types.CreateCapacityReservationFleetOutput>
+    createCarrierGateway: function(Client, types.CreateCarrierGatewayInput, ? base_client.InvokeOptions): async.Operation<types.CreateCarrierGatewayOutput>
+    createClientVpnEndpoint: function(Client, types.CreateClientVpnEndpointInput, ? base_client.InvokeOptions): async.Operation<types.CreateClientVpnEndpointOutput>
+    createClientVpnRoute: function(Client, types.CreateClientVpnRouteInput, ? base_client.InvokeOptions): async.Operation<types.CreateClientVpnRouteOutput>
+    createCoipCidr: function(Client, types.CreateCoipCidrInput, ? base_client.InvokeOptions): async.Operation<types.CreateCoipCidrOutput>
+    createCoipPool: function(Client, types.CreateCoipPoolInput, ? base_client.InvokeOptions): async.Operation<types.CreateCoipPoolOutput>
+    createCustomerGateway: function(Client, types.CreateCustomerGatewayInput, ? base_client.InvokeOptions): async.Operation<types.CreateCustomerGatewayOutput>
+    createDefaultSubnet: function(Client, types.CreateDefaultSubnetInput, ? base_client.InvokeOptions): async.Operation<types.CreateDefaultSubnetOutput>
+    createDefaultVpc: function(Client, types.CreateDefaultVpcInput, ? base_client.InvokeOptions): async.Operation<types.CreateDefaultVpcOutput>
+    createDelegateMacVolumeOwnershipTask: function(Client, types.CreateDelegateMacVolumeOwnershipTaskInput, ? base_client.InvokeOptions): async.Operation<types.CreateDelegateMacVolumeOwnershipTaskOutput>
+    createDhcpOptions: function(Client, types.CreateDhcpOptionsInput, ? base_client.InvokeOptions): async.Operation<types.CreateDhcpOptionsOutput>
+    createEgressOnlyInternetGateway: function(Client, types.CreateEgressOnlyInternetGatewayInput, ? base_client.InvokeOptions): async.Operation<types.CreateEgressOnlyInternetGatewayOutput>
+    createFleet: function(Client, types.CreateFleetInput, ? base_client.InvokeOptions): async.Operation<types.CreateFleetOutput>
+    createFlowLogs: function(Client, types.CreateFlowLogsInput, ? base_client.InvokeOptions): async.Operation<types.CreateFlowLogsOutput>
+    createFpgaImage: function(Client, types.CreateFpgaImageInput, ? base_client.InvokeOptions): async.Operation<types.CreateFpgaImageOutput>
+    createImage: function(Client, types.CreateImageInput, ? base_client.InvokeOptions): async.Operation<types.CreateImageOutput>
+    createImageUsageReport: function(Client, types.CreateImageUsageReportInput, ? base_client.InvokeOptions): async.Operation<types.CreateImageUsageReportOutput>
+    createInstanceConnectEndpoint: function(Client, types.CreateInstanceConnectEndpointInput, ? base_client.InvokeOptions): async.Operation<types.CreateInstanceConnectEndpointOutput>
+    createInstanceEventWindow: function(Client, types.CreateInstanceEventWindowInput, ? base_client.InvokeOptions): async.Operation<types.CreateInstanceEventWindowOutput>
+    createInstanceExportTask: function(Client, types.CreateInstanceExportTaskInput, ? base_client.InvokeOptions): async.Operation<types.CreateInstanceExportTaskOutput>
+    createInternetGateway: function(Client, types.CreateInternetGatewayInput, ? base_client.InvokeOptions): async.Operation<types.CreateInternetGatewayOutput>
+    createInterruptibleCapacityReservationAllocation: function(Client, types.CreateInterruptibleCapacityReservationAllocationInput, ? base_client.InvokeOptions): async.Operation<types.CreateInterruptibleCapacityReservationAllocationOutput>
+    createIpam: function(Client, types.CreateIpamInput, ? base_client.InvokeOptions): async.Operation<types.CreateIpamOutput>
+    createIpamExternalResourceVerificationToken: function(Client, types.CreateIpamExternalResourceVerificationTokenInput, ? base_client.InvokeOptions): async.Operation<types.CreateIpamExternalResourceVerificationTokenOutput>
+    createIpamPolicy: function(Client, types.CreateIpamPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateIpamPolicyOutput>
+    createIpamPool: function(Client, types.CreateIpamPoolInput, ? base_client.InvokeOptions): async.Operation<types.CreateIpamPoolOutput>
+    createIpamPrefixListResolver: function(Client, types.CreateIpamPrefixListResolverInput, ? base_client.InvokeOptions): async.Operation<types.CreateIpamPrefixListResolverOutput>
+    createIpamPrefixListResolverTarget: function(Client, types.CreateIpamPrefixListResolverTargetInput, ? base_client.InvokeOptions): async.Operation<types.CreateIpamPrefixListResolverTargetOutput>
+    createIpamResourceDiscovery: function(Client, types.CreateIpamResourceDiscoveryInput, ? base_client.InvokeOptions): async.Operation<types.CreateIpamResourceDiscoveryOutput>
+    createIpamScope: function(Client, types.CreateIpamScopeInput, ? base_client.InvokeOptions): async.Operation<types.CreateIpamScopeOutput>
+    createKeyPair: function(Client, types.CreateKeyPairInput, ? base_client.InvokeOptions): async.Operation<types.CreateKeyPairOutput>
+    createLaunchTemplate: function(Client, types.CreateLaunchTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateLaunchTemplateOutput>
+    createLaunchTemplateVersion: function(Client, types.CreateLaunchTemplateVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateLaunchTemplateVersionOutput>
+    createLocalGatewayRoute: function(Client, types.CreateLocalGatewayRouteInput, ? base_client.InvokeOptions): async.Operation<types.CreateLocalGatewayRouteOutput>
+    createLocalGatewayRouteTable: function(Client, types.CreateLocalGatewayRouteTableInput, ? base_client.InvokeOptions): async.Operation<types.CreateLocalGatewayRouteTableOutput>
+    createLocalGatewayRouteTableVirtualInterfaceGroupAssociation: function(Client, types.CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationOutput>
+    createLocalGatewayRouteTableVpcAssociation: function(Client, types.CreateLocalGatewayRouteTableVpcAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateLocalGatewayRouteTableVpcAssociationOutput>
+    createLocalGatewayVirtualInterface: function(Client, types.CreateLocalGatewayVirtualInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.CreateLocalGatewayVirtualInterfaceOutput>
+    createLocalGatewayVirtualInterfaceGroup: function(Client, types.CreateLocalGatewayVirtualInterfaceGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateLocalGatewayVirtualInterfaceGroupOutput>
+    createMacSystemIntegrityProtectionModificationTask: function(Client, types.CreateMacSystemIntegrityProtectionModificationTaskInput, ? base_client.InvokeOptions): async.Operation<types.CreateMacSystemIntegrityProtectionModificationTaskOutput>
+    createManagedPrefixList: function(Client, types.CreateManagedPrefixListInput, ? base_client.InvokeOptions): async.Operation<types.CreateManagedPrefixListOutput>
+    createNatGateway: function(Client, types.CreateNatGatewayInput, ? base_client.InvokeOptions): async.Operation<types.CreateNatGatewayOutput>
+    createNetworkAcl: function(Client, types.CreateNetworkAclInput, ? base_client.InvokeOptions): async.Operation<types.CreateNetworkAclOutput>
+    createNetworkAclEntry: function(Client, types.CreateNetworkAclEntryInput, ? base_client.InvokeOptions): async.Operation<types.CreateNetworkAclEntryOutput>
+    createNetworkInsightsAccessScope: function(Client, types.CreateNetworkInsightsAccessScopeInput, ? base_client.InvokeOptions): async.Operation<types.CreateNetworkInsightsAccessScopeOutput>
+    createNetworkInsightsPath: function(Client, types.CreateNetworkInsightsPathInput, ? base_client.InvokeOptions): async.Operation<types.CreateNetworkInsightsPathOutput>
+    createNetworkInterface: function(Client, types.CreateNetworkInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.CreateNetworkInterfaceOutput>
+    createNetworkInterfacePermission: function(Client, types.CreateNetworkInterfacePermissionInput, ? base_client.InvokeOptions): async.Operation<types.CreateNetworkInterfacePermissionOutput>
+    createPlacementGroup: function(Client, types.CreatePlacementGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreatePlacementGroupOutput>
+    createPublicIpv4Pool: function(Client, types.CreatePublicIpv4PoolInput, ? base_client.InvokeOptions): async.Operation<types.CreatePublicIpv4PoolOutput>
+    createReplaceRootVolumeTask: function(Client, types.CreateReplaceRootVolumeTaskInput, ? base_client.InvokeOptions): async.Operation<types.CreateReplaceRootVolumeTaskOutput>
+    createReservedInstancesListing: function(Client, types.CreateReservedInstancesListingInput, ? base_client.InvokeOptions): async.Operation<types.CreateReservedInstancesListingOutput>
+    createRestoreImageTask: function(Client, types.CreateRestoreImageTaskInput, ? base_client.InvokeOptions): async.Operation<types.CreateRestoreImageTaskOutput>
+    createRoute: function(Client, types.CreateRouteInput, ? base_client.InvokeOptions): async.Operation<types.CreateRouteOutput>
+    createRouteServer: function(Client, types.CreateRouteServerInput, ? base_client.InvokeOptions): async.Operation<types.CreateRouteServerOutput>
+    createRouteServerEndpoint: function(Client, types.CreateRouteServerEndpointInput, ? base_client.InvokeOptions): async.Operation<types.CreateRouteServerEndpointOutput>
+    createRouteServerPeer: function(Client, types.CreateRouteServerPeerInput, ? base_client.InvokeOptions): async.Operation<types.CreateRouteServerPeerOutput>
+    createRouteTable: function(Client, types.CreateRouteTableInput, ? base_client.InvokeOptions): async.Operation<types.CreateRouteTableOutput>
+    createSecondaryNetwork: function(Client, types.CreateSecondaryNetworkInput, ? base_client.InvokeOptions): async.Operation<types.CreateSecondaryNetworkOutput>
+    createSecondarySubnet: function(Client, types.CreateSecondarySubnetInput, ? base_client.InvokeOptions): async.Operation<types.CreateSecondarySubnetOutput>
+    createSecurityGroup: function(Client, types.CreateSecurityGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateSecurityGroupOutput>
+    createSnapshot: function(Client, types.CreateSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.CreateSnapshotOutput>
+    createSnapshots: function(Client, types.CreateSnapshotsInput, ? base_client.InvokeOptions): async.Operation<types.CreateSnapshotsOutput>
+    createSpotDatafeedSubscription: function(Client, types.CreateSpotDatafeedSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.CreateSpotDatafeedSubscriptionOutput>
+    createStoreImageTask: function(Client, types.CreateStoreImageTaskInput, ? base_client.InvokeOptions): async.Operation<types.CreateStoreImageTaskOutput>
+    createSubnet: function(Client, types.CreateSubnetInput, ? base_client.InvokeOptions): async.Operation<types.CreateSubnetOutput>
+    createSubnetCidrReservation: function(Client, types.CreateSubnetCidrReservationInput, ? base_client.InvokeOptions): async.Operation<types.CreateSubnetCidrReservationOutput>
+    createTags: function(Client, types.CreateTagsInput, ? base_client.InvokeOptions): async.Operation<types.CreateTagsOutput>
+    createTrafficMirrorFilter: function(Client, types.CreateTrafficMirrorFilterInput, ? base_client.InvokeOptions): async.Operation<types.CreateTrafficMirrorFilterOutput>
+    createTrafficMirrorFilterRule: function(Client, types.CreateTrafficMirrorFilterRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateTrafficMirrorFilterRuleOutput>
+    createTrafficMirrorSession: function(Client, types.CreateTrafficMirrorSessionInput, ? base_client.InvokeOptions): async.Operation<types.CreateTrafficMirrorSessionOutput>
+    createTrafficMirrorTarget: function(Client, types.CreateTrafficMirrorTargetInput, ? base_client.InvokeOptions): async.Operation<types.CreateTrafficMirrorTargetOutput>
+    createTransitGateway: function(Client, types.CreateTransitGatewayInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayOutput>
+    createTransitGatewayConnect: function(Client, types.CreateTransitGatewayConnectInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayConnectOutput>
+    createTransitGatewayConnectPeer: function(Client, types.CreateTransitGatewayConnectPeerInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayConnectPeerOutput>
+    createTransitGatewayMeteringPolicy: function(Client, types.CreateTransitGatewayMeteringPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayMeteringPolicyOutput>
+    createTransitGatewayMeteringPolicyEntry: function(Client, types.CreateTransitGatewayMeteringPolicyEntryInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayMeteringPolicyEntryOutput>
+    createTransitGatewayMulticastDomain: function(Client, types.CreateTransitGatewayMulticastDomainInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayMulticastDomainOutput>
+    createTransitGatewayPeeringAttachment: function(Client, types.CreateTransitGatewayPeeringAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayPeeringAttachmentOutput>
+    createTransitGatewayPolicyTable: function(Client, types.CreateTransitGatewayPolicyTableInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayPolicyTableOutput>
+    createTransitGatewayPrefixListReference: function(Client, types.CreateTransitGatewayPrefixListReferenceInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayPrefixListReferenceOutput>
+    createTransitGatewayRoute: function(Client, types.CreateTransitGatewayRouteInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayRouteOutput>
+    createTransitGatewayRouteTable: function(Client, types.CreateTransitGatewayRouteTableInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayRouteTableOutput>
+    createTransitGatewayRouteTableAnnouncement: function(Client, types.CreateTransitGatewayRouteTableAnnouncementInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayRouteTableAnnouncementOutput>
+    createTransitGatewayVpcAttachment: function(Client, types.CreateTransitGatewayVpcAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayVpcAttachmentOutput>
+    createVerifiedAccessEndpoint: function(Client, types.CreateVerifiedAccessEndpointInput, ? base_client.InvokeOptions): async.Operation<types.CreateVerifiedAccessEndpointOutput>
+    createVerifiedAccessGroup: function(Client, types.CreateVerifiedAccessGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateVerifiedAccessGroupOutput>
+    createVerifiedAccessInstance: function(Client, types.CreateVerifiedAccessInstanceInput, ? base_client.InvokeOptions): async.Operation<types.CreateVerifiedAccessInstanceOutput>
+    createVerifiedAccessTrustProvider: function(Client, types.CreateVerifiedAccessTrustProviderInput, ? base_client.InvokeOptions): async.Operation<types.CreateVerifiedAccessTrustProviderOutput>
+    createVolume: function(Client, types.CreateVolumeInput, ? base_client.InvokeOptions): async.Operation<types.CreateVolumeOutput>
+    createVpc: function(Client, types.CreateVpcInput, ? base_client.InvokeOptions): async.Operation<types.CreateVpcOutput>
+    createVpcBlockPublicAccessExclusion: function(Client, types.CreateVpcBlockPublicAccessExclusionInput, ? base_client.InvokeOptions): async.Operation<types.CreateVpcBlockPublicAccessExclusionOutput>
+    createVpcEncryptionControl: function(Client, types.CreateVpcEncryptionControlInput, ? base_client.InvokeOptions): async.Operation<types.CreateVpcEncryptionControlOutput>
+    createVpcEndpoint: function(Client, types.CreateVpcEndpointInput, ? base_client.InvokeOptions): async.Operation<types.CreateVpcEndpointOutput>
+    createVpcEndpointConnectionNotification: function(Client, types.CreateVpcEndpointConnectionNotificationInput, ? base_client.InvokeOptions): async.Operation<types.CreateVpcEndpointConnectionNotificationOutput>
+    createVpcEndpointServiceConfiguration: function(Client, types.CreateVpcEndpointServiceConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateVpcEndpointServiceConfigurationOutput>
+    createVpcPeeringConnection: function(Client, types.CreateVpcPeeringConnectionInput, ? base_client.InvokeOptions): async.Operation<types.CreateVpcPeeringConnectionOutput>
+    createVpnConcentrator: function(Client, types.CreateVpnConcentratorInput, ? base_client.InvokeOptions): async.Operation<types.CreateVpnConcentratorOutput>
+    createVpnConnection: function(Client, types.CreateVpnConnectionInput, ? base_client.InvokeOptions): async.Operation<types.CreateVpnConnectionOutput>
+    createVpnConnectionRoute: function(Client, types.CreateVpnConnectionRouteInput, ? base_client.InvokeOptions): async.Operation<types.CreateVpnConnectionRouteOutput>
+    createVpnGateway: function(Client, types.CreateVpnGatewayInput, ? base_client.InvokeOptions): async.Operation<types.CreateVpnGatewayOutput>
+    deleteCapacityManagerDataExport: function(Client, types.DeleteCapacityManagerDataExportInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCapacityManagerDataExportOutput>
+    deleteCarrierGateway: function(Client, types.DeleteCarrierGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCarrierGatewayOutput>
+    deleteClientVpnEndpoint: function(Client, types.DeleteClientVpnEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DeleteClientVpnEndpointOutput>
+    deleteClientVpnRoute: function(Client, types.DeleteClientVpnRouteInput, ? base_client.InvokeOptions): async.Operation<types.DeleteClientVpnRouteOutput>
+    deleteCoipCidr: function(Client, types.DeleteCoipCidrInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCoipCidrOutput>
+    deleteCoipPool: function(Client, types.DeleteCoipPoolInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCoipPoolOutput>
+    deleteCustomerGateway: function(Client, types.DeleteCustomerGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCustomerGatewayOutput>
+    deleteDhcpOptions: function(Client, types.DeleteDhcpOptionsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDhcpOptionsOutput>
+    deleteEgressOnlyInternetGateway: function(Client, types.DeleteEgressOnlyInternetGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEgressOnlyInternetGatewayOutput>
+    deleteFleets: function(Client, types.DeleteFleetsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFleetsOutput>
+    deleteFlowLogs: function(Client, types.DeleteFlowLogsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFlowLogsOutput>
+    deleteFpgaImage: function(Client, types.DeleteFpgaImageInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFpgaImageOutput>
+    deleteImageUsageReport: function(Client, types.DeleteImageUsageReportInput, ? base_client.InvokeOptions): async.Operation<types.DeleteImageUsageReportOutput>
+    deleteInstanceConnectEndpoint: function(Client, types.DeleteInstanceConnectEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInstanceConnectEndpointOutput>
+    deleteInstanceEventWindow: function(Client, types.DeleteInstanceEventWindowInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInstanceEventWindowOutput>
+    deleteInternetGateway: function(Client, types.DeleteInternetGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInternetGatewayOutput>
+    deleteIpam: function(Client, types.DeleteIpamInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIpamOutput>
+    deleteIpamExternalResourceVerificationToken: function(Client, types.DeleteIpamExternalResourceVerificationTokenInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIpamExternalResourceVerificationTokenOutput>
+    deleteIpamPolicy: function(Client, types.DeleteIpamPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIpamPolicyOutput>
+    deleteIpamPool: function(Client, types.DeleteIpamPoolInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIpamPoolOutput>
+    deleteIpamPrefixListResolver: function(Client, types.DeleteIpamPrefixListResolverInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIpamPrefixListResolverOutput>
+    deleteIpamPrefixListResolverTarget: function(Client, types.DeleteIpamPrefixListResolverTargetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIpamPrefixListResolverTargetOutput>
+    deleteIpamResourceDiscovery: function(Client, types.DeleteIpamResourceDiscoveryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIpamResourceDiscoveryOutput>
+    deleteIpamScope: function(Client, types.DeleteIpamScopeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIpamScopeOutput>
+    deleteKeyPair: function(Client, types.DeleteKeyPairInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKeyPairOutput>
+    deleteLaunchTemplate: function(Client, types.DeleteLaunchTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLaunchTemplateOutput>
+    deleteLaunchTemplateVersions: function(Client, types.DeleteLaunchTemplateVersionsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLaunchTemplateVersionsOutput>
+    deleteLocalGatewayRoute: function(Client, types.DeleteLocalGatewayRouteInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLocalGatewayRouteOutput>
+    deleteLocalGatewayRouteTable: function(Client, types.DeleteLocalGatewayRouteTableInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLocalGatewayRouteTableOutput>
+    deleteLocalGatewayRouteTableVirtualInterfaceGroupAssociation: function(Client, types.DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationOutput>
+    deleteLocalGatewayRouteTableVpcAssociation: function(Client, types.DeleteLocalGatewayRouteTableVpcAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLocalGatewayRouteTableVpcAssociationOutput>
+    deleteLocalGatewayVirtualInterface: function(Client, types.DeleteLocalGatewayVirtualInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLocalGatewayVirtualInterfaceOutput>
+    deleteLocalGatewayVirtualInterfaceGroup: function(Client, types.DeleteLocalGatewayVirtualInterfaceGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLocalGatewayVirtualInterfaceGroupOutput>
+    deleteManagedPrefixList: function(Client, types.DeleteManagedPrefixListInput, ? base_client.InvokeOptions): async.Operation<types.DeleteManagedPrefixListOutput>
+    deleteNatGateway: function(Client, types.DeleteNatGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNatGatewayOutput>
+    deleteNetworkAcl: function(Client, types.DeleteNetworkAclInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNetworkAclOutput>
+    deleteNetworkAclEntry: function(Client, types.DeleteNetworkAclEntryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNetworkAclEntryOutput>
+    deleteNetworkInsightsAccessScope: function(Client, types.DeleteNetworkInsightsAccessScopeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNetworkInsightsAccessScopeOutput>
+    deleteNetworkInsightsAccessScopeAnalysis: function(Client, types.DeleteNetworkInsightsAccessScopeAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNetworkInsightsAccessScopeAnalysisOutput>
+    deleteNetworkInsightsAnalysis: function(Client, types.DeleteNetworkInsightsAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNetworkInsightsAnalysisOutput>
+    deleteNetworkInsightsPath: function(Client, types.DeleteNetworkInsightsPathInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNetworkInsightsPathOutput>
+    deleteNetworkInterface: function(Client, types.DeleteNetworkInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNetworkInterfaceOutput>
+    deleteNetworkInterfacePermission: function(Client, types.DeleteNetworkInterfacePermissionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNetworkInterfacePermissionOutput>
+    deletePlacementGroup: function(Client, types.DeletePlacementGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeletePlacementGroupOutput>
+    deletePublicIpv4Pool: function(Client, types.DeletePublicIpv4PoolInput, ? base_client.InvokeOptions): async.Operation<types.DeletePublicIpv4PoolOutput>
+    deleteQueuedReservedInstances: function(Client, types.DeleteQueuedReservedInstancesInput, ? base_client.InvokeOptions): async.Operation<types.DeleteQueuedReservedInstancesOutput>
+    deleteRoute: function(Client, types.DeleteRouteInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRouteOutput>
+    deleteRouteServer: function(Client, types.DeleteRouteServerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRouteServerOutput>
+    deleteRouteServerEndpoint: function(Client, types.DeleteRouteServerEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRouteServerEndpointOutput>
+    deleteRouteServerPeer: function(Client, types.DeleteRouteServerPeerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRouteServerPeerOutput>
+    deleteRouteTable: function(Client, types.DeleteRouteTableInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRouteTableOutput>
+    deleteSecondaryNetwork: function(Client, types.DeleteSecondaryNetworkInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSecondaryNetworkOutput>
+    deleteSecondarySubnet: function(Client, types.DeleteSecondarySubnetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSecondarySubnetOutput>
+    deleteSecurityGroup: function(Client, types.DeleteSecurityGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSecurityGroupOutput>
+    deleteSnapshot: function(Client, types.DeleteSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSnapshotOutput>
+    deleteSpotDatafeedSubscription: function(Client, types.DeleteSpotDatafeedSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSpotDatafeedSubscriptionOutput>
+    deleteSubnet: function(Client, types.DeleteSubnetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSubnetOutput>
+    deleteSubnetCidrReservation: function(Client, types.DeleteSubnetCidrReservationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSubnetCidrReservationOutput>
+    deleteTags: function(Client, types.DeleteTagsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTagsOutput>
+    deleteTrafficMirrorFilter: function(Client, types.DeleteTrafficMirrorFilterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTrafficMirrorFilterOutput>
+    deleteTrafficMirrorFilterRule: function(Client, types.DeleteTrafficMirrorFilterRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTrafficMirrorFilterRuleOutput>
+    deleteTrafficMirrorSession: function(Client, types.DeleteTrafficMirrorSessionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTrafficMirrorSessionOutput>
+    deleteTrafficMirrorTarget: function(Client, types.DeleteTrafficMirrorTargetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTrafficMirrorTargetOutput>
+    deleteTransitGateway: function(Client, types.DeleteTransitGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayOutput>
+    deleteTransitGatewayClientVpnAttachment: function(Client, types.DeleteTransitGatewayClientVpnAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayClientVpnAttachmentOutput>
+    deleteTransitGatewayConnect: function(Client, types.DeleteTransitGatewayConnectInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayConnectOutput>
+    deleteTransitGatewayConnectPeer: function(Client, types.DeleteTransitGatewayConnectPeerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayConnectPeerOutput>
+    deleteTransitGatewayMeteringPolicy: function(Client, types.DeleteTransitGatewayMeteringPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayMeteringPolicyOutput>
+    deleteTransitGatewayMeteringPolicyEntry: function(Client, types.DeleteTransitGatewayMeteringPolicyEntryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayMeteringPolicyEntryOutput>
+    deleteTransitGatewayMulticastDomain: function(Client, types.DeleteTransitGatewayMulticastDomainInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayMulticastDomainOutput>
+    deleteTransitGatewayPeeringAttachment: function(Client, types.DeleteTransitGatewayPeeringAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayPeeringAttachmentOutput>
+    deleteTransitGatewayPolicyTable: function(Client, types.DeleteTransitGatewayPolicyTableInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayPolicyTableOutput>
+    deleteTransitGatewayPrefixListReference: function(Client, types.DeleteTransitGatewayPrefixListReferenceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayPrefixListReferenceOutput>
+    deleteTransitGatewayRoute: function(Client, types.DeleteTransitGatewayRouteInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayRouteOutput>
+    deleteTransitGatewayRouteTable: function(Client, types.DeleteTransitGatewayRouteTableInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayRouteTableOutput>
+    deleteTransitGatewayRouteTableAnnouncement: function(Client, types.DeleteTransitGatewayRouteTableAnnouncementInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayRouteTableAnnouncementOutput>
+    deleteTransitGatewayVpcAttachment: function(Client, types.DeleteTransitGatewayVpcAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayVpcAttachmentOutput>
+    deleteVerifiedAccessEndpoint: function(Client, types.DeleteVerifiedAccessEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVerifiedAccessEndpointOutput>
+    deleteVerifiedAccessGroup: function(Client, types.DeleteVerifiedAccessGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVerifiedAccessGroupOutput>
+    deleteVerifiedAccessInstance: function(Client, types.DeleteVerifiedAccessInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVerifiedAccessInstanceOutput>
+    deleteVerifiedAccessTrustProvider: function(Client, types.DeleteVerifiedAccessTrustProviderInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVerifiedAccessTrustProviderOutput>
+    deleteVolume: function(Client, types.DeleteVolumeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVolumeOutput>
+    deleteVpc: function(Client, types.DeleteVpcInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVpcOutput>
+    deleteVpcBlockPublicAccessExclusion: function(Client, types.DeleteVpcBlockPublicAccessExclusionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVpcBlockPublicAccessExclusionOutput>
+    deleteVpcEncryptionControl: function(Client, types.DeleteVpcEncryptionControlInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVpcEncryptionControlOutput>
+    deleteVpcEndpointConnectionNotifications: function(Client, types.DeleteVpcEndpointConnectionNotificationsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVpcEndpointConnectionNotificationsOutput>
+    deleteVpcEndpoints: function(Client, types.DeleteVpcEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVpcEndpointsOutput>
+    deleteVpcEndpointServiceConfigurations: function(Client, types.DeleteVpcEndpointServiceConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVpcEndpointServiceConfigurationsOutput>
+    deleteVpcPeeringConnection: function(Client, types.DeleteVpcPeeringConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVpcPeeringConnectionOutput>
+    deleteVpnConcentrator: function(Client, types.DeleteVpnConcentratorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVpnConcentratorOutput>
+    deleteVpnConnection: function(Client, types.DeleteVpnConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVpnConnectionOutput>
+    deleteVpnConnectionRoute: function(Client, types.DeleteVpnConnectionRouteInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVpnConnectionRouteOutput>
+    deleteVpnGateway: function(Client, types.DeleteVpnGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVpnGatewayOutput>
+    deprovisionByoipCidr: function(Client, types.DeprovisionByoipCidrInput, ? base_client.InvokeOptions): async.Operation<types.DeprovisionByoipCidrOutput>
+    deprovisionIpamByoasn: function(Client, types.DeprovisionIpamByoasnInput, ? base_client.InvokeOptions): async.Operation<types.DeprovisionIpamByoasnOutput>
+    deprovisionIpamPoolCidr: function(Client, types.DeprovisionIpamPoolCidrInput, ? base_client.InvokeOptions): async.Operation<types.DeprovisionIpamPoolCidrOutput>
+    deprovisionPublicIpv4PoolCidr: function(Client, types.DeprovisionPublicIpv4PoolCidrInput, ? base_client.InvokeOptions): async.Operation<types.DeprovisionPublicIpv4PoolCidrOutput>
+    deregisterImage: function(Client, types.DeregisterImageInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterImageOutput>
+    deregisterInstanceEventNotificationAttributes: function(Client, types.DeregisterInstanceEventNotificationAttributesInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterInstanceEventNotificationAttributesOutput>
+    deregisterTransitGatewayMulticastGroupMembers: function(Client, types.DeregisterTransitGatewayMulticastGroupMembersInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterTransitGatewayMulticastGroupMembersOutput>
+    deregisterTransitGatewayMulticastGroupSources: function(Client, types.DeregisterTransitGatewayMulticastGroupSourcesInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterTransitGatewayMulticastGroupSourcesOutput>
+    describeAccountAttributes: function(Client, types.DescribeAccountAttributesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAccountAttributesOutput>
+    describeAddresses: function(Client, types.DescribeAddressesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAddressesOutput>
+    describeAddressesAttribute: function(Client, types.DescribeAddressesAttributeInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAddressesAttributeOutput>
+    describeAddressTransfers: function(Client, types.DescribeAddressTransfersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAddressTransfersOutput>
+    describeAggregateIdFormat: function(Client, types.DescribeAggregateIdFormatInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAggregateIdFormatOutput>
+    describeAvailabilityZones: function(Client, types.DescribeAvailabilityZonesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAvailabilityZonesOutput>
+    describeAwsNetworkPerformanceMetricSubscriptions: function(Client, types.DescribeAwsNetworkPerformanceMetricSubscriptionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAwsNetworkPerformanceMetricSubscriptionsOutput>
+    describeBundleTasks: function(Client, types.DescribeBundleTasksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBundleTasksOutput>
+    describeByoipCidrs: function(Client, types.DescribeByoipCidrsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeByoipCidrsOutput>
+    describeCapacityBlockExtensionHistory: function(Client, types.DescribeCapacityBlockExtensionHistoryInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCapacityBlockExtensionHistoryOutput>
+    describeCapacityBlockExtensionOfferings: function(Client, types.DescribeCapacityBlockExtensionOfferingsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCapacityBlockExtensionOfferingsOutput>
+    describeCapacityBlockOfferings: function(Client, types.DescribeCapacityBlockOfferingsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCapacityBlockOfferingsOutput>
+    describeCapacityBlocks: function(Client, types.DescribeCapacityBlocksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCapacityBlocksOutput>
+    describeCapacityBlockStatus: function(Client, types.DescribeCapacityBlockStatusInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCapacityBlockStatusOutput>
+    describeCapacityManagerDataExports: function(Client, types.DescribeCapacityManagerDataExportsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCapacityManagerDataExportsOutput>
+    describeCapacityReservationBillingRequests: function(Client, types.DescribeCapacityReservationBillingRequestsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCapacityReservationBillingRequestsOutput>
+    describeCapacityReservationFleets: function(Client, types.DescribeCapacityReservationFleetsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCapacityReservationFleetsOutput>
+    describeCapacityReservations: function(Client, types.DescribeCapacityReservationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCapacityReservationsOutput>
+    describeCapacityReservationTopology: function(Client, types.DescribeCapacityReservationTopologyInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCapacityReservationTopologyOutput>
+    describeCarrierGateways: function(Client, types.DescribeCarrierGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCarrierGatewaysOutput>
+    describeClassicLinkInstances: function(Client, types.DescribeClassicLinkInstancesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClassicLinkInstancesOutput>
+    describeClientVpnAuthorizationRules: function(Client, types.DescribeClientVpnAuthorizationRulesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClientVpnAuthorizationRulesOutput>
+    describeClientVpnConnections: function(Client, types.DescribeClientVpnConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClientVpnConnectionsOutput>
+    describeClientVpnEndpoints: function(Client, types.DescribeClientVpnEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClientVpnEndpointsOutput>
+    describeClientVpnRoutes: function(Client, types.DescribeClientVpnRoutesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClientVpnRoutesOutput>
+    describeClientVpnTargetNetworks: function(Client, types.DescribeClientVpnTargetNetworksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClientVpnTargetNetworksOutput>
+    describeCoipPools: function(Client, types.DescribeCoipPoolsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCoipPoolsOutput>
+    describeConversionTasks: function(Client, types.DescribeConversionTasksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConversionTasksOutput>
+    describeCustomerGateways: function(Client, types.DescribeCustomerGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCustomerGatewaysOutput>
+    describeDeclarativePoliciesReports: function(Client, types.DescribeDeclarativePoliciesReportsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDeclarativePoliciesReportsOutput>
+    describeDhcpOptions: function(Client, types.DescribeDhcpOptionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDhcpOptionsOutput>
+    describeEgressOnlyInternetGateways: function(Client, types.DescribeEgressOnlyInternetGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEgressOnlyInternetGatewaysOutput>
+    describeElasticGpus: function(Client, types.DescribeElasticGpusInput, ? base_client.InvokeOptions): async.Operation<types.DescribeElasticGpusOutput>
+    describeExportImageTasks: function(Client, types.DescribeExportImageTasksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeExportImageTasksOutput>
+    describeExportTasks: function(Client, types.DescribeExportTasksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeExportTasksOutput>
+    describeFastLaunchImages: function(Client, types.DescribeFastLaunchImagesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFastLaunchImagesOutput>
+    describeFastSnapshotRestores: function(Client, types.DescribeFastSnapshotRestoresInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFastSnapshotRestoresOutput>
+    describeFleetHistory: function(Client, types.DescribeFleetHistoryInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFleetHistoryOutput>
+    describeFleetInstances: function(Client, types.DescribeFleetInstancesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFleetInstancesOutput>
+    describeFleets: function(Client, types.DescribeFleetsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFleetsOutput>
+    describeFlowLogs: function(Client, types.DescribeFlowLogsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFlowLogsOutput>
+    describeFpgaImageAttribute: function(Client, types.DescribeFpgaImageAttributeInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFpgaImageAttributeOutput>
+    describeFpgaImages: function(Client, types.DescribeFpgaImagesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFpgaImagesOutput>
+    describeHostReservationOfferings: function(Client, types.DescribeHostReservationOfferingsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeHostReservationOfferingsOutput>
+    describeHostReservations: function(Client, types.DescribeHostReservationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeHostReservationsOutput>
+    describeHosts: function(Client, types.DescribeHostsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeHostsOutput>
+    describeIamInstanceProfileAssociations: function(Client, types.DescribeIamInstanceProfileAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIamInstanceProfileAssociationsOutput>
+    describeIdentityIdFormat: function(Client, types.DescribeIdentityIdFormatInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIdentityIdFormatOutput>
+    describeIdFormat: function(Client, types.DescribeIdFormatInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIdFormatOutput>
+    describeImageAttribute: function(Client, types.DescribeImageAttributeInput, ? base_client.InvokeOptions): async.Operation<types.DescribeImageAttributeOutput>
+    describeImageReferences: function(Client, types.DescribeImageReferencesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeImageReferencesOutput>
+    describeImages: function(Client, types.DescribeImagesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeImagesOutput>
+    describeImageUsageReportEntries: function(Client, types.DescribeImageUsageReportEntriesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeImageUsageReportEntriesOutput>
+    describeImageUsageReports: function(Client, types.DescribeImageUsageReportsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeImageUsageReportsOutput>
+    describeImportImageTasks: function(Client, types.DescribeImportImageTasksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeImportImageTasksOutput>
+    describeImportSnapshotTasks: function(Client, types.DescribeImportSnapshotTasksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeImportSnapshotTasksOutput>
+    describeInstanceAttribute: function(Client, types.DescribeInstanceAttributeInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstanceAttributeOutput>
+    describeInstanceConnectEndpoints: function(Client, types.DescribeInstanceConnectEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstanceConnectEndpointsOutput>
+    describeInstanceCreditSpecifications: function(Client, types.DescribeInstanceCreditSpecificationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstanceCreditSpecificationsOutput>
+    describeInstanceEventNotificationAttributes: function(Client, types.DescribeInstanceEventNotificationAttributesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstanceEventNotificationAttributesOutput>
+    describeInstanceEventWindows: function(Client, types.DescribeInstanceEventWindowsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstanceEventWindowsOutput>
+    describeInstanceImageMetadata: function(Client, types.DescribeInstanceImageMetadataInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstanceImageMetadataOutput>
+    describeInstances: function(Client, types.DescribeInstancesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstancesOutput>
+    describeInstanceSqlHaHistoryStates: function(Client, types.DescribeInstanceSqlHaHistoryStatesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstanceSqlHaHistoryStatesOutput>
+    describeInstanceSqlHaStates: function(Client, types.DescribeInstanceSqlHaStatesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstanceSqlHaStatesOutput>
+    describeInstanceStatus: function(Client, types.DescribeInstanceStatusInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstanceStatusOutput>
+    describeInstanceTopology: function(Client, types.DescribeInstanceTopologyInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstanceTopologyOutput>
+    describeInstanceTypeOfferings: function(Client, types.DescribeInstanceTypeOfferingsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstanceTypeOfferingsOutput>
+    describeInstanceTypes: function(Client, types.DescribeInstanceTypesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstanceTypesOutput>
+    describeInternetGateways: function(Client, types.DescribeInternetGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInternetGatewaysOutput>
+    describeIpamByoasn: function(Client, types.DescribeIpamByoasnInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIpamByoasnOutput>
+    describeIpamExternalResourceVerificationTokens: function(Client, types.DescribeIpamExternalResourceVerificationTokensInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIpamExternalResourceVerificationTokensOutput>
+    describeIpamPolicies: function(Client, types.DescribeIpamPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIpamPoliciesOutput>
+    describeIpamPools: function(Client, types.DescribeIpamPoolsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIpamPoolsOutput>
+    describeIpamPrefixListResolvers: function(Client, types.DescribeIpamPrefixListResolversInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIpamPrefixListResolversOutput>
+    describeIpamPrefixListResolverTargets: function(Client, types.DescribeIpamPrefixListResolverTargetsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIpamPrefixListResolverTargetsOutput>
+    describeIpamResourceDiscoveries: function(Client, types.DescribeIpamResourceDiscoveriesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIpamResourceDiscoveriesOutput>
+    describeIpamResourceDiscoveryAssociations: function(Client, types.DescribeIpamResourceDiscoveryAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIpamResourceDiscoveryAssociationsOutput>
+    describeIpams: function(Client, types.DescribeIpamsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIpamsOutput>
+    describeIpamScopes: function(Client, types.DescribeIpamScopesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIpamScopesOutput>
+    describeIpv6Pools: function(Client, types.DescribeIpv6PoolsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIpv6PoolsOutput>
+    describeKeyPairs: function(Client, types.DescribeKeyPairsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeKeyPairsOutput>
+    describeLaunchTemplates: function(Client, types.DescribeLaunchTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLaunchTemplatesOutput>
+    describeLaunchTemplateVersions: function(Client, types.DescribeLaunchTemplateVersionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLaunchTemplateVersionsOutput>
+    describeLocalGatewayRouteTables: function(Client, types.DescribeLocalGatewayRouteTablesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLocalGatewayRouteTablesOutput>
+    describeLocalGatewayRouteTableVirtualInterfaceGroupAssociations: function(Client, types.DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsOutput>
+    describeLocalGatewayRouteTableVpcAssociations: function(Client, types.DescribeLocalGatewayRouteTableVpcAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLocalGatewayRouteTableVpcAssociationsOutput>
+    describeLocalGateways: function(Client, types.DescribeLocalGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLocalGatewaysOutput>
+    describeLocalGatewayVirtualInterfaceGroups: function(Client, types.DescribeLocalGatewayVirtualInterfaceGroupsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLocalGatewayVirtualInterfaceGroupsOutput>
+    describeLocalGatewayVirtualInterfaces: function(Client, types.DescribeLocalGatewayVirtualInterfacesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLocalGatewayVirtualInterfacesOutput>
+    describeLockedSnapshots: function(Client, types.DescribeLockedSnapshotsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLockedSnapshotsOutput>
+    describeMacHosts: function(Client, types.DescribeMacHostsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMacHostsOutput>
+    describeMacModificationTasks: function(Client, types.DescribeMacModificationTasksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMacModificationTasksOutput>
+    describeManagedPrefixLists: function(Client, types.DescribeManagedPrefixListsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeManagedPrefixListsOutput>
+    describeMovingAddresses: function(Client, types.DescribeMovingAddressesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMovingAddressesOutput>
+    describeNatGateways: function(Client, types.DescribeNatGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNatGatewaysOutput>
+    describeNetworkAcls: function(Client, types.DescribeNetworkAclsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNetworkAclsOutput>
+    describeNetworkInsightsAccessScopeAnalyses: function(Client, types.DescribeNetworkInsightsAccessScopeAnalysesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNetworkInsightsAccessScopeAnalysesOutput>
+    describeNetworkInsightsAccessScopes: function(Client, types.DescribeNetworkInsightsAccessScopesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNetworkInsightsAccessScopesOutput>
+    describeNetworkInsightsAnalyses: function(Client, types.DescribeNetworkInsightsAnalysesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNetworkInsightsAnalysesOutput>
+    describeNetworkInsightsPaths: function(Client, types.DescribeNetworkInsightsPathsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNetworkInsightsPathsOutput>
+    describeNetworkInterfaceAttribute: function(Client, types.DescribeNetworkInterfaceAttributeInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNetworkInterfaceAttributeOutput>
+    describeNetworkInterfacePermissions: function(Client, types.DescribeNetworkInterfacePermissionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNetworkInterfacePermissionsOutput>
+    describeNetworkInterfaces: function(Client, types.DescribeNetworkInterfacesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNetworkInterfacesOutput>
+    describeOutpostLags: function(Client, types.DescribeOutpostLagsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeOutpostLagsOutput>
+    describePlacementGroups: function(Client, types.DescribePlacementGroupsInput, ? base_client.InvokeOptions): async.Operation<types.DescribePlacementGroupsOutput>
+    describePrefixLists: function(Client, types.DescribePrefixListsInput, ? base_client.InvokeOptions): async.Operation<types.DescribePrefixListsOutput>
+    describePrincipalIdFormat: function(Client, types.DescribePrincipalIdFormatInput, ? base_client.InvokeOptions): async.Operation<types.DescribePrincipalIdFormatOutput>
+    describePublicIpv4Pools: function(Client, types.DescribePublicIpv4PoolsInput, ? base_client.InvokeOptions): async.Operation<types.DescribePublicIpv4PoolsOutput>
+    describeRegions: function(Client, types.DescribeRegionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRegionsOutput>
+    describeReplaceRootVolumeTasks: function(Client, types.DescribeReplaceRootVolumeTasksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeReplaceRootVolumeTasksOutput>
+    describeReservedInstances: function(Client, types.DescribeReservedInstancesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeReservedInstancesOutput>
+    describeReservedInstancesListings: function(Client, types.DescribeReservedInstancesListingsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeReservedInstancesListingsOutput>
+    describeReservedInstancesModifications: function(Client, types.DescribeReservedInstancesModificationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeReservedInstancesModificationsOutput>
+    describeReservedInstancesOfferings: function(Client, types.DescribeReservedInstancesOfferingsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeReservedInstancesOfferingsOutput>
+    describeRouteServerEndpoints: function(Client, types.DescribeRouteServerEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRouteServerEndpointsOutput>
+    describeRouteServerPeers: function(Client, types.DescribeRouteServerPeersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRouteServerPeersOutput>
+    describeRouteServers: function(Client, types.DescribeRouteServersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRouteServersOutput>
+    describeRouteTables: function(Client, types.DescribeRouteTablesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRouteTablesOutput>
+    describeScheduledInstanceAvailability: function(Client, types.DescribeScheduledInstanceAvailabilityInput, ? base_client.InvokeOptions): async.Operation<types.DescribeScheduledInstanceAvailabilityOutput>
+    describeScheduledInstances: function(Client, types.DescribeScheduledInstancesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeScheduledInstancesOutput>
+    describeSecondaryInterfaces: function(Client, types.DescribeSecondaryInterfacesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSecondaryInterfacesOutput>
+    describeSecondaryNetworks: function(Client, types.DescribeSecondaryNetworksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSecondaryNetworksOutput>
+    describeSecondarySubnets: function(Client, types.DescribeSecondarySubnetsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSecondarySubnetsOutput>
+    describeSecurityGroupReferences: function(Client, types.DescribeSecurityGroupReferencesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSecurityGroupReferencesOutput>
+    describeSecurityGroupRules: function(Client, types.DescribeSecurityGroupRulesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSecurityGroupRulesOutput>
+    describeSecurityGroups: function(Client, types.DescribeSecurityGroupsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSecurityGroupsOutput>
+    describeSecurityGroupVpcAssociations: function(Client, types.DescribeSecurityGroupVpcAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSecurityGroupVpcAssociationsOutput>
+    describeServiceLinkVirtualInterfaces: function(Client, types.DescribeServiceLinkVirtualInterfacesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeServiceLinkVirtualInterfacesOutput>
+    describeSnapshotAttribute: function(Client, types.DescribeSnapshotAttributeInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSnapshotAttributeOutput>
+    describeSnapshots: function(Client, types.DescribeSnapshotsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSnapshotsOutput>
+    describeSnapshotTierStatus: function(Client, types.DescribeSnapshotTierStatusInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSnapshotTierStatusOutput>
+    describeSpotDatafeedSubscription: function(Client, types.DescribeSpotDatafeedSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSpotDatafeedSubscriptionOutput>
+    describeSpotFleetInstances: function(Client, types.DescribeSpotFleetInstancesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSpotFleetInstancesOutput>
+    describeSpotFleetRequestHistory: function(Client, types.DescribeSpotFleetRequestHistoryInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSpotFleetRequestHistoryOutput>
+    describeSpotFleetRequests: function(Client, types.DescribeSpotFleetRequestsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSpotFleetRequestsOutput>
+    describeSpotInstanceRequests: function(Client, types.DescribeSpotInstanceRequestsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSpotInstanceRequestsOutput>
+    describeSpotPriceHistory: function(Client, types.DescribeSpotPriceHistoryInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSpotPriceHistoryOutput>
+    describeStaleSecurityGroups: function(Client, types.DescribeStaleSecurityGroupsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeStaleSecurityGroupsOutput>
+    describeStoreImageTasks: function(Client, types.DescribeStoreImageTasksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeStoreImageTasksOutput>
+    describeSubnets: function(Client, types.DescribeSubnetsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSubnetsOutput>
+    describeTags: function(Client, types.DescribeTagsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTagsOutput>
+    describeTrafficMirrorFilterRules: function(Client, types.DescribeTrafficMirrorFilterRulesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTrafficMirrorFilterRulesOutput>
+    describeTrafficMirrorFilters: function(Client, types.DescribeTrafficMirrorFiltersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTrafficMirrorFiltersOutput>
+    describeTrafficMirrorSessions: function(Client, types.DescribeTrafficMirrorSessionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTrafficMirrorSessionsOutput>
+    describeTrafficMirrorTargets: function(Client, types.DescribeTrafficMirrorTargetsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTrafficMirrorTargetsOutput>
+    describeTransitGatewayAttachments: function(Client, types.DescribeTransitGatewayAttachmentsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayAttachmentsOutput>
+    describeTransitGatewayConnectPeers: function(Client, types.DescribeTransitGatewayConnectPeersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayConnectPeersOutput>
+    describeTransitGatewayConnects: function(Client, types.DescribeTransitGatewayConnectsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayConnectsOutput>
+    describeTransitGatewayMeteringPolicies: function(Client, types.DescribeTransitGatewayMeteringPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayMeteringPoliciesOutput>
+    describeTransitGatewayMulticastDomains: function(Client, types.DescribeTransitGatewayMulticastDomainsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayMulticastDomainsOutput>
+    describeTransitGatewayPeeringAttachments: function(Client, types.DescribeTransitGatewayPeeringAttachmentsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayPeeringAttachmentsOutput>
+    describeTransitGatewayPolicyTables: function(Client, types.DescribeTransitGatewayPolicyTablesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayPolicyTablesOutput>
+    describeTransitGatewayRouteTableAnnouncements: function(Client, types.DescribeTransitGatewayRouteTableAnnouncementsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayRouteTableAnnouncementsOutput>
+    describeTransitGatewayRouteTables: function(Client, types.DescribeTransitGatewayRouteTablesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayRouteTablesOutput>
+    describeTransitGateways: function(Client, types.DescribeTransitGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewaysOutput>
+    describeTransitGatewayVpcAttachments: function(Client, types.DescribeTransitGatewayVpcAttachmentsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayVpcAttachmentsOutput>
+    describeTrunkInterfaceAssociations: function(Client, types.DescribeTrunkInterfaceAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTrunkInterfaceAssociationsOutput>
+    describeVerifiedAccessEndpoints: function(Client, types.DescribeVerifiedAccessEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVerifiedAccessEndpointsOutput>
+    describeVerifiedAccessGroups: function(Client, types.DescribeVerifiedAccessGroupsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVerifiedAccessGroupsOutput>
+    describeVerifiedAccessInstanceLoggingConfigurations: function(Client, types.DescribeVerifiedAccessInstanceLoggingConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVerifiedAccessInstanceLoggingConfigurationsOutput>
+    describeVerifiedAccessInstances: function(Client, types.DescribeVerifiedAccessInstancesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVerifiedAccessInstancesOutput>
+    describeVerifiedAccessTrustProviders: function(Client, types.DescribeVerifiedAccessTrustProvidersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVerifiedAccessTrustProvidersOutput>
+    describeVolumeAttribute: function(Client, types.DescribeVolumeAttributeInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVolumeAttributeOutput>
+    describeVolumes: function(Client, types.DescribeVolumesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVolumesOutput>
+    describeVolumesModifications: function(Client, types.DescribeVolumesModificationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVolumesModificationsOutput>
+    describeVolumeStatus: function(Client, types.DescribeVolumeStatusInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVolumeStatusOutput>
+    describeVpcAttribute: function(Client, types.DescribeVpcAttributeInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVpcAttributeOutput>
+    describeVpcBlockPublicAccessExclusions: function(Client, types.DescribeVpcBlockPublicAccessExclusionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVpcBlockPublicAccessExclusionsOutput>
+    describeVpcBlockPublicAccessOptions: function(Client, types.DescribeVpcBlockPublicAccessOptionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVpcBlockPublicAccessOptionsOutput>
+    describeVpcClassicLink: function(Client, types.DescribeVpcClassicLinkInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVpcClassicLinkOutput>
+    describeVpcClassicLinkDnsSupport: function(Client, types.DescribeVpcClassicLinkDnsSupportInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVpcClassicLinkDnsSupportOutput>
+    describeVpcEncryptionControls: function(Client, types.DescribeVpcEncryptionControlsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVpcEncryptionControlsOutput>
+    describeVpcEndpointAssociations: function(Client, types.DescribeVpcEndpointAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVpcEndpointAssociationsOutput>
+    describeVpcEndpointConnectionNotifications: function(Client, types.DescribeVpcEndpointConnectionNotificationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVpcEndpointConnectionNotificationsOutput>
+    describeVpcEndpointConnections: function(Client, types.DescribeVpcEndpointConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVpcEndpointConnectionsOutput>
+    describeVpcEndpoints: function(Client, types.DescribeVpcEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVpcEndpointsOutput>
+    describeVpcEndpointServiceConfigurations: function(Client, types.DescribeVpcEndpointServiceConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVpcEndpointServiceConfigurationsOutput>
+    describeVpcEndpointServicePermissions: function(Client, types.DescribeVpcEndpointServicePermissionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVpcEndpointServicePermissionsOutput>
+    describeVpcEndpointServices: function(Client, types.DescribeVpcEndpointServicesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVpcEndpointServicesOutput>
+    describeVpcPeeringConnections: function(Client, types.DescribeVpcPeeringConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVpcPeeringConnectionsOutput>
+    describeVpcs: function(Client, types.DescribeVpcsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVpcsOutput>
+    describeVpnConcentrators: function(Client, types.DescribeVpnConcentratorsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVpnConcentratorsOutput>
+    describeVpnConnections: function(Client, types.DescribeVpnConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVpnConnectionsOutput>
+    describeVpnGateways: function(Client, types.DescribeVpnGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVpnGatewaysOutput>
+    detachClassicLinkVpc: function(Client, types.DetachClassicLinkVpcInput, ? base_client.InvokeOptions): async.Operation<types.DetachClassicLinkVpcOutput>
+    detachInternetGateway: function(Client, types.DetachInternetGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DetachInternetGatewayOutput>
+    detachNetworkInterface: function(Client, types.DetachNetworkInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.DetachNetworkInterfaceOutput>
+    detachVerifiedAccessTrustProvider: function(Client, types.DetachVerifiedAccessTrustProviderInput, ? base_client.InvokeOptions): async.Operation<types.DetachVerifiedAccessTrustProviderOutput>
+    detachVolume: function(Client, types.DetachVolumeInput, ? base_client.InvokeOptions): async.Operation<types.DetachVolumeOutput>
+    detachVpnGateway: function(Client, types.DetachVpnGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DetachVpnGatewayOutput>
+    disableAddressTransfer: function(Client, types.DisableAddressTransferInput, ? base_client.InvokeOptions): async.Operation<types.DisableAddressTransferOutput>
+    disableAllowedImagesSettings: function(Client, types.DisableAllowedImagesSettingsInput, ? base_client.InvokeOptions): async.Operation<types.DisableAllowedImagesSettingsOutput>
+    disableAwsNetworkPerformanceMetricSubscription: function(Client, types.DisableAwsNetworkPerformanceMetricSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.DisableAwsNetworkPerformanceMetricSubscriptionOutput>
+    disableCapacityManager: function(Client, types.DisableCapacityManagerInput, ? base_client.InvokeOptions): async.Operation<types.DisableCapacityManagerOutput>
+    disableEbsEncryptionByDefault: function(Client, types.DisableEbsEncryptionByDefaultInput, ? base_client.InvokeOptions): async.Operation<types.DisableEbsEncryptionByDefaultOutput>
+    disableFastLaunch: function(Client, types.DisableFastLaunchInput, ? base_client.InvokeOptions): async.Operation<types.DisableFastLaunchOutput>
+    disableFastSnapshotRestores: function(Client, types.DisableFastSnapshotRestoresInput, ? base_client.InvokeOptions): async.Operation<types.DisableFastSnapshotRestoresOutput>
+    disableImage: function(Client, types.DisableImageInput, ? base_client.InvokeOptions): async.Operation<types.DisableImageOutput>
+    disableImageBlockPublicAccess: function(Client, types.DisableImageBlockPublicAccessInput, ? base_client.InvokeOptions): async.Operation<types.DisableImageBlockPublicAccessOutput>
+    disableImageDeprecation: function(Client, types.DisableImageDeprecationInput, ? base_client.InvokeOptions): async.Operation<types.DisableImageDeprecationOutput>
+    disableImageDeregistrationProtection: function(Client, types.DisableImageDeregistrationProtectionInput, ? base_client.InvokeOptions): async.Operation<types.DisableImageDeregistrationProtectionOutput>
+    disableInstanceSqlHaStandbyDetections: function(Client, types.DisableInstanceSqlHaStandbyDetectionsInput, ? base_client.InvokeOptions): async.Operation<types.DisableInstanceSqlHaStandbyDetectionsOutput>
+    disableIpamOrganizationAdminAccount: function(Client, types.DisableIpamOrganizationAdminAccountInput, ? base_client.InvokeOptions): async.Operation<types.DisableIpamOrganizationAdminAccountOutput>
+    disableIpamPolicy: function(Client, types.DisableIpamPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DisableIpamPolicyOutput>
+    disableRouteServerPropagation: function(Client, types.DisableRouteServerPropagationInput, ? base_client.InvokeOptions): async.Operation<types.DisableRouteServerPropagationOutput>
+    disableSerialConsoleAccess: function(Client, types.DisableSerialConsoleAccessInput, ? base_client.InvokeOptions): async.Operation<types.DisableSerialConsoleAccessOutput>
+    disableSnapshotBlockPublicAccess: function(Client, types.DisableSnapshotBlockPublicAccessInput, ? base_client.InvokeOptions): async.Operation<types.DisableSnapshotBlockPublicAccessOutput>
+    disableTransitGatewayRouteTablePropagation: function(Client, types.DisableTransitGatewayRouteTablePropagationInput, ? base_client.InvokeOptions): async.Operation<types.DisableTransitGatewayRouteTablePropagationOutput>
+    disableVgwRoutePropagation: function(Client, types.DisableVgwRoutePropagationInput, ? base_client.InvokeOptions): async.Operation<types.DisableVgwRoutePropagationOutput>
+    disableVpcClassicLink: function(Client, types.DisableVpcClassicLinkInput, ? base_client.InvokeOptions): async.Operation<types.DisableVpcClassicLinkOutput>
+    disableVpcClassicLinkDnsSupport: function(Client, types.DisableVpcClassicLinkDnsSupportInput, ? base_client.InvokeOptions): async.Operation<types.DisableVpcClassicLinkDnsSupportOutput>
+    disassociateAddress: function(Client, types.DisassociateAddressInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateAddressOutput>
+    disassociateCapacityReservationBillingOwner: function(Client, types.DisassociateCapacityReservationBillingOwnerInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateCapacityReservationBillingOwnerOutput>
+    disassociateClientVpnTargetNetwork: function(Client, types.DisassociateClientVpnTargetNetworkInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateClientVpnTargetNetworkOutput>
+    disassociateEnclaveCertificateIamRole: function(Client, types.DisassociateEnclaveCertificateIamRoleInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateEnclaveCertificateIamRoleOutput>
+    disassociateIamInstanceProfile: function(Client, types.DisassociateIamInstanceProfileInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateIamInstanceProfileOutput>
+    disassociateInstanceEventWindow: function(Client, types.DisassociateInstanceEventWindowInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateInstanceEventWindowOutput>
+    disassociateIpamByoasn: function(Client, types.DisassociateIpamByoasnInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateIpamByoasnOutput>
+    disassociateIpamResourceDiscovery: function(Client, types.DisassociateIpamResourceDiscoveryInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateIpamResourceDiscoveryOutput>
+    disassociateNatGatewayAddress: function(Client, types.DisassociateNatGatewayAddressInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateNatGatewayAddressOutput>
+    disassociateRouteServer: function(Client, types.DisassociateRouteServerInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateRouteServerOutput>
+    disassociateRouteTable: function(Client, types.DisassociateRouteTableInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateRouteTableOutput>
+    disassociateSecurityGroupVpc: function(Client, types.DisassociateSecurityGroupVpcInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateSecurityGroupVpcOutput>
+    disassociateSubnetCidrBlock: function(Client, types.DisassociateSubnetCidrBlockInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateSubnetCidrBlockOutput>
+    disassociateTransitGatewayMulticastDomain: function(Client, types.DisassociateTransitGatewayMulticastDomainInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateTransitGatewayMulticastDomainOutput>
+    disassociateTransitGatewayPolicyTable: function(Client, types.DisassociateTransitGatewayPolicyTableInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateTransitGatewayPolicyTableOutput>
+    disassociateTransitGatewayRouteTable: function(Client, types.DisassociateTransitGatewayRouteTableInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateTransitGatewayRouteTableOutput>
+    disassociateTrunkInterface: function(Client, types.DisassociateTrunkInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateTrunkInterfaceOutput>
+    disassociateVpcCidrBlock: function(Client, types.DisassociateVpcCidrBlockInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateVpcCidrBlockOutput>
+    enableAddressTransfer: function(Client, types.EnableAddressTransferInput, ? base_client.InvokeOptions): async.Operation<types.EnableAddressTransferOutput>
+    enableAllowedImagesSettings: function(Client, types.EnableAllowedImagesSettingsInput, ? base_client.InvokeOptions): async.Operation<types.EnableAllowedImagesSettingsOutput>
+    enableAwsNetworkPerformanceMetricSubscription: function(Client, types.EnableAwsNetworkPerformanceMetricSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.EnableAwsNetworkPerformanceMetricSubscriptionOutput>
+    enableCapacityManager: function(Client, types.EnableCapacityManagerInput, ? base_client.InvokeOptions): async.Operation<types.EnableCapacityManagerOutput>
+    enableEbsEncryptionByDefault: function(Client, types.EnableEbsEncryptionByDefaultInput, ? base_client.InvokeOptions): async.Operation<types.EnableEbsEncryptionByDefaultOutput>
+    enableFastLaunch: function(Client, types.EnableFastLaunchInput, ? base_client.InvokeOptions): async.Operation<types.EnableFastLaunchOutput>
+    enableFastSnapshotRestores: function(Client, types.EnableFastSnapshotRestoresInput, ? base_client.InvokeOptions): async.Operation<types.EnableFastSnapshotRestoresOutput>
+    enableImage: function(Client, types.EnableImageInput, ? base_client.InvokeOptions): async.Operation<types.EnableImageOutput>
+    enableImageBlockPublicAccess: function(Client, types.EnableImageBlockPublicAccessInput, ? base_client.InvokeOptions): async.Operation<types.EnableImageBlockPublicAccessOutput>
+    enableImageDeprecation: function(Client, types.EnableImageDeprecationInput, ? base_client.InvokeOptions): async.Operation<types.EnableImageDeprecationOutput>
+    enableImageDeregistrationProtection: function(Client, types.EnableImageDeregistrationProtectionInput, ? base_client.InvokeOptions): async.Operation<types.EnableImageDeregistrationProtectionOutput>
+    enableInstanceSqlHaStandbyDetections: function(Client, types.EnableInstanceSqlHaStandbyDetectionsInput, ? base_client.InvokeOptions): async.Operation<types.EnableInstanceSqlHaStandbyDetectionsOutput>
+    enableIpamOrganizationAdminAccount: function(Client, types.EnableIpamOrganizationAdminAccountInput, ? base_client.InvokeOptions): async.Operation<types.EnableIpamOrganizationAdminAccountOutput>
+    enableIpamPolicy: function(Client, types.EnableIpamPolicyInput, ? base_client.InvokeOptions): async.Operation<types.EnableIpamPolicyOutput>
+    enableReachabilityAnalyzerOrganizationSharing: function(Client, types.EnableReachabilityAnalyzerOrganizationSharingInput, ? base_client.InvokeOptions): async.Operation<types.EnableReachabilityAnalyzerOrganizationSharingOutput>
+    enableRouteServerPropagation: function(Client, types.EnableRouteServerPropagationInput, ? base_client.InvokeOptions): async.Operation<types.EnableRouteServerPropagationOutput>
+    enableSerialConsoleAccess: function(Client, types.EnableSerialConsoleAccessInput, ? base_client.InvokeOptions): async.Operation<types.EnableSerialConsoleAccessOutput>
+    enableSnapshotBlockPublicAccess: function(Client, types.EnableSnapshotBlockPublicAccessInput, ? base_client.InvokeOptions): async.Operation<types.EnableSnapshotBlockPublicAccessOutput>
+    enableTransitGatewayRouteTablePropagation: function(Client, types.EnableTransitGatewayRouteTablePropagationInput, ? base_client.InvokeOptions): async.Operation<types.EnableTransitGatewayRouteTablePropagationOutput>
+    enableVgwRoutePropagation: function(Client, types.EnableVgwRoutePropagationInput, ? base_client.InvokeOptions): async.Operation<types.EnableVgwRoutePropagationOutput>
+    enableVolumeIO: function(Client, types.EnableVolumeIOInput, ? base_client.InvokeOptions): async.Operation<types.EnableVolumeIOOutput>
+    enableVpcClassicLink: function(Client, types.EnableVpcClassicLinkInput, ? base_client.InvokeOptions): async.Operation<types.EnableVpcClassicLinkOutput>
+    enableVpcClassicLinkDnsSupport: function(Client, types.EnableVpcClassicLinkDnsSupportInput, ? base_client.InvokeOptions): async.Operation<types.EnableVpcClassicLinkDnsSupportOutput>
+    exportClientVpnClientCertificateRevocationList: function(Client, types.ExportClientVpnClientCertificateRevocationListInput, ? base_client.InvokeOptions): async.Operation<types.ExportClientVpnClientCertificateRevocationListOutput>
+    exportClientVpnClientConfiguration: function(Client, types.ExportClientVpnClientConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.ExportClientVpnClientConfigurationOutput>
+    exportImage: function(Client, types.ExportImageInput, ? base_client.InvokeOptions): async.Operation<types.ExportImageOutput>
+    exportTransitGatewayRoutes: function(Client, types.ExportTransitGatewayRoutesInput, ? base_client.InvokeOptions): async.Operation<types.ExportTransitGatewayRoutesOutput>
+    exportVerifiedAccessInstanceClientConfiguration: function(Client, types.ExportVerifiedAccessInstanceClientConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.ExportVerifiedAccessInstanceClientConfigurationOutput>
+    getActiveVpnTunnelStatus: function(Client, types.GetActiveVpnTunnelStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetActiveVpnTunnelStatusOutput>
+    getAllowedImagesSettings: function(Client, types.GetAllowedImagesSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetAllowedImagesSettingsOutput>
+    getAssociatedEnclaveCertificateIamRoles: function(Client, types.GetAssociatedEnclaveCertificateIamRolesInput, ? base_client.InvokeOptions): async.Operation<types.GetAssociatedEnclaveCertificateIamRolesOutput>
+    getAssociatedIpv6PoolCidrs: function(Client, types.GetAssociatedIpv6PoolCidrsInput, ? base_client.InvokeOptions): async.Operation<types.GetAssociatedIpv6PoolCidrsOutput>
+    getAwsNetworkPerformanceData: function(Client, types.GetAwsNetworkPerformanceDataInput, ? base_client.InvokeOptions): async.Operation<types.GetAwsNetworkPerformanceDataOutput>
+    getCapacityManagerAttributes: function(Client, types.GetCapacityManagerAttributesInput, ? base_client.InvokeOptions): async.Operation<types.GetCapacityManagerAttributesOutput>
+    getCapacityManagerMetricData: function(Client, types.GetCapacityManagerMetricDataInput, ? base_client.InvokeOptions): async.Operation<types.GetCapacityManagerMetricDataOutput>
+    getCapacityManagerMetricDimensions: function(Client, types.GetCapacityManagerMetricDimensionsInput, ? base_client.InvokeOptions): async.Operation<types.GetCapacityManagerMetricDimensionsOutput>
+    getCapacityManagerMonitoredTagKeys: function(Client, types.GetCapacityManagerMonitoredTagKeysInput, ? base_client.InvokeOptions): async.Operation<types.GetCapacityManagerMonitoredTagKeysOutput>
+    getCapacityReservationUsage: function(Client, types.GetCapacityReservationUsageInput, ? base_client.InvokeOptions): async.Operation<types.GetCapacityReservationUsageOutput>
+    getCoipPoolUsage: function(Client, types.GetCoipPoolUsageInput, ? base_client.InvokeOptions): async.Operation<types.GetCoipPoolUsageOutput>
+    getConsoleOutput: function(Client, types.GetConsoleOutputInput, ? base_client.InvokeOptions): async.Operation<types.GetConsoleOutputOutput>
+    getConsoleScreenshot: function(Client, types.GetConsoleScreenshotInput, ? base_client.InvokeOptions): async.Operation<types.GetConsoleScreenshotOutput>
+    getDeclarativePoliciesReportSummary: function(Client, types.GetDeclarativePoliciesReportSummaryInput, ? base_client.InvokeOptions): async.Operation<types.GetDeclarativePoliciesReportSummaryOutput>
+    getDefaultCreditSpecification: function(Client, types.GetDefaultCreditSpecificationInput, ? base_client.InvokeOptions): async.Operation<types.GetDefaultCreditSpecificationOutput>
+    getEbsDefaultKmsKeyId: function(Client, types.GetEbsDefaultKmsKeyIdInput, ? base_client.InvokeOptions): async.Operation<types.GetEbsDefaultKmsKeyIdOutput>
+    getEbsEncryptionByDefault: function(Client, types.GetEbsEncryptionByDefaultInput, ? base_client.InvokeOptions): async.Operation<types.GetEbsEncryptionByDefaultOutput>
+    getEnabledIpamPolicy: function(Client, types.GetEnabledIpamPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetEnabledIpamPolicyOutput>
+    getFlowLogsIntegrationTemplate: function(Client, types.GetFlowLogsIntegrationTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetFlowLogsIntegrationTemplateOutput>
+    getGroupsForCapacityReservation: function(Client, types.GetGroupsForCapacityReservationInput, ? base_client.InvokeOptions): async.Operation<types.GetGroupsForCapacityReservationOutput>
+    getHostReservationPurchasePreview: function(Client, types.GetHostReservationPurchasePreviewInput, ? base_client.InvokeOptions): async.Operation<types.GetHostReservationPurchasePreviewOutput>
+    getImageAncestry: function(Client, types.GetImageAncestryInput, ? base_client.InvokeOptions): async.Operation<types.GetImageAncestryOutput>
+    getImageBlockPublicAccessState: function(Client, types.GetImageBlockPublicAccessStateInput, ? base_client.InvokeOptions): async.Operation<types.GetImageBlockPublicAccessStateOutput>
+    getInstanceMetadataDefaults: function(Client, types.GetInstanceMetadataDefaultsInput, ? base_client.InvokeOptions): async.Operation<types.GetInstanceMetadataDefaultsOutput>
+    getInstanceTpmEkPub: function(Client, types.GetInstanceTpmEkPubInput, ? base_client.InvokeOptions): async.Operation<types.GetInstanceTpmEkPubOutput>
+    getInstanceTypesFromInstanceRequirements: function(Client, types.GetInstanceTypesFromInstanceRequirementsInput, ? base_client.InvokeOptions): async.Operation<types.GetInstanceTypesFromInstanceRequirementsOutput>
+    getInstanceUefiData: function(Client, types.GetInstanceUefiDataInput, ? base_client.InvokeOptions): async.Operation<types.GetInstanceUefiDataOutput>
+    getIpamAddressHistory: function(Client, types.GetIpamAddressHistoryInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamAddressHistoryOutput>
+    getIpamDiscoveredAccounts: function(Client, types.GetIpamDiscoveredAccountsInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamDiscoveredAccountsOutput>
+    getIpamDiscoveredPublicAddresses: function(Client, types.GetIpamDiscoveredPublicAddressesInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamDiscoveredPublicAddressesOutput>
+    getIpamDiscoveredResourceCidrs: function(Client, types.GetIpamDiscoveredResourceCidrsInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamDiscoveredResourceCidrsOutput>
+    getIpamPolicyAllocationRules: function(Client, types.GetIpamPolicyAllocationRulesInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamPolicyAllocationRulesOutput>
+    getIpamPolicyOrganizationTargets: function(Client, types.GetIpamPolicyOrganizationTargetsInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamPolicyOrganizationTargetsOutput>
+    getIpamPoolAllocations: function(Client, types.GetIpamPoolAllocationsInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamPoolAllocationsOutput>
+    getIpamPoolCidrs: function(Client, types.GetIpamPoolCidrsInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamPoolCidrsOutput>
+    getIpamPrefixListResolverRules: function(Client, types.GetIpamPrefixListResolverRulesInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamPrefixListResolverRulesOutput>
+    getIpamPrefixListResolverVersionEntries: function(Client, types.GetIpamPrefixListResolverVersionEntriesInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamPrefixListResolverVersionEntriesOutput>
+    getIpamPrefixListResolverVersions: function(Client, types.GetIpamPrefixListResolverVersionsInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamPrefixListResolverVersionsOutput>
+    getIpamResourceCidrs: function(Client, types.GetIpamResourceCidrsInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamResourceCidrsOutput>
+    getLaunchTemplateData: function(Client, types.GetLaunchTemplateDataInput, ? base_client.InvokeOptions): async.Operation<types.GetLaunchTemplateDataOutput>
+    getManagedPrefixListAssociations: function(Client, types.GetManagedPrefixListAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.GetManagedPrefixListAssociationsOutput>
+    getManagedPrefixListEntries: function(Client, types.GetManagedPrefixListEntriesInput, ? base_client.InvokeOptions): async.Operation<types.GetManagedPrefixListEntriesOutput>
+    getManagedResourceVisibility: function(Client, types.GetManagedResourceVisibilityInput, ? base_client.InvokeOptions): async.Operation<types.GetManagedResourceVisibilityOutput>
+    getNetworkInsightsAccessScopeAnalysisFindings: function(Client, types.GetNetworkInsightsAccessScopeAnalysisFindingsInput, ? base_client.InvokeOptions): async.Operation<types.GetNetworkInsightsAccessScopeAnalysisFindingsOutput>
+    getNetworkInsightsAccessScopeContent: function(Client, types.GetNetworkInsightsAccessScopeContentInput, ? base_client.InvokeOptions): async.Operation<types.GetNetworkInsightsAccessScopeContentOutput>
+    getPasswordData: function(Client, types.GetPasswordDataInput, ? base_client.InvokeOptions): async.Operation<types.GetPasswordDataOutput>
+    getReservedInstancesExchangeQuote: function(Client, types.GetReservedInstancesExchangeQuoteInput, ? base_client.InvokeOptions): async.Operation<types.GetReservedInstancesExchangeQuoteOutput>
+    getRouteServerAssociations: function(Client, types.GetRouteServerAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.GetRouteServerAssociationsOutput>
+    getRouteServerPropagations: function(Client, types.GetRouteServerPropagationsInput, ? base_client.InvokeOptions): async.Operation<types.GetRouteServerPropagationsOutput>
+    getRouteServerRoutingDatabase: function(Client, types.GetRouteServerRoutingDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.GetRouteServerRoutingDatabaseOutput>
+    getSecurityGroupsForVpc: function(Client, types.GetSecurityGroupsForVpcInput, ? base_client.InvokeOptions): async.Operation<types.GetSecurityGroupsForVpcOutput>
+    getSerialConsoleAccessStatus: function(Client, types.GetSerialConsoleAccessStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetSerialConsoleAccessStatusOutput>
+    getSnapshotBlockPublicAccessState: function(Client, types.GetSnapshotBlockPublicAccessStateInput, ? base_client.InvokeOptions): async.Operation<types.GetSnapshotBlockPublicAccessStateOutput>
+    getSpotPlacementScores: function(Client, types.GetSpotPlacementScoresInput, ? base_client.InvokeOptions): async.Operation<types.GetSpotPlacementScoresOutput>
+    getSubnetCidrReservations: function(Client, types.GetSubnetCidrReservationsInput, ? base_client.InvokeOptions): async.Operation<types.GetSubnetCidrReservationsOutput>
+    getTransitGatewayAttachmentPropagations: function(Client, types.GetTransitGatewayAttachmentPropagationsInput, ? base_client.InvokeOptions): async.Operation<types.GetTransitGatewayAttachmentPropagationsOutput>
+    getTransitGatewayMeteringPolicyEntries: function(Client, types.GetTransitGatewayMeteringPolicyEntriesInput, ? base_client.InvokeOptions): async.Operation<types.GetTransitGatewayMeteringPolicyEntriesOutput>
+    getTransitGatewayMulticastDomainAssociations: function(Client, types.GetTransitGatewayMulticastDomainAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.GetTransitGatewayMulticastDomainAssociationsOutput>
+    getTransitGatewayPolicyTableAssociations: function(Client, types.GetTransitGatewayPolicyTableAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.GetTransitGatewayPolicyTableAssociationsOutput>
+    getTransitGatewayPolicyTableEntries: function(Client, types.GetTransitGatewayPolicyTableEntriesInput, ? base_client.InvokeOptions): async.Operation<types.GetTransitGatewayPolicyTableEntriesOutput>
+    getTransitGatewayPrefixListReferences: function(Client, types.GetTransitGatewayPrefixListReferencesInput, ? base_client.InvokeOptions): async.Operation<types.GetTransitGatewayPrefixListReferencesOutput>
+    getTransitGatewayRouteTableAssociations: function(Client, types.GetTransitGatewayRouteTableAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.GetTransitGatewayRouteTableAssociationsOutput>
+    getTransitGatewayRouteTablePropagations: function(Client, types.GetTransitGatewayRouteTablePropagationsInput, ? base_client.InvokeOptions): async.Operation<types.GetTransitGatewayRouteTablePropagationsOutput>
+    getVerifiedAccessEndpointPolicy: function(Client, types.GetVerifiedAccessEndpointPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetVerifiedAccessEndpointPolicyOutput>
+    getVerifiedAccessEndpointTargets: function(Client, types.GetVerifiedAccessEndpointTargetsInput, ? base_client.InvokeOptions): async.Operation<types.GetVerifiedAccessEndpointTargetsOutput>
+    getVerifiedAccessGroupPolicy: function(Client, types.GetVerifiedAccessGroupPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetVerifiedAccessGroupPolicyOutput>
+    getVpcResourcesBlockingEncryptionEnforcement: function(Client, types.GetVpcResourcesBlockingEncryptionEnforcementInput, ? base_client.InvokeOptions): async.Operation<types.GetVpcResourcesBlockingEncryptionEnforcementOutput>
+    getVpnConnectionDeviceSampleConfiguration: function(Client, types.GetVpnConnectionDeviceSampleConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetVpnConnectionDeviceSampleConfigurationOutput>
+    getVpnConnectionDeviceTypes: function(Client, types.GetVpnConnectionDeviceTypesInput, ? base_client.InvokeOptions): async.Operation<types.GetVpnConnectionDeviceTypesOutput>
+    getVpnTunnelReplacementStatus: function(Client, types.GetVpnTunnelReplacementStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetVpnTunnelReplacementStatusOutput>
+    importClientVpnClientCertificateRevocationList: function(Client, types.ImportClientVpnClientCertificateRevocationListInput, ? base_client.InvokeOptions): async.Operation<types.ImportClientVpnClientCertificateRevocationListOutput>
+    importImage: function(Client, types.ImportImageInput, ? base_client.InvokeOptions): async.Operation<types.ImportImageOutput>
+    importInstance: function(Client, types.ImportInstanceInput, ? base_client.InvokeOptions): async.Operation<types.ImportInstanceOutput>
+    importKeyPair: function(Client, types.ImportKeyPairInput, ? base_client.InvokeOptions): async.Operation<types.ImportKeyPairOutput>
+    importSnapshot: function(Client, types.ImportSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.ImportSnapshotOutput>
+    importVolume: function(Client, types.ImportVolumeInput, ? base_client.InvokeOptions): async.Operation<types.ImportVolumeOutput>
+    listImagesInRecycleBin: function(Client, types.ListImagesInRecycleBinInput, ? base_client.InvokeOptions): async.Operation<types.ListImagesInRecycleBinOutput>
+    listSnapshotsInRecycleBin: function(Client, types.ListSnapshotsInRecycleBinInput, ? base_client.InvokeOptions): async.Operation<types.ListSnapshotsInRecycleBinOutput>
+    listVolumesInRecycleBin: function(Client, types.ListVolumesInRecycleBinInput, ? base_client.InvokeOptions): async.Operation<types.ListVolumesInRecycleBinOutput>
+    lockSnapshot: function(Client, types.LockSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.LockSnapshotOutput>
+    modifyAddressAttribute: function(Client, types.ModifyAddressAttributeInput, ? base_client.InvokeOptions): async.Operation<types.ModifyAddressAttributeOutput>
+    modifyAvailabilityZoneGroup: function(Client, types.ModifyAvailabilityZoneGroupInput, ? base_client.InvokeOptions): async.Operation<types.ModifyAvailabilityZoneGroupOutput>
+    modifyCapacityReservation: function(Client, types.ModifyCapacityReservationInput, ? base_client.InvokeOptions): async.Operation<types.ModifyCapacityReservationOutput>
+    modifyCapacityReservationFleet: function(Client, types.ModifyCapacityReservationFleetInput, ? base_client.InvokeOptions): async.Operation<types.ModifyCapacityReservationFleetOutput>
+    modifyClientVpnEndpoint: function(Client, types.ModifyClientVpnEndpointInput, ? base_client.InvokeOptions): async.Operation<types.ModifyClientVpnEndpointOutput>
+    modifyDefaultCreditSpecification: function(Client, types.ModifyDefaultCreditSpecificationInput, ? base_client.InvokeOptions): async.Operation<types.ModifyDefaultCreditSpecificationOutput>
+    modifyEbsDefaultKmsKeyId: function(Client, types.ModifyEbsDefaultKmsKeyIdInput, ? base_client.InvokeOptions): async.Operation<types.ModifyEbsDefaultKmsKeyIdOutput>
+    modifyFleet: function(Client, types.ModifyFleetInput, ? base_client.InvokeOptions): async.Operation<types.ModifyFleetOutput>
+    modifyFpgaImageAttribute: function(Client, types.ModifyFpgaImageAttributeInput, ? base_client.InvokeOptions): async.Operation<types.ModifyFpgaImageAttributeOutput>
+    modifyHosts: function(Client, types.ModifyHostsInput, ? base_client.InvokeOptions): async.Operation<types.ModifyHostsOutput>
+    modifyIdentityIdFormat: function(Client, types.ModifyIdentityIdFormatInput, ? base_client.InvokeOptions): async.Operation<types.ModifyIdentityIdFormatOutput>
+    modifyIdFormat: function(Client, types.ModifyIdFormatInput, ? base_client.InvokeOptions): async.Operation<types.ModifyIdFormatOutput>
+    modifyImageAttribute: function(Client, types.ModifyImageAttributeInput, ? base_client.InvokeOptions): async.Operation<types.ModifyImageAttributeOutput>
+    modifyInstanceAttribute: function(Client, types.ModifyInstanceAttributeInput, ? base_client.InvokeOptions): async.Operation<types.ModifyInstanceAttributeOutput>
+    modifyInstanceCapacityReservationAttributes: function(Client, types.ModifyInstanceCapacityReservationAttributesInput, ? base_client.InvokeOptions): async.Operation<types.ModifyInstanceCapacityReservationAttributesOutput>
+    modifyInstanceConnectEndpoint: function(Client, types.ModifyInstanceConnectEndpointInput, ? base_client.InvokeOptions): async.Operation<types.ModifyInstanceConnectEndpointOutput>
+    modifyInstanceCpuOptions: function(Client, types.ModifyInstanceCpuOptionsInput, ? base_client.InvokeOptions): async.Operation<types.ModifyInstanceCpuOptionsOutput>
+    modifyInstanceCreditSpecification: function(Client, types.ModifyInstanceCreditSpecificationInput, ? base_client.InvokeOptions): async.Operation<types.ModifyInstanceCreditSpecificationOutput>
+    modifyInstanceEventStartTime: function(Client, types.ModifyInstanceEventStartTimeInput, ? base_client.InvokeOptions): async.Operation<types.ModifyInstanceEventStartTimeOutput>
+    modifyInstanceEventWindow: function(Client, types.ModifyInstanceEventWindowInput, ? base_client.InvokeOptions): async.Operation<types.ModifyInstanceEventWindowOutput>
+    modifyInstanceMaintenanceOptions: function(Client, types.ModifyInstanceMaintenanceOptionsInput, ? base_client.InvokeOptions): async.Operation<types.ModifyInstanceMaintenanceOptionsOutput>
+    modifyInstanceMetadataDefaults: function(Client, types.ModifyInstanceMetadataDefaultsInput, ? base_client.InvokeOptions): async.Operation<types.ModifyInstanceMetadataDefaultsOutput>
+    modifyInstanceMetadataOptions: function(Client, types.ModifyInstanceMetadataOptionsInput, ? base_client.InvokeOptions): async.Operation<types.ModifyInstanceMetadataOptionsOutput>
+    modifyInstanceNetworkPerformanceOptions: function(Client, types.ModifyInstanceNetworkPerformanceOptionsInput, ? base_client.InvokeOptions): async.Operation<types.ModifyInstanceNetworkPerformanceOptionsOutput>
+    modifyInstancePlacement: function(Client, types.ModifyInstancePlacementInput, ? base_client.InvokeOptions): async.Operation<types.ModifyInstancePlacementOutput>
+    modifyIpam: function(Client, types.ModifyIpamInput, ? base_client.InvokeOptions): async.Operation<types.ModifyIpamOutput>
+    modifyIpamPolicyAllocationRules: function(Client, types.ModifyIpamPolicyAllocationRulesInput, ? base_client.InvokeOptions): async.Operation<types.ModifyIpamPolicyAllocationRulesOutput>
+    modifyIpamPool: function(Client, types.ModifyIpamPoolInput, ? base_client.InvokeOptions): async.Operation<types.ModifyIpamPoolOutput>
+    modifyIpamPrefixListResolver: function(Client, types.ModifyIpamPrefixListResolverInput, ? base_client.InvokeOptions): async.Operation<types.ModifyIpamPrefixListResolverOutput>
+    modifyIpamPrefixListResolverTarget: function(Client, types.ModifyIpamPrefixListResolverTargetInput, ? base_client.InvokeOptions): async.Operation<types.ModifyIpamPrefixListResolverTargetOutput>
+    modifyIpamResourceCidr: function(Client, types.ModifyIpamResourceCidrInput, ? base_client.InvokeOptions): async.Operation<types.ModifyIpamResourceCidrOutput>
+    modifyIpamResourceDiscovery: function(Client, types.ModifyIpamResourceDiscoveryInput, ? base_client.InvokeOptions): async.Operation<types.ModifyIpamResourceDiscoveryOutput>
+    modifyIpamScope: function(Client, types.ModifyIpamScopeInput, ? base_client.InvokeOptions): async.Operation<types.ModifyIpamScopeOutput>
+    modifyLaunchTemplate: function(Client, types.ModifyLaunchTemplateInput, ? base_client.InvokeOptions): async.Operation<types.ModifyLaunchTemplateOutput>
+    modifyLocalGatewayRoute: function(Client, types.ModifyLocalGatewayRouteInput, ? base_client.InvokeOptions): async.Operation<types.ModifyLocalGatewayRouteOutput>
+    modifyManagedPrefixList: function(Client, types.ModifyManagedPrefixListInput, ? base_client.InvokeOptions): async.Operation<types.ModifyManagedPrefixListOutput>
+    modifyManagedResourceVisibility: function(Client, types.ModifyManagedResourceVisibilityInput, ? base_client.InvokeOptions): async.Operation<types.ModifyManagedResourceVisibilityOutput>
+    modifyNetworkInterfaceAttribute: function(Client, types.ModifyNetworkInterfaceAttributeInput, ? base_client.InvokeOptions): async.Operation<types.ModifyNetworkInterfaceAttributeOutput>
+    modifyPrivateDnsNameOptions: function(Client, types.ModifyPrivateDnsNameOptionsInput, ? base_client.InvokeOptions): async.Operation<types.ModifyPrivateDnsNameOptionsOutput>
+    modifyPublicIpDnsNameOptions: function(Client, types.ModifyPublicIpDnsNameOptionsInput, ? base_client.InvokeOptions): async.Operation<types.ModifyPublicIpDnsNameOptionsOutput>
+    modifyReservedInstances: function(Client, types.ModifyReservedInstancesInput, ? base_client.InvokeOptions): async.Operation<types.ModifyReservedInstancesOutput>
+    modifyRouteServer: function(Client, types.ModifyRouteServerInput, ? base_client.InvokeOptions): async.Operation<types.ModifyRouteServerOutput>
+    modifySecurityGroupRules: function(Client, types.ModifySecurityGroupRulesInput, ? base_client.InvokeOptions): async.Operation<types.ModifySecurityGroupRulesOutput>
+    modifySnapshotAttribute: function(Client, types.ModifySnapshotAttributeInput, ? base_client.InvokeOptions): async.Operation<types.ModifySnapshotAttributeOutput>
+    modifySnapshotTier: function(Client, types.ModifySnapshotTierInput, ? base_client.InvokeOptions): async.Operation<types.ModifySnapshotTierOutput>
+    modifySpotFleetRequest: function(Client, types.ModifySpotFleetRequestInput, ? base_client.InvokeOptions): async.Operation<types.ModifySpotFleetRequestOutput>
+    modifySubnetAttribute: function(Client, types.ModifySubnetAttributeInput, ? base_client.InvokeOptions): async.Operation<types.ModifySubnetAttributeOutput>
+    modifyTrafficMirrorFilterNetworkServices: function(Client, types.ModifyTrafficMirrorFilterNetworkServicesInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTrafficMirrorFilterNetworkServicesOutput>
+    modifyTrafficMirrorFilterRule: function(Client, types.ModifyTrafficMirrorFilterRuleInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTrafficMirrorFilterRuleOutput>
+    modifyTrafficMirrorSession: function(Client, types.ModifyTrafficMirrorSessionInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTrafficMirrorSessionOutput>
+    modifyTransitGateway: function(Client, types.ModifyTransitGatewayInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayOutput>
+    modifyTransitGatewayMeteringPolicy: function(Client, types.ModifyTransitGatewayMeteringPolicyInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayMeteringPolicyOutput>
+    modifyTransitGatewayPrefixListReference: function(Client, types.ModifyTransitGatewayPrefixListReferenceInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayPrefixListReferenceOutput>
+    modifyTransitGatewayVpcAttachment: function(Client, types.ModifyTransitGatewayVpcAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayVpcAttachmentOutput>
+    modifyVerifiedAccessEndpoint: function(Client, types.ModifyVerifiedAccessEndpointInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVerifiedAccessEndpointOutput>
+    modifyVerifiedAccessEndpointPolicy: function(Client, types.ModifyVerifiedAccessEndpointPolicyInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVerifiedAccessEndpointPolicyOutput>
+    modifyVerifiedAccessGroup: function(Client, types.ModifyVerifiedAccessGroupInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVerifiedAccessGroupOutput>
+    modifyVerifiedAccessGroupPolicy: function(Client, types.ModifyVerifiedAccessGroupPolicyInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVerifiedAccessGroupPolicyOutput>
+    modifyVerifiedAccessInstance: function(Client, types.ModifyVerifiedAccessInstanceInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVerifiedAccessInstanceOutput>
+    modifyVerifiedAccessInstanceLoggingConfiguration: function(Client, types.ModifyVerifiedAccessInstanceLoggingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVerifiedAccessInstanceLoggingConfigurationOutput>
+    modifyVerifiedAccessTrustProvider: function(Client, types.ModifyVerifiedAccessTrustProviderInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVerifiedAccessTrustProviderOutput>
+    modifyVolume: function(Client, types.ModifyVolumeInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVolumeOutput>
+    modifyVolumeAttribute: function(Client, types.ModifyVolumeAttributeInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVolumeAttributeOutput>
+    modifyVpcAttribute: function(Client, types.ModifyVpcAttributeInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVpcAttributeOutput>
+    modifyVpcBlockPublicAccessExclusion: function(Client, types.ModifyVpcBlockPublicAccessExclusionInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVpcBlockPublicAccessExclusionOutput>
+    modifyVpcBlockPublicAccessOptions: function(Client, types.ModifyVpcBlockPublicAccessOptionsInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVpcBlockPublicAccessOptionsOutput>
+    modifyVpcEncryptionControl: function(Client, types.ModifyVpcEncryptionControlInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVpcEncryptionControlOutput>
+    modifyVpcEndpoint: function(Client, types.ModifyVpcEndpointInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVpcEndpointOutput>
+    modifyVpcEndpointConnectionNotification: function(Client, types.ModifyVpcEndpointConnectionNotificationInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVpcEndpointConnectionNotificationOutput>
+    modifyVpcEndpointServiceConfiguration: function(Client, types.ModifyVpcEndpointServiceConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVpcEndpointServiceConfigurationOutput>
+    modifyVpcEndpointServicePayerResponsibility: function(Client, types.ModifyVpcEndpointServicePayerResponsibilityInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVpcEndpointServicePayerResponsibilityOutput>
+    modifyVpcEndpointServicePermissions: function(Client, types.ModifyVpcEndpointServicePermissionsInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVpcEndpointServicePermissionsOutput>
+    modifyVpcPeeringConnectionOptions: function(Client, types.ModifyVpcPeeringConnectionOptionsInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVpcPeeringConnectionOptionsOutput>
+    modifyVpcTenancy: function(Client, types.ModifyVpcTenancyInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVpcTenancyOutput>
+    modifyVpnConnection: function(Client, types.ModifyVpnConnectionInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVpnConnectionOutput>
+    modifyVpnConnectionOptions: function(Client, types.ModifyVpnConnectionOptionsInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVpnConnectionOptionsOutput>
+    modifyVpnTunnelCertificate: function(Client, types.ModifyVpnTunnelCertificateInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVpnTunnelCertificateOutput>
+    modifyVpnTunnelOptions: function(Client, types.ModifyVpnTunnelOptionsInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVpnTunnelOptionsOutput>
+    monitorInstances: function(Client, types.MonitorInstancesInput, ? base_client.InvokeOptions): async.Operation<types.MonitorInstancesOutput>
+    moveAddressToVpc: function(Client, types.MoveAddressToVpcInput, ? base_client.InvokeOptions): async.Operation<types.MoveAddressToVpcOutput>
+    moveByoipCidrToIpam: function(Client, types.MoveByoipCidrToIpamInput, ? base_client.InvokeOptions): async.Operation<types.MoveByoipCidrToIpamOutput>
+    moveCapacityReservationInstances: function(Client, types.MoveCapacityReservationInstancesInput, ? base_client.InvokeOptions): async.Operation<types.MoveCapacityReservationInstancesOutput>
+    provisionByoipCidr: function(Client, types.ProvisionByoipCidrInput, ? base_client.InvokeOptions): async.Operation<types.ProvisionByoipCidrOutput>
+    provisionIpamByoasn: function(Client, types.ProvisionIpamByoasnInput, ? base_client.InvokeOptions): async.Operation<types.ProvisionIpamByoasnOutput>
+    provisionIpamPoolCidr: function(Client, types.ProvisionIpamPoolCidrInput, ? base_client.InvokeOptions): async.Operation<types.ProvisionIpamPoolCidrOutput>
+    provisionPublicIpv4PoolCidr: function(Client, types.ProvisionPublicIpv4PoolCidrInput, ? base_client.InvokeOptions): async.Operation<types.ProvisionPublicIpv4PoolCidrOutput>
+    purchaseCapacityBlock: function(Client, types.PurchaseCapacityBlockInput, ? base_client.InvokeOptions): async.Operation<types.PurchaseCapacityBlockOutput>
+    purchaseCapacityBlockExtension: function(Client, types.PurchaseCapacityBlockExtensionInput, ? base_client.InvokeOptions): async.Operation<types.PurchaseCapacityBlockExtensionOutput>
+    purchaseHostReservation: function(Client, types.PurchaseHostReservationInput, ? base_client.InvokeOptions): async.Operation<types.PurchaseHostReservationOutput>
+    purchaseReservedInstancesOffering: function(Client, types.PurchaseReservedInstancesOfferingInput, ? base_client.InvokeOptions): async.Operation<types.PurchaseReservedInstancesOfferingOutput>
+    purchaseScheduledInstances: function(Client, types.PurchaseScheduledInstancesInput, ? base_client.InvokeOptions): async.Operation<types.PurchaseScheduledInstancesOutput>
+    rebootInstances: function(Client, types.RebootInstancesInput, ? base_client.InvokeOptions): async.Operation<types.RebootInstancesOutput>
+    registerImage: function(Client, types.RegisterImageInput, ? base_client.InvokeOptions): async.Operation<types.RegisterImageOutput>
+    registerInstanceEventNotificationAttributes: function(Client, types.RegisterInstanceEventNotificationAttributesInput, ? base_client.InvokeOptions): async.Operation<types.RegisterInstanceEventNotificationAttributesOutput>
+    registerTransitGatewayMulticastGroupMembers: function(Client, types.RegisterTransitGatewayMulticastGroupMembersInput, ? base_client.InvokeOptions): async.Operation<types.RegisterTransitGatewayMulticastGroupMembersOutput>
+    registerTransitGatewayMulticastGroupSources: function(Client, types.RegisterTransitGatewayMulticastGroupSourcesInput, ? base_client.InvokeOptions): async.Operation<types.RegisterTransitGatewayMulticastGroupSourcesOutput>
+    rejectCapacityReservationBillingOwnership: function(Client, types.RejectCapacityReservationBillingOwnershipInput, ? base_client.InvokeOptions): async.Operation<types.RejectCapacityReservationBillingOwnershipOutput>
+    rejectTransitGatewayClientVpnAttachment: function(Client, types.RejectTransitGatewayClientVpnAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.RejectTransitGatewayClientVpnAttachmentOutput>
+    rejectTransitGatewayMulticastDomainAssociations: function(Client, types.RejectTransitGatewayMulticastDomainAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.RejectTransitGatewayMulticastDomainAssociationsOutput>
+    rejectTransitGatewayPeeringAttachment: function(Client, types.RejectTransitGatewayPeeringAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.RejectTransitGatewayPeeringAttachmentOutput>
+    rejectTransitGatewayVpcAttachment: function(Client, types.RejectTransitGatewayVpcAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.RejectTransitGatewayVpcAttachmentOutput>
+    rejectVpcEndpointConnections: function(Client, types.RejectVpcEndpointConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.RejectVpcEndpointConnectionsOutput>
+    rejectVpcPeeringConnection: function(Client, types.RejectVpcPeeringConnectionInput, ? base_client.InvokeOptions): async.Operation<types.RejectVpcPeeringConnectionOutput>
+    releaseAddress: function(Client, types.ReleaseAddressInput, ? base_client.InvokeOptions): async.Operation<types.ReleaseAddressOutput>
+    releaseHosts: function(Client, types.ReleaseHostsInput, ? base_client.InvokeOptions): async.Operation<types.ReleaseHostsOutput>
+    releaseIpamPoolAllocation: function(Client, types.ReleaseIpamPoolAllocationInput, ? base_client.InvokeOptions): async.Operation<types.ReleaseIpamPoolAllocationOutput>
+    replaceIamInstanceProfileAssociation: function(Client, types.ReplaceIamInstanceProfileAssociationInput, ? base_client.InvokeOptions): async.Operation<types.ReplaceIamInstanceProfileAssociationOutput>
+    replaceImageCriteriaInAllowedImagesSettings: function(Client, types.ReplaceImageCriteriaInAllowedImagesSettingsInput, ? base_client.InvokeOptions): async.Operation<types.ReplaceImageCriteriaInAllowedImagesSettingsOutput>
+    replaceNetworkAclAssociation: function(Client, types.ReplaceNetworkAclAssociationInput, ? base_client.InvokeOptions): async.Operation<types.ReplaceNetworkAclAssociationOutput>
+    replaceNetworkAclEntry: function(Client, types.ReplaceNetworkAclEntryInput, ? base_client.InvokeOptions): async.Operation<types.ReplaceNetworkAclEntryOutput>
+    replaceRoute: function(Client, types.ReplaceRouteInput, ? base_client.InvokeOptions): async.Operation<types.ReplaceRouteOutput>
+    replaceRouteTableAssociation: function(Client, types.ReplaceRouteTableAssociationInput, ? base_client.InvokeOptions): async.Operation<types.ReplaceRouteTableAssociationOutput>
+    replaceTransitGatewayRoute: function(Client, types.ReplaceTransitGatewayRouteInput, ? base_client.InvokeOptions): async.Operation<types.ReplaceTransitGatewayRouteOutput>
+    replaceVpnTunnel: function(Client, types.ReplaceVpnTunnelInput, ? base_client.InvokeOptions): async.Operation<types.ReplaceVpnTunnelOutput>
+    reportInstanceStatus: function(Client, types.ReportInstanceStatusInput, ? base_client.InvokeOptions): async.Operation<types.ReportInstanceStatusOutput>
+    requestSpotFleet: function(Client, types.RequestSpotFleetInput, ? base_client.InvokeOptions): async.Operation<types.RequestSpotFleetOutput>
+    requestSpotInstances: function(Client, types.RequestSpotInstancesInput, ? base_client.InvokeOptions): async.Operation<types.RequestSpotInstancesOutput>
+    resetAddressAttribute: function(Client, types.ResetAddressAttributeInput, ? base_client.InvokeOptions): async.Operation<types.ResetAddressAttributeOutput>
+    resetEbsDefaultKmsKeyId: function(Client, types.ResetEbsDefaultKmsKeyIdInput, ? base_client.InvokeOptions): async.Operation<types.ResetEbsDefaultKmsKeyIdOutput>
+    resetFpgaImageAttribute: function(Client, types.ResetFpgaImageAttributeInput, ? base_client.InvokeOptions): async.Operation<types.ResetFpgaImageAttributeOutput>
+    resetImageAttribute: function(Client, types.ResetImageAttributeInput, ? base_client.InvokeOptions): async.Operation<types.ResetImageAttributeOutput>
+    resetInstanceAttribute: function(Client, types.ResetInstanceAttributeInput, ? base_client.InvokeOptions): async.Operation<types.ResetInstanceAttributeOutput>
+    resetNetworkInterfaceAttribute: function(Client, types.ResetNetworkInterfaceAttributeInput, ? base_client.InvokeOptions): async.Operation<types.ResetNetworkInterfaceAttributeOutput>
+    resetSnapshotAttribute: function(Client, types.ResetSnapshotAttributeInput, ? base_client.InvokeOptions): async.Operation<types.ResetSnapshotAttributeOutput>
+    restoreAddressToClassic: function(Client, types.RestoreAddressToClassicInput, ? base_client.InvokeOptions): async.Operation<types.RestoreAddressToClassicOutput>
+    restoreImageFromRecycleBin: function(Client, types.RestoreImageFromRecycleBinInput, ? base_client.InvokeOptions): async.Operation<types.RestoreImageFromRecycleBinOutput>
+    restoreManagedPrefixListVersion: function(Client, types.RestoreManagedPrefixListVersionInput, ? base_client.InvokeOptions): async.Operation<types.RestoreManagedPrefixListVersionOutput>
+    restoreSnapshotFromRecycleBin: function(Client, types.RestoreSnapshotFromRecycleBinInput, ? base_client.InvokeOptions): async.Operation<types.RestoreSnapshotFromRecycleBinOutput>
+    restoreSnapshotTier: function(Client, types.RestoreSnapshotTierInput, ? base_client.InvokeOptions): async.Operation<types.RestoreSnapshotTierOutput>
+    restoreVolumeFromRecycleBin: function(Client, types.RestoreVolumeFromRecycleBinInput, ? base_client.InvokeOptions): async.Operation<types.RestoreVolumeFromRecycleBinOutput>
+    revokeClientVpnIngress: function(Client, types.RevokeClientVpnIngressInput, ? base_client.InvokeOptions): async.Operation<types.RevokeClientVpnIngressOutput>
+    revokeSecurityGroupEgress: function(Client, types.RevokeSecurityGroupEgressInput, ? base_client.InvokeOptions): async.Operation<types.RevokeSecurityGroupEgressOutput>
+    revokeSecurityGroupIngress: function(Client, types.RevokeSecurityGroupIngressInput, ? base_client.InvokeOptions): async.Operation<types.RevokeSecurityGroupIngressOutput>
+    runInstances: function(Client, types.RunInstancesInput, ? base_client.InvokeOptions): async.Operation<types.RunInstancesOutput>
+    runScheduledInstances: function(Client, types.RunScheduledInstancesInput, ? base_client.InvokeOptions): async.Operation<types.RunScheduledInstancesOutput>
+    searchLocalGatewayRoutes: function(Client, types.SearchLocalGatewayRoutesInput, ? base_client.InvokeOptions): async.Operation<types.SearchLocalGatewayRoutesOutput>
+    searchTransitGatewayMulticastGroups: function(Client, types.SearchTransitGatewayMulticastGroupsInput, ? base_client.InvokeOptions): async.Operation<types.SearchTransitGatewayMulticastGroupsOutput>
+    searchTransitGatewayRoutes: function(Client, types.SearchTransitGatewayRoutesInput, ? base_client.InvokeOptions): async.Operation<types.SearchTransitGatewayRoutesOutput>
+    sendDiagnosticInterrupt: function(Client, types.SendDiagnosticInterruptInput, ? base_client.InvokeOptions): async.Operation<types.SendDiagnosticInterruptOutput>
+    startDeclarativePoliciesReport: function(Client, types.StartDeclarativePoliciesReportInput, ? base_client.InvokeOptions): async.Operation<types.StartDeclarativePoliciesReportOutput>
+    startInstances: function(Client, types.StartInstancesInput, ? base_client.InvokeOptions): async.Operation<types.StartInstancesOutput>
+    startNetworkInsightsAccessScopeAnalysis: function(Client, types.StartNetworkInsightsAccessScopeAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.StartNetworkInsightsAccessScopeAnalysisOutput>
+    startNetworkInsightsAnalysis: function(Client, types.StartNetworkInsightsAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.StartNetworkInsightsAnalysisOutput>
+    startVpcEndpointServicePrivateDnsVerification: function(Client, types.StartVpcEndpointServicePrivateDnsVerificationInput, ? base_client.InvokeOptions): async.Operation<types.StartVpcEndpointServicePrivateDnsVerificationOutput>
+    stopInstances: function(Client, types.StopInstancesInput, ? base_client.InvokeOptions): async.Operation<types.StopInstancesOutput>
+    terminateClientVpnConnections: function(Client, types.TerminateClientVpnConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.TerminateClientVpnConnectionsOutput>
+    terminateInstances: function(Client, types.TerminateInstancesInput, ? base_client.InvokeOptions): async.Operation<types.TerminateInstancesOutput>
+    unassignIpv6Addresses: function(Client, types.UnassignIpv6AddressesInput, ? base_client.InvokeOptions): async.Operation<types.UnassignIpv6AddressesOutput>
+    unassignPrivateIpAddresses: function(Client, types.UnassignPrivateIpAddressesInput, ? base_client.InvokeOptions): async.Operation<types.UnassignPrivateIpAddressesOutput>
+    unassignPrivateNatGatewayAddress: function(Client, types.UnassignPrivateNatGatewayAddressInput, ? base_client.InvokeOptions): async.Operation<types.UnassignPrivateNatGatewayAddressOutput>
+    unlockSnapshot: function(Client, types.UnlockSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.UnlockSnapshotOutput>
+    unmonitorInstances: function(Client, types.UnmonitorInstancesInput, ? base_client.InvokeOptions): async.Operation<types.UnmonitorInstancesOutput>
+    updateCapacityManagerMonitoredTagKeys: function(Client, types.UpdateCapacityManagerMonitoredTagKeysInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCapacityManagerMonitoredTagKeysOutput>
+    updateCapacityManagerOrganizationsAccess: function(Client, types.UpdateCapacityManagerOrganizationsAccessInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCapacityManagerOrganizationsAccessOutput>
+    updateInterruptibleCapacityReservationAllocation: function(Client, types.UpdateInterruptibleCapacityReservationAllocationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateInterruptibleCapacityReservationAllocationOutput>
+    updateSecurityGroupRuleDescriptionsEgress: function(Client, types.UpdateSecurityGroupRuleDescriptionsEgressInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSecurityGroupRuleDescriptionsEgressOutput>
+    updateSecurityGroupRuleDescriptionsIngress: function(Client, types.UpdateSecurityGroupRuleDescriptionsIngressInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSecurityGroupRuleDescriptionsIngressOutput>
+    withdrawByoipCidr: function(Client, types.WithdrawByoipCidrInput, ? base_client.InvokeOptions): async.Operation<types.WithdrawByoipCidrOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonEC2"
-    if not c.protocol then c.protocol = query_protocol.new("ec2Query") end
+    if not c.protocol then c.protocol = query_protocol.new("ec2Query") as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ec2", signing_region = c.region } }
                 else
@@ -822,3056 +825,3056 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:acceptAddressTransfer(input: types.AcceptAddressTransferInput, options: any): async.Operation<types.AcceptAddressTransferOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptAddressTransfer, input, options) as async.Operation<types.AcceptAddressTransferOutput>
+function C:acceptAddressTransfer(input: types.AcceptAddressTransferInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptAddressTransferOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptAddressTransfer as schema.OperationSchema, input, options) as async.Operation<types.AcceptAddressTransferOutput>
 end
 
-function C:acceptCapacityReservationBillingOwnership(input: types.AcceptCapacityReservationBillingOwnershipInput, options: any): async.Operation<types.AcceptCapacityReservationBillingOwnershipOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptCapacityReservationBillingOwnership, input, options) as async.Operation<types.AcceptCapacityReservationBillingOwnershipOutput>
+function C:acceptCapacityReservationBillingOwnership(input: types.AcceptCapacityReservationBillingOwnershipInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptCapacityReservationBillingOwnershipOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptCapacityReservationBillingOwnership as schema.OperationSchema, input, options) as async.Operation<types.AcceptCapacityReservationBillingOwnershipOutput>
 end
 
-function C:acceptReservedInstancesExchangeQuote(input: types.AcceptReservedInstancesExchangeQuoteInput, options: any): async.Operation<types.AcceptReservedInstancesExchangeQuoteOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptReservedInstancesExchangeQuote, input, options) as async.Operation<types.AcceptReservedInstancesExchangeQuoteOutput>
+function C:acceptReservedInstancesExchangeQuote(input: types.AcceptReservedInstancesExchangeQuoteInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptReservedInstancesExchangeQuoteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptReservedInstancesExchangeQuote as schema.OperationSchema, input, options) as async.Operation<types.AcceptReservedInstancesExchangeQuoteOutput>
 end
 
-function C:acceptTransitGatewayClientVpnAttachment(input: types.AcceptTransitGatewayClientVpnAttachmentInput, options: any): async.Operation<types.AcceptTransitGatewayClientVpnAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptTransitGatewayClientVpnAttachment, input, options) as async.Operation<types.AcceptTransitGatewayClientVpnAttachmentOutput>
+function C:acceptTransitGatewayClientVpnAttachment(input: types.AcceptTransitGatewayClientVpnAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptTransitGatewayClientVpnAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptTransitGatewayClientVpnAttachment as schema.OperationSchema, input, options) as async.Operation<types.AcceptTransitGatewayClientVpnAttachmentOutput>
 end
 
-function C:acceptTransitGatewayMulticastDomainAssociations(input: types.AcceptTransitGatewayMulticastDomainAssociationsInput, options: any): async.Operation<types.AcceptTransitGatewayMulticastDomainAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptTransitGatewayMulticastDomainAssociations, input, options) as async.Operation<types.AcceptTransitGatewayMulticastDomainAssociationsOutput>
+function C:acceptTransitGatewayMulticastDomainAssociations(input: types.AcceptTransitGatewayMulticastDomainAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptTransitGatewayMulticastDomainAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptTransitGatewayMulticastDomainAssociations as schema.OperationSchema, input, options) as async.Operation<types.AcceptTransitGatewayMulticastDomainAssociationsOutput>
 end
 
-function C:acceptTransitGatewayPeeringAttachment(input: types.AcceptTransitGatewayPeeringAttachmentInput, options: any): async.Operation<types.AcceptTransitGatewayPeeringAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptTransitGatewayPeeringAttachment, input, options) as async.Operation<types.AcceptTransitGatewayPeeringAttachmentOutput>
+function C:acceptTransitGatewayPeeringAttachment(input: types.AcceptTransitGatewayPeeringAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptTransitGatewayPeeringAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptTransitGatewayPeeringAttachment as schema.OperationSchema, input, options) as async.Operation<types.AcceptTransitGatewayPeeringAttachmentOutput>
 end
 
-function C:acceptTransitGatewayVpcAttachment(input: types.AcceptTransitGatewayVpcAttachmentInput, options: any): async.Operation<types.AcceptTransitGatewayVpcAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptTransitGatewayVpcAttachment, input, options) as async.Operation<types.AcceptTransitGatewayVpcAttachmentOutput>
+function C:acceptTransitGatewayVpcAttachment(input: types.AcceptTransitGatewayVpcAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptTransitGatewayVpcAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptTransitGatewayVpcAttachment as schema.OperationSchema, input, options) as async.Operation<types.AcceptTransitGatewayVpcAttachmentOutput>
 end
 
-function C:acceptVpcEndpointConnections(input: types.AcceptVpcEndpointConnectionsInput, options: any): async.Operation<types.AcceptVpcEndpointConnectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptVpcEndpointConnections, input, options) as async.Operation<types.AcceptVpcEndpointConnectionsOutput>
+function C:acceptVpcEndpointConnections(input: types.AcceptVpcEndpointConnectionsInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptVpcEndpointConnectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptVpcEndpointConnections as schema.OperationSchema, input, options) as async.Operation<types.AcceptVpcEndpointConnectionsOutput>
 end
 
-function C:acceptVpcPeeringConnection(input: types.AcceptVpcPeeringConnectionInput, options: any): async.Operation<types.AcceptVpcPeeringConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptVpcPeeringConnection, input, options) as async.Operation<types.AcceptVpcPeeringConnectionOutput>
+function C:acceptVpcPeeringConnection(input: types.AcceptVpcPeeringConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptVpcPeeringConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptVpcPeeringConnection as schema.OperationSchema, input, options) as async.Operation<types.AcceptVpcPeeringConnectionOutput>
 end
 
-function C:advertiseByoipCidr(input: types.AdvertiseByoipCidrInput, options: any): async.Operation<types.AdvertiseByoipCidrOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdvertiseByoipCidr, input, options) as async.Operation<types.AdvertiseByoipCidrOutput>
+function C:advertiseByoipCidr(input: types.AdvertiseByoipCidrInput, options?: base_client.InvokeOptions): async.Operation<types.AdvertiseByoipCidrOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdvertiseByoipCidr as schema.OperationSchema, input, options) as async.Operation<types.AdvertiseByoipCidrOutput>
 end
 
-function C:allocateAddress(input: types.AllocateAddressInput, options: any): async.Operation<types.AllocateAddressOutput>
-    return self:invokeOperation(schemas.Service, schemas.AllocateAddress, input, options) as async.Operation<types.AllocateAddressOutput>
+function C:allocateAddress(input: types.AllocateAddressInput, options?: base_client.InvokeOptions): async.Operation<types.AllocateAddressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AllocateAddress as schema.OperationSchema, input, options) as async.Operation<types.AllocateAddressOutput>
 end
 
-function C:allocateHosts(input: types.AllocateHostsInput, options: any): async.Operation<types.AllocateHostsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AllocateHosts, input, options) as async.Operation<types.AllocateHostsOutput>
+function C:allocateHosts(input: types.AllocateHostsInput, options?: base_client.InvokeOptions): async.Operation<types.AllocateHostsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AllocateHosts as schema.OperationSchema, input, options) as async.Operation<types.AllocateHostsOutput>
 end
 
-function C:allocateIpamPoolCidr(input: types.AllocateIpamPoolCidrInput, options: any): async.Operation<types.AllocateIpamPoolCidrOutput>
-    return self:invokeOperation(schemas.Service, schemas.AllocateIpamPoolCidr, input, options) as async.Operation<types.AllocateIpamPoolCidrOutput>
+function C:allocateIpamPoolCidr(input: types.AllocateIpamPoolCidrInput, options?: base_client.InvokeOptions): async.Operation<types.AllocateIpamPoolCidrOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AllocateIpamPoolCidr as schema.OperationSchema, input, options) as async.Operation<types.AllocateIpamPoolCidrOutput>
 end
 
-function C:applySecurityGroupsToClientVpnTargetNetwork(input: types.ApplySecurityGroupsToClientVpnTargetNetworkInput, options: any): async.Operation<types.ApplySecurityGroupsToClientVpnTargetNetworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.ApplySecurityGroupsToClientVpnTargetNetwork, input, options) as async.Operation<types.ApplySecurityGroupsToClientVpnTargetNetworkOutput>
+function C:applySecurityGroupsToClientVpnTargetNetwork(input: types.ApplySecurityGroupsToClientVpnTargetNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.ApplySecurityGroupsToClientVpnTargetNetworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ApplySecurityGroupsToClientVpnTargetNetwork as schema.OperationSchema, input, options) as async.Operation<types.ApplySecurityGroupsToClientVpnTargetNetworkOutput>
 end
 
-function C:assignIpv6Addresses(input: types.AssignIpv6AddressesInput, options: any): async.Operation<types.AssignIpv6AddressesOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssignIpv6Addresses, input, options) as async.Operation<types.AssignIpv6AddressesOutput>
+function C:assignIpv6Addresses(input: types.AssignIpv6AddressesInput, options?: base_client.InvokeOptions): async.Operation<types.AssignIpv6AddressesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssignIpv6Addresses as schema.OperationSchema, input, options) as async.Operation<types.AssignIpv6AddressesOutput>
 end
 
-function C:assignPrivateIpAddresses(input: types.AssignPrivateIpAddressesInput, options: any): async.Operation<types.AssignPrivateIpAddressesOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssignPrivateIpAddresses, input, options) as async.Operation<types.AssignPrivateIpAddressesOutput>
+function C:assignPrivateIpAddresses(input: types.AssignPrivateIpAddressesInput, options?: base_client.InvokeOptions): async.Operation<types.AssignPrivateIpAddressesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssignPrivateIpAddresses as schema.OperationSchema, input, options) as async.Operation<types.AssignPrivateIpAddressesOutput>
 end
 
-function C:assignPrivateNatGatewayAddress(input: types.AssignPrivateNatGatewayAddressInput, options: any): async.Operation<types.AssignPrivateNatGatewayAddressOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssignPrivateNatGatewayAddress, input, options) as async.Operation<types.AssignPrivateNatGatewayAddressOutput>
+function C:assignPrivateNatGatewayAddress(input: types.AssignPrivateNatGatewayAddressInput, options?: base_client.InvokeOptions): async.Operation<types.AssignPrivateNatGatewayAddressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssignPrivateNatGatewayAddress as schema.OperationSchema, input, options) as async.Operation<types.AssignPrivateNatGatewayAddressOutput>
 end
 
-function C:associateAddress(input: types.AssociateAddressInput, options: any): async.Operation<types.AssociateAddressOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateAddress, input, options) as async.Operation<types.AssociateAddressOutput>
+function C:associateAddress(input: types.AssociateAddressInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateAddressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateAddress as schema.OperationSchema, input, options) as async.Operation<types.AssociateAddressOutput>
 end
 
-function C:associateCapacityReservationBillingOwner(input: types.AssociateCapacityReservationBillingOwnerInput, options: any): async.Operation<types.AssociateCapacityReservationBillingOwnerOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateCapacityReservationBillingOwner, input, options) as async.Operation<types.AssociateCapacityReservationBillingOwnerOutput>
+function C:associateCapacityReservationBillingOwner(input: types.AssociateCapacityReservationBillingOwnerInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateCapacityReservationBillingOwnerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateCapacityReservationBillingOwner as schema.OperationSchema, input, options) as async.Operation<types.AssociateCapacityReservationBillingOwnerOutput>
 end
 
-function C:associateClientVpnTargetNetwork(input: types.AssociateClientVpnTargetNetworkInput, options: any): async.Operation<types.AssociateClientVpnTargetNetworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateClientVpnTargetNetwork, input, options) as async.Operation<types.AssociateClientVpnTargetNetworkOutput>
+function C:associateClientVpnTargetNetwork(input: types.AssociateClientVpnTargetNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateClientVpnTargetNetworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateClientVpnTargetNetwork as schema.OperationSchema, input, options) as async.Operation<types.AssociateClientVpnTargetNetworkOutput>
 end
 
-function C:associateDhcpOptions(input: types.AssociateDhcpOptionsInput, options: any): async.Operation<types.AssociateDhcpOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateDhcpOptions, input, options) as async.Operation<types.AssociateDhcpOptionsOutput>
+function C:associateDhcpOptions(input: types.AssociateDhcpOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateDhcpOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateDhcpOptions as schema.OperationSchema, input, options) as async.Operation<types.AssociateDhcpOptionsOutput>
 end
 
-function C:associateEnclaveCertificateIamRole(input: types.AssociateEnclaveCertificateIamRoleInput, options: any): async.Operation<types.AssociateEnclaveCertificateIamRoleOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateEnclaveCertificateIamRole, input, options) as async.Operation<types.AssociateEnclaveCertificateIamRoleOutput>
+function C:associateEnclaveCertificateIamRole(input: types.AssociateEnclaveCertificateIamRoleInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateEnclaveCertificateIamRoleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateEnclaveCertificateIamRole as schema.OperationSchema, input, options) as async.Operation<types.AssociateEnclaveCertificateIamRoleOutput>
 end
 
-function C:associateIamInstanceProfile(input: types.AssociateIamInstanceProfileInput, options: any): async.Operation<types.AssociateIamInstanceProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateIamInstanceProfile, input, options) as async.Operation<types.AssociateIamInstanceProfileOutput>
+function C:associateIamInstanceProfile(input: types.AssociateIamInstanceProfileInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateIamInstanceProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateIamInstanceProfile as schema.OperationSchema, input, options) as async.Operation<types.AssociateIamInstanceProfileOutput>
 end
 
-function C:associateInstanceEventWindow(input: types.AssociateInstanceEventWindowInput, options: any): async.Operation<types.AssociateInstanceEventWindowOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateInstanceEventWindow, input, options) as async.Operation<types.AssociateInstanceEventWindowOutput>
+function C:associateInstanceEventWindow(input: types.AssociateInstanceEventWindowInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateInstanceEventWindowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateInstanceEventWindow as schema.OperationSchema, input, options) as async.Operation<types.AssociateInstanceEventWindowOutput>
 end
 
-function C:associateIpamByoasn(input: types.AssociateIpamByoasnInput, options: any): async.Operation<types.AssociateIpamByoasnOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateIpamByoasn, input, options) as async.Operation<types.AssociateIpamByoasnOutput>
+function C:associateIpamByoasn(input: types.AssociateIpamByoasnInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateIpamByoasnOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateIpamByoasn as schema.OperationSchema, input, options) as async.Operation<types.AssociateIpamByoasnOutput>
 end
 
-function C:associateIpamResourceDiscovery(input: types.AssociateIpamResourceDiscoveryInput, options: any): async.Operation<types.AssociateIpamResourceDiscoveryOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateIpamResourceDiscovery, input, options) as async.Operation<types.AssociateIpamResourceDiscoveryOutput>
+function C:associateIpamResourceDiscovery(input: types.AssociateIpamResourceDiscoveryInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateIpamResourceDiscoveryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateIpamResourceDiscovery as schema.OperationSchema, input, options) as async.Operation<types.AssociateIpamResourceDiscoveryOutput>
 end
 
-function C:associateNatGatewayAddress(input: types.AssociateNatGatewayAddressInput, options: any): async.Operation<types.AssociateNatGatewayAddressOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateNatGatewayAddress, input, options) as async.Operation<types.AssociateNatGatewayAddressOutput>
+function C:associateNatGatewayAddress(input: types.AssociateNatGatewayAddressInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateNatGatewayAddressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateNatGatewayAddress as schema.OperationSchema, input, options) as async.Operation<types.AssociateNatGatewayAddressOutput>
 end
 
-function C:associateRouteServer(input: types.AssociateRouteServerInput, options: any): async.Operation<types.AssociateRouteServerOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateRouteServer, input, options) as async.Operation<types.AssociateRouteServerOutput>
+function C:associateRouteServer(input: types.AssociateRouteServerInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateRouteServerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateRouteServer as schema.OperationSchema, input, options) as async.Operation<types.AssociateRouteServerOutput>
 end
 
-function C:associateRouteTable(input: types.AssociateRouteTableInput, options: any): async.Operation<types.AssociateRouteTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateRouteTable, input, options) as async.Operation<types.AssociateRouteTableOutput>
+function C:associateRouteTable(input: types.AssociateRouteTableInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateRouteTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateRouteTable as schema.OperationSchema, input, options) as async.Operation<types.AssociateRouteTableOutput>
 end
 
-function C:associateSecurityGroupVpc(input: types.AssociateSecurityGroupVpcInput, options: any): async.Operation<types.AssociateSecurityGroupVpcOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateSecurityGroupVpc, input, options) as async.Operation<types.AssociateSecurityGroupVpcOutput>
+function C:associateSecurityGroupVpc(input: types.AssociateSecurityGroupVpcInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateSecurityGroupVpcOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateSecurityGroupVpc as schema.OperationSchema, input, options) as async.Operation<types.AssociateSecurityGroupVpcOutput>
 end
 
-function C:associateSubnetCidrBlock(input: types.AssociateSubnetCidrBlockInput, options: any): async.Operation<types.AssociateSubnetCidrBlockOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateSubnetCidrBlock, input, options) as async.Operation<types.AssociateSubnetCidrBlockOutput>
+function C:associateSubnetCidrBlock(input: types.AssociateSubnetCidrBlockInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateSubnetCidrBlockOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateSubnetCidrBlock as schema.OperationSchema, input, options) as async.Operation<types.AssociateSubnetCidrBlockOutput>
 end
 
-function C:associateTransitGatewayMulticastDomain(input: types.AssociateTransitGatewayMulticastDomainInput, options: any): async.Operation<types.AssociateTransitGatewayMulticastDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateTransitGatewayMulticastDomain, input, options) as async.Operation<types.AssociateTransitGatewayMulticastDomainOutput>
+function C:associateTransitGatewayMulticastDomain(input: types.AssociateTransitGatewayMulticastDomainInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateTransitGatewayMulticastDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateTransitGatewayMulticastDomain as schema.OperationSchema, input, options) as async.Operation<types.AssociateTransitGatewayMulticastDomainOutput>
 end
 
-function C:associateTransitGatewayPolicyTable(input: types.AssociateTransitGatewayPolicyTableInput, options: any): async.Operation<types.AssociateTransitGatewayPolicyTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateTransitGatewayPolicyTable, input, options) as async.Operation<types.AssociateTransitGatewayPolicyTableOutput>
+function C:associateTransitGatewayPolicyTable(input: types.AssociateTransitGatewayPolicyTableInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateTransitGatewayPolicyTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateTransitGatewayPolicyTable as schema.OperationSchema, input, options) as async.Operation<types.AssociateTransitGatewayPolicyTableOutput>
 end
 
-function C:associateTransitGatewayRouteTable(input: types.AssociateTransitGatewayRouteTableInput, options: any): async.Operation<types.AssociateTransitGatewayRouteTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateTransitGatewayRouteTable, input, options) as async.Operation<types.AssociateTransitGatewayRouteTableOutput>
+function C:associateTransitGatewayRouteTable(input: types.AssociateTransitGatewayRouteTableInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateTransitGatewayRouteTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateTransitGatewayRouteTable as schema.OperationSchema, input, options) as async.Operation<types.AssociateTransitGatewayRouteTableOutput>
 end
 
-function C:associateTrunkInterface(input: types.AssociateTrunkInterfaceInput, options: any): async.Operation<types.AssociateTrunkInterfaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateTrunkInterface, input, options) as async.Operation<types.AssociateTrunkInterfaceOutput>
+function C:associateTrunkInterface(input: types.AssociateTrunkInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateTrunkInterfaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateTrunkInterface as schema.OperationSchema, input, options) as async.Operation<types.AssociateTrunkInterfaceOutput>
 end
 
-function C:associateVpcCidrBlock(input: types.AssociateVpcCidrBlockInput, options: any): async.Operation<types.AssociateVpcCidrBlockOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateVpcCidrBlock, input, options) as async.Operation<types.AssociateVpcCidrBlockOutput>
+function C:associateVpcCidrBlock(input: types.AssociateVpcCidrBlockInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateVpcCidrBlockOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateVpcCidrBlock as schema.OperationSchema, input, options) as async.Operation<types.AssociateVpcCidrBlockOutput>
 end
 
-function C:attachClassicLinkVpc(input: types.AttachClassicLinkVpcInput, options: any): async.Operation<types.AttachClassicLinkVpcOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachClassicLinkVpc, input, options) as async.Operation<types.AttachClassicLinkVpcOutput>
+function C:attachClassicLinkVpc(input: types.AttachClassicLinkVpcInput, options?: base_client.InvokeOptions): async.Operation<types.AttachClassicLinkVpcOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachClassicLinkVpc as schema.OperationSchema, input, options) as async.Operation<types.AttachClassicLinkVpcOutput>
 end
 
-function C:attachInternetGateway(input: types.AttachInternetGatewayInput, options: any): async.Operation<types.AttachInternetGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachInternetGateway, input, options) as async.Operation<types.AttachInternetGatewayOutput>
+function C:attachInternetGateway(input: types.AttachInternetGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.AttachInternetGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachInternetGateway as schema.OperationSchema, input, options) as async.Operation<types.AttachInternetGatewayOutput>
 end
 
-function C:attachNetworkInterface(input: types.AttachNetworkInterfaceInput, options: any): async.Operation<types.AttachNetworkInterfaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachNetworkInterface, input, options) as async.Operation<types.AttachNetworkInterfaceOutput>
+function C:attachNetworkInterface(input: types.AttachNetworkInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.AttachNetworkInterfaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachNetworkInterface as schema.OperationSchema, input, options) as async.Operation<types.AttachNetworkInterfaceOutput>
 end
 
-function C:attachVerifiedAccessTrustProvider(input: types.AttachVerifiedAccessTrustProviderInput, options: any): async.Operation<types.AttachVerifiedAccessTrustProviderOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachVerifiedAccessTrustProvider, input, options) as async.Operation<types.AttachVerifiedAccessTrustProviderOutput>
+function C:attachVerifiedAccessTrustProvider(input: types.AttachVerifiedAccessTrustProviderInput, options?: base_client.InvokeOptions): async.Operation<types.AttachVerifiedAccessTrustProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachVerifiedAccessTrustProvider as schema.OperationSchema, input, options) as async.Operation<types.AttachVerifiedAccessTrustProviderOutput>
 end
 
-function C:attachVolume(input: types.AttachVolumeInput, options: any): async.Operation<types.AttachVolumeOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachVolume, input, options) as async.Operation<types.AttachVolumeOutput>
+function C:attachVolume(input: types.AttachVolumeInput, options?: base_client.InvokeOptions): async.Operation<types.AttachVolumeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachVolume as schema.OperationSchema, input, options) as async.Operation<types.AttachVolumeOutput>
 end
 
-function C:attachVpnGateway(input: types.AttachVpnGatewayInput, options: any): async.Operation<types.AttachVpnGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachVpnGateway, input, options) as async.Operation<types.AttachVpnGatewayOutput>
+function C:attachVpnGateway(input: types.AttachVpnGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.AttachVpnGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachVpnGateway as schema.OperationSchema, input, options) as async.Operation<types.AttachVpnGatewayOutput>
 end
 
-function C:authorizeClientVpnIngress(input: types.AuthorizeClientVpnIngressInput, options: any): async.Operation<types.AuthorizeClientVpnIngressOutput>
-    return self:invokeOperation(schemas.Service, schemas.AuthorizeClientVpnIngress, input, options) as async.Operation<types.AuthorizeClientVpnIngressOutput>
+function C:authorizeClientVpnIngress(input: types.AuthorizeClientVpnIngressInput, options?: base_client.InvokeOptions): async.Operation<types.AuthorizeClientVpnIngressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AuthorizeClientVpnIngress as schema.OperationSchema, input, options) as async.Operation<types.AuthorizeClientVpnIngressOutput>
 end
 
-function C:authorizeSecurityGroupEgress(input: types.AuthorizeSecurityGroupEgressInput, options: any): async.Operation<types.AuthorizeSecurityGroupEgressOutput>
-    return self:invokeOperation(schemas.Service, schemas.AuthorizeSecurityGroupEgress, input, options) as async.Operation<types.AuthorizeSecurityGroupEgressOutput>
+function C:authorizeSecurityGroupEgress(input: types.AuthorizeSecurityGroupEgressInput, options?: base_client.InvokeOptions): async.Operation<types.AuthorizeSecurityGroupEgressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AuthorizeSecurityGroupEgress as schema.OperationSchema, input, options) as async.Operation<types.AuthorizeSecurityGroupEgressOutput>
 end
 
-function C:authorizeSecurityGroupIngress(input: types.AuthorizeSecurityGroupIngressInput, options: any): async.Operation<types.AuthorizeSecurityGroupIngressOutput>
-    return self:invokeOperation(schemas.Service, schemas.AuthorizeSecurityGroupIngress, input, options) as async.Operation<types.AuthorizeSecurityGroupIngressOutput>
+function C:authorizeSecurityGroupIngress(input: types.AuthorizeSecurityGroupIngressInput, options?: base_client.InvokeOptions): async.Operation<types.AuthorizeSecurityGroupIngressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AuthorizeSecurityGroupIngress as schema.OperationSchema, input, options) as async.Operation<types.AuthorizeSecurityGroupIngressOutput>
 end
 
-function C:bundleInstance(input: types.BundleInstanceInput, options: any): async.Operation<types.BundleInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.BundleInstance, input, options) as async.Operation<types.BundleInstanceOutput>
+function C:bundleInstance(input: types.BundleInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.BundleInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BundleInstance as schema.OperationSchema, input, options) as async.Operation<types.BundleInstanceOutput>
 end
 
-function C:cancelBundleTask(input: types.CancelBundleTaskInput, options: any): async.Operation<types.CancelBundleTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelBundleTask, input, options) as async.Operation<types.CancelBundleTaskOutput>
+function C:cancelBundleTask(input: types.CancelBundleTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CancelBundleTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelBundleTask as schema.OperationSchema, input, options) as async.Operation<types.CancelBundleTaskOutput>
 end
 
-function C:cancelCapacityReservation(input: types.CancelCapacityReservationInput, options: any): async.Operation<types.CancelCapacityReservationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelCapacityReservation, input, options) as async.Operation<types.CancelCapacityReservationOutput>
+function C:cancelCapacityReservation(input: types.CancelCapacityReservationInput, options?: base_client.InvokeOptions): async.Operation<types.CancelCapacityReservationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelCapacityReservation as schema.OperationSchema, input, options) as async.Operation<types.CancelCapacityReservationOutput>
 end
 
-function C:cancelCapacityReservationFleets(input: types.CancelCapacityReservationFleetsInput, options: any): async.Operation<types.CancelCapacityReservationFleetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelCapacityReservationFleets, input, options) as async.Operation<types.CancelCapacityReservationFleetsOutput>
+function C:cancelCapacityReservationFleets(input: types.CancelCapacityReservationFleetsInput, options?: base_client.InvokeOptions): async.Operation<types.CancelCapacityReservationFleetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelCapacityReservationFleets as schema.OperationSchema, input, options) as async.Operation<types.CancelCapacityReservationFleetsOutput>
 end
 
-function C:cancelConversionTask(input: types.CancelConversionTaskInput, options: any): async.Operation<types.CancelConversionTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelConversionTask, input, options) as async.Operation<types.CancelConversionTaskOutput>
+function C:cancelConversionTask(input: types.CancelConversionTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CancelConversionTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelConversionTask as schema.OperationSchema, input, options) as async.Operation<types.CancelConversionTaskOutput>
 end
 
-function C:cancelDeclarativePoliciesReport(input: types.CancelDeclarativePoliciesReportInput, options: any): async.Operation<types.CancelDeclarativePoliciesReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelDeclarativePoliciesReport, input, options) as async.Operation<types.CancelDeclarativePoliciesReportOutput>
+function C:cancelDeclarativePoliciesReport(input: types.CancelDeclarativePoliciesReportInput, options?: base_client.InvokeOptions): async.Operation<types.CancelDeclarativePoliciesReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelDeclarativePoliciesReport as schema.OperationSchema, input, options) as async.Operation<types.CancelDeclarativePoliciesReportOutput>
 end
 
-function C:cancelExportTask(input: types.CancelExportTaskInput, options: any): async.Operation<types.CancelExportTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelExportTask, input, options) as async.Operation<types.CancelExportTaskOutput>
+function C:cancelExportTask(input: types.CancelExportTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CancelExportTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelExportTask as schema.OperationSchema, input, options) as async.Operation<types.CancelExportTaskOutput>
 end
 
-function C:cancelImageLaunchPermission(input: types.CancelImageLaunchPermissionInput, options: any): async.Operation<types.CancelImageLaunchPermissionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelImageLaunchPermission, input, options) as async.Operation<types.CancelImageLaunchPermissionOutput>
+function C:cancelImageLaunchPermission(input: types.CancelImageLaunchPermissionInput, options?: base_client.InvokeOptions): async.Operation<types.CancelImageLaunchPermissionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelImageLaunchPermission as schema.OperationSchema, input, options) as async.Operation<types.CancelImageLaunchPermissionOutput>
 end
 
-function C:cancelImportTask(input: types.CancelImportTaskInput, options: any): async.Operation<types.CancelImportTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelImportTask, input, options) as async.Operation<types.CancelImportTaskOutput>
+function C:cancelImportTask(input: types.CancelImportTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CancelImportTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelImportTask as schema.OperationSchema, input, options) as async.Operation<types.CancelImportTaskOutput>
 end
 
-function C:cancelReservedInstancesListing(input: types.CancelReservedInstancesListingInput, options: any): async.Operation<types.CancelReservedInstancesListingOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelReservedInstancesListing, input, options) as async.Operation<types.CancelReservedInstancesListingOutput>
+function C:cancelReservedInstancesListing(input: types.CancelReservedInstancesListingInput, options?: base_client.InvokeOptions): async.Operation<types.CancelReservedInstancesListingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelReservedInstancesListing as schema.OperationSchema, input, options) as async.Operation<types.CancelReservedInstancesListingOutput>
 end
 
-function C:cancelSpotFleetRequests(input: types.CancelSpotFleetRequestsInput, options: any): async.Operation<types.CancelSpotFleetRequestsOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelSpotFleetRequests, input, options) as async.Operation<types.CancelSpotFleetRequestsOutput>
+function C:cancelSpotFleetRequests(input: types.CancelSpotFleetRequestsInput, options?: base_client.InvokeOptions): async.Operation<types.CancelSpotFleetRequestsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelSpotFleetRequests as schema.OperationSchema, input, options) as async.Operation<types.CancelSpotFleetRequestsOutput>
 end
 
-function C:cancelSpotInstanceRequests(input: types.CancelSpotInstanceRequestsInput, options: any): async.Operation<types.CancelSpotInstanceRequestsOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelSpotInstanceRequests, input, options) as async.Operation<types.CancelSpotInstanceRequestsOutput>
+function C:cancelSpotInstanceRequests(input: types.CancelSpotInstanceRequestsInput, options?: base_client.InvokeOptions): async.Operation<types.CancelSpotInstanceRequestsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelSpotInstanceRequests as schema.OperationSchema, input, options) as async.Operation<types.CancelSpotInstanceRequestsOutput>
 end
 
-function C:confirmProductInstance(input: types.ConfirmProductInstanceInput, options: any): async.Operation<types.ConfirmProductInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ConfirmProductInstance, input, options) as async.Operation<types.ConfirmProductInstanceOutput>
+function C:confirmProductInstance(input: types.ConfirmProductInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.ConfirmProductInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ConfirmProductInstance as schema.OperationSchema, input, options) as async.Operation<types.ConfirmProductInstanceOutput>
 end
 
-function C:copyFpgaImage(input: types.CopyFpgaImageInput, options: any): async.Operation<types.CopyFpgaImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.CopyFpgaImage, input, options) as async.Operation<types.CopyFpgaImageOutput>
+function C:copyFpgaImage(input: types.CopyFpgaImageInput, options?: base_client.InvokeOptions): async.Operation<types.CopyFpgaImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CopyFpgaImage as schema.OperationSchema, input, options) as async.Operation<types.CopyFpgaImageOutput>
 end
 
-function C:copyImage(input: types.CopyImageInput, options: any): async.Operation<types.CopyImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.CopyImage, input, options) as async.Operation<types.CopyImageOutput>
+function C:copyImage(input: types.CopyImageInput, options?: base_client.InvokeOptions): async.Operation<types.CopyImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CopyImage as schema.OperationSchema, input, options) as async.Operation<types.CopyImageOutput>
 end
 
-function C:copySnapshot(input: types.CopySnapshotInput, options: any): async.Operation<types.CopySnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.CopySnapshot, input, options) as async.Operation<types.CopySnapshotOutput>
+function C:copySnapshot(input: types.CopySnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.CopySnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CopySnapshot as schema.OperationSchema, input, options) as async.Operation<types.CopySnapshotOutput>
 end
 
-function C:copyVolumes(input: types.CopyVolumesInput, options: any): async.Operation<types.CopyVolumesOutput>
-    return self:invokeOperation(schemas.Service, schemas.CopyVolumes, input, options) as async.Operation<types.CopyVolumesOutput>
+function C:copyVolumes(input: types.CopyVolumesInput, options?: base_client.InvokeOptions): async.Operation<types.CopyVolumesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CopyVolumes as schema.OperationSchema, input, options) as async.Operation<types.CopyVolumesOutput>
 end
 
-function C:createCapacityManagerDataExport(input: types.CreateCapacityManagerDataExportInput, options: any): async.Operation<types.CreateCapacityManagerDataExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCapacityManagerDataExport, input, options) as async.Operation<types.CreateCapacityManagerDataExportOutput>
+function C:createCapacityManagerDataExport(input: types.CreateCapacityManagerDataExportInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCapacityManagerDataExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCapacityManagerDataExport as schema.OperationSchema, input, options) as async.Operation<types.CreateCapacityManagerDataExportOutput>
 end
 
-function C:createCapacityReservation(input: types.CreateCapacityReservationInput, options: any): async.Operation<types.CreateCapacityReservationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCapacityReservation, input, options) as async.Operation<types.CreateCapacityReservationOutput>
+function C:createCapacityReservation(input: types.CreateCapacityReservationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCapacityReservationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCapacityReservation as schema.OperationSchema, input, options) as async.Operation<types.CreateCapacityReservationOutput>
 end
 
-function C:createCapacityReservationBySplitting(input: types.CreateCapacityReservationBySplittingInput, options: any): async.Operation<types.CreateCapacityReservationBySplittingOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCapacityReservationBySplitting, input, options) as async.Operation<types.CreateCapacityReservationBySplittingOutput>
+function C:createCapacityReservationBySplitting(input: types.CreateCapacityReservationBySplittingInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCapacityReservationBySplittingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCapacityReservationBySplitting as schema.OperationSchema, input, options) as async.Operation<types.CreateCapacityReservationBySplittingOutput>
 end
 
-function C:createCapacityReservationFleet(input: types.CreateCapacityReservationFleetInput, options: any): async.Operation<types.CreateCapacityReservationFleetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCapacityReservationFleet, input, options) as async.Operation<types.CreateCapacityReservationFleetOutput>
+function C:createCapacityReservationFleet(input: types.CreateCapacityReservationFleetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCapacityReservationFleetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCapacityReservationFleet as schema.OperationSchema, input, options) as async.Operation<types.CreateCapacityReservationFleetOutput>
 end
 
-function C:createCarrierGateway(input: types.CreateCarrierGatewayInput, options: any): async.Operation<types.CreateCarrierGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCarrierGateway, input, options) as async.Operation<types.CreateCarrierGatewayOutput>
+function C:createCarrierGateway(input: types.CreateCarrierGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCarrierGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCarrierGateway as schema.OperationSchema, input, options) as async.Operation<types.CreateCarrierGatewayOutput>
 end
 
-function C:createClientVpnEndpoint(input: types.CreateClientVpnEndpointInput, options: any): async.Operation<types.CreateClientVpnEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateClientVpnEndpoint, input, options) as async.Operation<types.CreateClientVpnEndpointOutput>
+function C:createClientVpnEndpoint(input: types.CreateClientVpnEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.CreateClientVpnEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateClientVpnEndpoint as schema.OperationSchema, input, options) as async.Operation<types.CreateClientVpnEndpointOutput>
 end
 
-function C:createClientVpnRoute(input: types.CreateClientVpnRouteInput, options: any): async.Operation<types.CreateClientVpnRouteOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateClientVpnRoute, input, options) as async.Operation<types.CreateClientVpnRouteOutput>
+function C:createClientVpnRoute(input: types.CreateClientVpnRouteInput, options?: base_client.InvokeOptions): async.Operation<types.CreateClientVpnRouteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateClientVpnRoute as schema.OperationSchema, input, options) as async.Operation<types.CreateClientVpnRouteOutput>
 end
 
-function C:createCoipCidr(input: types.CreateCoipCidrInput, options: any): async.Operation<types.CreateCoipCidrOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCoipCidr, input, options) as async.Operation<types.CreateCoipCidrOutput>
+function C:createCoipCidr(input: types.CreateCoipCidrInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCoipCidrOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCoipCidr as schema.OperationSchema, input, options) as async.Operation<types.CreateCoipCidrOutput>
 end
 
-function C:createCoipPool(input: types.CreateCoipPoolInput, options: any): async.Operation<types.CreateCoipPoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCoipPool, input, options) as async.Operation<types.CreateCoipPoolOutput>
+function C:createCoipPool(input: types.CreateCoipPoolInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCoipPoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCoipPool as schema.OperationSchema, input, options) as async.Operation<types.CreateCoipPoolOutput>
 end
 
-function C:createCustomerGateway(input: types.CreateCustomerGatewayInput, options: any): async.Operation<types.CreateCustomerGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCustomerGateway, input, options) as async.Operation<types.CreateCustomerGatewayOutput>
+function C:createCustomerGateway(input: types.CreateCustomerGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCustomerGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCustomerGateway as schema.OperationSchema, input, options) as async.Operation<types.CreateCustomerGatewayOutput>
 end
 
-function C:createDefaultSubnet(input: types.CreateDefaultSubnetInput, options: any): async.Operation<types.CreateDefaultSubnetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDefaultSubnet, input, options) as async.Operation<types.CreateDefaultSubnetOutput>
+function C:createDefaultSubnet(input: types.CreateDefaultSubnetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDefaultSubnetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDefaultSubnet as schema.OperationSchema, input, options) as async.Operation<types.CreateDefaultSubnetOutput>
 end
 
-function C:createDefaultVpc(input: types.CreateDefaultVpcInput, options: any): async.Operation<types.CreateDefaultVpcOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDefaultVpc, input, options) as async.Operation<types.CreateDefaultVpcOutput>
+function C:createDefaultVpc(input: types.CreateDefaultVpcInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDefaultVpcOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDefaultVpc as schema.OperationSchema, input, options) as async.Operation<types.CreateDefaultVpcOutput>
 end
 
-function C:createDelegateMacVolumeOwnershipTask(input: types.CreateDelegateMacVolumeOwnershipTaskInput, options: any): async.Operation<types.CreateDelegateMacVolumeOwnershipTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDelegateMacVolumeOwnershipTask, input, options) as async.Operation<types.CreateDelegateMacVolumeOwnershipTaskOutput>
+function C:createDelegateMacVolumeOwnershipTask(input: types.CreateDelegateMacVolumeOwnershipTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDelegateMacVolumeOwnershipTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDelegateMacVolumeOwnershipTask as schema.OperationSchema, input, options) as async.Operation<types.CreateDelegateMacVolumeOwnershipTaskOutput>
 end
 
-function C:createDhcpOptions(input: types.CreateDhcpOptionsInput, options: any): async.Operation<types.CreateDhcpOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDhcpOptions, input, options) as async.Operation<types.CreateDhcpOptionsOutput>
+function C:createDhcpOptions(input: types.CreateDhcpOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDhcpOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDhcpOptions as schema.OperationSchema, input, options) as async.Operation<types.CreateDhcpOptionsOutput>
 end
 
-function C:createEgressOnlyInternetGateway(input: types.CreateEgressOnlyInternetGatewayInput, options: any): async.Operation<types.CreateEgressOnlyInternetGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEgressOnlyInternetGateway, input, options) as async.Operation<types.CreateEgressOnlyInternetGatewayOutput>
+function C:createEgressOnlyInternetGateway(input: types.CreateEgressOnlyInternetGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEgressOnlyInternetGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEgressOnlyInternetGateway as schema.OperationSchema, input, options) as async.Operation<types.CreateEgressOnlyInternetGatewayOutput>
 end
 
-function C:createFleet(input: types.CreateFleetInput, options: any): async.Operation<types.CreateFleetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFleet, input, options) as async.Operation<types.CreateFleetOutput>
+function C:createFleet(input: types.CreateFleetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFleetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFleet as schema.OperationSchema, input, options) as async.Operation<types.CreateFleetOutput>
 end
 
-function C:createFlowLogs(input: types.CreateFlowLogsInput, options: any): async.Operation<types.CreateFlowLogsOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFlowLogs, input, options) as async.Operation<types.CreateFlowLogsOutput>
+function C:createFlowLogs(input: types.CreateFlowLogsInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFlowLogsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFlowLogs as schema.OperationSchema, input, options) as async.Operation<types.CreateFlowLogsOutput>
 end
 
-function C:createFpgaImage(input: types.CreateFpgaImageInput, options: any): async.Operation<types.CreateFpgaImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFpgaImage, input, options) as async.Operation<types.CreateFpgaImageOutput>
+function C:createFpgaImage(input: types.CreateFpgaImageInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFpgaImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFpgaImage as schema.OperationSchema, input, options) as async.Operation<types.CreateFpgaImageOutput>
 end
 
-function C:createImage(input: types.CreateImageInput, options: any): async.Operation<types.CreateImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateImage, input, options) as async.Operation<types.CreateImageOutput>
+function C:createImage(input: types.CreateImageInput, options?: base_client.InvokeOptions): async.Operation<types.CreateImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateImage as schema.OperationSchema, input, options) as async.Operation<types.CreateImageOutput>
 end
 
-function C:createImageUsageReport(input: types.CreateImageUsageReportInput, options: any): async.Operation<types.CreateImageUsageReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateImageUsageReport, input, options) as async.Operation<types.CreateImageUsageReportOutput>
+function C:createImageUsageReport(input: types.CreateImageUsageReportInput, options?: base_client.InvokeOptions): async.Operation<types.CreateImageUsageReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateImageUsageReport as schema.OperationSchema, input, options) as async.Operation<types.CreateImageUsageReportOutput>
 end
 
-function C:createInstanceConnectEndpoint(input: types.CreateInstanceConnectEndpointInput, options: any): async.Operation<types.CreateInstanceConnectEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateInstanceConnectEndpoint, input, options) as async.Operation<types.CreateInstanceConnectEndpointOutput>
+function C:createInstanceConnectEndpoint(input: types.CreateInstanceConnectEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInstanceConnectEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInstanceConnectEndpoint as schema.OperationSchema, input, options) as async.Operation<types.CreateInstanceConnectEndpointOutput>
 end
 
-function C:createInstanceEventWindow(input: types.CreateInstanceEventWindowInput, options: any): async.Operation<types.CreateInstanceEventWindowOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateInstanceEventWindow, input, options) as async.Operation<types.CreateInstanceEventWindowOutput>
+function C:createInstanceEventWindow(input: types.CreateInstanceEventWindowInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInstanceEventWindowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInstanceEventWindow as schema.OperationSchema, input, options) as async.Operation<types.CreateInstanceEventWindowOutput>
 end
 
-function C:createInstanceExportTask(input: types.CreateInstanceExportTaskInput, options: any): async.Operation<types.CreateInstanceExportTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateInstanceExportTask, input, options) as async.Operation<types.CreateInstanceExportTaskOutput>
+function C:createInstanceExportTask(input: types.CreateInstanceExportTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInstanceExportTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInstanceExportTask as schema.OperationSchema, input, options) as async.Operation<types.CreateInstanceExportTaskOutput>
 end
 
-function C:createInternetGateway(input: types.CreateInternetGatewayInput, options: any): async.Operation<types.CreateInternetGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateInternetGateway, input, options) as async.Operation<types.CreateInternetGatewayOutput>
+function C:createInternetGateway(input: types.CreateInternetGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInternetGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInternetGateway as schema.OperationSchema, input, options) as async.Operation<types.CreateInternetGatewayOutput>
 end
 
-function C:createInterruptibleCapacityReservationAllocation(input: types.CreateInterruptibleCapacityReservationAllocationInput, options: any): async.Operation<types.CreateInterruptibleCapacityReservationAllocationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateInterruptibleCapacityReservationAllocation, input, options) as async.Operation<types.CreateInterruptibleCapacityReservationAllocationOutput>
+function C:createInterruptibleCapacityReservationAllocation(input: types.CreateInterruptibleCapacityReservationAllocationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInterruptibleCapacityReservationAllocationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInterruptibleCapacityReservationAllocation as schema.OperationSchema, input, options) as async.Operation<types.CreateInterruptibleCapacityReservationAllocationOutput>
 end
 
-function C:createIpam(input: types.CreateIpamInput, options: any): async.Operation<types.CreateIpamOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIpam, input, options) as async.Operation<types.CreateIpamOutput>
+function C:createIpam(input: types.CreateIpamInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIpamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIpam as schema.OperationSchema, input, options) as async.Operation<types.CreateIpamOutput>
 end
 
-function C:createIpamExternalResourceVerificationToken(input: types.CreateIpamExternalResourceVerificationTokenInput, options: any): async.Operation<types.CreateIpamExternalResourceVerificationTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIpamExternalResourceVerificationToken, input, options) as async.Operation<types.CreateIpamExternalResourceVerificationTokenOutput>
+function C:createIpamExternalResourceVerificationToken(input: types.CreateIpamExternalResourceVerificationTokenInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIpamExternalResourceVerificationTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIpamExternalResourceVerificationToken as schema.OperationSchema, input, options) as async.Operation<types.CreateIpamExternalResourceVerificationTokenOutput>
 end
 
-function C:createIpamPolicy(input: types.CreateIpamPolicyInput, options: any): async.Operation<types.CreateIpamPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIpamPolicy, input, options) as async.Operation<types.CreateIpamPolicyOutput>
+function C:createIpamPolicy(input: types.CreateIpamPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIpamPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIpamPolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateIpamPolicyOutput>
 end
 
-function C:createIpamPool(input: types.CreateIpamPoolInput, options: any): async.Operation<types.CreateIpamPoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIpamPool, input, options) as async.Operation<types.CreateIpamPoolOutput>
+function C:createIpamPool(input: types.CreateIpamPoolInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIpamPoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIpamPool as schema.OperationSchema, input, options) as async.Operation<types.CreateIpamPoolOutput>
 end
 
-function C:createIpamPrefixListResolver(input: types.CreateIpamPrefixListResolverInput, options: any): async.Operation<types.CreateIpamPrefixListResolverOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIpamPrefixListResolver, input, options) as async.Operation<types.CreateIpamPrefixListResolverOutput>
+function C:createIpamPrefixListResolver(input: types.CreateIpamPrefixListResolverInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIpamPrefixListResolverOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIpamPrefixListResolver as schema.OperationSchema, input, options) as async.Operation<types.CreateIpamPrefixListResolverOutput>
 end
 
-function C:createIpamPrefixListResolverTarget(input: types.CreateIpamPrefixListResolverTargetInput, options: any): async.Operation<types.CreateIpamPrefixListResolverTargetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIpamPrefixListResolverTarget, input, options) as async.Operation<types.CreateIpamPrefixListResolverTargetOutput>
+function C:createIpamPrefixListResolverTarget(input: types.CreateIpamPrefixListResolverTargetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIpamPrefixListResolverTargetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIpamPrefixListResolverTarget as schema.OperationSchema, input, options) as async.Operation<types.CreateIpamPrefixListResolverTargetOutput>
 end
 
-function C:createIpamResourceDiscovery(input: types.CreateIpamResourceDiscoveryInput, options: any): async.Operation<types.CreateIpamResourceDiscoveryOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIpamResourceDiscovery, input, options) as async.Operation<types.CreateIpamResourceDiscoveryOutput>
+function C:createIpamResourceDiscovery(input: types.CreateIpamResourceDiscoveryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIpamResourceDiscoveryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIpamResourceDiscovery as schema.OperationSchema, input, options) as async.Operation<types.CreateIpamResourceDiscoveryOutput>
 end
 
-function C:createIpamScope(input: types.CreateIpamScopeInput, options: any): async.Operation<types.CreateIpamScopeOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIpamScope, input, options) as async.Operation<types.CreateIpamScopeOutput>
+function C:createIpamScope(input: types.CreateIpamScopeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIpamScopeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIpamScope as schema.OperationSchema, input, options) as async.Operation<types.CreateIpamScopeOutput>
 end
 
-function C:createKeyPair(input: types.CreateKeyPairInput, options: any): async.Operation<types.CreateKeyPairOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateKeyPair, input, options) as async.Operation<types.CreateKeyPairOutput>
+function C:createKeyPair(input: types.CreateKeyPairInput, options?: base_client.InvokeOptions): async.Operation<types.CreateKeyPairOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateKeyPair as schema.OperationSchema, input, options) as async.Operation<types.CreateKeyPairOutput>
 end
 
-function C:createLaunchTemplate(input: types.CreateLaunchTemplateInput, options: any): async.Operation<types.CreateLaunchTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLaunchTemplate, input, options) as async.Operation<types.CreateLaunchTemplateOutput>
+function C:createLaunchTemplate(input: types.CreateLaunchTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLaunchTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLaunchTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateLaunchTemplateOutput>
 end
 
-function C:createLaunchTemplateVersion(input: types.CreateLaunchTemplateVersionInput, options: any): async.Operation<types.CreateLaunchTemplateVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLaunchTemplateVersion, input, options) as async.Operation<types.CreateLaunchTemplateVersionOutput>
+function C:createLaunchTemplateVersion(input: types.CreateLaunchTemplateVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLaunchTemplateVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLaunchTemplateVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateLaunchTemplateVersionOutput>
 end
 
-function C:createLocalGatewayRoute(input: types.CreateLocalGatewayRouteInput, options: any): async.Operation<types.CreateLocalGatewayRouteOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLocalGatewayRoute, input, options) as async.Operation<types.CreateLocalGatewayRouteOutput>
+function C:createLocalGatewayRoute(input: types.CreateLocalGatewayRouteInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLocalGatewayRouteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLocalGatewayRoute as schema.OperationSchema, input, options) as async.Operation<types.CreateLocalGatewayRouteOutput>
 end
 
-function C:createLocalGatewayRouteTable(input: types.CreateLocalGatewayRouteTableInput, options: any): async.Operation<types.CreateLocalGatewayRouteTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLocalGatewayRouteTable, input, options) as async.Operation<types.CreateLocalGatewayRouteTableOutput>
+function C:createLocalGatewayRouteTable(input: types.CreateLocalGatewayRouteTableInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLocalGatewayRouteTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLocalGatewayRouteTable as schema.OperationSchema, input, options) as async.Operation<types.CreateLocalGatewayRouteTableOutput>
 end
 
-function C:createLocalGatewayRouteTableVirtualInterfaceGroupAssociation(input: types.CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationInput, options: any): async.Operation<types.CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociation, input, options) as async.Operation<types.CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationOutput>
+function C:createLocalGatewayRouteTableVirtualInterfaceGroupAssociation(input: types.CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreateLocalGatewayRouteTableVirtualInterfaceGroupAssociationOutput>
 end
 
-function C:createLocalGatewayRouteTableVpcAssociation(input: types.CreateLocalGatewayRouteTableVpcAssociationInput, options: any): async.Operation<types.CreateLocalGatewayRouteTableVpcAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLocalGatewayRouteTableVpcAssociation, input, options) as async.Operation<types.CreateLocalGatewayRouteTableVpcAssociationOutput>
+function C:createLocalGatewayRouteTableVpcAssociation(input: types.CreateLocalGatewayRouteTableVpcAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLocalGatewayRouteTableVpcAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLocalGatewayRouteTableVpcAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreateLocalGatewayRouteTableVpcAssociationOutput>
 end
 
-function C:createLocalGatewayVirtualInterface(input: types.CreateLocalGatewayVirtualInterfaceInput, options: any): async.Operation<types.CreateLocalGatewayVirtualInterfaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLocalGatewayVirtualInterface, input, options) as async.Operation<types.CreateLocalGatewayVirtualInterfaceOutput>
+function C:createLocalGatewayVirtualInterface(input: types.CreateLocalGatewayVirtualInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLocalGatewayVirtualInterfaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLocalGatewayVirtualInterface as schema.OperationSchema, input, options) as async.Operation<types.CreateLocalGatewayVirtualInterfaceOutput>
 end
 
-function C:createLocalGatewayVirtualInterfaceGroup(input: types.CreateLocalGatewayVirtualInterfaceGroupInput, options: any): async.Operation<types.CreateLocalGatewayVirtualInterfaceGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLocalGatewayVirtualInterfaceGroup, input, options) as async.Operation<types.CreateLocalGatewayVirtualInterfaceGroupOutput>
+function C:createLocalGatewayVirtualInterfaceGroup(input: types.CreateLocalGatewayVirtualInterfaceGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLocalGatewayVirtualInterfaceGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLocalGatewayVirtualInterfaceGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateLocalGatewayVirtualInterfaceGroupOutput>
 end
 
-function C:createMacSystemIntegrityProtectionModificationTask(input: types.CreateMacSystemIntegrityProtectionModificationTaskInput, options: any): async.Operation<types.CreateMacSystemIntegrityProtectionModificationTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMacSystemIntegrityProtectionModificationTask, input, options) as async.Operation<types.CreateMacSystemIntegrityProtectionModificationTaskOutput>
+function C:createMacSystemIntegrityProtectionModificationTask(input: types.CreateMacSystemIntegrityProtectionModificationTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMacSystemIntegrityProtectionModificationTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMacSystemIntegrityProtectionModificationTask as schema.OperationSchema, input, options) as async.Operation<types.CreateMacSystemIntegrityProtectionModificationTaskOutput>
 end
 
-function C:createManagedPrefixList(input: types.CreateManagedPrefixListInput, options: any): async.Operation<types.CreateManagedPrefixListOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateManagedPrefixList, input, options) as async.Operation<types.CreateManagedPrefixListOutput>
+function C:createManagedPrefixList(input: types.CreateManagedPrefixListInput, options?: base_client.InvokeOptions): async.Operation<types.CreateManagedPrefixListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateManagedPrefixList as schema.OperationSchema, input, options) as async.Operation<types.CreateManagedPrefixListOutput>
 end
 
-function C:createNatGateway(input: types.CreateNatGatewayInput, options: any): async.Operation<types.CreateNatGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNatGateway, input, options) as async.Operation<types.CreateNatGatewayOutput>
+function C:createNatGateway(input: types.CreateNatGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNatGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNatGateway as schema.OperationSchema, input, options) as async.Operation<types.CreateNatGatewayOutput>
 end
 
-function C:createNetworkAcl(input: types.CreateNetworkAclInput, options: any): async.Operation<types.CreateNetworkAclOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNetworkAcl, input, options) as async.Operation<types.CreateNetworkAclOutput>
+function C:createNetworkAcl(input: types.CreateNetworkAclInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNetworkAclOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNetworkAcl as schema.OperationSchema, input, options) as async.Operation<types.CreateNetworkAclOutput>
 end
 
-function C:createNetworkAclEntry(input: types.CreateNetworkAclEntryInput, options: any): async.Operation<types.CreateNetworkAclEntryOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNetworkAclEntry, input, options) as async.Operation<types.CreateNetworkAclEntryOutput>
+function C:createNetworkAclEntry(input: types.CreateNetworkAclEntryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNetworkAclEntryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNetworkAclEntry as schema.OperationSchema, input, options) as async.Operation<types.CreateNetworkAclEntryOutput>
 end
 
-function C:createNetworkInsightsAccessScope(input: types.CreateNetworkInsightsAccessScopeInput, options: any): async.Operation<types.CreateNetworkInsightsAccessScopeOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNetworkInsightsAccessScope, input, options) as async.Operation<types.CreateNetworkInsightsAccessScopeOutput>
+function C:createNetworkInsightsAccessScope(input: types.CreateNetworkInsightsAccessScopeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNetworkInsightsAccessScopeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNetworkInsightsAccessScope as schema.OperationSchema, input, options) as async.Operation<types.CreateNetworkInsightsAccessScopeOutput>
 end
 
-function C:createNetworkInsightsPath(input: types.CreateNetworkInsightsPathInput, options: any): async.Operation<types.CreateNetworkInsightsPathOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNetworkInsightsPath, input, options) as async.Operation<types.CreateNetworkInsightsPathOutput>
+function C:createNetworkInsightsPath(input: types.CreateNetworkInsightsPathInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNetworkInsightsPathOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNetworkInsightsPath as schema.OperationSchema, input, options) as async.Operation<types.CreateNetworkInsightsPathOutput>
 end
 
-function C:createNetworkInterface(input: types.CreateNetworkInterfaceInput, options: any): async.Operation<types.CreateNetworkInterfaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNetworkInterface, input, options) as async.Operation<types.CreateNetworkInterfaceOutput>
+function C:createNetworkInterface(input: types.CreateNetworkInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNetworkInterfaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNetworkInterface as schema.OperationSchema, input, options) as async.Operation<types.CreateNetworkInterfaceOutput>
 end
 
-function C:createNetworkInterfacePermission(input: types.CreateNetworkInterfacePermissionInput, options: any): async.Operation<types.CreateNetworkInterfacePermissionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNetworkInterfacePermission, input, options) as async.Operation<types.CreateNetworkInterfacePermissionOutput>
+function C:createNetworkInterfacePermission(input: types.CreateNetworkInterfacePermissionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNetworkInterfacePermissionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNetworkInterfacePermission as schema.OperationSchema, input, options) as async.Operation<types.CreateNetworkInterfacePermissionOutput>
 end
 
-function C:createPlacementGroup(input: types.CreatePlacementGroupInput, options: any): async.Operation<types.CreatePlacementGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePlacementGroup, input, options) as async.Operation<types.CreatePlacementGroupOutput>
+function C:createPlacementGroup(input: types.CreatePlacementGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePlacementGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePlacementGroup as schema.OperationSchema, input, options) as async.Operation<types.CreatePlacementGroupOutput>
 end
 
-function C:createPublicIpv4Pool(input: types.CreatePublicIpv4PoolInput, options: any): async.Operation<types.CreatePublicIpv4PoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePublicIpv4Pool, input, options) as async.Operation<types.CreatePublicIpv4PoolOutput>
+function C:createPublicIpv4Pool(input: types.CreatePublicIpv4PoolInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePublicIpv4PoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePublicIpv4Pool as schema.OperationSchema, input, options) as async.Operation<types.CreatePublicIpv4PoolOutput>
 end
 
-function C:createReplaceRootVolumeTask(input: types.CreateReplaceRootVolumeTaskInput, options: any): async.Operation<types.CreateReplaceRootVolumeTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateReplaceRootVolumeTask, input, options) as async.Operation<types.CreateReplaceRootVolumeTaskOutput>
+function C:createReplaceRootVolumeTask(input: types.CreateReplaceRootVolumeTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CreateReplaceRootVolumeTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateReplaceRootVolumeTask as schema.OperationSchema, input, options) as async.Operation<types.CreateReplaceRootVolumeTaskOutput>
 end
 
-function C:createReservedInstancesListing(input: types.CreateReservedInstancesListingInput, options: any): async.Operation<types.CreateReservedInstancesListingOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateReservedInstancesListing, input, options) as async.Operation<types.CreateReservedInstancesListingOutput>
+function C:createReservedInstancesListing(input: types.CreateReservedInstancesListingInput, options?: base_client.InvokeOptions): async.Operation<types.CreateReservedInstancesListingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateReservedInstancesListing as schema.OperationSchema, input, options) as async.Operation<types.CreateReservedInstancesListingOutput>
 end
 
-function C:createRestoreImageTask(input: types.CreateRestoreImageTaskInput, options: any): async.Operation<types.CreateRestoreImageTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRestoreImageTask, input, options) as async.Operation<types.CreateRestoreImageTaskOutput>
+function C:createRestoreImageTask(input: types.CreateRestoreImageTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRestoreImageTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRestoreImageTask as schema.OperationSchema, input, options) as async.Operation<types.CreateRestoreImageTaskOutput>
 end
 
-function C:createRoute(input: types.CreateRouteInput, options: any): async.Operation<types.CreateRouteOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRoute, input, options) as async.Operation<types.CreateRouteOutput>
+function C:createRoute(input: types.CreateRouteInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRouteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRoute as schema.OperationSchema, input, options) as async.Operation<types.CreateRouteOutput>
 end
 
-function C:createRouteServer(input: types.CreateRouteServerInput, options: any): async.Operation<types.CreateRouteServerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRouteServer, input, options) as async.Operation<types.CreateRouteServerOutput>
+function C:createRouteServer(input: types.CreateRouteServerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRouteServerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRouteServer as schema.OperationSchema, input, options) as async.Operation<types.CreateRouteServerOutput>
 end
 
-function C:createRouteServerEndpoint(input: types.CreateRouteServerEndpointInput, options: any): async.Operation<types.CreateRouteServerEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRouteServerEndpoint, input, options) as async.Operation<types.CreateRouteServerEndpointOutput>
+function C:createRouteServerEndpoint(input: types.CreateRouteServerEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRouteServerEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRouteServerEndpoint as schema.OperationSchema, input, options) as async.Operation<types.CreateRouteServerEndpointOutput>
 end
 
-function C:createRouteServerPeer(input: types.CreateRouteServerPeerInput, options: any): async.Operation<types.CreateRouteServerPeerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRouteServerPeer, input, options) as async.Operation<types.CreateRouteServerPeerOutput>
+function C:createRouteServerPeer(input: types.CreateRouteServerPeerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRouteServerPeerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRouteServerPeer as schema.OperationSchema, input, options) as async.Operation<types.CreateRouteServerPeerOutput>
 end
 
-function C:createRouteTable(input: types.CreateRouteTableInput, options: any): async.Operation<types.CreateRouteTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRouteTable, input, options) as async.Operation<types.CreateRouteTableOutput>
+function C:createRouteTable(input: types.CreateRouteTableInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRouteTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRouteTable as schema.OperationSchema, input, options) as async.Operation<types.CreateRouteTableOutput>
 end
 
-function C:createSecondaryNetwork(input: types.CreateSecondaryNetworkInput, options: any): async.Operation<types.CreateSecondaryNetworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSecondaryNetwork, input, options) as async.Operation<types.CreateSecondaryNetworkOutput>
+function C:createSecondaryNetwork(input: types.CreateSecondaryNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSecondaryNetworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSecondaryNetwork as schema.OperationSchema, input, options) as async.Operation<types.CreateSecondaryNetworkOutput>
 end
 
-function C:createSecondarySubnet(input: types.CreateSecondarySubnetInput, options: any): async.Operation<types.CreateSecondarySubnetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSecondarySubnet, input, options) as async.Operation<types.CreateSecondarySubnetOutput>
+function C:createSecondarySubnet(input: types.CreateSecondarySubnetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSecondarySubnetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSecondarySubnet as schema.OperationSchema, input, options) as async.Operation<types.CreateSecondarySubnetOutput>
 end
 
-function C:createSecurityGroup(input: types.CreateSecurityGroupInput, options: any): async.Operation<types.CreateSecurityGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSecurityGroup, input, options) as async.Operation<types.CreateSecurityGroupOutput>
+function C:createSecurityGroup(input: types.CreateSecurityGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSecurityGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSecurityGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateSecurityGroupOutput>
 end
 
-function C:createSnapshot(input: types.CreateSnapshotInput, options: any): async.Operation<types.CreateSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSnapshot, input, options) as async.Operation<types.CreateSnapshotOutput>
+function C:createSnapshot(input: types.CreateSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSnapshot as schema.OperationSchema, input, options) as async.Operation<types.CreateSnapshotOutput>
 end
 
-function C:createSnapshots(input: types.CreateSnapshotsInput, options: any): async.Operation<types.CreateSnapshotsOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSnapshots, input, options) as async.Operation<types.CreateSnapshotsOutput>
+function C:createSnapshots(input: types.CreateSnapshotsInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSnapshotsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSnapshots as schema.OperationSchema, input, options) as async.Operation<types.CreateSnapshotsOutput>
 end
 
-function C:createSpotDatafeedSubscription(input: types.CreateSpotDatafeedSubscriptionInput, options: any): async.Operation<types.CreateSpotDatafeedSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSpotDatafeedSubscription, input, options) as async.Operation<types.CreateSpotDatafeedSubscriptionOutput>
+function C:createSpotDatafeedSubscription(input: types.CreateSpotDatafeedSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSpotDatafeedSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSpotDatafeedSubscription as schema.OperationSchema, input, options) as async.Operation<types.CreateSpotDatafeedSubscriptionOutput>
 end
 
-function C:createStoreImageTask(input: types.CreateStoreImageTaskInput, options: any): async.Operation<types.CreateStoreImageTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateStoreImageTask, input, options) as async.Operation<types.CreateStoreImageTaskOutput>
+function C:createStoreImageTask(input: types.CreateStoreImageTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CreateStoreImageTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateStoreImageTask as schema.OperationSchema, input, options) as async.Operation<types.CreateStoreImageTaskOutput>
 end
 
-function C:createSubnet(input: types.CreateSubnetInput, options: any): async.Operation<types.CreateSubnetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSubnet, input, options) as async.Operation<types.CreateSubnetOutput>
+function C:createSubnet(input: types.CreateSubnetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSubnetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSubnet as schema.OperationSchema, input, options) as async.Operation<types.CreateSubnetOutput>
 end
 
-function C:createSubnetCidrReservation(input: types.CreateSubnetCidrReservationInput, options: any): async.Operation<types.CreateSubnetCidrReservationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSubnetCidrReservation, input, options) as async.Operation<types.CreateSubnetCidrReservationOutput>
+function C:createSubnetCidrReservation(input: types.CreateSubnetCidrReservationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSubnetCidrReservationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSubnetCidrReservation as schema.OperationSchema, input, options) as async.Operation<types.CreateSubnetCidrReservationOutput>
 end
 
-function C:createTags(input: types.CreateTagsInput, options: any): async.Operation<types.CreateTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTags, input, options) as async.Operation<types.CreateTagsOutput>
+function C:createTags(input: types.CreateTagsInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTags as schema.OperationSchema, input, options) as async.Operation<types.CreateTagsOutput>
 end
 
-function C:createTrafficMirrorFilter(input: types.CreateTrafficMirrorFilterInput, options: any): async.Operation<types.CreateTrafficMirrorFilterOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTrafficMirrorFilter, input, options) as async.Operation<types.CreateTrafficMirrorFilterOutput>
+function C:createTrafficMirrorFilter(input: types.CreateTrafficMirrorFilterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTrafficMirrorFilterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTrafficMirrorFilter as schema.OperationSchema, input, options) as async.Operation<types.CreateTrafficMirrorFilterOutput>
 end
 
-function C:createTrafficMirrorFilterRule(input: types.CreateTrafficMirrorFilterRuleInput, options: any): async.Operation<types.CreateTrafficMirrorFilterRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTrafficMirrorFilterRule, input, options) as async.Operation<types.CreateTrafficMirrorFilterRuleOutput>
+function C:createTrafficMirrorFilterRule(input: types.CreateTrafficMirrorFilterRuleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTrafficMirrorFilterRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTrafficMirrorFilterRule as schema.OperationSchema, input, options) as async.Operation<types.CreateTrafficMirrorFilterRuleOutput>
 end
 
-function C:createTrafficMirrorSession(input: types.CreateTrafficMirrorSessionInput, options: any): async.Operation<types.CreateTrafficMirrorSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTrafficMirrorSession, input, options) as async.Operation<types.CreateTrafficMirrorSessionOutput>
+function C:createTrafficMirrorSession(input: types.CreateTrafficMirrorSessionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTrafficMirrorSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTrafficMirrorSession as schema.OperationSchema, input, options) as async.Operation<types.CreateTrafficMirrorSessionOutput>
 end
 
-function C:createTrafficMirrorTarget(input: types.CreateTrafficMirrorTargetInput, options: any): async.Operation<types.CreateTrafficMirrorTargetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTrafficMirrorTarget, input, options) as async.Operation<types.CreateTrafficMirrorTargetOutput>
+function C:createTrafficMirrorTarget(input: types.CreateTrafficMirrorTargetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTrafficMirrorTargetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTrafficMirrorTarget as schema.OperationSchema, input, options) as async.Operation<types.CreateTrafficMirrorTargetOutput>
 end
 
-function C:createTransitGateway(input: types.CreateTransitGatewayInput, options: any): async.Operation<types.CreateTransitGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTransitGateway, input, options) as async.Operation<types.CreateTransitGatewayOutput>
+function C:createTransitGateway(input: types.CreateTransitGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTransitGateway as schema.OperationSchema, input, options) as async.Operation<types.CreateTransitGatewayOutput>
 end
 
-function C:createTransitGatewayConnect(input: types.CreateTransitGatewayConnectInput, options: any): async.Operation<types.CreateTransitGatewayConnectOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTransitGatewayConnect, input, options) as async.Operation<types.CreateTransitGatewayConnectOutput>
+function C:createTransitGatewayConnect(input: types.CreateTransitGatewayConnectInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayConnectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTransitGatewayConnect as schema.OperationSchema, input, options) as async.Operation<types.CreateTransitGatewayConnectOutput>
 end
 
-function C:createTransitGatewayConnectPeer(input: types.CreateTransitGatewayConnectPeerInput, options: any): async.Operation<types.CreateTransitGatewayConnectPeerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTransitGatewayConnectPeer, input, options) as async.Operation<types.CreateTransitGatewayConnectPeerOutput>
+function C:createTransitGatewayConnectPeer(input: types.CreateTransitGatewayConnectPeerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayConnectPeerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTransitGatewayConnectPeer as schema.OperationSchema, input, options) as async.Operation<types.CreateTransitGatewayConnectPeerOutput>
 end
 
-function C:createTransitGatewayMeteringPolicy(input: types.CreateTransitGatewayMeteringPolicyInput, options: any): async.Operation<types.CreateTransitGatewayMeteringPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTransitGatewayMeteringPolicy, input, options) as async.Operation<types.CreateTransitGatewayMeteringPolicyOutput>
+function C:createTransitGatewayMeteringPolicy(input: types.CreateTransitGatewayMeteringPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayMeteringPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTransitGatewayMeteringPolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateTransitGatewayMeteringPolicyOutput>
 end
 
-function C:createTransitGatewayMeteringPolicyEntry(input: types.CreateTransitGatewayMeteringPolicyEntryInput, options: any): async.Operation<types.CreateTransitGatewayMeteringPolicyEntryOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTransitGatewayMeteringPolicyEntry, input, options) as async.Operation<types.CreateTransitGatewayMeteringPolicyEntryOutput>
+function C:createTransitGatewayMeteringPolicyEntry(input: types.CreateTransitGatewayMeteringPolicyEntryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayMeteringPolicyEntryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTransitGatewayMeteringPolicyEntry as schema.OperationSchema, input, options) as async.Operation<types.CreateTransitGatewayMeteringPolicyEntryOutput>
 end
 
-function C:createTransitGatewayMulticastDomain(input: types.CreateTransitGatewayMulticastDomainInput, options: any): async.Operation<types.CreateTransitGatewayMulticastDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTransitGatewayMulticastDomain, input, options) as async.Operation<types.CreateTransitGatewayMulticastDomainOutput>
+function C:createTransitGatewayMulticastDomain(input: types.CreateTransitGatewayMulticastDomainInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayMulticastDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTransitGatewayMulticastDomain as schema.OperationSchema, input, options) as async.Operation<types.CreateTransitGatewayMulticastDomainOutput>
 end
 
-function C:createTransitGatewayPeeringAttachment(input: types.CreateTransitGatewayPeeringAttachmentInput, options: any): async.Operation<types.CreateTransitGatewayPeeringAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTransitGatewayPeeringAttachment, input, options) as async.Operation<types.CreateTransitGatewayPeeringAttachmentOutput>
+function C:createTransitGatewayPeeringAttachment(input: types.CreateTransitGatewayPeeringAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayPeeringAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTransitGatewayPeeringAttachment as schema.OperationSchema, input, options) as async.Operation<types.CreateTransitGatewayPeeringAttachmentOutput>
 end
 
-function C:createTransitGatewayPolicyTable(input: types.CreateTransitGatewayPolicyTableInput, options: any): async.Operation<types.CreateTransitGatewayPolicyTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTransitGatewayPolicyTable, input, options) as async.Operation<types.CreateTransitGatewayPolicyTableOutput>
+function C:createTransitGatewayPolicyTable(input: types.CreateTransitGatewayPolicyTableInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayPolicyTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTransitGatewayPolicyTable as schema.OperationSchema, input, options) as async.Operation<types.CreateTransitGatewayPolicyTableOutput>
 end
 
-function C:createTransitGatewayPrefixListReference(input: types.CreateTransitGatewayPrefixListReferenceInput, options: any): async.Operation<types.CreateTransitGatewayPrefixListReferenceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTransitGatewayPrefixListReference, input, options) as async.Operation<types.CreateTransitGatewayPrefixListReferenceOutput>
+function C:createTransitGatewayPrefixListReference(input: types.CreateTransitGatewayPrefixListReferenceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayPrefixListReferenceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTransitGatewayPrefixListReference as schema.OperationSchema, input, options) as async.Operation<types.CreateTransitGatewayPrefixListReferenceOutput>
 end
 
-function C:createTransitGatewayRoute(input: types.CreateTransitGatewayRouteInput, options: any): async.Operation<types.CreateTransitGatewayRouteOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTransitGatewayRoute, input, options) as async.Operation<types.CreateTransitGatewayRouteOutput>
+function C:createTransitGatewayRoute(input: types.CreateTransitGatewayRouteInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayRouteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTransitGatewayRoute as schema.OperationSchema, input, options) as async.Operation<types.CreateTransitGatewayRouteOutput>
 end
 
-function C:createTransitGatewayRouteTable(input: types.CreateTransitGatewayRouteTableInput, options: any): async.Operation<types.CreateTransitGatewayRouteTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTransitGatewayRouteTable, input, options) as async.Operation<types.CreateTransitGatewayRouteTableOutput>
+function C:createTransitGatewayRouteTable(input: types.CreateTransitGatewayRouteTableInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayRouteTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTransitGatewayRouteTable as schema.OperationSchema, input, options) as async.Operation<types.CreateTransitGatewayRouteTableOutput>
 end
 
-function C:createTransitGatewayRouteTableAnnouncement(input: types.CreateTransitGatewayRouteTableAnnouncementInput, options: any): async.Operation<types.CreateTransitGatewayRouteTableAnnouncementOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTransitGatewayRouteTableAnnouncement, input, options) as async.Operation<types.CreateTransitGatewayRouteTableAnnouncementOutput>
+function C:createTransitGatewayRouteTableAnnouncement(input: types.CreateTransitGatewayRouteTableAnnouncementInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayRouteTableAnnouncementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTransitGatewayRouteTableAnnouncement as schema.OperationSchema, input, options) as async.Operation<types.CreateTransitGatewayRouteTableAnnouncementOutput>
 end
 
-function C:createTransitGatewayVpcAttachment(input: types.CreateTransitGatewayVpcAttachmentInput, options: any): async.Operation<types.CreateTransitGatewayVpcAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTransitGatewayVpcAttachment, input, options) as async.Operation<types.CreateTransitGatewayVpcAttachmentOutput>
+function C:createTransitGatewayVpcAttachment(input: types.CreateTransitGatewayVpcAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayVpcAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTransitGatewayVpcAttachment as schema.OperationSchema, input, options) as async.Operation<types.CreateTransitGatewayVpcAttachmentOutput>
 end
 
-function C:createVerifiedAccessEndpoint(input: types.CreateVerifiedAccessEndpointInput, options: any): async.Operation<types.CreateVerifiedAccessEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVerifiedAccessEndpoint, input, options) as async.Operation<types.CreateVerifiedAccessEndpointOutput>
+function C:createVerifiedAccessEndpoint(input: types.CreateVerifiedAccessEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVerifiedAccessEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVerifiedAccessEndpoint as schema.OperationSchema, input, options) as async.Operation<types.CreateVerifiedAccessEndpointOutput>
 end
 
-function C:createVerifiedAccessGroup(input: types.CreateVerifiedAccessGroupInput, options: any): async.Operation<types.CreateVerifiedAccessGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVerifiedAccessGroup, input, options) as async.Operation<types.CreateVerifiedAccessGroupOutput>
+function C:createVerifiedAccessGroup(input: types.CreateVerifiedAccessGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVerifiedAccessGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVerifiedAccessGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateVerifiedAccessGroupOutput>
 end
 
-function C:createVerifiedAccessInstance(input: types.CreateVerifiedAccessInstanceInput, options: any): async.Operation<types.CreateVerifiedAccessInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVerifiedAccessInstance, input, options) as async.Operation<types.CreateVerifiedAccessInstanceOutput>
+function C:createVerifiedAccessInstance(input: types.CreateVerifiedAccessInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVerifiedAccessInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVerifiedAccessInstance as schema.OperationSchema, input, options) as async.Operation<types.CreateVerifiedAccessInstanceOutput>
 end
 
-function C:createVerifiedAccessTrustProvider(input: types.CreateVerifiedAccessTrustProviderInput, options: any): async.Operation<types.CreateVerifiedAccessTrustProviderOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVerifiedAccessTrustProvider, input, options) as async.Operation<types.CreateVerifiedAccessTrustProviderOutput>
+function C:createVerifiedAccessTrustProvider(input: types.CreateVerifiedAccessTrustProviderInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVerifiedAccessTrustProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVerifiedAccessTrustProvider as schema.OperationSchema, input, options) as async.Operation<types.CreateVerifiedAccessTrustProviderOutput>
 end
 
-function C:createVolume(input: types.CreateVolumeInput, options: any): async.Operation<types.CreateVolumeOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVolume, input, options) as async.Operation<types.CreateVolumeOutput>
+function C:createVolume(input: types.CreateVolumeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVolumeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVolume as schema.OperationSchema, input, options) as async.Operation<types.CreateVolumeOutput>
 end
 
-function C:createVpc(input: types.CreateVpcInput, options: any): async.Operation<types.CreateVpcOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVpc, input, options) as async.Operation<types.CreateVpcOutput>
+function C:createVpc(input: types.CreateVpcInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVpcOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVpc as schema.OperationSchema, input, options) as async.Operation<types.CreateVpcOutput>
 end
 
-function C:createVpcBlockPublicAccessExclusion(input: types.CreateVpcBlockPublicAccessExclusionInput, options: any): async.Operation<types.CreateVpcBlockPublicAccessExclusionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVpcBlockPublicAccessExclusion, input, options) as async.Operation<types.CreateVpcBlockPublicAccessExclusionOutput>
+function C:createVpcBlockPublicAccessExclusion(input: types.CreateVpcBlockPublicAccessExclusionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVpcBlockPublicAccessExclusionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVpcBlockPublicAccessExclusion as schema.OperationSchema, input, options) as async.Operation<types.CreateVpcBlockPublicAccessExclusionOutput>
 end
 
-function C:createVpcEncryptionControl(input: types.CreateVpcEncryptionControlInput, options: any): async.Operation<types.CreateVpcEncryptionControlOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVpcEncryptionControl, input, options) as async.Operation<types.CreateVpcEncryptionControlOutput>
+function C:createVpcEncryptionControl(input: types.CreateVpcEncryptionControlInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVpcEncryptionControlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVpcEncryptionControl as schema.OperationSchema, input, options) as async.Operation<types.CreateVpcEncryptionControlOutput>
 end
 
-function C:createVpcEndpoint(input: types.CreateVpcEndpointInput, options: any): async.Operation<types.CreateVpcEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVpcEndpoint, input, options) as async.Operation<types.CreateVpcEndpointOutput>
+function C:createVpcEndpoint(input: types.CreateVpcEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVpcEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVpcEndpoint as schema.OperationSchema, input, options) as async.Operation<types.CreateVpcEndpointOutput>
 end
 
-function C:createVpcEndpointConnectionNotification(input: types.CreateVpcEndpointConnectionNotificationInput, options: any): async.Operation<types.CreateVpcEndpointConnectionNotificationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVpcEndpointConnectionNotification, input, options) as async.Operation<types.CreateVpcEndpointConnectionNotificationOutput>
+function C:createVpcEndpointConnectionNotification(input: types.CreateVpcEndpointConnectionNotificationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVpcEndpointConnectionNotificationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVpcEndpointConnectionNotification as schema.OperationSchema, input, options) as async.Operation<types.CreateVpcEndpointConnectionNotificationOutput>
 end
 
-function C:createVpcEndpointServiceConfiguration(input: types.CreateVpcEndpointServiceConfigurationInput, options: any): async.Operation<types.CreateVpcEndpointServiceConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVpcEndpointServiceConfiguration, input, options) as async.Operation<types.CreateVpcEndpointServiceConfigurationOutput>
+function C:createVpcEndpointServiceConfiguration(input: types.CreateVpcEndpointServiceConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVpcEndpointServiceConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVpcEndpointServiceConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateVpcEndpointServiceConfigurationOutput>
 end
 
-function C:createVpcPeeringConnection(input: types.CreateVpcPeeringConnectionInput, options: any): async.Operation<types.CreateVpcPeeringConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVpcPeeringConnection, input, options) as async.Operation<types.CreateVpcPeeringConnectionOutput>
+function C:createVpcPeeringConnection(input: types.CreateVpcPeeringConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVpcPeeringConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVpcPeeringConnection as schema.OperationSchema, input, options) as async.Operation<types.CreateVpcPeeringConnectionOutput>
 end
 
-function C:createVpnConcentrator(input: types.CreateVpnConcentratorInput, options: any): async.Operation<types.CreateVpnConcentratorOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVpnConcentrator, input, options) as async.Operation<types.CreateVpnConcentratorOutput>
+function C:createVpnConcentrator(input: types.CreateVpnConcentratorInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVpnConcentratorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVpnConcentrator as schema.OperationSchema, input, options) as async.Operation<types.CreateVpnConcentratorOutput>
 end
 
-function C:createVpnConnection(input: types.CreateVpnConnectionInput, options: any): async.Operation<types.CreateVpnConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVpnConnection, input, options) as async.Operation<types.CreateVpnConnectionOutput>
+function C:createVpnConnection(input: types.CreateVpnConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVpnConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVpnConnection as schema.OperationSchema, input, options) as async.Operation<types.CreateVpnConnectionOutput>
 end
 
-function C:createVpnConnectionRoute(input: types.CreateVpnConnectionRouteInput, options: any): async.Operation<types.CreateVpnConnectionRouteOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVpnConnectionRoute, input, options) as async.Operation<types.CreateVpnConnectionRouteOutput>
+function C:createVpnConnectionRoute(input: types.CreateVpnConnectionRouteInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVpnConnectionRouteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVpnConnectionRoute as schema.OperationSchema, input, options) as async.Operation<types.CreateVpnConnectionRouteOutput>
 end
 
-function C:createVpnGateway(input: types.CreateVpnGatewayInput, options: any): async.Operation<types.CreateVpnGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVpnGateway, input, options) as async.Operation<types.CreateVpnGatewayOutput>
+function C:createVpnGateway(input: types.CreateVpnGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVpnGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVpnGateway as schema.OperationSchema, input, options) as async.Operation<types.CreateVpnGatewayOutput>
 end
 
-function C:deleteCapacityManagerDataExport(input: types.DeleteCapacityManagerDataExportInput, options: any): async.Operation<types.DeleteCapacityManagerDataExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCapacityManagerDataExport, input, options) as async.Operation<types.DeleteCapacityManagerDataExportOutput>
+function C:deleteCapacityManagerDataExport(input: types.DeleteCapacityManagerDataExportInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCapacityManagerDataExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCapacityManagerDataExport as schema.OperationSchema, input, options) as async.Operation<types.DeleteCapacityManagerDataExportOutput>
 end
 
-function C:deleteCarrierGateway(input: types.DeleteCarrierGatewayInput, options: any): async.Operation<types.DeleteCarrierGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCarrierGateway, input, options) as async.Operation<types.DeleteCarrierGatewayOutput>
+function C:deleteCarrierGateway(input: types.DeleteCarrierGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCarrierGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCarrierGateway as schema.OperationSchema, input, options) as async.Operation<types.DeleteCarrierGatewayOutput>
 end
 
-function C:deleteClientVpnEndpoint(input: types.DeleteClientVpnEndpointInput, options: any): async.Operation<types.DeleteClientVpnEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteClientVpnEndpoint, input, options) as async.Operation<types.DeleteClientVpnEndpointOutput>
+function C:deleteClientVpnEndpoint(input: types.DeleteClientVpnEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteClientVpnEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteClientVpnEndpoint as schema.OperationSchema, input, options) as async.Operation<types.DeleteClientVpnEndpointOutput>
 end
 
-function C:deleteClientVpnRoute(input: types.DeleteClientVpnRouteInput, options: any): async.Operation<types.DeleteClientVpnRouteOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteClientVpnRoute, input, options) as async.Operation<types.DeleteClientVpnRouteOutput>
+function C:deleteClientVpnRoute(input: types.DeleteClientVpnRouteInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteClientVpnRouteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteClientVpnRoute as schema.OperationSchema, input, options) as async.Operation<types.DeleteClientVpnRouteOutput>
 end
 
-function C:deleteCoipCidr(input: types.DeleteCoipCidrInput, options: any): async.Operation<types.DeleteCoipCidrOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCoipCidr, input, options) as async.Operation<types.DeleteCoipCidrOutput>
+function C:deleteCoipCidr(input: types.DeleteCoipCidrInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCoipCidrOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCoipCidr as schema.OperationSchema, input, options) as async.Operation<types.DeleteCoipCidrOutput>
 end
 
-function C:deleteCoipPool(input: types.DeleteCoipPoolInput, options: any): async.Operation<types.DeleteCoipPoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCoipPool, input, options) as async.Operation<types.DeleteCoipPoolOutput>
+function C:deleteCoipPool(input: types.DeleteCoipPoolInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCoipPoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCoipPool as schema.OperationSchema, input, options) as async.Operation<types.DeleteCoipPoolOutput>
 end
 
-function C:deleteCustomerGateway(input: types.DeleteCustomerGatewayInput, options: any): async.Operation<types.DeleteCustomerGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCustomerGateway, input, options) as async.Operation<types.DeleteCustomerGatewayOutput>
+function C:deleteCustomerGateway(input: types.DeleteCustomerGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCustomerGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCustomerGateway as schema.OperationSchema, input, options) as async.Operation<types.DeleteCustomerGatewayOutput>
 end
 
-function C:deleteDhcpOptions(input: types.DeleteDhcpOptionsInput, options: any): async.Operation<types.DeleteDhcpOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDhcpOptions, input, options) as async.Operation<types.DeleteDhcpOptionsOutput>
+function C:deleteDhcpOptions(input: types.DeleteDhcpOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDhcpOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDhcpOptions as schema.OperationSchema, input, options) as async.Operation<types.DeleteDhcpOptionsOutput>
 end
 
-function C:deleteEgressOnlyInternetGateway(input: types.DeleteEgressOnlyInternetGatewayInput, options: any): async.Operation<types.DeleteEgressOnlyInternetGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEgressOnlyInternetGateway, input, options) as async.Operation<types.DeleteEgressOnlyInternetGatewayOutput>
+function C:deleteEgressOnlyInternetGateway(input: types.DeleteEgressOnlyInternetGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEgressOnlyInternetGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEgressOnlyInternetGateway as schema.OperationSchema, input, options) as async.Operation<types.DeleteEgressOnlyInternetGatewayOutput>
 end
 
-function C:deleteFleets(input: types.DeleteFleetsInput, options: any): async.Operation<types.DeleteFleetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFleets, input, options) as async.Operation<types.DeleteFleetsOutput>
+function C:deleteFleets(input: types.DeleteFleetsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFleetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFleets as schema.OperationSchema, input, options) as async.Operation<types.DeleteFleetsOutput>
 end
 
-function C:deleteFlowLogs(input: types.DeleteFlowLogsInput, options: any): async.Operation<types.DeleteFlowLogsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFlowLogs, input, options) as async.Operation<types.DeleteFlowLogsOutput>
+function C:deleteFlowLogs(input: types.DeleteFlowLogsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFlowLogsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFlowLogs as schema.OperationSchema, input, options) as async.Operation<types.DeleteFlowLogsOutput>
 end
 
-function C:deleteFpgaImage(input: types.DeleteFpgaImageInput, options: any): async.Operation<types.DeleteFpgaImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFpgaImage, input, options) as async.Operation<types.DeleteFpgaImageOutput>
+function C:deleteFpgaImage(input: types.DeleteFpgaImageInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFpgaImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFpgaImage as schema.OperationSchema, input, options) as async.Operation<types.DeleteFpgaImageOutput>
 end
 
-function C:deleteImageUsageReport(input: types.DeleteImageUsageReportInput, options: any): async.Operation<types.DeleteImageUsageReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteImageUsageReport, input, options) as async.Operation<types.DeleteImageUsageReportOutput>
+function C:deleteImageUsageReport(input: types.DeleteImageUsageReportInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteImageUsageReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteImageUsageReport as schema.OperationSchema, input, options) as async.Operation<types.DeleteImageUsageReportOutput>
 end
 
-function C:deleteInstanceConnectEndpoint(input: types.DeleteInstanceConnectEndpointInput, options: any): async.Operation<types.DeleteInstanceConnectEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteInstanceConnectEndpoint, input, options) as async.Operation<types.DeleteInstanceConnectEndpointOutput>
+function C:deleteInstanceConnectEndpoint(input: types.DeleteInstanceConnectEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteInstanceConnectEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInstanceConnectEndpoint as schema.OperationSchema, input, options) as async.Operation<types.DeleteInstanceConnectEndpointOutput>
 end
 
-function C:deleteInstanceEventWindow(input: types.DeleteInstanceEventWindowInput, options: any): async.Operation<types.DeleteInstanceEventWindowOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteInstanceEventWindow, input, options) as async.Operation<types.DeleteInstanceEventWindowOutput>
+function C:deleteInstanceEventWindow(input: types.DeleteInstanceEventWindowInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteInstanceEventWindowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInstanceEventWindow as schema.OperationSchema, input, options) as async.Operation<types.DeleteInstanceEventWindowOutput>
 end
 
-function C:deleteInternetGateway(input: types.DeleteInternetGatewayInput, options: any): async.Operation<types.DeleteInternetGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteInternetGateway, input, options) as async.Operation<types.DeleteInternetGatewayOutput>
+function C:deleteInternetGateway(input: types.DeleteInternetGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteInternetGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInternetGateway as schema.OperationSchema, input, options) as async.Operation<types.DeleteInternetGatewayOutput>
 end
 
-function C:deleteIpam(input: types.DeleteIpamInput, options: any): async.Operation<types.DeleteIpamOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIpam, input, options) as async.Operation<types.DeleteIpamOutput>
+function C:deleteIpam(input: types.DeleteIpamInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIpamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIpam as schema.OperationSchema, input, options) as async.Operation<types.DeleteIpamOutput>
 end
 
-function C:deleteIpamExternalResourceVerificationToken(input: types.DeleteIpamExternalResourceVerificationTokenInput, options: any): async.Operation<types.DeleteIpamExternalResourceVerificationTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIpamExternalResourceVerificationToken, input, options) as async.Operation<types.DeleteIpamExternalResourceVerificationTokenOutput>
+function C:deleteIpamExternalResourceVerificationToken(input: types.DeleteIpamExternalResourceVerificationTokenInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIpamExternalResourceVerificationTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIpamExternalResourceVerificationToken as schema.OperationSchema, input, options) as async.Operation<types.DeleteIpamExternalResourceVerificationTokenOutput>
 end
 
-function C:deleteIpamPolicy(input: types.DeleteIpamPolicyInput, options: any): async.Operation<types.DeleteIpamPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIpamPolicy, input, options) as async.Operation<types.DeleteIpamPolicyOutput>
+function C:deleteIpamPolicy(input: types.DeleteIpamPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIpamPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIpamPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteIpamPolicyOutput>
 end
 
-function C:deleteIpamPool(input: types.DeleteIpamPoolInput, options: any): async.Operation<types.DeleteIpamPoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIpamPool, input, options) as async.Operation<types.DeleteIpamPoolOutput>
+function C:deleteIpamPool(input: types.DeleteIpamPoolInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIpamPoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIpamPool as schema.OperationSchema, input, options) as async.Operation<types.DeleteIpamPoolOutput>
 end
 
-function C:deleteIpamPrefixListResolver(input: types.DeleteIpamPrefixListResolverInput, options: any): async.Operation<types.DeleteIpamPrefixListResolverOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIpamPrefixListResolver, input, options) as async.Operation<types.DeleteIpamPrefixListResolverOutput>
+function C:deleteIpamPrefixListResolver(input: types.DeleteIpamPrefixListResolverInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIpamPrefixListResolverOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIpamPrefixListResolver as schema.OperationSchema, input, options) as async.Operation<types.DeleteIpamPrefixListResolverOutput>
 end
 
-function C:deleteIpamPrefixListResolverTarget(input: types.DeleteIpamPrefixListResolverTargetInput, options: any): async.Operation<types.DeleteIpamPrefixListResolverTargetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIpamPrefixListResolverTarget, input, options) as async.Operation<types.DeleteIpamPrefixListResolverTargetOutput>
+function C:deleteIpamPrefixListResolverTarget(input: types.DeleteIpamPrefixListResolverTargetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIpamPrefixListResolverTargetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIpamPrefixListResolverTarget as schema.OperationSchema, input, options) as async.Operation<types.DeleteIpamPrefixListResolverTargetOutput>
 end
 
-function C:deleteIpamResourceDiscovery(input: types.DeleteIpamResourceDiscoveryInput, options: any): async.Operation<types.DeleteIpamResourceDiscoveryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIpamResourceDiscovery, input, options) as async.Operation<types.DeleteIpamResourceDiscoveryOutput>
+function C:deleteIpamResourceDiscovery(input: types.DeleteIpamResourceDiscoveryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIpamResourceDiscoveryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIpamResourceDiscovery as schema.OperationSchema, input, options) as async.Operation<types.DeleteIpamResourceDiscoveryOutput>
 end
 
-function C:deleteIpamScope(input: types.DeleteIpamScopeInput, options: any): async.Operation<types.DeleteIpamScopeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIpamScope, input, options) as async.Operation<types.DeleteIpamScopeOutput>
+function C:deleteIpamScope(input: types.DeleteIpamScopeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIpamScopeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIpamScope as schema.OperationSchema, input, options) as async.Operation<types.DeleteIpamScopeOutput>
 end
 
-function C:deleteKeyPair(input: types.DeleteKeyPairInput, options: any): async.Operation<types.DeleteKeyPairOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteKeyPair, input, options) as async.Operation<types.DeleteKeyPairOutput>
+function C:deleteKeyPair(input: types.DeleteKeyPairInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteKeyPairOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteKeyPair as schema.OperationSchema, input, options) as async.Operation<types.DeleteKeyPairOutput>
 end
 
-function C:deleteLaunchTemplate(input: types.DeleteLaunchTemplateInput, options: any): async.Operation<types.DeleteLaunchTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLaunchTemplate, input, options) as async.Operation<types.DeleteLaunchTemplateOutput>
+function C:deleteLaunchTemplate(input: types.DeleteLaunchTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLaunchTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLaunchTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteLaunchTemplateOutput>
 end
 
-function C:deleteLaunchTemplateVersions(input: types.DeleteLaunchTemplateVersionsInput, options: any): async.Operation<types.DeleteLaunchTemplateVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLaunchTemplateVersions, input, options) as async.Operation<types.DeleteLaunchTemplateVersionsOutput>
+function C:deleteLaunchTemplateVersions(input: types.DeleteLaunchTemplateVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLaunchTemplateVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLaunchTemplateVersions as schema.OperationSchema, input, options) as async.Operation<types.DeleteLaunchTemplateVersionsOutput>
 end
 
-function C:deleteLocalGatewayRoute(input: types.DeleteLocalGatewayRouteInput, options: any): async.Operation<types.DeleteLocalGatewayRouteOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLocalGatewayRoute, input, options) as async.Operation<types.DeleteLocalGatewayRouteOutput>
+function C:deleteLocalGatewayRoute(input: types.DeleteLocalGatewayRouteInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLocalGatewayRouteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLocalGatewayRoute as schema.OperationSchema, input, options) as async.Operation<types.DeleteLocalGatewayRouteOutput>
 end
 
-function C:deleteLocalGatewayRouteTable(input: types.DeleteLocalGatewayRouteTableInput, options: any): async.Operation<types.DeleteLocalGatewayRouteTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLocalGatewayRouteTable, input, options) as async.Operation<types.DeleteLocalGatewayRouteTableOutput>
+function C:deleteLocalGatewayRouteTable(input: types.DeleteLocalGatewayRouteTableInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLocalGatewayRouteTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLocalGatewayRouteTable as schema.OperationSchema, input, options) as async.Operation<types.DeleteLocalGatewayRouteTableOutput>
 end
 
-function C:deleteLocalGatewayRouteTableVirtualInterfaceGroupAssociation(input: types.DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationInput, options: any): async.Operation<types.DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociation, input, options) as async.Operation<types.DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationOutput>
+function C:deleteLocalGatewayRouteTableVirtualInterfaceGroupAssociation(input: types.DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteLocalGatewayRouteTableVirtualInterfaceGroupAssociationOutput>
 end
 
-function C:deleteLocalGatewayRouteTableVpcAssociation(input: types.DeleteLocalGatewayRouteTableVpcAssociationInput, options: any): async.Operation<types.DeleteLocalGatewayRouteTableVpcAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLocalGatewayRouteTableVpcAssociation, input, options) as async.Operation<types.DeleteLocalGatewayRouteTableVpcAssociationOutput>
+function C:deleteLocalGatewayRouteTableVpcAssociation(input: types.DeleteLocalGatewayRouteTableVpcAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLocalGatewayRouteTableVpcAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLocalGatewayRouteTableVpcAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteLocalGatewayRouteTableVpcAssociationOutput>
 end
 
-function C:deleteLocalGatewayVirtualInterface(input: types.DeleteLocalGatewayVirtualInterfaceInput, options: any): async.Operation<types.DeleteLocalGatewayVirtualInterfaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLocalGatewayVirtualInterface, input, options) as async.Operation<types.DeleteLocalGatewayVirtualInterfaceOutput>
+function C:deleteLocalGatewayVirtualInterface(input: types.DeleteLocalGatewayVirtualInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLocalGatewayVirtualInterfaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLocalGatewayVirtualInterface as schema.OperationSchema, input, options) as async.Operation<types.DeleteLocalGatewayVirtualInterfaceOutput>
 end
 
-function C:deleteLocalGatewayVirtualInterfaceGroup(input: types.DeleteLocalGatewayVirtualInterfaceGroupInput, options: any): async.Operation<types.DeleteLocalGatewayVirtualInterfaceGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLocalGatewayVirtualInterfaceGroup, input, options) as async.Operation<types.DeleteLocalGatewayVirtualInterfaceGroupOutput>
+function C:deleteLocalGatewayVirtualInterfaceGroup(input: types.DeleteLocalGatewayVirtualInterfaceGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLocalGatewayVirtualInterfaceGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLocalGatewayVirtualInterfaceGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteLocalGatewayVirtualInterfaceGroupOutput>
 end
 
-function C:deleteManagedPrefixList(input: types.DeleteManagedPrefixListInput, options: any): async.Operation<types.DeleteManagedPrefixListOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteManagedPrefixList, input, options) as async.Operation<types.DeleteManagedPrefixListOutput>
+function C:deleteManagedPrefixList(input: types.DeleteManagedPrefixListInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteManagedPrefixListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteManagedPrefixList as schema.OperationSchema, input, options) as async.Operation<types.DeleteManagedPrefixListOutput>
 end
 
-function C:deleteNatGateway(input: types.DeleteNatGatewayInput, options: any): async.Operation<types.DeleteNatGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNatGateway, input, options) as async.Operation<types.DeleteNatGatewayOutput>
+function C:deleteNatGateway(input: types.DeleteNatGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNatGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNatGateway as schema.OperationSchema, input, options) as async.Operation<types.DeleteNatGatewayOutput>
 end
 
-function C:deleteNetworkAcl(input: types.DeleteNetworkAclInput, options: any): async.Operation<types.DeleteNetworkAclOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNetworkAcl, input, options) as async.Operation<types.DeleteNetworkAclOutput>
+function C:deleteNetworkAcl(input: types.DeleteNetworkAclInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNetworkAclOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNetworkAcl as schema.OperationSchema, input, options) as async.Operation<types.DeleteNetworkAclOutput>
 end
 
-function C:deleteNetworkAclEntry(input: types.DeleteNetworkAclEntryInput, options: any): async.Operation<types.DeleteNetworkAclEntryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNetworkAclEntry, input, options) as async.Operation<types.DeleteNetworkAclEntryOutput>
+function C:deleteNetworkAclEntry(input: types.DeleteNetworkAclEntryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNetworkAclEntryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNetworkAclEntry as schema.OperationSchema, input, options) as async.Operation<types.DeleteNetworkAclEntryOutput>
 end
 
-function C:deleteNetworkInsightsAccessScope(input: types.DeleteNetworkInsightsAccessScopeInput, options: any): async.Operation<types.DeleteNetworkInsightsAccessScopeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNetworkInsightsAccessScope, input, options) as async.Operation<types.DeleteNetworkInsightsAccessScopeOutput>
+function C:deleteNetworkInsightsAccessScope(input: types.DeleteNetworkInsightsAccessScopeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNetworkInsightsAccessScopeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNetworkInsightsAccessScope as schema.OperationSchema, input, options) as async.Operation<types.DeleteNetworkInsightsAccessScopeOutput>
 end
 
-function C:deleteNetworkInsightsAccessScopeAnalysis(input: types.DeleteNetworkInsightsAccessScopeAnalysisInput, options: any): async.Operation<types.DeleteNetworkInsightsAccessScopeAnalysisOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNetworkInsightsAccessScopeAnalysis, input, options) as async.Operation<types.DeleteNetworkInsightsAccessScopeAnalysisOutput>
+function C:deleteNetworkInsightsAccessScopeAnalysis(input: types.DeleteNetworkInsightsAccessScopeAnalysisInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNetworkInsightsAccessScopeAnalysisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNetworkInsightsAccessScopeAnalysis as schema.OperationSchema, input, options) as async.Operation<types.DeleteNetworkInsightsAccessScopeAnalysisOutput>
 end
 
-function C:deleteNetworkInsightsAnalysis(input: types.DeleteNetworkInsightsAnalysisInput, options: any): async.Operation<types.DeleteNetworkInsightsAnalysisOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNetworkInsightsAnalysis, input, options) as async.Operation<types.DeleteNetworkInsightsAnalysisOutput>
+function C:deleteNetworkInsightsAnalysis(input: types.DeleteNetworkInsightsAnalysisInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNetworkInsightsAnalysisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNetworkInsightsAnalysis as schema.OperationSchema, input, options) as async.Operation<types.DeleteNetworkInsightsAnalysisOutput>
 end
 
-function C:deleteNetworkInsightsPath(input: types.DeleteNetworkInsightsPathInput, options: any): async.Operation<types.DeleteNetworkInsightsPathOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNetworkInsightsPath, input, options) as async.Operation<types.DeleteNetworkInsightsPathOutput>
+function C:deleteNetworkInsightsPath(input: types.DeleteNetworkInsightsPathInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNetworkInsightsPathOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNetworkInsightsPath as schema.OperationSchema, input, options) as async.Operation<types.DeleteNetworkInsightsPathOutput>
 end
 
-function C:deleteNetworkInterface(input: types.DeleteNetworkInterfaceInput, options: any): async.Operation<types.DeleteNetworkInterfaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNetworkInterface, input, options) as async.Operation<types.DeleteNetworkInterfaceOutput>
+function C:deleteNetworkInterface(input: types.DeleteNetworkInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNetworkInterfaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNetworkInterface as schema.OperationSchema, input, options) as async.Operation<types.DeleteNetworkInterfaceOutput>
 end
 
-function C:deleteNetworkInterfacePermission(input: types.DeleteNetworkInterfacePermissionInput, options: any): async.Operation<types.DeleteNetworkInterfacePermissionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNetworkInterfacePermission, input, options) as async.Operation<types.DeleteNetworkInterfacePermissionOutput>
+function C:deleteNetworkInterfacePermission(input: types.DeleteNetworkInterfacePermissionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNetworkInterfacePermissionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNetworkInterfacePermission as schema.OperationSchema, input, options) as async.Operation<types.DeleteNetworkInterfacePermissionOutput>
 end
 
-function C:deletePlacementGroup(input: types.DeletePlacementGroupInput, options: any): async.Operation<types.DeletePlacementGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePlacementGroup, input, options) as async.Operation<types.DeletePlacementGroupOutput>
+function C:deletePlacementGroup(input: types.DeletePlacementGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePlacementGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePlacementGroup as schema.OperationSchema, input, options) as async.Operation<types.DeletePlacementGroupOutput>
 end
 
-function C:deletePublicIpv4Pool(input: types.DeletePublicIpv4PoolInput, options: any): async.Operation<types.DeletePublicIpv4PoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePublicIpv4Pool, input, options) as async.Operation<types.DeletePublicIpv4PoolOutput>
+function C:deletePublicIpv4Pool(input: types.DeletePublicIpv4PoolInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePublicIpv4PoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePublicIpv4Pool as schema.OperationSchema, input, options) as async.Operation<types.DeletePublicIpv4PoolOutput>
 end
 
-function C:deleteQueuedReservedInstances(input: types.DeleteQueuedReservedInstancesInput, options: any): async.Operation<types.DeleteQueuedReservedInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteQueuedReservedInstances, input, options) as async.Operation<types.DeleteQueuedReservedInstancesOutput>
+function C:deleteQueuedReservedInstances(input: types.DeleteQueuedReservedInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteQueuedReservedInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteQueuedReservedInstances as schema.OperationSchema, input, options) as async.Operation<types.DeleteQueuedReservedInstancesOutput>
 end
 
-function C:deleteRoute(input: types.DeleteRouteInput, options: any): async.Operation<types.DeleteRouteOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRoute, input, options) as async.Operation<types.DeleteRouteOutput>
+function C:deleteRoute(input: types.DeleteRouteInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRouteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRoute as schema.OperationSchema, input, options) as async.Operation<types.DeleteRouteOutput>
 end
 
-function C:deleteRouteServer(input: types.DeleteRouteServerInput, options: any): async.Operation<types.DeleteRouteServerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRouteServer, input, options) as async.Operation<types.DeleteRouteServerOutput>
+function C:deleteRouteServer(input: types.DeleteRouteServerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRouteServerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRouteServer as schema.OperationSchema, input, options) as async.Operation<types.DeleteRouteServerOutput>
 end
 
-function C:deleteRouteServerEndpoint(input: types.DeleteRouteServerEndpointInput, options: any): async.Operation<types.DeleteRouteServerEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRouteServerEndpoint, input, options) as async.Operation<types.DeleteRouteServerEndpointOutput>
+function C:deleteRouteServerEndpoint(input: types.DeleteRouteServerEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRouteServerEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRouteServerEndpoint as schema.OperationSchema, input, options) as async.Operation<types.DeleteRouteServerEndpointOutput>
 end
 
-function C:deleteRouteServerPeer(input: types.DeleteRouteServerPeerInput, options: any): async.Operation<types.DeleteRouteServerPeerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRouteServerPeer, input, options) as async.Operation<types.DeleteRouteServerPeerOutput>
+function C:deleteRouteServerPeer(input: types.DeleteRouteServerPeerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRouteServerPeerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRouteServerPeer as schema.OperationSchema, input, options) as async.Operation<types.DeleteRouteServerPeerOutput>
 end
 
-function C:deleteRouteTable(input: types.DeleteRouteTableInput, options: any): async.Operation<types.DeleteRouteTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRouteTable, input, options) as async.Operation<types.DeleteRouteTableOutput>
+function C:deleteRouteTable(input: types.DeleteRouteTableInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRouteTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRouteTable as schema.OperationSchema, input, options) as async.Operation<types.DeleteRouteTableOutput>
 end
 
-function C:deleteSecondaryNetwork(input: types.DeleteSecondaryNetworkInput, options: any): async.Operation<types.DeleteSecondaryNetworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSecondaryNetwork, input, options) as async.Operation<types.DeleteSecondaryNetworkOutput>
+function C:deleteSecondaryNetwork(input: types.DeleteSecondaryNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSecondaryNetworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSecondaryNetwork as schema.OperationSchema, input, options) as async.Operation<types.DeleteSecondaryNetworkOutput>
 end
 
-function C:deleteSecondarySubnet(input: types.DeleteSecondarySubnetInput, options: any): async.Operation<types.DeleteSecondarySubnetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSecondarySubnet, input, options) as async.Operation<types.DeleteSecondarySubnetOutput>
+function C:deleteSecondarySubnet(input: types.DeleteSecondarySubnetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSecondarySubnetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSecondarySubnet as schema.OperationSchema, input, options) as async.Operation<types.DeleteSecondarySubnetOutput>
 end
 
-function C:deleteSecurityGroup(input: types.DeleteSecurityGroupInput, options: any): async.Operation<types.DeleteSecurityGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSecurityGroup, input, options) as async.Operation<types.DeleteSecurityGroupOutput>
+function C:deleteSecurityGroup(input: types.DeleteSecurityGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSecurityGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSecurityGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteSecurityGroupOutput>
 end
 
-function C:deleteSnapshot(input: types.DeleteSnapshotInput, options: any): async.Operation<types.DeleteSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSnapshot, input, options) as async.Operation<types.DeleteSnapshotOutput>
+function C:deleteSnapshot(input: types.DeleteSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSnapshot as schema.OperationSchema, input, options) as async.Operation<types.DeleteSnapshotOutput>
 end
 
-function C:deleteSpotDatafeedSubscription(input: types.DeleteSpotDatafeedSubscriptionInput, options: any): async.Operation<types.DeleteSpotDatafeedSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSpotDatafeedSubscription, input, options) as async.Operation<types.DeleteSpotDatafeedSubscriptionOutput>
+function C:deleteSpotDatafeedSubscription(input: types.DeleteSpotDatafeedSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSpotDatafeedSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSpotDatafeedSubscription as schema.OperationSchema, input, options) as async.Operation<types.DeleteSpotDatafeedSubscriptionOutput>
 end
 
-function C:deleteSubnet(input: types.DeleteSubnetInput, options: any): async.Operation<types.DeleteSubnetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSubnet, input, options) as async.Operation<types.DeleteSubnetOutput>
+function C:deleteSubnet(input: types.DeleteSubnetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSubnetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSubnet as schema.OperationSchema, input, options) as async.Operation<types.DeleteSubnetOutput>
 end
 
-function C:deleteSubnetCidrReservation(input: types.DeleteSubnetCidrReservationInput, options: any): async.Operation<types.DeleteSubnetCidrReservationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSubnetCidrReservation, input, options) as async.Operation<types.DeleteSubnetCidrReservationOutput>
+function C:deleteSubnetCidrReservation(input: types.DeleteSubnetCidrReservationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSubnetCidrReservationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSubnetCidrReservation as schema.OperationSchema, input, options) as async.Operation<types.DeleteSubnetCidrReservationOutput>
 end
 
-function C:deleteTags(input: types.DeleteTagsInput, options: any): async.Operation<types.DeleteTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTags, input, options) as async.Operation<types.DeleteTagsOutput>
+function C:deleteTags(input: types.DeleteTagsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTags as schema.OperationSchema, input, options) as async.Operation<types.DeleteTagsOutput>
 end
 
-function C:deleteTrafficMirrorFilter(input: types.DeleteTrafficMirrorFilterInput, options: any): async.Operation<types.DeleteTrafficMirrorFilterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTrafficMirrorFilter, input, options) as async.Operation<types.DeleteTrafficMirrorFilterOutput>
+function C:deleteTrafficMirrorFilter(input: types.DeleteTrafficMirrorFilterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTrafficMirrorFilterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTrafficMirrorFilter as schema.OperationSchema, input, options) as async.Operation<types.DeleteTrafficMirrorFilterOutput>
 end
 
-function C:deleteTrafficMirrorFilterRule(input: types.DeleteTrafficMirrorFilterRuleInput, options: any): async.Operation<types.DeleteTrafficMirrorFilterRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTrafficMirrorFilterRule, input, options) as async.Operation<types.DeleteTrafficMirrorFilterRuleOutput>
+function C:deleteTrafficMirrorFilterRule(input: types.DeleteTrafficMirrorFilterRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTrafficMirrorFilterRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTrafficMirrorFilterRule as schema.OperationSchema, input, options) as async.Operation<types.DeleteTrafficMirrorFilterRuleOutput>
 end
 
-function C:deleteTrafficMirrorSession(input: types.DeleteTrafficMirrorSessionInput, options: any): async.Operation<types.DeleteTrafficMirrorSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTrafficMirrorSession, input, options) as async.Operation<types.DeleteTrafficMirrorSessionOutput>
+function C:deleteTrafficMirrorSession(input: types.DeleteTrafficMirrorSessionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTrafficMirrorSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTrafficMirrorSession as schema.OperationSchema, input, options) as async.Operation<types.DeleteTrafficMirrorSessionOutput>
 end
 
-function C:deleteTrafficMirrorTarget(input: types.DeleteTrafficMirrorTargetInput, options: any): async.Operation<types.DeleteTrafficMirrorTargetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTrafficMirrorTarget, input, options) as async.Operation<types.DeleteTrafficMirrorTargetOutput>
+function C:deleteTrafficMirrorTarget(input: types.DeleteTrafficMirrorTargetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTrafficMirrorTargetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTrafficMirrorTarget as schema.OperationSchema, input, options) as async.Operation<types.DeleteTrafficMirrorTargetOutput>
 end
 
-function C:deleteTransitGateway(input: types.DeleteTransitGatewayInput, options: any): async.Operation<types.DeleteTransitGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTransitGateway, input, options) as async.Operation<types.DeleteTransitGatewayOutput>
+function C:deleteTransitGateway(input: types.DeleteTransitGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTransitGateway as schema.OperationSchema, input, options) as async.Operation<types.DeleteTransitGatewayOutput>
 end
 
-function C:deleteTransitGatewayClientVpnAttachment(input: types.DeleteTransitGatewayClientVpnAttachmentInput, options: any): async.Operation<types.DeleteTransitGatewayClientVpnAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTransitGatewayClientVpnAttachment, input, options) as async.Operation<types.DeleteTransitGatewayClientVpnAttachmentOutput>
+function C:deleteTransitGatewayClientVpnAttachment(input: types.DeleteTransitGatewayClientVpnAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayClientVpnAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTransitGatewayClientVpnAttachment as schema.OperationSchema, input, options) as async.Operation<types.DeleteTransitGatewayClientVpnAttachmentOutput>
 end
 
-function C:deleteTransitGatewayConnect(input: types.DeleteTransitGatewayConnectInput, options: any): async.Operation<types.DeleteTransitGatewayConnectOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTransitGatewayConnect, input, options) as async.Operation<types.DeleteTransitGatewayConnectOutput>
+function C:deleteTransitGatewayConnect(input: types.DeleteTransitGatewayConnectInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayConnectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTransitGatewayConnect as schema.OperationSchema, input, options) as async.Operation<types.DeleteTransitGatewayConnectOutput>
 end
 
-function C:deleteTransitGatewayConnectPeer(input: types.DeleteTransitGatewayConnectPeerInput, options: any): async.Operation<types.DeleteTransitGatewayConnectPeerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTransitGatewayConnectPeer, input, options) as async.Operation<types.DeleteTransitGatewayConnectPeerOutput>
+function C:deleteTransitGatewayConnectPeer(input: types.DeleteTransitGatewayConnectPeerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayConnectPeerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTransitGatewayConnectPeer as schema.OperationSchema, input, options) as async.Operation<types.DeleteTransitGatewayConnectPeerOutput>
 end
 
-function C:deleteTransitGatewayMeteringPolicy(input: types.DeleteTransitGatewayMeteringPolicyInput, options: any): async.Operation<types.DeleteTransitGatewayMeteringPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTransitGatewayMeteringPolicy, input, options) as async.Operation<types.DeleteTransitGatewayMeteringPolicyOutput>
+function C:deleteTransitGatewayMeteringPolicy(input: types.DeleteTransitGatewayMeteringPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayMeteringPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTransitGatewayMeteringPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteTransitGatewayMeteringPolicyOutput>
 end
 
-function C:deleteTransitGatewayMeteringPolicyEntry(input: types.DeleteTransitGatewayMeteringPolicyEntryInput, options: any): async.Operation<types.DeleteTransitGatewayMeteringPolicyEntryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTransitGatewayMeteringPolicyEntry, input, options) as async.Operation<types.DeleteTransitGatewayMeteringPolicyEntryOutput>
+function C:deleteTransitGatewayMeteringPolicyEntry(input: types.DeleteTransitGatewayMeteringPolicyEntryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayMeteringPolicyEntryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTransitGatewayMeteringPolicyEntry as schema.OperationSchema, input, options) as async.Operation<types.DeleteTransitGatewayMeteringPolicyEntryOutput>
 end
 
-function C:deleteTransitGatewayMulticastDomain(input: types.DeleteTransitGatewayMulticastDomainInput, options: any): async.Operation<types.DeleteTransitGatewayMulticastDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTransitGatewayMulticastDomain, input, options) as async.Operation<types.DeleteTransitGatewayMulticastDomainOutput>
+function C:deleteTransitGatewayMulticastDomain(input: types.DeleteTransitGatewayMulticastDomainInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayMulticastDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTransitGatewayMulticastDomain as schema.OperationSchema, input, options) as async.Operation<types.DeleteTransitGatewayMulticastDomainOutput>
 end
 
-function C:deleteTransitGatewayPeeringAttachment(input: types.DeleteTransitGatewayPeeringAttachmentInput, options: any): async.Operation<types.DeleteTransitGatewayPeeringAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTransitGatewayPeeringAttachment, input, options) as async.Operation<types.DeleteTransitGatewayPeeringAttachmentOutput>
+function C:deleteTransitGatewayPeeringAttachment(input: types.DeleteTransitGatewayPeeringAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayPeeringAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTransitGatewayPeeringAttachment as schema.OperationSchema, input, options) as async.Operation<types.DeleteTransitGatewayPeeringAttachmentOutput>
 end
 
-function C:deleteTransitGatewayPolicyTable(input: types.DeleteTransitGatewayPolicyTableInput, options: any): async.Operation<types.DeleteTransitGatewayPolicyTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTransitGatewayPolicyTable, input, options) as async.Operation<types.DeleteTransitGatewayPolicyTableOutput>
+function C:deleteTransitGatewayPolicyTable(input: types.DeleteTransitGatewayPolicyTableInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayPolicyTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTransitGatewayPolicyTable as schema.OperationSchema, input, options) as async.Operation<types.DeleteTransitGatewayPolicyTableOutput>
 end
 
-function C:deleteTransitGatewayPrefixListReference(input: types.DeleteTransitGatewayPrefixListReferenceInput, options: any): async.Operation<types.DeleteTransitGatewayPrefixListReferenceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTransitGatewayPrefixListReference, input, options) as async.Operation<types.DeleteTransitGatewayPrefixListReferenceOutput>
+function C:deleteTransitGatewayPrefixListReference(input: types.DeleteTransitGatewayPrefixListReferenceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayPrefixListReferenceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTransitGatewayPrefixListReference as schema.OperationSchema, input, options) as async.Operation<types.DeleteTransitGatewayPrefixListReferenceOutput>
 end
 
-function C:deleteTransitGatewayRoute(input: types.DeleteTransitGatewayRouteInput, options: any): async.Operation<types.DeleteTransitGatewayRouteOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTransitGatewayRoute, input, options) as async.Operation<types.DeleteTransitGatewayRouteOutput>
+function C:deleteTransitGatewayRoute(input: types.DeleteTransitGatewayRouteInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayRouteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTransitGatewayRoute as schema.OperationSchema, input, options) as async.Operation<types.DeleteTransitGatewayRouteOutput>
 end
 
-function C:deleteTransitGatewayRouteTable(input: types.DeleteTransitGatewayRouteTableInput, options: any): async.Operation<types.DeleteTransitGatewayRouteTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTransitGatewayRouteTable, input, options) as async.Operation<types.DeleteTransitGatewayRouteTableOutput>
+function C:deleteTransitGatewayRouteTable(input: types.DeleteTransitGatewayRouteTableInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayRouteTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTransitGatewayRouteTable as schema.OperationSchema, input, options) as async.Operation<types.DeleteTransitGatewayRouteTableOutput>
 end
 
-function C:deleteTransitGatewayRouteTableAnnouncement(input: types.DeleteTransitGatewayRouteTableAnnouncementInput, options: any): async.Operation<types.DeleteTransitGatewayRouteTableAnnouncementOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTransitGatewayRouteTableAnnouncement, input, options) as async.Operation<types.DeleteTransitGatewayRouteTableAnnouncementOutput>
+function C:deleteTransitGatewayRouteTableAnnouncement(input: types.DeleteTransitGatewayRouteTableAnnouncementInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayRouteTableAnnouncementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTransitGatewayRouteTableAnnouncement as schema.OperationSchema, input, options) as async.Operation<types.DeleteTransitGatewayRouteTableAnnouncementOutput>
 end
 
-function C:deleteTransitGatewayVpcAttachment(input: types.DeleteTransitGatewayVpcAttachmentInput, options: any): async.Operation<types.DeleteTransitGatewayVpcAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTransitGatewayVpcAttachment, input, options) as async.Operation<types.DeleteTransitGatewayVpcAttachmentOutput>
+function C:deleteTransitGatewayVpcAttachment(input: types.DeleteTransitGatewayVpcAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayVpcAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTransitGatewayVpcAttachment as schema.OperationSchema, input, options) as async.Operation<types.DeleteTransitGatewayVpcAttachmentOutput>
 end
 
-function C:deleteVerifiedAccessEndpoint(input: types.DeleteVerifiedAccessEndpointInput, options: any): async.Operation<types.DeleteVerifiedAccessEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVerifiedAccessEndpoint, input, options) as async.Operation<types.DeleteVerifiedAccessEndpointOutput>
+function C:deleteVerifiedAccessEndpoint(input: types.DeleteVerifiedAccessEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVerifiedAccessEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVerifiedAccessEndpoint as schema.OperationSchema, input, options) as async.Operation<types.DeleteVerifiedAccessEndpointOutput>
 end
 
-function C:deleteVerifiedAccessGroup(input: types.DeleteVerifiedAccessGroupInput, options: any): async.Operation<types.DeleteVerifiedAccessGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVerifiedAccessGroup, input, options) as async.Operation<types.DeleteVerifiedAccessGroupOutput>
+function C:deleteVerifiedAccessGroup(input: types.DeleteVerifiedAccessGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVerifiedAccessGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVerifiedAccessGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteVerifiedAccessGroupOutput>
 end
 
-function C:deleteVerifiedAccessInstance(input: types.DeleteVerifiedAccessInstanceInput, options: any): async.Operation<types.DeleteVerifiedAccessInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVerifiedAccessInstance, input, options) as async.Operation<types.DeleteVerifiedAccessInstanceOutput>
+function C:deleteVerifiedAccessInstance(input: types.DeleteVerifiedAccessInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVerifiedAccessInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVerifiedAccessInstance as schema.OperationSchema, input, options) as async.Operation<types.DeleteVerifiedAccessInstanceOutput>
 end
 
-function C:deleteVerifiedAccessTrustProvider(input: types.DeleteVerifiedAccessTrustProviderInput, options: any): async.Operation<types.DeleteVerifiedAccessTrustProviderOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVerifiedAccessTrustProvider, input, options) as async.Operation<types.DeleteVerifiedAccessTrustProviderOutput>
+function C:deleteVerifiedAccessTrustProvider(input: types.DeleteVerifiedAccessTrustProviderInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVerifiedAccessTrustProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVerifiedAccessTrustProvider as schema.OperationSchema, input, options) as async.Operation<types.DeleteVerifiedAccessTrustProviderOutput>
 end
 
-function C:deleteVolume(input: types.DeleteVolumeInput, options: any): async.Operation<types.DeleteVolumeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVolume, input, options) as async.Operation<types.DeleteVolumeOutput>
+function C:deleteVolume(input: types.DeleteVolumeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVolumeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVolume as schema.OperationSchema, input, options) as async.Operation<types.DeleteVolumeOutput>
 end
 
-function C:deleteVpc(input: types.DeleteVpcInput, options: any): async.Operation<types.DeleteVpcOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVpc, input, options) as async.Operation<types.DeleteVpcOutput>
+function C:deleteVpc(input: types.DeleteVpcInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVpcOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVpc as schema.OperationSchema, input, options) as async.Operation<types.DeleteVpcOutput>
 end
 
-function C:deleteVpcBlockPublicAccessExclusion(input: types.DeleteVpcBlockPublicAccessExclusionInput, options: any): async.Operation<types.DeleteVpcBlockPublicAccessExclusionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVpcBlockPublicAccessExclusion, input, options) as async.Operation<types.DeleteVpcBlockPublicAccessExclusionOutput>
+function C:deleteVpcBlockPublicAccessExclusion(input: types.DeleteVpcBlockPublicAccessExclusionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVpcBlockPublicAccessExclusionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVpcBlockPublicAccessExclusion as schema.OperationSchema, input, options) as async.Operation<types.DeleteVpcBlockPublicAccessExclusionOutput>
 end
 
-function C:deleteVpcEncryptionControl(input: types.DeleteVpcEncryptionControlInput, options: any): async.Operation<types.DeleteVpcEncryptionControlOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVpcEncryptionControl, input, options) as async.Operation<types.DeleteVpcEncryptionControlOutput>
+function C:deleteVpcEncryptionControl(input: types.DeleteVpcEncryptionControlInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVpcEncryptionControlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVpcEncryptionControl as schema.OperationSchema, input, options) as async.Operation<types.DeleteVpcEncryptionControlOutput>
 end
 
-function C:deleteVpcEndpointConnectionNotifications(input: types.DeleteVpcEndpointConnectionNotificationsInput, options: any): async.Operation<types.DeleteVpcEndpointConnectionNotificationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVpcEndpointConnectionNotifications, input, options) as async.Operation<types.DeleteVpcEndpointConnectionNotificationsOutput>
+function C:deleteVpcEndpointConnectionNotifications(input: types.DeleteVpcEndpointConnectionNotificationsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVpcEndpointConnectionNotificationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVpcEndpointConnectionNotifications as schema.OperationSchema, input, options) as async.Operation<types.DeleteVpcEndpointConnectionNotificationsOutput>
 end
 
-function C:deleteVpcEndpoints(input: types.DeleteVpcEndpointsInput, options: any): async.Operation<types.DeleteVpcEndpointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVpcEndpoints, input, options) as async.Operation<types.DeleteVpcEndpointsOutput>
+function C:deleteVpcEndpoints(input: types.DeleteVpcEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVpcEndpointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVpcEndpoints as schema.OperationSchema, input, options) as async.Operation<types.DeleteVpcEndpointsOutput>
 end
 
-function C:deleteVpcEndpointServiceConfigurations(input: types.DeleteVpcEndpointServiceConfigurationsInput, options: any): async.Operation<types.DeleteVpcEndpointServiceConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVpcEndpointServiceConfigurations, input, options) as async.Operation<types.DeleteVpcEndpointServiceConfigurationsOutput>
+function C:deleteVpcEndpointServiceConfigurations(input: types.DeleteVpcEndpointServiceConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVpcEndpointServiceConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVpcEndpointServiceConfigurations as schema.OperationSchema, input, options) as async.Operation<types.DeleteVpcEndpointServiceConfigurationsOutput>
 end
 
-function C:deleteVpcPeeringConnection(input: types.DeleteVpcPeeringConnectionInput, options: any): async.Operation<types.DeleteVpcPeeringConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVpcPeeringConnection, input, options) as async.Operation<types.DeleteVpcPeeringConnectionOutput>
+function C:deleteVpcPeeringConnection(input: types.DeleteVpcPeeringConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVpcPeeringConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVpcPeeringConnection as schema.OperationSchema, input, options) as async.Operation<types.DeleteVpcPeeringConnectionOutput>
 end
 
-function C:deleteVpnConcentrator(input: types.DeleteVpnConcentratorInput, options: any): async.Operation<types.DeleteVpnConcentratorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVpnConcentrator, input, options) as async.Operation<types.DeleteVpnConcentratorOutput>
+function C:deleteVpnConcentrator(input: types.DeleteVpnConcentratorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVpnConcentratorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVpnConcentrator as schema.OperationSchema, input, options) as async.Operation<types.DeleteVpnConcentratorOutput>
 end
 
-function C:deleteVpnConnection(input: types.DeleteVpnConnectionInput, options: any): async.Operation<types.DeleteVpnConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVpnConnection, input, options) as async.Operation<types.DeleteVpnConnectionOutput>
+function C:deleteVpnConnection(input: types.DeleteVpnConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVpnConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVpnConnection as schema.OperationSchema, input, options) as async.Operation<types.DeleteVpnConnectionOutput>
 end
 
-function C:deleteVpnConnectionRoute(input: types.DeleteVpnConnectionRouteInput, options: any): async.Operation<types.DeleteVpnConnectionRouteOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVpnConnectionRoute, input, options) as async.Operation<types.DeleteVpnConnectionRouteOutput>
+function C:deleteVpnConnectionRoute(input: types.DeleteVpnConnectionRouteInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVpnConnectionRouteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVpnConnectionRoute as schema.OperationSchema, input, options) as async.Operation<types.DeleteVpnConnectionRouteOutput>
 end
 
-function C:deleteVpnGateway(input: types.DeleteVpnGatewayInput, options: any): async.Operation<types.DeleteVpnGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVpnGateway, input, options) as async.Operation<types.DeleteVpnGatewayOutput>
+function C:deleteVpnGateway(input: types.DeleteVpnGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVpnGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVpnGateway as schema.OperationSchema, input, options) as async.Operation<types.DeleteVpnGatewayOutput>
 end
 
-function C:deprovisionByoipCidr(input: types.DeprovisionByoipCidrInput, options: any): async.Operation<types.DeprovisionByoipCidrOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeprovisionByoipCidr, input, options) as async.Operation<types.DeprovisionByoipCidrOutput>
+function C:deprovisionByoipCidr(input: types.DeprovisionByoipCidrInput, options?: base_client.InvokeOptions): async.Operation<types.DeprovisionByoipCidrOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeprovisionByoipCidr as schema.OperationSchema, input, options) as async.Operation<types.DeprovisionByoipCidrOutput>
 end
 
-function C:deprovisionIpamByoasn(input: types.DeprovisionIpamByoasnInput, options: any): async.Operation<types.DeprovisionIpamByoasnOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeprovisionIpamByoasn, input, options) as async.Operation<types.DeprovisionIpamByoasnOutput>
+function C:deprovisionIpamByoasn(input: types.DeprovisionIpamByoasnInput, options?: base_client.InvokeOptions): async.Operation<types.DeprovisionIpamByoasnOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeprovisionIpamByoasn as schema.OperationSchema, input, options) as async.Operation<types.DeprovisionIpamByoasnOutput>
 end
 
-function C:deprovisionIpamPoolCidr(input: types.DeprovisionIpamPoolCidrInput, options: any): async.Operation<types.DeprovisionIpamPoolCidrOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeprovisionIpamPoolCidr, input, options) as async.Operation<types.DeprovisionIpamPoolCidrOutput>
+function C:deprovisionIpamPoolCidr(input: types.DeprovisionIpamPoolCidrInput, options?: base_client.InvokeOptions): async.Operation<types.DeprovisionIpamPoolCidrOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeprovisionIpamPoolCidr as schema.OperationSchema, input, options) as async.Operation<types.DeprovisionIpamPoolCidrOutput>
 end
 
-function C:deprovisionPublicIpv4PoolCidr(input: types.DeprovisionPublicIpv4PoolCidrInput, options: any): async.Operation<types.DeprovisionPublicIpv4PoolCidrOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeprovisionPublicIpv4PoolCidr, input, options) as async.Operation<types.DeprovisionPublicIpv4PoolCidrOutput>
+function C:deprovisionPublicIpv4PoolCidr(input: types.DeprovisionPublicIpv4PoolCidrInput, options?: base_client.InvokeOptions): async.Operation<types.DeprovisionPublicIpv4PoolCidrOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeprovisionPublicIpv4PoolCidr as schema.OperationSchema, input, options) as async.Operation<types.DeprovisionPublicIpv4PoolCidrOutput>
 end
 
-function C:deregisterImage(input: types.DeregisterImageInput, options: any): async.Operation<types.DeregisterImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterImage, input, options) as async.Operation<types.DeregisterImageOutput>
+function C:deregisterImage(input: types.DeregisterImageInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterImage as schema.OperationSchema, input, options) as async.Operation<types.DeregisterImageOutput>
 end
 
-function C:deregisterInstanceEventNotificationAttributes(input: types.DeregisterInstanceEventNotificationAttributesInput, options: any): async.Operation<types.DeregisterInstanceEventNotificationAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterInstanceEventNotificationAttributes, input, options) as async.Operation<types.DeregisterInstanceEventNotificationAttributesOutput>
+function C:deregisterInstanceEventNotificationAttributes(input: types.DeregisterInstanceEventNotificationAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterInstanceEventNotificationAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterInstanceEventNotificationAttributes as schema.OperationSchema, input, options) as async.Operation<types.DeregisterInstanceEventNotificationAttributesOutput>
 end
 
-function C:deregisterTransitGatewayMulticastGroupMembers(input: types.DeregisterTransitGatewayMulticastGroupMembersInput, options: any): async.Operation<types.DeregisterTransitGatewayMulticastGroupMembersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterTransitGatewayMulticastGroupMembers, input, options) as async.Operation<types.DeregisterTransitGatewayMulticastGroupMembersOutput>
+function C:deregisterTransitGatewayMulticastGroupMembers(input: types.DeregisterTransitGatewayMulticastGroupMembersInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterTransitGatewayMulticastGroupMembersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterTransitGatewayMulticastGroupMembers as schema.OperationSchema, input, options) as async.Operation<types.DeregisterTransitGatewayMulticastGroupMembersOutput>
 end
 
-function C:deregisterTransitGatewayMulticastGroupSources(input: types.DeregisterTransitGatewayMulticastGroupSourcesInput, options: any): async.Operation<types.DeregisterTransitGatewayMulticastGroupSourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterTransitGatewayMulticastGroupSources, input, options) as async.Operation<types.DeregisterTransitGatewayMulticastGroupSourcesOutput>
+function C:deregisterTransitGatewayMulticastGroupSources(input: types.DeregisterTransitGatewayMulticastGroupSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterTransitGatewayMulticastGroupSourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterTransitGatewayMulticastGroupSources as schema.OperationSchema, input, options) as async.Operation<types.DeregisterTransitGatewayMulticastGroupSourcesOutput>
 end
 
-function C:describeAccountAttributes(input: types.DescribeAccountAttributesInput, options: any): async.Operation<types.DescribeAccountAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAccountAttributes, input, options) as async.Operation<types.DescribeAccountAttributesOutput>
+function C:describeAccountAttributes(input: types.DescribeAccountAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAccountAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAccountAttributes as schema.OperationSchema, input, options) as async.Operation<types.DescribeAccountAttributesOutput>
 end
 
-function C:describeAddresses(input: types.DescribeAddressesInput, options: any): async.Operation<types.DescribeAddressesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAddresses, input, options) as async.Operation<types.DescribeAddressesOutput>
+function C:describeAddresses(input: types.DescribeAddressesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAddressesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAddresses as schema.OperationSchema, input, options) as async.Operation<types.DescribeAddressesOutput>
 end
 
-function C:describeAddressesAttribute(input: types.DescribeAddressesAttributeInput, options: any): async.Operation<types.DescribeAddressesAttributeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAddressesAttribute, input, options) as async.Operation<types.DescribeAddressesAttributeOutput>
+function C:describeAddressesAttribute(input: types.DescribeAddressesAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAddressesAttributeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAddressesAttribute as schema.OperationSchema, input, options) as async.Operation<types.DescribeAddressesAttributeOutput>
 end
 
-function C:describeAddressTransfers(input: types.DescribeAddressTransfersInput, options: any): async.Operation<types.DescribeAddressTransfersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAddressTransfers, input, options) as async.Operation<types.DescribeAddressTransfersOutput>
+function C:describeAddressTransfers(input: types.DescribeAddressTransfersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAddressTransfersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAddressTransfers as schema.OperationSchema, input, options) as async.Operation<types.DescribeAddressTransfersOutput>
 end
 
-function C:describeAggregateIdFormat(input: types.DescribeAggregateIdFormatInput, options: any): async.Operation<types.DescribeAggregateIdFormatOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAggregateIdFormat, input, options) as async.Operation<types.DescribeAggregateIdFormatOutput>
+function C:describeAggregateIdFormat(input: types.DescribeAggregateIdFormatInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAggregateIdFormatOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAggregateIdFormat as schema.OperationSchema, input, options) as async.Operation<types.DescribeAggregateIdFormatOutput>
 end
 
-function C:describeAvailabilityZones(input: types.DescribeAvailabilityZonesInput, options: any): async.Operation<types.DescribeAvailabilityZonesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAvailabilityZones, input, options) as async.Operation<types.DescribeAvailabilityZonesOutput>
+function C:describeAvailabilityZones(input: types.DescribeAvailabilityZonesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAvailabilityZonesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAvailabilityZones as schema.OperationSchema, input, options) as async.Operation<types.DescribeAvailabilityZonesOutput>
 end
 
-function C:describeAwsNetworkPerformanceMetricSubscriptions(input: types.DescribeAwsNetworkPerformanceMetricSubscriptionsInput, options: any): async.Operation<types.DescribeAwsNetworkPerformanceMetricSubscriptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAwsNetworkPerformanceMetricSubscriptions, input, options) as async.Operation<types.DescribeAwsNetworkPerformanceMetricSubscriptionsOutput>
+function C:describeAwsNetworkPerformanceMetricSubscriptions(input: types.DescribeAwsNetworkPerformanceMetricSubscriptionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAwsNetworkPerformanceMetricSubscriptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAwsNetworkPerformanceMetricSubscriptions as schema.OperationSchema, input, options) as async.Operation<types.DescribeAwsNetworkPerformanceMetricSubscriptionsOutput>
 end
 
-function C:describeBundleTasks(input: types.DescribeBundleTasksInput, options: any): async.Operation<types.DescribeBundleTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeBundleTasks, input, options) as async.Operation<types.DescribeBundleTasksOutput>
+function C:describeBundleTasks(input: types.DescribeBundleTasksInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBundleTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeBundleTasks as schema.OperationSchema, input, options) as async.Operation<types.DescribeBundleTasksOutput>
 end
 
-function C:describeByoipCidrs(input: types.DescribeByoipCidrsInput, options: any): async.Operation<types.DescribeByoipCidrsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeByoipCidrs, input, options) as async.Operation<types.DescribeByoipCidrsOutput>
+function C:describeByoipCidrs(input: types.DescribeByoipCidrsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeByoipCidrsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeByoipCidrs as schema.OperationSchema, input, options) as async.Operation<types.DescribeByoipCidrsOutput>
 end
 
-function C:describeCapacityBlockExtensionHistory(input: types.DescribeCapacityBlockExtensionHistoryInput, options: any): async.Operation<types.DescribeCapacityBlockExtensionHistoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCapacityBlockExtensionHistory, input, options) as async.Operation<types.DescribeCapacityBlockExtensionHistoryOutput>
+function C:describeCapacityBlockExtensionHistory(input: types.DescribeCapacityBlockExtensionHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCapacityBlockExtensionHistoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCapacityBlockExtensionHistory as schema.OperationSchema, input, options) as async.Operation<types.DescribeCapacityBlockExtensionHistoryOutput>
 end
 
-function C:describeCapacityBlockExtensionOfferings(input: types.DescribeCapacityBlockExtensionOfferingsInput, options: any): async.Operation<types.DescribeCapacityBlockExtensionOfferingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCapacityBlockExtensionOfferings, input, options) as async.Operation<types.DescribeCapacityBlockExtensionOfferingsOutput>
+function C:describeCapacityBlockExtensionOfferings(input: types.DescribeCapacityBlockExtensionOfferingsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCapacityBlockExtensionOfferingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCapacityBlockExtensionOfferings as schema.OperationSchema, input, options) as async.Operation<types.DescribeCapacityBlockExtensionOfferingsOutput>
 end
 
-function C:describeCapacityBlockOfferings(input: types.DescribeCapacityBlockOfferingsInput, options: any): async.Operation<types.DescribeCapacityBlockOfferingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCapacityBlockOfferings, input, options) as async.Operation<types.DescribeCapacityBlockOfferingsOutput>
+function C:describeCapacityBlockOfferings(input: types.DescribeCapacityBlockOfferingsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCapacityBlockOfferingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCapacityBlockOfferings as schema.OperationSchema, input, options) as async.Operation<types.DescribeCapacityBlockOfferingsOutput>
 end
 
-function C:describeCapacityBlocks(input: types.DescribeCapacityBlocksInput, options: any): async.Operation<types.DescribeCapacityBlocksOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCapacityBlocks, input, options) as async.Operation<types.DescribeCapacityBlocksOutput>
+function C:describeCapacityBlocks(input: types.DescribeCapacityBlocksInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCapacityBlocksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCapacityBlocks as schema.OperationSchema, input, options) as async.Operation<types.DescribeCapacityBlocksOutput>
 end
 
-function C:describeCapacityBlockStatus(input: types.DescribeCapacityBlockStatusInput, options: any): async.Operation<types.DescribeCapacityBlockStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCapacityBlockStatus, input, options) as async.Operation<types.DescribeCapacityBlockStatusOutput>
+function C:describeCapacityBlockStatus(input: types.DescribeCapacityBlockStatusInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCapacityBlockStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCapacityBlockStatus as schema.OperationSchema, input, options) as async.Operation<types.DescribeCapacityBlockStatusOutput>
 end
 
-function C:describeCapacityManagerDataExports(input: types.DescribeCapacityManagerDataExportsInput, options: any): async.Operation<types.DescribeCapacityManagerDataExportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCapacityManagerDataExports, input, options) as async.Operation<types.DescribeCapacityManagerDataExportsOutput>
+function C:describeCapacityManagerDataExports(input: types.DescribeCapacityManagerDataExportsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCapacityManagerDataExportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCapacityManagerDataExports as schema.OperationSchema, input, options) as async.Operation<types.DescribeCapacityManagerDataExportsOutput>
 end
 
-function C:describeCapacityReservationBillingRequests(input: types.DescribeCapacityReservationBillingRequestsInput, options: any): async.Operation<types.DescribeCapacityReservationBillingRequestsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCapacityReservationBillingRequests, input, options) as async.Operation<types.DescribeCapacityReservationBillingRequestsOutput>
+function C:describeCapacityReservationBillingRequests(input: types.DescribeCapacityReservationBillingRequestsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCapacityReservationBillingRequestsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCapacityReservationBillingRequests as schema.OperationSchema, input, options) as async.Operation<types.DescribeCapacityReservationBillingRequestsOutput>
 end
 
-function C:describeCapacityReservationFleets(input: types.DescribeCapacityReservationFleetsInput, options: any): async.Operation<types.DescribeCapacityReservationFleetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCapacityReservationFleets, input, options) as async.Operation<types.DescribeCapacityReservationFleetsOutput>
+function C:describeCapacityReservationFleets(input: types.DescribeCapacityReservationFleetsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCapacityReservationFleetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCapacityReservationFleets as schema.OperationSchema, input, options) as async.Operation<types.DescribeCapacityReservationFleetsOutput>
 end
 
-function C:describeCapacityReservations(input: types.DescribeCapacityReservationsInput, options: any): async.Operation<types.DescribeCapacityReservationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCapacityReservations, input, options) as async.Operation<types.DescribeCapacityReservationsOutput>
+function C:describeCapacityReservations(input: types.DescribeCapacityReservationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCapacityReservationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCapacityReservations as schema.OperationSchema, input, options) as async.Operation<types.DescribeCapacityReservationsOutput>
 end
 
-function C:describeCapacityReservationTopology(input: types.DescribeCapacityReservationTopologyInput, options: any): async.Operation<types.DescribeCapacityReservationTopologyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCapacityReservationTopology, input, options) as async.Operation<types.DescribeCapacityReservationTopologyOutput>
+function C:describeCapacityReservationTopology(input: types.DescribeCapacityReservationTopologyInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCapacityReservationTopologyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCapacityReservationTopology as schema.OperationSchema, input, options) as async.Operation<types.DescribeCapacityReservationTopologyOutput>
 end
 
-function C:describeCarrierGateways(input: types.DescribeCarrierGatewaysInput, options: any): async.Operation<types.DescribeCarrierGatewaysOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCarrierGateways, input, options) as async.Operation<types.DescribeCarrierGatewaysOutput>
+function C:describeCarrierGateways(input: types.DescribeCarrierGatewaysInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCarrierGatewaysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCarrierGateways as schema.OperationSchema, input, options) as async.Operation<types.DescribeCarrierGatewaysOutput>
 end
 
-function C:describeClassicLinkInstances(input: types.DescribeClassicLinkInstancesInput, options: any): async.Operation<types.DescribeClassicLinkInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeClassicLinkInstances, input, options) as async.Operation<types.DescribeClassicLinkInstancesOutput>
+function C:describeClassicLinkInstances(input: types.DescribeClassicLinkInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeClassicLinkInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeClassicLinkInstances as schema.OperationSchema, input, options) as async.Operation<types.DescribeClassicLinkInstancesOutput>
 end
 
-function C:describeClientVpnAuthorizationRules(input: types.DescribeClientVpnAuthorizationRulesInput, options: any): async.Operation<types.DescribeClientVpnAuthorizationRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeClientVpnAuthorizationRules, input, options) as async.Operation<types.DescribeClientVpnAuthorizationRulesOutput>
+function C:describeClientVpnAuthorizationRules(input: types.DescribeClientVpnAuthorizationRulesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeClientVpnAuthorizationRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeClientVpnAuthorizationRules as schema.OperationSchema, input, options) as async.Operation<types.DescribeClientVpnAuthorizationRulesOutput>
 end
 
-function C:describeClientVpnConnections(input: types.DescribeClientVpnConnectionsInput, options: any): async.Operation<types.DescribeClientVpnConnectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeClientVpnConnections, input, options) as async.Operation<types.DescribeClientVpnConnectionsOutput>
+function C:describeClientVpnConnections(input: types.DescribeClientVpnConnectionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeClientVpnConnectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeClientVpnConnections as schema.OperationSchema, input, options) as async.Operation<types.DescribeClientVpnConnectionsOutput>
 end
 
-function C:describeClientVpnEndpoints(input: types.DescribeClientVpnEndpointsInput, options: any): async.Operation<types.DescribeClientVpnEndpointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeClientVpnEndpoints, input, options) as async.Operation<types.DescribeClientVpnEndpointsOutput>
+function C:describeClientVpnEndpoints(input: types.DescribeClientVpnEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeClientVpnEndpointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeClientVpnEndpoints as schema.OperationSchema, input, options) as async.Operation<types.DescribeClientVpnEndpointsOutput>
 end
 
-function C:describeClientVpnRoutes(input: types.DescribeClientVpnRoutesInput, options: any): async.Operation<types.DescribeClientVpnRoutesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeClientVpnRoutes, input, options) as async.Operation<types.DescribeClientVpnRoutesOutput>
+function C:describeClientVpnRoutes(input: types.DescribeClientVpnRoutesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeClientVpnRoutesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeClientVpnRoutes as schema.OperationSchema, input, options) as async.Operation<types.DescribeClientVpnRoutesOutput>
 end
 
-function C:describeClientVpnTargetNetworks(input: types.DescribeClientVpnTargetNetworksInput, options: any): async.Operation<types.DescribeClientVpnTargetNetworksOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeClientVpnTargetNetworks, input, options) as async.Operation<types.DescribeClientVpnTargetNetworksOutput>
+function C:describeClientVpnTargetNetworks(input: types.DescribeClientVpnTargetNetworksInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeClientVpnTargetNetworksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeClientVpnTargetNetworks as schema.OperationSchema, input, options) as async.Operation<types.DescribeClientVpnTargetNetworksOutput>
 end
 
-function C:describeCoipPools(input: types.DescribeCoipPoolsInput, options: any): async.Operation<types.DescribeCoipPoolsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCoipPools, input, options) as async.Operation<types.DescribeCoipPoolsOutput>
+function C:describeCoipPools(input: types.DescribeCoipPoolsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCoipPoolsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCoipPools as schema.OperationSchema, input, options) as async.Operation<types.DescribeCoipPoolsOutput>
 end
 
-function C:describeConversionTasks(input: types.DescribeConversionTasksInput, options: any): async.Operation<types.DescribeConversionTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeConversionTasks, input, options) as async.Operation<types.DescribeConversionTasksOutput>
+function C:describeConversionTasks(input: types.DescribeConversionTasksInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeConversionTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeConversionTasks as schema.OperationSchema, input, options) as async.Operation<types.DescribeConversionTasksOutput>
 end
 
-function C:describeCustomerGateways(input: types.DescribeCustomerGatewaysInput, options: any): async.Operation<types.DescribeCustomerGatewaysOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCustomerGateways, input, options) as async.Operation<types.DescribeCustomerGatewaysOutput>
+function C:describeCustomerGateways(input: types.DescribeCustomerGatewaysInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCustomerGatewaysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCustomerGateways as schema.OperationSchema, input, options) as async.Operation<types.DescribeCustomerGatewaysOutput>
 end
 
-function C:describeDeclarativePoliciesReports(input: types.DescribeDeclarativePoliciesReportsInput, options: any): async.Operation<types.DescribeDeclarativePoliciesReportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDeclarativePoliciesReports, input, options) as async.Operation<types.DescribeDeclarativePoliciesReportsOutput>
+function C:describeDeclarativePoliciesReports(input: types.DescribeDeclarativePoliciesReportsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDeclarativePoliciesReportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDeclarativePoliciesReports as schema.OperationSchema, input, options) as async.Operation<types.DescribeDeclarativePoliciesReportsOutput>
 end
 
-function C:describeDhcpOptions(input: types.DescribeDhcpOptionsInput, options: any): async.Operation<types.DescribeDhcpOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDhcpOptions, input, options) as async.Operation<types.DescribeDhcpOptionsOutput>
+function C:describeDhcpOptions(input: types.DescribeDhcpOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDhcpOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDhcpOptions as schema.OperationSchema, input, options) as async.Operation<types.DescribeDhcpOptionsOutput>
 end
 
-function C:describeEgressOnlyInternetGateways(input: types.DescribeEgressOnlyInternetGatewaysInput, options: any): async.Operation<types.DescribeEgressOnlyInternetGatewaysOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEgressOnlyInternetGateways, input, options) as async.Operation<types.DescribeEgressOnlyInternetGatewaysOutput>
+function C:describeEgressOnlyInternetGateways(input: types.DescribeEgressOnlyInternetGatewaysInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEgressOnlyInternetGatewaysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEgressOnlyInternetGateways as schema.OperationSchema, input, options) as async.Operation<types.DescribeEgressOnlyInternetGatewaysOutput>
 end
 
-function C:describeElasticGpus(input: types.DescribeElasticGpusInput, options: any): async.Operation<types.DescribeElasticGpusOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeElasticGpus, input, options) as async.Operation<types.DescribeElasticGpusOutput>
+function C:describeElasticGpus(input: types.DescribeElasticGpusInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeElasticGpusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeElasticGpus as schema.OperationSchema, input, options) as async.Operation<types.DescribeElasticGpusOutput>
 end
 
-function C:describeExportImageTasks(input: types.DescribeExportImageTasksInput, options: any): async.Operation<types.DescribeExportImageTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeExportImageTasks, input, options) as async.Operation<types.DescribeExportImageTasksOutput>
+function C:describeExportImageTasks(input: types.DescribeExportImageTasksInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeExportImageTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeExportImageTasks as schema.OperationSchema, input, options) as async.Operation<types.DescribeExportImageTasksOutput>
 end
 
-function C:describeExportTasks(input: types.DescribeExportTasksInput, options: any): async.Operation<types.DescribeExportTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeExportTasks, input, options) as async.Operation<types.DescribeExportTasksOutput>
+function C:describeExportTasks(input: types.DescribeExportTasksInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeExportTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeExportTasks as schema.OperationSchema, input, options) as async.Operation<types.DescribeExportTasksOutput>
 end
 
-function C:describeFastLaunchImages(input: types.DescribeFastLaunchImagesInput, options: any): async.Operation<types.DescribeFastLaunchImagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFastLaunchImages, input, options) as async.Operation<types.DescribeFastLaunchImagesOutput>
+function C:describeFastLaunchImages(input: types.DescribeFastLaunchImagesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFastLaunchImagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFastLaunchImages as schema.OperationSchema, input, options) as async.Operation<types.DescribeFastLaunchImagesOutput>
 end
 
-function C:describeFastSnapshotRestores(input: types.DescribeFastSnapshotRestoresInput, options: any): async.Operation<types.DescribeFastSnapshotRestoresOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFastSnapshotRestores, input, options) as async.Operation<types.DescribeFastSnapshotRestoresOutput>
+function C:describeFastSnapshotRestores(input: types.DescribeFastSnapshotRestoresInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFastSnapshotRestoresOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFastSnapshotRestores as schema.OperationSchema, input, options) as async.Operation<types.DescribeFastSnapshotRestoresOutput>
 end
 
-function C:describeFleetHistory(input: types.DescribeFleetHistoryInput, options: any): async.Operation<types.DescribeFleetHistoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFleetHistory, input, options) as async.Operation<types.DescribeFleetHistoryOutput>
+function C:describeFleetHistory(input: types.DescribeFleetHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFleetHistoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFleetHistory as schema.OperationSchema, input, options) as async.Operation<types.DescribeFleetHistoryOutput>
 end
 
-function C:describeFleetInstances(input: types.DescribeFleetInstancesInput, options: any): async.Operation<types.DescribeFleetInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFleetInstances, input, options) as async.Operation<types.DescribeFleetInstancesOutput>
+function C:describeFleetInstances(input: types.DescribeFleetInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFleetInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFleetInstances as schema.OperationSchema, input, options) as async.Operation<types.DescribeFleetInstancesOutput>
 end
 
-function C:describeFleets(input: types.DescribeFleetsInput, options: any): async.Operation<types.DescribeFleetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFleets, input, options) as async.Operation<types.DescribeFleetsOutput>
+function C:describeFleets(input: types.DescribeFleetsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFleetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFleets as schema.OperationSchema, input, options) as async.Operation<types.DescribeFleetsOutput>
 end
 
-function C:describeFlowLogs(input: types.DescribeFlowLogsInput, options: any): async.Operation<types.DescribeFlowLogsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFlowLogs, input, options) as async.Operation<types.DescribeFlowLogsOutput>
+function C:describeFlowLogs(input: types.DescribeFlowLogsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFlowLogsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFlowLogs as schema.OperationSchema, input, options) as async.Operation<types.DescribeFlowLogsOutput>
 end
 
-function C:describeFpgaImageAttribute(input: types.DescribeFpgaImageAttributeInput, options: any): async.Operation<types.DescribeFpgaImageAttributeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFpgaImageAttribute, input, options) as async.Operation<types.DescribeFpgaImageAttributeOutput>
+function C:describeFpgaImageAttribute(input: types.DescribeFpgaImageAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFpgaImageAttributeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFpgaImageAttribute as schema.OperationSchema, input, options) as async.Operation<types.DescribeFpgaImageAttributeOutput>
 end
 
-function C:describeFpgaImages(input: types.DescribeFpgaImagesInput, options: any): async.Operation<types.DescribeFpgaImagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFpgaImages, input, options) as async.Operation<types.DescribeFpgaImagesOutput>
+function C:describeFpgaImages(input: types.DescribeFpgaImagesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFpgaImagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFpgaImages as schema.OperationSchema, input, options) as async.Operation<types.DescribeFpgaImagesOutput>
 end
 
-function C:describeHostReservationOfferings(input: types.DescribeHostReservationOfferingsInput, options: any): async.Operation<types.DescribeHostReservationOfferingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeHostReservationOfferings, input, options) as async.Operation<types.DescribeHostReservationOfferingsOutput>
+function C:describeHostReservationOfferings(input: types.DescribeHostReservationOfferingsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeHostReservationOfferingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeHostReservationOfferings as schema.OperationSchema, input, options) as async.Operation<types.DescribeHostReservationOfferingsOutput>
 end
 
-function C:describeHostReservations(input: types.DescribeHostReservationsInput, options: any): async.Operation<types.DescribeHostReservationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeHostReservations, input, options) as async.Operation<types.DescribeHostReservationsOutput>
+function C:describeHostReservations(input: types.DescribeHostReservationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeHostReservationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeHostReservations as schema.OperationSchema, input, options) as async.Operation<types.DescribeHostReservationsOutput>
 end
 
-function C:describeHosts(input: types.DescribeHostsInput, options: any): async.Operation<types.DescribeHostsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeHosts, input, options) as async.Operation<types.DescribeHostsOutput>
+function C:describeHosts(input: types.DescribeHostsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeHostsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeHosts as schema.OperationSchema, input, options) as async.Operation<types.DescribeHostsOutput>
 end
 
-function C:describeIamInstanceProfileAssociations(input: types.DescribeIamInstanceProfileAssociationsInput, options: any): async.Operation<types.DescribeIamInstanceProfileAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeIamInstanceProfileAssociations, input, options) as async.Operation<types.DescribeIamInstanceProfileAssociationsOutput>
+function C:describeIamInstanceProfileAssociations(input: types.DescribeIamInstanceProfileAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIamInstanceProfileAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIamInstanceProfileAssociations as schema.OperationSchema, input, options) as async.Operation<types.DescribeIamInstanceProfileAssociationsOutput>
 end
 
-function C:describeIdentityIdFormat(input: types.DescribeIdentityIdFormatInput, options: any): async.Operation<types.DescribeIdentityIdFormatOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeIdentityIdFormat, input, options) as async.Operation<types.DescribeIdentityIdFormatOutput>
+function C:describeIdentityIdFormat(input: types.DescribeIdentityIdFormatInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIdentityIdFormatOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIdentityIdFormat as schema.OperationSchema, input, options) as async.Operation<types.DescribeIdentityIdFormatOutput>
 end
 
-function C:describeIdFormat(input: types.DescribeIdFormatInput, options: any): async.Operation<types.DescribeIdFormatOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeIdFormat, input, options) as async.Operation<types.DescribeIdFormatOutput>
+function C:describeIdFormat(input: types.DescribeIdFormatInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIdFormatOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIdFormat as schema.OperationSchema, input, options) as async.Operation<types.DescribeIdFormatOutput>
 end
 
-function C:describeImageAttribute(input: types.DescribeImageAttributeInput, options: any): async.Operation<types.DescribeImageAttributeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeImageAttribute, input, options) as async.Operation<types.DescribeImageAttributeOutput>
+function C:describeImageAttribute(input: types.DescribeImageAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeImageAttributeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeImageAttribute as schema.OperationSchema, input, options) as async.Operation<types.DescribeImageAttributeOutput>
 end
 
-function C:describeImageReferences(input: types.DescribeImageReferencesInput, options: any): async.Operation<types.DescribeImageReferencesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeImageReferences, input, options) as async.Operation<types.DescribeImageReferencesOutput>
+function C:describeImageReferences(input: types.DescribeImageReferencesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeImageReferencesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeImageReferences as schema.OperationSchema, input, options) as async.Operation<types.DescribeImageReferencesOutput>
 end
 
-function C:describeImages(input: types.DescribeImagesInput, options: any): async.Operation<types.DescribeImagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeImages, input, options) as async.Operation<types.DescribeImagesOutput>
+function C:describeImages(input: types.DescribeImagesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeImagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeImages as schema.OperationSchema, input, options) as async.Operation<types.DescribeImagesOutput>
 end
 
-function C:describeImageUsageReportEntries(input: types.DescribeImageUsageReportEntriesInput, options: any): async.Operation<types.DescribeImageUsageReportEntriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeImageUsageReportEntries, input, options) as async.Operation<types.DescribeImageUsageReportEntriesOutput>
+function C:describeImageUsageReportEntries(input: types.DescribeImageUsageReportEntriesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeImageUsageReportEntriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeImageUsageReportEntries as schema.OperationSchema, input, options) as async.Operation<types.DescribeImageUsageReportEntriesOutput>
 end
 
-function C:describeImageUsageReports(input: types.DescribeImageUsageReportsInput, options: any): async.Operation<types.DescribeImageUsageReportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeImageUsageReports, input, options) as async.Operation<types.DescribeImageUsageReportsOutput>
+function C:describeImageUsageReports(input: types.DescribeImageUsageReportsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeImageUsageReportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeImageUsageReports as schema.OperationSchema, input, options) as async.Operation<types.DescribeImageUsageReportsOutput>
 end
 
-function C:describeImportImageTasks(input: types.DescribeImportImageTasksInput, options: any): async.Operation<types.DescribeImportImageTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeImportImageTasks, input, options) as async.Operation<types.DescribeImportImageTasksOutput>
+function C:describeImportImageTasks(input: types.DescribeImportImageTasksInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeImportImageTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeImportImageTasks as schema.OperationSchema, input, options) as async.Operation<types.DescribeImportImageTasksOutput>
 end
 
-function C:describeImportSnapshotTasks(input: types.DescribeImportSnapshotTasksInput, options: any): async.Operation<types.DescribeImportSnapshotTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeImportSnapshotTasks, input, options) as async.Operation<types.DescribeImportSnapshotTasksOutput>
+function C:describeImportSnapshotTasks(input: types.DescribeImportSnapshotTasksInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeImportSnapshotTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeImportSnapshotTasks as schema.OperationSchema, input, options) as async.Operation<types.DescribeImportSnapshotTasksOutput>
 end
 
-function C:describeInstanceAttribute(input: types.DescribeInstanceAttributeInput, options: any): async.Operation<types.DescribeInstanceAttributeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInstanceAttribute, input, options) as async.Operation<types.DescribeInstanceAttributeOutput>
+function C:describeInstanceAttribute(input: types.DescribeInstanceAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInstanceAttributeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInstanceAttribute as schema.OperationSchema, input, options) as async.Operation<types.DescribeInstanceAttributeOutput>
 end
 
-function C:describeInstanceConnectEndpoints(input: types.DescribeInstanceConnectEndpointsInput, options: any): async.Operation<types.DescribeInstanceConnectEndpointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInstanceConnectEndpoints, input, options) as async.Operation<types.DescribeInstanceConnectEndpointsOutput>
+function C:describeInstanceConnectEndpoints(input: types.DescribeInstanceConnectEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInstanceConnectEndpointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInstanceConnectEndpoints as schema.OperationSchema, input, options) as async.Operation<types.DescribeInstanceConnectEndpointsOutput>
 end
 
-function C:describeInstanceCreditSpecifications(input: types.DescribeInstanceCreditSpecificationsInput, options: any): async.Operation<types.DescribeInstanceCreditSpecificationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInstanceCreditSpecifications, input, options) as async.Operation<types.DescribeInstanceCreditSpecificationsOutput>
+function C:describeInstanceCreditSpecifications(input: types.DescribeInstanceCreditSpecificationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInstanceCreditSpecificationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInstanceCreditSpecifications as schema.OperationSchema, input, options) as async.Operation<types.DescribeInstanceCreditSpecificationsOutput>
 end
 
-function C:describeInstanceEventNotificationAttributes(input: types.DescribeInstanceEventNotificationAttributesInput, options: any): async.Operation<types.DescribeInstanceEventNotificationAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInstanceEventNotificationAttributes, input, options) as async.Operation<types.DescribeInstanceEventNotificationAttributesOutput>
+function C:describeInstanceEventNotificationAttributes(input: types.DescribeInstanceEventNotificationAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInstanceEventNotificationAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInstanceEventNotificationAttributes as schema.OperationSchema, input, options) as async.Operation<types.DescribeInstanceEventNotificationAttributesOutput>
 end
 
-function C:describeInstanceEventWindows(input: types.DescribeInstanceEventWindowsInput, options: any): async.Operation<types.DescribeInstanceEventWindowsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInstanceEventWindows, input, options) as async.Operation<types.DescribeInstanceEventWindowsOutput>
+function C:describeInstanceEventWindows(input: types.DescribeInstanceEventWindowsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInstanceEventWindowsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInstanceEventWindows as schema.OperationSchema, input, options) as async.Operation<types.DescribeInstanceEventWindowsOutput>
 end
 
-function C:describeInstanceImageMetadata(input: types.DescribeInstanceImageMetadataInput, options: any): async.Operation<types.DescribeInstanceImageMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInstanceImageMetadata, input, options) as async.Operation<types.DescribeInstanceImageMetadataOutput>
+function C:describeInstanceImageMetadata(input: types.DescribeInstanceImageMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInstanceImageMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInstanceImageMetadata as schema.OperationSchema, input, options) as async.Operation<types.DescribeInstanceImageMetadataOutput>
 end
 
-function C:describeInstances(input: types.DescribeInstancesInput, options: any): async.Operation<types.DescribeInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInstances, input, options) as async.Operation<types.DescribeInstancesOutput>
+function C:describeInstances(input: types.DescribeInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInstances as schema.OperationSchema, input, options) as async.Operation<types.DescribeInstancesOutput>
 end
 
-function C:describeInstanceSqlHaHistoryStates(input: types.DescribeInstanceSqlHaHistoryStatesInput, options: any): async.Operation<types.DescribeInstanceSqlHaHistoryStatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInstanceSqlHaHistoryStates, input, options) as async.Operation<types.DescribeInstanceSqlHaHistoryStatesOutput>
+function C:describeInstanceSqlHaHistoryStates(input: types.DescribeInstanceSqlHaHistoryStatesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInstanceSqlHaHistoryStatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInstanceSqlHaHistoryStates as schema.OperationSchema, input, options) as async.Operation<types.DescribeInstanceSqlHaHistoryStatesOutput>
 end
 
-function C:describeInstanceSqlHaStates(input: types.DescribeInstanceSqlHaStatesInput, options: any): async.Operation<types.DescribeInstanceSqlHaStatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInstanceSqlHaStates, input, options) as async.Operation<types.DescribeInstanceSqlHaStatesOutput>
+function C:describeInstanceSqlHaStates(input: types.DescribeInstanceSqlHaStatesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInstanceSqlHaStatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInstanceSqlHaStates as schema.OperationSchema, input, options) as async.Operation<types.DescribeInstanceSqlHaStatesOutput>
 end
 
-function C:describeInstanceStatus(input: types.DescribeInstanceStatusInput, options: any): async.Operation<types.DescribeInstanceStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInstanceStatus, input, options) as async.Operation<types.DescribeInstanceStatusOutput>
+function C:describeInstanceStatus(input: types.DescribeInstanceStatusInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInstanceStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInstanceStatus as schema.OperationSchema, input, options) as async.Operation<types.DescribeInstanceStatusOutput>
 end
 
-function C:describeInstanceTopology(input: types.DescribeInstanceTopologyInput, options: any): async.Operation<types.DescribeInstanceTopologyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInstanceTopology, input, options) as async.Operation<types.DescribeInstanceTopologyOutput>
+function C:describeInstanceTopology(input: types.DescribeInstanceTopologyInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInstanceTopologyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInstanceTopology as schema.OperationSchema, input, options) as async.Operation<types.DescribeInstanceTopologyOutput>
 end
 
-function C:describeInstanceTypeOfferings(input: types.DescribeInstanceTypeOfferingsInput, options: any): async.Operation<types.DescribeInstanceTypeOfferingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInstanceTypeOfferings, input, options) as async.Operation<types.DescribeInstanceTypeOfferingsOutput>
+function C:describeInstanceTypeOfferings(input: types.DescribeInstanceTypeOfferingsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInstanceTypeOfferingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInstanceTypeOfferings as schema.OperationSchema, input, options) as async.Operation<types.DescribeInstanceTypeOfferingsOutput>
 end
 
-function C:describeInstanceTypes(input: types.DescribeInstanceTypesInput, options: any): async.Operation<types.DescribeInstanceTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInstanceTypes, input, options) as async.Operation<types.DescribeInstanceTypesOutput>
+function C:describeInstanceTypes(input: types.DescribeInstanceTypesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInstanceTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInstanceTypes as schema.OperationSchema, input, options) as async.Operation<types.DescribeInstanceTypesOutput>
 end
 
-function C:describeInternetGateways(input: types.DescribeInternetGatewaysInput, options: any): async.Operation<types.DescribeInternetGatewaysOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInternetGateways, input, options) as async.Operation<types.DescribeInternetGatewaysOutput>
+function C:describeInternetGateways(input: types.DescribeInternetGatewaysInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInternetGatewaysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInternetGateways as schema.OperationSchema, input, options) as async.Operation<types.DescribeInternetGatewaysOutput>
 end
 
-function C:describeIpamByoasn(input: types.DescribeIpamByoasnInput, options: any): async.Operation<types.DescribeIpamByoasnOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeIpamByoasn, input, options) as async.Operation<types.DescribeIpamByoasnOutput>
+function C:describeIpamByoasn(input: types.DescribeIpamByoasnInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIpamByoasnOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIpamByoasn as schema.OperationSchema, input, options) as async.Operation<types.DescribeIpamByoasnOutput>
 end
 
-function C:describeIpamExternalResourceVerificationTokens(input: types.DescribeIpamExternalResourceVerificationTokensInput, options: any): async.Operation<types.DescribeIpamExternalResourceVerificationTokensOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeIpamExternalResourceVerificationTokens, input, options) as async.Operation<types.DescribeIpamExternalResourceVerificationTokensOutput>
+function C:describeIpamExternalResourceVerificationTokens(input: types.DescribeIpamExternalResourceVerificationTokensInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIpamExternalResourceVerificationTokensOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIpamExternalResourceVerificationTokens as schema.OperationSchema, input, options) as async.Operation<types.DescribeIpamExternalResourceVerificationTokensOutput>
 end
 
-function C:describeIpamPolicies(input: types.DescribeIpamPoliciesInput, options: any): async.Operation<types.DescribeIpamPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeIpamPolicies, input, options) as async.Operation<types.DescribeIpamPoliciesOutput>
+function C:describeIpamPolicies(input: types.DescribeIpamPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIpamPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIpamPolicies as schema.OperationSchema, input, options) as async.Operation<types.DescribeIpamPoliciesOutput>
 end
 
-function C:describeIpamPools(input: types.DescribeIpamPoolsInput, options: any): async.Operation<types.DescribeIpamPoolsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeIpamPools, input, options) as async.Operation<types.DescribeIpamPoolsOutput>
+function C:describeIpamPools(input: types.DescribeIpamPoolsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIpamPoolsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIpamPools as schema.OperationSchema, input, options) as async.Operation<types.DescribeIpamPoolsOutput>
 end
 
-function C:describeIpamPrefixListResolvers(input: types.DescribeIpamPrefixListResolversInput, options: any): async.Operation<types.DescribeIpamPrefixListResolversOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeIpamPrefixListResolvers, input, options) as async.Operation<types.DescribeIpamPrefixListResolversOutput>
+function C:describeIpamPrefixListResolvers(input: types.DescribeIpamPrefixListResolversInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIpamPrefixListResolversOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIpamPrefixListResolvers as schema.OperationSchema, input, options) as async.Operation<types.DescribeIpamPrefixListResolversOutput>
 end
 
-function C:describeIpamPrefixListResolverTargets(input: types.DescribeIpamPrefixListResolverTargetsInput, options: any): async.Operation<types.DescribeIpamPrefixListResolverTargetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeIpamPrefixListResolverTargets, input, options) as async.Operation<types.DescribeIpamPrefixListResolverTargetsOutput>
+function C:describeIpamPrefixListResolverTargets(input: types.DescribeIpamPrefixListResolverTargetsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIpamPrefixListResolverTargetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIpamPrefixListResolverTargets as schema.OperationSchema, input, options) as async.Operation<types.DescribeIpamPrefixListResolverTargetsOutput>
 end
 
-function C:describeIpamResourceDiscoveries(input: types.DescribeIpamResourceDiscoveriesInput, options: any): async.Operation<types.DescribeIpamResourceDiscoveriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeIpamResourceDiscoveries, input, options) as async.Operation<types.DescribeIpamResourceDiscoveriesOutput>
+function C:describeIpamResourceDiscoveries(input: types.DescribeIpamResourceDiscoveriesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIpamResourceDiscoveriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIpamResourceDiscoveries as schema.OperationSchema, input, options) as async.Operation<types.DescribeIpamResourceDiscoveriesOutput>
 end
 
-function C:describeIpamResourceDiscoveryAssociations(input: types.DescribeIpamResourceDiscoveryAssociationsInput, options: any): async.Operation<types.DescribeIpamResourceDiscoveryAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeIpamResourceDiscoveryAssociations, input, options) as async.Operation<types.DescribeIpamResourceDiscoveryAssociationsOutput>
+function C:describeIpamResourceDiscoveryAssociations(input: types.DescribeIpamResourceDiscoveryAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIpamResourceDiscoveryAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIpamResourceDiscoveryAssociations as schema.OperationSchema, input, options) as async.Operation<types.DescribeIpamResourceDiscoveryAssociationsOutput>
 end
 
-function C:describeIpams(input: types.DescribeIpamsInput, options: any): async.Operation<types.DescribeIpamsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeIpams, input, options) as async.Operation<types.DescribeIpamsOutput>
+function C:describeIpams(input: types.DescribeIpamsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIpamsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIpams as schema.OperationSchema, input, options) as async.Operation<types.DescribeIpamsOutput>
 end
 
-function C:describeIpamScopes(input: types.DescribeIpamScopesInput, options: any): async.Operation<types.DescribeIpamScopesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeIpamScopes, input, options) as async.Operation<types.DescribeIpamScopesOutput>
+function C:describeIpamScopes(input: types.DescribeIpamScopesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIpamScopesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIpamScopes as schema.OperationSchema, input, options) as async.Operation<types.DescribeIpamScopesOutput>
 end
 
-function C:describeIpv6Pools(input: types.DescribeIpv6PoolsInput, options: any): async.Operation<types.DescribeIpv6PoolsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeIpv6Pools, input, options) as async.Operation<types.DescribeIpv6PoolsOutput>
+function C:describeIpv6Pools(input: types.DescribeIpv6PoolsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIpv6PoolsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIpv6Pools as schema.OperationSchema, input, options) as async.Operation<types.DescribeIpv6PoolsOutput>
 end
 
-function C:describeKeyPairs(input: types.DescribeKeyPairsInput, options: any): async.Operation<types.DescribeKeyPairsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeKeyPairs, input, options) as async.Operation<types.DescribeKeyPairsOutput>
+function C:describeKeyPairs(input: types.DescribeKeyPairsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeKeyPairsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeKeyPairs as schema.OperationSchema, input, options) as async.Operation<types.DescribeKeyPairsOutput>
 end
 
-function C:describeLaunchTemplates(input: types.DescribeLaunchTemplatesInput, options: any): async.Operation<types.DescribeLaunchTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLaunchTemplates, input, options) as async.Operation<types.DescribeLaunchTemplatesOutput>
+function C:describeLaunchTemplates(input: types.DescribeLaunchTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLaunchTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLaunchTemplates as schema.OperationSchema, input, options) as async.Operation<types.DescribeLaunchTemplatesOutput>
 end
 
-function C:describeLaunchTemplateVersions(input: types.DescribeLaunchTemplateVersionsInput, options: any): async.Operation<types.DescribeLaunchTemplateVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLaunchTemplateVersions, input, options) as async.Operation<types.DescribeLaunchTemplateVersionsOutput>
+function C:describeLaunchTemplateVersions(input: types.DescribeLaunchTemplateVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLaunchTemplateVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLaunchTemplateVersions as schema.OperationSchema, input, options) as async.Operation<types.DescribeLaunchTemplateVersionsOutput>
 end
 
-function C:describeLocalGatewayRouteTables(input: types.DescribeLocalGatewayRouteTablesInput, options: any): async.Operation<types.DescribeLocalGatewayRouteTablesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLocalGatewayRouteTables, input, options) as async.Operation<types.DescribeLocalGatewayRouteTablesOutput>
+function C:describeLocalGatewayRouteTables(input: types.DescribeLocalGatewayRouteTablesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLocalGatewayRouteTablesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLocalGatewayRouteTables as schema.OperationSchema, input, options) as async.Operation<types.DescribeLocalGatewayRouteTablesOutput>
 end
 
-function C:describeLocalGatewayRouteTableVirtualInterfaceGroupAssociations(input: types.DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsInput, options: any): async.Operation<types.DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociations, input, options) as async.Operation<types.DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsOutput>
+function C:describeLocalGatewayRouteTableVirtualInterfaceGroupAssociations(input: types.DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociations as schema.OperationSchema, input, options) as async.Operation<types.DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsOutput>
 end
 
-function C:describeLocalGatewayRouteTableVpcAssociations(input: types.DescribeLocalGatewayRouteTableVpcAssociationsInput, options: any): async.Operation<types.DescribeLocalGatewayRouteTableVpcAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLocalGatewayRouteTableVpcAssociations, input, options) as async.Operation<types.DescribeLocalGatewayRouteTableVpcAssociationsOutput>
+function C:describeLocalGatewayRouteTableVpcAssociations(input: types.DescribeLocalGatewayRouteTableVpcAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLocalGatewayRouteTableVpcAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLocalGatewayRouteTableVpcAssociations as schema.OperationSchema, input, options) as async.Operation<types.DescribeLocalGatewayRouteTableVpcAssociationsOutput>
 end
 
-function C:describeLocalGateways(input: types.DescribeLocalGatewaysInput, options: any): async.Operation<types.DescribeLocalGatewaysOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLocalGateways, input, options) as async.Operation<types.DescribeLocalGatewaysOutput>
+function C:describeLocalGateways(input: types.DescribeLocalGatewaysInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLocalGatewaysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLocalGateways as schema.OperationSchema, input, options) as async.Operation<types.DescribeLocalGatewaysOutput>
 end
 
-function C:describeLocalGatewayVirtualInterfaceGroups(input: types.DescribeLocalGatewayVirtualInterfaceGroupsInput, options: any): async.Operation<types.DescribeLocalGatewayVirtualInterfaceGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLocalGatewayVirtualInterfaceGroups, input, options) as async.Operation<types.DescribeLocalGatewayVirtualInterfaceGroupsOutput>
+function C:describeLocalGatewayVirtualInterfaceGroups(input: types.DescribeLocalGatewayVirtualInterfaceGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLocalGatewayVirtualInterfaceGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLocalGatewayVirtualInterfaceGroups as schema.OperationSchema, input, options) as async.Operation<types.DescribeLocalGatewayVirtualInterfaceGroupsOutput>
 end
 
-function C:describeLocalGatewayVirtualInterfaces(input: types.DescribeLocalGatewayVirtualInterfacesInput, options: any): async.Operation<types.DescribeLocalGatewayVirtualInterfacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLocalGatewayVirtualInterfaces, input, options) as async.Operation<types.DescribeLocalGatewayVirtualInterfacesOutput>
+function C:describeLocalGatewayVirtualInterfaces(input: types.DescribeLocalGatewayVirtualInterfacesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLocalGatewayVirtualInterfacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLocalGatewayVirtualInterfaces as schema.OperationSchema, input, options) as async.Operation<types.DescribeLocalGatewayVirtualInterfacesOutput>
 end
 
-function C:describeLockedSnapshots(input: types.DescribeLockedSnapshotsInput, options: any): async.Operation<types.DescribeLockedSnapshotsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLockedSnapshots, input, options) as async.Operation<types.DescribeLockedSnapshotsOutput>
+function C:describeLockedSnapshots(input: types.DescribeLockedSnapshotsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLockedSnapshotsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLockedSnapshots as schema.OperationSchema, input, options) as async.Operation<types.DescribeLockedSnapshotsOutput>
 end
 
-function C:describeMacHosts(input: types.DescribeMacHostsInput, options: any): async.Operation<types.DescribeMacHostsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeMacHosts, input, options) as async.Operation<types.DescribeMacHostsOutput>
+function C:describeMacHosts(input: types.DescribeMacHostsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMacHostsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMacHosts as schema.OperationSchema, input, options) as async.Operation<types.DescribeMacHostsOutput>
 end
 
-function C:describeMacModificationTasks(input: types.DescribeMacModificationTasksInput, options: any): async.Operation<types.DescribeMacModificationTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeMacModificationTasks, input, options) as async.Operation<types.DescribeMacModificationTasksOutput>
+function C:describeMacModificationTasks(input: types.DescribeMacModificationTasksInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMacModificationTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMacModificationTasks as schema.OperationSchema, input, options) as async.Operation<types.DescribeMacModificationTasksOutput>
 end
 
-function C:describeManagedPrefixLists(input: types.DescribeManagedPrefixListsInput, options: any): async.Operation<types.DescribeManagedPrefixListsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeManagedPrefixLists, input, options) as async.Operation<types.DescribeManagedPrefixListsOutput>
+function C:describeManagedPrefixLists(input: types.DescribeManagedPrefixListsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeManagedPrefixListsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeManagedPrefixLists as schema.OperationSchema, input, options) as async.Operation<types.DescribeManagedPrefixListsOutput>
 end
 
-function C:describeMovingAddresses(input: types.DescribeMovingAddressesInput, options: any): async.Operation<types.DescribeMovingAddressesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeMovingAddresses, input, options) as async.Operation<types.DescribeMovingAddressesOutput>
+function C:describeMovingAddresses(input: types.DescribeMovingAddressesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMovingAddressesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMovingAddresses as schema.OperationSchema, input, options) as async.Operation<types.DescribeMovingAddressesOutput>
 end
 
-function C:describeNatGateways(input: types.DescribeNatGatewaysInput, options: any): async.Operation<types.DescribeNatGatewaysOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeNatGateways, input, options) as async.Operation<types.DescribeNatGatewaysOutput>
+function C:describeNatGateways(input: types.DescribeNatGatewaysInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeNatGatewaysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeNatGateways as schema.OperationSchema, input, options) as async.Operation<types.DescribeNatGatewaysOutput>
 end
 
-function C:describeNetworkAcls(input: types.DescribeNetworkAclsInput, options: any): async.Operation<types.DescribeNetworkAclsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeNetworkAcls, input, options) as async.Operation<types.DescribeNetworkAclsOutput>
+function C:describeNetworkAcls(input: types.DescribeNetworkAclsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeNetworkAclsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeNetworkAcls as schema.OperationSchema, input, options) as async.Operation<types.DescribeNetworkAclsOutput>
 end
 
-function C:describeNetworkInsightsAccessScopeAnalyses(input: types.DescribeNetworkInsightsAccessScopeAnalysesInput, options: any): async.Operation<types.DescribeNetworkInsightsAccessScopeAnalysesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeNetworkInsightsAccessScopeAnalyses, input, options) as async.Operation<types.DescribeNetworkInsightsAccessScopeAnalysesOutput>
+function C:describeNetworkInsightsAccessScopeAnalyses(input: types.DescribeNetworkInsightsAccessScopeAnalysesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeNetworkInsightsAccessScopeAnalysesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeNetworkInsightsAccessScopeAnalyses as schema.OperationSchema, input, options) as async.Operation<types.DescribeNetworkInsightsAccessScopeAnalysesOutput>
 end
 
-function C:describeNetworkInsightsAccessScopes(input: types.DescribeNetworkInsightsAccessScopesInput, options: any): async.Operation<types.DescribeNetworkInsightsAccessScopesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeNetworkInsightsAccessScopes, input, options) as async.Operation<types.DescribeNetworkInsightsAccessScopesOutput>
+function C:describeNetworkInsightsAccessScopes(input: types.DescribeNetworkInsightsAccessScopesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeNetworkInsightsAccessScopesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeNetworkInsightsAccessScopes as schema.OperationSchema, input, options) as async.Operation<types.DescribeNetworkInsightsAccessScopesOutput>
 end
 
-function C:describeNetworkInsightsAnalyses(input: types.DescribeNetworkInsightsAnalysesInput, options: any): async.Operation<types.DescribeNetworkInsightsAnalysesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeNetworkInsightsAnalyses, input, options) as async.Operation<types.DescribeNetworkInsightsAnalysesOutput>
+function C:describeNetworkInsightsAnalyses(input: types.DescribeNetworkInsightsAnalysesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeNetworkInsightsAnalysesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeNetworkInsightsAnalyses as schema.OperationSchema, input, options) as async.Operation<types.DescribeNetworkInsightsAnalysesOutput>
 end
 
-function C:describeNetworkInsightsPaths(input: types.DescribeNetworkInsightsPathsInput, options: any): async.Operation<types.DescribeNetworkInsightsPathsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeNetworkInsightsPaths, input, options) as async.Operation<types.DescribeNetworkInsightsPathsOutput>
+function C:describeNetworkInsightsPaths(input: types.DescribeNetworkInsightsPathsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeNetworkInsightsPathsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeNetworkInsightsPaths as schema.OperationSchema, input, options) as async.Operation<types.DescribeNetworkInsightsPathsOutput>
 end
 
-function C:describeNetworkInterfaceAttribute(input: types.DescribeNetworkInterfaceAttributeInput, options: any): async.Operation<types.DescribeNetworkInterfaceAttributeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeNetworkInterfaceAttribute, input, options) as async.Operation<types.DescribeNetworkInterfaceAttributeOutput>
+function C:describeNetworkInterfaceAttribute(input: types.DescribeNetworkInterfaceAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeNetworkInterfaceAttributeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeNetworkInterfaceAttribute as schema.OperationSchema, input, options) as async.Operation<types.DescribeNetworkInterfaceAttributeOutput>
 end
 
-function C:describeNetworkInterfacePermissions(input: types.DescribeNetworkInterfacePermissionsInput, options: any): async.Operation<types.DescribeNetworkInterfacePermissionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeNetworkInterfacePermissions, input, options) as async.Operation<types.DescribeNetworkInterfacePermissionsOutput>
+function C:describeNetworkInterfacePermissions(input: types.DescribeNetworkInterfacePermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeNetworkInterfacePermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeNetworkInterfacePermissions as schema.OperationSchema, input, options) as async.Operation<types.DescribeNetworkInterfacePermissionsOutput>
 end
 
-function C:describeNetworkInterfaces(input: types.DescribeNetworkInterfacesInput, options: any): async.Operation<types.DescribeNetworkInterfacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeNetworkInterfaces, input, options) as async.Operation<types.DescribeNetworkInterfacesOutput>
+function C:describeNetworkInterfaces(input: types.DescribeNetworkInterfacesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeNetworkInterfacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeNetworkInterfaces as schema.OperationSchema, input, options) as async.Operation<types.DescribeNetworkInterfacesOutput>
 end
 
-function C:describeOutpostLags(input: types.DescribeOutpostLagsInput, options: any): async.Operation<types.DescribeOutpostLagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeOutpostLags, input, options) as async.Operation<types.DescribeOutpostLagsOutput>
+function C:describeOutpostLags(input: types.DescribeOutpostLagsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeOutpostLagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeOutpostLags as schema.OperationSchema, input, options) as async.Operation<types.DescribeOutpostLagsOutput>
 end
 
-function C:describePlacementGroups(input: types.DescribePlacementGroupsInput, options: any): async.Operation<types.DescribePlacementGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePlacementGroups, input, options) as async.Operation<types.DescribePlacementGroupsOutput>
+function C:describePlacementGroups(input: types.DescribePlacementGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePlacementGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePlacementGroups as schema.OperationSchema, input, options) as async.Operation<types.DescribePlacementGroupsOutput>
 end
 
-function C:describePrefixLists(input: types.DescribePrefixListsInput, options: any): async.Operation<types.DescribePrefixListsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePrefixLists, input, options) as async.Operation<types.DescribePrefixListsOutput>
+function C:describePrefixLists(input: types.DescribePrefixListsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePrefixListsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePrefixLists as schema.OperationSchema, input, options) as async.Operation<types.DescribePrefixListsOutput>
 end
 
-function C:describePrincipalIdFormat(input: types.DescribePrincipalIdFormatInput, options: any): async.Operation<types.DescribePrincipalIdFormatOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePrincipalIdFormat, input, options) as async.Operation<types.DescribePrincipalIdFormatOutput>
+function C:describePrincipalIdFormat(input: types.DescribePrincipalIdFormatInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePrincipalIdFormatOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePrincipalIdFormat as schema.OperationSchema, input, options) as async.Operation<types.DescribePrincipalIdFormatOutput>
 end
 
-function C:describePublicIpv4Pools(input: types.DescribePublicIpv4PoolsInput, options: any): async.Operation<types.DescribePublicIpv4PoolsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePublicIpv4Pools, input, options) as async.Operation<types.DescribePublicIpv4PoolsOutput>
+function C:describePublicIpv4Pools(input: types.DescribePublicIpv4PoolsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePublicIpv4PoolsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePublicIpv4Pools as schema.OperationSchema, input, options) as async.Operation<types.DescribePublicIpv4PoolsOutput>
 end
 
-function C:describeRegions(input: types.DescribeRegionsInput, options: any): async.Operation<types.DescribeRegionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRegions, input, options) as async.Operation<types.DescribeRegionsOutput>
+function C:describeRegions(input: types.DescribeRegionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRegionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRegions as schema.OperationSchema, input, options) as async.Operation<types.DescribeRegionsOutput>
 end
 
-function C:describeReplaceRootVolumeTasks(input: types.DescribeReplaceRootVolumeTasksInput, options: any): async.Operation<types.DescribeReplaceRootVolumeTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeReplaceRootVolumeTasks, input, options) as async.Operation<types.DescribeReplaceRootVolumeTasksOutput>
+function C:describeReplaceRootVolumeTasks(input: types.DescribeReplaceRootVolumeTasksInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeReplaceRootVolumeTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeReplaceRootVolumeTasks as schema.OperationSchema, input, options) as async.Operation<types.DescribeReplaceRootVolumeTasksOutput>
 end
 
-function C:describeReservedInstances(input: types.DescribeReservedInstancesInput, options: any): async.Operation<types.DescribeReservedInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeReservedInstances, input, options) as async.Operation<types.DescribeReservedInstancesOutput>
+function C:describeReservedInstances(input: types.DescribeReservedInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeReservedInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeReservedInstances as schema.OperationSchema, input, options) as async.Operation<types.DescribeReservedInstancesOutput>
 end
 
-function C:describeReservedInstancesListings(input: types.DescribeReservedInstancesListingsInput, options: any): async.Operation<types.DescribeReservedInstancesListingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeReservedInstancesListings, input, options) as async.Operation<types.DescribeReservedInstancesListingsOutput>
+function C:describeReservedInstancesListings(input: types.DescribeReservedInstancesListingsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeReservedInstancesListingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeReservedInstancesListings as schema.OperationSchema, input, options) as async.Operation<types.DescribeReservedInstancesListingsOutput>
 end
 
-function C:describeReservedInstancesModifications(input: types.DescribeReservedInstancesModificationsInput, options: any): async.Operation<types.DescribeReservedInstancesModificationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeReservedInstancesModifications, input, options) as async.Operation<types.DescribeReservedInstancesModificationsOutput>
+function C:describeReservedInstancesModifications(input: types.DescribeReservedInstancesModificationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeReservedInstancesModificationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeReservedInstancesModifications as schema.OperationSchema, input, options) as async.Operation<types.DescribeReservedInstancesModificationsOutput>
 end
 
-function C:describeReservedInstancesOfferings(input: types.DescribeReservedInstancesOfferingsInput, options: any): async.Operation<types.DescribeReservedInstancesOfferingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeReservedInstancesOfferings, input, options) as async.Operation<types.DescribeReservedInstancesOfferingsOutput>
+function C:describeReservedInstancesOfferings(input: types.DescribeReservedInstancesOfferingsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeReservedInstancesOfferingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeReservedInstancesOfferings as schema.OperationSchema, input, options) as async.Operation<types.DescribeReservedInstancesOfferingsOutput>
 end
 
-function C:describeRouteServerEndpoints(input: types.DescribeRouteServerEndpointsInput, options: any): async.Operation<types.DescribeRouteServerEndpointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRouteServerEndpoints, input, options) as async.Operation<types.DescribeRouteServerEndpointsOutput>
+function C:describeRouteServerEndpoints(input: types.DescribeRouteServerEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRouteServerEndpointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRouteServerEndpoints as schema.OperationSchema, input, options) as async.Operation<types.DescribeRouteServerEndpointsOutput>
 end
 
-function C:describeRouteServerPeers(input: types.DescribeRouteServerPeersInput, options: any): async.Operation<types.DescribeRouteServerPeersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRouteServerPeers, input, options) as async.Operation<types.DescribeRouteServerPeersOutput>
+function C:describeRouteServerPeers(input: types.DescribeRouteServerPeersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRouteServerPeersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRouteServerPeers as schema.OperationSchema, input, options) as async.Operation<types.DescribeRouteServerPeersOutput>
 end
 
-function C:describeRouteServers(input: types.DescribeRouteServersInput, options: any): async.Operation<types.DescribeRouteServersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRouteServers, input, options) as async.Operation<types.DescribeRouteServersOutput>
+function C:describeRouteServers(input: types.DescribeRouteServersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRouteServersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRouteServers as schema.OperationSchema, input, options) as async.Operation<types.DescribeRouteServersOutput>
 end
 
-function C:describeRouteTables(input: types.DescribeRouteTablesInput, options: any): async.Operation<types.DescribeRouteTablesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRouteTables, input, options) as async.Operation<types.DescribeRouteTablesOutput>
+function C:describeRouteTables(input: types.DescribeRouteTablesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRouteTablesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRouteTables as schema.OperationSchema, input, options) as async.Operation<types.DescribeRouteTablesOutput>
 end
 
-function C:describeScheduledInstanceAvailability(input: types.DescribeScheduledInstanceAvailabilityInput, options: any): async.Operation<types.DescribeScheduledInstanceAvailabilityOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeScheduledInstanceAvailability, input, options) as async.Operation<types.DescribeScheduledInstanceAvailabilityOutput>
+function C:describeScheduledInstanceAvailability(input: types.DescribeScheduledInstanceAvailabilityInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeScheduledInstanceAvailabilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeScheduledInstanceAvailability as schema.OperationSchema, input, options) as async.Operation<types.DescribeScheduledInstanceAvailabilityOutput>
 end
 
-function C:describeScheduledInstances(input: types.DescribeScheduledInstancesInput, options: any): async.Operation<types.DescribeScheduledInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeScheduledInstances, input, options) as async.Operation<types.DescribeScheduledInstancesOutput>
+function C:describeScheduledInstances(input: types.DescribeScheduledInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeScheduledInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeScheduledInstances as schema.OperationSchema, input, options) as async.Operation<types.DescribeScheduledInstancesOutput>
 end
 
-function C:describeSecondaryInterfaces(input: types.DescribeSecondaryInterfacesInput, options: any): async.Operation<types.DescribeSecondaryInterfacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSecondaryInterfaces, input, options) as async.Operation<types.DescribeSecondaryInterfacesOutput>
+function C:describeSecondaryInterfaces(input: types.DescribeSecondaryInterfacesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSecondaryInterfacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSecondaryInterfaces as schema.OperationSchema, input, options) as async.Operation<types.DescribeSecondaryInterfacesOutput>
 end
 
-function C:describeSecondaryNetworks(input: types.DescribeSecondaryNetworksInput, options: any): async.Operation<types.DescribeSecondaryNetworksOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSecondaryNetworks, input, options) as async.Operation<types.DescribeSecondaryNetworksOutput>
+function C:describeSecondaryNetworks(input: types.DescribeSecondaryNetworksInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSecondaryNetworksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSecondaryNetworks as schema.OperationSchema, input, options) as async.Operation<types.DescribeSecondaryNetworksOutput>
 end
 
-function C:describeSecondarySubnets(input: types.DescribeSecondarySubnetsInput, options: any): async.Operation<types.DescribeSecondarySubnetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSecondarySubnets, input, options) as async.Operation<types.DescribeSecondarySubnetsOutput>
+function C:describeSecondarySubnets(input: types.DescribeSecondarySubnetsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSecondarySubnetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSecondarySubnets as schema.OperationSchema, input, options) as async.Operation<types.DescribeSecondarySubnetsOutput>
 end
 
-function C:describeSecurityGroupReferences(input: types.DescribeSecurityGroupReferencesInput, options: any): async.Operation<types.DescribeSecurityGroupReferencesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSecurityGroupReferences, input, options) as async.Operation<types.DescribeSecurityGroupReferencesOutput>
+function C:describeSecurityGroupReferences(input: types.DescribeSecurityGroupReferencesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSecurityGroupReferencesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSecurityGroupReferences as schema.OperationSchema, input, options) as async.Operation<types.DescribeSecurityGroupReferencesOutput>
 end
 
-function C:describeSecurityGroupRules(input: types.DescribeSecurityGroupRulesInput, options: any): async.Operation<types.DescribeSecurityGroupRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSecurityGroupRules, input, options) as async.Operation<types.DescribeSecurityGroupRulesOutput>
+function C:describeSecurityGroupRules(input: types.DescribeSecurityGroupRulesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSecurityGroupRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSecurityGroupRules as schema.OperationSchema, input, options) as async.Operation<types.DescribeSecurityGroupRulesOutput>
 end
 
-function C:describeSecurityGroups(input: types.DescribeSecurityGroupsInput, options: any): async.Operation<types.DescribeSecurityGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSecurityGroups, input, options) as async.Operation<types.DescribeSecurityGroupsOutput>
+function C:describeSecurityGroups(input: types.DescribeSecurityGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSecurityGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSecurityGroups as schema.OperationSchema, input, options) as async.Operation<types.DescribeSecurityGroupsOutput>
 end
 
-function C:describeSecurityGroupVpcAssociations(input: types.DescribeSecurityGroupVpcAssociationsInput, options: any): async.Operation<types.DescribeSecurityGroupVpcAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSecurityGroupVpcAssociations, input, options) as async.Operation<types.DescribeSecurityGroupVpcAssociationsOutput>
+function C:describeSecurityGroupVpcAssociations(input: types.DescribeSecurityGroupVpcAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSecurityGroupVpcAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSecurityGroupVpcAssociations as schema.OperationSchema, input, options) as async.Operation<types.DescribeSecurityGroupVpcAssociationsOutput>
 end
 
-function C:describeServiceLinkVirtualInterfaces(input: types.DescribeServiceLinkVirtualInterfacesInput, options: any): async.Operation<types.DescribeServiceLinkVirtualInterfacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeServiceLinkVirtualInterfaces, input, options) as async.Operation<types.DescribeServiceLinkVirtualInterfacesOutput>
+function C:describeServiceLinkVirtualInterfaces(input: types.DescribeServiceLinkVirtualInterfacesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeServiceLinkVirtualInterfacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeServiceLinkVirtualInterfaces as schema.OperationSchema, input, options) as async.Operation<types.DescribeServiceLinkVirtualInterfacesOutput>
 end
 
-function C:describeSnapshotAttribute(input: types.DescribeSnapshotAttributeInput, options: any): async.Operation<types.DescribeSnapshotAttributeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSnapshotAttribute, input, options) as async.Operation<types.DescribeSnapshotAttributeOutput>
+function C:describeSnapshotAttribute(input: types.DescribeSnapshotAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSnapshotAttributeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSnapshotAttribute as schema.OperationSchema, input, options) as async.Operation<types.DescribeSnapshotAttributeOutput>
 end
 
-function C:describeSnapshots(input: types.DescribeSnapshotsInput, options: any): async.Operation<types.DescribeSnapshotsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSnapshots, input, options) as async.Operation<types.DescribeSnapshotsOutput>
+function C:describeSnapshots(input: types.DescribeSnapshotsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSnapshotsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSnapshots as schema.OperationSchema, input, options) as async.Operation<types.DescribeSnapshotsOutput>
 end
 
-function C:describeSnapshotTierStatus(input: types.DescribeSnapshotTierStatusInput, options: any): async.Operation<types.DescribeSnapshotTierStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSnapshotTierStatus, input, options) as async.Operation<types.DescribeSnapshotTierStatusOutput>
+function C:describeSnapshotTierStatus(input: types.DescribeSnapshotTierStatusInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSnapshotTierStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSnapshotTierStatus as schema.OperationSchema, input, options) as async.Operation<types.DescribeSnapshotTierStatusOutput>
 end
 
-function C:describeSpotDatafeedSubscription(input: types.DescribeSpotDatafeedSubscriptionInput, options: any): async.Operation<types.DescribeSpotDatafeedSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSpotDatafeedSubscription, input, options) as async.Operation<types.DescribeSpotDatafeedSubscriptionOutput>
+function C:describeSpotDatafeedSubscription(input: types.DescribeSpotDatafeedSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSpotDatafeedSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSpotDatafeedSubscription as schema.OperationSchema, input, options) as async.Operation<types.DescribeSpotDatafeedSubscriptionOutput>
 end
 
-function C:describeSpotFleetInstances(input: types.DescribeSpotFleetInstancesInput, options: any): async.Operation<types.DescribeSpotFleetInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSpotFleetInstances, input, options) as async.Operation<types.DescribeSpotFleetInstancesOutput>
+function C:describeSpotFleetInstances(input: types.DescribeSpotFleetInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSpotFleetInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSpotFleetInstances as schema.OperationSchema, input, options) as async.Operation<types.DescribeSpotFleetInstancesOutput>
 end
 
-function C:describeSpotFleetRequestHistory(input: types.DescribeSpotFleetRequestHistoryInput, options: any): async.Operation<types.DescribeSpotFleetRequestHistoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSpotFleetRequestHistory, input, options) as async.Operation<types.DescribeSpotFleetRequestHistoryOutput>
+function C:describeSpotFleetRequestHistory(input: types.DescribeSpotFleetRequestHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSpotFleetRequestHistoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSpotFleetRequestHistory as schema.OperationSchema, input, options) as async.Operation<types.DescribeSpotFleetRequestHistoryOutput>
 end
 
-function C:describeSpotFleetRequests(input: types.DescribeSpotFleetRequestsInput, options: any): async.Operation<types.DescribeSpotFleetRequestsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSpotFleetRequests, input, options) as async.Operation<types.DescribeSpotFleetRequestsOutput>
+function C:describeSpotFleetRequests(input: types.DescribeSpotFleetRequestsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSpotFleetRequestsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSpotFleetRequests as schema.OperationSchema, input, options) as async.Operation<types.DescribeSpotFleetRequestsOutput>
 end
 
-function C:describeSpotInstanceRequests(input: types.DescribeSpotInstanceRequestsInput, options: any): async.Operation<types.DescribeSpotInstanceRequestsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSpotInstanceRequests, input, options) as async.Operation<types.DescribeSpotInstanceRequestsOutput>
+function C:describeSpotInstanceRequests(input: types.DescribeSpotInstanceRequestsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSpotInstanceRequestsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSpotInstanceRequests as schema.OperationSchema, input, options) as async.Operation<types.DescribeSpotInstanceRequestsOutput>
 end
 
-function C:describeSpotPriceHistory(input: types.DescribeSpotPriceHistoryInput, options: any): async.Operation<types.DescribeSpotPriceHistoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSpotPriceHistory, input, options) as async.Operation<types.DescribeSpotPriceHistoryOutput>
+function C:describeSpotPriceHistory(input: types.DescribeSpotPriceHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSpotPriceHistoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSpotPriceHistory as schema.OperationSchema, input, options) as async.Operation<types.DescribeSpotPriceHistoryOutput>
 end
 
-function C:describeStaleSecurityGroups(input: types.DescribeStaleSecurityGroupsInput, options: any): async.Operation<types.DescribeStaleSecurityGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeStaleSecurityGroups, input, options) as async.Operation<types.DescribeStaleSecurityGroupsOutput>
+function C:describeStaleSecurityGroups(input: types.DescribeStaleSecurityGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeStaleSecurityGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeStaleSecurityGroups as schema.OperationSchema, input, options) as async.Operation<types.DescribeStaleSecurityGroupsOutput>
 end
 
-function C:describeStoreImageTasks(input: types.DescribeStoreImageTasksInput, options: any): async.Operation<types.DescribeStoreImageTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeStoreImageTasks, input, options) as async.Operation<types.DescribeStoreImageTasksOutput>
+function C:describeStoreImageTasks(input: types.DescribeStoreImageTasksInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeStoreImageTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeStoreImageTasks as schema.OperationSchema, input, options) as async.Operation<types.DescribeStoreImageTasksOutput>
 end
 
-function C:describeSubnets(input: types.DescribeSubnetsInput, options: any): async.Operation<types.DescribeSubnetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSubnets, input, options) as async.Operation<types.DescribeSubnetsOutput>
+function C:describeSubnets(input: types.DescribeSubnetsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSubnetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSubnets as schema.OperationSchema, input, options) as async.Operation<types.DescribeSubnetsOutput>
 end
 
-function C:describeTags(input: types.DescribeTagsInput, options: any): async.Operation<types.DescribeTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTags, input, options) as async.Operation<types.DescribeTagsOutput>
+function C:describeTags(input: types.DescribeTagsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTags as schema.OperationSchema, input, options) as async.Operation<types.DescribeTagsOutput>
 end
 
-function C:describeTrafficMirrorFilterRules(input: types.DescribeTrafficMirrorFilterRulesInput, options: any): async.Operation<types.DescribeTrafficMirrorFilterRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTrafficMirrorFilterRules, input, options) as async.Operation<types.DescribeTrafficMirrorFilterRulesOutput>
+function C:describeTrafficMirrorFilterRules(input: types.DescribeTrafficMirrorFilterRulesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTrafficMirrorFilterRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTrafficMirrorFilterRules as schema.OperationSchema, input, options) as async.Operation<types.DescribeTrafficMirrorFilterRulesOutput>
 end
 
-function C:describeTrafficMirrorFilters(input: types.DescribeTrafficMirrorFiltersInput, options: any): async.Operation<types.DescribeTrafficMirrorFiltersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTrafficMirrorFilters, input, options) as async.Operation<types.DescribeTrafficMirrorFiltersOutput>
+function C:describeTrafficMirrorFilters(input: types.DescribeTrafficMirrorFiltersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTrafficMirrorFiltersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTrafficMirrorFilters as schema.OperationSchema, input, options) as async.Operation<types.DescribeTrafficMirrorFiltersOutput>
 end
 
-function C:describeTrafficMirrorSessions(input: types.DescribeTrafficMirrorSessionsInput, options: any): async.Operation<types.DescribeTrafficMirrorSessionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTrafficMirrorSessions, input, options) as async.Operation<types.DescribeTrafficMirrorSessionsOutput>
+function C:describeTrafficMirrorSessions(input: types.DescribeTrafficMirrorSessionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTrafficMirrorSessionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTrafficMirrorSessions as schema.OperationSchema, input, options) as async.Operation<types.DescribeTrafficMirrorSessionsOutput>
 end
 
-function C:describeTrafficMirrorTargets(input: types.DescribeTrafficMirrorTargetsInput, options: any): async.Operation<types.DescribeTrafficMirrorTargetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTrafficMirrorTargets, input, options) as async.Operation<types.DescribeTrafficMirrorTargetsOutput>
+function C:describeTrafficMirrorTargets(input: types.DescribeTrafficMirrorTargetsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTrafficMirrorTargetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTrafficMirrorTargets as schema.OperationSchema, input, options) as async.Operation<types.DescribeTrafficMirrorTargetsOutput>
 end
 
-function C:describeTransitGatewayAttachments(input: types.DescribeTransitGatewayAttachmentsInput, options: any): async.Operation<types.DescribeTransitGatewayAttachmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTransitGatewayAttachments, input, options) as async.Operation<types.DescribeTransitGatewayAttachmentsOutput>
+function C:describeTransitGatewayAttachments(input: types.DescribeTransitGatewayAttachmentsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayAttachmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTransitGatewayAttachments as schema.OperationSchema, input, options) as async.Operation<types.DescribeTransitGatewayAttachmentsOutput>
 end
 
-function C:describeTransitGatewayConnectPeers(input: types.DescribeTransitGatewayConnectPeersInput, options: any): async.Operation<types.DescribeTransitGatewayConnectPeersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTransitGatewayConnectPeers, input, options) as async.Operation<types.DescribeTransitGatewayConnectPeersOutput>
+function C:describeTransitGatewayConnectPeers(input: types.DescribeTransitGatewayConnectPeersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayConnectPeersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTransitGatewayConnectPeers as schema.OperationSchema, input, options) as async.Operation<types.DescribeTransitGatewayConnectPeersOutput>
 end
 
-function C:describeTransitGatewayConnects(input: types.DescribeTransitGatewayConnectsInput, options: any): async.Operation<types.DescribeTransitGatewayConnectsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTransitGatewayConnects, input, options) as async.Operation<types.DescribeTransitGatewayConnectsOutput>
+function C:describeTransitGatewayConnects(input: types.DescribeTransitGatewayConnectsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayConnectsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTransitGatewayConnects as schema.OperationSchema, input, options) as async.Operation<types.DescribeTransitGatewayConnectsOutput>
 end
 
-function C:describeTransitGatewayMeteringPolicies(input: types.DescribeTransitGatewayMeteringPoliciesInput, options: any): async.Operation<types.DescribeTransitGatewayMeteringPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTransitGatewayMeteringPolicies, input, options) as async.Operation<types.DescribeTransitGatewayMeteringPoliciesOutput>
+function C:describeTransitGatewayMeteringPolicies(input: types.DescribeTransitGatewayMeteringPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayMeteringPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTransitGatewayMeteringPolicies as schema.OperationSchema, input, options) as async.Operation<types.DescribeTransitGatewayMeteringPoliciesOutput>
 end
 
-function C:describeTransitGatewayMulticastDomains(input: types.DescribeTransitGatewayMulticastDomainsInput, options: any): async.Operation<types.DescribeTransitGatewayMulticastDomainsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTransitGatewayMulticastDomains, input, options) as async.Operation<types.DescribeTransitGatewayMulticastDomainsOutput>
+function C:describeTransitGatewayMulticastDomains(input: types.DescribeTransitGatewayMulticastDomainsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayMulticastDomainsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTransitGatewayMulticastDomains as schema.OperationSchema, input, options) as async.Operation<types.DescribeTransitGatewayMulticastDomainsOutput>
 end
 
-function C:describeTransitGatewayPeeringAttachments(input: types.DescribeTransitGatewayPeeringAttachmentsInput, options: any): async.Operation<types.DescribeTransitGatewayPeeringAttachmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTransitGatewayPeeringAttachments, input, options) as async.Operation<types.DescribeTransitGatewayPeeringAttachmentsOutput>
+function C:describeTransitGatewayPeeringAttachments(input: types.DescribeTransitGatewayPeeringAttachmentsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayPeeringAttachmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTransitGatewayPeeringAttachments as schema.OperationSchema, input, options) as async.Operation<types.DescribeTransitGatewayPeeringAttachmentsOutput>
 end
 
-function C:describeTransitGatewayPolicyTables(input: types.DescribeTransitGatewayPolicyTablesInput, options: any): async.Operation<types.DescribeTransitGatewayPolicyTablesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTransitGatewayPolicyTables, input, options) as async.Operation<types.DescribeTransitGatewayPolicyTablesOutput>
+function C:describeTransitGatewayPolicyTables(input: types.DescribeTransitGatewayPolicyTablesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayPolicyTablesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTransitGatewayPolicyTables as schema.OperationSchema, input, options) as async.Operation<types.DescribeTransitGatewayPolicyTablesOutput>
 end
 
-function C:describeTransitGatewayRouteTableAnnouncements(input: types.DescribeTransitGatewayRouteTableAnnouncementsInput, options: any): async.Operation<types.DescribeTransitGatewayRouteTableAnnouncementsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTransitGatewayRouteTableAnnouncements, input, options) as async.Operation<types.DescribeTransitGatewayRouteTableAnnouncementsOutput>
+function C:describeTransitGatewayRouteTableAnnouncements(input: types.DescribeTransitGatewayRouteTableAnnouncementsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayRouteTableAnnouncementsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTransitGatewayRouteTableAnnouncements as schema.OperationSchema, input, options) as async.Operation<types.DescribeTransitGatewayRouteTableAnnouncementsOutput>
 end
 
-function C:describeTransitGatewayRouteTables(input: types.DescribeTransitGatewayRouteTablesInput, options: any): async.Operation<types.DescribeTransitGatewayRouteTablesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTransitGatewayRouteTables, input, options) as async.Operation<types.DescribeTransitGatewayRouteTablesOutput>
+function C:describeTransitGatewayRouteTables(input: types.DescribeTransitGatewayRouteTablesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayRouteTablesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTransitGatewayRouteTables as schema.OperationSchema, input, options) as async.Operation<types.DescribeTransitGatewayRouteTablesOutput>
 end
 
-function C:describeTransitGateways(input: types.DescribeTransitGatewaysInput, options: any): async.Operation<types.DescribeTransitGatewaysOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTransitGateways, input, options) as async.Operation<types.DescribeTransitGatewaysOutput>
+function C:describeTransitGateways(input: types.DescribeTransitGatewaysInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewaysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTransitGateways as schema.OperationSchema, input, options) as async.Operation<types.DescribeTransitGatewaysOutput>
 end
 
-function C:describeTransitGatewayVpcAttachments(input: types.DescribeTransitGatewayVpcAttachmentsInput, options: any): async.Operation<types.DescribeTransitGatewayVpcAttachmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTransitGatewayVpcAttachments, input, options) as async.Operation<types.DescribeTransitGatewayVpcAttachmentsOutput>
+function C:describeTransitGatewayVpcAttachments(input: types.DescribeTransitGatewayVpcAttachmentsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayVpcAttachmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTransitGatewayVpcAttachments as schema.OperationSchema, input, options) as async.Operation<types.DescribeTransitGatewayVpcAttachmentsOutput>
 end
 
-function C:describeTrunkInterfaceAssociations(input: types.DescribeTrunkInterfaceAssociationsInput, options: any): async.Operation<types.DescribeTrunkInterfaceAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTrunkInterfaceAssociations, input, options) as async.Operation<types.DescribeTrunkInterfaceAssociationsOutput>
+function C:describeTrunkInterfaceAssociations(input: types.DescribeTrunkInterfaceAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTrunkInterfaceAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTrunkInterfaceAssociations as schema.OperationSchema, input, options) as async.Operation<types.DescribeTrunkInterfaceAssociationsOutput>
 end
 
-function C:describeVerifiedAccessEndpoints(input: types.DescribeVerifiedAccessEndpointsInput, options: any): async.Operation<types.DescribeVerifiedAccessEndpointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVerifiedAccessEndpoints, input, options) as async.Operation<types.DescribeVerifiedAccessEndpointsOutput>
+function C:describeVerifiedAccessEndpoints(input: types.DescribeVerifiedAccessEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVerifiedAccessEndpointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVerifiedAccessEndpoints as schema.OperationSchema, input, options) as async.Operation<types.DescribeVerifiedAccessEndpointsOutput>
 end
 
-function C:describeVerifiedAccessGroups(input: types.DescribeVerifiedAccessGroupsInput, options: any): async.Operation<types.DescribeVerifiedAccessGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVerifiedAccessGroups, input, options) as async.Operation<types.DescribeVerifiedAccessGroupsOutput>
+function C:describeVerifiedAccessGroups(input: types.DescribeVerifiedAccessGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVerifiedAccessGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVerifiedAccessGroups as schema.OperationSchema, input, options) as async.Operation<types.DescribeVerifiedAccessGroupsOutput>
 end
 
-function C:describeVerifiedAccessInstanceLoggingConfigurations(input: types.DescribeVerifiedAccessInstanceLoggingConfigurationsInput, options: any): async.Operation<types.DescribeVerifiedAccessInstanceLoggingConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVerifiedAccessInstanceLoggingConfigurations, input, options) as async.Operation<types.DescribeVerifiedAccessInstanceLoggingConfigurationsOutput>
+function C:describeVerifiedAccessInstanceLoggingConfigurations(input: types.DescribeVerifiedAccessInstanceLoggingConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVerifiedAccessInstanceLoggingConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVerifiedAccessInstanceLoggingConfigurations as schema.OperationSchema, input, options) as async.Operation<types.DescribeVerifiedAccessInstanceLoggingConfigurationsOutput>
 end
 
-function C:describeVerifiedAccessInstances(input: types.DescribeVerifiedAccessInstancesInput, options: any): async.Operation<types.DescribeVerifiedAccessInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVerifiedAccessInstances, input, options) as async.Operation<types.DescribeVerifiedAccessInstancesOutput>
+function C:describeVerifiedAccessInstances(input: types.DescribeVerifiedAccessInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVerifiedAccessInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVerifiedAccessInstances as schema.OperationSchema, input, options) as async.Operation<types.DescribeVerifiedAccessInstancesOutput>
 end
 
-function C:describeVerifiedAccessTrustProviders(input: types.DescribeVerifiedAccessTrustProvidersInput, options: any): async.Operation<types.DescribeVerifiedAccessTrustProvidersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVerifiedAccessTrustProviders, input, options) as async.Operation<types.DescribeVerifiedAccessTrustProvidersOutput>
+function C:describeVerifiedAccessTrustProviders(input: types.DescribeVerifiedAccessTrustProvidersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVerifiedAccessTrustProvidersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVerifiedAccessTrustProviders as schema.OperationSchema, input, options) as async.Operation<types.DescribeVerifiedAccessTrustProvidersOutput>
 end
 
-function C:describeVolumeAttribute(input: types.DescribeVolumeAttributeInput, options: any): async.Operation<types.DescribeVolumeAttributeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVolumeAttribute, input, options) as async.Operation<types.DescribeVolumeAttributeOutput>
+function C:describeVolumeAttribute(input: types.DescribeVolumeAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVolumeAttributeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVolumeAttribute as schema.OperationSchema, input, options) as async.Operation<types.DescribeVolumeAttributeOutput>
 end
 
-function C:describeVolumes(input: types.DescribeVolumesInput, options: any): async.Operation<types.DescribeVolumesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVolumes, input, options) as async.Operation<types.DescribeVolumesOutput>
+function C:describeVolumes(input: types.DescribeVolumesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVolumesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVolumes as schema.OperationSchema, input, options) as async.Operation<types.DescribeVolumesOutput>
 end
 
-function C:describeVolumesModifications(input: types.DescribeVolumesModificationsInput, options: any): async.Operation<types.DescribeVolumesModificationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVolumesModifications, input, options) as async.Operation<types.DescribeVolumesModificationsOutput>
+function C:describeVolumesModifications(input: types.DescribeVolumesModificationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVolumesModificationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVolumesModifications as schema.OperationSchema, input, options) as async.Operation<types.DescribeVolumesModificationsOutput>
 end
 
-function C:describeVolumeStatus(input: types.DescribeVolumeStatusInput, options: any): async.Operation<types.DescribeVolumeStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVolumeStatus, input, options) as async.Operation<types.DescribeVolumeStatusOutput>
+function C:describeVolumeStatus(input: types.DescribeVolumeStatusInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVolumeStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVolumeStatus as schema.OperationSchema, input, options) as async.Operation<types.DescribeVolumeStatusOutput>
 end
 
-function C:describeVpcAttribute(input: types.DescribeVpcAttributeInput, options: any): async.Operation<types.DescribeVpcAttributeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVpcAttribute, input, options) as async.Operation<types.DescribeVpcAttributeOutput>
+function C:describeVpcAttribute(input: types.DescribeVpcAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVpcAttributeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVpcAttribute as schema.OperationSchema, input, options) as async.Operation<types.DescribeVpcAttributeOutput>
 end
 
-function C:describeVpcBlockPublicAccessExclusions(input: types.DescribeVpcBlockPublicAccessExclusionsInput, options: any): async.Operation<types.DescribeVpcBlockPublicAccessExclusionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVpcBlockPublicAccessExclusions, input, options) as async.Operation<types.DescribeVpcBlockPublicAccessExclusionsOutput>
+function C:describeVpcBlockPublicAccessExclusions(input: types.DescribeVpcBlockPublicAccessExclusionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVpcBlockPublicAccessExclusionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVpcBlockPublicAccessExclusions as schema.OperationSchema, input, options) as async.Operation<types.DescribeVpcBlockPublicAccessExclusionsOutput>
 end
 
-function C:describeVpcBlockPublicAccessOptions(input: types.DescribeVpcBlockPublicAccessOptionsInput, options: any): async.Operation<types.DescribeVpcBlockPublicAccessOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVpcBlockPublicAccessOptions, input, options) as async.Operation<types.DescribeVpcBlockPublicAccessOptionsOutput>
+function C:describeVpcBlockPublicAccessOptions(input: types.DescribeVpcBlockPublicAccessOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVpcBlockPublicAccessOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVpcBlockPublicAccessOptions as schema.OperationSchema, input, options) as async.Operation<types.DescribeVpcBlockPublicAccessOptionsOutput>
 end
 
-function C:describeVpcClassicLink(input: types.DescribeVpcClassicLinkInput, options: any): async.Operation<types.DescribeVpcClassicLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVpcClassicLink, input, options) as async.Operation<types.DescribeVpcClassicLinkOutput>
+function C:describeVpcClassicLink(input: types.DescribeVpcClassicLinkInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVpcClassicLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVpcClassicLink as schema.OperationSchema, input, options) as async.Operation<types.DescribeVpcClassicLinkOutput>
 end
 
-function C:describeVpcClassicLinkDnsSupport(input: types.DescribeVpcClassicLinkDnsSupportInput, options: any): async.Operation<types.DescribeVpcClassicLinkDnsSupportOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVpcClassicLinkDnsSupport, input, options) as async.Operation<types.DescribeVpcClassicLinkDnsSupportOutput>
+function C:describeVpcClassicLinkDnsSupport(input: types.DescribeVpcClassicLinkDnsSupportInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVpcClassicLinkDnsSupportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVpcClassicLinkDnsSupport as schema.OperationSchema, input, options) as async.Operation<types.DescribeVpcClassicLinkDnsSupportOutput>
 end
 
-function C:describeVpcEncryptionControls(input: types.DescribeVpcEncryptionControlsInput, options: any): async.Operation<types.DescribeVpcEncryptionControlsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVpcEncryptionControls, input, options) as async.Operation<types.DescribeVpcEncryptionControlsOutput>
+function C:describeVpcEncryptionControls(input: types.DescribeVpcEncryptionControlsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVpcEncryptionControlsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVpcEncryptionControls as schema.OperationSchema, input, options) as async.Operation<types.DescribeVpcEncryptionControlsOutput>
 end
 
-function C:describeVpcEndpointAssociations(input: types.DescribeVpcEndpointAssociationsInput, options: any): async.Operation<types.DescribeVpcEndpointAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVpcEndpointAssociations, input, options) as async.Operation<types.DescribeVpcEndpointAssociationsOutput>
+function C:describeVpcEndpointAssociations(input: types.DescribeVpcEndpointAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVpcEndpointAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVpcEndpointAssociations as schema.OperationSchema, input, options) as async.Operation<types.DescribeVpcEndpointAssociationsOutput>
 end
 
-function C:describeVpcEndpointConnectionNotifications(input: types.DescribeVpcEndpointConnectionNotificationsInput, options: any): async.Operation<types.DescribeVpcEndpointConnectionNotificationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVpcEndpointConnectionNotifications, input, options) as async.Operation<types.DescribeVpcEndpointConnectionNotificationsOutput>
+function C:describeVpcEndpointConnectionNotifications(input: types.DescribeVpcEndpointConnectionNotificationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVpcEndpointConnectionNotificationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVpcEndpointConnectionNotifications as schema.OperationSchema, input, options) as async.Operation<types.DescribeVpcEndpointConnectionNotificationsOutput>
 end
 
-function C:describeVpcEndpointConnections(input: types.DescribeVpcEndpointConnectionsInput, options: any): async.Operation<types.DescribeVpcEndpointConnectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVpcEndpointConnections, input, options) as async.Operation<types.DescribeVpcEndpointConnectionsOutput>
+function C:describeVpcEndpointConnections(input: types.DescribeVpcEndpointConnectionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVpcEndpointConnectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVpcEndpointConnections as schema.OperationSchema, input, options) as async.Operation<types.DescribeVpcEndpointConnectionsOutput>
 end
 
-function C:describeVpcEndpoints(input: types.DescribeVpcEndpointsInput, options: any): async.Operation<types.DescribeVpcEndpointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVpcEndpoints, input, options) as async.Operation<types.DescribeVpcEndpointsOutput>
+function C:describeVpcEndpoints(input: types.DescribeVpcEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVpcEndpointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVpcEndpoints as schema.OperationSchema, input, options) as async.Operation<types.DescribeVpcEndpointsOutput>
 end
 
-function C:describeVpcEndpointServiceConfigurations(input: types.DescribeVpcEndpointServiceConfigurationsInput, options: any): async.Operation<types.DescribeVpcEndpointServiceConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVpcEndpointServiceConfigurations, input, options) as async.Operation<types.DescribeVpcEndpointServiceConfigurationsOutput>
+function C:describeVpcEndpointServiceConfigurations(input: types.DescribeVpcEndpointServiceConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVpcEndpointServiceConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVpcEndpointServiceConfigurations as schema.OperationSchema, input, options) as async.Operation<types.DescribeVpcEndpointServiceConfigurationsOutput>
 end
 
-function C:describeVpcEndpointServicePermissions(input: types.DescribeVpcEndpointServicePermissionsInput, options: any): async.Operation<types.DescribeVpcEndpointServicePermissionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVpcEndpointServicePermissions, input, options) as async.Operation<types.DescribeVpcEndpointServicePermissionsOutput>
+function C:describeVpcEndpointServicePermissions(input: types.DescribeVpcEndpointServicePermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVpcEndpointServicePermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVpcEndpointServicePermissions as schema.OperationSchema, input, options) as async.Operation<types.DescribeVpcEndpointServicePermissionsOutput>
 end
 
-function C:describeVpcEndpointServices(input: types.DescribeVpcEndpointServicesInput, options: any): async.Operation<types.DescribeVpcEndpointServicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVpcEndpointServices, input, options) as async.Operation<types.DescribeVpcEndpointServicesOutput>
+function C:describeVpcEndpointServices(input: types.DescribeVpcEndpointServicesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVpcEndpointServicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVpcEndpointServices as schema.OperationSchema, input, options) as async.Operation<types.DescribeVpcEndpointServicesOutput>
 end
 
-function C:describeVpcPeeringConnections(input: types.DescribeVpcPeeringConnectionsInput, options: any): async.Operation<types.DescribeVpcPeeringConnectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVpcPeeringConnections, input, options) as async.Operation<types.DescribeVpcPeeringConnectionsOutput>
+function C:describeVpcPeeringConnections(input: types.DescribeVpcPeeringConnectionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVpcPeeringConnectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVpcPeeringConnections as schema.OperationSchema, input, options) as async.Operation<types.DescribeVpcPeeringConnectionsOutput>
 end
 
-function C:describeVpcs(input: types.DescribeVpcsInput, options: any): async.Operation<types.DescribeVpcsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVpcs, input, options) as async.Operation<types.DescribeVpcsOutput>
+function C:describeVpcs(input: types.DescribeVpcsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVpcsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVpcs as schema.OperationSchema, input, options) as async.Operation<types.DescribeVpcsOutput>
 end
 
-function C:describeVpnConcentrators(input: types.DescribeVpnConcentratorsInput, options: any): async.Operation<types.DescribeVpnConcentratorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVpnConcentrators, input, options) as async.Operation<types.DescribeVpnConcentratorsOutput>
+function C:describeVpnConcentrators(input: types.DescribeVpnConcentratorsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVpnConcentratorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVpnConcentrators as schema.OperationSchema, input, options) as async.Operation<types.DescribeVpnConcentratorsOutput>
 end
 
-function C:describeVpnConnections(input: types.DescribeVpnConnectionsInput, options: any): async.Operation<types.DescribeVpnConnectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVpnConnections, input, options) as async.Operation<types.DescribeVpnConnectionsOutput>
+function C:describeVpnConnections(input: types.DescribeVpnConnectionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVpnConnectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVpnConnections as schema.OperationSchema, input, options) as async.Operation<types.DescribeVpnConnectionsOutput>
 end
 
-function C:describeVpnGateways(input: types.DescribeVpnGatewaysInput, options: any): async.Operation<types.DescribeVpnGatewaysOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVpnGateways, input, options) as async.Operation<types.DescribeVpnGatewaysOutput>
+function C:describeVpnGateways(input: types.DescribeVpnGatewaysInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVpnGatewaysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVpnGateways as schema.OperationSchema, input, options) as async.Operation<types.DescribeVpnGatewaysOutput>
 end
 
-function C:detachClassicLinkVpc(input: types.DetachClassicLinkVpcInput, options: any): async.Operation<types.DetachClassicLinkVpcOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetachClassicLinkVpc, input, options) as async.Operation<types.DetachClassicLinkVpcOutput>
+function C:detachClassicLinkVpc(input: types.DetachClassicLinkVpcInput, options?: base_client.InvokeOptions): async.Operation<types.DetachClassicLinkVpcOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachClassicLinkVpc as schema.OperationSchema, input, options) as async.Operation<types.DetachClassicLinkVpcOutput>
 end
 
-function C:detachInternetGateway(input: types.DetachInternetGatewayInput, options: any): async.Operation<types.DetachInternetGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetachInternetGateway, input, options) as async.Operation<types.DetachInternetGatewayOutput>
+function C:detachInternetGateway(input: types.DetachInternetGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DetachInternetGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachInternetGateway as schema.OperationSchema, input, options) as async.Operation<types.DetachInternetGatewayOutput>
 end
 
-function C:detachNetworkInterface(input: types.DetachNetworkInterfaceInput, options: any): async.Operation<types.DetachNetworkInterfaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetachNetworkInterface, input, options) as async.Operation<types.DetachNetworkInterfaceOutput>
+function C:detachNetworkInterface(input: types.DetachNetworkInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.DetachNetworkInterfaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachNetworkInterface as schema.OperationSchema, input, options) as async.Operation<types.DetachNetworkInterfaceOutput>
 end
 
-function C:detachVerifiedAccessTrustProvider(input: types.DetachVerifiedAccessTrustProviderInput, options: any): async.Operation<types.DetachVerifiedAccessTrustProviderOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetachVerifiedAccessTrustProvider, input, options) as async.Operation<types.DetachVerifiedAccessTrustProviderOutput>
+function C:detachVerifiedAccessTrustProvider(input: types.DetachVerifiedAccessTrustProviderInput, options?: base_client.InvokeOptions): async.Operation<types.DetachVerifiedAccessTrustProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachVerifiedAccessTrustProvider as schema.OperationSchema, input, options) as async.Operation<types.DetachVerifiedAccessTrustProviderOutput>
 end
 
-function C:detachVolume(input: types.DetachVolumeInput, options: any): async.Operation<types.DetachVolumeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetachVolume, input, options) as async.Operation<types.DetachVolumeOutput>
+function C:detachVolume(input: types.DetachVolumeInput, options?: base_client.InvokeOptions): async.Operation<types.DetachVolumeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachVolume as schema.OperationSchema, input, options) as async.Operation<types.DetachVolumeOutput>
 end
 
-function C:detachVpnGateway(input: types.DetachVpnGatewayInput, options: any): async.Operation<types.DetachVpnGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetachVpnGateway, input, options) as async.Operation<types.DetachVpnGatewayOutput>
+function C:detachVpnGateway(input: types.DetachVpnGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DetachVpnGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachVpnGateway as schema.OperationSchema, input, options) as async.Operation<types.DetachVpnGatewayOutput>
 end
 
-function C:disableAddressTransfer(input: types.DisableAddressTransferInput, options: any): async.Operation<types.DisableAddressTransferOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableAddressTransfer, input, options) as async.Operation<types.DisableAddressTransferOutput>
+function C:disableAddressTransfer(input: types.DisableAddressTransferInput, options?: base_client.InvokeOptions): async.Operation<types.DisableAddressTransferOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableAddressTransfer as schema.OperationSchema, input, options) as async.Operation<types.DisableAddressTransferOutput>
 end
 
-function C:disableAllowedImagesSettings(input: types.DisableAllowedImagesSettingsInput, options: any): async.Operation<types.DisableAllowedImagesSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableAllowedImagesSettings, input, options) as async.Operation<types.DisableAllowedImagesSettingsOutput>
+function C:disableAllowedImagesSettings(input: types.DisableAllowedImagesSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.DisableAllowedImagesSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableAllowedImagesSettings as schema.OperationSchema, input, options) as async.Operation<types.DisableAllowedImagesSettingsOutput>
 end
 
-function C:disableAwsNetworkPerformanceMetricSubscription(input: types.DisableAwsNetworkPerformanceMetricSubscriptionInput, options: any): async.Operation<types.DisableAwsNetworkPerformanceMetricSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableAwsNetworkPerformanceMetricSubscription, input, options) as async.Operation<types.DisableAwsNetworkPerformanceMetricSubscriptionOutput>
+function C:disableAwsNetworkPerformanceMetricSubscription(input: types.DisableAwsNetworkPerformanceMetricSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.DisableAwsNetworkPerformanceMetricSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableAwsNetworkPerformanceMetricSubscription as schema.OperationSchema, input, options) as async.Operation<types.DisableAwsNetworkPerformanceMetricSubscriptionOutput>
 end
 
-function C:disableCapacityManager(input: types.DisableCapacityManagerInput, options: any): async.Operation<types.DisableCapacityManagerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableCapacityManager, input, options) as async.Operation<types.DisableCapacityManagerOutput>
+function C:disableCapacityManager(input: types.DisableCapacityManagerInput, options?: base_client.InvokeOptions): async.Operation<types.DisableCapacityManagerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableCapacityManager as schema.OperationSchema, input, options) as async.Operation<types.DisableCapacityManagerOutput>
 end
 
-function C:disableEbsEncryptionByDefault(input: types.DisableEbsEncryptionByDefaultInput, options: any): async.Operation<types.DisableEbsEncryptionByDefaultOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableEbsEncryptionByDefault, input, options) as async.Operation<types.DisableEbsEncryptionByDefaultOutput>
+function C:disableEbsEncryptionByDefault(input: types.DisableEbsEncryptionByDefaultInput, options?: base_client.InvokeOptions): async.Operation<types.DisableEbsEncryptionByDefaultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableEbsEncryptionByDefault as schema.OperationSchema, input, options) as async.Operation<types.DisableEbsEncryptionByDefaultOutput>
 end
 
-function C:disableFastLaunch(input: types.DisableFastLaunchInput, options: any): async.Operation<types.DisableFastLaunchOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableFastLaunch, input, options) as async.Operation<types.DisableFastLaunchOutput>
+function C:disableFastLaunch(input: types.DisableFastLaunchInput, options?: base_client.InvokeOptions): async.Operation<types.DisableFastLaunchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableFastLaunch as schema.OperationSchema, input, options) as async.Operation<types.DisableFastLaunchOutput>
 end
 
-function C:disableFastSnapshotRestores(input: types.DisableFastSnapshotRestoresInput, options: any): async.Operation<types.DisableFastSnapshotRestoresOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableFastSnapshotRestores, input, options) as async.Operation<types.DisableFastSnapshotRestoresOutput>
+function C:disableFastSnapshotRestores(input: types.DisableFastSnapshotRestoresInput, options?: base_client.InvokeOptions): async.Operation<types.DisableFastSnapshotRestoresOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableFastSnapshotRestores as schema.OperationSchema, input, options) as async.Operation<types.DisableFastSnapshotRestoresOutput>
 end
 
-function C:disableImage(input: types.DisableImageInput, options: any): async.Operation<types.DisableImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableImage, input, options) as async.Operation<types.DisableImageOutput>
+function C:disableImage(input: types.DisableImageInput, options?: base_client.InvokeOptions): async.Operation<types.DisableImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableImage as schema.OperationSchema, input, options) as async.Operation<types.DisableImageOutput>
 end
 
-function C:disableImageBlockPublicAccess(input: types.DisableImageBlockPublicAccessInput, options: any): async.Operation<types.DisableImageBlockPublicAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableImageBlockPublicAccess, input, options) as async.Operation<types.DisableImageBlockPublicAccessOutput>
+function C:disableImageBlockPublicAccess(input: types.DisableImageBlockPublicAccessInput, options?: base_client.InvokeOptions): async.Operation<types.DisableImageBlockPublicAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableImageBlockPublicAccess as schema.OperationSchema, input, options) as async.Operation<types.DisableImageBlockPublicAccessOutput>
 end
 
-function C:disableImageDeprecation(input: types.DisableImageDeprecationInput, options: any): async.Operation<types.DisableImageDeprecationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableImageDeprecation, input, options) as async.Operation<types.DisableImageDeprecationOutput>
+function C:disableImageDeprecation(input: types.DisableImageDeprecationInput, options?: base_client.InvokeOptions): async.Operation<types.DisableImageDeprecationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableImageDeprecation as schema.OperationSchema, input, options) as async.Operation<types.DisableImageDeprecationOutput>
 end
 
-function C:disableImageDeregistrationProtection(input: types.DisableImageDeregistrationProtectionInput, options: any): async.Operation<types.DisableImageDeregistrationProtectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableImageDeregistrationProtection, input, options) as async.Operation<types.DisableImageDeregistrationProtectionOutput>
+function C:disableImageDeregistrationProtection(input: types.DisableImageDeregistrationProtectionInput, options?: base_client.InvokeOptions): async.Operation<types.DisableImageDeregistrationProtectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableImageDeregistrationProtection as schema.OperationSchema, input, options) as async.Operation<types.DisableImageDeregistrationProtectionOutput>
 end
 
-function C:disableInstanceSqlHaStandbyDetections(input: types.DisableInstanceSqlHaStandbyDetectionsInput, options: any): async.Operation<types.DisableInstanceSqlHaStandbyDetectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableInstanceSqlHaStandbyDetections, input, options) as async.Operation<types.DisableInstanceSqlHaStandbyDetectionsOutput>
+function C:disableInstanceSqlHaStandbyDetections(input: types.DisableInstanceSqlHaStandbyDetectionsInput, options?: base_client.InvokeOptions): async.Operation<types.DisableInstanceSqlHaStandbyDetectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableInstanceSqlHaStandbyDetections as schema.OperationSchema, input, options) as async.Operation<types.DisableInstanceSqlHaStandbyDetectionsOutput>
 end
 
-function C:disableIpamOrganizationAdminAccount(input: types.DisableIpamOrganizationAdminAccountInput, options: any): async.Operation<types.DisableIpamOrganizationAdminAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableIpamOrganizationAdminAccount, input, options) as async.Operation<types.DisableIpamOrganizationAdminAccountOutput>
+function C:disableIpamOrganizationAdminAccount(input: types.DisableIpamOrganizationAdminAccountInput, options?: base_client.InvokeOptions): async.Operation<types.DisableIpamOrganizationAdminAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableIpamOrganizationAdminAccount as schema.OperationSchema, input, options) as async.Operation<types.DisableIpamOrganizationAdminAccountOutput>
 end
 
-function C:disableIpamPolicy(input: types.DisableIpamPolicyInput, options: any): async.Operation<types.DisableIpamPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableIpamPolicy, input, options) as async.Operation<types.DisableIpamPolicyOutput>
+function C:disableIpamPolicy(input: types.DisableIpamPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DisableIpamPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableIpamPolicy as schema.OperationSchema, input, options) as async.Operation<types.DisableIpamPolicyOutput>
 end
 
-function C:disableRouteServerPropagation(input: types.DisableRouteServerPropagationInput, options: any): async.Operation<types.DisableRouteServerPropagationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableRouteServerPropagation, input, options) as async.Operation<types.DisableRouteServerPropagationOutput>
+function C:disableRouteServerPropagation(input: types.DisableRouteServerPropagationInput, options?: base_client.InvokeOptions): async.Operation<types.DisableRouteServerPropagationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableRouteServerPropagation as schema.OperationSchema, input, options) as async.Operation<types.DisableRouteServerPropagationOutput>
 end
 
-function C:disableSerialConsoleAccess(input: types.DisableSerialConsoleAccessInput, options: any): async.Operation<types.DisableSerialConsoleAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableSerialConsoleAccess, input, options) as async.Operation<types.DisableSerialConsoleAccessOutput>
+function C:disableSerialConsoleAccess(input: types.DisableSerialConsoleAccessInput, options?: base_client.InvokeOptions): async.Operation<types.DisableSerialConsoleAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableSerialConsoleAccess as schema.OperationSchema, input, options) as async.Operation<types.DisableSerialConsoleAccessOutput>
 end
 
-function C:disableSnapshotBlockPublicAccess(input: types.DisableSnapshotBlockPublicAccessInput, options: any): async.Operation<types.DisableSnapshotBlockPublicAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableSnapshotBlockPublicAccess, input, options) as async.Operation<types.DisableSnapshotBlockPublicAccessOutput>
+function C:disableSnapshotBlockPublicAccess(input: types.DisableSnapshotBlockPublicAccessInput, options?: base_client.InvokeOptions): async.Operation<types.DisableSnapshotBlockPublicAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableSnapshotBlockPublicAccess as schema.OperationSchema, input, options) as async.Operation<types.DisableSnapshotBlockPublicAccessOutput>
 end
 
-function C:disableTransitGatewayRouteTablePropagation(input: types.DisableTransitGatewayRouteTablePropagationInput, options: any): async.Operation<types.DisableTransitGatewayRouteTablePropagationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableTransitGatewayRouteTablePropagation, input, options) as async.Operation<types.DisableTransitGatewayRouteTablePropagationOutput>
+function C:disableTransitGatewayRouteTablePropagation(input: types.DisableTransitGatewayRouteTablePropagationInput, options?: base_client.InvokeOptions): async.Operation<types.DisableTransitGatewayRouteTablePropagationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableTransitGatewayRouteTablePropagation as schema.OperationSchema, input, options) as async.Operation<types.DisableTransitGatewayRouteTablePropagationOutput>
 end
 
-function C:disableVgwRoutePropagation(input: types.DisableVgwRoutePropagationInput, options: any): async.Operation<types.DisableVgwRoutePropagationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableVgwRoutePropagation, input, options) as async.Operation<types.DisableVgwRoutePropagationOutput>
+function C:disableVgwRoutePropagation(input: types.DisableVgwRoutePropagationInput, options?: base_client.InvokeOptions): async.Operation<types.DisableVgwRoutePropagationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableVgwRoutePropagation as schema.OperationSchema, input, options) as async.Operation<types.DisableVgwRoutePropagationOutput>
 end
 
-function C:disableVpcClassicLink(input: types.DisableVpcClassicLinkInput, options: any): async.Operation<types.DisableVpcClassicLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableVpcClassicLink, input, options) as async.Operation<types.DisableVpcClassicLinkOutput>
+function C:disableVpcClassicLink(input: types.DisableVpcClassicLinkInput, options?: base_client.InvokeOptions): async.Operation<types.DisableVpcClassicLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableVpcClassicLink as schema.OperationSchema, input, options) as async.Operation<types.DisableVpcClassicLinkOutput>
 end
 
-function C:disableVpcClassicLinkDnsSupport(input: types.DisableVpcClassicLinkDnsSupportInput, options: any): async.Operation<types.DisableVpcClassicLinkDnsSupportOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableVpcClassicLinkDnsSupport, input, options) as async.Operation<types.DisableVpcClassicLinkDnsSupportOutput>
+function C:disableVpcClassicLinkDnsSupport(input: types.DisableVpcClassicLinkDnsSupportInput, options?: base_client.InvokeOptions): async.Operation<types.DisableVpcClassicLinkDnsSupportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableVpcClassicLinkDnsSupport as schema.OperationSchema, input, options) as async.Operation<types.DisableVpcClassicLinkDnsSupportOutput>
 end
 
-function C:disassociateAddress(input: types.DisassociateAddressInput, options: any): async.Operation<types.DisassociateAddressOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateAddress, input, options) as async.Operation<types.DisassociateAddressOutput>
+function C:disassociateAddress(input: types.DisassociateAddressInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateAddressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateAddress as schema.OperationSchema, input, options) as async.Operation<types.DisassociateAddressOutput>
 end
 
-function C:disassociateCapacityReservationBillingOwner(input: types.DisassociateCapacityReservationBillingOwnerInput, options: any): async.Operation<types.DisassociateCapacityReservationBillingOwnerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateCapacityReservationBillingOwner, input, options) as async.Operation<types.DisassociateCapacityReservationBillingOwnerOutput>
+function C:disassociateCapacityReservationBillingOwner(input: types.DisassociateCapacityReservationBillingOwnerInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateCapacityReservationBillingOwnerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateCapacityReservationBillingOwner as schema.OperationSchema, input, options) as async.Operation<types.DisassociateCapacityReservationBillingOwnerOutput>
 end
 
-function C:disassociateClientVpnTargetNetwork(input: types.DisassociateClientVpnTargetNetworkInput, options: any): async.Operation<types.DisassociateClientVpnTargetNetworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateClientVpnTargetNetwork, input, options) as async.Operation<types.DisassociateClientVpnTargetNetworkOutput>
+function C:disassociateClientVpnTargetNetwork(input: types.DisassociateClientVpnTargetNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateClientVpnTargetNetworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateClientVpnTargetNetwork as schema.OperationSchema, input, options) as async.Operation<types.DisassociateClientVpnTargetNetworkOutput>
 end
 
-function C:disassociateEnclaveCertificateIamRole(input: types.DisassociateEnclaveCertificateIamRoleInput, options: any): async.Operation<types.DisassociateEnclaveCertificateIamRoleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateEnclaveCertificateIamRole, input, options) as async.Operation<types.DisassociateEnclaveCertificateIamRoleOutput>
+function C:disassociateEnclaveCertificateIamRole(input: types.DisassociateEnclaveCertificateIamRoleInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateEnclaveCertificateIamRoleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateEnclaveCertificateIamRole as schema.OperationSchema, input, options) as async.Operation<types.DisassociateEnclaveCertificateIamRoleOutput>
 end
 
-function C:disassociateIamInstanceProfile(input: types.DisassociateIamInstanceProfileInput, options: any): async.Operation<types.DisassociateIamInstanceProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateIamInstanceProfile, input, options) as async.Operation<types.DisassociateIamInstanceProfileOutput>
+function C:disassociateIamInstanceProfile(input: types.DisassociateIamInstanceProfileInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateIamInstanceProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateIamInstanceProfile as schema.OperationSchema, input, options) as async.Operation<types.DisassociateIamInstanceProfileOutput>
 end
 
-function C:disassociateInstanceEventWindow(input: types.DisassociateInstanceEventWindowInput, options: any): async.Operation<types.DisassociateInstanceEventWindowOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateInstanceEventWindow, input, options) as async.Operation<types.DisassociateInstanceEventWindowOutput>
+function C:disassociateInstanceEventWindow(input: types.DisassociateInstanceEventWindowInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateInstanceEventWindowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateInstanceEventWindow as schema.OperationSchema, input, options) as async.Operation<types.DisassociateInstanceEventWindowOutput>
 end
 
-function C:disassociateIpamByoasn(input: types.DisassociateIpamByoasnInput, options: any): async.Operation<types.DisassociateIpamByoasnOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateIpamByoasn, input, options) as async.Operation<types.DisassociateIpamByoasnOutput>
+function C:disassociateIpamByoasn(input: types.DisassociateIpamByoasnInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateIpamByoasnOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateIpamByoasn as schema.OperationSchema, input, options) as async.Operation<types.DisassociateIpamByoasnOutput>
 end
 
-function C:disassociateIpamResourceDiscovery(input: types.DisassociateIpamResourceDiscoveryInput, options: any): async.Operation<types.DisassociateIpamResourceDiscoveryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateIpamResourceDiscovery, input, options) as async.Operation<types.DisassociateIpamResourceDiscoveryOutput>
+function C:disassociateIpamResourceDiscovery(input: types.DisassociateIpamResourceDiscoveryInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateIpamResourceDiscoveryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateIpamResourceDiscovery as schema.OperationSchema, input, options) as async.Operation<types.DisassociateIpamResourceDiscoveryOutput>
 end
 
-function C:disassociateNatGatewayAddress(input: types.DisassociateNatGatewayAddressInput, options: any): async.Operation<types.DisassociateNatGatewayAddressOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateNatGatewayAddress, input, options) as async.Operation<types.DisassociateNatGatewayAddressOutput>
+function C:disassociateNatGatewayAddress(input: types.DisassociateNatGatewayAddressInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateNatGatewayAddressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateNatGatewayAddress as schema.OperationSchema, input, options) as async.Operation<types.DisassociateNatGatewayAddressOutput>
 end
 
-function C:disassociateRouteServer(input: types.DisassociateRouteServerInput, options: any): async.Operation<types.DisassociateRouteServerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateRouteServer, input, options) as async.Operation<types.DisassociateRouteServerOutput>
+function C:disassociateRouteServer(input: types.DisassociateRouteServerInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateRouteServerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateRouteServer as schema.OperationSchema, input, options) as async.Operation<types.DisassociateRouteServerOutput>
 end
 
-function C:disassociateRouteTable(input: types.DisassociateRouteTableInput, options: any): async.Operation<types.DisassociateRouteTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateRouteTable, input, options) as async.Operation<types.DisassociateRouteTableOutput>
+function C:disassociateRouteTable(input: types.DisassociateRouteTableInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateRouteTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateRouteTable as schema.OperationSchema, input, options) as async.Operation<types.DisassociateRouteTableOutput>
 end
 
-function C:disassociateSecurityGroupVpc(input: types.DisassociateSecurityGroupVpcInput, options: any): async.Operation<types.DisassociateSecurityGroupVpcOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateSecurityGroupVpc, input, options) as async.Operation<types.DisassociateSecurityGroupVpcOutput>
+function C:disassociateSecurityGroupVpc(input: types.DisassociateSecurityGroupVpcInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateSecurityGroupVpcOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateSecurityGroupVpc as schema.OperationSchema, input, options) as async.Operation<types.DisassociateSecurityGroupVpcOutput>
 end
 
-function C:disassociateSubnetCidrBlock(input: types.DisassociateSubnetCidrBlockInput, options: any): async.Operation<types.DisassociateSubnetCidrBlockOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateSubnetCidrBlock, input, options) as async.Operation<types.DisassociateSubnetCidrBlockOutput>
+function C:disassociateSubnetCidrBlock(input: types.DisassociateSubnetCidrBlockInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateSubnetCidrBlockOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateSubnetCidrBlock as schema.OperationSchema, input, options) as async.Operation<types.DisassociateSubnetCidrBlockOutput>
 end
 
-function C:disassociateTransitGatewayMulticastDomain(input: types.DisassociateTransitGatewayMulticastDomainInput, options: any): async.Operation<types.DisassociateTransitGatewayMulticastDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateTransitGatewayMulticastDomain, input, options) as async.Operation<types.DisassociateTransitGatewayMulticastDomainOutput>
+function C:disassociateTransitGatewayMulticastDomain(input: types.DisassociateTransitGatewayMulticastDomainInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateTransitGatewayMulticastDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateTransitGatewayMulticastDomain as schema.OperationSchema, input, options) as async.Operation<types.DisassociateTransitGatewayMulticastDomainOutput>
 end
 
-function C:disassociateTransitGatewayPolicyTable(input: types.DisassociateTransitGatewayPolicyTableInput, options: any): async.Operation<types.DisassociateTransitGatewayPolicyTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateTransitGatewayPolicyTable, input, options) as async.Operation<types.DisassociateTransitGatewayPolicyTableOutput>
+function C:disassociateTransitGatewayPolicyTable(input: types.DisassociateTransitGatewayPolicyTableInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateTransitGatewayPolicyTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateTransitGatewayPolicyTable as schema.OperationSchema, input, options) as async.Operation<types.DisassociateTransitGatewayPolicyTableOutput>
 end
 
-function C:disassociateTransitGatewayRouteTable(input: types.DisassociateTransitGatewayRouteTableInput, options: any): async.Operation<types.DisassociateTransitGatewayRouteTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateTransitGatewayRouteTable, input, options) as async.Operation<types.DisassociateTransitGatewayRouteTableOutput>
+function C:disassociateTransitGatewayRouteTable(input: types.DisassociateTransitGatewayRouteTableInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateTransitGatewayRouteTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateTransitGatewayRouteTable as schema.OperationSchema, input, options) as async.Operation<types.DisassociateTransitGatewayRouteTableOutput>
 end
 
-function C:disassociateTrunkInterface(input: types.DisassociateTrunkInterfaceInput, options: any): async.Operation<types.DisassociateTrunkInterfaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateTrunkInterface, input, options) as async.Operation<types.DisassociateTrunkInterfaceOutput>
+function C:disassociateTrunkInterface(input: types.DisassociateTrunkInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateTrunkInterfaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateTrunkInterface as schema.OperationSchema, input, options) as async.Operation<types.DisassociateTrunkInterfaceOutput>
 end
 
-function C:disassociateVpcCidrBlock(input: types.DisassociateVpcCidrBlockInput, options: any): async.Operation<types.DisassociateVpcCidrBlockOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateVpcCidrBlock, input, options) as async.Operation<types.DisassociateVpcCidrBlockOutput>
+function C:disassociateVpcCidrBlock(input: types.DisassociateVpcCidrBlockInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateVpcCidrBlockOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateVpcCidrBlock as schema.OperationSchema, input, options) as async.Operation<types.DisassociateVpcCidrBlockOutput>
 end
 
-function C:enableAddressTransfer(input: types.EnableAddressTransferInput, options: any): async.Operation<types.EnableAddressTransferOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableAddressTransfer, input, options) as async.Operation<types.EnableAddressTransferOutput>
+function C:enableAddressTransfer(input: types.EnableAddressTransferInput, options?: base_client.InvokeOptions): async.Operation<types.EnableAddressTransferOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableAddressTransfer as schema.OperationSchema, input, options) as async.Operation<types.EnableAddressTransferOutput>
 end
 
-function C:enableAllowedImagesSettings(input: types.EnableAllowedImagesSettingsInput, options: any): async.Operation<types.EnableAllowedImagesSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableAllowedImagesSettings, input, options) as async.Operation<types.EnableAllowedImagesSettingsOutput>
+function C:enableAllowedImagesSettings(input: types.EnableAllowedImagesSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.EnableAllowedImagesSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableAllowedImagesSettings as schema.OperationSchema, input, options) as async.Operation<types.EnableAllowedImagesSettingsOutput>
 end
 
-function C:enableAwsNetworkPerformanceMetricSubscription(input: types.EnableAwsNetworkPerformanceMetricSubscriptionInput, options: any): async.Operation<types.EnableAwsNetworkPerformanceMetricSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableAwsNetworkPerformanceMetricSubscription, input, options) as async.Operation<types.EnableAwsNetworkPerformanceMetricSubscriptionOutput>
+function C:enableAwsNetworkPerformanceMetricSubscription(input: types.EnableAwsNetworkPerformanceMetricSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.EnableAwsNetworkPerformanceMetricSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableAwsNetworkPerformanceMetricSubscription as schema.OperationSchema, input, options) as async.Operation<types.EnableAwsNetworkPerformanceMetricSubscriptionOutput>
 end
 
-function C:enableCapacityManager(input: types.EnableCapacityManagerInput, options: any): async.Operation<types.EnableCapacityManagerOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableCapacityManager, input, options) as async.Operation<types.EnableCapacityManagerOutput>
+function C:enableCapacityManager(input: types.EnableCapacityManagerInput, options?: base_client.InvokeOptions): async.Operation<types.EnableCapacityManagerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableCapacityManager as schema.OperationSchema, input, options) as async.Operation<types.EnableCapacityManagerOutput>
 end
 
-function C:enableEbsEncryptionByDefault(input: types.EnableEbsEncryptionByDefaultInput, options: any): async.Operation<types.EnableEbsEncryptionByDefaultOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableEbsEncryptionByDefault, input, options) as async.Operation<types.EnableEbsEncryptionByDefaultOutput>
+function C:enableEbsEncryptionByDefault(input: types.EnableEbsEncryptionByDefaultInput, options?: base_client.InvokeOptions): async.Operation<types.EnableEbsEncryptionByDefaultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableEbsEncryptionByDefault as schema.OperationSchema, input, options) as async.Operation<types.EnableEbsEncryptionByDefaultOutput>
 end
 
-function C:enableFastLaunch(input: types.EnableFastLaunchInput, options: any): async.Operation<types.EnableFastLaunchOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableFastLaunch, input, options) as async.Operation<types.EnableFastLaunchOutput>
+function C:enableFastLaunch(input: types.EnableFastLaunchInput, options?: base_client.InvokeOptions): async.Operation<types.EnableFastLaunchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableFastLaunch as schema.OperationSchema, input, options) as async.Operation<types.EnableFastLaunchOutput>
 end
 
-function C:enableFastSnapshotRestores(input: types.EnableFastSnapshotRestoresInput, options: any): async.Operation<types.EnableFastSnapshotRestoresOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableFastSnapshotRestores, input, options) as async.Operation<types.EnableFastSnapshotRestoresOutput>
+function C:enableFastSnapshotRestores(input: types.EnableFastSnapshotRestoresInput, options?: base_client.InvokeOptions): async.Operation<types.EnableFastSnapshotRestoresOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableFastSnapshotRestores as schema.OperationSchema, input, options) as async.Operation<types.EnableFastSnapshotRestoresOutput>
 end
 
-function C:enableImage(input: types.EnableImageInput, options: any): async.Operation<types.EnableImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableImage, input, options) as async.Operation<types.EnableImageOutput>
+function C:enableImage(input: types.EnableImageInput, options?: base_client.InvokeOptions): async.Operation<types.EnableImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableImage as schema.OperationSchema, input, options) as async.Operation<types.EnableImageOutput>
 end
 
-function C:enableImageBlockPublicAccess(input: types.EnableImageBlockPublicAccessInput, options: any): async.Operation<types.EnableImageBlockPublicAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableImageBlockPublicAccess, input, options) as async.Operation<types.EnableImageBlockPublicAccessOutput>
+function C:enableImageBlockPublicAccess(input: types.EnableImageBlockPublicAccessInput, options?: base_client.InvokeOptions): async.Operation<types.EnableImageBlockPublicAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableImageBlockPublicAccess as schema.OperationSchema, input, options) as async.Operation<types.EnableImageBlockPublicAccessOutput>
 end
 
-function C:enableImageDeprecation(input: types.EnableImageDeprecationInput, options: any): async.Operation<types.EnableImageDeprecationOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableImageDeprecation, input, options) as async.Operation<types.EnableImageDeprecationOutput>
+function C:enableImageDeprecation(input: types.EnableImageDeprecationInput, options?: base_client.InvokeOptions): async.Operation<types.EnableImageDeprecationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableImageDeprecation as schema.OperationSchema, input, options) as async.Operation<types.EnableImageDeprecationOutput>
 end
 
-function C:enableImageDeregistrationProtection(input: types.EnableImageDeregistrationProtectionInput, options: any): async.Operation<types.EnableImageDeregistrationProtectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableImageDeregistrationProtection, input, options) as async.Operation<types.EnableImageDeregistrationProtectionOutput>
+function C:enableImageDeregistrationProtection(input: types.EnableImageDeregistrationProtectionInput, options?: base_client.InvokeOptions): async.Operation<types.EnableImageDeregistrationProtectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableImageDeregistrationProtection as schema.OperationSchema, input, options) as async.Operation<types.EnableImageDeregistrationProtectionOutput>
 end
 
-function C:enableInstanceSqlHaStandbyDetections(input: types.EnableInstanceSqlHaStandbyDetectionsInput, options: any): async.Operation<types.EnableInstanceSqlHaStandbyDetectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableInstanceSqlHaStandbyDetections, input, options) as async.Operation<types.EnableInstanceSqlHaStandbyDetectionsOutput>
+function C:enableInstanceSqlHaStandbyDetections(input: types.EnableInstanceSqlHaStandbyDetectionsInput, options?: base_client.InvokeOptions): async.Operation<types.EnableInstanceSqlHaStandbyDetectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableInstanceSqlHaStandbyDetections as schema.OperationSchema, input, options) as async.Operation<types.EnableInstanceSqlHaStandbyDetectionsOutput>
 end
 
-function C:enableIpamOrganizationAdminAccount(input: types.EnableIpamOrganizationAdminAccountInput, options: any): async.Operation<types.EnableIpamOrganizationAdminAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableIpamOrganizationAdminAccount, input, options) as async.Operation<types.EnableIpamOrganizationAdminAccountOutput>
+function C:enableIpamOrganizationAdminAccount(input: types.EnableIpamOrganizationAdminAccountInput, options?: base_client.InvokeOptions): async.Operation<types.EnableIpamOrganizationAdminAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableIpamOrganizationAdminAccount as schema.OperationSchema, input, options) as async.Operation<types.EnableIpamOrganizationAdminAccountOutput>
 end
 
-function C:enableIpamPolicy(input: types.EnableIpamPolicyInput, options: any): async.Operation<types.EnableIpamPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableIpamPolicy, input, options) as async.Operation<types.EnableIpamPolicyOutput>
+function C:enableIpamPolicy(input: types.EnableIpamPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.EnableIpamPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableIpamPolicy as schema.OperationSchema, input, options) as async.Operation<types.EnableIpamPolicyOutput>
 end
 
-function C:enableReachabilityAnalyzerOrganizationSharing(input: types.EnableReachabilityAnalyzerOrganizationSharingInput, options: any): async.Operation<types.EnableReachabilityAnalyzerOrganizationSharingOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableReachabilityAnalyzerOrganizationSharing, input, options) as async.Operation<types.EnableReachabilityAnalyzerOrganizationSharingOutput>
+function C:enableReachabilityAnalyzerOrganizationSharing(input: types.EnableReachabilityAnalyzerOrganizationSharingInput, options?: base_client.InvokeOptions): async.Operation<types.EnableReachabilityAnalyzerOrganizationSharingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableReachabilityAnalyzerOrganizationSharing as schema.OperationSchema, input, options) as async.Operation<types.EnableReachabilityAnalyzerOrganizationSharingOutput>
 end
 
-function C:enableRouteServerPropagation(input: types.EnableRouteServerPropagationInput, options: any): async.Operation<types.EnableRouteServerPropagationOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableRouteServerPropagation, input, options) as async.Operation<types.EnableRouteServerPropagationOutput>
+function C:enableRouteServerPropagation(input: types.EnableRouteServerPropagationInput, options?: base_client.InvokeOptions): async.Operation<types.EnableRouteServerPropagationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableRouteServerPropagation as schema.OperationSchema, input, options) as async.Operation<types.EnableRouteServerPropagationOutput>
 end
 
-function C:enableSerialConsoleAccess(input: types.EnableSerialConsoleAccessInput, options: any): async.Operation<types.EnableSerialConsoleAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableSerialConsoleAccess, input, options) as async.Operation<types.EnableSerialConsoleAccessOutput>
+function C:enableSerialConsoleAccess(input: types.EnableSerialConsoleAccessInput, options?: base_client.InvokeOptions): async.Operation<types.EnableSerialConsoleAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableSerialConsoleAccess as schema.OperationSchema, input, options) as async.Operation<types.EnableSerialConsoleAccessOutput>
 end
 
-function C:enableSnapshotBlockPublicAccess(input: types.EnableSnapshotBlockPublicAccessInput, options: any): async.Operation<types.EnableSnapshotBlockPublicAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableSnapshotBlockPublicAccess, input, options) as async.Operation<types.EnableSnapshotBlockPublicAccessOutput>
+function C:enableSnapshotBlockPublicAccess(input: types.EnableSnapshotBlockPublicAccessInput, options?: base_client.InvokeOptions): async.Operation<types.EnableSnapshotBlockPublicAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableSnapshotBlockPublicAccess as schema.OperationSchema, input, options) as async.Operation<types.EnableSnapshotBlockPublicAccessOutput>
 end
 
-function C:enableTransitGatewayRouteTablePropagation(input: types.EnableTransitGatewayRouteTablePropagationInput, options: any): async.Operation<types.EnableTransitGatewayRouteTablePropagationOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableTransitGatewayRouteTablePropagation, input, options) as async.Operation<types.EnableTransitGatewayRouteTablePropagationOutput>
+function C:enableTransitGatewayRouteTablePropagation(input: types.EnableTransitGatewayRouteTablePropagationInput, options?: base_client.InvokeOptions): async.Operation<types.EnableTransitGatewayRouteTablePropagationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableTransitGatewayRouteTablePropagation as schema.OperationSchema, input, options) as async.Operation<types.EnableTransitGatewayRouteTablePropagationOutput>
 end
 
-function C:enableVgwRoutePropagation(input: types.EnableVgwRoutePropagationInput, options: any): async.Operation<types.EnableVgwRoutePropagationOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableVgwRoutePropagation, input, options) as async.Operation<types.EnableVgwRoutePropagationOutput>
+function C:enableVgwRoutePropagation(input: types.EnableVgwRoutePropagationInput, options?: base_client.InvokeOptions): async.Operation<types.EnableVgwRoutePropagationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableVgwRoutePropagation as schema.OperationSchema, input, options) as async.Operation<types.EnableVgwRoutePropagationOutput>
 end
 
-function C:enableVolumeIO(input: types.EnableVolumeIOInput, options: any): async.Operation<types.EnableVolumeIOOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableVolumeIO, input, options) as async.Operation<types.EnableVolumeIOOutput>
+function C:enableVolumeIO(input: types.EnableVolumeIOInput, options?: base_client.InvokeOptions): async.Operation<types.EnableVolumeIOOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableVolumeIO as schema.OperationSchema, input, options) as async.Operation<types.EnableVolumeIOOutput>
 end
 
-function C:enableVpcClassicLink(input: types.EnableVpcClassicLinkInput, options: any): async.Operation<types.EnableVpcClassicLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableVpcClassicLink, input, options) as async.Operation<types.EnableVpcClassicLinkOutput>
+function C:enableVpcClassicLink(input: types.EnableVpcClassicLinkInput, options?: base_client.InvokeOptions): async.Operation<types.EnableVpcClassicLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableVpcClassicLink as schema.OperationSchema, input, options) as async.Operation<types.EnableVpcClassicLinkOutput>
 end
 
-function C:enableVpcClassicLinkDnsSupport(input: types.EnableVpcClassicLinkDnsSupportInput, options: any): async.Operation<types.EnableVpcClassicLinkDnsSupportOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableVpcClassicLinkDnsSupport, input, options) as async.Operation<types.EnableVpcClassicLinkDnsSupportOutput>
+function C:enableVpcClassicLinkDnsSupport(input: types.EnableVpcClassicLinkDnsSupportInput, options?: base_client.InvokeOptions): async.Operation<types.EnableVpcClassicLinkDnsSupportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableVpcClassicLinkDnsSupport as schema.OperationSchema, input, options) as async.Operation<types.EnableVpcClassicLinkDnsSupportOutput>
 end
 
-function C:exportClientVpnClientCertificateRevocationList(input: types.ExportClientVpnClientCertificateRevocationListInput, options: any): async.Operation<types.ExportClientVpnClientCertificateRevocationListOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExportClientVpnClientCertificateRevocationList, input, options) as async.Operation<types.ExportClientVpnClientCertificateRevocationListOutput>
+function C:exportClientVpnClientCertificateRevocationList(input: types.ExportClientVpnClientCertificateRevocationListInput, options?: base_client.InvokeOptions): async.Operation<types.ExportClientVpnClientCertificateRevocationListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportClientVpnClientCertificateRevocationList as schema.OperationSchema, input, options) as async.Operation<types.ExportClientVpnClientCertificateRevocationListOutput>
 end
 
-function C:exportClientVpnClientConfiguration(input: types.ExportClientVpnClientConfigurationInput, options: any): async.Operation<types.ExportClientVpnClientConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExportClientVpnClientConfiguration, input, options) as async.Operation<types.ExportClientVpnClientConfigurationOutput>
+function C:exportClientVpnClientConfiguration(input: types.ExportClientVpnClientConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.ExportClientVpnClientConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportClientVpnClientConfiguration as schema.OperationSchema, input, options) as async.Operation<types.ExportClientVpnClientConfigurationOutput>
 end
 
-function C:exportImage(input: types.ExportImageInput, options: any): async.Operation<types.ExportImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExportImage, input, options) as async.Operation<types.ExportImageOutput>
+function C:exportImage(input: types.ExportImageInput, options?: base_client.InvokeOptions): async.Operation<types.ExportImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportImage as schema.OperationSchema, input, options) as async.Operation<types.ExportImageOutput>
 end
 
-function C:exportTransitGatewayRoutes(input: types.ExportTransitGatewayRoutesInput, options: any): async.Operation<types.ExportTransitGatewayRoutesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExportTransitGatewayRoutes, input, options) as async.Operation<types.ExportTransitGatewayRoutesOutput>
+function C:exportTransitGatewayRoutes(input: types.ExportTransitGatewayRoutesInput, options?: base_client.InvokeOptions): async.Operation<types.ExportTransitGatewayRoutesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportTransitGatewayRoutes as schema.OperationSchema, input, options) as async.Operation<types.ExportTransitGatewayRoutesOutput>
 end
 
-function C:exportVerifiedAccessInstanceClientConfiguration(input: types.ExportVerifiedAccessInstanceClientConfigurationInput, options: any): async.Operation<types.ExportVerifiedAccessInstanceClientConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExportVerifiedAccessInstanceClientConfiguration, input, options) as async.Operation<types.ExportVerifiedAccessInstanceClientConfigurationOutput>
+function C:exportVerifiedAccessInstanceClientConfiguration(input: types.ExportVerifiedAccessInstanceClientConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.ExportVerifiedAccessInstanceClientConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportVerifiedAccessInstanceClientConfiguration as schema.OperationSchema, input, options) as async.Operation<types.ExportVerifiedAccessInstanceClientConfigurationOutput>
 end
 
-function C:getActiveVpnTunnelStatus(input: types.GetActiveVpnTunnelStatusInput, options: any): async.Operation<types.GetActiveVpnTunnelStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetActiveVpnTunnelStatus, input, options) as async.Operation<types.GetActiveVpnTunnelStatusOutput>
+function C:getActiveVpnTunnelStatus(input: types.GetActiveVpnTunnelStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetActiveVpnTunnelStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetActiveVpnTunnelStatus as schema.OperationSchema, input, options) as async.Operation<types.GetActiveVpnTunnelStatusOutput>
 end
 
-function C:getAllowedImagesSettings(input: types.GetAllowedImagesSettingsInput, options: any): async.Operation<types.GetAllowedImagesSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAllowedImagesSettings, input, options) as async.Operation<types.GetAllowedImagesSettingsOutput>
+function C:getAllowedImagesSettings(input: types.GetAllowedImagesSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetAllowedImagesSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAllowedImagesSettings as schema.OperationSchema, input, options) as async.Operation<types.GetAllowedImagesSettingsOutput>
 end
 
-function C:getAssociatedEnclaveCertificateIamRoles(input: types.GetAssociatedEnclaveCertificateIamRolesInput, options: any): async.Operation<types.GetAssociatedEnclaveCertificateIamRolesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAssociatedEnclaveCertificateIamRoles, input, options) as async.Operation<types.GetAssociatedEnclaveCertificateIamRolesOutput>
+function C:getAssociatedEnclaveCertificateIamRoles(input: types.GetAssociatedEnclaveCertificateIamRolesInput, options?: base_client.InvokeOptions): async.Operation<types.GetAssociatedEnclaveCertificateIamRolesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAssociatedEnclaveCertificateIamRoles as schema.OperationSchema, input, options) as async.Operation<types.GetAssociatedEnclaveCertificateIamRolesOutput>
 end
 
-function C:getAssociatedIpv6PoolCidrs(input: types.GetAssociatedIpv6PoolCidrsInput, options: any): async.Operation<types.GetAssociatedIpv6PoolCidrsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAssociatedIpv6PoolCidrs, input, options) as async.Operation<types.GetAssociatedIpv6PoolCidrsOutput>
+function C:getAssociatedIpv6PoolCidrs(input: types.GetAssociatedIpv6PoolCidrsInput, options?: base_client.InvokeOptions): async.Operation<types.GetAssociatedIpv6PoolCidrsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAssociatedIpv6PoolCidrs as schema.OperationSchema, input, options) as async.Operation<types.GetAssociatedIpv6PoolCidrsOutput>
 end
 
-function C:getAwsNetworkPerformanceData(input: types.GetAwsNetworkPerformanceDataInput, options: any): async.Operation<types.GetAwsNetworkPerformanceDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAwsNetworkPerformanceData, input, options) as async.Operation<types.GetAwsNetworkPerformanceDataOutput>
+function C:getAwsNetworkPerformanceData(input: types.GetAwsNetworkPerformanceDataInput, options?: base_client.InvokeOptions): async.Operation<types.GetAwsNetworkPerformanceDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAwsNetworkPerformanceData as schema.OperationSchema, input, options) as async.Operation<types.GetAwsNetworkPerformanceDataOutput>
 end
 
-function C:getCapacityManagerAttributes(input: types.GetCapacityManagerAttributesInput, options: any): async.Operation<types.GetCapacityManagerAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCapacityManagerAttributes, input, options) as async.Operation<types.GetCapacityManagerAttributesOutput>
+function C:getCapacityManagerAttributes(input: types.GetCapacityManagerAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.GetCapacityManagerAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCapacityManagerAttributes as schema.OperationSchema, input, options) as async.Operation<types.GetCapacityManagerAttributesOutput>
 end
 
-function C:getCapacityManagerMetricData(input: types.GetCapacityManagerMetricDataInput, options: any): async.Operation<types.GetCapacityManagerMetricDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCapacityManagerMetricData, input, options) as async.Operation<types.GetCapacityManagerMetricDataOutput>
+function C:getCapacityManagerMetricData(input: types.GetCapacityManagerMetricDataInput, options?: base_client.InvokeOptions): async.Operation<types.GetCapacityManagerMetricDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCapacityManagerMetricData as schema.OperationSchema, input, options) as async.Operation<types.GetCapacityManagerMetricDataOutput>
 end
 
-function C:getCapacityManagerMetricDimensions(input: types.GetCapacityManagerMetricDimensionsInput, options: any): async.Operation<types.GetCapacityManagerMetricDimensionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCapacityManagerMetricDimensions, input, options) as async.Operation<types.GetCapacityManagerMetricDimensionsOutput>
+function C:getCapacityManagerMetricDimensions(input: types.GetCapacityManagerMetricDimensionsInput, options?: base_client.InvokeOptions): async.Operation<types.GetCapacityManagerMetricDimensionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCapacityManagerMetricDimensions as schema.OperationSchema, input, options) as async.Operation<types.GetCapacityManagerMetricDimensionsOutput>
 end
 
-function C:getCapacityManagerMonitoredTagKeys(input: types.GetCapacityManagerMonitoredTagKeysInput, options: any): async.Operation<types.GetCapacityManagerMonitoredTagKeysOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCapacityManagerMonitoredTagKeys, input, options) as async.Operation<types.GetCapacityManagerMonitoredTagKeysOutput>
+function C:getCapacityManagerMonitoredTagKeys(input: types.GetCapacityManagerMonitoredTagKeysInput, options?: base_client.InvokeOptions): async.Operation<types.GetCapacityManagerMonitoredTagKeysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCapacityManagerMonitoredTagKeys as schema.OperationSchema, input, options) as async.Operation<types.GetCapacityManagerMonitoredTagKeysOutput>
 end
 
-function C:getCapacityReservationUsage(input: types.GetCapacityReservationUsageInput, options: any): async.Operation<types.GetCapacityReservationUsageOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCapacityReservationUsage, input, options) as async.Operation<types.GetCapacityReservationUsageOutput>
+function C:getCapacityReservationUsage(input: types.GetCapacityReservationUsageInput, options?: base_client.InvokeOptions): async.Operation<types.GetCapacityReservationUsageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCapacityReservationUsage as schema.OperationSchema, input, options) as async.Operation<types.GetCapacityReservationUsageOutput>
 end
 
-function C:getCoipPoolUsage(input: types.GetCoipPoolUsageInput, options: any): async.Operation<types.GetCoipPoolUsageOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCoipPoolUsage, input, options) as async.Operation<types.GetCoipPoolUsageOutput>
+function C:getCoipPoolUsage(input: types.GetCoipPoolUsageInput, options?: base_client.InvokeOptions): async.Operation<types.GetCoipPoolUsageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCoipPoolUsage as schema.OperationSchema, input, options) as async.Operation<types.GetCoipPoolUsageOutput>
 end
 
-function C:getConsoleOutput(input: types.GetConsoleOutputInput, options: any): async.Operation<types.GetConsoleOutputOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConsoleOutput, input, options) as async.Operation<types.GetConsoleOutputOutput>
+function C:getConsoleOutput(input: types.GetConsoleOutputInput, options?: base_client.InvokeOptions): async.Operation<types.GetConsoleOutputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConsoleOutput as schema.OperationSchema, input, options) as async.Operation<types.GetConsoleOutputOutput>
 end
 
-function C:getConsoleScreenshot(input: types.GetConsoleScreenshotInput, options: any): async.Operation<types.GetConsoleScreenshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConsoleScreenshot, input, options) as async.Operation<types.GetConsoleScreenshotOutput>
+function C:getConsoleScreenshot(input: types.GetConsoleScreenshotInput, options?: base_client.InvokeOptions): async.Operation<types.GetConsoleScreenshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConsoleScreenshot as schema.OperationSchema, input, options) as async.Operation<types.GetConsoleScreenshotOutput>
 end
 
-function C:getDeclarativePoliciesReportSummary(input: types.GetDeclarativePoliciesReportSummaryInput, options: any): async.Operation<types.GetDeclarativePoliciesReportSummaryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDeclarativePoliciesReportSummary, input, options) as async.Operation<types.GetDeclarativePoliciesReportSummaryOutput>
+function C:getDeclarativePoliciesReportSummary(input: types.GetDeclarativePoliciesReportSummaryInput, options?: base_client.InvokeOptions): async.Operation<types.GetDeclarativePoliciesReportSummaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDeclarativePoliciesReportSummary as schema.OperationSchema, input, options) as async.Operation<types.GetDeclarativePoliciesReportSummaryOutput>
 end
 
-function C:getDefaultCreditSpecification(input: types.GetDefaultCreditSpecificationInput, options: any): async.Operation<types.GetDefaultCreditSpecificationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDefaultCreditSpecification, input, options) as async.Operation<types.GetDefaultCreditSpecificationOutput>
+function C:getDefaultCreditSpecification(input: types.GetDefaultCreditSpecificationInput, options?: base_client.InvokeOptions): async.Operation<types.GetDefaultCreditSpecificationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDefaultCreditSpecification as schema.OperationSchema, input, options) as async.Operation<types.GetDefaultCreditSpecificationOutput>
 end
 
-function C:getEbsDefaultKmsKeyId(input: types.GetEbsDefaultKmsKeyIdInput, options: any): async.Operation<types.GetEbsDefaultKmsKeyIdOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEbsDefaultKmsKeyId, input, options) as async.Operation<types.GetEbsDefaultKmsKeyIdOutput>
+function C:getEbsDefaultKmsKeyId(input: types.GetEbsDefaultKmsKeyIdInput, options?: base_client.InvokeOptions): async.Operation<types.GetEbsDefaultKmsKeyIdOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEbsDefaultKmsKeyId as schema.OperationSchema, input, options) as async.Operation<types.GetEbsDefaultKmsKeyIdOutput>
 end
 
-function C:getEbsEncryptionByDefault(input: types.GetEbsEncryptionByDefaultInput, options: any): async.Operation<types.GetEbsEncryptionByDefaultOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEbsEncryptionByDefault, input, options) as async.Operation<types.GetEbsEncryptionByDefaultOutput>
+function C:getEbsEncryptionByDefault(input: types.GetEbsEncryptionByDefaultInput, options?: base_client.InvokeOptions): async.Operation<types.GetEbsEncryptionByDefaultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEbsEncryptionByDefault as schema.OperationSchema, input, options) as async.Operation<types.GetEbsEncryptionByDefaultOutput>
 end
 
-function C:getEnabledIpamPolicy(input: types.GetEnabledIpamPolicyInput, options: any): async.Operation<types.GetEnabledIpamPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEnabledIpamPolicy, input, options) as async.Operation<types.GetEnabledIpamPolicyOutput>
+function C:getEnabledIpamPolicy(input: types.GetEnabledIpamPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetEnabledIpamPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEnabledIpamPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetEnabledIpamPolicyOutput>
 end
 
-function C:getFlowLogsIntegrationTemplate(input: types.GetFlowLogsIntegrationTemplateInput, options: any): async.Operation<types.GetFlowLogsIntegrationTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFlowLogsIntegrationTemplate, input, options) as async.Operation<types.GetFlowLogsIntegrationTemplateOutput>
+function C:getFlowLogsIntegrationTemplate(input: types.GetFlowLogsIntegrationTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetFlowLogsIntegrationTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFlowLogsIntegrationTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetFlowLogsIntegrationTemplateOutput>
 end
 
-function C:getGroupsForCapacityReservation(input: types.GetGroupsForCapacityReservationInput, options: any): async.Operation<types.GetGroupsForCapacityReservationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetGroupsForCapacityReservation, input, options) as async.Operation<types.GetGroupsForCapacityReservationOutput>
+function C:getGroupsForCapacityReservation(input: types.GetGroupsForCapacityReservationInput, options?: base_client.InvokeOptions): async.Operation<types.GetGroupsForCapacityReservationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGroupsForCapacityReservation as schema.OperationSchema, input, options) as async.Operation<types.GetGroupsForCapacityReservationOutput>
 end
 
-function C:getHostReservationPurchasePreview(input: types.GetHostReservationPurchasePreviewInput, options: any): async.Operation<types.GetHostReservationPurchasePreviewOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetHostReservationPurchasePreview, input, options) as async.Operation<types.GetHostReservationPurchasePreviewOutput>
+function C:getHostReservationPurchasePreview(input: types.GetHostReservationPurchasePreviewInput, options?: base_client.InvokeOptions): async.Operation<types.GetHostReservationPurchasePreviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetHostReservationPurchasePreview as schema.OperationSchema, input, options) as async.Operation<types.GetHostReservationPurchasePreviewOutput>
 end
 
-function C:getImageAncestry(input: types.GetImageAncestryInput, options: any): async.Operation<types.GetImageAncestryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetImageAncestry, input, options) as async.Operation<types.GetImageAncestryOutput>
+function C:getImageAncestry(input: types.GetImageAncestryInput, options?: base_client.InvokeOptions): async.Operation<types.GetImageAncestryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetImageAncestry as schema.OperationSchema, input, options) as async.Operation<types.GetImageAncestryOutput>
 end
 
-function C:getImageBlockPublicAccessState(input: types.GetImageBlockPublicAccessStateInput, options: any): async.Operation<types.GetImageBlockPublicAccessStateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetImageBlockPublicAccessState, input, options) as async.Operation<types.GetImageBlockPublicAccessStateOutput>
+function C:getImageBlockPublicAccessState(input: types.GetImageBlockPublicAccessStateInput, options?: base_client.InvokeOptions): async.Operation<types.GetImageBlockPublicAccessStateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetImageBlockPublicAccessState as schema.OperationSchema, input, options) as async.Operation<types.GetImageBlockPublicAccessStateOutput>
 end
 
-function C:getInstanceMetadataDefaults(input: types.GetInstanceMetadataDefaultsInput, options: any): async.Operation<types.GetInstanceMetadataDefaultsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInstanceMetadataDefaults, input, options) as async.Operation<types.GetInstanceMetadataDefaultsOutput>
+function C:getInstanceMetadataDefaults(input: types.GetInstanceMetadataDefaultsInput, options?: base_client.InvokeOptions): async.Operation<types.GetInstanceMetadataDefaultsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInstanceMetadataDefaults as schema.OperationSchema, input, options) as async.Operation<types.GetInstanceMetadataDefaultsOutput>
 end
 
-function C:getInstanceTpmEkPub(input: types.GetInstanceTpmEkPubInput, options: any): async.Operation<types.GetInstanceTpmEkPubOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInstanceTpmEkPub, input, options) as async.Operation<types.GetInstanceTpmEkPubOutput>
+function C:getInstanceTpmEkPub(input: types.GetInstanceTpmEkPubInput, options?: base_client.InvokeOptions): async.Operation<types.GetInstanceTpmEkPubOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInstanceTpmEkPub as schema.OperationSchema, input, options) as async.Operation<types.GetInstanceTpmEkPubOutput>
 end
 
-function C:getInstanceTypesFromInstanceRequirements(input: types.GetInstanceTypesFromInstanceRequirementsInput, options: any): async.Operation<types.GetInstanceTypesFromInstanceRequirementsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInstanceTypesFromInstanceRequirements, input, options) as async.Operation<types.GetInstanceTypesFromInstanceRequirementsOutput>
+function C:getInstanceTypesFromInstanceRequirements(input: types.GetInstanceTypesFromInstanceRequirementsInput, options?: base_client.InvokeOptions): async.Operation<types.GetInstanceTypesFromInstanceRequirementsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInstanceTypesFromInstanceRequirements as schema.OperationSchema, input, options) as async.Operation<types.GetInstanceTypesFromInstanceRequirementsOutput>
 end
 
-function C:getInstanceUefiData(input: types.GetInstanceUefiDataInput, options: any): async.Operation<types.GetInstanceUefiDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInstanceUefiData, input, options) as async.Operation<types.GetInstanceUefiDataOutput>
+function C:getInstanceUefiData(input: types.GetInstanceUefiDataInput, options?: base_client.InvokeOptions): async.Operation<types.GetInstanceUefiDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInstanceUefiData as schema.OperationSchema, input, options) as async.Operation<types.GetInstanceUefiDataOutput>
 end
 
-function C:getIpamAddressHistory(input: types.GetIpamAddressHistoryInput, options: any): async.Operation<types.GetIpamAddressHistoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIpamAddressHistory, input, options) as async.Operation<types.GetIpamAddressHistoryOutput>
+function C:getIpamAddressHistory(input: types.GetIpamAddressHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.GetIpamAddressHistoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIpamAddressHistory as schema.OperationSchema, input, options) as async.Operation<types.GetIpamAddressHistoryOutput>
 end
 
-function C:getIpamDiscoveredAccounts(input: types.GetIpamDiscoveredAccountsInput, options: any): async.Operation<types.GetIpamDiscoveredAccountsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIpamDiscoveredAccounts, input, options) as async.Operation<types.GetIpamDiscoveredAccountsOutput>
+function C:getIpamDiscoveredAccounts(input: types.GetIpamDiscoveredAccountsInput, options?: base_client.InvokeOptions): async.Operation<types.GetIpamDiscoveredAccountsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIpamDiscoveredAccounts as schema.OperationSchema, input, options) as async.Operation<types.GetIpamDiscoveredAccountsOutput>
 end
 
-function C:getIpamDiscoveredPublicAddresses(input: types.GetIpamDiscoveredPublicAddressesInput, options: any): async.Operation<types.GetIpamDiscoveredPublicAddressesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIpamDiscoveredPublicAddresses, input, options) as async.Operation<types.GetIpamDiscoveredPublicAddressesOutput>
+function C:getIpamDiscoveredPublicAddresses(input: types.GetIpamDiscoveredPublicAddressesInput, options?: base_client.InvokeOptions): async.Operation<types.GetIpamDiscoveredPublicAddressesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIpamDiscoveredPublicAddresses as schema.OperationSchema, input, options) as async.Operation<types.GetIpamDiscoveredPublicAddressesOutput>
 end
 
-function C:getIpamDiscoveredResourceCidrs(input: types.GetIpamDiscoveredResourceCidrsInput, options: any): async.Operation<types.GetIpamDiscoveredResourceCidrsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIpamDiscoveredResourceCidrs, input, options) as async.Operation<types.GetIpamDiscoveredResourceCidrsOutput>
+function C:getIpamDiscoveredResourceCidrs(input: types.GetIpamDiscoveredResourceCidrsInput, options?: base_client.InvokeOptions): async.Operation<types.GetIpamDiscoveredResourceCidrsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIpamDiscoveredResourceCidrs as schema.OperationSchema, input, options) as async.Operation<types.GetIpamDiscoveredResourceCidrsOutput>
 end
 
-function C:getIpamPolicyAllocationRules(input: types.GetIpamPolicyAllocationRulesInput, options: any): async.Operation<types.GetIpamPolicyAllocationRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIpamPolicyAllocationRules, input, options) as async.Operation<types.GetIpamPolicyAllocationRulesOutput>
+function C:getIpamPolicyAllocationRules(input: types.GetIpamPolicyAllocationRulesInput, options?: base_client.InvokeOptions): async.Operation<types.GetIpamPolicyAllocationRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIpamPolicyAllocationRules as schema.OperationSchema, input, options) as async.Operation<types.GetIpamPolicyAllocationRulesOutput>
 end
 
-function C:getIpamPolicyOrganizationTargets(input: types.GetIpamPolicyOrganizationTargetsInput, options: any): async.Operation<types.GetIpamPolicyOrganizationTargetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIpamPolicyOrganizationTargets, input, options) as async.Operation<types.GetIpamPolicyOrganizationTargetsOutput>
+function C:getIpamPolicyOrganizationTargets(input: types.GetIpamPolicyOrganizationTargetsInput, options?: base_client.InvokeOptions): async.Operation<types.GetIpamPolicyOrganizationTargetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIpamPolicyOrganizationTargets as schema.OperationSchema, input, options) as async.Operation<types.GetIpamPolicyOrganizationTargetsOutput>
 end
 
-function C:getIpamPoolAllocations(input: types.GetIpamPoolAllocationsInput, options: any): async.Operation<types.GetIpamPoolAllocationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIpamPoolAllocations, input, options) as async.Operation<types.GetIpamPoolAllocationsOutput>
+function C:getIpamPoolAllocations(input: types.GetIpamPoolAllocationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetIpamPoolAllocationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIpamPoolAllocations as schema.OperationSchema, input, options) as async.Operation<types.GetIpamPoolAllocationsOutput>
 end
 
-function C:getIpamPoolCidrs(input: types.GetIpamPoolCidrsInput, options: any): async.Operation<types.GetIpamPoolCidrsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIpamPoolCidrs, input, options) as async.Operation<types.GetIpamPoolCidrsOutput>
+function C:getIpamPoolCidrs(input: types.GetIpamPoolCidrsInput, options?: base_client.InvokeOptions): async.Operation<types.GetIpamPoolCidrsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIpamPoolCidrs as schema.OperationSchema, input, options) as async.Operation<types.GetIpamPoolCidrsOutput>
 end
 
-function C:getIpamPrefixListResolverRules(input: types.GetIpamPrefixListResolverRulesInput, options: any): async.Operation<types.GetIpamPrefixListResolverRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIpamPrefixListResolverRules, input, options) as async.Operation<types.GetIpamPrefixListResolverRulesOutput>
+function C:getIpamPrefixListResolverRules(input: types.GetIpamPrefixListResolverRulesInput, options?: base_client.InvokeOptions): async.Operation<types.GetIpamPrefixListResolverRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIpamPrefixListResolverRules as schema.OperationSchema, input, options) as async.Operation<types.GetIpamPrefixListResolverRulesOutput>
 end
 
-function C:getIpamPrefixListResolverVersionEntries(input: types.GetIpamPrefixListResolverVersionEntriesInput, options: any): async.Operation<types.GetIpamPrefixListResolverVersionEntriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIpamPrefixListResolverVersionEntries, input, options) as async.Operation<types.GetIpamPrefixListResolverVersionEntriesOutput>
+function C:getIpamPrefixListResolverVersionEntries(input: types.GetIpamPrefixListResolverVersionEntriesInput, options?: base_client.InvokeOptions): async.Operation<types.GetIpamPrefixListResolverVersionEntriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIpamPrefixListResolverVersionEntries as schema.OperationSchema, input, options) as async.Operation<types.GetIpamPrefixListResolverVersionEntriesOutput>
 end
 
-function C:getIpamPrefixListResolverVersions(input: types.GetIpamPrefixListResolverVersionsInput, options: any): async.Operation<types.GetIpamPrefixListResolverVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIpamPrefixListResolverVersions, input, options) as async.Operation<types.GetIpamPrefixListResolverVersionsOutput>
+function C:getIpamPrefixListResolverVersions(input: types.GetIpamPrefixListResolverVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.GetIpamPrefixListResolverVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIpamPrefixListResolverVersions as schema.OperationSchema, input, options) as async.Operation<types.GetIpamPrefixListResolverVersionsOutput>
 end
 
-function C:getIpamResourceCidrs(input: types.GetIpamResourceCidrsInput, options: any): async.Operation<types.GetIpamResourceCidrsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIpamResourceCidrs, input, options) as async.Operation<types.GetIpamResourceCidrsOutput>
+function C:getIpamResourceCidrs(input: types.GetIpamResourceCidrsInput, options?: base_client.InvokeOptions): async.Operation<types.GetIpamResourceCidrsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIpamResourceCidrs as schema.OperationSchema, input, options) as async.Operation<types.GetIpamResourceCidrsOutput>
 end
 
-function C:getLaunchTemplateData(input: types.GetLaunchTemplateDataInput, options: any): async.Operation<types.GetLaunchTemplateDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLaunchTemplateData, input, options) as async.Operation<types.GetLaunchTemplateDataOutput>
+function C:getLaunchTemplateData(input: types.GetLaunchTemplateDataInput, options?: base_client.InvokeOptions): async.Operation<types.GetLaunchTemplateDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLaunchTemplateData as schema.OperationSchema, input, options) as async.Operation<types.GetLaunchTemplateDataOutput>
 end
 
-function C:getManagedPrefixListAssociations(input: types.GetManagedPrefixListAssociationsInput, options: any): async.Operation<types.GetManagedPrefixListAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetManagedPrefixListAssociations, input, options) as async.Operation<types.GetManagedPrefixListAssociationsOutput>
+function C:getManagedPrefixListAssociations(input: types.GetManagedPrefixListAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetManagedPrefixListAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetManagedPrefixListAssociations as schema.OperationSchema, input, options) as async.Operation<types.GetManagedPrefixListAssociationsOutput>
 end
 
-function C:getManagedPrefixListEntries(input: types.GetManagedPrefixListEntriesInput, options: any): async.Operation<types.GetManagedPrefixListEntriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetManagedPrefixListEntries, input, options) as async.Operation<types.GetManagedPrefixListEntriesOutput>
+function C:getManagedPrefixListEntries(input: types.GetManagedPrefixListEntriesInput, options?: base_client.InvokeOptions): async.Operation<types.GetManagedPrefixListEntriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetManagedPrefixListEntries as schema.OperationSchema, input, options) as async.Operation<types.GetManagedPrefixListEntriesOutput>
 end
 
-function C:getManagedResourceVisibility(input: types.GetManagedResourceVisibilityInput, options: any): async.Operation<types.GetManagedResourceVisibilityOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetManagedResourceVisibility, input, options) as async.Operation<types.GetManagedResourceVisibilityOutput>
+function C:getManagedResourceVisibility(input: types.GetManagedResourceVisibilityInput, options?: base_client.InvokeOptions): async.Operation<types.GetManagedResourceVisibilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetManagedResourceVisibility as schema.OperationSchema, input, options) as async.Operation<types.GetManagedResourceVisibilityOutput>
 end
 
-function C:getNetworkInsightsAccessScopeAnalysisFindings(input: types.GetNetworkInsightsAccessScopeAnalysisFindingsInput, options: any): async.Operation<types.GetNetworkInsightsAccessScopeAnalysisFindingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNetworkInsightsAccessScopeAnalysisFindings, input, options) as async.Operation<types.GetNetworkInsightsAccessScopeAnalysisFindingsOutput>
+function C:getNetworkInsightsAccessScopeAnalysisFindings(input: types.GetNetworkInsightsAccessScopeAnalysisFindingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetNetworkInsightsAccessScopeAnalysisFindingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNetworkInsightsAccessScopeAnalysisFindings as schema.OperationSchema, input, options) as async.Operation<types.GetNetworkInsightsAccessScopeAnalysisFindingsOutput>
 end
 
-function C:getNetworkInsightsAccessScopeContent(input: types.GetNetworkInsightsAccessScopeContentInput, options: any): async.Operation<types.GetNetworkInsightsAccessScopeContentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNetworkInsightsAccessScopeContent, input, options) as async.Operation<types.GetNetworkInsightsAccessScopeContentOutput>
+function C:getNetworkInsightsAccessScopeContent(input: types.GetNetworkInsightsAccessScopeContentInput, options?: base_client.InvokeOptions): async.Operation<types.GetNetworkInsightsAccessScopeContentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNetworkInsightsAccessScopeContent as schema.OperationSchema, input, options) as async.Operation<types.GetNetworkInsightsAccessScopeContentOutput>
 end
 
-function C:getPasswordData(input: types.GetPasswordDataInput, options: any): async.Operation<types.GetPasswordDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPasswordData, input, options) as async.Operation<types.GetPasswordDataOutput>
+function C:getPasswordData(input: types.GetPasswordDataInput, options?: base_client.InvokeOptions): async.Operation<types.GetPasswordDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPasswordData as schema.OperationSchema, input, options) as async.Operation<types.GetPasswordDataOutput>
 end
 
-function C:getReservedInstancesExchangeQuote(input: types.GetReservedInstancesExchangeQuoteInput, options: any): async.Operation<types.GetReservedInstancesExchangeQuoteOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReservedInstancesExchangeQuote, input, options) as async.Operation<types.GetReservedInstancesExchangeQuoteOutput>
+function C:getReservedInstancesExchangeQuote(input: types.GetReservedInstancesExchangeQuoteInput, options?: base_client.InvokeOptions): async.Operation<types.GetReservedInstancesExchangeQuoteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReservedInstancesExchangeQuote as schema.OperationSchema, input, options) as async.Operation<types.GetReservedInstancesExchangeQuoteOutput>
 end
 
-function C:getRouteServerAssociations(input: types.GetRouteServerAssociationsInput, options: any): async.Operation<types.GetRouteServerAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRouteServerAssociations, input, options) as async.Operation<types.GetRouteServerAssociationsOutput>
+function C:getRouteServerAssociations(input: types.GetRouteServerAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetRouteServerAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRouteServerAssociations as schema.OperationSchema, input, options) as async.Operation<types.GetRouteServerAssociationsOutput>
 end
 
-function C:getRouteServerPropagations(input: types.GetRouteServerPropagationsInput, options: any): async.Operation<types.GetRouteServerPropagationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRouteServerPropagations, input, options) as async.Operation<types.GetRouteServerPropagationsOutput>
+function C:getRouteServerPropagations(input: types.GetRouteServerPropagationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetRouteServerPropagationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRouteServerPropagations as schema.OperationSchema, input, options) as async.Operation<types.GetRouteServerPropagationsOutput>
 end
 
-function C:getRouteServerRoutingDatabase(input: types.GetRouteServerRoutingDatabaseInput, options: any): async.Operation<types.GetRouteServerRoutingDatabaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRouteServerRoutingDatabase, input, options) as async.Operation<types.GetRouteServerRoutingDatabaseOutput>
+function C:getRouteServerRoutingDatabase(input: types.GetRouteServerRoutingDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.GetRouteServerRoutingDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRouteServerRoutingDatabase as schema.OperationSchema, input, options) as async.Operation<types.GetRouteServerRoutingDatabaseOutput>
 end
 
-function C:getSecurityGroupsForVpc(input: types.GetSecurityGroupsForVpcInput, options: any): async.Operation<types.GetSecurityGroupsForVpcOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSecurityGroupsForVpc, input, options) as async.Operation<types.GetSecurityGroupsForVpcOutput>
+function C:getSecurityGroupsForVpc(input: types.GetSecurityGroupsForVpcInput, options?: base_client.InvokeOptions): async.Operation<types.GetSecurityGroupsForVpcOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSecurityGroupsForVpc as schema.OperationSchema, input, options) as async.Operation<types.GetSecurityGroupsForVpcOutput>
 end
 
-function C:getSerialConsoleAccessStatus(input: types.GetSerialConsoleAccessStatusInput, options: any): async.Operation<types.GetSerialConsoleAccessStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSerialConsoleAccessStatus, input, options) as async.Operation<types.GetSerialConsoleAccessStatusOutput>
+function C:getSerialConsoleAccessStatus(input: types.GetSerialConsoleAccessStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetSerialConsoleAccessStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSerialConsoleAccessStatus as schema.OperationSchema, input, options) as async.Operation<types.GetSerialConsoleAccessStatusOutput>
 end
 
-function C:getSnapshotBlockPublicAccessState(input: types.GetSnapshotBlockPublicAccessStateInput, options: any): async.Operation<types.GetSnapshotBlockPublicAccessStateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSnapshotBlockPublicAccessState, input, options) as async.Operation<types.GetSnapshotBlockPublicAccessStateOutput>
+function C:getSnapshotBlockPublicAccessState(input: types.GetSnapshotBlockPublicAccessStateInput, options?: base_client.InvokeOptions): async.Operation<types.GetSnapshotBlockPublicAccessStateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSnapshotBlockPublicAccessState as schema.OperationSchema, input, options) as async.Operation<types.GetSnapshotBlockPublicAccessStateOutput>
 end
 
-function C:getSpotPlacementScores(input: types.GetSpotPlacementScoresInput, options: any): async.Operation<types.GetSpotPlacementScoresOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSpotPlacementScores, input, options) as async.Operation<types.GetSpotPlacementScoresOutput>
+function C:getSpotPlacementScores(input: types.GetSpotPlacementScoresInput, options?: base_client.InvokeOptions): async.Operation<types.GetSpotPlacementScoresOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSpotPlacementScores as schema.OperationSchema, input, options) as async.Operation<types.GetSpotPlacementScoresOutput>
 end
 
-function C:getSubnetCidrReservations(input: types.GetSubnetCidrReservationsInput, options: any): async.Operation<types.GetSubnetCidrReservationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSubnetCidrReservations, input, options) as async.Operation<types.GetSubnetCidrReservationsOutput>
+function C:getSubnetCidrReservations(input: types.GetSubnetCidrReservationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetSubnetCidrReservationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSubnetCidrReservations as schema.OperationSchema, input, options) as async.Operation<types.GetSubnetCidrReservationsOutput>
 end
 
-function C:getTransitGatewayAttachmentPropagations(input: types.GetTransitGatewayAttachmentPropagationsInput, options: any): async.Operation<types.GetTransitGatewayAttachmentPropagationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTransitGatewayAttachmentPropagations, input, options) as async.Operation<types.GetTransitGatewayAttachmentPropagationsOutput>
+function C:getTransitGatewayAttachmentPropagations(input: types.GetTransitGatewayAttachmentPropagationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetTransitGatewayAttachmentPropagationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTransitGatewayAttachmentPropagations as schema.OperationSchema, input, options) as async.Operation<types.GetTransitGatewayAttachmentPropagationsOutput>
 end
 
-function C:getTransitGatewayMeteringPolicyEntries(input: types.GetTransitGatewayMeteringPolicyEntriesInput, options: any): async.Operation<types.GetTransitGatewayMeteringPolicyEntriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTransitGatewayMeteringPolicyEntries, input, options) as async.Operation<types.GetTransitGatewayMeteringPolicyEntriesOutput>
+function C:getTransitGatewayMeteringPolicyEntries(input: types.GetTransitGatewayMeteringPolicyEntriesInput, options?: base_client.InvokeOptions): async.Operation<types.GetTransitGatewayMeteringPolicyEntriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTransitGatewayMeteringPolicyEntries as schema.OperationSchema, input, options) as async.Operation<types.GetTransitGatewayMeteringPolicyEntriesOutput>
 end
 
-function C:getTransitGatewayMulticastDomainAssociations(input: types.GetTransitGatewayMulticastDomainAssociationsInput, options: any): async.Operation<types.GetTransitGatewayMulticastDomainAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTransitGatewayMulticastDomainAssociations, input, options) as async.Operation<types.GetTransitGatewayMulticastDomainAssociationsOutput>
+function C:getTransitGatewayMulticastDomainAssociations(input: types.GetTransitGatewayMulticastDomainAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetTransitGatewayMulticastDomainAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTransitGatewayMulticastDomainAssociations as schema.OperationSchema, input, options) as async.Operation<types.GetTransitGatewayMulticastDomainAssociationsOutput>
 end
 
-function C:getTransitGatewayPolicyTableAssociations(input: types.GetTransitGatewayPolicyTableAssociationsInput, options: any): async.Operation<types.GetTransitGatewayPolicyTableAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTransitGatewayPolicyTableAssociations, input, options) as async.Operation<types.GetTransitGatewayPolicyTableAssociationsOutput>
+function C:getTransitGatewayPolicyTableAssociations(input: types.GetTransitGatewayPolicyTableAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetTransitGatewayPolicyTableAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTransitGatewayPolicyTableAssociations as schema.OperationSchema, input, options) as async.Operation<types.GetTransitGatewayPolicyTableAssociationsOutput>
 end
 
-function C:getTransitGatewayPolicyTableEntries(input: types.GetTransitGatewayPolicyTableEntriesInput, options: any): async.Operation<types.GetTransitGatewayPolicyTableEntriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTransitGatewayPolicyTableEntries, input, options) as async.Operation<types.GetTransitGatewayPolicyTableEntriesOutput>
+function C:getTransitGatewayPolicyTableEntries(input: types.GetTransitGatewayPolicyTableEntriesInput, options?: base_client.InvokeOptions): async.Operation<types.GetTransitGatewayPolicyTableEntriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTransitGatewayPolicyTableEntries as schema.OperationSchema, input, options) as async.Operation<types.GetTransitGatewayPolicyTableEntriesOutput>
 end
 
-function C:getTransitGatewayPrefixListReferences(input: types.GetTransitGatewayPrefixListReferencesInput, options: any): async.Operation<types.GetTransitGatewayPrefixListReferencesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTransitGatewayPrefixListReferences, input, options) as async.Operation<types.GetTransitGatewayPrefixListReferencesOutput>
+function C:getTransitGatewayPrefixListReferences(input: types.GetTransitGatewayPrefixListReferencesInput, options?: base_client.InvokeOptions): async.Operation<types.GetTransitGatewayPrefixListReferencesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTransitGatewayPrefixListReferences as schema.OperationSchema, input, options) as async.Operation<types.GetTransitGatewayPrefixListReferencesOutput>
 end
 
-function C:getTransitGatewayRouteTableAssociations(input: types.GetTransitGatewayRouteTableAssociationsInput, options: any): async.Operation<types.GetTransitGatewayRouteTableAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTransitGatewayRouteTableAssociations, input, options) as async.Operation<types.GetTransitGatewayRouteTableAssociationsOutput>
+function C:getTransitGatewayRouteTableAssociations(input: types.GetTransitGatewayRouteTableAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetTransitGatewayRouteTableAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTransitGatewayRouteTableAssociations as schema.OperationSchema, input, options) as async.Operation<types.GetTransitGatewayRouteTableAssociationsOutput>
 end
 
-function C:getTransitGatewayRouteTablePropagations(input: types.GetTransitGatewayRouteTablePropagationsInput, options: any): async.Operation<types.GetTransitGatewayRouteTablePropagationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTransitGatewayRouteTablePropagations, input, options) as async.Operation<types.GetTransitGatewayRouteTablePropagationsOutput>
+function C:getTransitGatewayRouteTablePropagations(input: types.GetTransitGatewayRouteTablePropagationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetTransitGatewayRouteTablePropagationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTransitGatewayRouteTablePropagations as schema.OperationSchema, input, options) as async.Operation<types.GetTransitGatewayRouteTablePropagationsOutput>
 end
 
-function C:getVerifiedAccessEndpointPolicy(input: types.GetVerifiedAccessEndpointPolicyInput, options: any): async.Operation<types.GetVerifiedAccessEndpointPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetVerifiedAccessEndpointPolicy, input, options) as async.Operation<types.GetVerifiedAccessEndpointPolicyOutput>
+function C:getVerifiedAccessEndpointPolicy(input: types.GetVerifiedAccessEndpointPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetVerifiedAccessEndpointPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVerifiedAccessEndpointPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetVerifiedAccessEndpointPolicyOutput>
 end
 
-function C:getVerifiedAccessEndpointTargets(input: types.GetVerifiedAccessEndpointTargetsInput, options: any): async.Operation<types.GetVerifiedAccessEndpointTargetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetVerifiedAccessEndpointTargets, input, options) as async.Operation<types.GetVerifiedAccessEndpointTargetsOutput>
+function C:getVerifiedAccessEndpointTargets(input: types.GetVerifiedAccessEndpointTargetsInput, options?: base_client.InvokeOptions): async.Operation<types.GetVerifiedAccessEndpointTargetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVerifiedAccessEndpointTargets as schema.OperationSchema, input, options) as async.Operation<types.GetVerifiedAccessEndpointTargetsOutput>
 end
 
-function C:getVerifiedAccessGroupPolicy(input: types.GetVerifiedAccessGroupPolicyInput, options: any): async.Operation<types.GetVerifiedAccessGroupPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetVerifiedAccessGroupPolicy, input, options) as async.Operation<types.GetVerifiedAccessGroupPolicyOutput>
+function C:getVerifiedAccessGroupPolicy(input: types.GetVerifiedAccessGroupPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetVerifiedAccessGroupPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVerifiedAccessGroupPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetVerifiedAccessGroupPolicyOutput>
 end
 
-function C:getVpcResourcesBlockingEncryptionEnforcement(input: types.GetVpcResourcesBlockingEncryptionEnforcementInput, options: any): async.Operation<types.GetVpcResourcesBlockingEncryptionEnforcementOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetVpcResourcesBlockingEncryptionEnforcement, input, options) as async.Operation<types.GetVpcResourcesBlockingEncryptionEnforcementOutput>
+function C:getVpcResourcesBlockingEncryptionEnforcement(input: types.GetVpcResourcesBlockingEncryptionEnforcementInput, options?: base_client.InvokeOptions): async.Operation<types.GetVpcResourcesBlockingEncryptionEnforcementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVpcResourcesBlockingEncryptionEnforcement as schema.OperationSchema, input, options) as async.Operation<types.GetVpcResourcesBlockingEncryptionEnforcementOutput>
 end
 
-function C:getVpnConnectionDeviceSampleConfiguration(input: types.GetVpnConnectionDeviceSampleConfigurationInput, options: any): async.Operation<types.GetVpnConnectionDeviceSampleConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetVpnConnectionDeviceSampleConfiguration, input, options) as async.Operation<types.GetVpnConnectionDeviceSampleConfigurationOutput>
+function C:getVpnConnectionDeviceSampleConfiguration(input: types.GetVpnConnectionDeviceSampleConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetVpnConnectionDeviceSampleConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVpnConnectionDeviceSampleConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetVpnConnectionDeviceSampleConfigurationOutput>
 end
 
-function C:getVpnConnectionDeviceTypes(input: types.GetVpnConnectionDeviceTypesInput, options: any): async.Operation<types.GetVpnConnectionDeviceTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetVpnConnectionDeviceTypes, input, options) as async.Operation<types.GetVpnConnectionDeviceTypesOutput>
+function C:getVpnConnectionDeviceTypes(input: types.GetVpnConnectionDeviceTypesInput, options?: base_client.InvokeOptions): async.Operation<types.GetVpnConnectionDeviceTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVpnConnectionDeviceTypes as schema.OperationSchema, input, options) as async.Operation<types.GetVpnConnectionDeviceTypesOutput>
 end
 
-function C:getVpnTunnelReplacementStatus(input: types.GetVpnTunnelReplacementStatusInput, options: any): async.Operation<types.GetVpnTunnelReplacementStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetVpnTunnelReplacementStatus, input, options) as async.Operation<types.GetVpnTunnelReplacementStatusOutput>
+function C:getVpnTunnelReplacementStatus(input: types.GetVpnTunnelReplacementStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetVpnTunnelReplacementStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVpnTunnelReplacementStatus as schema.OperationSchema, input, options) as async.Operation<types.GetVpnTunnelReplacementStatusOutput>
 end
 
-function C:importClientVpnClientCertificateRevocationList(input: types.ImportClientVpnClientCertificateRevocationListInput, options: any): async.Operation<types.ImportClientVpnClientCertificateRevocationListOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportClientVpnClientCertificateRevocationList, input, options) as async.Operation<types.ImportClientVpnClientCertificateRevocationListOutput>
+function C:importClientVpnClientCertificateRevocationList(input: types.ImportClientVpnClientCertificateRevocationListInput, options?: base_client.InvokeOptions): async.Operation<types.ImportClientVpnClientCertificateRevocationListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportClientVpnClientCertificateRevocationList as schema.OperationSchema, input, options) as async.Operation<types.ImportClientVpnClientCertificateRevocationListOutput>
 end
 
-function C:importImage(input: types.ImportImageInput, options: any): async.Operation<types.ImportImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportImage, input, options) as async.Operation<types.ImportImageOutput>
+function C:importImage(input: types.ImportImageInput, options?: base_client.InvokeOptions): async.Operation<types.ImportImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportImage as schema.OperationSchema, input, options) as async.Operation<types.ImportImageOutput>
 end
 
-function C:importInstance(input: types.ImportInstanceInput, options: any): async.Operation<types.ImportInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportInstance, input, options) as async.Operation<types.ImportInstanceOutput>
+function C:importInstance(input: types.ImportInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.ImportInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportInstance as schema.OperationSchema, input, options) as async.Operation<types.ImportInstanceOutput>
 end
 
-function C:importKeyPair(input: types.ImportKeyPairInput, options: any): async.Operation<types.ImportKeyPairOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportKeyPair, input, options) as async.Operation<types.ImportKeyPairOutput>
+function C:importKeyPair(input: types.ImportKeyPairInput, options?: base_client.InvokeOptions): async.Operation<types.ImportKeyPairOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportKeyPair as schema.OperationSchema, input, options) as async.Operation<types.ImportKeyPairOutput>
 end
 
-function C:importSnapshot(input: types.ImportSnapshotInput, options: any): async.Operation<types.ImportSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportSnapshot, input, options) as async.Operation<types.ImportSnapshotOutput>
+function C:importSnapshot(input: types.ImportSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.ImportSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportSnapshot as schema.OperationSchema, input, options) as async.Operation<types.ImportSnapshotOutput>
 end
 
-function C:importVolume(input: types.ImportVolumeInput, options: any): async.Operation<types.ImportVolumeOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportVolume, input, options) as async.Operation<types.ImportVolumeOutput>
+function C:importVolume(input: types.ImportVolumeInput, options?: base_client.InvokeOptions): async.Operation<types.ImportVolumeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportVolume as schema.OperationSchema, input, options) as async.Operation<types.ImportVolumeOutput>
 end
 
-function C:listImagesInRecycleBin(input: types.ListImagesInRecycleBinInput, options: any): async.Operation<types.ListImagesInRecycleBinOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListImagesInRecycleBin, input, options) as async.Operation<types.ListImagesInRecycleBinOutput>
+function C:listImagesInRecycleBin(input: types.ListImagesInRecycleBinInput, options?: base_client.InvokeOptions): async.Operation<types.ListImagesInRecycleBinOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListImagesInRecycleBin as schema.OperationSchema, input, options) as async.Operation<types.ListImagesInRecycleBinOutput>
 end
 
-function C:listSnapshotsInRecycleBin(input: types.ListSnapshotsInRecycleBinInput, options: any): async.Operation<types.ListSnapshotsInRecycleBinOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSnapshotsInRecycleBin, input, options) as async.Operation<types.ListSnapshotsInRecycleBinOutput>
+function C:listSnapshotsInRecycleBin(input: types.ListSnapshotsInRecycleBinInput, options?: base_client.InvokeOptions): async.Operation<types.ListSnapshotsInRecycleBinOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSnapshotsInRecycleBin as schema.OperationSchema, input, options) as async.Operation<types.ListSnapshotsInRecycleBinOutput>
 end
 
-function C:listVolumesInRecycleBin(input: types.ListVolumesInRecycleBinInput, options: any): async.Operation<types.ListVolumesInRecycleBinOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVolumesInRecycleBin, input, options) as async.Operation<types.ListVolumesInRecycleBinOutput>
+function C:listVolumesInRecycleBin(input: types.ListVolumesInRecycleBinInput, options?: base_client.InvokeOptions): async.Operation<types.ListVolumesInRecycleBinOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVolumesInRecycleBin as schema.OperationSchema, input, options) as async.Operation<types.ListVolumesInRecycleBinOutput>
 end
 
-function C:lockSnapshot(input: types.LockSnapshotInput, options: any): async.Operation<types.LockSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.LockSnapshot, input, options) as async.Operation<types.LockSnapshotOutput>
+function C:lockSnapshot(input: types.LockSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.LockSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.LockSnapshot as schema.OperationSchema, input, options) as async.Operation<types.LockSnapshotOutput>
 end
 
-function C:modifyAddressAttribute(input: types.ModifyAddressAttributeInput, options: any): async.Operation<types.ModifyAddressAttributeOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyAddressAttribute, input, options) as async.Operation<types.ModifyAddressAttributeOutput>
+function C:modifyAddressAttribute(input: types.ModifyAddressAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyAddressAttributeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyAddressAttribute as schema.OperationSchema, input, options) as async.Operation<types.ModifyAddressAttributeOutput>
 end
 
-function C:modifyAvailabilityZoneGroup(input: types.ModifyAvailabilityZoneGroupInput, options: any): async.Operation<types.ModifyAvailabilityZoneGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyAvailabilityZoneGroup, input, options) as async.Operation<types.ModifyAvailabilityZoneGroupOutput>
+function C:modifyAvailabilityZoneGroup(input: types.ModifyAvailabilityZoneGroupInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyAvailabilityZoneGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyAvailabilityZoneGroup as schema.OperationSchema, input, options) as async.Operation<types.ModifyAvailabilityZoneGroupOutput>
 end
 
-function C:modifyCapacityReservation(input: types.ModifyCapacityReservationInput, options: any): async.Operation<types.ModifyCapacityReservationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyCapacityReservation, input, options) as async.Operation<types.ModifyCapacityReservationOutput>
+function C:modifyCapacityReservation(input: types.ModifyCapacityReservationInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyCapacityReservationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyCapacityReservation as schema.OperationSchema, input, options) as async.Operation<types.ModifyCapacityReservationOutput>
 end
 
-function C:modifyCapacityReservationFleet(input: types.ModifyCapacityReservationFleetInput, options: any): async.Operation<types.ModifyCapacityReservationFleetOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyCapacityReservationFleet, input, options) as async.Operation<types.ModifyCapacityReservationFleetOutput>
+function C:modifyCapacityReservationFleet(input: types.ModifyCapacityReservationFleetInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyCapacityReservationFleetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyCapacityReservationFleet as schema.OperationSchema, input, options) as async.Operation<types.ModifyCapacityReservationFleetOutput>
 end
 
-function C:modifyClientVpnEndpoint(input: types.ModifyClientVpnEndpointInput, options: any): async.Operation<types.ModifyClientVpnEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyClientVpnEndpoint, input, options) as async.Operation<types.ModifyClientVpnEndpointOutput>
+function C:modifyClientVpnEndpoint(input: types.ModifyClientVpnEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyClientVpnEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyClientVpnEndpoint as schema.OperationSchema, input, options) as async.Operation<types.ModifyClientVpnEndpointOutput>
 end
 
-function C:modifyDefaultCreditSpecification(input: types.ModifyDefaultCreditSpecificationInput, options: any): async.Operation<types.ModifyDefaultCreditSpecificationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyDefaultCreditSpecification, input, options) as async.Operation<types.ModifyDefaultCreditSpecificationOutput>
+function C:modifyDefaultCreditSpecification(input: types.ModifyDefaultCreditSpecificationInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyDefaultCreditSpecificationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyDefaultCreditSpecification as schema.OperationSchema, input, options) as async.Operation<types.ModifyDefaultCreditSpecificationOutput>
 end
 
-function C:modifyEbsDefaultKmsKeyId(input: types.ModifyEbsDefaultKmsKeyIdInput, options: any): async.Operation<types.ModifyEbsDefaultKmsKeyIdOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyEbsDefaultKmsKeyId, input, options) as async.Operation<types.ModifyEbsDefaultKmsKeyIdOutput>
+function C:modifyEbsDefaultKmsKeyId(input: types.ModifyEbsDefaultKmsKeyIdInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyEbsDefaultKmsKeyIdOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyEbsDefaultKmsKeyId as schema.OperationSchema, input, options) as async.Operation<types.ModifyEbsDefaultKmsKeyIdOutput>
 end
 
-function C:modifyFleet(input: types.ModifyFleetInput, options: any): async.Operation<types.ModifyFleetOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyFleet, input, options) as async.Operation<types.ModifyFleetOutput>
+function C:modifyFleet(input: types.ModifyFleetInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyFleetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyFleet as schema.OperationSchema, input, options) as async.Operation<types.ModifyFleetOutput>
 end
 
-function C:modifyFpgaImageAttribute(input: types.ModifyFpgaImageAttributeInput, options: any): async.Operation<types.ModifyFpgaImageAttributeOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyFpgaImageAttribute, input, options) as async.Operation<types.ModifyFpgaImageAttributeOutput>
+function C:modifyFpgaImageAttribute(input: types.ModifyFpgaImageAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyFpgaImageAttributeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyFpgaImageAttribute as schema.OperationSchema, input, options) as async.Operation<types.ModifyFpgaImageAttributeOutput>
 end
 
-function C:modifyHosts(input: types.ModifyHostsInput, options: any): async.Operation<types.ModifyHostsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyHosts, input, options) as async.Operation<types.ModifyHostsOutput>
+function C:modifyHosts(input: types.ModifyHostsInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyHostsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyHosts as schema.OperationSchema, input, options) as async.Operation<types.ModifyHostsOutput>
 end
 
-function C:modifyIdentityIdFormat(input: types.ModifyIdentityIdFormatInput, options: any): async.Operation<types.ModifyIdentityIdFormatOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyIdentityIdFormat, input, options) as async.Operation<types.ModifyIdentityIdFormatOutput>
+function C:modifyIdentityIdFormat(input: types.ModifyIdentityIdFormatInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyIdentityIdFormatOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyIdentityIdFormat as schema.OperationSchema, input, options) as async.Operation<types.ModifyIdentityIdFormatOutput>
 end
 
-function C:modifyIdFormat(input: types.ModifyIdFormatInput, options: any): async.Operation<types.ModifyIdFormatOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyIdFormat, input, options) as async.Operation<types.ModifyIdFormatOutput>
+function C:modifyIdFormat(input: types.ModifyIdFormatInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyIdFormatOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyIdFormat as schema.OperationSchema, input, options) as async.Operation<types.ModifyIdFormatOutput>
 end
 
-function C:modifyImageAttribute(input: types.ModifyImageAttributeInput, options: any): async.Operation<types.ModifyImageAttributeOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyImageAttribute, input, options) as async.Operation<types.ModifyImageAttributeOutput>
+function C:modifyImageAttribute(input: types.ModifyImageAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyImageAttributeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyImageAttribute as schema.OperationSchema, input, options) as async.Operation<types.ModifyImageAttributeOutput>
 end
 
-function C:modifyInstanceAttribute(input: types.ModifyInstanceAttributeInput, options: any): async.Operation<types.ModifyInstanceAttributeOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyInstanceAttribute, input, options) as async.Operation<types.ModifyInstanceAttributeOutput>
+function C:modifyInstanceAttribute(input: types.ModifyInstanceAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyInstanceAttributeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyInstanceAttribute as schema.OperationSchema, input, options) as async.Operation<types.ModifyInstanceAttributeOutput>
 end
 
-function C:modifyInstanceCapacityReservationAttributes(input: types.ModifyInstanceCapacityReservationAttributesInput, options: any): async.Operation<types.ModifyInstanceCapacityReservationAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyInstanceCapacityReservationAttributes, input, options) as async.Operation<types.ModifyInstanceCapacityReservationAttributesOutput>
+function C:modifyInstanceCapacityReservationAttributes(input: types.ModifyInstanceCapacityReservationAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyInstanceCapacityReservationAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyInstanceCapacityReservationAttributes as schema.OperationSchema, input, options) as async.Operation<types.ModifyInstanceCapacityReservationAttributesOutput>
 end
 
-function C:modifyInstanceConnectEndpoint(input: types.ModifyInstanceConnectEndpointInput, options: any): async.Operation<types.ModifyInstanceConnectEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyInstanceConnectEndpoint, input, options) as async.Operation<types.ModifyInstanceConnectEndpointOutput>
+function C:modifyInstanceConnectEndpoint(input: types.ModifyInstanceConnectEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyInstanceConnectEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyInstanceConnectEndpoint as schema.OperationSchema, input, options) as async.Operation<types.ModifyInstanceConnectEndpointOutput>
 end
 
-function C:modifyInstanceCpuOptions(input: types.ModifyInstanceCpuOptionsInput, options: any): async.Operation<types.ModifyInstanceCpuOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyInstanceCpuOptions, input, options) as async.Operation<types.ModifyInstanceCpuOptionsOutput>
+function C:modifyInstanceCpuOptions(input: types.ModifyInstanceCpuOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyInstanceCpuOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyInstanceCpuOptions as schema.OperationSchema, input, options) as async.Operation<types.ModifyInstanceCpuOptionsOutput>
 end
 
-function C:modifyInstanceCreditSpecification(input: types.ModifyInstanceCreditSpecificationInput, options: any): async.Operation<types.ModifyInstanceCreditSpecificationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyInstanceCreditSpecification, input, options) as async.Operation<types.ModifyInstanceCreditSpecificationOutput>
+function C:modifyInstanceCreditSpecification(input: types.ModifyInstanceCreditSpecificationInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyInstanceCreditSpecificationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyInstanceCreditSpecification as schema.OperationSchema, input, options) as async.Operation<types.ModifyInstanceCreditSpecificationOutput>
 end
 
-function C:modifyInstanceEventStartTime(input: types.ModifyInstanceEventStartTimeInput, options: any): async.Operation<types.ModifyInstanceEventStartTimeOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyInstanceEventStartTime, input, options) as async.Operation<types.ModifyInstanceEventStartTimeOutput>
+function C:modifyInstanceEventStartTime(input: types.ModifyInstanceEventStartTimeInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyInstanceEventStartTimeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyInstanceEventStartTime as schema.OperationSchema, input, options) as async.Operation<types.ModifyInstanceEventStartTimeOutput>
 end
 
-function C:modifyInstanceEventWindow(input: types.ModifyInstanceEventWindowInput, options: any): async.Operation<types.ModifyInstanceEventWindowOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyInstanceEventWindow, input, options) as async.Operation<types.ModifyInstanceEventWindowOutput>
+function C:modifyInstanceEventWindow(input: types.ModifyInstanceEventWindowInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyInstanceEventWindowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyInstanceEventWindow as schema.OperationSchema, input, options) as async.Operation<types.ModifyInstanceEventWindowOutput>
 end
 
-function C:modifyInstanceMaintenanceOptions(input: types.ModifyInstanceMaintenanceOptionsInput, options: any): async.Operation<types.ModifyInstanceMaintenanceOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyInstanceMaintenanceOptions, input, options) as async.Operation<types.ModifyInstanceMaintenanceOptionsOutput>
+function C:modifyInstanceMaintenanceOptions(input: types.ModifyInstanceMaintenanceOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyInstanceMaintenanceOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyInstanceMaintenanceOptions as schema.OperationSchema, input, options) as async.Operation<types.ModifyInstanceMaintenanceOptionsOutput>
 end
 
-function C:modifyInstanceMetadataDefaults(input: types.ModifyInstanceMetadataDefaultsInput, options: any): async.Operation<types.ModifyInstanceMetadataDefaultsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyInstanceMetadataDefaults, input, options) as async.Operation<types.ModifyInstanceMetadataDefaultsOutput>
+function C:modifyInstanceMetadataDefaults(input: types.ModifyInstanceMetadataDefaultsInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyInstanceMetadataDefaultsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyInstanceMetadataDefaults as schema.OperationSchema, input, options) as async.Operation<types.ModifyInstanceMetadataDefaultsOutput>
 end
 
-function C:modifyInstanceMetadataOptions(input: types.ModifyInstanceMetadataOptionsInput, options: any): async.Operation<types.ModifyInstanceMetadataOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyInstanceMetadataOptions, input, options) as async.Operation<types.ModifyInstanceMetadataOptionsOutput>
+function C:modifyInstanceMetadataOptions(input: types.ModifyInstanceMetadataOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyInstanceMetadataOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyInstanceMetadataOptions as schema.OperationSchema, input, options) as async.Operation<types.ModifyInstanceMetadataOptionsOutput>
 end
 
-function C:modifyInstanceNetworkPerformanceOptions(input: types.ModifyInstanceNetworkPerformanceOptionsInput, options: any): async.Operation<types.ModifyInstanceNetworkPerformanceOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyInstanceNetworkPerformanceOptions, input, options) as async.Operation<types.ModifyInstanceNetworkPerformanceOptionsOutput>
+function C:modifyInstanceNetworkPerformanceOptions(input: types.ModifyInstanceNetworkPerformanceOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyInstanceNetworkPerformanceOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyInstanceNetworkPerformanceOptions as schema.OperationSchema, input, options) as async.Operation<types.ModifyInstanceNetworkPerformanceOptionsOutput>
 end
 
-function C:modifyInstancePlacement(input: types.ModifyInstancePlacementInput, options: any): async.Operation<types.ModifyInstancePlacementOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyInstancePlacement, input, options) as async.Operation<types.ModifyInstancePlacementOutput>
+function C:modifyInstancePlacement(input: types.ModifyInstancePlacementInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyInstancePlacementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyInstancePlacement as schema.OperationSchema, input, options) as async.Operation<types.ModifyInstancePlacementOutput>
 end
 
-function C:modifyIpam(input: types.ModifyIpamInput, options: any): async.Operation<types.ModifyIpamOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyIpam, input, options) as async.Operation<types.ModifyIpamOutput>
+function C:modifyIpam(input: types.ModifyIpamInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyIpamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyIpam as schema.OperationSchema, input, options) as async.Operation<types.ModifyIpamOutput>
 end
 
-function C:modifyIpamPolicyAllocationRules(input: types.ModifyIpamPolicyAllocationRulesInput, options: any): async.Operation<types.ModifyIpamPolicyAllocationRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyIpamPolicyAllocationRules, input, options) as async.Operation<types.ModifyIpamPolicyAllocationRulesOutput>
+function C:modifyIpamPolicyAllocationRules(input: types.ModifyIpamPolicyAllocationRulesInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyIpamPolicyAllocationRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyIpamPolicyAllocationRules as schema.OperationSchema, input, options) as async.Operation<types.ModifyIpamPolicyAllocationRulesOutput>
 end
 
-function C:modifyIpamPool(input: types.ModifyIpamPoolInput, options: any): async.Operation<types.ModifyIpamPoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyIpamPool, input, options) as async.Operation<types.ModifyIpamPoolOutput>
+function C:modifyIpamPool(input: types.ModifyIpamPoolInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyIpamPoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyIpamPool as schema.OperationSchema, input, options) as async.Operation<types.ModifyIpamPoolOutput>
 end
 
-function C:modifyIpamPrefixListResolver(input: types.ModifyIpamPrefixListResolverInput, options: any): async.Operation<types.ModifyIpamPrefixListResolverOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyIpamPrefixListResolver, input, options) as async.Operation<types.ModifyIpamPrefixListResolverOutput>
+function C:modifyIpamPrefixListResolver(input: types.ModifyIpamPrefixListResolverInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyIpamPrefixListResolverOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyIpamPrefixListResolver as schema.OperationSchema, input, options) as async.Operation<types.ModifyIpamPrefixListResolverOutput>
 end
 
-function C:modifyIpamPrefixListResolverTarget(input: types.ModifyIpamPrefixListResolverTargetInput, options: any): async.Operation<types.ModifyIpamPrefixListResolverTargetOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyIpamPrefixListResolverTarget, input, options) as async.Operation<types.ModifyIpamPrefixListResolverTargetOutput>
+function C:modifyIpamPrefixListResolverTarget(input: types.ModifyIpamPrefixListResolverTargetInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyIpamPrefixListResolverTargetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyIpamPrefixListResolverTarget as schema.OperationSchema, input, options) as async.Operation<types.ModifyIpamPrefixListResolverTargetOutput>
 end
 
-function C:modifyIpamResourceCidr(input: types.ModifyIpamResourceCidrInput, options: any): async.Operation<types.ModifyIpamResourceCidrOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyIpamResourceCidr, input, options) as async.Operation<types.ModifyIpamResourceCidrOutput>
+function C:modifyIpamResourceCidr(input: types.ModifyIpamResourceCidrInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyIpamResourceCidrOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyIpamResourceCidr as schema.OperationSchema, input, options) as async.Operation<types.ModifyIpamResourceCidrOutput>
 end
 
-function C:modifyIpamResourceDiscovery(input: types.ModifyIpamResourceDiscoveryInput, options: any): async.Operation<types.ModifyIpamResourceDiscoveryOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyIpamResourceDiscovery, input, options) as async.Operation<types.ModifyIpamResourceDiscoveryOutput>
+function C:modifyIpamResourceDiscovery(input: types.ModifyIpamResourceDiscoveryInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyIpamResourceDiscoveryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyIpamResourceDiscovery as schema.OperationSchema, input, options) as async.Operation<types.ModifyIpamResourceDiscoveryOutput>
 end
 
-function C:modifyIpamScope(input: types.ModifyIpamScopeInput, options: any): async.Operation<types.ModifyIpamScopeOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyIpamScope, input, options) as async.Operation<types.ModifyIpamScopeOutput>
+function C:modifyIpamScope(input: types.ModifyIpamScopeInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyIpamScopeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyIpamScope as schema.OperationSchema, input, options) as async.Operation<types.ModifyIpamScopeOutput>
 end
 
-function C:modifyLaunchTemplate(input: types.ModifyLaunchTemplateInput, options: any): async.Operation<types.ModifyLaunchTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyLaunchTemplate, input, options) as async.Operation<types.ModifyLaunchTemplateOutput>
+function C:modifyLaunchTemplate(input: types.ModifyLaunchTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyLaunchTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyLaunchTemplate as schema.OperationSchema, input, options) as async.Operation<types.ModifyLaunchTemplateOutput>
 end
 
-function C:modifyLocalGatewayRoute(input: types.ModifyLocalGatewayRouteInput, options: any): async.Operation<types.ModifyLocalGatewayRouteOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyLocalGatewayRoute, input, options) as async.Operation<types.ModifyLocalGatewayRouteOutput>
+function C:modifyLocalGatewayRoute(input: types.ModifyLocalGatewayRouteInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyLocalGatewayRouteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyLocalGatewayRoute as schema.OperationSchema, input, options) as async.Operation<types.ModifyLocalGatewayRouteOutput>
 end
 
-function C:modifyManagedPrefixList(input: types.ModifyManagedPrefixListInput, options: any): async.Operation<types.ModifyManagedPrefixListOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyManagedPrefixList, input, options) as async.Operation<types.ModifyManagedPrefixListOutput>
+function C:modifyManagedPrefixList(input: types.ModifyManagedPrefixListInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyManagedPrefixListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyManagedPrefixList as schema.OperationSchema, input, options) as async.Operation<types.ModifyManagedPrefixListOutput>
 end
 
-function C:modifyManagedResourceVisibility(input: types.ModifyManagedResourceVisibilityInput, options: any): async.Operation<types.ModifyManagedResourceVisibilityOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyManagedResourceVisibility, input, options) as async.Operation<types.ModifyManagedResourceVisibilityOutput>
+function C:modifyManagedResourceVisibility(input: types.ModifyManagedResourceVisibilityInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyManagedResourceVisibilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyManagedResourceVisibility as schema.OperationSchema, input, options) as async.Operation<types.ModifyManagedResourceVisibilityOutput>
 end
 
-function C:modifyNetworkInterfaceAttribute(input: types.ModifyNetworkInterfaceAttributeInput, options: any): async.Operation<types.ModifyNetworkInterfaceAttributeOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyNetworkInterfaceAttribute, input, options) as async.Operation<types.ModifyNetworkInterfaceAttributeOutput>
+function C:modifyNetworkInterfaceAttribute(input: types.ModifyNetworkInterfaceAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyNetworkInterfaceAttributeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyNetworkInterfaceAttribute as schema.OperationSchema, input, options) as async.Operation<types.ModifyNetworkInterfaceAttributeOutput>
 end
 
-function C:modifyPrivateDnsNameOptions(input: types.ModifyPrivateDnsNameOptionsInput, options: any): async.Operation<types.ModifyPrivateDnsNameOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyPrivateDnsNameOptions, input, options) as async.Operation<types.ModifyPrivateDnsNameOptionsOutput>
+function C:modifyPrivateDnsNameOptions(input: types.ModifyPrivateDnsNameOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyPrivateDnsNameOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyPrivateDnsNameOptions as schema.OperationSchema, input, options) as async.Operation<types.ModifyPrivateDnsNameOptionsOutput>
 end
 
-function C:modifyPublicIpDnsNameOptions(input: types.ModifyPublicIpDnsNameOptionsInput, options: any): async.Operation<types.ModifyPublicIpDnsNameOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyPublicIpDnsNameOptions, input, options) as async.Operation<types.ModifyPublicIpDnsNameOptionsOutput>
+function C:modifyPublicIpDnsNameOptions(input: types.ModifyPublicIpDnsNameOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyPublicIpDnsNameOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyPublicIpDnsNameOptions as schema.OperationSchema, input, options) as async.Operation<types.ModifyPublicIpDnsNameOptionsOutput>
 end
 
-function C:modifyReservedInstances(input: types.ModifyReservedInstancesInput, options: any): async.Operation<types.ModifyReservedInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyReservedInstances, input, options) as async.Operation<types.ModifyReservedInstancesOutput>
+function C:modifyReservedInstances(input: types.ModifyReservedInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyReservedInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyReservedInstances as schema.OperationSchema, input, options) as async.Operation<types.ModifyReservedInstancesOutput>
 end
 
-function C:modifyRouteServer(input: types.ModifyRouteServerInput, options: any): async.Operation<types.ModifyRouteServerOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyRouteServer, input, options) as async.Operation<types.ModifyRouteServerOutput>
+function C:modifyRouteServer(input: types.ModifyRouteServerInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyRouteServerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyRouteServer as schema.OperationSchema, input, options) as async.Operation<types.ModifyRouteServerOutput>
 end
 
-function C:modifySecurityGroupRules(input: types.ModifySecurityGroupRulesInput, options: any): async.Operation<types.ModifySecurityGroupRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifySecurityGroupRules, input, options) as async.Operation<types.ModifySecurityGroupRulesOutput>
+function C:modifySecurityGroupRules(input: types.ModifySecurityGroupRulesInput, options?: base_client.InvokeOptions): async.Operation<types.ModifySecurityGroupRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifySecurityGroupRules as schema.OperationSchema, input, options) as async.Operation<types.ModifySecurityGroupRulesOutput>
 end
 
-function C:modifySnapshotAttribute(input: types.ModifySnapshotAttributeInput, options: any): async.Operation<types.ModifySnapshotAttributeOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifySnapshotAttribute, input, options) as async.Operation<types.ModifySnapshotAttributeOutput>
+function C:modifySnapshotAttribute(input: types.ModifySnapshotAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.ModifySnapshotAttributeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifySnapshotAttribute as schema.OperationSchema, input, options) as async.Operation<types.ModifySnapshotAttributeOutput>
 end
 
-function C:modifySnapshotTier(input: types.ModifySnapshotTierInput, options: any): async.Operation<types.ModifySnapshotTierOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifySnapshotTier, input, options) as async.Operation<types.ModifySnapshotTierOutput>
+function C:modifySnapshotTier(input: types.ModifySnapshotTierInput, options?: base_client.InvokeOptions): async.Operation<types.ModifySnapshotTierOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifySnapshotTier as schema.OperationSchema, input, options) as async.Operation<types.ModifySnapshotTierOutput>
 end
 
-function C:modifySpotFleetRequest(input: types.ModifySpotFleetRequestInput, options: any): async.Operation<types.ModifySpotFleetRequestOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifySpotFleetRequest, input, options) as async.Operation<types.ModifySpotFleetRequestOutput>
+function C:modifySpotFleetRequest(input: types.ModifySpotFleetRequestInput, options?: base_client.InvokeOptions): async.Operation<types.ModifySpotFleetRequestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifySpotFleetRequest as schema.OperationSchema, input, options) as async.Operation<types.ModifySpotFleetRequestOutput>
 end
 
-function C:modifySubnetAttribute(input: types.ModifySubnetAttributeInput, options: any): async.Operation<types.ModifySubnetAttributeOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifySubnetAttribute, input, options) as async.Operation<types.ModifySubnetAttributeOutput>
+function C:modifySubnetAttribute(input: types.ModifySubnetAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.ModifySubnetAttributeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifySubnetAttribute as schema.OperationSchema, input, options) as async.Operation<types.ModifySubnetAttributeOutput>
 end
 
-function C:modifyTrafficMirrorFilterNetworkServices(input: types.ModifyTrafficMirrorFilterNetworkServicesInput, options: any): async.Operation<types.ModifyTrafficMirrorFilterNetworkServicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyTrafficMirrorFilterNetworkServices, input, options) as async.Operation<types.ModifyTrafficMirrorFilterNetworkServicesOutput>
+function C:modifyTrafficMirrorFilterNetworkServices(input: types.ModifyTrafficMirrorFilterNetworkServicesInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyTrafficMirrorFilterNetworkServicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyTrafficMirrorFilterNetworkServices as schema.OperationSchema, input, options) as async.Operation<types.ModifyTrafficMirrorFilterNetworkServicesOutput>
 end
 
-function C:modifyTrafficMirrorFilterRule(input: types.ModifyTrafficMirrorFilterRuleInput, options: any): async.Operation<types.ModifyTrafficMirrorFilterRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyTrafficMirrorFilterRule, input, options) as async.Operation<types.ModifyTrafficMirrorFilterRuleOutput>
+function C:modifyTrafficMirrorFilterRule(input: types.ModifyTrafficMirrorFilterRuleInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyTrafficMirrorFilterRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyTrafficMirrorFilterRule as schema.OperationSchema, input, options) as async.Operation<types.ModifyTrafficMirrorFilterRuleOutput>
 end
 
-function C:modifyTrafficMirrorSession(input: types.ModifyTrafficMirrorSessionInput, options: any): async.Operation<types.ModifyTrafficMirrorSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyTrafficMirrorSession, input, options) as async.Operation<types.ModifyTrafficMirrorSessionOutput>
+function C:modifyTrafficMirrorSession(input: types.ModifyTrafficMirrorSessionInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyTrafficMirrorSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyTrafficMirrorSession as schema.OperationSchema, input, options) as async.Operation<types.ModifyTrafficMirrorSessionOutput>
 end
 
-function C:modifyTransitGateway(input: types.ModifyTransitGatewayInput, options: any): async.Operation<types.ModifyTransitGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyTransitGateway, input, options) as async.Operation<types.ModifyTransitGatewayOutput>
+function C:modifyTransitGateway(input: types.ModifyTransitGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyTransitGateway as schema.OperationSchema, input, options) as async.Operation<types.ModifyTransitGatewayOutput>
 end
 
-function C:modifyTransitGatewayMeteringPolicy(input: types.ModifyTransitGatewayMeteringPolicyInput, options: any): async.Operation<types.ModifyTransitGatewayMeteringPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyTransitGatewayMeteringPolicy, input, options) as async.Operation<types.ModifyTransitGatewayMeteringPolicyOutput>
+function C:modifyTransitGatewayMeteringPolicy(input: types.ModifyTransitGatewayMeteringPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayMeteringPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyTransitGatewayMeteringPolicy as schema.OperationSchema, input, options) as async.Operation<types.ModifyTransitGatewayMeteringPolicyOutput>
 end
 
-function C:modifyTransitGatewayPrefixListReference(input: types.ModifyTransitGatewayPrefixListReferenceInput, options: any): async.Operation<types.ModifyTransitGatewayPrefixListReferenceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyTransitGatewayPrefixListReference, input, options) as async.Operation<types.ModifyTransitGatewayPrefixListReferenceOutput>
+function C:modifyTransitGatewayPrefixListReference(input: types.ModifyTransitGatewayPrefixListReferenceInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayPrefixListReferenceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyTransitGatewayPrefixListReference as schema.OperationSchema, input, options) as async.Operation<types.ModifyTransitGatewayPrefixListReferenceOutput>
 end
 
-function C:modifyTransitGatewayVpcAttachment(input: types.ModifyTransitGatewayVpcAttachmentInput, options: any): async.Operation<types.ModifyTransitGatewayVpcAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyTransitGatewayVpcAttachment, input, options) as async.Operation<types.ModifyTransitGatewayVpcAttachmentOutput>
+function C:modifyTransitGatewayVpcAttachment(input: types.ModifyTransitGatewayVpcAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayVpcAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyTransitGatewayVpcAttachment as schema.OperationSchema, input, options) as async.Operation<types.ModifyTransitGatewayVpcAttachmentOutput>
 end
 
-function C:modifyVerifiedAccessEndpoint(input: types.ModifyVerifiedAccessEndpointInput, options: any): async.Operation<types.ModifyVerifiedAccessEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyVerifiedAccessEndpoint, input, options) as async.Operation<types.ModifyVerifiedAccessEndpointOutput>
+function C:modifyVerifiedAccessEndpoint(input: types.ModifyVerifiedAccessEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVerifiedAccessEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyVerifiedAccessEndpoint as schema.OperationSchema, input, options) as async.Operation<types.ModifyVerifiedAccessEndpointOutput>
 end
 
-function C:modifyVerifiedAccessEndpointPolicy(input: types.ModifyVerifiedAccessEndpointPolicyInput, options: any): async.Operation<types.ModifyVerifiedAccessEndpointPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyVerifiedAccessEndpointPolicy, input, options) as async.Operation<types.ModifyVerifiedAccessEndpointPolicyOutput>
+function C:modifyVerifiedAccessEndpointPolicy(input: types.ModifyVerifiedAccessEndpointPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVerifiedAccessEndpointPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyVerifiedAccessEndpointPolicy as schema.OperationSchema, input, options) as async.Operation<types.ModifyVerifiedAccessEndpointPolicyOutput>
 end
 
-function C:modifyVerifiedAccessGroup(input: types.ModifyVerifiedAccessGroupInput, options: any): async.Operation<types.ModifyVerifiedAccessGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyVerifiedAccessGroup, input, options) as async.Operation<types.ModifyVerifiedAccessGroupOutput>
+function C:modifyVerifiedAccessGroup(input: types.ModifyVerifiedAccessGroupInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVerifiedAccessGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyVerifiedAccessGroup as schema.OperationSchema, input, options) as async.Operation<types.ModifyVerifiedAccessGroupOutput>
 end
 
-function C:modifyVerifiedAccessGroupPolicy(input: types.ModifyVerifiedAccessGroupPolicyInput, options: any): async.Operation<types.ModifyVerifiedAccessGroupPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyVerifiedAccessGroupPolicy, input, options) as async.Operation<types.ModifyVerifiedAccessGroupPolicyOutput>
+function C:modifyVerifiedAccessGroupPolicy(input: types.ModifyVerifiedAccessGroupPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVerifiedAccessGroupPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyVerifiedAccessGroupPolicy as schema.OperationSchema, input, options) as async.Operation<types.ModifyVerifiedAccessGroupPolicyOutput>
 end
 
-function C:modifyVerifiedAccessInstance(input: types.ModifyVerifiedAccessInstanceInput, options: any): async.Operation<types.ModifyVerifiedAccessInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyVerifiedAccessInstance, input, options) as async.Operation<types.ModifyVerifiedAccessInstanceOutput>
+function C:modifyVerifiedAccessInstance(input: types.ModifyVerifiedAccessInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVerifiedAccessInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyVerifiedAccessInstance as schema.OperationSchema, input, options) as async.Operation<types.ModifyVerifiedAccessInstanceOutput>
 end
 
-function C:modifyVerifiedAccessInstanceLoggingConfiguration(input: types.ModifyVerifiedAccessInstanceLoggingConfigurationInput, options: any): async.Operation<types.ModifyVerifiedAccessInstanceLoggingConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyVerifiedAccessInstanceLoggingConfiguration, input, options) as async.Operation<types.ModifyVerifiedAccessInstanceLoggingConfigurationOutput>
+function C:modifyVerifiedAccessInstanceLoggingConfiguration(input: types.ModifyVerifiedAccessInstanceLoggingConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVerifiedAccessInstanceLoggingConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyVerifiedAccessInstanceLoggingConfiguration as schema.OperationSchema, input, options) as async.Operation<types.ModifyVerifiedAccessInstanceLoggingConfigurationOutput>
 end
 
-function C:modifyVerifiedAccessTrustProvider(input: types.ModifyVerifiedAccessTrustProviderInput, options: any): async.Operation<types.ModifyVerifiedAccessTrustProviderOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyVerifiedAccessTrustProvider, input, options) as async.Operation<types.ModifyVerifiedAccessTrustProviderOutput>
+function C:modifyVerifiedAccessTrustProvider(input: types.ModifyVerifiedAccessTrustProviderInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVerifiedAccessTrustProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyVerifiedAccessTrustProvider as schema.OperationSchema, input, options) as async.Operation<types.ModifyVerifiedAccessTrustProviderOutput>
 end
 
-function C:modifyVolume(input: types.ModifyVolumeInput, options: any): async.Operation<types.ModifyVolumeOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyVolume, input, options) as async.Operation<types.ModifyVolumeOutput>
+function C:modifyVolume(input: types.ModifyVolumeInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVolumeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyVolume as schema.OperationSchema, input, options) as async.Operation<types.ModifyVolumeOutput>
 end
 
-function C:modifyVolumeAttribute(input: types.ModifyVolumeAttributeInput, options: any): async.Operation<types.ModifyVolumeAttributeOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyVolumeAttribute, input, options) as async.Operation<types.ModifyVolumeAttributeOutput>
+function C:modifyVolumeAttribute(input: types.ModifyVolumeAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVolumeAttributeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyVolumeAttribute as schema.OperationSchema, input, options) as async.Operation<types.ModifyVolumeAttributeOutput>
 end
 
-function C:modifyVpcAttribute(input: types.ModifyVpcAttributeInput, options: any): async.Operation<types.ModifyVpcAttributeOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyVpcAttribute, input, options) as async.Operation<types.ModifyVpcAttributeOutput>
+function C:modifyVpcAttribute(input: types.ModifyVpcAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVpcAttributeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyVpcAttribute as schema.OperationSchema, input, options) as async.Operation<types.ModifyVpcAttributeOutput>
 end
 
-function C:modifyVpcBlockPublicAccessExclusion(input: types.ModifyVpcBlockPublicAccessExclusionInput, options: any): async.Operation<types.ModifyVpcBlockPublicAccessExclusionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyVpcBlockPublicAccessExclusion, input, options) as async.Operation<types.ModifyVpcBlockPublicAccessExclusionOutput>
+function C:modifyVpcBlockPublicAccessExclusion(input: types.ModifyVpcBlockPublicAccessExclusionInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVpcBlockPublicAccessExclusionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyVpcBlockPublicAccessExclusion as schema.OperationSchema, input, options) as async.Operation<types.ModifyVpcBlockPublicAccessExclusionOutput>
 end
 
-function C:modifyVpcBlockPublicAccessOptions(input: types.ModifyVpcBlockPublicAccessOptionsInput, options: any): async.Operation<types.ModifyVpcBlockPublicAccessOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyVpcBlockPublicAccessOptions, input, options) as async.Operation<types.ModifyVpcBlockPublicAccessOptionsOutput>
+function C:modifyVpcBlockPublicAccessOptions(input: types.ModifyVpcBlockPublicAccessOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVpcBlockPublicAccessOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyVpcBlockPublicAccessOptions as schema.OperationSchema, input, options) as async.Operation<types.ModifyVpcBlockPublicAccessOptionsOutput>
 end
 
-function C:modifyVpcEncryptionControl(input: types.ModifyVpcEncryptionControlInput, options: any): async.Operation<types.ModifyVpcEncryptionControlOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyVpcEncryptionControl, input, options) as async.Operation<types.ModifyVpcEncryptionControlOutput>
+function C:modifyVpcEncryptionControl(input: types.ModifyVpcEncryptionControlInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVpcEncryptionControlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyVpcEncryptionControl as schema.OperationSchema, input, options) as async.Operation<types.ModifyVpcEncryptionControlOutput>
 end
 
-function C:modifyVpcEndpoint(input: types.ModifyVpcEndpointInput, options: any): async.Operation<types.ModifyVpcEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyVpcEndpoint, input, options) as async.Operation<types.ModifyVpcEndpointOutput>
+function C:modifyVpcEndpoint(input: types.ModifyVpcEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVpcEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyVpcEndpoint as schema.OperationSchema, input, options) as async.Operation<types.ModifyVpcEndpointOutput>
 end
 
-function C:modifyVpcEndpointConnectionNotification(input: types.ModifyVpcEndpointConnectionNotificationInput, options: any): async.Operation<types.ModifyVpcEndpointConnectionNotificationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyVpcEndpointConnectionNotification, input, options) as async.Operation<types.ModifyVpcEndpointConnectionNotificationOutput>
+function C:modifyVpcEndpointConnectionNotification(input: types.ModifyVpcEndpointConnectionNotificationInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVpcEndpointConnectionNotificationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyVpcEndpointConnectionNotification as schema.OperationSchema, input, options) as async.Operation<types.ModifyVpcEndpointConnectionNotificationOutput>
 end
 
-function C:modifyVpcEndpointServiceConfiguration(input: types.ModifyVpcEndpointServiceConfigurationInput, options: any): async.Operation<types.ModifyVpcEndpointServiceConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyVpcEndpointServiceConfiguration, input, options) as async.Operation<types.ModifyVpcEndpointServiceConfigurationOutput>
+function C:modifyVpcEndpointServiceConfiguration(input: types.ModifyVpcEndpointServiceConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVpcEndpointServiceConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyVpcEndpointServiceConfiguration as schema.OperationSchema, input, options) as async.Operation<types.ModifyVpcEndpointServiceConfigurationOutput>
 end
 
-function C:modifyVpcEndpointServicePayerResponsibility(input: types.ModifyVpcEndpointServicePayerResponsibilityInput, options: any): async.Operation<types.ModifyVpcEndpointServicePayerResponsibilityOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyVpcEndpointServicePayerResponsibility, input, options) as async.Operation<types.ModifyVpcEndpointServicePayerResponsibilityOutput>
+function C:modifyVpcEndpointServicePayerResponsibility(input: types.ModifyVpcEndpointServicePayerResponsibilityInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVpcEndpointServicePayerResponsibilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyVpcEndpointServicePayerResponsibility as schema.OperationSchema, input, options) as async.Operation<types.ModifyVpcEndpointServicePayerResponsibilityOutput>
 end
 
-function C:modifyVpcEndpointServicePermissions(input: types.ModifyVpcEndpointServicePermissionsInput, options: any): async.Operation<types.ModifyVpcEndpointServicePermissionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyVpcEndpointServicePermissions, input, options) as async.Operation<types.ModifyVpcEndpointServicePermissionsOutput>
+function C:modifyVpcEndpointServicePermissions(input: types.ModifyVpcEndpointServicePermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVpcEndpointServicePermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyVpcEndpointServicePermissions as schema.OperationSchema, input, options) as async.Operation<types.ModifyVpcEndpointServicePermissionsOutput>
 end
 
-function C:modifyVpcPeeringConnectionOptions(input: types.ModifyVpcPeeringConnectionOptionsInput, options: any): async.Operation<types.ModifyVpcPeeringConnectionOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyVpcPeeringConnectionOptions, input, options) as async.Operation<types.ModifyVpcPeeringConnectionOptionsOutput>
+function C:modifyVpcPeeringConnectionOptions(input: types.ModifyVpcPeeringConnectionOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVpcPeeringConnectionOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyVpcPeeringConnectionOptions as schema.OperationSchema, input, options) as async.Operation<types.ModifyVpcPeeringConnectionOptionsOutput>
 end
 
-function C:modifyVpcTenancy(input: types.ModifyVpcTenancyInput, options: any): async.Operation<types.ModifyVpcTenancyOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyVpcTenancy, input, options) as async.Operation<types.ModifyVpcTenancyOutput>
+function C:modifyVpcTenancy(input: types.ModifyVpcTenancyInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVpcTenancyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyVpcTenancy as schema.OperationSchema, input, options) as async.Operation<types.ModifyVpcTenancyOutput>
 end
 
-function C:modifyVpnConnection(input: types.ModifyVpnConnectionInput, options: any): async.Operation<types.ModifyVpnConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyVpnConnection, input, options) as async.Operation<types.ModifyVpnConnectionOutput>
+function C:modifyVpnConnection(input: types.ModifyVpnConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVpnConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyVpnConnection as schema.OperationSchema, input, options) as async.Operation<types.ModifyVpnConnectionOutput>
 end
 
-function C:modifyVpnConnectionOptions(input: types.ModifyVpnConnectionOptionsInput, options: any): async.Operation<types.ModifyVpnConnectionOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyVpnConnectionOptions, input, options) as async.Operation<types.ModifyVpnConnectionOptionsOutput>
+function C:modifyVpnConnectionOptions(input: types.ModifyVpnConnectionOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVpnConnectionOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyVpnConnectionOptions as schema.OperationSchema, input, options) as async.Operation<types.ModifyVpnConnectionOptionsOutput>
 end
 
-function C:modifyVpnTunnelCertificate(input: types.ModifyVpnTunnelCertificateInput, options: any): async.Operation<types.ModifyVpnTunnelCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyVpnTunnelCertificate, input, options) as async.Operation<types.ModifyVpnTunnelCertificateOutput>
+function C:modifyVpnTunnelCertificate(input: types.ModifyVpnTunnelCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVpnTunnelCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyVpnTunnelCertificate as schema.OperationSchema, input, options) as async.Operation<types.ModifyVpnTunnelCertificateOutput>
 end
 
-function C:modifyVpnTunnelOptions(input: types.ModifyVpnTunnelOptionsInput, options: any): async.Operation<types.ModifyVpnTunnelOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyVpnTunnelOptions, input, options) as async.Operation<types.ModifyVpnTunnelOptionsOutput>
+function C:modifyVpnTunnelOptions(input: types.ModifyVpnTunnelOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVpnTunnelOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyVpnTunnelOptions as schema.OperationSchema, input, options) as async.Operation<types.ModifyVpnTunnelOptionsOutput>
 end
 
-function C:monitorInstances(input: types.MonitorInstancesInput, options: any): async.Operation<types.MonitorInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.MonitorInstances, input, options) as async.Operation<types.MonitorInstancesOutput>
+function C:monitorInstances(input: types.MonitorInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.MonitorInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.MonitorInstances as schema.OperationSchema, input, options) as async.Operation<types.MonitorInstancesOutput>
 end
 
-function C:moveAddressToVpc(input: types.MoveAddressToVpcInput, options: any): async.Operation<types.MoveAddressToVpcOutput>
-    return self:invokeOperation(schemas.Service, schemas.MoveAddressToVpc, input, options) as async.Operation<types.MoveAddressToVpcOutput>
+function C:moveAddressToVpc(input: types.MoveAddressToVpcInput, options?: base_client.InvokeOptions): async.Operation<types.MoveAddressToVpcOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.MoveAddressToVpc as schema.OperationSchema, input, options) as async.Operation<types.MoveAddressToVpcOutput>
 end
 
-function C:moveByoipCidrToIpam(input: types.MoveByoipCidrToIpamInput, options: any): async.Operation<types.MoveByoipCidrToIpamOutput>
-    return self:invokeOperation(schemas.Service, schemas.MoveByoipCidrToIpam, input, options) as async.Operation<types.MoveByoipCidrToIpamOutput>
+function C:moveByoipCidrToIpam(input: types.MoveByoipCidrToIpamInput, options?: base_client.InvokeOptions): async.Operation<types.MoveByoipCidrToIpamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.MoveByoipCidrToIpam as schema.OperationSchema, input, options) as async.Operation<types.MoveByoipCidrToIpamOutput>
 end
 
-function C:moveCapacityReservationInstances(input: types.MoveCapacityReservationInstancesInput, options: any): async.Operation<types.MoveCapacityReservationInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.MoveCapacityReservationInstances, input, options) as async.Operation<types.MoveCapacityReservationInstancesOutput>
+function C:moveCapacityReservationInstances(input: types.MoveCapacityReservationInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.MoveCapacityReservationInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.MoveCapacityReservationInstances as schema.OperationSchema, input, options) as async.Operation<types.MoveCapacityReservationInstancesOutput>
 end
 
-function C:provisionByoipCidr(input: types.ProvisionByoipCidrInput, options: any): async.Operation<types.ProvisionByoipCidrOutput>
-    return self:invokeOperation(schemas.Service, schemas.ProvisionByoipCidr, input, options) as async.Operation<types.ProvisionByoipCidrOutput>
+function C:provisionByoipCidr(input: types.ProvisionByoipCidrInput, options?: base_client.InvokeOptions): async.Operation<types.ProvisionByoipCidrOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ProvisionByoipCidr as schema.OperationSchema, input, options) as async.Operation<types.ProvisionByoipCidrOutput>
 end
 
-function C:provisionIpamByoasn(input: types.ProvisionIpamByoasnInput, options: any): async.Operation<types.ProvisionIpamByoasnOutput>
-    return self:invokeOperation(schemas.Service, schemas.ProvisionIpamByoasn, input, options) as async.Operation<types.ProvisionIpamByoasnOutput>
+function C:provisionIpamByoasn(input: types.ProvisionIpamByoasnInput, options?: base_client.InvokeOptions): async.Operation<types.ProvisionIpamByoasnOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ProvisionIpamByoasn as schema.OperationSchema, input, options) as async.Operation<types.ProvisionIpamByoasnOutput>
 end
 
-function C:provisionIpamPoolCidr(input: types.ProvisionIpamPoolCidrInput, options: any): async.Operation<types.ProvisionIpamPoolCidrOutput>
-    return self:invokeOperation(schemas.Service, schemas.ProvisionIpamPoolCidr, input, options) as async.Operation<types.ProvisionIpamPoolCidrOutput>
+function C:provisionIpamPoolCidr(input: types.ProvisionIpamPoolCidrInput, options?: base_client.InvokeOptions): async.Operation<types.ProvisionIpamPoolCidrOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ProvisionIpamPoolCidr as schema.OperationSchema, input, options) as async.Operation<types.ProvisionIpamPoolCidrOutput>
 end
 
-function C:provisionPublicIpv4PoolCidr(input: types.ProvisionPublicIpv4PoolCidrInput, options: any): async.Operation<types.ProvisionPublicIpv4PoolCidrOutput>
-    return self:invokeOperation(schemas.Service, schemas.ProvisionPublicIpv4PoolCidr, input, options) as async.Operation<types.ProvisionPublicIpv4PoolCidrOutput>
+function C:provisionPublicIpv4PoolCidr(input: types.ProvisionPublicIpv4PoolCidrInput, options?: base_client.InvokeOptions): async.Operation<types.ProvisionPublicIpv4PoolCidrOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ProvisionPublicIpv4PoolCidr as schema.OperationSchema, input, options) as async.Operation<types.ProvisionPublicIpv4PoolCidrOutput>
 end
 
-function C:purchaseCapacityBlock(input: types.PurchaseCapacityBlockInput, options: any): async.Operation<types.PurchaseCapacityBlockOutput>
-    return self:invokeOperation(schemas.Service, schemas.PurchaseCapacityBlock, input, options) as async.Operation<types.PurchaseCapacityBlockOutput>
+function C:purchaseCapacityBlock(input: types.PurchaseCapacityBlockInput, options?: base_client.InvokeOptions): async.Operation<types.PurchaseCapacityBlockOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PurchaseCapacityBlock as schema.OperationSchema, input, options) as async.Operation<types.PurchaseCapacityBlockOutput>
 end
 
-function C:purchaseCapacityBlockExtension(input: types.PurchaseCapacityBlockExtensionInput, options: any): async.Operation<types.PurchaseCapacityBlockExtensionOutput>
-    return self:invokeOperation(schemas.Service, schemas.PurchaseCapacityBlockExtension, input, options) as async.Operation<types.PurchaseCapacityBlockExtensionOutput>
+function C:purchaseCapacityBlockExtension(input: types.PurchaseCapacityBlockExtensionInput, options?: base_client.InvokeOptions): async.Operation<types.PurchaseCapacityBlockExtensionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PurchaseCapacityBlockExtension as schema.OperationSchema, input, options) as async.Operation<types.PurchaseCapacityBlockExtensionOutput>
 end
 
-function C:purchaseHostReservation(input: types.PurchaseHostReservationInput, options: any): async.Operation<types.PurchaseHostReservationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PurchaseHostReservation, input, options) as async.Operation<types.PurchaseHostReservationOutput>
+function C:purchaseHostReservation(input: types.PurchaseHostReservationInput, options?: base_client.InvokeOptions): async.Operation<types.PurchaseHostReservationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PurchaseHostReservation as schema.OperationSchema, input, options) as async.Operation<types.PurchaseHostReservationOutput>
 end
 
-function C:purchaseReservedInstancesOffering(input: types.PurchaseReservedInstancesOfferingInput, options: any): async.Operation<types.PurchaseReservedInstancesOfferingOutput>
-    return self:invokeOperation(schemas.Service, schemas.PurchaseReservedInstancesOffering, input, options) as async.Operation<types.PurchaseReservedInstancesOfferingOutput>
+function C:purchaseReservedInstancesOffering(input: types.PurchaseReservedInstancesOfferingInput, options?: base_client.InvokeOptions): async.Operation<types.PurchaseReservedInstancesOfferingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PurchaseReservedInstancesOffering as schema.OperationSchema, input, options) as async.Operation<types.PurchaseReservedInstancesOfferingOutput>
 end
 
-function C:purchaseScheduledInstances(input: types.PurchaseScheduledInstancesInput, options: any): async.Operation<types.PurchaseScheduledInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.PurchaseScheduledInstances, input, options) as async.Operation<types.PurchaseScheduledInstancesOutput>
+function C:purchaseScheduledInstances(input: types.PurchaseScheduledInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.PurchaseScheduledInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PurchaseScheduledInstances as schema.OperationSchema, input, options) as async.Operation<types.PurchaseScheduledInstancesOutput>
 end
 
-function C:rebootInstances(input: types.RebootInstancesInput, options: any): async.Operation<types.RebootInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.RebootInstances, input, options) as async.Operation<types.RebootInstancesOutput>
+function C:rebootInstances(input: types.RebootInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.RebootInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RebootInstances as schema.OperationSchema, input, options) as async.Operation<types.RebootInstancesOutput>
 end
 
-function C:registerImage(input: types.RegisterImageInput, options: any): async.Operation<types.RegisterImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterImage, input, options) as async.Operation<types.RegisterImageOutput>
+function C:registerImage(input: types.RegisterImageInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterImage as schema.OperationSchema, input, options) as async.Operation<types.RegisterImageOutput>
 end
 
-function C:registerInstanceEventNotificationAttributes(input: types.RegisterInstanceEventNotificationAttributesInput, options: any): async.Operation<types.RegisterInstanceEventNotificationAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterInstanceEventNotificationAttributes, input, options) as async.Operation<types.RegisterInstanceEventNotificationAttributesOutput>
+function C:registerInstanceEventNotificationAttributes(input: types.RegisterInstanceEventNotificationAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterInstanceEventNotificationAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterInstanceEventNotificationAttributes as schema.OperationSchema, input, options) as async.Operation<types.RegisterInstanceEventNotificationAttributesOutput>
 end
 
-function C:registerTransitGatewayMulticastGroupMembers(input: types.RegisterTransitGatewayMulticastGroupMembersInput, options: any): async.Operation<types.RegisterTransitGatewayMulticastGroupMembersOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterTransitGatewayMulticastGroupMembers, input, options) as async.Operation<types.RegisterTransitGatewayMulticastGroupMembersOutput>
+function C:registerTransitGatewayMulticastGroupMembers(input: types.RegisterTransitGatewayMulticastGroupMembersInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterTransitGatewayMulticastGroupMembersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterTransitGatewayMulticastGroupMembers as schema.OperationSchema, input, options) as async.Operation<types.RegisterTransitGatewayMulticastGroupMembersOutput>
 end
 
-function C:registerTransitGatewayMulticastGroupSources(input: types.RegisterTransitGatewayMulticastGroupSourcesInput, options: any): async.Operation<types.RegisterTransitGatewayMulticastGroupSourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterTransitGatewayMulticastGroupSources, input, options) as async.Operation<types.RegisterTransitGatewayMulticastGroupSourcesOutput>
+function C:registerTransitGatewayMulticastGroupSources(input: types.RegisterTransitGatewayMulticastGroupSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterTransitGatewayMulticastGroupSourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterTransitGatewayMulticastGroupSources as schema.OperationSchema, input, options) as async.Operation<types.RegisterTransitGatewayMulticastGroupSourcesOutput>
 end
 
-function C:rejectCapacityReservationBillingOwnership(input: types.RejectCapacityReservationBillingOwnershipInput, options: any): async.Operation<types.RejectCapacityReservationBillingOwnershipOutput>
-    return self:invokeOperation(schemas.Service, schemas.RejectCapacityReservationBillingOwnership, input, options) as async.Operation<types.RejectCapacityReservationBillingOwnershipOutput>
+function C:rejectCapacityReservationBillingOwnership(input: types.RejectCapacityReservationBillingOwnershipInput, options?: base_client.InvokeOptions): async.Operation<types.RejectCapacityReservationBillingOwnershipOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RejectCapacityReservationBillingOwnership as schema.OperationSchema, input, options) as async.Operation<types.RejectCapacityReservationBillingOwnershipOutput>
 end
 
-function C:rejectTransitGatewayClientVpnAttachment(input: types.RejectTransitGatewayClientVpnAttachmentInput, options: any): async.Operation<types.RejectTransitGatewayClientVpnAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.RejectTransitGatewayClientVpnAttachment, input, options) as async.Operation<types.RejectTransitGatewayClientVpnAttachmentOutput>
+function C:rejectTransitGatewayClientVpnAttachment(input: types.RejectTransitGatewayClientVpnAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.RejectTransitGatewayClientVpnAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RejectTransitGatewayClientVpnAttachment as schema.OperationSchema, input, options) as async.Operation<types.RejectTransitGatewayClientVpnAttachmentOutput>
 end
 
-function C:rejectTransitGatewayMulticastDomainAssociations(input: types.RejectTransitGatewayMulticastDomainAssociationsInput, options: any): async.Operation<types.RejectTransitGatewayMulticastDomainAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.RejectTransitGatewayMulticastDomainAssociations, input, options) as async.Operation<types.RejectTransitGatewayMulticastDomainAssociationsOutput>
+function C:rejectTransitGatewayMulticastDomainAssociations(input: types.RejectTransitGatewayMulticastDomainAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.RejectTransitGatewayMulticastDomainAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RejectTransitGatewayMulticastDomainAssociations as schema.OperationSchema, input, options) as async.Operation<types.RejectTransitGatewayMulticastDomainAssociationsOutput>
 end
 
-function C:rejectTransitGatewayPeeringAttachment(input: types.RejectTransitGatewayPeeringAttachmentInput, options: any): async.Operation<types.RejectTransitGatewayPeeringAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.RejectTransitGatewayPeeringAttachment, input, options) as async.Operation<types.RejectTransitGatewayPeeringAttachmentOutput>
+function C:rejectTransitGatewayPeeringAttachment(input: types.RejectTransitGatewayPeeringAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.RejectTransitGatewayPeeringAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RejectTransitGatewayPeeringAttachment as schema.OperationSchema, input, options) as async.Operation<types.RejectTransitGatewayPeeringAttachmentOutput>
 end
 
-function C:rejectTransitGatewayVpcAttachment(input: types.RejectTransitGatewayVpcAttachmentInput, options: any): async.Operation<types.RejectTransitGatewayVpcAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.RejectTransitGatewayVpcAttachment, input, options) as async.Operation<types.RejectTransitGatewayVpcAttachmentOutput>
+function C:rejectTransitGatewayVpcAttachment(input: types.RejectTransitGatewayVpcAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.RejectTransitGatewayVpcAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RejectTransitGatewayVpcAttachment as schema.OperationSchema, input, options) as async.Operation<types.RejectTransitGatewayVpcAttachmentOutput>
 end
 
-function C:rejectVpcEndpointConnections(input: types.RejectVpcEndpointConnectionsInput, options: any): async.Operation<types.RejectVpcEndpointConnectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.RejectVpcEndpointConnections, input, options) as async.Operation<types.RejectVpcEndpointConnectionsOutput>
+function C:rejectVpcEndpointConnections(input: types.RejectVpcEndpointConnectionsInput, options?: base_client.InvokeOptions): async.Operation<types.RejectVpcEndpointConnectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RejectVpcEndpointConnections as schema.OperationSchema, input, options) as async.Operation<types.RejectVpcEndpointConnectionsOutput>
 end
 
-function C:rejectVpcPeeringConnection(input: types.RejectVpcPeeringConnectionInput, options: any): async.Operation<types.RejectVpcPeeringConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.RejectVpcPeeringConnection, input, options) as async.Operation<types.RejectVpcPeeringConnectionOutput>
+function C:rejectVpcPeeringConnection(input: types.RejectVpcPeeringConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.RejectVpcPeeringConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RejectVpcPeeringConnection as schema.OperationSchema, input, options) as async.Operation<types.RejectVpcPeeringConnectionOutput>
 end
 
-function C:releaseAddress(input: types.ReleaseAddressInput, options: any): async.Operation<types.ReleaseAddressOutput>
-    return self:invokeOperation(schemas.Service, schemas.ReleaseAddress, input, options) as async.Operation<types.ReleaseAddressOutput>
+function C:releaseAddress(input: types.ReleaseAddressInput, options?: base_client.InvokeOptions): async.Operation<types.ReleaseAddressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReleaseAddress as schema.OperationSchema, input, options) as async.Operation<types.ReleaseAddressOutput>
 end
 
-function C:releaseHosts(input: types.ReleaseHostsInput, options: any): async.Operation<types.ReleaseHostsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ReleaseHosts, input, options) as async.Operation<types.ReleaseHostsOutput>
+function C:releaseHosts(input: types.ReleaseHostsInput, options?: base_client.InvokeOptions): async.Operation<types.ReleaseHostsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReleaseHosts as schema.OperationSchema, input, options) as async.Operation<types.ReleaseHostsOutput>
 end
 
-function C:releaseIpamPoolAllocation(input: types.ReleaseIpamPoolAllocationInput, options: any): async.Operation<types.ReleaseIpamPoolAllocationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ReleaseIpamPoolAllocation, input, options) as async.Operation<types.ReleaseIpamPoolAllocationOutput>
+function C:releaseIpamPoolAllocation(input: types.ReleaseIpamPoolAllocationInput, options?: base_client.InvokeOptions): async.Operation<types.ReleaseIpamPoolAllocationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReleaseIpamPoolAllocation as schema.OperationSchema, input, options) as async.Operation<types.ReleaseIpamPoolAllocationOutput>
 end
 
-function C:replaceIamInstanceProfileAssociation(input: types.ReplaceIamInstanceProfileAssociationInput, options: any): async.Operation<types.ReplaceIamInstanceProfileAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ReplaceIamInstanceProfileAssociation, input, options) as async.Operation<types.ReplaceIamInstanceProfileAssociationOutput>
+function C:replaceIamInstanceProfileAssociation(input: types.ReplaceIamInstanceProfileAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.ReplaceIamInstanceProfileAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReplaceIamInstanceProfileAssociation as schema.OperationSchema, input, options) as async.Operation<types.ReplaceIamInstanceProfileAssociationOutput>
 end
 
-function C:replaceImageCriteriaInAllowedImagesSettings(input: types.ReplaceImageCriteriaInAllowedImagesSettingsInput, options: any): async.Operation<types.ReplaceImageCriteriaInAllowedImagesSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ReplaceImageCriteriaInAllowedImagesSettings, input, options) as async.Operation<types.ReplaceImageCriteriaInAllowedImagesSettingsOutput>
+function C:replaceImageCriteriaInAllowedImagesSettings(input: types.ReplaceImageCriteriaInAllowedImagesSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.ReplaceImageCriteriaInAllowedImagesSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReplaceImageCriteriaInAllowedImagesSettings as schema.OperationSchema, input, options) as async.Operation<types.ReplaceImageCriteriaInAllowedImagesSettingsOutput>
 end
 
-function C:replaceNetworkAclAssociation(input: types.ReplaceNetworkAclAssociationInput, options: any): async.Operation<types.ReplaceNetworkAclAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ReplaceNetworkAclAssociation, input, options) as async.Operation<types.ReplaceNetworkAclAssociationOutput>
+function C:replaceNetworkAclAssociation(input: types.ReplaceNetworkAclAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.ReplaceNetworkAclAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReplaceNetworkAclAssociation as schema.OperationSchema, input, options) as async.Operation<types.ReplaceNetworkAclAssociationOutput>
 end
 
-function C:replaceNetworkAclEntry(input: types.ReplaceNetworkAclEntryInput, options: any): async.Operation<types.ReplaceNetworkAclEntryOutput>
-    return self:invokeOperation(schemas.Service, schemas.ReplaceNetworkAclEntry, input, options) as async.Operation<types.ReplaceNetworkAclEntryOutput>
+function C:replaceNetworkAclEntry(input: types.ReplaceNetworkAclEntryInput, options?: base_client.InvokeOptions): async.Operation<types.ReplaceNetworkAclEntryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReplaceNetworkAclEntry as schema.OperationSchema, input, options) as async.Operation<types.ReplaceNetworkAclEntryOutput>
 end
 
-function C:replaceRoute(input: types.ReplaceRouteInput, options: any): async.Operation<types.ReplaceRouteOutput>
-    return self:invokeOperation(schemas.Service, schemas.ReplaceRoute, input, options) as async.Operation<types.ReplaceRouteOutput>
+function C:replaceRoute(input: types.ReplaceRouteInput, options?: base_client.InvokeOptions): async.Operation<types.ReplaceRouteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReplaceRoute as schema.OperationSchema, input, options) as async.Operation<types.ReplaceRouteOutput>
 end
 
-function C:replaceRouteTableAssociation(input: types.ReplaceRouteTableAssociationInput, options: any): async.Operation<types.ReplaceRouteTableAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ReplaceRouteTableAssociation, input, options) as async.Operation<types.ReplaceRouteTableAssociationOutput>
+function C:replaceRouteTableAssociation(input: types.ReplaceRouteTableAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.ReplaceRouteTableAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReplaceRouteTableAssociation as schema.OperationSchema, input, options) as async.Operation<types.ReplaceRouteTableAssociationOutput>
 end
 
-function C:replaceTransitGatewayRoute(input: types.ReplaceTransitGatewayRouteInput, options: any): async.Operation<types.ReplaceTransitGatewayRouteOutput>
-    return self:invokeOperation(schemas.Service, schemas.ReplaceTransitGatewayRoute, input, options) as async.Operation<types.ReplaceTransitGatewayRouteOutput>
+function C:replaceTransitGatewayRoute(input: types.ReplaceTransitGatewayRouteInput, options?: base_client.InvokeOptions): async.Operation<types.ReplaceTransitGatewayRouteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReplaceTransitGatewayRoute as schema.OperationSchema, input, options) as async.Operation<types.ReplaceTransitGatewayRouteOutput>
 end
 
-function C:replaceVpnTunnel(input: types.ReplaceVpnTunnelInput, options: any): async.Operation<types.ReplaceVpnTunnelOutput>
-    return self:invokeOperation(schemas.Service, schemas.ReplaceVpnTunnel, input, options) as async.Operation<types.ReplaceVpnTunnelOutput>
+function C:replaceVpnTunnel(input: types.ReplaceVpnTunnelInput, options?: base_client.InvokeOptions): async.Operation<types.ReplaceVpnTunnelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReplaceVpnTunnel as schema.OperationSchema, input, options) as async.Operation<types.ReplaceVpnTunnelOutput>
 end
 
-function C:reportInstanceStatus(input: types.ReportInstanceStatusInput, options: any): async.Operation<types.ReportInstanceStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.ReportInstanceStatus, input, options) as async.Operation<types.ReportInstanceStatusOutput>
+function C:reportInstanceStatus(input: types.ReportInstanceStatusInput, options?: base_client.InvokeOptions): async.Operation<types.ReportInstanceStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReportInstanceStatus as schema.OperationSchema, input, options) as async.Operation<types.ReportInstanceStatusOutput>
 end
 
-function C:requestSpotFleet(input: types.RequestSpotFleetInput, options: any): async.Operation<types.RequestSpotFleetOutput>
-    return self:invokeOperation(schemas.Service, schemas.RequestSpotFleet, input, options) as async.Operation<types.RequestSpotFleetOutput>
+function C:requestSpotFleet(input: types.RequestSpotFleetInput, options?: base_client.InvokeOptions): async.Operation<types.RequestSpotFleetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RequestSpotFleet as schema.OperationSchema, input, options) as async.Operation<types.RequestSpotFleetOutput>
 end
 
-function C:requestSpotInstances(input: types.RequestSpotInstancesInput, options: any): async.Operation<types.RequestSpotInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.RequestSpotInstances, input, options) as async.Operation<types.RequestSpotInstancesOutput>
+function C:requestSpotInstances(input: types.RequestSpotInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.RequestSpotInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RequestSpotInstances as schema.OperationSchema, input, options) as async.Operation<types.RequestSpotInstancesOutput>
 end
 
-function C:resetAddressAttribute(input: types.ResetAddressAttributeInput, options: any): async.Operation<types.ResetAddressAttributeOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResetAddressAttribute, input, options) as async.Operation<types.ResetAddressAttributeOutput>
+function C:resetAddressAttribute(input: types.ResetAddressAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.ResetAddressAttributeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResetAddressAttribute as schema.OperationSchema, input, options) as async.Operation<types.ResetAddressAttributeOutput>
 end
 
-function C:resetEbsDefaultKmsKeyId(input: types.ResetEbsDefaultKmsKeyIdInput, options: any): async.Operation<types.ResetEbsDefaultKmsKeyIdOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResetEbsDefaultKmsKeyId, input, options) as async.Operation<types.ResetEbsDefaultKmsKeyIdOutput>
+function C:resetEbsDefaultKmsKeyId(input: types.ResetEbsDefaultKmsKeyIdInput, options?: base_client.InvokeOptions): async.Operation<types.ResetEbsDefaultKmsKeyIdOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResetEbsDefaultKmsKeyId as schema.OperationSchema, input, options) as async.Operation<types.ResetEbsDefaultKmsKeyIdOutput>
 end
 
-function C:resetFpgaImageAttribute(input: types.ResetFpgaImageAttributeInput, options: any): async.Operation<types.ResetFpgaImageAttributeOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResetFpgaImageAttribute, input, options) as async.Operation<types.ResetFpgaImageAttributeOutput>
+function C:resetFpgaImageAttribute(input: types.ResetFpgaImageAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.ResetFpgaImageAttributeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResetFpgaImageAttribute as schema.OperationSchema, input, options) as async.Operation<types.ResetFpgaImageAttributeOutput>
 end
 
-function C:resetImageAttribute(input: types.ResetImageAttributeInput, options: any): async.Operation<types.ResetImageAttributeOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResetImageAttribute, input, options) as async.Operation<types.ResetImageAttributeOutput>
+function C:resetImageAttribute(input: types.ResetImageAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.ResetImageAttributeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResetImageAttribute as schema.OperationSchema, input, options) as async.Operation<types.ResetImageAttributeOutput>
 end
 
-function C:resetInstanceAttribute(input: types.ResetInstanceAttributeInput, options: any): async.Operation<types.ResetInstanceAttributeOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResetInstanceAttribute, input, options) as async.Operation<types.ResetInstanceAttributeOutput>
+function C:resetInstanceAttribute(input: types.ResetInstanceAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.ResetInstanceAttributeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResetInstanceAttribute as schema.OperationSchema, input, options) as async.Operation<types.ResetInstanceAttributeOutput>
 end
 
-function C:resetNetworkInterfaceAttribute(input: types.ResetNetworkInterfaceAttributeInput, options: any): async.Operation<types.ResetNetworkInterfaceAttributeOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResetNetworkInterfaceAttribute, input, options) as async.Operation<types.ResetNetworkInterfaceAttributeOutput>
+function C:resetNetworkInterfaceAttribute(input: types.ResetNetworkInterfaceAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.ResetNetworkInterfaceAttributeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResetNetworkInterfaceAttribute as schema.OperationSchema, input, options) as async.Operation<types.ResetNetworkInterfaceAttributeOutput>
 end
 
-function C:resetSnapshotAttribute(input: types.ResetSnapshotAttributeInput, options: any): async.Operation<types.ResetSnapshotAttributeOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResetSnapshotAttribute, input, options) as async.Operation<types.ResetSnapshotAttributeOutput>
+function C:resetSnapshotAttribute(input: types.ResetSnapshotAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.ResetSnapshotAttributeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResetSnapshotAttribute as schema.OperationSchema, input, options) as async.Operation<types.ResetSnapshotAttributeOutput>
 end
 
-function C:restoreAddressToClassic(input: types.RestoreAddressToClassicInput, options: any): async.Operation<types.RestoreAddressToClassicOutput>
-    return self:invokeOperation(schemas.Service, schemas.RestoreAddressToClassic, input, options) as async.Operation<types.RestoreAddressToClassicOutput>
+function C:restoreAddressToClassic(input: types.RestoreAddressToClassicInput, options?: base_client.InvokeOptions): async.Operation<types.RestoreAddressToClassicOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestoreAddressToClassic as schema.OperationSchema, input, options) as async.Operation<types.RestoreAddressToClassicOutput>
 end
 
-function C:restoreImageFromRecycleBin(input: types.RestoreImageFromRecycleBinInput, options: any): async.Operation<types.RestoreImageFromRecycleBinOutput>
-    return self:invokeOperation(schemas.Service, schemas.RestoreImageFromRecycleBin, input, options) as async.Operation<types.RestoreImageFromRecycleBinOutput>
+function C:restoreImageFromRecycleBin(input: types.RestoreImageFromRecycleBinInput, options?: base_client.InvokeOptions): async.Operation<types.RestoreImageFromRecycleBinOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestoreImageFromRecycleBin as schema.OperationSchema, input, options) as async.Operation<types.RestoreImageFromRecycleBinOutput>
 end
 
-function C:restoreManagedPrefixListVersion(input: types.RestoreManagedPrefixListVersionInput, options: any): async.Operation<types.RestoreManagedPrefixListVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.RestoreManagedPrefixListVersion, input, options) as async.Operation<types.RestoreManagedPrefixListVersionOutput>
+function C:restoreManagedPrefixListVersion(input: types.RestoreManagedPrefixListVersionInput, options?: base_client.InvokeOptions): async.Operation<types.RestoreManagedPrefixListVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestoreManagedPrefixListVersion as schema.OperationSchema, input, options) as async.Operation<types.RestoreManagedPrefixListVersionOutput>
 end
 
-function C:restoreSnapshotFromRecycleBin(input: types.RestoreSnapshotFromRecycleBinInput, options: any): async.Operation<types.RestoreSnapshotFromRecycleBinOutput>
-    return self:invokeOperation(schemas.Service, schemas.RestoreSnapshotFromRecycleBin, input, options) as async.Operation<types.RestoreSnapshotFromRecycleBinOutput>
+function C:restoreSnapshotFromRecycleBin(input: types.RestoreSnapshotFromRecycleBinInput, options?: base_client.InvokeOptions): async.Operation<types.RestoreSnapshotFromRecycleBinOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestoreSnapshotFromRecycleBin as schema.OperationSchema, input, options) as async.Operation<types.RestoreSnapshotFromRecycleBinOutput>
 end
 
-function C:restoreSnapshotTier(input: types.RestoreSnapshotTierInput, options: any): async.Operation<types.RestoreSnapshotTierOutput>
-    return self:invokeOperation(schemas.Service, schemas.RestoreSnapshotTier, input, options) as async.Operation<types.RestoreSnapshotTierOutput>
+function C:restoreSnapshotTier(input: types.RestoreSnapshotTierInput, options?: base_client.InvokeOptions): async.Operation<types.RestoreSnapshotTierOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestoreSnapshotTier as schema.OperationSchema, input, options) as async.Operation<types.RestoreSnapshotTierOutput>
 end
 
-function C:restoreVolumeFromRecycleBin(input: types.RestoreVolumeFromRecycleBinInput, options: any): async.Operation<types.RestoreVolumeFromRecycleBinOutput>
-    return self:invokeOperation(schemas.Service, schemas.RestoreVolumeFromRecycleBin, input, options) as async.Operation<types.RestoreVolumeFromRecycleBinOutput>
+function C:restoreVolumeFromRecycleBin(input: types.RestoreVolumeFromRecycleBinInput, options?: base_client.InvokeOptions): async.Operation<types.RestoreVolumeFromRecycleBinOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestoreVolumeFromRecycleBin as schema.OperationSchema, input, options) as async.Operation<types.RestoreVolumeFromRecycleBinOutput>
 end
 
-function C:revokeClientVpnIngress(input: types.RevokeClientVpnIngressInput, options: any): async.Operation<types.RevokeClientVpnIngressOutput>
-    return self:invokeOperation(schemas.Service, schemas.RevokeClientVpnIngress, input, options) as async.Operation<types.RevokeClientVpnIngressOutput>
+function C:revokeClientVpnIngress(input: types.RevokeClientVpnIngressInput, options?: base_client.InvokeOptions): async.Operation<types.RevokeClientVpnIngressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RevokeClientVpnIngress as schema.OperationSchema, input, options) as async.Operation<types.RevokeClientVpnIngressOutput>
 end
 
-function C:revokeSecurityGroupEgress(input: types.RevokeSecurityGroupEgressInput, options: any): async.Operation<types.RevokeSecurityGroupEgressOutput>
-    return self:invokeOperation(schemas.Service, schemas.RevokeSecurityGroupEgress, input, options) as async.Operation<types.RevokeSecurityGroupEgressOutput>
+function C:revokeSecurityGroupEgress(input: types.RevokeSecurityGroupEgressInput, options?: base_client.InvokeOptions): async.Operation<types.RevokeSecurityGroupEgressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RevokeSecurityGroupEgress as schema.OperationSchema, input, options) as async.Operation<types.RevokeSecurityGroupEgressOutput>
 end
 
-function C:revokeSecurityGroupIngress(input: types.RevokeSecurityGroupIngressInput, options: any): async.Operation<types.RevokeSecurityGroupIngressOutput>
-    return self:invokeOperation(schemas.Service, schemas.RevokeSecurityGroupIngress, input, options) as async.Operation<types.RevokeSecurityGroupIngressOutput>
+function C:revokeSecurityGroupIngress(input: types.RevokeSecurityGroupIngressInput, options?: base_client.InvokeOptions): async.Operation<types.RevokeSecurityGroupIngressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RevokeSecurityGroupIngress as schema.OperationSchema, input, options) as async.Operation<types.RevokeSecurityGroupIngressOutput>
 end
 
-function C:runInstances(input: types.RunInstancesInput, options: any): async.Operation<types.RunInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.RunInstances, input, options) as async.Operation<types.RunInstancesOutput>
+function C:runInstances(input: types.RunInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.RunInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RunInstances as schema.OperationSchema, input, options) as async.Operation<types.RunInstancesOutput>
 end
 
-function C:runScheduledInstances(input: types.RunScheduledInstancesInput, options: any): async.Operation<types.RunScheduledInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.RunScheduledInstances, input, options) as async.Operation<types.RunScheduledInstancesOutput>
+function C:runScheduledInstances(input: types.RunScheduledInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.RunScheduledInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RunScheduledInstances as schema.OperationSchema, input, options) as async.Operation<types.RunScheduledInstancesOutput>
 end
 
-function C:searchLocalGatewayRoutes(input: types.SearchLocalGatewayRoutesInput, options: any): async.Operation<types.SearchLocalGatewayRoutesOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchLocalGatewayRoutes, input, options) as async.Operation<types.SearchLocalGatewayRoutesOutput>
+function C:searchLocalGatewayRoutes(input: types.SearchLocalGatewayRoutesInput, options?: base_client.InvokeOptions): async.Operation<types.SearchLocalGatewayRoutesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchLocalGatewayRoutes as schema.OperationSchema, input, options) as async.Operation<types.SearchLocalGatewayRoutesOutput>
 end
 
-function C:searchTransitGatewayMulticastGroups(input: types.SearchTransitGatewayMulticastGroupsInput, options: any): async.Operation<types.SearchTransitGatewayMulticastGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchTransitGatewayMulticastGroups, input, options) as async.Operation<types.SearchTransitGatewayMulticastGroupsOutput>
+function C:searchTransitGatewayMulticastGroups(input: types.SearchTransitGatewayMulticastGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchTransitGatewayMulticastGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchTransitGatewayMulticastGroups as schema.OperationSchema, input, options) as async.Operation<types.SearchTransitGatewayMulticastGroupsOutput>
 end
 
-function C:searchTransitGatewayRoutes(input: types.SearchTransitGatewayRoutesInput, options: any): async.Operation<types.SearchTransitGatewayRoutesOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchTransitGatewayRoutes, input, options) as async.Operation<types.SearchTransitGatewayRoutesOutput>
+function C:searchTransitGatewayRoutes(input: types.SearchTransitGatewayRoutesInput, options?: base_client.InvokeOptions): async.Operation<types.SearchTransitGatewayRoutesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchTransitGatewayRoutes as schema.OperationSchema, input, options) as async.Operation<types.SearchTransitGatewayRoutesOutput>
 end
 
-function C:sendDiagnosticInterrupt(input: types.SendDiagnosticInterruptInput, options: any): async.Operation<types.SendDiagnosticInterruptOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendDiagnosticInterrupt, input, options) as async.Operation<types.SendDiagnosticInterruptOutput>
+function C:sendDiagnosticInterrupt(input: types.SendDiagnosticInterruptInput, options?: base_client.InvokeOptions): async.Operation<types.SendDiagnosticInterruptOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendDiagnosticInterrupt as schema.OperationSchema, input, options) as async.Operation<types.SendDiagnosticInterruptOutput>
 end
 
-function C:startDeclarativePoliciesReport(input: types.StartDeclarativePoliciesReportInput, options: any): async.Operation<types.StartDeclarativePoliciesReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartDeclarativePoliciesReport, input, options) as async.Operation<types.StartDeclarativePoliciesReportOutput>
+function C:startDeclarativePoliciesReport(input: types.StartDeclarativePoliciesReportInput, options?: base_client.InvokeOptions): async.Operation<types.StartDeclarativePoliciesReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDeclarativePoliciesReport as schema.OperationSchema, input, options) as async.Operation<types.StartDeclarativePoliciesReportOutput>
 end
 
-function C:startInstances(input: types.StartInstancesInput, options: any): async.Operation<types.StartInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartInstances, input, options) as async.Operation<types.StartInstancesOutput>
+function C:startInstances(input: types.StartInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.StartInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartInstances as schema.OperationSchema, input, options) as async.Operation<types.StartInstancesOutput>
 end
 
-function C:startNetworkInsightsAccessScopeAnalysis(input: types.StartNetworkInsightsAccessScopeAnalysisInput, options: any): async.Operation<types.StartNetworkInsightsAccessScopeAnalysisOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartNetworkInsightsAccessScopeAnalysis, input, options) as async.Operation<types.StartNetworkInsightsAccessScopeAnalysisOutput>
+function C:startNetworkInsightsAccessScopeAnalysis(input: types.StartNetworkInsightsAccessScopeAnalysisInput, options?: base_client.InvokeOptions): async.Operation<types.StartNetworkInsightsAccessScopeAnalysisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartNetworkInsightsAccessScopeAnalysis as schema.OperationSchema, input, options) as async.Operation<types.StartNetworkInsightsAccessScopeAnalysisOutput>
 end
 
-function C:startNetworkInsightsAnalysis(input: types.StartNetworkInsightsAnalysisInput, options: any): async.Operation<types.StartNetworkInsightsAnalysisOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartNetworkInsightsAnalysis, input, options) as async.Operation<types.StartNetworkInsightsAnalysisOutput>
+function C:startNetworkInsightsAnalysis(input: types.StartNetworkInsightsAnalysisInput, options?: base_client.InvokeOptions): async.Operation<types.StartNetworkInsightsAnalysisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartNetworkInsightsAnalysis as schema.OperationSchema, input, options) as async.Operation<types.StartNetworkInsightsAnalysisOutput>
 end
 
-function C:startVpcEndpointServicePrivateDnsVerification(input: types.StartVpcEndpointServicePrivateDnsVerificationInput, options: any): async.Operation<types.StartVpcEndpointServicePrivateDnsVerificationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartVpcEndpointServicePrivateDnsVerification, input, options) as async.Operation<types.StartVpcEndpointServicePrivateDnsVerificationOutput>
+function C:startVpcEndpointServicePrivateDnsVerification(input: types.StartVpcEndpointServicePrivateDnsVerificationInput, options?: base_client.InvokeOptions): async.Operation<types.StartVpcEndpointServicePrivateDnsVerificationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartVpcEndpointServicePrivateDnsVerification as schema.OperationSchema, input, options) as async.Operation<types.StartVpcEndpointServicePrivateDnsVerificationOutput>
 end
 
-function C:stopInstances(input: types.StopInstancesInput, options: any): async.Operation<types.StopInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopInstances, input, options) as async.Operation<types.StopInstancesOutput>
+function C:stopInstances(input: types.StopInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.StopInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopInstances as schema.OperationSchema, input, options) as async.Operation<types.StopInstancesOutput>
 end
 
-function C:terminateClientVpnConnections(input: types.TerminateClientVpnConnectionsInput, options: any): async.Operation<types.TerminateClientVpnConnectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.TerminateClientVpnConnections, input, options) as async.Operation<types.TerminateClientVpnConnectionsOutput>
+function C:terminateClientVpnConnections(input: types.TerminateClientVpnConnectionsInput, options?: base_client.InvokeOptions): async.Operation<types.TerminateClientVpnConnectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TerminateClientVpnConnections as schema.OperationSchema, input, options) as async.Operation<types.TerminateClientVpnConnectionsOutput>
 end
 
-function C:terminateInstances(input: types.TerminateInstancesInput, options: any): async.Operation<types.TerminateInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.TerminateInstances, input, options) as async.Operation<types.TerminateInstancesOutput>
+function C:terminateInstances(input: types.TerminateInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.TerminateInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TerminateInstances as schema.OperationSchema, input, options) as async.Operation<types.TerminateInstancesOutput>
 end
 
-function C:unassignIpv6Addresses(input: types.UnassignIpv6AddressesInput, options: any): async.Operation<types.UnassignIpv6AddressesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UnassignIpv6Addresses, input, options) as async.Operation<types.UnassignIpv6AddressesOutput>
+function C:unassignIpv6Addresses(input: types.UnassignIpv6AddressesInput, options?: base_client.InvokeOptions): async.Operation<types.UnassignIpv6AddressesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UnassignIpv6Addresses as schema.OperationSchema, input, options) as async.Operation<types.UnassignIpv6AddressesOutput>
 end
 
-function C:unassignPrivateIpAddresses(input: types.UnassignPrivateIpAddressesInput, options: any): async.Operation<types.UnassignPrivateIpAddressesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UnassignPrivateIpAddresses, input, options) as async.Operation<types.UnassignPrivateIpAddressesOutput>
+function C:unassignPrivateIpAddresses(input: types.UnassignPrivateIpAddressesInput, options?: base_client.InvokeOptions): async.Operation<types.UnassignPrivateIpAddressesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UnassignPrivateIpAddresses as schema.OperationSchema, input, options) as async.Operation<types.UnassignPrivateIpAddressesOutput>
 end
 
-function C:unassignPrivateNatGatewayAddress(input: types.UnassignPrivateNatGatewayAddressInput, options: any): async.Operation<types.UnassignPrivateNatGatewayAddressOutput>
-    return self:invokeOperation(schemas.Service, schemas.UnassignPrivateNatGatewayAddress, input, options) as async.Operation<types.UnassignPrivateNatGatewayAddressOutput>
+function C:unassignPrivateNatGatewayAddress(input: types.UnassignPrivateNatGatewayAddressInput, options?: base_client.InvokeOptions): async.Operation<types.UnassignPrivateNatGatewayAddressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UnassignPrivateNatGatewayAddress as schema.OperationSchema, input, options) as async.Operation<types.UnassignPrivateNatGatewayAddressOutput>
 end
 
-function C:unlockSnapshot(input: types.UnlockSnapshotInput, options: any): async.Operation<types.UnlockSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.UnlockSnapshot, input, options) as async.Operation<types.UnlockSnapshotOutput>
+function C:unlockSnapshot(input: types.UnlockSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.UnlockSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UnlockSnapshot as schema.OperationSchema, input, options) as async.Operation<types.UnlockSnapshotOutput>
 end
 
-function C:unmonitorInstances(input: types.UnmonitorInstancesInput, options: any): async.Operation<types.UnmonitorInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UnmonitorInstances, input, options) as async.Operation<types.UnmonitorInstancesOutput>
+function C:unmonitorInstances(input: types.UnmonitorInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.UnmonitorInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UnmonitorInstances as schema.OperationSchema, input, options) as async.Operation<types.UnmonitorInstancesOutput>
 end
 
-function C:updateCapacityManagerMonitoredTagKeys(input: types.UpdateCapacityManagerMonitoredTagKeysInput, options: any): async.Operation<types.UpdateCapacityManagerMonitoredTagKeysOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCapacityManagerMonitoredTagKeys, input, options) as async.Operation<types.UpdateCapacityManagerMonitoredTagKeysOutput>
+function C:updateCapacityManagerMonitoredTagKeys(input: types.UpdateCapacityManagerMonitoredTagKeysInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCapacityManagerMonitoredTagKeysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCapacityManagerMonitoredTagKeys as schema.OperationSchema, input, options) as async.Operation<types.UpdateCapacityManagerMonitoredTagKeysOutput>
 end
 
-function C:updateCapacityManagerOrganizationsAccess(input: types.UpdateCapacityManagerOrganizationsAccessInput, options: any): async.Operation<types.UpdateCapacityManagerOrganizationsAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCapacityManagerOrganizationsAccess, input, options) as async.Operation<types.UpdateCapacityManagerOrganizationsAccessOutput>
+function C:updateCapacityManagerOrganizationsAccess(input: types.UpdateCapacityManagerOrganizationsAccessInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCapacityManagerOrganizationsAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCapacityManagerOrganizationsAccess as schema.OperationSchema, input, options) as async.Operation<types.UpdateCapacityManagerOrganizationsAccessOutput>
 end
 
-function C:updateInterruptibleCapacityReservationAllocation(input: types.UpdateInterruptibleCapacityReservationAllocationInput, options: any): async.Operation<types.UpdateInterruptibleCapacityReservationAllocationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateInterruptibleCapacityReservationAllocation, input, options) as async.Operation<types.UpdateInterruptibleCapacityReservationAllocationOutput>
+function C:updateInterruptibleCapacityReservationAllocation(input: types.UpdateInterruptibleCapacityReservationAllocationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateInterruptibleCapacityReservationAllocationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateInterruptibleCapacityReservationAllocation as schema.OperationSchema, input, options) as async.Operation<types.UpdateInterruptibleCapacityReservationAllocationOutput>
 end
 
-function C:updateSecurityGroupRuleDescriptionsEgress(input: types.UpdateSecurityGroupRuleDescriptionsEgressInput, options: any): async.Operation<types.UpdateSecurityGroupRuleDescriptionsEgressOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSecurityGroupRuleDescriptionsEgress, input, options) as async.Operation<types.UpdateSecurityGroupRuleDescriptionsEgressOutput>
+function C:updateSecurityGroupRuleDescriptionsEgress(input: types.UpdateSecurityGroupRuleDescriptionsEgressInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSecurityGroupRuleDescriptionsEgressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSecurityGroupRuleDescriptionsEgress as schema.OperationSchema, input, options) as async.Operation<types.UpdateSecurityGroupRuleDescriptionsEgressOutput>
 end
 
-function C:updateSecurityGroupRuleDescriptionsIngress(input: types.UpdateSecurityGroupRuleDescriptionsIngressInput, options: any): async.Operation<types.UpdateSecurityGroupRuleDescriptionsIngressOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSecurityGroupRuleDescriptionsIngress, input, options) as async.Operation<types.UpdateSecurityGroupRuleDescriptionsIngressOutput>
+function C:updateSecurityGroupRuleDescriptionsIngress(input: types.UpdateSecurityGroupRuleDescriptionsIngressInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSecurityGroupRuleDescriptionsIngressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSecurityGroupRuleDescriptionsIngress as schema.OperationSchema, input, options) as async.Operation<types.UpdateSecurityGroupRuleDescriptionsIngressOutput>
 end
 
-function C:withdrawByoipCidr(input: types.WithdrawByoipCidrInput, options: any): async.Operation<types.WithdrawByoipCidrOutput>
-    return self:invokeOperation(schemas.Service, schemas.WithdrawByoipCidr, input, options) as async.Operation<types.WithdrawByoipCidrOutput>
+function C:withdrawByoipCidr(input: types.WithdrawByoipCidrInput, options?: base_client.InvokeOptions): async.Operation<types.WithdrawByoipCidrOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.WithdrawByoipCidr as schema.OperationSchema, input, options) as async.Operation<types.WithdrawByoipCidrOutput>
 end
 
 return M

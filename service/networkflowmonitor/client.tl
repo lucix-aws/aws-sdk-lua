@@ -8,64 +8,67 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("networkflowmonitor.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("networkflowmonitor.schemas")
 local traits = require("smithy.traits")
 local types = require("networkflowmonitor.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createMonitor: function(Client, types.CreateMonitorInput, any): async.Operation<types.CreateMonitorOutput>
-    createScope: function(Client, types.CreateScopeInput, any): async.Operation<types.CreateScopeOutput>
-    deleteMonitor: function(Client, types.DeleteMonitorInput, any): async.Operation<types.DeleteMonitorOutput>
-    deleteScope: function(Client, types.DeleteScopeInput, any): async.Operation<types.DeleteScopeOutput>
-    getMonitor: function(Client, types.GetMonitorInput, any): async.Operation<types.GetMonitorOutput>
-    getQueryResultsMonitorTopContributors: function(Client, types.GetQueryResultsMonitorTopContributorsInput, any): async.Operation<types.GetQueryResultsMonitorTopContributorsOutput>
-    getQueryResultsWorkloadInsightsTopContributors: function(Client, types.GetQueryResultsWorkloadInsightsTopContributorsInput, any): async.Operation<types.GetQueryResultsWorkloadInsightsTopContributorsOutput>
-    getQueryResultsWorkloadInsightsTopContributorsData: function(Client, types.GetQueryResultsWorkloadInsightsTopContributorsDataInput, any): async.Operation<types.GetQueryResultsWorkloadInsightsTopContributorsDataOutput>
-    getQueryStatusMonitorTopContributors: function(Client, types.GetQueryStatusMonitorTopContributorsInput, any): async.Operation<types.GetQueryStatusMonitorTopContributorsOutput>
-    getQueryStatusWorkloadInsightsTopContributors: function(Client, types.GetQueryStatusWorkloadInsightsTopContributorsInput, any): async.Operation<types.GetQueryStatusWorkloadInsightsTopContributorsOutput>
-    getQueryStatusWorkloadInsightsTopContributorsData: function(Client, types.GetQueryStatusWorkloadInsightsTopContributorsDataInput, any): async.Operation<types.GetQueryStatusWorkloadInsightsTopContributorsDataOutput>
-    getScope: function(Client, types.GetScopeInput, any): async.Operation<types.GetScopeOutput>
-    listMonitors: function(Client, types.ListMonitorsInput, any): async.Operation<types.ListMonitorsOutput>
-    listScopes: function(Client, types.ListScopesInput, any): async.Operation<types.ListScopesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    startQueryMonitorTopContributors: function(Client, types.StartQueryMonitorTopContributorsInput, any): async.Operation<types.StartQueryMonitorTopContributorsOutput>
-    startQueryWorkloadInsightsTopContributors: function(Client, types.StartQueryWorkloadInsightsTopContributorsInput, any): async.Operation<types.StartQueryWorkloadInsightsTopContributorsOutput>
-    startQueryWorkloadInsightsTopContributorsData: function(Client, types.StartQueryWorkloadInsightsTopContributorsDataInput, any): async.Operation<types.StartQueryWorkloadInsightsTopContributorsDataOutput>
-    stopQueryMonitorTopContributors: function(Client, types.StopQueryMonitorTopContributorsInput, any): async.Operation<types.StopQueryMonitorTopContributorsOutput>
-    stopQueryWorkloadInsightsTopContributors: function(Client, types.StopQueryWorkloadInsightsTopContributorsInput, any): async.Operation<types.StopQueryWorkloadInsightsTopContributorsOutput>
-    stopQueryWorkloadInsightsTopContributorsData: function(Client, types.StopQueryWorkloadInsightsTopContributorsDataInput, any): async.Operation<types.StopQueryWorkloadInsightsTopContributorsDataOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateMonitor: function(Client, types.UpdateMonitorInput, any): async.Operation<types.UpdateMonitorOutput>
-    updateScope: function(Client, types.UpdateScopeInput, any): async.Operation<types.UpdateScopeOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createMonitor: function(Client, types.CreateMonitorInput, ? base_client.InvokeOptions): async.Operation<types.CreateMonitorOutput>
+    createScope: function(Client, types.CreateScopeInput, ? base_client.InvokeOptions): async.Operation<types.CreateScopeOutput>
+    deleteMonitor: function(Client, types.DeleteMonitorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMonitorOutput>
+    deleteScope: function(Client, types.DeleteScopeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteScopeOutput>
+    getMonitor: function(Client, types.GetMonitorInput, ? base_client.InvokeOptions): async.Operation<types.GetMonitorOutput>
+    getQueryResultsMonitorTopContributors: function(Client, types.GetQueryResultsMonitorTopContributorsInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryResultsMonitorTopContributorsOutput>
+    getQueryResultsWorkloadInsightsTopContributors: function(Client, types.GetQueryResultsWorkloadInsightsTopContributorsInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryResultsWorkloadInsightsTopContributorsOutput>
+    getQueryResultsWorkloadInsightsTopContributorsData: function(Client, types.GetQueryResultsWorkloadInsightsTopContributorsDataInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryResultsWorkloadInsightsTopContributorsDataOutput>
+    getQueryStatusMonitorTopContributors: function(Client, types.GetQueryStatusMonitorTopContributorsInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryStatusMonitorTopContributorsOutput>
+    getQueryStatusWorkloadInsightsTopContributors: function(Client, types.GetQueryStatusWorkloadInsightsTopContributorsInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryStatusWorkloadInsightsTopContributorsOutput>
+    getQueryStatusWorkloadInsightsTopContributorsData: function(Client, types.GetQueryStatusWorkloadInsightsTopContributorsDataInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryStatusWorkloadInsightsTopContributorsDataOutput>
+    getScope: function(Client, types.GetScopeInput, ? base_client.InvokeOptions): async.Operation<types.GetScopeOutput>
+    listMonitors: function(Client, types.ListMonitorsInput, ? base_client.InvokeOptions): async.Operation<types.ListMonitorsOutput>
+    listScopes: function(Client, types.ListScopesInput, ? base_client.InvokeOptions): async.Operation<types.ListScopesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    startQueryMonitorTopContributors: function(Client, types.StartQueryMonitorTopContributorsInput, ? base_client.InvokeOptions): async.Operation<types.StartQueryMonitorTopContributorsOutput>
+    startQueryWorkloadInsightsTopContributors: function(Client, types.StartQueryWorkloadInsightsTopContributorsInput, ? base_client.InvokeOptions): async.Operation<types.StartQueryWorkloadInsightsTopContributorsOutput>
+    startQueryWorkloadInsightsTopContributorsData: function(Client, types.StartQueryWorkloadInsightsTopContributorsDataInput, ? base_client.InvokeOptions): async.Operation<types.StartQueryWorkloadInsightsTopContributorsDataOutput>
+    stopQueryMonitorTopContributors: function(Client, types.StopQueryMonitorTopContributorsInput, ? base_client.InvokeOptions): async.Operation<types.StopQueryMonitorTopContributorsOutput>
+    stopQueryWorkloadInsightsTopContributors: function(Client, types.StopQueryWorkloadInsightsTopContributorsInput, ? base_client.InvokeOptions): async.Operation<types.StopQueryWorkloadInsightsTopContributorsOutput>
+    stopQueryWorkloadInsightsTopContributorsData: function(Client, types.StopQueryWorkloadInsightsTopContributorsDataInput, ? base_client.InvokeOptions): async.Operation<types.StopQueryWorkloadInsightsTopContributorsDataOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateMonitor: function(Client, types.UpdateMonitorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMonitorOutput>
+    updateScope: function(Client, types.UpdateScopeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateScopeOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "NetworkFlowMonitor"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "networkflowmonitor", signing_region = c.region } }
                 else
@@ -84,104 +87,104 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createMonitor(input: types.CreateMonitorInput, options: any): async.Operation<types.CreateMonitorOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMonitor, input, options) as async.Operation<types.CreateMonitorOutput>
+function C:createMonitor(input: types.CreateMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMonitorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMonitor as schema.OperationSchema, input, options) as async.Operation<types.CreateMonitorOutput>
 end
 
-function C:createScope(input: types.CreateScopeInput, options: any): async.Operation<types.CreateScopeOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateScope, input, options) as async.Operation<types.CreateScopeOutput>
+function C:createScope(input: types.CreateScopeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateScopeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateScope as schema.OperationSchema, input, options) as async.Operation<types.CreateScopeOutput>
 end
 
-function C:deleteMonitor(input: types.DeleteMonitorInput, options: any): async.Operation<types.DeleteMonitorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMonitor, input, options) as async.Operation<types.DeleteMonitorOutput>
+function C:deleteMonitor(input: types.DeleteMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMonitorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMonitor as schema.OperationSchema, input, options) as async.Operation<types.DeleteMonitorOutput>
 end
 
-function C:deleteScope(input: types.DeleteScopeInput, options: any): async.Operation<types.DeleteScopeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteScope, input, options) as async.Operation<types.DeleteScopeOutput>
+function C:deleteScope(input: types.DeleteScopeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteScopeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteScope as schema.OperationSchema, input, options) as async.Operation<types.DeleteScopeOutput>
 end
 
-function C:getMonitor(input: types.GetMonitorInput, options: any): async.Operation<types.GetMonitorOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMonitor, input, options) as async.Operation<types.GetMonitorOutput>
+function C:getMonitor(input: types.GetMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.GetMonitorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMonitor as schema.OperationSchema, input, options) as async.Operation<types.GetMonitorOutput>
 end
 
-function C:getQueryResultsMonitorTopContributors(input: types.GetQueryResultsMonitorTopContributorsInput, options: any): async.Operation<types.GetQueryResultsMonitorTopContributorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetQueryResultsMonitorTopContributors, input, options) as async.Operation<types.GetQueryResultsMonitorTopContributorsOutput>
+function C:getQueryResultsMonitorTopContributors(input: types.GetQueryResultsMonitorTopContributorsInput, options?: base_client.InvokeOptions): async.Operation<types.GetQueryResultsMonitorTopContributorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQueryResultsMonitorTopContributors as schema.OperationSchema, input, options) as async.Operation<types.GetQueryResultsMonitorTopContributorsOutput>
 end
 
-function C:getQueryResultsWorkloadInsightsTopContributors(input: types.GetQueryResultsWorkloadInsightsTopContributorsInput, options: any): async.Operation<types.GetQueryResultsWorkloadInsightsTopContributorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetQueryResultsWorkloadInsightsTopContributors, input, options) as async.Operation<types.GetQueryResultsWorkloadInsightsTopContributorsOutput>
+function C:getQueryResultsWorkloadInsightsTopContributors(input: types.GetQueryResultsWorkloadInsightsTopContributorsInput, options?: base_client.InvokeOptions): async.Operation<types.GetQueryResultsWorkloadInsightsTopContributorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQueryResultsWorkloadInsightsTopContributors as schema.OperationSchema, input, options) as async.Operation<types.GetQueryResultsWorkloadInsightsTopContributorsOutput>
 end
 
-function C:getQueryResultsWorkloadInsightsTopContributorsData(input: types.GetQueryResultsWorkloadInsightsTopContributorsDataInput, options: any): async.Operation<types.GetQueryResultsWorkloadInsightsTopContributorsDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetQueryResultsWorkloadInsightsTopContributorsData, input, options) as async.Operation<types.GetQueryResultsWorkloadInsightsTopContributorsDataOutput>
+function C:getQueryResultsWorkloadInsightsTopContributorsData(input: types.GetQueryResultsWorkloadInsightsTopContributorsDataInput, options?: base_client.InvokeOptions): async.Operation<types.GetQueryResultsWorkloadInsightsTopContributorsDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQueryResultsWorkloadInsightsTopContributorsData as schema.OperationSchema, input, options) as async.Operation<types.GetQueryResultsWorkloadInsightsTopContributorsDataOutput>
 end
 
-function C:getQueryStatusMonitorTopContributors(input: types.GetQueryStatusMonitorTopContributorsInput, options: any): async.Operation<types.GetQueryStatusMonitorTopContributorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetQueryStatusMonitorTopContributors, input, options) as async.Operation<types.GetQueryStatusMonitorTopContributorsOutput>
+function C:getQueryStatusMonitorTopContributors(input: types.GetQueryStatusMonitorTopContributorsInput, options?: base_client.InvokeOptions): async.Operation<types.GetQueryStatusMonitorTopContributorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQueryStatusMonitorTopContributors as schema.OperationSchema, input, options) as async.Operation<types.GetQueryStatusMonitorTopContributorsOutput>
 end
 
-function C:getQueryStatusWorkloadInsightsTopContributors(input: types.GetQueryStatusWorkloadInsightsTopContributorsInput, options: any): async.Operation<types.GetQueryStatusWorkloadInsightsTopContributorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetQueryStatusWorkloadInsightsTopContributors, input, options) as async.Operation<types.GetQueryStatusWorkloadInsightsTopContributorsOutput>
+function C:getQueryStatusWorkloadInsightsTopContributors(input: types.GetQueryStatusWorkloadInsightsTopContributorsInput, options?: base_client.InvokeOptions): async.Operation<types.GetQueryStatusWorkloadInsightsTopContributorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQueryStatusWorkloadInsightsTopContributors as schema.OperationSchema, input, options) as async.Operation<types.GetQueryStatusWorkloadInsightsTopContributorsOutput>
 end
 
-function C:getQueryStatusWorkloadInsightsTopContributorsData(input: types.GetQueryStatusWorkloadInsightsTopContributorsDataInput, options: any): async.Operation<types.GetQueryStatusWorkloadInsightsTopContributorsDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetQueryStatusWorkloadInsightsTopContributorsData, input, options) as async.Operation<types.GetQueryStatusWorkloadInsightsTopContributorsDataOutput>
+function C:getQueryStatusWorkloadInsightsTopContributorsData(input: types.GetQueryStatusWorkloadInsightsTopContributorsDataInput, options?: base_client.InvokeOptions): async.Operation<types.GetQueryStatusWorkloadInsightsTopContributorsDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQueryStatusWorkloadInsightsTopContributorsData as schema.OperationSchema, input, options) as async.Operation<types.GetQueryStatusWorkloadInsightsTopContributorsDataOutput>
 end
 
-function C:getScope(input: types.GetScopeInput, options: any): async.Operation<types.GetScopeOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetScope, input, options) as async.Operation<types.GetScopeOutput>
+function C:getScope(input: types.GetScopeInput, options?: base_client.InvokeOptions): async.Operation<types.GetScopeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetScope as schema.OperationSchema, input, options) as async.Operation<types.GetScopeOutput>
 end
 
-function C:listMonitors(input: types.ListMonitorsInput, options: any): async.Operation<types.ListMonitorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMonitors, input, options) as async.Operation<types.ListMonitorsOutput>
+function C:listMonitors(input: types.ListMonitorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMonitorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMonitors as schema.OperationSchema, input, options) as async.Operation<types.ListMonitorsOutput>
 end
 
-function C:listScopes(input: types.ListScopesInput, options: any): async.Operation<types.ListScopesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListScopes, input, options) as async.Operation<types.ListScopesOutput>
+function C:listScopes(input: types.ListScopesInput, options?: base_client.InvokeOptions): async.Operation<types.ListScopesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListScopes as schema.OperationSchema, input, options) as async.Operation<types.ListScopesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:startQueryMonitorTopContributors(input: types.StartQueryMonitorTopContributorsInput, options: any): async.Operation<types.StartQueryMonitorTopContributorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartQueryMonitorTopContributors, input, options) as async.Operation<types.StartQueryMonitorTopContributorsOutput>
+function C:startQueryMonitorTopContributors(input: types.StartQueryMonitorTopContributorsInput, options?: base_client.InvokeOptions): async.Operation<types.StartQueryMonitorTopContributorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartQueryMonitorTopContributors as schema.OperationSchema, input, options) as async.Operation<types.StartQueryMonitorTopContributorsOutput>
 end
 
-function C:startQueryWorkloadInsightsTopContributors(input: types.StartQueryWorkloadInsightsTopContributorsInput, options: any): async.Operation<types.StartQueryWorkloadInsightsTopContributorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartQueryWorkloadInsightsTopContributors, input, options) as async.Operation<types.StartQueryWorkloadInsightsTopContributorsOutput>
+function C:startQueryWorkloadInsightsTopContributors(input: types.StartQueryWorkloadInsightsTopContributorsInput, options?: base_client.InvokeOptions): async.Operation<types.StartQueryWorkloadInsightsTopContributorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartQueryWorkloadInsightsTopContributors as schema.OperationSchema, input, options) as async.Operation<types.StartQueryWorkloadInsightsTopContributorsOutput>
 end
 
-function C:startQueryWorkloadInsightsTopContributorsData(input: types.StartQueryWorkloadInsightsTopContributorsDataInput, options: any): async.Operation<types.StartQueryWorkloadInsightsTopContributorsDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartQueryWorkloadInsightsTopContributorsData, input, options) as async.Operation<types.StartQueryWorkloadInsightsTopContributorsDataOutput>
+function C:startQueryWorkloadInsightsTopContributorsData(input: types.StartQueryWorkloadInsightsTopContributorsDataInput, options?: base_client.InvokeOptions): async.Operation<types.StartQueryWorkloadInsightsTopContributorsDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartQueryWorkloadInsightsTopContributorsData as schema.OperationSchema, input, options) as async.Operation<types.StartQueryWorkloadInsightsTopContributorsDataOutput>
 end
 
-function C:stopQueryMonitorTopContributors(input: types.StopQueryMonitorTopContributorsInput, options: any): async.Operation<types.StopQueryMonitorTopContributorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopQueryMonitorTopContributors, input, options) as async.Operation<types.StopQueryMonitorTopContributorsOutput>
+function C:stopQueryMonitorTopContributors(input: types.StopQueryMonitorTopContributorsInput, options?: base_client.InvokeOptions): async.Operation<types.StopQueryMonitorTopContributorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopQueryMonitorTopContributors as schema.OperationSchema, input, options) as async.Operation<types.StopQueryMonitorTopContributorsOutput>
 end
 
-function C:stopQueryWorkloadInsightsTopContributors(input: types.StopQueryWorkloadInsightsTopContributorsInput, options: any): async.Operation<types.StopQueryWorkloadInsightsTopContributorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopQueryWorkloadInsightsTopContributors, input, options) as async.Operation<types.StopQueryWorkloadInsightsTopContributorsOutput>
+function C:stopQueryWorkloadInsightsTopContributors(input: types.StopQueryWorkloadInsightsTopContributorsInput, options?: base_client.InvokeOptions): async.Operation<types.StopQueryWorkloadInsightsTopContributorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopQueryWorkloadInsightsTopContributors as schema.OperationSchema, input, options) as async.Operation<types.StopQueryWorkloadInsightsTopContributorsOutput>
 end
 
-function C:stopQueryWorkloadInsightsTopContributorsData(input: types.StopQueryWorkloadInsightsTopContributorsDataInput, options: any): async.Operation<types.StopQueryWorkloadInsightsTopContributorsDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopQueryWorkloadInsightsTopContributorsData, input, options) as async.Operation<types.StopQueryWorkloadInsightsTopContributorsDataOutput>
+function C:stopQueryWorkloadInsightsTopContributorsData(input: types.StopQueryWorkloadInsightsTopContributorsDataInput, options?: base_client.InvokeOptions): async.Operation<types.StopQueryWorkloadInsightsTopContributorsDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopQueryWorkloadInsightsTopContributorsData as schema.OperationSchema, input, options) as async.Operation<types.StopQueryWorkloadInsightsTopContributorsDataOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateMonitor(input: types.UpdateMonitorInput, options: any): async.Operation<types.UpdateMonitorOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateMonitor, input, options) as async.Operation<types.UpdateMonitorOutput>
+function C:updateMonitor(input: types.UpdateMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMonitorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMonitor as schema.OperationSchema, input, options) as async.Operation<types.UpdateMonitorOutput>
 end
 
-function C:updateScope(input: types.UpdateScopeInput, options: any): async.Operation<types.UpdateScopeOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateScope, input, options) as async.Operation<types.UpdateScopeOutput>
+function C:updateScope(input: types.UpdateScopeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateScopeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateScope as schema.OperationSchema, input, options) as async.Operation<types.UpdateScopeOutput>
 end
 
 return M

@@ -8,62 +8,65 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("ecrpublic.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("ecrpublic.schemas")
 local traits = require("smithy.traits")
 local types = require("ecrpublic.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchCheckLayerAvailability: function(Client, types.BatchCheckLayerAvailabilityInput, any): async.Operation<types.BatchCheckLayerAvailabilityOutput>
-    batchDeleteImage: function(Client, types.BatchDeleteImageInput, any): async.Operation<types.BatchDeleteImageOutput>
-    completeLayerUpload: function(Client, types.CompleteLayerUploadInput, any): async.Operation<types.CompleteLayerUploadOutput>
-    createRepository: function(Client, types.CreateRepositoryInput, any): async.Operation<types.CreateRepositoryOutput>
-    deleteRepository: function(Client, types.DeleteRepositoryInput, any): async.Operation<types.DeleteRepositoryOutput>
-    deleteRepositoryPolicy: function(Client, types.DeleteRepositoryPolicyInput, any): async.Operation<types.DeleteRepositoryPolicyOutput>
-    describeImages: function(Client, types.DescribeImagesInput, any): async.Operation<types.DescribeImagesOutput>
-    describeImageTags: function(Client, types.DescribeImageTagsInput, any): async.Operation<types.DescribeImageTagsOutput>
-    describeRegistries: function(Client, types.DescribeRegistriesInput, any): async.Operation<types.DescribeRegistriesOutput>
-    describeRepositories: function(Client, types.DescribeRepositoriesInput, any): async.Operation<types.DescribeRepositoriesOutput>
-    getAuthorizationToken: function(Client, types.GetAuthorizationTokenInput, any): async.Operation<types.GetAuthorizationTokenOutput>
-    getRegistryCatalogData: function(Client, types.GetRegistryCatalogDataInput, any): async.Operation<types.GetRegistryCatalogDataOutput>
-    getRepositoryCatalogData: function(Client, types.GetRepositoryCatalogDataInput, any): async.Operation<types.GetRepositoryCatalogDataOutput>
-    getRepositoryPolicy: function(Client, types.GetRepositoryPolicyInput, any): async.Operation<types.GetRepositoryPolicyOutput>
-    initiateLayerUpload: function(Client, types.InitiateLayerUploadInput, any): async.Operation<types.InitiateLayerUploadOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putImage: function(Client, types.PutImageInput, any): async.Operation<types.PutImageOutput>
-    putRegistryCatalogData: function(Client, types.PutRegistryCatalogDataInput, any): async.Operation<types.PutRegistryCatalogDataOutput>
-    putRepositoryCatalogData: function(Client, types.PutRepositoryCatalogDataInput, any): async.Operation<types.PutRepositoryCatalogDataOutput>
-    setRepositoryPolicy: function(Client, types.SetRepositoryPolicyInput, any): async.Operation<types.SetRepositoryPolicyOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    uploadLayerPart: function(Client, types.UploadLayerPartInput, any): async.Operation<types.UploadLayerPartOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchCheckLayerAvailability: function(Client, types.BatchCheckLayerAvailabilityInput, ? base_client.InvokeOptions): async.Operation<types.BatchCheckLayerAvailabilityOutput>
+    batchDeleteImage: function(Client, types.BatchDeleteImageInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteImageOutput>
+    completeLayerUpload: function(Client, types.CompleteLayerUploadInput, ? base_client.InvokeOptions): async.Operation<types.CompleteLayerUploadOutput>
+    createRepository: function(Client, types.CreateRepositoryInput, ? base_client.InvokeOptions): async.Operation<types.CreateRepositoryOutput>
+    deleteRepository: function(Client, types.DeleteRepositoryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRepositoryOutput>
+    deleteRepositoryPolicy: function(Client, types.DeleteRepositoryPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRepositoryPolicyOutput>
+    describeImages: function(Client, types.DescribeImagesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeImagesOutput>
+    describeImageTags: function(Client, types.DescribeImageTagsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeImageTagsOutput>
+    describeRegistries: function(Client, types.DescribeRegistriesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRegistriesOutput>
+    describeRepositories: function(Client, types.DescribeRepositoriesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRepositoriesOutput>
+    getAuthorizationToken: function(Client, types.GetAuthorizationTokenInput, ? base_client.InvokeOptions): async.Operation<types.GetAuthorizationTokenOutput>
+    getRegistryCatalogData: function(Client, types.GetRegistryCatalogDataInput, ? base_client.InvokeOptions): async.Operation<types.GetRegistryCatalogDataOutput>
+    getRepositoryCatalogData: function(Client, types.GetRepositoryCatalogDataInput, ? base_client.InvokeOptions): async.Operation<types.GetRepositoryCatalogDataOutput>
+    getRepositoryPolicy: function(Client, types.GetRepositoryPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetRepositoryPolicyOutput>
+    initiateLayerUpload: function(Client, types.InitiateLayerUploadInput, ? base_client.InvokeOptions): async.Operation<types.InitiateLayerUploadOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putImage: function(Client, types.PutImageInput, ? base_client.InvokeOptions): async.Operation<types.PutImageOutput>
+    putRegistryCatalogData: function(Client, types.PutRegistryCatalogDataInput, ? base_client.InvokeOptions): async.Operation<types.PutRegistryCatalogDataOutput>
+    putRepositoryCatalogData: function(Client, types.PutRepositoryCatalogDataInput, ? base_client.InvokeOptions): async.Operation<types.PutRepositoryCatalogDataOutput>
+    setRepositoryPolicy: function(Client, types.SetRepositoryPolicyInput, ? base_client.InvokeOptions): async.Operation<types.SetRepositoryPolicyOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    uploadLayerPart: function(Client, types.UploadLayerPartInput, ? base_client.InvokeOptions): async.Operation<types.UploadLayerPartOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "SpencerFrontendService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ecr-public", signing_region = c.region } }
                 else
@@ -82,96 +85,96 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchCheckLayerAvailability(input: types.BatchCheckLayerAvailabilityInput, options: any): async.Operation<types.BatchCheckLayerAvailabilityOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchCheckLayerAvailability, input, options) as async.Operation<types.BatchCheckLayerAvailabilityOutput>
+function C:batchCheckLayerAvailability(input: types.BatchCheckLayerAvailabilityInput, options?: base_client.InvokeOptions): async.Operation<types.BatchCheckLayerAvailabilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchCheckLayerAvailability as schema.OperationSchema, input, options) as async.Operation<types.BatchCheckLayerAvailabilityOutput>
 end
 
-function C:batchDeleteImage(input: types.BatchDeleteImageInput, options: any): async.Operation<types.BatchDeleteImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDeleteImage, input, options) as async.Operation<types.BatchDeleteImageOutput>
+function C:batchDeleteImage(input: types.BatchDeleteImageInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteImage as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteImageOutput>
 end
 
-function C:completeLayerUpload(input: types.CompleteLayerUploadInput, options: any): async.Operation<types.CompleteLayerUploadOutput>
-    return self:invokeOperation(schemas.Service, schemas.CompleteLayerUpload, input, options) as async.Operation<types.CompleteLayerUploadOutput>
+function C:completeLayerUpload(input: types.CompleteLayerUploadInput, options?: base_client.InvokeOptions): async.Operation<types.CompleteLayerUploadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CompleteLayerUpload as schema.OperationSchema, input, options) as async.Operation<types.CompleteLayerUploadOutput>
 end
 
-function C:createRepository(input: types.CreateRepositoryInput, options: any): async.Operation<types.CreateRepositoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRepository, input, options) as async.Operation<types.CreateRepositoryOutput>
+function C:createRepository(input: types.CreateRepositoryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRepositoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRepository as schema.OperationSchema, input, options) as async.Operation<types.CreateRepositoryOutput>
 end
 
-function C:deleteRepository(input: types.DeleteRepositoryInput, options: any): async.Operation<types.DeleteRepositoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRepository, input, options) as async.Operation<types.DeleteRepositoryOutput>
+function C:deleteRepository(input: types.DeleteRepositoryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRepositoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRepository as schema.OperationSchema, input, options) as async.Operation<types.DeleteRepositoryOutput>
 end
 
-function C:deleteRepositoryPolicy(input: types.DeleteRepositoryPolicyInput, options: any): async.Operation<types.DeleteRepositoryPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRepositoryPolicy, input, options) as async.Operation<types.DeleteRepositoryPolicyOutput>
+function C:deleteRepositoryPolicy(input: types.DeleteRepositoryPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRepositoryPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRepositoryPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteRepositoryPolicyOutput>
 end
 
-function C:describeImages(input: types.DescribeImagesInput, options: any): async.Operation<types.DescribeImagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeImages, input, options) as async.Operation<types.DescribeImagesOutput>
+function C:describeImages(input: types.DescribeImagesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeImagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeImages as schema.OperationSchema, input, options) as async.Operation<types.DescribeImagesOutput>
 end
 
-function C:describeImageTags(input: types.DescribeImageTagsInput, options: any): async.Operation<types.DescribeImageTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeImageTags, input, options) as async.Operation<types.DescribeImageTagsOutput>
+function C:describeImageTags(input: types.DescribeImageTagsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeImageTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeImageTags as schema.OperationSchema, input, options) as async.Operation<types.DescribeImageTagsOutput>
 end
 
-function C:describeRegistries(input: types.DescribeRegistriesInput, options: any): async.Operation<types.DescribeRegistriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRegistries, input, options) as async.Operation<types.DescribeRegistriesOutput>
+function C:describeRegistries(input: types.DescribeRegistriesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRegistriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRegistries as schema.OperationSchema, input, options) as async.Operation<types.DescribeRegistriesOutput>
 end
 
-function C:describeRepositories(input: types.DescribeRepositoriesInput, options: any): async.Operation<types.DescribeRepositoriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRepositories, input, options) as async.Operation<types.DescribeRepositoriesOutput>
+function C:describeRepositories(input: types.DescribeRepositoriesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRepositoriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRepositories as schema.OperationSchema, input, options) as async.Operation<types.DescribeRepositoriesOutput>
 end
 
-function C:getAuthorizationToken(input: types.GetAuthorizationTokenInput, options: any): async.Operation<types.GetAuthorizationTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAuthorizationToken, input, options) as async.Operation<types.GetAuthorizationTokenOutput>
+function C:getAuthorizationToken(input: types.GetAuthorizationTokenInput, options?: base_client.InvokeOptions): async.Operation<types.GetAuthorizationTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAuthorizationToken as schema.OperationSchema, input, options) as async.Operation<types.GetAuthorizationTokenOutput>
 end
 
-function C:getRegistryCatalogData(input: types.GetRegistryCatalogDataInput, options: any): async.Operation<types.GetRegistryCatalogDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRegistryCatalogData, input, options) as async.Operation<types.GetRegistryCatalogDataOutput>
+function C:getRegistryCatalogData(input: types.GetRegistryCatalogDataInput, options?: base_client.InvokeOptions): async.Operation<types.GetRegistryCatalogDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRegistryCatalogData as schema.OperationSchema, input, options) as async.Operation<types.GetRegistryCatalogDataOutput>
 end
 
-function C:getRepositoryCatalogData(input: types.GetRepositoryCatalogDataInput, options: any): async.Operation<types.GetRepositoryCatalogDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRepositoryCatalogData, input, options) as async.Operation<types.GetRepositoryCatalogDataOutput>
+function C:getRepositoryCatalogData(input: types.GetRepositoryCatalogDataInput, options?: base_client.InvokeOptions): async.Operation<types.GetRepositoryCatalogDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRepositoryCatalogData as schema.OperationSchema, input, options) as async.Operation<types.GetRepositoryCatalogDataOutput>
 end
 
-function C:getRepositoryPolicy(input: types.GetRepositoryPolicyInput, options: any): async.Operation<types.GetRepositoryPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRepositoryPolicy, input, options) as async.Operation<types.GetRepositoryPolicyOutput>
+function C:getRepositoryPolicy(input: types.GetRepositoryPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetRepositoryPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRepositoryPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetRepositoryPolicyOutput>
 end
 
-function C:initiateLayerUpload(input: types.InitiateLayerUploadInput, options: any): async.Operation<types.InitiateLayerUploadOutput>
-    return self:invokeOperation(schemas.Service, schemas.InitiateLayerUpload, input, options) as async.Operation<types.InitiateLayerUploadOutput>
+function C:initiateLayerUpload(input: types.InitiateLayerUploadInput, options?: base_client.InvokeOptions): async.Operation<types.InitiateLayerUploadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InitiateLayerUpload as schema.OperationSchema, input, options) as async.Operation<types.InitiateLayerUploadOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putImage(input: types.PutImageInput, options: any): async.Operation<types.PutImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutImage, input, options) as async.Operation<types.PutImageOutput>
+function C:putImage(input: types.PutImageInput, options?: base_client.InvokeOptions): async.Operation<types.PutImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutImage as schema.OperationSchema, input, options) as async.Operation<types.PutImageOutput>
 end
 
-function C:putRegistryCatalogData(input: types.PutRegistryCatalogDataInput, options: any): async.Operation<types.PutRegistryCatalogDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutRegistryCatalogData, input, options) as async.Operation<types.PutRegistryCatalogDataOutput>
+function C:putRegistryCatalogData(input: types.PutRegistryCatalogDataInput, options?: base_client.InvokeOptions): async.Operation<types.PutRegistryCatalogDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutRegistryCatalogData as schema.OperationSchema, input, options) as async.Operation<types.PutRegistryCatalogDataOutput>
 end
 
-function C:putRepositoryCatalogData(input: types.PutRepositoryCatalogDataInput, options: any): async.Operation<types.PutRepositoryCatalogDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutRepositoryCatalogData, input, options) as async.Operation<types.PutRepositoryCatalogDataOutput>
+function C:putRepositoryCatalogData(input: types.PutRepositoryCatalogDataInput, options?: base_client.InvokeOptions): async.Operation<types.PutRepositoryCatalogDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutRepositoryCatalogData as schema.OperationSchema, input, options) as async.Operation<types.PutRepositoryCatalogDataOutput>
 end
 
-function C:setRepositoryPolicy(input: types.SetRepositoryPolicyInput, options: any): async.Operation<types.SetRepositoryPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetRepositoryPolicy, input, options) as async.Operation<types.SetRepositoryPolicyOutput>
+function C:setRepositoryPolicy(input: types.SetRepositoryPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.SetRepositoryPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetRepositoryPolicy as schema.OperationSchema, input, options) as async.Operation<types.SetRepositoryPolicyOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:uploadLayerPart(input: types.UploadLayerPartInput, options: any): async.Operation<types.UploadLayerPartOutput>
-    return self:invokeOperation(schemas.Service, schemas.UploadLayerPart, input, options) as async.Operation<types.UploadLayerPartOutput>
+function C:uploadLayerPart(input: types.UploadLayerPartInput, options?: base_client.InvokeOptions): async.Operation<types.UploadLayerPartOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UploadLayerPart as schema.OperationSchema, input, options) as async.Operation<types.UploadLayerPartOutput>
 end
 
 return M

@@ -8,71 +8,74 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("billingconductor.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("billingconductor.schemas")
 local traits = require("smithy.traits")
 local types = require("billingconductor.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateAccounts: function(Client, types.AssociateAccountsInput, any): async.Operation<types.AssociateAccountsOutput>
-    associatePricingRules: function(Client, types.AssociatePricingRulesInput, any): async.Operation<types.AssociatePricingRulesOutput>
-    batchAssociateResourcesToCustomLineItem: function(Client, types.BatchAssociateResourcesToCustomLineItemInput, any): async.Operation<types.BatchAssociateResourcesToCustomLineItemOutput>
-    batchDisassociateResourcesFromCustomLineItem: function(Client, types.BatchDisassociateResourcesFromCustomLineItemInput, any): async.Operation<types.BatchDisassociateResourcesFromCustomLineItemOutput>
-    createBillingGroup: function(Client, types.CreateBillingGroupInput, any): async.Operation<types.CreateBillingGroupOutput>
-    createCustomLineItem: function(Client, types.CreateCustomLineItemInput, any): async.Operation<types.CreateCustomLineItemOutput>
-    createPricingPlan: function(Client, types.CreatePricingPlanInput, any): async.Operation<types.CreatePricingPlanOutput>
-    createPricingRule: function(Client, types.CreatePricingRuleInput, any): async.Operation<types.CreatePricingRuleOutput>
-    deleteBillingGroup: function(Client, types.DeleteBillingGroupInput, any): async.Operation<types.DeleteBillingGroupOutput>
-    deleteCustomLineItem: function(Client, types.DeleteCustomLineItemInput, any): async.Operation<types.DeleteCustomLineItemOutput>
-    deletePricingPlan: function(Client, types.DeletePricingPlanInput, any): async.Operation<types.DeletePricingPlanOutput>
-    deletePricingRule: function(Client, types.DeletePricingRuleInput, any): async.Operation<types.DeletePricingRuleOutput>
-    disassociateAccounts: function(Client, types.DisassociateAccountsInput, any): async.Operation<types.DisassociateAccountsOutput>
-    disassociatePricingRules: function(Client, types.DisassociatePricingRulesInput, any): async.Operation<types.DisassociatePricingRulesOutput>
-    getBillingGroupCostReport: function(Client, types.GetBillingGroupCostReportInput, any): async.Operation<types.GetBillingGroupCostReportOutput>
-    listAccountAssociations: function(Client, types.ListAccountAssociationsInput, any): async.Operation<types.ListAccountAssociationsOutput>
-    listBillingGroupCostReports: function(Client, types.ListBillingGroupCostReportsInput, any): async.Operation<types.ListBillingGroupCostReportsOutput>
-    listBillingGroups: function(Client, types.ListBillingGroupsInput, any): async.Operation<types.ListBillingGroupsOutput>
-    listCustomLineItems: function(Client, types.ListCustomLineItemsInput, any): async.Operation<types.ListCustomLineItemsOutput>
-    listCustomLineItemVersions: function(Client, types.ListCustomLineItemVersionsInput, any): async.Operation<types.ListCustomLineItemVersionsOutput>
-    listPricingPlans: function(Client, types.ListPricingPlansInput, any): async.Operation<types.ListPricingPlansOutput>
-    listPricingPlansAssociatedWithPricingRule: function(Client, types.ListPricingPlansAssociatedWithPricingRuleInput, any): async.Operation<types.ListPricingPlansAssociatedWithPricingRuleOutput>
-    listPricingRules: function(Client, types.ListPricingRulesInput, any): async.Operation<types.ListPricingRulesOutput>
-    listPricingRulesAssociatedToPricingPlan: function(Client, types.ListPricingRulesAssociatedToPricingPlanInput, any): async.Operation<types.ListPricingRulesAssociatedToPricingPlanOutput>
-    listResourcesAssociatedToCustomLineItem: function(Client, types.ListResourcesAssociatedToCustomLineItemInput, any): async.Operation<types.ListResourcesAssociatedToCustomLineItemOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateBillingGroup: function(Client, types.UpdateBillingGroupInput, any): async.Operation<types.UpdateBillingGroupOutput>
-    updateCustomLineItem: function(Client, types.UpdateCustomLineItemInput, any): async.Operation<types.UpdateCustomLineItemOutput>
-    updatePricingPlan: function(Client, types.UpdatePricingPlanInput, any): async.Operation<types.UpdatePricingPlanOutput>
-    updatePricingRule: function(Client, types.UpdatePricingRuleInput, any): async.Operation<types.UpdatePricingRuleOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateAccounts: function(Client, types.AssociateAccountsInput, ? base_client.InvokeOptions): async.Operation<types.AssociateAccountsOutput>
+    associatePricingRules: function(Client, types.AssociatePricingRulesInput, ? base_client.InvokeOptions): async.Operation<types.AssociatePricingRulesOutput>
+    batchAssociateResourcesToCustomLineItem: function(Client, types.BatchAssociateResourcesToCustomLineItemInput, ? base_client.InvokeOptions): async.Operation<types.BatchAssociateResourcesToCustomLineItemOutput>
+    batchDisassociateResourcesFromCustomLineItem: function(Client, types.BatchDisassociateResourcesFromCustomLineItemInput, ? base_client.InvokeOptions): async.Operation<types.BatchDisassociateResourcesFromCustomLineItemOutput>
+    createBillingGroup: function(Client, types.CreateBillingGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateBillingGroupOutput>
+    createCustomLineItem: function(Client, types.CreateCustomLineItemInput, ? base_client.InvokeOptions): async.Operation<types.CreateCustomLineItemOutput>
+    createPricingPlan: function(Client, types.CreatePricingPlanInput, ? base_client.InvokeOptions): async.Operation<types.CreatePricingPlanOutput>
+    createPricingRule: function(Client, types.CreatePricingRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreatePricingRuleOutput>
+    deleteBillingGroup: function(Client, types.DeleteBillingGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBillingGroupOutput>
+    deleteCustomLineItem: function(Client, types.DeleteCustomLineItemInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCustomLineItemOutput>
+    deletePricingPlan: function(Client, types.DeletePricingPlanInput, ? base_client.InvokeOptions): async.Operation<types.DeletePricingPlanOutput>
+    deletePricingRule: function(Client, types.DeletePricingRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeletePricingRuleOutput>
+    disassociateAccounts: function(Client, types.DisassociateAccountsInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateAccountsOutput>
+    disassociatePricingRules: function(Client, types.DisassociatePricingRulesInput, ? base_client.InvokeOptions): async.Operation<types.DisassociatePricingRulesOutput>
+    getBillingGroupCostReport: function(Client, types.GetBillingGroupCostReportInput, ? base_client.InvokeOptions): async.Operation<types.GetBillingGroupCostReportOutput>
+    listAccountAssociations: function(Client, types.ListAccountAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListAccountAssociationsOutput>
+    listBillingGroupCostReports: function(Client, types.ListBillingGroupCostReportsInput, ? base_client.InvokeOptions): async.Operation<types.ListBillingGroupCostReportsOutput>
+    listBillingGroups: function(Client, types.ListBillingGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListBillingGroupsOutput>
+    listCustomLineItems: function(Client, types.ListCustomLineItemsInput, ? base_client.InvokeOptions): async.Operation<types.ListCustomLineItemsOutput>
+    listCustomLineItemVersions: function(Client, types.ListCustomLineItemVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListCustomLineItemVersionsOutput>
+    listPricingPlans: function(Client, types.ListPricingPlansInput, ? base_client.InvokeOptions): async.Operation<types.ListPricingPlansOutput>
+    listPricingPlansAssociatedWithPricingRule: function(Client, types.ListPricingPlansAssociatedWithPricingRuleInput, ? base_client.InvokeOptions): async.Operation<types.ListPricingPlansAssociatedWithPricingRuleOutput>
+    listPricingRules: function(Client, types.ListPricingRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListPricingRulesOutput>
+    listPricingRulesAssociatedToPricingPlan: function(Client, types.ListPricingRulesAssociatedToPricingPlanInput, ? base_client.InvokeOptions): async.Operation<types.ListPricingRulesAssociatedToPricingPlanOutput>
+    listResourcesAssociatedToCustomLineItem: function(Client, types.ListResourcesAssociatedToCustomLineItemInput, ? base_client.InvokeOptions): async.Operation<types.ListResourcesAssociatedToCustomLineItemOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateBillingGroup: function(Client, types.UpdateBillingGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBillingGroupOutput>
+    updateCustomLineItem: function(Client, types.UpdateCustomLineItemInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCustomLineItemOutput>
+    updatePricingPlan: function(Client, types.UpdatePricingPlanInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePricingPlanOutput>
+    updatePricingRule: function(Client, types.UpdatePricingRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePricingRuleOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSBillingConductor"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "billingconductor", signing_region = c.region } }
                 else
@@ -91,132 +94,132 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateAccounts(input: types.AssociateAccountsInput, options: any): async.Operation<types.AssociateAccountsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateAccounts, input, options) as async.Operation<types.AssociateAccountsOutput>
+function C:associateAccounts(input: types.AssociateAccountsInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateAccountsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateAccounts as schema.OperationSchema, input, options) as async.Operation<types.AssociateAccountsOutput>
 end
 
-function C:associatePricingRules(input: types.AssociatePricingRulesInput, options: any): async.Operation<types.AssociatePricingRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociatePricingRules, input, options) as async.Operation<types.AssociatePricingRulesOutput>
+function C:associatePricingRules(input: types.AssociatePricingRulesInput, options?: base_client.InvokeOptions): async.Operation<types.AssociatePricingRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociatePricingRules as schema.OperationSchema, input, options) as async.Operation<types.AssociatePricingRulesOutput>
 end
 
-function C:batchAssociateResourcesToCustomLineItem(input: types.BatchAssociateResourcesToCustomLineItemInput, options: any): async.Operation<types.BatchAssociateResourcesToCustomLineItemOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchAssociateResourcesToCustomLineItem, input, options) as async.Operation<types.BatchAssociateResourcesToCustomLineItemOutput>
+function C:batchAssociateResourcesToCustomLineItem(input: types.BatchAssociateResourcesToCustomLineItemInput, options?: base_client.InvokeOptions): async.Operation<types.BatchAssociateResourcesToCustomLineItemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchAssociateResourcesToCustomLineItem as schema.OperationSchema, input, options) as async.Operation<types.BatchAssociateResourcesToCustomLineItemOutput>
 end
 
-function C:batchDisassociateResourcesFromCustomLineItem(input: types.BatchDisassociateResourcesFromCustomLineItemInput, options: any): async.Operation<types.BatchDisassociateResourcesFromCustomLineItemOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDisassociateResourcesFromCustomLineItem, input, options) as async.Operation<types.BatchDisassociateResourcesFromCustomLineItemOutput>
+function C:batchDisassociateResourcesFromCustomLineItem(input: types.BatchDisassociateResourcesFromCustomLineItemInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDisassociateResourcesFromCustomLineItemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDisassociateResourcesFromCustomLineItem as schema.OperationSchema, input, options) as async.Operation<types.BatchDisassociateResourcesFromCustomLineItemOutput>
 end
 
-function C:createBillingGroup(input: types.CreateBillingGroupInput, options: any): async.Operation<types.CreateBillingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBillingGroup, input, options) as async.Operation<types.CreateBillingGroupOutput>
+function C:createBillingGroup(input: types.CreateBillingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBillingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBillingGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateBillingGroupOutput>
 end
 
-function C:createCustomLineItem(input: types.CreateCustomLineItemInput, options: any): async.Operation<types.CreateCustomLineItemOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCustomLineItem, input, options) as async.Operation<types.CreateCustomLineItemOutput>
+function C:createCustomLineItem(input: types.CreateCustomLineItemInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCustomLineItemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCustomLineItem as schema.OperationSchema, input, options) as async.Operation<types.CreateCustomLineItemOutput>
 end
 
-function C:createPricingPlan(input: types.CreatePricingPlanInput, options: any): async.Operation<types.CreatePricingPlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePricingPlan, input, options) as async.Operation<types.CreatePricingPlanOutput>
+function C:createPricingPlan(input: types.CreatePricingPlanInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePricingPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePricingPlan as schema.OperationSchema, input, options) as async.Operation<types.CreatePricingPlanOutput>
 end
 
-function C:createPricingRule(input: types.CreatePricingRuleInput, options: any): async.Operation<types.CreatePricingRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePricingRule, input, options) as async.Operation<types.CreatePricingRuleOutput>
+function C:createPricingRule(input: types.CreatePricingRuleInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePricingRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePricingRule as schema.OperationSchema, input, options) as async.Operation<types.CreatePricingRuleOutput>
 end
 
-function C:deleteBillingGroup(input: types.DeleteBillingGroupInput, options: any): async.Operation<types.DeleteBillingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBillingGroup, input, options) as async.Operation<types.DeleteBillingGroupOutput>
+function C:deleteBillingGroup(input: types.DeleteBillingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBillingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBillingGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteBillingGroupOutput>
 end
 
-function C:deleteCustomLineItem(input: types.DeleteCustomLineItemInput, options: any): async.Operation<types.DeleteCustomLineItemOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCustomLineItem, input, options) as async.Operation<types.DeleteCustomLineItemOutput>
+function C:deleteCustomLineItem(input: types.DeleteCustomLineItemInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCustomLineItemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCustomLineItem as schema.OperationSchema, input, options) as async.Operation<types.DeleteCustomLineItemOutput>
 end
 
-function C:deletePricingPlan(input: types.DeletePricingPlanInput, options: any): async.Operation<types.DeletePricingPlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePricingPlan, input, options) as async.Operation<types.DeletePricingPlanOutput>
+function C:deletePricingPlan(input: types.DeletePricingPlanInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePricingPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePricingPlan as schema.OperationSchema, input, options) as async.Operation<types.DeletePricingPlanOutput>
 end
 
-function C:deletePricingRule(input: types.DeletePricingRuleInput, options: any): async.Operation<types.DeletePricingRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePricingRule, input, options) as async.Operation<types.DeletePricingRuleOutput>
+function C:deletePricingRule(input: types.DeletePricingRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePricingRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePricingRule as schema.OperationSchema, input, options) as async.Operation<types.DeletePricingRuleOutput>
 end
 
-function C:disassociateAccounts(input: types.DisassociateAccountsInput, options: any): async.Operation<types.DisassociateAccountsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateAccounts, input, options) as async.Operation<types.DisassociateAccountsOutput>
+function C:disassociateAccounts(input: types.DisassociateAccountsInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateAccountsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateAccounts as schema.OperationSchema, input, options) as async.Operation<types.DisassociateAccountsOutput>
 end
 
-function C:disassociatePricingRules(input: types.DisassociatePricingRulesInput, options: any): async.Operation<types.DisassociatePricingRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociatePricingRules, input, options) as async.Operation<types.DisassociatePricingRulesOutput>
+function C:disassociatePricingRules(input: types.DisassociatePricingRulesInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociatePricingRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociatePricingRules as schema.OperationSchema, input, options) as async.Operation<types.DisassociatePricingRulesOutput>
 end
 
-function C:getBillingGroupCostReport(input: types.GetBillingGroupCostReportInput, options: any): async.Operation<types.GetBillingGroupCostReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBillingGroupCostReport, input, options) as async.Operation<types.GetBillingGroupCostReportOutput>
+function C:getBillingGroupCostReport(input: types.GetBillingGroupCostReportInput, options?: base_client.InvokeOptions): async.Operation<types.GetBillingGroupCostReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBillingGroupCostReport as schema.OperationSchema, input, options) as async.Operation<types.GetBillingGroupCostReportOutput>
 end
 
-function C:listAccountAssociations(input: types.ListAccountAssociationsInput, options: any): async.Operation<types.ListAccountAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccountAssociations, input, options) as async.Operation<types.ListAccountAssociationsOutput>
+function C:listAccountAssociations(input: types.ListAccountAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccountAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccountAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListAccountAssociationsOutput>
 end
 
-function C:listBillingGroupCostReports(input: types.ListBillingGroupCostReportsInput, options: any): async.Operation<types.ListBillingGroupCostReportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBillingGroupCostReports, input, options) as async.Operation<types.ListBillingGroupCostReportsOutput>
+function C:listBillingGroupCostReports(input: types.ListBillingGroupCostReportsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBillingGroupCostReportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBillingGroupCostReports as schema.OperationSchema, input, options) as async.Operation<types.ListBillingGroupCostReportsOutput>
 end
 
-function C:listBillingGroups(input: types.ListBillingGroupsInput, options: any): async.Operation<types.ListBillingGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBillingGroups, input, options) as async.Operation<types.ListBillingGroupsOutput>
+function C:listBillingGroups(input: types.ListBillingGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBillingGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBillingGroups as schema.OperationSchema, input, options) as async.Operation<types.ListBillingGroupsOutput>
 end
 
-function C:listCustomLineItems(input: types.ListCustomLineItemsInput, options: any): async.Operation<types.ListCustomLineItemsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCustomLineItems, input, options) as async.Operation<types.ListCustomLineItemsOutput>
+function C:listCustomLineItems(input: types.ListCustomLineItemsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCustomLineItemsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCustomLineItems as schema.OperationSchema, input, options) as async.Operation<types.ListCustomLineItemsOutput>
 end
 
-function C:listCustomLineItemVersions(input: types.ListCustomLineItemVersionsInput, options: any): async.Operation<types.ListCustomLineItemVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCustomLineItemVersions, input, options) as async.Operation<types.ListCustomLineItemVersionsOutput>
+function C:listCustomLineItemVersions(input: types.ListCustomLineItemVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCustomLineItemVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCustomLineItemVersions as schema.OperationSchema, input, options) as async.Operation<types.ListCustomLineItemVersionsOutput>
 end
 
-function C:listPricingPlans(input: types.ListPricingPlansInput, options: any): async.Operation<types.ListPricingPlansOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPricingPlans, input, options) as async.Operation<types.ListPricingPlansOutput>
+function C:listPricingPlans(input: types.ListPricingPlansInput, options?: base_client.InvokeOptions): async.Operation<types.ListPricingPlansOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPricingPlans as schema.OperationSchema, input, options) as async.Operation<types.ListPricingPlansOutput>
 end
 
-function C:listPricingPlansAssociatedWithPricingRule(input: types.ListPricingPlansAssociatedWithPricingRuleInput, options: any): async.Operation<types.ListPricingPlansAssociatedWithPricingRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPricingPlansAssociatedWithPricingRule, input, options) as async.Operation<types.ListPricingPlansAssociatedWithPricingRuleOutput>
+function C:listPricingPlansAssociatedWithPricingRule(input: types.ListPricingPlansAssociatedWithPricingRuleInput, options?: base_client.InvokeOptions): async.Operation<types.ListPricingPlansAssociatedWithPricingRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPricingPlansAssociatedWithPricingRule as schema.OperationSchema, input, options) as async.Operation<types.ListPricingPlansAssociatedWithPricingRuleOutput>
 end
 
-function C:listPricingRules(input: types.ListPricingRulesInput, options: any): async.Operation<types.ListPricingRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPricingRules, input, options) as async.Operation<types.ListPricingRulesOutput>
+function C:listPricingRules(input: types.ListPricingRulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListPricingRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPricingRules as schema.OperationSchema, input, options) as async.Operation<types.ListPricingRulesOutput>
 end
 
-function C:listPricingRulesAssociatedToPricingPlan(input: types.ListPricingRulesAssociatedToPricingPlanInput, options: any): async.Operation<types.ListPricingRulesAssociatedToPricingPlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPricingRulesAssociatedToPricingPlan, input, options) as async.Operation<types.ListPricingRulesAssociatedToPricingPlanOutput>
+function C:listPricingRulesAssociatedToPricingPlan(input: types.ListPricingRulesAssociatedToPricingPlanInput, options?: base_client.InvokeOptions): async.Operation<types.ListPricingRulesAssociatedToPricingPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPricingRulesAssociatedToPricingPlan as schema.OperationSchema, input, options) as async.Operation<types.ListPricingRulesAssociatedToPricingPlanOutput>
 end
 
-function C:listResourcesAssociatedToCustomLineItem(input: types.ListResourcesAssociatedToCustomLineItemInput, options: any): async.Operation<types.ListResourcesAssociatedToCustomLineItemOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResourcesAssociatedToCustomLineItem, input, options) as async.Operation<types.ListResourcesAssociatedToCustomLineItemOutput>
+function C:listResourcesAssociatedToCustomLineItem(input: types.ListResourcesAssociatedToCustomLineItemInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourcesAssociatedToCustomLineItemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourcesAssociatedToCustomLineItem as schema.OperationSchema, input, options) as async.Operation<types.ListResourcesAssociatedToCustomLineItemOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateBillingGroup(input: types.UpdateBillingGroupInput, options: any): async.Operation<types.UpdateBillingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateBillingGroup, input, options) as async.Operation<types.UpdateBillingGroupOutput>
+function C:updateBillingGroup(input: types.UpdateBillingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBillingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBillingGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateBillingGroupOutput>
 end
 
-function C:updateCustomLineItem(input: types.UpdateCustomLineItemInput, options: any): async.Operation<types.UpdateCustomLineItemOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCustomLineItem, input, options) as async.Operation<types.UpdateCustomLineItemOutput>
+function C:updateCustomLineItem(input: types.UpdateCustomLineItemInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCustomLineItemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCustomLineItem as schema.OperationSchema, input, options) as async.Operation<types.UpdateCustomLineItemOutput>
 end
 
-function C:updatePricingPlan(input: types.UpdatePricingPlanInput, options: any): async.Operation<types.UpdatePricingPlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePricingPlan, input, options) as async.Operation<types.UpdatePricingPlanOutput>
+function C:updatePricingPlan(input: types.UpdatePricingPlanInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePricingPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePricingPlan as schema.OperationSchema, input, options) as async.Operation<types.UpdatePricingPlanOutput>
 end
 
-function C:updatePricingRule(input: types.UpdatePricingRuleInput, options: any): async.Operation<types.UpdatePricingRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePricingRule, input, options) as async.Operation<types.UpdatePricingRuleOutput>
+function C:updatePricingRule(input: types.UpdatePricingRuleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePricingRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePricingRule as schema.OperationSchema, input, options) as async.Operation<types.UpdatePricingRuleOutput>
 end
 
 return M

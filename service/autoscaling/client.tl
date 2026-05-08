@@ -8,105 +8,108 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("autoscaling.endpoint_rules")
 local query_protocol = require("smithy.protocol.awsquery")
+local schema = require("smithy.schema")
 local schemas = require("autoscaling.schemas")
 local traits = require("smithy.traits")
 local types = require("autoscaling.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    attachInstances: function(Client, types.AttachInstancesInput, any): async.Operation<types.AttachInstancesOutput>
-    attachLoadBalancers: function(Client, types.AttachLoadBalancersInput, any): async.Operation<types.AttachLoadBalancersOutput>
-    attachLoadBalancerTargetGroups: function(Client, types.AttachLoadBalancerTargetGroupsInput, any): async.Operation<types.AttachLoadBalancerTargetGroupsOutput>
-    attachTrafficSources: function(Client, types.AttachTrafficSourcesInput, any): async.Operation<types.AttachTrafficSourcesOutput>
-    batchDeleteScheduledAction: function(Client, types.BatchDeleteScheduledActionInput, any): async.Operation<types.BatchDeleteScheduledActionOutput>
-    batchPutScheduledUpdateGroupAction: function(Client, types.BatchPutScheduledUpdateGroupActionInput, any): async.Operation<types.BatchPutScheduledUpdateGroupActionOutput>
-    cancelInstanceRefresh: function(Client, types.CancelInstanceRefreshInput, any): async.Operation<types.CancelInstanceRefreshOutput>
-    completeLifecycleAction: function(Client, types.CompleteLifecycleActionInput, any): async.Operation<types.CompleteLifecycleActionOutput>
-    createAutoScalingGroup: function(Client, types.CreateAutoScalingGroupInput, any): async.Operation<types.CreateAutoScalingGroupOutput>
-    createLaunchConfiguration: function(Client, types.CreateLaunchConfigurationInput, any): async.Operation<types.CreateLaunchConfigurationOutput>
-    createOrUpdateTags: function(Client, types.CreateOrUpdateTagsInput, any): async.Operation<types.CreateOrUpdateTagsOutput>
-    deleteAutoScalingGroup: function(Client, types.DeleteAutoScalingGroupInput, any): async.Operation<types.DeleteAutoScalingGroupOutput>
-    deleteLaunchConfiguration: function(Client, types.DeleteLaunchConfigurationInput, any): async.Operation<types.DeleteLaunchConfigurationOutput>
-    deleteLifecycleHook: function(Client, types.DeleteLifecycleHookInput, any): async.Operation<types.DeleteLifecycleHookOutput>
-    deleteNotificationConfiguration: function(Client, types.DeleteNotificationConfigurationInput, any): async.Operation<types.DeleteNotificationConfigurationOutput>
-    deletePolicy: function(Client, types.DeletePolicyInput, any): async.Operation<types.DeletePolicyOutput>
-    deleteScheduledAction: function(Client, types.DeleteScheduledActionInput, any): async.Operation<types.DeleteScheduledActionOutput>
-    deleteTags: function(Client, types.DeleteTagsInput, any): async.Operation<types.DeleteTagsOutput>
-    deleteWarmPool: function(Client, types.DeleteWarmPoolInput, any): async.Operation<types.DeleteWarmPoolOutput>
-    describeAccountLimits: function(Client, types.DescribeAccountLimitsInput, any): async.Operation<types.DescribeAccountLimitsOutput>
-    describeAdjustmentTypes: function(Client, types.DescribeAdjustmentTypesInput, any): async.Operation<types.DescribeAdjustmentTypesOutput>
-    describeAutoScalingGroups: function(Client, types.DescribeAutoScalingGroupsInput, any): async.Operation<types.DescribeAutoScalingGroupsOutput>
-    describeAutoScalingInstances: function(Client, types.DescribeAutoScalingInstancesInput, any): async.Operation<types.DescribeAutoScalingInstancesOutput>
-    describeAutoScalingNotificationTypes: function(Client, types.DescribeAutoScalingNotificationTypesInput, any): async.Operation<types.DescribeAutoScalingNotificationTypesOutput>
-    describeInstanceRefreshes: function(Client, types.DescribeInstanceRefreshesInput, any): async.Operation<types.DescribeInstanceRefreshesOutput>
-    describeLaunchConfigurations: function(Client, types.DescribeLaunchConfigurationsInput, any): async.Operation<types.DescribeLaunchConfigurationsOutput>
-    describeLifecycleHooks: function(Client, types.DescribeLifecycleHooksInput, any): async.Operation<types.DescribeLifecycleHooksOutput>
-    describeLifecycleHookTypes: function(Client, types.DescribeLifecycleHookTypesInput, any): async.Operation<types.DescribeLifecycleHookTypesOutput>
-    describeLoadBalancers: function(Client, types.DescribeLoadBalancersInput, any): async.Operation<types.DescribeLoadBalancersOutput>
-    describeLoadBalancerTargetGroups: function(Client, types.DescribeLoadBalancerTargetGroupsInput, any): async.Operation<types.DescribeLoadBalancerTargetGroupsOutput>
-    describeMetricCollectionTypes: function(Client, types.DescribeMetricCollectionTypesInput, any): async.Operation<types.DescribeMetricCollectionTypesOutput>
-    describeNotificationConfigurations: function(Client, types.DescribeNotificationConfigurationsInput, any): async.Operation<types.DescribeNotificationConfigurationsOutput>
-    describePolicies: function(Client, types.DescribePoliciesInput, any): async.Operation<types.DescribePoliciesOutput>
-    describeScalingActivities: function(Client, types.DescribeScalingActivitiesInput, any): async.Operation<types.DescribeScalingActivitiesOutput>
-    describeScalingProcessTypes: function(Client, types.DescribeScalingProcessTypesInput, any): async.Operation<types.DescribeScalingProcessTypesOutput>
-    describeScheduledActions: function(Client, types.DescribeScheduledActionsInput, any): async.Operation<types.DescribeScheduledActionsOutput>
-    describeTags: function(Client, types.DescribeTagsInput, any): async.Operation<types.DescribeTagsOutput>
-    describeTerminationPolicyTypes: function(Client, types.DescribeTerminationPolicyTypesInput, any): async.Operation<types.DescribeTerminationPolicyTypesOutput>
-    describeTrafficSources: function(Client, types.DescribeTrafficSourcesInput, any): async.Operation<types.DescribeTrafficSourcesOutput>
-    describeWarmPool: function(Client, types.DescribeWarmPoolInput, any): async.Operation<types.DescribeWarmPoolOutput>
-    detachInstances: function(Client, types.DetachInstancesInput, any): async.Operation<types.DetachInstancesOutput>
-    detachLoadBalancers: function(Client, types.DetachLoadBalancersInput, any): async.Operation<types.DetachLoadBalancersOutput>
-    detachLoadBalancerTargetGroups: function(Client, types.DetachLoadBalancerTargetGroupsInput, any): async.Operation<types.DetachLoadBalancerTargetGroupsOutput>
-    detachTrafficSources: function(Client, types.DetachTrafficSourcesInput, any): async.Operation<types.DetachTrafficSourcesOutput>
-    disableMetricsCollection: function(Client, types.DisableMetricsCollectionInput, any): async.Operation<types.DisableMetricsCollectionOutput>
-    enableMetricsCollection: function(Client, types.EnableMetricsCollectionInput, any): async.Operation<types.EnableMetricsCollectionOutput>
-    enterStandby: function(Client, types.EnterStandbyInput, any): async.Operation<types.EnterStandbyOutput>
-    executePolicy: function(Client, types.ExecutePolicyInput, any): async.Operation<types.ExecutePolicyOutput>
-    exitStandby: function(Client, types.ExitStandbyInput, any): async.Operation<types.ExitStandbyOutput>
-    getPredictiveScalingForecast: function(Client, types.GetPredictiveScalingForecastInput, any): async.Operation<types.GetPredictiveScalingForecastOutput>
-    launchInstances: function(Client, types.LaunchInstancesInput, any): async.Operation<types.LaunchInstancesOutput>
-    putLifecycleHook: function(Client, types.PutLifecycleHookInput, any): async.Operation<types.PutLifecycleHookOutput>
-    putNotificationConfiguration: function(Client, types.PutNotificationConfigurationInput, any): async.Operation<types.PutNotificationConfigurationOutput>
-    putScalingPolicy: function(Client, types.PutScalingPolicyInput, any): async.Operation<types.PutScalingPolicyOutput>
-    putScheduledUpdateGroupAction: function(Client, types.PutScheduledUpdateGroupActionInput, any): async.Operation<types.PutScheduledUpdateGroupActionOutput>
-    putWarmPool: function(Client, types.PutWarmPoolInput, any): async.Operation<types.PutWarmPoolOutput>
-    recordLifecycleActionHeartbeat: function(Client, types.RecordLifecycleActionHeartbeatInput, any): async.Operation<types.RecordLifecycleActionHeartbeatOutput>
-    resumeProcesses: function(Client, types.ResumeProcessesInput, any): async.Operation<types.ResumeProcessesOutput>
-    rollbackInstanceRefresh: function(Client, types.RollbackInstanceRefreshInput, any): async.Operation<types.RollbackInstanceRefreshOutput>
-    setDesiredCapacity: function(Client, types.SetDesiredCapacityInput, any): async.Operation<types.SetDesiredCapacityOutput>
-    setInstanceHealth: function(Client, types.SetInstanceHealthInput, any): async.Operation<types.SetInstanceHealthOutput>
-    setInstanceProtection: function(Client, types.SetInstanceProtectionInput, any): async.Operation<types.SetInstanceProtectionOutput>
-    startInstanceRefresh: function(Client, types.StartInstanceRefreshInput, any): async.Operation<types.StartInstanceRefreshOutput>
-    suspendProcesses: function(Client, types.SuspendProcessesInput, any): async.Operation<types.SuspendProcessesOutput>
-    terminateInstanceInAutoScalingGroup: function(Client, types.TerminateInstanceInAutoScalingGroupInput, any): async.Operation<types.TerminateInstanceInAutoScalingGroupOutput>
-    updateAutoScalingGroup: function(Client, types.UpdateAutoScalingGroupInput, any): async.Operation<types.UpdateAutoScalingGroupOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    attachInstances: function(Client, types.AttachInstancesInput, ? base_client.InvokeOptions): async.Operation<types.AttachInstancesOutput>
+    attachLoadBalancers: function(Client, types.AttachLoadBalancersInput, ? base_client.InvokeOptions): async.Operation<types.AttachLoadBalancersOutput>
+    attachLoadBalancerTargetGroups: function(Client, types.AttachLoadBalancerTargetGroupsInput, ? base_client.InvokeOptions): async.Operation<types.AttachLoadBalancerTargetGroupsOutput>
+    attachTrafficSources: function(Client, types.AttachTrafficSourcesInput, ? base_client.InvokeOptions): async.Operation<types.AttachTrafficSourcesOutput>
+    batchDeleteScheduledAction: function(Client, types.BatchDeleteScheduledActionInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteScheduledActionOutput>
+    batchPutScheduledUpdateGroupAction: function(Client, types.BatchPutScheduledUpdateGroupActionInput, ? base_client.InvokeOptions): async.Operation<types.BatchPutScheduledUpdateGroupActionOutput>
+    cancelInstanceRefresh: function(Client, types.CancelInstanceRefreshInput, ? base_client.InvokeOptions): async.Operation<types.CancelInstanceRefreshOutput>
+    completeLifecycleAction: function(Client, types.CompleteLifecycleActionInput, ? base_client.InvokeOptions): async.Operation<types.CompleteLifecycleActionOutput>
+    createAutoScalingGroup: function(Client, types.CreateAutoScalingGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateAutoScalingGroupOutput>
+    createLaunchConfiguration: function(Client, types.CreateLaunchConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateLaunchConfigurationOutput>
+    createOrUpdateTags: function(Client, types.CreateOrUpdateTagsInput, ? base_client.InvokeOptions): async.Operation<types.CreateOrUpdateTagsOutput>
+    deleteAutoScalingGroup: function(Client, types.DeleteAutoScalingGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAutoScalingGroupOutput>
+    deleteLaunchConfiguration: function(Client, types.DeleteLaunchConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLaunchConfigurationOutput>
+    deleteLifecycleHook: function(Client, types.DeleteLifecycleHookInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLifecycleHookOutput>
+    deleteNotificationConfiguration: function(Client, types.DeleteNotificationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNotificationConfigurationOutput>
+    deletePolicy: function(Client, types.DeletePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeletePolicyOutput>
+    deleteScheduledAction: function(Client, types.DeleteScheduledActionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteScheduledActionOutput>
+    deleteTags: function(Client, types.DeleteTagsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTagsOutput>
+    deleteWarmPool: function(Client, types.DeleteWarmPoolInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWarmPoolOutput>
+    describeAccountLimits: function(Client, types.DescribeAccountLimitsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAccountLimitsOutput>
+    describeAdjustmentTypes: function(Client, types.DescribeAdjustmentTypesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAdjustmentTypesOutput>
+    describeAutoScalingGroups: function(Client, types.DescribeAutoScalingGroupsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAutoScalingGroupsOutput>
+    describeAutoScalingInstances: function(Client, types.DescribeAutoScalingInstancesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAutoScalingInstancesOutput>
+    describeAutoScalingNotificationTypes: function(Client, types.DescribeAutoScalingNotificationTypesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAutoScalingNotificationTypesOutput>
+    describeInstanceRefreshes: function(Client, types.DescribeInstanceRefreshesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstanceRefreshesOutput>
+    describeLaunchConfigurations: function(Client, types.DescribeLaunchConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLaunchConfigurationsOutput>
+    describeLifecycleHooks: function(Client, types.DescribeLifecycleHooksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLifecycleHooksOutput>
+    describeLifecycleHookTypes: function(Client, types.DescribeLifecycleHookTypesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLifecycleHookTypesOutput>
+    describeLoadBalancers: function(Client, types.DescribeLoadBalancersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLoadBalancersOutput>
+    describeLoadBalancerTargetGroups: function(Client, types.DescribeLoadBalancerTargetGroupsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLoadBalancerTargetGroupsOutput>
+    describeMetricCollectionTypes: function(Client, types.DescribeMetricCollectionTypesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMetricCollectionTypesOutput>
+    describeNotificationConfigurations: function(Client, types.DescribeNotificationConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNotificationConfigurationsOutput>
+    describePolicies: function(Client, types.DescribePoliciesInput, ? base_client.InvokeOptions): async.Operation<types.DescribePoliciesOutput>
+    describeScalingActivities: function(Client, types.DescribeScalingActivitiesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeScalingActivitiesOutput>
+    describeScalingProcessTypes: function(Client, types.DescribeScalingProcessTypesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeScalingProcessTypesOutput>
+    describeScheduledActions: function(Client, types.DescribeScheduledActionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeScheduledActionsOutput>
+    describeTags: function(Client, types.DescribeTagsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTagsOutput>
+    describeTerminationPolicyTypes: function(Client, types.DescribeTerminationPolicyTypesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTerminationPolicyTypesOutput>
+    describeTrafficSources: function(Client, types.DescribeTrafficSourcesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTrafficSourcesOutput>
+    describeWarmPool: function(Client, types.DescribeWarmPoolInput, ? base_client.InvokeOptions): async.Operation<types.DescribeWarmPoolOutput>
+    detachInstances: function(Client, types.DetachInstancesInput, ? base_client.InvokeOptions): async.Operation<types.DetachInstancesOutput>
+    detachLoadBalancers: function(Client, types.DetachLoadBalancersInput, ? base_client.InvokeOptions): async.Operation<types.DetachLoadBalancersOutput>
+    detachLoadBalancerTargetGroups: function(Client, types.DetachLoadBalancerTargetGroupsInput, ? base_client.InvokeOptions): async.Operation<types.DetachLoadBalancerTargetGroupsOutput>
+    detachTrafficSources: function(Client, types.DetachTrafficSourcesInput, ? base_client.InvokeOptions): async.Operation<types.DetachTrafficSourcesOutput>
+    disableMetricsCollection: function(Client, types.DisableMetricsCollectionInput, ? base_client.InvokeOptions): async.Operation<types.DisableMetricsCollectionOutput>
+    enableMetricsCollection: function(Client, types.EnableMetricsCollectionInput, ? base_client.InvokeOptions): async.Operation<types.EnableMetricsCollectionOutput>
+    enterStandby: function(Client, types.EnterStandbyInput, ? base_client.InvokeOptions): async.Operation<types.EnterStandbyOutput>
+    executePolicy: function(Client, types.ExecutePolicyInput, ? base_client.InvokeOptions): async.Operation<types.ExecutePolicyOutput>
+    exitStandby: function(Client, types.ExitStandbyInput, ? base_client.InvokeOptions): async.Operation<types.ExitStandbyOutput>
+    getPredictiveScalingForecast: function(Client, types.GetPredictiveScalingForecastInput, ? base_client.InvokeOptions): async.Operation<types.GetPredictiveScalingForecastOutput>
+    launchInstances: function(Client, types.LaunchInstancesInput, ? base_client.InvokeOptions): async.Operation<types.LaunchInstancesOutput>
+    putLifecycleHook: function(Client, types.PutLifecycleHookInput, ? base_client.InvokeOptions): async.Operation<types.PutLifecycleHookOutput>
+    putNotificationConfiguration: function(Client, types.PutNotificationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutNotificationConfigurationOutput>
+    putScalingPolicy: function(Client, types.PutScalingPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutScalingPolicyOutput>
+    putScheduledUpdateGroupAction: function(Client, types.PutScheduledUpdateGroupActionInput, ? base_client.InvokeOptions): async.Operation<types.PutScheduledUpdateGroupActionOutput>
+    putWarmPool: function(Client, types.PutWarmPoolInput, ? base_client.InvokeOptions): async.Operation<types.PutWarmPoolOutput>
+    recordLifecycleActionHeartbeat: function(Client, types.RecordLifecycleActionHeartbeatInput, ? base_client.InvokeOptions): async.Operation<types.RecordLifecycleActionHeartbeatOutput>
+    resumeProcesses: function(Client, types.ResumeProcessesInput, ? base_client.InvokeOptions): async.Operation<types.ResumeProcessesOutput>
+    rollbackInstanceRefresh: function(Client, types.RollbackInstanceRefreshInput, ? base_client.InvokeOptions): async.Operation<types.RollbackInstanceRefreshOutput>
+    setDesiredCapacity: function(Client, types.SetDesiredCapacityInput, ? base_client.InvokeOptions): async.Operation<types.SetDesiredCapacityOutput>
+    setInstanceHealth: function(Client, types.SetInstanceHealthInput, ? base_client.InvokeOptions): async.Operation<types.SetInstanceHealthOutput>
+    setInstanceProtection: function(Client, types.SetInstanceProtectionInput, ? base_client.InvokeOptions): async.Operation<types.SetInstanceProtectionOutput>
+    startInstanceRefresh: function(Client, types.StartInstanceRefreshInput, ? base_client.InvokeOptions): async.Operation<types.StartInstanceRefreshOutput>
+    suspendProcesses: function(Client, types.SuspendProcessesInput, ? base_client.InvokeOptions): async.Operation<types.SuspendProcessesOutput>
+    terminateInstanceInAutoScalingGroup: function(Client, types.TerminateInstanceInAutoScalingGroupInput, ? base_client.InvokeOptions): async.Operation<types.TerminateInstanceInAutoScalingGroupOutput>
+    updateAutoScalingGroup: function(Client, types.UpdateAutoScalingGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAutoScalingGroupOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AutoScaling_2011_01_01"
-    if not c.protocol then c.protocol = query_protocol.new("awsQuery") end
+    if not c.protocol then c.protocol = query_protocol.new("awsQuery") as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "autoscaling", signing_region = c.region } }
                 else
@@ -125,268 +128,268 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:attachInstances(input: types.AttachInstancesInput, options: any): async.Operation<types.AttachInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachInstances, input, options) as async.Operation<types.AttachInstancesOutput>
+function C:attachInstances(input: types.AttachInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.AttachInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachInstances as schema.OperationSchema, input, options) as async.Operation<types.AttachInstancesOutput>
 end
 
-function C:attachLoadBalancers(input: types.AttachLoadBalancersInput, options: any): async.Operation<types.AttachLoadBalancersOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachLoadBalancers, input, options) as async.Operation<types.AttachLoadBalancersOutput>
+function C:attachLoadBalancers(input: types.AttachLoadBalancersInput, options?: base_client.InvokeOptions): async.Operation<types.AttachLoadBalancersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachLoadBalancers as schema.OperationSchema, input, options) as async.Operation<types.AttachLoadBalancersOutput>
 end
 
-function C:attachLoadBalancerTargetGroups(input: types.AttachLoadBalancerTargetGroupsInput, options: any): async.Operation<types.AttachLoadBalancerTargetGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachLoadBalancerTargetGroups, input, options) as async.Operation<types.AttachLoadBalancerTargetGroupsOutput>
+function C:attachLoadBalancerTargetGroups(input: types.AttachLoadBalancerTargetGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.AttachLoadBalancerTargetGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachLoadBalancerTargetGroups as schema.OperationSchema, input, options) as async.Operation<types.AttachLoadBalancerTargetGroupsOutput>
 end
 
-function C:attachTrafficSources(input: types.AttachTrafficSourcesInput, options: any): async.Operation<types.AttachTrafficSourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachTrafficSources, input, options) as async.Operation<types.AttachTrafficSourcesOutput>
+function C:attachTrafficSources(input: types.AttachTrafficSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.AttachTrafficSourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachTrafficSources as schema.OperationSchema, input, options) as async.Operation<types.AttachTrafficSourcesOutput>
 end
 
-function C:batchDeleteScheduledAction(input: types.BatchDeleteScheduledActionInput, options: any): async.Operation<types.BatchDeleteScheduledActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDeleteScheduledAction, input, options) as async.Operation<types.BatchDeleteScheduledActionOutput>
+function C:batchDeleteScheduledAction(input: types.BatchDeleteScheduledActionInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteScheduledActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteScheduledAction as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteScheduledActionOutput>
 end
 
-function C:batchPutScheduledUpdateGroupAction(input: types.BatchPutScheduledUpdateGroupActionInput, options: any): async.Operation<types.BatchPutScheduledUpdateGroupActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchPutScheduledUpdateGroupAction, input, options) as async.Operation<types.BatchPutScheduledUpdateGroupActionOutput>
+function C:batchPutScheduledUpdateGroupAction(input: types.BatchPutScheduledUpdateGroupActionInput, options?: base_client.InvokeOptions): async.Operation<types.BatchPutScheduledUpdateGroupActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchPutScheduledUpdateGroupAction as schema.OperationSchema, input, options) as async.Operation<types.BatchPutScheduledUpdateGroupActionOutput>
 end
 
-function C:cancelInstanceRefresh(input: types.CancelInstanceRefreshInput, options: any): async.Operation<types.CancelInstanceRefreshOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelInstanceRefresh, input, options) as async.Operation<types.CancelInstanceRefreshOutput>
+function C:cancelInstanceRefresh(input: types.CancelInstanceRefreshInput, options?: base_client.InvokeOptions): async.Operation<types.CancelInstanceRefreshOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelInstanceRefresh as schema.OperationSchema, input, options) as async.Operation<types.CancelInstanceRefreshOutput>
 end
 
-function C:completeLifecycleAction(input: types.CompleteLifecycleActionInput, options: any): async.Operation<types.CompleteLifecycleActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CompleteLifecycleAction, input, options) as async.Operation<types.CompleteLifecycleActionOutput>
+function C:completeLifecycleAction(input: types.CompleteLifecycleActionInput, options?: base_client.InvokeOptions): async.Operation<types.CompleteLifecycleActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CompleteLifecycleAction as schema.OperationSchema, input, options) as async.Operation<types.CompleteLifecycleActionOutput>
 end
 
-function C:createAutoScalingGroup(input: types.CreateAutoScalingGroupInput, options: any): async.Operation<types.CreateAutoScalingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAutoScalingGroup, input, options) as async.Operation<types.CreateAutoScalingGroupOutput>
+function C:createAutoScalingGroup(input: types.CreateAutoScalingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAutoScalingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAutoScalingGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateAutoScalingGroupOutput>
 end
 
-function C:createLaunchConfiguration(input: types.CreateLaunchConfigurationInput, options: any): async.Operation<types.CreateLaunchConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLaunchConfiguration, input, options) as async.Operation<types.CreateLaunchConfigurationOutput>
+function C:createLaunchConfiguration(input: types.CreateLaunchConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLaunchConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLaunchConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateLaunchConfigurationOutput>
 end
 
-function C:createOrUpdateTags(input: types.CreateOrUpdateTagsInput, options: any): async.Operation<types.CreateOrUpdateTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateOrUpdateTags, input, options) as async.Operation<types.CreateOrUpdateTagsOutput>
+function C:createOrUpdateTags(input: types.CreateOrUpdateTagsInput, options?: base_client.InvokeOptions): async.Operation<types.CreateOrUpdateTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateOrUpdateTags as schema.OperationSchema, input, options) as async.Operation<types.CreateOrUpdateTagsOutput>
 end
 
-function C:deleteAutoScalingGroup(input: types.DeleteAutoScalingGroupInput, options: any): async.Operation<types.DeleteAutoScalingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAutoScalingGroup, input, options) as async.Operation<types.DeleteAutoScalingGroupOutput>
+function C:deleteAutoScalingGroup(input: types.DeleteAutoScalingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAutoScalingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAutoScalingGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteAutoScalingGroupOutput>
 end
 
-function C:deleteLaunchConfiguration(input: types.DeleteLaunchConfigurationInput, options: any): async.Operation<types.DeleteLaunchConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLaunchConfiguration, input, options) as async.Operation<types.DeleteLaunchConfigurationOutput>
+function C:deleteLaunchConfiguration(input: types.DeleteLaunchConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLaunchConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLaunchConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteLaunchConfigurationOutput>
 end
 
-function C:deleteLifecycleHook(input: types.DeleteLifecycleHookInput, options: any): async.Operation<types.DeleteLifecycleHookOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLifecycleHook, input, options) as async.Operation<types.DeleteLifecycleHookOutput>
+function C:deleteLifecycleHook(input: types.DeleteLifecycleHookInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLifecycleHookOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLifecycleHook as schema.OperationSchema, input, options) as async.Operation<types.DeleteLifecycleHookOutput>
 end
 
-function C:deleteNotificationConfiguration(input: types.DeleteNotificationConfigurationInput, options: any): async.Operation<types.DeleteNotificationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNotificationConfiguration, input, options) as async.Operation<types.DeleteNotificationConfigurationOutput>
+function C:deleteNotificationConfiguration(input: types.DeleteNotificationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNotificationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNotificationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteNotificationConfigurationOutput>
 end
 
-function C:deletePolicy(input: types.DeletePolicyInput, options: any): async.Operation<types.DeletePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePolicy, input, options) as async.Operation<types.DeletePolicyOutput>
+function C:deletePolicy(input: types.DeletePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeletePolicyOutput>
 end
 
-function C:deleteScheduledAction(input: types.DeleteScheduledActionInput, options: any): async.Operation<types.DeleteScheduledActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteScheduledAction, input, options) as async.Operation<types.DeleteScheduledActionOutput>
+function C:deleteScheduledAction(input: types.DeleteScheduledActionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteScheduledActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteScheduledAction as schema.OperationSchema, input, options) as async.Operation<types.DeleteScheduledActionOutput>
 end
 
-function C:deleteTags(input: types.DeleteTagsInput, options: any): async.Operation<types.DeleteTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTags, input, options) as async.Operation<types.DeleteTagsOutput>
+function C:deleteTags(input: types.DeleteTagsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTags as schema.OperationSchema, input, options) as async.Operation<types.DeleteTagsOutput>
 end
 
-function C:deleteWarmPool(input: types.DeleteWarmPoolInput, options: any): async.Operation<types.DeleteWarmPoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWarmPool, input, options) as async.Operation<types.DeleteWarmPoolOutput>
+function C:deleteWarmPool(input: types.DeleteWarmPoolInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWarmPoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWarmPool as schema.OperationSchema, input, options) as async.Operation<types.DeleteWarmPoolOutput>
 end
 
-function C:describeAccountLimits(input: types.DescribeAccountLimitsInput, options: any): async.Operation<types.DescribeAccountLimitsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAccountLimits, input, options) as async.Operation<types.DescribeAccountLimitsOutput>
+function C:describeAccountLimits(input: types.DescribeAccountLimitsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAccountLimitsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAccountLimits as schema.OperationSchema, input, options) as async.Operation<types.DescribeAccountLimitsOutput>
 end
 
-function C:describeAdjustmentTypes(input: types.DescribeAdjustmentTypesInput, options: any): async.Operation<types.DescribeAdjustmentTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAdjustmentTypes, input, options) as async.Operation<types.DescribeAdjustmentTypesOutput>
+function C:describeAdjustmentTypes(input: types.DescribeAdjustmentTypesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAdjustmentTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAdjustmentTypes as schema.OperationSchema, input, options) as async.Operation<types.DescribeAdjustmentTypesOutput>
 end
 
-function C:describeAutoScalingGroups(input: types.DescribeAutoScalingGroupsInput, options: any): async.Operation<types.DescribeAutoScalingGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAutoScalingGroups, input, options) as async.Operation<types.DescribeAutoScalingGroupsOutput>
+function C:describeAutoScalingGroups(input: types.DescribeAutoScalingGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAutoScalingGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAutoScalingGroups as schema.OperationSchema, input, options) as async.Operation<types.DescribeAutoScalingGroupsOutput>
 end
 
-function C:describeAutoScalingInstances(input: types.DescribeAutoScalingInstancesInput, options: any): async.Operation<types.DescribeAutoScalingInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAutoScalingInstances, input, options) as async.Operation<types.DescribeAutoScalingInstancesOutput>
+function C:describeAutoScalingInstances(input: types.DescribeAutoScalingInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAutoScalingInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAutoScalingInstances as schema.OperationSchema, input, options) as async.Operation<types.DescribeAutoScalingInstancesOutput>
 end
 
-function C:describeAutoScalingNotificationTypes(input: types.DescribeAutoScalingNotificationTypesInput, options: any): async.Operation<types.DescribeAutoScalingNotificationTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAutoScalingNotificationTypes, input, options) as async.Operation<types.DescribeAutoScalingNotificationTypesOutput>
+function C:describeAutoScalingNotificationTypes(input: types.DescribeAutoScalingNotificationTypesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAutoScalingNotificationTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAutoScalingNotificationTypes as schema.OperationSchema, input, options) as async.Operation<types.DescribeAutoScalingNotificationTypesOutput>
 end
 
-function C:describeInstanceRefreshes(input: types.DescribeInstanceRefreshesInput, options: any): async.Operation<types.DescribeInstanceRefreshesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInstanceRefreshes, input, options) as async.Operation<types.DescribeInstanceRefreshesOutput>
+function C:describeInstanceRefreshes(input: types.DescribeInstanceRefreshesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInstanceRefreshesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInstanceRefreshes as schema.OperationSchema, input, options) as async.Operation<types.DescribeInstanceRefreshesOutput>
 end
 
-function C:describeLaunchConfigurations(input: types.DescribeLaunchConfigurationsInput, options: any): async.Operation<types.DescribeLaunchConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLaunchConfigurations, input, options) as async.Operation<types.DescribeLaunchConfigurationsOutput>
+function C:describeLaunchConfigurations(input: types.DescribeLaunchConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLaunchConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLaunchConfigurations as schema.OperationSchema, input, options) as async.Operation<types.DescribeLaunchConfigurationsOutput>
 end
 
-function C:describeLifecycleHooks(input: types.DescribeLifecycleHooksInput, options: any): async.Operation<types.DescribeLifecycleHooksOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLifecycleHooks, input, options) as async.Operation<types.DescribeLifecycleHooksOutput>
+function C:describeLifecycleHooks(input: types.DescribeLifecycleHooksInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLifecycleHooksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLifecycleHooks as schema.OperationSchema, input, options) as async.Operation<types.DescribeLifecycleHooksOutput>
 end
 
-function C:describeLifecycleHookTypes(input: types.DescribeLifecycleHookTypesInput, options: any): async.Operation<types.DescribeLifecycleHookTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLifecycleHookTypes, input, options) as async.Operation<types.DescribeLifecycleHookTypesOutput>
+function C:describeLifecycleHookTypes(input: types.DescribeLifecycleHookTypesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLifecycleHookTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLifecycleHookTypes as schema.OperationSchema, input, options) as async.Operation<types.DescribeLifecycleHookTypesOutput>
 end
 
-function C:describeLoadBalancers(input: types.DescribeLoadBalancersInput, options: any): async.Operation<types.DescribeLoadBalancersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLoadBalancers, input, options) as async.Operation<types.DescribeLoadBalancersOutput>
+function C:describeLoadBalancers(input: types.DescribeLoadBalancersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLoadBalancersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLoadBalancers as schema.OperationSchema, input, options) as async.Operation<types.DescribeLoadBalancersOutput>
 end
 
-function C:describeLoadBalancerTargetGroups(input: types.DescribeLoadBalancerTargetGroupsInput, options: any): async.Operation<types.DescribeLoadBalancerTargetGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLoadBalancerTargetGroups, input, options) as async.Operation<types.DescribeLoadBalancerTargetGroupsOutput>
+function C:describeLoadBalancerTargetGroups(input: types.DescribeLoadBalancerTargetGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLoadBalancerTargetGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLoadBalancerTargetGroups as schema.OperationSchema, input, options) as async.Operation<types.DescribeLoadBalancerTargetGroupsOutput>
 end
 
-function C:describeMetricCollectionTypes(input: types.DescribeMetricCollectionTypesInput, options: any): async.Operation<types.DescribeMetricCollectionTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeMetricCollectionTypes, input, options) as async.Operation<types.DescribeMetricCollectionTypesOutput>
+function C:describeMetricCollectionTypes(input: types.DescribeMetricCollectionTypesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMetricCollectionTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMetricCollectionTypes as schema.OperationSchema, input, options) as async.Operation<types.DescribeMetricCollectionTypesOutput>
 end
 
-function C:describeNotificationConfigurations(input: types.DescribeNotificationConfigurationsInput, options: any): async.Operation<types.DescribeNotificationConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeNotificationConfigurations, input, options) as async.Operation<types.DescribeNotificationConfigurationsOutput>
+function C:describeNotificationConfigurations(input: types.DescribeNotificationConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeNotificationConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeNotificationConfigurations as schema.OperationSchema, input, options) as async.Operation<types.DescribeNotificationConfigurationsOutput>
 end
 
-function C:describePolicies(input: types.DescribePoliciesInput, options: any): async.Operation<types.DescribePoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePolicies, input, options) as async.Operation<types.DescribePoliciesOutput>
+function C:describePolicies(input: types.DescribePoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePolicies as schema.OperationSchema, input, options) as async.Operation<types.DescribePoliciesOutput>
 end
 
-function C:describeScalingActivities(input: types.DescribeScalingActivitiesInput, options: any): async.Operation<types.DescribeScalingActivitiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeScalingActivities, input, options) as async.Operation<types.DescribeScalingActivitiesOutput>
+function C:describeScalingActivities(input: types.DescribeScalingActivitiesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeScalingActivitiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeScalingActivities as schema.OperationSchema, input, options) as async.Operation<types.DescribeScalingActivitiesOutput>
 end
 
-function C:describeScalingProcessTypes(input: types.DescribeScalingProcessTypesInput, options: any): async.Operation<types.DescribeScalingProcessTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeScalingProcessTypes, input, options) as async.Operation<types.DescribeScalingProcessTypesOutput>
+function C:describeScalingProcessTypes(input: types.DescribeScalingProcessTypesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeScalingProcessTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeScalingProcessTypes as schema.OperationSchema, input, options) as async.Operation<types.DescribeScalingProcessTypesOutput>
 end
 
-function C:describeScheduledActions(input: types.DescribeScheduledActionsInput, options: any): async.Operation<types.DescribeScheduledActionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeScheduledActions, input, options) as async.Operation<types.DescribeScheduledActionsOutput>
+function C:describeScheduledActions(input: types.DescribeScheduledActionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeScheduledActionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeScheduledActions as schema.OperationSchema, input, options) as async.Operation<types.DescribeScheduledActionsOutput>
 end
 
-function C:describeTags(input: types.DescribeTagsInput, options: any): async.Operation<types.DescribeTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTags, input, options) as async.Operation<types.DescribeTagsOutput>
+function C:describeTags(input: types.DescribeTagsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTags as schema.OperationSchema, input, options) as async.Operation<types.DescribeTagsOutput>
 end
 
-function C:describeTerminationPolicyTypes(input: types.DescribeTerminationPolicyTypesInput, options: any): async.Operation<types.DescribeTerminationPolicyTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTerminationPolicyTypes, input, options) as async.Operation<types.DescribeTerminationPolicyTypesOutput>
+function C:describeTerminationPolicyTypes(input: types.DescribeTerminationPolicyTypesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTerminationPolicyTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTerminationPolicyTypes as schema.OperationSchema, input, options) as async.Operation<types.DescribeTerminationPolicyTypesOutput>
 end
 
-function C:describeTrafficSources(input: types.DescribeTrafficSourcesInput, options: any): async.Operation<types.DescribeTrafficSourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTrafficSources, input, options) as async.Operation<types.DescribeTrafficSourcesOutput>
+function C:describeTrafficSources(input: types.DescribeTrafficSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTrafficSourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTrafficSources as schema.OperationSchema, input, options) as async.Operation<types.DescribeTrafficSourcesOutput>
 end
 
-function C:describeWarmPool(input: types.DescribeWarmPoolInput, options: any): async.Operation<types.DescribeWarmPoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeWarmPool, input, options) as async.Operation<types.DescribeWarmPoolOutput>
+function C:describeWarmPool(input: types.DescribeWarmPoolInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeWarmPoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeWarmPool as schema.OperationSchema, input, options) as async.Operation<types.DescribeWarmPoolOutput>
 end
 
-function C:detachInstances(input: types.DetachInstancesInput, options: any): async.Operation<types.DetachInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetachInstances, input, options) as async.Operation<types.DetachInstancesOutput>
+function C:detachInstances(input: types.DetachInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.DetachInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachInstances as schema.OperationSchema, input, options) as async.Operation<types.DetachInstancesOutput>
 end
 
-function C:detachLoadBalancers(input: types.DetachLoadBalancersInput, options: any): async.Operation<types.DetachLoadBalancersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetachLoadBalancers, input, options) as async.Operation<types.DetachLoadBalancersOutput>
+function C:detachLoadBalancers(input: types.DetachLoadBalancersInput, options?: base_client.InvokeOptions): async.Operation<types.DetachLoadBalancersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachLoadBalancers as schema.OperationSchema, input, options) as async.Operation<types.DetachLoadBalancersOutput>
 end
 
-function C:detachLoadBalancerTargetGroups(input: types.DetachLoadBalancerTargetGroupsInput, options: any): async.Operation<types.DetachLoadBalancerTargetGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetachLoadBalancerTargetGroups, input, options) as async.Operation<types.DetachLoadBalancerTargetGroupsOutput>
+function C:detachLoadBalancerTargetGroups(input: types.DetachLoadBalancerTargetGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.DetachLoadBalancerTargetGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachLoadBalancerTargetGroups as schema.OperationSchema, input, options) as async.Operation<types.DetachLoadBalancerTargetGroupsOutput>
 end
 
-function C:detachTrafficSources(input: types.DetachTrafficSourcesInput, options: any): async.Operation<types.DetachTrafficSourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetachTrafficSources, input, options) as async.Operation<types.DetachTrafficSourcesOutput>
+function C:detachTrafficSources(input: types.DetachTrafficSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.DetachTrafficSourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachTrafficSources as schema.OperationSchema, input, options) as async.Operation<types.DetachTrafficSourcesOutput>
 end
 
-function C:disableMetricsCollection(input: types.DisableMetricsCollectionInput, options: any): async.Operation<types.DisableMetricsCollectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableMetricsCollection, input, options) as async.Operation<types.DisableMetricsCollectionOutput>
+function C:disableMetricsCollection(input: types.DisableMetricsCollectionInput, options?: base_client.InvokeOptions): async.Operation<types.DisableMetricsCollectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableMetricsCollection as schema.OperationSchema, input, options) as async.Operation<types.DisableMetricsCollectionOutput>
 end
 
-function C:enableMetricsCollection(input: types.EnableMetricsCollectionInput, options: any): async.Operation<types.EnableMetricsCollectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableMetricsCollection, input, options) as async.Operation<types.EnableMetricsCollectionOutput>
+function C:enableMetricsCollection(input: types.EnableMetricsCollectionInput, options?: base_client.InvokeOptions): async.Operation<types.EnableMetricsCollectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableMetricsCollection as schema.OperationSchema, input, options) as async.Operation<types.EnableMetricsCollectionOutput>
 end
 
-function C:enterStandby(input: types.EnterStandbyInput, options: any): async.Operation<types.EnterStandbyOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnterStandby, input, options) as async.Operation<types.EnterStandbyOutput>
+function C:enterStandby(input: types.EnterStandbyInput, options?: base_client.InvokeOptions): async.Operation<types.EnterStandbyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnterStandby as schema.OperationSchema, input, options) as async.Operation<types.EnterStandbyOutput>
 end
 
-function C:executePolicy(input: types.ExecutePolicyInput, options: any): async.Operation<types.ExecutePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExecutePolicy, input, options) as async.Operation<types.ExecutePolicyOutput>
+function C:executePolicy(input: types.ExecutePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.ExecutePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExecutePolicy as schema.OperationSchema, input, options) as async.Operation<types.ExecutePolicyOutput>
 end
 
-function C:exitStandby(input: types.ExitStandbyInput, options: any): async.Operation<types.ExitStandbyOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExitStandby, input, options) as async.Operation<types.ExitStandbyOutput>
+function C:exitStandby(input: types.ExitStandbyInput, options?: base_client.InvokeOptions): async.Operation<types.ExitStandbyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExitStandby as schema.OperationSchema, input, options) as async.Operation<types.ExitStandbyOutput>
 end
 
-function C:getPredictiveScalingForecast(input: types.GetPredictiveScalingForecastInput, options: any): async.Operation<types.GetPredictiveScalingForecastOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPredictiveScalingForecast, input, options) as async.Operation<types.GetPredictiveScalingForecastOutput>
+function C:getPredictiveScalingForecast(input: types.GetPredictiveScalingForecastInput, options?: base_client.InvokeOptions): async.Operation<types.GetPredictiveScalingForecastOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPredictiveScalingForecast as schema.OperationSchema, input, options) as async.Operation<types.GetPredictiveScalingForecastOutput>
 end
 
-function C:launchInstances(input: types.LaunchInstancesInput, options: any): async.Operation<types.LaunchInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.LaunchInstances, input, options) as async.Operation<types.LaunchInstancesOutput>
+function C:launchInstances(input: types.LaunchInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.LaunchInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.LaunchInstances as schema.OperationSchema, input, options) as async.Operation<types.LaunchInstancesOutput>
 end
 
-function C:putLifecycleHook(input: types.PutLifecycleHookInput, options: any): async.Operation<types.PutLifecycleHookOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutLifecycleHook, input, options) as async.Operation<types.PutLifecycleHookOutput>
+function C:putLifecycleHook(input: types.PutLifecycleHookInput, options?: base_client.InvokeOptions): async.Operation<types.PutLifecycleHookOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutLifecycleHook as schema.OperationSchema, input, options) as async.Operation<types.PutLifecycleHookOutput>
 end
 
-function C:putNotificationConfiguration(input: types.PutNotificationConfigurationInput, options: any): async.Operation<types.PutNotificationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutNotificationConfiguration, input, options) as async.Operation<types.PutNotificationConfigurationOutput>
+function C:putNotificationConfiguration(input: types.PutNotificationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutNotificationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutNotificationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutNotificationConfigurationOutput>
 end
 
-function C:putScalingPolicy(input: types.PutScalingPolicyInput, options: any): async.Operation<types.PutScalingPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutScalingPolicy, input, options) as async.Operation<types.PutScalingPolicyOutput>
+function C:putScalingPolicy(input: types.PutScalingPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutScalingPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutScalingPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutScalingPolicyOutput>
 end
 
-function C:putScheduledUpdateGroupAction(input: types.PutScheduledUpdateGroupActionInput, options: any): async.Operation<types.PutScheduledUpdateGroupActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutScheduledUpdateGroupAction, input, options) as async.Operation<types.PutScheduledUpdateGroupActionOutput>
+function C:putScheduledUpdateGroupAction(input: types.PutScheduledUpdateGroupActionInput, options?: base_client.InvokeOptions): async.Operation<types.PutScheduledUpdateGroupActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutScheduledUpdateGroupAction as schema.OperationSchema, input, options) as async.Operation<types.PutScheduledUpdateGroupActionOutput>
 end
 
-function C:putWarmPool(input: types.PutWarmPoolInput, options: any): async.Operation<types.PutWarmPoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutWarmPool, input, options) as async.Operation<types.PutWarmPoolOutput>
+function C:putWarmPool(input: types.PutWarmPoolInput, options?: base_client.InvokeOptions): async.Operation<types.PutWarmPoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutWarmPool as schema.OperationSchema, input, options) as async.Operation<types.PutWarmPoolOutput>
 end
 
-function C:recordLifecycleActionHeartbeat(input: types.RecordLifecycleActionHeartbeatInput, options: any): async.Operation<types.RecordLifecycleActionHeartbeatOutput>
-    return self:invokeOperation(schemas.Service, schemas.RecordLifecycleActionHeartbeat, input, options) as async.Operation<types.RecordLifecycleActionHeartbeatOutput>
+function C:recordLifecycleActionHeartbeat(input: types.RecordLifecycleActionHeartbeatInput, options?: base_client.InvokeOptions): async.Operation<types.RecordLifecycleActionHeartbeatOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RecordLifecycleActionHeartbeat as schema.OperationSchema, input, options) as async.Operation<types.RecordLifecycleActionHeartbeatOutput>
 end
 
-function C:resumeProcesses(input: types.ResumeProcessesInput, options: any): async.Operation<types.ResumeProcessesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResumeProcesses, input, options) as async.Operation<types.ResumeProcessesOutput>
+function C:resumeProcesses(input: types.ResumeProcessesInput, options?: base_client.InvokeOptions): async.Operation<types.ResumeProcessesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResumeProcesses as schema.OperationSchema, input, options) as async.Operation<types.ResumeProcessesOutput>
 end
 
-function C:rollbackInstanceRefresh(input: types.RollbackInstanceRefreshInput, options: any): async.Operation<types.RollbackInstanceRefreshOutput>
-    return self:invokeOperation(schemas.Service, schemas.RollbackInstanceRefresh, input, options) as async.Operation<types.RollbackInstanceRefreshOutput>
+function C:rollbackInstanceRefresh(input: types.RollbackInstanceRefreshInput, options?: base_client.InvokeOptions): async.Operation<types.RollbackInstanceRefreshOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RollbackInstanceRefresh as schema.OperationSchema, input, options) as async.Operation<types.RollbackInstanceRefreshOutput>
 end
 
-function C:setDesiredCapacity(input: types.SetDesiredCapacityInput, options: any): async.Operation<types.SetDesiredCapacityOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetDesiredCapacity, input, options) as async.Operation<types.SetDesiredCapacityOutput>
+function C:setDesiredCapacity(input: types.SetDesiredCapacityInput, options?: base_client.InvokeOptions): async.Operation<types.SetDesiredCapacityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetDesiredCapacity as schema.OperationSchema, input, options) as async.Operation<types.SetDesiredCapacityOutput>
 end
 
-function C:setInstanceHealth(input: types.SetInstanceHealthInput, options: any): async.Operation<types.SetInstanceHealthOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetInstanceHealth, input, options) as async.Operation<types.SetInstanceHealthOutput>
+function C:setInstanceHealth(input: types.SetInstanceHealthInput, options?: base_client.InvokeOptions): async.Operation<types.SetInstanceHealthOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetInstanceHealth as schema.OperationSchema, input, options) as async.Operation<types.SetInstanceHealthOutput>
 end
 
-function C:setInstanceProtection(input: types.SetInstanceProtectionInput, options: any): async.Operation<types.SetInstanceProtectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetInstanceProtection, input, options) as async.Operation<types.SetInstanceProtectionOutput>
+function C:setInstanceProtection(input: types.SetInstanceProtectionInput, options?: base_client.InvokeOptions): async.Operation<types.SetInstanceProtectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetInstanceProtection as schema.OperationSchema, input, options) as async.Operation<types.SetInstanceProtectionOutput>
 end
 
-function C:startInstanceRefresh(input: types.StartInstanceRefreshInput, options: any): async.Operation<types.StartInstanceRefreshOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartInstanceRefresh, input, options) as async.Operation<types.StartInstanceRefreshOutput>
+function C:startInstanceRefresh(input: types.StartInstanceRefreshInput, options?: base_client.InvokeOptions): async.Operation<types.StartInstanceRefreshOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartInstanceRefresh as schema.OperationSchema, input, options) as async.Operation<types.StartInstanceRefreshOutput>
 end
 
-function C:suspendProcesses(input: types.SuspendProcessesInput, options: any): async.Operation<types.SuspendProcessesOutput>
-    return self:invokeOperation(schemas.Service, schemas.SuspendProcesses, input, options) as async.Operation<types.SuspendProcessesOutput>
+function C:suspendProcesses(input: types.SuspendProcessesInput, options?: base_client.InvokeOptions): async.Operation<types.SuspendProcessesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SuspendProcesses as schema.OperationSchema, input, options) as async.Operation<types.SuspendProcessesOutput>
 end
 
-function C:terminateInstanceInAutoScalingGroup(input: types.TerminateInstanceInAutoScalingGroupInput, options: any): async.Operation<types.TerminateInstanceInAutoScalingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.TerminateInstanceInAutoScalingGroup, input, options) as async.Operation<types.TerminateInstanceInAutoScalingGroupOutput>
+function C:terminateInstanceInAutoScalingGroup(input: types.TerminateInstanceInAutoScalingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.TerminateInstanceInAutoScalingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TerminateInstanceInAutoScalingGroup as schema.OperationSchema, input, options) as async.Operation<types.TerminateInstanceInAutoScalingGroupOutput>
 end
 
-function C:updateAutoScalingGroup(input: types.UpdateAutoScalingGroupInput, options: any): async.Operation<types.UpdateAutoScalingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAutoScalingGroup, input, options) as async.Operation<types.UpdateAutoScalingGroupOutput>
+function C:updateAutoScalingGroup(input: types.UpdateAutoScalingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAutoScalingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAutoScalingGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateAutoScalingGroupOutput>
 end
 
 return M

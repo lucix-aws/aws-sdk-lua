@@ -8,118 +8,121 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("codecommit.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("codecommit.schemas")
 local traits = require("smithy.traits")
 local types = require("codecommit.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateApprovalRuleTemplateWithRepository: function(Client, types.AssociateApprovalRuleTemplateWithRepositoryInput, any): async.Operation<types.AssociateApprovalRuleTemplateWithRepositoryOutput>
-    batchAssociateApprovalRuleTemplateWithRepositories: function(Client, types.BatchAssociateApprovalRuleTemplateWithRepositoriesInput, any): async.Operation<types.BatchAssociateApprovalRuleTemplateWithRepositoriesOutput>
-    batchDescribeMergeConflicts: function(Client, types.BatchDescribeMergeConflictsInput, any): async.Operation<types.BatchDescribeMergeConflictsOutput>
-    batchDisassociateApprovalRuleTemplateFromRepositories: function(Client, types.BatchDisassociateApprovalRuleTemplateFromRepositoriesInput, any): async.Operation<types.BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput>
-    batchGetCommits: function(Client, types.BatchGetCommitsInput, any): async.Operation<types.BatchGetCommitsOutput>
-    batchGetRepositories: function(Client, types.BatchGetRepositoriesInput, any): async.Operation<types.BatchGetRepositoriesOutput>
-    createApprovalRuleTemplate: function(Client, types.CreateApprovalRuleTemplateInput, any): async.Operation<types.CreateApprovalRuleTemplateOutput>
-    createBranch: function(Client, types.CreateBranchInput, any): async.Operation<types.CreateBranchOutput>
-    createCommit: function(Client, types.CreateCommitInput, any): async.Operation<types.CreateCommitOutput>
-    createPullRequest: function(Client, types.CreatePullRequestInput, any): async.Operation<types.CreatePullRequestOutput>
-    createPullRequestApprovalRule: function(Client, types.CreatePullRequestApprovalRuleInput, any): async.Operation<types.CreatePullRequestApprovalRuleOutput>
-    createRepository: function(Client, types.CreateRepositoryInput, any): async.Operation<types.CreateRepositoryOutput>
-    createUnreferencedMergeCommit: function(Client, types.CreateUnreferencedMergeCommitInput, any): async.Operation<types.CreateUnreferencedMergeCommitOutput>
-    deleteApprovalRuleTemplate: function(Client, types.DeleteApprovalRuleTemplateInput, any): async.Operation<types.DeleteApprovalRuleTemplateOutput>
-    deleteBranch: function(Client, types.DeleteBranchInput, any): async.Operation<types.DeleteBranchOutput>
-    deleteCommentContent: function(Client, types.DeleteCommentContentInput, any): async.Operation<types.DeleteCommentContentOutput>
-    deleteFile: function(Client, types.DeleteFileInput, any): async.Operation<types.DeleteFileOutput>
-    deletePullRequestApprovalRule: function(Client, types.DeletePullRequestApprovalRuleInput, any): async.Operation<types.DeletePullRequestApprovalRuleOutput>
-    deleteRepository: function(Client, types.DeleteRepositoryInput, any): async.Operation<types.DeleteRepositoryOutput>
-    describeMergeConflicts: function(Client, types.DescribeMergeConflictsInput, any): async.Operation<types.DescribeMergeConflictsOutput>
-    describePullRequestEvents: function(Client, types.DescribePullRequestEventsInput, any): async.Operation<types.DescribePullRequestEventsOutput>
-    disassociateApprovalRuleTemplateFromRepository: function(Client, types.DisassociateApprovalRuleTemplateFromRepositoryInput, any): async.Operation<types.DisassociateApprovalRuleTemplateFromRepositoryOutput>
-    evaluatePullRequestApprovalRules: function(Client, types.EvaluatePullRequestApprovalRulesInput, any): async.Operation<types.EvaluatePullRequestApprovalRulesOutput>
-    getApprovalRuleTemplate: function(Client, types.GetApprovalRuleTemplateInput, any): async.Operation<types.GetApprovalRuleTemplateOutput>
-    getBlob: function(Client, types.GetBlobInput, any): async.Operation<types.GetBlobOutput>
-    getBranch: function(Client, types.GetBranchInput, any): async.Operation<types.GetBranchOutput>
-    getComment: function(Client, types.GetCommentInput, any): async.Operation<types.GetCommentOutput>
-    getCommentReactions: function(Client, types.GetCommentReactionsInput, any): async.Operation<types.GetCommentReactionsOutput>
-    getCommentsForComparedCommit: function(Client, types.GetCommentsForComparedCommitInput, any): async.Operation<types.GetCommentsForComparedCommitOutput>
-    getCommentsForPullRequest: function(Client, types.GetCommentsForPullRequestInput, any): async.Operation<types.GetCommentsForPullRequestOutput>
-    getCommit: function(Client, types.GetCommitInput, any): async.Operation<types.GetCommitOutput>
-    getDifferences: function(Client, types.GetDifferencesInput, any): async.Operation<types.GetDifferencesOutput>
-    getFile: function(Client, types.GetFileInput, any): async.Operation<types.GetFileOutput>
-    getFolder: function(Client, types.GetFolderInput, any): async.Operation<types.GetFolderOutput>
-    getMergeCommit: function(Client, types.GetMergeCommitInput, any): async.Operation<types.GetMergeCommitOutput>
-    getMergeConflicts: function(Client, types.GetMergeConflictsInput, any): async.Operation<types.GetMergeConflictsOutput>
-    getMergeOptions: function(Client, types.GetMergeOptionsInput, any): async.Operation<types.GetMergeOptionsOutput>
-    getPullRequest: function(Client, types.GetPullRequestInput, any): async.Operation<types.GetPullRequestOutput>
-    getPullRequestApprovalStates: function(Client, types.GetPullRequestApprovalStatesInput, any): async.Operation<types.GetPullRequestApprovalStatesOutput>
-    getPullRequestOverrideState: function(Client, types.GetPullRequestOverrideStateInput, any): async.Operation<types.GetPullRequestOverrideStateOutput>
-    getRepository: function(Client, types.GetRepositoryInput, any): async.Operation<types.GetRepositoryOutput>
-    getRepositoryTriggers: function(Client, types.GetRepositoryTriggersInput, any): async.Operation<types.GetRepositoryTriggersOutput>
-    listApprovalRuleTemplates: function(Client, types.ListApprovalRuleTemplatesInput, any): async.Operation<types.ListApprovalRuleTemplatesOutput>
-    listAssociatedApprovalRuleTemplatesForRepository: function(Client, types.ListAssociatedApprovalRuleTemplatesForRepositoryInput, any): async.Operation<types.ListAssociatedApprovalRuleTemplatesForRepositoryOutput>
-    listBranches: function(Client, types.ListBranchesInput, any): async.Operation<types.ListBranchesOutput>
-    listFileCommitHistory: function(Client, types.ListFileCommitHistoryInput, any): async.Operation<types.ListFileCommitHistoryOutput>
-    listPullRequests: function(Client, types.ListPullRequestsInput, any): async.Operation<types.ListPullRequestsOutput>
-    listRepositories: function(Client, types.ListRepositoriesInput, any): async.Operation<types.ListRepositoriesOutput>
-    listRepositoriesForApprovalRuleTemplate: function(Client, types.ListRepositoriesForApprovalRuleTemplateInput, any): async.Operation<types.ListRepositoriesForApprovalRuleTemplateOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    mergeBranchesByFastForward: function(Client, types.MergeBranchesByFastForwardInput, any): async.Operation<types.MergeBranchesByFastForwardOutput>
-    mergeBranchesBySquash: function(Client, types.MergeBranchesBySquashInput, any): async.Operation<types.MergeBranchesBySquashOutput>
-    mergeBranchesByThreeWay: function(Client, types.MergeBranchesByThreeWayInput, any): async.Operation<types.MergeBranchesByThreeWayOutput>
-    mergePullRequestByFastForward: function(Client, types.MergePullRequestByFastForwardInput, any): async.Operation<types.MergePullRequestByFastForwardOutput>
-    mergePullRequestBySquash: function(Client, types.MergePullRequestBySquashInput, any): async.Operation<types.MergePullRequestBySquashOutput>
-    mergePullRequestByThreeWay: function(Client, types.MergePullRequestByThreeWayInput, any): async.Operation<types.MergePullRequestByThreeWayOutput>
-    overridePullRequestApprovalRules: function(Client, types.OverridePullRequestApprovalRulesInput, any): async.Operation<types.OverridePullRequestApprovalRulesOutput>
-    postCommentForComparedCommit: function(Client, types.PostCommentForComparedCommitInput, any): async.Operation<types.PostCommentForComparedCommitOutput>
-    postCommentForPullRequest: function(Client, types.PostCommentForPullRequestInput, any): async.Operation<types.PostCommentForPullRequestOutput>
-    postCommentReply: function(Client, types.PostCommentReplyInput, any): async.Operation<types.PostCommentReplyOutput>
-    putCommentReaction: function(Client, types.PutCommentReactionInput, any): async.Operation<types.PutCommentReactionOutput>
-    putFile: function(Client, types.PutFileInput, any): async.Operation<types.PutFileOutput>
-    putRepositoryTriggers: function(Client, types.PutRepositoryTriggersInput, any): async.Operation<types.PutRepositoryTriggersOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    testRepositoryTriggers: function(Client, types.TestRepositoryTriggersInput, any): async.Operation<types.TestRepositoryTriggersOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateApprovalRuleTemplateContent: function(Client, types.UpdateApprovalRuleTemplateContentInput, any): async.Operation<types.UpdateApprovalRuleTemplateContentOutput>
-    updateApprovalRuleTemplateDescription: function(Client, types.UpdateApprovalRuleTemplateDescriptionInput, any): async.Operation<types.UpdateApprovalRuleTemplateDescriptionOutput>
-    updateApprovalRuleTemplateName: function(Client, types.UpdateApprovalRuleTemplateNameInput, any): async.Operation<types.UpdateApprovalRuleTemplateNameOutput>
-    updateComment: function(Client, types.UpdateCommentInput, any): async.Operation<types.UpdateCommentOutput>
-    updateDefaultBranch: function(Client, types.UpdateDefaultBranchInput, any): async.Operation<types.UpdateDefaultBranchOutput>
-    updatePullRequestApprovalRuleContent: function(Client, types.UpdatePullRequestApprovalRuleContentInput, any): async.Operation<types.UpdatePullRequestApprovalRuleContentOutput>
-    updatePullRequestApprovalState: function(Client, types.UpdatePullRequestApprovalStateInput, any): async.Operation<types.UpdatePullRequestApprovalStateOutput>
-    updatePullRequestDescription: function(Client, types.UpdatePullRequestDescriptionInput, any): async.Operation<types.UpdatePullRequestDescriptionOutput>
-    updatePullRequestStatus: function(Client, types.UpdatePullRequestStatusInput, any): async.Operation<types.UpdatePullRequestStatusOutput>
-    updatePullRequestTitle: function(Client, types.UpdatePullRequestTitleInput, any): async.Operation<types.UpdatePullRequestTitleOutput>
-    updateRepositoryDescription: function(Client, types.UpdateRepositoryDescriptionInput, any): async.Operation<types.UpdateRepositoryDescriptionOutput>
-    updateRepositoryEncryptionKey: function(Client, types.UpdateRepositoryEncryptionKeyInput, any): async.Operation<types.UpdateRepositoryEncryptionKeyOutput>
-    updateRepositoryName: function(Client, types.UpdateRepositoryNameInput, any): async.Operation<types.UpdateRepositoryNameOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateApprovalRuleTemplateWithRepository: function(Client, types.AssociateApprovalRuleTemplateWithRepositoryInput, ? base_client.InvokeOptions): async.Operation<types.AssociateApprovalRuleTemplateWithRepositoryOutput>
+    batchAssociateApprovalRuleTemplateWithRepositories: function(Client, types.BatchAssociateApprovalRuleTemplateWithRepositoriesInput, ? base_client.InvokeOptions): async.Operation<types.BatchAssociateApprovalRuleTemplateWithRepositoriesOutput>
+    batchDescribeMergeConflicts: function(Client, types.BatchDescribeMergeConflictsInput, ? base_client.InvokeOptions): async.Operation<types.BatchDescribeMergeConflictsOutput>
+    batchDisassociateApprovalRuleTemplateFromRepositories: function(Client, types.BatchDisassociateApprovalRuleTemplateFromRepositoriesInput, ? base_client.InvokeOptions): async.Operation<types.BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput>
+    batchGetCommits: function(Client, types.BatchGetCommitsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetCommitsOutput>
+    batchGetRepositories: function(Client, types.BatchGetRepositoriesInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetRepositoriesOutput>
+    createApprovalRuleTemplate: function(Client, types.CreateApprovalRuleTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateApprovalRuleTemplateOutput>
+    createBranch: function(Client, types.CreateBranchInput, ? base_client.InvokeOptions): async.Operation<types.CreateBranchOutput>
+    createCommit: function(Client, types.CreateCommitInput, ? base_client.InvokeOptions): async.Operation<types.CreateCommitOutput>
+    createPullRequest: function(Client, types.CreatePullRequestInput, ? base_client.InvokeOptions): async.Operation<types.CreatePullRequestOutput>
+    createPullRequestApprovalRule: function(Client, types.CreatePullRequestApprovalRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreatePullRequestApprovalRuleOutput>
+    createRepository: function(Client, types.CreateRepositoryInput, ? base_client.InvokeOptions): async.Operation<types.CreateRepositoryOutput>
+    createUnreferencedMergeCommit: function(Client, types.CreateUnreferencedMergeCommitInput, ? base_client.InvokeOptions): async.Operation<types.CreateUnreferencedMergeCommitOutput>
+    deleteApprovalRuleTemplate: function(Client, types.DeleteApprovalRuleTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApprovalRuleTemplateOutput>
+    deleteBranch: function(Client, types.DeleteBranchInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBranchOutput>
+    deleteCommentContent: function(Client, types.DeleteCommentContentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCommentContentOutput>
+    deleteFile: function(Client, types.DeleteFileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFileOutput>
+    deletePullRequestApprovalRule: function(Client, types.DeletePullRequestApprovalRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeletePullRequestApprovalRuleOutput>
+    deleteRepository: function(Client, types.DeleteRepositoryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRepositoryOutput>
+    describeMergeConflicts: function(Client, types.DescribeMergeConflictsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMergeConflictsOutput>
+    describePullRequestEvents: function(Client, types.DescribePullRequestEventsInput, ? base_client.InvokeOptions): async.Operation<types.DescribePullRequestEventsOutput>
+    disassociateApprovalRuleTemplateFromRepository: function(Client, types.DisassociateApprovalRuleTemplateFromRepositoryInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateApprovalRuleTemplateFromRepositoryOutput>
+    evaluatePullRequestApprovalRules: function(Client, types.EvaluatePullRequestApprovalRulesInput, ? base_client.InvokeOptions): async.Operation<types.EvaluatePullRequestApprovalRulesOutput>
+    getApprovalRuleTemplate: function(Client, types.GetApprovalRuleTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetApprovalRuleTemplateOutput>
+    getBlob: function(Client, types.GetBlobInput, ? base_client.InvokeOptions): async.Operation<types.GetBlobOutput>
+    getBranch: function(Client, types.GetBranchInput, ? base_client.InvokeOptions): async.Operation<types.GetBranchOutput>
+    getComment: function(Client, types.GetCommentInput, ? base_client.InvokeOptions): async.Operation<types.GetCommentOutput>
+    getCommentReactions: function(Client, types.GetCommentReactionsInput, ? base_client.InvokeOptions): async.Operation<types.GetCommentReactionsOutput>
+    getCommentsForComparedCommit: function(Client, types.GetCommentsForComparedCommitInput, ? base_client.InvokeOptions): async.Operation<types.GetCommentsForComparedCommitOutput>
+    getCommentsForPullRequest: function(Client, types.GetCommentsForPullRequestInput, ? base_client.InvokeOptions): async.Operation<types.GetCommentsForPullRequestOutput>
+    getCommit: function(Client, types.GetCommitInput, ? base_client.InvokeOptions): async.Operation<types.GetCommitOutput>
+    getDifferences: function(Client, types.GetDifferencesInput, ? base_client.InvokeOptions): async.Operation<types.GetDifferencesOutput>
+    getFile: function(Client, types.GetFileInput, ? base_client.InvokeOptions): async.Operation<types.GetFileOutput>
+    getFolder: function(Client, types.GetFolderInput, ? base_client.InvokeOptions): async.Operation<types.GetFolderOutput>
+    getMergeCommit: function(Client, types.GetMergeCommitInput, ? base_client.InvokeOptions): async.Operation<types.GetMergeCommitOutput>
+    getMergeConflicts: function(Client, types.GetMergeConflictsInput, ? base_client.InvokeOptions): async.Operation<types.GetMergeConflictsOutput>
+    getMergeOptions: function(Client, types.GetMergeOptionsInput, ? base_client.InvokeOptions): async.Operation<types.GetMergeOptionsOutput>
+    getPullRequest: function(Client, types.GetPullRequestInput, ? base_client.InvokeOptions): async.Operation<types.GetPullRequestOutput>
+    getPullRequestApprovalStates: function(Client, types.GetPullRequestApprovalStatesInput, ? base_client.InvokeOptions): async.Operation<types.GetPullRequestApprovalStatesOutput>
+    getPullRequestOverrideState: function(Client, types.GetPullRequestOverrideStateInput, ? base_client.InvokeOptions): async.Operation<types.GetPullRequestOverrideStateOutput>
+    getRepository: function(Client, types.GetRepositoryInput, ? base_client.InvokeOptions): async.Operation<types.GetRepositoryOutput>
+    getRepositoryTriggers: function(Client, types.GetRepositoryTriggersInput, ? base_client.InvokeOptions): async.Operation<types.GetRepositoryTriggersOutput>
+    listApprovalRuleTemplates: function(Client, types.ListApprovalRuleTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListApprovalRuleTemplatesOutput>
+    listAssociatedApprovalRuleTemplatesForRepository: function(Client, types.ListAssociatedApprovalRuleTemplatesForRepositoryInput, ? base_client.InvokeOptions): async.Operation<types.ListAssociatedApprovalRuleTemplatesForRepositoryOutput>
+    listBranches: function(Client, types.ListBranchesInput, ? base_client.InvokeOptions): async.Operation<types.ListBranchesOutput>
+    listFileCommitHistory: function(Client, types.ListFileCommitHistoryInput, ? base_client.InvokeOptions): async.Operation<types.ListFileCommitHistoryOutput>
+    listPullRequests: function(Client, types.ListPullRequestsInput, ? base_client.InvokeOptions): async.Operation<types.ListPullRequestsOutput>
+    listRepositories: function(Client, types.ListRepositoriesInput, ? base_client.InvokeOptions): async.Operation<types.ListRepositoriesOutput>
+    listRepositoriesForApprovalRuleTemplate: function(Client, types.ListRepositoriesForApprovalRuleTemplateInput, ? base_client.InvokeOptions): async.Operation<types.ListRepositoriesForApprovalRuleTemplateOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    mergeBranchesByFastForward: function(Client, types.MergeBranchesByFastForwardInput, ? base_client.InvokeOptions): async.Operation<types.MergeBranchesByFastForwardOutput>
+    mergeBranchesBySquash: function(Client, types.MergeBranchesBySquashInput, ? base_client.InvokeOptions): async.Operation<types.MergeBranchesBySquashOutput>
+    mergeBranchesByThreeWay: function(Client, types.MergeBranchesByThreeWayInput, ? base_client.InvokeOptions): async.Operation<types.MergeBranchesByThreeWayOutput>
+    mergePullRequestByFastForward: function(Client, types.MergePullRequestByFastForwardInput, ? base_client.InvokeOptions): async.Operation<types.MergePullRequestByFastForwardOutput>
+    mergePullRequestBySquash: function(Client, types.MergePullRequestBySquashInput, ? base_client.InvokeOptions): async.Operation<types.MergePullRequestBySquashOutput>
+    mergePullRequestByThreeWay: function(Client, types.MergePullRequestByThreeWayInput, ? base_client.InvokeOptions): async.Operation<types.MergePullRequestByThreeWayOutput>
+    overridePullRequestApprovalRules: function(Client, types.OverridePullRequestApprovalRulesInput, ? base_client.InvokeOptions): async.Operation<types.OverridePullRequestApprovalRulesOutput>
+    postCommentForComparedCommit: function(Client, types.PostCommentForComparedCommitInput, ? base_client.InvokeOptions): async.Operation<types.PostCommentForComparedCommitOutput>
+    postCommentForPullRequest: function(Client, types.PostCommentForPullRequestInput, ? base_client.InvokeOptions): async.Operation<types.PostCommentForPullRequestOutput>
+    postCommentReply: function(Client, types.PostCommentReplyInput, ? base_client.InvokeOptions): async.Operation<types.PostCommentReplyOutput>
+    putCommentReaction: function(Client, types.PutCommentReactionInput, ? base_client.InvokeOptions): async.Operation<types.PutCommentReactionOutput>
+    putFile: function(Client, types.PutFileInput, ? base_client.InvokeOptions): async.Operation<types.PutFileOutput>
+    putRepositoryTriggers: function(Client, types.PutRepositoryTriggersInput, ? base_client.InvokeOptions): async.Operation<types.PutRepositoryTriggersOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    testRepositoryTriggers: function(Client, types.TestRepositoryTriggersInput, ? base_client.InvokeOptions): async.Operation<types.TestRepositoryTriggersOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateApprovalRuleTemplateContent: function(Client, types.UpdateApprovalRuleTemplateContentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApprovalRuleTemplateContentOutput>
+    updateApprovalRuleTemplateDescription: function(Client, types.UpdateApprovalRuleTemplateDescriptionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApprovalRuleTemplateDescriptionOutput>
+    updateApprovalRuleTemplateName: function(Client, types.UpdateApprovalRuleTemplateNameInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApprovalRuleTemplateNameOutput>
+    updateComment: function(Client, types.UpdateCommentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCommentOutput>
+    updateDefaultBranch: function(Client, types.UpdateDefaultBranchInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDefaultBranchOutput>
+    updatePullRequestApprovalRuleContent: function(Client, types.UpdatePullRequestApprovalRuleContentInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePullRequestApprovalRuleContentOutput>
+    updatePullRequestApprovalState: function(Client, types.UpdatePullRequestApprovalStateInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePullRequestApprovalStateOutput>
+    updatePullRequestDescription: function(Client, types.UpdatePullRequestDescriptionInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePullRequestDescriptionOutput>
+    updatePullRequestStatus: function(Client, types.UpdatePullRequestStatusInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePullRequestStatusOutput>
+    updatePullRequestTitle: function(Client, types.UpdatePullRequestTitleInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePullRequestTitleOutput>
+    updateRepositoryDescription: function(Client, types.UpdateRepositoryDescriptionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRepositoryDescriptionOutput>
+    updateRepositoryEncryptionKey: function(Client, types.UpdateRepositoryEncryptionKeyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRepositoryEncryptionKeyOutput>
+    updateRepositoryName: function(Client, types.UpdateRepositoryNameInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRepositoryNameOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "CodeCommit_20150413"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "codecommit", signing_region = c.region } }
                 else
@@ -138,320 +141,320 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateApprovalRuleTemplateWithRepository(input: types.AssociateApprovalRuleTemplateWithRepositoryInput, options: any): async.Operation<types.AssociateApprovalRuleTemplateWithRepositoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateApprovalRuleTemplateWithRepository, input, options) as async.Operation<types.AssociateApprovalRuleTemplateWithRepositoryOutput>
+function C:associateApprovalRuleTemplateWithRepository(input: types.AssociateApprovalRuleTemplateWithRepositoryInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateApprovalRuleTemplateWithRepositoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateApprovalRuleTemplateWithRepository as schema.OperationSchema, input, options) as async.Operation<types.AssociateApprovalRuleTemplateWithRepositoryOutput>
 end
 
-function C:batchAssociateApprovalRuleTemplateWithRepositories(input: types.BatchAssociateApprovalRuleTemplateWithRepositoriesInput, options: any): async.Operation<types.BatchAssociateApprovalRuleTemplateWithRepositoriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchAssociateApprovalRuleTemplateWithRepositories, input, options) as async.Operation<types.BatchAssociateApprovalRuleTemplateWithRepositoriesOutput>
+function C:batchAssociateApprovalRuleTemplateWithRepositories(input: types.BatchAssociateApprovalRuleTemplateWithRepositoriesInput, options?: base_client.InvokeOptions): async.Operation<types.BatchAssociateApprovalRuleTemplateWithRepositoriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchAssociateApprovalRuleTemplateWithRepositories as schema.OperationSchema, input, options) as async.Operation<types.BatchAssociateApprovalRuleTemplateWithRepositoriesOutput>
 end
 
-function C:batchDescribeMergeConflicts(input: types.BatchDescribeMergeConflictsInput, options: any): async.Operation<types.BatchDescribeMergeConflictsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDescribeMergeConflicts, input, options) as async.Operation<types.BatchDescribeMergeConflictsOutput>
+function C:batchDescribeMergeConflicts(input: types.BatchDescribeMergeConflictsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDescribeMergeConflictsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDescribeMergeConflicts as schema.OperationSchema, input, options) as async.Operation<types.BatchDescribeMergeConflictsOutput>
 end
 
-function C:batchDisassociateApprovalRuleTemplateFromRepositories(input: types.BatchDisassociateApprovalRuleTemplateFromRepositoriesInput, options: any): async.Operation<types.BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDisassociateApprovalRuleTemplateFromRepositories, input, options) as async.Operation<types.BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput>
+function C:batchDisassociateApprovalRuleTemplateFromRepositories(input: types.BatchDisassociateApprovalRuleTemplateFromRepositoriesInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDisassociateApprovalRuleTemplateFromRepositories as schema.OperationSchema, input, options) as async.Operation<types.BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput>
 end
 
-function C:batchGetCommits(input: types.BatchGetCommitsInput, options: any): async.Operation<types.BatchGetCommitsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetCommits, input, options) as async.Operation<types.BatchGetCommitsOutput>
+function C:batchGetCommits(input: types.BatchGetCommitsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetCommitsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetCommits as schema.OperationSchema, input, options) as async.Operation<types.BatchGetCommitsOutput>
 end
 
-function C:batchGetRepositories(input: types.BatchGetRepositoriesInput, options: any): async.Operation<types.BatchGetRepositoriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetRepositories, input, options) as async.Operation<types.BatchGetRepositoriesOutput>
+function C:batchGetRepositories(input: types.BatchGetRepositoriesInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetRepositoriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetRepositories as schema.OperationSchema, input, options) as async.Operation<types.BatchGetRepositoriesOutput>
 end
 
-function C:createApprovalRuleTemplate(input: types.CreateApprovalRuleTemplateInput, options: any): async.Operation<types.CreateApprovalRuleTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateApprovalRuleTemplate, input, options) as async.Operation<types.CreateApprovalRuleTemplateOutput>
+function C:createApprovalRuleTemplate(input: types.CreateApprovalRuleTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApprovalRuleTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApprovalRuleTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateApprovalRuleTemplateOutput>
 end
 
-function C:createBranch(input: types.CreateBranchInput, options: any): async.Operation<types.CreateBranchOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBranch, input, options) as async.Operation<types.CreateBranchOutput>
+function C:createBranch(input: types.CreateBranchInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBranchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBranch as schema.OperationSchema, input, options) as async.Operation<types.CreateBranchOutput>
 end
 
-function C:createCommit(input: types.CreateCommitInput, options: any): async.Operation<types.CreateCommitOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCommit, input, options) as async.Operation<types.CreateCommitOutput>
+function C:createCommit(input: types.CreateCommitInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCommitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCommit as schema.OperationSchema, input, options) as async.Operation<types.CreateCommitOutput>
 end
 
-function C:createPullRequest(input: types.CreatePullRequestInput, options: any): async.Operation<types.CreatePullRequestOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePullRequest, input, options) as async.Operation<types.CreatePullRequestOutput>
+function C:createPullRequest(input: types.CreatePullRequestInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePullRequestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePullRequest as schema.OperationSchema, input, options) as async.Operation<types.CreatePullRequestOutput>
 end
 
-function C:createPullRequestApprovalRule(input: types.CreatePullRequestApprovalRuleInput, options: any): async.Operation<types.CreatePullRequestApprovalRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePullRequestApprovalRule, input, options) as async.Operation<types.CreatePullRequestApprovalRuleOutput>
+function C:createPullRequestApprovalRule(input: types.CreatePullRequestApprovalRuleInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePullRequestApprovalRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePullRequestApprovalRule as schema.OperationSchema, input, options) as async.Operation<types.CreatePullRequestApprovalRuleOutput>
 end
 
-function C:createRepository(input: types.CreateRepositoryInput, options: any): async.Operation<types.CreateRepositoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRepository, input, options) as async.Operation<types.CreateRepositoryOutput>
+function C:createRepository(input: types.CreateRepositoryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRepositoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRepository as schema.OperationSchema, input, options) as async.Operation<types.CreateRepositoryOutput>
 end
 
-function C:createUnreferencedMergeCommit(input: types.CreateUnreferencedMergeCommitInput, options: any): async.Operation<types.CreateUnreferencedMergeCommitOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateUnreferencedMergeCommit, input, options) as async.Operation<types.CreateUnreferencedMergeCommitOutput>
+function C:createUnreferencedMergeCommit(input: types.CreateUnreferencedMergeCommitInput, options?: base_client.InvokeOptions): async.Operation<types.CreateUnreferencedMergeCommitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateUnreferencedMergeCommit as schema.OperationSchema, input, options) as async.Operation<types.CreateUnreferencedMergeCommitOutput>
 end
 
-function C:deleteApprovalRuleTemplate(input: types.DeleteApprovalRuleTemplateInput, options: any): async.Operation<types.DeleteApprovalRuleTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApprovalRuleTemplate, input, options) as async.Operation<types.DeleteApprovalRuleTemplateOutput>
+function C:deleteApprovalRuleTemplate(input: types.DeleteApprovalRuleTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApprovalRuleTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApprovalRuleTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteApprovalRuleTemplateOutput>
 end
 
-function C:deleteBranch(input: types.DeleteBranchInput, options: any): async.Operation<types.DeleteBranchOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBranch, input, options) as async.Operation<types.DeleteBranchOutput>
+function C:deleteBranch(input: types.DeleteBranchInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBranchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBranch as schema.OperationSchema, input, options) as async.Operation<types.DeleteBranchOutput>
 end
 
-function C:deleteCommentContent(input: types.DeleteCommentContentInput, options: any): async.Operation<types.DeleteCommentContentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCommentContent, input, options) as async.Operation<types.DeleteCommentContentOutput>
+function C:deleteCommentContent(input: types.DeleteCommentContentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCommentContentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCommentContent as schema.OperationSchema, input, options) as async.Operation<types.DeleteCommentContentOutput>
 end
 
-function C:deleteFile(input: types.DeleteFileInput, options: any): async.Operation<types.DeleteFileOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFile, input, options) as async.Operation<types.DeleteFileOutput>
+function C:deleteFile(input: types.DeleteFileInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFile as schema.OperationSchema, input, options) as async.Operation<types.DeleteFileOutput>
 end
 
-function C:deletePullRequestApprovalRule(input: types.DeletePullRequestApprovalRuleInput, options: any): async.Operation<types.DeletePullRequestApprovalRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePullRequestApprovalRule, input, options) as async.Operation<types.DeletePullRequestApprovalRuleOutput>
+function C:deletePullRequestApprovalRule(input: types.DeletePullRequestApprovalRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePullRequestApprovalRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePullRequestApprovalRule as schema.OperationSchema, input, options) as async.Operation<types.DeletePullRequestApprovalRuleOutput>
 end
 
-function C:deleteRepository(input: types.DeleteRepositoryInput, options: any): async.Operation<types.DeleteRepositoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRepository, input, options) as async.Operation<types.DeleteRepositoryOutput>
+function C:deleteRepository(input: types.DeleteRepositoryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRepositoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRepository as schema.OperationSchema, input, options) as async.Operation<types.DeleteRepositoryOutput>
 end
 
-function C:describeMergeConflicts(input: types.DescribeMergeConflictsInput, options: any): async.Operation<types.DescribeMergeConflictsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeMergeConflicts, input, options) as async.Operation<types.DescribeMergeConflictsOutput>
+function C:describeMergeConflicts(input: types.DescribeMergeConflictsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMergeConflictsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMergeConflicts as schema.OperationSchema, input, options) as async.Operation<types.DescribeMergeConflictsOutput>
 end
 
-function C:describePullRequestEvents(input: types.DescribePullRequestEventsInput, options: any): async.Operation<types.DescribePullRequestEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePullRequestEvents, input, options) as async.Operation<types.DescribePullRequestEventsOutput>
+function C:describePullRequestEvents(input: types.DescribePullRequestEventsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePullRequestEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePullRequestEvents as schema.OperationSchema, input, options) as async.Operation<types.DescribePullRequestEventsOutput>
 end
 
-function C:disassociateApprovalRuleTemplateFromRepository(input: types.DisassociateApprovalRuleTemplateFromRepositoryInput, options: any): async.Operation<types.DisassociateApprovalRuleTemplateFromRepositoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateApprovalRuleTemplateFromRepository, input, options) as async.Operation<types.DisassociateApprovalRuleTemplateFromRepositoryOutput>
+function C:disassociateApprovalRuleTemplateFromRepository(input: types.DisassociateApprovalRuleTemplateFromRepositoryInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateApprovalRuleTemplateFromRepositoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateApprovalRuleTemplateFromRepository as schema.OperationSchema, input, options) as async.Operation<types.DisassociateApprovalRuleTemplateFromRepositoryOutput>
 end
 
-function C:evaluatePullRequestApprovalRules(input: types.EvaluatePullRequestApprovalRulesInput, options: any): async.Operation<types.EvaluatePullRequestApprovalRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.EvaluatePullRequestApprovalRules, input, options) as async.Operation<types.EvaluatePullRequestApprovalRulesOutput>
+function C:evaluatePullRequestApprovalRules(input: types.EvaluatePullRequestApprovalRulesInput, options?: base_client.InvokeOptions): async.Operation<types.EvaluatePullRequestApprovalRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EvaluatePullRequestApprovalRules as schema.OperationSchema, input, options) as async.Operation<types.EvaluatePullRequestApprovalRulesOutput>
 end
 
-function C:getApprovalRuleTemplate(input: types.GetApprovalRuleTemplateInput, options: any): async.Operation<types.GetApprovalRuleTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetApprovalRuleTemplate, input, options) as async.Operation<types.GetApprovalRuleTemplateOutput>
+function C:getApprovalRuleTemplate(input: types.GetApprovalRuleTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetApprovalRuleTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetApprovalRuleTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetApprovalRuleTemplateOutput>
 end
 
-function C:getBlob(input: types.GetBlobInput, options: any): async.Operation<types.GetBlobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBlob, input, options) as async.Operation<types.GetBlobOutput>
+function C:getBlob(input: types.GetBlobInput, options?: base_client.InvokeOptions): async.Operation<types.GetBlobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBlob as schema.OperationSchema, input, options) as async.Operation<types.GetBlobOutput>
 end
 
-function C:getBranch(input: types.GetBranchInput, options: any): async.Operation<types.GetBranchOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBranch, input, options) as async.Operation<types.GetBranchOutput>
+function C:getBranch(input: types.GetBranchInput, options?: base_client.InvokeOptions): async.Operation<types.GetBranchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBranch as schema.OperationSchema, input, options) as async.Operation<types.GetBranchOutput>
 end
 
-function C:getComment(input: types.GetCommentInput, options: any): async.Operation<types.GetCommentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetComment, input, options) as async.Operation<types.GetCommentOutput>
+function C:getComment(input: types.GetCommentInput, options?: base_client.InvokeOptions): async.Operation<types.GetCommentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetComment as schema.OperationSchema, input, options) as async.Operation<types.GetCommentOutput>
 end
 
-function C:getCommentReactions(input: types.GetCommentReactionsInput, options: any): async.Operation<types.GetCommentReactionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCommentReactions, input, options) as async.Operation<types.GetCommentReactionsOutput>
+function C:getCommentReactions(input: types.GetCommentReactionsInput, options?: base_client.InvokeOptions): async.Operation<types.GetCommentReactionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCommentReactions as schema.OperationSchema, input, options) as async.Operation<types.GetCommentReactionsOutput>
 end
 
-function C:getCommentsForComparedCommit(input: types.GetCommentsForComparedCommitInput, options: any): async.Operation<types.GetCommentsForComparedCommitOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCommentsForComparedCommit, input, options) as async.Operation<types.GetCommentsForComparedCommitOutput>
+function C:getCommentsForComparedCommit(input: types.GetCommentsForComparedCommitInput, options?: base_client.InvokeOptions): async.Operation<types.GetCommentsForComparedCommitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCommentsForComparedCommit as schema.OperationSchema, input, options) as async.Operation<types.GetCommentsForComparedCommitOutput>
 end
 
-function C:getCommentsForPullRequest(input: types.GetCommentsForPullRequestInput, options: any): async.Operation<types.GetCommentsForPullRequestOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCommentsForPullRequest, input, options) as async.Operation<types.GetCommentsForPullRequestOutput>
+function C:getCommentsForPullRequest(input: types.GetCommentsForPullRequestInput, options?: base_client.InvokeOptions): async.Operation<types.GetCommentsForPullRequestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCommentsForPullRequest as schema.OperationSchema, input, options) as async.Operation<types.GetCommentsForPullRequestOutput>
 end
 
-function C:getCommit(input: types.GetCommitInput, options: any): async.Operation<types.GetCommitOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCommit, input, options) as async.Operation<types.GetCommitOutput>
+function C:getCommit(input: types.GetCommitInput, options?: base_client.InvokeOptions): async.Operation<types.GetCommitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCommit as schema.OperationSchema, input, options) as async.Operation<types.GetCommitOutput>
 end
 
-function C:getDifferences(input: types.GetDifferencesInput, options: any): async.Operation<types.GetDifferencesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDifferences, input, options) as async.Operation<types.GetDifferencesOutput>
+function C:getDifferences(input: types.GetDifferencesInput, options?: base_client.InvokeOptions): async.Operation<types.GetDifferencesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDifferences as schema.OperationSchema, input, options) as async.Operation<types.GetDifferencesOutput>
 end
 
-function C:getFile(input: types.GetFileInput, options: any): async.Operation<types.GetFileOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFile, input, options) as async.Operation<types.GetFileOutput>
+function C:getFile(input: types.GetFileInput, options?: base_client.InvokeOptions): async.Operation<types.GetFileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFile as schema.OperationSchema, input, options) as async.Operation<types.GetFileOutput>
 end
 
-function C:getFolder(input: types.GetFolderInput, options: any): async.Operation<types.GetFolderOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFolder, input, options) as async.Operation<types.GetFolderOutput>
+function C:getFolder(input: types.GetFolderInput, options?: base_client.InvokeOptions): async.Operation<types.GetFolderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFolder as schema.OperationSchema, input, options) as async.Operation<types.GetFolderOutput>
 end
 
-function C:getMergeCommit(input: types.GetMergeCommitInput, options: any): async.Operation<types.GetMergeCommitOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMergeCommit, input, options) as async.Operation<types.GetMergeCommitOutput>
+function C:getMergeCommit(input: types.GetMergeCommitInput, options?: base_client.InvokeOptions): async.Operation<types.GetMergeCommitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMergeCommit as schema.OperationSchema, input, options) as async.Operation<types.GetMergeCommitOutput>
 end
 
-function C:getMergeConflicts(input: types.GetMergeConflictsInput, options: any): async.Operation<types.GetMergeConflictsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMergeConflicts, input, options) as async.Operation<types.GetMergeConflictsOutput>
+function C:getMergeConflicts(input: types.GetMergeConflictsInput, options?: base_client.InvokeOptions): async.Operation<types.GetMergeConflictsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMergeConflicts as schema.OperationSchema, input, options) as async.Operation<types.GetMergeConflictsOutput>
 end
 
-function C:getMergeOptions(input: types.GetMergeOptionsInput, options: any): async.Operation<types.GetMergeOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMergeOptions, input, options) as async.Operation<types.GetMergeOptionsOutput>
+function C:getMergeOptions(input: types.GetMergeOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.GetMergeOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMergeOptions as schema.OperationSchema, input, options) as async.Operation<types.GetMergeOptionsOutput>
 end
 
-function C:getPullRequest(input: types.GetPullRequestInput, options: any): async.Operation<types.GetPullRequestOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPullRequest, input, options) as async.Operation<types.GetPullRequestOutput>
+function C:getPullRequest(input: types.GetPullRequestInput, options?: base_client.InvokeOptions): async.Operation<types.GetPullRequestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPullRequest as schema.OperationSchema, input, options) as async.Operation<types.GetPullRequestOutput>
 end
 
-function C:getPullRequestApprovalStates(input: types.GetPullRequestApprovalStatesInput, options: any): async.Operation<types.GetPullRequestApprovalStatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPullRequestApprovalStates, input, options) as async.Operation<types.GetPullRequestApprovalStatesOutput>
+function C:getPullRequestApprovalStates(input: types.GetPullRequestApprovalStatesInput, options?: base_client.InvokeOptions): async.Operation<types.GetPullRequestApprovalStatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPullRequestApprovalStates as schema.OperationSchema, input, options) as async.Operation<types.GetPullRequestApprovalStatesOutput>
 end
 
-function C:getPullRequestOverrideState(input: types.GetPullRequestOverrideStateInput, options: any): async.Operation<types.GetPullRequestOverrideStateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPullRequestOverrideState, input, options) as async.Operation<types.GetPullRequestOverrideStateOutput>
+function C:getPullRequestOverrideState(input: types.GetPullRequestOverrideStateInput, options?: base_client.InvokeOptions): async.Operation<types.GetPullRequestOverrideStateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPullRequestOverrideState as schema.OperationSchema, input, options) as async.Operation<types.GetPullRequestOverrideStateOutput>
 end
 
-function C:getRepository(input: types.GetRepositoryInput, options: any): async.Operation<types.GetRepositoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRepository, input, options) as async.Operation<types.GetRepositoryOutput>
+function C:getRepository(input: types.GetRepositoryInput, options?: base_client.InvokeOptions): async.Operation<types.GetRepositoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRepository as schema.OperationSchema, input, options) as async.Operation<types.GetRepositoryOutput>
 end
 
-function C:getRepositoryTriggers(input: types.GetRepositoryTriggersInput, options: any): async.Operation<types.GetRepositoryTriggersOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRepositoryTriggers, input, options) as async.Operation<types.GetRepositoryTriggersOutput>
+function C:getRepositoryTriggers(input: types.GetRepositoryTriggersInput, options?: base_client.InvokeOptions): async.Operation<types.GetRepositoryTriggersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRepositoryTriggers as schema.OperationSchema, input, options) as async.Operation<types.GetRepositoryTriggersOutput>
 end
 
-function C:listApprovalRuleTemplates(input: types.ListApprovalRuleTemplatesInput, options: any): async.Operation<types.ListApprovalRuleTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApprovalRuleTemplates, input, options) as async.Operation<types.ListApprovalRuleTemplatesOutput>
+function C:listApprovalRuleTemplates(input: types.ListApprovalRuleTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListApprovalRuleTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApprovalRuleTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListApprovalRuleTemplatesOutput>
 end
 
-function C:listAssociatedApprovalRuleTemplatesForRepository(input: types.ListAssociatedApprovalRuleTemplatesForRepositoryInput, options: any): async.Operation<types.ListAssociatedApprovalRuleTemplatesForRepositoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssociatedApprovalRuleTemplatesForRepository, input, options) as async.Operation<types.ListAssociatedApprovalRuleTemplatesForRepositoryOutput>
+function C:listAssociatedApprovalRuleTemplatesForRepository(input: types.ListAssociatedApprovalRuleTemplatesForRepositoryInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssociatedApprovalRuleTemplatesForRepositoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssociatedApprovalRuleTemplatesForRepository as schema.OperationSchema, input, options) as async.Operation<types.ListAssociatedApprovalRuleTemplatesForRepositoryOutput>
 end
 
-function C:listBranches(input: types.ListBranchesInput, options: any): async.Operation<types.ListBranchesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBranches, input, options) as async.Operation<types.ListBranchesOutput>
+function C:listBranches(input: types.ListBranchesInput, options?: base_client.InvokeOptions): async.Operation<types.ListBranchesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBranches as schema.OperationSchema, input, options) as async.Operation<types.ListBranchesOutput>
 end
 
-function C:listFileCommitHistory(input: types.ListFileCommitHistoryInput, options: any): async.Operation<types.ListFileCommitHistoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFileCommitHistory, input, options) as async.Operation<types.ListFileCommitHistoryOutput>
+function C:listFileCommitHistory(input: types.ListFileCommitHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.ListFileCommitHistoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFileCommitHistory as schema.OperationSchema, input, options) as async.Operation<types.ListFileCommitHistoryOutput>
 end
 
-function C:listPullRequests(input: types.ListPullRequestsInput, options: any): async.Operation<types.ListPullRequestsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPullRequests, input, options) as async.Operation<types.ListPullRequestsOutput>
+function C:listPullRequests(input: types.ListPullRequestsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPullRequestsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPullRequests as schema.OperationSchema, input, options) as async.Operation<types.ListPullRequestsOutput>
 end
 
-function C:listRepositories(input: types.ListRepositoriesInput, options: any): async.Operation<types.ListRepositoriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRepositories, input, options) as async.Operation<types.ListRepositoriesOutput>
+function C:listRepositories(input: types.ListRepositoriesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRepositoriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRepositories as schema.OperationSchema, input, options) as async.Operation<types.ListRepositoriesOutput>
 end
 
-function C:listRepositoriesForApprovalRuleTemplate(input: types.ListRepositoriesForApprovalRuleTemplateInput, options: any): async.Operation<types.ListRepositoriesForApprovalRuleTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRepositoriesForApprovalRuleTemplate, input, options) as async.Operation<types.ListRepositoriesForApprovalRuleTemplateOutput>
+function C:listRepositoriesForApprovalRuleTemplate(input: types.ListRepositoriesForApprovalRuleTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.ListRepositoriesForApprovalRuleTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRepositoriesForApprovalRuleTemplate as schema.OperationSchema, input, options) as async.Operation<types.ListRepositoriesForApprovalRuleTemplateOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:mergeBranchesByFastForward(input: types.MergeBranchesByFastForwardInput, options: any): async.Operation<types.MergeBranchesByFastForwardOutput>
-    return self:invokeOperation(schemas.Service, schemas.MergeBranchesByFastForward, input, options) as async.Operation<types.MergeBranchesByFastForwardOutput>
+function C:mergeBranchesByFastForward(input: types.MergeBranchesByFastForwardInput, options?: base_client.InvokeOptions): async.Operation<types.MergeBranchesByFastForwardOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.MergeBranchesByFastForward as schema.OperationSchema, input, options) as async.Operation<types.MergeBranchesByFastForwardOutput>
 end
 
-function C:mergeBranchesBySquash(input: types.MergeBranchesBySquashInput, options: any): async.Operation<types.MergeBranchesBySquashOutput>
-    return self:invokeOperation(schemas.Service, schemas.MergeBranchesBySquash, input, options) as async.Operation<types.MergeBranchesBySquashOutput>
+function C:mergeBranchesBySquash(input: types.MergeBranchesBySquashInput, options?: base_client.InvokeOptions): async.Operation<types.MergeBranchesBySquashOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.MergeBranchesBySquash as schema.OperationSchema, input, options) as async.Operation<types.MergeBranchesBySquashOutput>
 end
 
-function C:mergeBranchesByThreeWay(input: types.MergeBranchesByThreeWayInput, options: any): async.Operation<types.MergeBranchesByThreeWayOutput>
-    return self:invokeOperation(schemas.Service, schemas.MergeBranchesByThreeWay, input, options) as async.Operation<types.MergeBranchesByThreeWayOutput>
+function C:mergeBranchesByThreeWay(input: types.MergeBranchesByThreeWayInput, options?: base_client.InvokeOptions): async.Operation<types.MergeBranchesByThreeWayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.MergeBranchesByThreeWay as schema.OperationSchema, input, options) as async.Operation<types.MergeBranchesByThreeWayOutput>
 end
 
-function C:mergePullRequestByFastForward(input: types.MergePullRequestByFastForwardInput, options: any): async.Operation<types.MergePullRequestByFastForwardOutput>
-    return self:invokeOperation(schemas.Service, schemas.MergePullRequestByFastForward, input, options) as async.Operation<types.MergePullRequestByFastForwardOutput>
+function C:mergePullRequestByFastForward(input: types.MergePullRequestByFastForwardInput, options?: base_client.InvokeOptions): async.Operation<types.MergePullRequestByFastForwardOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.MergePullRequestByFastForward as schema.OperationSchema, input, options) as async.Operation<types.MergePullRequestByFastForwardOutput>
 end
 
-function C:mergePullRequestBySquash(input: types.MergePullRequestBySquashInput, options: any): async.Operation<types.MergePullRequestBySquashOutput>
-    return self:invokeOperation(schemas.Service, schemas.MergePullRequestBySquash, input, options) as async.Operation<types.MergePullRequestBySquashOutput>
+function C:mergePullRequestBySquash(input: types.MergePullRequestBySquashInput, options?: base_client.InvokeOptions): async.Operation<types.MergePullRequestBySquashOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.MergePullRequestBySquash as schema.OperationSchema, input, options) as async.Operation<types.MergePullRequestBySquashOutput>
 end
 
-function C:mergePullRequestByThreeWay(input: types.MergePullRequestByThreeWayInput, options: any): async.Operation<types.MergePullRequestByThreeWayOutput>
-    return self:invokeOperation(schemas.Service, schemas.MergePullRequestByThreeWay, input, options) as async.Operation<types.MergePullRequestByThreeWayOutput>
+function C:mergePullRequestByThreeWay(input: types.MergePullRequestByThreeWayInput, options?: base_client.InvokeOptions): async.Operation<types.MergePullRequestByThreeWayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.MergePullRequestByThreeWay as schema.OperationSchema, input, options) as async.Operation<types.MergePullRequestByThreeWayOutput>
 end
 
-function C:overridePullRequestApprovalRules(input: types.OverridePullRequestApprovalRulesInput, options: any): async.Operation<types.OverridePullRequestApprovalRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.OverridePullRequestApprovalRules, input, options) as async.Operation<types.OverridePullRequestApprovalRulesOutput>
+function C:overridePullRequestApprovalRules(input: types.OverridePullRequestApprovalRulesInput, options?: base_client.InvokeOptions): async.Operation<types.OverridePullRequestApprovalRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.OverridePullRequestApprovalRules as schema.OperationSchema, input, options) as async.Operation<types.OverridePullRequestApprovalRulesOutput>
 end
 
-function C:postCommentForComparedCommit(input: types.PostCommentForComparedCommitInput, options: any): async.Operation<types.PostCommentForComparedCommitOutput>
-    return self:invokeOperation(schemas.Service, schemas.PostCommentForComparedCommit, input, options) as async.Operation<types.PostCommentForComparedCommitOutput>
+function C:postCommentForComparedCommit(input: types.PostCommentForComparedCommitInput, options?: base_client.InvokeOptions): async.Operation<types.PostCommentForComparedCommitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PostCommentForComparedCommit as schema.OperationSchema, input, options) as async.Operation<types.PostCommentForComparedCommitOutput>
 end
 
-function C:postCommentForPullRequest(input: types.PostCommentForPullRequestInput, options: any): async.Operation<types.PostCommentForPullRequestOutput>
-    return self:invokeOperation(schemas.Service, schemas.PostCommentForPullRequest, input, options) as async.Operation<types.PostCommentForPullRequestOutput>
+function C:postCommentForPullRequest(input: types.PostCommentForPullRequestInput, options?: base_client.InvokeOptions): async.Operation<types.PostCommentForPullRequestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PostCommentForPullRequest as schema.OperationSchema, input, options) as async.Operation<types.PostCommentForPullRequestOutput>
 end
 
-function C:postCommentReply(input: types.PostCommentReplyInput, options: any): async.Operation<types.PostCommentReplyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PostCommentReply, input, options) as async.Operation<types.PostCommentReplyOutput>
+function C:postCommentReply(input: types.PostCommentReplyInput, options?: base_client.InvokeOptions): async.Operation<types.PostCommentReplyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PostCommentReply as schema.OperationSchema, input, options) as async.Operation<types.PostCommentReplyOutput>
 end
 
-function C:putCommentReaction(input: types.PutCommentReactionInput, options: any): async.Operation<types.PutCommentReactionOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutCommentReaction, input, options) as async.Operation<types.PutCommentReactionOutput>
+function C:putCommentReaction(input: types.PutCommentReactionInput, options?: base_client.InvokeOptions): async.Operation<types.PutCommentReactionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutCommentReaction as schema.OperationSchema, input, options) as async.Operation<types.PutCommentReactionOutput>
 end
 
-function C:putFile(input: types.PutFileInput, options: any): async.Operation<types.PutFileOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutFile, input, options) as async.Operation<types.PutFileOutput>
+function C:putFile(input: types.PutFileInput, options?: base_client.InvokeOptions): async.Operation<types.PutFileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutFile as schema.OperationSchema, input, options) as async.Operation<types.PutFileOutput>
 end
 
-function C:putRepositoryTriggers(input: types.PutRepositoryTriggersInput, options: any): async.Operation<types.PutRepositoryTriggersOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutRepositoryTriggers, input, options) as async.Operation<types.PutRepositoryTriggersOutput>
+function C:putRepositoryTriggers(input: types.PutRepositoryTriggersInput, options?: base_client.InvokeOptions): async.Operation<types.PutRepositoryTriggersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutRepositoryTriggers as schema.OperationSchema, input, options) as async.Operation<types.PutRepositoryTriggersOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:testRepositoryTriggers(input: types.TestRepositoryTriggersInput, options: any): async.Operation<types.TestRepositoryTriggersOutput>
-    return self:invokeOperation(schemas.Service, schemas.TestRepositoryTriggers, input, options) as async.Operation<types.TestRepositoryTriggersOutput>
+function C:testRepositoryTriggers(input: types.TestRepositoryTriggersInput, options?: base_client.InvokeOptions): async.Operation<types.TestRepositoryTriggersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TestRepositoryTriggers as schema.OperationSchema, input, options) as async.Operation<types.TestRepositoryTriggersOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateApprovalRuleTemplateContent(input: types.UpdateApprovalRuleTemplateContentInput, options: any): async.Operation<types.UpdateApprovalRuleTemplateContentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateApprovalRuleTemplateContent, input, options) as async.Operation<types.UpdateApprovalRuleTemplateContentOutput>
+function C:updateApprovalRuleTemplateContent(input: types.UpdateApprovalRuleTemplateContentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApprovalRuleTemplateContentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApprovalRuleTemplateContent as schema.OperationSchema, input, options) as async.Operation<types.UpdateApprovalRuleTemplateContentOutput>
 end
 
-function C:updateApprovalRuleTemplateDescription(input: types.UpdateApprovalRuleTemplateDescriptionInput, options: any): async.Operation<types.UpdateApprovalRuleTemplateDescriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateApprovalRuleTemplateDescription, input, options) as async.Operation<types.UpdateApprovalRuleTemplateDescriptionOutput>
+function C:updateApprovalRuleTemplateDescription(input: types.UpdateApprovalRuleTemplateDescriptionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApprovalRuleTemplateDescriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApprovalRuleTemplateDescription as schema.OperationSchema, input, options) as async.Operation<types.UpdateApprovalRuleTemplateDescriptionOutput>
 end
 
-function C:updateApprovalRuleTemplateName(input: types.UpdateApprovalRuleTemplateNameInput, options: any): async.Operation<types.UpdateApprovalRuleTemplateNameOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateApprovalRuleTemplateName, input, options) as async.Operation<types.UpdateApprovalRuleTemplateNameOutput>
+function C:updateApprovalRuleTemplateName(input: types.UpdateApprovalRuleTemplateNameInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApprovalRuleTemplateNameOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApprovalRuleTemplateName as schema.OperationSchema, input, options) as async.Operation<types.UpdateApprovalRuleTemplateNameOutput>
 end
 
-function C:updateComment(input: types.UpdateCommentInput, options: any): async.Operation<types.UpdateCommentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateComment, input, options) as async.Operation<types.UpdateCommentOutput>
+function C:updateComment(input: types.UpdateCommentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCommentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateComment as schema.OperationSchema, input, options) as async.Operation<types.UpdateCommentOutput>
 end
 
-function C:updateDefaultBranch(input: types.UpdateDefaultBranchInput, options: any): async.Operation<types.UpdateDefaultBranchOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDefaultBranch, input, options) as async.Operation<types.UpdateDefaultBranchOutput>
+function C:updateDefaultBranch(input: types.UpdateDefaultBranchInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDefaultBranchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDefaultBranch as schema.OperationSchema, input, options) as async.Operation<types.UpdateDefaultBranchOutput>
 end
 
-function C:updatePullRequestApprovalRuleContent(input: types.UpdatePullRequestApprovalRuleContentInput, options: any): async.Operation<types.UpdatePullRequestApprovalRuleContentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePullRequestApprovalRuleContent, input, options) as async.Operation<types.UpdatePullRequestApprovalRuleContentOutput>
+function C:updatePullRequestApprovalRuleContent(input: types.UpdatePullRequestApprovalRuleContentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePullRequestApprovalRuleContentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePullRequestApprovalRuleContent as schema.OperationSchema, input, options) as async.Operation<types.UpdatePullRequestApprovalRuleContentOutput>
 end
 
-function C:updatePullRequestApprovalState(input: types.UpdatePullRequestApprovalStateInput, options: any): async.Operation<types.UpdatePullRequestApprovalStateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePullRequestApprovalState, input, options) as async.Operation<types.UpdatePullRequestApprovalStateOutput>
+function C:updatePullRequestApprovalState(input: types.UpdatePullRequestApprovalStateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePullRequestApprovalStateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePullRequestApprovalState as schema.OperationSchema, input, options) as async.Operation<types.UpdatePullRequestApprovalStateOutput>
 end
 
-function C:updatePullRequestDescription(input: types.UpdatePullRequestDescriptionInput, options: any): async.Operation<types.UpdatePullRequestDescriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePullRequestDescription, input, options) as async.Operation<types.UpdatePullRequestDescriptionOutput>
+function C:updatePullRequestDescription(input: types.UpdatePullRequestDescriptionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePullRequestDescriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePullRequestDescription as schema.OperationSchema, input, options) as async.Operation<types.UpdatePullRequestDescriptionOutput>
 end
 
-function C:updatePullRequestStatus(input: types.UpdatePullRequestStatusInput, options: any): async.Operation<types.UpdatePullRequestStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePullRequestStatus, input, options) as async.Operation<types.UpdatePullRequestStatusOutput>
+function C:updatePullRequestStatus(input: types.UpdatePullRequestStatusInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePullRequestStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePullRequestStatus as schema.OperationSchema, input, options) as async.Operation<types.UpdatePullRequestStatusOutput>
 end
 
-function C:updatePullRequestTitle(input: types.UpdatePullRequestTitleInput, options: any): async.Operation<types.UpdatePullRequestTitleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePullRequestTitle, input, options) as async.Operation<types.UpdatePullRequestTitleOutput>
+function C:updatePullRequestTitle(input: types.UpdatePullRequestTitleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePullRequestTitleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePullRequestTitle as schema.OperationSchema, input, options) as async.Operation<types.UpdatePullRequestTitleOutput>
 end
 
-function C:updateRepositoryDescription(input: types.UpdateRepositoryDescriptionInput, options: any): async.Operation<types.UpdateRepositoryDescriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRepositoryDescription, input, options) as async.Operation<types.UpdateRepositoryDescriptionOutput>
+function C:updateRepositoryDescription(input: types.UpdateRepositoryDescriptionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRepositoryDescriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRepositoryDescription as schema.OperationSchema, input, options) as async.Operation<types.UpdateRepositoryDescriptionOutput>
 end
 
-function C:updateRepositoryEncryptionKey(input: types.UpdateRepositoryEncryptionKeyInput, options: any): async.Operation<types.UpdateRepositoryEncryptionKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRepositoryEncryptionKey, input, options) as async.Operation<types.UpdateRepositoryEncryptionKeyOutput>
+function C:updateRepositoryEncryptionKey(input: types.UpdateRepositoryEncryptionKeyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRepositoryEncryptionKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRepositoryEncryptionKey as schema.OperationSchema, input, options) as async.Operation<types.UpdateRepositoryEncryptionKeyOutput>
 end
 
-function C:updateRepositoryName(input: types.UpdateRepositoryNameInput, options: any): async.Operation<types.UpdateRepositoryNameOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRepositoryName, input, options) as async.Operation<types.UpdateRepositoryNameOutput>
+function C:updateRepositoryName(input: types.UpdateRepositoryNameInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRepositoryNameOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRepositoryName as schema.OperationSchema, input, options) as async.Operation<types.UpdateRepositoryNameOutput>
 end
 
 return M

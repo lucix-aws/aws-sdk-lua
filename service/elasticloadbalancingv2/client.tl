@@ -8,90 +8,93 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("elasticloadbalancingv2.endpoint_rules")
 local query_protocol = require("smithy.protocol.awsquery")
+local schema = require("smithy.schema")
 local schemas = require("elasticloadbalancingv2.schemas")
 local traits = require("smithy.traits")
 local types = require("elasticloadbalancingv2.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    addListenerCertificates: function(Client, types.AddListenerCertificatesInput, any): async.Operation<types.AddListenerCertificatesOutput>
-    addTags: function(Client, types.AddTagsInput, any): async.Operation<types.AddTagsOutput>
-    addTrustStoreRevocations: function(Client, types.AddTrustStoreRevocationsInput, any): async.Operation<types.AddTrustStoreRevocationsOutput>
-    createListener: function(Client, types.CreateListenerInput, any): async.Operation<types.CreateListenerOutput>
-    createLoadBalancer: function(Client, types.CreateLoadBalancerInput, any): async.Operation<types.CreateLoadBalancerOutput>
-    createRule: function(Client, types.CreateRuleInput, any): async.Operation<types.CreateRuleOutput>
-    createTargetGroup: function(Client, types.CreateTargetGroupInput, any): async.Operation<types.CreateTargetGroupOutput>
-    createTrustStore: function(Client, types.CreateTrustStoreInput, any): async.Operation<types.CreateTrustStoreOutput>
-    deleteListener: function(Client, types.DeleteListenerInput, any): async.Operation<types.DeleteListenerOutput>
-    deleteLoadBalancer: function(Client, types.DeleteLoadBalancerInput, any): async.Operation<types.DeleteLoadBalancerOutput>
-    deleteRule: function(Client, types.DeleteRuleInput, any): async.Operation<types.DeleteRuleOutput>
-    deleteSharedTrustStoreAssociation: function(Client, types.DeleteSharedTrustStoreAssociationInput, any): async.Operation<types.DeleteSharedTrustStoreAssociationOutput>
-    deleteTargetGroup: function(Client, types.DeleteTargetGroupInput, any): async.Operation<types.DeleteTargetGroupOutput>
-    deleteTrustStore: function(Client, types.DeleteTrustStoreInput, any): async.Operation<types.DeleteTrustStoreOutput>
-    deregisterTargets: function(Client, types.DeregisterTargetsInput, any): async.Operation<types.DeregisterTargetsOutput>
-    describeAccountLimits: function(Client, types.DescribeAccountLimitsInput, any): async.Operation<types.DescribeAccountLimitsOutput>
-    describeCapacityReservation: function(Client, types.DescribeCapacityReservationInput, any): async.Operation<types.DescribeCapacityReservationOutput>
-    describeListenerAttributes: function(Client, types.DescribeListenerAttributesInput, any): async.Operation<types.DescribeListenerAttributesOutput>
-    describeListenerCertificates: function(Client, types.DescribeListenerCertificatesInput, any): async.Operation<types.DescribeListenerCertificatesOutput>
-    describeListeners: function(Client, types.DescribeListenersInput, any): async.Operation<types.DescribeListenersOutput>
-    describeLoadBalancerAttributes: function(Client, types.DescribeLoadBalancerAttributesInput, any): async.Operation<types.DescribeLoadBalancerAttributesOutput>
-    describeLoadBalancers: function(Client, types.DescribeLoadBalancersInput, any): async.Operation<types.DescribeLoadBalancersOutput>
-    describeRules: function(Client, types.DescribeRulesInput, any): async.Operation<types.DescribeRulesOutput>
-    describeSSLPolicies: function(Client, types.DescribeSSLPoliciesInput, any): async.Operation<types.DescribeSSLPoliciesOutput>
-    describeTags: function(Client, types.DescribeTagsInput, any): async.Operation<types.DescribeTagsOutput>
-    describeTargetGroupAttributes: function(Client, types.DescribeTargetGroupAttributesInput, any): async.Operation<types.DescribeTargetGroupAttributesOutput>
-    describeTargetGroups: function(Client, types.DescribeTargetGroupsInput, any): async.Operation<types.DescribeTargetGroupsOutput>
-    describeTargetHealth: function(Client, types.DescribeTargetHealthInput, any): async.Operation<types.DescribeTargetHealthOutput>
-    describeTrustStoreAssociations: function(Client, types.DescribeTrustStoreAssociationsInput, any): async.Operation<types.DescribeTrustStoreAssociationsOutput>
-    describeTrustStoreRevocations: function(Client, types.DescribeTrustStoreRevocationsInput, any): async.Operation<types.DescribeTrustStoreRevocationsOutput>
-    describeTrustStores: function(Client, types.DescribeTrustStoresInput, any): async.Operation<types.DescribeTrustStoresOutput>
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput, any): async.Operation<types.GetResourcePolicyOutput>
-    getTrustStoreCaCertificatesBundle: function(Client, types.GetTrustStoreCaCertificatesBundleInput, any): async.Operation<types.GetTrustStoreCaCertificatesBundleOutput>
-    getTrustStoreRevocationContent: function(Client, types.GetTrustStoreRevocationContentInput, any): async.Operation<types.GetTrustStoreRevocationContentOutput>
-    modifyCapacityReservation: function(Client, types.ModifyCapacityReservationInput, any): async.Operation<types.ModifyCapacityReservationOutput>
-    modifyIpPools: function(Client, types.ModifyIpPoolsInput, any): async.Operation<types.ModifyIpPoolsOutput>
-    modifyListener: function(Client, types.ModifyListenerInput, any): async.Operation<types.ModifyListenerOutput>
-    modifyListenerAttributes: function(Client, types.ModifyListenerAttributesInput, any): async.Operation<types.ModifyListenerAttributesOutput>
-    modifyLoadBalancerAttributes: function(Client, types.ModifyLoadBalancerAttributesInput, any): async.Operation<types.ModifyLoadBalancerAttributesOutput>
-    modifyRule: function(Client, types.ModifyRuleInput, any): async.Operation<types.ModifyRuleOutput>
-    modifyTargetGroup: function(Client, types.ModifyTargetGroupInput, any): async.Operation<types.ModifyTargetGroupOutput>
-    modifyTargetGroupAttributes: function(Client, types.ModifyTargetGroupAttributesInput, any): async.Operation<types.ModifyTargetGroupAttributesOutput>
-    modifyTrustStore: function(Client, types.ModifyTrustStoreInput, any): async.Operation<types.ModifyTrustStoreOutput>
-    registerTargets: function(Client, types.RegisterTargetsInput, any): async.Operation<types.RegisterTargetsOutput>
-    removeListenerCertificates: function(Client, types.RemoveListenerCertificatesInput, any): async.Operation<types.RemoveListenerCertificatesOutput>
-    removeTags: function(Client, types.RemoveTagsInput, any): async.Operation<types.RemoveTagsOutput>
-    removeTrustStoreRevocations: function(Client, types.RemoveTrustStoreRevocationsInput, any): async.Operation<types.RemoveTrustStoreRevocationsOutput>
-    setIpAddressType: function(Client, types.SetIpAddressTypeInput, any): async.Operation<types.SetIpAddressTypeOutput>
-    setRulePriorities: function(Client, types.SetRulePrioritiesInput, any): async.Operation<types.SetRulePrioritiesOutput>
-    setSecurityGroups: function(Client, types.SetSecurityGroupsInput, any): async.Operation<types.SetSecurityGroupsOutput>
-    setSubnets: function(Client, types.SetSubnetsInput, any): async.Operation<types.SetSubnetsOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    addListenerCertificates: function(Client, types.AddListenerCertificatesInput, ? base_client.InvokeOptions): async.Operation<types.AddListenerCertificatesOutput>
+    addTags: function(Client, types.AddTagsInput, ? base_client.InvokeOptions): async.Operation<types.AddTagsOutput>
+    addTrustStoreRevocations: function(Client, types.AddTrustStoreRevocationsInput, ? base_client.InvokeOptions): async.Operation<types.AddTrustStoreRevocationsOutput>
+    createListener: function(Client, types.CreateListenerInput, ? base_client.InvokeOptions): async.Operation<types.CreateListenerOutput>
+    createLoadBalancer: function(Client, types.CreateLoadBalancerInput, ? base_client.InvokeOptions): async.Operation<types.CreateLoadBalancerOutput>
+    createRule: function(Client, types.CreateRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateRuleOutput>
+    createTargetGroup: function(Client, types.CreateTargetGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateTargetGroupOutput>
+    createTrustStore: function(Client, types.CreateTrustStoreInput, ? base_client.InvokeOptions): async.Operation<types.CreateTrustStoreOutput>
+    deleteListener: function(Client, types.DeleteListenerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteListenerOutput>
+    deleteLoadBalancer: function(Client, types.DeleteLoadBalancerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLoadBalancerOutput>
+    deleteRule: function(Client, types.DeleteRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRuleOutput>
+    deleteSharedTrustStoreAssociation: function(Client, types.DeleteSharedTrustStoreAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSharedTrustStoreAssociationOutput>
+    deleteTargetGroup: function(Client, types.DeleteTargetGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTargetGroupOutput>
+    deleteTrustStore: function(Client, types.DeleteTrustStoreInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTrustStoreOutput>
+    deregisterTargets: function(Client, types.DeregisterTargetsInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterTargetsOutput>
+    describeAccountLimits: function(Client, types.DescribeAccountLimitsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAccountLimitsOutput>
+    describeCapacityReservation: function(Client, types.DescribeCapacityReservationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCapacityReservationOutput>
+    describeListenerAttributes: function(Client, types.DescribeListenerAttributesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeListenerAttributesOutput>
+    describeListenerCertificates: function(Client, types.DescribeListenerCertificatesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeListenerCertificatesOutput>
+    describeListeners: function(Client, types.DescribeListenersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeListenersOutput>
+    describeLoadBalancerAttributes: function(Client, types.DescribeLoadBalancerAttributesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLoadBalancerAttributesOutput>
+    describeLoadBalancers: function(Client, types.DescribeLoadBalancersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLoadBalancersOutput>
+    describeRules: function(Client, types.DescribeRulesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRulesOutput>
+    describeSSLPolicies: function(Client, types.DescribeSSLPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSSLPoliciesOutput>
+    describeTags: function(Client, types.DescribeTagsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTagsOutput>
+    describeTargetGroupAttributes: function(Client, types.DescribeTargetGroupAttributesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTargetGroupAttributesOutput>
+    describeTargetGroups: function(Client, types.DescribeTargetGroupsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTargetGroupsOutput>
+    describeTargetHealth: function(Client, types.DescribeTargetHealthInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTargetHealthOutput>
+    describeTrustStoreAssociations: function(Client, types.DescribeTrustStoreAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTrustStoreAssociationsOutput>
+    describeTrustStoreRevocations: function(Client, types.DescribeTrustStoreRevocationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTrustStoreRevocationsOutput>
+    describeTrustStores: function(Client, types.DescribeTrustStoresInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTrustStoresOutput>
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    getTrustStoreCaCertificatesBundle: function(Client, types.GetTrustStoreCaCertificatesBundleInput, ? base_client.InvokeOptions): async.Operation<types.GetTrustStoreCaCertificatesBundleOutput>
+    getTrustStoreRevocationContent: function(Client, types.GetTrustStoreRevocationContentInput, ? base_client.InvokeOptions): async.Operation<types.GetTrustStoreRevocationContentOutput>
+    modifyCapacityReservation: function(Client, types.ModifyCapacityReservationInput, ? base_client.InvokeOptions): async.Operation<types.ModifyCapacityReservationOutput>
+    modifyIpPools: function(Client, types.ModifyIpPoolsInput, ? base_client.InvokeOptions): async.Operation<types.ModifyIpPoolsOutput>
+    modifyListener: function(Client, types.ModifyListenerInput, ? base_client.InvokeOptions): async.Operation<types.ModifyListenerOutput>
+    modifyListenerAttributes: function(Client, types.ModifyListenerAttributesInput, ? base_client.InvokeOptions): async.Operation<types.ModifyListenerAttributesOutput>
+    modifyLoadBalancerAttributes: function(Client, types.ModifyLoadBalancerAttributesInput, ? base_client.InvokeOptions): async.Operation<types.ModifyLoadBalancerAttributesOutput>
+    modifyRule: function(Client, types.ModifyRuleInput, ? base_client.InvokeOptions): async.Operation<types.ModifyRuleOutput>
+    modifyTargetGroup: function(Client, types.ModifyTargetGroupInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTargetGroupOutput>
+    modifyTargetGroupAttributes: function(Client, types.ModifyTargetGroupAttributesInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTargetGroupAttributesOutput>
+    modifyTrustStore: function(Client, types.ModifyTrustStoreInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTrustStoreOutput>
+    registerTargets: function(Client, types.RegisterTargetsInput, ? base_client.InvokeOptions): async.Operation<types.RegisterTargetsOutput>
+    removeListenerCertificates: function(Client, types.RemoveListenerCertificatesInput, ? base_client.InvokeOptions): async.Operation<types.RemoveListenerCertificatesOutput>
+    removeTags: function(Client, types.RemoveTagsInput, ? base_client.InvokeOptions): async.Operation<types.RemoveTagsOutput>
+    removeTrustStoreRevocations: function(Client, types.RemoveTrustStoreRevocationsInput, ? base_client.InvokeOptions): async.Operation<types.RemoveTrustStoreRevocationsOutput>
+    setIpAddressType: function(Client, types.SetIpAddressTypeInput, ? base_client.InvokeOptions): async.Operation<types.SetIpAddressTypeOutput>
+    setRulePriorities: function(Client, types.SetRulePrioritiesInput, ? base_client.InvokeOptions): async.Operation<types.SetRulePrioritiesOutput>
+    setSecurityGroups: function(Client, types.SetSecurityGroupsInput, ? base_client.InvokeOptions): async.Operation<types.SetSecurityGroupsOutput>
+    setSubnets: function(Client, types.SetSubnetsInput, ? base_client.InvokeOptions): async.Operation<types.SetSubnetsOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "ElasticLoadBalancing_v10"
-    if not c.protocol then c.protocol = query_protocol.new("awsQuery") end
+    if not c.protocol then c.protocol = query_protocol.new("awsQuery") as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "elasticloadbalancing", signing_region = c.region } }
                 else
@@ -110,208 +113,208 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:addListenerCertificates(input: types.AddListenerCertificatesInput, options: any): async.Operation<types.AddListenerCertificatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddListenerCertificates, input, options) as async.Operation<types.AddListenerCertificatesOutput>
+function C:addListenerCertificates(input: types.AddListenerCertificatesInput, options?: base_client.InvokeOptions): async.Operation<types.AddListenerCertificatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddListenerCertificates as schema.OperationSchema, input, options) as async.Operation<types.AddListenerCertificatesOutput>
 end
 
-function C:addTags(input: types.AddTagsInput, options: any): async.Operation<types.AddTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddTags, input, options) as async.Operation<types.AddTagsOutput>
+function C:addTags(input: types.AddTagsInput, options?: base_client.InvokeOptions): async.Operation<types.AddTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddTags as schema.OperationSchema, input, options) as async.Operation<types.AddTagsOutput>
 end
 
-function C:addTrustStoreRevocations(input: types.AddTrustStoreRevocationsInput, options: any): async.Operation<types.AddTrustStoreRevocationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddTrustStoreRevocations, input, options) as async.Operation<types.AddTrustStoreRevocationsOutput>
+function C:addTrustStoreRevocations(input: types.AddTrustStoreRevocationsInput, options?: base_client.InvokeOptions): async.Operation<types.AddTrustStoreRevocationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddTrustStoreRevocations as schema.OperationSchema, input, options) as async.Operation<types.AddTrustStoreRevocationsOutput>
 end
 
-function C:createListener(input: types.CreateListenerInput, options: any): async.Operation<types.CreateListenerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateListener, input, options) as async.Operation<types.CreateListenerOutput>
+function C:createListener(input: types.CreateListenerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateListenerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateListener as schema.OperationSchema, input, options) as async.Operation<types.CreateListenerOutput>
 end
 
-function C:createLoadBalancer(input: types.CreateLoadBalancerInput, options: any): async.Operation<types.CreateLoadBalancerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLoadBalancer, input, options) as async.Operation<types.CreateLoadBalancerOutput>
+function C:createLoadBalancer(input: types.CreateLoadBalancerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLoadBalancerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLoadBalancer as schema.OperationSchema, input, options) as async.Operation<types.CreateLoadBalancerOutput>
 end
 
-function C:createRule(input: types.CreateRuleInput, options: any): async.Operation<types.CreateRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRule, input, options) as async.Operation<types.CreateRuleOutput>
+function C:createRule(input: types.CreateRuleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRule as schema.OperationSchema, input, options) as async.Operation<types.CreateRuleOutput>
 end
 
-function C:createTargetGroup(input: types.CreateTargetGroupInput, options: any): async.Operation<types.CreateTargetGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTargetGroup, input, options) as async.Operation<types.CreateTargetGroupOutput>
+function C:createTargetGroup(input: types.CreateTargetGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTargetGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTargetGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateTargetGroupOutput>
 end
 
-function C:createTrustStore(input: types.CreateTrustStoreInput, options: any): async.Operation<types.CreateTrustStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTrustStore, input, options) as async.Operation<types.CreateTrustStoreOutput>
+function C:createTrustStore(input: types.CreateTrustStoreInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTrustStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTrustStore as schema.OperationSchema, input, options) as async.Operation<types.CreateTrustStoreOutput>
 end
 
-function C:deleteListener(input: types.DeleteListenerInput, options: any): async.Operation<types.DeleteListenerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteListener, input, options) as async.Operation<types.DeleteListenerOutput>
+function C:deleteListener(input: types.DeleteListenerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteListenerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteListener as schema.OperationSchema, input, options) as async.Operation<types.DeleteListenerOutput>
 end
 
-function C:deleteLoadBalancer(input: types.DeleteLoadBalancerInput, options: any): async.Operation<types.DeleteLoadBalancerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLoadBalancer, input, options) as async.Operation<types.DeleteLoadBalancerOutput>
+function C:deleteLoadBalancer(input: types.DeleteLoadBalancerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLoadBalancerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLoadBalancer as schema.OperationSchema, input, options) as async.Operation<types.DeleteLoadBalancerOutput>
 end
 
-function C:deleteRule(input: types.DeleteRuleInput, options: any): async.Operation<types.DeleteRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRule, input, options) as async.Operation<types.DeleteRuleOutput>
+function C:deleteRule(input: types.DeleteRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRule as schema.OperationSchema, input, options) as async.Operation<types.DeleteRuleOutput>
 end
 
-function C:deleteSharedTrustStoreAssociation(input: types.DeleteSharedTrustStoreAssociationInput, options: any): async.Operation<types.DeleteSharedTrustStoreAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSharedTrustStoreAssociation, input, options) as async.Operation<types.DeleteSharedTrustStoreAssociationOutput>
+function C:deleteSharedTrustStoreAssociation(input: types.DeleteSharedTrustStoreAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSharedTrustStoreAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSharedTrustStoreAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteSharedTrustStoreAssociationOutput>
 end
 
-function C:deleteTargetGroup(input: types.DeleteTargetGroupInput, options: any): async.Operation<types.DeleteTargetGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTargetGroup, input, options) as async.Operation<types.DeleteTargetGroupOutput>
+function C:deleteTargetGroup(input: types.DeleteTargetGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTargetGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTargetGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteTargetGroupOutput>
 end
 
-function C:deleteTrustStore(input: types.DeleteTrustStoreInput, options: any): async.Operation<types.DeleteTrustStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTrustStore, input, options) as async.Operation<types.DeleteTrustStoreOutput>
+function C:deleteTrustStore(input: types.DeleteTrustStoreInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTrustStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTrustStore as schema.OperationSchema, input, options) as async.Operation<types.DeleteTrustStoreOutput>
 end
 
-function C:deregisterTargets(input: types.DeregisterTargetsInput, options: any): async.Operation<types.DeregisterTargetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterTargets, input, options) as async.Operation<types.DeregisterTargetsOutput>
+function C:deregisterTargets(input: types.DeregisterTargetsInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterTargetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterTargets as schema.OperationSchema, input, options) as async.Operation<types.DeregisterTargetsOutput>
 end
 
-function C:describeAccountLimits(input: types.DescribeAccountLimitsInput, options: any): async.Operation<types.DescribeAccountLimitsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAccountLimits, input, options) as async.Operation<types.DescribeAccountLimitsOutput>
+function C:describeAccountLimits(input: types.DescribeAccountLimitsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAccountLimitsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAccountLimits as schema.OperationSchema, input, options) as async.Operation<types.DescribeAccountLimitsOutput>
 end
 
-function C:describeCapacityReservation(input: types.DescribeCapacityReservationInput, options: any): async.Operation<types.DescribeCapacityReservationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCapacityReservation, input, options) as async.Operation<types.DescribeCapacityReservationOutput>
+function C:describeCapacityReservation(input: types.DescribeCapacityReservationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCapacityReservationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCapacityReservation as schema.OperationSchema, input, options) as async.Operation<types.DescribeCapacityReservationOutput>
 end
 
-function C:describeListenerAttributes(input: types.DescribeListenerAttributesInput, options: any): async.Operation<types.DescribeListenerAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeListenerAttributes, input, options) as async.Operation<types.DescribeListenerAttributesOutput>
+function C:describeListenerAttributes(input: types.DescribeListenerAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeListenerAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeListenerAttributes as schema.OperationSchema, input, options) as async.Operation<types.DescribeListenerAttributesOutput>
 end
 
-function C:describeListenerCertificates(input: types.DescribeListenerCertificatesInput, options: any): async.Operation<types.DescribeListenerCertificatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeListenerCertificates, input, options) as async.Operation<types.DescribeListenerCertificatesOutput>
+function C:describeListenerCertificates(input: types.DescribeListenerCertificatesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeListenerCertificatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeListenerCertificates as schema.OperationSchema, input, options) as async.Operation<types.DescribeListenerCertificatesOutput>
 end
 
-function C:describeListeners(input: types.DescribeListenersInput, options: any): async.Operation<types.DescribeListenersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeListeners, input, options) as async.Operation<types.DescribeListenersOutput>
+function C:describeListeners(input: types.DescribeListenersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeListenersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeListeners as schema.OperationSchema, input, options) as async.Operation<types.DescribeListenersOutput>
 end
 
-function C:describeLoadBalancerAttributes(input: types.DescribeLoadBalancerAttributesInput, options: any): async.Operation<types.DescribeLoadBalancerAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLoadBalancerAttributes, input, options) as async.Operation<types.DescribeLoadBalancerAttributesOutput>
+function C:describeLoadBalancerAttributes(input: types.DescribeLoadBalancerAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLoadBalancerAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLoadBalancerAttributes as schema.OperationSchema, input, options) as async.Operation<types.DescribeLoadBalancerAttributesOutput>
 end
 
-function C:describeLoadBalancers(input: types.DescribeLoadBalancersInput, options: any): async.Operation<types.DescribeLoadBalancersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLoadBalancers, input, options) as async.Operation<types.DescribeLoadBalancersOutput>
+function C:describeLoadBalancers(input: types.DescribeLoadBalancersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLoadBalancersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLoadBalancers as schema.OperationSchema, input, options) as async.Operation<types.DescribeLoadBalancersOutput>
 end
 
-function C:describeRules(input: types.DescribeRulesInput, options: any): async.Operation<types.DescribeRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRules, input, options) as async.Operation<types.DescribeRulesOutput>
+function C:describeRules(input: types.DescribeRulesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRules as schema.OperationSchema, input, options) as async.Operation<types.DescribeRulesOutput>
 end
 
-function C:describeSSLPolicies(input: types.DescribeSSLPoliciesInput, options: any): async.Operation<types.DescribeSSLPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSSLPolicies, input, options) as async.Operation<types.DescribeSSLPoliciesOutput>
+function C:describeSSLPolicies(input: types.DescribeSSLPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSSLPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSSLPolicies as schema.OperationSchema, input, options) as async.Operation<types.DescribeSSLPoliciesOutput>
 end
 
-function C:describeTags(input: types.DescribeTagsInput, options: any): async.Operation<types.DescribeTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTags, input, options) as async.Operation<types.DescribeTagsOutput>
+function C:describeTags(input: types.DescribeTagsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTags as schema.OperationSchema, input, options) as async.Operation<types.DescribeTagsOutput>
 end
 
-function C:describeTargetGroupAttributes(input: types.DescribeTargetGroupAttributesInput, options: any): async.Operation<types.DescribeTargetGroupAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTargetGroupAttributes, input, options) as async.Operation<types.DescribeTargetGroupAttributesOutput>
+function C:describeTargetGroupAttributes(input: types.DescribeTargetGroupAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTargetGroupAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTargetGroupAttributes as schema.OperationSchema, input, options) as async.Operation<types.DescribeTargetGroupAttributesOutput>
 end
 
-function C:describeTargetGroups(input: types.DescribeTargetGroupsInput, options: any): async.Operation<types.DescribeTargetGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTargetGroups, input, options) as async.Operation<types.DescribeTargetGroupsOutput>
+function C:describeTargetGroups(input: types.DescribeTargetGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTargetGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTargetGroups as schema.OperationSchema, input, options) as async.Operation<types.DescribeTargetGroupsOutput>
 end
 
-function C:describeTargetHealth(input: types.DescribeTargetHealthInput, options: any): async.Operation<types.DescribeTargetHealthOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTargetHealth, input, options) as async.Operation<types.DescribeTargetHealthOutput>
+function C:describeTargetHealth(input: types.DescribeTargetHealthInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTargetHealthOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTargetHealth as schema.OperationSchema, input, options) as async.Operation<types.DescribeTargetHealthOutput>
 end
 
-function C:describeTrustStoreAssociations(input: types.DescribeTrustStoreAssociationsInput, options: any): async.Operation<types.DescribeTrustStoreAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTrustStoreAssociations, input, options) as async.Operation<types.DescribeTrustStoreAssociationsOutput>
+function C:describeTrustStoreAssociations(input: types.DescribeTrustStoreAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTrustStoreAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTrustStoreAssociations as schema.OperationSchema, input, options) as async.Operation<types.DescribeTrustStoreAssociationsOutput>
 end
 
-function C:describeTrustStoreRevocations(input: types.DescribeTrustStoreRevocationsInput, options: any): async.Operation<types.DescribeTrustStoreRevocationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTrustStoreRevocations, input, options) as async.Operation<types.DescribeTrustStoreRevocationsOutput>
+function C:describeTrustStoreRevocations(input: types.DescribeTrustStoreRevocationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTrustStoreRevocationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTrustStoreRevocations as schema.OperationSchema, input, options) as async.Operation<types.DescribeTrustStoreRevocationsOutput>
 end
 
-function C:describeTrustStores(input: types.DescribeTrustStoresInput, options: any): async.Operation<types.DescribeTrustStoresOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTrustStores, input, options) as async.Operation<types.DescribeTrustStoresOutput>
+function C:describeTrustStores(input: types.DescribeTrustStoresInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTrustStoresOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTrustStores as schema.OperationSchema, input, options) as async.Operation<types.DescribeTrustStoresOutput>
 end
 
-function C:getResourcePolicy(input: types.GetResourcePolicyInput, options: any): async.Operation<types.GetResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicy, input, options) as async.Operation<types.GetResourcePolicyOutput>
+function C:getResourcePolicy(input: types.GetResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePolicyOutput>
 end
 
-function C:getTrustStoreCaCertificatesBundle(input: types.GetTrustStoreCaCertificatesBundleInput, options: any): async.Operation<types.GetTrustStoreCaCertificatesBundleOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTrustStoreCaCertificatesBundle, input, options) as async.Operation<types.GetTrustStoreCaCertificatesBundleOutput>
+function C:getTrustStoreCaCertificatesBundle(input: types.GetTrustStoreCaCertificatesBundleInput, options?: base_client.InvokeOptions): async.Operation<types.GetTrustStoreCaCertificatesBundleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTrustStoreCaCertificatesBundle as schema.OperationSchema, input, options) as async.Operation<types.GetTrustStoreCaCertificatesBundleOutput>
 end
 
-function C:getTrustStoreRevocationContent(input: types.GetTrustStoreRevocationContentInput, options: any): async.Operation<types.GetTrustStoreRevocationContentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTrustStoreRevocationContent, input, options) as async.Operation<types.GetTrustStoreRevocationContentOutput>
+function C:getTrustStoreRevocationContent(input: types.GetTrustStoreRevocationContentInput, options?: base_client.InvokeOptions): async.Operation<types.GetTrustStoreRevocationContentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTrustStoreRevocationContent as schema.OperationSchema, input, options) as async.Operation<types.GetTrustStoreRevocationContentOutput>
 end
 
-function C:modifyCapacityReservation(input: types.ModifyCapacityReservationInput, options: any): async.Operation<types.ModifyCapacityReservationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyCapacityReservation, input, options) as async.Operation<types.ModifyCapacityReservationOutput>
+function C:modifyCapacityReservation(input: types.ModifyCapacityReservationInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyCapacityReservationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyCapacityReservation as schema.OperationSchema, input, options) as async.Operation<types.ModifyCapacityReservationOutput>
 end
 
-function C:modifyIpPools(input: types.ModifyIpPoolsInput, options: any): async.Operation<types.ModifyIpPoolsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyIpPools, input, options) as async.Operation<types.ModifyIpPoolsOutput>
+function C:modifyIpPools(input: types.ModifyIpPoolsInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyIpPoolsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyIpPools as schema.OperationSchema, input, options) as async.Operation<types.ModifyIpPoolsOutput>
 end
 
-function C:modifyListener(input: types.ModifyListenerInput, options: any): async.Operation<types.ModifyListenerOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyListener, input, options) as async.Operation<types.ModifyListenerOutput>
+function C:modifyListener(input: types.ModifyListenerInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyListenerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyListener as schema.OperationSchema, input, options) as async.Operation<types.ModifyListenerOutput>
 end
 
-function C:modifyListenerAttributes(input: types.ModifyListenerAttributesInput, options: any): async.Operation<types.ModifyListenerAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyListenerAttributes, input, options) as async.Operation<types.ModifyListenerAttributesOutput>
+function C:modifyListenerAttributes(input: types.ModifyListenerAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyListenerAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyListenerAttributes as schema.OperationSchema, input, options) as async.Operation<types.ModifyListenerAttributesOutput>
 end
 
-function C:modifyLoadBalancerAttributes(input: types.ModifyLoadBalancerAttributesInput, options: any): async.Operation<types.ModifyLoadBalancerAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyLoadBalancerAttributes, input, options) as async.Operation<types.ModifyLoadBalancerAttributesOutput>
+function C:modifyLoadBalancerAttributes(input: types.ModifyLoadBalancerAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyLoadBalancerAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyLoadBalancerAttributes as schema.OperationSchema, input, options) as async.Operation<types.ModifyLoadBalancerAttributesOutput>
 end
 
-function C:modifyRule(input: types.ModifyRuleInput, options: any): async.Operation<types.ModifyRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyRule, input, options) as async.Operation<types.ModifyRuleOutput>
+function C:modifyRule(input: types.ModifyRuleInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyRule as schema.OperationSchema, input, options) as async.Operation<types.ModifyRuleOutput>
 end
 
-function C:modifyTargetGroup(input: types.ModifyTargetGroupInput, options: any): async.Operation<types.ModifyTargetGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyTargetGroup, input, options) as async.Operation<types.ModifyTargetGroupOutput>
+function C:modifyTargetGroup(input: types.ModifyTargetGroupInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyTargetGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyTargetGroup as schema.OperationSchema, input, options) as async.Operation<types.ModifyTargetGroupOutput>
 end
 
-function C:modifyTargetGroupAttributes(input: types.ModifyTargetGroupAttributesInput, options: any): async.Operation<types.ModifyTargetGroupAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyTargetGroupAttributes, input, options) as async.Operation<types.ModifyTargetGroupAttributesOutput>
+function C:modifyTargetGroupAttributes(input: types.ModifyTargetGroupAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyTargetGroupAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyTargetGroupAttributes as schema.OperationSchema, input, options) as async.Operation<types.ModifyTargetGroupAttributesOutput>
 end
 
-function C:modifyTrustStore(input: types.ModifyTrustStoreInput, options: any): async.Operation<types.ModifyTrustStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyTrustStore, input, options) as async.Operation<types.ModifyTrustStoreOutput>
+function C:modifyTrustStore(input: types.ModifyTrustStoreInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyTrustStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyTrustStore as schema.OperationSchema, input, options) as async.Operation<types.ModifyTrustStoreOutput>
 end
 
-function C:registerTargets(input: types.RegisterTargetsInput, options: any): async.Operation<types.RegisterTargetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterTargets, input, options) as async.Operation<types.RegisterTargetsOutput>
+function C:registerTargets(input: types.RegisterTargetsInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterTargetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterTargets as schema.OperationSchema, input, options) as async.Operation<types.RegisterTargetsOutput>
 end
 
-function C:removeListenerCertificates(input: types.RemoveListenerCertificatesInput, options: any): async.Operation<types.RemoveListenerCertificatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveListenerCertificates, input, options) as async.Operation<types.RemoveListenerCertificatesOutput>
+function C:removeListenerCertificates(input: types.RemoveListenerCertificatesInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveListenerCertificatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveListenerCertificates as schema.OperationSchema, input, options) as async.Operation<types.RemoveListenerCertificatesOutput>
 end
 
-function C:removeTags(input: types.RemoveTagsInput, options: any): async.Operation<types.RemoveTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveTags, input, options) as async.Operation<types.RemoveTagsOutput>
+function C:removeTags(input: types.RemoveTagsInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveTags as schema.OperationSchema, input, options) as async.Operation<types.RemoveTagsOutput>
 end
 
-function C:removeTrustStoreRevocations(input: types.RemoveTrustStoreRevocationsInput, options: any): async.Operation<types.RemoveTrustStoreRevocationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveTrustStoreRevocations, input, options) as async.Operation<types.RemoveTrustStoreRevocationsOutput>
+function C:removeTrustStoreRevocations(input: types.RemoveTrustStoreRevocationsInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveTrustStoreRevocationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveTrustStoreRevocations as schema.OperationSchema, input, options) as async.Operation<types.RemoveTrustStoreRevocationsOutput>
 end
 
-function C:setIpAddressType(input: types.SetIpAddressTypeInput, options: any): async.Operation<types.SetIpAddressTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetIpAddressType, input, options) as async.Operation<types.SetIpAddressTypeOutput>
+function C:setIpAddressType(input: types.SetIpAddressTypeInput, options?: base_client.InvokeOptions): async.Operation<types.SetIpAddressTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetIpAddressType as schema.OperationSchema, input, options) as async.Operation<types.SetIpAddressTypeOutput>
 end
 
-function C:setRulePriorities(input: types.SetRulePrioritiesInput, options: any): async.Operation<types.SetRulePrioritiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetRulePriorities, input, options) as async.Operation<types.SetRulePrioritiesOutput>
+function C:setRulePriorities(input: types.SetRulePrioritiesInput, options?: base_client.InvokeOptions): async.Operation<types.SetRulePrioritiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetRulePriorities as schema.OperationSchema, input, options) as async.Operation<types.SetRulePrioritiesOutput>
 end
 
-function C:setSecurityGroups(input: types.SetSecurityGroupsInput, options: any): async.Operation<types.SetSecurityGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetSecurityGroups, input, options) as async.Operation<types.SetSecurityGroupsOutput>
+function C:setSecurityGroups(input: types.SetSecurityGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.SetSecurityGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetSecurityGroups as schema.OperationSchema, input, options) as async.Operation<types.SetSecurityGroupsOutput>
 end
 
-function C:setSubnets(input: types.SetSubnetsInput, options: any): async.Operation<types.SetSubnetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetSubnets, input, options) as async.Operation<types.SetSubnetsOutput>
+function C:setSubnets(input: types.SetSubnetsInput, options?: base_client.InvokeOptions): async.Operation<types.SetSubnetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetSubnets as schema.OperationSchema, input, options) as async.Operation<types.SetSubnetsOutput>
 end
 
 return M

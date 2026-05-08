@@ -8,60 +8,63 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("socialmessaging.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("socialmessaging.schemas")
 local traits = require("smithy.traits")
 local types = require("socialmessaging.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateWhatsAppBusinessAccount: function(Client, types.AssociateWhatsAppBusinessAccountInput, any): async.Operation<types.AssociateWhatsAppBusinessAccountOutput>
-    createWhatsAppMessageTemplate: function(Client, types.CreateWhatsAppMessageTemplateInput, any): async.Operation<types.CreateWhatsAppMessageTemplateOutput>
-    createWhatsAppMessageTemplateFromLibrary: function(Client, types.CreateWhatsAppMessageTemplateFromLibraryInput, any): async.Operation<types.CreateWhatsAppMessageTemplateFromLibraryOutput>
-    createWhatsAppMessageTemplateMedia: function(Client, types.CreateWhatsAppMessageTemplateMediaInput, any): async.Operation<types.CreateWhatsAppMessageTemplateMediaOutput>
-    deleteWhatsAppMessageMedia: function(Client, types.DeleteWhatsAppMessageMediaInput, any): async.Operation<types.DeleteWhatsAppMessageMediaOutput>
-    deleteWhatsAppMessageTemplate: function(Client, types.DeleteWhatsAppMessageTemplateInput, any): async.Operation<types.DeleteWhatsAppMessageTemplateOutput>
-    disassociateWhatsAppBusinessAccount: function(Client, types.DisassociateWhatsAppBusinessAccountInput, any): async.Operation<types.DisassociateWhatsAppBusinessAccountOutput>
-    getLinkedWhatsAppBusinessAccount: function(Client, types.GetLinkedWhatsAppBusinessAccountInput, any): async.Operation<types.GetLinkedWhatsAppBusinessAccountOutput>
-    getLinkedWhatsAppBusinessAccountPhoneNumber: function(Client, types.GetLinkedWhatsAppBusinessAccountPhoneNumberInput, any): async.Operation<types.GetLinkedWhatsAppBusinessAccountPhoneNumberOutput>
-    getWhatsAppMessageMedia: function(Client, types.GetWhatsAppMessageMediaInput, any): async.Operation<types.GetWhatsAppMessageMediaOutput>
-    getWhatsAppMessageTemplate: function(Client, types.GetWhatsAppMessageTemplateInput, any): async.Operation<types.GetWhatsAppMessageTemplateOutput>
-    listLinkedWhatsAppBusinessAccounts: function(Client, types.ListLinkedWhatsAppBusinessAccountsInput, any): async.Operation<types.ListLinkedWhatsAppBusinessAccountsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listWhatsAppMessageTemplates: function(Client, types.ListWhatsAppMessageTemplatesInput, any): async.Operation<types.ListWhatsAppMessageTemplatesOutput>
-    listWhatsAppTemplateLibrary: function(Client, types.ListWhatsAppTemplateLibraryInput, any): async.Operation<types.ListWhatsAppTemplateLibraryOutput>
-    postWhatsAppMessageMedia: function(Client, types.PostWhatsAppMessageMediaInput, any): async.Operation<types.PostWhatsAppMessageMediaOutput>
-    putWhatsAppBusinessAccountEventDestinations: function(Client, types.PutWhatsAppBusinessAccountEventDestinationsInput, any): async.Operation<types.PutWhatsAppBusinessAccountEventDestinationsOutput>
-    sendWhatsAppMessage: function(Client, types.SendWhatsAppMessageInput, any): async.Operation<types.SendWhatsAppMessageOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateWhatsAppMessageTemplate: function(Client, types.UpdateWhatsAppMessageTemplateInput, any): async.Operation<types.UpdateWhatsAppMessageTemplateOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateWhatsAppBusinessAccount: function(Client, types.AssociateWhatsAppBusinessAccountInput, ? base_client.InvokeOptions): async.Operation<types.AssociateWhatsAppBusinessAccountOutput>
+    createWhatsAppMessageTemplate: function(Client, types.CreateWhatsAppMessageTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateWhatsAppMessageTemplateOutput>
+    createWhatsAppMessageTemplateFromLibrary: function(Client, types.CreateWhatsAppMessageTemplateFromLibraryInput, ? base_client.InvokeOptions): async.Operation<types.CreateWhatsAppMessageTemplateFromLibraryOutput>
+    createWhatsAppMessageTemplateMedia: function(Client, types.CreateWhatsAppMessageTemplateMediaInput, ? base_client.InvokeOptions): async.Operation<types.CreateWhatsAppMessageTemplateMediaOutput>
+    deleteWhatsAppMessageMedia: function(Client, types.DeleteWhatsAppMessageMediaInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWhatsAppMessageMediaOutput>
+    deleteWhatsAppMessageTemplate: function(Client, types.DeleteWhatsAppMessageTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWhatsAppMessageTemplateOutput>
+    disassociateWhatsAppBusinessAccount: function(Client, types.DisassociateWhatsAppBusinessAccountInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateWhatsAppBusinessAccountOutput>
+    getLinkedWhatsAppBusinessAccount: function(Client, types.GetLinkedWhatsAppBusinessAccountInput, ? base_client.InvokeOptions): async.Operation<types.GetLinkedWhatsAppBusinessAccountOutput>
+    getLinkedWhatsAppBusinessAccountPhoneNumber: function(Client, types.GetLinkedWhatsAppBusinessAccountPhoneNumberInput, ? base_client.InvokeOptions): async.Operation<types.GetLinkedWhatsAppBusinessAccountPhoneNumberOutput>
+    getWhatsAppMessageMedia: function(Client, types.GetWhatsAppMessageMediaInput, ? base_client.InvokeOptions): async.Operation<types.GetWhatsAppMessageMediaOutput>
+    getWhatsAppMessageTemplate: function(Client, types.GetWhatsAppMessageTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetWhatsAppMessageTemplateOutput>
+    listLinkedWhatsAppBusinessAccounts: function(Client, types.ListLinkedWhatsAppBusinessAccountsInput, ? base_client.InvokeOptions): async.Operation<types.ListLinkedWhatsAppBusinessAccountsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listWhatsAppMessageTemplates: function(Client, types.ListWhatsAppMessageTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListWhatsAppMessageTemplatesOutput>
+    listWhatsAppTemplateLibrary: function(Client, types.ListWhatsAppTemplateLibraryInput, ? base_client.InvokeOptions): async.Operation<types.ListWhatsAppTemplateLibraryOutput>
+    postWhatsAppMessageMedia: function(Client, types.PostWhatsAppMessageMediaInput, ? base_client.InvokeOptions): async.Operation<types.PostWhatsAppMessageMediaOutput>
+    putWhatsAppBusinessAccountEventDestinations: function(Client, types.PutWhatsAppBusinessAccountEventDestinationsInput, ? base_client.InvokeOptions): async.Operation<types.PutWhatsAppBusinessAccountEventDestinationsOutput>
+    sendWhatsAppMessage: function(Client, types.SendWhatsAppMessageInput, ? base_client.InvokeOptions): async.Operation<types.SendWhatsAppMessageOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateWhatsAppMessageTemplate: function(Client, types.UpdateWhatsAppMessageTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWhatsAppMessageTemplateOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "SocialMessaging"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "social-messaging", signing_region = c.region } }
                 else
@@ -80,88 +83,88 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateWhatsAppBusinessAccount(input: types.AssociateWhatsAppBusinessAccountInput, options: any): async.Operation<types.AssociateWhatsAppBusinessAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateWhatsAppBusinessAccount, input, options) as async.Operation<types.AssociateWhatsAppBusinessAccountOutput>
+function C:associateWhatsAppBusinessAccount(input: types.AssociateWhatsAppBusinessAccountInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateWhatsAppBusinessAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateWhatsAppBusinessAccount as schema.OperationSchema, input, options) as async.Operation<types.AssociateWhatsAppBusinessAccountOutput>
 end
 
-function C:createWhatsAppMessageTemplate(input: types.CreateWhatsAppMessageTemplateInput, options: any): async.Operation<types.CreateWhatsAppMessageTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWhatsAppMessageTemplate, input, options) as async.Operation<types.CreateWhatsAppMessageTemplateOutput>
+function C:createWhatsAppMessageTemplate(input: types.CreateWhatsAppMessageTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWhatsAppMessageTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWhatsAppMessageTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateWhatsAppMessageTemplateOutput>
 end
 
-function C:createWhatsAppMessageTemplateFromLibrary(input: types.CreateWhatsAppMessageTemplateFromLibraryInput, options: any): async.Operation<types.CreateWhatsAppMessageTemplateFromLibraryOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWhatsAppMessageTemplateFromLibrary, input, options) as async.Operation<types.CreateWhatsAppMessageTemplateFromLibraryOutput>
+function C:createWhatsAppMessageTemplateFromLibrary(input: types.CreateWhatsAppMessageTemplateFromLibraryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWhatsAppMessageTemplateFromLibraryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWhatsAppMessageTemplateFromLibrary as schema.OperationSchema, input, options) as async.Operation<types.CreateWhatsAppMessageTemplateFromLibraryOutput>
 end
 
-function C:createWhatsAppMessageTemplateMedia(input: types.CreateWhatsAppMessageTemplateMediaInput, options: any): async.Operation<types.CreateWhatsAppMessageTemplateMediaOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWhatsAppMessageTemplateMedia, input, options) as async.Operation<types.CreateWhatsAppMessageTemplateMediaOutput>
+function C:createWhatsAppMessageTemplateMedia(input: types.CreateWhatsAppMessageTemplateMediaInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWhatsAppMessageTemplateMediaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWhatsAppMessageTemplateMedia as schema.OperationSchema, input, options) as async.Operation<types.CreateWhatsAppMessageTemplateMediaOutput>
 end
 
-function C:deleteWhatsAppMessageMedia(input: types.DeleteWhatsAppMessageMediaInput, options: any): async.Operation<types.DeleteWhatsAppMessageMediaOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWhatsAppMessageMedia, input, options) as async.Operation<types.DeleteWhatsAppMessageMediaOutput>
+function C:deleteWhatsAppMessageMedia(input: types.DeleteWhatsAppMessageMediaInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWhatsAppMessageMediaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWhatsAppMessageMedia as schema.OperationSchema, input, options) as async.Operation<types.DeleteWhatsAppMessageMediaOutput>
 end
 
-function C:deleteWhatsAppMessageTemplate(input: types.DeleteWhatsAppMessageTemplateInput, options: any): async.Operation<types.DeleteWhatsAppMessageTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWhatsAppMessageTemplate, input, options) as async.Operation<types.DeleteWhatsAppMessageTemplateOutput>
+function C:deleteWhatsAppMessageTemplate(input: types.DeleteWhatsAppMessageTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWhatsAppMessageTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWhatsAppMessageTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteWhatsAppMessageTemplateOutput>
 end
 
-function C:disassociateWhatsAppBusinessAccount(input: types.DisassociateWhatsAppBusinessAccountInput, options: any): async.Operation<types.DisassociateWhatsAppBusinessAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateWhatsAppBusinessAccount, input, options) as async.Operation<types.DisassociateWhatsAppBusinessAccountOutput>
+function C:disassociateWhatsAppBusinessAccount(input: types.DisassociateWhatsAppBusinessAccountInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateWhatsAppBusinessAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateWhatsAppBusinessAccount as schema.OperationSchema, input, options) as async.Operation<types.DisassociateWhatsAppBusinessAccountOutput>
 end
 
-function C:getLinkedWhatsAppBusinessAccount(input: types.GetLinkedWhatsAppBusinessAccountInput, options: any): async.Operation<types.GetLinkedWhatsAppBusinessAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLinkedWhatsAppBusinessAccount, input, options) as async.Operation<types.GetLinkedWhatsAppBusinessAccountOutput>
+function C:getLinkedWhatsAppBusinessAccount(input: types.GetLinkedWhatsAppBusinessAccountInput, options?: base_client.InvokeOptions): async.Operation<types.GetLinkedWhatsAppBusinessAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLinkedWhatsAppBusinessAccount as schema.OperationSchema, input, options) as async.Operation<types.GetLinkedWhatsAppBusinessAccountOutput>
 end
 
-function C:getLinkedWhatsAppBusinessAccountPhoneNumber(input: types.GetLinkedWhatsAppBusinessAccountPhoneNumberInput, options: any): async.Operation<types.GetLinkedWhatsAppBusinessAccountPhoneNumberOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLinkedWhatsAppBusinessAccountPhoneNumber, input, options) as async.Operation<types.GetLinkedWhatsAppBusinessAccountPhoneNumberOutput>
+function C:getLinkedWhatsAppBusinessAccountPhoneNumber(input: types.GetLinkedWhatsAppBusinessAccountPhoneNumberInput, options?: base_client.InvokeOptions): async.Operation<types.GetLinkedWhatsAppBusinessAccountPhoneNumberOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLinkedWhatsAppBusinessAccountPhoneNumber as schema.OperationSchema, input, options) as async.Operation<types.GetLinkedWhatsAppBusinessAccountPhoneNumberOutput>
 end
 
-function C:getWhatsAppMessageMedia(input: types.GetWhatsAppMessageMediaInput, options: any): async.Operation<types.GetWhatsAppMessageMediaOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWhatsAppMessageMedia, input, options) as async.Operation<types.GetWhatsAppMessageMediaOutput>
+function C:getWhatsAppMessageMedia(input: types.GetWhatsAppMessageMediaInput, options?: base_client.InvokeOptions): async.Operation<types.GetWhatsAppMessageMediaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWhatsAppMessageMedia as schema.OperationSchema, input, options) as async.Operation<types.GetWhatsAppMessageMediaOutput>
 end
 
-function C:getWhatsAppMessageTemplate(input: types.GetWhatsAppMessageTemplateInput, options: any): async.Operation<types.GetWhatsAppMessageTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWhatsAppMessageTemplate, input, options) as async.Operation<types.GetWhatsAppMessageTemplateOutput>
+function C:getWhatsAppMessageTemplate(input: types.GetWhatsAppMessageTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetWhatsAppMessageTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWhatsAppMessageTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetWhatsAppMessageTemplateOutput>
 end
 
-function C:listLinkedWhatsAppBusinessAccounts(input: types.ListLinkedWhatsAppBusinessAccountsInput, options: any): async.Operation<types.ListLinkedWhatsAppBusinessAccountsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLinkedWhatsAppBusinessAccounts, input, options) as async.Operation<types.ListLinkedWhatsAppBusinessAccountsOutput>
+function C:listLinkedWhatsAppBusinessAccounts(input: types.ListLinkedWhatsAppBusinessAccountsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLinkedWhatsAppBusinessAccountsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLinkedWhatsAppBusinessAccounts as schema.OperationSchema, input, options) as async.Operation<types.ListLinkedWhatsAppBusinessAccountsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listWhatsAppMessageTemplates(input: types.ListWhatsAppMessageTemplatesInput, options: any): async.Operation<types.ListWhatsAppMessageTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWhatsAppMessageTemplates, input, options) as async.Operation<types.ListWhatsAppMessageTemplatesOutput>
+function C:listWhatsAppMessageTemplates(input: types.ListWhatsAppMessageTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListWhatsAppMessageTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWhatsAppMessageTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListWhatsAppMessageTemplatesOutput>
 end
 
-function C:listWhatsAppTemplateLibrary(input: types.ListWhatsAppTemplateLibraryInput, options: any): async.Operation<types.ListWhatsAppTemplateLibraryOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWhatsAppTemplateLibrary, input, options) as async.Operation<types.ListWhatsAppTemplateLibraryOutput>
+function C:listWhatsAppTemplateLibrary(input: types.ListWhatsAppTemplateLibraryInput, options?: base_client.InvokeOptions): async.Operation<types.ListWhatsAppTemplateLibraryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWhatsAppTemplateLibrary as schema.OperationSchema, input, options) as async.Operation<types.ListWhatsAppTemplateLibraryOutput>
 end
 
-function C:postWhatsAppMessageMedia(input: types.PostWhatsAppMessageMediaInput, options: any): async.Operation<types.PostWhatsAppMessageMediaOutput>
-    return self:invokeOperation(schemas.Service, schemas.PostWhatsAppMessageMedia, input, options) as async.Operation<types.PostWhatsAppMessageMediaOutput>
+function C:postWhatsAppMessageMedia(input: types.PostWhatsAppMessageMediaInput, options?: base_client.InvokeOptions): async.Operation<types.PostWhatsAppMessageMediaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PostWhatsAppMessageMedia as schema.OperationSchema, input, options) as async.Operation<types.PostWhatsAppMessageMediaOutput>
 end
 
-function C:putWhatsAppBusinessAccountEventDestinations(input: types.PutWhatsAppBusinessAccountEventDestinationsInput, options: any): async.Operation<types.PutWhatsAppBusinessAccountEventDestinationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutWhatsAppBusinessAccountEventDestinations, input, options) as async.Operation<types.PutWhatsAppBusinessAccountEventDestinationsOutput>
+function C:putWhatsAppBusinessAccountEventDestinations(input: types.PutWhatsAppBusinessAccountEventDestinationsInput, options?: base_client.InvokeOptions): async.Operation<types.PutWhatsAppBusinessAccountEventDestinationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutWhatsAppBusinessAccountEventDestinations as schema.OperationSchema, input, options) as async.Operation<types.PutWhatsAppBusinessAccountEventDestinationsOutput>
 end
 
-function C:sendWhatsAppMessage(input: types.SendWhatsAppMessageInput, options: any): async.Operation<types.SendWhatsAppMessageOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendWhatsAppMessage, input, options) as async.Operation<types.SendWhatsAppMessageOutput>
+function C:sendWhatsAppMessage(input: types.SendWhatsAppMessageInput, options?: base_client.InvokeOptions): async.Operation<types.SendWhatsAppMessageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendWhatsAppMessage as schema.OperationSchema, input, options) as async.Operation<types.SendWhatsAppMessageOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateWhatsAppMessageTemplate(input: types.UpdateWhatsAppMessageTemplateInput, options: any): async.Operation<types.UpdateWhatsAppMessageTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateWhatsAppMessageTemplate, input, options) as async.Operation<types.UpdateWhatsAppMessageTemplateOutput>
+function C:updateWhatsAppMessageTemplate(input: types.UpdateWhatsAppMessageTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWhatsAppMessageTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWhatsAppMessageTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateWhatsAppMessageTemplateOutput>
 end
 
 return M

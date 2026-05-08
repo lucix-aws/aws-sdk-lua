@@ -8,118 +8,121 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("ssoadmin.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("ssoadmin.schemas")
 local traits = require("smithy.traits")
 local types = require("ssoadmin.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    addRegion: function(Client, types.AddRegionInput, any): async.Operation<types.AddRegionOutput>
-    attachCustomerManagedPolicyReferenceToPermissionSet: function(Client, types.AttachCustomerManagedPolicyReferenceToPermissionSetInput, any): async.Operation<types.AttachCustomerManagedPolicyReferenceToPermissionSetOutput>
-    attachManagedPolicyToPermissionSet: function(Client, types.AttachManagedPolicyToPermissionSetInput, any): async.Operation<types.AttachManagedPolicyToPermissionSetOutput>
-    createAccountAssignment: function(Client, types.CreateAccountAssignmentInput, any): async.Operation<types.CreateAccountAssignmentOutput>
-    createApplication: function(Client, types.CreateApplicationInput, any): async.Operation<types.CreateApplicationOutput>
-    createApplicationAssignment: function(Client, types.CreateApplicationAssignmentInput, any): async.Operation<types.CreateApplicationAssignmentOutput>
-    createInstance: function(Client, types.CreateInstanceInput, any): async.Operation<types.CreateInstanceOutput>
-    createInstanceAccessControlAttributeConfiguration: function(Client, types.CreateInstanceAccessControlAttributeConfigurationInput, any): async.Operation<types.CreateInstanceAccessControlAttributeConfigurationOutput>
-    createPermissionSet: function(Client, types.CreatePermissionSetInput, any): async.Operation<types.CreatePermissionSetOutput>
-    createTrustedTokenIssuer: function(Client, types.CreateTrustedTokenIssuerInput, any): async.Operation<types.CreateTrustedTokenIssuerOutput>
-    deleteAccountAssignment: function(Client, types.DeleteAccountAssignmentInput, any): async.Operation<types.DeleteAccountAssignmentOutput>
-    deleteApplication: function(Client, types.DeleteApplicationInput, any): async.Operation<types.DeleteApplicationOutput>
-    deleteApplicationAccessScope: function(Client, types.DeleteApplicationAccessScopeInput, any): async.Operation<types.DeleteApplicationAccessScopeOutput>
-    deleteApplicationAssignment: function(Client, types.DeleteApplicationAssignmentInput, any): async.Operation<types.DeleteApplicationAssignmentOutput>
-    deleteApplicationAuthenticationMethod: function(Client, types.DeleteApplicationAuthenticationMethodInput, any): async.Operation<types.DeleteApplicationAuthenticationMethodOutput>
-    deleteApplicationGrant: function(Client, types.DeleteApplicationGrantInput, any): async.Operation<types.DeleteApplicationGrantOutput>
-    deleteInlinePolicyFromPermissionSet: function(Client, types.DeleteInlinePolicyFromPermissionSetInput, any): async.Operation<types.DeleteInlinePolicyFromPermissionSetOutput>
-    deleteInstance: function(Client, types.DeleteInstanceInput, any): async.Operation<types.DeleteInstanceOutput>
-    deleteInstanceAccessControlAttributeConfiguration: function(Client, types.DeleteInstanceAccessControlAttributeConfigurationInput, any): async.Operation<types.DeleteInstanceAccessControlAttributeConfigurationOutput>
-    deletePermissionsBoundaryFromPermissionSet: function(Client, types.DeletePermissionsBoundaryFromPermissionSetInput, any): async.Operation<types.DeletePermissionsBoundaryFromPermissionSetOutput>
-    deletePermissionSet: function(Client, types.DeletePermissionSetInput, any): async.Operation<types.DeletePermissionSetOutput>
-    deleteTrustedTokenIssuer: function(Client, types.DeleteTrustedTokenIssuerInput, any): async.Operation<types.DeleteTrustedTokenIssuerOutput>
-    describeAccountAssignmentCreationStatus: function(Client, types.DescribeAccountAssignmentCreationStatusInput, any): async.Operation<types.DescribeAccountAssignmentCreationStatusOutput>
-    describeAccountAssignmentDeletionStatus: function(Client, types.DescribeAccountAssignmentDeletionStatusInput, any): async.Operation<types.DescribeAccountAssignmentDeletionStatusOutput>
-    describeApplication: function(Client, types.DescribeApplicationInput, any): async.Operation<types.DescribeApplicationOutput>
-    describeApplicationAssignment: function(Client, types.DescribeApplicationAssignmentInput, any): async.Operation<types.DescribeApplicationAssignmentOutput>
-    describeApplicationProvider: function(Client, types.DescribeApplicationProviderInput, any): async.Operation<types.DescribeApplicationProviderOutput>
-    describeInstance: function(Client, types.DescribeInstanceInput, any): async.Operation<types.DescribeInstanceOutput>
-    describeInstanceAccessControlAttributeConfiguration: function(Client, types.DescribeInstanceAccessControlAttributeConfigurationInput, any): async.Operation<types.DescribeInstanceAccessControlAttributeConfigurationOutput>
-    describePermissionSet: function(Client, types.DescribePermissionSetInput, any): async.Operation<types.DescribePermissionSetOutput>
-    describePermissionSetProvisioningStatus: function(Client, types.DescribePermissionSetProvisioningStatusInput, any): async.Operation<types.DescribePermissionSetProvisioningStatusOutput>
-    describeRegion: function(Client, types.DescribeRegionInput, any): async.Operation<types.DescribeRegionOutput>
-    describeTrustedTokenIssuer: function(Client, types.DescribeTrustedTokenIssuerInput, any): async.Operation<types.DescribeTrustedTokenIssuerOutput>
-    detachCustomerManagedPolicyReferenceFromPermissionSet: function(Client, types.DetachCustomerManagedPolicyReferenceFromPermissionSetInput, any): async.Operation<types.DetachCustomerManagedPolicyReferenceFromPermissionSetOutput>
-    detachManagedPolicyFromPermissionSet: function(Client, types.DetachManagedPolicyFromPermissionSetInput, any): async.Operation<types.DetachManagedPolicyFromPermissionSetOutput>
-    getApplicationAccessScope: function(Client, types.GetApplicationAccessScopeInput, any): async.Operation<types.GetApplicationAccessScopeOutput>
-    getApplicationAssignmentConfiguration: function(Client, types.GetApplicationAssignmentConfigurationInput, any): async.Operation<types.GetApplicationAssignmentConfigurationOutput>
-    getApplicationAuthenticationMethod: function(Client, types.GetApplicationAuthenticationMethodInput, any): async.Operation<types.GetApplicationAuthenticationMethodOutput>
-    getApplicationGrant: function(Client, types.GetApplicationGrantInput, any): async.Operation<types.GetApplicationGrantOutput>
-    getApplicationSessionConfiguration: function(Client, types.GetApplicationSessionConfigurationInput, any): async.Operation<types.GetApplicationSessionConfigurationOutput>
-    getInlinePolicyForPermissionSet: function(Client, types.GetInlinePolicyForPermissionSetInput, any): async.Operation<types.GetInlinePolicyForPermissionSetOutput>
-    getPermissionsBoundaryForPermissionSet: function(Client, types.GetPermissionsBoundaryForPermissionSetInput, any): async.Operation<types.GetPermissionsBoundaryForPermissionSetOutput>
-    listAccountAssignmentCreationStatus: function(Client, types.ListAccountAssignmentCreationStatusInput, any): async.Operation<types.ListAccountAssignmentCreationStatusOutput>
-    listAccountAssignmentDeletionStatus: function(Client, types.ListAccountAssignmentDeletionStatusInput, any): async.Operation<types.ListAccountAssignmentDeletionStatusOutput>
-    listAccountAssignments: function(Client, types.ListAccountAssignmentsInput, any): async.Operation<types.ListAccountAssignmentsOutput>
-    listAccountAssignmentsForPrincipal: function(Client, types.ListAccountAssignmentsForPrincipalInput, any): async.Operation<types.ListAccountAssignmentsForPrincipalOutput>
-    listAccountsForProvisionedPermissionSet: function(Client, types.ListAccountsForProvisionedPermissionSetInput, any): async.Operation<types.ListAccountsForProvisionedPermissionSetOutput>
-    listApplicationAccessScopes: function(Client, types.ListApplicationAccessScopesInput, any): async.Operation<types.ListApplicationAccessScopesOutput>
-    listApplicationAssignments: function(Client, types.ListApplicationAssignmentsInput, any): async.Operation<types.ListApplicationAssignmentsOutput>
-    listApplicationAssignmentsForPrincipal: function(Client, types.ListApplicationAssignmentsForPrincipalInput, any): async.Operation<types.ListApplicationAssignmentsForPrincipalOutput>
-    listApplicationAuthenticationMethods: function(Client, types.ListApplicationAuthenticationMethodsInput, any): async.Operation<types.ListApplicationAuthenticationMethodsOutput>
-    listApplicationGrants: function(Client, types.ListApplicationGrantsInput, any): async.Operation<types.ListApplicationGrantsOutput>
-    listApplicationProviders: function(Client, types.ListApplicationProvidersInput, any): async.Operation<types.ListApplicationProvidersOutput>
-    listApplications: function(Client, types.ListApplicationsInput, any): async.Operation<types.ListApplicationsOutput>
-    listCustomerManagedPolicyReferencesInPermissionSet: function(Client, types.ListCustomerManagedPolicyReferencesInPermissionSetInput, any): async.Operation<types.ListCustomerManagedPolicyReferencesInPermissionSetOutput>
-    listInstances: function(Client, types.ListInstancesInput, any): async.Operation<types.ListInstancesOutput>
-    listManagedPoliciesInPermissionSet: function(Client, types.ListManagedPoliciesInPermissionSetInput, any): async.Operation<types.ListManagedPoliciesInPermissionSetOutput>
-    listPermissionSetProvisioningStatus: function(Client, types.ListPermissionSetProvisioningStatusInput, any): async.Operation<types.ListPermissionSetProvisioningStatusOutput>
-    listPermissionSets: function(Client, types.ListPermissionSetsInput, any): async.Operation<types.ListPermissionSetsOutput>
-    listPermissionSetsProvisionedToAccount: function(Client, types.ListPermissionSetsProvisionedToAccountInput, any): async.Operation<types.ListPermissionSetsProvisionedToAccountOutput>
-    listRegions: function(Client, types.ListRegionsInput, any): async.Operation<types.ListRegionsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTrustedTokenIssuers: function(Client, types.ListTrustedTokenIssuersInput, any): async.Operation<types.ListTrustedTokenIssuersOutput>
-    provisionPermissionSet: function(Client, types.ProvisionPermissionSetInput, any): async.Operation<types.ProvisionPermissionSetOutput>
-    putApplicationAccessScope: function(Client, types.PutApplicationAccessScopeInput, any): async.Operation<types.PutApplicationAccessScopeOutput>
-    putApplicationAssignmentConfiguration: function(Client, types.PutApplicationAssignmentConfigurationInput, any): async.Operation<types.PutApplicationAssignmentConfigurationOutput>
-    putApplicationAuthenticationMethod: function(Client, types.PutApplicationAuthenticationMethodInput, any): async.Operation<types.PutApplicationAuthenticationMethodOutput>
-    putApplicationGrant: function(Client, types.PutApplicationGrantInput, any): async.Operation<types.PutApplicationGrantOutput>
-    putApplicationSessionConfiguration: function(Client, types.PutApplicationSessionConfigurationInput, any): async.Operation<types.PutApplicationSessionConfigurationOutput>
-    putInlinePolicyToPermissionSet: function(Client, types.PutInlinePolicyToPermissionSetInput, any): async.Operation<types.PutInlinePolicyToPermissionSetOutput>
-    putPermissionsBoundaryToPermissionSet: function(Client, types.PutPermissionsBoundaryToPermissionSetInput, any): async.Operation<types.PutPermissionsBoundaryToPermissionSetOutput>
-    removeRegion: function(Client, types.RemoveRegionInput, any): async.Operation<types.RemoveRegionOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateApplication: function(Client, types.UpdateApplicationInput, any): async.Operation<types.UpdateApplicationOutput>
-    updateInstance: function(Client, types.UpdateInstanceInput, any): async.Operation<types.UpdateInstanceOutput>
-    updateInstanceAccessControlAttributeConfiguration: function(Client, types.UpdateInstanceAccessControlAttributeConfigurationInput, any): async.Operation<types.UpdateInstanceAccessControlAttributeConfigurationOutput>
-    updatePermissionSet: function(Client, types.UpdatePermissionSetInput, any): async.Operation<types.UpdatePermissionSetOutput>
-    updateTrustedTokenIssuer: function(Client, types.UpdateTrustedTokenIssuerInput, any): async.Operation<types.UpdateTrustedTokenIssuerOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    addRegion: function(Client, types.AddRegionInput, ? base_client.InvokeOptions): async.Operation<types.AddRegionOutput>
+    attachCustomerManagedPolicyReferenceToPermissionSet: function(Client, types.AttachCustomerManagedPolicyReferenceToPermissionSetInput, ? base_client.InvokeOptions): async.Operation<types.AttachCustomerManagedPolicyReferenceToPermissionSetOutput>
+    attachManagedPolicyToPermissionSet: function(Client, types.AttachManagedPolicyToPermissionSetInput, ? base_client.InvokeOptions): async.Operation<types.AttachManagedPolicyToPermissionSetOutput>
+    createAccountAssignment: function(Client, types.CreateAccountAssignmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateAccountAssignmentOutput>
+    createApplication: function(Client, types.CreateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    createApplicationAssignment: function(Client, types.CreateApplicationAssignmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationAssignmentOutput>
+    createInstance: function(Client, types.CreateInstanceInput, ? base_client.InvokeOptions): async.Operation<types.CreateInstanceOutput>
+    createInstanceAccessControlAttributeConfiguration: function(Client, types.CreateInstanceAccessControlAttributeConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateInstanceAccessControlAttributeConfigurationOutput>
+    createPermissionSet: function(Client, types.CreatePermissionSetInput, ? base_client.InvokeOptions): async.Operation<types.CreatePermissionSetOutput>
+    createTrustedTokenIssuer: function(Client, types.CreateTrustedTokenIssuerInput, ? base_client.InvokeOptions): async.Operation<types.CreateTrustedTokenIssuerOutput>
+    deleteAccountAssignment: function(Client, types.DeleteAccountAssignmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccountAssignmentOutput>
+    deleteApplication: function(Client, types.DeleteApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
+    deleteApplicationAccessScope: function(Client, types.DeleteApplicationAccessScopeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationAccessScopeOutput>
+    deleteApplicationAssignment: function(Client, types.DeleteApplicationAssignmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationAssignmentOutput>
+    deleteApplicationAuthenticationMethod: function(Client, types.DeleteApplicationAuthenticationMethodInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationAuthenticationMethodOutput>
+    deleteApplicationGrant: function(Client, types.DeleteApplicationGrantInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationGrantOutput>
+    deleteInlinePolicyFromPermissionSet: function(Client, types.DeleteInlinePolicyFromPermissionSetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInlinePolicyFromPermissionSetOutput>
+    deleteInstance: function(Client, types.DeleteInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInstanceOutput>
+    deleteInstanceAccessControlAttributeConfiguration: function(Client, types.DeleteInstanceAccessControlAttributeConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInstanceAccessControlAttributeConfigurationOutput>
+    deletePermissionsBoundaryFromPermissionSet: function(Client, types.DeletePermissionsBoundaryFromPermissionSetInput, ? base_client.InvokeOptions): async.Operation<types.DeletePermissionsBoundaryFromPermissionSetOutput>
+    deletePermissionSet: function(Client, types.DeletePermissionSetInput, ? base_client.InvokeOptions): async.Operation<types.DeletePermissionSetOutput>
+    deleteTrustedTokenIssuer: function(Client, types.DeleteTrustedTokenIssuerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTrustedTokenIssuerOutput>
+    describeAccountAssignmentCreationStatus: function(Client, types.DescribeAccountAssignmentCreationStatusInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAccountAssignmentCreationStatusOutput>
+    describeAccountAssignmentDeletionStatus: function(Client, types.DescribeAccountAssignmentDeletionStatusInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAccountAssignmentDeletionStatusOutput>
+    describeApplication: function(Client, types.DescribeApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeApplicationOutput>
+    describeApplicationAssignment: function(Client, types.DescribeApplicationAssignmentInput, ? base_client.InvokeOptions): async.Operation<types.DescribeApplicationAssignmentOutput>
+    describeApplicationProvider: function(Client, types.DescribeApplicationProviderInput, ? base_client.InvokeOptions): async.Operation<types.DescribeApplicationProviderOutput>
+    describeInstance: function(Client, types.DescribeInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstanceOutput>
+    describeInstanceAccessControlAttributeConfiguration: function(Client, types.DescribeInstanceAccessControlAttributeConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstanceAccessControlAttributeConfigurationOutput>
+    describePermissionSet: function(Client, types.DescribePermissionSetInput, ? base_client.InvokeOptions): async.Operation<types.DescribePermissionSetOutput>
+    describePermissionSetProvisioningStatus: function(Client, types.DescribePermissionSetProvisioningStatusInput, ? base_client.InvokeOptions): async.Operation<types.DescribePermissionSetProvisioningStatusOutput>
+    describeRegion: function(Client, types.DescribeRegionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRegionOutput>
+    describeTrustedTokenIssuer: function(Client, types.DescribeTrustedTokenIssuerInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTrustedTokenIssuerOutput>
+    detachCustomerManagedPolicyReferenceFromPermissionSet: function(Client, types.DetachCustomerManagedPolicyReferenceFromPermissionSetInput, ? base_client.InvokeOptions): async.Operation<types.DetachCustomerManagedPolicyReferenceFromPermissionSetOutput>
+    detachManagedPolicyFromPermissionSet: function(Client, types.DetachManagedPolicyFromPermissionSetInput, ? base_client.InvokeOptions): async.Operation<types.DetachManagedPolicyFromPermissionSetOutput>
+    getApplicationAccessScope: function(Client, types.GetApplicationAccessScopeInput, ? base_client.InvokeOptions): async.Operation<types.GetApplicationAccessScopeOutput>
+    getApplicationAssignmentConfiguration: function(Client, types.GetApplicationAssignmentConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetApplicationAssignmentConfigurationOutput>
+    getApplicationAuthenticationMethod: function(Client, types.GetApplicationAuthenticationMethodInput, ? base_client.InvokeOptions): async.Operation<types.GetApplicationAuthenticationMethodOutput>
+    getApplicationGrant: function(Client, types.GetApplicationGrantInput, ? base_client.InvokeOptions): async.Operation<types.GetApplicationGrantOutput>
+    getApplicationSessionConfiguration: function(Client, types.GetApplicationSessionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetApplicationSessionConfigurationOutput>
+    getInlinePolicyForPermissionSet: function(Client, types.GetInlinePolicyForPermissionSetInput, ? base_client.InvokeOptions): async.Operation<types.GetInlinePolicyForPermissionSetOutput>
+    getPermissionsBoundaryForPermissionSet: function(Client, types.GetPermissionsBoundaryForPermissionSetInput, ? base_client.InvokeOptions): async.Operation<types.GetPermissionsBoundaryForPermissionSetOutput>
+    listAccountAssignmentCreationStatus: function(Client, types.ListAccountAssignmentCreationStatusInput, ? base_client.InvokeOptions): async.Operation<types.ListAccountAssignmentCreationStatusOutput>
+    listAccountAssignmentDeletionStatus: function(Client, types.ListAccountAssignmentDeletionStatusInput, ? base_client.InvokeOptions): async.Operation<types.ListAccountAssignmentDeletionStatusOutput>
+    listAccountAssignments: function(Client, types.ListAccountAssignmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListAccountAssignmentsOutput>
+    listAccountAssignmentsForPrincipal: function(Client, types.ListAccountAssignmentsForPrincipalInput, ? base_client.InvokeOptions): async.Operation<types.ListAccountAssignmentsForPrincipalOutput>
+    listAccountsForProvisionedPermissionSet: function(Client, types.ListAccountsForProvisionedPermissionSetInput, ? base_client.InvokeOptions): async.Operation<types.ListAccountsForProvisionedPermissionSetOutput>
+    listApplicationAccessScopes: function(Client, types.ListApplicationAccessScopesInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationAccessScopesOutput>
+    listApplicationAssignments: function(Client, types.ListApplicationAssignmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationAssignmentsOutput>
+    listApplicationAssignmentsForPrincipal: function(Client, types.ListApplicationAssignmentsForPrincipalInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationAssignmentsForPrincipalOutput>
+    listApplicationAuthenticationMethods: function(Client, types.ListApplicationAuthenticationMethodsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationAuthenticationMethodsOutput>
+    listApplicationGrants: function(Client, types.ListApplicationGrantsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationGrantsOutput>
+    listApplicationProviders: function(Client, types.ListApplicationProvidersInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationProvidersOutput>
+    listApplications: function(Client, types.ListApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    listCustomerManagedPolicyReferencesInPermissionSet: function(Client, types.ListCustomerManagedPolicyReferencesInPermissionSetInput, ? base_client.InvokeOptions): async.Operation<types.ListCustomerManagedPolicyReferencesInPermissionSetOutput>
+    listInstances: function(Client, types.ListInstancesInput, ? base_client.InvokeOptions): async.Operation<types.ListInstancesOutput>
+    listManagedPoliciesInPermissionSet: function(Client, types.ListManagedPoliciesInPermissionSetInput, ? base_client.InvokeOptions): async.Operation<types.ListManagedPoliciesInPermissionSetOutput>
+    listPermissionSetProvisioningStatus: function(Client, types.ListPermissionSetProvisioningStatusInput, ? base_client.InvokeOptions): async.Operation<types.ListPermissionSetProvisioningStatusOutput>
+    listPermissionSets: function(Client, types.ListPermissionSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListPermissionSetsOutput>
+    listPermissionSetsProvisionedToAccount: function(Client, types.ListPermissionSetsProvisionedToAccountInput, ? base_client.InvokeOptions): async.Operation<types.ListPermissionSetsProvisionedToAccountOutput>
+    listRegions: function(Client, types.ListRegionsInput, ? base_client.InvokeOptions): async.Operation<types.ListRegionsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTrustedTokenIssuers: function(Client, types.ListTrustedTokenIssuersInput, ? base_client.InvokeOptions): async.Operation<types.ListTrustedTokenIssuersOutput>
+    provisionPermissionSet: function(Client, types.ProvisionPermissionSetInput, ? base_client.InvokeOptions): async.Operation<types.ProvisionPermissionSetOutput>
+    putApplicationAccessScope: function(Client, types.PutApplicationAccessScopeInput, ? base_client.InvokeOptions): async.Operation<types.PutApplicationAccessScopeOutput>
+    putApplicationAssignmentConfiguration: function(Client, types.PutApplicationAssignmentConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutApplicationAssignmentConfigurationOutput>
+    putApplicationAuthenticationMethod: function(Client, types.PutApplicationAuthenticationMethodInput, ? base_client.InvokeOptions): async.Operation<types.PutApplicationAuthenticationMethodOutput>
+    putApplicationGrant: function(Client, types.PutApplicationGrantInput, ? base_client.InvokeOptions): async.Operation<types.PutApplicationGrantOutput>
+    putApplicationSessionConfiguration: function(Client, types.PutApplicationSessionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutApplicationSessionConfigurationOutput>
+    putInlinePolicyToPermissionSet: function(Client, types.PutInlinePolicyToPermissionSetInput, ? base_client.InvokeOptions): async.Operation<types.PutInlinePolicyToPermissionSetOutput>
+    putPermissionsBoundaryToPermissionSet: function(Client, types.PutPermissionsBoundaryToPermissionSetInput, ? base_client.InvokeOptions): async.Operation<types.PutPermissionsBoundaryToPermissionSetOutput>
+    removeRegion: function(Client, types.RemoveRegionInput, ? base_client.InvokeOptions): async.Operation<types.RemoveRegionOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateApplication: function(Client, types.UpdateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
+    updateInstance: function(Client, types.UpdateInstanceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateInstanceOutput>
+    updateInstanceAccessControlAttributeConfiguration: function(Client, types.UpdateInstanceAccessControlAttributeConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateInstanceAccessControlAttributeConfigurationOutput>
+    updatePermissionSet: function(Client, types.UpdatePermissionSetInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePermissionSetOutput>
+    updateTrustedTokenIssuer: function(Client, types.UpdateTrustedTokenIssuerInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTrustedTokenIssuerOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "SWBExternalService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "sso", signing_region = c.region } }
                 else
@@ -138,320 +141,320 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:addRegion(input: types.AddRegionInput, options: any): async.Operation<types.AddRegionOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddRegion, input, options) as async.Operation<types.AddRegionOutput>
+function C:addRegion(input: types.AddRegionInput, options?: base_client.InvokeOptions): async.Operation<types.AddRegionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddRegion as schema.OperationSchema, input, options) as async.Operation<types.AddRegionOutput>
 end
 
-function C:attachCustomerManagedPolicyReferenceToPermissionSet(input: types.AttachCustomerManagedPolicyReferenceToPermissionSetInput, options: any): async.Operation<types.AttachCustomerManagedPolicyReferenceToPermissionSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachCustomerManagedPolicyReferenceToPermissionSet, input, options) as async.Operation<types.AttachCustomerManagedPolicyReferenceToPermissionSetOutput>
+function C:attachCustomerManagedPolicyReferenceToPermissionSet(input: types.AttachCustomerManagedPolicyReferenceToPermissionSetInput, options?: base_client.InvokeOptions): async.Operation<types.AttachCustomerManagedPolicyReferenceToPermissionSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachCustomerManagedPolicyReferenceToPermissionSet as schema.OperationSchema, input, options) as async.Operation<types.AttachCustomerManagedPolicyReferenceToPermissionSetOutput>
 end
 
-function C:attachManagedPolicyToPermissionSet(input: types.AttachManagedPolicyToPermissionSetInput, options: any): async.Operation<types.AttachManagedPolicyToPermissionSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachManagedPolicyToPermissionSet, input, options) as async.Operation<types.AttachManagedPolicyToPermissionSetOutput>
+function C:attachManagedPolicyToPermissionSet(input: types.AttachManagedPolicyToPermissionSetInput, options?: base_client.InvokeOptions): async.Operation<types.AttachManagedPolicyToPermissionSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachManagedPolicyToPermissionSet as schema.OperationSchema, input, options) as async.Operation<types.AttachManagedPolicyToPermissionSetOutput>
 end
 
-function C:createAccountAssignment(input: types.CreateAccountAssignmentInput, options: any): async.Operation<types.CreateAccountAssignmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAccountAssignment, input, options) as async.Operation<types.CreateAccountAssignmentOutput>
+function C:createAccountAssignment(input: types.CreateAccountAssignmentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAccountAssignmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAccountAssignment as schema.OperationSchema, input, options) as async.Operation<types.CreateAccountAssignmentOutput>
 end
 
-function C:createApplication(input: types.CreateApplicationInput, options: any): async.Operation<types.CreateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateApplication, input, options) as async.Operation<types.CreateApplicationOutput>
+function C:createApplication(input: types.CreateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApplication as schema.OperationSchema, input, options) as async.Operation<types.CreateApplicationOutput>
 end
 
-function C:createApplicationAssignment(input: types.CreateApplicationAssignmentInput, options: any): async.Operation<types.CreateApplicationAssignmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateApplicationAssignment, input, options) as async.Operation<types.CreateApplicationAssignmentOutput>
+function C:createApplicationAssignment(input: types.CreateApplicationAssignmentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApplicationAssignmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApplicationAssignment as schema.OperationSchema, input, options) as async.Operation<types.CreateApplicationAssignmentOutput>
 end
 
-function C:createInstance(input: types.CreateInstanceInput, options: any): async.Operation<types.CreateInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateInstance, input, options) as async.Operation<types.CreateInstanceOutput>
+function C:createInstance(input: types.CreateInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInstance as schema.OperationSchema, input, options) as async.Operation<types.CreateInstanceOutput>
 end
 
-function C:createInstanceAccessControlAttributeConfiguration(input: types.CreateInstanceAccessControlAttributeConfigurationInput, options: any): async.Operation<types.CreateInstanceAccessControlAttributeConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateInstanceAccessControlAttributeConfiguration, input, options) as async.Operation<types.CreateInstanceAccessControlAttributeConfigurationOutput>
+function C:createInstanceAccessControlAttributeConfiguration(input: types.CreateInstanceAccessControlAttributeConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInstanceAccessControlAttributeConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInstanceAccessControlAttributeConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateInstanceAccessControlAttributeConfigurationOutput>
 end
 
-function C:createPermissionSet(input: types.CreatePermissionSetInput, options: any): async.Operation<types.CreatePermissionSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePermissionSet, input, options) as async.Operation<types.CreatePermissionSetOutput>
+function C:createPermissionSet(input: types.CreatePermissionSetInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePermissionSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePermissionSet as schema.OperationSchema, input, options) as async.Operation<types.CreatePermissionSetOutput>
 end
 
-function C:createTrustedTokenIssuer(input: types.CreateTrustedTokenIssuerInput, options: any): async.Operation<types.CreateTrustedTokenIssuerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTrustedTokenIssuer, input, options) as async.Operation<types.CreateTrustedTokenIssuerOutput>
+function C:createTrustedTokenIssuer(input: types.CreateTrustedTokenIssuerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTrustedTokenIssuerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTrustedTokenIssuer as schema.OperationSchema, input, options) as async.Operation<types.CreateTrustedTokenIssuerOutput>
 end
 
-function C:deleteAccountAssignment(input: types.DeleteAccountAssignmentInput, options: any): async.Operation<types.DeleteAccountAssignmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAccountAssignment, input, options) as async.Operation<types.DeleteAccountAssignmentOutput>
+function C:deleteAccountAssignment(input: types.DeleteAccountAssignmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAccountAssignmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAccountAssignment as schema.OperationSchema, input, options) as async.Operation<types.DeleteAccountAssignmentOutput>
 end
 
-function C:deleteApplication(input: types.DeleteApplicationInput, options: any): async.Operation<types.DeleteApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApplication, input, options) as async.Operation<types.DeleteApplicationOutput>
+function C:deleteApplication(input: types.DeleteApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplication as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationOutput>
 end
 
-function C:deleteApplicationAccessScope(input: types.DeleteApplicationAccessScopeInput, options: any): async.Operation<types.DeleteApplicationAccessScopeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApplicationAccessScope, input, options) as async.Operation<types.DeleteApplicationAccessScopeOutput>
+function C:deleteApplicationAccessScope(input: types.DeleteApplicationAccessScopeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationAccessScopeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplicationAccessScope as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationAccessScopeOutput>
 end
 
-function C:deleteApplicationAssignment(input: types.DeleteApplicationAssignmentInput, options: any): async.Operation<types.DeleteApplicationAssignmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApplicationAssignment, input, options) as async.Operation<types.DeleteApplicationAssignmentOutput>
+function C:deleteApplicationAssignment(input: types.DeleteApplicationAssignmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationAssignmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplicationAssignment as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationAssignmentOutput>
 end
 
-function C:deleteApplicationAuthenticationMethod(input: types.DeleteApplicationAuthenticationMethodInput, options: any): async.Operation<types.DeleteApplicationAuthenticationMethodOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApplicationAuthenticationMethod, input, options) as async.Operation<types.DeleteApplicationAuthenticationMethodOutput>
+function C:deleteApplicationAuthenticationMethod(input: types.DeleteApplicationAuthenticationMethodInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationAuthenticationMethodOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplicationAuthenticationMethod as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationAuthenticationMethodOutput>
 end
 
-function C:deleteApplicationGrant(input: types.DeleteApplicationGrantInput, options: any): async.Operation<types.DeleteApplicationGrantOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApplicationGrant, input, options) as async.Operation<types.DeleteApplicationGrantOutput>
+function C:deleteApplicationGrant(input: types.DeleteApplicationGrantInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationGrantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplicationGrant as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationGrantOutput>
 end
 
-function C:deleteInlinePolicyFromPermissionSet(input: types.DeleteInlinePolicyFromPermissionSetInput, options: any): async.Operation<types.DeleteInlinePolicyFromPermissionSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteInlinePolicyFromPermissionSet, input, options) as async.Operation<types.DeleteInlinePolicyFromPermissionSetOutput>
+function C:deleteInlinePolicyFromPermissionSet(input: types.DeleteInlinePolicyFromPermissionSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteInlinePolicyFromPermissionSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInlinePolicyFromPermissionSet as schema.OperationSchema, input, options) as async.Operation<types.DeleteInlinePolicyFromPermissionSetOutput>
 end
 
-function C:deleteInstance(input: types.DeleteInstanceInput, options: any): async.Operation<types.DeleteInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteInstance, input, options) as async.Operation<types.DeleteInstanceOutput>
+function C:deleteInstance(input: types.DeleteInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInstance as schema.OperationSchema, input, options) as async.Operation<types.DeleteInstanceOutput>
 end
 
-function C:deleteInstanceAccessControlAttributeConfiguration(input: types.DeleteInstanceAccessControlAttributeConfigurationInput, options: any): async.Operation<types.DeleteInstanceAccessControlAttributeConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteInstanceAccessControlAttributeConfiguration, input, options) as async.Operation<types.DeleteInstanceAccessControlAttributeConfigurationOutput>
+function C:deleteInstanceAccessControlAttributeConfiguration(input: types.DeleteInstanceAccessControlAttributeConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteInstanceAccessControlAttributeConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInstanceAccessControlAttributeConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteInstanceAccessControlAttributeConfigurationOutput>
 end
 
-function C:deletePermissionsBoundaryFromPermissionSet(input: types.DeletePermissionsBoundaryFromPermissionSetInput, options: any): async.Operation<types.DeletePermissionsBoundaryFromPermissionSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePermissionsBoundaryFromPermissionSet, input, options) as async.Operation<types.DeletePermissionsBoundaryFromPermissionSetOutput>
+function C:deletePermissionsBoundaryFromPermissionSet(input: types.DeletePermissionsBoundaryFromPermissionSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePermissionsBoundaryFromPermissionSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePermissionsBoundaryFromPermissionSet as schema.OperationSchema, input, options) as async.Operation<types.DeletePermissionsBoundaryFromPermissionSetOutput>
 end
 
-function C:deletePermissionSet(input: types.DeletePermissionSetInput, options: any): async.Operation<types.DeletePermissionSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePermissionSet, input, options) as async.Operation<types.DeletePermissionSetOutput>
+function C:deletePermissionSet(input: types.DeletePermissionSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePermissionSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePermissionSet as schema.OperationSchema, input, options) as async.Operation<types.DeletePermissionSetOutput>
 end
 
-function C:deleteTrustedTokenIssuer(input: types.DeleteTrustedTokenIssuerInput, options: any): async.Operation<types.DeleteTrustedTokenIssuerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTrustedTokenIssuer, input, options) as async.Operation<types.DeleteTrustedTokenIssuerOutput>
+function C:deleteTrustedTokenIssuer(input: types.DeleteTrustedTokenIssuerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTrustedTokenIssuerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTrustedTokenIssuer as schema.OperationSchema, input, options) as async.Operation<types.DeleteTrustedTokenIssuerOutput>
 end
 
-function C:describeAccountAssignmentCreationStatus(input: types.DescribeAccountAssignmentCreationStatusInput, options: any): async.Operation<types.DescribeAccountAssignmentCreationStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAccountAssignmentCreationStatus, input, options) as async.Operation<types.DescribeAccountAssignmentCreationStatusOutput>
+function C:describeAccountAssignmentCreationStatus(input: types.DescribeAccountAssignmentCreationStatusInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAccountAssignmentCreationStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAccountAssignmentCreationStatus as schema.OperationSchema, input, options) as async.Operation<types.DescribeAccountAssignmentCreationStatusOutput>
 end
 
-function C:describeAccountAssignmentDeletionStatus(input: types.DescribeAccountAssignmentDeletionStatusInput, options: any): async.Operation<types.DescribeAccountAssignmentDeletionStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAccountAssignmentDeletionStatus, input, options) as async.Operation<types.DescribeAccountAssignmentDeletionStatusOutput>
+function C:describeAccountAssignmentDeletionStatus(input: types.DescribeAccountAssignmentDeletionStatusInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAccountAssignmentDeletionStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAccountAssignmentDeletionStatus as schema.OperationSchema, input, options) as async.Operation<types.DescribeAccountAssignmentDeletionStatusOutput>
 end
 
-function C:describeApplication(input: types.DescribeApplicationInput, options: any): async.Operation<types.DescribeApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeApplication, input, options) as async.Operation<types.DescribeApplicationOutput>
+function C:describeApplication(input: types.DescribeApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeApplication as schema.OperationSchema, input, options) as async.Operation<types.DescribeApplicationOutput>
 end
 
-function C:describeApplicationAssignment(input: types.DescribeApplicationAssignmentInput, options: any): async.Operation<types.DescribeApplicationAssignmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeApplicationAssignment, input, options) as async.Operation<types.DescribeApplicationAssignmentOutput>
+function C:describeApplicationAssignment(input: types.DescribeApplicationAssignmentInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeApplicationAssignmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeApplicationAssignment as schema.OperationSchema, input, options) as async.Operation<types.DescribeApplicationAssignmentOutput>
 end
 
-function C:describeApplicationProvider(input: types.DescribeApplicationProviderInput, options: any): async.Operation<types.DescribeApplicationProviderOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeApplicationProvider, input, options) as async.Operation<types.DescribeApplicationProviderOutput>
+function C:describeApplicationProvider(input: types.DescribeApplicationProviderInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeApplicationProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeApplicationProvider as schema.OperationSchema, input, options) as async.Operation<types.DescribeApplicationProviderOutput>
 end
 
-function C:describeInstance(input: types.DescribeInstanceInput, options: any): async.Operation<types.DescribeInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInstance, input, options) as async.Operation<types.DescribeInstanceOutput>
+function C:describeInstance(input: types.DescribeInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInstance as schema.OperationSchema, input, options) as async.Operation<types.DescribeInstanceOutput>
 end
 
-function C:describeInstanceAccessControlAttributeConfiguration(input: types.DescribeInstanceAccessControlAttributeConfigurationInput, options: any): async.Operation<types.DescribeInstanceAccessControlAttributeConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInstanceAccessControlAttributeConfiguration, input, options) as async.Operation<types.DescribeInstanceAccessControlAttributeConfigurationOutput>
+function C:describeInstanceAccessControlAttributeConfiguration(input: types.DescribeInstanceAccessControlAttributeConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInstanceAccessControlAttributeConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInstanceAccessControlAttributeConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeInstanceAccessControlAttributeConfigurationOutput>
 end
 
-function C:describePermissionSet(input: types.DescribePermissionSetInput, options: any): async.Operation<types.DescribePermissionSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePermissionSet, input, options) as async.Operation<types.DescribePermissionSetOutput>
+function C:describePermissionSet(input: types.DescribePermissionSetInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePermissionSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePermissionSet as schema.OperationSchema, input, options) as async.Operation<types.DescribePermissionSetOutput>
 end
 
-function C:describePermissionSetProvisioningStatus(input: types.DescribePermissionSetProvisioningStatusInput, options: any): async.Operation<types.DescribePermissionSetProvisioningStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePermissionSetProvisioningStatus, input, options) as async.Operation<types.DescribePermissionSetProvisioningStatusOutput>
+function C:describePermissionSetProvisioningStatus(input: types.DescribePermissionSetProvisioningStatusInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePermissionSetProvisioningStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePermissionSetProvisioningStatus as schema.OperationSchema, input, options) as async.Operation<types.DescribePermissionSetProvisioningStatusOutput>
 end
 
-function C:describeRegion(input: types.DescribeRegionInput, options: any): async.Operation<types.DescribeRegionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRegion, input, options) as async.Operation<types.DescribeRegionOutput>
+function C:describeRegion(input: types.DescribeRegionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRegionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRegion as schema.OperationSchema, input, options) as async.Operation<types.DescribeRegionOutput>
 end
 
-function C:describeTrustedTokenIssuer(input: types.DescribeTrustedTokenIssuerInput, options: any): async.Operation<types.DescribeTrustedTokenIssuerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTrustedTokenIssuer, input, options) as async.Operation<types.DescribeTrustedTokenIssuerOutput>
+function C:describeTrustedTokenIssuer(input: types.DescribeTrustedTokenIssuerInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTrustedTokenIssuerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTrustedTokenIssuer as schema.OperationSchema, input, options) as async.Operation<types.DescribeTrustedTokenIssuerOutput>
 end
 
-function C:detachCustomerManagedPolicyReferenceFromPermissionSet(input: types.DetachCustomerManagedPolicyReferenceFromPermissionSetInput, options: any): async.Operation<types.DetachCustomerManagedPolicyReferenceFromPermissionSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetachCustomerManagedPolicyReferenceFromPermissionSet, input, options) as async.Operation<types.DetachCustomerManagedPolicyReferenceFromPermissionSetOutput>
+function C:detachCustomerManagedPolicyReferenceFromPermissionSet(input: types.DetachCustomerManagedPolicyReferenceFromPermissionSetInput, options?: base_client.InvokeOptions): async.Operation<types.DetachCustomerManagedPolicyReferenceFromPermissionSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachCustomerManagedPolicyReferenceFromPermissionSet as schema.OperationSchema, input, options) as async.Operation<types.DetachCustomerManagedPolicyReferenceFromPermissionSetOutput>
 end
 
-function C:detachManagedPolicyFromPermissionSet(input: types.DetachManagedPolicyFromPermissionSetInput, options: any): async.Operation<types.DetachManagedPolicyFromPermissionSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetachManagedPolicyFromPermissionSet, input, options) as async.Operation<types.DetachManagedPolicyFromPermissionSetOutput>
+function C:detachManagedPolicyFromPermissionSet(input: types.DetachManagedPolicyFromPermissionSetInput, options?: base_client.InvokeOptions): async.Operation<types.DetachManagedPolicyFromPermissionSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachManagedPolicyFromPermissionSet as schema.OperationSchema, input, options) as async.Operation<types.DetachManagedPolicyFromPermissionSetOutput>
 end
 
-function C:getApplicationAccessScope(input: types.GetApplicationAccessScopeInput, options: any): async.Operation<types.GetApplicationAccessScopeOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetApplicationAccessScope, input, options) as async.Operation<types.GetApplicationAccessScopeOutput>
+function C:getApplicationAccessScope(input: types.GetApplicationAccessScopeInput, options?: base_client.InvokeOptions): async.Operation<types.GetApplicationAccessScopeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetApplicationAccessScope as schema.OperationSchema, input, options) as async.Operation<types.GetApplicationAccessScopeOutput>
 end
 
-function C:getApplicationAssignmentConfiguration(input: types.GetApplicationAssignmentConfigurationInput, options: any): async.Operation<types.GetApplicationAssignmentConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetApplicationAssignmentConfiguration, input, options) as async.Operation<types.GetApplicationAssignmentConfigurationOutput>
+function C:getApplicationAssignmentConfiguration(input: types.GetApplicationAssignmentConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetApplicationAssignmentConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetApplicationAssignmentConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetApplicationAssignmentConfigurationOutput>
 end
 
-function C:getApplicationAuthenticationMethod(input: types.GetApplicationAuthenticationMethodInput, options: any): async.Operation<types.GetApplicationAuthenticationMethodOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetApplicationAuthenticationMethod, input, options) as async.Operation<types.GetApplicationAuthenticationMethodOutput>
+function C:getApplicationAuthenticationMethod(input: types.GetApplicationAuthenticationMethodInput, options?: base_client.InvokeOptions): async.Operation<types.GetApplicationAuthenticationMethodOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetApplicationAuthenticationMethod as schema.OperationSchema, input, options) as async.Operation<types.GetApplicationAuthenticationMethodOutput>
 end
 
-function C:getApplicationGrant(input: types.GetApplicationGrantInput, options: any): async.Operation<types.GetApplicationGrantOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetApplicationGrant, input, options) as async.Operation<types.GetApplicationGrantOutput>
+function C:getApplicationGrant(input: types.GetApplicationGrantInput, options?: base_client.InvokeOptions): async.Operation<types.GetApplicationGrantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetApplicationGrant as schema.OperationSchema, input, options) as async.Operation<types.GetApplicationGrantOutput>
 end
 
-function C:getApplicationSessionConfiguration(input: types.GetApplicationSessionConfigurationInput, options: any): async.Operation<types.GetApplicationSessionConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetApplicationSessionConfiguration, input, options) as async.Operation<types.GetApplicationSessionConfigurationOutput>
+function C:getApplicationSessionConfiguration(input: types.GetApplicationSessionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetApplicationSessionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetApplicationSessionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetApplicationSessionConfigurationOutput>
 end
 
-function C:getInlinePolicyForPermissionSet(input: types.GetInlinePolicyForPermissionSetInput, options: any): async.Operation<types.GetInlinePolicyForPermissionSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInlinePolicyForPermissionSet, input, options) as async.Operation<types.GetInlinePolicyForPermissionSetOutput>
+function C:getInlinePolicyForPermissionSet(input: types.GetInlinePolicyForPermissionSetInput, options?: base_client.InvokeOptions): async.Operation<types.GetInlinePolicyForPermissionSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInlinePolicyForPermissionSet as schema.OperationSchema, input, options) as async.Operation<types.GetInlinePolicyForPermissionSetOutput>
 end
 
-function C:getPermissionsBoundaryForPermissionSet(input: types.GetPermissionsBoundaryForPermissionSetInput, options: any): async.Operation<types.GetPermissionsBoundaryForPermissionSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPermissionsBoundaryForPermissionSet, input, options) as async.Operation<types.GetPermissionsBoundaryForPermissionSetOutput>
+function C:getPermissionsBoundaryForPermissionSet(input: types.GetPermissionsBoundaryForPermissionSetInput, options?: base_client.InvokeOptions): async.Operation<types.GetPermissionsBoundaryForPermissionSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPermissionsBoundaryForPermissionSet as schema.OperationSchema, input, options) as async.Operation<types.GetPermissionsBoundaryForPermissionSetOutput>
 end
 
-function C:listAccountAssignmentCreationStatus(input: types.ListAccountAssignmentCreationStatusInput, options: any): async.Operation<types.ListAccountAssignmentCreationStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccountAssignmentCreationStatus, input, options) as async.Operation<types.ListAccountAssignmentCreationStatusOutput>
+function C:listAccountAssignmentCreationStatus(input: types.ListAccountAssignmentCreationStatusInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccountAssignmentCreationStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccountAssignmentCreationStatus as schema.OperationSchema, input, options) as async.Operation<types.ListAccountAssignmentCreationStatusOutput>
 end
 
-function C:listAccountAssignmentDeletionStatus(input: types.ListAccountAssignmentDeletionStatusInput, options: any): async.Operation<types.ListAccountAssignmentDeletionStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccountAssignmentDeletionStatus, input, options) as async.Operation<types.ListAccountAssignmentDeletionStatusOutput>
+function C:listAccountAssignmentDeletionStatus(input: types.ListAccountAssignmentDeletionStatusInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccountAssignmentDeletionStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccountAssignmentDeletionStatus as schema.OperationSchema, input, options) as async.Operation<types.ListAccountAssignmentDeletionStatusOutput>
 end
 
-function C:listAccountAssignments(input: types.ListAccountAssignmentsInput, options: any): async.Operation<types.ListAccountAssignmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccountAssignments, input, options) as async.Operation<types.ListAccountAssignmentsOutput>
+function C:listAccountAssignments(input: types.ListAccountAssignmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccountAssignmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccountAssignments as schema.OperationSchema, input, options) as async.Operation<types.ListAccountAssignmentsOutput>
 end
 
-function C:listAccountAssignmentsForPrincipal(input: types.ListAccountAssignmentsForPrincipalInput, options: any): async.Operation<types.ListAccountAssignmentsForPrincipalOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccountAssignmentsForPrincipal, input, options) as async.Operation<types.ListAccountAssignmentsForPrincipalOutput>
+function C:listAccountAssignmentsForPrincipal(input: types.ListAccountAssignmentsForPrincipalInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccountAssignmentsForPrincipalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccountAssignmentsForPrincipal as schema.OperationSchema, input, options) as async.Operation<types.ListAccountAssignmentsForPrincipalOutput>
 end
 
-function C:listAccountsForProvisionedPermissionSet(input: types.ListAccountsForProvisionedPermissionSetInput, options: any): async.Operation<types.ListAccountsForProvisionedPermissionSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccountsForProvisionedPermissionSet, input, options) as async.Operation<types.ListAccountsForProvisionedPermissionSetOutput>
+function C:listAccountsForProvisionedPermissionSet(input: types.ListAccountsForProvisionedPermissionSetInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccountsForProvisionedPermissionSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccountsForProvisionedPermissionSet as schema.OperationSchema, input, options) as async.Operation<types.ListAccountsForProvisionedPermissionSetOutput>
 end
 
-function C:listApplicationAccessScopes(input: types.ListApplicationAccessScopesInput, options: any): async.Operation<types.ListApplicationAccessScopesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplicationAccessScopes, input, options) as async.Operation<types.ListApplicationAccessScopesOutput>
+function C:listApplicationAccessScopes(input: types.ListApplicationAccessScopesInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationAccessScopesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplicationAccessScopes as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationAccessScopesOutput>
 end
 
-function C:listApplicationAssignments(input: types.ListApplicationAssignmentsInput, options: any): async.Operation<types.ListApplicationAssignmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplicationAssignments, input, options) as async.Operation<types.ListApplicationAssignmentsOutput>
+function C:listApplicationAssignments(input: types.ListApplicationAssignmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationAssignmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplicationAssignments as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationAssignmentsOutput>
 end
 
-function C:listApplicationAssignmentsForPrincipal(input: types.ListApplicationAssignmentsForPrincipalInput, options: any): async.Operation<types.ListApplicationAssignmentsForPrincipalOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplicationAssignmentsForPrincipal, input, options) as async.Operation<types.ListApplicationAssignmentsForPrincipalOutput>
+function C:listApplicationAssignmentsForPrincipal(input: types.ListApplicationAssignmentsForPrincipalInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationAssignmentsForPrincipalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplicationAssignmentsForPrincipal as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationAssignmentsForPrincipalOutput>
 end
 
-function C:listApplicationAuthenticationMethods(input: types.ListApplicationAuthenticationMethodsInput, options: any): async.Operation<types.ListApplicationAuthenticationMethodsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplicationAuthenticationMethods, input, options) as async.Operation<types.ListApplicationAuthenticationMethodsOutput>
+function C:listApplicationAuthenticationMethods(input: types.ListApplicationAuthenticationMethodsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationAuthenticationMethodsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplicationAuthenticationMethods as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationAuthenticationMethodsOutput>
 end
 
-function C:listApplicationGrants(input: types.ListApplicationGrantsInput, options: any): async.Operation<types.ListApplicationGrantsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplicationGrants, input, options) as async.Operation<types.ListApplicationGrantsOutput>
+function C:listApplicationGrants(input: types.ListApplicationGrantsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationGrantsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplicationGrants as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationGrantsOutput>
 end
 
-function C:listApplicationProviders(input: types.ListApplicationProvidersInput, options: any): async.Operation<types.ListApplicationProvidersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplicationProviders, input, options) as async.Operation<types.ListApplicationProvidersOutput>
+function C:listApplicationProviders(input: types.ListApplicationProvidersInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationProvidersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplicationProviders as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationProvidersOutput>
 end
 
-function C:listApplications(input: types.ListApplicationsInput, options: any): async.Operation<types.ListApplicationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplications, input, options) as async.Operation<types.ListApplicationsOutput>
+function C:listApplications(input: types.ListApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplications as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationsOutput>
 end
 
-function C:listCustomerManagedPolicyReferencesInPermissionSet(input: types.ListCustomerManagedPolicyReferencesInPermissionSetInput, options: any): async.Operation<types.ListCustomerManagedPolicyReferencesInPermissionSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCustomerManagedPolicyReferencesInPermissionSet, input, options) as async.Operation<types.ListCustomerManagedPolicyReferencesInPermissionSetOutput>
+function C:listCustomerManagedPolicyReferencesInPermissionSet(input: types.ListCustomerManagedPolicyReferencesInPermissionSetInput, options?: base_client.InvokeOptions): async.Operation<types.ListCustomerManagedPolicyReferencesInPermissionSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCustomerManagedPolicyReferencesInPermissionSet as schema.OperationSchema, input, options) as async.Operation<types.ListCustomerManagedPolicyReferencesInPermissionSetOutput>
 end
 
-function C:listInstances(input: types.ListInstancesInput, options: any): async.Operation<types.ListInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInstances, input, options) as async.Operation<types.ListInstancesOutput>
+function C:listInstances(input: types.ListInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.ListInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInstances as schema.OperationSchema, input, options) as async.Operation<types.ListInstancesOutput>
 end
 
-function C:listManagedPoliciesInPermissionSet(input: types.ListManagedPoliciesInPermissionSetInput, options: any): async.Operation<types.ListManagedPoliciesInPermissionSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListManagedPoliciesInPermissionSet, input, options) as async.Operation<types.ListManagedPoliciesInPermissionSetOutput>
+function C:listManagedPoliciesInPermissionSet(input: types.ListManagedPoliciesInPermissionSetInput, options?: base_client.InvokeOptions): async.Operation<types.ListManagedPoliciesInPermissionSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListManagedPoliciesInPermissionSet as schema.OperationSchema, input, options) as async.Operation<types.ListManagedPoliciesInPermissionSetOutput>
 end
 
-function C:listPermissionSetProvisioningStatus(input: types.ListPermissionSetProvisioningStatusInput, options: any): async.Operation<types.ListPermissionSetProvisioningStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPermissionSetProvisioningStatus, input, options) as async.Operation<types.ListPermissionSetProvisioningStatusOutput>
+function C:listPermissionSetProvisioningStatus(input: types.ListPermissionSetProvisioningStatusInput, options?: base_client.InvokeOptions): async.Operation<types.ListPermissionSetProvisioningStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPermissionSetProvisioningStatus as schema.OperationSchema, input, options) as async.Operation<types.ListPermissionSetProvisioningStatusOutput>
 end
 
-function C:listPermissionSets(input: types.ListPermissionSetsInput, options: any): async.Operation<types.ListPermissionSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPermissionSets, input, options) as async.Operation<types.ListPermissionSetsOutput>
+function C:listPermissionSets(input: types.ListPermissionSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPermissionSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPermissionSets as schema.OperationSchema, input, options) as async.Operation<types.ListPermissionSetsOutput>
 end
 
-function C:listPermissionSetsProvisionedToAccount(input: types.ListPermissionSetsProvisionedToAccountInput, options: any): async.Operation<types.ListPermissionSetsProvisionedToAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPermissionSetsProvisionedToAccount, input, options) as async.Operation<types.ListPermissionSetsProvisionedToAccountOutput>
+function C:listPermissionSetsProvisionedToAccount(input: types.ListPermissionSetsProvisionedToAccountInput, options?: base_client.InvokeOptions): async.Operation<types.ListPermissionSetsProvisionedToAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPermissionSetsProvisionedToAccount as schema.OperationSchema, input, options) as async.Operation<types.ListPermissionSetsProvisionedToAccountOutput>
 end
 
-function C:listRegions(input: types.ListRegionsInput, options: any): async.Operation<types.ListRegionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRegions, input, options) as async.Operation<types.ListRegionsOutput>
+function C:listRegions(input: types.ListRegionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRegionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRegions as schema.OperationSchema, input, options) as async.Operation<types.ListRegionsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTrustedTokenIssuers(input: types.ListTrustedTokenIssuersInput, options: any): async.Operation<types.ListTrustedTokenIssuersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTrustedTokenIssuers, input, options) as async.Operation<types.ListTrustedTokenIssuersOutput>
+function C:listTrustedTokenIssuers(input: types.ListTrustedTokenIssuersInput, options?: base_client.InvokeOptions): async.Operation<types.ListTrustedTokenIssuersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTrustedTokenIssuers as schema.OperationSchema, input, options) as async.Operation<types.ListTrustedTokenIssuersOutput>
 end
 
-function C:provisionPermissionSet(input: types.ProvisionPermissionSetInput, options: any): async.Operation<types.ProvisionPermissionSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.ProvisionPermissionSet, input, options) as async.Operation<types.ProvisionPermissionSetOutput>
+function C:provisionPermissionSet(input: types.ProvisionPermissionSetInput, options?: base_client.InvokeOptions): async.Operation<types.ProvisionPermissionSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ProvisionPermissionSet as schema.OperationSchema, input, options) as async.Operation<types.ProvisionPermissionSetOutput>
 end
 
-function C:putApplicationAccessScope(input: types.PutApplicationAccessScopeInput, options: any): async.Operation<types.PutApplicationAccessScopeOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutApplicationAccessScope, input, options) as async.Operation<types.PutApplicationAccessScopeOutput>
+function C:putApplicationAccessScope(input: types.PutApplicationAccessScopeInput, options?: base_client.InvokeOptions): async.Operation<types.PutApplicationAccessScopeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutApplicationAccessScope as schema.OperationSchema, input, options) as async.Operation<types.PutApplicationAccessScopeOutput>
 end
 
-function C:putApplicationAssignmentConfiguration(input: types.PutApplicationAssignmentConfigurationInput, options: any): async.Operation<types.PutApplicationAssignmentConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutApplicationAssignmentConfiguration, input, options) as async.Operation<types.PutApplicationAssignmentConfigurationOutput>
+function C:putApplicationAssignmentConfiguration(input: types.PutApplicationAssignmentConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutApplicationAssignmentConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutApplicationAssignmentConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutApplicationAssignmentConfigurationOutput>
 end
 
-function C:putApplicationAuthenticationMethod(input: types.PutApplicationAuthenticationMethodInput, options: any): async.Operation<types.PutApplicationAuthenticationMethodOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutApplicationAuthenticationMethod, input, options) as async.Operation<types.PutApplicationAuthenticationMethodOutput>
+function C:putApplicationAuthenticationMethod(input: types.PutApplicationAuthenticationMethodInput, options?: base_client.InvokeOptions): async.Operation<types.PutApplicationAuthenticationMethodOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutApplicationAuthenticationMethod as schema.OperationSchema, input, options) as async.Operation<types.PutApplicationAuthenticationMethodOutput>
 end
 
-function C:putApplicationGrant(input: types.PutApplicationGrantInput, options: any): async.Operation<types.PutApplicationGrantOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutApplicationGrant, input, options) as async.Operation<types.PutApplicationGrantOutput>
+function C:putApplicationGrant(input: types.PutApplicationGrantInput, options?: base_client.InvokeOptions): async.Operation<types.PutApplicationGrantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutApplicationGrant as schema.OperationSchema, input, options) as async.Operation<types.PutApplicationGrantOutput>
 end
 
-function C:putApplicationSessionConfiguration(input: types.PutApplicationSessionConfigurationInput, options: any): async.Operation<types.PutApplicationSessionConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutApplicationSessionConfiguration, input, options) as async.Operation<types.PutApplicationSessionConfigurationOutput>
+function C:putApplicationSessionConfiguration(input: types.PutApplicationSessionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutApplicationSessionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutApplicationSessionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutApplicationSessionConfigurationOutput>
 end
 
-function C:putInlinePolicyToPermissionSet(input: types.PutInlinePolicyToPermissionSetInput, options: any): async.Operation<types.PutInlinePolicyToPermissionSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutInlinePolicyToPermissionSet, input, options) as async.Operation<types.PutInlinePolicyToPermissionSetOutput>
+function C:putInlinePolicyToPermissionSet(input: types.PutInlinePolicyToPermissionSetInput, options?: base_client.InvokeOptions): async.Operation<types.PutInlinePolicyToPermissionSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutInlinePolicyToPermissionSet as schema.OperationSchema, input, options) as async.Operation<types.PutInlinePolicyToPermissionSetOutput>
 end
 
-function C:putPermissionsBoundaryToPermissionSet(input: types.PutPermissionsBoundaryToPermissionSetInput, options: any): async.Operation<types.PutPermissionsBoundaryToPermissionSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutPermissionsBoundaryToPermissionSet, input, options) as async.Operation<types.PutPermissionsBoundaryToPermissionSetOutput>
+function C:putPermissionsBoundaryToPermissionSet(input: types.PutPermissionsBoundaryToPermissionSetInput, options?: base_client.InvokeOptions): async.Operation<types.PutPermissionsBoundaryToPermissionSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutPermissionsBoundaryToPermissionSet as schema.OperationSchema, input, options) as async.Operation<types.PutPermissionsBoundaryToPermissionSetOutput>
 end
 
-function C:removeRegion(input: types.RemoveRegionInput, options: any): async.Operation<types.RemoveRegionOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveRegion, input, options) as async.Operation<types.RemoveRegionOutput>
+function C:removeRegion(input: types.RemoveRegionInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveRegionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveRegion as schema.OperationSchema, input, options) as async.Operation<types.RemoveRegionOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateApplication(input: types.UpdateApplicationInput, options: any): async.Operation<types.UpdateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateApplication, input, options) as async.Operation<types.UpdateApplicationOutput>
+function C:updateApplication(input: types.UpdateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApplication as schema.OperationSchema, input, options) as async.Operation<types.UpdateApplicationOutput>
 end
 
-function C:updateInstance(input: types.UpdateInstanceInput, options: any): async.Operation<types.UpdateInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateInstance, input, options) as async.Operation<types.UpdateInstanceOutput>
+function C:updateInstance(input: types.UpdateInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateInstance as schema.OperationSchema, input, options) as async.Operation<types.UpdateInstanceOutput>
 end
 
-function C:updateInstanceAccessControlAttributeConfiguration(input: types.UpdateInstanceAccessControlAttributeConfigurationInput, options: any): async.Operation<types.UpdateInstanceAccessControlAttributeConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateInstanceAccessControlAttributeConfiguration, input, options) as async.Operation<types.UpdateInstanceAccessControlAttributeConfigurationOutput>
+function C:updateInstanceAccessControlAttributeConfiguration(input: types.UpdateInstanceAccessControlAttributeConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateInstanceAccessControlAttributeConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateInstanceAccessControlAttributeConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateInstanceAccessControlAttributeConfigurationOutput>
 end
 
-function C:updatePermissionSet(input: types.UpdatePermissionSetInput, options: any): async.Operation<types.UpdatePermissionSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePermissionSet, input, options) as async.Operation<types.UpdatePermissionSetOutput>
+function C:updatePermissionSet(input: types.UpdatePermissionSetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePermissionSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePermissionSet as schema.OperationSchema, input, options) as async.Operation<types.UpdatePermissionSetOutput>
 end
 
-function C:updateTrustedTokenIssuer(input: types.UpdateTrustedTokenIssuerInput, options: any): async.Operation<types.UpdateTrustedTokenIssuerOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTrustedTokenIssuer, input, options) as async.Operation<types.UpdateTrustedTokenIssuerOutput>
+function C:updateTrustedTokenIssuer(input: types.UpdateTrustedTokenIssuerInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTrustedTokenIssuerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTrustedTokenIssuer as schema.OperationSchema, input, options) as async.Operation<types.UpdateTrustedTokenIssuerOutput>
 end
 
 return M

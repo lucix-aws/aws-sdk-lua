@@ -8,56 +8,59 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("mediapackagevod.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("mediapackagevod.schemas")
 local traits = require("smithy.traits")
 local types = require("mediapackagevod.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    configureLogs: function(Client, types.ConfigureLogsInput, any): async.Operation<types.ConfigureLogsOutput>
-    createAsset: function(Client, types.CreateAssetInput, any): async.Operation<types.CreateAssetOutput>
-    createPackagingConfiguration: function(Client, types.CreatePackagingConfigurationInput, any): async.Operation<types.CreatePackagingConfigurationOutput>
-    createPackagingGroup: function(Client, types.CreatePackagingGroupInput, any): async.Operation<types.CreatePackagingGroupOutput>
-    deleteAsset: function(Client, types.DeleteAssetInput, any): async.Operation<types.DeleteAssetOutput>
-    deletePackagingConfiguration: function(Client, types.DeletePackagingConfigurationInput, any): async.Operation<types.DeletePackagingConfigurationOutput>
-    deletePackagingGroup: function(Client, types.DeletePackagingGroupInput, any): async.Operation<types.DeletePackagingGroupOutput>
-    describeAsset: function(Client, types.DescribeAssetInput, any): async.Operation<types.DescribeAssetOutput>
-    describePackagingConfiguration: function(Client, types.DescribePackagingConfigurationInput, any): async.Operation<types.DescribePackagingConfigurationOutput>
-    describePackagingGroup: function(Client, types.DescribePackagingGroupInput, any): async.Operation<types.DescribePackagingGroupOutput>
-    listAssets: function(Client, types.ListAssetsInput, any): async.Operation<types.ListAssetsOutput>
-    listPackagingConfigurations: function(Client, types.ListPackagingConfigurationsInput, any): async.Operation<types.ListPackagingConfigurationsOutput>
-    listPackagingGroups: function(Client, types.ListPackagingGroupsInput, any): async.Operation<types.ListPackagingGroupsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updatePackagingGroup: function(Client, types.UpdatePackagingGroupInput, any): async.Operation<types.UpdatePackagingGroupOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    configureLogs: function(Client, types.ConfigureLogsInput, ? base_client.InvokeOptions): async.Operation<types.ConfigureLogsOutput>
+    createAsset: function(Client, types.CreateAssetInput, ? base_client.InvokeOptions): async.Operation<types.CreateAssetOutput>
+    createPackagingConfiguration: function(Client, types.CreatePackagingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreatePackagingConfigurationOutput>
+    createPackagingGroup: function(Client, types.CreatePackagingGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreatePackagingGroupOutput>
+    deleteAsset: function(Client, types.DeleteAssetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAssetOutput>
+    deletePackagingConfiguration: function(Client, types.DeletePackagingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeletePackagingConfigurationOutput>
+    deletePackagingGroup: function(Client, types.DeletePackagingGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeletePackagingGroupOutput>
+    describeAsset: function(Client, types.DescribeAssetInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAssetOutput>
+    describePackagingConfiguration: function(Client, types.DescribePackagingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribePackagingConfigurationOutput>
+    describePackagingGroup: function(Client, types.DescribePackagingGroupInput, ? base_client.InvokeOptions): async.Operation<types.DescribePackagingGroupOutput>
+    listAssets: function(Client, types.ListAssetsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssetsOutput>
+    listPackagingConfigurations: function(Client, types.ListPackagingConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListPackagingConfigurationsOutput>
+    listPackagingGroups: function(Client, types.ListPackagingGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListPackagingGroupsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updatePackagingGroup: function(Client, types.UpdatePackagingGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePackagingGroupOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "MediaPackageVod"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "mediapackage-vod", signing_region = c.region } }
                 else
@@ -76,72 +79,72 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:configureLogs(input: types.ConfigureLogsInput, options: any): async.Operation<types.ConfigureLogsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ConfigureLogs, input, options) as async.Operation<types.ConfigureLogsOutput>
+function C:configureLogs(input: types.ConfigureLogsInput, options?: base_client.InvokeOptions): async.Operation<types.ConfigureLogsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ConfigureLogs as schema.OperationSchema, input, options) as async.Operation<types.ConfigureLogsOutput>
 end
 
-function C:createAsset(input: types.CreateAssetInput, options: any): async.Operation<types.CreateAssetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAsset, input, options) as async.Operation<types.CreateAssetOutput>
+function C:createAsset(input: types.CreateAssetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAssetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAsset as schema.OperationSchema, input, options) as async.Operation<types.CreateAssetOutput>
 end
 
-function C:createPackagingConfiguration(input: types.CreatePackagingConfigurationInput, options: any): async.Operation<types.CreatePackagingConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePackagingConfiguration, input, options) as async.Operation<types.CreatePackagingConfigurationOutput>
+function C:createPackagingConfiguration(input: types.CreatePackagingConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePackagingConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePackagingConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreatePackagingConfigurationOutput>
 end
 
-function C:createPackagingGroup(input: types.CreatePackagingGroupInput, options: any): async.Operation<types.CreatePackagingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePackagingGroup, input, options) as async.Operation<types.CreatePackagingGroupOutput>
+function C:createPackagingGroup(input: types.CreatePackagingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePackagingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePackagingGroup as schema.OperationSchema, input, options) as async.Operation<types.CreatePackagingGroupOutput>
 end
 
-function C:deleteAsset(input: types.DeleteAssetInput, options: any): async.Operation<types.DeleteAssetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAsset, input, options) as async.Operation<types.DeleteAssetOutput>
+function C:deleteAsset(input: types.DeleteAssetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAssetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAsset as schema.OperationSchema, input, options) as async.Operation<types.DeleteAssetOutput>
 end
 
-function C:deletePackagingConfiguration(input: types.DeletePackagingConfigurationInput, options: any): async.Operation<types.DeletePackagingConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePackagingConfiguration, input, options) as async.Operation<types.DeletePackagingConfigurationOutput>
+function C:deletePackagingConfiguration(input: types.DeletePackagingConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePackagingConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePackagingConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeletePackagingConfigurationOutput>
 end
 
-function C:deletePackagingGroup(input: types.DeletePackagingGroupInput, options: any): async.Operation<types.DeletePackagingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePackagingGroup, input, options) as async.Operation<types.DeletePackagingGroupOutput>
+function C:deletePackagingGroup(input: types.DeletePackagingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePackagingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePackagingGroup as schema.OperationSchema, input, options) as async.Operation<types.DeletePackagingGroupOutput>
 end
 
-function C:describeAsset(input: types.DescribeAssetInput, options: any): async.Operation<types.DescribeAssetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAsset, input, options) as async.Operation<types.DescribeAssetOutput>
+function C:describeAsset(input: types.DescribeAssetInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAssetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAsset as schema.OperationSchema, input, options) as async.Operation<types.DescribeAssetOutput>
 end
 
-function C:describePackagingConfiguration(input: types.DescribePackagingConfigurationInput, options: any): async.Operation<types.DescribePackagingConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePackagingConfiguration, input, options) as async.Operation<types.DescribePackagingConfigurationOutput>
+function C:describePackagingConfiguration(input: types.DescribePackagingConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePackagingConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePackagingConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribePackagingConfigurationOutput>
 end
 
-function C:describePackagingGroup(input: types.DescribePackagingGroupInput, options: any): async.Operation<types.DescribePackagingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePackagingGroup, input, options) as async.Operation<types.DescribePackagingGroupOutput>
+function C:describePackagingGroup(input: types.DescribePackagingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePackagingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePackagingGroup as schema.OperationSchema, input, options) as async.Operation<types.DescribePackagingGroupOutput>
 end
 
-function C:listAssets(input: types.ListAssetsInput, options: any): async.Operation<types.ListAssetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssets, input, options) as async.Operation<types.ListAssetsOutput>
+function C:listAssets(input: types.ListAssetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssets as schema.OperationSchema, input, options) as async.Operation<types.ListAssetsOutput>
 end
 
-function C:listPackagingConfigurations(input: types.ListPackagingConfigurationsInput, options: any): async.Operation<types.ListPackagingConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPackagingConfigurations, input, options) as async.Operation<types.ListPackagingConfigurationsOutput>
+function C:listPackagingConfigurations(input: types.ListPackagingConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPackagingConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPackagingConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListPackagingConfigurationsOutput>
 end
 
-function C:listPackagingGroups(input: types.ListPackagingGroupsInput, options: any): async.Operation<types.ListPackagingGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPackagingGroups, input, options) as async.Operation<types.ListPackagingGroupsOutput>
+function C:listPackagingGroups(input: types.ListPackagingGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPackagingGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPackagingGroups as schema.OperationSchema, input, options) as async.Operation<types.ListPackagingGroupsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updatePackagingGroup(input: types.UpdatePackagingGroupInput, options: any): async.Operation<types.UpdatePackagingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePackagingGroup, input, options) as async.Operation<types.UpdatePackagingGroupOutput>
+function C:updatePackagingGroup(input: types.UpdatePackagingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePackagingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePackagingGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdatePackagingGroupOutput>
 end
 
 return M

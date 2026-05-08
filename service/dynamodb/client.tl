@@ -8,96 +8,99 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("dynamodb.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("dynamodb.schemas")
 local traits = require("smithy.traits")
 local types = require("dynamodb.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchExecuteStatement: function(Client, types.BatchExecuteStatementInput, any): async.Operation<types.BatchExecuteStatementOutput>
-    batchGetItem: function(Client, types.BatchGetItemInput, any): async.Operation<types.BatchGetItemOutput>
-    batchWriteItem: function(Client, types.BatchWriteItemInput, any): async.Operation<types.BatchWriteItemOutput>
-    createBackup: function(Client, types.CreateBackupInput, any): async.Operation<types.CreateBackupOutput>
-    createGlobalTable: function(Client, types.CreateGlobalTableInput, any): async.Operation<types.CreateGlobalTableOutput>
-    createTable: function(Client, types.CreateTableInput, any): async.Operation<types.CreateTableOutput>
-    deleteBackup: function(Client, types.DeleteBackupInput, any): async.Operation<types.DeleteBackupOutput>
-    deleteItem: function(Client, types.DeleteItemInput, any): async.Operation<types.DeleteItemOutput>
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, any): async.Operation<types.DeleteResourcePolicyOutput>
-    deleteTable: function(Client, types.DeleteTableInput, any): async.Operation<types.DeleteTableOutput>
-    describeBackup: function(Client, types.DescribeBackupInput, any): async.Operation<types.DescribeBackupOutput>
-    describeContinuousBackups: function(Client, types.DescribeContinuousBackupsInput, any): async.Operation<types.DescribeContinuousBackupsOutput>
-    describeContributorInsights: function(Client, types.DescribeContributorInsightsInput, any): async.Operation<types.DescribeContributorInsightsOutput>
-    describeEndpoints: function(Client, types.DescribeEndpointsInput, any): async.Operation<types.DescribeEndpointsOutput>
-    describeExport: function(Client, types.DescribeExportInput, any): async.Operation<types.DescribeExportOutput>
-    describeGlobalTable: function(Client, types.DescribeGlobalTableInput, any): async.Operation<types.DescribeGlobalTableOutput>
-    describeGlobalTableSettings: function(Client, types.DescribeGlobalTableSettingsInput, any): async.Operation<types.DescribeGlobalTableSettingsOutput>
-    describeImport: function(Client, types.DescribeImportInput, any): async.Operation<types.DescribeImportOutput>
-    describeKinesisStreamingDestination: function(Client, types.DescribeKinesisStreamingDestinationInput, any): async.Operation<types.DescribeKinesisStreamingDestinationOutput>
-    describeLimits: function(Client, types.DescribeLimitsInput, any): async.Operation<types.DescribeLimitsOutput>
-    describeTable: function(Client, types.DescribeTableInput, any): async.Operation<types.DescribeTableOutput>
-    describeTableReplicaAutoScaling: function(Client, types.DescribeTableReplicaAutoScalingInput, any): async.Operation<types.DescribeTableReplicaAutoScalingOutput>
-    describeTimeToLive: function(Client, types.DescribeTimeToLiveInput, any): async.Operation<types.DescribeTimeToLiveOutput>
-    disableKinesisStreamingDestination: function(Client, types.DisableKinesisStreamingDestinationInput, any): async.Operation<types.DisableKinesisStreamingDestinationOutput>
-    enableKinesisStreamingDestination: function(Client, types.EnableKinesisStreamingDestinationInput, any): async.Operation<types.EnableKinesisStreamingDestinationOutput>
-    executeStatement: function(Client, types.ExecuteStatementInput, any): async.Operation<types.ExecuteStatementOutput>
-    executeTransaction: function(Client, types.ExecuteTransactionInput, any): async.Operation<types.ExecuteTransactionOutput>
-    exportTableToPointInTime: function(Client, types.ExportTableToPointInTimeInput, any): async.Operation<types.ExportTableToPointInTimeOutput>
-    getItem: function(Client, types.GetItemInput, any): async.Operation<types.GetItemOutput>
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput, any): async.Operation<types.GetResourcePolicyOutput>
-    importTable: function(Client, types.ImportTableInput, any): async.Operation<types.ImportTableOutput>
-    listBackups: function(Client, types.ListBackupsInput, any): async.Operation<types.ListBackupsOutput>
-    listContributorInsights: function(Client, types.ListContributorInsightsInput, any): async.Operation<types.ListContributorInsightsOutput>
-    listExports: function(Client, types.ListExportsInput, any): async.Operation<types.ListExportsOutput>
-    listGlobalTables: function(Client, types.ListGlobalTablesInput, any): async.Operation<types.ListGlobalTablesOutput>
-    listImports: function(Client, types.ListImportsInput, any): async.Operation<types.ListImportsOutput>
-    listTables: function(Client, types.ListTablesInput, any): async.Operation<types.ListTablesOutput>
-    listTagsOfResource: function(Client, types.ListTagsOfResourceInput, any): async.Operation<types.ListTagsOfResourceOutput>
-    putItem: function(Client, types.PutItemInput, any): async.Operation<types.PutItemOutput>
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput, any): async.Operation<types.PutResourcePolicyOutput>
-    query: function(Client, types.QueryInput, any): async.Operation<types.QueryOutput>
-    restoreTableFromBackup: function(Client, types.RestoreTableFromBackupInput, any): async.Operation<types.RestoreTableFromBackupOutput>
-    restoreTableToPointInTime: function(Client, types.RestoreTableToPointInTimeInput, any): async.Operation<types.RestoreTableToPointInTimeOutput>
-    scan: function(Client, types.ScanInput, any): async.Operation<types.ScanOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    transactGetItems: function(Client, types.TransactGetItemsInput, any): async.Operation<types.TransactGetItemsOutput>
-    transactWriteItems: function(Client, types.TransactWriteItemsInput, any): async.Operation<types.TransactWriteItemsOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateContinuousBackups: function(Client, types.UpdateContinuousBackupsInput, any): async.Operation<types.UpdateContinuousBackupsOutput>
-    updateContributorInsights: function(Client, types.UpdateContributorInsightsInput, any): async.Operation<types.UpdateContributorInsightsOutput>
-    updateGlobalTable: function(Client, types.UpdateGlobalTableInput, any): async.Operation<types.UpdateGlobalTableOutput>
-    updateGlobalTableSettings: function(Client, types.UpdateGlobalTableSettingsInput, any): async.Operation<types.UpdateGlobalTableSettingsOutput>
-    updateItem: function(Client, types.UpdateItemInput, any): async.Operation<types.UpdateItemOutput>
-    updateKinesisStreamingDestination: function(Client, types.UpdateKinesisStreamingDestinationInput, any): async.Operation<types.UpdateKinesisStreamingDestinationOutput>
-    updateTable: function(Client, types.UpdateTableInput, any): async.Operation<types.UpdateTableOutput>
-    updateTableReplicaAutoScaling: function(Client, types.UpdateTableReplicaAutoScalingInput, any): async.Operation<types.UpdateTableReplicaAutoScalingOutput>
-    updateTimeToLive: function(Client, types.UpdateTimeToLiveInput, any): async.Operation<types.UpdateTimeToLiveOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchExecuteStatement: function(Client, types.BatchExecuteStatementInput, ? base_client.InvokeOptions): async.Operation<types.BatchExecuteStatementOutput>
+    batchGetItem: function(Client, types.BatchGetItemInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetItemOutput>
+    batchWriteItem: function(Client, types.BatchWriteItemInput, ? base_client.InvokeOptions): async.Operation<types.BatchWriteItemOutput>
+    createBackup: function(Client, types.CreateBackupInput, ? base_client.InvokeOptions): async.Operation<types.CreateBackupOutput>
+    createGlobalTable: function(Client, types.CreateGlobalTableInput, ? base_client.InvokeOptions): async.Operation<types.CreateGlobalTableOutput>
+    createTable: function(Client, types.CreateTableInput, ? base_client.InvokeOptions): async.Operation<types.CreateTableOutput>
+    deleteBackup: function(Client, types.DeleteBackupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBackupOutput>
+    deleteItem: function(Client, types.DeleteItemInput, ? base_client.InvokeOptions): async.Operation<types.DeleteItemOutput>
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    deleteTable: function(Client, types.DeleteTableInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTableOutput>
+    describeBackup: function(Client, types.DescribeBackupInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBackupOutput>
+    describeContinuousBackups: function(Client, types.DescribeContinuousBackupsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeContinuousBackupsOutput>
+    describeContributorInsights: function(Client, types.DescribeContributorInsightsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeContributorInsightsOutput>
+    describeEndpoints: function(Client, types.DescribeEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEndpointsOutput>
+    describeExport: function(Client, types.DescribeExportInput, ? base_client.InvokeOptions): async.Operation<types.DescribeExportOutput>
+    describeGlobalTable: function(Client, types.DescribeGlobalTableInput, ? base_client.InvokeOptions): async.Operation<types.DescribeGlobalTableOutput>
+    describeGlobalTableSettings: function(Client, types.DescribeGlobalTableSettingsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeGlobalTableSettingsOutput>
+    describeImport: function(Client, types.DescribeImportInput, ? base_client.InvokeOptions): async.Operation<types.DescribeImportOutput>
+    describeKinesisStreamingDestination: function(Client, types.DescribeKinesisStreamingDestinationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeKinesisStreamingDestinationOutput>
+    describeLimits: function(Client, types.DescribeLimitsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLimitsOutput>
+    describeTable: function(Client, types.DescribeTableInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTableOutput>
+    describeTableReplicaAutoScaling: function(Client, types.DescribeTableReplicaAutoScalingInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTableReplicaAutoScalingOutput>
+    describeTimeToLive: function(Client, types.DescribeTimeToLiveInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTimeToLiveOutput>
+    disableKinesisStreamingDestination: function(Client, types.DisableKinesisStreamingDestinationInput, ? base_client.InvokeOptions): async.Operation<types.DisableKinesisStreamingDestinationOutput>
+    enableKinesisStreamingDestination: function(Client, types.EnableKinesisStreamingDestinationInput, ? base_client.InvokeOptions): async.Operation<types.EnableKinesisStreamingDestinationOutput>
+    executeStatement: function(Client, types.ExecuteStatementInput, ? base_client.InvokeOptions): async.Operation<types.ExecuteStatementOutput>
+    executeTransaction: function(Client, types.ExecuteTransactionInput, ? base_client.InvokeOptions): async.Operation<types.ExecuteTransactionOutput>
+    exportTableToPointInTime: function(Client, types.ExportTableToPointInTimeInput, ? base_client.InvokeOptions): async.Operation<types.ExportTableToPointInTimeOutput>
+    getItem: function(Client, types.GetItemInput, ? base_client.InvokeOptions): async.Operation<types.GetItemOutput>
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    importTable: function(Client, types.ImportTableInput, ? base_client.InvokeOptions): async.Operation<types.ImportTableOutput>
+    listBackups: function(Client, types.ListBackupsInput, ? base_client.InvokeOptions): async.Operation<types.ListBackupsOutput>
+    listContributorInsights: function(Client, types.ListContributorInsightsInput, ? base_client.InvokeOptions): async.Operation<types.ListContributorInsightsOutput>
+    listExports: function(Client, types.ListExportsInput, ? base_client.InvokeOptions): async.Operation<types.ListExportsOutput>
+    listGlobalTables: function(Client, types.ListGlobalTablesInput, ? base_client.InvokeOptions): async.Operation<types.ListGlobalTablesOutput>
+    listImports: function(Client, types.ListImportsInput, ? base_client.InvokeOptions): async.Operation<types.ListImportsOutput>
+    listTables: function(Client, types.ListTablesInput, ? base_client.InvokeOptions): async.Operation<types.ListTablesOutput>
+    listTagsOfResource: function(Client, types.ListTagsOfResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsOfResourceOutput>
+    putItem: function(Client, types.PutItemInput, ? base_client.InvokeOptions): async.Operation<types.PutItemOutput>
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    query: function(Client, types.QueryInput, ? base_client.InvokeOptions): async.Operation<types.QueryOutput>
+    restoreTableFromBackup: function(Client, types.RestoreTableFromBackupInput, ? base_client.InvokeOptions): async.Operation<types.RestoreTableFromBackupOutput>
+    restoreTableToPointInTime: function(Client, types.RestoreTableToPointInTimeInput, ? base_client.InvokeOptions): async.Operation<types.RestoreTableToPointInTimeOutput>
+    scan: function(Client, types.ScanInput, ? base_client.InvokeOptions): async.Operation<types.ScanOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    transactGetItems: function(Client, types.TransactGetItemsInput, ? base_client.InvokeOptions): async.Operation<types.TransactGetItemsOutput>
+    transactWriteItems: function(Client, types.TransactWriteItemsInput, ? base_client.InvokeOptions): async.Operation<types.TransactWriteItemsOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateContinuousBackups: function(Client, types.UpdateContinuousBackupsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContinuousBackupsOutput>
+    updateContributorInsights: function(Client, types.UpdateContributorInsightsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContributorInsightsOutput>
+    updateGlobalTable: function(Client, types.UpdateGlobalTableInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGlobalTableOutput>
+    updateGlobalTableSettings: function(Client, types.UpdateGlobalTableSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGlobalTableSettingsOutput>
+    updateItem: function(Client, types.UpdateItemInput, ? base_client.InvokeOptions): async.Operation<types.UpdateItemOutput>
+    updateKinesisStreamingDestination: function(Client, types.UpdateKinesisStreamingDestinationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateKinesisStreamingDestinationOutput>
+    updateTable: function(Client, types.UpdateTableInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTableOutput>
+    updateTableReplicaAutoScaling: function(Client, types.UpdateTableReplicaAutoScalingInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTableReplicaAutoScalingOutput>
+    updateTimeToLive: function(Client, types.UpdateTimeToLiveInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTimeToLiveOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "DynamoDB_20120810"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "dynamodb", signing_region = c.region } }
                 else
@@ -116,232 +119,232 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchExecuteStatement(input: types.BatchExecuteStatementInput, options: any): async.Operation<types.BatchExecuteStatementOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchExecuteStatement, input, options) as async.Operation<types.BatchExecuteStatementOutput>
+function C:batchExecuteStatement(input: types.BatchExecuteStatementInput, options?: base_client.InvokeOptions): async.Operation<types.BatchExecuteStatementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchExecuteStatement as schema.OperationSchema, input, options) as async.Operation<types.BatchExecuteStatementOutput>
 end
 
-function C:batchGetItem(input: types.BatchGetItemInput, options: any): async.Operation<types.BatchGetItemOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetItem, input, options) as async.Operation<types.BatchGetItemOutput>
+function C:batchGetItem(input: types.BatchGetItemInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetItemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetItem as schema.OperationSchema, input, options) as async.Operation<types.BatchGetItemOutput>
 end
 
-function C:batchWriteItem(input: types.BatchWriteItemInput, options: any): async.Operation<types.BatchWriteItemOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchWriteItem, input, options) as async.Operation<types.BatchWriteItemOutput>
+function C:batchWriteItem(input: types.BatchWriteItemInput, options?: base_client.InvokeOptions): async.Operation<types.BatchWriteItemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchWriteItem as schema.OperationSchema, input, options) as async.Operation<types.BatchWriteItemOutput>
 end
 
-function C:createBackup(input: types.CreateBackupInput, options: any): async.Operation<types.CreateBackupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBackup, input, options) as async.Operation<types.CreateBackupOutput>
+function C:createBackup(input: types.CreateBackupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBackupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBackup as schema.OperationSchema, input, options) as async.Operation<types.CreateBackupOutput>
 end
 
-function C:createGlobalTable(input: types.CreateGlobalTableInput, options: any): async.Operation<types.CreateGlobalTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateGlobalTable, input, options) as async.Operation<types.CreateGlobalTableOutput>
+function C:createGlobalTable(input: types.CreateGlobalTableInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGlobalTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGlobalTable as schema.OperationSchema, input, options) as async.Operation<types.CreateGlobalTableOutput>
 end
 
-function C:createTable(input: types.CreateTableInput, options: any): async.Operation<types.CreateTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTable, input, options) as async.Operation<types.CreateTableOutput>
+function C:createTable(input: types.CreateTableInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTable as schema.OperationSchema, input, options) as async.Operation<types.CreateTableOutput>
 end
 
-function C:deleteBackup(input: types.DeleteBackupInput, options: any): async.Operation<types.DeleteBackupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBackup, input, options) as async.Operation<types.DeleteBackupOutput>
+function C:deleteBackup(input: types.DeleteBackupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBackupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBackup as schema.OperationSchema, input, options) as async.Operation<types.DeleteBackupOutput>
 end
 
-function C:deleteItem(input: types.DeleteItemInput, options: any): async.Operation<types.DeleteItemOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteItem, input, options) as async.Operation<types.DeleteItemOutput>
+function C:deleteItem(input: types.DeleteItemInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteItemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteItem as schema.OperationSchema, input, options) as async.Operation<types.DeleteItemOutput>
 end
 
-function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options: any): async.Operation<types.DeleteResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicy, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
+function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
 end
 
-function C:deleteTable(input: types.DeleteTableInput, options: any): async.Operation<types.DeleteTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTable, input, options) as async.Operation<types.DeleteTableOutput>
+function C:deleteTable(input: types.DeleteTableInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTable as schema.OperationSchema, input, options) as async.Operation<types.DeleteTableOutput>
 end
 
-function C:describeBackup(input: types.DescribeBackupInput, options: any): async.Operation<types.DescribeBackupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeBackup, input, options) as async.Operation<types.DescribeBackupOutput>
+function C:describeBackup(input: types.DescribeBackupInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBackupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeBackup as schema.OperationSchema, input, options) as async.Operation<types.DescribeBackupOutput>
 end
 
-function C:describeContinuousBackups(input: types.DescribeContinuousBackupsInput, options: any): async.Operation<types.DescribeContinuousBackupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeContinuousBackups, input, options) as async.Operation<types.DescribeContinuousBackupsOutput>
+function C:describeContinuousBackups(input: types.DescribeContinuousBackupsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeContinuousBackupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeContinuousBackups as schema.OperationSchema, input, options) as async.Operation<types.DescribeContinuousBackupsOutput>
 end
 
-function C:describeContributorInsights(input: types.DescribeContributorInsightsInput, options: any): async.Operation<types.DescribeContributorInsightsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeContributorInsights, input, options) as async.Operation<types.DescribeContributorInsightsOutput>
+function C:describeContributorInsights(input: types.DescribeContributorInsightsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeContributorInsightsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeContributorInsights as schema.OperationSchema, input, options) as async.Operation<types.DescribeContributorInsightsOutput>
 end
 
-function C:describeEndpoints(input: types.DescribeEndpointsInput, options: any): async.Operation<types.DescribeEndpointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEndpoints, input, options) as async.Operation<types.DescribeEndpointsOutput>
+function C:describeEndpoints(input: types.DescribeEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEndpointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEndpoints as schema.OperationSchema, input, options) as async.Operation<types.DescribeEndpointsOutput>
 end
 
-function C:describeExport(input: types.DescribeExportInput, options: any): async.Operation<types.DescribeExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeExport, input, options) as async.Operation<types.DescribeExportOutput>
+function C:describeExport(input: types.DescribeExportInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeExport as schema.OperationSchema, input, options) as async.Operation<types.DescribeExportOutput>
 end
 
-function C:describeGlobalTable(input: types.DescribeGlobalTableInput, options: any): async.Operation<types.DescribeGlobalTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeGlobalTable, input, options) as async.Operation<types.DescribeGlobalTableOutput>
+function C:describeGlobalTable(input: types.DescribeGlobalTableInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeGlobalTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeGlobalTable as schema.OperationSchema, input, options) as async.Operation<types.DescribeGlobalTableOutput>
 end
 
-function C:describeGlobalTableSettings(input: types.DescribeGlobalTableSettingsInput, options: any): async.Operation<types.DescribeGlobalTableSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeGlobalTableSettings, input, options) as async.Operation<types.DescribeGlobalTableSettingsOutput>
+function C:describeGlobalTableSettings(input: types.DescribeGlobalTableSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeGlobalTableSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeGlobalTableSettings as schema.OperationSchema, input, options) as async.Operation<types.DescribeGlobalTableSettingsOutput>
 end
 
-function C:describeImport(input: types.DescribeImportInput, options: any): async.Operation<types.DescribeImportOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeImport, input, options) as async.Operation<types.DescribeImportOutput>
+function C:describeImport(input: types.DescribeImportInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeImportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeImport as schema.OperationSchema, input, options) as async.Operation<types.DescribeImportOutput>
 end
 
-function C:describeKinesisStreamingDestination(input: types.DescribeKinesisStreamingDestinationInput, options: any): async.Operation<types.DescribeKinesisStreamingDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeKinesisStreamingDestination, input, options) as async.Operation<types.DescribeKinesisStreamingDestinationOutput>
+function C:describeKinesisStreamingDestination(input: types.DescribeKinesisStreamingDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeKinesisStreamingDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeKinesisStreamingDestination as schema.OperationSchema, input, options) as async.Operation<types.DescribeKinesisStreamingDestinationOutput>
 end
 
-function C:describeLimits(input: types.DescribeLimitsInput, options: any): async.Operation<types.DescribeLimitsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLimits, input, options) as async.Operation<types.DescribeLimitsOutput>
+function C:describeLimits(input: types.DescribeLimitsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLimitsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLimits as schema.OperationSchema, input, options) as async.Operation<types.DescribeLimitsOutput>
 end
 
-function C:describeTable(input: types.DescribeTableInput, options: any): async.Operation<types.DescribeTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTable, input, options) as async.Operation<types.DescribeTableOutput>
+function C:describeTable(input: types.DescribeTableInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTable as schema.OperationSchema, input, options) as async.Operation<types.DescribeTableOutput>
 end
 
-function C:describeTableReplicaAutoScaling(input: types.DescribeTableReplicaAutoScalingInput, options: any): async.Operation<types.DescribeTableReplicaAutoScalingOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTableReplicaAutoScaling, input, options) as async.Operation<types.DescribeTableReplicaAutoScalingOutput>
+function C:describeTableReplicaAutoScaling(input: types.DescribeTableReplicaAutoScalingInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTableReplicaAutoScalingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTableReplicaAutoScaling as schema.OperationSchema, input, options) as async.Operation<types.DescribeTableReplicaAutoScalingOutput>
 end
 
-function C:describeTimeToLive(input: types.DescribeTimeToLiveInput, options: any): async.Operation<types.DescribeTimeToLiveOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTimeToLive, input, options) as async.Operation<types.DescribeTimeToLiveOutput>
+function C:describeTimeToLive(input: types.DescribeTimeToLiveInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTimeToLiveOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTimeToLive as schema.OperationSchema, input, options) as async.Operation<types.DescribeTimeToLiveOutput>
 end
 
-function C:disableKinesisStreamingDestination(input: types.DisableKinesisStreamingDestinationInput, options: any): async.Operation<types.DisableKinesisStreamingDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableKinesisStreamingDestination, input, options) as async.Operation<types.DisableKinesisStreamingDestinationOutput>
+function C:disableKinesisStreamingDestination(input: types.DisableKinesisStreamingDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.DisableKinesisStreamingDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableKinesisStreamingDestination as schema.OperationSchema, input, options) as async.Operation<types.DisableKinesisStreamingDestinationOutput>
 end
 
-function C:enableKinesisStreamingDestination(input: types.EnableKinesisStreamingDestinationInput, options: any): async.Operation<types.EnableKinesisStreamingDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableKinesisStreamingDestination, input, options) as async.Operation<types.EnableKinesisStreamingDestinationOutput>
+function C:enableKinesisStreamingDestination(input: types.EnableKinesisStreamingDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.EnableKinesisStreamingDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableKinesisStreamingDestination as schema.OperationSchema, input, options) as async.Operation<types.EnableKinesisStreamingDestinationOutput>
 end
 
-function C:executeStatement(input: types.ExecuteStatementInput, options: any): async.Operation<types.ExecuteStatementOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExecuteStatement, input, options) as async.Operation<types.ExecuteStatementOutput>
+function C:executeStatement(input: types.ExecuteStatementInput, options?: base_client.InvokeOptions): async.Operation<types.ExecuteStatementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExecuteStatement as schema.OperationSchema, input, options) as async.Operation<types.ExecuteStatementOutput>
 end
 
-function C:executeTransaction(input: types.ExecuteTransactionInput, options: any): async.Operation<types.ExecuteTransactionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExecuteTransaction, input, options) as async.Operation<types.ExecuteTransactionOutput>
+function C:executeTransaction(input: types.ExecuteTransactionInput, options?: base_client.InvokeOptions): async.Operation<types.ExecuteTransactionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExecuteTransaction as schema.OperationSchema, input, options) as async.Operation<types.ExecuteTransactionOutput>
 end
 
-function C:exportTableToPointInTime(input: types.ExportTableToPointInTimeInput, options: any): async.Operation<types.ExportTableToPointInTimeOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExportTableToPointInTime, input, options) as async.Operation<types.ExportTableToPointInTimeOutput>
+function C:exportTableToPointInTime(input: types.ExportTableToPointInTimeInput, options?: base_client.InvokeOptions): async.Operation<types.ExportTableToPointInTimeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportTableToPointInTime as schema.OperationSchema, input, options) as async.Operation<types.ExportTableToPointInTimeOutput>
 end
 
-function C:getItem(input: types.GetItemInput, options: any): async.Operation<types.GetItemOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetItem, input, options) as async.Operation<types.GetItemOutput>
+function C:getItem(input: types.GetItemInput, options?: base_client.InvokeOptions): async.Operation<types.GetItemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetItem as schema.OperationSchema, input, options) as async.Operation<types.GetItemOutput>
 end
 
-function C:getResourcePolicy(input: types.GetResourcePolicyInput, options: any): async.Operation<types.GetResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicy, input, options) as async.Operation<types.GetResourcePolicyOutput>
+function C:getResourcePolicy(input: types.GetResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePolicyOutput>
 end
 
-function C:importTable(input: types.ImportTableInput, options: any): async.Operation<types.ImportTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportTable, input, options) as async.Operation<types.ImportTableOutput>
+function C:importTable(input: types.ImportTableInput, options?: base_client.InvokeOptions): async.Operation<types.ImportTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportTable as schema.OperationSchema, input, options) as async.Operation<types.ImportTableOutput>
 end
 
-function C:listBackups(input: types.ListBackupsInput, options: any): async.Operation<types.ListBackupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBackups, input, options) as async.Operation<types.ListBackupsOutput>
+function C:listBackups(input: types.ListBackupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBackupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBackups as schema.OperationSchema, input, options) as async.Operation<types.ListBackupsOutput>
 end
 
-function C:listContributorInsights(input: types.ListContributorInsightsInput, options: any): async.Operation<types.ListContributorInsightsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListContributorInsights, input, options) as async.Operation<types.ListContributorInsightsOutput>
+function C:listContributorInsights(input: types.ListContributorInsightsInput, options?: base_client.InvokeOptions): async.Operation<types.ListContributorInsightsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListContributorInsights as schema.OperationSchema, input, options) as async.Operation<types.ListContributorInsightsOutput>
 end
 
-function C:listExports(input: types.ListExportsInput, options: any): async.Operation<types.ListExportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListExports, input, options) as async.Operation<types.ListExportsOutput>
+function C:listExports(input: types.ListExportsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExports as schema.OperationSchema, input, options) as async.Operation<types.ListExportsOutput>
 end
 
-function C:listGlobalTables(input: types.ListGlobalTablesInput, options: any): async.Operation<types.ListGlobalTablesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGlobalTables, input, options) as async.Operation<types.ListGlobalTablesOutput>
+function C:listGlobalTables(input: types.ListGlobalTablesInput, options?: base_client.InvokeOptions): async.Operation<types.ListGlobalTablesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGlobalTables as schema.OperationSchema, input, options) as async.Operation<types.ListGlobalTablesOutput>
 end
 
-function C:listImports(input: types.ListImportsInput, options: any): async.Operation<types.ListImportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListImports, input, options) as async.Operation<types.ListImportsOutput>
+function C:listImports(input: types.ListImportsInput, options?: base_client.InvokeOptions): async.Operation<types.ListImportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListImports as schema.OperationSchema, input, options) as async.Operation<types.ListImportsOutput>
 end
 
-function C:listTables(input: types.ListTablesInput, options: any): async.Operation<types.ListTablesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTables, input, options) as async.Operation<types.ListTablesOutput>
+function C:listTables(input: types.ListTablesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTablesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTables as schema.OperationSchema, input, options) as async.Operation<types.ListTablesOutput>
 end
 
-function C:listTagsOfResource(input: types.ListTagsOfResourceInput, options: any): async.Operation<types.ListTagsOfResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsOfResource, input, options) as async.Operation<types.ListTagsOfResourceOutput>
+function C:listTagsOfResource(input: types.ListTagsOfResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsOfResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsOfResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsOfResourceOutput>
 end
 
-function C:putItem(input: types.PutItemInput, options: any): async.Operation<types.PutItemOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutItem, input, options) as async.Operation<types.PutItemOutput>
+function C:putItem(input: types.PutItemInput, options?: base_client.InvokeOptions): async.Operation<types.PutItemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutItem as schema.OperationSchema, input, options) as async.Operation<types.PutItemOutput>
 end
 
-function C:putResourcePolicy(input: types.PutResourcePolicyInput, options: any): async.Operation<types.PutResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutResourcePolicy, input, options) as async.Operation<types.PutResourcePolicyOutput>
+function C:putResourcePolicy(input: types.PutResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutResourcePolicyOutput>
 end
 
-function C:query(input: types.QueryInput, options: any): async.Operation<types.QueryOutput>
-    return self:invokeOperation(schemas.Service, schemas.Query, input, options) as async.Operation<types.QueryOutput>
+function C:query(input: types.QueryInput, options?: base_client.InvokeOptions): async.Operation<types.QueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Query as schema.OperationSchema, input, options) as async.Operation<types.QueryOutput>
 end
 
-function C:restoreTableFromBackup(input: types.RestoreTableFromBackupInput, options: any): async.Operation<types.RestoreTableFromBackupOutput>
-    return self:invokeOperation(schemas.Service, schemas.RestoreTableFromBackup, input, options) as async.Operation<types.RestoreTableFromBackupOutput>
+function C:restoreTableFromBackup(input: types.RestoreTableFromBackupInput, options?: base_client.InvokeOptions): async.Operation<types.RestoreTableFromBackupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestoreTableFromBackup as schema.OperationSchema, input, options) as async.Operation<types.RestoreTableFromBackupOutput>
 end
 
-function C:restoreTableToPointInTime(input: types.RestoreTableToPointInTimeInput, options: any): async.Operation<types.RestoreTableToPointInTimeOutput>
-    return self:invokeOperation(schemas.Service, schemas.RestoreTableToPointInTime, input, options) as async.Operation<types.RestoreTableToPointInTimeOutput>
+function C:restoreTableToPointInTime(input: types.RestoreTableToPointInTimeInput, options?: base_client.InvokeOptions): async.Operation<types.RestoreTableToPointInTimeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestoreTableToPointInTime as schema.OperationSchema, input, options) as async.Operation<types.RestoreTableToPointInTimeOutput>
 end
 
-function C:scan(input: types.ScanInput, options: any): async.Operation<types.ScanOutput>
-    return self:invokeOperation(schemas.Service, schemas.Scan, input, options) as async.Operation<types.ScanOutput>
+function C:scan(input: types.ScanInput, options?: base_client.InvokeOptions): async.Operation<types.ScanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Scan as schema.OperationSchema, input, options) as async.Operation<types.ScanOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:transactGetItems(input: types.TransactGetItemsInput, options: any): async.Operation<types.TransactGetItemsOutput>
-    return self:invokeOperation(schemas.Service, schemas.TransactGetItems, input, options) as async.Operation<types.TransactGetItemsOutput>
+function C:transactGetItems(input: types.TransactGetItemsInput, options?: base_client.InvokeOptions): async.Operation<types.TransactGetItemsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TransactGetItems as schema.OperationSchema, input, options) as async.Operation<types.TransactGetItemsOutput>
 end
 
-function C:transactWriteItems(input: types.TransactWriteItemsInput, options: any): async.Operation<types.TransactWriteItemsOutput>
-    return self:invokeOperation(schemas.Service, schemas.TransactWriteItems, input, options) as async.Operation<types.TransactWriteItemsOutput>
+function C:transactWriteItems(input: types.TransactWriteItemsInput, options?: base_client.InvokeOptions): async.Operation<types.TransactWriteItemsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TransactWriteItems as schema.OperationSchema, input, options) as async.Operation<types.TransactWriteItemsOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateContinuousBackups(input: types.UpdateContinuousBackupsInput, options: any): async.Operation<types.UpdateContinuousBackupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateContinuousBackups, input, options) as async.Operation<types.UpdateContinuousBackupsOutput>
+function C:updateContinuousBackups(input: types.UpdateContinuousBackupsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateContinuousBackupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateContinuousBackups as schema.OperationSchema, input, options) as async.Operation<types.UpdateContinuousBackupsOutput>
 end
 
-function C:updateContributorInsights(input: types.UpdateContributorInsightsInput, options: any): async.Operation<types.UpdateContributorInsightsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateContributorInsights, input, options) as async.Operation<types.UpdateContributorInsightsOutput>
+function C:updateContributorInsights(input: types.UpdateContributorInsightsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateContributorInsightsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateContributorInsights as schema.OperationSchema, input, options) as async.Operation<types.UpdateContributorInsightsOutput>
 end
 
-function C:updateGlobalTable(input: types.UpdateGlobalTableInput, options: any): async.Operation<types.UpdateGlobalTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateGlobalTable, input, options) as async.Operation<types.UpdateGlobalTableOutput>
+function C:updateGlobalTable(input: types.UpdateGlobalTableInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGlobalTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGlobalTable as schema.OperationSchema, input, options) as async.Operation<types.UpdateGlobalTableOutput>
 end
 
-function C:updateGlobalTableSettings(input: types.UpdateGlobalTableSettingsInput, options: any): async.Operation<types.UpdateGlobalTableSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateGlobalTableSettings, input, options) as async.Operation<types.UpdateGlobalTableSettingsOutput>
+function C:updateGlobalTableSettings(input: types.UpdateGlobalTableSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGlobalTableSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGlobalTableSettings as schema.OperationSchema, input, options) as async.Operation<types.UpdateGlobalTableSettingsOutput>
 end
 
-function C:updateItem(input: types.UpdateItemInput, options: any): async.Operation<types.UpdateItemOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateItem, input, options) as async.Operation<types.UpdateItemOutput>
+function C:updateItem(input: types.UpdateItemInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateItemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateItem as schema.OperationSchema, input, options) as async.Operation<types.UpdateItemOutput>
 end
 
-function C:updateKinesisStreamingDestination(input: types.UpdateKinesisStreamingDestinationInput, options: any): async.Operation<types.UpdateKinesisStreamingDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateKinesisStreamingDestination, input, options) as async.Operation<types.UpdateKinesisStreamingDestinationOutput>
+function C:updateKinesisStreamingDestination(input: types.UpdateKinesisStreamingDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateKinesisStreamingDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateKinesisStreamingDestination as schema.OperationSchema, input, options) as async.Operation<types.UpdateKinesisStreamingDestinationOutput>
 end
 
-function C:updateTable(input: types.UpdateTableInput, options: any): async.Operation<types.UpdateTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTable, input, options) as async.Operation<types.UpdateTableOutput>
+function C:updateTable(input: types.UpdateTableInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTable as schema.OperationSchema, input, options) as async.Operation<types.UpdateTableOutput>
 end
 
-function C:updateTableReplicaAutoScaling(input: types.UpdateTableReplicaAutoScalingInput, options: any): async.Operation<types.UpdateTableReplicaAutoScalingOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTableReplicaAutoScaling, input, options) as async.Operation<types.UpdateTableReplicaAutoScalingOutput>
+function C:updateTableReplicaAutoScaling(input: types.UpdateTableReplicaAutoScalingInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTableReplicaAutoScalingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTableReplicaAutoScaling as schema.OperationSchema, input, options) as async.Operation<types.UpdateTableReplicaAutoScalingOutput>
 end
 
-function C:updateTimeToLive(input: types.UpdateTimeToLiveInput, options: any): async.Operation<types.UpdateTimeToLiveOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTimeToLive, input, options) as async.Operation<types.UpdateTimeToLiveOutput>
+function C:updateTimeToLive(input: types.UpdateTimeToLiveInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTimeToLiveOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTimeToLive as schema.OperationSchema, input, options) as async.Operation<types.UpdateTimeToLiveOutput>
 end
 
 return M

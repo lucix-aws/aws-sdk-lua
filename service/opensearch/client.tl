@@ -8,127 +8,130 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("opensearch.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("opensearch.schemas")
 local traits = require("smithy.traits")
 local types = require("opensearch.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    acceptInboundConnection: function(Client, types.AcceptInboundConnectionInput, any): async.Operation<types.AcceptInboundConnectionOutput>
-    addDataSource: function(Client, types.AddDataSourceInput, any): async.Operation<types.AddDataSourceOutput>
-    addDirectQueryDataSource: function(Client, types.AddDirectQueryDataSourceInput, any): async.Operation<types.AddDirectQueryDataSourceOutput>
-    addTags: function(Client, types.AddTagsInput, any): async.Operation<types.AddTagsOutput>
-    associatePackage: function(Client, types.AssociatePackageInput, any): async.Operation<types.AssociatePackageOutput>
-    associatePackages: function(Client, types.AssociatePackagesInput, any): async.Operation<types.AssociatePackagesOutput>
-    authorizeVpcEndpointAccess: function(Client, types.AuthorizeVpcEndpointAccessInput, any): async.Operation<types.AuthorizeVpcEndpointAccessOutput>
-    cancelDomainConfigChange: function(Client, types.CancelDomainConfigChangeInput, any): async.Operation<types.CancelDomainConfigChangeOutput>
-    cancelServiceSoftwareUpdate: function(Client, types.CancelServiceSoftwareUpdateInput, any): async.Operation<types.CancelServiceSoftwareUpdateOutput>
-    createApplication: function(Client, types.CreateApplicationInput, any): async.Operation<types.CreateApplicationOutput>
-    createDomain: function(Client, types.CreateDomainInput, any): async.Operation<types.CreateDomainOutput>
-    createIndex: function(Client, types.CreateIndexInput, any): async.Operation<types.CreateIndexOutput>
-    createOutboundConnection: function(Client, types.CreateOutboundConnectionInput, any): async.Operation<types.CreateOutboundConnectionOutput>
-    createPackage: function(Client, types.CreatePackageInput, any): async.Operation<types.CreatePackageOutput>
-    createVpcEndpoint: function(Client, types.CreateVpcEndpointInput, any): async.Operation<types.CreateVpcEndpointOutput>
-    deleteApplication: function(Client, types.DeleteApplicationInput, any): async.Operation<types.DeleteApplicationOutput>
-    deleteDataSource: function(Client, types.DeleteDataSourceInput, any): async.Operation<types.DeleteDataSourceOutput>
-    deleteDirectQueryDataSource: function(Client, types.DeleteDirectQueryDataSourceInput, any): async.Operation<types.DeleteDirectQueryDataSourceOutput>
-    deleteDomain: function(Client, types.DeleteDomainInput, any): async.Operation<types.DeleteDomainOutput>
-    deleteInboundConnection: function(Client, types.DeleteInboundConnectionInput, any): async.Operation<types.DeleteInboundConnectionOutput>
-    deleteIndex: function(Client, types.DeleteIndexInput, any): async.Operation<types.DeleteIndexOutput>
-    deleteOutboundConnection: function(Client, types.DeleteOutboundConnectionInput, any): async.Operation<types.DeleteOutboundConnectionOutput>
-    deletePackage: function(Client, types.DeletePackageInput, any): async.Operation<types.DeletePackageOutput>
-    deleteVpcEndpoint: function(Client, types.DeleteVpcEndpointInput, any): async.Operation<types.DeleteVpcEndpointOutput>
-    deregisterCapability: function(Client, types.DeregisterCapabilityInput, any): async.Operation<types.DeregisterCapabilityOutput>
-    describeDomain: function(Client, types.DescribeDomainInput, any): async.Operation<types.DescribeDomainOutput>
-    describeDomainAutoTunes: function(Client, types.DescribeDomainAutoTunesInput, any): async.Operation<types.DescribeDomainAutoTunesOutput>
-    describeDomainChangeProgress: function(Client, types.DescribeDomainChangeProgressInput, any): async.Operation<types.DescribeDomainChangeProgressOutput>
-    describeDomainConfig: function(Client, types.DescribeDomainConfigInput, any): async.Operation<types.DescribeDomainConfigOutput>
-    describeDomainHealth: function(Client, types.DescribeDomainHealthInput, any): async.Operation<types.DescribeDomainHealthOutput>
-    describeDomainNodes: function(Client, types.DescribeDomainNodesInput, any): async.Operation<types.DescribeDomainNodesOutput>
-    describeDomains: function(Client, types.DescribeDomainsInput, any): async.Operation<types.DescribeDomainsOutput>
-    describeDryRunProgress: function(Client, types.DescribeDryRunProgressInput, any): async.Operation<types.DescribeDryRunProgressOutput>
-    describeInboundConnections: function(Client, types.DescribeInboundConnectionsInput, any): async.Operation<types.DescribeInboundConnectionsOutput>
-    describeInsightDetails: function(Client, types.DescribeInsightDetailsInput, any): async.Operation<types.DescribeInsightDetailsOutput>
-    describeInstanceTypeLimits: function(Client, types.DescribeInstanceTypeLimitsInput, any): async.Operation<types.DescribeInstanceTypeLimitsOutput>
-    describeOutboundConnections: function(Client, types.DescribeOutboundConnectionsInput, any): async.Operation<types.DescribeOutboundConnectionsOutput>
-    describePackages: function(Client, types.DescribePackagesInput, any): async.Operation<types.DescribePackagesOutput>
-    describeReservedInstanceOfferings: function(Client, types.DescribeReservedInstanceOfferingsInput, any): async.Operation<types.DescribeReservedInstanceOfferingsOutput>
-    describeReservedInstances: function(Client, types.DescribeReservedInstancesInput, any): async.Operation<types.DescribeReservedInstancesOutput>
-    describeVpcEndpoints: function(Client, types.DescribeVpcEndpointsInput, any): async.Operation<types.DescribeVpcEndpointsOutput>
-    dissociatePackage: function(Client, types.DissociatePackageInput, any): async.Operation<types.DissociatePackageOutput>
-    dissociatePackages: function(Client, types.DissociatePackagesInput, any): async.Operation<types.DissociatePackagesOutput>
-    getApplication: function(Client, types.GetApplicationInput, any): async.Operation<types.GetApplicationOutput>
-    getCapability: function(Client, types.GetCapabilityInput, any): async.Operation<types.GetCapabilityOutput>
-    getCompatibleVersions: function(Client, types.GetCompatibleVersionsInput, any): async.Operation<types.GetCompatibleVersionsOutput>
-    getDataSource: function(Client, types.GetDataSourceInput, any): async.Operation<types.GetDataSourceOutput>
-    getDefaultApplicationSetting: function(Client, types.GetDefaultApplicationSettingInput, any): async.Operation<types.GetDefaultApplicationSettingOutput>
-    getDirectQueryDataSource: function(Client, types.GetDirectQueryDataSourceInput, any): async.Operation<types.GetDirectQueryDataSourceOutput>
-    getDomainMaintenanceStatus: function(Client, types.GetDomainMaintenanceStatusInput, any): async.Operation<types.GetDomainMaintenanceStatusOutput>
-    getIndex: function(Client, types.GetIndexInput, any): async.Operation<types.GetIndexOutput>
-    getPackageVersionHistory: function(Client, types.GetPackageVersionHistoryInput, any): async.Operation<types.GetPackageVersionHistoryOutput>
-    getUpgradeHistory: function(Client, types.GetUpgradeHistoryInput, any): async.Operation<types.GetUpgradeHistoryOutput>
-    getUpgradeStatus: function(Client, types.GetUpgradeStatusInput, any): async.Operation<types.GetUpgradeStatusOutput>
-    listApplications: function(Client, types.ListApplicationsInput, any): async.Operation<types.ListApplicationsOutput>
-    listDataSources: function(Client, types.ListDataSourcesInput, any): async.Operation<types.ListDataSourcesOutput>
-    listDirectQueryDataSources: function(Client, types.ListDirectQueryDataSourcesInput, any): async.Operation<types.ListDirectQueryDataSourcesOutput>
-    listDomainMaintenances: function(Client, types.ListDomainMaintenancesInput, any): async.Operation<types.ListDomainMaintenancesOutput>
-    listDomainNames: function(Client, types.ListDomainNamesInput, any): async.Operation<types.ListDomainNamesOutput>
-    listDomainsForPackage: function(Client, types.ListDomainsForPackageInput, any): async.Operation<types.ListDomainsForPackageOutput>
-    listInsights: function(Client, types.ListInsightsInput, any): async.Operation<types.ListInsightsOutput>
-    listInstanceTypeDetails: function(Client, types.ListInstanceTypeDetailsInput, any): async.Operation<types.ListInstanceTypeDetailsOutput>
-    listPackagesForDomain: function(Client, types.ListPackagesForDomainInput, any): async.Operation<types.ListPackagesForDomainOutput>
-    listScheduledActions: function(Client, types.ListScheduledActionsInput, any): async.Operation<types.ListScheduledActionsOutput>
-    listTags: function(Client, types.ListTagsInput, any): async.Operation<types.ListTagsOutput>
-    listVersions: function(Client, types.ListVersionsInput, any): async.Operation<types.ListVersionsOutput>
-    listVpcEndpointAccess: function(Client, types.ListVpcEndpointAccessInput, any): async.Operation<types.ListVpcEndpointAccessOutput>
-    listVpcEndpoints: function(Client, types.ListVpcEndpointsInput, any): async.Operation<types.ListVpcEndpointsOutput>
-    listVpcEndpointsForDomain: function(Client, types.ListVpcEndpointsForDomainInput, any): async.Operation<types.ListVpcEndpointsForDomainOutput>
-    purchaseReservedInstanceOffering: function(Client, types.PurchaseReservedInstanceOfferingInput, any): async.Operation<types.PurchaseReservedInstanceOfferingOutput>
-    putDefaultApplicationSetting: function(Client, types.PutDefaultApplicationSettingInput, any): async.Operation<types.PutDefaultApplicationSettingOutput>
-    registerCapability: function(Client, types.RegisterCapabilityInput, any): async.Operation<types.RegisterCapabilityOutput>
-    rejectInboundConnection: function(Client, types.RejectInboundConnectionInput, any): async.Operation<types.RejectInboundConnectionOutput>
-    removeTags: function(Client, types.RemoveTagsInput, any): async.Operation<types.RemoveTagsOutput>
-    revokeVpcEndpointAccess: function(Client, types.RevokeVpcEndpointAccessInput, any): async.Operation<types.RevokeVpcEndpointAccessOutput>
-    rollbackServiceSoftwareUpdate: function(Client, types.RollbackServiceSoftwareUpdateInput, any): async.Operation<types.RollbackServiceSoftwareUpdateOutput>
-    startDomainMaintenance: function(Client, types.StartDomainMaintenanceInput, any): async.Operation<types.StartDomainMaintenanceOutput>
-    startServiceSoftwareUpdate: function(Client, types.StartServiceSoftwareUpdateInput, any): async.Operation<types.StartServiceSoftwareUpdateOutput>
-    updateApplication: function(Client, types.UpdateApplicationInput, any): async.Operation<types.UpdateApplicationOutput>
-    updateDataSource: function(Client, types.UpdateDataSourceInput, any): async.Operation<types.UpdateDataSourceOutput>
-    updateDirectQueryDataSource: function(Client, types.UpdateDirectQueryDataSourceInput, any): async.Operation<types.UpdateDirectQueryDataSourceOutput>
-    updateDomainConfig: function(Client, types.UpdateDomainConfigInput, any): async.Operation<types.UpdateDomainConfigOutput>
-    updateIndex: function(Client, types.UpdateIndexInput, any): async.Operation<types.UpdateIndexOutput>
-    updatePackage: function(Client, types.UpdatePackageInput, any): async.Operation<types.UpdatePackageOutput>
-    updatePackageScope: function(Client, types.UpdatePackageScopeInput, any): async.Operation<types.UpdatePackageScopeOutput>
-    updateScheduledAction: function(Client, types.UpdateScheduledActionInput, any): async.Operation<types.UpdateScheduledActionOutput>
-    updateVpcEndpoint: function(Client, types.UpdateVpcEndpointInput, any): async.Operation<types.UpdateVpcEndpointOutput>
-    upgradeDomain: function(Client, types.UpgradeDomainInput, any): async.Operation<types.UpgradeDomainOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    acceptInboundConnection: function(Client, types.AcceptInboundConnectionInput, ? base_client.InvokeOptions): async.Operation<types.AcceptInboundConnectionOutput>
+    addDataSource: function(Client, types.AddDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.AddDataSourceOutput>
+    addDirectQueryDataSource: function(Client, types.AddDirectQueryDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.AddDirectQueryDataSourceOutput>
+    addTags: function(Client, types.AddTagsInput, ? base_client.InvokeOptions): async.Operation<types.AddTagsOutput>
+    associatePackage: function(Client, types.AssociatePackageInput, ? base_client.InvokeOptions): async.Operation<types.AssociatePackageOutput>
+    associatePackages: function(Client, types.AssociatePackagesInput, ? base_client.InvokeOptions): async.Operation<types.AssociatePackagesOutput>
+    authorizeVpcEndpointAccess: function(Client, types.AuthorizeVpcEndpointAccessInput, ? base_client.InvokeOptions): async.Operation<types.AuthorizeVpcEndpointAccessOutput>
+    cancelDomainConfigChange: function(Client, types.CancelDomainConfigChangeInput, ? base_client.InvokeOptions): async.Operation<types.CancelDomainConfigChangeOutput>
+    cancelServiceSoftwareUpdate: function(Client, types.CancelServiceSoftwareUpdateInput, ? base_client.InvokeOptions): async.Operation<types.CancelServiceSoftwareUpdateOutput>
+    createApplication: function(Client, types.CreateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    createDomain: function(Client, types.CreateDomainInput, ? base_client.InvokeOptions): async.Operation<types.CreateDomainOutput>
+    createIndex: function(Client, types.CreateIndexInput, ? base_client.InvokeOptions): async.Operation<types.CreateIndexOutput>
+    createOutboundConnection: function(Client, types.CreateOutboundConnectionInput, ? base_client.InvokeOptions): async.Operation<types.CreateOutboundConnectionOutput>
+    createPackage: function(Client, types.CreatePackageInput, ? base_client.InvokeOptions): async.Operation<types.CreatePackageOutput>
+    createVpcEndpoint: function(Client, types.CreateVpcEndpointInput, ? base_client.InvokeOptions): async.Operation<types.CreateVpcEndpointOutput>
+    deleteApplication: function(Client, types.DeleteApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
+    deleteDataSource: function(Client, types.DeleteDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataSourceOutput>
+    deleteDirectQueryDataSource: function(Client, types.DeleteDirectQueryDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDirectQueryDataSourceOutput>
+    deleteDomain: function(Client, types.DeleteDomainInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDomainOutput>
+    deleteInboundConnection: function(Client, types.DeleteInboundConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInboundConnectionOutput>
+    deleteIndex: function(Client, types.DeleteIndexInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIndexOutput>
+    deleteOutboundConnection: function(Client, types.DeleteOutboundConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOutboundConnectionOutput>
+    deletePackage: function(Client, types.DeletePackageInput, ? base_client.InvokeOptions): async.Operation<types.DeletePackageOutput>
+    deleteVpcEndpoint: function(Client, types.DeleteVpcEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVpcEndpointOutput>
+    deregisterCapability: function(Client, types.DeregisterCapabilityInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterCapabilityOutput>
+    describeDomain: function(Client, types.DescribeDomainInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDomainOutput>
+    describeDomainAutoTunes: function(Client, types.DescribeDomainAutoTunesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDomainAutoTunesOutput>
+    describeDomainChangeProgress: function(Client, types.DescribeDomainChangeProgressInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDomainChangeProgressOutput>
+    describeDomainConfig: function(Client, types.DescribeDomainConfigInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDomainConfigOutput>
+    describeDomainHealth: function(Client, types.DescribeDomainHealthInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDomainHealthOutput>
+    describeDomainNodes: function(Client, types.DescribeDomainNodesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDomainNodesOutput>
+    describeDomains: function(Client, types.DescribeDomainsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDomainsOutput>
+    describeDryRunProgress: function(Client, types.DescribeDryRunProgressInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDryRunProgressOutput>
+    describeInboundConnections: function(Client, types.DescribeInboundConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInboundConnectionsOutput>
+    describeInsightDetails: function(Client, types.DescribeInsightDetailsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInsightDetailsOutput>
+    describeInstanceTypeLimits: function(Client, types.DescribeInstanceTypeLimitsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstanceTypeLimitsOutput>
+    describeOutboundConnections: function(Client, types.DescribeOutboundConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeOutboundConnectionsOutput>
+    describePackages: function(Client, types.DescribePackagesInput, ? base_client.InvokeOptions): async.Operation<types.DescribePackagesOutput>
+    describeReservedInstanceOfferings: function(Client, types.DescribeReservedInstanceOfferingsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeReservedInstanceOfferingsOutput>
+    describeReservedInstances: function(Client, types.DescribeReservedInstancesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeReservedInstancesOutput>
+    describeVpcEndpoints: function(Client, types.DescribeVpcEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVpcEndpointsOutput>
+    dissociatePackage: function(Client, types.DissociatePackageInput, ? base_client.InvokeOptions): async.Operation<types.DissociatePackageOutput>
+    dissociatePackages: function(Client, types.DissociatePackagesInput, ? base_client.InvokeOptions): async.Operation<types.DissociatePackagesOutput>
+    getApplication: function(Client, types.GetApplicationInput, ? base_client.InvokeOptions): async.Operation<types.GetApplicationOutput>
+    getCapability: function(Client, types.GetCapabilityInput, ? base_client.InvokeOptions): async.Operation<types.GetCapabilityOutput>
+    getCompatibleVersions: function(Client, types.GetCompatibleVersionsInput, ? base_client.InvokeOptions): async.Operation<types.GetCompatibleVersionsOutput>
+    getDataSource: function(Client, types.GetDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.GetDataSourceOutput>
+    getDefaultApplicationSetting: function(Client, types.GetDefaultApplicationSettingInput, ? base_client.InvokeOptions): async.Operation<types.GetDefaultApplicationSettingOutput>
+    getDirectQueryDataSource: function(Client, types.GetDirectQueryDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.GetDirectQueryDataSourceOutput>
+    getDomainMaintenanceStatus: function(Client, types.GetDomainMaintenanceStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetDomainMaintenanceStatusOutput>
+    getIndex: function(Client, types.GetIndexInput, ? base_client.InvokeOptions): async.Operation<types.GetIndexOutput>
+    getPackageVersionHistory: function(Client, types.GetPackageVersionHistoryInput, ? base_client.InvokeOptions): async.Operation<types.GetPackageVersionHistoryOutput>
+    getUpgradeHistory: function(Client, types.GetUpgradeHistoryInput, ? base_client.InvokeOptions): async.Operation<types.GetUpgradeHistoryOutput>
+    getUpgradeStatus: function(Client, types.GetUpgradeStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetUpgradeStatusOutput>
+    listApplications: function(Client, types.ListApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    listDataSources: function(Client, types.ListDataSourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListDataSourcesOutput>
+    listDirectQueryDataSources: function(Client, types.ListDirectQueryDataSourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListDirectQueryDataSourcesOutput>
+    listDomainMaintenances: function(Client, types.ListDomainMaintenancesInput, ? base_client.InvokeOptions): async.Operation<types.ListDomainMaintenancesOutput>
+    listDomainNames: function(Client, types.ListDomainNamesInput, ? base_client.InvokeOptions): async.Operation<types.ListDomainNamesOutput>
+    listDomainsForPackage: function(Client, types.ListDomainsForPackageInput, ? base_client.InvokeOptions): async.Operation<types.ListDomainsForPackageOutput>
+    listInsights: function(Client, types.ListInsightsInput, ? base_client.InvokeOptions): async.Operation<types.ListInsightsOutput>
+    listInstanceTypeDetails: function(Client, types.ListInstanceTypeDetailsInput, ? base_client.InvokeOptions): async.Operation<types.ListInstanceTypeDetailsOutput>
+    listPackagesForDomain: function(Client, types.ListPackagesForDomainInput, ? base_client.InvokeOptions): async.Operation<types.ListPackagesForDomainOutput>
+    listScheduledActions: function(Client, types.ListScheduledActionsInput, ? base_client.InvokeOptions): async.Operation<types.ListScheduledActionsOutput>
+    listTags: function(Client, types.ListTagsInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsOutput>
+    listVersions: function(Client, types.ListVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListVersionsOutput>
+    listVpcEndpointAccess: function(Client, types.ListVpcEndpointAccessInput, ? base_client.InvokeOptions): async.Operation<types.ListVpcEndpointAccessOutput>
+    listVpcEndpoints: function(Client, types.ListVpcEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.ListVpcEndpointsOutput>
+    listVpcEndpointsForDomain: function(Client, types.ListVpcEndpointsForDomainInput, ? base_client.InvokeOptions): async.Operation<types.ListVpcEndpointsForDomainOutput>
+    purchaseReservedInstanceOffering: function(Client, types.PurchaseReservedInstanceOfferingInput, ? base_client.InvokeOptions): async.Operation<types.PurchaseReservedInstanceOfferingOutput>
+    putDefaultApplicationSetting: function(Client, types.PutDefaultApplicationSettingInput, ? base_client.InvokeOptions): async.Operation<types.PutDefaultApplicationSettingOutput>
+    registerCapability: function(Client, types.RegisterCapabilityInput, ? base_client.InvokeOptions): async.Operation<types.RegisterCapabilityOutput>
+    rejectInboundConnection: function(Client, types.RejectInboundConnectionInput, ? base_client.InvokeOptions): async.Operation<types.RejectInboundConnectionOutput>
+    removeTags: function(Client, types.RemoveTagsInput, ? base_client.InvokeOptions): async.Operation<types.RemoveTagsOutput>
+    revokeVpcEndpointAccess: function(Client, types.RevokeVpcEndpointAccessInput, ? base_client.InvokeOptions): async.Operation<types.RevokeVpcEndpointAccessOutput>
+    rollbackServiceSoftwareUpdate: function(Client, types.RollbackServiceSoftwareUpdateInput, ? base_client.InvokeOptions): async.Operation<types.RollbackServiceSoftwareUpdateOutput>
+    startDomainMaintenance: function(Client, types.StartDomainMaintenanceInput, ? base_client.InvokeOptions): async.Operation<types.StartDomainMaintenanceOutput>
+    startServiceSoftwareUpdate: function(Client, types.StartServiceSoftwareUpdateInput, ? base_client.InvokeOptions): async.Operation<types.StartServiceSoftwareUpdateOutput>
+    updateApplication: function(Client, types.UpdateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
+    updateDataSource: function(Client, types.UpdateDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataSourceOutput>
+    updateDirectQueryDataSource: function(Client, types.UpdateDirectQueryDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDirectQueryDataSourceOutput>
+    updateDomainConfig: function(Client, types.UpdateDomainConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDomainConfigOutput>
+    updateIndex: function(Client, types.UpdateIndexInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIndexOutput>
+    updatePackage: function(Client, types.UpdatePackageInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePackageOutput>
+    updatePackageScope: function(Client, types.UpdatePackageScopeInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePackageScopeOutput>
+    updateScheduledAction: function(Client, types.UpdateScheduledActionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateScheduledActionOutput>
+    updateVpcEndpoint: function(Client, types.UpdateVpcEndpointInput, ? base_client.InvokeOptions): async.Operation<types.UpdateVpcEndpointOutput>
+    upgradeDomain: function(Client, types.UpgradeDomainInput, ? base_client.InvokeOptions): async.Operation<types.UpgradeDomainOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonOpenSearchService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "es", signing_region = c.region } }
                 else
@@ -147,356 +150,356 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:acceptInboundConnection(input: types.AcceptInboundConnectionInput, options: any): async.Operation<types.AcceptInboundConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptInboundConnection, input, options) as async.Operation<types.AcceptInboundConnectionOutput>
+function C:acceptInboundConnection(input: types.AcceptInboundConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptInboundConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptInboundConnection as schema.OperationSchema, input, options) as async.Operation<types.AcceptInboundConnectionOutput>
 end
 
-function C:addDataSource(input: types.AddDataSourceInput, options: any): async.Operation<types.AddDataSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddDataSource, input, options) as async.Operation<types.AddDataSourceOutput>
+function C:addDataSource(input: types.AddDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.AddDataSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddDataSource as schema.OperationSchema, input, options) as async.Operation<types.AddDataSourceOutput>
 end
 
-function C:addDirectQueryDataSource(input: types.AddDirectQueryDataSourceInput, options: any): async.Operation<types.AddDirectQueryDataSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddDirectQueryDataSource, input, options) as async.Operation<types.AddDirectQueryDataSourceOutput>
+function C:addDirectQueryDataSource(input: types.AddDirectQueryDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.AddDirectQueryDataSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddDirectQueryDataSource as schema.OperationSchema, input, options) as async.Operation<types.AddDirectQueryDataSourceOutput>
 end
 
-function C:addTags(input: types.AddTagsInput, options: any): async.Operation<types.AddTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddTags, input, options) as async.Operation<types.AddTagsOutput>
+function C:addTags(input: types.AddTagsInput, options?: base_client.InvokeOptions): async.Operation<types.AddTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddTags as schema.OperationSchema, input, options) as async.Operation<types.AddTagsOutput>
 end
 
-function C:associatePackage(input: types.AssociatePackageInput, options: any): async.Operation<types.AssociatePackageOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociatePackage, input, options) as async.Operation<types.AssociatePackageOutput>
+function C:associatePackage(input: types.AssociatePackageInput, options?: base_client.InvokeOptions): async.Operation<types.AssociatePackageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociatePackage as schema.OperationSchema, input, options) as async.Operation<types.AssociatePackageOutput>
 end
 
-function C:associatePackages(input: types.AssociatePackagesInput, options: any): async.Operation<types.AssociatePackagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociatePackages, input, options) as async.Operation<types.AssociatePackagesOutput>
+function C:associatePackages(input: types.AssociatePackagesInput, options?: base_client.InvokeOptions): async.Operation<types.AssociatePackagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociatePackages as schema.OperationSchema, input, options) as async.Operation<types.AssociatePackagesOutput>
 end
 
-function C:authorizeVpcEndpointAccess(input: types.AuthorizeVpcEndpointAccessInput, options: any): async.Operation<types.AuthorizeVpcEndpointAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.AuthorizeVpcEndpointAccess, input, options) as async.Operation<types.AuthorizeVpcEndpointAccessOutput>
+function C:authorizeVpcEndpointAccess(input: types.AuthorizeVpcEndpointAccessInput, options?: base_client.InvokeOptions): async.Operation<types.AuthorizeVpcEndpointAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AuthorizeVpcEndpointAccess as schema.OperationSchema, input, options) as async.Operation<types.AuthorizeVpcEndpointAccessOutput>
 end
 
-function C:cancelDomainConfigChange(input: types.CancelDomainConfigChangeInput, options: any): async.Operation<types.CancelDomainConfigChangeOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelDomainConfigChange, input, options) as async.Operation<types.CancelDomainConfigChangeOutput>
+function C:cancelDomainConfigChange(input: types.CancelDomainConfigChangeInput, options?: base_client.InvokeOptions): async.Operation<types.CancelDomainConfigChangeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelDomainConfigChange as schema.OperationSchema, input, options) as async.Operation<types.CancelDomainConfigChangeOutput>
 end
 
-function C:cancelServiceSoftwareUpdate(input: types.CancelServiceSoftwareUpdateInput, options: any): async.Operation<types.CancelServiceSoftwareUpdateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelServiceSoftwareUpdate, input, options) as async.Operation<types.CancelServiceSoftwareUpdateOutput>
+function C:cancelServiceSoftwareUpdate(input: types.CancelServiceSoftwareUpdateInput, options?: base_client.InvokeOptions): async.Operation<types.CancelServiceSoftwareUpdateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelServiceSoftwareUpdate as schema.OperationSchema, input, options) as async.Operation<types.CancelServiceSoftwareUpdateOutput>
 end
 
-function C:createApplication(input: types.CreateApplicationInput, options: any): async.Operation<types.CreateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateApplication, input, options) as async.Operation<types.CreateApplicationOutput>
+function C:createApplication(input: types.CreateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApplication as schema.OperationSchema, input, options) as async.Operation<types.CreateApplicationOutput>
 end
 
-function C:createDomain(input: types.CreateDomainInput, options: any): async.Operation<types.CreateDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDomain, input, options) as async.Operation<types.CreateDomainOutput>
+function C:createDomain(input: types.CreateDomainInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDomain as schema.OperationSchema, input, options) as async.Operation<types.CreateDomainOutput>
 end
 
-function C:createIndex(input: types.CreateIndexInput, options: any): async.Operation<types.CreateIndexOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIndex, input, options) as async.Operation<types.CreateIndexOutput>
+function C:createIndex(input: types.CreateIndexInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIndexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIndex as schema.OperationSchema, input, options) as async.Operation<types.CreateIndexOutput>
 end
 
-function C:createOutboundConnection(input: types.CreateOutboundConnectionInput, options: any): async.Operation<types.CreateOutboundConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateOutboundConnection, input, options) as async.Operation<types.CreateOutboundConnectionOutput>
+function C:createOutboundConnection(input: types.CreateOutboundConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateOutboundConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateOutboundConnection as schema.OperationSchema, input, options) as async.Operation<types.CreateOutboundConnectionOutput>
 end
 
-function C:createPackage(input: types.CreatePackageInput, options: any): async.Operation<types.CreatePackageOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePackage, input, options) as async.Operation<types.CreatePackageOutput>
+function C:createPackage(input: types.CreatePackageInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePackageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePackage as schema.OperationSchema, input, options) as async.Operation<types.CreatePackageOutput>
 end
 
-function C:createVpcEndpoint(input: types.CreateVpcEndpointInput, options: any): async.Operation<types.CreateVpcEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVpcEndpoint, input, options) as async.Operation<types.CreateVpcEndpointOutput>
+function C:createVpcEndpoint(input: types.CreateVpcEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVpcEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVpcEndpoint as schema.OperationSchema, input, options) as async.Operation<types.CreateVpcEndpointOutput>
 end
 
-function C:deleteApplication(input: types.DeleteApplicationInput, options: any): async.Operation<types.DeleteApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApplication, input, options) as async.Operation<types.DeleteApplicationOutput>
+function C:deleteApplication(input: types.DeleteApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplication as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationOutput>
 end
 
-function C:deleteDataSource(input: types.DeleteDataSourceInput, options: any): async.Operation<types.DeleteDataSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDataSource, input, options) as async.Operation<types.DeleteDataSourceOutput>
+function C:deleteDataSource(input: types.DeleteDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDataSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataSource as schema.OperationSchema, input, options) as async.Operation<types.DeleteDataSourceOutput>
 end
 
-function C:deleteDirectQueryDataSource(input: types.DeleteDirectQueryDataSourceInput, options: any): async.Operation<types.DeleteDirectQueryDataSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDirectQueryDataSource, input, options) as async.Operation<types.DeleteDirectQueryDataSourceOutput>
+function C:deleteDirectQueryDataSource(input: types.DeleteDirectQueryDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDirectQueryDataSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDirectQueryDataSource as schema.OperationSchema, input, options) as async.Operation<types.DeleteDirectQueryDataSourceOutput>
 end
 
-function C:deleteDomain(input: types.DeleteDomainInput, options: any): async.Operation<types.DeleteDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDomain, input, options) as async.Operation<types.DeleteDomainOutput>
+function C:deleteDomain(input: types.DeleteDomainInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDomain as schema.OperationSchema, input, options) as async.Operation<types.DeleteDomainOutput>
 end
 
-function C:deleteInboundConnection(input: types.DeleteInboundConnectionInput, options: any): async.Operation<types.DeleteInboundConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteInboundConnection, input, options) as async.Operation<types.DeleteInboundConnectionOutput>
+function C:deleteInboundConnection(input: types.DeleteInboundConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteInboundConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInboundConnection as schema.OperationSchema, input, options) as async.Operation<types.DeleteInboundConnectionOutput>
 end
 
-function C:deleteIndex(input: types.DeleteIndexInput, options: any): async.Operation<types.DeleteIndexOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIndex, input, options) as async.Operation<types.DeleteIndexOutput>
+function C:deleteIndex(input: types.DeleteIndexInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIndexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIndex as schema.OperationSchema, input, options) as async.Operation<types.DeleteIndexOutput>
 end
 
-function C:deleteOutboundConnection(input: types.DeleteOutboundConnectionInput, options: any): async.Operation<types.DeleteOutboundConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteOutboundConnection, input, options) as async.Operation<types.DeleteOutboundConnectionOutput>
+function C:deleteOutboundConnection(input: types.DeleteOutboundConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteOutboundConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteOutboundConnection as schema.OperationSchema, input, options) as async.Operation<types.DeleteOutboundConnectionOutput>
 end
 
-function C:deletePackage(input: types.DeletePackageInput, options: any): async.Operation<types.DeletePackageOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePackage, input, options) as async.Operation<types.DeletePackageOutput>
+function C:deletePackage(input: types.DeletePackageInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePackageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePackage as schema.OperationSchema, input, options) as async.Operation<types.DeletePackageOutput>
 end
 
-function C:deleteVpcEndpoint(input: types.DeleteVpcEndpointInput, options: any): async.Operation<types.DeleteVpcEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVpcEndpoint, input, options) as async.Operation<types.DeleteVpcEndpointOutput>
+function C:deleteVpcEndpoint(input: types.DeleteVpcEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVpcEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVpcEndpoint as schema.OperationSchema, input, options) as async.Operation<types.DeleteVpcEndpointOutput>
 end
 
-function C:deregisterCapability(input: types.DeregisterCapabilityInput, options: any): async.Operation<types.DeregisterCapabilityOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterCapability, input, options) as async.Operation<types.DeregisterCapabilityOutput>
+function C:deregisterCapability(input: types.DeregisterCapabilityInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterCapabilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterCapability as schema.OperationSchema, input, options) as async.Operation<types.DeregisterCapabilityOutput>
 end
 
-function C:describeDomain(input: types.DescribeDomainInput, options: any): async.Operation<types.DescribeDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDomain, input, options) as async.Operation<types.DescribeDomainOutput>
+function C:describeDomain(input: types.DescribeDomainInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDomain as schema.OperationSchema, input, options) as async.Operation<types.DescribeDomainOutput>
 end
 
-function C:describeDomainAutoTunes(input: types.DescribeDomainAutoTunesInput, options: any): async.Operation<types.DescribeDomainAutoTunesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDomainAutoTunes, input, options) as async.Operation<types.DescribeDomainAutoTunesOutput>
+function C:describeDomainAutoTunes(input: types.DescribeDomainAutoTunesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDomainAutoTunesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDomainAutoTunes as schema.OperationSchema, input, options) as async.Operation<types.DescribeDomainAutoTunesOutput>
 end
 
-function C:describeDomainChangeProgress(input: types.DescribeDomainChangeProgressInput, options: any): async.Operation<types.DescribeDomainChangeProgressOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDomainChangeProgress, input, options) as async.Operation<types.DescribeDomainChangeProgressOutput>
+function C:describeDomainChangeProgress(input: types.DescribeDomainChangeProgressInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDomainChangeProgressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDomainChangeProgress as schema.OperationSchema, input, options) as async.Operation<types.DescribeDomainChangeProgressOutput>
 end
 
-function C:describeDomainConfig(input: types.DescribeDomainConfigInput, options: any): async.Operation<types.DescribeDomainConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDomainConfig, input, options) as async.Operation<types.DescribeDomainConfigOutput>
+function C:describeDomainConfig(input: types.DescribeDomainConfigInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDomainConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDomainConfig as schema.OperationSchema, input, options) as async.Operation<types.DescribeDomainConfigOutput>
 end
 
-function C:describeDomainHealth(input: types.DescribeDomainHealthInput, options: any): async.Operation<types.DescribeDomainHealthOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDomainHealth, input, options) as async.Operation<types.DescribeDomainHealthOutput>
+function C:describeDomainHealth(input: types.DescribeDomainHealthInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDomainHealthOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDomainHealth as schema.OperationSchema, input, options) as async.Operation<types.DescribeDomainHealthOutput>
 end
 
-function C:describeDomainNodes(input: types.DescribeDomainNodesInput, options: any): async.Operation<types.DescribeDomainNodesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDomainNodes, input, options) as async.Operation<types.DescribeDomainNodesOutput>
+function C:describeDomainNodes(input: types.DescribeDomainNodesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDomainNodesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDomainNodes as schema.OperationSchema, input, options) as async.Operation<types.DescribeDomainNodesOutput>
 end
 
-function C:describeDomains(input: types.DescribeDomainsInput, options: any): async.Operation<types.DescribeDomainsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDomains, input, options) as async.Operation<types.DescribeDomainsOutput>
+function C:describeDomains(input: types.DescribeDomainsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDomainsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDomains as schema.OperationSchema, input, options) as async.Operation<types.DescribeDomainsOutput>
 end
 
-function C:describeDryRunProgress(input: types.DescribeDryRunProgressInput, options: any): async.Operation<types.DescribeDryRunProgressOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDryRunProgress, input, options) as async.Operation<types.DescribeDryRunProgressOutput>
+function C:describeDryRunProgress(input: types.DescribeDryRunProgressInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDryRunProgressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDryRunProgress as schema.OperationSchema, input, options) as async.Operation<types.DescribeDryRunProgressOutput>
 end
 
-function C:describeInboundConnections(input: types.DescribeInboundConnectionsInput, options: any): async.Operation<types.DescribeInboundConnectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInboundConnections, input, options) as async.Operation<types.DescribeInboundConnectionsOutput>
+function C:describeInboundConnections(input: types.DescribeInboundConnectionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInboundConnectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInboundConnections as schema.OperationSchema, input, options) as async.Operation<types.DescribeInboundConnectionsOutput>
 end
 
-function C:describeInsightDetails(input: types.DescribeInsightDetailsInput, options: any): async.Operation<types.DescribeInsightDetailsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInsightDetails, input, options) as async.Operation<types.DescribeInsightDetailsOutput>
+function C:describeInsightDetails(input: types.DescribeInsightDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInsightDetailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInsightDetails as schema.OperationSchema, input, options) as async.Operation<types.DescribeInsightDetailsOutput>
 end
 
-function C:describeInstanceTypeLimits(input: types.DescribeInstanceTypeLimitsInput, options: any): async.Operation<types.DescribeInstanceTypeLimitsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInstanceTypeLimits, input, options) as async.Operation<types.DescribeInstanceTypeLimitsOutput>
+function C:describeInstanceTypeLimits(input: types.DescribeInstanceTypeLimitsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInstanceTypeLimitsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInstanceTypeLimits as schema.OperationSchema, input, options) as async.Operation<types.DescribeInstanceTypeLimitsOutput>
 end
 
-function C:describeOutboundConnections(input: types.DescribeOutboundConnectionsInput, options: any): async.Operation<types.DescribeOutboundConnectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeOutboundConnections, input, options) as async.Operation<types.DescribeOutboundConnectionsOutput>
+function C:describeOutboundConnections(input: types.DescribeOutboundConnectionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeOutboundConnectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeOutboundConnections as schema.OperationSchema, input, options) as async.Operation<types.DescribeOutboundConnectionsOutput>
 end
 
-function C:describePackages(input: types.DescribePackagesInput, options: any): async.Operation<types.DescribePackagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePackages, input, options) as async.Operation<types.DescribePackagesOutput>
+function C:describePackages(input: types.DescribePackagesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePackagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePackages as schema.OperationSchema, input, options) as async.Operation<types.DescribePackagesOutput>
 end
 
-function C:describeReservedInstanceOfferings(input: types.DescribeReservedInstanceOfferingsInput, options: any): async.Operation<types.DescribeReservedInstanceOfferingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeReservedInstanceOfferings, input, options) as async.Operation<types.DescribeReservedInstanceOfferingsOutput>
+function C:describeReservedInstanceOfferings(input: types.DescribeReservedInstanceOfferingsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeReservedInstanceOfferingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeReservedInstanceOfferings as schema.OperationSchema, input, options) as async.Operation<types.DescribeReservedInstanceOfferingsOutput>
 end
 
-function C:describeReservedInstances(input: types.DescribeReservedInstancesInput, options: any): async.Operation<types.DescribeReservedInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeReservedInstances, input, options) as async.Operation<types.DescribeReservedInstancesOutput>
+function C:describeReservedInstances(input: types.DescribeReservedInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeReservedInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeReservedInstances as schema.OperationSchema, input, options) as async.Operation<types.DescribeReservedInstancesOutput>
 end
 
-function C:describeVpcEndpoints(input: types.DescribeVpcEndpointsInput, options: any): async.Operation<types.DescribeVpcEndpointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVpcEndpoints, input, options) as async.Operation<types.DescribeVpcEndpointsOutput>
+function C:describeVpcEndpoints(input: types.DescribeVpcEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVpcEndpointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVpcEndpoints as schema.OperationSchema, input, options) as async.Operation<types.DescribeVpcEndpointsOutput>
 end
 
-function C:dissociatePackage(input: types.DissociatePackageInput, options: any): async.Operation<types.DissociatePackageOutput>
-    return self:invokeOperation(schemas.Service, schemas.DissociatePackage, input, options) as async.Operation<types.DissociatePackageOutput>
+function C:dissociatePackage(input: types.DissociatePackageInput, options?: base_client.InvokeOptions): async.Operation<types.DissociatePackageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DissociatePackage as schema.OperationSchema, input, options) as async.Operation<types.DissociatePackageOutput>
 end
 
-function C:dissociatePackages(input: types.DissociatePackagesInput, options: any): async.Operation<types.DissociatePackagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DissociatePackages, input, options) as async.Operation<types.DissociatePackagesOutput>
+function C:dissociatePackages(input: types.DissociatePackagesInput, options?: base_client.InvokeOptions): async.Operation<types.DissociatePackagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DissociatePackages as schema.OperationSchema, input, options) as async.Operation<types.DissociatePackagesOutput>
 end
 
-function C:getApplication(input: types.GetApplicationInput, options: any): async.Operation<types.GetApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetApplication, input, options) as async.Operation<types.GetApplicationOutput>
+function C:getApplication(input: types.GetApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.GetApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetApplication as schema.OperationSchema, input, options) as async.Operation<types.GetApplicationOutput>
 end
 
-function C:getCapability(input: types.GetCapabilityInput, options: any): async.Operation<types.GetCapabilityOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCapability, input, options) as async.Operation<types.GetCapabilityOutput>
+function C:getCapability(input: types.GetCapabilityInput, options?: base_client.InvokeOptions): async.Operation<types.GetCapabilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCapability as schema.OperationSchema, input, options) as async.Operation<types.GetCapabilityOutput>
 end
 
-function C:getCompatibleVersions(input: types.GetCompatibleVersionsInput, options: any): async.Operation<types.GetCompatibleVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCompatibleVersions, input, options) as async.Operation<types.GetCompatibleVersionsOutput>
+function C:getCompatibleVersions(input: types.GetCompatibleVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.GetCompatibleVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCompatibleVersions as schema.OperationSchema, input, options) as async.Operation<types.GetCompatibleVersionsOutput>
 end
 
-function C:getDataSource(input: types.GetDataSourceInput, options: any): async.Operation<types.GetDataSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataSource, input, options) as async.Operation<types.GetDataSourceOutput>
+function C:getDataSource(input: types.GetDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataSource as schema.OperationSchema, input, options) as async.Operation<types.GetDataSourceOutput>
 end
 
-function C:getDefaultApplicationSetting(input: types.GetDefaultApplicationSettingInput, options: any): async.Operation<types.GetDefaultApplicationSettingOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDefaultApplicationSetting, input, options) as async.Operation<types.GetDefaultApplicationSettingOutput>
+function C:getDefaultApplicationSetting(input: types.GetDefaultApplicationSettingInput, options?: base_client.InvokeOptions): async.Operation<types.GetDefaultApplicationSettingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDefaultApplicationSetting as schema.OperationSchema, input, options) as async.Operation<types.GetDefaultApplicationSettingOutput>
 end
 
-function C:getDirectQueryDataSource(input: types.GetDirectQueryDataSourceInput, options: any): async.Operation<types.GetDirectQueryDataSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDirectQueryDataSource, input, options) as async.Operation<types.GetDirectQueryDataSourceOutput>
+function C:getDirectQueryDataSource(input: types.GetDirectQueryDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.GetDirectQueryDataSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDirectQueryDataSource as schema.OperationSchema, input, options) as async.Operation<types.GetDirectQueryDataSourceOutput>
 end
 
-function C:getDomainMaintenanceStatus(input: types.GetDomainMaintenanceStatusInput, options: any): async.Operation<types.GetDomainMaintenanceStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDomainMaintenanceStatus, input, options) as async.Operation<types.GetDomainMaintenanceStatusOutput>
+function C:getDomainMaintenanceStatus(input: types.GetDomainMaintenanceStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetDomainMaintenanceStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDomainMaintenanceStatus as schema.OperationSchema, input, options) as async.Operation<types.GetDomainMaintenanceStatusOutput>
 end
 
-function C:getIndex(input: types.GetIndexInput, options: any): async.Operation<types.GetIndexOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIndex, input, options) as async.Operation<types.GetIndexOutput>
+function C:getIndex(input: types.GetIndexInput, options?: base_client.InvokeOptions): async.Operation<types.GetIndexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIndex as schema.OperationSchema, input, options) as async.Operation<types.GetIndexOutput>
 end
 
-function C:getPackageVersionHistory(input: types.GetPackageVersionHistoryInput, options: any): async.Operation<types.GetPackageVersionHistoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPackageVersionHistory, input, options) as async.Operation<types.GetPackageVersionHistoryOutput>
+function C:getPackageVersionHistory(input: types.GetPackageVersionHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.GetPackageVersionHistoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPackageVersionHistory as schema.OperationSchema, input, options) as async.Operation<types.GetPackageVersionHistoryOutput>
 end
 
-function C:getUpgradeHistory(input: types.GetUpgradeHistoryInput, options: any): async.Operation<types.GetUpgradeHistoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetUpgradeHistory, input, options) as async.Operation<types.GetUpgradeHistoryOutput>
+function C:getUpgradeHistory(input: types.GetUpgradeHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.GetUpgradeHistoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetUpgradeHistory as schema.OperationSchema, input, options) as async.Operation<types.GetUpgradeHistoryOutput>
 end
 
-function C:getUpgradeStatus(input: types.GetUpgradeStatusInput, options: any): async.Operation<types.GetUpgradeStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetUpgradeStatus, input, options) as async.Operation<types.GetUpgradeStatusOutput>
+function C:getUpgradeStatus(input: types.GetUpgradeStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetUpgradeStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetUpgradeStatus as schema.OperationSchema, input, options) as async.Operation<types.GetUpgradeStatusOutput>
 end
 
-function C:listApplications(input: types.ListApplicationsInput, options: any): async.Operation<types.ListApplicationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplications, input, options) as async.Operation<types.ListApplicationsOutput>
+function C:listApplications(input: types.ListApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplications as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationsOutput>
 end
 
-function C:listDataSources(input: types.ListDataSourcesInput, options: any): async.Operation<types.ListDataSourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDataSources, input, options) as async.Operation<types.ListDataSourcesOutput>
+function C:listDataSources(input: types.ListDataSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataSourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataSources as schema.OperationSchema, input, options) as async.Operation<types.ListDataSourcesOutput>
 end
 
-function C:listDirectQueryDataSources(input: types.ListDirectQueryDataSourcesInput, options: any): async.Operation<types.ListDirectQueryDataSourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDirectQueryDataSources, input, options) as async.Operation<types.ListDirectQueryDataSourcesOutput>
+function C:listDirectQueryDataSources(input: types.ListDirectQueryDataSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDirectQueryDataSourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDirectQueryDataSources as schema.OperationSchema, input, options) as async.Operation<types.ListDirectQueryDataSourcesOutput>
 end
 
-function C:listDomainMaintenances(input: types.ListDomainMaintenancesInput, options: any): async.Operation<types.ListDomainMaintenancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDomainMaintenances, input, options) as async.Operation<types.ListDomainMaintenancesOutput>
+function C:listDomainMaintenances(input: types.ListDomainMaintenancesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDomainMaintenancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDomainMaintenances as schema.OperationSchema, input, options) as async.Operation<types.ListDomainMaintenancesOutput>
 end
 
-function C:listDomainNames(input: types.ListDomainNamesInput, options: any): async.Operation<types.ListDomainNamesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDomainNames, input, options) as async.Operation<types.ListDomainNamesOutput>
+function C:listDomainNames(input: types.ListDomainNamesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDomainNamesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDomainNames as schema.OperationSchema, input, options) as async.Operation<types.ListDomainNamesOutput>
 end
 
-function C:listDomainsForPackage(input: types.ListDomainsForPackageInput, options: any): async.Operation<types.ListDomainsForPackageOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDomainsForPackage, input, options) as async.Operation<types.ListDomainsForPackageOutput>
+function C:listDomainsForPackage(input: types.ListDomainsForPackageInput, options?: base_client.InvokeOptions): async.Operation<types.ListDomainsForPackageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDomainsForPackage as schema.OperationSchema, input, options) as async.Operation<types.ListDomainsForPackageOutput>
 end
 
-function C:listInsights(input: types.ListInsightsInput, options: any): async.Operation<types.ListInsightsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInsights, input, options) as async.Operation<types.ListInsightsOutput>
+function C:listInsights(input: types.ListInsightsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInsightsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInsights as schema.OperationSchema, input, options) as async.Operation<types.ListInsightsOutput>
 end
 
-function C:listInstanceTypeDetails(input: types.ListInstanceTypeDetailsInput, options: any): async.Operation<types.ListInstanceTypeDetailsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInstanceTypeDetails, input, options) as async.Operation<types.ListInstanceTypeDetailsOutput>
+function C:listInstanceTypeDetails(input: types.ListInstanceTypeDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInstanceTypeDetailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInstanceTypeDetails as schema.OperationSchema, input, options) as async.Operation<types.ListInstanceTypeDetailsOutput>
 end
 
-function C:listPackagesForDomain(input: types.ListPackagesForDomainInput, options: any): async.Operation<types.ListPackagesForDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPackagesForDomain, input, options) as async.Operation<types.ListPackagesForDomainOutput>
+function C:listPackagesForDomain(input: types.ListPackagesForDomainInput, options?: base_client.InvokeOptions): async.Operation<types.ListPackagesForDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPackagesForDomain as schema.OperationSchema, input, options) as async.Operation<types.ListPackagesForDomainOutput>
 end
 
-function C:listScheduledActions(input: types.ListScheduledActionsInput, options: any): async.Operation<types.ListScheduledActionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListScheduledActions, input, options) as async.Operation<types.ListScheduledActionsOutput>
+function C:listScheduledActions(input: types.ListScheduledActionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListScheduledActionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListScheduledActions as schema.OperationSchema, input, options) as async.Operation<types.ListScheduledActionsOutput>
 end
 
-function C:listTags(input: types.ListTagsInput, options: any): async.Operation<types.ListTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTags, input, options) as async.Operation<types.ListTagsOutput>
+function C:listTags(input: types.ListTagsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTags as schema.OperationSchema, input, options) as async.Operation<types.ListTagsOutput>
 end
 
-function C:listVersions(input: types.ListVersionsInput, options: any): async.Operation<types.ListVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVersions, input, options) as async.Operation<types.ListVersionsOutput>
+function C:listVersions(input: types.ListVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVersions as schema.OperationSchema, input, options) as async.Operation<types.ListVersionsOutput>
 end
 
-function C:listVpcEndpointAccess(input: types.ListVpcEndpointAccessInput, options: any): async.Operation<types.ListVpcEndpointAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVpcEndpointAccess, input, options) as async.Operation<types.ListVpcEndpointAccessOutput>
+function C:listVpcEndpointAccess(input: types.ListVpcEndpointAccessInput, options?: base_client.InvokeOptions): async.Operation<types.ListVpcEndpointAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVpcEndpointAccess as schema.OperationSchema, input, options) as async.Operation<types.ListVpcEndpointAccessOutput>
 end
 
-function C:listVpcEndpoints(input: types.ListVpcEndpointsInput, options: any): async.Operation<types.ListVpcEndpointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVpcEndpoints, input, options) as async.Operation<types.ListVpcEndpointsOutput>
+function C:listVpcEndpoints(input: types.ListVpcEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.ListVpcEndpointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVpcEndpoints as schema.OperationSchema, input, options) as async.Operation<types.ListVpcEndpointsOutput>
 end
 
-function C:listVpcEndpointsForDomain(input: types.ListVpcEndpointsForDomainInput, options: any): async.Operation<types.ListVpcEndpointsForDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVpcEndpointsForDomain, input, options) as async.Operation<types.ListVpcEndpointsForDomainOutput>
+function C:listVpcEndpointsForDomain(input: types.ListVpcEndpointsForDomainInput, options?: base_client.InvokeOptions): async.Operation<types.ListVpcEndpointsForDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVpcEndpointsForDomain as schema.OperationSchema, input, options) as async.Operation<types.ListVpcEndpointsForDomainOutput>
 end
 
-function C:purchaseReservedInstanceOffering(input: types.PurchaseReservedInstanceOfferingInput, options: any): async.Operation<types.PurchaseReservedInstanceOfferingOutput>
-    return self:invokeOperation(schemas.Service, schemas.PurchaseReservedInstanceOffering, input, options) as async.Operation<types.PurchaseReservedInstanceOfferingOutput>
+function C:purchaseReservedInstanceOffering(input: types.PurchaseReservedInstanceOfferingInput, options?: base_client.InvokeOptions): async.Operation<types.PurchaseReservedInstanceOfferingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PurchaseReservedInstanceOffering as schema.OperationSchema, input, options) as async.Operation<types.PurchaseReservedInstanceOfferingOutput>
 end
 
-function C:putDefaultApplicationSetting(input: types.PutDefaultApplicationSettingInput, options: any): async.Operation<types.PutDefaultApplicationSettingOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutDefaultApplicationSetting, input, options) as async.Operation<types.PutDefaultApplicationSettingOutput>
+function C:putDefaultApplicationSetting(input: types.PutDefaultApplicationSettingInput, options?: base_client.InvokeOptions): async.Operation<types.PutDefaultApplicationSettingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutDefaultApplicationSetting as schema.OperationSchema, input, options) as async.Operation<types.PutDefaultApplicationSettingOutput>
 end
 
-function C:registerCapability(input: types.RegisterCapabilityInput, options: any): async.Operation<types.RegisterCapabilityOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterCapability, input, options) as async.Operation<types.RegisterCapabilityOutput>
+function C:registerCapability(input: types.RegisterCapabilityInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterCapabilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterCapability as schema.OperationSchema, input, options) as async.Operation<types.RegisterCapabilityOutput>
 end
 
-function C:rejectInboundConnection(input: types.RejectInboundConnectionInput, options: any): async.Operation<types.RejectInboundConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.RejectInboundConnection, input, options) as async.Operation<types.RejectInboundConnectionOutput>
+function C:rejectInboundConnection(input: types.RejectInboundConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.RejectInboundConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RejectInboundConnection as schema.OperationSchema, input, options) as async.Operation<types.RejectInboundConnectionOutput>
 end
 
-function C:removeTags(input: types.RemoveTagsInput, options: any): async.Operation<types.RemoveTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveTags, input, options) as async.Operation<types.RemoveTagsOutput>
+function C:removeTags(input: types.RemoveTagsInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveTags as schema.OperationSchema, input, options) as async.Operation<types.RemoveTagsOutput>
 end
 
-function C:revokeVpcEndpointAccess(input: types.RevokeVpcEndpointAccessInput, options: any): async.Operation<types.RevokeVpcEndpointAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.RevokeVpcEndpointAccess, input, options) as async.Operation<types.RevokeVpcEndpointAccessOutput>
+function C:revokeVpcEndpointAccess(input: types.RevokeVpcEndpointAccessInput, options?: base_client.InvokeOptions): async.Operation<types.RevokeVpcEndpointAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RevokeVpcEndpointAccess as schema.OperationSchema, input, options) as async.Operation<types.RevokeVpcEndpointAccessOutput>
 end
 
-function C:rollbackServiceSoftwareUpdate(input: types.RollbackServiceSoftwareUpdateInput, options: any): async.Operation<types.RollbackServiceSoftwareUpdateOutput>
-    return self:invokeOperation(schemas.Service, schemas.RollbackServiceSoftwareUpdate, input, options) as async.Operation<types.RollbackServiceSoftwareUpdateOutput>
+function C:rollbackServiceSoftwareUpdate(input: types.RollbackServiceSoftwareUpdateInput, options?: base_client.InvokeOptions): async.Operation<types.RollbackServiceSoftwareUpdateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RollbackServiceSoftwareUpdate as schema.OperationSchema, input, options) as async.Operation<types.RollbackServiceSoftwareUpdateOutput>
 end
 
-function C:startDomainMaintenance(input: types.StartDomainMaintenanceInput, options: any): async.Operation<types.StartDomainMaintenanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartDomainMaintenance, input, options) as async.Operation<types.StartDomainMaintenanceOutput>
+function C:startDomainMaintenance(input: types.StartDomainMaintenanceInput, options?: base_client.InvokeOptions): async.Operation<types.StartDomainMaintenanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDomainMaintenance as schema.OperationSchema, input, options) as async.Operation<types.StartDomainMaintenanceOutput>
 end
 
-function C:startServiceSoftwareUpdate(input: types.StartServiceSoftwareUpdateInput, options: any): async.Operation<types.StartServiceSoftwareUpdateOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartServiceSoftwareUpdate, input, options) as async.Operation<types.StartServiceSoftwareUpdateOutput>
+function C:startServiceSoftwareUpdate(input: types.StartServiceSoftwareUpdateInput, options?: base_client.InvokeOptions): async.Operation<types.StartServiceSoftwareUpdateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartServiceSoftwareUpdate as schema.OperationSchema, input, options) as async.Operation<types.StartServiceSoftwareUpdateOutput>
 end
 
-function C:updateApplication(input: types.UpdateApplicationInput, options: any): async.Operation<types.UpdateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateApplication, input, options) as async.Operation<types.UpdateApplicationOutput>
+function C:updateApplication(input: types.UpdateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApplication as schema.OperationSchema, input, options) as async.Operation<types.UpdateApplicationOutput>
 end
 
-function C:updateDataSource(input: types.UpdateDataSourceInput, options: any): async.Operation<types.UpdateDataSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDataSource, input, options) as async.Operation<types.UpdateDataSourceOutput>
+function C:updateDataSource(input: types.UpdateDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDataSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDataSource as schema.OperationSchema, input, options) as async.Operation<types.UpdateDataSourceOutput>
 end
 
-function C:updateDirectQueryDataSource(input: types.UpdateDirectQueryDataSourceInput, options: any): async.Operation<types.UpdateDirectQueryDataSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDirectQueryDataSource, input, options) as async.Operation<types.UpdateDirectQueryDataSourceOutput>
+function C:updateDirectQueryDataSource(input: types.UpdateDirectQueryDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDirectQueryDataSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDirectQueryDataSource as schema.OperationSchema, input, options) as async.Operation<types.UpdateDirectQueryDataSourceOutput>
 end
 
-function C:updateDomainConfig(input: types.UpdateDomainConfigInput, options: any): async.Operation<types.UpdateDomainConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDomainConfig, input, options) as async.Operation<types.UpdateDomainConfigOutput>
+function C:updateDomainConfig(input: types.UpdateDomainConfigInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDomainConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDomainConfig as schema.OperationSchema, input, options) as async.Operation<types.UpdateDomainConfigOutput>
 end
 
-function C:updateIndex(input: types.UpdateIndexInput, options: any): async.Operation<types.UpdateIndexOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateIndex, input, options) as async.Operation<types.UpdateIndexOutput>
+function C:updateIndex(input: types.UpdateIndexInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIndexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIndex as schema.OperationSchema, input, options) as async.Operation<types.UpdateIndexOutput>
 end
 
-function C:updatePackage(input: types.UpdatePackageInput, options: any): async.Operation<types.UpdatePackageOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePackage, input, options) as async.Operation<types.UpdatePackageOutput>
+function C:updatePackage(input: types.UpdatePackageInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePackageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePackage as schema.OperationSchema, input, options) as async.Operation<types.UpdatePackageOutput>
 end
 
-function C:updatePackageScope(input: types.UpdatePackageScopeInput, options: any): async.Operation<types.UpdatePackageScopeOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePackageScope, input, options) as async.Operation<types.UpdatePackageScopeOutput>
+function C:updatePackageScope(input: types.UpdatePackageScopeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePackageScopeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePackageScope as schema.OperationSchema, input, options) as async.Operation<types.UpdatePackageScopeOutput>
 end
 
-function C:updateScheduledAction(input: types.UpdateScheduledActionInput, options: any): async.Operation<types.UpdateScheduledActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateScheduledAction, input, options) as async.Operation<types.UpdateScheduledActionOutput>
+function C:updateScheduledAction(input: types.UpdateScheduledActionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateScheduledActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateScheduledAction as schema.OperationSchema, input, options) as async.Operation<types.UpdateScheduledActionOutput>
 end
 
-function C:updateVpcEndpoint(input: types.UpdateVpcEndpointInput, options: any): async.Operation<types.UpdateVpcEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateVpcEndpoint, input, options) as async.Operation<types.UpdateVpcEndpointOutput>
+function C:updateVpcEndpoint(input: types.UpdateVpcEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateVpcEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateVpcEndpoint as schema.OperationSchema, input, options) as async.Operation<types.UpdateVpcEndpointOutput>
 end
 
-function C:upgradeDomain(input: types.UpgradeDomainInput, options: any): async.Operation<types.UpgradeDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpgradeDomain, input, options) as async.Operation<types.UpgradeDomainOutput>
+function C:upgradeDomain(input: types.UpgradeDomainInput, options?: base_client.InvokeOptions): async.Operation<types.UpgradeDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpgradeDomain as schema.OperationSchema, input, options) as async.Operation<types.UpgradeDomainOutput>
 end
 
 return M

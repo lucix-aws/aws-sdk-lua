@@ -8,145 +8,148 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("pinpointsmsvoicev2.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("pinpointsmsvoicev2.schemas")
 local traits = require("smithy.traits")
 local types = require("pinpointsmsvoicev2.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateOriginationIdentity: function(Client, types.AssociateOriginationIdentityInput, any): async.Operation<types.AssociateOriginationIdentityOutput>
-    associateProtectConfiguration: function(Client, types.AssociateProtectConfigurationInput, any): async.Operation<types.AssociateProtectConfigurationOutput>
-    carrierLookup: function(Client, types.CarrierLookupInput, any): async.Operation<types.CarrierLookupOutput>
-    createConfigurationSet: function(Client, types.CreateConfigurationSetInput, any): async.Operation<types.CreateConfigurationSetOutput>
-    createEventDestination: function(Client, types.CreateEventDestinationInput, any): async.Operation<types.CreateEventDestinationOutput>
-    createNotifyConfiguration: function(Client, types.CreateNotifyConfigurationInput, any): async.Operation<types.CreateNotifyConfigurationOutput>
-    createOptOutList: function(Client, types.CreateOptOutListInput, any): async.Operation<types.CreateOptOutListOutput>
-    createPool: function(Client, types.CreatePoolInput, any): async.Operation<types.CreatePoolOutput>
-    createProtectConfiguration: function(Client, types.CreateProtectConfigurationInput, any): async.Operation<types.CreateProtectConfigurationOutput>
-    createRcsAgent: function(Client, types.CreateRcsAgentInput, any): async.Operation<types.CreateRcsAgentOutput>
-    createRegistration: function(Client, types.CreateRegistrationInput, any): async.Operation<types.CreateRegistrationOutput>
-    createRegistrationAssociation: function(Client, types.CreateRegistrationAssociationInput, any): async.Operation<types.CreateRegistrationAssociationOutput>
-    createRegistrationAttachment: function(Client, types.CreateRegistrationAttachmentInput, any): async.Operation<types.CreateRegistrationAttachmentOutput>
-    createRegistrationVersion: function(Client, types.CreateRegistrationVersionInput, any): async.Operation<types.CreateRegistrationVersionOutput>
-    createVerifiedDestinationNumber: function(Client, types.CreateVerifiedDestinationNumberInput, any): async.Operation<types.CreateVerifiedDestinationNumberOutput>
-    deleteAccountDefaultProtectConfiguration: function(Client, types.DeleteAccountDefaultProtectConfigurationInput, any): async.Operation<types.DeleteAccountDefaultProtectConfigurationOutput>
-    deleteConfigurationSet: function(Client, types.DeleteConfigurationSetInput, any): async.Operation<types.DeleteConfigurationSetOutput>
-    deleteDefaultMessageType: function(Client, types.DeleteDefaultMessageTypeInput, any): async.Operation<types.DeleteDefaultMessageTypeOutput>
-    deleteDefaultSenderId: function(Client, types.DeleteDefaultSenderIdInput, any): async.Operation<types.DeleteDefaultSenderIdOutput>
-    deleteEventDestination: function(Client, types.DeleteEventDestinationInput, any): async.Operation<types.DeleteEventDestinationOutput>
-    deleteKeyword: function(Client, types.DeleteKeywordInput, any): async.Operation<types.DeleteKeywordOutput>
-    deleteMediaMessageSpendLimitOverride: function(Client, types.DeleteMediaMessageSpendLimitOverrideInput, any): async.Operation<types.DeleteMediaMessageSpendLimitOverrideOutput>
-    deleteNotifyConfiguration: function(Client, types.DeleteNotifyConfigurationInput, any): async.Operation<types.DeleteNotifyConfigurationOutput>
-    deleteNotifyMessageSpendLimitOverride: function(Client, types.DeleteNotifyMessageSpendLimitOverrideInput, any): async.Operation<types.DeleteNotifyMessageSpendLimitOverrideOutput>
-    deleteOptedOutNumber: function(Client, types.DeleteOptedOutNumberInput, any): async.Operation<types.DeleteOptedOutNumberOutput>
-    deleteOptOutList: function(Client, types.DeleteOptOutListInput, any): async.Operation<types.DeleteOptOutListOutput>
-    deletePool: function(Client, types.DeletePoolInput, any): async.Operation<types.DeletePoolOutput>
-    deleteProtectConfiguration: function(Client, types.DeleteProtectConfigurationInput, any): async.Operation<types.DeleteProtectConfigurationOutput>
-    deleteProtectConfigurationRuleSetNumberOverride: function(Client, types.DeleteProtectConfigurationRuleSetNumberOverrideInput, any): async.Operation<types.DeleteProtectConfigurationRuleSetNumberOverrideOutput>
-    deleteRcsAgent: function(Client, types.DeleteRcsAgentInput, any): async.Operation<types.DeleteRcsAgentOutput>
-    deleteRegistration: function(Client, types.DeleteRegistrationInput, any): async.Operation<types.DeleteRegistrationOutput>
-    deleteRegistrationAttachment: function(Client, types.DeleteRegistrationAttachmentInput, any): async.Operation<types.DeleteRegistrationAttachmentOutput>
-    deleteRegistrationFieldValue: function(Client, types.DeleteRegistrationFieldValueInput, any): async.Operation<types.DeleteRegistrationFieldValueOutput>
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, any): async.Operation<types.DeleteResourcePolicyOutput>
-    deleteTextMessageSpendLimitOverride: function(Client, types.DeleteTextMessageSpendLimitOverrideInput, any): async.Operation<types.DeleteTextMessageSpendLimitOverrideOutput>
-    deleteVerifiedDestinationNumber: function(Client, types.DeleteVerifiedDestinationNumberInput, any): async.Operation<types.DeleteVerifiedDestinationNumberOutput>
-    deleteVoiceMessageSpendLimitOverride: function(Client, types.DeleteVoiceMessageSpendLimitOverrideInput, any): async.Operation<types.DeleteVoiceMessageSpendLimitOverrideOutput>
-    describeAccountAttributes: function(Client, types.DescribeAccountAttributesInput, any): async.Operation<types.DescribeAccountAttributesOutput>
-    describeAccountLimits: function(Client, types.DescribeAccountLimitsInput, any): async.Operation<types.DescribeAccountLimitsOutput>
-    describeConfigurationSets: function(Client, types.DescribeConfigurationSetsInput, any): async.Operation<types.DescribeConfigurationSetsOutput>
-    describeKeywords: function(Client, types.DescribeKeywordsInput, any): async.Operation<types.DescribeKeywordsOutput>
-    describeNotifyConfigurations: function(Client, types.DescribeNotifyConfigurationsInput, any): async.Operation<types.DescribeNotifyConfigurationsOutput>
-    describeNotifyTemplates: function(Client, types.DescribeNotifyTemplatesInput, any): async.Operation<types.DescribeNotifyTemplatesOutput>
-    describeOptedOutNumbers: function(Client, types.DescribeOptedOutNumbersInput, any): async.Operation<types.DescribeOptedOutNumbersOutput>
-    describeOptOutLists: function(Client, types.DescribeOptOutListsInput, any): async.Operation<types.DescribeOptOutListsOutput>
-    describePhoneNumbers: function(Client, types.DescribePhoneNumbersInput, any): async.Operation<types.DescribePhoneNumbersOutput>
-    describePools: function(Client, types.DescribePoolsInput, any): async.Operation<types.DescribePoolsOutput>
-    describeProtectConfigurations: function(Client, types.DescribeProtectConfigurationsInput, any): async.Operation<types.DescribeProtectConfigurationsOutput>
-    describeRcsAgentCountryLaunchStatus: function(Client, types.DescribeRcsAgentCountryLaunchStatusInput, any): async.Operation<types.DescribeRcsAgentCountryLaunchStatusOutput>
-    describeRcsAgents: function(Client, types.DescribeRcsAgentsInput, any): async.Operation<types.DescribeRcsAgentsOutput>
-    describeRegistrationAttachments: function(Client, types.DescribeRegistrationAttachmentsInput, any): async.Operation<types.DescribeRegistrationAttachmentsOutput>
-    describeRegistrationFieldDefinitions: function(Client, types.DescribeRegistrationFieldDefinitionsInput, any): async.Operation<types.DescribeRegistrationFieldDefinitionsOutput>
-    describeRegistrationFieldValues: function(Client, types.DescribeRegistrationFieldValuesInput, any): async.Operation<types.DescribeRegistrationFieldValuesOutput>
-    describeRegistrations: function(Client, types.DescribeRegistrationsInput, any): async.Operation<types.DescribeRegistrationsOutput>
-    describeRegistrationSectionDefinitions: function(Client, types.DescribeRegistrationSectionDefinitionsInput, any): async.Operation<types.DescribeRegistrationSectionDefinitionsOutput>
-    describeRegistrationTypeDefinitions: function(Client, types.DescribeRegistrationTypeDefinitionsInput, any): async.Operation<types.DescribeRegistrationTypeDefinitionsOutput>
-    describeRegistrationVersions: function(Client, types.DescribeRegistrationVersionsInput, any): async.Operation<types.DescribeRegistrationVersionsOutput>
-    describeSenderIds: function(Client, types.DescribeSenderIdsInput, any): async.Operation<types.DescribeSenderIdsOutput>
-    describeSpendLimits: function(Client, types.DescribeSpendLimitsInput, any): async.Operation<types.DescribeSpendLimitsOutput>
-    describeVerifiedDestinationNumbers: function(Client, types.DescribeVerifiedDestinationNumbersInput, any): async.Operation<types.DescribeVerifiedDestinationNumbersOutput>
-    disassociateOriginationIdentity: function(Client, types.DisassociateOriginationIdentityInput, any): async.Operation<types.DisassociateOriginationIdentityOutput>
-    disassociateProtectConfiguration: function(Client, types.DisassociateProtectConfigurationInput, any): async.Operation<types.DisassociateProtectConfigurationOutput>
-    discardRegistrationVersion: function(Client, types.DiscardRegistrationVersionInput, any): async.Operation<types.DiscardRegistrationVersionOutput>
-    getProtectConfigurationCountryRuleSet: function(Client, types.GetProtectConfigurationCountryRuleSetInput, any): async.Operation<types.GetProtectConfigurationCountryRuleSetOutput>
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput, any): async.Operation<types.GetResourcePolicyOutput>
-    listNotifyCountries: function(Client, types.ListNotifyCountriesInput, any): async.Operation<types.ListNotifyCountriesOutput>
-    listPoolOriginationIdentities: function(Client, types.ListPoolOriginationIdentitiesInput, any): async.Operation<types.ListPoolOriginationIdentitiesOutput>
-    listProtectConfigurationRuleSetNumberOverrides: function(Client, types.ListProtectConfigurationRuleSetNumberOverridesInput, any): async.Operation<types.ListProtectConfigurationRuleSetNumberOverridesOutput>
-    listRegistrationAssociations: function(Client, types.ListRegistrationAssociationsInput, any): async.Operation<types.ListRegistrationAssociationsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putKeyword: function(Client, types.PutKeywordInput, any): async.Operation<types.PutKeywordOutput>
-    putMessageFeedback: function(Client, types.PutMessageFeedbackInput, any): async.Operation<types.PutMessageFeedbackOutput>
-    putOptedOutNumber: function(Client, types.PutOptedOutNumberInput, any): async.Operation<types.PutOptedOutNumberOutput>
-    putProtectConfigurationRuleSetNumberOverride: function(Client, types.PutProtectConfigurationRuleSetNumberOverrideInput, any): async.Operation<types.PutProtectConfigurationRuleSetNumberOverrideOutput>
-    putRegistrationFieldValue: function(Client, types.PutRegistrationFieldValueInput, any): async.Operation<types.PutRegistrationFieldValueOutput>
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput, any): async.Operation<types.PutResourcePolicyOutput>
-    releasePhoneNumber: function(Client, types.ReleasePhoneNumberInput, any): async.Operation<types.ReleasePhoneNumberOutput>
-    releaseSenderId: function(Client, types.ReleaseSenderIdInput, any): async.Operation<types.ReleaseSenderIdOutput>
-    requestPhoneNumber: function(Client, types.RequestPhoneNumberInput, any): async.Operation<types.RequestPhoneNumberOutput>
-    requestSenderId: function(Client, types.RequestSenderIdInput, any): async.Operation<types.RequestSenderIdOutput>
-    sendDestinationNumberVerificationCode: function(Client, types.SendDestinationNumberVerificationCodeInput, any): async.Operation<types.SendDestinationNumberVerificationCodeOutput>
-    sendMediaMessage: function(Client, types.SendMediaMessageInput, any): async.Operation<types.SendMediaMessageOutput>
-    sendNotifyTextMessage: function(Client, types.SendNotifyTextMessageInput, any): async.Operation<types.SendNotifyTextMessageOutput>
-    sendNotifyVoiceMessage: function(Client, types.SendNotifyVoiceMessageInput, any): async.Operation<types.SendNotifyVoiceMessageOutput>
-    sendTextMessage: function(Client, types.SendTextMessageInput, any): async.Operation<types.SendTextMessageOutput>
-    sendVoiceMessage: function(Client, types.SendVoiceMessageInput, any): async.Operation<types.SendVoiceMessageOutput>
-    setAccountDefaultProtectConfiguration: function(Client, types.SetAccountDefaultProtectConfigurationInput, any): async.Operation<types.SetAccountDefaultProtectConfigurationOutput>
-    setDefaultMessageFeedbackEnabled: function(Client, types.SetDefaultMessageFeedbackEnabledInput, any): async.Operation<types.SetDefaultMessageFeedbackEnabledOutput>
-    setDefaultMessageType: function(Client, types.SetDefaultMessageTypeInput, any): async.Operation<types.SetDefaultMessageTypeOutput>
-    setDefaultSenderId: function(Client, types.SetDefaultSenderIdInput, any): async.Operation<types.SetDefaultSenderIdOutput>
-    setMediaMessageSpendLimitOverride: function(Client, types.SetMediaMessageSpendLimitOverrideInput, any): async.Operation<types.SetMediaMessageSpendLimitOverrideOutput>
-    setNotifyMessageSpendLimitOverride: function(Client, types.SetNotifyMessageSpendLimitOverrideInput, any): async.Operation<types.SetNotifyMessageSpendLimitOverrideOutput>
-    setTextMessageSpendLimitOverride: function(Client, types.SetTextMessageSpendLimitOverrideInput, any): async.Operation<types.SetTextMessageSpendLimitOverrideOutput>
-    setVoiceMessageSpendLimitOverride: function(Client, types.SetVoiceMessageSpendLimitOverrideInput, any): async.Operation<types.SetVoiceMessageSpendLimitOverrideOutput>
-    submitRegistrationVersion: function(Client, types.SubmitRegistrationVersionInput, any): async.Operation<types.SubmitRegistrationVersionOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateEventDestination: function(Client, types.UpdateEventDestinationInput, any): async.Operation<types.UpdateEventDestinationOutput>
-    updateNotifyConfiguration: function(Client, types.UpdateNotifyConfigurationInput, any): async.Operation<types.UpdateNotifyConfigurationOutput>
-    updatePhoneNumber: function(Client, types.UpdatePhoneNumberInput, any): async.Operation<types.UpdatePhoneNumberOutput>
-    updatePool: function(Client, types.UpdatePoolInput, any): async.Operation<types.UpdatePoolOutput>
-    updateProtectConfiguration: function(Client, types.UpdateProtectConfigurationInput, any): async.Operation<types.UpdateProtectConfigurationOutput>
-    updateProtectConfigurationCountryRuleSet: function(Client, types.UpdateProtectConfigurationCountryRuleSetInput, any): async.Operation<types.UpdateProtectConfigurationCountryRuleSetOutput>
-    updateRcsAgent: function(Client, types.UpdateRcsAgentInput, any): async.Operation<types.UpdateRcsAgentOutput>
-    updateSenderId: function(Client, types.UpdateSenderIdInput, any): async.Operation<types.UpdateSenderIdOutput>
-    verifyDestinationNumber: function(Client, types.VerifyDestinationNumberInput, any): async.Operation<types.VerifyDestinationNumberOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateOriginationIdentity: function(Client, types.AssociateOriginationIdentityInput, ? base_client.InvokeOptions): async.Operation<types.AssociateOriginationIdentityOutput>
+    associateProtectConfiguration: function(Client, types.AssociateProtectConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.AssociateProtectConfigurationOutput>
+    carrierLookup: function(Client, types.CarrierLookupInput, ? base_client.InvokeOptions): async.Operation<types.CarrierLookupOutput>
+    createConfigurationSet: function(Client, types.CreateConfigurationSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfigurationSetOutput>
+    createEventDestination: function(Client, types.CreateEventDestinationInput, ? base_client.InvokeOptions): async.Operation<types.CreateEventDestinationOutput>
+    createNotifyConfiguration: function(Client, types.CreateNotifyConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateNotifyConfigurationOutput>
+    createOptOutList: function(Client, types.CreateOptOutListInput, ? base_client.InvokeOptions): async.Operation<types.CreateOptOutListOutput>
+    createPool: function(Client, types.CreatePoolInput, ? base_client.InvokeOptions): async.Operation<types.CreatePoolOutput>
+    createProtectConfiguration: function(Client, types.CreateProtectConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateProtectConfigurationOutput>
+    createRcsAgent: function(Client, types.CreateRcsAgentInput, ? base_client.InvokeOptions): async.Operation<types.CreateRcsAgentOutput>
+    createRegistration: function(Client, types.CreateRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.CreateRegistrationOutput>
+    createRegistrationAssociation: function(Client, types.CreateRegistrationAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateRegistrationAssociationOutput>
+    createRegistrationAttachment: function(Client, types.CreateRegistrationAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateRegistrationAttachmentOutput>
+    createRegistrationVersion: function(Client, types.CreateRegistrationVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateRegistrationVersionOutput>
+    createVerifiedDestinationNumber: function(Client, types.CreateVerifiedDestinationNumberInput, ? base_client.InvokeOptions): async.Operation<types.CreateVerifiedDestinationNumberOutput>
+    deleteAccountDefaultProtectConfiguration: function(Client, types.DeleteAccountDefaultProtectConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccountDefaultProtectConfigurationOutput>
+    deleteConfigurationSet: function(Client, types.DeleteConfigurationSetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfigurationSetOutput>
+    deleteDefaultMessageType: function(Client, types.DeleteDefaultMessageTypeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDefaultMessageTypeOutput>
+    deleteDefaultSenderId: function(Client, types.DeleteDefaultSenderIdInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDefaultSenderIdOutput>
+    deleteEventDestination: function(Client, types.DeleteEventDestinationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEventDestinationOutput>
+    deleteKeyword: function(Client, types.DeleteKeywordInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKeywordOutput>
+    deleteMediaMessageSpendLimitOverride: function(Client, types.DeleteMediaMessageSpendLimitOverrideInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMediaMessageSpendLimitOverrideOutput>
+    deleteNotifyConfiguration: function(Client, types.DeleteNotifyConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNotifyConfigurationOutput>
+    deleteNotifyMessageSpendLimitOverride: function(Client, types.DeleteNotifyMessageSpendLimitOverrideInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNotifyMessageSpendLimitOverrideOutput>
+    deleteOptedOutNumber: function(Client, types.DeleteOptedOutNumberInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOptedOutNumberOutput>
+    deleteOptOutList: function(Client, types.DeleteOptOutListInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOptOutListOutput>
+    deletePool: function(Client, types.DeletePoolInput, ? base_client.InvokeOptions): async.Operation<types.DeletePoolOutput>
+    deleteProtectConfiguration: function(Client, types.DeleteProtectConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProtectConfigurationOutput>
+    deleteProtectConfigurationRuleSetNumberOverride: function(Client, types.DeleteProtectConfigurationRuleSetNumberOverrideInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProtectConfigurationRuleSetNumberOverrideOutput>
+    deleteRcsAgent: function(Client, types.DeleteRcsAgentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRcsAgentOutput>
+    deleteRegistration: function(Client, types.DeleteRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRegistrationOutput>
+    deleteRegistrationAttachment: function(Client, types.DeleteRegistrationAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRegistrationAttachmentOutput>
+    deleteRegistrationFieldValue: function(Client, types.DeleteRegistrationFieldValueInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRegistrationFieldValueOutput>
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    deleteTextMessageSpendLimitOverride: function(Client, types.DeleteTextMessageSpendLimitOverrideInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTextMessageSpendLimitOverrideOutput>
+    deleteVerifiedDestinationNumber: function(Client, types.DeleteVerifiedDestinationNumberInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVerifiedDestinationNumberOutput>
+    deleteVoiceMessageSpendLimitOverride: function(Client, types.DeleteVoiceMessageSpendLimitOverrideInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVoiceMessageSpendLimitOverrideOutput>
+    describeAccountAttributes: function(Client, types.DescribeAccountAttributesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAccountAttributesOutput>
+    describeAccountLimits: function(Client, types.DescribeAccountLimitsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAccountLimitsOutput>
+    describeConfigurationSets: function(Client, types.DescribeConfigurationSetsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConfigurationSetsOutput>
+    describeKeywords: function(Client, types.DescribeKeywordsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeKeywordsOutput>
+    describeNotifyConfigurations: function(Client, types.DescribeNotifyConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNotifyConfigurationsOutput>
+    describeNotifyTemplates: function(Client, types.DescribeNotifyTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNotifyTemplatesOutput>
+    describeOptedOutNumbers: function(Client, types.DescribeOptedOutNumbersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeOptedOutNumbersOutput>
+    describeOptOutLists: function(Client, types.DescribeOptOutListsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeOptOutListsOutput>
+    describePhoneNumbers: function(Client, types.DescribePhoneNumbersInput, ? base_client.InvokeOptions): async.Operation<types.DescribePhoneNumbersOutput>
+    describePools: function(Client, types.DescribePoolsInput, ? base_client.InvokeOptions): async.Operation<types.DescribePoolsOutput>
+    describeProtectConfigurations: function(Client, types.DescribeProtectConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeProtectConfigurationsOutput>
+    describeRcsAgentCountryLaunchStatus: function(Client, types.DescribeRcsAgentCountryLaunchStatusInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRcsAgentCountryLaunchStatusOutput>
+    describeRcsAgents: function(Client, types.DescribeRcsAgentsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRcsAgentsOutput>
+    describeRegistrationAttachments: function(Client, types.DescribeRegistrationAttachmentsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRegistrationAttachmentsOutput>
+    describeRegistrationFieldDefinitions: function(Client, types.DescribeRegistrationFieldDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRegistrationFieldDefinitionsOutput>
+    describeRegistrationFieldValues: function(Client, types.DescribeRegistrationFieldValuesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRegistrationFieldValuesOutput>
+    describeRegistrations: function(Client, types.DescribeRegistrationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRegistrationsOutput>
+    describeRegistrationSectionDefinitions: function(Client, types.DescribeRegistrationSectionDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRegistrationSectionDefinitionsOutput>
+    describeRegistrationTypeDefinitions: function(Client, types.DescribeRegistrationTypeDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRegistrationTypeDefinitionsOutput>
+    describeRegistrationVersions: function(Client, types.DescribeRegistrationVersionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRegistrationVersionsOutput>
+    describeSenderIds: function(Client, types.DescribeSenderIdsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSenderIdsOutput>
+    describeSpendLimits: function(Client, types.DescribeSpendLimitsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSpendLimitsOutput>
+    describeVerifiedDestinationNumbers: function(Client, types.DescribeVerifiedDestinationNumbersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVerifiedDestinationNumbersOutput>
+    disassociateOriginationIdentity: function(Client, types.DisassociateOriginationIdentityInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateOriginationIdentityOutput>
+    disassociateProtectConfiguration: function(Client, types.DisassociateProtectConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateProtectConfigurationOutput>
+    discardRegistrationVersion: function(Client, types.DiscardRegistrationVersionInput, ? base_client.InvokeOptions): async.Operation<types.DiscardRegistrationVersionOutput>
+    getProtectConfigurationCountryRuleSet: function(Client, types.GetProtectConfigurationCountryRuleSetInput, ? base_client.InvokeOptions): async.Operation<types.GetProtectConfigurationCountryRuleSetOutput>
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    listNotifyCountries: function(Client, types.ListNotifyCountriesInput, ? base_client.InvokeOptions): async.Operation<types.ListNotifyCountriesOutput>
+    listPoolOriginationIdentities: function(Client, types.ListPoolOriginationIdentitiesInput, ? base_client.InvokeOptions): async.Operation<types.ListPoolOriginationIdentitiesOutput>
+    listProtectConfigurationRuleSetNumberOverrides: function(Client, types.ListProtectConfigurationRuleSetNumberOverridesInput, ? base_client.InvokeOptions): async.Operation<types.ListProtectConfigurationRuleSetNumberOverridesOutput>
+    listRegistrationAssociations: function(Client, types.ListRegistrationAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListRegistrationAssociationsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putKeyword: function(Client, types.PutKeywordInput, ? base_client.InvokeOptions): async.Operation<types.PutKeywordOutput>
+    putMessageFeedback: function(Client, types.PutMessageFeedbackInput, ? base_client.InvokeOptions): async.Operation<types.PutMessageFeedbackOutput>
+    putOptedOutNumber: function(Client, types.PutOptedOutNumberInput, ? base_client.InvokeOptions): async.Operation<types.PutOptedOutNumberOutput>
+    putProtectConfigurationRuleSetNumberOverride: function(Client, types.PutProtectConfigurationRuleSetNumberOverrideInput, ? base_client.InvokeOptions): async.Operation<types.PutProtectConfigurationRuleSetNumberOverrideOutput>
+    putRegistrationFieldValue: function(Client, types.PutRegistrationFieldValueInput, ? base_client.InvokeOptions): async.Operation<types.PutRegistrationFieldValueOutput>
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    releasePhoneNumber: function(Client, types.ReleasePhoneNumberInput, ? base_client.InvokeOptions): async.Operation<types.ReleasePhoneNumberOutput>
+    releaseSenderId: function(Client, types.ReleaseSenderIdInput, ? base_client.InvokeOptions): async.Operation<types.ReleaseSenderIdOutput>
+    requestPhoneNumber: function(Client, types.RequestPhoneNumberInput, ? base_client.InvokeOptions): async.Operation<types.RequestPhoneNumberOutput>
+    requestSenderId: function(Client, types.RequestSenderIdInput, ? base_client.InvokeOptions): async.Operation<types.RequestSenderIdOutput>
+    sendDestinationNumberVerificationCode: function(Client, types.SendDestinationNumberVerificationCodeInput, ? base_client.InvokeOptions): async.Operation<types.SendDestinationNumberVerificationCodeOutput>
+    sendMediaMessage: function(Client, types.SendMediaMessageInput, ? base_client.InvokeOptions): async.Operation<types.SendMediaMessageOutput>
+    sendNotifyTextMessage: function(Client, types.SendNotifyTextMessageInput, ? base_client.InvokeOptions): async.Operation<types.SendNotifyTextMessageOutput>
+    sendNotifyVoiceMessage: function(Client, types.SendNotifyVoiceMessageInput, ? base_client.InvokeOptions): async.Operation<types.SendNotifyVoiceMessageOutput>
+    sendTextMessage: function(Client, types.SendTextMessageInput, ? base_client.InvokeOptions): async.Operation<types.SendTextMessageOutput>
+    sendVoiceMessage: function(Client, types.SendVoiceMessageInput, ? base_client.InvokeOptions): async.Operation<types.SendVoiceMessageOutput>
+    setAccountDefaultProtectConfiguration: function(Client, types.SetAccountDefaultProtectConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.SetAccountDefaultProtectConfigurationOutput>
+    setDefaultMessageFeedbackEnabled: function(Client, types.SetDefaultMessageFeedbackEnabledInput, ? base_client.InvokeOptions): async.Operation<types.SetDefaultMessageFeedbackEnabledOutput>
+    setDefaultMessageType: function(Client, types.SetDefaultMessageTypeInput, ? base_client.InvokeOptions): async.Operation<types.SetDefaultMessageTypeOutput>
+    setDefaultSenderId: function(Client, types.SetDefaultSenderIdInput, ? base_client.InvokeOptions): async.Operation<types.SetDefaultSenderIdOutput>
+    setMediaMessageSpendLimitOverride: function(Client, types.SetMediaMessageSpendLimitOverrideInput, ? base_client.InvokeOptions): async.Operation<types.SetMediaMessageSpendLimitOverrideOutput>
+    setNotifyMessageSpendLimitOverride: function(Client, types.SetNotifyMessageSpendLimitOverrideInput, ? base_client.InvokeOptions): async.Operation<types.SetNotifyMessageSpendLimitOverrideOutput>
+    setTextMessageSpendLimitOverride: function(Client, types.SetTextMessageSpendLimitOverrideInput, ? base_client.InvokeOptions): async.Operation<types.SetTextMessageSpendLimitOverrideOutput>
+    setVoiceMessageSpendLimitOverride: function(Client, types.SetVoiceMessageSpendLimitOverrideInput, ? base_client.InvokeOptions): async.Operation<types.SetVoiceMessageSpendLimitOverrideOutput>
+    submitRegistrationVersion: function(Client, types.SubmitRegistrationVersionInput, ? base_client.InvokeOptions): async.Operation<types.SubmitRegistrationVersionOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateEventDestination: function(Client, types.UpdateEventDestinationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEventDestinationOutput>
+    updateNotifyConfiguration: function(Client, types.UpdateNotifyConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNotifyConfigurationOutput>
+    updatePhoneNumber: function(Client, types.UpdatePhoneNumberInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePhoneNumberOutput>
+    updatePool: function(Client, types.UpdatePoolInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePoolOutput>
+    updateProtectConfiguration: function(Client, types.UpdateProtectConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProtectConfigurationOutput>
+    updateProtectConfigurationCountryRuleSet: function(Client, types.UpdateProtectConfigurationCountryRuleSetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProtectConfigurationCountryRuleSetOutput>
+    updateRcsAgent: function(Client, types.UpdateRcsAgentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRcsAgentOutput>
+    updateSenderId: function(Client, types.UpdateSenderIdInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSenderIdOutput>
+    verifyDestinationNumber: function(Client, types.VerifyDestinationNumberInput, ? base_client.InvokeOptions): async.Operation<types.VerifyDestinationNumberOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "PinpointSMSVoiceV2"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "sms-voice", signing_region = c.region } }
                 else
@@ -165,428 +168,428 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateOriginationIdentity(input: types.AssociateOriginationIdentityInput, options: any): async.Operation<types.AssociateOriginationIdentityOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateOriginationIdentity, input, options) as async.Operation<types.AssociateOriginationIdentityOutput>
+function C:associateOriginationIdentity(input: types.AssociateOriginationIdentityInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateOriginationIdentityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateOriginationIdentity as schema.OperationSchema, input, options) as async.Operation<types.AssociateOriginationIdentityOutput>
 end
 
-function C:associateProtectConfiguration(input: types.AssociateProtectConfigurationInput, options: any): async.Operation<types.AssociateProtectConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateProtectConfiguration, input, options) as async.Operation<types.AssociateProtectConfigurationOutput>
+function C:associateProtectConfiguration(input: types.AssociateProtectConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateProtectConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateProtectConfiguration as schema.OperationSchema, input, options) as async.Operation<types.AssociateProtectConfigurationOutput>
 end
 
-function C:carrierLookup(input: types.CarrierLookupInput, options: any): async.Operation<types.CarrierLookupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CarrierLookup, input, options) as async.Operation<types.CarrierLookupOutput>
+function C:carrierLookup(input: types.CarrierLookupInput, options?: base_client.InvokeOptions): async.Operation<types.CarrierLookupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CarrierLookup as schema.OperationSchema, input, options) as async.Operation<types.CarrierLookupOutput>
 end
 
-function C:createConfigurationSet(input: types.CreateConfigurationSetInput, options: any): async.Operation<types.CreateConfigurationSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConfigurationSet, input, options) as async.Operation<types.CreateConfigurationSetOutput>
+function C:createConfigurationSet(input: types.CreateConfigurationSetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConfigurationSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConfigurationSet as schema.OperationSchema, input, options) as async.Operation<types.CreateConfigurationSetOutput>
 end
 
-function C:createEventDestination(input: types.CreateEventDestinationInput, options: any): async.Operation<types.CreateEventDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEventDestination, input, options) as async.Operation<types.CreateEventDestinationOutput>
+function C:createEventDestination(input: types.CreateEventDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEventDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEventDestination as schema.OperationSchema, input, options) as async.Operation<types.CreateEventDestinationOutput>
 end
 
-function C:createNotifyConfiguration(input: types.CreateNotifyConfigurationInput, options: any): async.Operation<types.CreateNotifyConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNotifyConfiguration, input, options) as async.Operation<types.CreateNotifyConfigurationOutput>
+function C:createNotifyConfiguration(input: types.CreateNotifyConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNotifyConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNotifyConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateNotifyConfigurationOutput>
 end
 
-function C:createOptOutList(input: types.CreateOptOutListInput, options: any): async.Operation<types.CreateOptOutListOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateOptOutList, input, options) as async.Operation<types.CreateOptOutListOutput>
+function C:createOptOutList(input: types.CreateOptOutListInput, options?: base_client.InvokeOptions): async.Operation<types.CreateOptOutListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateOptOutList as schema.OperationSchema, input, options) as async.Operation<types.CreateOptOutListOutput>
 end
 
-function C:createPool(input: types.CreatePoolInput, options: any): async.Operation<types.CreatePoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePool, input, options) as async.Operation<types.CreatePoolOutput>
+function C:createPool(input: types.CreatePoolInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePool as schema.OperationSchema, input, options) as async.Operation<types.CreatePoolOutput>
 end
 
-function C:createProtectConfiguration(input: types.CreateProtectConfigurationInput, options: any): async.Operation<types.CreateProtectConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProtectConfiguration, input, options) as async.Operation<types.CreateProtectConfigurationOutput>
+function C:createProtectConfiguration(input: types.CreateProtectConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProtectConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProtectConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateProtectConfigurationOutput>
 end
 
-function C:createRcsAgent(input: types.CreateRcsAgentInput, options: any): async.Operation<types.CreateRcsAgentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRcsAgent, input, options) as async.Operation<types.CreateRcsAgentOutput>
+function C:createRcsAgent(input: types.CreateRcsAgentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRcsAgentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRcsAgent as schema.OperationSchema, input, options) as async.Operation<types.CreateRcsAgentOutput>
 end
 
-function C:createRegistration(input: types.CreateRegistrationInput, options: any): async.Operation<types.CreateRegistrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRegistration, input, options) as async.Operation<types.CreateRegistrationOutput>
+function C:createRegistration(input: types.CreateRegistrationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRegistrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRegistration as schema.OperationSchema, input, options) as async.Operation<types.CreateRegistrationOutput>
 end
 
-function C:createRegistrationAssociation(input: types.CreateRegistrationAssociationInput, options: any): async.Operation<types.CreateRegistrationAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRegistrationAssociation, input, options) as async.Operation<types.CreateRegistrationAssociationOutput>
+function C:createRegistrationAssociation(input: types.CreateRegistrationAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRegistrationAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRegistrationAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreateRegistrationAssociationOutput>
 end
 
-function C:createRegistrationAttachment(input: types.CreateRegistrationAttachmentInput, options: any): async.Operation<types.CreateRegistrationAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRegistrationAttachment, input, options) as async.Operation<types.CreateRegistrationAttachmentOutput>
+function C:createRegistrationAttachment(input: types.CreateRegistrationAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRegistrationAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRegistrationAttachment as schema.OperationSchema, input, options) as async.Operation<types.CreateRegistrationAttachmentOutput>
 end
 
-function C:createRegistrationVersion(input: types.CreateRegistrationVersionInput, options: any): async.Operation<types.CreateRegistrationVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRegistrationVersion, input, options) as async.Operation<types.CreateRegistrationVersionOutput>
+function C:createRegistrationVersion(input: types.CreateRegistrationVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRegistrationVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRegistrationVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateRegistrationVersionOutput>
 end
 
-function C:createVerifiedDestinationNumber(input: types.CreateVerifiedDestinationNumberInput, options: any): async.Operation<types.CreateVerifiedDestinationNumberOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVerifiedDestinationNumber, input, options) as async.Operation<types.CreateVerifiedDestinationNumberOutput>
+function C:createVerifiedDestinationNumber(input: types.CreateVerifiedDestinationNumberInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVerifiedDestinationNumberOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVerifiedDestinationNumber as schema.OperationSchema, input, options) as async.Operation<types.CreateVerifiedDestinationNumberOutput>
 end
 
-function C:deleteAccountDefaultProtectConfiguration(input: types.DeleteAccountDefaultProtectConfigurationInput, options: any): async.Operation<types.DeleteAccountDefaultProtectConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAccountDefaultProtectConfiguration, input, options) as async.Operation<types.DeleteAccountDefaultProtectConfigurationOutput>
+function C:deleteAccountDefaultProtectConfiguration(input: types.DeleteAccountDefaultProtectConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAccountDefaultProtectConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAccountDefaultProtectConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteAccountDefaultProtectConfigurationOutput>
 end
 
-function C:deleteConfigurationSet(input: types.DeleteConfigurationSetInput, options: any): async.Operation<types.DeleteConfigurationSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConfigurationSet, input, options) as async.Operation<types.DeleteConfigurationSetOutput>
+function C:deleteConfigurationSet(input: types.DeleteConfigurationSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConfigurationSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConfigurationSet as schema.OperationSchema, input, options) as async.Operation<types.DeleteConfigurationSetOutput>
 end
 
-function C:deleteDefaultMessageType(input: types.DeleteDefaultMessageTypeInput, options: any): async.Operation<types.DeleteDefaultMessageTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDefaultMessageType, input, options) as async.Operation<types.DeleteDefaultMessageTypeOutput>
+function C:deleteDefaultMessageType(input: types.DeleteDefaultMessageTypeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDefaultMessageTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDefaultMessageType as schema.OperationSchema, input, options) as async.Operation<types.DeleteDefaultMessageTypeOutput>
 end
 
-function C:deleteDefaultSenderId(input: types.DeleteDefaultSenderIdInput, options: any): async.Operation<types.DeleteDefaultSenderIdOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDefaultSenderId, input, options) as async.Operation<types.DeleteDefaultSenderIdOutput>
+function C:deleteDefaultSenderId(input: types.DeleteDefaultSenderIdInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDefaultSenderIdOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDefaultSenderId as schema.OperationSchema, input, options) as async.Operation<types.DeleteDefaultSenderIdOutput>
 end
 
-function C:deleteEventDestination(input: types.DeleteEventDestinationInput, options: any): async.Operation<types.DeleteEventDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEventDestination, input, options) as async.Operation<types.DeleteEventDestinationOutput>
+function C:deleteEventDestination(input: types.DeleteEventDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEventDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEventDestination as schema.OperationSchema, input, options) as async.Operation<types.DeleteEventDestinationOutput>
 end
 
-function C:deleteKeyword(input: types.DeleteKeywordInput, options: any): async.Operation<types.DeleteKeywordOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteKeyword, input, options) as async.Operation<types.DeleteKeywordOutput>
+function C:deleteKeyword(input: types.DeleteKeywordInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteKeywordOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteKeyword as schema.OperationSchema, input, options) as async.Operation<types.DeleteKeywordOutput>
 end
 
-function C:deleteMediaMessageSpendLimitOverride(input: types.DeleteMediaMessageSpendLimitOverrideInput, options: any): async.Operation<types.DeleteMediaMessageSpendLimitOverrideOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMediaMessageSpendLimitOverride, input, options) as async.Operation<types.DeleteMediaMessageSpendLimitOverrideOutput>
+function C:deleteMediaMessageSpendLimitOverride(input: types.DeleteMediaMessageSpendLimitOverrideInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMediaMessageSpendLimitOverrideOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMediaMessageSpendLimitOverride as schema.OperationSchema, input, options) as async.Operation<types.DeleteMediaMessageSpendLimitOverrideOutput>
 end
 
-function C:deleteNotifyConfiguration(input: types.DeleteNotifyConfigurationInput, options: any): async.Operation<types.DeleteNotifyConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNotifyConfiguration, input, options) as async.Operation<types.DeleteNotifyConfigurationOutput>
+function C:deleteNotifyConfiguration(input: types.DeleteNotifyConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNotifyConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNotifyConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteNotifyConfigurationOutput>
 end
 
-function C:deleteNotifyMessageSpendLimitOverride(input: types.DeleteNotifyMessageSpendLimitOverrideInput, options: any): async.Operation<types.DeleteNotifyMessageSpendLimitOverrideOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNotifyMessageSpendLimitOverride, input, options) as async.Operation<types.DeleteNotifyMessageSpendLimitOverrideOutput>
+function C:deleteNotifyMessageSpendLimitOverride(input: types.DeleteNotifyMessageSpendLimitOverrideInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNotifyMessageSpendLimitOverrideOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNotifyMessageSpendLimitOverride as schema.OperationSchema, input, options) as async.Operation<types.DeleteNotifyMessageSpendLimitOverrideOutput>
 end
 
-function C:deleteOptedOutNumber(input: types.DeleteOptedOutNumberInput, options: any): async.Operation<types.DeleteOptedOutNumberOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteOptedOutNumber, input, options) as async.Operation<types.DeleteOptedOutNumberOutput>
+function C:deleteOptedOutNumber(input: types.DeleteOptedOutNumberInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteOptedOutNumberOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteOptedOutNumber as schema.OperationSchema, input, options) as async.Operation<types.DeleteOptedOutNumberOutput>
 end
 
-function C:deleteOptOutList(input: types.DeleteOptOutListInput, options: any): async.Operation<types.DeleteOptOutListOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteOptOutList, input, options) as async.Operation<types.DeleteOptOutListOutput>
+function C:deleteOptOutList(input: types.DeleteOptOutListInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteOptOutListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteOptOutList as schema.OperationSchema, input, options) as async.Operation<types.DeleteOptOutListOutput>
 end
 
-function C:deletePool(input: types.DeletePoolInput, options: any): async.Operation<types.DeletePoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePool, input, options) as async.Operation<types.DeletePoolOutput>
+function C:deletePool(input: types.DeletePoolInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePool as schema.OperationSchema, input, options) as async.Operation<types.DeletePoolOutput>
 end
 
-function C:deleteProtectConfiguration(input: types.DeleteProtectConfigurationInput, options: any): async.Operation<types.DeleteProtectConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProtectConfiguration, input, options) as async.Operation<types.DeleteProtectConfigurationOutput>
+function C:deleteProtectConfiguration(input: types.DeleteProtectConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProtectConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProtectConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteProtectConfigurationOutput>
 end
 
-function C:deleteProtectConfigurationRuleSetNumberOverride(input: types.DeleteProtectConfigurationRuleSetNumberOverrideInput, options: any): async.Operation<types.DeleteProtectConfigurationRuleSetNumberOverrideOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProtectConfigurationRuleSetNumberOverride, input, options) as async.Operation<types.DeleteProtectConfigurationRuleSetNumberOverrideOutput>
+function C:deleteProtectConfigurationRuleSetNumberOverride(input: types.DeleteProtectConfigurationRuleSetNumberOverrideInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProtectConfigurationRuleSetNumberOverrideOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProtectConfigurationRuleSetNumberOverride as schema.OperationSchema, input, options) as async.Operation<types.DeleteProtectConfigurationRuleSetNumberOverrideOutput>
 end
 
-function C:deleteRcsAgent(input: types.DeleteRcsAgentInput, options: any): async.Operation<types.DeleteRcsAgentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRcsAgent, input, options) as async.Operation<types.DeleteRcsAgentOutput>
+function C:deleteRcsAgent(input: types.DeleteRcsAgentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRcsAgentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRcsAgent as schema.OperationSchema, input, options) as async.Operation<types.DeleteRcsAgentOutput>
 end
 
-function C:deleteRegistration(input: types.DeleteRegistrationInput, options: any): async.Operation<types.DeleteRegistrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRegistration, input, options) as async.Operation<types.DeleteRegistrationOutput>
+function C:deleteRegistration(input: types.DeleteRegistrationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRegistrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRegistration as schema.OperationSchema, input, options) as async.Operation<types.DeleteRegistrationOutput>
 end
 
-function C:deleteRegistrationAttachment(input: types.DeleteRegistrationAttachmentInput, options: any): async.Operation<types.DeleteRegistrationAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRegistrationAttachment, input, options) as async.Operation<types.DeleteRegistrationAttachmentOutput>
+function C:deleteRegistrationAttachment(input: types.DeleteRegistrationAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRegistrationAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRegistrationAttachment as schema.OperationSchema, input, options) as async.Operation<types.DeleteRegistrationAttachmentOutput>
 end
 
-function C:deleteRegistrationFieldValue(input: types.DeleteRegistrationFieldValueInput, options: any): async.Operation<types.DeleteRegistrationFieldValueOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRegistrationFieldValue, input, options) as async.Operation<types.DeleteRegistrationFieldValueOutput>
+function C:deleteRegistrationFieldValue(input: types.DeleteRegistrationFieldValueInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRegistrationFieldValueOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRegistrationFieldValue as schema.OperationSchema, input, options) as async.Operation<types.DeleteRegistrationFieldValueOutput>
 end
 
-function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options: any): async.Operation<types.DeleteResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicy, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
+function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
 end
 
-function C:deleteTextMessageSpendLimitOverride(input: types.DeleteTextMessageSpendLimitOverrideInput, options: any): async.Operation<types.DeleteTextMessageSpendLimitOverrideOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTextMessageSpendLimitOverride, input, options) as async.Operation<types.DeleteTextMessageSpendLimitOverrideOutput>
+function C:deleteTextMessageSpendLimitOverride(input: types.DeleteTextMessageSpendLimitOverrideInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTextMessageSpendLimitOverrideOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTextMessageSpendLimitOverride as schema.OperationSchema, input, options) as async.Operation<types.DeleteTextMessageSpendLimitOverrideOutput>
 end
 
-function C:deleteVerifiedDestinationNumber(input: types.DeleteVerifiedDestinationNumberInput, options: any): async.Operation<types.DeleteVerifiedDestinationNumberOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVerifiedDestinationNumber, input, options) as async.Operation<types.DeleteVerifiedDestinationNumberOutput>
+function C:deleteVerifiedDestinationNumber(input: types.DeleteVerifiedDestinationNumberInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVerifiedDestinationNumberOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVerifiedDestinationNumber as schema.OperationSchema, input, options) as async.Operation<types.DeleteVerifiedDestinationNumberOutput>
 end
 
-function C:deleteVoiceMessageSpendLimitOverride(input: types.DeleteVoiceMessageSpendLimitOverrideInput, options: any): async.Operation<types.DeleteVoiceMessageSpendLimitOverrideOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVoiceMessageSpendLimitOverride, input, options) as async.Operation<types.DeleteVoiceMessageSpendLimitOverrideOutput>
+function C:deleteVoiceMessageSpendLimitOverride(input: types.DeleteVoiceMessageSpendLimitOverrideInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVoiceMessageSpendLimitOverrideOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVoiceMessageSpendLimitOverride as schema.OperationSchema, input, options) as async.Operation<types.DeleteVoiceMessageSpendLimitOverrideOutput>
 end
 
-function C:describeAccountAttributes(input: types.DescribeAccountAttributesInput, options: any): async.Operation<types.DescribeAccountAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAccountAttributes, input, options) as async.Operation<types.DescribeAccountAttributesOutput>
+function C:describeAccountAttributes(input: types.DescribeAccountAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAccountAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAccountAttributes as schema.OperationSchema, input, options) as async.Operation<types.DescribeAccountAttributesOutput>
 end
 
-function C:describeAccountLimits(input: types.DescribeAccountLimitsInput, options: any): async.Operation<types.DescribeAccountLimitsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAccountLimits, input, options) as async.Operation<types.DescribeAccountLimitsOutput>
+function C:describeAccountLimits(input: types.DescribeAccountLimitsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAccountLimitsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAccountLimits as schema.OperationSchema, input, options) as async.Operation<types.DescribeAccountLimitsOutput>
 end
 
-function C:describeConfigurationSets(input: types.DescribeConfigurationSetsInput, options: any): async.Operation<types.DescribeConfigurationSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeConfigurationSets, input, options) as async.Operation<types.DescribeConfigurationSetsOutput>
+function C:describeConfigurationSets(input: types.DescribeConfigurationSetsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeConfigurationSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeConfigurationSets as schema.OperationSchema, input, options) as async.Operation<types.DescribeConfigurationSetsOutput>
 end
 
-function C:describeKeywords(input: types.DescribeKeywordsInput, options: any): async.Operation<types.DescribeKeywordsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeKeywords, input, options) as async.Operation<types.DescribeKeywordsOutput>
+function C:describeKeywords(input: types.DescribeKeywordsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeKeywordsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeKeywords as schema.OperationSchema, input, options) as async.Operation<types.DescribeKeywordsOutput>
 end
 
-function C:describeNotifyConfigurations(input: types.DescribeNotifyConfigurationsInput, options: any): async.Operation<types.DescribeNotifyConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeNotifyConfigurations, input, options) as async.Operation<types.DescribeNotifyConfigurationsOutput>
+function C:describeNotifyConfigurations(input: types.DescribeNotifyConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeNotifyConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeNotifyConfigurations as schema.OperationSchema, input, options) as async.Operation<types.DescribeNotifyConfigurationsOutput>
 end
 
-function C:describeNotifyTemplates(input: types.DescribeNotifyTemplatesInput, options: any): async.Operation<types.DescribeNotifyTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeNotifyTemplates, input, options) as async.Operation<types.DescribeNotifyTemplatesOutput>
+function C:describeNotifyTemplates(input: types.DescribeNotifyTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeNotifyTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeNotifyTemplates as schema.OperationSchema, input, options) as async.Operation<types.DescribeNotifyTemplatesOutput>
 end
 
-function C:describeOptedOutNumbers(input: types.DescribeOptedOutNumbersInput, options: any): async.Operation<types.DescribeOptedOutNumbersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeOptedOutNumbers, input, options) as async.Operation<types.DescribeOptedOutNumbersOutput>
+function C:describeOptedOutNumbers(input: types.DescribeOptedOutNumbersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeOptedOutNumbersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeOptedOutNumbers as schema.OperationSchema, input, options) as async.Operation<types.DescribeOptedOutNumbersOutput>
 end
 
-function C:describeOptOutLists(input: types.DescribeOptOutListsInput, options: any): async.Operation<types.DescribeOptOutListsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeOptOutLists, input, options) as async.Operation<types.DescribeOptOutListsOutput>
+function C:describeOptOutLists(input: types.DescribeOptOutListsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeOptOutListsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeOptOutLists as schema.OperationSchema, input, options) as async.Operation<types.DescribeOptOutListsOutput>
 end
 
-function C:describePhoneNumbers(input: types.DescribePhoneNumbersInput, options: any): async.Operation<types.DescribePhoneNumbersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePhoneNumbers, input, options) as async.Operation<types.DescribePhoneNumbersOutput>
+function C:describePhoneNumbers(input: types.DescribePhoneNumbersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePhoneNumbersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePhoneNumbers as schema.OperationSchema, input, options) as async.Operation<types.DescribePhoneNumbersOutput>
 end
 
-function C:describePools(input: types.DescribePoolsInput, options: any): async.Operation<types.DescribePoolsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePools, input, options) as async.Operation<types.DescribePoolsOutput>
+function C:describePools(input: types.DescribePoolsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePoolsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePools as schema.OperationSchema, input, options) as async.Operation<types.DescribePoolsOutput>
 end
 
-function C:describeProtectConfigurations(input: types.DescribeProtectConfigurationsInput, options: any): async.Operation<types.DescribeProtectConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeProtectConfigurations, input, options) as async.Operation<types.DescribeProtectConfigurationsOutput>
+function C:describeProtectConfigurations(input: types.DescribeProtectConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeProtectConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeProtectConfigurations as schema.OperationSchema, input, options) as async.Operation<types.DescribeProtectConfigurationsOutput>
 end
 
-function C:describeRcsAgentCountryLaunchStatus(input: types.DescribeRcsAgentCountryLaunchStatusInput, options: any): async.Operation<types.DescribeRcsAgentCountryLaunchStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRcsAgentCountryLaunchStatus, input, options) as async.Operation<types.DescribeRcsAgentCountryLaunchStatusOutput>
+function C:describeRcsAgentCountryLaunchStatus(input: types.DescribeRcsAgentCountryLaunchStatusInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRcsAgentCountryLaunchStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRcsAgentCountryLaunchStatus as schema.OperationSchema, input, options) as async.Operation<types.DescribeRcsAgentCountryLaunchStatusOutput>
 end
 
-function C:describeRcsAgents(input: types.DescribeRcsAgentsInput, options: any): async.Operation<types.DescribeRcsAgentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRcsAgents, input, options) as async.Operation<types.DescribeRcsAgentsOutput>
+function C:describeRcsAgents(input: types.DescribeRcsAgentsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRcsAgentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRcsAgents as schema.OperationSchema, input, options) as async.Operation<types.DescribeRcsAgentsOutput>
 end
 
-function C:describeRegistrationAttachments(input: types.DescribeRegistrationAttachmentsInput, options: any): async.Operation<types.DescribeRegistrationAttachmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRegistrationAttachments, input, options) as async.Operation<types.DescribeRegistrationAttachmentsOutput>
+function C:describeRegistrationAttachments(input: types.DescribeRegistrationAttachmentsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRegistrationAttachmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRegistrationAttachments as schema.OperationSchema, input, options) as async.Operation<types.DescribeRegistrationAttachmentsOutput>
 end
 
-function C:describeRegistrationFieldDefinitions(input: types.DescribeRegistrationFieldDefinitionsInput, options: any): async.Operation<types.DescribeRegistrationFieldDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRegistrationFieldDefinitions, input, options) as async.Operation<types.DescribeRegistrationFieldDefinitionsOutput>
+function C:describeRegistrationFieldDefinitions(input: types.DescribeRegistrationFieldDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRegistrationFieldDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRegistrationFieldDefinitions as schema.OperationSchema, input, options) as async.Operation<types.DescribeRegistrationFieldDefinitionsOutput>
 end
 
-function C:describeRegistrationFieldValues(input: types.DescribeRegistrationFieldValuesInput, options: any): async.Operation<types.DescribeRegistrationFieldValuesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRegistrationFieldValues, input, options) as async.Operation<types.DescribeRegistrationFieldValuesOutput>
+function C:describeRegistrationFieldValues(input: types.DescribeRegistrationFieldValuesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRegistrationFieldValuesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRegistrationFieldValues as schema.OperationSchema, input, options) as async.Operation<types.DescribeRegistrationFieldValuesOutput>
 end
 
-function C:describeRegistrations(input: types.DescribeRegistrationsInput, options: any): async.Operation<types.DescribeRegistrationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRegistrations, input, options) as async.Operation<types.DescribeRegistrationsOutput>
+function C:describeRegistrations(input: types.DescribeRegistrationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRegistrationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRegistrations as schema.OperationSchema, input, options) as async.Operation<types.DescribeRegistrationsOutput>
 end
 
-function C:describeRegistrationSectionDefinitions(input: types.DescribeRegistrationSectionDefinitionsInput, options: any): async.Operation<types.DescribeRegistrationSectionDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRegistrationSectionDefinitions, input, options) as async.Operation<types.DescribeRegistrationSectionDefinitionsOutput>
+function C:describeRegistrationSectionDefinitions(input: types.DescribeRegistrationSectionDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRegistrationSectionDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRegistrationSectionDefinitions as schema.OperationSchema, input, options) as async.Operation<types.DescribeRegistrationSectionDefinitionsOutput>
 end
 
-function C:describeRegistrationTypeDefinitions(input: types.DescribeRegistrationTypeDefinitionsInput, options: any): async.Operation<types.DescribeRegistrationTypeDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRegistrationTypeDefinitions, input, options) as async.Operation<types.DescribeRegistrationTypeDefinitionsOutput>
+function C:describeRegistrationTypeDefinitions(input: types.DescribeRegistrationTypeDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRegistrationTypeDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRegistrationTypeDefinitions as schema.OperationSchema, input, options) as async.Operation<types.DescribeRegistrationTypeDefinitionsOutput>
 end
 
-function C:describeRegistrationVersions(input: types.DescribeRegistrationVersionsInput, options: any): async.Operation<types.DescribeRegistrationVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRegistrationVersions, input, options) as async.Operation<types.DescribeRegistrationVersionsOutput>
+function C:describeRegistrationVersions(input: types.DescribeRegistrationVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRegistrationVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRegistrationVersions as schema.OperationSchema, input, options) as async.Operation<types.DescribeRegistrationVersionsOutput>
 end
 
-function C:describeSenderIds(input: types.DescribeSenderIdsInput, options: any): async.Operation<types.DescribeSenderIdsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSenderIds, input, options) as async.Operation<types.DescribeSenderIdsOutput>
+function C:describeSenderIds(input: types.DescribeSenderIdsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSenderIdsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSenderIds as schema.OperationSchema, input, options) as async.Operation<types.DescribeSenderIdsOutput>
 end
 
-function C:describeSpendLimits(input: types.DescribeSpendLimitsInput, options: any): async.Operation<types.DescribeSpendLimitsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSpendLimits, input, options) as async.Operation<types.DescribeSpendLimitsOutput>
+function C:describeSpendLimits(input: types.DescribeSpendLimitsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSpendLimitsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSpendLimits as schema.OperationSchema, input, options) as async.Operation<types.DescribeSpendLimitsOutput>
 end
 
-function C:describeVerifiedDestinationNumbers(input: types.DescribeVerifiedDestinationNumbersInput, options: any): async.Operation<types.DescribeVerifiedDestinationNumbersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVerifiedDestinationNumbers, input, options) as async.Operation<types.DescribeVerifiedDestinationNumbersOutput>
+function C:describeVerifiedDestinationNumbers(input: types.DescribeVerifiedDestinationNumbersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVerifiedDestinationNumbersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVerifiedDestinationNumbers as schema.OperationSchema, input, options) as async.Operation<types.DescribeVerifiedDestinationNumbersOutput>
 end
 
-function C:disassociateOriginationIdentity(input: types.DisassociateOriginationIdentityInput, options: any): async.Operation<types.DisassociateOriginationIdentityOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateOriginationIdentity, input, options) as async.Operation<types.DisassociateOriginationIdentityOutput>
+function C:disassociateOriginationIdentity(input: types.DisassociateOriginationIdentityInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateOriginationIdentityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateOriginationIdentity as schema.OperationSchema, input, options) as async.Operation<types.DisassociateOriginationIdentityOutput>
 end
 
-function C:disassociateProtectConfiguration(input: types.DisassociateProtectConfigurationInput, options: any): async.Operation<types.DisassociateProtectConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateProtectConfiguration, input, options) as async.Operation<types.DisassociateProtectConfigurationOutput>
+function C:disassociateProtectConfiguration(input: types.DisassociateProtectConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateProtectConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateProtectConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DisassociateProtectConfigurationOutput>
 end
 
-function C:discardRegistrationVersion(input: types.DiscardRegistrationVersionInput, options: any): async.Operation<types.DiscardRegistrationVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DiscardRegistrationVersion, input, options) as async.Operation<types.DiscardRegistrationVersionOutput>
+function C:discardRegistrationVersion(input: types.DiscardRegistrationVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DiscardRegistrationVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DiscardRegistrationVersion as schema.OperationSchema, input, options) as async.Operation<types.DiscardRegistrationVersionOutput>
 end
 
-function C:getProtectConfigurationCountryRuleSet(input: types.GetProtectConfigurationCountryRuleSetInput, options: any): async.Operation<types.GetProtectConfigurationCountryRuleSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetProtectConfigurationCountryRuleSet, input, options) as async.Operation<types.GetProtectConfigurationCountryRuleSetOutput>
+function C:getProtectConfigurationCountryRuleSet(input: types.GetProtectConfigurationCountryRuleSetInput, options?: base_client.InvokeOptions): async.Operation<types.GetProtectConfigurationCountryRuleSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProtectConfigurationCountryRuleSet as schema.OperationSchema, input, options) as async.Operation<types.GetProtectConfigurationCountryRuleSetOutput>
 end
 
-function C:getResourcePolicy(input: types.GetResourcePolicyInput, options: any): async.Operation<types.GetResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicy, input, options) as async.Operation<types.GetResourcePolicyOutput>
+function C:getResourcePolicy(input: types.GetResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePolicyOutput>
 end
 
-function C:listNotifyCountries(input: types.ListNotifyCountriesInput, options: any): async.Operation<types.ListNotifyCountriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNotifyCountries, input, options) as async.Operation<types.ListNotifyCountriesOutput>
+function C:listNotifyCountries(input: types.ListNotifyCountriesInput, options?: base_client.InvokeOptions): async.Operation<types.ListNotifyCountriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNotifyCountries as schema.OperationSchema, input, options) as async.Operation<types.ListNotifyCountriesOutput>
 end
 
-function C:listPoolOriginationIdentities(input: types.ListPoolOriginationIdentitiesInput, options: any): async.Operation<types.ListPoolOriginationIdentitiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPoolOriginationIdentities, input, options) as async.Operation<types.ListPoolOriginationIdentitiesOutput>
+function C:listPoolOriginationIdentities(input: types.ListPoolOriginationIdentitiesInput, options?: base_client.InvokeOptions): async.Operation<types.ListPoolOriginationIdentitiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPoolOriginationIdentities as schema.OperationSchema, input, options) as async.Operation<types.ListPoolOriginationIdentitiesOutput>
 end
 
-function C:listProtectConfigurationRuleSetNumberOverrides(input: types.ListProtectConfigurationRuleSetNumberOverridesInput, options: any): async.Operation<types.ListProtectConfigurationRuleSetNumberOverridesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProtectConfigurationRuleSetNumberOverrides, input, options) as async.Operation<types.ListProtectConfigurationRuleSetNumberOverridesOutput>
+function C:listProtectConfigurationRuleSetNumberOverrides(input: types.ListProtectConfigurationRuleSetNumberOverridesInput, options?: base_client.InvokeOptions): async.Operation<types.ListProtectConfigurationRuleSetNumberOverridesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProtectConfigurationRuleSetNumberOverrides as schema.OperationSchema, input, options) as async.Operation<types.ListProtectConfigurationRuleSetNumberOverridesOutput>
 end
 
-function C:listRegistrationAssociations(input: types.ListRegistrationAssociationsInput, options: any): async.Operation<types.ListRegistrationAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRegistrationAssociations, input, options) as async.Operation<types.ListRegistrationAssociationsOutput>
+function C:listRegistrationAssociations(input: types.ListRegistrationAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRegistrationAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRegistrationAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListRegistrationAssociationsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putKeyword(input: types.PutKeywordInput, options: any): async.Operation<types.PutKeywordOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutKeyword, input, options) as async.Operation<types.PutKeywordOutput>
+function C:putKeyword(input: types.PutKeywordInput, options?: base_client.InvokeOptions): async.Operation<types.PutKeywordOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutKeyword as schema.OperationSchema, input, options) as async.Operation<types.PutKeywordOutput>
 end
 
-function C:putMessageFeedback(input: types.PutMessageFeedbackInput, options: any): async.Operation<types.PutMessageFeedbackOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutMessageFeedback, input, options) as async.Operation<types.PutMessageFeedbackOutput>
+function C:putMessageFeedback(input: types.PutMessageFeedbackInput, options?: base_client.InvokeOptions): async.Operation<types.PutMessageFeedbackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutMessageFeedback as schema.OperationSchema, input, options) as async.Operation<types.PutMessageFeedbackOutput>
 end
 
-function C:putOptedOutNumber(input: types.PutOptedOutNumberInput, options: any): async.Operation<types.PutOptedOutNumberOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutOptedOutNumber, input, options) as async.Operation<types.PutOptedOutNumberOutput>
+function C:putOptedOutNumber(input: types.PutOptedOutNumberInput, options?: base_client.InvokeOptions): async.Operation<types.PutOptedOutNumberOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutOptedOutNumber as schema.OperationSchema, input, options) as async.Operation<types.PutOptedOutNumberOutput>
 end
 
-function C:putProtectConfigurationRuleSetNumberOverride(input: types.PutProtectConfigurationRuleSetNumberOverrideInput, options: any): async.Operation<types.PutProtectConfigurationRuleSetNumberOverrideOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutProtectConfigurationRuleSetNumberOverride, input, options) as async.Operation<types.PutProtectConfigurationRuleSetNumberOverrideOutput>
+function C:putProtectConfigurationRuleSetNumberOverride(input: types.PutProtectConfigurationRuleSetNumberOverrideInput, options?: base_client.InvokeOptions): async.Operation<types.PutProtectConfigurationRuleSetNumberOverrideOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutProtectConfigurationRuleSetNumberOverride as schema.OperationSchema, input, options) as async.Operation<types.PutProtectConfigurationRuleSetNumberOverrideOutput>
 end
 
-function C:putRegistrationFieldValue(input: types.PutRegistrationFieldValueInput, options: any): async.Operation<types.PutRegistrationFieldValueOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutRegistrationFieldValue, input, options) as async.Operation<types.PutRegistrationFieldValueOutput>
+function C:putRegistrationFieldValue(input: types.PutRegistrationFieldValueInput, options?: base_client.InvokeOptions): async.Operation<types.PutRegistrationFieldValueOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutRegistrationFieldValue as schema.OperationSchema, input, options) as async.Operation<types.PutRegistrationFieldValueOutput>
 end
 
-function C:putResourcePolicy(input: types.PutResourcePolicyInput, options: any): async.Operation<types.PutResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutResourcePolicy, input, options) as async.Operation<types.PutResourcePolicyOutput>
+function C:putResourcePolicy(input: types.PutResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutResourcePolicyOutput>
 end
 
-function C:releasePhoneNumber(input: types.ReleasePhoneNumberInput, options: any): async.Operation<types.ReleasePhoneNumberOutput>
-    return self:invokeOperation(schemas.Service, schemas.ReleasePhoneNumber, input, options) as async.Operation<types.ReleasePhoneNumberOutput>
+function C:releasePhoneNumber(input: types.ReleasePhoneNumberInput, options?: base_client.InvokeOptions): async.Operation<types.ReleasePhoneNumberOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReleasePhoneNumber as schema.OperationSchema, input, options) as async.Operation<types.ReleasePhoneNumberOutput>
 end
 
-function C:releaseSenderId(input: types.ReleaseSenderIdInput, options: any): async.Operation<types.ReleaseSenderIdOutput>
-    return self:invokeOperation(schemas.Service, schemas.ReleaseSenderId, input, options) as async.Operation<types.ReleaseSenderIdOutput>
+function C:releaseSenderId(input: types.ReleaseSenderIdInput, options?: base_client.InvokeOptions): async.Operation<types.ReleaseSenderIdOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReleaseSenderId as schema.OperationSchema, input, options) as async.Operation<types.ReleaseSenderIdOutput>
 end
 
-function C:requestPhoneNumber(input: types.RequestPhoneNumberInput, options: any): async.Operation<types.RequestPhoneNumberOutput>
-    return self:invokeOperation(schemas.Service, schemas.RequestPhoneNumber, input, options) as async.Operation<types.RequestPhoneNumberOutput>
+function C:requestPhoneNumber(input: types.RequestPhoneNumberInput, options?: base_client.InvokeOptions): async.Operation<types.RequestPhoneNumberOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RequestPhoneNumber as schema.OperationSchema, input, options) as async.Operation<types.RequestPhoneNumberOutput>
 end
 
-function C:requestSenderId(input: types.RequestSenderIdInput, options: any): async.Operation<types.RequestSenderIdOutput>
-    return self:invokeOperation(schemas.Service, schemas.RequestSenderId, input, options) as async.Operation<types.RequestSenderIdOutput>
+function C:requestSenderId(input: types.RequestSenderIdInput, options?: base_client.InvokeOptions): async.Operation<types.RequestSenderIdOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RequestSenderId as schema.OperationSchema, input, options) as async.Operation<types.RequestSenderIdOutput>
 end
 
-function C:sendDestinationNumberVerificationCode(input: types.SendDestinationNumberVerificationCodeInput, options: any): async.Operation<types.SendDestinationNumberVerificationCodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendDestinationNumberVerificationCode, input, options) as async.Operation<types.SendDestinationNumberVerificationCodeOutput>
+function C:sendDestinationNumberVerificationCode(input: types.SendDestinationNumberVerificationCodeInput, options?: base_client.InvokeOptions): async.Operation<types.SendDestinationNumberVerificationCodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendDestinationNumberVerificationCode as schema.OperationSchema, input, options) as async.Operation<types.SendDestinationNumberVerificationCodeOutput>
 end
 
-function C:sendMediaMessage(input: types.SendMediaMessageInput, options: any): async.Operation<types.SendMediaMessageOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendMediaMessage, input, options) as async.Operation<types.SendMediaMessageOutput>
+function C:sendMediaMessage(input: types.SendMediaMessageInput, options?: base_client.InvokeOptions): async.Operation<types.SendMediaMessageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendMediaMessage as schema.OperationSchema, input, options) as async.Operation<types.SendMediaMessageOutput>
 end
 
-function C:sendNotifyTextMessage(input: types.SendNotifyTextMessageInput, options: any): async.Operation<types.SendNotifyTextMessageOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendNotifyTextMessage, input, options) as async.Operation<types.SendNotifyTextMessageOutput>
+function C:sendNotifyTextMessage(input: types.SendNotifyTextMessageInput, options?: base_client.InvokeOptions): async.Operation<types.SendNotifyTextMessageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendNotifyTextMessage as schema.OperationSchema, input, options) as async.Operation<types.SendNotifyTextMessageOutput>
 end
 
-function C:sendNotifyVoiceMessage(input: types.SendNotifyVoiceMessageInput, options: any): async.Operation<types.SendNotifyVoiceMessageOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendNotifyVoiceMessage, input, options) as async.Operation<types.SendNotifyVoiceMessageOutput>
+function C:sendNotifyVoiceMessage(input: types.SendNotifyVoiceMessageInput, options?: base_client.InvokeOptions): async.Operation<types.SendNotifyVoiceMessageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendNotifyVoiceMessage as schema.OperationSchema, input, options) as async.Operation<types.SendNotifyVoiceMessageOutput>
 end
 
-function C:sendTextMessage(input: types.SendTextMessageInput, options: any): async.Operation<types.SendTextMessageOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendTextMessage, input, options) as async.Operation<types.SendTextMessageOutput>
+function C:sendTextMessage(input: types.SendTextMessageInput, options?: base_client.InvokeOptions): async.Operation<types.SendTextMessageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendTextMessage as schema.OperationSchema, input, options) as async.Operation<types.SendTextMessageOutput>
 end
 
-function C:sendVoiceMessage(input: types.SendVoiceMessageInput, options: any): async.Operation<types.SendVoiceMessageOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendVoiceMessage, input, options) as async.Operation<types.SendVoiceMessageOutput>
+function C:sendVoiceMessage(input: types.SendVoiceMessageInput, options?: base_client.InvokeOptions): async.Operation<types.SendVoiceMessageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendVoiceMessage as schema.OperationSchema, input, options) as async.Operation<types.SendVoiceMessageOutput>
 end
 
-function C:setAccountDefaultProtectConfiguration(input: types.SetAccountDefaultProtectConfigurationInput, options: any): async.Operation<types.SetAccountDefaultProtectConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetAccountDefaultProtectConfiguration, input, options) as async.Operation<types.SetAccountDefaultProtectConfigurationOutput>
+function C:setAccountDefaultProtectConfiguration(input: types.SetAccountDefaultProtectConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.SetAccountDefaultProtectConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetAccountDefaultProtectConfiguration as schema.OperationSchema, input, options) as async.Operation<types.SetAccountDefaultProtectConfigurationOutput>
 end
 
-function C:setDefaultMessageFeedbackEnabled(input: types.SetDefaultMessageFeedbackEnabledInput, options: any): async.Operation<types.SetDefaultMessageFeedbackEnabledOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetDefaultMessageFeedbackEnabled, input, options) as async.Operation<types.SetDefaultMessageFeedbackEnabledOutput>
+function C:setDefaultMessageFeedbackEnabled(input: types.SetDefaultMessageFeedbackEnabledInput, options?: base_client.InvokeOptions): async.Operation<types.SetDefaultMessageFeedbackEnabledOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetDefaultMessageFeedbackEnabled as schema.OperationSchema, input, options) as async.Operation<types.SetDefaultMessageFeedbackEnabledOutput>
 end
 
-function C:setDefaultMessageType(input: types.SetDefaultMessageTypeInput, options: any): async.Operation<types.SetDefaultMessageTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetDefaultMessageType, input, options) as async.Operation<types.SetDefaultMessageTypeOutput>
+function C:setDefaultMessageType(input: types.SetDefaultMessageTypeInput, options?: base_client.InvokeOptions): async.Operation<types.SetDefaultMessageTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetDefaultMessageType as schema.OperationSchema, input, options) as async.Operation<types.SetDefaultMessageTypeOutput>
 end
 
-function C:setDefaultSenderId(input: types.SetDefaultSenderIdInput, options: any): async.Operation<types.SetDefaultSenderIdOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetDefaultSenderId, input, options) as async.Operation<types.SetDefaultSenderIdOutput>
+function C:setDefaultSenderId(input: types.SetDefaultSenderIdInput, options?: base_client.InvokeOptions): async.Operation<types.SetDefaultSenderIdOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetDefaultSenderId as schema.OperationSchema, input, options) as async.Operation<types.SetDefaultSenderIdOutput>
 end
 
-function C:setMediaMessageSpendLimitOverride(input: types.SetMediaMessageSpendLimitOverrideInput, options: any): async.Operation<types.SetMediaMessageSpendLimitOverrideOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetMediaMessageSpendLimitOverride, input, options) as async.Operation<types.SetMediaMessageSpendLimitOverrideOutput>
+function C:setMediaMessageSpendLimitOverride(input: types.SetMediaMessageSpendLimitOverrideInput, options?: base_client.InvokeOptions): async.Operation<types.SetMediaMessageSpendLimitOverrideOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetMediaMessageSpendLimitOverride as schema.OperationSchema, input, options) as async.Operation<types.SetMediaMessageSpendLimitOverrideOutput>
 end
 
-function C:setNotifyMessageSpendLimitOverride(input: types.SetNotifyMessageSpendLimitOverrideInput, options: any): async.Operation<types.SetNotifyMessageSpendLimitOverrideOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetNotifyMessageSpendLimitOverride, input, options) as async.Operation<types.SetNotifyMessageSpendLimitOverrideOutput>
+function C:setNotifyMessageSpendLimitOverride(input: types.SetNotifyMessageSpendLimitOverrideInput, options?: base_client.InvokeOptions): async.Operation<types.SetNotifyMessageSpendLimitOverrideOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetNotifyMessageSpendLimitOverride as schema.OperationSchema, input, options) as async.Operation<types.SetNotifyMessageSpendLimitOverrideOutput>
 end
 
-function C:setTextMessageSpendLimitOverride(input: types.SetTextMessageSpendLimitOverrideInput, options: any): async.Operation<types.SetTextMessageSpendLimitOverrideOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetTextMessageSpendLimitOverride, input, options) as async.Operation<types.SetTextMessageSpendLimitOverrideOutput>
+function C:setTextMessageSpendLimitOverride(input: types.SetTextMessageSpendLimitOverrideInput, options?: base_client.InvokeOptions): async.Operation<types.SetTextMessageSpendLimitOverrideOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetTextMessageSpendLimitOverride as schema.OperationSchema, input, options) as async.Operation<types.SetTextMessageSpendLimitOverrideOutput>
 end
 
-function C:setVoiceMessageSpendLimitOverride(input: types.SetVoiceMessageSpendLimitOverrideInput, options: any): async.Operation<types.SetVoiceMessageSpendLimitOverrideOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetVoiceMessageSpendLimitOverride, input, options) as async.Operation<types.SetVoiceMessageSpendLimitOverrideOutput>
+function C:setVoiceMessageSpendLimitOverride(input: types.SetVoiceMessageSpendLimitOverrideInput, options?: base_client.InvokeOptions): async.Operation<types.SetVoiceMessageSpendLimitOverrideOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetVoiceMessageSpendLimitOverride as schema.OperationSchema, input, options) as async.Operation<types.SetVoiceMessageSpendLimitOverrideOutput>
 end
 
-function C:submitRegistrationVersion(input: types.SubmitRegistrationVersionInput, options: any): async.Operation<types.SubmitRegistrationVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.SubmitRegistrationVersion, input, options) as async.Operation<types.SubmitRegistrationVersionOutput>
+function C:submitRegistrationVersion(input: types.SubmitRegistrationVersionInput, options?: base_client.InvokeOptions): async.Operation<types.SubmitRegistrationVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SubmitRegistrationVersion as schema.OperationSchema, input, options) as async.Operation<types.SubmitRegistrationVersionOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateEventDestination(input: types.UpdateEventDestinationInput, options: any): async.Operation<types.UpdateEventDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEventDestination, input, options) as async.Operation<types.UpdateEventDestinationOutput>
+function C:updateEventDestination(input: types.UpdateEventDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEventDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEventDestination as schema.OperationSchema, input, options) as async.Operation<types.UpdateEventDestinationOutput>
 end
 
-function C:updateNotifyConfiguration(input: types.UpdateNotifyConfigurationInput, options: any): async.Operation<types.UpdateNotifyConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateNotifyConfiguration, input, options) as async.Operation<types.UpdateNotifyConfigurationOutput>
+function C:updateNotifyConfiguration(input: types.UpdateNotifyConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNotifyConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNotifyConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateNotifyConfigurationOutput>
 end
 
-function C:updatePhoneNumber(input: types.UpdatePhoneNumberInput, options: any): async.Operation<types.UpdatePhoneNumberOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePhoneNumber, input, options) as async.Operation<types.UpdatePhoneNumberOutput>
+function C:updatePhoneNumber(input: types.UpdatePhoneNumberInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePhoneNumberOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePhoneNumber as schema.OperationSchema, input, options) as async.Operation<types.UpdatePhoneNumberOutput>
 end
 
-function C:updatePool(input: types.UpdatePoolInput, options: any): async.Operation<types.UpdatePoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePool, input, options) as async.Operation<types.UpdatePoolOutput>
+function C:updatePool(input: types.UpdatePoolInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePool as schema.OperationSchema, input, options) as async.Operation<types.UpdatePoolOutput>
 end
 
-function C:updateProtectConfiguration(input: types.UpdateProtectConfigurationInput, options: any): async.Operation<types.UpdateProtectConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProtectConfiguration, input, options) as async.Operation<types.UpdateProtectConfigurationOutput>
+function C:updateProtectConfiguration(input: types.UpdateProtectConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProtectConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProtectConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateProtectConfigurationOutput>
 end
 
-function C:updateProtectConfigurationCountryRuleSet(input: types.UpdateProtectConfigurationCountryRuleSetInput, options: any): async.Operation<types.UpdateProtectConfigurationCountryRuleSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProtectConfigurationCountryRuleSet, input, options) as async.Operation<types.UpdateProtectConfigurationCountryRuleSetOutput>
+function C:updateProtectConfigurationCountryRuleSet(input: types.UpdateProtectConfigurationCountryRuleSetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProtectConfigurationCountryRuleSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProtectConfigurationCountryRuleSet as schema.OperationSchema, input, options) as async.Operation<types.UpdateProtectConfigurationCountryRuleSetOutput>
 end
 
-function C:updateRcsAgent(input: types.UpdateRcsAgentInput, options: any): async.Operation<types.UpdateRcsAgentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRcsAgent, input, options) as async.Operation<types.UpdateRcsAgentOutput>
+function C:updateRcsAgent(input: types.UpdateRcsAgentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRcsAgentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRcsAgent as schema.OperationSchema, input, options) as async.Operation<types.UpdateRcsAgentOutput>
 end
 
-function C:updateSenderId(input: types.UpdateSenderIdInput, options: any): async.Operation<types.UpdateSenderIdOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSenderId, input, options) as async.Operation<types.UpdateSenderIdOutput>
+function C:updateSenderId(input: types.UpdateSenderIdInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSenderIdOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSenderId as schema.OperationSchema, input, options) as async.Operation<types.UpdateSenderIdOutput>
 end
 
-function C:verifyDestinationNumber(input: types.VerifyDestinationNumberInput, options: any): async.Operation<types.VerifyDestinationNumberOutput>
-    return self:invokeOperation(schemas.Service, schemas.VerifyDestinationNumber, input, options) as async.Operation<types.VerifyDestinationNumberOutput>
+function C:verifyDestinationNumber(input: types.VerifyDestinationNumberInput, options?: base_client.InvokeOptions): async.Operation<types.VerifyDestinationNumberOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.VerifyDestinationNumber as schema.OperationSchema, input, options) as async.Operation<types.VerifyDestinationNumberOutput>
 end
 
 return M

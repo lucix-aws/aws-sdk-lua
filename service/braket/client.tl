@@ -8,56 +8,59 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("braket.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("braket.schemas")
 local traits = require("smithy.traits")
 local types = require("braket.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    cancelJob: function(Client, types.CancelJobInput, any): async.Operation<types.CancelJobOutput>
-    cancelQuantumTask: function(Client, types.CancelQuantumTaskInput, any): async.Operation<types.CancelQuantumTaskOutput>
-    createJob: function(Client, types.CreateJobInput, any): async.Operation<types.CreateJobOutput>
-    createQuantumTask: function(Client, types.CreateQuantumTaskInput, any): async.Operation<types.CreateQuantumTaskOutput>
-    createSpendingLimit: function(Client, types.CreateSpendingLimitInput, any): async.Operation<types.CreateSpendingLimitOutput>
-    deleteSpendingLimit: function(Client, types.DeleteSpendingLimitInput, any): async.Operation<types.DeleteSpendingLimitOutput>
-    getDevice: function(Client, types.GetDeviceInput, any): async.Operation<types.GetDeviceOutput>
-    getJob: function(Client, types.GetJobInput, any): async.Operation<types.GetJobOutput>
-    getQuantumTask: function(Client, types.GetQuantumTaskInput, any): async.Operation<types.GetQuantumTaskOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    searchDevices: function(Client, types.SearchDevicesInput, any): async.Operation<types.SearchDevicesOutput>
-    searchJobs: function(Client, types.SearchJobsInput, any): async.Operation<types.SearchJobsOutput>
-    searchQuantumTasks: function(Client, types.SearchQuantumTasksInput, any): async.Operation<types.SearchQuantumTasksOutput>
-    searchSpendingLimits: function(Client, types.SearchSpendingLimitsInput, any): async.Operation<types.SearchSpendingLimitsOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateSpendingLimit: function(Client, types.UpdateSpendingLimitInput, any): async.Operation<types.UpdateSpendingLimitOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    cancelJob: function(Client, types.CancelJobInput, ? base_client.InvokeOptions): async.Operation<types.CancelJobOutput>
+    cancelQuantumTask: function(Client, types.CancelQuantumTaskInput, ? base_client.InvokeOptions): async.Operation<types.CancelQuantumTaskOutput>
+    createJob: function(Client, types.CreateJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateJobOutput>
+    createQuantumTask: function(Client, types.CreateQuantumTaskInput, ? base_client.InvokeOptions): async.Operation<types.CreateQuantumTaskOutput>
+    createSpendingLimit: function(Client, types.CreateSpendingLimitInput, ? base_client.InvokeOptions): async.Operation<types.CreateSpendingLimitOutput>
+    deleteSpendingLimit: function(Client, types.DeleteSpendingLimitInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSpendingLimitOutput>
+    getDevice: function(Client, types.GetDeviceInput, ? base_client.InvokeOptions): async.Operation<types.GetDeviceOutput>
+    getJob: function(Client, types.GetJobInput, ? base_client.InvokeOptions): async.Operation<types.GetJobOutput>
+    getQuantumTask: function(Client, types.GetQuantumTaskInput, ? base_client.InvokeOptions): async.Operation<types.GetQuantumTaskOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    searchDevices: function(Client, types.SearchDevicesInput, ? base_client.InvokeOptions): async.Operation<types.SearchDevicesOutput>
+    searchJobs: function(Client, types.SearchJobsInput, ? base_client.InvokeOptions): async.Operation<types.SearchJobsOutput>
+    searchQuantumTasks: function(Client, types.SearchQuantumTasksInput, ? base_client.InvokeOptions): async.Operation<types.SearchQuantumTasksOutput>
+    searchSpendingLimits: function(Client, types.SearchSpendingLimitsInput, ? base_client.InvokeOptions): async.Operation<types.SearchSpendingLimitsOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateSpendingLimit: function(Client, types.UpdateSpendingLimitInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSpendingLimitOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "Braket"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "braket", signing_region = c.region } }
                 else
@@ -76,72 +79,72 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:cancelJob(input: types.CancelJobInput, options: any): async.Operation<types.CancelJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelJob, input, options) as async.Operation<types.CancelJobOutput>
+function C:cancelJob(input: types.CancelJobInput, options?: base_client.InvokeOptions): async.Operation<types.CancelJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelJob as schema.OperationSchema, input, options) as async.Operation<types.CancelJobOutput>
 end
 
-function C:cancelQuantumTask(input: types.CancelQuantumTaskInput, options: any): async.Operation<types.CancelQuantumTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelQuantumTask, input, options) as async.Operation<types.CancelQuantumTaskOutput>
+function C:cancelQuantumTask(input: types.CancelQuantumTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CancelQuantumTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelQuantumTask as schema.OperationSchema, input, options) as async.Operation<types.CancelQuantumTaskOutput>
 end
 
-function C:createJob(input: types.CreateJobInput, options: any): async.Operation<types.CreateJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateJob, input, options) as async.Operation<types.CreateJobOutput>
+function C:createJob(input: types.CreateJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateJob as schema.OperationSchema, input, options) as async.Operation<types.CreateJobOutput>
 end
 
-function C:createQuantumTask(input: types.CreateQuantumTaskInput, options: any): async.Operation<types.CreateQuantumTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateQuantumTask, input, options) as async.Operation<types.CreateQuantumTaskOutput>
+function C:createQuantumTask(input: types.CreateQuantumTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CreateQuantumTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateQuantumTask as schema.OperationSchema, input, options) as async.Operation<types.CreateQuantumTaskOutput>
 end
 
-function C:createSpendingLimit(input: types.CreateSpendingLimitInput, options: any): async.Operation<types.CreateSpendingLimitOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSpendingLimit, input, options) as async.Operation<types.CreateSpendingLimitOutput>
+function C:createSpendingLimit(input: types.CreateSpendingLimitInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSpendingLimitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSpendingLimit as schema.OperationSchema, input, options) as async.Operation<types.CreateSpendingLimitOutput>
 end
 
-function C:deleteSpendingLimit(input: types.DeleteSpendingLimitInput, options: any): async.Operation<types.DeleteSpendingLimitOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSpendingLimit, input, options) as async.Operation<types.DeleteSpendingLimitOutput>
+function C:deleteSpendingLimit(input: types.DeleteSpendingLimitInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSpendingLimitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSpendingLimit as schema.OperationSchema, input, options) as async.Operation<types.DeleteSpendingLimitOutput>
 end
 
-function C:getDevice(input: types.GetDeviceInput, options: any): async.Operation<types.GetDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDevice, input, options) as async.Operation<types.GetDeviceOutput>
+function C:getDevice(input: types.GetDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.GetDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDevice as schema.OperationSchema, input, options) as async.Operation<types.GetDeviceOutput>
 end
 
-function C:getJob(input: types.GetJobInput, options: any): async.Operation<types.GetJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetJob, input, options) as async.Operation<types.GetJobOutput>
+function C:getJob(input: types.GetJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetJob as schema.OperationSchema, input, options) as async.Operation<types.GetJobOutput>
 end
 
-function C:getQuantumTask(input: types.GetQuantumTaskInput, options: any): async.Operation<types.GetQuantumTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetQuantumTask, input, options) as async.Operation<types.GetQuantumTaskOutput>
+function C:getQuantumTask(input: types.GetQuantumTaskInput, options?: base_client.InvokeOptions): async.Operation<types.GetQuantumTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQuantumTask as schema.OperationSchema, input, options) as async.Operation<types.GetQuantumTaskOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:searchDevices(input: types.SearchDevicesInput, options: any): async.Operation<types.SearchDevicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchDevices, input, options) as async.Operation<types.SearchDevicesOutput>
+function C:searchDevices(input: types.SearchDevicesInput, options?: base_client.InvokeOptions): async.Operation<types.SearchDevicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchDevices as schema.OperationSchema, input, options) as async.Operation<types.SearchDevicesOutput>
 end
 
-function C:searchJobs(input: types.SearchJobsInput, options: any): async.Operation<types.SearchJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchJobs, input, options) as async.Operation<types.SearchJobsOutput>
+function C:searchJobs(input: types.SearchJobsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchJobs as schema.OperationSchema, input, options) as async.Operation<types.SearchJobsOutput>
 end
 
-function C:searchQuantumTasks(input: types.SearchQuantumTasksInput, options: any): async.Operation<types.SearchQuantumTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchQuantumTasks, input, options) as async.Operation<types.SearchQuantumTasksOutput>
+function C:searchQuantumTasks(input: types.SearchQuantumTasksInput, options?: base_client.InvokeOptions): async.Operation<types.SearchQuantumTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchQuantumTasks as schema.OperationSchema, input, options) as async.Operation<types.SearchQuantumTasksOutput>
 end
 
-function C:searchSpendingLimits(input: types.SearchSpendingLimitsInput, options: any): async.Operation<types.SearchSpendingLimitsOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchSpendingLimits, input, options) as async.Operation<types.SearchSpendingLimitsOutput>
+function C:searchSpendingLimits(input: types.SearchSpendingLimitsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchSpendingLimitsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchSpendingLimits as schema.OperationSchema, input, options) as async.Operation<types.SearchSpendingLimitsOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateSpendingLimit(input: types.UpdateSpendingLimitInput, options: any): async.Operation<types.UpdateSpendingLimitOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSpendingLimit, input, options) as async.Operation<types.UpdateSpendingLimitOutput>
+function C:updateSpendingLimit(input: types.UpdateSpendingLimitInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSpendingLimitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSpendingLimit as schema.OperationSchema, input, options) as async.Operation<types.UpdateSpendingLimitOutput>
 end
 
 return M

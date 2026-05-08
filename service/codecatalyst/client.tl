@@ -8,77 +8,80 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("codecatalyst.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("codecatalyst.schemas")
 local traits = require("smithy.traits")
 local types = require("codecatalyst.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createAccessToken: function(Client, types.CreateAccessTokenInput, any): async.Operation<types.CreateAccessTokenOutput>
-    createDevEnvironment: function(Client, types.CreateDevEnvironmentInput, any): async.Operation<types.CreateDevEnvironmentOutput>
-    createProject: function(Client, types.CreateProjectInput, any): async.Operation<types.CreateProjectOutput>
-    createSourceRepository: function(Client, types.CreateSourceRepositoryInput, any): async.Operation<types.CreateSourceRepositoryOutput>
-    createSourceRepositoryBranch: function(Client, types.CreateSourceRepositoryBranchInput, any): async.Operation<types.CreateSourceRepositoryBranchOutput>
-    deleteAccessToken: function(Client, types.DeleteAccessTokenInput, any): async.Operation<types.DeleteAccessTokenOutput>
-    deleteDevEnvironment: function(Client, types.DeleteDevEnvironmentInput, any): async.Operation<types.DeleteDevEnvironmentOutput>
-    deleteProject: function(Client, types.DeleteProjectInput, any): async.Operation<types.DeleteProjectOutput>
-    deleteSourceRepository: function(Client, types.DeleteSourceRepositoryInput, any): async.Operation<types.DeleteSourceRepositoryOutput>
-    deleteSpace: function(Client, types.DeleteSpaceInput, any): async.Operation<types.DeleteSpaceOutput>
-    getDevEnvironment: function(Client, types.GetDevEnvironmentInput, any): async.Operation<types.GetDevEnvironmentOutput>
-    getProject: function(Client, types.GetProjectInput, any): async.Operation<types.GetProjectOutput>
-    getSourceRepository: function(Client, types.GetSourceRepositoryInput, any): async.Operation<types.GetSourceRepositoryOutput>
-    getSourceRepositoryCloneUrls: function(Client, types.GetSourceRepositoryCloneUrlsInput, any): async.Operation<types.GetSourceRepositoryCloneUrlsOutput>
-    getSpace: function(Client, types.GetSpaceInput, any): async.Operation<types.GetSpaceOutput>
-    getSubscription: function(Client, types.GetSubscriptionInput, any): async.Operation<types.GetSubscriptionOutput>
-    getUserDetails: function(Client, types.GetUserDetailsInput, any): async.Operation<types.GetUserDetailsOutput>
-    getWorkflow: function(Client, types.GetWorkflowInput, any): async.Operation<types.GetWorkflowOutput>
-    getWorkflowRun: function(Client, types.GetWorkflowRunInput, any): async.Operation<types.GetWorkflowRunOutput>
-    listAccessTokens: function(Client, types.ListAccessTokensInput, any): async.Operation<types.ListAccessTokensOutput>
-    listDevEnvironments: function(Client, types.ListDevEnvironmentsInput, any): async.Operation<types.ListDevEnvironmentsOutput>
-    listDevEnvironmentSessions: function(Client, types.ListDevEnvironmentSessionsInput, any): async.Operation<types.ListDevEnvironmentSessionsOutput>
-    listEventLogs: function(Client, types.ListEventLogsInput, any): async.Operation<types.ListEventLogsOutput>
-    listProjects: function(Client, types.ListProjectsInput, any): async.Operation<types.ListProjectsOutput>
-    listSourceRepositories: function(Client, types.ListSourceRepositoriesInput, any): async.Operation<types.ListSourceRepositoriesOutput>
-    listSourceRepositoryBranches: function(Client, types.ListSourceRepositoryBranchesInput, any): async.Operation<types.ListSourceRepositoryBranchesOutput>
-    listSpaces: function(Client, types.ListSpacesInput, any): async.Operation<types.ListSpacesOutput>
-    listWorkflowRuns: function(Client, types.ListWorkflowRunsInput, any): async.Operation<types.ListWorkflowRunsOutput>
-    listWorkflows: function(Client, types.ListWorkflowsInput, any): async.Operation<types.ListWorkflowsOutput>
-    startDevEnvironment: function(Client, types.StartDevEnvironmentInput, any): async.Operation<types.StartDevEnvironmentOutput>
-    startDevEnvironmentSession: function(Client, types.StartDevEnvironmentSessionInput, any): async.Operation<types.StartDevEnvironmentSessionOutput>
-    startWorkflowRun: function(Client, types.StartWorkflowRunInput, any): async.Operation<types.StartWorkflowRunOutput>
-    stopDevEnvironment: function(Client, types.StopDevEnvironmentInput, any): async.Operation<types.StopDevEnvironmentOutput>
-    stopDevEnvironmentSession: function(Client, types.StopDevEnvironmentSessionInput, any): async.Operation<types.StopDevEnvironmentSessionOutput>
-    updateDevEnvironment: function(Client, types.UpdateDevEnvironmentInput, any): async.Operation<types.UpdateDevEnvironmentOutput>
-    updateProject: function(Client, types.UpdateProjectInput, any): async.Operation<types.UpdateProjectOutput>
-    updateSpace: function(Client, types.UpdateSpaceInput, any): async.Operation<types.UpdateSpaceOutput>
-    verifySession: function(Client, types.VerifySessionInput, any): async.Operation<types.VerifySessionOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createAccessToken: function(Client, types.CreateAccessTokenInput, ? base_client.InvokeOptions): async.Operation<types.CreateAccessTokenOutput>
+    createDevEnvironment: function(Client, types.CreateDevEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateDevEnvironmentOutput>
+    createProject: function(Client, types.CreateProjectInput, ? base_client.InvokeOptions): async.Operation<types.CreateProjectOutput>
+    createSourceRepository: function(Client, types.CreateSourceRepositoryInput, ? base_client.InvokeOptions): async.Operation<types.CreateSourceRepositoryOutput>
+    createSourceRepositoryBranch: function(Client, types.CreateSourceRepositoryBranchInput, ? base_client.InvokeOptions): async.Operation<types.CreateSourceRepositoryBranchOutput>
+    deleteAccessToken: function(Client, types.DeleteAccessTokenInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccessTokenOutput>
+    deleteDevEnvironment: function(Client, types.DeleteDevEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDevEnvironmentOutput>
+    deleteProject: function(Client, types.DeleteProjectInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProjectOutput>
+    deleteSourceRepository: function(Client, types.DeleteSourceRepositoryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSourceRepositoryOutput>
+    deleteSpace: function(Client, types.DeleteSpaceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSpaceOutput>
+    getDevEnvironment: function(Client, types.GetDevEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.GetDevEnvironmentOutput>
+    getProject: function(Client, types.GetProjectInput, ? base_client.InvokeOptions): async.Operation<types.GetProjectOutput>
+    getSourceRepository: function(Client, types.GetSourceRepositoryInput, ? base_client.InvokeOptions): async.Operation<types.GetSourceRepositoryOutput>
+    getSourceRepositoryCloneUrls: function(Client, types.GetSourceRepositoryCloneUrlsInput, ? base_client.InvokeOptions): async.Operation<types.GetSourceRepositoryCloneUrlsOutput>
+    getSpace: function(Client, types.GetSpaceInput, ? base_client.InvokeOptions): async.Operation<types.GetSpaceOutput>
+    getSubscription: function(Client, types.GetSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.GetSubscriptionOutput>
+    getUserDetails: function(Client, types.GetUserDetailsInput, ? base_client.InvokeOptions): async.Operation<types.GetUserDetailsOutput>
+    getWorkflow: function(Client, types.GetWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkflowOutput>
+    getWorkflowRun: function(Client, types.GetWorkflowRunInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkflowRunOutput>
+    listAccessTokens: function(Client, types.ListAccessTokensInput, ? base_client.InvokeOptions): async.Operation<types.ListAccessTokensOutput>
+    listDevEnvironments: function(Client, types.ListDevEnvironmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListDevEnvironmentsOutput>
+    listDevEnvironmentSessions: function(Client, types.ListDevEnvironmentSessionsInput, ? base_client.InvokeOptions): async.Operation<types.ListDevEnvironmentSessionsOutput>
+    listEventLogs: function(Client, types.ListEventLogsInput, ? base_client.InvokeOptions): async.Operation<types.ListEventLogsOutput>
+    listProjects: function(Client, types.ListProjectsInput, ? base_client.InvokeOptions): async.Operation<types.ListProjectsOutput>
+    listSourceRepositories: function(Client, types.ListSourceRepositoriesInput, ? base_client.InvokeOptions): async.Operation<types.ListSourceRepositoriesOutput>
+    listSourceRepositoryBranches: function(Client, types.ListSourceRepositoryBranchesInput, ? base_client.InvokeOptions): async.Operation<types.ListSourceRepositoryBranchesOutput>
+    listSpaces: function(Client, types.ListSpacesInput, ? base_client.InvokeOptions): async.Operation<types.ListSpacesOutput>
+    listWorkflowRuns: function(Client, types.ListWorkflowRunsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkflowRunsOutput>
+    listWorkflows: function(Client, types.ListWorkflowsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkflowsOutput>
+    startDevEnvironment: function(Client, types.StartDevEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.StartDevEnvironmentOutput>
+    startDevEnvironmentSession: function(Client, types.StartDevEnvironmentSessionInput, ? base_client.InvokeOptions): async.Operation<types.StartDevEnvironmentSessionOutput>
+    startWorkflowRun: function(Client, types.StartWorkflowRunInput, ? base_client.InvokeOptions): async.Operation<types.StartWorkflowRunOutput>
+    stopDevEnvironment: function(Client, types.StopDevEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.StopDevEnvironmentOutput>
+    stopDevEnvironmentSession: function(Client, types.StopDevEnvironmentSessionInput, ? base_client.InvokeOptions): async.Operation<types.StopDevEnvironmentSessionOutput>
+    updateDevEnvironment: function(Client, types.UpdateDevEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDevEnvironmentOutput>
+    updateProject: function(Client, types.UpdateProjectInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProjectOutput>
+    updateSpace: function(Client, types.UpdateSpaceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSpaceOutput>
+    verifySession: function(Client, types.VerifySessionInput, ? base_client.InvokeOptions): async.Operation<types.VerifySessionOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "CodeCatalyst"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "codecatalyst", signing_region = c.region } }
                 else
@@ -97,156 +100,156 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createAccessToken(input: types.CreateAccessTokenInput, options: any): async.Operation<types.CreateAccessTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAccessToken, input, options) as async.Operation<types.CreateAccessTokenOutput>
+function C:createAccessToken(input: types.CreateAccessTokenInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAccessTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAccessToken as schema.OperationSchema, input, options) as async.Operation<types.CreateAccessTokenOutput>
 end
 
-function C:createDevEnvironment(input: types.CreateDevEnvironmentInput, options: any): async.Operation<types.CreateDevEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDevEnvironment, input, options) as async.Operation<types.CreateDevEnvironmentOutput>
+function C:createDevEnvironment(input: types.CreateDevEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDevEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDevEnvironment as schema.OperationSchema, input, options) as async.Operation<types.CreateDevEnvironmentOutput>
 end
 
-function C:createProject(input: types.CreateProjectInput, options: any): async.Operation<types.CreateProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProject, input, options) as async.Operation<types.CreateProjectOutput>
+function C:createProject(input: types.CreateProjectInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProject as schema.OperationSchema, input, options) as async.Operation<types.CreateProjectOutput>
 end
 
-function C:createSourceRepository(input: types.CreateSourceRepositoryInput, options: any): async.Operation<types.CreateSourceRepositoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSourceRepository, input, options) as async.Operation<types.CreateSourceRepositoryOutput>
+function C:createSourceRepository(input: types.CreateSourceRepositoryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSourceRepositoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSourceRepository as schema.OperationSchema, input, options) as async.Operation<types.CreateSourceRepositoryOutput>
 end
 
-function C:createSourceRepositoryBranch(input: types.CreateSourceRepositoryBranchInput, options: any): async.Operation<types.CreateSourceRepositoryBranchOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSourceRepositoryBranch, input, options) as async.Operation<types.CreateSourceRepositoryBranchOutput>
+function C:createSourceRepositoryBranch(input: types.CreateSourceRepositoryBranchInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSourceRepositoryBranchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSourceRepositoryBranch as schema.OperationSchema, input, options) as async.Operation<types.CreateSourceRepositoryBranchOutput>
 end
 
-function C:deleteAccessToken(input: types.DeleteAccessTokenInput, options: any): async.Operation<types.DeleteAccessTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAccessToken, input, options) as async.Operation<types.DeleteAccessTokenOutput>
+function C:deleteAccessToken(input: types.DeleteAccessTokenInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAccessTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAccessToken as schema.OperationSchema, input, options) as async.Operation<types.DeleteAccessTokenOutput>
 end
 
-function C:deleteDevEnvironment(input: types.DeleteDevEnvironmentInput, options: any): async.Operation<types.DeleteDevEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDevEnvironment, input, options) as async.Operation<types.DeleteDevEnvironmentOutput>
+function C:deleteDevEnvironment(input: types.DeleteDevEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDevEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDevEnvironment as schema.OperationSchema, input, options) as async.Operation<types.DeleteDevEnvironmentOutput>
 end
 
-function C:deleteProject(input: types.DeleteProjectInput, options: any): async.Operation<types.DeleteProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProject, input, options) as async.Operation<types.DeleteProjectOutput>
+function C:deleteProject(input: types.DeleteProjectInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProject as schema.OperationSchema, input, options) as async.Operation<types.DeleteProjectOutput>
 end
 
-function C:deleteSourceRepository(input: types.DeleteSourceRepositoryInput, options: any): async.Operation<types.DeleteSourceRepositoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSourceRepository, input, options) as async.Operation<types.DeleteSourceRepositoryOutput>
+function C:deleteSourceRepository(input: types.DeleteSourceRepositoryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSourceRepositoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSourceRepository as schema.OperationSchema, input, options) as async.Operation<types.DeleteSourceRepositoryOutput>
 end
 
-function C:deleteSpace(input: types.DeleteSpaceInput, options: any): async.Operation<types.DeleteSpaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSpace, input, options) as async.Operation<types.DeleteSpaceOutput>
+function C:deleteSpace(input: types.DeleteSpaceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSpaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSpace as schema.OperationSchema, input, options) as async.Operation<types.DeleteSpaceOutput>
 end
 
-function C:getDevEnvironment(input: types.GetDevEnvironmentInput, options: any): async.Operation<types.GetDevEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDevEnvironment, input, options) as async.Operation<types.GetDevEnvironmentOutput>
+function C:getDevEnvironment(input: types.GetDevEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.GetDevEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDevEnvironment as schema.OperationSchema, input, options) as async.Operation<types.GetDevEnvironmentOutput>
 end
 
-function C:getProject(input: types.GetProjectInput, options: any): async.Operation<types.GetProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetProject, input, options) as async.Operation<types.GetProjectOutput>
+function C:getProject(input: types.GetProjectInput, options?: base_client.InvokeOptions): async.Operation<types.GetProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProject as schema.OperationSchema, input, options) as async.Operation<types.GetProjectOutput>
 end
 
-function C:getSourceRepository(input: types.GetSourceRepositoryInput, options: any): async.Operation<types.GetSourceRepositoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSourceRepository, input, options) as async.Operation<types.GetSourceRepositoryOutput>
+function C:getSourceRepository(input: types.GetSourceRepositoryInput, options?: base_client.InvokeOptions): async.Operation<types.GetSourceRepositoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSourceRepository as schema.OperationSchema, input, options) as async.Operation<types.GetSourceRepositoryOutput>
 end
 
-function C:getSourceRepositoryCloneUrls(input: types.GetSourceRepositoryCloneUrlsInput, options: any): async.Operation<types.GetSourceRepositoryCloneUrlsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSourceRepositoryCloneUrls, input, options) as async.Operation<types.GetSourceRepositoryCloneUrlsOutput>
+function C:getSourceRepositoryCloneUrls(input: types.GetSourceRepositoryCloneUrlsInput, options?: base_client.InvokeOptions): async.Operation<types.GetSourceRepositoryCloneUrlsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSourceRepositoryCloneUrls as schema.OperationSchema, input, options) as async.Operation<types.GetSourceRepositoryCloneUrlsOutput>
 end
 
-function C:getSpace(input: types.GetSpaceInput, options: any): async.Operation<types.GetSpaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSpace, input, options) as async.Operation<types.GetSpaceOutput>
+function C:getSpace(input: types.GetSpaceInput, options?: base_client.InvokeOptions): async.Operation<types.GetSpaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSpace as schema.OperationSchema, input, options) as async.Operation<types.GetSpaceOutput>
 end
 
-function C:getSubscription(input: types.GetSubscriptionInput, options: any): async.Operation<types.GetSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSubscription, input, options) as async.Operation<types.GetSubscriptionOutput>
+function C:getSubscription(input: types.GetSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.GetSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSubscription as schema.OperationSchema, input, options) as async.Operation<types.GetSubscriptionOutput>
 end
 
-function C:getUserDetails(input: types.GetUserDetailsInput, options: any): async.Operation<types.GetUserDetailsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetUserDetails, input, options) as async.Operation<types.GetUserDetailsOutput>
+function C:getUserDetails(input: types.GetUserDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.GetUserDetailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetUserDetails as schema.OperationSchema, input, options) as async.Operation<types.GetUserDetailsOutput>
 end
 
-function C:getWorkflow(input: types.GetWorkflowInput, options: any): async.Operation<types.GetWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWorkflow, input, options) as async.Operation<types.GetWorkflowOutput>
+function C:getWorkflow(input: types.GetWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.GetWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWorkflow as schema.OperationSchema, input, options) as async.Operation<types.GetWorkflowOutput>
 end
 
-function C:getWorkflowRun(input: types.GetWorkflowRunInput, options: any): async.Operation<types.GetWorkflowRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWorkflowRun, input, options) as async.Operation<types.GetWorkflowRunOutput>
+function C:getWorkflowRun(input: types.GetWorkflowRunInput, options?: base_client.InvokeOptions): async.Operation<types.GetWorkflowRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWorkflowRun as schema.OperationSchema, input, options) as async.Operation<types.GetWorkflowRunOutput>
 end
 
-function C:listAccessTokens(input: types.ListAccessTokensInput, options: any): async.Operation<types.ListAccessTokensOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccessTokens, input, options) as async.Operation<types.ListAccessTokensOutput>
+function C:listAccessTokens(input: types.ListAccessTokensInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccessTokensOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccessTokens as schema.OperationSchema, input, options) as async.Operation<types.ListAccessTokensOutput>
 end
 
-function C:listDevEnvironments(input: types.ListDevEnvironmentsInput, options: any): async.Operation<types.ListDevEnvironmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDevEnvironments, input, options) as async.Operation<types.ListDevEnvironmentsOutput>
+function C:listDevEnvironments(input: types.ListDevEnvironmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDevEnvironmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDevEnvironments as schema.OperationSchema, input, options) as async.Operation<types.ListDevEnvironmentsOutput>
 end
 
-function C:listDevEnvironmentSessions(input: types.ListDevEnvironmentSessionsInput, options: any): async.Operation<types.ListDevEnvironmentSessionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDevEnvironmentSessions, input, options) as async.Operation<types.ListDevEnvironmentSessionsOutput>
+function C:listDevEnvironmentSessions(input: types.ListDevEnvironmentSessionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDevEnvironmentSessionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDevEnvironmentSessions as schema.OperationSchema, input, options) as async.Operation<types.ListDevEnvironmentSessionsOutput>
 end
 
-function C:listEventLogs(input: types.ListEventLogsInput, options: any): async.Operation<types.ListEventLogsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEventLogs, input, options) as async.Operation<types.ListEventLogsOutput>
+function C:listEventLogs(input: types.ListEventLogsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEventLogsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEventLogs as schema.OperationSchema, input, options) as async.Operation<types.ListEventLogsOutput>
 end
 
-function C:listProjects(input: types.ListProjectsInput, options: any): async.Operation<types.ListProjectsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProjects, input, options) as async.Operation<types.ListProjectsOutput>
+function C:listProjects(input: types.ListProjectsInput, options?: base_client.InvokeOptions): async.Operation<types.ListProjectsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProjects as schema.OperationSchema, input, options) as async.Operation<types.ListProjectsOutput>
 end
 
-function C:listSourceRepositories(input: types.ListSourceRepositoriesInput, options: any): async.Operation<types.ListSourceRepositoriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSourceRepositories, input, options) as async.Operation<types.ListSourceRepositoriesOutput>
+function C:listSourceRepositories(input: types.ListSourceRepositoriesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSourceRepositoriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSourceRepositories as schema.OperationSchema, input, options) as async.Operation<types.ListSourceRepositoriesOutput>
 end
 
-function C:listSourceRepositoryBranches(input: types.ListSourceRepositoryBranchesInput, options: any): async.Operation<types.ListSourceRepositoryBranchesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSourceRepositoryBranches, input, options) as async.Operation<types.ListSourceRepositoryBranchesOutput>
+function C:listSourceRepositoryBranches(input: types.ListSourceRepositoryBranchesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSourceRepositoryBranchesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSourceRepositoryBranches as schema.OperationSchema, input, options) as async.Operation<types.ListSourceRepositoryBranchesOutput>
 end
 
-function C:listSpaces(input: types.ListSpacesInput, options: any): async.Operation<types.ListSpacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSpaces, input, options) as async.Operation<types.ListSpacesOutput>
+function C:listSpaces(input: types.ListSpacesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSpacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSpaces as schema.OperationSchema, input, options) as async.Operation<types.ListSpacesOutput>
 end
 
-function C:listWorkflowRuns(input: types.ListWorkflowRunsInput, options: any): async.Operation<types.ListWorkflowRunsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWorkflowRuns, input, options) as async.Operation<types.ListWorkflowRunsOutput>
+function C:listWorkflowRuns(input: types.ListWorkflowRunsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkflowRunsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkflowRuns as schema.OperationSchema, input, options) as async.Operation<types.ListWorkflowRunsOutput>
 end
 
-function C:listWorkflows(input: types.ListWorkflowsInput, options: any): async.Operation<types.ListWorkflowsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWorkflows, input, options) as async.Operation<types.ListWorkflowsOutput>
+function C:listWorkflows(input: types.ListWorkflowsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkflowsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkflows as schema.OperationSchema, input, options) as async.Operation<types.ListWorkflowsOutput>
 end
 
-function C:startDevEnvironment(input: types.StartDevEnvironmentInput, options: any): async.Operation<types.StartDevEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartDevEnvironment, input, options) as async.Operation<types.StartDevEnvironmentOutput>
+function C:startDevEnvironment(input: types.StartDevEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.StartDevEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDevEnvironment as schema.OperationSchema, input, options) as async.Operation<types.StartDevEnvironmentOutput>
 end
 
-function C:startDevEnvironmentSession(input: types.StartDevEnvironmentSessionInput, options: any): async.Operation<types.StartDevEnvironmentSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartDevEnvironmentSession, input, options) as async.Operation<types.StartDevEnvironmentSessionOutput>
+function C:startDevEnvironmentSession(input: types.StartDevEnvironmentSessionInput, options?: base_client.InvokeOptions): async.Operation<types.StartDevEnvironmentSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDevEnvironmentSession as schema.OperationSchema, input, options) as async.Operation<types.StartDevEnvironmentSessionOutput>
 end
 
-function C:startWorkflowRun(input: types.StartWorkflowRunInput, options: any): async.Operation<types.StartWorkflowRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartWorkflowRun, input, options) as async.Operation<types.StartWorkflowRunOutput>
+function C:startWorkflowRun(input: types.StartWorkflowRunInput, options?: base_client.InvokeOptions): async.Operation<types.StartWorkflowRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartWorkflowRun as schema.OperationSchema, input, options) as async.Operation<types.StartWorkflowRunOutput>
 end
 
-function C:stopDevEnvironment(input: types.StopDevEnvironmentInput, options: any): async.Operation<types.StopDevEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopDevEnvironment, input, options) as async.Operation<types.StopDevEnvironmentOutput>
+function C:stopDevEnvironment(input: types.StopDevEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.StopDevEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopDevEnvironment as schema.OperationSchema, input, options) as async.Operation<types.StopDevEnvironmentOutput>
 end
 
-function C:stopDevEnvironmentSession(input: types.StopDevEnvironmentSessionInput, options: any): async.Operation<types.StopDevEnvironmentSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopDevEnvironmentSession, input, options) as async.Operation<types.StopDevEnvironmentSessionOutput>
+function C:stopDevEnvironmentSession(input: types.StopDevEnvironmentSessionInput, options?: base_client.InvokeOptions): async.Operation<types.StopDevEnvironmentSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopDevEnvironmentSession as schema.OperationSchema, input, options) as async.Operation<types.StopDevEnvironmentSessionOutput>
 end
 
-function C:updateDevEnvironment(input: types.UpdateDevEnvironmentInput, options: any): async.Operation<types.UpdateDevEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDevEnvironment, input, options) as async.Operation<types.UpdateDevEnvironmentOutput>
+function C:updateDevEnvironment(input: types.UpdateDevEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDevEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDevEnvironment as schema.OperationSchema, input, options) as async.Operation<types.UpdateDevEnvironmentOutput>
 end
 
-function C:updateProject(input: types.UpdateProjectInput, options: any): async.Operation<types.UpdateProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProject, input, options) as async.Operation<types.UpdateProjectOutput>
+function C:updateProject(input: types.UpdateProjectInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProject as schema.OperationSchema, input, options) as async.Operation<types.UpdateProjectOutput>
 end
 
-function C:updateSpace(input: types.UpdateSpaceInput, options: any): async.Operation<types.UpdateSpaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSpace, input, options) as async.Operation<types.UpdateSpaceOutput>
+function C:updateSpace(input: types.UpdateSpaceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSpaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSpace as schema.OperationSchema, input, options) as async.Operation<types.UpdateSpaceOutput>
 end
 
-function C:verifySession(input: types.VerifySessionInput, options: any): async.Operation<types.VerifySessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.VerifySession, input, options) as async.Operation<types.VerifySessionOutput>
+function C:verifySession(input: types.VerifySessionInput, options?: base_client.InvokeOptions): async.Operation<types.VerifySessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.VerifySession as schema.OperationSchema, input, options) as async.Operation<types.VerifySessionOutput>
 end
 
 return M

@@ -8,44 +8,47 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("freetier.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("freetier.schemas")
 local traits = require("smithy.traits")
 local types = require("freetier.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    getAccountActivity: function(Client, types.GetAccountActivityInput, any): async.Operation<types.GetAccountActivityOutput>
-    getAccountPlanState: function(Client, types.GetAccountPlanStateInput, any): async.Operation<types.GetAccountPlanStateOutput>
-    getFreeTierUsage: function(Client, types.GetFreeTierUsageInput, any): async.Operation<types.GetFreeTierUsageOutput>
-    listAccountActivities: function(Client, types.ListAccountActivitiesInput, any): async.Operation<types.ListAccountActivitiesOutput>
-    upgradeAccountPlan: function(Client, types.UpgradeAccountPlanInput, any): async.Operation<types.UpgradeAccountPlanOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    getAccountActivity: function(Client, types.GetAccountActivityInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountActivityOutput>
+    getAccountPlanState: function(Client, types.GetAccountPlanStateInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountPlanStateOutput>
+    getFreeTierUsage: function(Client, types.GetFreeTierUsageInput, ? base_client.InvokeOptions): async.Operation<types.GetFreeTierUsageOutput>
+    listAccountActivities: function(Client, types.ListAccountActivitiesInput, ? base_client.InvokeOptions): async.Operation<types.ListAccountActivitiesOutput>
+    upgradeAccountPlan: function(Client, types.UpgradeAccountPlanInput, ? base_client.InvokeOptions): async.Operation<types.UpgradeAccountPlanOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSFreeTierService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "freetier", signing_region = c.region } }
                 else
@@ -64,24 +67,24 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:getAccountActivity(input: types.GetAccountActivityInput, options: any): async.Operation<types.GetAccountActivityOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccountActivity, input, options) as async.Operation<types.GetAccountActivityOutput>
+function C:getAccountActivity(input: types.GetAccountActivityInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccountActivityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccountActivity as schema.OperationSchema, input, options) as async.Operation<types.GetAccountActivityOutput>
 end
 
-function C:getAccountPlanState(input: types.GetAccountPlanStateInput, options: any): async.Operation<types.GetAccountPlanStateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccountPlanState, input, options) as async.Operation<types.GetAccountPlanStateOutput>
+function C:getAccountPlanState(input: types.GetAccountPlanStateInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccountPlanStateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccountPlanState as schema.OperationSchema, input, options) as async.Operation<types.GetAccountPlanStateOutput>
 end
 
-function C:getFreeTierUsage(input: types.GetFreeTierUsageInput, options: any): async.Operation<types.GetFreeTierUsageOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFreeTierUsage, input, options) as async.Operation<types.GetFreeTierUsageOutput>
+function C:getFreeTierUsage(input: types.GetFreeTierUsageInput, options?: base_client.InvokeOptions): async.Operation<types.GetFreeTierUsageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFreeTierUsage as schema.OperationSchema, input, options) as async.Operation<types.GetFreeTierUsageOutput>
 end
 
-function C:listAccountActivities(input: types.ListAccountActivitiesInput, options: any): async.Operation<types.ListAccountActivitiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccountActivities, input, options) as async.Operation<types.ListAccountActivitiesOutput>
+function C:listAccountActivities(input: types.ListAccountActivitiesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccountActivitiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccountActivities as schema.OperationSchema, input, options) as async.Operation<types.ListAccountActivitiesOutput>
 end
 
-function C:upgradeAccountPlan(input: types.UpgradeAccountPlanInput, options: any): async.Operation<types.UpgradeAccountPlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpgradeAccountPlan, input, options) as async.Operation<types.UpgradeAccountPlanOutput>
+function C:upgradeAccountPlan(input: types.UpgradeAccountPlanInput, options?: base_client.InvokeOptions): async.Operation<types.UpgradeAccountPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpgradeAccountPlan as schema.OperationSchema, input, options) as async.Operation<types.UpgradeAccountPlanOutput>
 end
 
 return M

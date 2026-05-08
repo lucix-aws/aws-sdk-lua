@@ -8,72 +8,75 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("applicationinsights.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("applicationinsights.schemas")
 local traits = require("smithy.traits")
 local types = require("applicationinsights.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    addWorkload: function(Client, types.AddWorkloadInput, any): async.Operation<types.AddWorkloadOutput>
-    createApplication: function(Client, types.CreateApplicationInput, any): async.Operation<types.CreateApplicationOutput>
-    createComponent: function(Client, types.CreateComponentInput, any): async.Operation<types.CreateComponentOutput>
-    createLogPattern: function(Client, types.CreateLogPatternInput, any): async.Operation<types.CreateLogPatternOutput>
-    deleteApplication: function(Client, types.DeleteApplicationInput, any): async.Operation<types.DeleteApplicationOutput>
-    deleteComponent: function(Client, types.DeleteComponentInput, any): async.Operation<types.DeleteComponentOutput>
-    deleteLogPattern: function(Client, types.DeleteLogPatternInput, any): async.Operation<types.DeleteLogPatternOutput>
-    describeApplication: function(Client, types.DescribeApplicationInput, any): async.Operation<types.DescribeApplicationOutput>
-    describeComponent: function(Client, types.DescribeComponentInput, any): async.Operation<types.DescribeComponentOutput>
-    describeComponentConfiguration: function(Client, types.DescribeComponentConfigurationInput, any): async.Operation<types.DescribeComponentConfigurationOutput>
-    describeComponentConfigurationRecommendation: function(Client, types.DescribeComponentConfigurationRecommendationInput, any): async.Operation<types.DescribeComponentConfigurationRecommendationOutput>
-    describeLogPattern: function(Client, types.DescribeLogPatternInput, any): async.Operation<types.DescribeLogPatternOutput>
-    describeObservation: function(Client, types.DescribeObservationInput, any): async.Operation<types.DescribeObservationOutput>
-    describeProblem: function(Client, types.DescribeProblemInput, any): async.Operation<types.DescribeProblemOutput>
-    describeProblemObservations: function(Client, types.DescribeProblemObservationsInput, any): async.Operation<types.DescribeProblemObservationsOutput>
-    describeWorkload: function(Client, types.DescribeWorkloadInput, any): async.Operation<types.DescribeWorkloadOutput>
-    listApplications: function(Client, types.ListApplicationsInput, any): async.Operation<types.ListApplicationsOutput>
-    listComponents: function(Client, types.ListComponentsInput, any): async.Operation<types.ListComponentsOutput>
-    listConfigurationHistory: function(Client, types.ListConfigurationHistoryInput, any): async.Operation<types.ListConfigurationHistoryOutput>
-    listLogPatterns: function(Client, types.ListLogPatternsInput, any): async.Operation<types.ListLogPatternsOutput>
-    listLogPatternSets: function(Client, types.ListLogPatternSetsInput, any): async.Operation<types.ListLogPatternSetsOutput>
-    listProblems: function(Client, types.ListProblemsInput, any): async.Operation<types.ListProblemsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listWorkloads: function(Client, types.ListWorkloadsInput, any): async.Operation<types.ListWorkloadsOutput>
-    removeWorkload: function(Client, types.RemoveWorkloadInput, any): async.Operation<types.RemoveWorkloadOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateApplication: function(Client, types.UpdateApplicationInput, any): async.Operation<types.UpdateApplicationOutput>
-    updateComponent: function(Client, types.UpdateComponentInput, any): async.Operation<types.UpdateComponentOutput>
-    updateComponentConfiguration: function(Client, types.UpdateComponentConfigurationInput, any): async.Operation<types.UpdateComponentConfigurationOutput>
-    updateLogPattern: function(Client, types.UpdateLogPatternInput, any): async.Operation<types.UpdateLogPatternOutput>
-    updateProblem: function(Client, types.UpdateProblemInput, any): async.Operation<types.UpdateProblemOutput>
-    updateWorkload: function(Client, types.UpdateWorkloadInput, any): async.Operation<types.UpdateWorkloadOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    addWorkload: function(Client, types.AddWorkloadInput, ? base_client.InvokeOptions): async.Operation<types.AddWorkloadOutput>
+    createApplication: function(Client, types.CreateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    createComponent: function(Client, types.CreateComponentInput, ? base_client.InvokeOptions): async.Operation<types.CreateComponentOutput>
+    createLogPattern: function(Client, types.CreateLogPatternInput, ? base_client.InvokeOptions): async.Operation<types.CreateLogPatternOutput>
+    deleteApplication: function(Client, types.DeleteApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
+    deleteComponent: function(Client, types.DeleteComponentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteComponentOutput>
+    deleteLogPattern: function(Client, types.DeleteLogPatternInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLogPatternOutput>
+    describeApplication: function(Client, types.DescribeApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeApplicationOutput>
+    describeComponent: function(Client, types.DescribeComponentInput, ? base_client.InvokeOptions): async.Operation<types.DescribeComponentOutput>
+    describeComponentConfiguration: function(Client, types.DescribeComponentConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeComponentConfigurationOutput>
+    describeComponentConfigurationRecommendation: function(Client, types.DescribeComponentConfigurationRecommendationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeComponentConfigurationRecommendationOutput>
+    describeLogPattern: function(Client, types.DescribeLogPatternInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLogPatternOutput>
+    describeObservation: function(Client, types.DescribeObservationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeObservationOutput>
+    describeProblem: function(Client, types.DescribeProblemInput, ? base_client.InvokeOptions): async.Operation<types.DescribeProblemOutput>
+    describeProblemObservations: function(Client, types.DescribeProblemObservationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeProblemObservationsOutput>
+    describeWorkload: function(Client, types.DescribeWorkloadInput, ? base_client.InvokeOptions): async.Operation<types.DescribeWorkloadOutput>
+    listApplications: function(Client, types.ListApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    listComponents: function(Client, types.ListComponentsInput, ? base_client.InvokeOptions): async.Operation<types.ListComponentsOutput>
+    listConfigurationHistory: function(Client, types.ListConfigurationHistoryInput, ? base_client.InvokeOptions): async.Operation<types.ListConfigurationHistoryOutput>
+    listLogPatterns: function(Client, types.ListLogPatternsInput, ? base_client.InvokeOptions): async.Operation<types.ListLogPatternsOutput>
+    listLogPatternSets: function(Client, types.ListLogPatternSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListLogPatternSetsOutput>
+    listProblems: function(Client, types.ListProblemsInput, ? base_client.InvokeOptions): async.Operation<types.ListProblemsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listWorkloads: function(Client, types.ListWorkloadsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkloadsOutput>
+    removeWorkload: function(Client, types.RemoveWorkloadInput, ? base_client.InvokeOptions): async.Operation<types.RemoveWorkloadOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateApplication: function(Client, types.UpdateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
+    updateComponent: function(Client, types.UpdateComponentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateComponentOutput>
+    updateComponentConfiguration: function(Client, types.UpdateComponentConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateComponentConfigurationOutput>
+    updateLogPattern: function(Client, types.UpdateLogPatternInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLogPatternOutput>
+    updateProblem: function(Client, types.UpdateProblemInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProblemOutput>
+    updateWorkload: function(Client, types.UpdateWorkloadInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWorkloadOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "EC2WindowsBarleyService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "applicationinsights", signing_region = c.region } }
                 else
@@ -92,136 +95,136 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:addWorkload(input: types.AddWorkloadInput, options: any): async.Operation<types.AddWorkloadOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddWorkload, input, options) as async.Operation<types.AddWorkloadOutput>
+function C:addWorkload(input: types.AddWorkloadInput, options?: base_client.InvokeOptions): async.Operation<types.AddWorkloadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddWorkload as schema.OperationSchema, input, options) as async.Operation<types.AddWorkloadOutput>
 end
 
-function C:createApplication(input: types.CreateApplicationInput, options: any): async.Operation<types.CreateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateApplication, input, options) as async.Operation<types.CreateApplicationOutput>
+function C:createApplication(input: types.CreateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApplication as schema.OperationSchema, input, options) as async.Operation<types.CreateApplicationOutput>
 end
 
-function C:createComponent(input: types.CreateComponentInput, options: any): async.Operation<types.CreateComponentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateComponent, input, options) as async.Operation<types.CreateComponentOutput>
+function C:createComponent(input: types.CreateComponentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateComponentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateComponent as schema.OperationSchema, input, options) as async.Operation<types.CreateComponentOutput>
 end
 
-function C:createLogPattern(input: types.CreateLogPatternInput, options: any): async.Operation<types.CreateLogPatternOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLogPattern, input, options) as async.Operation<types.CreateLogPatternOutput>
+function C:createLogPattern(input: types.CreateLogPatternInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLogPatternOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLogPattern as schema.OperationSchema, input, options) as async.Operation<types.CreateLogPatternOutput>
 end
 
-function C:deleteApplication(input: types.DeleteApplicationInput, options: any): async.Operation<types.DeleteApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApplication, input, options) as async.Operation<types.DeleteApplicationOutput>
+function C:deleteApplication(input: types.DeleteApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplication as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationOutput>
 end
 
-function C:deleteComponent(input: types.DeleteComponentInput, options: any): async.Operation<types.DeleteComponentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteComponent, input, options) as async.Operation<types.DeleteComponentOutput>
+function C:deleteComponent(input: types.DeleteComponentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteComponentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteComponent as schema.OperationSchema, input, options) as async.Operation<types.DeleteComponentOutput>
 end
 
-function C:deleteLogPattern(input: types.DeleteLogPatternInput, options: any): async.Operation<types.DeleteLogPatternOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLogPattern, input, options) as async.Operation<types.DeleteLogPatternOutput>
+function C:deleteLogPattern(input: types.DeleteLogPatternInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLogPatternOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLogPattern as schema.OperationSchema, input, options) as async.Operation<types.DeleteLogPatternOutput>
 end
 
-function C:describeApplication(input: types.DescribeApplicationInput, options: any): async.Operation<types.DescribeApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeApplication, input, options) as async.Operation<types.DescribeApplicationOutput>
+function C:describeApplication(input: types.DescribeApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeApplication as schema.OperationSchema, input, options) as async.Operation<types.DescribeApplicationOutput>
 end
 
-function C:describeComponent(input: types.DescribeComponentInput, options: any): async.Operation<types.DescribeComponentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeComponent, input, options) as async.Operation<types.DescribeComponentOutput>
+function C:describeComponent(input: types.DescribeComponentInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeComponentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeComponent as schema.OperationSchema, input, options) as async.Operation<types.DescribeComponentOutput>
 end
 
-function C:describeComponentConfiguration(input: types.DescribeComponentConfigurationInput, options: any): async.Operation<types.DescribeComponentConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeComponentConfiguration, input, options) as async.Operation<types.DescribeComponentConfigurationOutput>
+function C:describeComponentConfiguration(input: types.DescribeComponentConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeComponentConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeComponentConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeComponentConfigurationOutput>
 end
 
-function C:describeComponentConfigurationRecommendation(input: types.DescribeComponentConfigurationRecommendationInput, options: any): async.Operation<types.DescribeComponentConfigurationRecommendationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeComponentConfigurationRecommendation, input, options) as async.Operation<types.DescribeComponentConfigurationRecommendationOutput>
+function C:describeComponentConfigurationRecommendation(input: types.DescribeComponentConfigurationRecommendationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeComponentConfigurationRecommendationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeComponentConfigurationRecommendation as schema.OperationSchema, input, options) as async.Operation<types.DescribeComponentConfigurationRecommendationOutput>
 end
 
-function C:describeLogPattern(input: types.DescribeLogPatternInput, options: any): async.Operation<types.DescribeLogPatternOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLogPattern, input, options) as async.Operation<types.DescribeLogPatternOutput>
+function C:describeLogPattern(input: types.DescribeLogPatternInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLogPatternOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLogPattern as schema.OperationSchema, input, options) as async.Operation<types.DescribeLogPatternOutput>
 end
 
-function C:describeObservation(input: types.DescribeObservationInput, options: any): async.Operation<types.DescribeObservationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeObservation, input, options) as async.Operation<types.DescribeObservationOutput>
+function C:describeObservation(input: types.DescribeObservationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeObservationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeObservation as schema.OperationSchema, input, options) as async.Operation<types.DescribeObservationOutput>
 end
 
-function C:describeProblem(input: types.DescribeProblemInput, options: any): async.Operation<types.DescribeProblemOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeProblem, input, options) as async.Operation<types.DescribeProblemOutput>
+function C:describeProblem(input: types.DescribeProblemInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeProblemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeProblem as schema.OperationSchema, input, options) as async.Operation<types.DescribeProblemOutput>
 end
 
-function C:describeProblemObservations(input: types.DescribeProblemObservationsInput, options: any): async.Operation<types.DescribeProblemObservationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeProblemObservations, input, options) as async.Operation<types.DescribeProblemObservationsOutput>
+function C:describeProblemObservations(input: types.DescribeProblemObservationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeProblemObservationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeProblemObservations as schema.OperationSchema, input, options) as async.Operation<types.DescribeProblemObservationsOutput>
 end
 
-function C:describeWorkload(input: types.DescribeWorkloadInput, options: any): async.Operation<types.DescribeWorkloadOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeWorkload, input, options) as async.Operation<types.DescribeWorkloadOutput>
+function C:describeWorkload(input: types.DescribeWorkloadInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeWorkloadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeWorkload as schema.OperationSchema, input, options) as async.Operation<types.DescribeWorkloadOutput>
 end
 
-function C:listApplications(input: types.ListApplicationsInput, options: any): async.Operation<types.ListApplicationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplications, input, options) as async.Operation<types.ListApplicationsOutput>
+function C:listApplications(input: types.ListApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplications as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationsOutput>
 end
 
-function C:listComponents(input: types.ListComponentsInput, options: any): async.Operation<types.ListComponentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListComponents, input, options) as async.Operation<types.ListComponentsOutput>
+function C:listComponents(input: types.ListComponentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListComponentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListComponents as schema.OperationSchema, input, options) as async.Operation<types.ListComponentsOutput>
 end
 
-function C:listConfigurationHistory(input: types.ListConfigurationHistoryInput, options: any): async.Operation<types.ListConfigurationHistoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConfigurationHistory, input, options) as async.Operation<types.ListConfigurationHistoryOutput>
+function C:listConfigurationHistory(input: types.ListConfigurationHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.ListConfigurationHistoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConfigurationHistory as schema.OperationSchema, input, options) as async.Operation<types.ListConfigurationHistoryOutput>
 end
 
-function C:listLogPatterns(input: types.ListLogPatternsInput, options: any): async.Operation<types.ListLogPatternsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLogPatterns, input, options) as async.Operation<types.ListLogPatternsOutput>
+function C:listLogPatterns(input: types.ListLogPatternsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLogPatternsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLogPatterns as schema.OperationSchema, input, options) as async.Operation<types.ListLogPatternsOutput>
 end
 
-function C:listLogPatternSets(input: types.ListLogPatternSetsInput, options: any): async.Operation<types.ListLogPatternSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLogPatternSets, input, options) as async.Operation<types.ListLogPatternSetsOutput>
+function C:listLogPatternSets(input: types.ListLogPatternSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLogPatternSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLogPatternSets as schema.OperationSchema, input, options) as async.Operation<types.ListLogPatternSetsOutput>
 end
 
-function C:listProblems(input: types.ListProblemsInput, options: any): async.Operation<types.ListProblemsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProblems, input, options) as async.Operation<types.ListProblemsOutput>
+function C:listProblems(input: types.ListProblemsInput, options?: base_client.InvokeOptions): async.Operation<types.ListProblemsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProblems as schema.OperationSchema, input, options) as async.Operation<types.ListProblemsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listWorkloads(input: types.ListWorkloadsInput, options: any): async.Operation<types.ListWorkloadsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWorkloads, input, options) as async.Operation<types.ListWorkloadsOutput>
+function C:listWorkloads(input: types.ListWorkloadsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkloadsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkloads as schema.OperationSchema, input, options) as async.Operation<types.ListWorkloadsOutput>
 end
 
-function C:removeWorkload(input: types.RemoveWorkloadInput, options: any): async.Operation<types.RemoveWorkloadOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveWorkload, input, options) as async.Operation<types.RemoveWorkloadOutput>
+function C:removeWorkload(input: types.RemoveWorkloadInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveWorkloadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveWorkload as schema.OperationSchema, input, options) as async.Operation<types.RemoveWorkloadOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateApplication(input: types.UpdateApplicationInput, options: any): async.Operation<types.UpdateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateApplication, input, options) as async.Operation<types.UpdateApplicationOutput>
+function C:updateApplication(input: types.UpdateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApplication as schema.OperationSchema, input, options) as async.Operation<types.UpdateApplicationOutput>
 end
 
-function C:updateComponent(input: types.UpdateComponentInput, options: any): async.Operation<types.UpdateComponentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateComponent, input, options) as async.Operation<types.UpdateComponentOutput>
+function C:updateComponent(input: types.UpdateComponentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateComponentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateComponent as schema.OperationSchema, input, options) as async.Operation<types.UpdateComponentOutput>
 end
 
-function C:updateComponentConfiguration(input: types.UpdateComponentConfigurationInput, options: any): async.Operation<types.UpdateComponentConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateComponentConfiguration, input, options) as async.Operation<types.UpdateComponentConfigurationOutput>
+function C:updateComponentConfiguration(input: types.UpdateComponentConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateComponentConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateComponentConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateComponentConfigurationOutput>
 end
 
-function C:updateLogPattern(input: types.UpdateLogPatternInput, options: any): async.Operation<types.UpdateLogPatternOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLogPattern, input, options) as async.Operation<types.UpdateLogPatternOutput>
+function C:updateLogPattern(input: types.UpdateLogPatternInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLogPatternOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLogPattern as schema.OperationSchema, input, options) as async.Operation<types.UpdateLogPatternOutput>
 end
 
-function C:updateProblem(input: types.UpdateProblemInput, options: any): async.Operation<types.UpdateProblemOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProblem, input, options) as async.Operation<types.UpdateProblemOutput>
+function C:updateProblem(input: types.UpdateProblemInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProblemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProblem as schema.OperationSchema, input, options) as async.Operation<types.UpdateProblemOutput>
 end
 
-function C:updateWorkload(input: types.UpdateWorkloadInput, options: any): async.Operation<types.UpdateWorkloadOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateWorkload, input, options) as async.Operation<types.UpdateWorkloadOutput>
+function C:updateWorkload(input: types.UpdateWorkloadInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWorkloadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWorkload as schema.OperationSchema, input, options) as async.Operation<types.UpdateWorkloadOutput>
 end
 
 return M

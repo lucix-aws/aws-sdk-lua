@@ -8,50 +8,53 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("sts.endpoint_rules")
 local query_protocol = require("smithy.protocol.awsquery")
+local schema = require("smithy.schema")
 local schemas = require("sts.schemas")
 local traits = require("smithy.traits")
 local types = require("sts.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    assumeRole: function(Client, types.AssumeRoleInput, any): async.Operation<types.AssumeRoleOutput>
-    assumeRoleWithSAML: function(Client, types.AssumeRoleWithSAMLInput, any): async.Operation<types.AssumeRoleWithSAMLOutput>
-    assumeRoleWithWebIdentity: function(Client, types.AssumeRoleWithWebIdentityInput, any): async.Operation<types.AssumeRoleWithWebIdentityOutput>
-    assumeRoot: function(Client, types.AssumeRootInput, any): async.Operation<types.AssumeRootOutput>
-    decodeAuthorizationMessage: function(Client, types.DecodeAuthorizationMessageInput, any): async.Operation<types.DecodeAuthorizationMessageOutput>
-    getAccessKeyInfo: function(Client, types.GetAccessKeyInfoInput, any): async.Operation<types.GetAccessKeyInfoOutput>
-    getCallerIdentity: function(Client, types.GetCallerIdentityInput, any): async.Operation<types.GetCallerIdentityOutput>
-    getDelegatedAccessToken: function(Client, types.GetDelegatedAccessTokenInput, any): async.Operation<types.GetDelegatedAccessTokenOutput>
-    getFederationToken: function(Client, types.GetFederationTokenInput, any): async.Operation<types.GetFederationTokenOutput>
-    getSessionToken: function(Client, types.GetSessionTokenInput, any): async.Operation<types.GetSessionTokenOutput>
-    getWebIdentityToken: function(Client, types.GetWebIdentityTokenInput, any): async.Operation<types.GetWebIdentityTokenOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    assumeRole: function(Client, types.AssumeRoleInput, ? base_client.InvokeOptions): async.Operation<types.AssumeRoleOutput>
+    assumeRoleWithSAML: function(Client, types.AssumeRoleWithSAMLInput, ? base_client.InvokeOptions): async.Operation<types.AssumeRoleWithSAMLOutput>
+    assumeRoleWithWebIdentity: function(Client, types.AssumeRoleWithWebIdentityInput, ? base_client.InvokeOptions): async.Operation<types.AssumeRoleWithWebIdentityOutput>
+    assumeRoot: function(Client, types.AssumeRootInput, ? base_client.InvokeOptions): async.Operation<types.AssumeRootOutput>
+    decodeAuthorizationMessage: function(Client, types.DecodeAuthorizationMessageInput, ? base_client.InvokeOptions): async.Operation<types.DecodeAuthorizationMessageOutput>
+    getAccessKeyInfo: function(Client, types.GetAccessKeyInfoInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessKeyInfoOutput>
+    getCallerIdentity: function(Client, types.GetCallerIdentityInput, ? base_client.InvokeOptions): async.Operation<types.GetCallerIdentityOutput>
+    getDelegatedAccessToken: function(Client, types.GetDelegatedAccessTokenInput, ? base_client.InvokeOptions): async.Operation<types.GetDelegatedAccessTokenOutput>
+    getFederationToken: function(Client, types.GetFederationTokenInput, ? base_client.InvokeOptions): async.Operation<types.GetFederationTokenOutput>
+    getSessionToken: function(Client, types.GetSessionTokenInput, ? base_client.InvokeOptions): async.Operation<types.GetSessionTokenOutput>
+    getWebIdentityToken: function(Client, types.GetWebIdentityTokenInput, ? base_client.InvokeOptions): async.Operation<types.GetWebIdentityTokenOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSSecurityTokenServiceV20110615"
-    if not c.protocol then c.protocol = query_protocol.new("awsQuery") end
+    if not c.protocol then c.protocol = query_protocol.new("awsQuery") as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "sts", signing_region = c.region } }
                 else
@@ -70,48 +73,48 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:assumeRole(input: types.AssumeRoleInput, options: any): async.Operation<types.AssumeRoleOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssumeRole, input, options) as async.Operation<types.AssumeRoleOutput>
+function C:assumeRole(input: types.AssumeRoleInput, options?: base_client.InvokeOptions): async.Operation<types.AssumeRoleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssumeRole as schema.OperationSchema, input, options) as async.Operation<types.AssumeRoleOutput>
 end
 
-function C:assumeRoleWithSAML(input: types.AssumeRoleWithSAMLInput, options: any): async.Operation<types.AssumeRoleWithSAMLOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssumeRoleWithSAML, input, options) as async.Operation<types.AssumeRoleWithSAMLOutput>
+function C:assumeRoleWithSAML(input: types.AssumeRoleWithSAMLInput, options?: base_client.InvokeOptions): async.Operation<types.AssumeRoleWithSAMLOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssumeRoleWithSAML as schema.OperationSchema, input, options) as async.Operation<types.AssumeRoleWithSAMLOutput>
 end
 
-function C:assumeRoleWithWebIdentity(input: types.AssumeRoleWithWebIdentityInput, options: any): async.Operation<types.AssumeRoleWithWebIdentityOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssumeRoleWithWebIdentity, input, options) as async.Operation<types.AssumeRoleWithWebIdentityOutput>
+function C:assumeRoleWithWebIdentity(input: types.AssumeRoleWithWebIdentityInput, options?: base_client.InvokeOptions): async.Operation<types.AssumeRoleWithWebIdentityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssumeRoleWithWebIdentity as schema.OperationSchema, input, options) as async.Operation<types.AssumeRoleWithWebIdentityOutput>
 end
 
-function C:assumeRoot(input: types.AssumeRootInput, options: any): async.Operation<types.AssumeRootOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssumeRoot, input, options) as async.Operation<types.AssumeRootOutput>
+function C:assumeRoot(input: types.AssumeRootInput, options?: base_client.InvokeOptions): async.Operation<types.AssumeRootOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssumeRoot as schema.OperationSchema, input, options) as async.Operation<types.AssumeRootOutput>
 end
 
-function C:decodeAuthorizationMessage(input: types.DecodeAuthorizationMessageInput, options: any): async.Operation<types.DecodeAuthorizationMessageOutput>
-    return self:invokeOperation(schemas.Service, schemas.DecodeAuthorizationMessage, input, options) as async.Operation<types.DecodeAuthorizationMessageOutput>
+function C:decodeAuthorizationMessage(input: types.DecodeAuthorizationMessageInput, options?: base_client.InvokeOptions): async.Operation<types.DecodeAuthorizationMessageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DecodeAuthorizationMessage as schema.OperationSchema, input, options) as async.Operation<types.DecodeAuthorizationMessageOutput>
 end
 
-function C:getAccessKeyInfo(input: types.GetAccessKeyInfoInput, options: any): async.Operation<types.GetAccessKeyInfoOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccessKeyInfo, input, options) as async.Operation<types.GetAccessKeyInfoOutput>
+function C:getAccessKeyInfo(input: types.GetAccessKeyInfoInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccessKeyInfoOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccessKeyInfo as schema.OperationSchema, input, options) as async.Operation<types.GetAccessKeyInfoOutput>
 end
 
-function C:getCallerIdentity(input: types.GetCallerIdentityInput, options: any): async.Operation<types.GetCallerIdentityOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCallerIdentity, input, options) as async.Operation<types.GetCallerIdentityOutput>
+function C:getCallerIdentity(input: types.GetCallerIdentityInput, options?: base_client.InvokeOptions): async.Operation<types.GetCallerIdentityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCallerIdentity as schema.OperationSchema, input, options) as async.Operation<types.GetCallerIdentityOutput>
 end
 
-function C:getDelegatedAccessToken(input: types.GetDelegatedAccessTokenInput, options: any): async.Operation<types.GetDelegatedAccessTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDelegatedAccessToken, input, options) as async.Operation<types.GetDelegatedAccessTokenOutput>
+function C:getDelegatedAccessToken(input: types.GetDelegatedAccessTokenInput, options?: base_client.InvokeOptions): async.Operation<types.GetDelegatedAccessTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDelegatedAccessToken as schema.OperationSchema, input, options) as async.Operation<types.GetDelegatedAccessTokenOutput>
 end
 
-function C:getFederationToken(input: types.GetFederationTokenInput, options: any): async.Operation<types.GetFederationTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFederationToken, input, options) as async.Operation<types.GetFederationTokenOutput>
+function C:getFederationToken(input: types.GetFederationTokenInput, options?: base_client.InvokeOptions): async.Operation<types.GetFederationTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFederationToken as schema.OperationSchema, input, options) as async.Operation<types.GetFederationTokenOutput>
 end
 
-function C:getSessionToken(input: types.GetSessionTokenInput, options: any): async.Operation<types.GetSessionTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSessionToken, input, options) as async.Operation<types.GetSessionTokenOutput>
+function C:getSessionToken(input: types.GetSessionTokenInput, options?: base_client.InvokeOptions): async.Operation<types.GetSessionTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSessionToken as schema.OperationSchema, input, options) as async.Operation<types.GetSessionTokenOutput>
 end
 
-function C:getWebIdentityToken(input: types.GetWebIdentityTokenInput, options: any): async.Operation<types.GetWebIdentityTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWebIdentityToken, input, options) as async.Operation<types.GetWebIdentityTokenOutput>
+function C:getWebIdentityToken(input: types.GetWebIdentityTokenInput, options?: base_client.InvokeOptions): async.Operation<types.GetWebIdentityTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWebIdentityToken as schema.OperationSchema, input, options) as async.Operation<types.GetWebIdentityTokenOutput>
 end
 
 return M

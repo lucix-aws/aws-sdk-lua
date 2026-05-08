@@ -8,126 +8,129 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("proton.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("proton.schemas")
 local traits = require("smithy.traits")
 local types = require("proton.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    acceptEnvironmentAccountConnection: function(Client, types.AcceptEnvironmentAccountConnectionInput, any): async.Operation<types.AcceptEnvironmentAccountConnectionOutput>
-    cancelComponentDeployment: function(Client, types.CancelComponentDeploymentInput, any): async.Operation<types.CancelComponentDeploymentOutput>
-    cancelEnvironmentDeployment: function(Client, types.CancelEnvironmentDeploymentInput, any): async.Operation<types.CancelEnvironmentDeploymentOutput>
-    cancelServiceInstanceDeployment: function(Client, types.CancelServiceInstanceDeploymentInput, any): async.Operation<types.CancelServiceInstanceDeploymentOutput>
-    cancelServicePipelineDeployment: function(Client, types.CancelServicePipelineDeploymentInput, any): async.Operation<types.CancelServicePipelineDeploymentOutput>
-    createComponent: function(Client, types.CreateComponentInput, any): async.Operation<types.CreateComponentOutput>
-    createEnvironment: function(Client, types.CreateEnvironmentInput, any): async.Operation<types.CreateEnvironmentOutput>
-    createEnvironmentAccountConnection: function(Client, types.CreateEnvironmentAccountConnectionInput, any): async.Operation<types.CreateEnvironmentAccountConnectionOutput>
-    createEnvironmentTemplate: function(Client, types.CreateEnvironmentTemplateInput, any): async.Operation<types.CreateEnvironmentTemplateOutput>
-    createEnvironmentTemplateVersion: function(Client, types.CreateEnvironmentTemplateVersionInput, any): async.Operation<types.CreateEnvironmentTemplateVersionOutput>
-    createRepository: function(Client, types.CreateRepositoryInput, any): async.Operation<types.CreateRepositoryOutput>
-    createService: function(Client, types.CreateServiceInput, any): async.Operation<types.CreateServiceOutput>
-    createServiceInstance: function(Client, types.CreateServiceInstanceInput, any): async.Operation<types.CreateServiceInstanceOutput>
-    createServiceSyncConfig: function(Client, types.CreateServiceSyncConfigInput, any): async.Operation<types.CreateServiceSyncConfigOutput>
-    createServiceTemplate: function(Client, types.CreateServiceTemplateInput, any): async.Operation<types.CreateServiceTemplateOutput>
-    createServiceTemplateVersion: function(Client, types.CreateServiceTemplateVersionInput, any): async.Operation<types.CreateServiceTemplateVersionOutput>
-    createTemplateSyncConfig: function(Client, types.CreateTemplateSyncConfigInput, any): async.Operation<types.CreateTemplateSyncConfigOutput>
-    deleteComponent: function(Client, types.DeleteComponentInput, any): async.Operation<types.DeleteComponentOutput>
-    deleteDeployment: function(Client, types.DeleteDeploymentInput, any): async.Operation<types.DeleteDeploymentOutput>
-    deleteEnvironment: function(Client, types.DeleteEnvironmentInput, any): async.Operation<types.DeleteEnvironmentOutput>
-    deleteEnvironmentAccountConnection: function(Client, types.DeleteEnvironmentAccountConnectionInput, any): async.Operation<types.DeleteEnvironmentAccountConnectionOutput>
-    deleteEnvironmentTemplate: function(Client, types.DeleteEnvironmentTemplateInput, any): async.Operation<types.DeleteEnvironmentTemplateOutput>
-    deleteEnvironmentTemplateVersion: function(Client, types.DeleteEnvironmentTemplateVersionInput, any): async.Operation<types.DeleteEnvironmentTemplateVersionOutput>
-    deleteRepository: function(Client, types.DeleteRepositoryInput, any): async.Operation<types.DeleteRepositoryOutput>
-    deleteService: function(Client, types.DeleteServiceInput, any): async.Operation<types.DeleteServiceOutput>
-    deleteServiceSyncConfig: function(Client, types.DeleteServiceSyncConfigInput, any): async.Operation<types.DeleteServiceSyncConfigOutput>
-    deleteServiceTemplate: function(Client, types.DeleteServiceTemplateInput, any): async.Operation<types.DeleteServiceTemplateOutput>
-    deleteServiceTemplateVersion: function(Client, types.DeleteServiceTemplateVersionInput, any): async.Operation<types.DeleteServiceTemplateVersionOutput>
-    deleteTemplateSyncConfig: function(Client, types.DeleteTemplateSyncConfigInput, any): async.Operation<types.DeleteTemplateSyncConfigOutput>
-    getAccountSettings: function(Client, types.GetAccountSettingsInput, any): async.Operation<types.GetAccountSettingsOutput>
-    getComponent: function(Client, types.GetComponentInput, any): async.Operation<types.GetComponentOutput>
-    getDeployment: function(Client, types.GetDeploymentInput, any): async.Operation<types.GetDeploymentOutput>
-    getEnvironment: function(Client, types.GetEnvironmentInput, any): async.Operation<types.GetEnvironmentOutput>
-    getEnvironmentAccountConnection: function(Client, types.GetEnvironmentAccountConnectionInput, any): async.Operation<types.GetEnvironmentAccountConnectionOutput>
-    getEnvironmentTemplate: function(Client, types.GetEnvironmentTemplateInput, any): async.Operation<types.GetEnvironmentTemplateOutput>
-    getEnvironmentTemplateVersion: function(Client, types.GetEnvironmentTemplateVersionInput, any): async.Operation<types.GetEnvironmentTemplateVersionOutput>
-    getRepository: function(Client, types.GetRepositoryInput, any): async.Operation<types.GetRepositoryOutput>
-    getRepositorySyncStatus: function(Client, types.GetRepositorySyncStatusInput, any): async.Operation<types.GetRepositorySyncStatusOutput>
-    getResourcesSummary: function(Client, types.GetResourcesSummaryInput, any): async.Operation<types.GetResourcesSummaryOutput>
-    getService: function(Client, types.GetServiceInput, any): async.Operation<types.GetServiceOutput>
-    getServiceInstance: function(Client, types.GetServiceInstanceInput, any): async.Operation<types.GetServiceInstanceOutput>
-    getServiceInstanceSyncStatus: function(Client, types.GetServiceInstanceSyncStatusInput, any): async.Operation<types.GetServiceInstanceSyncStatusOutput>
-    getServiceSyncBlockerSummary: function(Client, types.GetServiceSyncBlockerSummaryInput, any): async.Operation<types.GetServiceSyncBlockerSummaryOutput>
-    getServiceSyncConfig: function(Client, types.GetServiceSyncConfigInput, any): async.Operation<types.GetServiceSyncConfigOutput>
-    getServiceTemplate: function(Client, types.GetServiceTemplateInput, any): async.Operation<types.GetServiceTemplateOutput>
-    getServiceTemplateVersion: function(Client, types.GetServiceTemplateVersionInput, any): async.Operation<types.GetServiceTemplateVersionOutput>
-    getTemplateSyncConfig: function(Client, types.GetTemplateSyncConfigInput, any): async.Operation<types.GetTemplateSyncConfigOutput>
-    getTemplateSyncStatus: function(Client, types.GetTemplateSyncStatusInput, any): async.Operation<types.GetTemplateSyncStatusOutput>
-    listComponentOutputs: function(Client, types.ListComponentOutputsInput, any): async.Operation<types.ListComponentOutputsOutput>
-    listComponentProvisionedResources: function(Client, types.ListComponentProvisionedResourcesInput, any): async.Operation<types.ListComponentProvisionedResourcesOutput>
-    listComponents: function(Client, types.ListComponentsInput, any): async.Operation<types.ListComponentsOutput>
-    listDeployments: function(Client, types.ListDeploymentsInput, any): async.Operation<types.ListDeploymentsOutput>
-    listEnvironmentAccountConnections: function(Client, types.ListEnvironmentAccountConnectionsInput, any): async.Operation<types.ListEnvironmentAccountConnectionsOutput>
-    listEnvironmentOutputs: function(Client, types.ListEnvironmentOutputsInput, any): async.Operation<types.ListEnvironmentOutputsOutput>
-    listEnvironmentProvisionedResources: function(Client, types.ListEnvironmentProvisionedResourcesInput, any): async.Operation<types.ListEnvironmentProvisionedResourcesOutput>
-    listEnvironments: function(Client, types.ListEnvironmentsInput, any): async.Operation<types.ListEnvironmentsOutput>
-    listEnvironmentTemplates: function(Client, types.ListEnvironmentTemplatesInput, any): async.Operation<types.ListEnvironmentTemplatesOutput>
-    listEnvironmentTemplateVersions: function(Client, types.ListEnvironmentTemplateVersionsInput, any): async.Operation<types.ListEnvironmentTemplateVersionsOutput>
-    listRepositories: function(Client, types.ListRepositoriesInput, any): async.Operation<types.ListRepositoriesOutput>
-    listRepositorySyncDefinitions: function(Client, types.ListRepositorySyncDefinitionsInput, any): async.Operation<types.ListRepositorySyncDefinitionsOutput>
-    listServiceInstanceOutputs: function(Client, types.ListServiceInstanceOutputsInput, any): async.Operation<types.ListServiceInstanceOutputsOutput>
-    listServiceInstanceProvisionedResources: function(Client, types.ListServiceInstanceProvisionedResourcesInput, any): async.Operation<types.ListServiceInstanceProvisionedResourcesOutput>
-    listServiceInstances: function(Client, types.ListServiceInstancesInput, any): async.Operation<types.ListServiceInstancesOutput>
-    listServicePipelineOutputs: function(Client, types.ListServicePipelineOutputsInput, any): async.Operation<types.ListServicePipelineOutputsOutput>
-    listServicePipelineProvisionedResources: function(Client, types.ListServicePipelineProvisionedResourcesInput, any): async.Operation<types.ListServicePipelineProvisionedResourcesOutput>
-    listServices: function(Client, types.ListServicesInput, any): async.Operation<types.ListServicesOutput>
-    listServiceTemplates: function(Client, types.ListServiceTemplatesInput, any): async.Operation<types.ListServiceTemplatesOutput>
-    listServiceTemplateVersions: function(Client, types.ListServiceTemplateVersionsInput, any): async.Operation<types.ListServiceTemplateVersionsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    notifyResourceDeploymentStatusChange: function(Client, types.NotifyResourceDeploymentStatusChangeInput, any): async.Operation<types.NotifyResourceDeploymentStatusChangeOutput>
-    rejectEnvironmentAccountConnection: function(Client, types.RejectEnvironmentAccountConnectionInput, any): async.Operation<types.RejectEnvironmentAccountConnectionOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAccountSettings: function(Client, types.UpdateAccountSettingsInput, any): async.Operation<types.UpdateAccountSettingsOutput>
-    updateComponent: function(Client, types.UpdateComponentInput, any): async.Operation<types.UpdateComponentOutput>
-    updateEnvironment: function(Client, types.UpdateEnvironmentInput, any): async.Operation<types.UpdateEnvironmentOutput>
-    updateEnvironmentAccountConnection: function(Client, types.UpdateEnvironmentAccountConnectionInput, any): async.Operation<types.UpdateEnvironmentAccountConnectionOutput>
-    updateEnvironmentTemplate: function(Client, types.UpdateEnvironmentTemplateInput, any): async.Operation<types.UpdateEnvironmentTemplateOutput>
-    updateEnvironmentTemplateVersion: function(Client, types.UpdateEnvironmentTemplateVersionInput, any): async.Operation<types.UpdateEnvironmentTemplateVersionOutput>
-    updateService: function(Client, types.UpdateServiceInput, any): async.Operation<types.UpdateServiceOutput>
-    updateServiceInstance: function(Client, types.UpdateServiceInstanceInput, any): async.Operation<types.UpdateServiceInstanceOutput>
-    updateServicePipeline: function(Client, types.UpdateServicePipelineInput, any): async.Operation<types.UpdateServicePipelineOutput>
-    updateServiceSyncBlocker: function(Client, types.UpdateServiceSyncBlockerInput, any): async.Operation<types.UpdateServiceSyncBlockerOutput>
-    updateServiceSyncConfig: function(Client, types.UpdateServiceSyncConfigInput, any): async.Operation<types.UpdateServiceSyncConfigOutput>
-    updateServiceTemplate: function(Client, types.UpdateServiceTemplateInput, any): async.Operation<types.UpdateServiceTemplateOutput>
-    updateServiceTemplateVersion: function(Client, types.UpdateServiceTemplateVersionInput, any): async.Operation<types.UpdateServiceTemplateVersionOutput>
-    updateTemplateSyncConfig: function(Client, types.UpdateTemplateSyncConfigInput, any): async.Operation<types.UpdateTemplateSyncConfigOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    acceptEnvironmentAccountConnection: function(Client, types.AcceptEnvironmentAccountConnectionInput, ? base_client.InvokeOptions): async.Operation<types.AcceptEnvironmentAccountConnectionOutput>
+    cancelComponentDeployment: function(Client, types.CancelComponentDeploymentInput, ? base_client.InvokeOptions): async.Operation<types.CancelComponentDeploymentOutput>
+    cancelEnvironmentDeployment: function(Client, types.CancelEnvironmentDeploymentInput, ? base_client.InvokeOptions): async.Operation<types.CancelEnvironmentDeploymentOutput>
+    cancelServiceInstanceDeployment: function(Client, types.CancelServiceInstanceDeploymentInput, ? base_client.InvokeOptions): async.Operation<types.CancelServiceInstanceDeploymentOutput>
+    cancelServicePipelineDeployment: function(Client, types.CancelServicePipelineDeploymentInput, ? base_client.InvokeOptions): async.Operation<types.CancelServicePipelineDeploymentOutput>
+    createComponent: function(Client, types.CreateComponentInput, ? base_client.InvokeOptions): async.Operation<types.CreateComponentOutput>
+    createEnvironment: function(Client, types.CreateEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateEnvironmentOutput>
+    createEnvironmentAccountConnection: function(Client, types.CreateEnvironmentAccountConnectionInput, ? base_client.InvokeOptions): async.Operation<types.CreateEnvironmentAccountConnectionOutput>
+    createEnvironmentTemplate: function(Client, types.CreateEnvironmentTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateEnvironmentTemplateOutput>
+    createEnvironmentTemplateVersion: function(Client, types.CreateEnvironmentTemplateVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateEnvironmentTemplateVersionOutput>
+    createRepository: function(Client, types.CreateRepositoryInput, ? base_client.InvokeOptions): async.Operation<types.CreateRepositoryOutput>
+    createService: function(Client, types.CreateServiceInput, ? base_client.InvokeOptions): async.Operation<types.CreateServiceOutput>
+    createServiceInstance: function(Client, types.CreateServiceInstanceInput, ? base_client.InvokeOptions): async.Operation<types.CreateServiceInstanceOutput>
+    createServiceSyncConfig: function(Client, types.CreateServiceSyncConfigInput, ? base_client.InvokeOptions): async.Operation<types.CreateServiceSyncConfigOutput>
+    createServiceTemplate: function(Client, types.CreateServiceTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateServiceTemplateOutput>
+    createServiceTemplateVersion: function(Client, types.CreateServiceTemplateVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateServiceTemplateVersionOutput>
+    createTemplateSyncConfig: function(Client, types.CreateTemplateSyncConfigInput, ? base_client.InvokeOptions): async.Operation<types.CreateTemplateSyncConfigOutput>
+    deleteComponent: function(Client, types.DeleteComponentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteComponentOutput>
+    deleteDeployment: function(Client, types.DeleteDeploymentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDeploymentOutput>
+    deleteEnvironment: function(Client, types.DeleteEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentOutput>
+    deleteEnvironmentAccountConnection: function(Client, types.DeleteEnvironmentAccountConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentAccountConnectionOutput>
+    deleteEnvironmentTemplate: function(Client, types.DeleteEnvironmentTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentTemplateOutput>
+    deleteEnvironmentTemplateVersion: function(Client, types.DeleteEnvironmentTemplateVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentTemplateVersionOutput>
+    deleteRepository: function(Client, types.DeleteRepositoryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRepositoryOutput>
+    deleteService: function(Client, types.DeleteServiceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteServiceOutput>
+    deleteServiceSyncConfig: function(Client, types.DeleteServiceSyncConfigInput, ? base_client.InvokeOptions): async.Operation<types.DeleteServiceSyncConfigOutput>
+    deleteServiceTemplate: function(Client, types.DeleteServiceTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteServiceTemplateOutput>
+    deleteServiceTemplateVersion: function(Client, types.DeleteServiceTemplateVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteServiceTemplateVersionOutput>
+    deleteTemplateSyncConfig: function(Client, types.DeleteTemplateSyncConfigInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTemplateSyncConfigOutput>
+    getAccountSettings: function(Client, types.GetAccountSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountSettingsOutput>
+    getComponent: function(Client, types.GetComponentInput, ? base_client.InvokeOptions): async.Operation<types.GetComponentOutput>
+    getDeployment: function(Client, types.GetDeploymentInput, ? base_client.InvokeOptions): async.Operation<types.GetDeploymentOutput>
+    getEnvironment: function(Client, types.GetEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.GetEnvironmentOutput>
+    getEnvironmentAccountConnection: function(Client, types.GetEnvironmentAccountConnectionInput, ? base_client.InvokeOptions): async.Operation<types.GetEnvironmentAccountConnectionOutput>
+    getEnvironmentTemplate: function(Client, types.GetEnvironmentTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetEnvironmentTemplateOutput>
+    getEnvironmentTemplateVersion: function(Client, types.GetEnvironmentTemplateVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetEnvironmentTemplateVersionOutput>
+    getRepository: function(Client, types.GetRepositoryInput, ? base_client.InvokeOptions): async.Operation<types.GetRepositoryOutput>
+    getRepositorySyncStatus: function(Client, types.GetRepositorySyncStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetRepositorySyncStatusOutput>
+    getResourcesSummary: function(Client, types.GetResourcesSummaryInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcesSummaryOutput>
+    getService: function(Client, types.GetServiceInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceOutput>
+    getServiceInstance: function(Client, types.GetServiceInstanceInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceInstanceOutput>
+    getServiceInstanceSyncStatus: function(Client, types.GetServiceInstanceSyncStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceInstanceSyncStatusOutput>
+    getServiceSyncBlockerSummary: function(Client, types.GetServiceSyncBlockerSummaryInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceSyncBlockerSummaryOutput>
+    getServiceSyncConfig: function(Client, types.GetServiceSyncConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceSyncConfigOutput>
+    getServiceTemplate: function(Client, types.GetServiceTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceTemplateOutput>
+    getServiceTemplateVersion: function(Client, types.GetServiceTemplateVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceTemplateVersionOutput>
+    getTemplateSyncConfig: function(Client, types.GetTemplateSyncConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetTemplateSyncConfigOutput>
+    getTemplateSyncStatus: function(Client, types.GetTemplateSyncStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetTemplateSyncStatusOutput>
+    listComponentOutputs: function(Client, types.ListComponentOutputsInput, ? base_client.InvokeOptions): async.Operation<types.ListComponentOutputsOutput>
+    listComponentProvisionedResources: function(Client, types.ListComponentProvisionedResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListComponentProvisionedResourcesOutput>
+    listComponents: function(Client, types.ListComponentsInput, ? base_client.InvokeOptions): async.Operation<types.ListComponentsOutput>
+    listDeployments: function(Client, types.ListDeploymentsInput, ? base_client.InvokeOptions): async.Operation<types.ListDeploymentsOutput>
+    listEnvironmentAccountConnections: function(Client, types.ListEnvironmentAccountConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.ListEnvironmentAccountConnectionsOutput>
+    listEnvironmentOutputs: function(Client, types.ListEnvironmentOutputsInput, ? base_client.InvokeOptions): async.Operation<types.ListEnvironmentOutputsOutput>
+    listEnvironmentProvisionedResources: function(Client, types.ListEnvironmentProvisionedResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListEnvironmentProvisionedResourcesOutput>
+    listEnvironments: function(Client, types.ListEnvironmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListEnvironmentsOutput>
+    listEnvironmentTemplates: function(Client, types.ListEnvironmentTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListEnvironmentTemplatesOutput>
+    listEnvironmentTemplateVersions: function(Client, types.ListEnvironmentTemplateVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListEnvironmentTemplateVersionsOutput>
+    listRepositories: function(Client, types.ListRepositoriesInput, ? base_client.InvokeOptions): async.Operation<types.ListRepositoriesOutput>
+    listRepositorySyncDefinitions: function(Client, types.ListRepositorySyncDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.ListRepositorySyncDefinitionsOutput>
+    listServiceInstanceOutputs: function(Client, types.ListServiceInstanceOutputsInput, ? base_client.InvokeOptions): async.Operation<types.ListServiceInstanceOutputsOutput>
+    listServiceInstanceProvisionedResources: function(Client, types.ListServiceInstanceProvisionedResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListServiceInstanceProvisionedResourcesOutput>
+    listServiceInstances: function(Client, types.ListServiceInstancesInput, ? base_client.InvokeOptions): async.Operation<types.ListServiceInstancesOutput>
+    listServicePipelineOutputs: function(Client, types.ListServicePipelineOutputsInput, ? base_client.InvokeOptions): async.Operation<types.ListServicePipelineOutputsOutput>
+    listServicePipelineProvisionedResources: function(Client, types.ListServicePipelineProvisionedResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListServicePipelineProvisionedResourcesOutput>
+    listServices: function(Client, types.ListServicesInput, ? base_client.InvokeOptions): async.Operation<types.ListServicesOutput>
+    listServiceTemplates: function(Client, types.ListServiceTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListServiceTemplatesOutput>
+    listServiceTemplateVersions: function(Client, types.ListServiceTemplateVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListServiceTemplateVersionsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    notifyResourceDeploymentStatusChange: function(Client, types.NotifyResourceDeploymentStatusChangeInput, ? base_client.InvokeOptions): async.Operation<types.NotifyResourceDeploymentStatusChangeOutput>
+    rejectEnvironmentAccountConnection: function(Client, types.RejectEnvironmentAccountConnectionInput, ? base_client.InvokeOptions): async.Operation<types.RejectEnvironmentAccountConnectionOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAccountSettings: function(Client, types.UpdateAccountSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAccountSettingsOutput>
+    updateComponent: function(Client, types.UpdateComponentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateComponentOutput>
+    updateEnvironment: function(Client, types.UpdateEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEnvironmentOutput>
+    updateEnvironmentAccountConnection: function(Client, types.UpdateEnvironmentAccountConnectionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEnvironmentAccountConnectionOutput>
+    updateEnvironmentTemplate: function(Client, types.UpdateEnvironmentTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEnvironmentTemplateOutput>
+    updateEnvironmentTemplateVersion: function(Client, types.UpdateEnvironmentTemplateVersionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEnvironmentTemplateVersionOutput>
+    updateService: function(Client, types.UpdateServiceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServiceOutput>
+    updateServiceInstance: function(Client, types.UpdateServiceInstanceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServiceInstanceOutput>
+    updateServicePipeline: function(Client, types.UpdateServicePipelineInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServicePipelineOutput>
+    updateServiceSyncBlocker: function(Client, types.UpdateServiceSyncBlockerInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServiceSyncBlockerOutput>
+    updateServiceSyncConfig: function(Client, types.UpdateServiceSyncConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServiceSyncConfigOutput>
+    updateServiceTemplate: function(Client, types.UpdateServiceTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServiceTemplateOutput>
+    updateServiceTemplateVersion: function(Client, types.UpdateServiceTemplateVersionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServiceTemplateVersionOutput>
+    updateTemplateSyncConfig: function(Client, types.UpdateTemplateSyncConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTemplateSyncConfigOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AwsProton20200720"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "proton", signing_region = c.region } }
                 else
@@ -146,352 +149,352 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:acceptEnvironmentAccountConnection(input: types.AcceptEnvironmentAccountConnectionInput, options: any): async.Operation<types.AcceptEnvironmentAccountConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptEnvironmentAccountConnection, input, options) as async.Operation<types.AcceptEnvironmentAccountConnectionOutput>
+function C:acceptEnvironmentAccountConnection(input: types.AcceptEnvironmentAccountConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptEnvironmentAccountConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptEnvironmentAccountConnection as schema.OperationSchema, input, options) as async.Operation<types.AcceptEnvironmentAccountConnectionOutput>
 end
 
-function C:cancelComponentDeployment(input: types.CancelComponentDeploymentInput, options: any): async.Operation<types.CancelComponentDeploymentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelComponentDeployment, input, options) as async.Operation<types.CancelComponentDeploymentOutput>
+function C:cancelComponentDeployment(input: types.CancelComponentDeploymentInput, options?: base_client.InvokeOptions): async.Operation<types.CancelComponentDeploymentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelComponentDeployment as schema.OperationSchema, input, options) as async.Operation<types.CancelComponentDeploymentOutput>
 end
 
-function C:cancelEnvironmentDeployment(input: types.CancelEnvironmentDeploymentInput, options: any): async.Operation<types.CancelEnvironmentDeploymentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelEnvironmentDeployment, input, options) as async.Operation<types.CancelEnvironmentDeploymentOutput>
+function C:cancelEnvironmentDeployment(input: types.CancelEnvironmentDeploymentInput, options?: base_client.InvokeOptions): async.Operation<types.CancelEnvironmentDeploymentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelEnvironmentDeployment as schema.OperationSchema, input, options) as async.Operation<types.CancelEnvironmentDeploymentOutput>
 end
 
-function C:cancelServiceInstanceDeployment(input: types.CancelServiceInstanceDeploymentInput, options: any): async.Operation<types.CancelServiceInstanceDeploymentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelServiceInstanceDeployment, input, options) as async.Operation<types.CancelServiceInstanceDeploymentOutput>
+function C:cancelServiceInstanceDeployment(input: types.CancelServiceInstanceDeploymentInput, options?: base_client.InvokeOptions): async.Operation<types.CancelServiceInstanceDeploymentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelServiceInstanceDeployment as schema.OperationSchema, input, options) as async.Operation<types.CancelServiceInstanceDeploymentOutput>
 end
 
-function C:cancelServicePipelineDeployment(input: types.CancelServicePipelineDeploymentInput, options: any): async.Operation<types.CancelServicePipelineDeploymentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelServicePipelineDeployment, input, options) as async.Operation<types.CancelServicePipelineDeploymentOutput>
+function C:cancelServicePipelineDeployment(input: types.CancelServicePipelineDeploymentInput, options?: base_client.InvokeOptions): async.Operation<types.CancelServicePipelineDeploymentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelServicePipelineDeployment as schema.OperationSchema, input, options) as async.Operation<types.CancelServicePipelineDeploymentOutput>
 end
 
-function C:createComponent(input: types.CreateComponentInput, options: any): async.Operation<types.CreateComponentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateComponent, input, options) as async.Operation<types.CreateComponentOutput>
+function C:createComponent(input: types.CreateComponentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateComponentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateComponent as schema.OperationSchema, input, options) as async.Operation<types.CreateComponentOutput>
 end
 
-function C:createEnvironment(input: types.CreateEnvironmentInput, options: any): async.Operation<types.CreateEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEnvironment, input, options) as async.Operation<types.CreateEnvironmentOutput>
+function C:createEnvironment(input: types.CreateEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEnvironment as schema.OperationSchema, input, options) as async.Operation<types.CreateEnvironmentOutput>
 end
 
-function C:createEnvironmentAccountConnection(input: types.CreateEnvironmentAccountConnectionInput, options: any): async.Operation<types.CreateEnvironmentAccountConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEnvironmentAccountConnection, input, options) as async.Operation<types.CreateEnvironmentAccountConnectionOutput>
+function C:createEnvironmentAccountConnection(input: types.CreateEnvironmentAccountConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEnvironmentAccountConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEnvironmentAccountConnection as schema.OperationSchema, input, options) as async.Operation<types.CreateEnvironmentAccountConnectionOutput>
 end
 
-function C:createEnvironmentTemplate(input: types.CreateEnvironmentTemplateInput, options: any): async.Operation<types.CreateEnvironmentTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEnvironmentTemplate, input, options) as async.Operation<types.CreateEnvironmentTemplateOutput>
+function C:createEnvironmentTemplate(input: types.CreateEnvironmentTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEnvironmentTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEnvironmentTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateEnvironmentTemplateOutput>
 end
 
-function C:createEnvironmentTemplateVersion(input: types.CreateEnvironmentTemplateVersionInput, options: any): async.Operation<types.CreateEnvironmentTemplateVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEnvironmentTemplateVersion, input, options) as async.Operation<types.CreateEnvironmentTemplateVersionOutput>
+function C:createEnvironmentTemplateVersion(input: types.CreateEnvironmentTemplateVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEnvironmentTemplateVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEnvironmentTemplateVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateEnvironmentTemplateVersionOutput>
 end
 
-function C:createRepository(input: types.CreateRepositoryInput, options: any): async.Operation<types.CreateRepositoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRepository, input, options) as async.Operation<types.CreateRepositoryOutput>
+function C:createRepository(input: types.CreateRepositoryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRepositoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRepository as schema.OperationSchema, input, options) as async.Operation<types.CreateRepositoryOutput>
 end
 
-function C:createService(input: types.CreateServiceInput, options: any): async.Operation<types.CreateServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateService, input, options) as async.Operation<types.CreateServiceOutput>
+function C:createService(input: types.CreateServiceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateService as schema.OperationSchema, input, options) as async.Operation<types.CreateServiceOutput>
 end
 
-function C:createServiceInstance(input: types.CreateServiceInstanceInput, options: any): async.Operation<types.CreateServiceInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateServiceInstance, input, options) as async.Operation<types.CreateServiceInstanceOutput>
+function C:createServiceInstance(input: types.CreateServiceInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateServiceInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateServiceInstance as schema.OperationSchema, input, options) as async.Operation<types.CreateServiceInstanceOutput>
 end
 
-function C:createServiceSyncConfig(input: types.CreateServiceSyncConfigInput, options: any): async.Operation<types.CreateServiceSyncConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateServiceSyncConfig, input, options) as async.Operation<types.CreateServiceSyncConfigOutput>
+function C:createServiceSyncConfig(input: types.CreateServiceSyncConfigInput, options?: base_client.InvokeOptions): async.Operation<types.CreateServiceSyncConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateServiceSyncConfig as schema.OperationSchema, input, options) as async.Operation<types.CreateServiceSyncConfigOutput>
 end
 
-function C:createServiceTemplate(input: types.CreateServiceTemplateInput, options: any): async.Operation<types.CreateServiceTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateServiceTemplate, input, options) as async.Operation<types.CreateServiceTemplateOutput>
+function C:createServiceTemplate(input: types.CreateServiceTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateServiceTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateServiceTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateServiceTemplateOutput>
 end
 
-function C:createServiceTemplateVersion(input: types.CreateServiceTemplateVersionInput, options: any): async.Operation<types.CreateServiceTemplateVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateServiceTemplateVersion, input, options) as async.Operation<types.CreateServiceTemplateVersionOutput>
+function C:createServiceTemplateVersion(input: types.CreateServiceTemplateVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateServiceTemplateVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateServiceTemplateVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateServiceTemplateVersionOutput>
 end
 
-function C:createTemplateSyncConfig(input: types.CreateTemplateSyncConfigInput, options: any): async.Operation<types.CreateTemplateSyncConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTemplateSyncConfig, input, options) as async.Operation<types.CreateTemplateSyncConfigOutput>
+function C:createTemplateSyncConfig(input: types.CreateTemplateSyncConfigInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTemplateSyncConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTemplateSyncConfig as schema.OperationSchema, input, options) as async.Operation<types.CreateTemplateSyncConfigOutput>
 end
 
-function C:deleteComponent(input: types.DeleteComponentInput, options: any): async.Operation<types.DeleteComponentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteComponent, input, options) as async.Operation<types.DeleteComponentOutput>
+function C:deleteComponent(input: types.DeleteComponentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteComponentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteComponent as schema.OperationSchema, input, options) as async.Operation<types.DeleteComponentOutput>
 end
 
-function C:deleteDeployment(input: types.DeleteDeploymentInput, options: any): async.Operation<types.DeleteDeploymentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDeployment, input, options) as async.Operation<types.DeleteDeploymentOutput>
+function C:deleteDeployment(input: types.DeleteDeploymentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDeploymentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDeployment as schema.OperationSchema, input, options) as async.Operation<types.DeleteDeploymentOutput>
 end
 
-function C:deleteEnvironment(input: types.DeleteEnvironmentInput, options: any): async.Operation<types.DeleteEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEnvironment, input, options) as async.Operation<types.DeleteEnvironmentOutput>
+function C:deleteEnvironment(input: types.DeleteEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEnvironment as schema.OperationSchema, input, options) as async.Operation<types.DeleteEnvironmentOutput>
 end
 
-function C:deleteEnvironmentAccountConnection(input: types.DeleteEnvironmentAccountConnectionInput, options: any): async.Operation<types.DeleteEnvironmentAccountConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEnvironmentAccountConnection, input, options) as async.Operation<types.DeleteEnvironmentAccountConnectionOutput>
+function C:deleteEnvironmentAccountConnection(input: types.DeleteEnvironmentAccountConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentAccountConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEnvironmentAccountConnection as schema.OperationSchema, input, options) as async.Operation<types.DeleteEnvironmentAccountConnectionOutput>
 end
 
-function C:deleteEnvironmentTemplate(input: types.DeleteEnvironmentTemplateInput, options: any): async.Operation<types.DeleteEnvironmentTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEnvironmentTemplate, input, options) as async.Operation<types.DeleteEnvironmentTemplateOutput>
+function C:deleteEnvironmentTemplate(input: types.DeleteEnvironmentTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEnvironmentTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteEnvironmentTemplateOutput>
 end
 
-function C:deleteEnvironmentTemplateVersion(input: types.DeleteEnvironmentTemplateVersionInput, options: any): async.Operation<types.DeleteEnvironmentTemplateVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEnvironmentTemplateVersion, input, options) as async.Operation<types.DeleteEnvironmentTemplateVersionOutput>
+function C:deleteEnvironmentTemplateVersion(input: types.DeleteEnvironmentTemplateVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentTemplateVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEnvironmentTemplateVersion as schema.OperationSchema, input, options) as async.Operation<types.DeleteEnvironmentTemplateVersionOutput>
 end
 
-function C:deleteRepository(input: types.DeleteRepositoryInput, options: any): async.Operation<types.DeleteRepositoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRepository, input, options) as async.Operation<types.DeleteRepositoryOutput>
+function C:deleteRepository(input: types.DeleteRepositoryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRepositoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRepository as schema.OperationSchema, input, options) as async.Operation<types.DeleteRepositoryOutput>
 end
 
-function C:deleteService(input: types.DeleteServiceInput, options: any): async.Operation<types.DeleteServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteService, input, options) as async.Operation<types.DeleteServiceOutput>
+function C:deleteService(input: types.DeleteServiceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteService as schema.OperationSchema, input, options) as async.Operation<types.DeleteServiceOutput>
 end
 
-function C:deleteServiceSyncConfig(input: types.DeleteServiceSyncConfigInput, options: any): async.Operation<types.DeleteServiceSyncConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteServiceSyncConfig, input, options) as async.Operation<types.DeleteServiceSyncConfigOutput>
+function C:deleteServiceSyncConfig(input: types.DeleteServiceSyncConfigInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteServiceSyncConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteServiceSyncConfig as schema.OperationSchema, input, options) as async.Operation<types.DeleteServiceSyncConfigOutput>
 end
 
-function C:deleteServiceTemplate(input: types.DeleteServiceTemplateInput, options: any): async.Operation<types.DeleteServiceTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteServiceTemplate, input, options) as async.Operation<types.DeleteServiceTemplateOutput>
+function C:deleteServiceTemplate(input: types.DeleteServiceTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteServiceTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteServiceTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteServiceTemplateOutput>
 end
 
-function C:deleteServiceTemplateVersion(input: types.DeleteServiceTemplateVersionInput, options: any): async.Operation<types.DeleteServiceTemplateVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteServiceTemplateVersion, input, options) as async.Operation<types.DeleteServiceTemplateVersionOutput>
+function C:deleteServiceTemplateVersion(input: types.DeleteServiceTemplateVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteServiceTemplateVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteServiceTemplateVersion as schema.OperationSchema, input, options) as async.Operation<types.DeleteServiceTemplateVersionOutput>
 end
 
-function C:deleteTemplateSyncConfig(input: types.DeleteTemplateSyncConfigInput, options: any): async.Operation<types.DeleteTemplateSyncConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTemplateSyncConfig, input, options) as async.Operation<types.DeleteTemplateSyncConfigOutput>
+function C:deleteTemplateSyncConfig(input: types.DeleteTemplateSyncConfigInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTemplateSyncConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTemplateSyncConfig as schema.OperationSchema, input, options) as async.Operation<types.DeleteTemplateSyncConfigOutput>
 end
 
-function C:getAccountSettings(input: types.GetAccountSettingsInput, options: any): async.Operation<types.GetAccountSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccountSettings, input, options) as async.Operation<types.GetAccountSettingsOutput>
+function C:getAccountSettings(input: types.GetAccountSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccountSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccountSettings as schema.OperationSchema, input, options) as async.Operation<types.GetAccountSettingsOutput>
 end
 
-function C:getComponent(input: types.GetComponentInput, options: any): async.Operation<types.GetComponentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetComponent, input, options) as async.Operation<types.GetComponentOutput>
+function C:getComponent(input: types.GetComponentInput, options?: base_client.InvokeOptions): async.Operation<types.GetComponentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetComponent as schema.OperationSchema, input, options) as async.Operation<types.GetComponentOutput>
 end
 
-function C:getDeployment(input: types.GetDeploymentInput, options: any): async.Operation<types.GetDeploymentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDeployment, input, options) as async.Operation<types.GetDeploymentOutput>
+function C:getDeployment(input: types.GetDeploymentInput, options?: base_client.InvokeOptions): async.Operation<types.GetDeploymentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDeployment as schema.OperationSchema, input, options) as async.Operation<types.GetDeploymentOutput>
 end
 
-function C:getEnvironment(input: types.GetEnvironmentInput, options: any): async.Operation<types.GetEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEnvironment, input, options) as async.Operation<types.GetEnvironmentOutput>
+function C:getEnvironment(input: types.GetEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.GetEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEnvironment as schema.OperationSchema, input, options) as async.Operation<types.GetEnvironmentOutput>
 end
 
-function C:getEnvironmentAccountConnection(input: types.GetEnvironmentAccountConnectionInput, options: any): async.Operation<types.GetEnvironmentAccountConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEnvironmentAccountConnection, input, options) as async.Operation<types.GetEnvironmentAccountConnectionOutput>
+function C:getEnvironmentAccountConnection(input: types.GetEnvironmentAccountConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.GetEnvironmentAccountConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEnvironmentAccountConnection as schema.OperationSchema, input, options) as async.Operation<types.GetEnvironmentAccountConnectionOutput>
 end
 
-function C:getEnvironmentTemplate(input: types.GetEnvironmentTemplateInput, options: any): async.Operation<types.GetEnvironmentTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEnvironmentTemplate, input, options) as async.Operation<types.GetEnvironmentTemplateOutput>
+function C:getEnvironmentTemplate(input: types.GetEnvironmentTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetEnvironmentTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEnvironmentTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetEnvironmentTemplateOutput>
 end
 
-function C:getEnvironmentTemplateVersion(input: types.GetEnvironmentTemplateVersionInput, options: any): async.Operation<types.GetEnvironmentTemplateVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEnvironmentTemplateVersion, input, options) as async.Operation<types.GetEnvironmentTemplateVersionOutput>
+function C:getEnvironmentTemplateVersion(input: types.GetEnvironmentTemplateVersionInput, options?: base_client.InvokeOptions): async.Operation<types.GetEnvironmentTemplateVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEnvironmentTemplateVersion as schema.OperationSchema, input, options) as async.Operation<types.GetEnvironmentTemplateVersionOutput>
 end
 
-function C:getRepository(input: types.GetRepositoryInput, options: any): async.Operation<types.GetRepositoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRepository, input, options) as async.Operation<types.GetRepositoryOutput>
+function C:getRepository(input: types.GetRepositoryInput, options?: base_client.InvokeOptions): async.Operation<types.GetRepositoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRepository as schema.OperationSchema, input, options) as async.Operation<types.GetRepositoryOutput>
 end
 
-function C:getRepositorySyncStatus(input: types.GetRepositorySyncStatusInput, options: any): async.Operation<types.GetRepositorySyncStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRepositorySyncStatus, input, options) as async.Operation<types.GetRepositorySyncStatusOutput>
+function C:getRepositorySyncStatus(input: types.GetRepositorySyncStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetRepositorySyncStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRepositorySyncStatus as schema.OperationSchema, input, options) as async.Operation<types.GetRepositorySyncStatusOutput>
 end
 
-function C:getResourcesSummary(input: types.GetResourcesSummaryInput, options: any): async.Operation<types.GetResourcesSummaryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourcesSummary, input, options) as async.Operation<types.GetResourcesSummaryOutput>
+function C:getResourcesSummary(input: types.GetResourcesSummaryInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcesSummaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcesSummary as schema.OperationSchema, input, options) as async.Operation<types.GetResourcesSummaryOutput>
 end
 
-function C:getService(input: types.GetServiceInput, options: any): async.Operation<types.GetServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetService, input, options) as async.Operation<types.GetServiceOutput>
+function C:getService(input: types.GetServiceInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetService as schema.OperationSchema, input, options) as async.Operation<types.GetServiceOutput>
 end
 
-function C:getServiceInstance(input: types.GetServiceInstanceInput, options: any): async.Operation<types.GetServiceInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetServiceInstance, input, options) as async.Operation<types.GetServiceInstanceOutput>
+function C:getServiceInstance(input: types.GetServiceInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetServiceInstance as schema.OperationSchema, input, options) as async.Operation<types.GetServiceInstanceOutput>
 end
 
-function C:getServiceInstanceSyncStatus(input: types.GetServiceInstanceSyncStatusInput, options: any): async.Operation<types.GetServiceInstanceSyncStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetServiceInstanceSyncStatus, input, options) as async.Operation<types.GetServiceInstanceSyncStatusOutput>
+function C:getServiceInstanceSyncStatus(input: types.GetServiceInstanceSyncStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceInstanceSyncStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetServiceInstanceSyncStatus as schema.OperationSchema, input, options) as async.Operation<types.GetServiceInstanceSyncStatusOutput>
 end
 
-function C:getServiceSyncBlockerSummary(input: types.GetServiceSyncBlockerSummaryInput, options: any): async.Operation<types.GetServiceSyncBlockerSummaryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetServiceSyncBlockerSummary, input, options) as async.Operation<types.GetServiceSyncBlockerSummaryOutput>
+function C:getServiceSyncBlockerSummary(input: types.GetServiceSyncBlockerSummaryInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceSyncBlockerSummaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetServiceSyncBlockerSummary as schema.OperationSchema, input, options) as async.Operation<types.GetServiceSyncBlockerSummaryOutput>
 end
 
-function C:getServiceSyncConfig(input: types.GetServiceSyncConfigInput, options: any): async.Operation<types.GetServiceSyncConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetServiceSyncConfig, input, options) as async.Operation<types.GetServiceSyncConfigOutput>
+function C:getServiceSyncConfig(input: types.GetServiceSyncConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceSyncConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetServiceSyncConfig as schema.OperationSchema, input, options) as async.Operation<types.GetServiceSyncConfigOutput>
 end
 
-function C:getServiceTemplate(input: types.GetServiceTemplateInput, options: any): async.Operation<types.GetServiceTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetServiceTemplate, input, options) as async.Operation<types.GetServiceTemplateOutput>
+function C:getServiceTemplate(input: types.GetServiceTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetServiceTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetServiceTemplateOutput>
 end
 
-function C:getServiceTemplateVersion(input: types.GetServiceTemplateVersionInput, options: any): async.Operation<types.GetServiceTemplateVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetServiceTemplateVersion, input, options) as async.Operation<types.GetServiceTemplateVersionOutput>
+function C:getServiceTemplateVersion(input: types.GetServiceTemplateVersionInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceTemplateVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetServiceTemplateVersion as schema.OperationSchema, input, options) as async.Operation<types.GetServiceTemplateVersionOutput>
 end
 
-function C:getTemplateSyncConfig(input: types.GetTemplateSyncConfigInput, options: any): async.Operation<types.GetTemplateSyncConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTemplateSyncConfig, input, options) as async.Operation<types.GetTemplateSyncConfigOutput>
+function C:getTemplateSyncConfig(input: types.GetTemplateSyncConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetTemplateSyncConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTemplateSyncConfig as schema.OperationSchema, input, options) as async.Operation<types.GetTemplateSyncConfigOutput>
 end
 
-function C:getTemplateSyncStatus(input: types.GetTemplateSyncStatusInput, options: any): async.Operation<types.GetTemplateSyncStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTemplateSyncStatus, input, options) as async.Operation<types.GetTemplateSyncStatusOutput>
+function C:getTemplateSyncStatus(input: types.GetTemplateSyncStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetTemplateSyncStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTemplateSyncStatus as schema.OperationSchema, input, options) as async.Operation<types.GetTemplateSyncStatusOutput>
 end
 
-function C:listComponentOutputs(input: types.ListComponentOutputsInput, options: any): async.Operation<types.ListComponentOutputsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListComponentOutputs, input, options) as async.Operation<types.ListComponentOutputsOutput>
+function C:listComponentOutputs(input: types.ListComponentOutputsInput, options?: base_client.InvokeOptions): async.Operation<types.ListComponentOutputsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListComponentOutputs as schema.OperationSchema, input, options) as async.Operation<types.ListComponentOutputsOutput>
 end
 
-function C:listComponentProvisionedResources(input: types.ListComponentProvisionedResourcesInput, options: any): async.Operation<types.ListComponentProvisionedResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListComponentProvisionedResources, input, options) as async.Operation<types.ListComponentProvisionedResourcesOutput>
+function C:listComponentProvisionedResources(input: types.ListComponentProvisionedResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListComponentProvisionedResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListComponentProvisionedResources as schema.OperationSchema, input, options) as async.Operation<types.ListComponentProvisionedResourcesOutput>
 end
 
-function C:listComponents(input: types.ListComponentsInput, options: any): async.Operation<types.ListComponentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListComponents, input, options) as async.Operation<types.ListComponentsOutput>
+function C:listComponents(input: types.ListComponentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListComponentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListComponents as schema.OperationSchema, input, options) as async.Operation<types.ListComponentsOutput>
 end
 
-function C:listDeployments(input: types.ListDeploymentsInput, options: any): async.Operation<types.ListDeploymentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDeployments, input, options) as async.Operation<types.ListDeploymentsOutput>
+function C:listDeployments(input: types.ListDeploymentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDeploymentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDeployments as schema.OperationSchema, input, options) as async.Operation<types.ListDeploymentsOutput>
 end
 
-function C:listEnvironmentAccountConnections(input: types.ListEnvironmentAccountConnectionsInput, options: any): async.Operation<types.ListEnvironmentAccountConnectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEnvironmentAccountConnections, input, options) as async.Operation<types.ListEnvironmentAccountConnectionsOutput>
+function C:listEnvironmentAccountConnections(input: types.ListEnvironmentAccountConnectionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEnvironmentAccountConnectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEnvironmentAccountConnections as schema.OperationSchema, input, options) as async.Operation<types.ListEnvironmentAccountConnectionsOutput>
 end
 
-function C:listEnvironmentOutputs(input: types.ListEnvironmentOutputsInput, options: any): async.Operation<types.ListEnvironmentOutputsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEnvironmentOutputs, input, options) as async.Operation<types.ListEnvironmentOutputsOutput>
+function C:listEnvironmentOutputs(input: types.ListEnvironmentOutputsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEnvironmentOutputsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEnvironmentOutputs as schema.OperationSchema, input, options) as async.Operation<types.ListEnvironmentOutputsOutput>
 end
 
-function C:listEnvironmentProvisionedResources(input: types.ListEnvironmentProvisionedResourcesInput, options: any): async.Operation<types.ListEnvironmentProvisionedResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEnvironmentProvisionedResources, input, options) as async.Operation<types.ListEnvironmentProvisionedResourcesOutput>
+function C:listEnvironmentProvisionedResources(input: types.ListEnvironmentProvisionedResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListEnvironmentProvisionedResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEnvironmentProvisionedResources as schema.OperationSchema, input, options) as async.Operation<types.ListEnvironmentProvisionedResourcesOutput>
 end
 
-function C:listEnvironments(input: types.ListEnvironmentsInput, options: any): async.Operation<types.ListEnvironmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEnvironments, input, options) as async.Operation<types.ListEnvironmentsOutput>
+function C:listEnvironments(input: types.ListEnvironmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEnvironmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEnvironments as schema.OperationSchema, input, options) as async.Operation<types.ListEnvironmentsOutput>
 end
 
-function C:listEnvironmentTemplates(input: types.ListEnvironmentTemplatesInput, options: any): async.Operation<types.ListEnvironmentTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEnvironmentTemplates, input, options) as async.Operation<types.ListEnvironmentTemplatesOutput>
+function C:listEnvironmentTemplates(input: types.ListEnvironmentTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListEnvironmentTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEnvironmentTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListEnvironmentTemplatesOutput>
 end
 
-function C:listEnvironmentTemplateVersions(input: types.ListEnvironmentTemplateVersionsInput, options: any): async.Operation<types.ListEnvironmentTemplateVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEnvironmentTemplateVersions, input, options) as async.Operation<types.ListEnvironmentTemplateVersionsOutput>
+function C:listEnvironmentTemplateVersions(input: types.ListEnvironmentTemplateVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEnvironmentTemplateVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEnvironmentTemplateVersions as schema.OperationSchema, input, options) as async.Operation<types.ListEnvironmentTemplateVersionsOutput>
 end
 
-function C:listRepositories(input: types.ListRepositoriesInput, options: any): async.Operation<types.ListRepositoriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRepositories, input, options) as async.Operation<types.ListRepositoriesOutput>
+function C:listRepositories(input: types.ListRepositoriesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRepositoriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRepositories as schema.OperationSchema, input, options) as async.Operation<types.ListRepositoriesOutput>
 end
 
-function C:listRepositorySyncDefinitions(input: types.ListRepositorySyncDefinitionsInput, options: any): async.Operation<types.ListRepositorySyncDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRepositorySyncDefinitions, input, options) as async.Operation<types.ListRepositorySyncDefinitionsOutput>
+function C:listRepositorySyncDefinitions(input: types.ListRepositorySyncDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRepositorySyncDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRepositorySyncDefinitions as schema.OperationSchema, input, options) as async.Operation<types.ListRepositorySyncDefinitionsOutput>
 end
 
-function C:listServiceInstanceOutputs(input: types.ListServiceInstanceOutputsInput, options: any): async.Operation<types.ListServiceInstanceOutputsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServiceInstanceOutputs, input, options) as async.Operation<types.ListServiceInstanceOutputsOutput>
+function C:listServiceInstanceOutputs(input: types.ListServiceInstanceOutputsInput, options?: base_client.InvokeOptions): async.Operation<types.ListServiceInstanceOutputsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServiceInstanceOutputs as schema.OperationSchema, input, options) as async.Operation<types.ListServiceInstanceOutputsOutput>
 end
 
-function C:listServiceInstanceProvisionedResources(input: types.ListServiceInstanceProvisionedResourcesInput, options: any): async.Operation<types.ListServiceInstanceProvisionedResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServiceInstanceProvisionedResources, input, options) as async.Operation<types.ListServiceInstanceProvisionedResourcesOutput>
+function C:listServiceInstanceProvisionedResources(input: types.ListServiceInstanceProvisionedResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListServiceInstanceProvisionedResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServiceInstanceProvisionedResources as schema.OperationSchema, input, options) as async.Operation<types.ListServiceInstanceProvisionedResourcesOutput>
 end
 
-function C:listServiceInstances(input: types.ListServiceInstancesInput, options: any): async.Operation<types.ListServiceInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServiceInstances, input, options) as async.Operation<types.ListServiceInstancesOutput>
+function C:listServiceInstances(input: types.ListServiceInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.ListServiceInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServiceInstances as schema.OperationSchema, input, options) as async.Operation<types.ListServiceInstancesOutput>
 end
 
-function C:listServicePipelineOutputs(input: types.ListServicePipelineOutputsInput, options: any): async.Operation<types.ListServicePipelineOutputsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServicePipelineOutputs, input, options) as async.Operation<types.ListServicePipelineOutputsOutput>
+function C:listServicePipelineOutputs(input: types.ListServicePipelineOutputsInput, options?: base_client.InvokeOptions): async.Operation<types.ListServicePipelineOutputsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServicePipelineOutputs as schema.OperationSchema, input, options) as async.Operation<types.ListServicePipelineOutputsOutput>
 end
 
-function C:listServicePipelineProvisionedResources(input: types.ListServicePipelineProvisionedResourcesInput, options: any): async.Operation<types.ListServicePipelineProvisionedResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServicePipelineProvisionedResources, input, options) as async.Operation<types.ListServicePipelineProvisionedResourcesOutput>
+function C:listServicePipelineProvisionedResources(input: types.ListServicePipelineProvisionedResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListServicePipelineProvisionedResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServicePipelineProvisionedResources as schema.OperationSchema, input, options) as async.Operation<types.ListServicePipelineProvisionedResourcesOutput>
 end
 
-function C:listServices(input: types.ListServicesInput, options: any): async.Operation<types.ListServicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServices, input, options) as async.Operation<types.ListServicesOutput>
+function C:listServices(input: types.ListServicesInput, options?: base_client.InvokeOptions): async.Operation<types.ListServicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServices as schema.OperationSchema, input, options) as async.Operation<types.ListServicesOutput>
 end
 
-function C:listServiceTemplates(input: types.ListServiceTemplatesInput, options: any): async.Operation<types.ListServiceTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServiceTemplates, input, options) as async.Operation<types.ListServiceTemplatesOutput>
+function C:listServiceTemplates(input: types.ListServiceTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListServiceTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServiceTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListServiceTemplatesOutput>
 end
 
-function C:listServiceTemplateVersions(input: types.ListServiceTemplateVersionsInput, options: any): async.Operation<types.ListServiceTemplateVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServiceTemplateVersions, input, options) as async.Operation<types.ListServiceTemplateVersionsOutput>
+function C:listServiceTemplateVersions(input: types.ListServiceTemplateVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListServiceTemplateVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServiceTemplateVersions as schema.OperationSchema, input, options) as async.Operation<types.ListServiceTemplateVersionsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:notifyResourceDeploymentStatusChange(input: types.NotifyResourceDeploymentStatusChangeInput, options: any): async.Operation<types.NotifyResourceDeploymentStatusChangeOutput>
-    return self:invokeOperation(schemas.Service, schemas.NotifyResourceDeploymentStatusChange, input, options) as async.Operation<types.NotifyResourceDeploymentStatusChangeOutput>
+function C:notifyResourceDeploymentStatusChange(input: types.NotifyResourceDeploymentStatusChangeInput, options?: base_client.InvokeOptions): async.Operation<types.NotifyResourceDeploymentStatusChangeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.NotifyResourceDeploymentStatusChange as schema.OperationSchema, input, options) as async.Operation<types.NotifyResourceDeploymentStatusChangeOutput>
 end
 
-function C:rejectEnvironmentAccountConnection(input: types.RejectEnvironmentAccountConnectionInput, options: any): async.Operation<types.RejectEnvironmentAccountConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.RejectEnvironmentAccountConnection, input, options) as async.Operation<types.RejectEnvironmentAccountConnectionOutput>
+function C:rejectEnvironmentAccountConnection(input: types.RejectEnvironmentAccountConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.RejectEnvironmentAccountConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RejectEnvironmentAccountConnection as schema.OperationSchema, input, options) as async.Operation<types.RejectEnvironmentAccountConnectionOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAccountSettings(input: types.UpdateAccountSettingsInput, options: any): async.Operation<types.UpdateAccountSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAccountSettings, input, options) as async.Operation<types.UpdateAccountSettingsOutput>
+function C:updateAccountSettings(input: types.UpdateAccountSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAccountSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAccountSettings as schema.OperationSchema, input, options) as async.Operation<types.UpdateAccountSettingsOutput>
 end
 
-function C:updateComponent(input: types.UpdateComponentInput, options: any): async.Operation<types.UpdateComponentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateComponent, input, options) as async.Operation<types.UpdateComponentOutput>
+function C:updateComponent(input: types.UpdateComponentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateComponentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateComponent as schema.OperationSchema, input, options) as async.Operation<types.UpdateComponentOutput>
 end
 
-function C:updateEnvironment(input: types.UpdateEnvironmentInput, options: any): async.Operation<types.UpdateEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEnvironment, input, options) as async.Operation<types.UpdateEnvironmentOutput>
+function C:updateEnvironment(input: types.UpdateEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEnvironment as schema.OperationSchema, input, options) as async.Operation<types.UpdateEnvironmentOutput>
 end
 
-function C:updateEnvironmentAccountConnection(input: types.UpdateEnvironmentAccountConnectionInput, options: any): async.Operation<types.UpdateEnvironmentAccountConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEnvironmentAccountConnection, input, options) as async.Operation<types.UpdateEnvironmentAccountConnectionOutput>
+function C:updateEnvironmentAccountConnection(input: types.UpdateEnvironmentAccountConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEnvironmentAccountConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEnvironmentAccountConnection as schema.OperationSchema, input, options) as async.Operation<types.UpdateEnvironmentAccountConnectionOutput>
 end
 
-function C:updateEnvironmentTemplate(input: types.UpdateEnvironmentTemplateInput, options: any): async.Operation<types.UpdateEnvironmentTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEnvironmentTemplate, input, options) as async.Operation<types.UpdateEnvironmentTemplateOutput>
+function C:updateEnvironmentTemplate(input: types.UpdateEnvironmentTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEnvironmentTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEnvironmentTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateEnvironmentTemplateOutput>
 end
 
-function C:updateEnvironmentTemplateVersion(input: types.UpdateEnvironmentTemplateVersionInput, options: any): async.Operation<types.UpdateEnvironmentTemplateVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEnvironmentTemplateVersion, input, options) as async.Operation<types.UpdateEnvironmentTemplateVersionOutput>
+function C:updateEnvironmentTemplateVersion(input: types.UpdateEnvironmentTemplateVersionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEnvironmentTemplateVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEnvironmentTemplateVersion as schema.OperationSchema, input, options) as async.Operation<types.UpdateEnvironmentTemplateVersionOutput>
 end
 
-function C:updateService(input: types.UpdateServiceInput, options: any): async.Operation<types.UpdateServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateService, input, options) as async.Operation<types.UpdateServiceOutput>
+function C:updateService(input: types.UpdateServiceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateService as schema.OperationSchema, input, options) as async.Operation<types.UpdateServiceOutput>
 end
 
-function C:updateServiceInstance(input: types.UpdateServiceInstanceInput, options: any): async.Operation<types.UpdateServiceInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateServiceInstance, input, options) as async.Operation<types.UpdateServiceInstanceOutput>
+function C:updateServiceInstance(input: types.UpdateServiceInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateServiceInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateServiceInstance as schema.OperationSchema, input, options) as async.Operation<types.UpdateServiceInstanceOutput>
 end
 
-function C:updateServicePipeline(input: types.UpdateServicePipelineInput, options: any): async.Operation<types.UpdateServicePipelineOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateServicePipeline, input, options) as async.Operation<types.UpdateServicePipelineOutput>
+function C:updateServicePipeline(input: types.UpdateServicePipelineInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateServicePipelineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateServicePipeline as schema.OperationSchema, input, options) as async.Operation<types.UpdateServicePipelineOutput>
 end
 
-function C:updateServiceSyncBlocker(input: types.UpdateServiceSyncBlockerInput, options: any): async.Operation<types.UpdateServiceSyncBlockerOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateServiceSyncBlocker, input, options) as async.Operation<types.UpdateServiceSyncBlockerOutput>
+function C:updateServiceSyncBlocker(input: types.UpdateServiceSyncBlockerInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateServiceSyncBlockerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateServiceSyncBlocker as schema.OperationSchema, input, options) as async.Operation<types.UpdateServiceSyncBlockerOutput>
 end
 
-function C:updateServiceSyncConfig(input: types.UpdateServiceSyncConfigInput, options: any): async.Operation<types.UpdateServiceSyncConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateServiceSyncConfig, input, options) as async.Operation<types.UpdateServiceSyncConfigOutput>
+function C:updateServiceSyncConfig(input: types.UpdateServiceSyncConfigInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateServiceSyncConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateServiceSyncConfig as schema.OperationSchema, input, options) as async.Operation<types.UpdateServiceSyncConfigOutput>
 end
 
-function C:updateServiceTemplate(input: types.UpdateServiceTemplateInput, options: any): async.Operation<types.UpdateServiceTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateServiceTemplate, input, options) as async.Operation<types.UpdateServiceTemplateOutput>
+function C:updateServiceTemplate(input: types.UpdateServiceTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateServiceTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateServiceTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateServiceTemplateOutput>
 end
 
-function C:updateServiceTemplateVersion(input: types.UpdateServiceTemplateVersionInput, options: any): async.Operation<types.UpdateServiceTemplateVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateServiceTemplateVersion, input, options) as async.Operation<types.UpdateServiceTemplateVersionOutput>
+function C:updateServiceTemplateVersion(input: types.UpdateServiceTemplateVersionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateServiceTemplateVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateServiceTemplateVersion as schema.OperationSchema, input, options) as async.Operation<types.UpdateServiceTemplateVersionOutput>
 end
 
-function C:updateTemplateSyncConfig(input: types.UpdateTemplateSyncConfigInput, options: any): async.Operation<types.UpdateTemplateSyncConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTemplateSyncConfig, input, options) as async.Operation<types.UpdateTemplateSyncConfigOutput>
+function C:updateTemplateSyncConfig(input: types.UpdateTemplateSyncConfigInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTemplateSyncConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTemplateSyncConfig as schema.OperationSchema, input, options) as async.Operation<types.UpdateTemplateSyncConfigOutput>
 end
 
 return M

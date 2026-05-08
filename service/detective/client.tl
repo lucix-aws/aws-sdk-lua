@@ -8,68 +8,71 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("detective.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("detective.schemas")
 local traits = require("smithy.traits")
 local types = require("detective.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    acceptInvitation: function(Client, types.AcceptInvitationInput, any): async.Operation<types.AcceptInvitationOutput>
-    batchGetGraphMemberDatasources: function(Client, types.BatchGetGraphMemberDatasourcesInput, any): async.Operation<types.BatchGetGraphMemberDatasourcesOutput>
-    batchGetMembershipDatasources: function(Client, types.BatchGetMembershipDatasourcesInput, any): async.Operation<types.BatchGetMembershipDatasourcesOutput>
-    createGraph: function(Client, types.CreateGraphInput, any): async.Operation<types.CreateGraphOutput>
-    createMembers: function(Client, types.CreateMembersInput, any): async.Operation<types.CreateMembersOutput>
-    deleteGraph: function(Client, types.DeleteGraphInput, any): async.Operation<types.DeleteGraphOutput>
-    deleteMembers: function(Client, types.DeleteMembersInput, any): async.Operation<types.DeleteMembersOutput>
-    describeOrganizationConfiguration: function(Client, types.DescribeOrganizationConfigurationInput, any): async.Operation<types.DescribeOrganizationConfigurationOutput>
-    disableOrganizationAdminAccount: function(Client, types.DisableOrganizationAdminAccountInput, any): async.Operation<types.DisableOrganizationAdminAccountOutput>
-    disassociateMembership: function(Client, types.DisassociateMembershipInput, any): async.Operation<types.DisassociateMembershipOutput>
-    enableOrganizationAdminAccount: function(Client, types.EnableOrganizationAdminAccountInput, any): async.Operation<types.EnableOrganizationAdminAccountOutput>
-    getInvestigation: function(Client, types.GetInvestigationInput, any): async.Operation<types.GetInvestigationOutput>
-    getMembers: function(Client, types.GetMembersInput, any): async.Operation<types.GetMembersOutput>
-    listDatasourcePackages: function(Client, types.ListDatasourcePackagesInput, any): async.Operation<types.ListDatasourcePackagesOutput>
-    listGraphs: function(Client, types.ListGraphsInput, any): async.Operation<types.ListGraphsOutput>
-    listIndicators: function(Client, types.ListIndicatorsInput, any): async.Operation<types.ListIndicatorsOutput>
-    listInvestigations: function(Client, types.ListInvestigationsInput, any): async.Operation<types.ListInvestigationsOutput>
-    listInvitations: function(Client, types.ListInvitationsInput, any): async.Operation<types.ListInvitationsOutput>
-    listMembers: function(Client, types.ListMembersInput, any): async.Operation<types.ListMembersOutput>
-    listOrganizationAdminAccounts: function(Client, types.ListOrganizationAdminAccountsInput, any): async.Operation<types.ListOrganizationAdminAccountsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    rejectInvitation: function(Client, types.RejectInvitationInput, any): async.Operation<types.RejectInvitationOutput>
-    startInvestigation: function(Client, types.StartInvestigationInput, any): async.Operation<types.StartInvestigationOutput>
-    startMonitoringMember: function(Client, types.StartMonitoringMemberInput, any): async.Operation<types.StartMonitoringMemberOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateDatasourcePackages: function(Client, types.UpdateDatasourcePackagesInput, any): async.Operation<types.UpdateDatasourcePackagesOutput>
-    updateInvestigationState: function(Client, types.UpdateInvestigationStateInput, any): async.Operation<types.UpdateInvestigationStateOutput>
-    updateOrganizationConfiguration: function(Client, types.UpdateOrganizationConfigurationInput, any): async.Operation<types.UpdateOrganizationConfigurationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    acceptInvitation: function(Client, types.AcceptInvitationInput, ? base_client.InvokeOptions): async.Operation<types.AcceptInvitationOutput>
+    batchGetGraphMemberDatasources: function(Client, types.BatchGetGraphMemberDatasourcesInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetGraphMemberDatasourcesOutput>
+    batchGetMembershipDatasources: function(Client, types.BatchGetMembershipDatasourcesInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetMembershipDatasourcesOutput>
+    createGraph: function(Client, types.CreateGraphInput, ? base_client.InvokeOptions): async.Operation<types.CreateGraphOutput>
+    createMembers: function(Client, types.CreateMembersInput, ? base_client.InvokeOptions): async.Operation<types.CreateMembersOutput>
+    deleteGraph: function(Client, types.DeleteGraphInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGraphOutput>
+    deleteMembers: function(Client, types.DeleteMembersInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMembersOutput>
+    describeOrganizationConfiguration: function(Client, types.DescribeOrganizationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeOrganizationConfigurationOutput>
+    disableOrganizationAdminAccount: function(Client, types.DisableOrganizationAdminAccountInput, ? base_client.InvokeOptions): async.Operation<types.DisableOrganizationAdminAccountOutput>
+    disassociateMembership: function(Client, types.DisassociateMembershipInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateMembershipOutput>
+    enableOrganizationAdminAccount: function(Client, types.EnableOrganizationAdminAccountInput, ? base_client.InvokeOptions): async.Operation<types.EnableOrganizationAdminAccountOutput>
+    getInvestigation: function(Client, types.GetInvestigationInput, ? base_client.InvokeOptions): async.Operation<types.GetInvestigationOutput>
+    getMembers: function(Client, types.GetMembersInput, ? base_client.InvokeOptions): async.Operation<types.GetMembersOutput>
+    listDatasourcePackages: function(Client, types.ListDatasourcePackagesInput, ? base_client.InvokeOptions): async.Operation<types.ListDatasourcePackagesOutput>
+    listGraphs: function(Client, types.ListGraphsInput, ? base_client.InvokeOptions): async.Operation<types.ListGraphsOutput>
+    listIndicators: function(Client, types.ListIndicatorsInput, ? base_client.InvokeOptions): async.Operation<types.ListIndicatorsOutput>
+    listInvestigations: function(Client, types.ListInvestigationsInput, ? base_client.InvokeOptions): async.Operation<types.ListInvestigationsOutput>
+    listInvitations: function(Client, types.ListInvitationsInput, ? base_client.InvokeOptions): async.Operation<types.ListInvitationsOutput>
+    listMembers: function(Client, types.ListMembersInput, ? base_client.InvokeOptions): async.Operation<types.ListMembersOutput>
+    listOrganizationAdminAccounts: function(Client, types.ListOrganizationAdminAccountsInput, ? base_client.InvokeOptions): async.Operation<types.ListOrganizationAdminAccountsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    rejectInvitation: function(Client, types.RejectInvitationInput, ? base_client.InvokeOptions): async.Operation<types.RejectInvitationOutput>
+    startInvestigation: function(Client, types.StartInvestigationInput, ? base_client.InvokeOptions): async.Operation<types.StartInvestigationOutput>
+    startMonitoringMember: function(Client, types.StartMonitoringMemberInput, ? base_client.InvokeOptions): async.Operation<types.StartMonitoringMemberOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateDatasourcePackages: function(Client, types.UpdateDatasourcePackagesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDatasourcePackagesOutput>
+    updateInvestigationState: function(Client, types.UpdateInvestigationStateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateInvestigationStateOutput>
+    updateOrganizationConfiguration: function(Client, types.UpdateOrganizationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOrganizationConfigurationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonDetective"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "detective", signing_region = c.region } }
                 else
@@ -88,120 +91,120 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:acceptInvitation(input: types.AcceptInvitationInput, options: any): async.Operation<types.AcceptInvitationOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptInvitation, input, options) as async.Operation<types.AcceptInvitationOutput>
+function C:acceptInvitation(input: types.AcceptInvitationInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptInvitationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptInvitation as schema.OperationSchema, input, options) as async.Operation<types.AcceptInvitationOutput>
 end
 
-function C:batchGetGraphMemberDatasources(input: types.BatchGetGraphMemberDatasourcesInput, options: any): async.Operation<types.BatchGetGraphMemberDatasourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetGraphMemberDatasources, input, options) as async.Operation<types.BatchGetGraphMemberDatasourcesOutput>
+function C:batchGetGraphMemberDatasources(input: types.BatchGetGraphMemberDatasourcesInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetGraphMemberDatasourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetGraphMemberDatasources as schema.OperationSchema, input, options) as async.Operation<types.BatchGetGraphMemberDatasourcesOutput>
 end
 
-function C:batchGetMembershipDatasources(input: types.BatchGetMembershipDatasourcesInput, options: any): async.Operation<types.BatchGetMembershipDatasourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetMembershipDatasources, input, options) as async.Operation<types.BatchGetMembershipDatasourcesOutput>
+function C:batchGetMembershipDatasources(input: types.BatchGetMembershipDatasourcesInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetMembershipDatasourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetMembershipDatasources as schema.OperationSchema, input, options) as async.Operation<types.BatchGetMembershipDatasourcesOutput>
 end
 
-function C:createGraph(input: types.CreateGraphInput, options: any): async.Operation<types.CreateGraphOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateGraph, input, options) as async.Operation<types.CreateGraphOutput>
+function C:createGraph(input: types.CreateGraphInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGraphOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGraph as schema.OperationSchema, input, options) as async.Operation<types.CreateGraphOutput>
 end
 
-function C:createMembers(input: types.CreateMembersInput, options: any): async.Operation<types.CreateMembersOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMembers, input, options) as async.Operation<types.CreateMembersOutput>
+function C:createMembers(input: types.CreateMembersInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMembersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMembers as schema.OperationSchema, input, options) as async.Operation<types.CreateMembersOutput>
 end
 
-function C:deleteGraph(input: types.DeleteGraphInput, options: any): async.Operation<types.DeleteGraphOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteGraph, input, options) as async.Operation<types.DeleteGraphOutput>
+function C:deleteGraph(input: types.DeleteGraphInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGraphOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGraph as schema.OperationSchema, input, options) as async.Operation<types.DeleteGraphOutput>
 end
 
-function C:deleteMembers(input: types.DeleteMembersInput, options: any): async.Operation<types.DeleteMembersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMembers, input, options) as async.Operation<types.DeleteMembersOutput>
+function C:deleteMembers(input: types.DeleteMembersInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMembersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMembers as schema.OperationSchema, input, options) as async.Operation<types.DeleteMembersOutput>
 end
 
-function C:describeOrganizationConfiguration(input: types.DescribeOrganizationConfigurationInput, options: any): async.Operation<types.DescribeOrganizationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeOrganizationConfiguration, input, options) as async.Operation<types.DescribeOrganizationConfigurationOutput>
+function C:describeOrganizationConfiguration(input: types.DescribeOrganizationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeOrganizationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeOrganizationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeOrganizationConfigurationOutput>
 end
 
-function C:disableOrganizationAdminAccount(input: types.DisableOrganizationAdminAccountInput, options: any): async.Operation<types.DisableOrganizationAdminAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableOrganizationAdminAccount, input, options) as async.Operation<types.DisableOrganizationAdminAccountOutput>
+function C:disableOrganizationAdminAccount(input: types.DisableOrganizationAdminAccountInput, options?: base_client.InvokeOptions): async.Operation<types.DisableOrganizationAdminAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableOrganizationAdminAccount as schema.OperationSchema, input, options) as async.Operation<types.DisableOrganizationAdminAccountOutput>
 end
 
-function C:disassociateMembership(input: types.DisassociateMembershipInput, options: any): async.Operation<types.DisassociateMembershipOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateMembership, input, options) as async.Operation<types.DisassociateMembershipOutput>
+function C:disassociateMembership(input: types.DisassociateMembershipInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateMembershipOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateMembership as schema.OperationSchema, input, options) as async.Operation<types.DisassociateMembershipOutput>
 end
 
-function C:enableOrganizationAdminAccount(input: types.EnableOrganizationAdminAccountInput, options: any): async.Operation<types.EnableOrganizationAdminAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableOrganizationAdminAccount, input, options) as async.Operation<types.EnableOrganizationAdminAccountOutput>
+function C:enableOrganizationAdminAccount(input: types.EnableOrganizationAdminAccountInput, options?: base_client.InvokeOptions): async.Operation<types.EnableOrganizationAdminAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableOrganizationAdminAccount as schema.OperationSchema, input, options) as async.Operation<types.EnableOrganizationAdminAccountOutput>
 end
 
-function C:getInvestigation(input: types.GetInvestigationInput, options: any): async.Operation<types.GetInvestigationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInvestigation, input, options) as async.Operation<types.GetInvestigationOutput>
+function C:getInvestigation(input: types.GetInvestigationInput, options?: base_client.InvokeOptions): async.Operation<types.GetInvestigationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInvestigation as schema.OperationSchema, input, options) as async.Operation<types.GetInvestigationOutput>
 end
 
-function C:getMembers(input: types.GetMembersInput, options: any): async.Operation<types.GetMembersOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMembers, input, options) as async.Operation<types.GetMembersOutput>
+function C:getMembers(input: types.GetMembersInput, options?: base_client.InvokeOptions): async.Operation<types.GetMembersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMembers as schema.OperationSchema, input, options) as async.Operation<types.GetMembersOutput>
 end
 
-function C:listDatasourcePackages(input: types.ListDatasourcePackagesInput, options: any): async.Operation<types.ListDatasourcePackagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDatasourcePackages, input, options) as async.Operation<types.ListDatasourcePackagesOutput>
+function C:listDatasourcePackages(input: types.ListDatasourcePackagesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDatasourcePackagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDatasourcePackages as schema.OperationSchema, input, options) as async.Operation<types.ListDatasourcePackagesOutput>
 end
 
-function C:listGraphs(input: types.ListGraphsInput, options: any): async.Operation<types.ListGraphsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGraphs, input, options) as async.Operation<types.ListGraphsOutput>
+function C:listGraphs(input: types.ListGraphsInput, options?: base_client.InvokeOptions): async.Operation<types.ListGraphsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGraphs as schema.OperationSchema, input, options) as async.Operation<types.ListGraphsOutput>
 end
 
-function C:listIndicators(input: types.ListIndicatorsInput, options: any): async.Operation<types.ListIndicatorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIndicators, input, options) as async.Operation<types.ListIndicatorsOutput>
+function C:listIndicators(input: types.ListIndicatorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListIndicatorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIndicators as schema.OperationSchema, input, options) as async.Operation<types.ListIndicatorsOutput>
 end
 
-function C:listInvestigations(input: types.ListInvestigationsInput, options: any): async.Operation<types.ListInvestigationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInvestigations, input, options) as async.Operation<types.ListInvestigationsOutput>
+function C:listInvestigations(input: types.ListInvestigationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInvestigationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInvestigations as schema.OperationSchema, input, options) as async.Operation<types.ListInvestigationsOutput>
 end
 
-function C:listInvitations(input: types.ListInvitationsInput, options: any): async.Operation<types.ListInvitationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInvitations, input, options) as async.Operation<types.ListInvitationsOutput>
+function C:listInvitations(input: types.ListInvitationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInvitationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInvitations as schema.OperationSchema, input, options) as async.Operation<types.ListInvitationsOutput>
 end
 
-function C:listMembers(input: types.ListMembersInput, options: any): async.Operation<types.ListMembersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMembers, input, options) as async.Operation<types.ListMembersOutput>
+function C:listMembers(input: types.ListMembersInput, options?: base_client.InvokeOptions): async.Operation<types.ListMembersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMembers as schema.OperationSchema, input, options) as async.Operation<types.ListMembersOutput>
 end
 
-function C:listOrganizationAdminAccounts(input: types.ListOrganizationAdminAccountsInput, options: any): async.Operation<types.ListOrganizationAdminAccountsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOrganizationAdminAccounts, input, options) as async.Operation<types.ListOrganizationAdminAccountsOutput>
+function C:listOrganizationAdminAccounts(input: types.ListOrganizationAdminAccountsInput, options?: base_client.InvokeOptions): async.Operation<types.ListOrganizationAdminAccountsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOrganizationAdminAccounts as schema.OperationSchema, input, options) as async.Operation<types.ListOrganizationAdminAccountsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:rejectInvitation(input: types.RejectInvitationInput, options: any): async.Operation<types.RejectInvitationOutput>
-    return self:invokeOperation(schemas.Service, schemas.RejectInvitation, input, options) as async.Operation<types.RejectInvitationOutput>
+function C:rejectInvitation(input: types.RejectInvitationInput, options?: base_client.InvokeOptions): async.Operation<types.RejectInvitationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RejectInvitation as schema.OperationSchema, input, options) as async.Operation<types.RejectInvitationOutput>
 end
 
-function C:startInvestigation(input: types.StartInvestigationInput, options: any): async.Operation<types.StartInvestigationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartInvestigation, input, options) as async.Operation<types.StartInvestigationOutput>
+function C:startInvestigation(input: types.StartInvestigationInput, options?: base_client.InvokeOptions): async.Operation<types.StartInvestigationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartInvestigation as schema.OperationSchema, input, options) as async.Operation<types.StartInvestigationOutput>
 end
 
-function C:startMonitoringMember(input: types.StartMonitoringMemberInput, options: any): async.Operation<types.StartMonitoringMemberOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartMonitoringMember, input, options) as async.Operation<types.StartMonitoringMemberOutput>
+function C:startMonitoringMember(input: types.StartMonitoringMemberInput, options?: base_client.InvokeOptions): async.Operation<types.StartMonitoringMemberOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartMonitoringMember as schema.OperationSchema, input, options) as async.Operation<types.StartMonitoringMemberOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateDatasourcePackages(input: types.UpdateDatasourcePackagesInput, options: any): async.Operation<types.UpdateDatasourcePackagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDatasourcePackages, input, options) as async.Operation<types.UpdateDatasourcePackagesOutput>
+function C:updateDatasourcePackages(input: types.UpdateDatasourcePackagesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDatasourcePackagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDatasourcePackages as schema.OperationSchema, input, options) as async.Operation<types.UpdateDatasourcePackagesOutput>
 end
 
-function C:updateInvestigationState(input: types.UpdateInvestigationStateInput, options: any): async.Operation<types.UpdateInvestigationStateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateInvestigationState, input, options) as async.Operation<types.UpdateInvestigationStateOutput>
+function C:updateInvestigationState(input: types.UpdateInvestigationStateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateInvestigationStateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateInvestigationState as schema.OperationSchema, input, options) as async.Operation<types.UpdateInvestigationStateOutput>
 end
 
-function C:updateOrganizationConfiguration(input: types.UpdateOrganizationConfigurationInput, options: any): async.Operation<types.UpdateOrganizationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateOrganizationConfiguration, input, options) as async.Operation<types.UpdateOrganizationConfigurationOutput>
+function C:updateOrganizationConfiguration(input: types.UpdateOrganizationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateOrganizationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateOrganizationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateOrganizationConfigurationOutput>
 end
 
 return M

@@ -8,88 +8,91 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("s3tables.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("s3tables.schemas")
 local traits = require("smithy.traits")
 local types = require("s3tables.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createNamespace: function(Client, types.CreateNamespaceInput, any): async.Operation<types.CreateNamespaceOutput>
-    createTable: function(Client, types.CreateTableInput, any): async.Operation<types.CreateTableOutput>
-    createTableBucket: function(Client, types.CreateTableBucketInput, any): async.Operation<types.CreateTableBucketOutput>
-    deleteNamespace: function(Client, types.DeleteNamespaceInput, any): async.Operation<types.DeleteNamespaceOutput>
-    deleteTable: function(Client, types.DeleteTableInput, any): async.Operation<types.DeleteTableOutput>
-    deleteTableBucket: function(Client, types.DeleteTableBucketInput, any): async.Operation<types.DeleteTableBucketOutput>
-    deleteTableBucketEncryption: function(Client, types.DeleteTableBucketEncryptionInput, any): async.Operation<types.DeleteTableBucketEncryptionOutput>
-    deleteTableBucketMetricsConfiguration: function(Client, types.DeleteTableBucketMetricsConfigurationInput, any): async.Operation<types.DeleteTableBucketMetricsConfigurationOutput>
-    deleteTableBucketPolicy: function(Client, types.DeleteTableBucketPolicyInput, any): async.Operation<types.DeleteTableBucketPolicyOutput>
-    deleteTableBucketReplication: function(Client, types.DeleteTableBucketReplicationInput, any): async.Operation<types.DeleteTableBucketReplicationOutput>
-    deleteTablePolicy: function(Client, types.DeleteTablePolicyInput, any): async.Operation<types.DeleteTablePolicyOutput>
-    deleteTableReplication: function(Client, types.DeleteTableReplicationInput, any): async.Operation<types.DeleteTableReplicationOutput>
-    getNamespace: function(Client, types.GetNamespaceInput, any): async.Operation<types.GetNamespaceOutput>
-    getTable: function(Client, types.GetTableInput, any): async.Operation<types.GetTableOutput>
-    getTableBucket: function(Client, types.GetTableBucketInput, any): async.Operation<types.GetTableBucketOutput>
-    getTableBucketEncryption: function(Client, types.GetTableBucketEncryptionInput, any): async.Operation<types.GetTableBucketEncryptionOutput>
-    getTableBucketMaintenanceConfiguration: function(Client, types.GetTableBucketMaintenanceConfigurationInput, any): async.Operation<types.GetTableBucketMaintenanceConfigurationOutput>
-    getTableBucketMetricsConfiguration: function(Client, types.GetTableBucketMetricsConfigurationInput, any): async.Operation<types.GetTableBucketMetricsConfigurationOutput>
-    getTableBucketPolicy: function(Client, types.GetTableBucketPolicyInput, any): async.Operation<types.GetTableBucketPolicyOutput>
-    getTableBucketReplication: function(Client, types.GetTableBucketReplicationInput, any): async.Operation<types.GetTableBucketReplicationOutput>
-    getTableBucketStorageClass: function(Client, types.GetTableBucketStorageClassInput, any): async.Operation<types.GetTableBucketStorageClassOutput>
-    getTableEncryption: function(Client, types.GetTableEncryptionInput, any): async.Operation<types.GetTableEncryptionOutput>
-    getTableMaintenanceConfiguration: function(Client, types.GetTableMaintenanceConfigurationInput, any): async.Operation<types.GetTableMaintenanceConfigurationOutput>
-    getTableMaintenanceJobStatus: function(Client, types.GetTableMaintenanceJobStatusInput, any): async.Operation<types.GetTableMaintenanceJobStatusOutput>
-    getTableMetadataLocation: function(Client, types.GetTableMetadataLocationInput, any): async.Operation<types.GetTableMetadataLocationOutput>
-    getTablePolicy: function(Client, types.GetTablePolicyInput, any): async.Operation<types.GetTablePolicyOutput>
-    getTableRecordExpirationConfiguration: function(Client, types.GetTableRecordExpirationConfigurationInput, any): async.Operation<types.GetTableRecordExpirationConfigurationOutput>
-    getTableRecordExpirationJobStatus: function(Client, types.GetTableRecordExpirationJobStatusInput, any): async.Operation<types.GetTableRecordExpirationJobStatusOutput>
-    getTableReplication: function(Client, types.GetTableReplicationInput, any): async.Operation<types.GetTableReplicationOutput>
-    getTableReplicationStatus: function(Client, types.GetTableReplicationStatusInput, any): async.Operation<types.GetTableReplicationStatusOutput>
-    getTableStorageClass: function(Client, types.GetTableStorageClassInput, any): async.Operation<types.GetTableStorageClassOutput>
-    listNamespaces: function(Client, types.ListNamespacesInput, any): async.Operation<types.ListNamespacesOutput>
-    listTableBuckets: function(Client, types.ListTableBucketsInput, any): async.Operation<types.ListTableBucketsOutput>
-    listTables: function(Client, types.ListTablesInput, any): async.Operation<types.ListTablesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putTableBucketEncryption: function(Client, types.PutTableBucketEncryptionInput, any): async.Operation<types.PutTableBucketEncryptionOutput>
-    putTableBucketMaintenanceConfiguration: function(Client, types.PutTableBucketMaintenanceConfigurationInput, any): async.Operation<types.PutTableBucketMaintenanceConfigurationOutput>
-    putTableBucketMetricsConfiguration: function(Client, types.PutTableBucketMetricsConfigurationInput, any): async.Operation<types.PutTableBucketMetricsConfigurationOutput>
-    putTableBucketPolicy: function(Client, types.PutTableBucketPolicyInput, any): async.Operation<types.PutTableBucketPolicyOutput>
-    putTableBucketReplication: function(Client, types.PutTableBucketReplicationInput, any): async.Operation<types.PutTableBucketReplicationOutput>
-    putTableBucketStorageClass: function(Client, types.PutTableBucketStorageClassInput, any): async.Operation<types.PutTableBucketStorageClassOutput>
-    putTableMaintenanceConfiguration: function(Client, types.PutTableMaintenanceConfigurationInput, any): async.Operation<types.PutTableMaintenanceConfigurationOutput>
-    putTablePolicy: function(Client, types.PutTablePolicyInput, any): async.Operation<types.PutTablePolicyOutput>
-    putTableRecordExpirationConfiguration: function(Client, types.PutTableRecordExpirationConfigurationInput, any): async.Operation<types.PutTableRecordExpirationConfigurationOutput>
-    putTableReplication: function(Client, types.PutTableReplicationInput, any): async.Operation<types.PutTableReplicationOutput>
-    renameTable: function(Client, types.RenameTableInput, any): async.Operation<types.RenameTableOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateTableMetadataLocation: function(Client, types.UpdateTableMetadataLocationInput, any): async.Operation<types.UpdateTableMetadataLocationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createNamespace: function(Client, types.CreateNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.CreateNamespaceOutput>
+    createTable: function(Client, types.CreateTableInput, ? base_client.InvokeOptions): async.Operation<types.CreateTableOutput>
+    createTableBucket: function(Client, types.CreateTableBucketInput, ? base_client.InvokeOptions): async.Operation<types.CreateTableBucketOutput>
+    deleteNamespace: function(Client, types.DeleteNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNamespaceOutput>
+    deleteTable: function(Client, types.DeleteTableInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTableOutput>
+    deleteTableBucket: function(Client, types.DeleteTableBucketInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTableBucketOutput>
+    deleteTableBucketEncryption: function(Client, types.DeleteTableBucketEncryptionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTableBucketEncryptionOutput>
+    deleteTableBucketMetricsConfiguration: function(Client, types.DeleteTableBucketMetricsConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTableBucketMetricsConfigurationOutput>
+    deleteTableBucketPolicy: function(Client, types.DeleteTableBucketPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTableBucketPolicyOutput>
+    deleteTableBucketReplication: function(Client, types.DeleteTableBucketReplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTableBucketReplicationOutput>
+    deleteTablePolicy: function(Client, types.DeleteTablePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTablePolicyOutput>
+    deleteTableReplication: function(Client, types.DeleteTableReplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTableReplicationOutput>
+    getNamespace: function(Client, types.GetNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.GetNamespaceOutput>
+    getTable: function(Client, types.GetTableInput, ? base_client.InvokeOptions): async.Operation<types.GetTableOutput>
+    getTableBucket: function(Client, types.GetTableBucketInput, ? base_client.InvokeOptions): async.Operation<types.GetTableBucketOutput>
+    getTableBucketEncryption: function(Client, types.GetTableBucketEncryptionInput, ? base_client.InvokeOptions): async.Operation<types.GetTableBucketEncryptionOutput>
+    getTableBucketMaintenanceConfiguration: function(Client, types.GetTableBucketMaintenanceConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetTableBucketMaintenanceConfigurationOutput>
+    getTableBucketMetricsConfiguration: function(Client, types.GetTableBucketMetricsConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetTableBucketMetricsConfigurationOutput>
+    getTableBucketPolicy: function(Client, types.GetTableBucketPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetTableBucketPolicyOutput>
+    getTableBucketReplication: function(Client, types.GetTableBucketReplicationInput, ? base_client.InvokeOptions): async.Operation<types.GetTableBucketReplicationOutput>
+    getTableBucketStorageClass: function(Client, types.GetTableBucketStorageClassInput, ? base_client.InvokeOptions): async.Operation<types.GetTableBucketStorageClassOutput>
+    getTableEncryption: function(Client, types.GetTableEncryptionInput, ? base_client.InvokeOptions): async.Operation<types.GetTableEncryptionOutput>
+    getTableMaintenanceConfiguration: function(Client, types.GetTableMaintenanceConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetTableMaintenanceConfigurationOutput>
+    getTableMaintenanceJobStatus: function(Client, types.GetTableMaintenanceJobStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetTableMaintenanceJobStatusOutput>
+    getTableMetadataLocation: function(Client, types.GetTableMetadataLocationInput, ? base_client.InvokeOptions): async.Operation<types.GetTableMetadataLocationOutput>
+    getTablePolicy: function(Client, types.GetTablePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetTablePolicyOutput>
+    getTableRecordExpirationConfiguration: function(Client, types.GetTableRecordExpirationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetTableRecordExpirationConfigurationOutput>
+    getTableRecordExpirationJobStatus: function(Client, types.GetTableRecordExpirationJobStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetTableRecordExpirationJobStatusOutput>
+    getTableReplication: function(Client, types.GetTableReplicationInput, ? base_client.InvokeOptions): async.Operation<types.GetTableReplicationOutput>
+    getTableReplicationStatus: function(Client, types.GetTableReplicationStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetTableReplicationStatusOutput>
+    getTableStorageClass: function(Client, types.GetTableStorageClassInput, ? base_client.InvokeOptions): async.Operation<types.GetTableStorageClassOutput>
+    listNamespaces: function(Client, types.ListNamespacesInput, ? base_client.InvokeOptions): async.Operation<types.ListNamespacesOutput>
+    listTableBuckets: function(Client, types.ListTableBucketsInput, ? base_client.InvokeOptions): async.Operation<types.ListTableBucketsOutput>
+    listTables: function(Client, types.ListTablesInput, ? base_client.InvokeOptions): async.Operation<types.ListTablesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putTableBucketEncryption: function(Client, types.PutTableBucketEncryptionInput, ? base_client.InvokeOptions): async.Operation<types.PutTableBucketEncryptionOutput>
+    putTableBucketMaintenanceConfiguration: function(Client, types.PutTableBucketMaintenanceConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutTableBucketMaintenanceConfigurationOutput>
+    putTableBucketMetricsConfiguration: function(Client, types.PutTableBucketMetricsConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutTableBucketMetricsConfigurationOutput>
+    putTableBucketPolicy: function(Client, types.PutTableBucketPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutTableBucketPolicyOutput>
+    putTableBucketReplication: function(Client, types.PutTableBucketReplicationInput, ? base_client.InvokeOptions): async.Operation<types.PutTableBucketReplicationOutput>
+    putTableBucketStorageClass: function(Client, types.PutTableBucketStorageClassInput, ? base_client.InvokeOptions): async.Operation<types.PutTableBucketStorageClassOutput>
+    putTableMaintenanceConfiguration: function(Client, types.PutTableMaintenanceConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutTableMaintenanceConfigurationOutput>
+    putTablePolicy: function(Client, types.PutTablePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutTablePolicyOutput>
+    putTableRecordExpirationConfiguration: function(Client, types.PutTableRecordExpirationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutTableRecordExpirationConfigurationOutput>
+    putTableReplication: function(Client, types.PutTableReplicationInput, ? base_client.InvokeOptions): async.Operation<types.PutTableReplicationOutput>
+    renameTable: function(Client, types.RenameTableInput, ? base_client.InvokeOptions): async.Operation<types.RenameTableOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateTableMetadataLocation: function(Client, types.UpdateTableMetadataLocationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTableMetadataLocationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "S3TableBuckets"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "s3tables", signing_region = c.region } }
                 else
@@ -108,200 +111,200 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createNamespace(input: types.CreateNamespaceInput, options: any): async.Operation<types.CreateNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNamespace, input, options) as async.Operation<types.CreateNamespaceOutput>
+function C:createNamespace(input: types.CreateNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNamespace as schema.OperationSchema, input, options) as async.Operation<types.CreateNamespaceOutput>
 end
 
-function C:createTable(input: types.CreateTableInput, options: any): async.Operation<types.CreateTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTable, input, options) as async.Operation<types.CreateTableOutput>
+function C:createTable(input: types.CreateTableInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTable as schema.OperationSchema, input, options) as async.Operation<types.CreateTableOutput>
 end
 
-function C:createTableBucket(input: types.CreateTableBucketInput, options: any): async.Operation<types.CreateTableBucketOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTableBucket, input, options) as async.Operation<types.CreateTableBucketOutput>
+function C:createTableBucket(input: types.CreateTableBucketInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTableBucketOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTableBucket as schema.OperationSchema, input, options) as async.Operation<types.CreateTableBucketOutput>
 end
 
-function C:deleteNamespace(input: types.DeleteNamespaceInput, options: any): async.Operation<types.DeleteNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNamespace, input, options) as async.Operation<types.DeleteNamespaceOutput>
+function C:deleteNamespace(input: types.DeleteNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNamespace as schema.OperationSchema, input, options) as async.Operation<types.DeleteNamespaceOutput>
 end
 
-function C:deleteTable(input: types.DeleteTableInput, options: any): async.Operation<types.DeleteTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTable, input, options) as async.Operation<types.DeleteTableOutput>
+function C:deleteTable(input: types.DeleteTableInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTable as schema.OperationSchema, input, options) as async.Operation<types.DeleteTableOutput>
 end
 
-function C:deleteTableBucket(input: types.DeleteTableBucketInput, options: any): async.Operation<types.DeleteTableBucketOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTableBucket, input, options) as async.Operation<types.DeleteTableBucketOutput>
+function C:deleteTableBucket(input: types.DeleteTableBucketInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTableBucketOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTableBucket as schema.OperationSchema, input, options) as async.Operation<types.DeleteTableBucketOutput>
 end
 
-function C:deleteTableBucketEncryption(input: types.DeleteTableBucketEncryptionInput, options: any): async.Operation<types.DeleteTableBucketEncryptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTableBucketEncryption, input, options) as async.Operation<types.DeleteTableBucketEncryptionOutput>
+function C:deleteTableBucketEncryption(input: types.DeleteTableBucketEncryptionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTableBucketEncryptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTableBucketEncryption as schema.OperationSchema, input, options) as async.Operation<types.DeleteTableBucketEncryptionOutput>
 end
 
-function C:deleteTableBucketMetricsConfiguration(input: types.DeleteTableBucketMetricsConfigurationInput, options: any): async.Operation<types.DeleteTableBucketMetricsConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTableBucketMetricsConfiguration, input, options) as async.Operation<types.DeleteTableBucketMetricsConfigurationOutput>
+function C:deleteTableBucketMetricsConfiguration(input: types.DeleteTableBucketMetricsConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTableBucketMetricsConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTableBucketMetricsConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteTableBucketMetricsConfigurationOutput>
 end
 
-function C:deleteTableBucketPolicy(input: types.DeleteTableBucketPolicyInput, options: any): async.Operation<types.DeleteTableBucketPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTableBucketPolicy, input, options) as async.Operation<types.DeleteTableBucketPolicyOutput>
+function C:deleteTableBucketPolicy(input: types.DeleteTableBucketPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTableBucketPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTableBucketPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteTableBucketPolicyOutput>
 end
 
-function C:deleteTableBucketReplication(input: types.DeleteTableBucketReplicationInput, options: any): async.Operation<types.DeleteTableBucketReplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTableBucketReplication, input, options) as async.Operation<types.DeleteTableBucketReplicationOutput>
+function C:deleteTableBucketReplication(input: types.DeleteTableBucketReplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTableBucketReplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTableBucketReplication as schema.OperationSchema, input, options) as async.Operation<types.DeleteTableBucketReplicationOutput>
 end
 
-function C:deleteTablePolicy(input: types.DeleteTablePolicyInput, options: any): async.Operation<types.DeleteTablePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTablePolicy, input, options) as async.Operation<types.DeleteTablePolicyOutput>
+function C:deleteTablePolicy(input: types.DeleteTablePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTablePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTablePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteTablePolicyOutput>
 end
 
-function C:deleteTableReplication(input: types.DeleteTableReplicationInput, options: any): async.Operation<types.DeleteTableReplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTableReplication, input, options) as async.Operation<types.DeleteTableReplicationOutput>
+function C:deleteTableReplication(input: types.DeleteTableReplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTableReplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTableReplication as schema.OperationSchema, input, options) as async.Operation<types.DeleteTableReplicationOutput>
 end
 
-function C:getNamespace(input: types.GetNamespaceInput, options: any): async.Operation<types.GetNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNamespace, input, options) as async.Operation<types.GetNamespaceOutput>
+function C:getNamespace(input: types.GetNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.GetNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNamespace as schema.OperationSchema, input, options) as async.Operation<types.GetNamespaceOutput>
 end
 
-function C:getTable(input: types.GetTableInput, options: any): async.Operation<types.GetTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTable, input, options) as async.Operation<types.GetTableOutput>
+function C:getTable(input: types.GetTableInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTable as schema.OperationSchema, input, options) as async.Operation<types.GetTableOutput>
 end
 
-function C:getTableBucket(input: types.GetTableBucketInput, options: any): async.Operation<types.GetTableBucketOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTableBucket, input, options) as async.Operation<types.GetTableBucketOutput>
+function C:getTableBucket(input: types.GetTableBucketInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableBucketOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTableBucket as schema.OperationSchema, input, options) as async.Operation<types.GetTableBucketOutput>
 end
 
-function C:getTableBucketEncryption(input: types.GetTableBucketEncryptionInput, options: any): async.Operation<types.GetTableBucketEncryptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTableBucketEncryption, input, options) as async.Operation<types.GetTableBucketEncryptionOutput>
+function C:getTableBucketEncryption(input: types.GetTableBucketEncryptionInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableBucketEncryptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTableBucketEncryption as schema.OperationSchema, input, options) as async.Operation<types.GetTableBucketEncryptionOutput>
 end
 
-function C:getTableBucketMaintenanceConfiguration(input: types.GetTableBucketMaintenanceConfigurationInput, options: any): async.Operation<types.GetTableBucketMaintenanceConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTableBucketMaintenanceConfiguration, input, options) as async.Operation<types.GetTableBucketMaintenanceConfigurationOutput>
+function C:getTableBucketMaintenanceConfiguration(input: types.GetTableBucketMaintenanceConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableBucketMaintenanceConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTableBucketMaintenanceConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetTableBucketMaintenanceConfigurationOutput>
 end
 
-function C:getTableBucketMetricsConfiguration(input: types.GetTableBucketMetricsConfigurationInput, options: any): async.Operation<types.GetTableBucketMetricsConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTableBucketMetricsConfiguration, input, options) as async.Operation<types.GetTableBucketMetricsConfigurationOutput>
+function C:getTableBucketMetricsConfiguration(input: types.GetTableBucketMetricsConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableBucketMetricsConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTableBucketMetricsConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetTableBucketMetricsConfigurationOutput>
 end
 
-function C:getTableBucketPolicy(input: types.GetTableBucketPolicyInput, options: any): async.Operation<types.GetTableBucketPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTableBucketPolicy, input, options) as async.Operation<types.GetTableBucketPolicyOutput>
+function C:getTableBucketPolicy(input: types.GetTableBucketPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableBucketPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTableBucketPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetTableBucketPolicyOutput>
 end
 
-function C:getTableBucketReplication(input: types.GetTableBucketReplicationInput, options: any): async.Operation<types.GetTableBucketReplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTableBucketReplication, input, options) as async.Operation<types.GetTableBucketReplicationOutput>
+function C:getTableBucketReplication(input: types.GetTableBucketReplicationInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableBucketReplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTableBucketReplication as schema.OperationSchema, input, options) as async.Operation<types.GetTableBucketReplicationOutput>
 end
 
-function C:getTableBucketStorageClass(input: types.GetTableBucketStorageClassInput, options: any): async.Operation<types.GetTableBucketStorageClassOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTableBucketStorageClass, input, options) as async.Operation<types.GetTableBucketStorageClassOutput>
+function C:getTableBucketStorageClass(input: types.GetTableBucketStorageClassInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableBucketStorageClassOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTableBucketStorageClass as schema.OperationSchema, input, options) as async.Operation<types.GetTableBucketStorageClassOutput>
 end
 
-function C:getTableEncryption(input: types.GetTableEncryptionInput, options: any): async.Operation<types.GetTableEncryptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTableEncryption, input, options) as async.Operation<types.GetTableEncryptionOutput>
+function C:getTableEncryption(input: types.GetTableEncryptionInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableEncryptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTableEncryption as schema.OperationSchema, input, options) as async.Operation<types.GetTableEncryptionOutput>
 end
 
-function C:getTableMaintenanceConfiguration(input: types.GetTableMaintenanceConfigurationInput, options: any): async.Operation<types.GetTableMaintenanceConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTableMaintenanceConfiguration, input, options) as async.Operation<types.GetTableMaintenanceConfigurationOutput>
+function C:getTableMaintenanceConfiguration(input: types.GetTableMaintenanceConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableMaintenanceConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTableMaintenanceConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetTableMaintenanceConfigurationOutput>
 end
 
-function C:getTableMaintenanceJobStatus(input: types.GetTableMaintenanceJobStatusInput, options: any): async.Operation<types.GetTableMaintenanceJobStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTableMaintenanceJobStatus, input, options) as async.Operation<types.GetTableMaintenanceJobStatusOutput>
+function C:getTableMaintenanceJobStatus(input: types.GetTableMaintenanceJobStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableMaintenanceJobStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTableMaintenanceJobStatus as schema.OperationSchema, input, options) as async.Operation<types.GetTableMaintenanceJobStatusOutput>
 end
 
-function C:getTableMetadataLocation(input: types.GetTableMetadataLocationInput, options: any): async.Operation<types.GetTableMetadataLocationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTableMetadataLocation, input, options) as async.Operation<types.GetTableMetadataLocationOutput>
+function C:getTableMetadataLocation(input: types.GetTableMetadataLocationInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableMetadataLocationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTableMetadataLocation as schema.OperationSchema, input, options) as async.Operation<types.GetTableMetadataLocationOutput>
 end
 
-function C:getTablePolicy(input: types.GetTablePolicyInput, options: any): async.Operation<types.GetTablePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTablePolicy, input, options) as async.Operation<types.GetTablePolicyOutput>
+function C:getTablePolicy(input: types.GetTablePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetTablePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTablePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetTablePolicyOutput>
 end
 
-function C:getTableRecordExpirationConfiguration(input: types.GetTableRecordExpirationConfigurationInput, options: any): async.Operation<types.GetTableRecordExpirationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTableRecordExpirationConfiguration, input, options) as async.Operation<types.GetTableRecordExpirationConfigurationOutput>
+function C:getTableRecordExpirationConfiguration(input: types.GetTableRecordExpirationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableRecordExpirationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTableRecordExpirationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetTableRecordExpirationConfigurationOutput>
 end
 
-function C:getTableRecordExpirationJobStatus(input: types.GetTableRecordExpirationJobStatusInput, options: any): async.Operation<types.GetTableRecordExpirationJobStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTableRecordExpirationJobStatus, input, options) as async.Operation<types.GetTableRecordExpirationJobStatusOutput>
+function C:getTableRecordExpirationJobStatus(input: types.GetTableRecordExpirationJobStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableRecordExpirationJobStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTableRecordExpirationJobStatus as schema.OperationSchema, input, options) as async.Operation<types.GetTableRecordExpirationJobStatusOutput>
 end
 
-function C:getTableReplication(input: types.GetTableReplicationInput, options: any): async.Operation<types.GetTableReplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTableReplication, input, options) as async.Operation<types.GetTableReplicationOutput>
+function C:getTableReplication(input: types.GetTableReplicationInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableReplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTableReplication as schema.OperationSchema, input, options) as async.Operation<types.GetTableReplicationOutput>
 end
 
-function C:getTableReplicationStatus(input: types.GetTableReplicationStatusInput, options: any): async.Operation<types.GetTableReplicationStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTableReplicationStatus, input, options) as async.Operation<types.GetTableReplicationStatusOutput>
+function C:getTableReplicationStatus(input: types.GetTableReplicationStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableReplicationStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTableReplicationStatus as schema.OperationSchema, input, options) as async.Operation<types.GetTableReplicationStatusOutput>
 end
 
-function C:getTableStorageClass(input: types.GetTableStorageClassInput, options: any): async.Operation<types.GetTableStorageClassOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTableStorageClass, input, options) as async.Operation<types.GetTableStorageClassOutput>
+function C:getTableStorageClass(input: types.GetTableStorageClassInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableStorageClassOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTableStorageClass as schema.OperationSchema, input, options) as async.Operation<types.GetTableStorageClassOutput>
 end
 
-function C:listNamespaces(input: types.ListNamespacesInput, options: any): async.Operation<types.ListNamespacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNamespaces, input, options) as async.Operation<types.ListNamespacesOutput>
+function C:listNamespaces(input: types.ListNamespacesInput, options?: base_client.InvokeOptions): async.Operation<types.ListNamespacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNamespaces as schema.OperationSchema, input, options) as async.Operation<types.ListNamespacesOutput>
 end
 
-function C:listTableBuckets(input: types.ListTableBucketsInput, options: any): async.Operation<types.ListTableBucketsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTableBuckets, input, options) as async.Operation<types.ListTableBucketsOutput>
+function C:listTableBuckets(input: types.ListTableBucketsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTableBucketsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTableBuckets as schema.OperationSchema, input, options) as async.Operation<types.ListTableBucketsOutput>
 end
 
-function C:listTables(input: types.ListTablesInput, options: any): async.Operation<types.ListTablesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTables, input, options) as async.Operation<types.ListTablesOutput>
+function C:listTables(input: types.ListTablesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTablesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTables as schema.OperationSchema, input, options) as async.Operation<types.ListTablesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putTableBucketEncryption(input: types.PutTableBucketEncryptionInput, options: any): async.Operation<types.PutTableBucketEncryptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutTableBucketEncryption, input, options) as async.Operation<types.PutTableBucketEncryptionOutput>
+function C:putTableBucketEncryption(input: types.PutTableBucketEncryptionInput, options?: base_client.InvokeOptions): async.Operation<types.PutTableBucketEncryptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutTableBucketEncryption as schema.OperationSchema, input, options) as async.Operation<types.PutTableBucketEncryptionOutput>
 end
 
-function C:putTableBucketMaintenanceConfiguration(input: types.PutTableBucketMaintenanceConfigurationInput, options: any): async.Operation<types.PutTableBucketMaintenanceConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutTableBucketMaintenanceConfiguration, input, options) as async.Operation<types.PutTableBucketMaintenanceConfigurationOutput>
+function C:putTableBucketMaintenanceConfiguration(input: types.PutTableBucketMaintenanceConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutTableBucketMaintenanceConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutTableBucketMaintenanceConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutTableBucketMaintenanceConfigurationOutput>
 end
 
-function C:putTableBucketMetricsConfiguration(input: types.PutTableBucketMetricsConfigurationInput, options: any): async.Operation<types.PutTableBucketMetricsConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutTableBucketMetricsConfiguration, input, options) as async.Operation<types.PutTableBucketMetricsConfigurationOutput>
+function C:putTableBucketMetricsConfiguration(input: types.PutTableBucketMetricsConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutTableBucketMetricsConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutTableBucketMetricsConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutTableBucketMetricsConfigurationOutput>
 end
 
-function C:putTableBucketPolicy(input: types.PutTableBucketPolicyInput, options: any): async.Operation<types.PutTableBucketPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutTableBucketPolicy, input, options) as async.Operation<types.PutTableBucketPolicyOutput>
+function C:putTableBucketPolicy(input: types.PutTableBucketPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutTableBucketPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutTableBucketPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutTableBucketPolicyOutput>
 end
 
-function C:putTableBucketReplication(input: types.PutTableBucketReplicationInput, options: any): async.Operation<types.PutTableBucketReplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutTableBucketReplication, input, options) as async.Operation<types.PutTableBucketReplicationOutput>
+function C:putTableBucketReplication(input: types.PutTableBucketReplicationInput, options?: base_client.InvokeOptions): async.Operation<types.PutTableBucketReplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutTableBucketReplication as schema.OperationSchema, input, options) as async.Operation<types.PutTableBucketReplicationOutput>
 end
 
-function C:putTableBucketStorageClass(input: types.PutTableBucketStorageClassInput, options: any): async.Operation<types.PutTableBucketStorageClassOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutTableBucketStorageClass, input, options) as async.Operation<types.PutTableBucketStorageClassOutput>
+function C:putTableBucketStorageClass(input: types.PutTableBucketStorageClassInput, options?: base_client.InvokeOptions): async.Operation<types.PutTableBucketStorageClassOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutTableBucketStorageClass as schema.OperationSchema, input, options) as async.Operation<types.PutTableBucketStorageClassOutput>
 end
 
-function C:putTableMaintenanceConfiguration(input: types.PutTableMaintenanceConfigurationInput, options: any): async.Operation<types.PutTableMaintenanceConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutTableMaintenanceConfiguration, input, options) as async.Operation<types.PutTableMaintenanceConfigurationOutput>
+function C:putTableMaintenanceConfiguration(input: types.PutTableMaintenanceConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutTableMaintenanceConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutTableMaintenanceConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutTableMaintenanceConfigurationOutput>
 end
 
-function C:putTablePolicy(input: types.PutTablePolicyInput, options: any): async.Operation<types.PutTablePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutTablePolicy, input, options) as async.Operation<types.PutTablePolicyOutput>
+function C:putTablePolicy(input: types.PutTablePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutTablePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutTablePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutTablePolicyOutput>
 end
 
-function C:putTableRecordExpirationConfiguration(input: types.PutTableRecordExpirationConfigurationInput, options: any): async.Operation<types.PutTableRecordExpirationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutTableRecordExpirationConfiguration, input, options) as async.Operation<types.PutTableRecordExpirationConfigurationOutput>
+function C:putTableRecordExpirationConfiguration(input: types.PutTableRecordExpirationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutTableRecordExpirationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutTableRecordExpirationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutTableRecordExpirationConfigurationOutput>
 end
 
-function C:putTableReplication(input: types.PutTableReplicationInput, options: any): async.Operation<types.PutTableReplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutTableReplication, input, options) as async.Operation<types.PutTableReplicationOutput>
+function C:putTableReplication(input: types.PutTableReplicationInput, options?: base_client.InvokeOptions): async.Operation<types.PutTableReplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutTableReplication as schema.OperationSchema, input, options) as async.Operation<types.PutTableReplicationOutput>
 end
 
-function C:renameTable(input: types.RenameTableInput, options: any): async.Operation<types.RenameTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.RenameTable, input, options) as async.Operation<types.RenameTableOutput>
+function C:renameTable(input: types.RenameTableInput, options?: base_client.InvokeOptions): async.Operation<types.RenameTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RenameTable as schema.OperationSchema, input, options) as async.Operation<types.RenameTableOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateTableMetadataLocation(input: types.UpdateTableMetadataLocationInput, options: any): async.Operation<types.UpdateTableMetadataLocationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTableMetadataLocation, input, options) as async.Operation<types.UpdateTableMetadataLocationOutput>
+function C:updateTableMetadataLocation(input: types.UpdateTableMetadataLocationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTableMetadataLocationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTableMetadataLocation as schema.OperationSchema, input, options) as async.Operation<types.UpdateTableMetadataLocationOutput>
 end
 
 return M

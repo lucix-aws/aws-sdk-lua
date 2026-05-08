@@ -8,93 +8,96 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("kms.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("kms.schemas")
 local traits = require("smithy.traits")
 local types = require("kms.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    cancelKeyDeletion: function(Client, types.CancelKeyDeletionInput, any): async.Operation<types.CancelKeyDeletionOutput>
-    connectCustomKeyStore: function(Client, types.ConnectCustomKeyStoreInput, any): async.Operation<types.ConnectCustomKeyStoreOutput>
-    createAlias: function(Client, types.CreateAliasInput, any): async.Operation<types.CreateAliasOutput>
-    createCustomKeyStore: function(Client, types.CreateCustomKeyStoreInput, any): async.Operation<types.CreateCustomKeyStoreOutput>
-    createGrant: function(Client, types.CreateGrantInput, any): async.Operation<types.CreateGrantOutput>
-    createKey: function(Client, types.CreateKeyInput, any): async.Operation<types.CreateKeyOutput>
-    decrypt: function(Client, types.DecryptInput, any): async.Operation<types.DecryptOutput>
-    deleteAlias: function(Client, types.DeleteAliasInput, any): async.Operation<types.DeleteAliasOutput>
-    deleteCustomKeyStore: function(Client, types.DeleteCustomKeyStoreInput, any): async.Operation<types.DeleteCustomKeyStoreOutput>
-    deleteImportedKeyMaterial: function(Client, types.DeleteImportedKeyMaterialInput, any): async.Operation<types.DeleteImportedKeyMaterialOutput>
-    deriveSharedSecret: function(Client, types.DeriveSharedSecretInput, any): async.Operation<types.DeriveSharedSecretOutput>
-    describeCustomKeyStores: function(Client, types.DescribeCustomKeyStoresInput, any): async.Operation<types.DescribeCustomKeyStoresOutput>
-    describeKey: function(Client, types.DescribeKeyInput, any): async.Operation<types.DescribeKeyOutput>
-    disableKey: function(Client, types.DisableKeyInput, any): async.Operation<types.DisableKeyOutput>
-    disableKeyRotation: function(Client, types.DisableKeyRotationInput, any): async.Operation<types.DisableKeyRotationOutput>
-    disconnectCustomKeyStore: function(Client, types.DisconnectCustomKeyStoreInput, any): async.Operation<types.DisconnectCustomKeyStoreOutput>
-    enableKey: function(Client, types.EnableKeyInput, any): async.Operation<types.EnableKeyOutput>
-    enableKeyRotation: function(Client, types.EnableKeyRotationInput, any): async.Operation<types.EnableKeyRotationOutput>
-    encrypt: function(Client, types.EncryptInput, any): async.Operation<types.EncryptOutput>
-    generateDataKey: function(Client, types.GenerateDataKeyInput, any): async.Operation<types.GenerateDataKeyOutput>
-    generateDataKeyPair: function(Client, types.GenerateDataKeyPairInput, any): async.Operation<types.GenerateDataKeyPairOutput>
-    generateDataKeyPairWithoutPlaintext: function(Client, types.GenerateDataKeyPairWithoutPlaintextInput, any): async.Operation<types.GenerateDataKeyPairWithoutPlaintextOutput>
-    generateDataKeyWithoutPlaintext: function(Client, types.GenerateDataKeyWithoutPlaintextInput, any): async.Operation<types.GenerateDataKeyWithoutPlaintextOutput>
-    generateMac: function(Client, types.GenerateMacInput, any): async.Operation<types.GenerateMacOutput>
-    generateRandom: function(Client, types.GenerateRandomInput, any): async.Operation<types.GenerateRandomOutput>
-    getKeyLastUsage: function(Client, types.GetKeyLastUsageInput, any): async.Operation<types.GetKeyLastUsageOutput>
-    getKeyPolicy: function(Client, types.GetKeyPolicyInput, any): async.Operation<types.GetKeyPolicyOutput>
-    getKeyRotationStatus: function(Client, types.GetKeyRotationStatusInput, any): async.Operation<types.GetKeyRotationStatusOutput>
-    getParametersForImport: function(Client, types.GetParametersForImportInput, any): async.Operation<types.GetParametersForImportOutput>
-    getPublicKey: function(Client, types.GetPublicKeyInput, any): async.Operation<types.GetPublicKeyOutput>
-    importKeyMaterial: function(Client, types.ImportKeyMaterialInput, any): async.Operation<types.ImportKeyMaterialOutput>
-    listAliases: function(Client, types.ListAliasesInput, any): async.Operation<types.ListAliasesOutput>
-    listGrants: function(Client, types.ListGrantsInput, any): async.Operation<types.ListGrantsOutput>
-    listKeyPolicies: function(Client, types.ListKeyPoliciesInput, any): async.Operation<types.ListKeyPoliciesOutput>
-    listKeyRotations: function(Client, types.ListKeyRotationsInput, any): async.Operation<types.ListKeyRotationsOutput>
-    listKeys: function(Client, types.ListKeysInput, any): async.Operation<types.ListKeysOutput>
-    listResourceTags: function(Client, types.ListResourceTagsInput, any): async.Operation<types.ListResourceTagsOutput>
-    listRetirableGrants: function(Client, types.ListRetirableGrantsInput, any): async.Operation<types.ListRetirableGrantsOutput>
-    putKeyPolicy: function(Client, types.PutKeyPolicyInput, any): async.Operation<types.PutKeyPolicyOutput>
-    reEncrypt: function(Client, types.ReEncryptInput, any): async.Operation<types.ReEncryptOutput>
-    replicateKey: function(Client, types.ReplicateKeyInput, any): async.Operation<types.ReplicateKeyOutput>
-    retireGrant: function(Client, types.RetireGrantInput, any): async.Operation<types.RetireGrantOutput>
-    revokeGrant: function(Client, types.RevokeGrantInput, any): async.Operation<types.RevokeGrantOutput>
-    rotateKeyOnDemand: function(Client, types.RotateKeyOnDemandInput, any): async.Operation<types.RotateKeyOnDemandOutput>
-    scheduleKeyDeletion: function(Client, types.ScheduleKeyDeletionInput, any): async.Operation<types.ScheduleKeyDeletionOutput>
-    sign: function(Client, types.SignInput, any): async.Operation<types.SignOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAlias: function(Client, types.UpdateAliasInput, any): async.Operation<types.UpdateAliasOutput>
-    updateCustomKeyStore: function(Client, types.UpdateCustomKeyStoreInput, any): async.Operation<types.UpdateCustomKeyStoreOutput>
-    updateKeyDescription: function(Client, types.UpdateKeyDescriptionInput, any): async.Operation<types.UpdateKeyDescriptionOutput>
-    updatePrimaryRegion: function(Client, types.UpdatePrimaryRegionInput, any): async.Operation<types.UpdatePrimaryRegionOutput>
-    verify: function(Client, types.VerifyInput, any): async.Operation<types.VerifyOutput>
-    verifyMac: function(Client, types.VerifyMacInput, any): async.Operation<types.VerifyMacOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    cancelKeyDeletion: function(Client, types.CancelKeyDeletionInput, ? base_client.InvokeOptions): async.Operation<types.CancelKeyDeletionOutput>
+    connectCustomKeyStore: function(Client, types.ConnectCustomKeyStoreInput, ? base_client.InvokeOptions): async.Operation<types.ConnectCustomKeyStoreOutput>
+    createAlias: function(Client, types.CreateAliasInput, ? base_client.InvokeOptions): async.Operation<types.CreateAliasOutput>
+    createCustomKeyStore: function(Client, types.CreateCustomKeyStoreInput, ? base_client.InvokeOptions): async.Operation<types.CreateCustomKeyStoreOutput>
+    createGrant: function(Client, types.CreateGrantInput, ? base_client.InvokeOptions): async.Operation<types.CreateGrantOutput>
+    createKey: function(Client, types.CreateKeyInput, ? base_client.InvokeOptions): async.Operation<types.CreateKeyOutput>
+    decrypt: function(Client, types.DecryptInput, ? base_client.InvokeOptions): async.Operation<types.DecryptOutput>
+    deleteAlias: function(Client, types.DeleteAliasInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAliasOutput>
+    deleteCustomKeyStore: function(Client, types.DeleteCustomKeyStoreInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCustomKeyStoreOutput>
+    deleteImportedKeyMaterial: function(Client, types.DeleteImportedKeyMaterialInput, ? base_client.InvokeOptions): async.Operation<types.DeleteImportedKeyMaterialOutput>
+    deriveSharedSecret: function(Client, types.DeriveSharedSecretInput, ? base_client.InvokeOptions): async.Operation<types.DeriveSharedSecretOutput>
+    describeCustomKeyStores: function(Client, types.DescribeCustomKeyStoresInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCustomKeyStoresOutput>
+    describeKey: function(Client, types.DescribeKeyInput, ? base_client.InvokeOptions): async.Operation<types.DescribeKeyOutput>
+    disableKey: function(Client, types.DisableKeyInput, ? base_client.InvokeOptions): async.Operation<types.DisableKeyOutput>
+    disableKeyRotation: function(Client, types.DisableKeyRotationInput, ? base_client.InvokeOptions): async.Operation<types.DisableKeyRotationOutput>
+    disconnectCustomKeyStore: function(Client, types.DisconnectCustomKeyStoreInput, ? base_client.InvokeOptions): async.Operation<types.DisconnectCustomKeyStoreOutput>
+    enableKey: function(Client, types.EnableKeyInput, ? base_client.InvokeOptions): async.Operation<types.EnableKeyOutput>
+    enableKeyRotation: function(Client, types.EnableKeyRotationInput, ? base_client.InvokeOptions): async.Operation<types.EnableKeyRotationOutput>
+    encrypt: function(Client, types.EncryptInput, ? base_client.InvokeOptions): async.Operation<types.EncryptOutput>
+    generateDataKey: function(Client, types.GenerateDataKeyInput, ? base_client.InvokeOptions): async.Operation<types.GenerateDataKeyOutput>
+    generateDataKeyPair: function(Client, types.GenerateDataKeyPairInput, ? base_client.InvokeOptions): async.Operation<types.GenerateDataKeyPairOutput>
+    generateDataKeyPairWithoutPlaintext: function(Client, types.GenerateDataKeyPairWithoutPlaintextInput, ? base_client.InvokeOptions): async.Operation<types.GenerateDataKeyPairWithoutPlaintextOutput>
+    generateDataKeyWithoutPlaintext: function(Client, types.GenerateDataKeyWithoutPlaintextInput, ? base_client.InvokeOptions): async.Operation<types.GenerateDataKeyWithoutPlaintextOutput>
+    generateMac: function(Client, types.GenerateMacInput, ? base_client.InvokeOptions): async.Operation<types.GenerateMacOutput>
+    generateRandom: function(Client, types.GenerateRandomInput, ? base_client.InvokeOptions): async.Operation<types.GenerateRandomOutput>
+    getKeyLastUsage: function(Client, types.GetKeyLastUsageInput, ? base_client.InvokeOptions): async.Operation<types.GetKeyLastUsageOutput>
+    getKeyPolicy: function(Client, types.GetKeyPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetKeyPolicyOutput>
+    getKeyRotationStatus: function(Client, types.GetKeyRotationStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetKeyRotationStatusOutput>
+    getParametersForImport: function(Client, types.GetParametersForImportInput, ? base_client.InvokeOptions): async.Operation<types.GetParametersForImportOutput>
+    getPublicKey: function(Client, types.GetPublicKeyInput, ? base_client.InvokeOptions): async.Operation<types.GetPublicKeyOutput>
+    importKeyMaterial: function(Client, types.ImportKeyMaterialInput, ? base_client.InvokeOptions): async.Operation<types.ImportKeyMaterialOutput>
+    listAliases: function(Client, types.ListAliasesInput, ? base_client.InvokeOptions): async.Operation<types.ListAliasesOutput>
+    listGrants: function(Client, types.ListGrantsInput, ? base_client.InvokeOptions): async.Operation<types.ListGrantsOutput>
+    listKeyPolicies: function(Client, types.ListKeyPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListKeyPoliciesOutput>
+    listKeyRotations: function(Client, types.ListKeyRotationsInput, ? base_client.InvokeOptions): async.Operation<types.ListKeyRotationsOutput>
+    listKeys: function(Client, types.ListKeysInput, ? base_client.InvokeOptions): async.Operation<types.ListKeysOutput>
+    listResourceTags: function(Client, types.ListResourceTagsInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceTagsOutput>
+    listRetirableGrants: function(Client, types.ListRetirableGrantsInput, ? base_client.InvokeOptions): async.Operation<types.ListRetirableGrantsOutput>
+    putKeyPolicy: function(Client, types.PutKeyPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutKeyPolicyOutput>
+    reEncrypt: function(Client, types.ReEncryptInput, ? base_client.InvokeOptions): async.Operation<types.ReEncryptOutput>
+    replicateKey: function(Client, types.ReplicateKeyInput, ? base_client.InvokeOptions): async.Operation<types.ReplicateKeyOutput>
+    retireGrant: function(Client, types.RetireGrantInput, ? base_client.InvokeOptions): async.Operation<types.RetireGrantOutput>
+    revokeGrant: function(Client, types.RevokeGrantInput, ? base_client.InvokeOptions): async.Operation<types.RevokeGrantOutput>
+    rotateKeyOnDemand: function(Client, types.RotateKeyOnDemandInput, ? base_client.InvokeOptions): async.Operation<types.RotateKeyOnDemandOutput>
+    scheduleKeyDeletion: function(Client, types.ScheduleKeyDeletionInput, ? base_client.InvokeOptions): async.Operation<types.ScheduleKeyDeletionOutput>
+    sign: function(Client, types.SignInput, ? base_client.InvokeOptions): async.Operation<types.SignOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAlias: function(Client, types.UpdateAliasInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAliasOutput>
+    updateCustomKeyStore: function(Client, types.UpdateCustomKeyStoreInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCustomKeyStoreOutput>
+    updateKeyDescription: function(Client, types.UpdateKeyDescriptionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateKeyDescriptionOutput>
+    updatePrimaryRegion: function(Client, types.UpdatePrimaryRegionInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePrimaryRegionOutput>
+    verify: function(Client, types.VerifyInput, ? base_client.InvokeOptions): async.Operation<types.VerifyOutput>
+    verifyMac: function(Client, types.VerifyMacInput, ? base_client.InvokeOptions): async.Operation<types.VerifyMacOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "TrentService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "kms", signing_region = c.region } }
                 else
@@ -113,220 +116,220 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:cancelKeyDeletion(input: types.CancelKeyDeletionInput, options: any): async.Operation<types.CancelKeyDeletionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelKeyDeletion, input, options) as async.Operation<types.CancelKeyDeletionOutput>
+function C:cancelKeyDeletion(input: types.CancelKeyDeletionInput, options?: base_client.InvokeOptions): async.Operation<types.CancelKeyDeletionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelKeyDeletion as schema.OperationSchema, input, options) as async.Operation<types.CancelKeyDeletionOutput>
 end
 
-function C:connectCustomKeyStore(input: types.ConnectCustomKeyStoreInput, options: any): async.Operation<types.ConnectCustomKeyStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.ConnectCustomKeyStore, input, options) as async.Operation<types.ConnectCustomKeyStoreOutput>
+function C:connectCustomKeyStore(input: types.ConnectCustomKeyStoreInput, options?: base_client.InvokeOptions): async.Operation<types.ConnectCustomKeyStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ConnectCustomKeyStore as schema.OperationSchema, input, options) as async.Operation<types.ConnectCustomKeyStoreOutput>
 end
 
-function C:createAlias(input: types.CreateAliasInput, options: any): async.Operation<types.CreateAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAlias, input, options) as async.Operation<types.CreateAliasOutput>
+function C:createAlias(input: types.CreateAliasInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAlias as schema.OperationSchema, input, options) as async.Operation<types.CreateAliasOutput>
 end
 
-function C:createCustomKeyStore(input: types.CreateCustomKeyStoreInput, options: any): async.Operation<types.CreateCustomKeyStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCustomKeyStore, input, options) as async.Operation<types.CreateCustomKeyStoreOutput>
+function C:createCustomKeyStore(input: types.CreateCustomKeyStoreInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCustomKeyStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCustomKeyStore as schema.OperationSchema, input, options) as async.Operation<types.CreateCustomKeyStoreOutput>
 end
 
-function C:createGrant(input: types.CreateGrantInput, options: any): async.Operation<types.CreateGrantOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateGrant, input, options) as async.Operation<types.CreateGrantOutput>
+function C:createGrant(input: types.CreateGrantInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGrantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGrant as schema.OperationSchema, input, options) as async.Operation<types.CreateGrantOutput>
 end
 
-function C:createKey(input: types.CreateKeyInput, options: any): async.Operation<types.CreateKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateKey, input, options) as async.Operation<types.CreateKeyOutput>
+function C:createKey(input: types.CreateKeyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateKey as schema.OperationSchema, input, options) as async.Operation<types.CreateKeyOutput>
 end
 
-function C:decrypt(input: types.DecryptInput, options: any): async.Operation<types.DecryptOutput>
-    return self:invokeOperation(schemas.Service, schemas.Decrypt, input, options) as async.Operation<types.DecryptOutput>
+function C:decrypt(input: types.DecryptInput, options?: base_client.InvokeOptions): async.Operation<types.DecryptOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Decrypt as schema.OperationSchema, input, options) as async.Operation<types.DecryptOutput>
 end
 
-function C:deleteAlias(input: types.DeleteAliasInput, options: any): async.Operation<types.DeleteAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAlias, input, options) as async.Operation<types.DeleteAliasOutput>
+function C:deleteAlias(input: types.DeleteAliasInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAlias as schema.OperationSchema, input, options) as async.Operation<types.DeleteAliasOutput>
 end
 
-function C:deleteCustomKeyStore(input: types.DeleteCustomKeyStoreInput, options: any): async.Operation<types.DeleteCustomKeyStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCustomKeyStore, input, options) as async.Operation<types.DeleteCustomKeyStoreOutput>
+function C:deleteCustomKeyStore(input: types.DeleteCustomKeyStoreInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCustomKeyStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCustomKeyStore as schema.OperationSchema, input, options) as async.Operation<types.DeleteCustomKeyStoreOutput>
 end
 
-function C:deleteImportedKeyMaterial(input: types.DeleteImportedKeyMaterialInput, options: any): async.Operation<types.DeleteImportedKeyMaterialOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteImportedKeyMaterial, input, options) as async.Operation<types.DeleteImportedKeyMaterialOutput>
+function C:deleteImportedKeyMaterial(input: types.DeleteImportedKeyMaterialInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteImportedKeyMaterialOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteImportedKeyMaterial as schema.OperationSchema, input, options) as async.Operation<types.DeleteImportedKeyMaterialOutput>
 end
 
-function C:deriveSharedSecret(input: types.DeriveSharedSecretInput, options: any): async.Operation<types.DeriveSharedSecretOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeriveSharedSecret, input, options) as async.Operation<types.DeriveSharedSecretOutput>
+function C:deriveSharedSecret(input: types.DeriveSharedSecretInput, options?: base_client.InvokeOptions): async.Operation<types.DeriveSharedSecretOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeriveSharedSecret as schema.OperationSchema, input, options) as async.Operation<types.DeriveSharedSecretOutput>
 end
 
-function C:describeCustomKeyStores(input: types.DescribeCustomKeyStoresInput, options: any): async.Operation<types.DescribeCustomKeyStoresOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCustomKeyStores, input, options) as async.Operation<types.DescribeCustomKeyStoresOutput>
+function C:describeCustomKeyStores(input: types.DescribeCustomKeyStoresInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCustomKeyStoresOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCustomKeyStores as schema.OperationSchema, input, options) as async.Operation<types.DescribeCustomKeyStoresOutput>
 end
 
-function C:describeKey(input: types.DescribeKeyInput, options: any): async.Operation<types.DescribeKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeKey, input, options) as async.Operation<types.DescribeKeyOutput>
+function C:describeKey(input: types.DescribeKeyInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeKey as schema.OperationSchema, input, options) as async.Operation<types.DescribeKeyOutput>
 end
 
-function C:disableKey(input: types.DisableKeyInput, options: any): async.Operation<types.DisableKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableKey, input, options) as async.Operation<types.DisableKeyOutput>
+function C:disableKey(input: types.DisableKeyInput, options?: base_client.InvokeOptions): async.Operation<types.DisableKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableKey as schema.OperationSchema, input, options) as async.Operation<types.DisableKeyOutput>
 end
 
-function C:disableKeyRotation(input: types.DisableKeyRotationInput, options: any): async.Operation<types.DisableKeyRotationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableKeyRotation, input, options) as async.Operation<types.DisableKeyRotationOutput>
+function C:disableKeyRotation(input: types.DisableKeyRotationInput, options?: base_client.InvokeOptions): async.Operation<types.DisableKeyRotationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableKeyRotation as schema.OperationSchema, input, options) as async.Operation<types.DisableKeyRotationOutput>
 end
 
-function C:disconnectCustomKeyStore(input: types.DisconnectCustomKeyStoreInput, options: any): async.Operation<types.DisconnectCustomKeyStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisconnectCustomKeyStore, input, options) as async.Operation<types.DisconnectCustomKeyStoreOutput>
+function C:disconnectCustomKeyStore(input: types.DisconnectCustomKeyStoreInput, options?: base_client.InvokeOptions): async.Operation<types.DisconnectCustomKeyStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisconnectCustomKeyStore as schema.OperationSchema, input, options) as async.Operation<types.DisconnectCustomKeyStoreOutput>
 end
 
-function C:enableKey(input: types.EnableKeyInput, options: any): async.Operation<types.EnableKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableKey, input, options) as async.Operation<types.EnableKeyOutput>
+function C:enableKey(input: types.EnableKeyInput, options?: base_client.InvokeOptions): async.Operation<types.EnableKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableKey as schema.OperationSchema, input, options) as async.Operation<types.EnableKeyOutput>
 end
 
-function C:enableKeyRotation(input: types.EnableKeyRotationInput, options: any): async.Operation<types.EnableKeyRotationOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableKeyRotation, input, options) as async.Operation<types.EnableKeyRotationOutput>
+function C:enableKeyRotation(input: types.EnableKeyRotationInput, options?: base_client.InvokeOptions): async.Operation<types.EnableKeyRotationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableKeyRotation as schema.OperationSchema, input, options) as async.Operation<types.EnableKeyRotationOutput>
 end
 
-function C:encrypt(input: types.EncryptInput, options: any): async.Operation<types.EncryptOutput>
-    return self:invokeOperation(schemas.Service, schemas.Encrypt, input, options) as async.Operation<types.EncryptOutput>
+function C:encrypt(input: types.EncryptInput, options?: base_client.InvokeOptions): async.Operation<types.EncryptOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Encrypt as schema.OperationSchema, input, options) as async.Operation<types.EncryptOutput>
 end
 
-function C:generateDataKey(input: types.GenerateDataKeyInput, options: any): async.Operation<types.GenerateDataKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GenerateDataKey, input, options) as async.Operation<types.GenerateDataKeyOutput>
+function C:generateDataKey(input: types.GenerateDataKeyInput, options?: base_client.InvokeOptions): async.Operation<types.GenerateDataKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GenerateDataKey as schema.OperationSchema, input, options) as async.Operation<types.GenerateDataKeyOutput>
 end
 
-function C:generateDataKeyPair(input: types.GenerateDataKeyPairInput, options: any): async.Operation<types.GenerateDataKeyPairOutput>
-    return self:invokeOperation(schemas.Service, schemas.GenerateDataKeyPair, input, options) as async.Operation<types.GenerateDataKeyPairOutput>
+function C:generateDataKeyPair(input: types.GenerateDataKeyPairInput, options?: base_client.InvokeOptions): async.Operation<types.GenerateDataKeyPairOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GenerateDataKeyPair as schema.OperationSchema, input, options) as async.Operation<types.GenerateDataKeyPairOutput>
 end
 
-function C:generateDataKeyPairWithoutPlaintext(input: types.GenerateDataKeyPairWithoutPlaintextInput, options: any): async.Operation<types.GenerateDataKeyPairWithoutPlaintextOutput>
-    return self:invokeOperation(schemas.Service, schemas.GenerateDataKeyPairWithoutPlaintext, input, options) as async.Operation<types.GenerateDataKeyPairWithoutPlaintextOutput>
+function C:generateDataKeyPairWithoutPlaintext(input: types.GenerateDataKeyPairWithoutPlaintextInput, options?: base_client.InvokeOptions): async.Operation<types.GenerateDataKeyPairWithoutPlaintextOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GenerateDataKeyPairWithoutPlaintext as schema.OperationSchema, input, options) as async.Operation<types.GenerateDataKeyPairWithoutPlaintextOutput>
 end
 
-function C:generateDataKeyWithoutPlaintext(input: types.GenerateDataKeyWithoutPlaintextInput, options: any): async.Operation<types.GenerateDataKeyWithoutPlaintextOutput>
-    return self:invokeOperation(schemas.Service, schemas.GenerateDataKeyWithoutPlaintext, input, options) as async.Operation<types.GenerateDataKeyWithoutPlaintextOutput>
+function C:generateDataKeyWithoutPlaintext(input: types.GenerateDataKeyWithoutPlaintextInput, options?: base_client.InvokeOptions): async.Operation<types.GenerateDataKeyWithoutPlaintextOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GenerateDataKeyWithoutPlaintext as schema.OperationSchema, input, options) as async.Operation<types.GenerateDataKeyWithoutPlaintextOutput>
 end
 
-function C:generateMac(input: types.GenerateMacInput, options: any): async.Operation<types.GenerateMacOutput>
-    return self:invokeOperation(schemas.Service, schemas.GenerateMac, input, options) as async.Operation<types.GenerateMacOutput>
+function C:generateMac(input: types.GenerateMacInput, options?: base_client.InvokeOptions): async.Operation<types.GenerateMacOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GenerateMac as schema.OperationSchema, input, options) as async.Operation<types.GenerateMacOutput>
 end
 
-function C:generateRandom(input: types.GenerateRandomInput, options: any): async.Operation<types.GenerateRandomOutput>
-    return self:invokeOperation(schemas.Service, schemas.GenerateRandom, input, options) as async.Operation<types.GenerateRandomOutput>
+function C:generateRandom(input: types.GenerateRandomInput, options?: base_client.InvokeOptions): async.Operation<types.GenerateRandomOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GenerateRandom as schema.OperationSchema, input, options) as async.Operation<types.GenerateRandomOutput>
 end
 
-function C:getKeyLastUsage(input: types.GetKeyLastUsageInput, options: any): async.Operation<types.GetKeyLastUsageOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetKeyLastUsage, input, options) as async.Operation<types.GetKeyLastUsageOutput>
+function C:getKeyLastUsage(input: types.GetKeyLastUsageInput, options?: base_client.InvokeOptions): async.Operation<types.GetKeyLastUsageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetKeyLastUsage as schema.OperationSchema, input, options) as async.Operation<types.GetKeyLastUsageOutput>
 end
 
-function C:getKeyPolicy(input: types.GetKeyPolicyInput, options: any): async.Operation<types.GetKeyPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetKeyPolicy, input, options) as async.Operation<types.GetKeyPolicyOutput>
+function C:getKeyPolicy(input: types.GetKeyPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetKeyPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetKeyPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetKeyPolicyOutput>
 end
 
-function C:getKeyRotationStatus(input: types.GetKeyRotationStatusInput, options: any): async.Operation<types.GetKeyRotationStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetKeyRotationStatus, input, options) as async.Operation<types.GetKeyRotationStatusOutput>
+function C:getKeyRotationStatus(input: types.GetKeyRotationStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetKeyRotationStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetKeyRotationStatus as schema.OperationSchema, input, options) as async.Operation<types.GetKeyRotationStatusOutput>
 end
 
-function C:getParametersForImport(input: types.GetParametersForImportInput, options: any): async.Operation<types.GetParametersForImportOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetParametersForImport, input, options) as async.Operation<types.GetParametersForImportOutput>
+function C:getParametersForImport(input: types.GetParametersForImportInput, options?: base_client.InvokeOptions): async.Operation<types.GetParametersForImportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetParametersForImport as schema.OperationSchema, input, options) as async.Operation<types.GetParametersForImportOutput>
 end
 
-function C:getPublicKey(input: types.GetPublicKeyInput, options: any): async.Operation<types.GetPublicKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPublicKey, input, options) as async.Operation<types.GetPublicKeyOutput>
+function C:getPublicKey(input: types.GetPublicKeyInput, options?: base_client.InvokeOptions): async.Operation<types.GetPublicKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPublicKey as schema.OperationSchema, input, options) as async.Operation<types.GetPublicKeyOutput>
 end
 
-function C:importKeyMaterial(input: types.ImportKeyMaterialInput, options: any): async.Operation<types.ImportKeyMaterialOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportKeyMaterial, input, options) as async.Operation<types.ImportKeyMaterialOutput>
+function C:importKeyMaterial(input: types.ImportKeyMaterialInput, options?: base_client.InvokeOptions): async.Operation<types.ImportKeyMaterialOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportKeyMaterial as schema.OperationSchema, input, options) as async.Operation<types.ImportKeyMaterialOutput>
 end
 
-function C:listAliases(input: types.ListAliasesInput, options: any): async.Operation<types.ListAliasesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAliases, input, options) as async.Operation<types.ListAliasesOutput>
+function C:listAliases(input: types.ListAliasesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAliasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAliases as schema.OperationSchema, input, options) as async.Operation<types.ListAliasesOutput>
 end
 
-function C:listGrants(input: types.ListGrantsInput, options: any): async.Operation<types.ListGrantsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGrants, input, options) as async.Operation<types.ListGrantsOutput>
+function C:listGrants(input: types.ListGrantsInput, options?: base_client.InvokeOptions): async.Operation<types.ListGrantsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGrants as schema.OperationSchema, input, options) as async.Operation<types.ListGrantsOutput>
 end
 
-function C:listKeyPolicies(input: types.ListKeyPoliciesInput, options: any): async.Operation<types.ListKeyPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListKeyPolicies, input, options) as async.Operation<types.ListKeyPoliciesOutput>
+function C:listKeyPolicies(input: types.ListKeyPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListKeyPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListKeyPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListKeyPoliciesOutput>
 end
 
-function C:listKeyRotations(input: types.ListKeyRotationsInput, options: any): async.Operation<types.ListKeyRotationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListKeyRotations, input, options) as async.Operation<types.ListKeyRotationsOutput>
+function C:listKeyRotations(input: types.ListKeyRotationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListKeyRotationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListKeyRotations as schema.OperationSchema, input, options) as async.Operation<types.ListKeyRotationsOutput>
 end
 
-function C:listKeys(input: types.ListKeysInput, options: any): async.Operation<types.ListKeysOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListKeys, input, options) as async.Operation<types.ListKeysOutput>
+function C:listKeys(input: types.ListKeysInput, options?: base_client.InvokeOptions): async.Operation<types.ListKeysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListKeys as schema.OperationSchema, input, options) as async.Operation<types.ListKeysOutput>
 end
 
-function C:listResourceTags(input: types.ListResourceTagsInput, options: any): async.Operation<types.ListResourceTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResourceTags, input, options) as async.Operation<types.ListResourceTagsOutput>
+function C:listResourceTags(input: types.ListResourceTagsInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourceTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourceTags as schema.OperationSchema, input, options) as async.Operation<types.ListResourceTagsOutput>
 end
 
-function C:listRetirableGrants(input: types.ListRetirableGrantsInput, options: any): async.Operation<types.ListRetirableGrantsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRetirableGrants, input, options) as async.Operation<types.ListRetirableGrantsOutput>
+function C:listRetirableGrants(input: types.ListRetirableGrantsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRetirableGrantsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRetirableGrants as schema.OperationSchema, input, options) as async.Operation<types.ListRetirableGrantsOutput>
 end
 
-function C:putKeyPolicy(input: types.PutKeyPolicyInput, options: any): async.Operation<types.PutKeyPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutKeyPolicy, input, options) as async.Operation<types.PutKeyPolicyOutput>
+function C:putKeyPolicy(input: types.PutKeyPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutKeyPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutKeyPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutKeyPolicyOutput>
 end
 
-function C:reEncrypt(input: types.ReEncryptInput, options: any): async.Operation<types.ReEncryptOutput>
-    return self:invokeOperation(schemas.Service, schemas.ReEncrypt, input, options) as async.Operation<types.ReEncryptOutput>
+function C:reEncrypt(input: types.ReEncryptInput, options?: base_client.InvokeOptions): async.Operation<types.ReEncryptOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReEncrypt as schema.OperationSchema, input, options) as async.Operation<types.ReEncryptOutput>
 end
 
-function C:replicateKey(input: types.ReplicateKeyInput, options: any): async.Operation<types.ReplicateKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.ReplicateKey, input, options) as async.Operation<types.ReplicateKeyOutput>
+function C:replicateKey(input: types.ReplicateKeyInput, options?: base_client.InvokeOptions): async.Operation<types.ReplicateKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReplicateKey as schema.OperationSchema, input, options) as async.Operation<types.ReplicateKeyOutput>
 end
 
-function C:retireGrant(input: types.RetireGrantInput, options: any): async.Operation<types.RetireGrantOutput>
-    return self:invokeOperation(schemas.Service, schemas.RetireGrant, input, options) as async.Operation<types.RetireGrantOutput>
+function C:retireGrant(input: types.RetireGrantInput, options?: base_client.InvokeOptions): async.Operation<types.RetireGrantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RetireGrant as schema.OperationSchema, input, options) as async.Operation<types.RetireGrantOutput>
 end
 
-function C:revokeGrant(input: types.RevokeGrantInput, options: any): async.Operation<types.RevokeGrantOutput>
-    return self:invokeOperation(schemas.Service, schemas.RevokeGrant, input, options) as async.Operation<types.RevokeGrantOutput>
+function C:revokeGrant(input: types.RevokeGrantInput, options?: base_client.InvokeOptions): async.Operation<types.RevokeGrantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RevokeGrant as schema.OperationSchema, input, options) as async.Operation<types.RevokeGrantOutput>
 end
 
-function C:rotateKeyOnDemand(input: types.RotateKeyOnDemandInput, options: any): async.Operation<types.RotateKeyOnDemandOutput>
-    return self:invokeOperation(schemas.Service, schemas.RotateKeyOnDemand, input, options) as async.Operation<types.RotateKeyOnDemandOutput>
+function C:rotateKeyOnDemand(input: types.RotateKeyOnDemandInput, options?: base_client.InvokeOptions): async.Operation<types.RotateKeyOnDemandOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RotateKeyOnDemand as schema.OperationSchema, input, options) as async.Operation<types.RotateKeyOnDemandOutput>
 end
 
-function C:scheduleKeyDeletion(input: types.ScheduleKeyDeletionInput, options: any): async.Operation<types.ScheduleKeyDeletionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ScheduleKeyDeletion, input, options) as async.Operation<types.ScheduleKeyDeletionOutput>
+function C:scheduleKeyDeletion(input: types.ScheduleKeyDeletionInput, options?: base_client.InvokeOptions): async.Operation<types.ScheduleKeyDeletionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ScheduleKeyDeletion as schema.OperationSchema, input, options) as async.Operation<types.ScheduleKeyDeletionOutput>
 end
 
-function C:sign(input: types.SignInput, options: any): async.Operation<types.SignOutput>
-    return self:invokeOperation(schemas.Service, schemas.Sign, input, options) as async.Operation<types.SignOutput>
+function C:sign(input: types.SignInput, options?: base_client.InvokeOptions): async.Operation<types.SignOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Sign as schema.OperationSchema, input, options) as async.Operation<types.SignOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAlias(input: types.UpdateAliasInput, options: any): async.Operation<types.UpdateAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAlias, input, options) as async.Operation<types.UpdateAliasOutput>
+function C:updateAlias(input: types.UpdateAliasInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAlias as schema.OperationSchema, input, options) as async.Operation<types.UpdateAliasOutput>
 end
 
-function C:updateCustomKeyStore(input: types.UpdateCustomKeyStoreInput, options: any): async.Operation<types.UpdateCustomKeyStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCustomKeyStore, input, options) as async.Operation<types.UpdateCustomKeyStoreOutput>
+function C:updateCustomKeyStore(input: types.UpdateCustomKeyStoreInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCustomKeyStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCustomKeyStore as schema.OperationSchema, input, options) as async.Operation<types.UpdateCustomKeyStoreOutput>
 end
 
-function C:updateKeyDescription(input: types.UpdateKeyDescriptionInput, options: any): async.Operation<types.UpdateKeyDescriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateKeyDescription, input, options) as async.Operation<types.UpdateKeyDescriptionOutput>
+function C:updateKeyDescription(input: types.UpdateKeyDescriptionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateKeyDescriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateKeyDescription as schema.OperationSchema, input, options) as async.Operation<types.UpdateKeyDescriptionOutput>
 end
 
-function C:updatePrimaryRegion(input: types.UpdatePrimaryRegionInput, options: any): async.Operation<types.UpdatePrimaryRegionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePrimaryRegion, input, options) as async.Operation<types.UpdatePrimaryRegionOutput>
+function C:updatePrimaryRegion(input: types.UpdatePrimaryRegionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePrimaryRegionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePrimaryRegion as schema.OperationSchema, input, options) as async.Operation<types.UpdatePrimaryRegionOutput>
 end
 
-function C:verify(input: types.VerifyInput, options: any): async.Operation<types.VerifyOutput>
-    return self:invokeOperation(schemas.Service, schemas.Verify, input, options) as async.Operation<types.VerifyOutput>
+function C:verify(input: types.VerifyInput, options?: base_client.InvokeOptions): async.Operation<types.VerifyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Verify as schema.OperationSchema, input, options) as async.Operation<types.VerifyOutput>
 end
 
-function C:verifyMac(input: types.VerifyMacInput, options: any): async.Operation<types.VerifyMacOutput>
-    return self:invokeOperation(schemas.Service, schemas.VerifyMac, input, options) as async.Operation<types.VerifyMacOutput>
+function C:verifyMac(input: types.VerifyMacInput, options?: base_client.InvokeOptions): async.Operation<types.VerifyMacOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.VerifyMac as schema.OperationSchema, input, options) as async.Operation<types.VerifyMacOutput>
 end
 
 return M

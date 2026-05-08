@@ -8,121 +8,124 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("mediaconnect.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("mediaconnect.schemas")
 local traits = require("smithy.traits")
 local types = require("mediaconnect.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    addBridgeOutputs: function(Client, types.AddBridgeOutputsInput, any): async.Operation<types.AddBridgeOutputsOutput>
-    addBridgeSources: function(Client, types.AddBridgeSourcesInput, any): async.Operation<types.AddBridgeSourcesOutput>
-    addFlowMediaStreams: function(Client, types.AddFlowMediaStreamsInput, any): async.Operation<types.AddFlowMediaStreamsOutput>
-    addFlowOutputs: function(Client, types.AddFlowOutputsInput, any): async.Operation<types.AddFlowOutputsOutput>
-    addFlowSources: function(Client, types.AddFlowSourcesInput, any): async.Operation<types.AddFlowSourcesOutput>
-    addFlowVpcInterfaces: function(Client, types.AddFlowVpcInterfacesInput, any): async.Operation<types.AddFlowVpcInterfacesOutput>
-    batchGetRouterInput: function(Client, types.BatchGetRouterInputInput, any): async.Operation<types.BatchGetRouterInputOutput>
-    batchGetRouterNetworkInterface: function(Client, types.BatchGetRouterNetworkInterfaceInput, any): async.Operation<types.BatchGetRouterNetworkInterfaceOutput>
-    batchGetRouterOutput: function(Client, types.BatchGetRouterOutputInput, any): async.Operation<types.BatchGetRouterOutputOutput>
-    createBridge: function(Client, types.CreateBridgeInput, any): async.Operation<types.CreateBridgeOutput>
-    createFlow: function(Client, types.CreateFlowInput, any): async.Operation<types.CreateFlowOutput>
-    createGateway: function(Client, types.CreateGatewayInput, any): async.Operation<types.CreateGatewayOutput>
-    createRouterInput: function(Client, types.CreateRouterInputInput, any): async.Operation<types.CreateRouterInputOutput>
-    createRouterNetworkInterface: function(Client, types.CreateRouterNetworkInterfaceInput, any): async.Operation<types.CreateRouterNetworkInterfaceOutput>
-    createRouterOutput: function(Client, types.CreateRouterOutputInput, any): async.Operation<types.CreateRouterOutputOutput>
-    deleteBridge: function(Client, types.DeleteBridgeInput, any): async.Operation<types.DeleteBridgeOutput>
-    deleteFlow: function(Client, types.DeleteFlowInput, any): async.Operation<types.DeleteFlowOutput>
-    deleteGateway: function(Client, types.DeleteGatewayInput, any): async.Operation<types.DeleteGatewayOutput>
-    deleteRouterInput: function(Client, types.DeleteRouterInputInput, any): async.Operation<types.DeleteRouterInputOutput>
-    deleteRouterNetworkInterface: function(Client, types.DeleteRouterNetworkInterfaceInput, any): async.Operation<types.DeleteRouterNetworkInterfaceOutput>
-    deleteRouterOutput: function(Client, types.DeleteRouterOutputInput, any): async.Operation<types.DeleteRouterOutputOutput>
-    deregisterGatewayInstance: function(Client, types.DeregisterGatewayInstanceInput, any): async.Operation<types.DeregisterGatewayInstanceOutput>
-    describeBridge: function(Client, types.DescribeBridgeInput, any): async.Operation<types.DescribeBridgeOutput>
-    describeFlow: function(Client, types.DescribeFlowInput, any): async.Operation<types.DescribeFlowOutput>
-    describeFlowSourceMetadata: function(Client, types.DescribeFlowSourceMetadataInput, any): async.Operation<types.DescribeFlowSourceMetadataOutput>
-    describeFlowSourceThumbnail: function(Client, types.DescribeFlowSourceThumbnailInput, any): async.Operation<types.DescribeFlowSourceThumbnailOutput>
-    describeGateway: function(Client, types.DescribeGatewayInput, any): async.Operation<types.DescribeGatewayOutput>
-    describeGatewayInstance: function(Client, types.DescribeGatewayInstanceInput, any): async.Operation<types.DescribeGatewayInstanceOutput>
-    describeOffering: function(Client, types.DescribeOfferingInput, any): async.Operation<types.DescribeOfferingOutput>
-    describeReservation: function(Client, types.DescribeReservationInput, any): async.Operation<types.DescribeReservationOutput>
-    getRouterInput: function(Client, types.GetRouterInputInput, any): async.Operation<types.GetRouterInputOutput>
-    getRouterInputSourceMetadata: function(Client, types.GetRouterInputSourceMetadataInput, any): async.Operation<types.GetRouterInputSourceMetadataOutput>
-    getRouterInputThumbnail: function(Client, types.GetRouterInputThumbnailInput, any): async.Operation<types.GetRouterInputThumbnailOutput>
-    getRouterNetworkInterface: function(Client, types.GetRouterNetworkInterfaceInput, any): async.Operation<types.GetRouterNetworkInterfaceOutput>
-    getRouterOutput: function(Client, types.GetRouterOutputInput, any): async.Operation<types.GetRouterOutputOutput>
-    grantFlowEntitlements: function(Client, types.GrantFlowEntitlementsInput, any): async.Operation<types.GrantFlowEntitlementsOutput>
-    listBridges: function(Client, types.ListBridgesInput, any): async.Operation<types.ListBridgesOutput>
-    listEntitlements: function(Client, types.ListEntitlementsInput, any): async.Operation<types.ListEntitlementsOutput>
-    listFlows: function(Client, types.ListFlowsInput, any): async.Operation<types.ListFlowsOutput>
-    listGatewayInstances: function(Client, types.ListGatewayInstancesInput, any): async.Operation<types.ListGatewayInstancesOutput>
-    listGateways: function(Client, types.ListGatewaysInput, any): async.Operation<types.ListGatewaysOutput>
-    listOfferings: function(Client, types.ListOfferingsInput, any): async.Operation<types.ListOfferingsOutput>
-    listReservations: function(Client, types.ListReservationsInput, any): async.Operation<types.ListReservationsOutput>
-    listRouterInputs: function(Client, types.ListRouterInputsInput, any): async.Operation<types.ListRouterInputsOutput>
-    listRouterNetworkInterfaces: function(Client, types.ListRouterNetworkInterfacesInput, any): async.Operation<types.ListRouterNetworkInterfacesOutput>
-    listRouterOutputs: function(Client, types.ListRouterOutputsInput, any): async.Operation<types.ListRouterOutputsOutput>
-    listTagsForGlobalResource: function(Client, types.ListTagsForGlobalResourceInput, any): async.Operation<types.ListTagsForGlobalResourceOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    purchaseOffering: function(Client, types.PurchaseOfferingInput, any): async.Operation<types.PurchaseOfferingOutput>
-    removeBridgeOutput: function(Client, types.RemoveBridgeOutputInput, any): async.Operation<types.RemoveBridgeOutputOutput>
-    removeBridgeSource: function(Client, types.RemoveBridgeSourceInput, any): async.Operation<types.RemoveBridgeSourceOutput>
-    removeFlowMediaStream: function(Client, types.RemoveFlowMediaStreamInput, any): async.Operation<types.RemoveFlowMediaStreamOutput>
-    removeFlowOutput: function(Client, types.RemoveFlowOutputInput, any): async.Operation<types.RemoveFlowOutputOutput>
-    removeFlowSource: function(Client, types.RemoveFlowSourceInput, any): async.Operation<types.RemoveFlowSourceOutput>
-    removeFlowVpcInterface: function(Client, types.RemoveFlowVpcInterfaceInput, any): async.Operation<types.RemoveFlowVpcInterfaceOutput>
-    restartRouterInput: function(Client, types.RestartRouterInputInput, any): async.Operation<types.RestartRouterInputOutput>
-    restartRouterOutput: function(Client, types.RestartRouterOutputInput, any): async.Operation<types.RestartRouterOutputOutput>
-    revokeFlowEntitlement: function(Client, types.RevokeFlowEntitlementInput, any): async.Operation<types.RevokeFlowEntitlementOutput>
-    startFlow: function(Client, types.StartFlowInput, any): async.Operation<types.StartFlowOutput>
-    startRouterInput: function(Client, types.StartRouterInputInput, any): async.Operation<types.StartRouterInputOutput>
-    startRouterOutput: function(Client, types.StartRouterOutputInput, any): async.Operation<types.StartRouterOutputOutput>
-    stopFlow: function(Client, types.StopFlowInput, any): async.Operation<types.StopFlowOutput>
-    stopRouterInput: function(Client, types.StopRouterInputInput, any): async.Operation<types.StopRouterInputOutput>
-    stopRouterOutput: function(Client, types.StopRouterOutputInput, any): async.Operation<types.StopRouterOutputOutput>
-    tagGlobalResource: function(Client, types.TagGlobalResourceInput, any): async.Operation<types.TagGlobalResourceOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    takeRouterInput: function(Client, types.TakeRouterInputInput, any): async.Operation<types.TakeRouterInputOutput>
-    untagGlobalResource: function(Client, types.UntagGlobalResourceInput, any): async.Operation<types.UntagGlobalResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateBridge: function(Client, types.UpdateBridgeInput, any): async.Operation<types.UpdateBridgeOperationOutput>
-    updateBridgeOutput: function(Client, types.UpdateBridgeOutputInput, any): async.Operation<types.UpdateBridgeOutputOutput>
-    updateBridgeSource: function(Client, types.UpdateBridgeSourceInput, any): async.Operation<types.UpdateBridgeSourceOutput>
-    updateBridgeState: function(Client, types.UpdateBridgeStateInput, any): async.Operation<types.UpdateBridgeStateOutput>
-    updateFlow: function(Client, types.UpdateFlowInput, any): async.Operation<types.UpdateFlowOperationOutput>
-    updateFlowEntitlement: function(Client, types.UpdateFlowEntitlementInput, any): async.Operation<types.UpdateFlowEntitlementOutput>
-    updateFlowMediaStream: function(Client, types.UpdateFlowMediaStreamInput, any): async.Operation<types.UpdateFlowMediaStreamOutput>
-    updateFlowOutput: function(Client, types.UpdateFlowOutputInput, any): async.Operation<types.UpdateFlowOutputOutput>
-    updateFlowSource: function(Client, types.UpdateFlowSourceInput, any): async.Operation<types.UpdateFlowSourceOutput>
-    updateGatewayInstance: function(Client, types.UpdateGatewayInstanceInput, any): async.Operation<types.UpdateGatewayInstanceOutput>
-    updateRouterInput: function(Client, types.UpdateRouterInputInput, any): async.Operation<types.UpdateRouterInputOutput>
-    updateRouterNetworkInterface: function(Client, types.UpdateRouterNetworkInterfaceInput, any): async.Operation<types.UpdateRouterNetworkInterfaceOutput>
-    updateRouterOutput: function(Client, types.UpdateRouterOutputInput, any): async.Operation<types.UpdateRouterOutputOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    addBridgeOutputs: function(Client, types.AddBridgeOutputsInput, ? base_client.InvokeOptions): async.Operation<types.AddBridgeOutputsOutput>
+    addBridgeSources: function(Client, types.AddBridgeSourcesInput, ? base_client.InvokeOptions): async.Operation<types.AddBridgeSourcesOutput>
+    addFlowMediaStreams: function(Client, types.AddFlowMediaStreamsInput, ? base_client.InvokeOptions): async.Operation<types.AddFlowMediaStreamsOutput>
+    addFlowOutputs: function(Client, types.AddFlowOutputsInput, ? base_client.InvokeOptions): async.Operation<types.AddFlowOutputsOutput>
+    addFlowSources: function(Client, types.AddFlowSourcesInput, ? base_client.InvokeOptions): async.Operation<types.AddFlowSourcesOutput>
+    addFlowVpcInterfaces: function(Client, types.AddFlowVpcInterfacesInput, ? base_client.InvokeOptions): async.Operation<types.AddFlowVpcInterfacesOutput>
+    batchGetRouterInput: function(Client, types.BatchGetRouterInputInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetRouterInputOutput>
+    batchGetRouterNetworkInterface: function(Client, types.BatchGetRouterNetworkInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetRouterNetworkInterfaceOutput>
+    batchGetRouterOutput: function(Client, types.BatchGetRouterOutputInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetRouterOutputOutput>
+    createBridge: function(Client, types.CreateBridgeInput, ? base_client.InvokeOptions): async.Operation<types.CreateBridgeOutput>
+    createFlow: function(Client, types.CreateFlowInput, ? base_client.InvokeOptions): async.Operation<types.CreateFlowOutput>
+    createGateway: function(Client, types.CreateGatewayInput, ? base_client.InvokeOptions): async.Operation<types.CreateGatewayOutput>
+    createRouterInput: function(Client, types.CreateRouterInputInput, ? base_client.InvokeOptions): async.Operation<types.CreateRouterInputOutput>
+    createRouterNetworkInterface: function(Client, types.CreateRouterNetworkInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.CreateRouterNetworkInterfaceOutput>
+    createRouterOutput: function(Client, types.CreateRouterOutputInput, ? base_client.InvokeOptions): async.Operation<types.CreateRouterOutputOutput>
+    deleteBridge: function(Client, types.DeleteBridgeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBridgeOutput>
+    deleteFlow: function(Client, types.DeleteFlowInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFlowOutput>
+    deleteGateway: function(Client, types.DeleteGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGatewayOutput>
+    deleteRouterInput: function(Client, types.DeleteRouterInputInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRouterInputOutput>
+    deleteRouterNetworkInterface: function(Client, types.DeleteRouterNetworkInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRouterNetworkInterfaceOutput>
+    deleteRouterOutput: function(Client, types.DeleteRouterOutputInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRouterOutputOutput>
+    deregisterGatewayInstance: function(Client, types.DeregisterGatewayInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterGatewayInstanceOutput>
+    describeBridge: function(Client, types.DescribeBridgeInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBridgeOutput>
+    describeFlow: function(Client, types.DescribeFlowInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFlowOutput>
+    describeFlowSourceMetadata: function(Client, types.DescribeFlowSourceMetadataInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFlowSourceMetadataOutput>
+    describeFlowSourceThumbnail: function(Client, types.DescribeFlowSourceThumbnailInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFlowSourceThumbnailOutput>
+    describeGateway: function(Client, types.DescribeGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DescribeGatewayOutput>
+    describeGatewayInstance: function(Client, types.DescribeGatewayInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeGatewayInstanceOutput>
+    describeOffering: function(Client, types.DescribeOfferingInput, ? base_client.InvokeOptions): async.Operation<types.DescribeOfferingOutput>
+    describeReservation: function(Client, types.DescribeReservationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeReservationOutput>
+    getRouterInput: function(Client, types.GetRouterInputInput, ? base_client.InvokeOptions): async.Operation<types.GetRouterInputOutput>
+    getRouterInputSourceMetadata: function(Client, types.GetRouterInputSourceMetadataInput, ? base_client.InvokeOptions): async.Operation<types.GetRouterInputSourceMetadataOutput>
+    getRouterInputThumbnail: function(Client, types.GetRouterInputThumbnailInput, ? base_client.InvokeOptions): async.Operation<types.GetRouterInputThumbnailOutput>
+    getRouterNetworkInterface: function(Client, types.GetRouterNetworkInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.GetRouterNetworkInterfaceOutput>
+    getRouterOutput: function(Client, types.GetRouterOutputInput, ? base_client.InvokeOptions): async.Operation<types.GetRouterOutputOutput>
+    grantFlowEntitlements: function(Client, types.GrantFlowEntitlementsInput, ? base_client.InvokeOptions): async.Operation<types.GrantFlowEntitlementsOutput>
+    listBridges: function(Client, types.ListBridgesInput, ? base_client.InvokeOptions): async.Operation<types.ListBridgesOutput>
+    listEntitlements: function(Client, types.ListEntitlementsInput, ? base_client.InvokeOptions): async.Operation<types.ListEntitlementsOutput>
+    listFlows: function(Client, types.ListFlowsInput, ? base_client.InvokeOptions): async.Operation<types.ListFlowsOutput>
+    listGatewayInstances: function(Client, types.ListGatewayInstancesInput, ? base_client.InvokeOptions): async.Operation<types.ListGatewayInstancesOutput>
+    listGateways: function(Client, types.ListGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.ListGatewaysOutput>
+    listOfferings: function(Client, types.ListOfferingsInput, ? base_client.InvokeOptions): async.Operation<types.ListOfferingsOutput>
+    listReservations: function(Client, types.ListReservationsInput, ? base_client.InvokeOptions): async.Operation<types.ListReservationsOutput>
+    listRouterInputs: function(Client, types.ListRouterInputsInput, ? base_client.InvokeOptions): async.Operation<types.ListRouterInputsOutput>
+    listRouterNetworkInterfaces: function(Client, types.ListRouterNetworkInterfacesInput, ? base_client.InvokeOptions): async.Operation<types.ListRouterNetworkInterfacesOutput>
+    listRouterOutputs: function(Client, types.ListRouterOutputsInput, ? base_client.InvokeOptions): async.Operation<types.ListRouterOutputsOutput>
+    listTagsForGlobalResource: function(Client, types.ListTagsForGlobalResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForGlobalResourceOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    purchaseOffering: function(Client, types.PurchaseOfferingInput, ? base_client.InvokeOptions): async.Operation<types.PurchaseOfferingOutput>
+    removeBridgeOutput: function(Client, types.RemoveBridgeOutputInput, ? base_client.InvokeOptions): async.Operation<types.RemoveBridgeOutputOutput>
+    removeBridgeSource: function(Client, types.RemoveBridgeSourceInput, ? base_client.InvokeOptions): async.Operation<types.RemoveBridgeSourceOutput>
+    removeFlowMediaStream: function(Client, types.RemoveFlowMediaStreamInput, ? base_client.InvokeOptions): async.Operation<types.RemoveFlowMediaStreamOutput>
+    removeFlowOutput: function(Client, types.RemoveFlowOutputInput, ? base_client.InvokeOptions): async.Operation<types.RemoveFlowOutputOutput>
+    removeFlowSource: function(Client, types.RemoveFlowSourceInput, ? base_client.InvokeOptions): async.Operation<types.RemoveFlowSourceOutput>
+    removeFlowVpcInterface: function(Client, types.RemoveFlowVpcInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.RemoveFlowVpcInterfaceOutput>
+    restartRouterInput: function(Client, types.RestartRouterInputInput, ? base_client.InvokeOptions): async.Operation<types.RestartRouterInputOutput>
+    restartRouterOutput: function(Client, types.RestartRouterOutputInput, ? base_client.InvokeOptions): async.Operation<types.RestartRouterOutputOutput>
+    revokeFlowEntitlement: function(Client, types.RevokeFlowEntitlementInput, ? base_client.InvokeOptions): async.Operation<types.RevokeFlowEntitlementOutput>
+    startFlow: function(Client, types.StartFlowInput, ? base_client.InvokeOptions): async.Operation<types.StartFlowOutput>
+    startRouterInput: function(Client, types.StartRouterInputInput, ? base_client.InvokeOptions): async.Operation<types.StartRouterInputOutput>
+    startRouterOutput: function(Client, types.StartRouterOutputInput, ? base_client.InvokeOptions): async.Operation<types.StartRouterOutputOutput>
+    stopFlow: function(Client, types.StopFlowInput, ? base_client.InvokeOptions): async.Operation<types.StopFlowOutput>
+    stopRouterInput: function(Client, types.StopRouterInputInput, ? base_client.InvokeOptions): async.Operation<types.StopRouterInputOutput>
+    stopRouterOutput: function(Client, types.StopRouterOutputInput, ? base_client.InvokeOptions): async.Operation<types.StopRouterOutputOutput>
+    tagGlobalResource: function(Client, types.TagGlobalResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagGlobalResourceOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    takeRouterInput: function(Client, types.TakeRouterInputInput, ? base_client.InvokeOptions): async.Operation<types.TakeRouterInputOutput>
+    untagGlobalResource: function(Client, types.UntagGlobalResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagGlobalResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateBridge: function(Client, types.UpdateBridgeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBridgeOperationOutput>
+    updateBridgeOutput: function(Client, types.UpdateBridgeOutputInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBridgeOutputOutput>
+    updateBridgeSource: function(Client, types.UpdateBridgeSourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBridgeSourceOutput>
+    updateBridgeState: function(Client, types.UpdateBridgeStateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBridgeStateOutput>
+    updateFlow: function(Client, types.UpdateFlowInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFlowOperationOutput>
+    updateFlowEntitlement: function(Client, types.UpdateFlowEntitlementInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFlowEntitlementOutput>
+    updateFlowMediaStream: function(Client, types.UpdateFlowMediaStreamInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFlowMediaStreamOutput>
+    updateFlowOutput: function(Client, types.UpdateFlowOutputInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFlowOutputOutput>
+    updateFlowSource: function(Client, types.UpdateFlowSourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFlowSourceOutput>
+    updateGatewayInstance: function(Client, types.UpdateGatewayInstanceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGatewayInstanceOutput>
+    updateRouterInput: function(Client, types.UpdateRouterInputInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRouterInputOutput>
+    updateRouterNetworkInterface: function(Client, types.UpdateRouterNetworkInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRouterNetworkInterfaceOutput>
+    updateRouterOutput: function(Client, types.UpdateRouterOutputInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRouterOutputOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "MediaConnect"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "mediaconnect", signing_region = c.region } }
                 else
@@ -141,332 +144,332 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:addBridgeOutputs(input: types.AddBridgeOutputsInput, options: any): async.Operation<types.AddBridgeOutputsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddBridgeOutputs, input, options) as async.Operation<types.AddBridgeOutputsOutput>
+function C:addBridgeOutputs(input: types.AddBridgeOutputsInput, options?: base_client.InvokeOptions): async.Operation<types.AddBridgeOutputsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddBridgeOutputs as schema.OperationSchema, input, options) as async.Operation<types.AddBridgeOutputsOutput>
 end
 
-function C:addBridgeSources(input: types.AddBridgeSourcesInput, options: any): async.Operation<types.AddBridgeSourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddBridgeSources, input, options) as async.Operation<types.AddBridgeSourcesOutput>
+function C:addBridgeSources(input: types.AddBridgeSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.AddBridgeSourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddBridgeSources as schema.OperationSchema, input, options) as async.Operation<types.AddBridgeSourcesOutput>
 end
 
-function C:addFlowMediaStreams(input: types.AddFlowMediaStreamsInput, options: any): async.Operation<types.AddFlowMediaStreamsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddFlowMediaStreams, input, options) as async.Operation<types.AddFlowMediaStreamsOutput>
+function C:addFlowMediaStreams(input: types.AddFlowMediaStreamsInput, options?: base_client.InvokeOptions): async.Operation<types.AddFlowMediaStreamsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddFlowMediaStreams as schema.OperationSchema, input, options) as async.Operation<types.AddFlowMediaStreamsOutput>
 end
 
-function C:addFlowOutputs(input: types.AddFlowOutputsInput, options: any): async.Operation<types.AddFlowOutputsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddFlowOutputs, input, options) as async.Operation<types.AddFlowOutputsOutput>
+function C:addFlowOutputs(input: types.AddFlowOutputsInput, options?: base_client.InvokeOptions): async.Operation<types.AddFlowOutputsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddFlowOutputs as schema.OperationSchema, input, options) as async.Operation<types.AddFlowOutputsOutput>
 end
 
-function C:addFlowSources(input: types.AddFlowSourcesInput, options: any): async.Operation<types.AddFlowSourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddFlowSources, input, options) as async.Operation<types.AddFlowSourcesOutput>
+function C:addFlowSources(input: types.AddFlowSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.AddFlowSourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddFlowSources as schema.OperationSchema, input, options) as async.Operation<types.AddFlowSourcesOutput>
 end
 
-function C:addFlowVpcInterfaces(input: types.AddFlowVpcInterfacesInput, options: any): async.Operation<types.AddFlowVpcInterfacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddFlowVpcInterfaces, input, options) as async.Operation<types.AddFlowVpcInterfacesOutput>
+function C:addFlowVpcInterfaces(input: types.AddFlowVpcInterfacesInput, options?: base_client.InvokeOptions): async.Operation<types.AddFlowVpcInterfacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddFlowVpcInterfaces as schema.OperationSchema, input, options) as async.Operation<types.AddFlowVpcInterfacesOutput>
 end
 
-function C:batchGetRouterInput(input: types.BatchGetRouterInputInput, options: any): async.Operation<types.BatchGetRouterInputOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetRouterInput, input, options) as async.Operation<types.BatchGetRouterInputOutput>
+function C:batchGetRouterInput(input: types.BatchGetRouterInputInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetRouterInputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetRouterInput as schema.OperationSchema, input, options) as async.Operation<types.BatchGetRouterInputOutput>
 end
 
-function C:batchGetRouterNetworkInterface(input: types.BatchGetRouterNetworkInterfaceInput, options: any): async.Operation<types.BatchGetRouterNetworkInterfaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetRouterNetworkInterface, input, options) as async.Operation<types.BatchGetRouterNetworkInterfaceOutput>
+function C:batchGetRouterNetworkInterface(input: types.BatchGetRouterNetworkInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetRouterNetworkInterfaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetRouterNetworkInterface as schema.OperationSchema, input, options) as async.Operation<types.BatchGetRouterNetworkInterfaceOutput>
 end
 
-function C:batchGetRouterOutput(input: types.BatchGetRouterOutputInput, options: any): async.Operation<types.BatchGetRouterOutputOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetRouterOutput, input, options) as async.Operation<types.BatchGetRouterOutputOutput>
+function C:batchGetRouterOutput(input: types.BatchGetRouterOutputInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetRouterOutputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetRouterOutput as schema.OperationSchema, input, options) as async.Operation<types.BatchGetRouterOutputOutput>
 end
 
-function C:createBridge(input: types.CreateBridgeInput, options: any): async.Operation<types.CreateBridgeOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBridge, input, options) as async.Operation<types.CreateBridgeOutput>
+function C:createBridge(input: types.CreateBridgeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBridgeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBridge as schema.OperationSchema, input, options) as async.Operation<types.CreateBridgeOutput>
 end
 
-function C:createFlow(input: types.CreateFlowInput, options: any): async.Operation<types.CreateFlowOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFlow, input, options) as async.Operation<types.CreateFlowOutput>
+function C:createFlow(input: types.CreateFlowInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFlowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFlow as schema.OperationSchema, input, options) as async.Operation<types.CreateFlowOutput>
 end
 
-function C:createGateway(input: types.CreateGatewayInput, options: any): async.Operation<types.CreateGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateGateway, input, options) as async.Operation<types.CreateGatewayOutput>
+function C:createGateway(input: types.CreateGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGateway as schema.OperationSchema, input, options) as async.Operation<types.CreateGatewayOutput>
 end
 
-function C:createRouterInput(input: types.CreateRouterInputInput, options: any): async.Operation<types.CreateRouterInputOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRouterInput, input, options) as async.Operation<types.CreateRouterInputOutput>
+function C:createRouterInput(input: types.CreateRouterInputInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRouterInputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRouterInput as schema.OperationSchema, input, options) as async.Operation<types.CreateRouterInputOutput>
 end
 
-function C:createRouterNetworkInterface(input: types.CreateRouterNetworkInterfaceInput, options: any): async.Operation<types.CreateRouterNetworkInterfaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRouterNetworkInterface, input, options) as async.Operation<types.CreateRouterNetworkInterfaceOutput>
+function C:createRouterNetworkInterface(input: types.CreateRouterNetworkInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRouterNetworkInterfaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRouterNetworkInterface as schema.OperationSchema, input, options) as async.Operation<types.CreateRouterNetworkInterfaceOutput>
 end
 
-function C:createRouterOutput(input: types.CreateRouterOutputInput, options: any): async.Operation<types.CreateRouterOutputOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRouterOutput, input, options) as async.Operation<types.CreateRouterOutputOutput>
+function C:createRouterOutput(input: types.CreateRouterOutputInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRouterOutputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRouterOutput as schema.OperationSchema, input, options) as async.Operation<types.CreateRouterOutputOutput>
 end
 
-function C:deleteBridge(input: types.DeleteBridgeInput, options: any): async.Operation<types.DeleteBridgeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBridge, input, options) as async.Operation<types.DeleteBridgeOutput>
+function C:deleteBridge(input: types.DeleteBridgeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBridgeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBridge as schema.OperationSchema, input, options) as async.Operation<types.DeleteBridgeOutput>
 end
 
-function C:deleteFlow(input: types.DeleteFlowInput, options: any): async.Operation<types.DeleteFlowOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFlow, input, options) as async.Operation<types.DeleteFlowOutput>
+function C:deleteFlow(input: types.DeleteFlowInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFlowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFlow as schema.OperationSchema, input, options) as async.Operation<types.DeleteFlowOutput>
 end
 
-function C:deleteGateway(input: types.DeleteGatewayInput, options: any): async.Operation<types.DeleteGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteGateway, input, options) as async.Operation<types.DeleteGatewayOutput>
+function C:deleteGateway(input: types.DeleteGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGateway as schema.OperationSchema, input, options) as async.Operation<types.DeleteGatewayOutput>
 end
 
-function C:deleteRouterInput(input: types.DeleteRouterInputInput, options: any): async.Operation<types.DeleteRouterInputOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRouterInput, input, options) as async.Operation<types.DeleteRouterInputOutput>
+function C:deleteRouterInput(input: types.DeleteRouterInputInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRouterInputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRouterInput as schema.OperationSchema, input, options) as async.Operation<types.DeleteRouterInputOutput>
 end
 
-function C:deleteRouterNetworkInterface(input: types.DeleteRouterNetworkInterfaceInput, options: any): async.Operation<types.DeleteRouterNetworkInterfaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRouterNetworkInterface, input, options) as async.Operation<types.DeleteRouterNetworkInterfaceOutput>
+function C:deleteRouterNetworkInterface(input: types.DeleteRouterNetworkInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRouterNetworkInterfaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRouterNetworkInterface as schema.OperationSchema, input, options) as async.Operation<types.DeleteRouterNetworkInterfaceOutput>
 end
 
-function C:deleteRouterOutput(input: types.DeleteRouterOutputInput, options: any): async.Operation<types.DeleteRouterOutputOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRouterOutput, input, options) as async.Operation<types.DeleteRouterOutputOutput>
+function C:deleteRouterOutput(input: types.DeleteRouterOutputInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRouterOutputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRouterOutput as schema.OperationSchema, input, options) as async.Operation<types.DeleteRouterOutputOutput>
 end
 
-function C:deregisterGatewayInstance(input: types.DeregisterGatewayInstanceInput, options: any): async.Operation<types.DeregisterGatewayInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterGatewayInstance, input, options) as async.Operation<types.DeregisterGatewayInstanceOutput>
+function C:deregisterGatewayInstance(input: types.DeregisterGatewayInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterGatewayInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterGatewayInstance as schema.OperationSchema, input, options) as async.Operation<types.DeregisterGatewayInstanceOutput>
 end
 
-function C:describeBridge(input: types.DescribeBridgeInput, options: any): async.Operation<types.DescribeBridgeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeBridge, input, options) as async.Operation<types.DescribeBridgeOutput>
+function C:describeBridge(input: types.DescribeBridgeInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBridgeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeBridge as schema.OperationSchema, input, options) as async.Operation<types.DescribeBridgeOutput>
 end
 
-function C:describeFlow(input: types.DescribeFlowInput, options: any): async.Operation<types.DescribeFlowOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFlow, input, options) as async.Operation<types.DescribeFlowOutput>
+function C:describeFlow(input: types.DescribeFlowInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFlowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFlow as schema.OperationSchema, input, options) as async.Operation<types.DescribeFlowOutput>
 end
 
-function C:describeFlowSourceMetadata(input: types.DescribeFlowSourceMetadataInput, options: any): async.Operation<types.DescribeFlowSourceMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFlowSourceMetadata, input, options) as async.Operation<types.DescribeFlowSourceMetadataOutput>
+function C:describeFlowSourceMetadata(input: types.DescribeFlowSourceMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFlowSourceMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFlowSourceMetadata as schema.OperationSchema, input, options) as async.Operation<types.DescribeFlowSourceMetadataOutput>
 end
 
-function C:describeFlowSourceThumbnail(input: types.DescribeFlowSourceThumbnailInput, options: any): async.Operation<types.DescribeFlowSourceThumbnailOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFlowSourceThumbnail, input, options) as async.Operation<types.DescribeFlowSourceThumbnailOutput>
+function C:describeFlowSourceThumbnail(input: types.DescribeFlowSourceThumbnailInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFlowSourceThumbnailOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFlowSourceThumbnail as schema.OperationSchema, input, options) as async.Operation<types.DescribeFlowSourceThumbnailOutput>
 end
 
-function C:describeGateway(input: types.DescribeGatewayInput, options: any): async.Operation<types.DescribeGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeGateway, input, options) as async.Operation<types.DescribeGatewayOutput>
+function C:describeGateway(input: types.DescribeGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeGateway as schema.OperationSchema, input, options) as async.Operation<types.DescribeGatewayOutput>
 end
 
-function C:describeGatewayInstance(input: types.DescribeGatewayInstanceInput, options: any): async.Operation<types.DescribeGatewayInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeGatewayInstance, input, options) as async.Operation<types.DescribeGatewayInstanceOutput>
+function C:describeGatewayInstance(input: types.DescribeGatewayInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeGatewayInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeGatewayInstance as schema.OperationSchema, input, options) as async.Operation<types.DescribeGatewayInstanceOutput>
 end
 
-function C:describeOffering(input: types.DescribeOfferingInput, options: any): async.Operation<types.DescribeOfferingOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeOffering, input, options) as async.Operation<types.DescribeOfferingOutput>
+function C:describeOffering(input: types.DescribeOfferingInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeOfferingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeOffering as schema.OperationSchema, input, options) as async.Operation<types.DescribeOfferingOutput>
 end
 
-function C:describeReservation(input: types.DescribeReservationInput, options: any): async.Operation<types.DescribeReservationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeReservation, input, options) as async.Operation<types.DescribeReservationOutput>
+function C:describeReservation(input: types.DescribeReservationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeReservationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeReservation as schema.OperationSchema, input, options) as async.Operation<types.DescribeReservationOutput>
 end
 
-function C:getRouterInput(input: types.GetRouterInputInput, options: any): async.Operation<types.GetRouterInputOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRouterInput, input, options) as async.Operation<types.GetRouterInputOutput>
+function C:getRouterInput(input: types.GetRouterInputInput, options?: base_client.InvokeOptions): async.Operation<types.GetRouterInputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRouterInput as schema.OperationSchema, input, options) as async.Operation<types.GetRouterInputOutput>
 end
 
-function C:getRouterInputSourceMetadata(input: types.GetRouterInputSourceMetadataInput, options: any): async.Operation<types.GetRouterInputSourceMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRouterInputSourceMetadata, input, options) as async.Operation<types.GetRouterInputSourceMetadataOutput>
+function C:getRouterInputSourceMetadata(input: types.GetRouterInputSourceMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.GetRouterInputSourceMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRouterInputSourceMetadata as schema.OperationSchema, input, options) as async.Operation<types.GetRouterInputSourceMetadataOutput>
 end
 
-function C:getRouterInputThumbnail(input: types.GetRouterInputThumbnailInput, options: any): async.Operation<types.GetRouterInputThumbnailOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRouterInputThumbnail, input, options) as async.Operation<types.GetRouterInputThumbnailOutput>
+function C:getRouterInputThumbnail(input: types.GetRouterInputThumbnailInput, options?: base_client.InvokeOptions): async.Operation<types.GetRouterInputThumbnailOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRouterInputThumbnail as schema.OperationSchema, input, options) as async.Operation<types.GetRouterInputThumbnailOutput>
 end
 
-function C:getRouterNetworkInterface(input: types.GetRouterNetworkInterfaceInput, options: any): async.Operation<types.GetRouterNetworkInterfaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRouterNetworkInterface, input, options) as async.Operation<types.GetRouterNetworkInterfaceOutput>
+function C:getRouterNetworkInterface(input: types.GetRouterNetworkInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.GetRouterNetworkInterfaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRouterNetworkInterface as schema.OperationSchema, input, options) as async.Operation<types.GetRouterNetworkInterfaceOutput>
 end
 
-function C:getRouterOutput(input: types.GetRouterOutputInput, options: any): async.Operation<types.GetRouterOutputOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRouterOutput, input, options) as async.Operation<types.GetRouterOutputOutput>
+function C:getRouterOutput(input: types.GetRouterOutputInput, options?: base_client.InvokeOptions): async.Operation<types.GetRouterOutputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRouterOutput as schema.OperationSchema, input, options) as async.Operation<types.GetRouterOutputOutput>
 end
 
-function C:grantFlowEntitlements(input: types.GrantFlowEntitlementsInput, options: any): async.Operation<types.GrantFlowEntitlementsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GrantFlowEntitlements, input, options) as async.Operation<types.GrantFlowEntitlementsOutput>
+function C:grantFlowEntitlements(input: types.GrantFlowEntitlementsInput, options?: base_client.InvokeOptions): async.Operation<types.GrantFlowEntitlementsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GrantFlowEntitlements as schema.OperationSchema, input, options) as async.Operation<types.GrantFlowEntitlementsOutput>
 end
 
-function C:listBridges(input: types.ListBridgesInput, options: any): async.Operation<types.ListBridgesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBridges, input, options) as async.Operation<types.ListBridgesOutput>
+function C:listBridges(input: types.ListBridgesInput, options?: base_client.InvokeOptions): async.Operation<types.ListBridgesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBridges as schema.OperationSchema, input, options) as async.Operation<types.ListBridgesOutput>
 end
 
-function C:listEntitlements(input: types.ListEntitlementsInput, options: any): async.Operation<types.ListEntitlementsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEntitlements, input, options) as async.Operation<types.ListEntitlementsOutput>
+function C:listEntitlements(input: types.ListEntitlementsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEntitlementsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEntitlements as schema.OperationSchema, input, options) as async.Operation<types.ListEntitlementsOutput>
 end
 
-function C:listFlows(input: types.ListFlowsInput, options: any): async.Operation<types.ListFlowsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFlows, input, options) as async.Operation<types.ListFlowsOutput>
+function C:listFlows(input: types.ListFlowsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFlowsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFlows as schema.OperationSchema, input, options) as async.Operation<types.ListFlowsOutput>
 end
 
-function C:listGatewayInstances(input: types.ListGatewayInstancesInput, options: any): async.Operation<types.ListGatewayInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGatewayInstances, input, options) as async.Operation<types.ListGatewayInstancesOutput>
+function C:listGatewayInstances(input: types.ListGatewayInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.ListGatewayInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGatewayInstances as schema.OperationSchema, input, options) as async.Operation<types.ListGatewayInstancesOutput>
 end
 
-function C:listGateways(input: types.ListGatewaysInput, options: any): async.Operation<types.ListGatewaysOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGateways, input, options) as async.Operation<types.ListGatewaysOutput>
+function C:listGateways(input: types.ListGatewaysInput, options?: base_client.InvokeOptions): async.Operation<types.ListGatewaysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGateways as schema.OperationSchema, input, options) as async.Operation<types.ListGatewaysOutput>
 end
 
-function C:listOfferings(input: types.ListOfferingsInput, options: any): async.Operation<types.ListOfferingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOfferings, input, options) as async.Operation<types.ListOfferingsOutput>
+function C:listOfferings(input: types.ListOfferingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListOfferingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOfferings as schema.OperationSchema, input, options) as async.Operation<types.ListOfferingsOutput>
 end
 
-function C:listReservations(input: types.ListReservationsInput, options: any): async.Operation<types.ListReservationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReservations, input, options) as async.Operation<types.ListReservationsOutput>
+function C:listReservations(input: types.ListReservationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListReservationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReservations as schema.OperationSchema, input, options) as async.Operation<types.ListReservationsOutput>
 end
 
-function C:listRouterInputs(input: types.ListRouterInputsInput, options: any): async.Operation<types.ListRouterInputsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRouterInputs, input, options) as async.Operation<types.ListRouterInputsOutput>
+function C:listRouterInputs(input: types.ListRouterInputsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRouterInputsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRouterInputs as schema.OperationSchema, input, options) as async.Operation<types.ListRouterInputsOutput>
 end
 
-function C:listRouterNetworkInterfaces(input: types.ListRouterNetworkInterfacesInput, options: any): async.Operation<types.ListRouterNetworkInterfacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRouterNetworkInterfaces, input, options) as async.Operation<types.ListRouterNetworkInterfacesOutput>
+function C:listRouterNetworkInterfaces(input: types.ListRouterNetworkInterfacesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRouterNetworkInterfacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRouterNetworkInterfaces as schema.OperationSchema, input, options) as async.Operation<types.ListRouterNetworkInterfacesOutput>
 end
 
-function C:listRouterOutputs(input: types.ListRouterOutputsInput, options: any): async.Operation<types.ListRouterOutputsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRouterOutputs, input, options) as async.Operation<types.ListRouterOutputsOutput>
+function C:listRouterOutputs(input: types.ListRouterOutputsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRouterOutputsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRouterOutputs as schema.OperationSchema, input, options) as async.Operation<types.ListRouterOutputsOutput>
 end
 
-function C:listTagsForGlobalResource(input: types.ListTagsForGlobalResourceInput, options: any): async.Operation<types.ListTagsForGlobalResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForGlobalResource, input, options) as async.Operation<types.ListTagsForGlobalResourceOutput>
+function C:listTagsForGlobalResource(input: types.ListTagsForGlobalResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForGlobalResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForGlobalResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForGlobalResourceOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:purchaseOffering(input: types.PurchaseOfferingInput, options: any): async.Operation<types.PurchaseOfferingOutput>
-    return self:invokeOperation(schemas.Service, schemas.PurchaseOffering, input, options) as async.Operation<types.PurchaseOfferingOutput>
+function C:purchaseOffering(input: types.PurchaseOfferingInput, options?: base_client.InvokeOptions): async.Operation<types.PurchaseOfferingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PurchaseOffering as schema.OperationSchema, input, options) as async.Operation<types.PurchaseOfferingOutput>
 end
 
-function C:removeBridgeOutput(input: types.RemoveBridgeOutputInput, options: any): async.Operation<types.RemoveBridgeOutputOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveBridgeOutput, input, options) as async.Operation<types.RemoveBridgeOutputOutput>
+function C:removeBridgeOutput(input: types.RemoveBridgeOutputInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveBridgeOutputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveBridgeOutput as schema.OperationSchema, input, options) as async.Operation<types.RemoveBridgeOutputOutput>
 end
 
-function C:removeBridgeSource(input: types.RemoveBridgeSourceInput, options: any): async.Operation<types.RemoveBridgeSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveBridgeSource, input, options) as async.Operation<types.RemoveBridgeSourceOutput>
+function C:removeBridgeSource(input: types.RemoveBridgeSourceInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveBridgeSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveBridgeSource as schema.OperationSchema, input, options) as async.Operation<types.RemoveBridgeSourceOutput>
 end
 
-function C:removeFlowMediaStream(input: types.RemoveFlowMediaStreamInput, options: any): async.Operation<types.RemoveFlowMediaStreamOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveFlowMediaStream, input, options) as async.Operation<types.RemoveFlowMediaStreamOutput>
+function C:removeFlowMediaStream(input: types.RemoveFlowMediaStreamInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveFlowMediaStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveFlowMediaStream as schema.OperationSchema, input, options) as async.Operation<types.RemoveFlowMediaStreamOutput>
 end
 
-function C:removeFlowOutput(input: types.RemoveFlowOutputInput, options: any): async.Operation<types.RemoveFlowOutputOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveFlowOutput, input, options) as async.Operation<types.RemoveFlowOutputOutput>
+function C:removeFlowOutput(input: types.RemoveFlowOutputInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveFlowOutputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveFlowOutput as schema.OperationSchema, input, options) as async.Operation<types.RemoveFlowOutputOutput>
 end
 
-function C:removeFlowSource(input: types.RemoveFlowSourceInput, options: any): async.Operation<types.RemoveFlowSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveFlowSource, input, options) as async.Operation<types.RemoveFlowSourceOutput>
+function C:removeFlowSource(input: types.RemoveFlowSourceInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveFlowSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveFlowSource as schema.OperationSchema, input, options) as async.Operation<types.RemoveFlowSourceOutput>
 end
 
-function C:removeFlowVpcInterface(input: types.RemoveFlowVpcInterfaceInput, options: any): async.Operation<types.RemoveFlowVpcInterfaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveFlowVpcInterface, input, options) as async.Operation<types.RemoveFlowVpcInterfaceOutput>
+function C:removeFlowVpcInterface(input: types.RemoveFlowVpcInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveFlowVpcInterfaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveFlowVpcInterface as schema.OperationSchema, input, options) as async.Operation<types.RemoveFlowVpcInterfaceOutput>
 end
 
-function C:restartRouterInput(input: types.RestartRouterInputInput, options: any): async.Operation<types.RestartRouterInputOutput>
-    return self:invokeOperation(schemas.Service, schemas.RestartRouterInput, input, options) as async.Operation<types.RestartRouterInputOutput>
+function C:restartRouterInput(input: types.RestartRouterInputInput, options?: base_client.InvokeOptions): async.Operation<types.RestartRouterInputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestartRouterInput as schema.OperationSchema, input, options) as async.Operation<types.RestartRouterInputOutput>
 end
 
-function C:restartRouterOutput(input: types.RestartRouterOutputInput, options: any): async.Operation<types.RestartRouterOutputOutput>
-    return self:invokeOperation(schemas.Service, schemas.RestartRouterOutput, input, options) as async.Operation<types.RestartRouterOutputOutput>
+function C:restartRouterOutput(input: types.RestartRouterOutputInput, options?: base_client.InvokeOptions): async.Operation<types.RestartRouterOutputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestartRouterOutput as schema.OperationSchema, input, options) as async.Operation<types.RestartRouterOutputOutput>
 end
 
-function C:revokeFlowEntitlement(input: types.RevokeFlowEntitlementInput, options: any): async.Operation<types.RevokeFlowEntitlementOutput>
-    return self:invokeOperation(schemas.Service, schemas.RevokeFlowEntitlement, input, options) as async.Operation<types.RevokeFlowEntitlementOutput>
+function C:revokeFlowEntitlement(input: types.RevokeFlowEntitlementInput, options?: base_client.InvokeOptions): async.Operation<types.RevokeFlowEntitlementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RevokeFlowEntitlement as schema.OperationSchema, input, options) as async.Operation<types.RevokeFlowEntitlementOutput>
 end
 
-function C:startFlow(input: types.StartFlowInput, options: any): async.Operation<types.StartFlowOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartFlow, input, options) as async.Operation<types.StartFlowOutput>
+function C:startFlow(input: types.StartFlowInput, options?: base_client.InvokeOptions): async.Operation<types.StartFlowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartFlow as schema.OperationSchema, input, options) as async.Operation<types.StartFlowOutput>
 end
 
-function C:startRouterInput(input: types.StartRouterInputInput, options: any): async.Operation<types.StartRouterInputOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartRouterInput, input, options) as async.Operation<types.StartRouterInputOutput>
+function C:startRouterInput(input: types.StartRouterInputInput, options?: base_client.InvokeOptions): async.Operation<types.StartRouterInputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartRouterInput as schema.OperationSchema, input, options) as async.Operation<types.StartRouterInputOutput>
 end
 
-function C:startRouterOutput(input: types.StartRouterOutputInput, options: any): async.Operation<types.StartRouterOutputOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartRouterOutput, input, options) as async.Operation<types.StartRouterOutputOutput>
+function C:startRouterOutput(input: types.StartRouterOutputInput, options?: base_client.InvokeOptions): async.Operation<types.StartRouterOutputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartRouterOutput as schema.OperationSchema, input, options) as async.Operation<types.StartRouterOutputOutput>
 end
 
-function C:stopFlow(input: types.StopFlowInput, options: any): async.Operation<types.StopFlowOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopFlow, input, options) as async.Operation<types.StopFlowOutput>
+function C:stopFlow(input: types.StopFlowInput, options?: base_client.InvokeOptions): async.Operation<types.StopFlowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopFlow as schema.OperationSchema, input, options) as async.Operation<types.StopFlowOutput>
 end
 
-function C:stopRouterInput(input: types.StopRouterInputInput, options: any): async.Operation<types.StopRouterInputOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopRouterInput, input, options) as async.Operation<types.StopRouterInputOutput>
+function C:stopRouterInput(input: types.StopRouterInputInput, options?: base_client.InvokeOptions): async.Operation<types.StopRouterInputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopRouterInput as schema.OperationSchema, input, options) as async.Operation<types.StopRouterInputOutput>
 end
 
-function C:stopRouterOutput(input: types.StopRouterOutputInput, options: any): async.Operation<types.StopRouterOutputOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopRouterOutput, input, options) as async.Operation<types.StopRouterOutputOutput>
+function C:stopRouterOutput(input: types.StopRouterOutputInput, options?: base_client.InvokeOptions): async.Operation<types.StopRouterOutputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopRouterOutput as schema.OperationSchema, input, options) as async.Operation<types.StopRouterOutputOutput>
 end
 
-function C:tagGlobalResource(input: types.TagGlobalResourceInput, options: any): async.Operation<types.TagGlobalResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagGlobalResource, input, options) as async.Operation<types.TagGlobalResourceOutput>
+function C:tagGlobalResource(input: types.TagGlobalResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagGlobalResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagGlobalResource as schema.OperationSchema, input, options) as async.Operation<types.TagGlobalResourceOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:takeRouterInput(input: types.TakeRouterInputInput, options: any): async.Operation<types.TakeRouterInputOutput>
-    return self:invokeOperation(schemas.Service, schemas.TakeRouterInput, input, options) as async.Operation<types.TakeRouterInputOutput>
+function C:takeRouterInput(input: types.TakeRouterInputInput, options?: base_client.InvokeOptions): async.Operation<types.TakeRouterInputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TakeRouterInput as schema.OperationSchema, input, options) as async.Operation<types.TakeRouterInputOutput>
 end
 
-function C:untagGlobalResource(input: types.UntagGlobalResourceInput, options: any): async.Operation<types.UntagGlobalResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagGlobalResource, input, options) as async.Operation<types.UntagGlobalResourceOutput>
+function C:untagGlobalResource(input: types.UntagGlobalResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagGlobalResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagGlobalResource as schema.OperationSchema, input, options) as async.Operation<types.UntagGlobalResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateBridge(input: types.UpdateBridgeInput, options: any): async.Operation<types.UpdateBridgeOperationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateBridge, input, options) as async.Operation<types.UpdateBridgeOperationOutput>
+function C:updateBridge(input: types.UpdateBridgeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBridgeOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBridge as schema.OperationSchema, input, options) as async.Operation<types.UpdateBridgeOperationOutput>
 end
 
-function C:updateBridgeOutput(input: types.UpdateBridgeOutputInput, options: any): async.Operation<types.UpdateBridgeOutputOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateBridgeOutput, input, options) as async.Operation<types.UpdateBridgeOutputOutput>
+function C:updateBridgeOutput(input: types.UpdateBridgeOutputInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBridgeOutputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBridgeOutput as schema.OperationSchema, input, options) as async.Operation<types.UpdateBridgeOutputOutput>
 end
 
-function C:updateBridgeSource(input: types.UpdateBridgeSourceInput, options: any): async.Operation<types.UpdateBridgeSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateBridgeSource, input, options) as async.Operation<types.UpdateBridgeSourceOutput>
+function C:updateBridgeSource(input: types.UpdateBridgeSourceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBridgeSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBridgeSource as schema.OperationSchema, input, options) as async.Operation<types.UpdateBridgeSourceOutput>
 end
 
-function C:updateBridgeState(input: types.UpdateBridgeStateInput, options: any): async.Operation<types.UpdateBridgeStateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateBridgeState, input, options) as async.Operation<types.UpdateBridgeStateOutput>
+function C:updateBridgeState(input: types.UpdateBridgeStateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBridgeStateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBridgeState as schema.OperationSchema, input, options) as async.Operation<types.UpdateBridgeStateOutput>
 end
 
-function C:updateFlow(input: types.UpdateFlowInput, options: any): async.Operation<types.UpdateFlowOperationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFlow, input, options) as async.Operation<types.UpdateFlowOperationOutput>
+function C:updateFlow(input: types.UpdateFlowInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFlowOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFlow as schema.OperationSchema, input, options) as async.Operation<types.UpdateFlowOperationOutput>
 end
 
-function C:updateFlowEntitlement(input: types.UpdateFlowEntitlementInput, options: any): async.Operation<types.UpdateFlowEntitlementOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFlowEntitlement, input, options) as async.Operation<types.UpdateFlowEntitlementOutput>
+function C:updateFlowEntitlement(input: types.UpdateFlowEntitlementInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFlowEntitlementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFlowEntitlement as schema.OperationSchema, input, options) as async.Operation<types.UpdateFlowEntitlementOutput>
 end
 
-function C:updateFlowMediaStream(input: types.UpdateFlowMediaStreamInput, options: any): async.Operation<types.UpdateFlowMediaStreamOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFlowMediaStream, input, options) as async.Operation<types.UpdateFlowMediaStreamOutput>
+function C:updateFlowMediaStream(input: types.UpdateFlowMediaStreamInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFlowMediaStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFlowMediaStream as schema.OperationSchema, input, options) as async.Operation<types.UpdateFlowMediaStreamOutput>
 end
 
-function C:updateFlowOutput(input: types.UpdateFlowOutputInput, options: any): async.Operation<types.UpdateFlowOutputOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFlowOutput, input, options) as async.Operation<types.UpdateFlowOutputOutput>
+function C:updateFlowOutput(input: types.UpdateFlowOutputInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFlowOutputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFlowOutput as schema.OperationSchema, input, options) as async.Operation<types.UpdateFlowOutputOutput>
 end
 
-function C:updateFlowSource(input: types.UpdateFlowSourceInput, options: any): async.Operation<types.UpdateFlowSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFlowSource, input, options) as async.Operation<types.UpdateFlowSourceOutput>
+function C:updateFlowSource(input: types.UpdateFlowSourceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFlowSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFlowSource as schema.OperationSchema, input, options) as async.Operation<types.UpdateFlowSourceOutput>
 end
 
-function C:updateGatewayInstance(input: types.UpdateGatewayInstanceInput, options: any): async.Operation<types.UpdateGatewayInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateGatewayInstance, input, options) as async.Operation<types.UpdateGatewayInstanceOutput>
+function C:updateGatewayInstance(input: types.UpdateGatewayInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGatewayInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGatewayInstance as schema.OperationSchema, input, options) as async.Operation<types.UpdateGatewayInstanceOutput>
 end
 
-function C:updateRouterInput(input: types.UpdateRouterInputInput, options: any): async.Operation<types.UpdateRouterInputOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRouterInput, input, options) as async.Operation<types.UpdateRouterInputOutput>
+function C:updateRouterInput(input: types.UpdateRouterInputInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRouterInputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRouterInput as schema.OperationSchema, input, options) as async.Operation<types.UpdateRouterInputOutput>
 end
 
-function C:updateRouterNetworkInterface(input: types.UpdateRouterNetworkInterfaceInput, options: any): async.Operation<types.UpdateRouterNetworkInterfaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRouterNetworkInterface, input, options) as async.Operation<types.UpdateRouterNetworkInterfaceOutput>
+function C:updateRouterNetworkInterface(input: types.UpdateRouterNetworkInterfaceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRouterNetworkInterfaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRouterNetworkInterface as schema.OperationSchema, input, options) as async.Operation<types.UpdateRouterNetworkInterfaceOutput>
 end
 
-function C:updateRouterOutput(input: types.UpdateRouterOutputInput, options: any): async.Operation<types.UpdateRouterOutputOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRouterOutput, input, options) as async.Operation<types.UpdateRouterOutputOutput>
+function C:updateRouterOutput(input: types.UpdateRouterOutputInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRouterOutputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRouterOutput as schema.OperationSchema, input, options) as async.Operation<types.UpdateRouterOutputOutput>
 end
 
 return M

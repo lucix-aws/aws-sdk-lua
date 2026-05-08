@@ -8,53 +8,56 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("codegurureviewer.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("codegurureviewer.schemas")
 local traits = require("smithy.traits")
 local types = require("codegurureviewer.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateRepository: function(Client, types.AssociateRepositoryInput, any): async.Operation<types.AssociateRepositoryOutput>
-    createCodeReview: function(Client, types.CreateCodeReviewInput, any): async.Operation<types.CreateCodeReviewOutput>
-    describeCodeReview: function(Client, types.DescribeCodeReviewInput, any): async.Operation<types.DescribeCodeReviewOutput>
-    describeRecommendationFeedback: function(Client, types.DescribeRecommendationFeedbackInput, any): async.Operation<types.DescribeRecommendationFeedbackOutput>
-    describeRepositoryAssociation: function(Client, types.DescribeRepositoryAssociationInput, any): async.Operation<types.DescribeRepositoryAssociationOutput>
-    disassociateRepository: function(Client, types.DisassociateRepositoryInput, any): async.Operation<types.DisassociateRepositoryOutput>
-    listCodeReviews: function(Client, types.ListCodeReviewsInput, any): async.Operation<types.ListCodeReviewsOutput>
-    listRecommendationFeedback: function(Client, types.ListRecommendationFeedbackInput, any): async.Operation<types.ListRecommendationFeedbackOutput>
-    listRecommendations: function(Client, types.ListRecommendationsInput, any): async.Operation<types.ListRecommendationsOutput>
-    listRepositoryAssociations: function(Client, types.ListRepositoryAssociationsInput, any): async.Operation<types.ListRepositoryAssociationsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putRecommendationFeedback: function(Client, types.PutRecommendationFeedbackInput, any): async.Operation<types.PutRecommendationFeedbackOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateRepository: function(Client, types.AssociateRepositoryInput, ? base_client.InvokeOptions): async.Operation<types.AssociateRepositoryOutput>
+    createCodeReview: function(Client, types.CreateCodeReviewInput, ? base_client.InvokeOptions): async.Operation<types.CreateCodeReviewOutput>
+    describeCodeReview: function(Client, types.DescribeCodeReviewInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCodeReviewOutput>
+    describeRecommendationFeedback: function(Client, types.DescribeRecommendationFeedbackInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRecommendationFeedbackOutput>
+    describeRepositoryAssociation: function(Client, types.DescribeRepositoryAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRepositoryAssociationOutput>
+    disassociateRepository: function(Client, types.DisassociateRepositoryInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateRepositoryOutput>
+    listCodeReviews: function(Client, types.ListCodeReviewsInput, ? base_client.InvokeOptions): async.Operation<types.ListCodeReviewsOutput>
+    listRecommendationFeedback: function(Client, types.ListRecommendationFeedbackInput, ? base_client.InvokeOptions): async.Operation<types.ListRecommendationFeedbackOutput>
+    listRecommendations: function(Client, types.ListRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.ListRecommendationsOutput>
+    listRepositoryAssociations: function(Client, types.ListRepositoryAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListRepositoryAssociationsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putRecommendationFeedback: function(Client, types.PutRecommendationFeedbackInput, ? base_client.InvokeOptions): async.Operation<types.PutRecommendationFeedbackOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSGuruFrontendService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "codeguru-reviewer", signing_region = c.region } }
                 else
@@ -73,60 +76,60 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateRepository(input: types.AssociateRepositoryInput, options: any): async.Operation<types.AssociateRepositoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateRepository, input, options) as async.Operation<types.AssociateRepositoryOutput>
+function C:associateRepository(input: types.AssociateRepositoryInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateRepositoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateRepository as schema.OperationSchema, input, options) as async.Operation<types.AssociateRepositoryOutput>
 end
 
-function C:createCodeReview(input: types.CreateCodeReviewInput, options: any): async.Operation<types.CreateCodeReviewOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCodeReview, input, options) as async.Operation<types.CreateCodeReviewOutput>
+function C:createCodeReview(input: types.CreateCodeReviewInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCodeReviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCodeReview as schema.OperationSchema, input, options) as async.Operation<types.CreateCodeReviewOutput>
 end
 
-function C:describeCodeReview(input: types.DescribeCodeReviewInput, options: any): async.Operation<types.DescribeCodeReviewOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCodeReview, input, options) as async.Operation<types.DescribeCodeReviewOutput>
+function C:describeCodeReview(input: types.DescribeCodeReviewInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCodeReviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCodeReview as schema.OperationSchema, input, options) as async.Operation<types.DescribeCodeReviewOutput>
 end
 
-function C:describeRecommendationFeedback(input: types.DescribeRecommendationFeedbackInput, options: any): async.Operation<types.DescribeRecommendationFeedbackOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRecommendationFeedback, input, options) as async.Operation<types.DescribeRecommendationFeedbackOutput>
+function C:describeRecommendationFeedback(input: types.DescribeRecommendationFeedbackInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRecommendationFeedbackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRecommendationFeedback as schema.OperationSchema, input, options) as async.Operation<types.DescribeRecommendationFeedbackOutput>
 end
 
-function C:describeRepositoryAssociation(input: types.DescribeRepositoryAssociationInput, options: any): async.Operation<types.DescribeRepositoryAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRepositoryAssociation, input, options) as async.Operation<types.DescribeRepositoryAssociationOutput>
+function C:describeRepositoryAssociation(input: types.DescribeRepositoryAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRepositoryAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRepositoryAssociation as schema.OperationSchema, input, options) as async.Operation<types.DescribeRepositoryAssociationOutput>
 end
 
-function C:disassociateRepository(input: types.DisassociateRepositoryInput, options: any): async.Operation<types.DisassociateRepositoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateRepository, input, options) as async.Operation<types.DisassociateRepositoryOutput>
+function C:disassociateRepository(input: types.DisassociateRepositoryInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateRepositoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateRepository as schema.OperationSchema, input, options) as async.Operation<types.DisassociateRepositoryOutput>
 end
 
-function C:listCodeReviews(input: types.ListCodeReviewsInput, options: any): async.Operation<types.ListCodeReviewsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCodeReviews, input, options) as async.Operation<types.ListCodeReviewsOutput>
+function C:listCodeReviews(input: types.ListCodeReviewsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCodeReviewsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCodeReviews as schema.OperationSchema, input, options) as async.Operation<types.ListCodeReviewsOutput>
 end
 
-function C:listRecommendationFeedback(input: types.ListRecommendationFeedbackInput, options: any): async.Operation<types.ListRecommendationFeedbackOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRecommendationFeedback, input, options) as async.Operation<types.ListRecommendationFeedbackOutput>
+function C:listRecommendationFeedback(input: types.ListRecommendationFeedbackInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecommendationFeedbackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecommendationFeedback as schema.OperationSchema, input, options) as async.Operation<types.ListRecommendationFeedbackOutput>
 end
 
-function C:listRecommendations(input: types.ListRecommendationsInput, options: any): async.Operation<types.ListRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRecommendations, input, options) as async.Operation<types.ListRecommendationsOutput>
+function C:listRecommendations(input: types.ListRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecommendations as schema.OperationSchema, input, options) as async.Operation<types.ListRecommendationsOutput>
 end
 
-function C:listRepositoryAssociations(input: types.ListRepositoryAssociationsInput, options: any): async.Operation<types.ListRepositoryAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRepositoryAssociations, input, options) as async.Operation<types.ListRepositoryAssociationsOutput>
+function C:listRepositoryAssociations(input: types.ListRepositoryAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRepositoryAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRepositoryAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListRepositoryAssociationsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putRecommendationFeedback(input: types.PutRecommendationFeedbackInput, options: any): async.Operation<types.PutRecommendationFeedbackOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutRecommendationFeedback, input, options) as async.Operation<types.PutRecommendationFeedbackOutput>
+function C:putRecommendationFeedback(input: types.PutRecommendationFeedbackInput, options?: base_client.InvokeOptions): async.Operation<types.PutRecommendationFeedbackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutRecommendationFeedback as schema.OperationSchema, input, options) as async.Operation<types.PutRecommendationFeedbackOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
 return M

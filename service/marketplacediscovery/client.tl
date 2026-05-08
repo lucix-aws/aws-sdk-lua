@@ -8,48 +8,51 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("marketplacediscovery.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("marketplacediscovery.schemas")
 local traits = require("smithy.traits")
 local types = require("marketplacediscovery.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    getListing: function(Client, types.GetListingInput, any): async.Operation<types.GetListingOutput>
-    getOffer: function(Client, types.GetOfferInput, any): async.Operation<types.GetOfferOutput>
-    getOfferSet: function(Client, types.GetOfferSetInput, any): async.Operation<types.GetOfferSetOutput>
-    getOfferTerms: function(Client, types.GetOfferTermsInput, any): async.Operation<types.GetOfferTermsOutput>
-    getProduct: function(Client, types.GetProductInput, any): async.Operation<types.GetProductOutput>
-    listFulfillmentOptions: function(Client, types.ListFulfillmentOptionsInput, any): async.Operation<types.ListFulfillmentOptionsOutput>
-    listPurchaseOptions: function(Client, types.ListPurchaseOptionsInput, any): async.Operation<types.ListPurchaseOptionsOutput>
-    searchFacets: function(Client, types.SearchFacetsInput, any): async.Operation<types.SearchFacetsOutput>
-    searchListings: function(Client, types.SearchListingsInput, any): async.Operation<types.SearchListingsOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    getListing: function(Client, types.GetListingInput, ? base_client.InvokeOptions): async.Operation<types.GetListingOutput>
+    getOffer: function(Client, types.GetOfferInput, ? base_client.InvokeOptions): async.Operation<types.GetOfferOutput>
+    getOfferSet: function(Client, types.GetOfferSetInput, ? base_client.InvokeOptions): async.Operation<types.GetOfferSetOutput>
+    getOfferTerms: function(Client, types.GetOfferTermsInput, ? base_client.InvokeOptions): async.Operation<types.GetOfferTermsOutput>
+    getProduct: function(Client, types.GetProductInput, ? base_client.InvokeOptions): async.Operation<types.GetProductOutput>
+    listFulfillmentOptions: function(Client, types.ListFulfillmentOptionsInput, ? base_client.InvokeOptions): async.Operation<types.ListFulfillmentOptionsOutput>
+    listPurchaseOptions: function(Client, types.ListPurchaseOptionsInput, ? base_client.InvokeOptions): async.Operation<types.ListPurchaseOptionsOutput>
+    searchFacets: function(Client, types.SearchFacetsInput, ? base_client.InvokeOptions): async.Operation<types.SearchFacetsOutput>
+    searchListings: function(Client, types.SearchListingsInput, ? base_client.InvokeOptions): async.Operation<types.SearchListingsOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSMarketplaceDiscovery"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "aws-marketplace", signing_region = c.region } }
                 else
@@ -68,40 +71,40 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:getListing(input: types.GetListingInput, options: any): async.Operation<types.GetListingOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetListing, input, options) as async.Operation<types.GetListingOutput>
+function C:getListing(input: types.GetListingInput, options?: base_client.InvokeOptions): async.Operation<types.GetListingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetListing as schema.OperationSchema, input, options) as async.Operation<types.GetListingOutput>
 end
 
-function C:getOffer(input: types.GetOfferInput, options: any): async.Operation<types.GetOfferOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOffer, input, options) as async.Operation<types.GetOfferOutput>
+function C:getOffer(input: types.GetOfferInput, options?: base_client.InvokeOptions): async.Operation<types.GetOfferOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOffer as schema.OperationSchema, input, options) as async.Operation<types.GetOfferOutput>
 end
 
-function C:getOfferSet(input: types.GetOfferSetInput, options: any): async.Operation<types.GetOfferSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOfferSet, input, options) as async.Operation<types.GetOfferSetOutput>
+function C:getOfferSet(input: types.GetOfferSetInput, options?: base_client.InvokeOptions): async.Operation<types.GetOfferSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOfferSet as schema.OperationSchema, input, options) as async.Operation<types.GetOfferSetOutput>
 end
 
-function C:getOfferTerms(input: types.GetOfferTermsInput, options: any): async.Operation<types.GetOfferTermsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOfferTerms, input, options) as async.Operation<types.GetOfferTermsOutput>
+function C:getOfferTerms(input: types.GetOfferTermsInput, options?: base_client.InvokeOptions): async.Operation<types.GetOfferTermsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOfferTerms as schema.OperationSchema, input, options) as async.Operation<types.GetOfferTermsOutput>
 end
 
-function C:getProduct(input: types.GetProductInput, options: any): async.Operation<types.GetProductOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetProduct, input, options) as async.Operation<types.GetProductOutput>
+function C:getProduct(input: types.GetProductInput, options?: base_client.InvokeOptions): async.Operation<types.GetProductOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProduct as schema.OperationSchema, input, options) as async.Operation<types.GetProductOutput>
 end
 
-function C:listFulfillmentOptions(input: types.ListFulfillmentOptionsInput, options: any): async.Operation<types.ListFulfillmentOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFulfillmentOptions, input, options) as async.Operation<types.ListFulfillmentOptionsOutput>
+function C:listFulfillmentOptions(input: types.ListFulfillmentOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFulfillmentOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFulfillmentOptions as schema.OperationSchema, input, options) as async.Operation<types.ListFulfillmentOptionsOutput>
 end
 
-function C:listPurchaseOptions(input: types.ListPurchaseOptionsInput, options: any): async.Operation<types.ListPurchaseOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPurchaseOptions, input, options) as async.Operation<types.ListPurchaseOptionsOutput>
+function C:listPurchaseOptions(input: types.ListPurchaseOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPurchaseOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPurchaseOptions as schema.OperationSchema, input, options) as async.Operation<types.ListPurchaseOptionsOutput>
 end
 
-function C:searchFacets(input: types.SearchFacetsInput, options: any): async.Operation<types.SearchFacetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchFacets, input, options) as async.Operation<types.SearchFacetsOutput>
+function C:searchFacets(input: types.SearchFacetsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchFacetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchFacets as schema.OperationSchema, input, options) as async.Operation<types.SearchFacetsOutput>
 end
 
-function C:searchListings(input: types.SearchListingsInput, options: any): async.Operation<types.SearchListingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchListings, input, options) as async.Operation<types.SearchListingsOutput>
+function C:searchListings(input: types.SearchListingsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchListingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchListings as schema.OperationSchema, input, options) as async.Operation<types.SearchListingsOutput>
 end
 
 return M

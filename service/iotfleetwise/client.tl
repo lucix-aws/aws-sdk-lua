@@ -8,96 +8,99 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("iotfleetwise.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("iotfleetwise.schemas")
 local traits = require("smithy.traits")
 local types = require("iotfleetwise.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateVehicleFleet: function(Client, types.AssociateVehicleFleetInput, any): async.Operation<types.AssociateVehicleFleetOutput>
-    batchCreateVehicle: function(Client, types.BatchCreateVehicleInput, any): async.Operation<types.BatchCreateVehicleOutput>
-    batchUpdateVehicle: function(Client, types.BatchUpdateVehicleInput, any): async.Operation<types.BatchUpdateVehicleOutput>
-    createCampaign: function(Client, types.CreateCampaignInput, any): async.Operation<types.CreateCampaignOutput>
-    createDecoderManifest: function(Client, types.CreateDecoderManifestInput, any): async.Operation<types.CreateDecoderManifestOutput>
-    createFleet: function(Client, types.CreateFleetInput, any): async.Operation<types.CreateFleetOutput>
-    createModelManifest: function(Client, types.CreateModelManifestInput, any): async.Operation<types.CreateModelManifestOutput>
-    createSignalCatalog: function(Client, types.CreateSignalCatalogInput, any): async.Operation<types.CreateSignalCatalogOutput>
-    createStateTemplate: function(Client, types.CreateStateTemplateInput, any): async.Operation<types.CreateStateTemplateOutput>
-    createVehicle: function(Client, types.CreateVehicleInput, any): async.Operation<types.CreateVehicleOutput>
-    deleteCampaign: function(Client, types.DeleteCampaignInput, any): async.Operation<types.DeleteCampaignOutput>
-    deleteDecoderManifest: function(Client, types.DeleteDecoderManifestInput, any): async.Operation<types.DeleteDecoderManifestOutput>
-    deleteFleet: function(Client, types.DeleteFleetInput, any): async.Operation<types.DeleteFleetOutput>
-    deleteModelManifest: function(Client, types.DeleteModelManifestInput, any): async.Operation<types.DeleteModelManifestOutput>
-    deleteSignalCatalog: function(Client, types.DeleteSignalCatalogInput, any): async.Operation<types.DeleteSignalCatalogOutput>
-    deleteStateTemplate: function(Client, types.DeleteStateTemplateInput, any): async.Operation<types.DeleteStateTemplateOutput>
-    deleteVehicle: function(Client, types.DeleteVehicleInput, any): async.Operation<types.DeleteVehicleOutput>
-    disassociateVehicleFleet: function(Client, types.DisassociateVehicleFleetInput, any): async.Operation<types.DisassociateVehicleFleetOutput>
-    getCampaign: function(Client, types.GetCampaignInput, any): async.Operation<types.GetCampaignOutput>
-    getDecoderManifest: function(Client, types.GetDecoderManifestInput, any): async.Operation<types.GetDecoderManifestOutput>
-    getEncryptionConfiguration: function(Client, types.GetEncryptionConfigurationInput, any): async.Operation<types.GetEncryptionConfigurationOutput>
-    getFleet: function(Client, types.GetFleetInput, any): async.Operation<types.GetFleetOutput>
-    getLoggingOptions: function(Client, types.GetLoggingOptionsInput, any): async.Operation<types.GetLoggingOptionsOutput>
-    getModelManifest: function(Client, types.GetModelManifestInput, any): async.Operation<types.GetModelManifestOutput>
-    getRegisterAccountStatus: function(Client, types.GetRegisterAccountStatusInput, any): async.Operation<types.GetRegisterAccountStatusOutput>
-    getSignalCatalog: function(Client, types.GetSignalCatalogInput, any): async.Operation<types.GetSignalCatalogOutput>
-    getStateTemplate: function(Client, types.GetStateTemplateInput, any): async.Operation<types.GetStateTemplateOutput>
-    getVehicle: function(Client, types.GetVehicleInput, any): async.Operation<types.GetVehicleOutput>
-    getVehicleStatus: function(Client, types.GetVehicleStatusInput, any): async.Operation<types.GetVehicleStatusOutput>
-    importDecoderManifest: function(Client, types.ImportDecoderManifestInput, any): async.Operation<types.ImportDecoderManifestOutput>
-    importSignalCatalog: function(Client, types.ImportSignalCatalogInput, any): async.Operation<types.ImportSignalCatalogOutput>
-    listCampaigns: function(Client, types.ListCampaignsInput, any): async.Operation<types.ListCampaignsOutput>
-    listDecoderManifestNetworkInterfaces: function(Client, types.ListDecoderManifestNetworkInterfacesInput, any): async.Operation<types.ListDecoderManifestNetworkInterfacesOutput>
-    listDecoderManifests: function(Client, types.ListDecoderManifestsInput, any): async.Operation<types.ListDecoderManifestsOutput>
-    listDecoderManifestSignals: function(Client, types.ListDecoderManifestSignalsInput, any): async.Operation<types.ListDecoderManifestSignalsOutput>
-    listFleets: function(Client, types.ListFleetsInput, any): async.Operation<types.ListFleetsOutput>
-    listFleetsForVehicle: function(Client, types.ListFleetsForVehicleInput, any): async.Operation<types.ListFleetsForVehicleOutput>
-    listModelManifestNodes: function(Client, types.ListModelManifestNodesInput, any): async.Operation<types.ListModelManifestNodesOutput>
-    listModelManifests: function(Client, types.ListModelManifestsInput, any): async.Operation<types.ListModelManifestsOutput>
-    listSignalCatalogNodes: function(Client, types.ListSignalCatalogNodesInput, any): async.Operation<types.ListSignalCatalogNodesOutput>
-    listSignalCatalogs: function(Client, types.ListSignalCatalogsInput, any): async.Operation<types.ListSignalCatalogsOutput>
-    listStateTemplates: function(Client, types.ListStateTemplatesInput, any): async.Operation<types.ListStateTemplatesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listVehicles: function(Client, types.ListVehiclesInput, any): async.Operation<types.ListVehiclesOutput>
-    listVehiclesInFleet: function(Client, types.ListVehiclesInFleetInput, any): async.Operation<types.ListVehiclesInFleetOutput>
-    putEncryptionConfiguration: function(Client, types.PutEncryptionConfigurationInput, any): async.Operation<types.PutEncryptionConfigurationOutput>
-    putLoggingOptions: function(Client, types.PutLoggingOptionsInput, any): async.Operation<types.PutLoggingOptionsOutput>
-    registerAccount: function(Client, types.RegisterAccountInput, any): async.Operation<types.RegisterAccountOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateCampaign: function(Client, types.UpdateCampaignInput, any): async.Operation<types.UpdateCampaignOutput>
-    updateDecoderManifest: function(Client, types.UpdateDecoderManifestInput, any): async.Operation<types.UpdateDecoderManifestOutput>
-    updateFleet: function(Client, types.UpdateFleetInput, any): async.Operation<types.UpdateFleetOutput>
-    updateModelManifest: function(Client, types.UpdateModelManifestInput, any): async.Operation<types.UpdateModelManifestOutput>
-    updateSignalCatalog: function(Client, types.UpdateSignalCatalogInput, any): async.Operation<types.UpdateSignalCatalogOutput>
-    updateStateTemplate: function(Client, types.UpdateStateTemplateInput, any): async.Operation<types.UpdateStateTemplateOutput>
-    updateVehicle: function(Client, types.UpdateVehicleInput, any): async.Operation<types.UpdateVehicleOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateVehicleFleet: function(Client, types.AssociateVehicleFleetInput, ? base_client.InvokeOptions): async.Operation<types.AssociateVehicleFleetOutput>
+    batchCreateVehicle: function(Client, types.BatchCreateVehicleInput, ? base_client.InvokeOptions): async.Operation<types.BatchCreateVehicleOutput>
+    batchUpdateVehicle: function(Client, types.BatchUpdateVehicleInput, ? base_client.InvokeOptions): async.Operation<types.BatchUpdateVehicleOutput>
+    createCampaign: function(Client, types.CreateCampaignInput, ? base_client.InvokeOptions): async.Operation<types.CreateCampaignOutput>
+    createDecoderManifest: function(Client, types.CreateDecoderManifestInput, ? base_client.InvokeOptions): async.Operation<types.CreateDecoderManifestOutput>
+    createFleet: function(Client, types.CreateFleetInput, ? base_client.InvokeOptions): async.Operation<types.CreateFleetOutput>
+    createModelManifest: function(Client, types.CreateModelManifestInput, ? base_client.InvokeOptions): async.Operation<types.CreateModelManifestOutput>
+    createSignalCatalog: function(Client, types.CreateSignalCatalogInput, ? base_client.InvokeOptions): async.Operation<types.CreateSignalCatalogOutput>
+    createStateTemplate: function(Client, types.CreateStateTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateStateTemplateOutput>
+    createVehicle: function(Client, types.CreateVehicleInput, ? base_client.InvokeOptions): async.Operation<types.CreateVehicleOutput>
+    deleteCampaign: function(Client, types.DeleteCampaignInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCampaignOutput>
+    deleteDecoderManifest: function(Client, types.DeleteDecoderManifestInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDecoderManifestOutput>
+    deleteFleet: function(Client, types.DeleteFleetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFleetOutput>
+    deleteModelManifest: function(Client, types.DeleteModelManifestInput, ? base_client.InvokeOptions): async.Operation<types.DeleteModelManifestOutput>
+    deleteSignalCatalog: function(Client, types.DeleteSignalCatalogInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSignalCatalogOutput>
+    deleteStateTemplate: function(Client, types.DeleteStateTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteStateTemplateOutput>
+    deleteVehicle: function(Client, types.DeleteVehicleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVehicleOutput>
+    disassociateVehicleFleet: function(Client, types.DisassociateVehicleFleetInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateVehicleFleetOutput>
+    getCampaign: function(Client, types.GetCampaignInput, ? base_client.InvokeOptions): async.Operation<types.GetCampaignOutput>
+    getDecoderManifest: function(Client, types.GetDecoderManifestInput, ? base_client.InvokeOptions): async.Operation<types.GetDecoderManifestOutput>
+    getEncryptionConfiguration: function(Client, types.GetEncryptionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetEncryptionConfigurationOutput>
+    getFleet: function(Client, types.GetFleetInput, ? base_client.InvokeOptions): async.Operation<types.GetFleetOutput>
+    getLoggingOptions: function(Client, types.GetLoggingOptionsInput, ? base_client.InvokeOptions): async.Operation<types.GetLoggingOptionsOutput>
+    getModelManifest: function(Client, types.GetModelManifestInput, ? base_client.InvokeOptions): async.Operation<types.GetModelManifestOutput>
+    getRegisterAccountStatus: function(Client, types.GetRegisterAccountStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetRegisterAccountStatusOutput>
+    getSignalCatalog: function(Client, types.GetSignalCatalogInput, ? base_client.InvokeOptions): async.Operation<types.GetSignalCatalogOutput>
+    getStateTemplate: function(Client, types.GetStateTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetStateTemplateOutput>
+    getVehicle: function(Client, types.GetVehicleInput, ? base_client.InvokeOptions): async.Operation<types.GetVehicleOutput>
+    getVehicleStatus: function(Client, types.GetVehicleStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetVehicleStatusOutput>
+    importDecoderManifest: function(Client, types.ImportDecoderManifestInput, ? base_client.InvokeOptions): async.Operation<types.ImportDecoderManifestOutput>
+    importSignalCatalog: function(Client, types.ImportSignalCatalogInput, ? base_client.InvokeOptions): async.Operation<types.ImportSignalCatalogOutput>
+    listCampaigns: function(Client, types.ListCampaignsInput, ? base_client.InvokeOptions): async.Operation<types.ListCampaignsOutput>
+    listDecoderManifestNetworkInterfaces: function(Client, types.ListDecoderManifestNetworkInterfacesInput, ? base_client.InvokeOptions): async.Operation<types.ListDecoderManifestNetworkInterfacesOutput>
+    listDecoderManifests: function(Client, types.ListDecoderManifestsInput, ? base_client.InvokeOptions): async.Operation<types.ListDecoderManifestsOutput>
+    listDecoderManifestSignals: function(Client, types.ListDecoderManifestSignalsInput, ? base_client.InvokeOptions): async.Operation<types.ListDecoderManifestSignalsOutput>
+    listFleets: function(Client, types.ListFleetsInput, ? base_client.InvokeOptions): async.Operation<types.ListFleetsOutput>
+    listFleetsForVehicle: function(Client, types.ListFleetsForVehicleInput, ? base_client.InvokeOptions): async.Operation<types.ListFleetsForVehicleOutput>
+    listModelManifestNodes: function(Client, types.ListModelManifestNodesInput, ? base_client.InvokeOptions): async.Operation<types.ListModelManifestNodesOutput>
+    listModelManifests: function(Client, types.ListModelManifestsInput, ? base_client.InvokeOptions): async.Operation<types.ListModelManifestsOutput>
+    listSignalCatalogNodes: function(Client, types.ListSignalCatalogNodesInput, ? base_client.InvokeOptions): async.Operation<types.ListSignalCatalogNodesOutput>
+    listSignalCatalogs: function(Client, types.ListSignalCatalogsInput, ? base_client.InvokeOptions): async.Operation<types.ListSignalCatalogsOutput>
+    listStateTemplates: function(Client, types.ListStateTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListStateTemplatesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listVehicles: function(Client, types.ListVehiclesInput, ? base_client.InvokeOptions): async.Operation<types.ListVehiclesOutput>
+    listVehiclesInFleet: function(Client, types.ListVehiclesInFleetInput, ? base_client.InvokeOptions): async.Operation<types.ListVehiclesInFleetOutput>
+    putEncryptionConfiguration: function(Client, types.PutEncryptionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutEncryptionConfigurationOutput>
+    putLoggingOptions: function(Client, types.PutLoggingOptionsInput, ? base_client.InvokeOptions): async.Operation<types.PutLoggingOptionsOutput>
+    registerAccount: function(Client, types.RegisterAccountInput, ? base_client.InvokeOptions): async.Operation<types.RegisterAccountOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateCampaign: function(Client, types.UpdateCampaignInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCampaignOutput>
+    updateDecoderManifest: function(Client, types.UpdateDecoderManifestInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDecoderManifestOutput>
+    updateFleet: function(Client, types.UpdateFleetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFleetOutput>
+    updateModelManifest: function(Client, types.UpdateModelManifestInput, ? base_client.InvokeOptions): async.Operation<types.UpdateModelManifestOutput>
+    updateSignalCatalog: function(Client, types.UpdateSignalCatalogInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSignalCatalogOutput>
+    updateStateTemplate: function(Client, types.UpdateStateTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateStateTemplateOutput>
+    updateVehicle: function(Client, types.UpdateVehicleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateVehicleOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "IoTAutobahnControlPlane"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "iotfleetwise", signing_region = c.region } }
                 else
@@ -116,232 +119,232 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateVehicleFleet(input: types.AssociateVehicleFleetInput, options: any): async.Operation<types.AssociateVehicleFleetOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateVehicleFleet, input, options) as async.Operation<types.AssociateVehicleFleetOutput>
+function C:associateVehicleFleet(input: types.AssociateVehicleFleetInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateVehicleFleetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateVehicleFleet as schema.OperationSchema, input, options) as async.Operation<types.AssociateVehicleFleetOutput>
 end
 
-function C:batchCreateVehicle(input: types.BatchCreateVehicleInput, options: any): async.Operation<types.BatchCreateVehicleOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchCreateVehicle, input, options) as async.Operation<types.BatchCreateVehicleOutput>
+function C:batchCreateVehicle(input: types.BatchCreateVehicleInput, options?: base_client.InvokeOptions): async.Operation<types.BatchCreateVehicleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchCreateVehicle as schema.OperationSchema, input, options) as async.Operation<types.BatchCreateVehicleOutput>
 end
 
-function C:batchUpdateVehicle(input: types.BatchUpdateVehicleInput, options: any): async.Operation<types.BatchUpdateVehicleOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchUpdateVehicle, input, options) as async.Operation<types.BatchUpdateVehicleOutput>
+function C:batchUpdateVehicle(input: types.BatchUpdateVehicleInput, options?: base_client.InvokeOptions): async.Operation<types.BatchUpdateVehicleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchUpdateVehicle as schema.OperationSchema, input, options) as async.Operation<types.BatchUpdateVehicleOutput>
 end
 
-function C:createCampaign(input: types.CreateCampaignInput, options: any): async.Operation<types.CreateCampaignOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCampaign, input, options) as async.Operation<types.CreateCampaignOutput>
+function C:createCampaign(input: types.CreateCampaignInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCampaignOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCampaign as schema.OperationSchema, input, options) as async.Operation<types.CreateCampaignOutput>
 end
 
-function C:createDecoderManifest(input: types.CreateDecoderManifestInput, options: any): async.Operation<types.CreateDecoderManifestOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDecoderManifest, input, options) as async.Operation<types.CreateDecoderManifestOutput>
+function C:createDecoderManifest(input: types.CreateDecoderManifestInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDecoderManifestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDecoderManifest as schema.OperationSchema, input, options) as async.Operation<types.CreateDecoderManifestOutput>
 end
 
-function C:createFleet(input: types.CreateFleetInput, options: any): async.Operation<types.CreateFleetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFleet, input, options) as async.Operation<types.CreateFleetOutput>
+function C:createFleet(input: types.CreateFleetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFleetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFleet as schema.OperationSchema, input, options) as async.Operation<types.CreateFleetOutput>
 end
 
-function C:createModelManifest(input: types.CreateModelManifestInput, options: any): async.Operation<types.CreateModelManifestOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateModelManifest, input, options) as async.Operation<types.CreateModelManifestOutput>
+function C:createModelManifest(input: types.CreateModelManifestInput, options?: base_client.InvokeOptions): async.Operation<types.CreateModelManifestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateModelManifest as schema.OperationSchema, input, options) as async.Operation<types.CreateModelManifestOutput>
 end
 
-function C:createSignalCatalog(input: types.CreateSignalCatalogInput, options: any): async.Operation<types.CreateSignalCatalogOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSignalCatalog, input, options) as async.Operation<types.CreateSignalCatalogOutput>
+function C:createSignalCatalog(input: types.CreateSignalCatalogInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSignalCatalogOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSignalCatalog as schema.OperationSchema, input, options) as async.Operation<types.CreateSignalCatalogOutput>
 end
 
-function C:createStateTemplate(input: types.CreateStateTemplateInput, options: any): async.Operation<types.CreateStateTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateStateTemplate, input, options) as async.Operation<types.CreateStateTemplateOutput>
+function C:createStateTemplate(input: types.CreateStateTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateStateTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateStateTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateStateTemplateOutput>
 end
 
-function C:createVehicle(input: types.CreateVehicleInput, options: any): async.Operation<types.CreateVehicleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVehicle, input, options) as async.Operation<types.CreateVehicleOutput>
+function C:createVehicle(input: types.CreateVehicleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVehicleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVehicle as schema.OperationSchema, input, options) as async.Operation<types.CreateVehicleOutput>
 end
 
-function C:deleteCampaign(input: types.DeleteCampaignInput, options: any): async.Operation<types.DeleteCampaignOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCampaign, input, options) as async.Operation<types.DeleteCampaignOutput>
+function C:deleteCampaign(input: types.DeleteCampaignInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCampaignOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCampaign as schema.OperationSchema, input, options) as async.Operation<types.DeleteCampaignOutput>
 end
 
-function C:deleteDecoderManifest(input: types.DeleteDecoderManifestInput, options: any): async.Operation<types.DeleteDecoderManifestOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDecoderManifest, input, options) as async.Operation<types.DeleteDecoderManifestOutput>
+function C:deleteDecoderManifest(input: types.DeleteDecoderManifestInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDecoderManifestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDecoderManifest as schema.OperationSchema, input, options) as async.Operation<types.DeleteDecoderManifestOutput>
 end
 
-function C:deleteFleet(input: types.DeleteFleetInput, options: any): async.Operation<types.DeleteFleetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFleet, input, options) as async.Operation<types.DeleteFleetOutput>
+function C:deleteFleet(input: types.DeleteFleetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFleetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFleet as schema.OperationSchema, input, options) as async.Operation<types.DeleteFleetOutput>
 end
 
-function C:deleteModelManifest(input: types.DeleteModelManifestInput, options: any): async.Operation<types.DeleteModelManifestOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteModelManifest, input, options) as async.Operation<types.DeleteModelManifestOutput>
+function C:deleteModelManifest(input: types.DeleteModelManifestInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteModelManifestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteModelManifest as schema.OperationSchema, input, options) as async.Operation<types.DeleteModelManifestOutput>
 end
 
-function C:deleteSignalCatalog(input: types.DeleteSignalCatalogInput, options: any): async.Operation<types.DeleteSignalCatalogOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSignalCatalog, input, options) as async.Operation<types.DeleteSignalCatalogOutput>
+function C:deleteSignalCatalog(input: types.DeleteSignalCatalogInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSignalCatalogOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSignalCatalog as schema.OperationSchema, input, options) as async.Operation<types.DeleteSignalCatalogOutput>
 end
 
-function C:deleteStateTemplate(input: types.DeleteStateTemplateInput, options: any): async.Operation<types.DeleteStateTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteStateTemplate, input, options) as async.Operation<types.DeleteStateTemplateOutput>
+function C:deleteStateTemplate(input: types.DeleteStateTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteStateTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteStateTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteStateTemplateOutput>
 end
 
-function C:deleteVehicle(input: types.DeleteVehicleInput, options: any): async.Operation<types.DeleteVehicleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVehicle, input, options) as async.Operation<types.DeleteVehicleOutput>
+function C:deleteVehicle(input: types.DeleteVehicleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVehicleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVehicle as schema.OperationSchema, input, options) as async.Operation<types.DeleteVehicleOutput>
 end
 
-function C:disassociateVehicleFleet(input: types.DisassociateVehicleFleetInput, options: any): async.Operation<types.DisassociateVehicleFleetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateVehicleFleet, input, options) as async.Operation<types.DisassociateVehicleFleetOutput>
+function C:disassociateVehicleFleet(input: types.DisassociateVehicleFleetInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateVehicleFleetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateVehicleFleet as schema.OperationSchema, input, options) as async.Operation<types.DisassociateVehicleFleetOutput>
 end
 
-function C:getCampaign(input: types.GetCampaignInput, options: any): async.Operation<types.GetCampaignOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCampaign, input, options) as async.Operation<types.GetCampaignOutput>
+function C:getCampaign(input: types.GetCampaignInput, options?: base_client.InvokeOptions): async.Operation<types.GetCampaignOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCampaign as schema.OperationSchema, input, options) as async.Operation<types.GetCampaignOutput>
 end
 
-function C:getDecoderManifest(input: types.GetDecoderManifestInput, options: any): async.Operation<types.GetDecoderManifestOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDecoderManifest, input, options) as async.Operation<types.GetDecoderManifestOutput>
+function C:getDecoderManifest(input: types.GetDecoderManifestInput, options?: base_client.InvokeOptions): async.Operation<types.GetDecoderManifestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDecoderManifest as schema.OperationSchema, input, options) as async.Operation<types.GetDecoderManifestOutput>
 end
 
-function C:getEncryptionConfiguration(input: types.GetEncryptionConfigurationInput, options: any): async.Operation<types.GetEncryptionConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEncryptionConfiguration, input, options) as async.Operation<types.GetEncryptionConfigurationOutput>
+function C:getEncryptionConfiguration(input: types.GetEncryptionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetEncryptionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEncryptionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetEncryptionConfigurationOutput>
 end
 
-function C:getFleet(input: types.GetFleetInput, options: any): async.Operation<types.GetFleetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFleet, input, options) as async.Operation<types.GetFleetOutput>
+function C:getFleet(input: types.GetFleetInput, options?: base_client.InvokeOptions): async.Operation<types.GetFleetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFleet as schema.OperationSchema, input, options) as async.Operation<types.GetFleetOutput>
 end
 
-function C:getLoggingOptions(input: types.GetLoggingOptionsInput, options: any): async.Operation<types.GetLoggingOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLoggingOptions, input, options) as async.Operation<types.GetLoggingOptionsOutput>
+function C:getLoggingOptions(input: types.GetLoggingOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.GetLoggingOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLoggingOptions as schema.OperationSchema, input, options) as async.Operation<types.GetLoggingOptionsOutput>
 end
 
-function C:getModelManifest(input: types.GetModelManifestInput, options: any): async.Operation<types.GetModelManifestOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetModelManifest, input, options) as async.Operation<types.GetModelManifestOutput>
+function C:getModelManifest(input: types.GetModelManifestInput, options?: base_client.InvokeOptions): async.Operation<types.GetModelManifestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetModelManifest as schema.OperationSchema, input, options) as async.Operation<types.GetModelManifestOutput>
 end
 
-function C:getRegisterAccountStatus(input: types.GetRegisterAccountStatusInput, options: any): async.Operation<types.GetRegisterAccountStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRegisterAccountStatus, input, options) as async.Operation<types.GetRegisterAccountStatusOutput>
+function C:getRegisterAccountStatus(input: types.GetRegisterAccountStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetRegisterAccountStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRegisterAccountStatus as schema.OperationSchema, input, options) as async.Operation<types.GetRegisterAccountStatusOutput>
 end
 
-function C:getSignalCatalog(input: types.GetSignalCatalogInput, options: any): async.Operation<types.GetSignalCatalogOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSignalCatalog, input, options) as async.Operation<types.GetSignalCatalogOutput>
+function C:getSignalCatalog(input: types.GetSignalCatalogInput, options?: base_client.InvokeOptions): async.Operation<types.GetSignalCatalogOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSignalCatalog as schema.OperationSchema, input, options) as async.Operation<types.GetSignalCatalogOutput>
 end
 
-function C:getStateTemplate(input: types.GetStateTemplateInput, options: any): async.Operation<types.GetStateTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetStateTemplate, input, options) as async.Operation<types.GetStateTemplateOutput>
+function C:getStateTemplate(input: types.GetStateTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetStateTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetStateTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetStateTemplateOutput>
 end
 
-function C:getVehicle(input: types.GetVehicleInput, options: any): async.Operation<types.GetVehicleOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetVehicle, input, options) as async.Operation<types.GetVehicleOutput>
+function C:getVehicle(input: types.GetVehicleInput, options?: base_client.InvokeOptions): async.Operation<types.GetVehicleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVehicle as schema.OperationSchema, input, options) as async.Operation<types.GetVehicleOutput>
 end
 
-function C:getVehicleStatus(input: types.GetVehicleStatusInput, options: any): async.Operation<types.GetVehicleStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetVehicleStatus, input, options) as async.Operation<types.GetVehicleStatusOutput>
+function C:getVehicleStatus(input: types.GetVehicleStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetVehicleStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVehicleStatus as schema.OperationSchema, input, options) as async.Operation<types.GetVehicleStatusOutput>
 end
 
-function C:importDecoderManifest(input: types.ImportDecoderManifestInput, options: any): async.Operation<types.ImportDecoderManifestOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportDecoderManifest, input, options) as async.Operation<types.ImportDecoderManifestOutput>
+function C:importDecoderManifest(input: types.ImportDecoderManifestInput, options?: base_client.InvokeOptions): async.Operation<types.ImportDecoderManifestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportDecoderManifest as schema.OperationSchema, input, options) as async.Operation<types.ImportDecoderManifestOutput>
 end
 
-function C:importSignalCatalog(input: types.ImportSignalCatalogInput, options: any): async.Operation<types.ImportSignalCatalogOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportSignalCatalog, input, options) as async.Operation<types.ImportSignalCatalogOutput>
+function C:importSignalCatalog(input: types.ImportSignalCatalogInput, options?: base_client.InvokeOptions): async.Operation<types.ImportSignalCatalogOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportSignalCatalog as schema.OperationSchema, input, options) as async.Operation<types.ImportSignalCatalogOutput>
 end
 
-function C:listCampaigns(input: types.ListCampaignsInput, options: any): async.Operation<types.ListCampaignsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCampaigns, input, options) as async.Operation<types.ListCampaignsOutput>
+function C:listCampaigns(input: types.ListCampaignsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCampaignsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCampaigns as schema.OperationSchema, input, options) as async.Operation<types.ListCampaignsOutput>
 end
 
-function C:listDecoderManifestNetworkInterfaces(input: types.ListDecoderManifestNetworkInterfacesInput, options: any): async.Operation<types.ListDecoderManifestNetworkInterfacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDecoderManifestNetworkInterfaces, input, options) as async.Operation<types.ListDecoderManifestNetworkInterfacesOutput>
+function C:listDecoderManifestNetworkInterfaces(input: types.ListDecoderManifestNetworkInterfacesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDecoderManifestNetworkInterfacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDecoderManifestNetworkInterfaces as schema.OperationSchema, input, options) as async.Operation<types.ListDecoderManifestNetworkInterfacesOutput>
 end
 
-function C:listDecoderManifests(input: types.ListDecoderManifestsInput, options: any): async.Operation<types.ListDecoderManifestsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDecoderManifests, input, options) as async.Operation<types.ListDecoderManifestsOutput>
+function C:listDecoderManifests(input: types.ListDecoderManifestsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDecoderManifestsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDecoderManifests as schema.OperationSchema, input, options) as async.Operation<types.ListDecoderManifestsOutput>
 end
 
-function C:listDecoderManifestSignals(input: types.ListDecoderManifestSignalsInput, options: any): async.Operation<types.ListDecoderManifestSignalsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDecoderManifestSignals, input, options) as async.Operation<types.ListDecoderManifestSignalsOutput>
+function C:listDecoderManifestSignals(input: types.ListDecoderManifestSignalsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDecoderManifestSignalsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDecoderManifestSignals as schema.OperationSchema, input, options) as async.Operation<types.ListDecoderManifestSignalsOutput>
 end
 
-function C:listFleets(input: types.ListFleetsInput, options: any): async.Operation<types.ListFleetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFleets, input, options) as async.Operation<types.ListFleetsOutput>
+function C:listFleets(input: types.ListFleetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFleetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFleets as schema.OperationSchema, input, options) as async.Operation<types.ListFleetsOutput>
 end
 
-function C:listFleetsForVehicle(input: types.ListFleetsForVehicleInput, options: any): async.Operation<types.ListFleetsForVehicleOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFleetsForVehicle, input, options) as async.Operation<types.ListFleetsForVehicleOutput>
+function C:listFleetsForVehicle(input: types.ListFleetsForVehicleInput, options?: base_client.InvokeOptions): async.Operation<types.ListFleetsForVehicleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFleetsForVehicle as schema.OperationSchema, input, options) as async.Operation<types.ListFleetsForVehicleOutput>
 end
 
-function C:listModelManifestNodes(input: types.ListModelManifestNodesInput, options: any): async.Operation<types.ListModelManifestNodesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListModelManifestNodes, input, options) as async.Operation<types.ListModelManifestNodesOutput>
+function C:listModelManifestNodes(input: types.ListModelManifestNodesInput, options?: base_client.InvokeOptions): async.Operation<types.ListModelManifestNodesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListModelManifestNodes as schema.OperationSchema, input, options) as async.Operation<types.ListModelManifestNodesOutput>
 end
 
-function C:listModelManifests(input: types.ListModelManifestsInput, options: any): async.Operation<types.ListModelManifestsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListModelManifests, input, options) as async.Operation<types.ListModelManifestsOutput>
+function C:listModelManifests(input: types.ListModelManifestsInput, options?: base_client.InvokeOptions): async.Operation<types.ListModelManifestsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListModelManifests as schema.OperationSchema, input, options) as async.Operation<types.ListModelManifestsOutput>
 end
 
-function C:listSignalCatalogNodes(input: types.ListSignalCatalogNodesInput, options: any): async.Operation<types.ListSignalCatalogNodesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSignalCatalogNodes, input, options) as async.Operation<types.ListSignalCatalogNodesOutput>
+function C:listSignalCatalogNodes(input: types.ListSignalCatalogNodesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSignalCatalogNodesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSignalCatalogNodes as schema.OperationSchema, input, options) as async.Operation<types.ListSignalCatalogNodesOutput>
 end
 
-function C:listSignalCatalogs(input: types.ListSignalCatalogsInput, options: any): async.Operation<types.ListSignalCatalogsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSignalCatalogs, input, options) as async.Operation<types.ListSignalCatalogsOutput>
+function C:listSignalCatalogs(input: types.ListSignalCatalogsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSignalCatalogsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSignalCatalogs as schema.OperationSchema, input, options) as async.Operation<types.ListSignalCatalogsOutput>
 end
 
-function C:listStateTemplates(input: types.ListStateTemplatesInput, options: any): async.Operation<types.ListStateTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStateTemplates, input, options) as async.Operation<types.ListStateTemplatesOutput>
+function C:listStateTemplates(input: types.ListStateTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListStateTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStateTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListStateTemplatesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listVehicles(input: types.ListVehiclesInput, options: any): async.Operation<types.ListVehiclesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVehicles, input, options) as async.Operation<types.ListVehiclesOutput>
+function C:listVehicles(input: types.ListVehiclesInput, options?: base_client.InvokeOptions): async.Operation<types.ListVehiclesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVehicles as schema.OperationSchema, input, options) as async.Operation<types.ListVehiclesOutput>
 end
 
-function C:listVehiclesInFleet(input: types.ListVehiclesInFleetInput, options: any): async.Operation<types.ListVehiclesInFleetOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVehiclesInFleet, input, options) as async.Operation<types.ListVehiclesInFleetOutput>
+function C:listVehiclesInFleet(input: types.ListVehiclesInFleetInput, options?: base_client.InvokeOptions): async.Operation<types.ListVehiclesInFleetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVehiclesInFleet as schema.OperationSchema, input, options) as async.Operation<types.ListVehiclesInFleetOutput>
 end
 
-function C:putEncryptionConfiguration(input: types.PutEncryptionConfigurationInput, options: any): async.Operation<types.PutEncryptionConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutEncryptionConfiguration, input, options) as async.Operation<types.PutEncryptionConfigurationOutput>
+function C:putEncryptionConfiguration(input: types.PutEncryptionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutEncryptionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutEncryptionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutEncryptionConfigurationOutput>
 end
 
-function C:putLoggingOptions(input: types.PutLoggingOptionsInput, options: any): async.Operation<types.PutLoggingOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutLoggingOptions, input, options) as async.Operation<types.PutLoggingOptionsOutput>
+function C:putLoggingOptions(input: types.PutLoggingOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.PutLoggingOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutLoggingOptions as schema.OperationSchema, input, options) as async.Operation<types.PutLoggingOptionsOutput>
 end
 
-function C:registerAccount(input: types.RegisterAccountInput, options: any): async.Operation<types.RegisterAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterAccount, input, options) as async.Operation<types.RegisterAccountOutput>
+function C:registerAccount(input: types.RegisterAccountInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterAccount as schema.OperationSchema, input, options) as async.Operation<types.RegisterAccountOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateCampaign(input: types.UpdateCampaignInput, options: any): async.Operation<types.UpdateCampaignOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCampaign, input, options) as async.Operation<types.UpdateCampaignOutput>
+function C:updateCampaign(input: types.UpdateCampaignInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCampaignOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCampaign as schema.OperationSchema, input, options) as async.Operation<types.UpdateCampaignOutput>
 end
 
-function C:updateDecoderManifest(input: types.UpdateDecoderManifestInput, options: any): async.Operation<types.UpdateDecoderManifestOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDecoderManifest, input, options) as async.Operation<types.UpdateDecoderManifestOutput>
+function C:updateDecoderManifest(input: types.UpdateDecoderManifestInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDecoderManifestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDecoderManifest as schema.OperationSchema, input, options) as async.Operation<types.UpdateDecoderManifestOutput>
 end
 
-function C:updateFleet(input: types.UpdateFleetInput, options: any): async.Operation<types.UpdateFleetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFleet, input, options) as async.Operation<types.UpdateFleetOutput>
+function C:updateFleet(input: types.UpdateFleetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFleetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFleet as schema.OperationSchema, input, options) as async.Operation<types.UpdateFleetOutput>
 end
 
-function C:updateModelManifest(input: types.UpdateModelManifestInput, options: any): async.Operation<types.UpdateModelManifestOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateModelManifest, input, options) as async.Operation<types.UpdateModelManifestOutput>
+function C:updateModelManifest(input: types.UpdateModelManifestInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateModelManifestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateModelManifest as schema.OperationSchema, input, options) as async.Operation<types.UpdateModelManifestOutput>
 end
 
-function C:updateSignalCatalog(input: types.UpdateSignalCatalogInput, options: any): async.Operation<types.UpdateSignalCatalogOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSignalCatalog, input, options) as async.Operation<types.UpdateSignalCatalogOutput>
+function C:updateSignalCatalog(input: types.UpdateSignalCatalogInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSignalCatalogOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSignalCatalog as schema.OperationSchema, input, options) as async.Operation<types.UpdateSignalCatalogOutput>
 end
 
-function C:updateStateTemplate(input: types.UpdateStateTemplateInput, options: any): async.Operation<types.UpdateStateTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateStateTemplate, input, options) as async.Operation<types.UpdateStateTemplateOutput>
+function C:updateStateTemplate(input: types.UpdateStateTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateStateTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateStateTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateStateTemplateOutput>
 end
 
-function C:updateVehicle(input: types.UpdateVehicleInput, options: any): async.Operation<types.UpdateVehicleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateVehicle, input, options) as async.Operation<types.UpdateVehicleOutput>
+function C:updateVehicle(input: types.UpdateVehicleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateVehicleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateVehicle as schema.OperationSchema, input, options) as async.Operation<types.UpdateVehicleOutput>
 end
 
 return M

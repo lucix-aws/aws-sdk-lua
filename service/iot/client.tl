@@ -8,311 +8,314 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("iot.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("iot.schemas")
 local traits = require("smithy.traits")
 local types = require("iot.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    acceptCertificateTransfer: function(Client, types.AcceptCertificateTransferInput, any): async.Operation<types.AcceptCertificateTransferOutput>
-    addThingToBillingGroup: function(Client, types.AddThingToBillingGroupInput, any): async.Operation<types.AddThingToBillingGroupOutput>
-    addThingToThingGroup: function(Client, types.AddThingToThingGroupInput, any): async.Operation<types.AddThingToThingGroupOutput>
-    associateSbomWithPackageVersion: function(Client, types.AssociateSbomWithPackageVersionInput, any): async.Operation<types.AssociateSbomWithPackageVersionOutput>
-    associateTargetsWithJob: function(Client, types.AssociateTargetsWithJobInput, any): async.Operation<types.AssociateTargetsWithJobOutput>
-    attachPolicy: function(Client, types.AttachPolicyInput, any): async.Operation<types.AttachPolicyOutput>
-    attachPrincipalPolicy: function(Client, types.AttachPrincipalPolicyInput, any): async.Operation<types.AttachPrincipalPolicyOutput>
-    attachSecurityProfile: function(Client, types.AttachSecurityProfileInput, any): async.Operation<types.AttachSecurityProfileOutput>
-    attachThingPrincipal: function(Client, types.AttachThingPrincipalInput, any): async.Operation<types.AttachThingPrincipalOutput>
-    cancelAuditMitigationActionsTask: function(Client, types.CancelAuditMitigationActionsTaskInput, any): async.Operation<types.CancelAuditMitigationActionsTaskOutput>
-    cancelAuditTask: function(Client, types.CancelAuditTaskInput, any): async.Operation<types.CancelAuditTaskOutput>
-    cancelCertificateTransfer: function(Client, types.CancelCertificateTransferInput, any): async.Operation<types.CancelCertificateTransferOutput>
-    cancelDetectMitigationActionsTask: function(Client, types.CancelDetectMitigationActionsTaskInput, any): async.Operation<types.CancelDetectMitigationActionsTaskOutput>
-    cancelJob: function(Client, types.CancelJobInput, any): async.Operation<types.CancelJobOutput>
-    cancelJobExecution: function(Client, types.CancelJobExecutionInput, any): async.Operation<types.CancelJobExecutionOutput>
-    clearDefaultAuthorizer: function(Client, types.ClearDefaultAuthorizerInput, any): async.Operation<types.ClearDefaultAuthorizerOutput>
-    confirmTopicRuleDestination: function(Client, types.ConfirmTopicRuleDestinationInput, any): async.Operation<types.ConfirmTopicRuleDestinationOutput>
-    createAuditSuppression: function(Client, types.CreateAuditSuppressionInput, any): async.Operation<types.CreateAuditSuppressionOutput>
-    createAuthorizer: function(Client, types.CreateAuthorizerInput, any): async.Operation<types.CreateAuthorizerOutput>
-    createBillingGroup: function(Client, types.CreateBillingGroupInput, any): async.Operation<types.CreateBillingGroupOutput>
-    createCertificateFromCsr: function(Client, types.CreateCertificateFromCsrInput, any): async.Operation<types.CreateCertificateFromCsrOutput>
-    createCertificateProvider: function(Client, types.CreateCertificateProviderInput, any): async.Operation<types.CreateCertificateProviderOutput>
-    createCommand: function(Client, types.CreateCommandInput, any): async.Operation<types.CreateCommandOutput>
-    createCustomMetric: function(Client, types.CreateCustomMetricInput, any): async.Operation<types.CreateCustomMetricOutput>
-    createDimension: function(Client, types.CreateDimensionInput, any): async.Operation<types.CreateDimensionOutput>
-    createDomainConfiguration: function(Client, types.CreateDomainConfigurationInput, any): async.Operation<types.CreateDomainConfigurationOutput>
-    createDynamicThingGroup: function(Client, types.CreateDynamicThingGroupInput, any): async.Operation<types.CreateDynamicThingGroupOutput>
-    createFleetMetric: function(Client, types.CreateFleetMetricInput, any): async.Operation<types.CreateFleetMetricOutput>
-    createJob: function(Client, types.CreateJobInput, any): async.Operation<types.CreateJobOutput>
-    createJobTemplate: function(Client, types.CreateJobTemplateInput, any): async.Operation<types.CreateJobTemplateOutput>
-    createKeysAndCertificate: function(Client, types.CreateKeysAndCertificateInput, any): async.Operation<types.CreateKeysAndCertificateOutput>
-    createMitigationAction: function(Client, types.CreateMitigationActionInput, any): async.Operation<types.CreateMitigationActionOutput>
-    createOTAUpdate: function(Client, types.CreateOTAUpdateInput, any): async.Operation<types.CreateOTAUpdateOutput>
-    createPackage: function(Client, types.CreatePackageInput, any): async.Operation<types.CreatePackageOutput>
-    createPackageVersion: function(Client, types.CreatePackageVersionInput, any): async.Operation<types.CreatePackageVersionOutput>
-    createPolicy: function(Client, types.CreatePolicyInput, any): async.Operation<types.CreatePolicyOutput>
-    createPolicyVersion: function(Client, types.CreatePolicyVersionInput, any): async.Operation<types.CreatePolicyVersionOutput>
-    createProvisioningClaim: function(Client, types.CreateProvisioningClaimInput, any): async.Operation<types.CreateProvisioningClaimOutput>
-    createProvisioningTemplate: function(Client, types.CreateProvisioningTemplateInput, any): async.Operation<types.CreateProvisioningTemplateOutput>
-    createProvisioningTemplateVersion: function(Client, types.CreateProvisioningTemplateVersionInput, any): async.Operation<types.CreateProvisioningTemplateVersionOutput>
-    createRoleAlias: function(Client, types.CreateRoleAliasInput, any): async.Operation<types.CreateRoleAliasOutput>
-    createScheduledAudit: function(Client, types.CreateScheduledAuditInput, any): async.Operation<types.CreateScheduledAuditOutput>
-    createSecurityProfile: function(Client, types.CreateSecurityProfileInput, any): async.Operation<types.CreateSecurityProfileOutput>
-    createStream: function(Client, types.CreateStreamInput, any): async.Operation<types.CreateStreamOutput>
-    createThing: function(Client, types.CreateThingInput, any): async.Operation<types.CreateThingOutput>
-    createThingGroup: function(Client, types.CreateThingGroupInput, any): async.Operation<types.CreateThingGroupOutput>
-    createThingType: function(Client, types.CreateThingTypeInput, any): async.Operation<types.CreateThingTypeOutput>
-    createTopicRule: function(Client, types.CreateTopicRuleInput, any): async.Operation<types.CreateTopicRuleOutput>
-    createTopicRuleDestination: function(Client, types.CreateTopicRuleDestinationInput, any): async.Operation<types.CreateTopicRuleDestinationOutput>
-    deleteAccountAuditConfiguration: function(Client, types.DeleteAccountAuditConfigurationInput, any): async.Operation<types.DeleteAccountAuditConfigurationOutput>
-    deleteAuditSuppression: function(Client, types.DeleteAuditSuppressionInput, any): async.Operation<types.DeleteAuditSuppressionOutput>
-    deleteAuthorizer: function(Client, types.DeleteAuthorizerInput, any): async.Operation<types.DeleteAuthorizerOutput>
-    deleteBillingGroup: function(Client, types.DeleteBillingGroupInput, any): async.Operation<types.DeleteBillingGroupOutput>
-    deleteCACertificate: function(Client, types.DeleteCACertificateInput, any): async.Operation<types.DeleteCACertificateOutput>
-    deleteCertificate: function(Client, types.DeleteCertificateInput, any): async.Operation<types.DeleteCertificateOutput>
-    deleteCertificateProvider: function(Client, types.DeleteCertificateProviderInput, any): async.Operation<types.DeleteCertificateProviderOutput>
-    deleteCommand: function(Client, types.DeleteCommandInput, any): async.Operation<types.DeleteCommandOutput>
-    deleteCommandExecution: function(Client, types.DeleteCommandExecutionInput, any): async.Operation<types.DeleteCommandExecutionOutput>
-    deleteCustomMetric: function(Client, types.DeleteCustomMetricInput, any): async.Operation<types.DeleteCustomMetricOutput>
-    deleteDimension: function(Client, types.DeleteDimensionInput, any): async.Operation<types.DeleteDimensionOutput>
-    deleteDomainConfiguration: function(Client, types.DeleteDomainConfigurationInput, any): async.Operation<types.DeleteDomainConfigurationOutput>
-    deleteDynamicThingGroup: function(Client, types.DeleteDynamicThingGroupInput, any): async.Operation<types.DeleteDynamicThingGroupOutput>
-    deleteFleetMetric: function(Client, types.DeleteFleetMetricInput, any): async.Operation<types.DeleteFleetMetricOutput>
-    deleteJob: function(Client, types.DeleteJobInput, any): async.Operation<types.DeleteJobOutput>
-    deleteJobExecution: function(Client, types.DeleteJobExecutionInput, any): async.Operation<types.DeleteJobExecutionOutput>
-    deleteJobTemplate: function(Client, types.DeleteJobTemplateInput, any): async.Operation<types.DeleteJobTemplateOutput>
-    deleteMitigationAction: function(Client, types.DeleteMitigationActionInput, any): async.Operation<types.DeleteMitigationActionOutput>
-    deleteOTAUpdate: function(Client, types.DeleteOTAUpdateInput, any): async.Operation<types.DeleteOTAUpdateOutput>
-    deletePackage: function(Client, types.DeletePackageInput, any): async.Operation<types.DeletePackageOutput>
-    deletePackageVersion: function(Client, types.DeletePackageVersionInput, any): async.Operation<types.DeletePackageVersionOutput>
-    deletePolicy: function(Client, types.DeletePolicyInput, any): async.Operation<types.DeletePolicyOutput>
-    deletePolicyVersion: function(Client, types.DeletePolicyVersionInput, any): async.Operation<types.DeletePolicyVersionOutput>
-    deleteProvisioningTemplate: function(Client, types.DeleteProvisioningTemplateInput, any): async.Operation<types.DeleteProvisioningTemplateOutput>
-    deleteProvisioningTemplateVersion: function(Client, types.DeleteProvisioningTemplateVersionInput, any): async.Operation<types.DeleteProvisioningTemplateVersionOutput>
-    deleteRegistrationCode: function(Client, types.DeleteRegistrationCodeInput, any): async.Operation<types.DeleteRegistrationCodeOutput>
-    deleteRoleAlias: function(Client, types.DeleteRoleAliasInput, any): async.Operation<types.DeleteRoleAliasOutput>
-    deleteScheduledAudit: function(Client, types.DeleteScheduledAuditInput, any): async.Operation<types.DeleteScheduledAuditOutput>
-    deleteSecurityProfile: function(Client, types.DeleteSecurityProfileInput, any): async.Operation<types.DeleteSecurityProfileOutput>
-    deleteStream: function(Client, types.DeleteStreamInput, any): async.Operation<types.DeleteStreamOutput>
-    deleteThing: function(Client, types.DeleteThingInput, any): async.Operation<types.DeleteThingOutput>
-    deleteThingGroup: function(Client, types.DeleteThingGroupInput, any): async.Operation<types.DeleteThingGroupOutput>
-    deleteThingType: function(Client, types.DeleteThingTypeInput, any): async.Operation<types.DeleteThingTypeOutput>
-    deleteTopicRule: function(Client, types.DeleteTopicRuleInput, any): async.Operation<types.DeleteTopicRuleOutput>
-    deleteTopicRuleDestination: function(Client, types.DeleteTopicRuleDestinationInput, any): async.Operation<types.DeleteTopicRuleDestinationOutput>
-    deleteV2LoggingLevel: function(Client, types.DeleteV2LoggingLevelInput, any): async.Operation<types.DeleteV2LoggingLevelOutput>
-    deprecateThingType: function(Client, types.DeprecateThingTypeInput, any): async.Operation<types.DeprecateThingTypeOutput>
-    describeAccountAuditConfiguration: function(Client, types.DescribeAccountAuditConfigurationInput, any): async.Operation<types.DescribeAccountAuditConfigurationOutput>
-    describeAuditFinding: function(Client, types.DescribeAuditFindingInput, any): async.Operation<types.DescribeAuditFindingOutput>
-    describeAuditMitigationActionsTask: function(Client, types.DescribeAuditMitigationActionsTaskInput, any): async.Operation<types.DescribeAuditMitigationActionsTaskOutput>
-    describeAuditSuppression: function(Client, types.DescribeAuditSuppressionInput, any): async.Operation<types.DescribeAuditSuppressionOutput>
-    describeAuditTask: function(Client, types.DescribeAuditTaskInput, any): async.Operation<types.DescribeAuditTaskOutput>
-    describeAuthorizer: function(Client, types.DescribeAuthorizerInput, any): async.Operation<types.DescribeAuthorizerOutput>
-    describeBillingGroup: function(Client, types.DescribeBillingGroupInput, any): async.Operation<types.DescribeBillingGroupOutput>
-    describeCACertificate: function(Client, types.DescribeCACertificateInput, any): async.Operation<types.DescribeCACertificateOutput>
-    describeCertificate: function(Client, types.DescribeCertificateInput, any): async.Operation<types.DescribeCertificateOutput>
-    describeCertificateProvider: function(Client, types.DescribeCertificateProviderInput, any): async.Operation<types.DescribeCertificateProviderOutput>
-    describeCustomMetric: function(Client, types.DescribeCustomMetricInput, any): async.Operation<types.DescribeCustomMetricOutput>
-    describeDefaultAuthorizer: function(Client, types.DescribeDefaultAuthorizerInput, any): async.Operation<types.DescribeDefaultAuthorizerOutput>
-    describeDetectMitigationActionsTask: function(Client, types.DescribeDetectMitigationActionsTaskInput, any): async.Operation<types.DescribeDetectMitigationActionsTaskOutput>
-    describeDimension: function(Client, types.DescribeDimensionInput, any): async.Operation<types.DescribeDimensionOutput>
-    describeDomainConfiguration: function(Client, types.DescribeDomainConfigurationInput, any): async.Operation<types.DescribeDomainConfigurationOutput>
-    describeEncryptionConfiguration: function(Client, types.DescribeEncryptionConfigurationInput, any): async.Operation<types.DescribeEncryptionConfigurationOutput>
-    describeEndpoint: function(Client, types.DescribeEndpointInput, any): async.Operation<types.DescribeEndpointOutput>
-    describeEventConfigurations: function(Client, types.DescribeEventConfigurationsInput, any): async.Operation<types.DescribeEventConfigurationsOutput>
-    describeFleetMetric: function(Client, types.DescribeFleetMetricInput, any): async.Operation<types.DescribeFleetMetricOutput>
-    describeIndex: function(Client, types.DescribeIndexInput, any): async.Operation<types.DescribeIndexOutput>
-    describeJob: function(Client, types.DescribeJobInput, any): async.Operation<types.DescribeJobOutput>
-    describeJobExecution: function(Client, types.DescribeJobExecutionInput, any): async.Operation<types.DescribeJobExecutionOutput>
-    describeJobTemplate: function(Client, types.DescribeJobTemplateInput, any): async.Operation<types.DescribeJobTemplateOutput>
-    describeManagedJobTemplate: function(Client, types.DescribeManagedJobTemplateInput, any): async.Operation<types.DescribeManagedJobTemplateOutput>
-    describeMitigationAction: function(Client, types.DescribeMitigationActionInput, any): async.Operation<types.DescribeMitigationActionOutput>
-    describeProvisioningTemplate: function(Client, types.DescribeProvisioningTemplateInput, any): async.Operation<types.DescribeProvisioningTemplateOutput>
-    describeProvisioningTemplateVersion: function(Client, types.DescribeProvisioningTemplateVersionInput, any): async.Operation<types.DescribeProvisioningTemplateVersionOutput>
-    describeRoleAlias: function(Client, types.DescribeRoleAliasInput, any): async.Operation<types.DescribeRoleAliasOutput>
-    describeScheduledAudit: function(Client, types.DescribeScheduledAuditInput, any): async.Operation<types.DescribeScheduledAuditOutput>
-    describeSecurityProfile: function(Client, types.DescribeSecurityProfileInput, any): async.Operation<types.DescribeSecurityProfileOutput>
-    describeStream: function(Client, types.DescribeStreamInput, any): async.Operation<types.DescribeStreamOutput>
-    describeThing: function(Client, types.DescribeThingInput, any): async.Operation<types.DescribeThingOutput>
-    describeThingGroup: function(Client, types.DescribeThingGroupInput, any): async.Operation<types.DescribeThingGroupOutput>
-    describeThingRegistrationTask: function(Client, types.DescribeThingRegistrationTaskInput, any): async.Operation<types.DescribeThingRegistrationTaskOutput>
-    describeThingType: function(Client, types.DescribeThingTypeInput, any): async.Operation<types.DescribeThingTypeOutput>
-    detachPolicy: function(Client, types.DetachPolicyInput, any): async.Operation<types.DetachPolicyOutput>
-    detachPrincipalPolicy: function(Client, types.DetachPrincipalPolicyInput, any): async.Operation<types.DetachPrincipalPolicyOutput>
-    detachSecurityProfile: function(Client, types.DetachSecurityProfileInput, any): async.Operation<types.DetachSecurityProfileOutput>
-    detachThingPrincipal: function(Client, types.DetachThingPrincipalInput, any): async.Operation<types.DetachThingPrincipalOutput>
-    disableTopicRule: function(Client, types.DisableTopicRuleInput, any): async.Operation<types.DisableTopicRuleOutput>
-    disassociateSbomFromPackageVersion: function(Client, types.DisassociateSbomFromPackageVersionInput, any): async.Operation<types.DisassociateSbomFromPackageVersionOutput>
-    enableTopicRule: function(Client, types.EnableTopicRuleInput, any): async.Operation<types.EnableTopicRuleOutput>
-    getBehaviorModelTrainingSummaries: function(Client, types.GetBehaviorModelTrainingSummariesInput, any): async.Operation<types.GetBehaviorModelTrainingSummariesOutput>
-    getBucketsAggregation: function(Client, types.GetBucketsAggregationInput, any): async.Operation<types.GetBucketsAggregationOutput>
-    getCardinality: function(Client, types.GetCardinalityInput, any): async.Operation<types.GetCardinalityOutput>
-    getCommand: function(Client, types.GetCommandInput, any): async.Operation<types.GetCommandOutput>
-    getCommandExecution: function(Client, types.GetCommandExecutionInput, any): async.Operation<types.GetCommandExecutionOutput>
-    getEffectivePolicies: function(Client, types.GetEffectivePoliciesInput, any): async.Operation<types.GetEffectivePoliciesOutput>
-    getIndexingConfiguration: function(Client, types.GetIndexingConfigurationInput, any): async.Operation<types.GetIndexingConfigurationOutput>
-    getJobDocument: function(Client, types.GetJobDocumentInput, any): async.Operation<types.GetJobDocumentOutput>
-    getLoggingOptions: function(Client, types.GetLoggingOptionsInput, any): async.Operation<types.GetLoggingOptionsOutput>
-    getOTAUpdate: function(Client, types.GetOTAUpdateInput, any): async.Operation<types.GetOTAUpdateOutput>
-    getPackage: function(Client, types.GetPackageInput, any): async.Operation<types.GetPackageOutput>
-    getPackageConfiguration: function(Client, types.GetPackageConfigurationInput, any): async.Operation<types.GetPackageConfigurationOutput>
-    getPackageVersion: function(Client, types.GetPackageVersionInput, any): async.Operation<types.GetPackageVersionOutput>
-    getPercentiles: function(Client, types.GetPercentilesInput, any): async.Operation<types.GetPercentilesOutput>
-    getPolicy: function(Client, types.GetPolicyInput, any): async.Operation<types.GetPolicyOutput>
-    getPolicyVersion: function(Client, types.GetPolicyVersionInput, any): async.Operation<types.GetPolicyVersionOutput>
-    getRegistrationCode: function(Client, types.GetRegistrationCodeInput, any): async.Operation<types.GetRegistrationCodeOutput>
-    getStatistics: function(Client, types.GetStatisticsInput, any): async.Operation<types.GetStatisticsOutput>
-    getThingConnectivityData: function(Client, types.GetThingConnectivityDataInput, any): async.Operation<types.GetThingConnectivityDataOutput>
-    getTopicRule: function(Client, types.GetTopicRuleInput, any): async.Operation<types.GetTopicRuleOutput>
-    getTopicRuleDestination: function(Client, types.GetTopicRuleDestinationInput, any): async.Operation<types.GetTopicRuleDestinationOutput>
-    getV2LoggingOptions: function(Client, types.GetV2LoggingOptionsInput, any): async.Operation<types.GetV2LoggingOptionsOutput>
-    listActiveViolations: function(Client, types.ListActiveViolationsInput, any): async.Operation<types.ListActiveViolationsOutput>
-    listAttachedPolicies: function(Client, types.ListAttachedPoliciesInput, any): async.Operation<types.ListAttachedPoliciesOutput>
-    listAuditFindings: function(Client, types.ListAuditFindingsInput, any): async.Operation<types.ListAuditFindingsOutput>
-    listAuditMitigationActionsExecutions: function(Client, types.ListAuditMitigationActionsExecutionsInput, any): async.Operation<types.ListAuditMitigationActionsExecutionsOutput>
-    listAuditMitigationActionsTasks: function(Client, types.ListAuditMitigationActionsTasksInput, any): async.Operation<types.ListAuditMitigationActionsTasksOutput>
-    listAuditSuppressions: function(Client, types.ListAuditSuppressionsInput, any): async.Operation<types.ListAuditSuppressionsOutput>
-    listAuditTasks: function(Client, types.ListAuditTasksInput, any): async.Operation<types.ListAuditTasksOutput>
-    listAuthorizers: function(Client, types.ListAuthorizersInput, any): async.Operation<types.ListAuthorizersOutput>
-    listBillingGroups: function(Client, types.ListBillingGroupsInput, any): async.Operation<types.ListBillingGroupsOutput>
-    listCACertificates: function(Client, types.ListCACertificatesInput, any): async.Operation<types.ListCACertificatesOutput>
-    listCertificateProviders: function(Client, types.ListCertificateProvidersInput, any): async.Operation<types.ListCertificateProvidersOutput>
-    listCertificates: function(Client, types.ListCertificatesInput, any): async.Operation<types.ListCertificatesOutput>
-    listCertificatesByCA: function(Client, types.ListCertificatesByCAInput, any): async.Operation<types.ListCertificatesByCAOutput>
-    listCommandExecutions: function(Client, types.ListCommandExecutionsInput, any): async.Operation<types.ListCommandExecutionsOutput>
-    listCommands: function(Client, types.ListCommandsInput, any): async.Operation<types.ListCommandsOutput>
-    listCustomMetrics: function(Client, types.ListCustomMetricsInput, any): async.Operation<types.ListCustomMetricsOutput>
-    listDetectMitigationActionsExecutions: function(Client, types.ListDetectMitigationActionsExecutionsInput, any): async.Operation<types.ListDetectMitigationActionsExecutionsOutput>
-    listDetectMitigationActionsTasks: function(Client, types.ListDetectMitigationActionsTasksInput, any): async.Operation<types.ListDetectMitigationActionsTasksOutput>
-    listDimensions: function(Client, types.ListDimensionsInput, any): async.Operation<types.ListDimensionsOutput>
-    listDomainConfigurations: function(Client, types.ListDomainConfigurationsInput, any): async.Operation<types.ListDomainConfigurationsOutput>
-    listFleetMetrics: function(Client, types.ListFleetMetricsInput, any): async.Operation<types.ListFleetMetricsOutput>
-    listIndices: function(Client, types.ListIndicesInput, any): async.Operation<types.ListIndicesOutput>
-    listJobExecutionsForJob: function(Client, types.ListJobExecutionsForJobInput, any): async.Operation<types.ListJobExecutionsForJobOutput>
-    listJobExecutionsForThing: function(Client, types.ListJobExecutionsForThingInput, any): async.Operation<types.ListJobExecutionsForThingOutput>
-    listJobs: function(Client, types.ListJobsInput, any): async.Operation<types.ListJobsOutput>
-    listJobTemplates: function(Client, types.ListJobTemplatesInput, any): async.Operation<types.ListJobTemplatesOutput>
-    listManagedJobTemplates: function(Client, types.ListManagedJobTemplatesInput, any): async.Operation<types.ListManagedJobTemplatesOutput>
-    listMetricValues: function(Client, types.ListMetricValuesInput, any): async.Operation<types.ListMetricValuesOutput>
-    listMitigationActions: function(Client, types.ListMitigationActionsInput, any): async.Operation<types.ListMitigationActionsOutput>
-    listOTAUpdates: function(Client, types.ListOTAUpdatesInput, any): async.Operation<types.ListOTAUpdatesOutput>
-    listOutgoingCertificates: function(Client, types.ListOutgoingCertificatesInput, any): async.Operation<types.ListOutgoingCertificatesOutput>
-    listPackages: function(Client, types.ListPackagesInput, any): async.Operation<types.ListPackagesOutput>
-    listPackageVersions: function(Client, types.ListPackageVersionsInput, any): async.Operation<types.ListPackageVersionsOutput>
-    listPolicies: function(Client, types.ListPoliciesInput, any): async.Operation<types.ListPoliciesOutput>
-    listPolicyPrincipals: function(Client, types.ListPolicyPrincipalsInput, any): async.Operation<types.ListPolicyPrincipalsOutput>
-    listPolicyVersions: function(Client, types.ListPolicyVersionsInput, any): async.Operation<types.ListPolicyVersionsOutput>
-    listPrincipalPolicies: function(Client, types.ListPrincipalPoliciesInput, any): async.Operation<types.ListPrincipalPoliciesOutput>
-    listPrincipalThings: function(Client, types.ListPrincipalThingsInput, any): async.Operation<types.ListPrincipalThingsOutput>
-    listPrincipalThingsV2: function(Client, types.ListPrincipalThingsV2Input, any): async.Operation<types.ListPrincipalThingsV2Output>
-    listProvisioningTemplates: function(Client, types.ListProvisioningTemplatesInput, any): async.Operation<types.ListProvisioningTemplatesOutput>
-    listProvisioningTemplateVersions: function(Client, types.ListProvisioningTemplateVersionsInput, any): async.Operation<types.ListProvisioningTemplateVersionsOutput>
-    listRelatedResourcesForAuditFinding: function(Client, types.ListRelatedResourcesForAuditFindingInput, any): async.Operation<types.ListRelatedResourcesForAuditFindingOutput>
-    listRoleAliases: function(Client, types.ListRoleAliasesInput, any): async.Operation<types.ListRoleAliasesOutput>
-    listSbomValidationResults: function(Client, types.ListSbomValidationResultsInput, any): async.Operation<types.ListSbomValidationResultsOutput>
-    listScheduledAudits: function(Client, types.ListScheduledAuditsInput, any): async.Operation<types.ListScheduledAuditsOutput>
-    listSecurityProfiles: function(Client, types.ListSecurityProfilesInput, any): async.Operation<types.ListSecurityProfilesOutput>
-    listSecurityProfilesForTarget: function(Client, types.ListSecurityProfilesForTargetInput, any): async.Operation<types.ListSecurityProfilesForTargetOutput>
-    listStreams: function(Client, types.ListStreamsInput, any): async.Operation<types.ListStreamsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTargetsForPolicy: function(Client, types.ListTargetsForPolicyInput, any): async.Operation<types.ListTargetsForPolicyOutput>
-    listTargetsForSecurityProfile: function(Client, types.ListTargetsForSecurityProfileInput, any): async.Operation<types.ListTargetsForSecurityProfileOutput>
-    listThingGroups: function(Client, types.ListThingGroupsInput, any): async.Operation<types.ListThingGroupsOutput>
-    listThingGroupsForThing: function(Client, types.ListThingGroupsForThingInput, any): async.Operation<types.ListThingGroupsForThingOutput>
-    listThingPrincipals: function(Client, types.ListThingPrincipalsInput, any): async.Operation<types.ListThingPrincipalsOutput>
-    listThingPrincipalsV2: function(Client, types.ListThingPrincipalsV2Input, any): async.Operation<types.ListThingPrincipalsV2Output>
-    listThingRegistrationTaskReports: function(Client, types.ListThingRegistrationTaskReportsInput, any): async.Operation<types.ListThingRegistrationTaskReportsOutput>
-    listThingRegistrationTasks: function(Client, types.ListThingRegistrationTasksInput, any): async.Operation<types.ListThingRegistrationTasksOutput>
-    listThings: function(Client, types.ListThingsInput, any): async.Operation<types.ListThingsOutput>
-    listThingsInBillingGroup: function(Client, types.ListThingsInBillingGroupInput, any): async.Operation<types.ListThingsInBillingGroupOutput>
-    listThingsInThingGroup: function(Client, types.ListThingsInThingGroupInput, any): async.Operation<types.ListThingsInThingGroupOutput>
-    listThingTypes: function(Client, types.ListThingTypesInput, any): async.Operation<types.ListThingTypesOutput>
-    listTopicRuleDestinations: function(Client, types.ListTopicRuleDestinationsInput, any): async.Operation<types.ListTopicRuleDestinationsOutput>
-    listTopicRules: function(Client, types.ListTopicRulesInput, any): async.Operation<types.ListTopicRulesOutput>
-    listV2LoggingLevels: function(Client, types.ListV2LoggingLevelsInput, any): async.Operation<types.ListV2LoggingLevelsOutput>
-    listViolationEvents: function(Client, types.ListViolationEventsInput, any): async.Operation<types.ListViolationEventsOutput>
-    putVerificationStateOnViolation: function(Client, types.PutVerificationStateOnViolationInput, any): async.Operation<types.PutVerificationStateOnViolationOutput>
-    registerCACertificate: function(Client, types.RegisterCACertificateInput, any): async.Operation<types.RegisterCACertificateOutput>
-    registerCertificate: function(Client, types.RegisterCertificateInput, any): async.Operation<types.RegisterCertificateOutput>
-    registerCertificateWithoutCA: function(Client, types.RegisterCertificateWithoutCAInput, any): async.Operation<types.RegisterCertificateWithoutCAOutput>
-    registerThing: function(Client, types.RegisterThingInput, any): async.Operation<types.RegisterThingOutput>
-    rejectCertificateTransfer: function(Client, types.RejectCertificateTransferInput, any): async.Operation<types.RejectCertificateTransferOutput>
-    removeThingFromBillingGroup: function(Client, types.RemoveThingFromBillingGroupInput, any): async.Operation<types.RemoveThingFromBillingGroupOutput>
-    removeThingFromThingGroup: function(Client, types.RemoveThingFromThingGroupInput, any): async.Operation<types.RemoveThingFromThingGroupOutput>
-    replaceTopicRule: function(Client, types.ReplaceTopicRuleInput, any): async.Operation<types.ReplaceTopicRuleOutput>
-    searchIndex: function(Client, types.SearchIndexInput, any): async.Operation<types.SearchIndexOutput>
-    setDefaultAuthorizer: function(Client, types.SetDefaultAuthorizerInput, any): async.Operation<types.SetDefaultAuthorizerOutput>
-    setDefaultPolicyVersion: function(Client, types.SetDefaultPolicyVersionInput, any): async.Operation<types.SetDefaultPolicyVersionOutput>
-    setLoggingOptions: function(Client, types.SetLoggingOptionsInput, any): async.Operation<types.SetLoggingOptionsOutput>
-    setV2LoggingLevel: function(Client, types.SetV2LoggingLevelInput, any): async.Operation<types.SetV2LoggingLevelOutput>
-    setV2LoggingOptions: function(Client, types.SetV2LoggingOptionsInput, any): async.Operation<types.SetV2LoggingOptionsOutput>
-    startAuditMitigationActionsTask: function(Client, types.StartAuditMitigationActionsTaskInput, any): async.Operation<types.StartAuditMitigationActionsTaskOutput>
-    startDetectMitigationActionsTask: function(Client, types.StartDetectMitigationActionsTaskInput, any): async.Operation<types.StartDetectMitigationActionsTaskOutput>
-    startOnDemandAuditTask: function(Client, types.StartOnDemandAuditTaskInput, any): async.Operation<types.StartOnDemandAuditTaskOutput>
-    startThingRegistrationTask: function(Client, types.StartThingRegistrationTaskInput, any): async.Operation<types.StartThingRegistrationTaskOutput>
-    stopThingRegistrationTask: function(Client, types.StopThingRegistrationTaskInput, any): async.Operation<types.StopThingRegistrationTaskOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    testAuthorization: function(Client, types.TestAuthorizationInput, any): async.Operation<types.TestAuthorizationOutput>
-    testInvokeAuthorizer: function(Client, types.TestInvokeAuthorizerInput, any): async.Operation<types.TestInvokeAuthorizerOutput>
-    transferCertificate: function(Client, types.TransferCertificateInput, any): async.Operation<types.TransferCertificateOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAccountAuditConfiguration: function(Client, types.UpdateAccountAuditConfigurationInput, any): async.Operation<types.UpdateAccountAuditConfigurationOutput>
-    updateAuditSuppression: function(Client, types.UpdateAuditSuppressionInput, any): async.Operation<types.UpdateAuditSuppressionOutput>
-    updateAuthorizer: function(Client, types.UpdateAuthorizerInput, any): async.Operation<types.UpdateAuthorizerOutput>
-    updateBillingGroup: function(Client, types.UpdateBillingGroupInput, any): async.Operation<types.UpdateBillingGroupOutput>
-    updateCACertificate: function(Client, types.UpdateCACertificateInput, any): async.Operation<types.UpdateCACertificateOutput>
-    updateCertificate: function(Client, types.UpdateCertificateInput, any): async.Operation<types.UpdateCertificateOutput>
-    updateCertificateProvider: function(Client, types.UpdateCertificateProviderInput, any): async.Operation<types.UpdateCertificateProviderOutput>
-    updateCommand: function(Client, types.UpdateCommandInput, any): async.Operation<types.UpdateCommandOutput>
-    updateCustomMetric: function(Client, types.UpdateCustomMetricInput, any): async.Operation<types.UpdateCustomMetricOutput>
-    updateDimension: function(Client, types.UpdateDimensionInput, any): async.Operation<types.UpdateDimensionOutput>
-    updateDomainConfiguration: function(Client, types.UpdateDomainConfigurationInput, any): async.Operation<types.UpdateDomainConfigurationOutput>
-    updateDynamicThingGroup: function(Client, types.UpdateDynamicThingGroupInput, any): async.Operation<types.UpdateDynamicThingGroupOutput>
-    updateEncryptionConfiguration: function(Client, types.UpdateEncryptionConfigurationInput, any): async.Operation<types.UpdateEncryptionConfigurationOutput>
-    updateEventConfigurations: function(Client, types.UpdateEventConfigurationsInput, any): async.Operation<types.UpdateEventConfigurationsOutput>
-    updateFleetMetric: function(Client, types.UpdateFleetMetricInput, any): async.Operation<types.UpdateFleetMetricOutput>
-    updateIndexingConfiguration: function(Client, types.UpdateIndexingConfigurationInput, any): async.Operation<types.UpdateIndexingConfigurationOutput>
-    updateJob: function(Client, types.UpdateJobInput, any): async.Operation<types.UpdateJobOutput>
-    updateMitigationAction: function(Client, types.UpdateMitigationActionInput, any): async.Operation<types.UpdateMitigationActionOutput>
-    updatePackage: function(Client, types.UpdatePackageInput, any): async.Operation<types.UpdatePackageOutput>
-    updatePackageConfiguration: function(Client, types.UpdatePackageConfigurationInput, any): async.Operation<types.UpdatePackageConfigurationOutput>
-    updatePackageVersion: function(Client, types.UpdatePackageVersionInput, any): async.Operation<types.UpdatePackageVersionOutput>
-    updateProvisioningTemplate: function(Client, types.UpdateProvisioningTemplateInput, any): async.Operation<types.UpdateProvisioningTemplateOutput>
-    updateRoleAlias: function(Client, types.UpdateRoleAliasInput, any): async.Operation<types.UpdateRoleAliasOutput>
-    updateScheduledAudit: function(Client, types.UpdateScheduledAuditInput, any): async.Operation<types.UpdateScheduledAuditOutput>
-    updateSecurityProfile: function(Client, types.UpdateSecurityProfileInput, any): async.Operation<types.UpdateSecurityProfileOutput>
-    updateStream: function(Client, types.UpdateStreamInput, any): async.Operation<types.UpdateStreamOutput>
-    updateThing: function(Client, types.UpdateThingInput, any): async.Operation<types.UpdateThingOutput>
-    updateThingGroup: function(Client, types.UpdateThingGroupInput, any): async.Operation<types.UpdateThingGroupOutput>
-    updateThingGroupsForThing: function(Client, types.UpdateThingGroupsForThingInput, any): async.Operation<types.UpdateThingGroupsForThingOutput>
-    updateThingType: function(Client, types.UpdateThingTypeInput, any): async.Operation<types.UpdateThingTypeOutput>
-    updateTopicRuleDestination: function(Client, types.UpdateTopicRuleDestinationInput, any): async.Operation<types.UpdateTopicRuleDestinationOutput>
-    validateSecurityProfileBehaviors: function(Client, types.ValidateSecurityProfileBehaviorsInput, any): async.Operation<types.ValidateSecurityProfileBehaviorsOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    acceptCertificateTransfer: function(Client, types.AcceptCertificateTransferInput, ? base_client.InvokeOptions): async.Operation<types.AcceptCertificateTransferOutput>
+    addThingToBillingGroup: function(Client, types.AddThingToBillingGroupInput, ? base_client.InvokeOptions): async.Operation<types.AddThingToBillingGroupOutput>
+    addThingToThingGroup: function(Client, types.AddThingToThingGroupInput, ? base_client.InvokeOptions): async.Operation<types.AddThingToThingGroupOutput>
+    associateSbomWithPackageVersion: function(Client, types.AssociateSbomWithPackageVersionInput, ? base_client.InvokeOptions): async.Operation<types.AssociateSbomWithPackageVersionOutput>
+    associateTargetsWithJob: function(Client, types.AssociateTargetsWithJobInput, ? base_client.InvokeOptions): async.Operation<types.AssociateTargetsWithJobOutput>
+    attachPolicy: function(Client, types.AttachPolicyInput, ? base_client.InvokeOptions): async.Operation<types.AttachPolicyOutput>
+    attachPrincipalPolicy: function(Client, types.AttachPrincipalPolicyInput, ? base_client.InvokeOptions): async.Operation<types.AttachPrincipalPolicyOutput>
+    attachSecurityProfile: function(Client, types.AttachSecurityProfileInput, ? base_client.InvokeOptions): async.Operation<types.AttachSecurityProfileOutput>
+    attachThingPrincipal: function(Client, types.AttachThingPrincipalInput, ? base_client.InvokeOptions): async.Operation<types.AttachThingPrincipalOutput>
+    cancelAuditMitigationActionsTask: function(Client, types.CancelAuditMitigationActionsTaskInput, ? base_client.InvokeOptions): async.Operation<types.CancelAuditMitigationActionsTaskOutput>
+    cancelAuditTask: function(Client, types.CancelAuditTaskInput, ? base_client.InvokeOptions): async.Operation<types.CancelAuditTaskOutput>
+    cancelCertificateTransfer: function(Client, types.CancelCertificateTransferInput, ? base_client.InvokeOptions): async.Operation<types.CancelCertificateTransferOutput>
+    cancelDetectMitigationActionsTask: function(Client, types.CancelDetectMitigationActionsTaskInput, ? base_client.InvokeOptions): async.Operation<types.CancelDetectMitigationActionsTaskOutput>
+    cancelJob: function(Client, types.CancelJobInput, ? base_client.InvokeOptions): async.Operation<types.CancelJobOutput>
+    cancelJobExecution: function(Client, types.CancelJobExecutionInput, ? base_client.InvokeOptions): async.Operation<types.CancelJobExecutionOutput>
+    clearDefaultAuthorizer: function(Client, types.ClearDefaultAuthorizerInput, ? base_client.InvokeOptions): async.Operation<types.ClearDefaultAuthorizerOutput>
+    confirmTopicRuleDestination: function(Client, types.ConfirmTopicRuleDestinationInput, ? base_client.InvokeOptions): async.Operation<types.ConfirmTopicRuleDestinationOutput>
+    createAuditSuppression: function(Client, types.CreateAuditSuppressionInput, ? base_client.InvokeOptions): async.Operation<types.CreateAuditSuppressionOutput>
+    createAuthorizer: function(Client, types.CreateAuthorizerInput, ? base_client.InvokeOptions): async.Operation<types.CreateAuthorizerOutput>
+    createBillingGroup: function(Client, types.CreateBillingGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateBillingGroupOutput>
+    createCertificateFromCsr: function(Client, types.CreateCertificateFromCsrInput, ? base_client.InvokeOptions): async.Operation<types.CreateCertificateFromCsrOutput>
+    createCertificateProvider: function(Client, types.CreateCertificateProviderInput, ? base_client.InvokeOptions): async.Operation<types.CreateCertificateProviderOutput>
+    createCommand: function(Client, types.CreateCommandInput, ? base_client.InvokeOptions): async.Operation<types.CreateCommandOutput>
+    createCustomMetric: function(Client, types.CreateCustomMetricInput, ? base_client.InvokeOptions): async.Operation<types.CreateCustomMetricOutput>
+    createDimension: function(Client, types.CreateDimensionInput, ? base_client.InvokeOptions): async.Operation<types.CreateDimensionOutput>
+    createDomainConfiguration: function(Client, types.CreateDomainConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateDomainConfigurationOutput>
+    createDynamicThingGroup: function(Client, types.CreateDynamicThingGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateDynamicThingGroupOutput>
+    createFleetMetric: function(Client, types.CreateFleetMetricInput, ? base_client.InvokeOptions): async.Operation<types.CreateFleetMetricOutput>
+    createJob: function(Client, types.CreateJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateJobOutput>
+    createJobTemplate: function(Client, types.CreateJobTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateJobTemplateOutput>
+    createKeysAndCertificate: function(Client, types.CreateKeysAndCertificateInput, ? base_client.InvokeOptions): async.Operation<types.CreateKeysAndCertificateOutput>
+    createMitigationAction: function(Client, types.CreateMitigationActionInput, ? base_client.InvokeOptions): async.Operation<types.CreateMitigationActionOutput>
+    createOTAUpdate: function(Client, types.CreateOTAUpdateInput, ? base_client.InvokeOptions): async.Operation<types.CreateOTAUpdateOutput>
+    createPackage: function(Client, types.CreatePackageInput, ? base_client.InvokeOptions): async.Operation<types.CreatePackageOutput>
+    createPackageVersion: function(Client, types.CreatePackageVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreatePackageVersionOutput>
+    createPolicy: function(Client, types.CreatePolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreatePolicyOutput>
+    createPolicyVersion: function(Client, types.CreatePolicyVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreatePolicyVersionOutput>
+    createProvisioningClaim: function(Client, types.CreateProvisioningClaimInput, ? base_client.InvokeOptions): async.Operation<types.CreateProvisioningClaimOutput>
+    createProvisioningTemplate: function(Client, types.CreateProvisioningTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateProvisioningTemplateOutput>
+    createProvisioningTemplateVersion: function(Client, types.CreateProvisioningTemplateVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateProvisioningTemplateVersionOutput>
+    createRoleAlias: function(Client, types.CreateRoleAliasInput, ? base_client.InvokeOptions): async.Operation<types.CreateRoleAliasOutput>
+    createScheduledAudit: function(Client, types.CreateScheduledAuditInput, ? base_client.InvokeOptions): async.Operation<types.CreateScheduledAuditOutput>
+    createSecurityProfile: function(Client, types.CreateSecurityProfileInput, ? base_client.InvokeOptions): async.Operation<types.CreateSecurityProfileOutput>
+    createStream: function(Client, types.CreateStreamInput, ? base_client.InvokeOptions): async.Operation<types.CreateStreamOutput>
+    createThing: function(Client, types.CreateThingInput, ? base_client.InvokeOptions): async.Operation<types.CreateThingOutput>
+    createThingGroup: function(Client, types.CreateThingGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateThingGroupOutput>
+    createThingType: function(Client, types.CreateThingTypeInput, ? base_client.InvokeOptions): async.Operation<types.CreateThingTypeOutput>
+    createTopicRule: function(Client, types.CreateTopicRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateTopicRuleOutput>
+    createTopicRuleDestination: function(Client, types.CreateTopicRuleDestinationInput, ? base_client.InvokeOptions): async.Operation<types.CreateTopicRuleDestinationOutput>
+    deleteAccountAuditConfiguration: function(Client, types.DeleteAccountAuditConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccountAuditConfigurationOutput>
+    deleteAuditSuppression: function(Client, types.DeleteAuditSuppressionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAuditSuppressionOutput>
+    deleteAuthorizer: function(Client, types.DeleteAuthorizerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAuthorizerOutput>
+    deleteBillingGroup: function(Client, types.DeleteBillingGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBillingGroupOutput>
+    deleteCACertificate: function(Client, types.DeleteCACertificateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCACertificateOutput>
+    deleteCertificate: function(Client, types.DeleteCertificateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCertificateOutput>
+    deleteCertificateProvider: function(Client, types.DeleteCertificateProviderInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCertificateProviderOutput>
+    deleteCommand: function(Client, types.DeleteCommandInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCommandOutput>
+    deleteCommandExecution: function(Client, types.DeleteCommandExecutionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCommandExecutionOutput>
+    deleteCustomMetric: function(Client, types.DeleteCustomMetricInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCustomMetricOutput>
+    deleteDimension: function(Client, types.DeleteDimensionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDimensionOutput>
+    deleteDomainConfiguration: function(Client, types.DeleteDomainConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDomainConfigurationOutput>
+    deleteDynamicThingGroup: function(Client, types.DeleteDynamicThingGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDynamicThingGroupOutput>
+    deleteFleetMetric: function(Client, types.DeleteFleetMetricInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFleetMetricOutput>
+    deleteJob: function(Client, types.DeleteJobInput, ? base_client.InvokeOptions): async.Operation<types.DeleteJobOutput>
+    deleteJobExecution: function(Client, types.DeleteJobExecutionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteJobExecutionOutput>
+    deleteJobTemplate: function(Client, types.DeleteJobTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteJobTemplateOutput>
+    deleteMitigationAction: function(Client, types.DeleteMitigationActionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMitigationActionOutput>
+    deleteOTAUpdate: function(Client, types.DeleteOTAUpdateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOTAUpdateOutput>
+    deletePackage: function(Client, types.DeletePackageInput, ? base_client.InvokeOptions): async.Operation<types.DeletePackageOutput>
+    deletePackageVersion: function(Client, types.DeletePackageVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeletePackageVersionOutput>
+    deletePolicy: function(Client, types.DeletePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeletePolicyOutput>
+    deletePolicyVersion: function(Client, types.DeletePolicyVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeletePolicyVersionOutput>
+    deleteProvisioningTemplate: function(Client, types.DeleteProvisioningTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProvisioningTemplateOutput>
+    deleteProvisioningTemplateVersion: function(Client, types.DeleteProvisioningTemplateVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProvisioningTemplateVersionOutput>
+    deleteRegistrationCode: function(Client, types.DeleteRegistrationCodeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRegistrationCodeOutput>
+    deleteRoleAlias: function(Client, types.DeleteRoleAliasInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRoleAliasOutput>
+    deleteScheduledAudit: function(Client, types.DeleteScheduledAuditInput, ? base_client.InvokeOptions): async.Operation<types.DeleteScheduledAuditOutput>
+    deleteSecurityProfile: function(Client, types.DeleteSecurityProfileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSecurityProfileOutput>
+    deleteStream: function(Client, types.DeleteStreamInput, ? base_client.InvokeOptions): async.Operation<types.DeleteStreamOutput>
+    deleteThing: function(Client, types.DeleteThingInput, ? base_client.InvokeOptions): async.Operation<types.DeleteThingOutput>
+    deleteThingGroup: function(Client, types.DeleteThingGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteThingGroupOutput>
+    deleteThingType: function(Client, types.DeleteThingTypeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteThingTypeOutput>
+    deleteTopicRule: function(Client, types.DeleteTopicRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTopicRuleOutput>
+    deleteTopicRuleDestination: function(Client, types.DeleteTopicRuleDestinationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTopicRuleDestinationOutput>
+    deleteV2LoggingLevel: function(Client, types.DeleteV2LoggingLevelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteV2LoggingLevelOutput>
+    deprecateThingType: function(Client, types.DeprecateThingTypeInput, ? base_client.InvokeOptions): async.Operation<types.DeprecateThingTypeOutput>
+    describeAccountAuditConfiguration: function(Client, types.DescribeAccountAuditConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAccountAuditConfigurationOutput>
+    describeAuditFinding: function(Client, types.DescribeAuditFindingInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAuditFindingOutput>
+    describeAuditMitigationActionsTask: function(Client, types.DescribeAuditMitigationActionsTaskInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAuditMitigationActionsTaskOutput>
+    describeAuditSuppression: function(Client, types.DescribeAuditSuppressionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAuditSuppressionOutput>
+    describeAuditTask: function(Client, types.DescribeAuditTaskInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAuditTaskOutput>
+    describeAuthorizer: function(Client, types.DescribeAuthorizerInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAuthorizerOutput>
+    describeBillingGroup: function(Client, types.DescribeBillingGroupInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBillingGroupOutput>
+    describeCACertificate: function(Client, types.DescribeCACertificateInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCACertificateOutput>
+    describeCertificate: function(Client, types.DescribeCertificateInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCertificateOutput>
+    describeCertificateProvider: function(Client, types.DescribeCertificateProviderInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCertificateProviderOutput>
+    describeCustomMetric: function(Client, types.DescribeCustomMetricInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCustomMetricOutput>
+    describeDefaultAuthorizer: function(Client, types.DescribeDefaultAuthorizerInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDefaultAuthorizerOutput>
+    describeDetectMitigationActionsTask: function(Client, types.DescribeDetectMitigationActionsTaskInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDetectMitigationActionsTaskOutput>
+    describeDimension: function(Client, types.DescribeDimensionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDimensionOutput>
+    describeDomainConfiguration: function(Client, types.DescribeDomainConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDomainConfigurationOutput>
+    describeEncryptionConfiguration: function(Client, types.DescribeEncryptionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEncryptionConfigurationOutput>
+    describeEndpoint: function(Client, types.DescribeEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEndpointOutput>
+    describeEventConfigurations: function(Client, types.DescribeEventConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEventConfigurationsOutput>
+    describeFleetMetric: function(Client, types.DescribeFleetMetricInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFleetMetricOutput>
+    describeIndex: function(Client, types.DescribeIndexInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIndexOutput>
+    describeJob: function(Client, types.DescribeJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeJobOutput>
+    describeJobExecution: function(Client, types.DescribeJobExecutionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeJobExecutionOutput>
+    describeJobTemplate: function(Client, types.DescribeJobTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DescribeJobTemplateOutput>
+    describeManagedJobTemplate: function(Client, types.DescribeManagedJobTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DescribeManagedJobTemplateOutput>
+    describeMitigationAction: function(Client, types.DescribeMitigationActionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMitigationActionOutput>
+    describeProvisioningTemplate: function(Client, types.DescribeProvisioningTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DescribeProvisioningTemplateOutput>
+    describeProvisioningTemplateVersion: function(Client, types.DescribeProvisioningTemplateVersionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeProvisioningTemplateVersionOutput>
+    describeRoleAlias: function(Client, types.DescribeRoleAliasInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRoleAliasOutput>
+    describeScheduledAudit: function(Client, types.DescribeScheduledAuditInput, ? base_client.InvokeOptions): async.Operation<types.DescribeScheduledAuditOutput>
+    describeSecurityProfile: function(Client, types.DescribeSecurityProfileInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSecurityProfileOutput>
+    describeStream: function(Client, types.DescribeStreamInput, ? base_client.InvokeOptions): async.Operation<types.DescribeStreamOutput>
+    describeThing: function(Client, types.DescribeThingInput, ? base_client.InvokeOptions): async.Operation<types.DescribeThingOutput>
+    describeThingGroup: function(Client, types.DescribeThingGroupInput, ? base_client.InvokeOptions): async.Operation<types.DescribeThingGroupOutput>
+    describeThingRegistrationTask: function(Client, types.DescribeThingRegistrationTaskInput, ? base_client.InvokeOptions): async.Operation<types.DescribeThingRegistrationTaskOutput>
+    describeThingType: function(Client, types.DescribeThingTypeInput, ? base_client.InvokeOptions): async.Operation<types.DescribeThingTypeOutput>
+    detachPolicy: function(Client, types.DetachPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DetachPolicyOutput>
+    detachPrincipalPolicy: function(Client, types.DetachPrincipalPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DetachPrincipalPolicyOutput>
+    detachSecurityProfile: function(Client, types.DetachSecurityProfileInput, ? base_client.InvokeOptions): async.Operation<types.DetachSecurityProfileOutput>
+    detachThingPrincipal: function(Client, types.DetachThingPrincipalInput, ? base_client.InvokeOptions): async.Operation<types.DetachThingPrincipalOutput>
+    disableTopicRule: function(Client, types.DisableTopicRuleInput, ? base_client.InvokeOptions): async.Operation<types.DisableTopicRuleOutput>
+    disassociateSbomFromPackageVersion: function(Client, types.DisassociateSbomFromPackageVersionInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateSbomFromPackageVersionOutput>
+    enableTopicRule: function(Client, types.EnableTopicRuleInput, ? base_client.InvokeOptions): async.Operation<types.EnableTopicRuleOutput>
+    getBehaviorModelTrainingSummaries: function(Client, types.GetBehaviorModelTrainingSummariesInput, ? base_client.InvokeOptions): async.Operation<types.GetBehaviorModelTrainingSummariesOutput>
+    getBucketsAggregation: function(Client, types.GetBucketsAggregationInput, ? base_client.InvokeOptions): async.Operation<types.GetBucketsAggregationOutput>
+    getCardinality: function(Client, types.GetCardinalityInput, ? base_client.InvokeOptions): async.Operation<types.GetCardinalityOutput>
+    getCommand: function(Client, types.GetCommandInput, ? base_client.InvokeOptions): async.Operation<types.GetCommandOutput>
+    getCommandExecution: function(Client, types.GetCommandExecutionInput, ? base_client.InvokeOptions): async.Operation<types.GetCommandExecutionOutput>
+    getEffectivePolicies: function(Client, types.GetEffectivePoliciesInput, ? base_client.InvokeOptions): async.Operation<types.GetEffectivePoliciesOutput>
+    getIndexingConfiguration: function(Client, types.GetIndexingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetIndexingConfigurationOutput>
+    getJobDocument: function(Client, types.GetJobDocumentInput, ? base_client.InvokeOptions): async.Operation<types.GetJobDocumentOutput>
+    getLoggingOptions: function(Client, types.GetLoggingOptionsInput, ? base_client.InvokeOptions): async.Operation<types.GetLoggingOptionsOutput>
+    getOTAUpdate: function(Client, types.GetOTAUpdateInput, ? base_client.InvokeOptions): async.Operation<types.GetOTAUpdateOutput>
+    getPackage: function(Client, types.GetPackageInput, ? base_client.InvokeOptions): async.Operation<types.GetPackageOutput>
+    getPackageConfiguration: function(Client, types.GetPackageConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetPackageConfigurationOutput>
+    getPackageVersion: function(Client, types.GetPackageVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetPackageVersionOutput>
+    getPercentiles: function(Client, types.GetPercentilesInput, ? base_client.InvokeOptions): async.Operation<types.GetPercentilesOutput>
+    getPolicy: function(Client, types.GetPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetPolicyOutput>
+    getPolicyVersion: function(Client, types.GetPolicyVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetPolicyVersionOutput>
+    getRegistrationCode: function(Client, types.GetRegistrationCodeInput, ? base_client.InvokeOptions): async.Operation<types.GetRegistrationCodeOutput>
+    getStatistics: function(Client, types.GetStatisticsInput, ? base_client.InvokeOptions): async.Operation<types.GetStatisticsOutput>
+    getThingConnectivityData: function(Client, types.GetThingConnectivityDataInput, ? base_client.InvokeOptions): async.Operation<types.GetThingConnectivityDataOutput>
+    getTopicRule: function(Client, types.GetTopicRuleInput, ? base_client.InvokeOptions): async.Operation<types.GetTopicRuleOutput>
+    getTopicRuleDestination: function(Client, types.GetTopicRuleDestinationInput, ? base_client.InvokeOptions): async.Operation<types.GetTopicRuleDestinationOutput>
+    getV2LoggingOptions: function(Client, types.GetV2LoggingOptionsInput, ? base_client.InvokeOptions): async.Operation<types.GetV2LoggingOptionsOutput>
+    listActiveViolations: function(Client, types.ListActiveViolationsInput, ? base_client.InvokeOptions): async.Operation<types.ListActiveViolationsOutput>
+    listAttachedPolicies: function(Client, types.ListAttachedPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListAttachedPoliciesOutput>
+    listAuditFindings: function(Client, types.ListAuditFindingsInput, ? base_client.InvokeOptions): async.Operation<types.ListAuditFindingsOutput>
+    listAuditMitigationActionsExecutions: function(Client, types.ListAuditMitigationActionsExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListAuditMitigationActionsExecutionsOutput>
+    listAuditMitigationActionsTasks: function(Client, types.ListAuditMitigationActionsTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListAuditMitigationActionsTasksOutput>
+    listAuditSuppressions: function(Client, types.ListAuditSuppressionsInput, ? base_client.InvokeOptions): async.Operation<types.ListAuditSuppressionsOutput>
+    listAuditTasks: function(Client, types.ListAuditTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListAuditTasksOutput>
+    listAuthorizers: function(Client, types.ListAuthorizersInput, ? base_client.InvokeOptions): async.Operation<types.ListAuthorizersOutput>
+    listBillingGroups: function(Client, types.ListBillingGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListBillingGroupsOutput>
+    listCACertificates: function(Client, types.ListCACertificatesInput, ? base_client.InvokeOptions): async.Operation<types.ListCACertificatesOutput>
+    listCertificateProviders: function(Client, types.ListCertificateProvidersInput, ? base_client.InvokeOptions): async.Operation<types.ListCertificateProvidersOutput>
+    listCertificates: function(Client, types.ListCertificatesInput, ? base_client.InvokeOptions): async.Operation<types.ListCertificatesOutput>
+    listCertificatesByCA: function(Client, types.ListCertificatesByCAInput, ? base_client.InvokeOptions): async.Operation<types.ListCertificatesByCAOutput>
+    listCommandExecutions: function(Client, types.ListCommandExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListCommandExecutionsOutput>
+    listCommands: function(Client, types.ListCommandsInput, ? base_client.InvokeOptions): async.Operation<types.ListCommandsOutput>
+    listCustomMetrics: function(Client, types.ListCustomMetricsInput, ? base_client.InvokeOptions): async.Operation<types.ListCustomMetricsOutput>
+    listDetectMitigationActionsExecutions: function(Client, types.ListDetectMitigationActionsExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListDetectMitigationActionsExecutionsOutput>
+    listDetectMitigationActionsTasks: function(Client, types.ListDetectMitigationActionsTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListDetectMitigationActionsTasksOutput>
+    listDimensions: function(Client, types.ListDimensionsInput, ? base_client.InvokeOptions): async.Operation<types.ListDimensionsOutput>
+    listDomainConfigurations: function(Client, types.ListDomainConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListDomainConfigurationsOutput>
+    listFleetMetrics: function(Client, types.ListFleetMetricsInput, ? base_client.InvokeOptions): async.Operation<types.ListFleetMetricsOutput>
+    listIndices: function(Client, types.ListIndicesInput, ? base_client.InvokeOptions): async.Operation<types.ListIndicesOutput>
+    listJobExecutionsForJob: function(Client, types.ListJobExecutionsForJobInput, ? base_client.InvokeOptions): async.Operation<types.ListJobExecutionsForJobOutput>
+    listJobExecutionsForThing: function(Client, types.ListJobExecutionsForThingInput, ? base_client.InvokeOptions): async.Operation<types.ListJobExecutionsForThingOutput>
+    listJobs: function(Client, types.ListJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListJobsOutput>
+    listJobTemplates: function(Client, types.ListJobTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListJobTemplatesOutput>
+    listManagedJobTemplates: function(Client, types.ListManagedJobTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListManagedJobTemplatesOutput>
+    listMetricValues: function(Client, types.ListMetricValuesInput, ? base_client.InvokeOptions): async.Operation<types.ListMetricValuesOutput>
+    listMitigationActions: function(Client, types.ListMitigationActionsInput, ? base_client.InvokeOptions): async.Operation<types.ListMitigationActionsOutput>
+    listOTAUpdates: function(Client, types.ListOTAUpdatesInput, ? base_client.InvokeOptions): async.Operation<types.ListOTAUpdatesOutput>
+    listOutgoingCertificates: function(Client, types.ListOutgoingCertificatesInput, ? base_client.InvokeOptions): async.Operation<types.ListOutgoingCertificatesOutput>
+    listPackages: function(Client, types.ListPackagesInput, ? base_client.InvokeOptions): async.Operation<types.ListPackagesOutput>
+    listPackageVersions: function(Client, types.ListPackageVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListPackageVersionsOutput>
+    listPolicies: function(Client, types.ListPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListPoliciesOutput>
+    listPolicyPrincipals: function(Client, types.ListPolicyPrincipalsInput, ? base_client.InvokeOptions): async.Operation<types.ListPolicyPrincipalsOutput>
+    listPolicyVersions: function(Client, types.ListPolicyVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListPolicyVersionsOutput>
+    listPrincipalPolicies: function(Client, types.ListPrincipalPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListPrincipalPoliciesOutput>
+    listPrincipalThings: function(Client, types.ListPrincipalThingsInput, ? base_client.InvokeOptions): async.Operation<types.ListPrincipalThingsOutput>
+    listPrincipalThingsV2: function(Client, types.ListPrincipalThingsV2Input, ? base_client.InvokeOptions): async.Operation<types.ListPrincipalThingsV2Output>
+    listProvisioningTemplates: function(Client, types.ListProvisioningTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListProvisioningTemplatesOutput>
+    listProvisioningTemplateVersions: function(Client, types.ListProvisioningTemplateVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListProvisioningTemplateVersionsOutput>
+    listRelatedResourcesForAuditFinding: function(Client, types.ListRelatedResourcesForAuditFindingInput, ? base_client.InvokeOptions): async.Operation<types.ListRelatedResourcesForAuditFindingOutput>
+    listRoleAliases: function(Client, types.ListRoleAliasesInput, ? base_client.InvokeOptions): async.Operation<types.ListRoleAliasesOutput>
+    listSbomValidationResults: function(Client, types.ListSbomValidationResultsInput, ? base_client.InvokeOptions): async.Operation<types.ListSbomValidationResultsOutput>
+    listScheduledAudits: function(Client, types.ListScheduledAuditsInput, ? base_client.InvokeOptions): async.Operation<types.ListScheduledAuditsOutput>
+    listSecurityProfiles: function(Client, types.ListSecurityProfilesInput, ? base_client.InvokeOptions): async.Operation<types.ListSecurityProfilesOutput>
+    listSecurityProfilesForTarget: function(Client, types.ListSecurityProfilesForTargetInput, ? base_client.InvokeOptions): async.Operation<types.ListSecurityProfilesForTargetOutput>
+    listStreams: function(Client, types.ListStreamsInput, ? base_client.InvokeOptions): async.Operation<types.ListStreamsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTargetsForPolicy: function(Client, types.ListTargetsForPolicyInput, ? base_client.InvokeOptions): async.Operation<types.ListTargetsForPolicyOutput>
+    listTargetsForSecurityProfile: function(Client, types.ListTargetsForSecurityProfileInput, ? base_client.InvokeOptions): async.Operation<types.ListTargetsForSecurityProfileOutput>
+    listThingGroups: function(Client, types.ListThingGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListThingGroupsOutput>
+    listThingGroupsForThing: function(Client, types.ListThingGroupsForThingInput, ? base_client.InvokeOptions): async.Operation<types.ListThingGroupsForThingOutput>
+    listThingPrincipals: function(Client, types.ListThingPrincipalsInput, ? base_client.InvokeOptions): async.Operation<types.ListThingPrincipalsOutput>
+    listThingPrincipalsV2: function(Client, types.ListThingPrincipalsV2Input, ? base_client.InvokeOptions): async.Operation<types.ListThingPrincipalsV2Output>
+    listThingRegistrationTaskReports: function(Client, types.ListThingRegistrationTaskReportsInput, ? base_client.InvokeOptions): async.Operation<types.ListThingRegistrationTaskReportsOutput>
+    listThingRegistrationTasks: function(Client, types.ListThingRegistrationTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListThingRegistrationTasksOutput>
+    listThings: function(Client, types.ListThingsInput, ? base_client.InvokeOptions): async.Operation<types.ListThingsOutput>
+    listThingsInBillingGroup: function(Client, types.ListThingsInBillingGroupInput, ? base_client.InvokeOptions): async.Operation<types.ListThingsInBillingGroupOutput>
+    listThingsInThingGroup: function(Client, types.ListThingsInThingGroupInput, ? base_client.InvokeOptions): async.Operation<types.ListThingsInThingGroupOutput>
+    listThingTypes: function(Client, types.ListThingTypesInput, ? base_client.InvokeOptions): async.Operation<types.ListThingTypesOutput>
+    listTopicRuleDestinations: function(Client, types.ListTopicRuleDestinationsInput, ? base_client.InvokeOptions): async.Operation<types.ListTopicRuleDestinationsOutput>
+    listTopicRules: function(Client, types.ListTopicRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListTopicRulesOutput>
+    listV2LoggingLevels: function(Client, types.ListV2LoggingLevelsInput, ? base_client.InvokeOptions): async.Operation<types.ListV2LoggingLevelsOutput>
+    listViolationEvents: function(Client, types.ListViolationEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListViolationEventsOutput>
+    putVerificationStateOnViolation: function(Client, types.PutVerificationStateOnViolationInput, ? base_client.InvokeOptions): async.Operation<types.PutVerificationStateOnViolationOutput>
+    registerCACertificate: function(Client, types.RegisterCACertificateInput, ? base_client.InvokeOptions): async.Operation<types.RegisterCACertificateOutput>
+    registerCertificate: function(Client, types.RegisterCertificateInput, ? base_client.InvokeOptions): async.Operation<types.RegisterCertificateOutput>
+    registerCertificateWithoutCA: function(Client, types.RegisterCertificateWithoutCAInput, ? base_client.InvokeOptions): async.Operation<types.RegisterCertificateWithoutCAOutput>
+    registerThing: function(Client, types.RegisterThingInput, ? base_client.InvokeOptions): async.Operation<types.RegisterThingOutput>
+    rejectCertificateTransfer: function(Client, types.RejectCertificateTransferInput, ? base_client.InvokeOptions): async.Operation<types.RejectCertificateTransferOutput>
+    removeThingFromBillingGroup: function(Client, types.RemoveThingFromBillingGroupInput, ? base_client.InvokeOptions): async.Operation<types.RemoveThingFromBillingGroupOutput>
+    removeThingFromThingGroup: function(Client, types.RemoveThingFromThingGroupInput, ? base_client.InvokeOptions): async.Operation<types.RemoveThingFromThingGroupOutput>
+    replaceTopicRule: function(Client, types.ReplaceTopicRuleInput, ? base_client.InvokeOptions): async.Operation<types.ReplaceTopicRuleOutput>
+    searchIndex: function(Client, types.SearchIndexInput, ? base_client.InvokeOptions): async.Operation<types.SearchIndexOutput>
+    setDefaultAuthorizer: function(Client, types.SetDefaultAuthorizerInput, ? base_client.InvokeOptions): async.Operation<types.SetDefaultAuthorizerOutput>
+    setDefaultPolicyVersion: function(Client, types.SetDefaultPolicyVersionInput, ? base_client.InvokeOptions): async.Operation<types.SetDefaultPolicyVersionOutput>
+    setLoggingOptions: function(Client, types.SetLoggingOptionsInput, ? base_client.InvokeOptions): async.Operation<types.SetLoggingOptionsOutput>
+    setV2LoggingLevel: function(Client, types.SetV2LoggingLevelInput, ? base_client.InvokeOptions): async.Operation<types.SetV2LoggingLevelOutput>
+    setV2LoggingOptions: function(Client, types.SetV2LoggingOptionsInput, ? base_client.InvokeOptions): async.Operation<types.SetV2LoggingOptionsOutput>
+    startAuditMitigationActionsTask: function(Client, types.StartAuditMitigationActionsTaskInput, ? base_client.InvokeOptions): async.Operation<types.StartAuditMitigationActionsTaskOutput>
+    startDetectMitigationActionsTask: function(Client, types.StartDetectMitigationActionsTaskInput, ? base_client.InvokeOptions): async.Operation<types.StartDetectMitigationActionsTaskOutput>
+    startOnDemandAuditTask: function(Client, types.StartOnDemandAuditTaskInput, ? base_client.InvokeOptions): async.Operation<types.StartOnDemandAuditTaskOutput>
+    startThingRegistrationTask: function(Client, types.StartThingRegistrationTaskInput, ? base_client.InvokeOptions): async.Operation<types.StartThingRegistrationTaskOutput>
+    stopThingRegistrationTask: function(Client, types.StopThingRegistrationTaskInput, ? base_client.InvokeOptions): async.Operation<types.StopThingRegistrationTaskOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    testAuthorization: function(Client, types.TestAuthorizationInput, ? base_client.InvokeOptions): async.Operation<types.TestAuthorizationOutput>
+    testInvokeAuthorizer: function(Client, types.TestInvokeAuthorizerInput, ? base_client.InvokeOptions): async.Operation<types.TestInvokeAuthorizerOutput>
+    transferCertificate: function(Client, types.TransferCertificateInput, ? base_client.InvokeOptions): async.Operation<types.TransferCertificateOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAccountAuditConfiguration: function(Client, types.UpdateAccountAuditConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAccountAuditConfigurationOutput>
+    updateAuditSuppression: function(Client, types.UpdateAuditSuppressionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAuditSuppressionOutput>
+    updateAuthorizer: function(Client, types.UpdateAuthorizerInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAuthorizerOutput>
+    updateBillingGroup: function(Client, types.UpdateBillingGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBillingGroupOutput>
+    updateCACertificate: function(Client, types.UpdateCACertificateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCACertificateOutput>
+    updateCertificate: function(Client, types.UpdateCertificateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCertificateOutput>
+    updateCertificateProvider: function(Client, types.UpdateCertificateProviderInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCertificateProviderOutput>
+    updateCommand: function(Client, types.UpdateCommandInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCommandOutput>
+    updateCustomMetric: function(Client, types.UpdateCustomMetricInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCustomMetricOutput>
+    updateDimension: function(Client, types.UpdateDimensionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDimensionOutput>
+    updateDomainConfiguration: function(Client, types.UpdateDomainConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDomainConfigurationOutput>
+    updateDynamicThingGroup: function(Client, types.UpdateDynamicThingGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDynamicThingGroupOutput>
+    updateEncryptionConfiguration: function(Client, types.UpdateEncryptionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEncryptionConfigurationOutput>
+    updateEventConfigurations: function(Client, types.UpdateEventConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEventConfigurationsOutput>
+    updateFleetMetric: function(Client, types.UpdateFleetMetricInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFleetMetricOutput>
+    updateIndexingConfiguration: function(Client, types.UpdateIndexingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIndexingConfigurationOutput>
+    updateJob: function(Client, types.UpdateJobInput, ? base_client.InvokeOptions): async.Operation<types.UpdateJobOutput>
+    updateMitigationAction: function(Client, types.UpdateMitigationActionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMitigationActionOutput>
+    updatePackage: function(Client, types.UpdatePackageInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePackageOutput>
+    updatePackageConfiguration: function(Client, types.UpdatePackageConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePackageConfigurationOutput>
+    updatePackageVersion: function(Client, types.UpdatePackageVersionInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePackageVersionOutput>
+    updateProvisioningTemplate: function(Client, types.UpdateProvisioningTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProvisioningTemplateOutput>
+    updateRoleAlias: function(Client, types.UpdateRoleAliasInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRoleAliasOutput>
+    updateScheduledAudit: function(Client, types.UpdateScheduledAuditInput, ? base_client.InvokeOptions): async.Operation<types.UpdateScheduledAuditOutput>
+    updateSecurityProfile: function(Client, types.UpdateSecurityProfileInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSecurityProfileOutput>
+    updateStream: function(Client, types.UpdateStreamInput, ? base_client.InvokeOptions): async.Operation<types.UpdateStreamOutput>
+    updateThing: function(Client, types.UpdateThingInput, ? base_client.InvokeOptions): async.Operation<types.UpdateThingOutput>
+    updateThingGroup: function(Client, types.UpdateThingGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateThingGroupOutput>
+    updateThingGroupsForThing: function(Client, types.UpdateThingGroupsForThingInput, ? base_client.InvokeOptions): async.Operation<types.UpdateThingGroupsForThingOutput>
+    updateThingType: function(Client, types.UpdateThingTypeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateThingTypeOutput>
+    updateTopicRuleDestination: function(Client, types.UpdateTopicRuleDestinationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTopicRuleDestinationOutput>
+    validateSecurityProfileBehaviors: function(Client, types.ValidateSecurityProfileBehaviorsInput, ? base_client.InvokeOptions): async.Operation<types.ValidateSecurityProfileBehaviorsOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSIotService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "iot", signing_region = c.region } }
                 else
@@ -331,1092 +334,1092 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:acceptCertificateTransfer(input: types.AcceptCertificateTransferInput, options: any): async.Operation<types.AcceptCertificateTransferOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptCertificateTransfer, input, options) as async.Operation<types.AcceptCertificateTransferOutput>
+function C:acceptCertificateTransfer(input: types.AcceptCertificateTransferInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptCertificateTransferOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptCertificateTransfer as schema.OperationSchema, input, options) as async.Operation<types.AcceptCertificateTransferOutput>
 end
 
-function C:addThingToBillingGroup(input: types.AddThingToBillingGroupInput, options: any): async.Operation<types.AddThingToBillingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddThingToBillingGroup, input, options) as async.Operation<types.AddThingToBillingGroupOutput>
+function C:addThingToBillingGroup(input: types.AddThingToBillingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.AddThingToBillingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddThingToBillingGroup as schema.OperationSchema, input, options) as async.Operation<types.AddThingToBillingGroupOutput>
 end
 
-function C:addThingToThingGroup(input: types.AddThingToThingGroupInput, options: any): async.Operation<types.AddThingToThingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddThingToThingGroup, input, options) as async.Operation<types.AddThingToThingGroupOutput>
+function C:addThingToThingGroup(input: types.AddThingToThingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.AddThingToThingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddThingToThingGroup as schema.OperationSchema, input, options) as async.Operation<types.AddThingToThingGroupOutput>
 end
 
-function C:associateSbomWithPackageVersion(input: types.AssociateSbomWithPackageVersionInput, options: any): async.Operation<types.AssociateSbomWithPackageVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateSbomWithPackageVersion, input, options) as async.Operation<types.AssociateSbomWithPackageVersionOutput>
+function C:associateSbomWithPackageVersion(input: types.AssociateSbomWithPackageVersionInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateSbomWithPackageVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateSbomWithPackageVersion as schema.OperationSchema, input, options) as async.Operation<types.AssociateSbomWithPackageVersionOutput>
 end
 
-function C:associateTargetsWithJob(input: types.AssociateTargetsWithJobInput, options: any): async.Operation<types.AssociateTargetsWithJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateTargetsWithJob, input, options) as async.Operation<types.AssociateTargetsWithJobOutput>
+function C:associateTargetsWithJob(input: types.AssociateTargetsWithJobInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateTargetsWithJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateTargetsWithJob as schema.OperationSchema, input, options) as async.Operation<types.AssociateTargetsWithJobOutput>
 end
 
-function C:attachPolicy(input: types.AttachPolicyInput, options: any): async.Operation<types.AttachPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachPolicy, input, options) as async.Operation<types.AttachPolicyOutput>
+function C:attachPolicy(input: types.AttachPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.AttachPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachPolicy as schema.OperationSchema, input, options) as async.Operation<types.AttachPolicyOutput>
 end
 
-function C:attachPrincipalPolicy(input: types.AttachPrincipalPolicyInput, options: any): async.Operation<types.AttachPrincipalPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachPrincipalPolicy, input, options) as async.Operation<types.AttachPrincipalPolicyOutput>
+function C:attachPrincipalPolicy(input: types.AttachPrincipalPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.AttachPrincipalPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachPrincipalPolicy as schema.OperationSchema, input, options) as async.Operation<types.AttachPrincipalPolicyOutput>
 end
 
-function C:attachSecurityProfile(input: types.AttachSecurityProfileInput, options: any): async.Operation<types.AttachSecurityProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachSecurityProfile, input, options) as async.Operation<types.AttachSecurityProfileOutput>
+function C:attachSecurityProfile(input: types.AttachSecurityProfileInput, options?: base_client.InvokeOptions): async.Operation<types.AttachSecurityProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachSecurityProfile as schema.OperationSchema, input, options) as async.Operation<types.AttachSecurityProfileOutput>
 end
 
-function C:attachThingPrincipal(input: types.AttachThingPrincipalInput, options: any): async.Operation<types.AttachThingPrincipalOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachThingPrincipal, input, options) as async.Operation<types.AttachThingPrincipalOutput>
+function C:attachThingPrincipal(input: types.AttachThingPrincipalInput, options?: base_client.InvokeOptions): async.Operation<types.AttachThingPrincipalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachThingPrincipal as schema.OperationSchema, input, options) as async.Operation<types.AttachThingPrincipalOutput>
 end
 
-function C:cancelAuditMitigationActionsTask(input: types.CancelAuditMitigationActionsTaskInput, options: any): async.Operation<types.CancelAuditMitigationActionsTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelAuditMitigationActionsTask, input, options) as async.Operation<types.CancelAuditMitigationActionsTaskOutput>
+function C:cancelAuditMitigationActionsTask(input: types.CancelAuditMitigationActionsTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CancelAuditMitigationActionsTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelAuditMitigationActionsTask as schema.OperationSchema, input, options) as async.Operation<types.CancelAuditMitigationActionsTaskOutput>
 end
 
-function C:cancelAuditTask(input: types.CancelAuditTaskInput, options: any): async.Operation<types.CancelAuditTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelAuditTask, input, options) as async.Operation<types.CancelAuditTaskOutput>
+function C:cancelAuditTask(input: types.CancelAuditTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CancelAuditTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelAuditTask as schema.OperationSchema, input, options) as async.Operation<types.CancelAuditTaskOutput>
 end
 
-function C:cancelCertificateTransfer(input: types.CancelCertificateTransferInput, options: any): async.Operation<types.CancelCertificateTransferOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelCertificateTransfer, input, options) as async.Operation<types.CancelCertificateTransferOutput>
+function C:cancelCertificateTransfer(input: types.CancelCertificateTransferInput, options?: base_client.InvokeOptions): async.Operation<types.CancelCertificateTransferOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelCertificateTransfer as schema.OperationSchema, input, options) as async.Operation<types.CancelCertificateTransferOutput>
 end
 
-function C:cancelDetectMitigationActionsTask(input: types.CancelDetectMitigationActionsTaskInput, options: any): async.Operation<types.CancelDetectMitigationActionsTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelDetectMitigationActionsTask, input, options) as async.Operation<types.CancelDetectMitigationActionsTaskOutput>
+function C:cancelDetectMitigationActionsTask(input: types.CancelDetectMitigationActionsTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CancelDetectMitigationActionsTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelDetectMitigationActionsTask as schema.OperationSchema, input, options) as async.Operation<types.CancelDetectMitigationActionsTaskOutput>
 end
 
-function C:cancelJob(input: types.CancelJobInput, options: any): async.Operation<types.CancelJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelJob, input, options) as async.Operation<types.CancelJobOutput>
+function C:cancelJob(input: types.CancelJobInput, options?: base_client.InvokeOptions): async.Operation<types.CancelJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelJob as schema.OperationSchema, input, options) as async.Operation<types.CancelJobOutput>
 end
 
-function C:cancelJobExecution(input: types.CancelJobExecutionInput, options: any): async.Operation<types.CancelJobExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelJobExecution, input, options) as async.Operation<types.CancelJobExecutionOutput>
+function C:cancelJobExecution(input: types.CancelJobExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.CancelJobExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelJobExecution as schema.OperationSchema, input, options) as async.Operation<types.CancelJobExecutionOutput>
 end
 
-function C:clearDefaultAuthorizer(input: types.ClearDefaultAuthorizerInput, options: any): async.Operation<types.ClearDefaultAuthorizerOutput>
-    return self:invokeOperation(schemas.Service, schemas.ClearDefaultAuthorizer, input, options) as async.Operation<types.ClearDefaultAuthorizerOutput>
+function C:clearDefaultAuthorizer(input: types.ClearDefaultAuthorizerInput, options?: base_client.InvokeOptions): async.Operation<types.ClearDefaultAuthorizerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ClearDefaultAuthorizer as schema.OperationSchema, input, options) as async.Operation<types.ClearDefaultAuthorizerOutput>
 end
 
-function C:confirmTopicRuleDestination(input: types.ConfirmTopicRuleDestinationInput, options: any): async.Operation<types.ConfirmTopicRuleDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ConfirmTopicRuleDestination, input, options) as async.Operation<types.ConfirmTopicRuleDestinationOutput>
+function C:confirmTopicRuleDestination(input: types.ConfirmTopicRuleDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.ConfirmTopicRuleDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ConfirmTopicRuleDestination as schema.OperationSchema, input, options) as async.Operation<types.ConfirmTopicRuleDestinationOutput>
 end
 
-function C:createAuditSuppression(input: types.CreateAuditSuppressionInput, options: any): async.Operation<types.CreateAuditSuppressionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAuditSuppression, input, options) as async.Operation<types.CreateAuditSuppressionOutput>
+function C:createAuditSuppression(input: types.CreateAuditSuppressionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAuditSuppressionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAuditSuppression as schema.OperationSchema, input, options) as async.Operation<types.CreateAuditSuppressionOutput>
 end
 
-function C:createAuthorizer(input: types.CreateAuthorizerInput, options: any): async.Operation<types.CreateAuthorizerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAuthorizer, input, options) as async.Operation<types.CreateAuthorizerOutput>
+function C:createAuthorizer(input: types.CreateAuthorizerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAuthorizerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAuthorizer as schema.OperationSchema, input, options) as async.Operation<types.CreateAuthorizerOutput>
 end
 
-function C:createBillingGroup(input: types.CreateBillingGroupInput, options: any): async.Operation<types.CreateBillingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBillingGroup, input, options) as async.Operation<types.CreateBillingGroupOutput>
+function C:createBillingGroup(input: types.CreateBillingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBillingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBillingGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateBillingGroupOutput>
 end
 
-function C:createCertificateFromCsr(input: types.CreateCertificateFromCsrInput, options: any): async.Operation<types.CreateCertificateFromCsrOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCertificateFromCsr, input, options) as async.Operation<types.CreateCertificateFromCsrOutput>
+function C:createCertificateFromCsr(input: types.CreateCertificateFromCsrInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCertificateFromCsrOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCertificateFromCsr as schema.OperationSchema, input, options) as async.Operation<types.CreateCertificateFromCsrOutput>
 end
 
-function C:createCertificateProvider(input: types.CreateCertificateProviderInput, options: any): async.Operation<types.CreateCertificateProviderOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCertificateProvider, input, options) as async.Operation<types.CreateCertificateProviderOutput>
+function C:createCertificateProvider(input: types.CreateCertificateProviderInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCertificateProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCertificateProvider as schema.OperationSchema, input, options) as async.Operation<types.CreateCertificateProviderOutput>
 end
 
-function C:createCommand(input: types.CreateCommandInput, options: any): async.Operation<types.CreateCommandOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCommand, input, options) as async.Operation<types.CreateCommandOutput>
+function C:createCommand(input: types.CreateCommandInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCommandOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCommand as schema.OperationSchema, input, options) as async.Operation<types.CreateCommandOutput>
 end
 
-function C:createCustomMetric(input: types.CreateCustomMetricInput, options: any): async.Operation<types.CreateCustomMetricOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCustomMetric, input, options) as async.Operation<types.CreateCustomMetricOutput>
+function C:createCustomMetric(input: types.CreateCustomMetricInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCustomMetricOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCustomMetric as schema.OperationSchema, input, options) as async.Operation<types.CreateCustomMetricOutput>
 end
 
-function C:createDimension(input: types.CreateDimensionInput, options: any): async.Operation<types.CreateDimensionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDimension, input, options) as async.Operation<types.CreateDimensionOutput>
+function C:createDimension(input: types.CreateDimensionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDimensionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDimension as schema.OperationSchema, input, options) as async.Operation<types.CreateDimensionOutput>
 end
 
-function C:createDomainConfiguration(input: types.CreateDomainConfigurationInput, options: any): async.Operation<types.CreateDomainConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDomainConfiguration, input, options) as async.Operation<types.CreateDomainConfigurationOutput>
+function C:createDomainConfiguration(input: types.CreateDomainConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDomainConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDomainConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateDomainConfigurationOutput>
 end
 
-function C:createDynamicThingGroup(input: types.CreateDynamicThingGroupInput, options: any): async.Operation<types.CreateDynamicThingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDynamicThingGroup, input, options) as async.Operation<types.CreateDynamicThingGroupOutput>
+function C:createDynamicThingGroup(input: types.CreateDynamicThingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDynamicThingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDynamicThingGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateDynamicThingGroupOutput>
 end
 
-function C:createFleetMetric(input: types.CreateFleetMetricInput, options: any): async.Operation<types.CreateFleetMetricOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFleetMetric, input, options) as async.Operation<types.CreateFleetMetricOutput>
+function C:createFleetMetric(input: types.CreateFleetMetricInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFleetMetricOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFleetMetric as schema.OperationSchema, input, options) as async.Operation<types.CreateFleetMetricOutput>
 end
 
-function C:createJob(input: types.CreateJobInput, options: any): async.Operation<types.CreateJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateJob, input, options) as async.Operation<types.CreateJobOutput>
+function C:createJob(input: types.CreateJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateJob as schema.OperationSchema, input, options) as async.Operation<types.CreateJobOutput>
 end
 
-function C:createJobTemplate(input: types.CreateJobTemplateInput, options: any): async.Operation<types.CreateJobTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateJobTemplate, input, options) as async.Operation<types.CreateJobTemplateOutput>
+function C:createJobTemplate(input: types.CreateJobTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateJobTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateJobTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateJobTemplateOutput>
 end
 
-function C:createKeysAndCertificate(input: types.CreateKeysAndCertificateInput, options: any): async.Operation<types.CreateKeysAndCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateKeysAndCertificate, input, options) as async.Operation<types.CreateKeysAndCertificateOutput>
+function C:createKeysAndCertificate(input: types.CreateKeysAndCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateKeysAndCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateKeysAndCertificate as schema.OperationSchema, input, options) as async.Operation<types.CreateKeysAndCertificateOutput>
 end
 
-function C:createMitigationAction(input: types.CreateMitigationActionInput, options: any): async.Operation<types.CreateMitigationActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMitigationAction, input, options) as async.Operation<types.CreateMitigationActionOutput>
+function C:createMitigationAction(input: types.CreateMitigationActionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMitigationActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMitigationAction as schema.OperationSchema, input, options) as async.Operation<types.CreateMitigationActionOutput>
 end
 
-function C:createOTAUpdate(input: types.CreateOTAUpdateInput, options: any): async.Operation<types.CreateOTAUpdateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateOTAUpdate, input, options) as async.Operation<types.CreateOTAUpdateOutput>
+function C:createOTAUpdate(input: types.CreateOTAUpdateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateOTAUpdateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateOTAUpdate as schema.OperationSchema, input, options) as async.Operation<types.CreateOTAUpdateOutput>
 end
 
-function C:createPackage(input: types.CreatePackageInput, options: any): async.Operation<types.CreatePackageOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePackage, input, options) as async.Operation<types.CreatePackageOutput>
+function C:createPackage(input: types.CreatePackageInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePackageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePackage as schema.OperationSchema, input, options) as async.Operation<types.CreatePackageOutput>
 end
 
-function C:createPackageVersion(input: types.CreatePackageVersionInput, options: any): async.Operation<types.CreatePackageVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePackageVersion, input, options) as async.Operation<types.CreatePackageVersionOutput>
+function C:createPackageVersion(input: types.CreatePackageVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePackageVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePackageVersion as schema.OperationSchema, input, options) as async.Operation<types.CreatePackageVersionOutput>
 end
 
-function C:createPolicy(input: types.CreatePolicyInput, options: any): async.Operation<types.CreatePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePolicy, input, options) as async.Operation<types.CreatePolicyOutput>
+function C:createPolicy(input: types.CreatePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePolicy as schema.OperationSchema, input, options) as async.Operation<types.CreatePolicyOutput>
 end
 
-function C:createPolicyVersion(input: types.CreatePolicyVersionInput, options: any): async.Operation<types.CreatePolicyVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePolicyVersion, input, options) as async.Operation<types.CreatePolicyVersionOutput>
+function C:createPolicyVersion(input: types.CreatePolicyVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePolicyVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePolicyVersion as schema.OperationSchema, input, options) as async.Operation<types.CreatePolicyVersionOutput>
 end
 
-function C:createProvisioningClaim(input: types.CreateProvisioningClaimInput, options: any): async.Operation<types.CreateProvisioningClaimOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProvisioningClaim, input, options) as async.Operation<types.CreateProvisioningClaimOutput>
+function C:createProvisioningClaim(input: types.CreateProvisioningClaimInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProvisioningClaimOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProvisioningClaim as schema.OperationSchema, input, options) as async.Operation<types.CreateProvisioningClaimOutput>
 end
 
-function C:createProvisioningTemplate(input: types.CreateProvisioningTemplateInput, options: any): async.Operation<types.CreateProvisioningTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProvisioningTemplate, input, options) as async.Operation<types.CreateProvisioningTemplateOutput>
+function C:createProvisioningTemplate(input: types.CreateProvisioningTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProvisioningTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProvisioningTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateProvisioningTemplateOutput>
 end
 
-function C:createProvisioningTemplateVersion(input: types.CreateProvisioningTemplateVersionInput, options: any): async.Operation<types.CreateProvisioningTemplateVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProvisioningTemplateVersion, input, options) as async.Operation<types.CreateProvisioningTemplateVersionOutput>
+function C:createProvisioningTemplateVersion(input: types.CreateProvisioningTemplateVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProvisioningTemplateVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProvisioningTemplateVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateProvisioningTemplateVersionOutput>
 end
 
-function C:createRoleAlias(input: types.CreateRoleAliasInput, options: any): async.Operation<types.CreateRoleAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRoleAlias, input, options) as async.Operation<types.CreateRoleAliasOutput>
+function C:createRoleAlias(input: types.CreateRoleAliasInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRoleAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRoleAlias as schema.OperationSchema, input, options) as async.Operation<types.CreateRoleAliasOutput>
 end
 
-function C:createScheduledAudit(input: types.CreateScheduledAuditInput, options: any): async.Operation<types.CreateScheduledAuditOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateScheduledAudit, input, options) as async.Operation<types.CreateScheduledAuditOutput>
+function C:createScheduledAudit(input: types.CreateScheduledAuditInput, options?: base_client.InvokeOptions): async.Operation<types.CreateScheduledAuditOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateScheduledAudit as schema.OperationSchema, input, options) as async.Operation<types.CreateScheduledAuditOutput>
 end
 
-function C:createSecurityProfile(input: types.CreateSecurityProfileInput, options: any): async.Operation<types.CreateSecurityProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSecurityProfile, input, options) as async.Operation<types.CreateSecurityProfileOutput>
+function C:createSecurityProfile(input: types.CreateSecurityProfileInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSecurityProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSecurityProfile as schema.OperationSchema, input, options) as async.Operation<types.CreateSecurityProfileOutput>
 end
 
-function C:createStream(input: types.CreateStreamInput, options: any): async.Operation<types.CreateStreamOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateStream, input, options) as async.Operation<types.CreateStreamOutput>
+function C:createStream(input: types.CreateStreamInput, options?: base_client.InvokeOptions): async.Operation<types.CreateStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateStream as schema.OperationSchema, input, options) as async.Operation<types.CreateStreamOutput>
 end
 
-function C:createThing(input: types.CreateThingInput, options: any): async.Operation<types.CreateThingOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateThing, input, options) as async.Operation<types.CreateThingOutput>
+function C:createThing(input: types.CreateThingInput, options?: base_client.InvokeOptions): async.Operation<types.CreateThingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateThing as schema.OperationSchema, input, options) as async.Operation<types.CreateThingOutput>
 end
 
-function C:createThingGroup(input: types.CreateThingGroupInput, options: any): async.Operation<types.CreateThingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateThingGroup, input, options) as async.Operation<types.CreateThingGroupOutput>
+function C:createThingGroup(input: types.CreateThingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateThingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateThingGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateThingGroupOutput>
 end
 
-function C:createThingType(input: types.CreateThingTypeInput, options: any): async.Operation<types.CreateThingTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateThingType, input, options) as async.Operation<types.CreateThingTypeOutput>
+function C:createThingType(input: types.CreateThingTypeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateThingTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateThingType as schema.OperationSchema, input, options) as async.Operation<types.CreateThingTypeOutput>
 end
 
-function C:createTopicRule(input: types.CreateTopicRuleInput, options: any): async.Operation<types.CreateTopicRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTopicRule, input, options) as async.Operation<types.CreateTopicRuleOutput>
+function C:createTopicRule(input: types.CreateTopicRuleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTopicRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTopicRule as schema.OperationSchema, input, options) as async.Operation<types.CreateTopicRuleOutput>
 end
 
-function C:createTopicRuleDestination(input: types.CreateTopicRuleDestinationInput, options: any): async.Operation<types.CreateTopicRuleDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTopicRuleDestination, input, options) as async.Operation<types.CreateTopicRuleDestinationOutput>
+function C:createTopicRuleDestination(input: types.CreateTopicRuleDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTopicRuleDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTopicRuleDestination as schema.OperationSchema, input, options) as async.Operation<types.CreateTopicRuleDestinationOutput>
 end
 
-function C:deleteAccountAuditConfiguration(input: types.DeleteAccountAuditConfigurationInput, options: any): async.Operation<types.DeleteAccountAuditConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAccountAuditConfiguration, input, options) as async.Operation<types.DeleteAccountAuditConfigurationOutput>
+function C:deleteAccountAuditConfiguration(input: types.DeleteAccountAuditConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAccountAuditConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAccountAuditConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteAccountAuditConfigurationOutput>
 end
 
-function C:deleteAuditSuppression(input: types.DeleteAuditSuppressionInput, options: any): async.Operation<types.DeleteAuditSuppressionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAuditSuppression, input, options) as async.Operation<types.DeleteAuditSuppressionOutput>
+function C:deleteAuditSuppression(input: types.DeleteAuditSuppressionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAuditSuppressionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAuditSuppression as schema.OperationSchema, input, options) as async.Operation<types.DeleteAuditSuppressionOutput>
 end
 
-function C:deleteAuthorizer(input: types.DeleteAuthorizerInput, options: any): async.Operation<types.DeleteAuthorizerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAuthorizer, input, options) as async.Operation<types.DeleteAuthorizerOutput>
+function C:deleteAuthorizer(input: types.DeleteAuthorizerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAuthorizerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAuthorizer as schema.OperationSchema, input, options) as async.Operation<types.DeleteAuthorizerOutput>
 end
 
-function C:deleteBillingGroup(input: types.DeleteBillingGroupInput, options: any): async.Operation<types.DeleteBillingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBillingGroup, input, options) as async.Operation<types.DeleteBillingGroupOutput>
+function C:deleteBillingGroup(input: types.DeleteBillingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBillingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBillingGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteBillingGroupOutput>
 end
 
-function C:deleteCACertificate(input: types.DeleteCACertificateInput, options: any): async.Operation<types.DeleteCACertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCACertificate, input, options) as async.Operation<types.DeleteCACertificateOutput>
+function C:deleteCACertificate(input: types.DeleteCACertificateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCACertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCACertificate as schema.OperationSchema, input, options) as async.Operation<types.DeleteCACertificateOutput>
 end
 
-function C:deleteCertificate(input: types.DeleteCertificateInput, options: any): async.Operation<types.DeleteCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCertificate, input, options) as async.Operation<types.DeleteCertificateOutput>
+function C:deleteCertificate(input: types.DeleteCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCertificate as schema.OperationSchema, input, options) as async.Operation<types.DeleteCertificateOutput>
 end
 
-function C:deleteCertificateProvider(input: types.DeleteCertificateProviderInput, options: any): async.Operation<types.DeleteCertificateProviderOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCertificateProvider, input, options) as async.Operation<types.DeleteCertificateProviderOutput>
+function C:deleteCertificateProvider(input: types.DeleteCertificateProviderInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCertificateProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCertificateProvider as schema.OperationSchema, input, options) as async.Operation<types.DeleteCertificateProviderOutput>
 end
 
-function C:deleteCommand(input: types.DeleteCommandInput, options: any): async.Operation<types.DeleteCommandOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCommand, input, options) as async.Operation<types.DeleteCommandOutput>
+function C:deleteCommand(input: types.DeleteCommandInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCommandOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCommand as schema.OperationSchema, input, options) as async.Operation<types.DeleteCommandOutput>
 end
 
-function C:deleteCommandExecution(input: types.DeleteCommandExecutionInput, options: any): async.Operation<types.DeleteCommandExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCommandExecution, input, options) as async.Operation<types.DeleteCommandExecutionOutput>
+function C:deleteCommandExecution(input: types.DeleteCommandExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCommandExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCommandExecution as schema.OperationSchema, input, options) as async.Operation<types.DeleteCommandExecutionOutput>
 end
 
-function C:deleteCustomMetric(input: types.DeleteCustomMetricInput, options: any): async.Operation<types.DeleteCustomMetricOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCustomMetric, input, options) as async.Operation<types.DeleteCustomMetricOutput>
+function C:deleteCustomMetric(input: types.DeleteCustomMetricInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCustomMetricOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCustomMetric as schema.OperationSchema, input, options) as async.Operation<types.DeleteCustomMetricOutput>
 end
 
-function C:deleteDimension(input: types.DeleteDimensionInput, options: any): async.Operation<types.DeleteDimensionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDimension, input, options) as async.Operation<types.DeleteDimensionOutput>
+function C:deleteDimension(input: types.DeleteDimensionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDimensionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDimension as schema.OperationSchema, input, options) as async.Operation<types.DeleteDimensionOutput>
 end
 
-function C:deleteDomainConfiguration(input: types.DeleteDomainConfigurationInput, options: any): async.Operation<types.DeleteDomainConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDomainConfiguration, input, options) as async.Operation<types.DeleteDomainConfigurationOutput>
+function C:deleteDomainConfiguration(input: types.DeleteDomainConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDomainConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDomainConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteDomainConfigurationOutput>
 end
 
-function C:deleteDynamicThingGroup(input: types.DeleteDynamicThingGroupInput, options: any): async.Operation<types.DeleteDynamicThingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDynamicThingGroup, input, options) as async.Operation<types.DeleteDynamicThingGroupOutput>
+function C:deleteDynamicThingGroup(input: types.DeleteDynamicThingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDynamicThingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDynamicThingGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteDynamicThingGroupOutput>
 end
 
-function C:deleteFleetMetric(input: types.DeleteFleetMetricInput, options: any): async.Operation<types.DeleteFleetMetricOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFleetMetric, input, options) as async.Operation<types.DeleteFleetMetricOutput>
+function C:deleteFleetMetric(input: types.DeleteFleetMetricInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFleetMetricOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFleetMetric as schema.OperationSchema, input, options) as async.Operation<types.DeleteFleetMetricOutput>
 end
 
-function C:deleteJob(input: types.DeleteJobInput, options: any): async.Operation<types.DeleteJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteJob, input, options) as async.Operation<types.DeleteJobOutput>
+function C:deleteJob(input: types.DeleteJobInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteJob as schema.OperationSchema, input, options) as async.Operation<types.DeleteJobOutput>
 end
 
-function C:deleteJobExecution(input: types.DeleteJobExecutionInput, options: any): async.Operation<types.DeleteJobExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteJobExecution, input, options) as async.Operation<types.DeleteJobExecutionOutput>
+function C:deleteJobExecution(input: types.DeleteJobExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteJobExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteJobExecution as schema.OperationSchema, input, options) as async.Operation<types.DeleteJobExecutionOutput>
 end
 
-function C:deleteJobTemplate(input: types.DeleteJobTemplateInput, options: any): async.Operation<types.DeleteJobTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteJobTemplate, input, options) as async.Operation<types.DeleteJobTemplateOutput>
+function C:deleteJobTemplate(input: types.DeleteJobTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteJobTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteJobTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteJobTemplateOutput>
 end
 
-function C:deleteMitigationAction(input: types.DeleteMitigationActionInput, options: any): async.Operation<types.DeleteMitigationActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMitigationAction, input, options) as async.Operation<types.DeleteMitigationActionOutput>
+function C:deleteMitigationAction(input: types.DeleteMitigationActionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMitigationActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMitigationAction as schema.OperationSchema, input, options) as async.Operation<types.DeleteMitigationActionOutput>
 end
 
-function C:deleteOTAUpdate(input: types.DeleteOTAUpdateInput, options: any): async.Operation<types.DeleteOTAUpdateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteOTAUpdate, input, options) as async.Operation<types.DeleteOTAUpdateOutput>
+function C:deleteOTAUpdate(input: types.DeleteOTAUpdateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteOTAUpdateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteOTAUpdate as schema.OperationSchema, input, options) as async.Operation<types.DeleteOTAUpdateOutput>
 end
 
-function C:deletePackage(input: types.DeletePackageInput, options: any): async.Operation<types.DeletePackageOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePackage, input, options) as async.Operation<types.DeletePackageOutput>
+function C:deletePackage(input: types.DeletePackageInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePackageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePackage as schema.OperationSchema, input, options) as async.Operation<types.DeletePackageOutput>
 end
 
-function C:deletePackageVersion(input: types.DeletePackageVersionInput, options: any): async.Operation<types.DeletePackageVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePackageVersion, input, options) as async.Operation<types.DeletePackageVersionOutput>
+function C:deletePackageVersion(input: types.DeletePackageVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePackageVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePackageVersion as schema.OperationSchema, input, options) as async.Operation<types.DeletePackageVersionOutput>
 end
 
-function C:deletePolicy(input: types.DeletePolicyInput, options: any): async.Operation<types.DeletePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePolicy, input, options) as async.Operation<types.DeletePolicyOutput>
+function C:deletePolicy(input: types.DeletePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeletePolicyOutput>
 end
 
-function C:deletePolicyVersion(input: types.DeletePolicyVersionInput, options: any): async.Operation<types.DeletePolicyVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePolicyVersion, input, options) as async.Operation<types.DeletePolicyVersionOutput>
+function C:deletePolicyVersion(input: types.DeletePolicyVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePolicyVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePolicyVersion as schema.OperationSchema, input, options) as async.Operation<types.DeletePolicyVersionOutput>
 end
 
-function C:deleteProvisioningTemplate(input: types.DeleteProvisioningTemplateInput, options: any): async.Operation<types.DeleteProvisioningTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProvisioningTemplate, input, options) as async.Operation<types.DeleteProvisioningTemplateOutput>
+function C:deleteProvisioningTemplate(input: types.DeleteProvisioningTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProvisioningTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProvisioningTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteProvisioningTemplateOutput>
 end
 
-function C:deleteProvisioningTemplateVersion(input: types.DeleteProvisioningTemplateVersionInput, options: any): async.Operation<types.DeleteProvisioningTemplateVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProvisioningTemplateVersion, input, options) as async.Operation<types.DeleteProvisioningTemplateVersionOutput>
+function C:deleteProvisioningTemplateVersion(input: types.DeleteProvisioningTemplateVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProvisioningTemplateVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProvisioningTemplateVersion as schema.OperationSchema, input, options) as async.Operation<types.DeleteProvisioningTemplateVersionOutput>
 end
 
-function C:deleteRegistrationCode(input: types.DeleteRegistrationCodeInput, options: any): async.Operation<types.DeleteRegistrationCodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRegistrationCode, input, options) as async.Operation<types.DeleteRegistrationCodeOutput>
+function C:deleteRegistrationCode(input: types.DeleteRegistrationCodeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRegistrationCodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRegistrationCode as schema.OperationSchema, input, options) as async.Operation<types.DeleteRegistrationCodeOutput>
 end
 
-function C:deleteRoleAlias(input: types.DeleteRoleAliasInput, options: any): async.Operation<types.DeleteRoleAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRoleAlias, input, options) as async.Operation<types.DeleteRoleAliasOutput>
+function C:deleteRoleAlias(input: types.DeleteRoleAliasInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRoleAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRoleAlias as schema.OperationSchema, input, options) as async.Operation<types.DeleteRoleAliasOutput>
 end
 
-function C:deleteScheduledAudit(input: types.DeleteScheduledAuditInput, options: any): async.Operation<types.DeleteScheduledAuditOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteScheduledAudit, input, options) as async.Operation<types.DeleteScheduledAuditOutput>
+function C:deleteScheduledAudit(input: types.DeleteScheduledAuditInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteScheduledAuditOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteScheduledAudit as schema.OperationSchema, input, options) as async.Operation<types.DeleteScheduledAuditOutput>
 end
 
-function C:deleteSecurityProfile(input: types.DeleteSecurityProfileInput, options: any): async.Operation<types.DeleteSecurityProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSecurityProfile, input, options) as async.Operation<types.DeleteSecurityProfileOutput>
+function C:deleteSecurityProfile(input: types.DeleteSecurityProfileInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSecurityProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSecurityProfile as schema.OperationSchema, input, options) as async.Operation<types.DeleteSecurityProfileOutput>
 end
 
-function C:deleteStream(input: types.DeleteStreamInput, options: any): async.Operation<types.DeleteStreamOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteStream, input, options) as async.Operation<types.DeleteStreamOutput>
+function C:deleteStream(input: types.DeleteStreamInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteStream as schema.OperationSchema, input, options) as async.Operation<types.DeleteStreamOutput>
 end
 
-function C:deleteThing(input: types.DeleteThingInput, options: any): async.Operation<types.DeleteThingOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteThing, input, options) as async.Operation<types.DeleteThingOutput>
+function C:deleteThing(input: types.DeleteThingInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteThingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteThing as schema.OperationSchema, input, options) as async.Operation<types.DeleteThingOutput>
 end
 
-function C:deleteThingGroup(input: types.DeleteThingGroupInput, options: any): async.Operation<types.DeleteThingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteThingGroup, input, options) as async.Operation<types.DeleteThingGroupOutput>
+function C:deleteThingGroup(input: types.DeleteThingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteThingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteThingGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteThingGroupOutput>
 end
 
-function C:deleteThingType(input: types.DeleteThingTypeInput, options: any): async.Operation<types.DeleteThingTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteThingType, input, options) as async.Operation<types.DeleteThingTypeOutput>
+function C:deleteThingType(input: types.DeleteThingTypeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteThingTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteThingType as schema.OperationSchema, input, options) as async.Operation<types.DeleteThingTypeOutput>
 end
 
-function C:deleteTopicRule(input: types.DeleteTopicRuleInput, options: any): async.Operation<types.DeleteTopicRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTopicRule, input, options) as async.Operation<types.DeleteTopicRuleOutput>
+function C:deleteTopicRule(input: types.DeleteTopicRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTopicRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTopicRule as schema.OperationSchema, input, options) as async.Operation<types.DeleteTopicRuleOutput>
 end
 
-function C:deleteTopicRuleDestination(input: types.DeleteTopicRuleDestinationInput, options: any): async.Operation<types.DeleteTopicRuleDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTopicRuleDestination, input, options) as async.Operation<types.DeleteTopicRuleDestinationOutput>
+function C:deleteTopicRuleDestination(input: types.DeleteTopicRuleDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTopicRuleDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTopicRuleDestination as schema.OperationSchema, input, options) as async.Operation<types.DeleteTopicRuleDestinationOutput>
 end
 
-function C:deleteV2LoggingLevel(input: types.DeleteV2LoggingLevelInput, options: any): async.Operation<types.DeleteV2LoggingLevelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteV2LoggingLevel, input, options) as async.Operation<types.DeleteV2LoggingLevelOutput>
+function C:deleteV2LoggingLevel(input: types.DeleteV2LoggingLevelInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteV2LoggingLevelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteV2LoggingLevel as schema.OperationSchema, input, options) as async.Operation<types.DeleteV2LoggingLevelOutput>
 end
 
-function C:deprecateThingType(input: types.DeprecateThingTypeInput, options: any): async.Operation<types.DeprecateThingTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeprecateThingType, input, options) as async.Operation<types.DeprecateThingTypeOutput>
+function C:deprecateThingType(input: types.DeprecateThingTypeInput, options?: base_client.InvokeOptions): async.Operation<types.DeprecateThingTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeprecateThingType as schema.OperationSchema, input, options) as async.Operation<types.DeprecateThingTypeOutput>
 end
 
-function C:describeAccountAuditConfiguration(input: types.DescribeAccountAuditConfigurationInput, options: any): async.Operation<types.DescribeAccountAuditConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAccountAuditConfiguration, input, options) as async.Operation<types.DescribeAccountAuditConfigurationOutput>
+function C:describeAccountAuditConfiguration(input: types.DescribeAccountAuditConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAccountAuditConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAccountAuditConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeAccountAuditConfigurationOutput>
 end
 
-function C:describeAuditFinding(input: types.DescribeAuditFindingInput, options: any): async.Operation<types.DescribeAuditFindingOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAuditFinding, input, options) as async.Operation<types.DescribeAuditFindingOutput>
+function C:describeAuditFinding(input: types.DescribeAuditFindingInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAuditFindingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAuditFinding as schema.OperationSchema, input, options) as async.Operation<types.DescribeAuditFindingOutput>
 end
 
-function C:describeAuditMitigationActionsTask(input: types.DescribeAuditMitigationActionsTaskInput, options: any): async.Operation<types.DescribeAuditMitigationActionsTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAuditMitigationActionsTask, input, options) as async.Operation<types.DescribeAuditMitigationActionsTaskOutput>
+function C:describeAuditMitigationActionsTask(input: types.DescribeAuditMitigationActionsTaskInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAuditMitigationActionsTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAuditMitigationActionsTask as schema.OperationSchema, input, options) as async.Operation<types.DescribeAuditMitigationActionsTaskOutput>
 end
 
-function C:describeAuditSuppression(input: types.DescribeAuditSuppressionInput, options: any): async.Operation<types.DescribeAuditSuppressionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAuditSuppression, input, options) as async.Operation<types.DescribeAuditSuppressionOutput>
+function C:describeAuditSuppression(input: types.DescribeAuditSuppressionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAuditSuppressionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAuditSuppression as schema.OperationSchema, input, options) as async.Operation<types.DescribeAuditSuppressionOutput>
 end
 
-function C:describeAuditTask(input: types.DescribeAuditTaskInput, options: any): async.Operation<types.DescribeAuditTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAuditTask, input, options) as async.Operation<types.DescribeAuditTaskOutput>
+function C:describeAuditTask(input: types.DescribeAuditTaskInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAuditTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAuditTask as schema.OperationSchema, input, options) as async.Operation<types.DescribeAuditTaskOutput>
 end
 
-function C:describeAuthorizer(input: types.DescribeAuthorizerInput, options: any): async.Operation<types.DescribeAuthorizerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAuthorizer, input, options) as async.Operation<types.DescribeAuthorizerOutput>
+function C:describeAuthorizer(input: types.DescribeAuthorizerInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAuthorizerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAuthorizer as schema.OperationSchema, input, options) as async.Operation<types.DescribeAuthorizerOutput>
 end
 
-function C:describeBillingGroup(input: types.DescribeBillingGroupInput, options: any): async.Operation<types.DescribeBillingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeBillingGroup, input, options) as async.Operation<types.DescribeBillingGroupOutput>
+function C:describeBillingGroup(input: types.DescribeBillingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBillingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeBillingGroup as schema.OperationSchema, input, options) as async.Operation<types.DescribeBillingGroupOutput>
 end
 
-function C:describeCACertificate(input: types.DescribeCACertificateInput, options: any): async.Operation<types.DescribeCACertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCACertificate, input, options) as async.Operation<types.DescribeCACertificateOutput>
+function C:describeCACertificate(input: types.DescribeCACertificateInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCACertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCACertificate as schema.OperationSchema, input, options) as async.Operation<types.DescribeCACertificateOutput>
 end
 
-function C:describeCertificate(input: types.DescribeCertificateInput, options: any): async.Operation<types.DescribeCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCertificate, input, options) as async.Operation<types.DescribeCertificateOutput>
+function C:describeCertificate(input: types.DescribeCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCertificate as schema.OperationSchema, input, options) as async.Operation<types.DescribeCertificateOutput>
 end
 
-function C:describeCertificateProvider(input: types.DescribeCertificateProviderInput, options: any): async.Operation<types.DescribeCertificateProviderOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCertificateProvider, input, options) as async.Operation<types.DescribeCertificateProviderOutput>
+function C:describeCertificateProvider(input: types.DescribeCertificateProviderInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCertificateProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCertificateProvider as schema.OperationSchema, input, options) as async.Operation<types.DescribeCertificateProviderOutput>
 end
 
-function C:describeCustomMetric(input: types.DescribeCustomMetricInput, options: any): async.Operation<types.DescribeCustomMetricOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCustomMetric, input, options) as async.Operation<types.DescribeCustomMetricOutput>
+function C:describeCustomMetric(input: types.DescribeCustomMetricInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCustomMetricOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCustomMetric as schema.OperationSchema, input, options) as async.Operation<types.DescribeCustomMetricOutput>
 end
 
-function C:describeDefaultAuthorizer(input: types.DescribeDefaultAuthorizerInput, options: any): async.Operation<types.DescribeDefaultAuthorizerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDefaultAuthorizer, input, options) as async.Operation<types.DescribeDefaultAuthorizerOutput>
+function C:describeDefaultAuthorizer(input: types.DescribeDefaultAuthorizerInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDefaultAuthorizerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDefaultAuthorizer as schema.OperationSchema, input, options) as async.Operation<types.DescribeDefaultAuthorizerOutput>
 end
 
-function C:describeDetectMitigationActionsTask(input: types.DescribeDetectMitigationActionsTaskInput, options: any): async.Operation<types.DescribeDetectMitigationActionsTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDetectMitigationActionsTask, input, options) as async.Operation<types.DescribeDetectMitigationActionsTaskOutput>
+function C:describeDetectMitigationActionsTask(input: types.DescribeDetectMitigationActionsTaskInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDetectMitigationActionsTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDetectMitigationActionsTask as schema.OperationSchema, input, options) as async.Operation<types.DescribeDetectMitigationActionsTaskOutput>
 end
 
-function C:describeDimension(input: types.DescribeDimensionInput, options: any): async.Operation<types.DescribeDimensionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDimension, input, options) as async.Operation<types.DescribeDimensionOutput>
+function C:describeDimension(input: types.DescribeDimensionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDimensionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDimension as schema.OperationSchema, input, options) as async.Operation<types.DescribeDimensionOutput>
 end
 
-function C:describeDomainConfiguration(input: types.DescribeDomainConfigurationInput, options: any): async.Operation<types.DescribeDomainConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDomainConfiguration, input, options) as async.Operation<types.DescribeDomainConfigurationOutput>
+function C:describeDomainConfiguration(input: types.DescribeDomainConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDomainConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDomainConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeDomainConfigurationOutput>
 end
 
-function C:describeEncryptionConfiguration(input: types.DescribeEncryptionConfigurationInput, options: any): async.Operation<types.DescribeEncryptionConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEncryptionConfiguration, input, options) as async.Operation<types.DescribeEncryptionConfigurationOutput>
+function C:describeEncryptionConfiguration(input: types.DescribeEncryptionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEncryptionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEncryptionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeEncryptionConfigurationOutput>
 end
 
-function C:describeEndpoint(input: types.DescribeEndpointInput, options: any): async.Operation<types.DescribeEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEndpoint, input, options) as async.Operation<types.DescribeEndpointOutput>
+function C:describeEndpoint(input: types.DescribeEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEndpoint as schema.OperationSchema, input, options) as async.Operation<types.DescribeEndpointOutput>
 end
 
-function C:describeEventConfigurations(input: types.DescribeEventConfigurationsInput, options: any): async.Operation<types.DescribeEventConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEventConfigurations, input, options) as async.Operation<types.DescribeEventConfigurationsOutput>
+function C:describeEventConfigurations(input: types.DescribeEventConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEventConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEventConfigurations as schema.OperationSchema, input, options) as async.Operation<types.DescribeEventConfigurationsOutput>
 end
 
-function C:describeFleetMetric(input: types.DescribeFleetMetricInput, options: any): async.Operation<types.DescribeFleetMetricOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFleetMetric, input, options) as async.Operation<types.DescribeFleetMetricOutput>
+function C:describeFleetMetric(input: types.DescribeFleetMetricInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFleetMetricOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFleetMetric as schema.OperationSchema, input, options) as async.Operation<types.DescribeFleetMetricOutput>
 end
 
-function C:describeIndex(input: types.DescribeIndexInput, options: any): async.Operation<types.DescribeIndexOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeIndex, input, options) as async.Operation<types.DescribeIndexOutput>
+function C:describeIndex(input: types.DescribeIndexInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIndexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIndex as schema.OperationSchema, input, options) as async.Operation<types.DescribeIndexOutput>
 end
 
-function C:describeJob(input: types.DescribeJobInput, options: any): async.Operation<types.DescribeJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeJob, input, options) as async.Operation<types.DescribeJobOutput>
+function C:describeJob(input: types.DescribeJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeJobOutput>
 end
 
-function C:describeJobExecution(input: types.DescribeJobExecutionInput, options: any): async.Operation<types.DescribeJobExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeJobExecution, input, options) as async.Operation<types.DescribeJobExecutionOutput>
+function C:describeJobExecution(input: types.DescribeJobExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeJobExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeJobExecution as schema.OperationSchema, input, options) as async.Operation<types.DescribeJobExecutionOutput>
 end
 
-function C:describeJobTemplate(input: types.DescribeJobTemplateInput, options: any): async.Operation<types.DescribeJobTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeJobTemplate, input, options) as async.Operation<types.DescribeJobTemplateOutput>
+function C:describeJobTemplate(input: types.DescribeJobTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeJobTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeJobTemplate as schema.OperationSchema, input, options) as async.Operation<types.DescribeJobTemplateOutput>
 end
 
-function C:describeManagedJobTemplate(input: types.DescribeManagedJobTemplateInput, options: any): async.Operation<types.DescribeManagedJobTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeManagedJobTemplate, input, options) as async.Operation<types.DescribeManagedJobTemplateOutput>
+function C:describeManagedJobTemplate(input: types.DescribeManagedJobTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeManagedJobTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeManagedJobTemplate as schema.OperationSchema, input, options) as async.Operation<types.DescribeManagedJobTemplateOutput>
 end
 
-function C:describeMitigationAction(input: types.DescribeMitigationActionInput, options: any): async.Operation<types.DescribeMitigationActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeMitigationAction, input, options) as async.Operation<types.DescribeMitigationActionOutput>
+function C:describeMitigationAction(input: types.DescribeMitigationActionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMitigationActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMitigationAction as schema.OperationSchema, input, options) as async.Operation<types.DescribeMitigationActionOutput>
 end
 
-function C:describeProvisioningTemplate(input: types.DescribeProvisioningTemplateInput, options: any): async.Operation<types.DescribeProvisioningTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeProvisioningTemplate, input, options) as async.Operation<types.DescribeProvisioningTemplateOutput>
+function C:describeProvisioningTemplate(input: types.DescribeProvisioningTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeProvisioningTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeProvisioningTemplate as schema.OperationSchema, input, options) as async.Operation<types.DescribeProvisioningTemplateOutput>
 end
 
-function C:describeProvisioningTemplateVersion(input: types.DescribeProvisioningTemplateVersionInput, options: any): async.Operation<types.DescribeProvisioningTemplateVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeProvisioningTemplateVersion, input, options) as async.Operation<types.DescribeProvisioningTemplateVersionOutput>
+function C:describeProvisioningTemplateVersion(input: types.DescribeProvisioningTemplateVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeProvisioningTemplateVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeProvisioningTemplateVersion as schema.OperationSchema, input, options) as async.Operation<types.DescribeProvisioningTemplateVersionOutput>
 end
 
-function C:describeRoleAlias(input: types.DescribeRoleAliasInput, options: any): async.Operation<types.DescribeRoleAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRoleAlias, input, options) as async.Operation<types.DescribeRoleAliasOutput>
+function C:describeRoleAlias(input: types.DescribeRoleAliasInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRoleAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRoleAlias as schema.OperationSchema, input, options) as async.Operation<types.DescribeRoleAliasOutput>
 end
 
-function C:describeScheduledAudit(input: types.DescribeScheduledAuditInput, options: any): async.Operation<types.DescribeScheduledAuditOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeScheduledAudit, input, options) as async.Operation<types.DescribeScheduledAuditOutput>
+function C:describeScheduledAudit(input: types.DescribeScheduledAuditInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeScheduledAuditOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeScheduledAudit as schema.OperationSchema, input, options) as async.Operation<types.DescribeScheduledAuditOutput>
 end
 
-function C:describeSecurityProfile(input: types.DescribeSecurityProfileInput, options: any): async.Operation<types.DescribeSecurityProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSecurityProfile, input, options) as async.Operation<types.DescribeSecurityProfileOutput>
+function C:describeSecurityProfile(input: types.DescribeSecurityProfileInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSecurityProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSecurityProfile as schema.OperationSchema, input, options) as async.Operation<types.DescribeSecurityProfileOutput>
 end
 
-function C:describeStream(input: types.DescribeStreamInput, options: any): async.Operation<types.DescribeStreamOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeStream, input, options) as async.Operation<types.DescribeStreamOutput>
+function C:describeStream(input: types.DescribeStreamInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeStream as schema.OperationSchema, input, options) as async.Operation<types.DescribeStreamOutput>
 end
 
-function C:describeThing(input: types.DescribeThingInput, options: any): async.Operation<types.DescribeThingOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeThing, input, options) as async.Operation<types.DescribeThingOutput>
+function C:describeThing(input: types.DescribeThingInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeThingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeThing as schema.OperationSchema, input, options) as async.Operation<types.DescribeThingOutput>
 end
 
-function C:describeThingGroup(input: types.DescribeThingGroupInput, options: any): async.Operation<types.DescribeThingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeThingGroup, input, options) as async.Operation<types.DescribeThingGroupOutput>
+function C:describeThingGroup(input: types.DescribeThingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeThingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeThingGroup as schema.OperationSchema, input, options) as async.Operation<types.DescribeThingGroupOutput>
 end
 
-function C:describeThingRegistrationTask(input: types.DescribeThingRegistrationTaskInput, options: any): async.Operation<types.DescribeThingRegistrationTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeThingRegistrationTask, input, options) as async.Operation<types.DescribeThingRegistrationTaskOutput>
+function C:describeThingRegistrationTask(input: types.DescribeThingRegistrationTaskInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeThingRegistrationTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeThingRegistrationTask as schema.OperationSchema, input, options) as async.Operation<types.DescribeThingRegistrationTaskOutput>
 end
 
-function C:describeThingType(input: types.DescribeThingTypeInput, options: any): async.Operation<types.DescribeThingTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeThingType, input, options) as async.Operation<types.DescribeThingTypeOutput>
+function C:describeThingType(input: types.DescribeThingTypeInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeThingTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeThingType as schema.OperationSchema, input, options) as async.Operation<types.DescribeThingTypeOutput>
 end
 
-function C:detachPolicy(input: types.DetachPolicyInput, options: any): async.Operation<types.DetachPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetachPolicy, input, options) as async.Operation<types.DetachPolicyOutput>
+function C:detachPolicy(input: types.DetachPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DetachPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachPolicy as schema.OperationSchema, input, options) as async.Operation<types.DetachPolicyOutput>
 end
 
-function C:detachPrincipalPolicy(input: types.DetachPrincipalPolicyInput, options: any): async.Operation<types.DetachPrincipalPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetachPrincipalPolicy, input, options) as async.Operation<types.DetachPrincipalPolicyOutput>
+function C:detachPrincipalPolicy(input: types.DetachPrincipalPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DetachPrincipalPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachPrincipalPolicy as schema.OperationSchema, input, options) as async.Operation<types.DetachPrincipalPolicyOutput>
 end
 
-function C:detachSecurityProfile(input: types.DetachSecurityProfileInput, options: any): async.Operation<types.DetachSecurityProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetachSecurityProfile, input, options) as async.Operation<types.DetachSecurityProfileOutput>
+function C:detachSecurityProfile(input: types.DetachSecurityProfileInput, options?: base_client.InvokeOptions): async.Operation<types.DetachSecurityProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachSecurityProfile as schema.OperationSchema, input, options) as async.Operation<types.DetachSecurityProfileOutput>
 end
 
-function C:detachThingPrincipal(input: types.DetachThingPrincipalInput, options: any): async.Operation<types.DetachThingPrincipalOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetachThingPrincipal, input, options) as async.Operation<types.DetachThingPrincipalOutput>
+function C:detachThingPrincipal(input: types.DetachThingPrincipalInput, options?: base_client.InvokeOptions): async.Operation<types.DetachThingPrincipalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachThingPrincipal as schema.OperationSchema, input, options) as async.Operation<types.DetachThingPrincipalOutput>
 end
 
-function C:disableTopicRule(input: types.DisableTopicRuleInput, options: any): async.Operation<types.DisableTopicRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableTopicRule, input, options) as async.Operation<types.DisableTopicRuleOutput>
+function C:disableTopicRule(input: types.DisableTopicRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DisableTopicRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableTopicRule as schema.OperationSchema, input, options) as async.Operation<types.DisableTopicRuleOutput>
 end
 
-function C:disassociateSbomFromPackageVersion(input: types.DisassociateSbomFromPackageVersionInput, options: any): async.Operation<types.DisassociateSbomFromPackageVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateSbomFromPackageVersion, input, options) as async.Operation<types.DisassociateSbomFromPackageVersionOutput>
+function C:disassociateSbomFromPackageVersion(input: types.DisassociateSbomFromPackageVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateSbomFromPackageVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateSbomFromPackageVersion as schema.OperationSchema, input, options) as async.Operation<types.DisassociateSbomFromPackageVersionOutput>
 end
 
-function C:enableTopicRule(input: types.EnableTopicRuleInput, options: any): async.Operation<types.EnableTopicRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableTopicRule, input, options) as async.Operation<types.EnableTopicRuleOutput>
+function C:enableTopicRule(input: types.EnableTopicRuleInput, options?: base_client.InvokeOptions): async.Operation<types.EnableTopicRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableTopicRule as schema.OperationSchema, input, options) as async.Operation<types.EnableTopicRuleOutput>
 end
 
-function C:getBehaviorModelTrainingSummaries(input: types.GetBehaviorModelTrainingSummariesInput, options: any): async.Operation<types.GetBehaviorModelTrainingSummariesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBehaviorModelTrainingSummaries, input, options) as async.Operation<types.GetBehaviorModelTrainingSummariesOutput>
+function C:getBehaviorModelTrainingSummaries(input: types.GetBehaviorModelTrainingSummariesInput, options?: base_client.InvokeOptions): async.Operation<types.GetBehaviorModelTrainingSummariesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBehaviorModelTrainingSummaries as schema.OperationSchema, input, options) as async.Operation<types.GetBehaviorModelTrainingSummariesOutput>
 end
 
-function C:getBucketsAggregation(input: types.GetBucketsAggregationInput, options: any): async.Operation<types.GetBucketsAggregationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBucketsAggregation, input, options) as async.Operation<types.GetBucketsAggregationOutput>
+function C:getBucketsAggregation(input: types.GetBucketsAggregationInput, options?: base_client.InvokeOptions): async.Operation<types.GetBucketsAggregationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBucketsAggregation as schema.OperationSchema, input, options) as async.Operation<types.GetBucketsAggregationOutput>
 end
 
-function C:getCardinality(input: types.GetCardinalityInput, options: any): async.Operation<types.GetCardinalityOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCardinality, input, options) as async.Operation<types.GetCardinalityOutput>
+function C:getCardinality(input: types.GetCardinalityInput, options?: base_client.InvokeOptions): async.Operation<types.GetCardinalityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCardinality as schema.OperationSchema, input, options) as async.Operation<types.GetCardinalityOutput>
 end
 
-function C:getCommand(input: types.GetCommandInput, options: any): async.Operation<types.GetCommandOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCommand, input, options) as async.Operation<types.GetCommandOutput>
+function C:getCommand(input: types.GetCommandInput, options?: base_client.InvokeOptions): async.Operation<types.GetCommandOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCommand as schema.OperationSchema, input, options) as async.Operation<types.GetCommandOutput>
 end
 
-function C:getCommandExecution(input: types.GetCommandExecutionInput, options: any): async.Operation<types.GetCommandExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCommandExecution, input, options) as async.Operation<types.GetCommandExecutionOutput>
+function C:getCommandExecution(input: types.GetCommandExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.GetCommandExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCommandExecution as schema.OperationSchema, input, options) as async.Operation<types.GetCommandExecutionOutput>
 end
 
-function C:getEffectivePolicies(input: types.GetEffectivePoliciesInput, options: any): async.Operation<types.GetEffectivePoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEffectivePolicies, input, options) as async.Operation<types.GetEffectivePoliciesOutput>
+function C:getEffectivePolicies(input: types.GetEffectivePoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.GetEffectivePoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEffectivePolicies as schema.OperationSchema, input, options) as async.Operation<types.GetEffectivePoliciesOutput>
 end
 
-function C:getIndexingConfiguration(input: types.GetIndexingConfigurationInput, options: any): async.Operation<types.GetIndexingConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIndexingConfiguration, input, options) as async.Operation<types.GetIndexingConfigurationOutput>
+function C:getIndexingConfiguration(input: types.GetIndexingConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetIndexingConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIndexingConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetIndexingConfigurationOutput>
 end
 
-function C:getJobDocument(input: types.GetJobDocumentInput, options: any): async.Operation<types.GetJobDocumentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetJobDocument, input, options) as async.Operation<types.GetJobDocumentOutput>
+function C:getJobDocument(input: types.GetJobDocumentInput, options?: base_client.InvokeOptions): async.Operation<types.GetJobDocumentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetJobDocument as schema.OperationSchema, input, options) as async.Operation<types.GetJobDocumentOutput>
 end
 
-function C:getLoggingOptions(input: types.GetLoggingOptionsInput, options: any): async.Operation<types.GetLoggingOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLoggingOptions, input, options) as async.Operation<types.GetLoggingOptionsOutput>
+function C:getLoggingOptions(input: types.GetLoggingOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.GetLoggingOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLoggingOptions as schema.OperationSchema, input, options) as async.Operation<types.GetLoggingOptionsOutput>
 end
 
-function C:getOTAUpdate(input: types.GetOTAUpdateInput, options: any): async.Operation<types.GetOTAUpdateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOTAUpdate, input, options) as async.Operation<types.GetOTAUpdateOutput>
+function C:getOTAUpdate(input: types.GetOTAUpdateInput, options?: base_client.InvokeOptions): async.Operation<types.GetOTAUpdateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOTAUpdate as schema.OperationSchema, input, options) as async.Operation<types.GetOTAUpdateOutput>
 end
 
-function C:getPackage(input: types.GetPackageInput, options: any): async.Operation<types.GetPackageOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPackage, input, options) as async.Operation<types.GetPackageOutput>
+function C:getPackage(input: types.GetPackageInput, options?: base_client.InvokeOptions): async.Operation<types.GetPackageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPackage as schema.OperationSchema, input, options) as async.Operation<types.GetPackageOutput>
 end
 
-function C:getPackageConfiguration(input: types.GetPackageConfigurationInput, options: any): async.Operation<types.GetPackageConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPackageConfiguration, input, options) as async.Operation<types.GetPackageConfigurationOutput>
+function C:getPackageConfiguration(input: types.GetPackageConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetPackageConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPackageConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetPackageConfigurationOutput>
 end
 
-function C:getPackageVersion(input: types.GetPackageVersionInput, options: any): async.Operation<types.GetPackageVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPackageVersion, input, options) as async.Operation<types.GetPackageVersionOutput>
+function C:getPackageVersion(input: types.GetPackageVersionInput, options?: base_client.InvokeOptions): async.Operation<types.GetPackageVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPackageVersion as schema.OperationSchema, input, options) as async.Operation<types.GetPackageVersionOutput>
 end
 
-function C:getPercentiles(input: types.GetPercentilesInput, options: any): async.Operation<types.GetPercentilesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPercentiles, input, options) as async.Operation<types.GetPercentilesOutput>
+function C:getPercentiles(input: types.GetPercentilesInput, options?: base_client.InvokeOptions): async.Operation<types.GetPercentilesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPercentiles as schema.OperationSchema, input, options) as async.Operation<types.GetPercentilesOutput>
 end
 
-function C:getPolicy(input: types.GetPolicyInput, options: any): async.Operation<types.GetPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPolicy, input, options) as async.Operation<types.GetPolicyOutput>
+function C:getPolicy(input: types.GetPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetPolicyOutput>
 end
 
-function C:getPolicyVersion(input: types.GetPolicyVersionInput, options: any): async.Operation<types.GetPolicyVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPolicyVersion, input, options) as async.Operation<types.GetPolicyVersionOutput>
+function C:getPolicyVersion(input: types.GetPolicyVersionInput, options?: base_client.InvokeOptions): async.Operation<types.GetPolicyVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPolicyVersion as schema.OperationSchema, input, options) as async.Operation<types.GetPolicyVersionOutput>
 end
 
-function C:getRegistrationCode(input: types.GetRegistrationCodeInput, options: any): async.Operation<types.GetRegistrationCodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRegistrationCode, input, options) as async.Operation<types.GetRegistrationCodeOutput>
+function C:getRegistrationCode(input: types.GetRegistrationCodeInput, options?: base_client.InvokeOptions): async.Operation<types.GetRegistrationCodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRegistrationCode as schema.OperationSchema, input, options) as async.Operation<types.GetRegistrationCodeOutput>
 end
 
-function C:getStatistics(input: types.GetStatisticsInput, options: any): async.Operation<types.GetStatisticsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetStatistics, input, options) as async.Operation<types.GetStatisticsOutput>
+function C:getStatistics(input: types.GetStatisticsInput, options?: base_client.InvokeOptions): async.Operation<types.GetStatisticsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetStatistics as schema.OperationSchema, input, options) as async.Operation<types.GetStatisticsOutput>
 end
 
-function C:getThingConnectivityData(input: types.GetThingConnectivityDataInput, options: any): async.Operation<types.GetThingConnectivityDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetThingConnectivityData, input, options) as async.Operation<types.GetThingConnectivityDataOutput>
+function C:getThingConnectivityData(input: types.GetThingConnectivityDataInput, options?: base_client.InvokeOptions): async.Operation<types.GetThingConnectivityDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetThingConnectivityData as schema.OperationSchema, input, options) as async.Operation<types.GetThingConnectivityDataOutput>
 end
 
-function C:getTopicRule(input: types.GetTopicRuleInput, options: any): async.Operation<types.GetTopicRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTopicRule, input, options) as async.Operation<types.GetTopicRuleOutput>
+function C:getTopicRule(input: types.GetTopicRuleInput, options?: base_client.InvokeOptions): async.Operation<types.GetTopicRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTopicRule as schema.OperationSchema, input, options) as async.Operation<types.GetTopicRuleOutput>
 end
 
-function C:getTopicRuleDestination(input: types.GetTopicRuleDestinationInput, options: any): async.Operation<types.GetTopicRuleDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTopicRuleDestination, input, options) as async.Operation<types.GetTopicRuleDestinationOutput>
+function C:getTopicRuleDestination(input: types.GetTopicRuleDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.GetTopicRuleDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTopicRuleDestination as schema.OperationSchema, input, options) as async.Operation<types.GetTopicRuleDestinationOutput>
 end
 
-function C:getV2LoggingOptions(input: types.GetV2LoggingOptionsInput, options: any): async.Operation<types.GetV2LoggingOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetV2LoggingOptions, input, options) as async.Operation<types.GetV2LoggingOptionsOutput>
+function C:getV2LoggingOptions(input: types.GetV2LoggingOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.GetV2LoggingOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetV2LoggingOptions as schema.OperationSchema, input, options) as async.Operation<types.GetV2LoggingOptionsOutput>
 end
 
-function C:listActiveViolations(input: types.ListActiveViolationsInput, options: any): async.Operation<types.ListActiveViolationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListActiveViolations, input, options) as async.Operation<types.ListActiveViolationsOutput>
+function C:listActiveViolations(input: types.ListActiveViolationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListActiveViolationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListActiveViolations as schema.OperationSchema, input, options) as async.Operation<types.ListActiveViolationsOutput>
 end
 
-function C:listAttachedPolicies(input: types.ListAttachedPoliciesInput, options: any): async.Operation<types.ListAttachedPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAttachedPolicies, input, options) as async.Operation<types.ListAttachedPoliciesOutput>
+function C:listAttachedPolicies(input: types.ListAttachedPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAttachedPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAttachedPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListAttachedPoliciesOutput>
 end
 
-function C:listAuditFindings(input: types.ListAuditFindingsInput, options: any): async.Operation<types.ListAuditFindingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAuditFindings, input, options) as async.Operation<types.ListAuditFindingsOutput>
+function C:listAuditFindings(input: types.ListAuditFindingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAuditFindingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAuditFindings as schema.OperationSchema, input, options) as async.Operation<types.ListAuditFindingsOutput>
 end
 
-function C:listAuditMitigationActionsExecutions(input: types.ListAuditMitigationActionsExecutionsInput, options: any): async.Operation<types.ListAuditMitigationActionsExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAuditMitigationActionsExecutions, input, options) as async.Operation<types.ListAuditMitigationActionsExecutionsOutput>
+function C:listAuditMitigationActionsExecutions(input: types.ListAuditMitigationActionsExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAuditMitigationActionsExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAuditMitigationActionsExecutions as schema.OperationSchema, input, options) as async.Operation<types.ListAuditMitigationActionsExecutionsOutput>
 end
 
-function C:listAuditMitigationActionsTasks(input: types.ListAuditMitigationActionsTasksInput, options: any): async.Operation<types.ListAuditMitigationActionsTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAuditMitigationActionsTasks, input, options) as async.Operation<types.ListAuditMitigationActionsTasksOutput>
+function C:listAuditMitigationActionsTasks(input: types.ListAuditMitigationActionsTasksInput, options?: base_client.InvokeOptions): async.Operation<types.ListAuditMitigationActionsTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAuditMitigationActionsTasks as schema.OperationSchema, input, options) as async.Operation<types.ListAuditMitigationActionsTasksOutput>
 end
 
-function C:listAuditSuppressions(input: types.ListAuditSuppressionsInput, options: any): async.Operation<types.ListAuditSuppressionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAuditSuppressions, input, options) as async.Operation<types.ListAuditSuppressionsOutput>
+function C:listAuditSuppressions(input: types.ListAuditSuppressionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAuditSuppressionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAuditSuppressions as schema.OperationSchema, input, options) as async.Operation<types.ListAuditSuppressionsOutput>
 end
 
-function C:listAuditTasks(input: types.ListAuditTasksInput, options: any): async.Operation<types.ListAuditTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAuditTasks, input, options) as async.Operation<types.ListAuditTasksOutput>
+function C:listAuditTasks(input: types.ListAuditTasksInput, options?: base_client.InvokeOptions): async.Operation<types.ListAuditTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAuditTasks as schema.OperationSchema, input, options) as async.Operation<types.ListAuditTasksOutput>
 end
 
-function C:listAuthorizers(input: types.ListAuthorizersInput, options: any): async.Operation<types.ListAuthorizersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAuthorizers, input, options) as async.Operation<types.ListAuthorizersOutput>
+function C:listAuthorizers(input: types.ListAuthorizersInput, options?: base_client.InvokeOptions): async.Operation<types.ListAuthorizersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAuthorizers as schema.OperationSchema, input, options) as async.Operation<types.ListAuthorizersOutput>
 end
 
-function C:listBillingGroups(input: types.ListBillingGroupsInput, options: any): async.Operation<types.ListBillingGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBillingGroups, input, options) as async.Operation<types.ListBillingGroupsOutput>
+function C:listBillingGroups(input: types.ListBillingGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBillingGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBillingGroups as schema.OperationSchema, input, options) as async.Operation<types.ListBillingGroupsOutput>
 end
 
-function C:listCACertificates(input: types.ListCACertificatesInput, options: any): async.Operation<types.ListCACertificatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCACertificates, input, options) as async.Operation<types.ListCACertificatesOutput>
+function C:listCACertificates(input: types.ListCACertificatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCACertificatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCACertificates as schema.OperationSchema, input, options) as async.Operation<types.ListCACertificatesOutput>
 end
 
-function C:listCertificateProviders(input: types.ListCertificateProvidersInput, options: any): async.Operation<types.ListCertificateProvidersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCertificateProviders, input, options) as async.Operation<types.ListCertificateProvidersOutput>
+function C:listCertificateProviders(input: types.ListCertificateProvidersInput, options?: base_client.InvokeOptions): async.Operation<types.ListCertificateProvidersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCertificateProviders as schema.OperationSchema, input, options) as async.Operation<types.ListCertificateProvidersOutput>
 end
 
-function C:listCertificates(input: types.ListCertificatesInput, options: any): async.Operation<types.ListCertificatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCertificates, input, options) as async.Operation<types.ListCertificatesOutput>
+function C:listCertificates(input: types.ListCertificatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCertificatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCertificates as schema.OperationSchema, input, options) as async.Operation<types.ListCertificatesOutput>
 end
 
-function C:listCertificatesByCA(input: types.ListCertificatesByCAInput, options: any): async.Operation<types.ListCertificatesByCAOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCertificatesByCA, input, options) as async.Operation<types.ListCertificatesByCAOutput>
+function C:listCertificatesByCA(input: types.ListCertificatesByCAInput, options?: base_client.InvokeOptions): async.Operation<types.ListCertificatesByCAOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCertificatesByCA as schema.OperationSchema, input, options) as async.Operation<types.ListCertificatesByCAOutput>
 end
 
-function C:listCommandExecutions(input: types.ListCommandExecutionsInput, options: any): async.Operation<types.ListCommandExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCommandExecutions, input, options) as async.Operation<types.ListCommandExecutionsOutput>
+function C:listCommandExecutions(input: types.ListCommandExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCommandExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCommandExecutions as schema.OperationSchema, input, options) as async.Operation<types.ListCommandExecutionsOutput>
 end
 
-function C:listCommands(input: types.ListCommandsInput, options: any): async.Operation<types.ListCommandsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCommands, input, options) as async.Operation<types.ListCommandsOutput>
+function C:listCommands(input: types.ListCommandsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCommandsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCommands as schema.OperationSchema, input, options) as async.Operation<types.ListCommandsOutput>
 end
 
-function C:listCustomMetrics(input: types.ListCustomMetricsInput, options: any): async.Operation<types.ListCustomMetricsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCustomMetrics, input, options) as async.Operation<types.ListCustomMetricsOutput>
+function C:listCustomMetrics(input: types.ListCustomMetricsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCustomMetricsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCustomMetrics as schema.OperationSchema, input, options) as async.Operation<types.ListCustomMetricsOutput>
 end
 
-function C:listDetectMitigationActionsExecutions(input: types.ListDetectMitigationActionsExecutionsInput, options: any): async.Operation<types.ListDetectMitigationActionsExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDetectMitigationActionsExecutions, input, options) as async.Operation<types.ListDetectMitigationActionsExecutionsOutput>
+function C:listDetectMitigationActionsExecutions(input: types.ListDetectMitigationActionsExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDetectMitigationActionsExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDetectMitigationActionsExecutions as schema.OperationSchema, input, options) as async.Operation<types.ListDetectMitigationActionsExecutionsOutput>
 end
 
-function C:listDetectMitigationActionsTasks(input: types.ListDetectMitigationActionsTasksInput, options: any): async.Operation<types.ListDetectMitigationActionsTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDetectMitigationActionsTasks, input, options) as async.Operation<types.ListDetectMitigationActionsTasksOutput>
+function C:listDetectMitigationActionsTasks(input: types.ListDetectMitigationActionsTasksInput, options?: base_client.InvokeOptions): async.Operation<types.ListDetectMitigationActionsTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDetectMitigationActionsTasks as schema.OperationSchema, input, options) as async.Operation<types.ListDetectMitigationActionsTasksOutput>
 end
 
-function C:listDimensions(input: types.ListDimensionsInput, options: any): async.Operation<types.ListDimensionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDimensions, input, options) as async.Operation<types.ListDimensionsOutput>
+function C:listDimensions(input: types.ListDimensionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDimensionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDimensions as schema.OperationSchema, input, options) as async.Operation<types.ListDimensionsOutput>
 end
 
-function C:listDomainConfigurations(input: types.ListDomainConfigurationsInput, options: any): async.Operation<types.ListDomainConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDomainConfigurations, input, options) as async.Operation<types.ListDomainConfigurationsOutput>
+function C:listDomainConfigurations(input: types.ListDomainConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDomainConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDomainConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListDomainConfigurationsOutput>
 end
 
-function C:listFleetMetrics(input: types.ListFleetMetricsInput, options: any): async.Operation<types.ListFleetMetricsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFleetMetrics, input, options) as async.Operation<types.ListFleetMetricsOutput>
+function C:listFleetMetrics(input: types.ListFleetMetricsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFleetMetricsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFleetMetrics as schema.OperationSchema, input, options) as async.Operation<types.ListFleetMetricsOutput>
 end
 
-function C:listIndices(input: types.ListIndicesInput, options: any): async.Operation<types.ListIndicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIndices, input, options) as async.Operation<types.ListIndicesOutput>
+function C:listIndices(input: types.ListIndicesInput, options?: base_client.InvokeOptions): async.Operation<types.ListIndicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIndices as schema.OperationSchema, input, options) as async.Operation<types.ListIndicesOutput>
 end
 
-function C:listJobExecutionsForJob(input: types.ListJobExecutionsForJobInput, options: any): async.Operation<types.ListJobExecutionsForJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListJobExecutionsForJob, input, options) as async.Operation<types.ListJobExecutionsForJobOutput>
+function C:listJobExecutionsForJob(input: types.ListJobExecutionsForJobInput, options?: base_client.InvokeOptions): async.Operation<types.ListJobExecutionsForJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListJobExecutionsForJob as schema.OperationSchema, input, options) as async.Operation<types.ListJobExecutionsForJobOutput>
 end
 
-function C:listJobExecutionsForThing(input: types.ListJobExecutionsForThingInput, options: any): async.Operation<types.ListJobExecutionsForThingOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListJobExecutionsForThing, input, options) as async.Operation<types.ListJobExecutionsForThingOutput>
+function C:listJobExecutionsForThing(input: types.ListJobExecutionsForThingInput, options?: base_client.InvokeOptions): async.Operation<types.ListJobExecutionsForThingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListJobExecutionsForThing as schema.OperationSchema, input, options) as async.Operation<types.ListJobExecutionsForThingOutput>
 end
 
-function C:listJobs(input: types.ListJobsInput, options: any): async.Operation<types.ListJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListJobs, input, options) as async.Operation<types.ListJobsOutput>
+function C:listJobs(input: types.ListJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListJobs as schema.OperationSchema, input, options) as async.Operation<types.ListJobsOutput>
 end
 
-function C:listJobTemplates(input: types.ListJobTemplatesInput, options: any): async.Operation<types.ListJobTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListJobTemplates, input, options) as async.Operation<types.ListJobTemplatesOutput>
+function C:listJobTemplates(input: types.ListJobTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListJobTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListJobTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListJobTemplatesOutput>
 end
 
-function C:listManagedJobTemplates(input: types.ListManagedJobTemplatesInput, options: any): async.Operation<types.ListManagedJobTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListManagedJobTemplates, input, options) as async.Operation<types.ListManagedJobTemplatesOutput>
+function C:listManagedJobTemplates(input: types.ListManagedJobTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListManagedJobTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListManagedJobTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListManagedJobTemplatesOutput>
 end
 
-function C:listMetricValues(input: types.ListMetricValuesInput, options: any): async.Operation<types.ListMetricValuesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMetricValues, input, options) as async.Operation<types.ListMetricValuesOutput>
+function C:listMetricValues(input: types.ListMetricValuesInput, options?: base_client.InvokeOptions): async.Operation<types.ListMetricValuesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMetricValues as schema.OperationSchema, input, options) as async.Operation<types.ListMetricValuesOutput>
 end
 
-function C:listMitigationActions(input: types.ListMitigationActionsInput, options: any): async.Operation<types.ListMitigationActionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMitigationActions, input, options) as async.Operation<types.ListMitigationActionsOutput>
+function C:listMitigationActions(input: types.ListMitigationActionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMitigationActionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMitigationActions as schema.OperationSchema, input, options) as async.Operation<types.ListMitigationActionsOutput>
 end
 
-function C:listOTAUpdates(input: types.ListOTAUpdatesInput, options: any): async.Operation<types.ListOTAUpdatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOTAUpdates, input, options) as async.Operation<types.ListOTAUpdatesOutput>
+function C:listOTAUpdates(input: types.ListOTAUpdatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListOTAUpdatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOTAUpdates as schema.OperationSchema, input, options) as async.Operation<types.ListOTAUpdatesOutput>
 end
 
-function C:listOutgoingCertificates(input: types.ListOutgoingCertificatesInput, options: any): async.Operation<types.ListOutgoingCertificatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOutgoingCertificates, input, options) as async.Operation<types.ListOutgoingCertificatesOutput>
+function C:listOutgoingCertificates(input: types.ListOutgoingCertificatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListOutgoingCertificatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOutgoingCertificates as schema.OperationSchema, input, options) as async.Operation<types.ListOutgoingCertificatesOutput>
 end
 
-function C:listPackages(input: types.ListPackagesInput, options: any): async.Operation<types.ListPackagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPackages, input, options) as async.Operation<types.ListPackagesOutput>
+function C:listPackages(input: types.ListPackagesInput, options?: base_client.InvokeOptions): async.Operation<types.ListPackagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPackages as schema.OperationSchema, input, options) as async.Operation<types.ListPackagesOutput>
 end
 
-function C:listPackageVersions(input: types.ListPackageVersionsInput, options: any): async.Operation<types.ListPackageVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPackageVersions, input, options) as async.Operation<types.ListPackageVersionsOutput>
+function C:listPackageVersions(input: types.ListPackageVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPackageVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPackageVersions as schema.OperationSchema, input, options) as async.Operation<types.ListPackageVersionsOutput>
 end
 
-function C:listPolicies(input: types.ListPoliciesInput, options: any): async.Operation<types.ListPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPolicies, input, options) as async.Operation<types.ListPoliciesOutput>
+function C:listPolicies(input: types.ListPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListPoliciesOutput>
 end
 
-function C:listPolicyPrincipals(input: types.ListPolicyPrincipalsInput, options: any): async.Operation<types.ListPolicyPrincipalsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPolicyPrincipals, input, options) as async.Operation<types.ListPolicyPrincipalsOutput>
+function C:listPolicyPrincipals(input: types.ListPolicyPrincipalsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPolicyPrincipalsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPolicyPrincipals as schema.OperationSchema, input, options) as async.Operation<types.ListPolicyPrincipalsOutput>
 end
 
-function C:listPolicyVersions(input: types.ListPolicyVersionsInput, options: any): async.Operation<types.ListPolicyVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPolicyVersions, input, options) as async.Operation<types.ListPolicyVersionsOutput>
+function C:listPolicyVersions(input: types.ListPolicyVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPolicyVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPolicyVersions as schema.OperationSchema, input, options) as async.Operation<types.ListPolicyVersionsOutput>
 end
 
-function C:listPrincipalPolicies(input: types.ListPrincipalPoliciesInput, options: any): async.Operation<types.ListPrincipalPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPrincipalPolicies, input, options) as async.Operation<types.ListPrincipalPoliciesOutput>
+function C:listPrincipalPolicies(input: types.ListPrincipalPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListPrincipalPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPrincipalPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListPrincipalPoliciesOutput>
 end
 
-function C:listPrincipalThings(input: types.ListPrincipalThingsInput, options: any): async.Operation<types.ListPrincipalThingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPrincipalThings, input, options) as async.Operation<types.ListPrincipalThingsOutput>
+function C:listPrincipalThings(input: types.ListPrincipalThingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPrincipalThingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPrincipalThings as schema.OperationSchema, input, options) as async.Operation<types.ListPrincipalThingsOutput>
 end
 
-function C:listPrincipalThingsV2(input: types.ListPrincipalThingsV2Input, options: any): async.Operation<types.ListPrincipalThingsV2Output>
-    return self:invokeOperation(schemas.Service, schemas.ListPrincipalThingsV2, input, options) as async.Operation<types.ListPrincipalThingsV2Output>
+function C:listPrincipalThingsV2(input: types.ListPrincipalThingsV2Input, options?: base_client.InvokeOptions): async.Operation<types.ListPrincipalThingsV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPrincipalThingsV2 as schema.OperationSchema, input, options) as async.Operation<types.ListPrincipalThingsV2Output>
 end
 
-function C:listProvisioningTemplates(input: types.ListProvisioningTemplatesInput, options: any): async.Operation<types.ListProvisioningTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProvisioningTemplates, input, options) as async.Operation<types.ListProvisioningTemplatesOutput>
+function C:listProvisioningTemplates(input: types.ListProvisioningTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListProvisioningTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProvisioningTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListProvisioningTemplatesOutput>
 end
 
-function C:listProvisioningTemplateVersions(input: types.ListProvisioningTemplateVersionsInput, options: any): async.Operation<types.ListProvisioningTemplateVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProvisioningTemplateVersions, input, options) as async.Operation<types.ListProvisioningTemplateVersionsOutput>
+function C:listProvisioningTemplateVersions(input: types.ListProvisioningTemplateVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListProvisioningTemplateVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProvisioningTemplateVersions as schema.OperationSchema, input, options) as async.Operation<types.ListProvisioningTemplateVersionsOutput>
 end
 
-function C:listRelatedResourcesForAuditFinding(input: types.ListRelatedResourcesForAuditFindingInput, options: any): async.Operation<types.ListRelatedResourcesForAuditFindingOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRelatedResourcesForAuditFinding, input, options) as async.Operation<types.ListRelatedResourcesForAuditFindingOutput>
+function C:listRelatedResourcesForAuditFinding(input: types.ListRelatedResourcesForAuditFindingInput, options?: base_client.InvokeOptions): async.Operation<types.ListRelatedResourcesForAuditFindingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRelatedResourcesForAuditFinding as schema.OperationSchema, input, options) as async.Operation<types.ListRelatedResourcesForAuditFindingOutput>
 end
 
-function C:listRoleAliases(input: types.ListRoleAliasesInput, options: any): async.Operation<types.ListRoleAliasesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRoleAliases, input, options) as async.Operation<types.ListRoleAliasesOutput>
+function C:listRoleAliases(input: types.ListRoleAliasesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRoleAliasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRoleAliases as schema.OperationSchema, input, options) as async.Operation<types.ListRoleAliasesOutput>
 end
 
-function C:listSbomValidationResults(input: types.ListSbomValidationResultsInput, options: any): async.Operation<types.ListSbomValidationResultsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSbomValidationResults, input, options) as async.Operation<types.ListSbomValidationResultsOutput>
+function C:listSbomValidationResults(input: types.ListSbomValidationResultsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSbomValidationResultsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSbomValidationResults as schema.OperationSchema, input, options) as async.Operation<types.ListSbomValidationResultsOutput>
 end
 
-function C:listScheduledAudits(input: types.ListScheduledAuditsInput, options: any): async.Operation<types.ListScheduledAuditsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListScheduledAudits, input, options) as async.Operation<types.ListScheduledAuditsOutput>
+function C:listScheduledAudits(input: types.ListScheduledAuditsInput, options?: base_client.InvokeOptions): async.Operation<types.ListScheduledAuditsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListScheduledAudits as schema.OperationSchema, input, options) as async.Operation<types.ListScheduledAuditsOutput>
 end
 
-function C:listSecurityProfiles(input: types.ListSecurityProfilesInput, options: any): async.Operation<types.ListSecurityProfilesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSecurityProfiles, input, options) as async.Operation<types.ListSecurityProfilesOutput>
+function C:listSecurityProfiles(input: types.ListSecurityProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSecurityProfilesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSecurityProfiles as schema.OperationSchema, input, options) as async.Operation<types.ListSecurityProfilesOutput>
 end
 
-function C:listSecurityProfilesForTarget(input: types.ListSecurityProfilesForTargetInput, options: any): async.Operation<types.ListSecurityProfilesForTargetOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSecurityProfilesForTarget, input, options) as async.Operation<types.ListSecurityProfilesForTargetOutput>
+function C:listSecurityProfilesForTarget(input: types.ListSecurityProfilesForTargetInput, options?: base_client.InvokeOptions): async.Operation<types.ListSecurityProfilesForTargetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSecurityProfilesForTarget as schema.OperationSchema, input, options) as async.Operation<types.ListSecurityProfilesForTargetOutput>
 end
 
-function C:listStreams(input: types.ListStreamsInput, options: any): async.Operation<types.ListStreamsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStreams, input, options) as async.Operation<types.ListStreamsOutput>
+function C:listStreams(input: types.ListStreamsInput, options?: base_client.InvokeOptions): async.Operation<types.ListStreamsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStreams as schema.OperationSchema, input, options) as async.Operation<types.ListStreamsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTargetsForPolicy(input: types.ListTargetsForPolicyInput, options: any): async.Operation<types.ListTargetsForPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTargetsForPolicy, input, options) as async.Operation<types.ListTargetsForPolicyOutput>
+function C:listTargetsForPolicy(input: types.ListTargetsForPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.ListTargetsForPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTargetsForPolicy as schema.OperationSchema, input, options) as async.Operation<types.ListTargetsForPolicyOutput>
 end
 
-function C:listTargetsForSecurityProfile(input: types.ListTargetsForSecurityProfileInput, options: any): async.Operation<types.ListTargetsForSecurityProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTargetsForSecurityProfile, input, options) as async.Operation<types.ListTargetsForSecurityProfileOutput>
+function C:listTargetsForSecurityProfile(input: types.ListTargetsForSecurityProfileInput, options?: base_client.InvokeOptions): async.Operation<types.ListTargetsForSecurityProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTargetsForSecurityProfile as schema.OperationSchema, input, options) as async.Operation<types.ListTargetsForSecurityProfileOutput>
 end
 
-function C:listThingGroups(input: types.ListThingGroupsInput, options: any): async.Operation<types.ListThingGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListThingGroups, input, options) as async.Operation<types.ListThingGroupsOutput>
+function C:listThingGroups(input: types.ListThingGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListThingGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListThingGroups as schema.OperationSchema, input, options) as async.Operation<types.ListThingGroupsOutput>
 end
 
-function C:listThingGroupsForThing(input: types.ListThingGroupsForThingInput, options: any): async.Operation<types.ListThingGroupsForThingOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListThingGroupsForThing, input, options) as async.Operation<types.ListThingGroupsForThingOutput>
+function C:listThingGroupsForThing(input: types.ListThingGroupsForThingInput, options?: base_client.InvokeOptions): async.Operation<types.ListThingGroupsForThingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListThingGroupsForThing as schema.OperationSchema, input, options) as async.Operation<types.ListThingGroupsForThingOutput>
 end
 
-function C:listThingPrincipals(input: types.ListThingPrincipalsInput, options: any): async.Operation<types.ListThingPrincipalsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListThingPrincipals, input, options) as async.Operation<types.ListThingPrincipalsOutput>
+function C:listThingPrincipals(input: types.ListThingPrincipalsInput, options?: base_client.InvokeOptions): async.Operation<types.ListThingPrincipalsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListThingPrincipals as schema.OperationSchema, input, options) as async.Operation<types.ListThingPrincipalsOutput>
 end
 
-function C:listThingPrincipalsV2(input: types.ListThingPrincipalsV2Input, options: any): async.Operation<types.ListThingPrincipalsV2Output>
-    return self:invokeOperation(schemas.Service, schemas.ListThingPrincipalsV2, input, options) as async.Operation<types.ListThingPrincipalsV2Output>
+function C:listThingPrincipalsV2(input: types.ListThingPrincipalsV2Input, options?: base_client.InvokeOptions): async.Operation<types.ListThingPrincipalsV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListThingPrincipalsV2 as schema.OperationSchema, input, options) as async.Operation<types.ListThingPrincipalsV2Output>
 end
 
-function C:listThingRegistrationTaskReports(input: types.ListThingRegistrationTaskReportsInput, options: any): async.Operation<types.ListThingRegistrationTaskReportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListThingRegistrationTaskReports, input, options) as async.Operation<types.ListThingRegistrationTaskReportsOutput>
+function C:listThingRegistrationTaskReports(input: types.ListThingRegistrationTaskReportsInput, options?: base_client.InvokeOptions): async.Operation<types.ListThingRegistrationTaskReportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListThingRegistrationTaskReports as schema.OperationSchema, input, options) as async.Operation<types.ListThingRegistrationTaskReportsOutput>
 end
 
-function C:listThingRegistrationTasks(input: types.ListThingRegistrationTasksInput, options: any): async.Operation<types.ListThingRegistrationTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListThingRegistrationTasks, input, options) as async.Operation<types.ListThingRegistrationTasksOutput>
+function C:listThingRegistrationTasks(input: types.ListThingRegistrationTasksInput, options?: base_client.InvokeOptions): async.Operation<types.ListThingRegistrationTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListThingRegistrationTasks as schema.OperationSchema, input, options) as async.Operation<types.ListThingRegistrationTasksOutput>
 end
 
-function C:listThings(input: types.ListThingsInput, options: any): async.Operation<types.ListThingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListThings, input, options) as async.Operation<types.ListThingsOutput>
+function C:listThings(input: types.ListThingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListThingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListThings as schema.OperationSchema, input, options) as async.Operation<types.ListThingsOutput>
 end
 
-function C:listThingsInBillingGroup(input: types.ListThingsInBillingGroupInput, options: any): async.Operation<types.ListThingsInBillingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListThingsInBillingGroup, input, options) as async.Operation<types.ListThingsInBillingGroupOutput>
+function C:listThingsInBillingGroup(input: types.ListThingsInBillingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.ListThingsInBillingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListThingsInBillingGroup as schema.OperationSchema, input, options) as async.Operation<types.ListThingsInBillingGroupOutput>
 end
 
-function C:listThingsInThingGroup(input: types.ListThingsInThingGroupInput, options: any): async.Operation<types.ListThingsInThingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListThingsInThingGroup, input, options) as async.Operation<types.ListThingsInThingGroupOutput>
+function C:listThingsInThingGroup(input: types.ListThingsInThingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.ListThingsInThingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListThingsInThingGroup as schema.OperationSchema, input, options) as async.Operation<types.ListThingsInThingGroupOutput>
 end
 
-function C:listThingTypes(input: types.ListThingTypesInput, options: any): async.Operation<types.ListThingTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListThingTypes, input, options) as async.Operation<types.ListThingTypesOutput>
+function C:listThingTypes(input: types.ListThingTypesInput, options?: base_client.InvokeOptions): async.Operation<types.ListThingTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListThingTypes as schema.OperationSchema, input, options) as async.Operation<types.ListThingTypesOutput>
 end
 
-function C:listTopicRuleDestinations(input: types.ListTopicRuleDestinationsInput, options: any): async.Operation<types.ListTopicRuleDestinationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTopicRuleDestinations, input, options) as async.Operation<types.ListTopicRuleDestinationsOutput>
+function C:listTopicRuleDestinations(input: types.ListTopicRuleDestinationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTopicRuleDestinationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTopicRuleDestinations as schema.OperationSchema, input, options) as async.Operation<types.ListTopicRuleDestinationsOutput>
 end
 
-function C:listTopicRules(input: types.ListTopicRulesInput, options: any): async.Operation<types.ListTopicRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTopicRules, input, options) as async.Operation<types.ListTopicRulesOutput>
+function C:listTopicRules(input: types.ListTopicRulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTopicRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTopicRules as schema.OperationSchema, input, options) as async.Operation<types.ListTopicRulesOutput>
 end
 
-function C:listV2LoggingLevels(input: types.ListV2LoggingLevelsInput, options: any): async.Operation<types.ListV2LoggingLevelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListV2LoggingLevels, input, options) as async.Operation<types.ListV2LoggingLevelsOutput>
+function C:listV2LoggingLevels(input: types.ListV2LoggingLevelsInput, options?: base_client.InvokeOptions): async.Operation<types.ListV2LoggingLevelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListV2LoggingLevels as schema.OperationSchema, input, options) as async.Operation<types.ListV2LoggingLevelsOutput>
 end
 
-function C:listViolationEvents(input: types.ListViolationEventsInput, options: any): async.Operation<types.ListViolationEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListViolationEvents, input, options) as async.Operation<types.ListViolationEventsOutput>
+function C:listViolationEvents(input: types.ListViolationEventsInput, options?: base_client.InvokeOptions): async.Operation<types.ListViolationEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListViolationEvents as schema.OperationSchema, input, options) as async.Operation<types.ListViolationEventsOutput>
 end
 
-function C:putVerificationStateOnViolation(input: types.PutVerificationStateOnViolationInput, options: any): async.Operation<types.PutVerificationStateOnViolationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutVerificationStateOnViolation, input, options) as async.Operation<types.PutVerificationStateOnViolationOutput>
+function C:putVerificationStateOnViolation(input: types.PutVerificationStateOnViolationInput, options?: base_client.InvokeOptions): async.Operation<types.PutVerificationStateOnViolationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutVerificationStateOnViolation as schema.OperationSchema, input, options) as async.Operation<types.PutVerificationStateOnViolationOutput>
 end
 
-function C:registerCACertificate(input: types.RegisterCACertificateInput, options: any): async.Operation<types.RegisterCACertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterCACertificate, input, options) as async.Operation<types.RegisterCACertificateOutput>
+function C:registerCACertificate(input: types.RegisterCACertificateInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterCACertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterCACertificate as schema.OperationSchema, input, options) as async.Operation<types.RegisterCACertificateOutput>
 end
 
-function C:registerCertificate(input: types.RegisterCertificateInput, options: any): async.Operation<types.RegisterCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterCertificate, input, options) as async.Operation<types.RegisterCertificateOutput>
+function C:registerCertificate(input: types.RegisterCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterCertificate as schema.OperationSchema, input, options) as async.Operation<types.RegisterCertificateOutput>
 end
 
-function C:registerCertificateWithoutCA(input: types.RegisterCertificateWithoutCAInput, options: any): async.Operation<types.RegisterCertificateWithoutCAOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterCertificateWithoutCA, input, options) as async.Operation<types.RegisterCertificateWithoutCAOutput>
+function C:registerCertificateWithoutCA(input: types.RegisterCertificateWithoutCAInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterCertificateWithoutCAOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterCertificateWithoutCA as schema.OperationSchema, input, options) as async.Operation<types.RegisterCertificateWithoutCAOutput>
 end
 
-function C:registerThing(input: types.RegisterThingInput, options: any): async.Operation<types.RegisterThingOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterThing, input, options) as async.Operation<types.RegisterThingOutput>
+function C:registerThing(input: types.RegisterThingInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterThingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterThing as schema.OperationSchema, input, options) as async.Operation<types.RegisterThingOutput>
 end
 
-function C:rejectCertificateTransfer(input: types.RejectCertificateTransferInput, options: any): async.Operation<types.RejectCertificateTransferOutput>
-    return self:invokeOperation(schemas.Service, schemas.RejectCertificateTransfer, input, options) as async.Operation<types.RejectCertificateTransferOutput>
+function C:rejectCertificateTransfer(input: types.RejectCertificateTransferInput, options?: base_client.InvokeOptions): async.Operation<types.RejectCertificateTransferOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RejectCertificateTransfer as schema.OperationSchema, input, options) as async.Operation<types.RejectCertificateTransferOutput>
 end
 
-function C:removeThingFromBillingGroup(input: types.RemoveThingFromBillingGroupInput, options: any): async.Operation<types.RemoveThingFromBillingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveThingFromBillingGroup, input, options) as async.Operation<types.RemoveThingFromBillingGroupOutput>
+function C:removeThingFromBillingGroup(input: types.RemoveThingFromBillingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveThingFromBillingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveThingFromBillingGroup as schema.OperationSchema, input, options) as async.Operation<types.RemoveThingFromBillingGroupOutput>
 end
 
-function C:removeThingFromThingGroup(input: types.RemoveThingFromThingGroupInput, options: any): async.Operation<types.RemoveThingFromThingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveThingFromThingGroup, input, options) as async.Operation<types.RemoveThingFromThingGroupOutput>
+function C:removeThingFromThingGroup(input: types.RemoveThingFromThingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveThingFromThingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveThingFromThingGroup as schema.OperationSchema, input, options) as async.Operation<types.RemoveThingFromThingGroupOutput>
 end
 
-function C:replaceTopicRule(input: types.ReplaceTopicRuleInput, options: any): async.Operation<types.ReplaceTopicRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.ReplaceTopicRule, input, options) as async.Operation<types.ReplaceTopicRuleOutput>
+function C:replaceTopicRule(input: types.ReplaceTopicRuleInput, options?: base_client.InvokeOptions): async.Operation<types.ReplaceTopicRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReplaceTopicRule as schema.OperationSchema, input, options) as async.Operation<types.ReplaceTopicRuleOutput>
 end
 
-function C:searchIndex(input: types.SearchIndexInput, options: any): async.Operation<types.SearchIndexOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchIndex, input, options) as async.Operation<types.SearchIndexOutput>
+function C:searchIndex(input: types.SearchIndexInput, options?: base_client.InvokeOptions): async.Operation<types.SearchIndexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchIndex as schema.OperationSchema, input, options) as async.Operation<types.SearchIndexOutput>
 end
 
-function C:setDefaultAuthorizer(input: types.SetDefaultAuthorizerInput, options: any): async.Operation<types.SetDefaultAuthorizerOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetDefaultAuthorizer, input, options) as async.Operation<types.SetDefaultAuthorizerOutput>
+function C:setDefaultAuthorizer(input: types.SetDefaultAuthorizerInput, options?: base_client.InvokeOptions): async.Operation<types.SetDefaultAuthorizerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetDefaultAuthorizer as schema.OperationSchema, input, options) as async.Operation<types.SetDefaultAuthorizerOutput>
 end
 
-function C:setDefaultPolicyVersion(input: types.SetDefaultPolicyVersionInput, options: any): async.Operation<types.SetDefaultPolicyVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetDefaultPolicyVersion, input, options) as async.Operation<types.SetDefaultPolicyVersionOutput>
+function C:setDefaultPolicyVersion(input: types.SetDefaultPolicyVersionInput, options?: base_client.InvokeOptions): async.Operation<types.SetDefaultPolicyVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetDefaultPolicyVersion as schema.OperationSchema, input, options) as async.Operation<types.SetDefaultPolicyVersionOutput>
 end
 
-function C:setLoggingOptions(input: types.SetLoggingOptionsInput, options: any): async.Operation<types.SetLoggingOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetLoggingOptions, input, options) as async.Operation<types.SetLoggingOptionsOutput>
+function C:setLoggingOptions(input: types.SetLoggingOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.SetLoggingOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetLoggingOptions as schema.OperationSchema, input, options) as async.Operation<types.SetLoggingOptionsOutput>
 end
 
-function C:setV2LoggingLevel(input: types.SetV2LoggingLevelInput, options: any): async.Operation<types.SetV2LoggingLevelOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetV2LoggingLevel, input, options) as async.Operation<types.SetV2LoggingLevelOutput>
+function C:setV2LoggingLevel(input: types.SetV2LoggingLevelInput, options?: base_client.InvokeOptions): async.Operation<types.SetV2LoggingLevelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetV2LoggingLevel as schema.OperationSchema, input, options) as async.Operation<types.SetV2LoggingLevelOutput>
 end
 
-function C:setV2LoggingOptions(input: types.SetV2LoggingOptionsInput, options: any): async.Operation<types.SetV2LoggingOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetV2LoggingOptions, input, options) as async.Operation<types.SetV2LoggingOptionsOutput>
+function C:setV2LoggingOptions(input: types.SetV2LoggingOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.SetV2LoggingOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetV2LoggingOptions as schema.OperationSchema, input, options) as async.Operation<types.SetV2LoggingOptionsOutput>
 end
 
-function C:startAuditMitigationActionsTask(input: types.StartAuditMitigationActionsTaskInput, options: any): async.Operation<types.StartAuditMitigationActionsTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartAuditMitigationActionsTask, input, options) as async.Operation<types.StartAuditMitigationActionsTaskOutput>
+function C:startAuditMitigationActionsTask(input: types.StartAuditMitigationActionsTaskInput, options?: base_client.InvokeOptions): async.Operation<types.StartAuditMitigationActionsTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartAuditMitigationActionsTask as schema.OperationSchema, input, options) as async.Operation<types.StartAuditMitigationActionsTaskOutput>
 end
 
-function C:startDetectMitigationActionsTask(input: types.StartDetectMitigationActionsTaskInput, options: any): async.Operation<types.StartDetectMitigationActionsTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartDetectMitigationActionsTask, input, options) as async.Operation<types.StartDetectMitigationActionsTaskOutput>
+function C:startDetectMitigationActionsTask(input: types.StartDetectMitigationActionsTaskInput, options?: base_client.InvokeOptions): async.Operation<types.StartDetectMitigationActionsTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDetectMitigationActionsTask as schema.OperationSchema, input, options) as async.Operation<types.StartDetectMitigationActionsTaskOutput>
 end
 
-function C:startOnDemandAuditTask(input: types.StartOnDemandAuditTaskInput, options: any): async.Operation<types.StartOnDemandAuditTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartOnDemandAuditTask, input, options) as async.Operation<types.StartOnDemandAuditTaskOutput>
+function C:startOnDemandAuditTask(input: types.StartOnDemandAuditTaskInput, options?: base_client.InvokeOptions): async.Operation<types.StartOnDemandAuditTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartOnDemandAuditTask as schema.OperationSchema, input, options) as async.Operation<types.StartOnDemandAuditTaskOutput>
 end
 
-function C:startThingRegistrationTask(input: types.StartThingRegistrationTaskInput, options: any): async.Operation<types.StartThingRegistrationTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartThingRegistrationTask, input, options) as async.Operation<types.StartThingRegistrationTaskOutput>
+function C:startThingRegistrationTask(input: types.StartThingRegistrationTaskInput, options?: base_client.InvokeOptions): async.Operation<types.StartThingRegistrationTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartThingRegistrationTask as schema.OperationSchema, input, options) as async.Operation<types.StartThingRegistrationTaskOutput>
 end
 
-function C:stopThingRegistrationTask(input: types.StopThingRegistrationTaskInput, options: any): async.Operation<types.StopThingRegistrationTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopThingRegistrationTask, input, options) as async.Operation<types.StopThingRegistrationTaskOutput>
+function C:stopThingRegistrationTask(input: types.StopThingRegistrationTaskInput, options?: base_client.InvokeOptions): async.Operation<types.StopThingRegistrationTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopThingRegistrationTask as schema.OperationSchema, input, options) as async.Operation<types.StopThingRegistrationTaskOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:testAuthorization(input: types.TestAuthorizationInput, options: any): async.Operation<types.TestAuthorizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.TestAuthorization, input, options) as async.Operation<types.TestAuthorizationOutput>
+function C:testAuthorization(input: types.TestAuthorizationInput, options?: base_client.InvokeOptions): async.Operation<types.TestAuthorizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TestAuthorization as schema.OperationSchema, input, options) as async.Operation<types.TestAuthorizationOutput>
 end
 
-function C:testInvokeAuthorizer(input: types.TestInvokeAuthorizerInput, options: any): async.Operation<types.TestInvokeAuthorizerOutput>
-    return self:invokeOperation(schemas.Service, schemas.TestInvokeAuthorizer, input, options) as async.Operation<types.TestInvokeAuthorizerOutput>
+function C:testInvokeAuthorizer(input: types.TestInvokeAuthorizerInput, options?: base_client.InvokeOptions): async.Operation<types.TestInvokeAuthorizerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TestInvokeAuthorizer as schema.OperationSchema, input, options) as async.Operation<types.TestInvokeAuthorizerOutput>
 end
 
-function C:transferCertificate(input: types.TransferCertificateInput, options: any): async.Operation<types.TransferCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.TransferCertificate, input, options) as async.Operation<types.TransferCertificateOutput>
+function C:transferCertificate(input: types.TransferCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.TransferCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TransferCertificate as schema.OperationSchema, input, options) as async.Operation<types.TransferCertificateOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAccountAuditConfiguration(input: types.UpdateAccountAuditConfigurationInput, options: any): async.Operation<types.UpdateAccountAuditConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAccountAuditConfiguration, input, options) as async.Operation<types.UpdateAccountAuditConfigurationOutput>
+function C:updateAccountAuditConfiguration(input: types.UpdateAccountAuditConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAccountAuditConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAccountAuditConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateAccountAuditConfigurationOutput>
 end
 
-function C:updateAuditSuppression(input: types.UpdateAuditSuppressionInput, options: any): async.Operation<types.UpdateAuditSuppressionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAuditSuppression, input, options) as async.Operation<types.UpdateAuditSuppressionOutput>
+function C:updateAuditSuppression(input: types.UpdateAuditSuppressionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAuditSuppressionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAuditSuppression as schema.OperationSchema, input, options) as async.Operation<types.UpdateAuditSuppressionOutput>
 end
 
-function C:updateAuthorizer(input: types.UpdateAuthorizerInput, options: any): async.Operation<types.UpdateAuthorizerOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAuthorizer, input, options) as async.Operation<types.UpdateAuthorizerOutput>
+function C:updateAuthorizer(input: types.UpdateAuthorizerInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAuthorizerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAuthorizer as schema.OperationSchema, input, options) as async.Operation<types.UpdateAuthorizerOutput>
 end
 
-function C:updateBillingGroup(input: types.UpdateBillingGroupInput, options: any): async.Operation<types.UpdateBillingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateBillingGroup, input, options) as async.Operation<types.UpdateBillingGroupOutput>
+function C:updateBillingGroup(input: types.UpdateBillingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBillingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBillingGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateBillingGroupOutput>
 end
 
-function C:updateCACertificate(input: types.UpdateCACertificateInput, options: any): async.Operation<types.UpdateCACertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCACertificate, input, options) as async.Operation<types.UpdateCACertificateOutput>
+function C:updateCACertificate(input: types.UpdateCACertificateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCACertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCACertificate as schema.OperationSchema, input, options) as async.Operation<types.UpdateCACertificateOutput>
 end
 
-function C:updateCertificate(input: types.UpdateCertificateInput, options: any): async.Operation<types.UpdateCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCertificate, input, options) as async.Operation<types.UpdateCertificateOutput>
+function C:updateCertificate(input: types.UpdateCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCertificate as schema.OperationSchema, input, options) as async.Operation<types.UpdateCertificateOutput>
 end
 
-function C:updateCertificateProvider(input: types.UpdateCertificateProviderInput, options: any): async.Operation<types.UpdateCertificateProviderOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCertificateProvider, input, options) as async.Operation<types.UpdateCertificateProviderOutput>
+function C:updateCertificateProvider(input: types.UpdateCertificateProviderInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCertificateProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCertificateProvider as schema.OperationSchema, input, options) as async.Operation<types.UpdateCertificateProviderOutput>
 end
 
-function C:updateCommand(input: types.UpdateCommandInput, options: any): async.Operation<types.UpdateCommandOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCommand, input, options) as async.Operation<types.UpdateCommandOutput>
+function C:updateCommand(input: types.UpdateCommandInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCommandOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCommand as schema.OperationSchema, input, options) as async.Operation<types.UpdateCommandOutput>
 end
 
-function C:updateCustomMetric(input: types.UpdateCustomMetricInput, options: any): async.Operation<types.UpdateCustomMetricOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCustomMetric, input, options) as async.Operation<types.UpdateCustomMetricOutput>
+function C:updateCustomMetric(input: types.UpdateCustomMetricInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCustomMetricOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCustomMetric as schema.OperationSchema, input, options) as async.Operation<types.UpdateCustomMetricOutput>
 end
 
-function C:updateDimension(input: types.UpdateDimensionInput, options: any): async.Operation<types.UpdateDimensionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDimension, input, options) as async.Operation<types.UpdateDimensionOutput>
+function C:updateDimension(input: types.UpdateDimensionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDimensionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDimension as schema.OperationSchema, input, options) as async.Operation<types.UpdateDimensionOutput>
 end
 
-function C:updateDomainConfiguration(input: types.UpdateDomainConfigurationInput, options: any): async.Operation<types.UpdateDomainConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDomainConfiguration, input, options) as async.Operation<types.UpdateDomainConfigurationOutput>
+function C:updateDomainConfiguration(input: types.UpdateDomainConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDomainConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDomainConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateDomainConfigurationOutput>
 end
 
-function C:updateDynamicThingGroup(input: types.UpdateDynamicThingGroupInput, options: any): async.Operation<types.UpdateDynamicThingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDynamicThingGroup, input, options) as async.Operation<types.UpdateDynamicThingGroupOutput>
+function C:updateDynamicThingGroup(input: types.UpdateDynamicThingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDynamicThingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDynamicThingGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateDynamicThingGroupOutput>
 end
 
-function C:updateEncryptionConfiguration(input: types.UpdateEncryptionConfigurationInput, options: any): async.Operation<types.UpdateEncryptionConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEncryptionConfiguration, input, options) as async.Operation<types.UpdateEncryptionConfigurationOutput>
+function C:updateEncryptionConfiguration(input: types.UpdateEncryptionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEncryptionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEncryptionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateEncryptionConfigurationOutput>
 end
 
-function C:updateEventConfigurations(input: types.UpdateEventConfigurationsInput, options: any): async.Operation<types.UpdateEventConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEventConfigurations, input, options) as async.Operation<types.UpdateEventConfigurationsOutput>
+function C:updateEventConfigurations(input: types.UpdateEventConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEventConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEventConfigurations as schema.OperationSchema, input, options) as async.Operation<types.UpdateEventConfigurationsOutput>
 end
 
-function C:updateFleetMetric(input: types.UpdateFleetMetricInput, options: any): async.Operation<types.UpdateFleetMetricOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFleetMetric, input, options) as async.Operation<types.UpdateFleetMetricOutput>
+function C:updateFleetMetric(input: types.UpdateFleetMetricInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFleetMetricOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFleetMetric as schema.OperationSchema, input, options) as async.Operation<types.UpdateFleetMetricOutput>
 end
 
-function C:updateIndexingConfiguration(input: types.UpdateIndexingConfigurationInput, options: any): async.Operation<types.UpdateIndexingConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateIndexingConfiguration, input, options) as async.Operation<types.UpdateIndexingConfigurationOutput>
+function C:updateIndexingConfiguration(input: types.UpdateIndexingConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIndexingConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIndexingConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateIndexingConfigurationOutput>
 end
 
-function C:updateJob(input: types.UpdateJobInput, options: any): async.Operation<types.UpdateJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateJob, input, options) as async.Operation<types.UpdateJobOutput>
+function C:updateJob(input: types.UpdateJobInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateJob as schema.OperationSchema, input, options) as async.Operation<types.UpdateJobOutput>
 end
 
-function C:updateMitigationAction(input: types.UpdateMitigationActionInput, options: any): async.Operation<types.UpdateMitigationActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateMitigationAction, input, options) as async.Operation<types.UpdateMitigationActionOutput>
+function C:updateMitigationAction(input: types.UpdateMitigationActionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMitigationActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMitigationAction as schema.OperationSchema, input, options) as async.Operation<types.UpdateMitigationActionOutput>
 end
 
-function C:updatePackage(input: types.UpdatePackageInput, options: any): async.Operation<types.UpdatePackageOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePackage, input, options) as async.Operation<types.UpdatePackageOutput>
+function C:updatePackage(input: types.UpdatePackageInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePackageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePackage as schema.OperationSchema, input, options) as async.Operation<types.UpdatePackageOutput>
 end
 
-function C:updatePackageConfiguration(input: types.UpdatePackageConfigurationInput, options: any): async.Operation<types.UpdatePackageConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePackageConfiguration, input, options) as async.Operation<types.UpdatePackageConfigurationOutput>
+function C:updatePackageConfiguration(input: types.UpdatePackageConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePackageConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePackageConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdatePackageConfigurationOutput>
 end
 
-function C:updatePackageVersion(input: types.UpdatePackageVersionInput, options: any): async.Operation<types.UpdatePackageVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePackageVersion, input, options) as async.Operation<types.UpdatePackageVersionOutput>
+function C:updatePackageVersion(input: types.UpdatePackageVersionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePackageVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePackageVersion as schema.OperationSchema, input, options) as async.Operation<types.UpdatePackageVersionOutput>
 end
 
-function C:updateProvisioningTemplate(input: types.UpdateProvisioningTemplateInput, options: any): async.Operation<types.UpdateProvisioningTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProvisioningTemplate, input, options) as async.Operation<types.UpdateProvisioningTemplateOutput>
+function C:updateProvisioningTemplate(input: types.UpdateProvisioningTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProvisioningTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProvisioningTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateProvisioningTemplateOutput>
 end
 
-function C:updateRoleAlias(input: types.UpdateRoleAliasInput, options: any): async.Operation<types.UpdateRoleAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRoleAlias, input, options) as async.Operation<types.UpdateRoleAliasOutput>
+function C:updateRoleAlias(input: types.UpdateRoleAliasInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRoleAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRoleAlias as schema.OperationSchema, input, options) as async.Operation<types.UpdateRoleAliasOutput>
 end
 
-function C:updateScheduledAudit(input: types.UpdateScheduledAuditInput, options: any): async.Operation<types.UpdateScheduledAuditOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateScheduledAudit, input, options) as async.Operation<types.UpdateScheduledAuditOutput>
+function C:updateScheduledAudit(input: types.UpdateScheduledAuditInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateScheduledAuditOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateScheduledAudit as schema.OperationSchema, input, options) as async.Operation<types.UpdateScheduledAuditOutput>
 end
 
-function C:updateSecurityProfile(input: types.UpdateSecurityProfileInput, options: any): async.Operation<types.UpdateSecurityProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSecurityProfile, input, options) as async.Operation<types.UpdateSecurityProfileOutput>
+function C:updateSecurityProfile(input: types.UpdateSecurityProfileInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSecurityProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSecurityProfile as schema.OperationSchema, input, options) as async.Operation<types.UpdateSecurityProfileOutput>
 end
 
-function C:updateStream(input: types.UpdateStreamInput, options: any): async.Operation<types.UpdateStreamOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateStream, input, options) as async.Operation<types.UpdateStreamOutput>
+function C:updateStream(input: types.UpdateStreamInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateStream as schema.OperationSchema, input, options) as async.Operation<types.UpdateStreamOutput>
 end
 
-function C:updateThing(input: types.UpdateThingInput, options: any): async.Operation<types.UpdateThingOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateThing, input, options) as async.Operation<types.UpdateThingOutput>
+function C:updateThing(input: types.UpdateThingInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateThingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateThing as schema.OperationSchema, input, options) as async.Operation<types.UpdateThingOutput>
 end
 
-function C:updateThingGroup(input: types.UpdateThingGroupInput, options: any): async.Operation<types.UpdateThingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateThingGroup, input, options) as async.Operation<types.UpdateThingGroupOutput>
+function C:updateThingGroup(input: types.UpdateThingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateThingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateThingGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateThingGroupOutput>
 end
 
-function C:updateThingGroupsForThing(input: types.UpdateThingGroupsForThingInput, options: any): async.Operation<types.UpdateThingGroupsForThingOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateThingGroupsForThing, input, options) as async.Operation<types.UpdateThingGroupsForThingOutput>
+function C:updateThingGroupsForThing(input: types.UpdateThingGroupsForThingInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateThingGroupsForThingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateThingGroupsForThing as schema.OperationSchema, input, options) as async.Operation<types.UpdateThingGroupsForThingOutput>
 end
 
-function C:updateThingType(input: types.UpdateThingTypeInput, options: any): async.Operation<types.UpdateThingTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateThingType, input, options) as async.Operation<types.UpdateThingTypeOutput>
+function C:updateThingType(input: types.UpdateThingTypeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateThingTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateThingType as schema.OperationSchema, input, options) as async.Operation<types.UpdateThingTypeOutput>
 end
 
-function C:updateTopicRuleDestination(input: types.UpdateTopicRuleDestinationInput, options: any): async.Operation<types.UpdateTopicRuleDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTopicRuleDestination, input, options) as async.Operation<types.UpdateTopicRuleDestinationOutput>
+function C:updateTopicRuleDestination(input: types.UpdateTopicRuleDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTopicRuleDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTopicRuleDestination as schema.OperationSchema, input, options) as async.Operation<types.UpdateTopicRuleDestinationOutput>
 end
 
-function C:validateSecurityProfileBehaviors(input: types.ValidateSecurityProfileBehaviorsInput, options: any): async.Operation<types.ValidateSecurityProfileBehaviorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ValidateSecurityProfileBehaviors, input, options) as async.Operation<types.ValidateSecurityProfileBehaviorsOutput>
+function C:validateSecurityProfileBehaviors(input: types.ValidateSecurityProfileBehaviorsInput, options?: base_client.InvokeOptions): async.Operation<types.ValidateSecurityProfileBehaviorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ValidateSecurityProfileBehaviors as schema.OperationSchema, input, options) as async.Operation<types.ValidateSecurityProfileBehaviorsOutput>
 end
 
 return M

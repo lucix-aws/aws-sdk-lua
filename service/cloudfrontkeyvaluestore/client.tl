@@ -8,45 +8,48 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("cloudfrontkeyvaluestore.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("cloudfrontkeyvaluestore.schemas")
 local traits = require("smithy.traits")
 local types = require("cloudfrontkeyvaluestore.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    deleteKey: function(Client, types.DeleteKeyInput, any): async.Operation<types.DeleteKeyOutput>
-    describeKeyValueStore: function(Client, types.DescribeKeyValueStoreInput, any): async.Operation<types.DescribeKeyValueStoreOutput>
-    getKey: function(Client, types.GetKeyInput, any): async.Operation<types.GetKeyOutput>
-    listKeys: function(Client, types.ListKeysInput, any): async.Operation<types.ListKeysOutput>
-    putKey: function(Client, types.PutKeyInput, any): async.Operation<types.PutKeyOutput>
-    updateKeys: function(Client, types.UpdateKeysInput, any): async.Operation<types.UpdateKeysOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    deleteKey: function(Client, types.DeleteKeyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKeyOutput>
+    describeKeyValueStore: function(Client, types.DescribeKeyValueStoreInput, ? base_client.InvokeOptions): async.Operation<types.DescribeKeyValueStoreOutput>
+    getKey: function(Client, types.GetKeyInput, ? base_client.InvokeOptions): async.Operation<types.GetKeyOutput>
+    listKeys: function(Client, types.ListKeysInput, ? base_client.InvokeOptions): async.Operation<types.ListKeysOutput>
+    putKey: function(Client, types.PutKeyInput, ? base_client.InvokeOptions): async.Operation<types.PutKeyOutput>
+    updateKeys: function(Client, types.UpdateKeysInput, ? base_client.InvokeOptions): async.Operation<types.UpdateKeysOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "CloudFrontKeyValueStore"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "cloudfront-keyvaluestore", signing_region = c.region } }
                 else
@@ -65,28 +68,28 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:deleteKey(input: types.DeleteKeyInput, options: any): async.Operation<types.DeleteKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteKey, input, options) as async.Operation<types.DeleteKeyOutput>
+function C:deleteKey(input: types.DeleteKeyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteKey as schema.OperationSchema, input, options) as async.Operation<types.DeleteKeyOutput>
 end
 
-function C:describeKeyValueStore(input: types.DescribeKeyValueStoreInput, options: any): async.Operation<types.DescribeKeyValueStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeKeyValueStore, input, options) as async.Operation<types.DescribeKeyValueStoreOutput>
+function C:describeKeyValueStore(input: types.DescribeKeyValueStoreInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeKeyValueStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeKeyValueStore as schema.OperationSchema, input, options) as async.Operation<types.DescribeKeyValueStoreOutput>
 end
 
-function C:getKey(input: types.GetKeyInput, options: any): async.Operation<types.GetKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetKey, input, options) as async.Operation<types.GetKeyOutput>
+function C:getKey(input: types.GetKeyInput, options?: base_client.InvokeOptions): async.Operation<types.GetKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetKey as schema.OperationSchema, input, options) as async.Operation<types.GetKeyOutput>
 end
 
-function C:listKeys(input: types.ListKeysInput, options: any): async.Operation<types.ListKeysOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListKeys, input, options) as async.Operation<types.ListKeysOutput>
+function C:listKeys(input: types.ListKeysInput, options?: base_client.InvokeOptions): async.Operation<types.ListKeysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListKeys as schema.OperationSchema, input, options) as async.Operation<types.ListKeysOutput>
 end
 
-function C:putKey(input: types.PutKeyInput, options: any): async.Operation<types.PutKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutKey, input, options) as async.Operation<types.PutKeyOutput>
+function C:putKey(input: types.PutKeyInput, options?: base_client.InvokeOptions): async.Operation<types.PutKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutKey as schema.OperationSchema, input, options) as async.Operation<types.PutKeyOutput>
 end
 
-function C:updateKeys(input: types.UpdateKeysInput, options: any): async.Operation<types.UpdateKeysOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateKeys, input, options) as async.Operation<types.UpdateKeysOutput>
+function C:updateKeys(input: types.UpdateKeysInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateKeysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateKeys as schema.OperationSchema, input, options) as async.Operation<types.UpdateKeysOutput>
 end
 
 return M

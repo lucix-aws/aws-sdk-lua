@@ -8,58 +8,61 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("translate.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("translate.schemas")
 local traits = require("smithy.traits")
 local types = require("translate.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createParallelData: function(Client, types.CreateParallelDataInput, any): async.Operation<types.CreateParallelDataOutput>
-    deleteParallelData: function(Client, types.DeleteParallelDataInput, any): async.Operation<types.DeleteParallelDataOutput>
-    deleteTerminology: function(Client, types.DeleteTerminologyInput, any): async.Operation<types.DeleteTerminologyOutput>
-    describeTextTranslationJob: function(Client, types.DescribeTextTranslationJobInput, any): async.Operation<types.DescribeTextTranslationJobOutput>
-    getParallelData: function(Client, types.GetParallelDataInput, any): async.Operation<types.GetParallelDataOutput>
-    getTerminology: function(Client, types.GetTerminologyInput, any): async.Operation<types.GetTerminologyOutput>
-    importTerminology: function(Client, types.ImportTerminologyInput, any): async.Operation<types.ImportTerminologyOutput>
-    listLanguages: function(Client, types.ListLanguagesInput, any): async.Operation<types.ListLanguagesOutput>
-    listParallelData: function(Client, types.ListParallelDataInput, any): async.Operation<types.ListParallelDataOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTerminologies: function(Client, types.ListTerminologiesInput, any): async.Operation<types.ListTerminologiesOutput>
-    listTextTranslationJobs: function(Client, types.ListTextTranslationJobsInput, any): async.Operation<types.ListTextTranslationJobsOutput>
-    startTextTranslationJob: function(Client, types.StartTextTranslationJobInput, any): async.Operation<types.StartTextTranslationJobOutput>
-    stopTextTranslationJob: function(Client, types.StopTextTranslationJobInput, any): async.Operation<types.StopTextTranslationJobOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    translateDocument: function(Client, types.TranslateDocumentInput, any): async.Operation<types.TranslateDocumentOutput>
-    translateText: function(Client, types.TranslateTextInput, any): async.Operation<types.TranslateTextOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateParallelData: function(Client, types.UpdateParallelDataInput, any): async.Operation<types.UpdateParallelDataOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createParallelData: function(Client, types.CreateParallelDataInput, ? base_client.InvokeOptions): async.Operation<types.CreateParallelDataOutput>
+    deleteParallelData: function(Client, types.DeleteParallelDataInput, ? base_client.InvokeOptions): async.Operation<types.DeleteParallelDataOutput>
+    deleteTerminology: function(Client, types.DeleteTerminologyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTerminologyOutput>
+    describeTextTranslationJob: function(Client, types.DescribeTextTranslationJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTextTranslationJobOutput>
+    getParallelData: function(Client, types.GetParallelDataInput, ? base_client.InvokeOptions): async.Operation<types.GetParallelDataOutput>
+    getTerminology: function(Client, types.GetTerminologyInput, ? base_client.InvokeOptions): async.Operation<types.GetTerminologyOutput>
+    importTerminology: function(Client, types.ImportTerminologyInput, ? base_client.InvokeOptions): async.Operation<types.ImportTerminologyOutput>
+    listLanguages: function(Client, types.ListLanguagesInput, ? base_client.InvokeOptions): async.Operation<types.ListLanguagesOutput>
+    listParallelData: function(Client, types.ListParallelDataInput, ? base_client.InvokeOptions): async.Operation<types.ListParallelDataOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTerminologies: function(Client, types.ListTerminologiesInput, ? base_client.InvokeOptions): async.Operation<types.ListTerminologiesOutput>
+    listTextTranslationJobs: function(Client, types.ListTextTranslationJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListTextTranslationJobsOutput>
+    startTextTranslationJob: function(Client, types.StartTextTranslationJobInput, ? base_client.InvokeOptions): async.Operation<types.StartTextTranslationJobOutput>
+    stopTextTranslationJob: function(Client, types.StopTextTranslationJobInput, ? base_client.InvokeOptions): async.Operation<types.StopTextTranslationJobOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    translateDocument: function(Client, types.TranslateDocumentInput, ? base_client.InvokeOptions): async.Operation<types.TranslateDocumentOutput>
+    translateText: function(Client, types.TranslateTextInput, ? base_client.InvokeOptions): async.Operation<types.TranslateTextOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateParallelData: function(Client, types.UpdateParallelDataInput, ? base_client.InvokeOptions): async.Operation<types.UpdateParallelDataOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSShineFrontendService_20170701"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "translate", signing_region = c.region } }
                 else
@@ -78,80 +81,80 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createParallelData(input: types.CreateParallelDataInput, options: any): async.Operation<types.CreateParallelDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateParallelData, input, options) as async.Operation<types.CreateParallelDataOutput>
+function C:createParallelData(input: types.CreateParallelDataInput, options?: base_client.InvokeOptions): async.Operation<types.CreateParallelDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateParallelData as schema.OperationSchema, input, options) as async.Operation<types.CreateParallelDataOutput>
 end
 
-function C:deleteParallelData(input: types.DeleteParallelDataInput, options: any): async.Operation<types.DeleteParallelDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteParallelData, input, options) as async.Operation<types.DeleteParallelDataOutput>
+function C:deleteParallelData(input: types.DeleteParallelDataInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteParallelDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteParallelData as schema.OperationSchema, input, options) as async.Operation<types.DeleteParallelDataOutput>
 end
 
-function C:deleteTerminology(input: types.DeleteTerminologyInput, options: any): async.Operation<types.DeleteTerminologyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTerminology, input, options) as async.Operation<types.DeleteTerminologyOutput>
+function C:deleteTerminology(input: types.DeleteTerminologyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTerminologyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTerminology as schema.OperationSchema, input, options) as async.Operation<types.DeleteTerminologyOutput>
 end
 
-function C:describeTextTranslationJob(input: types.DescribeTextTranslationJobInput, options: any): async.Operation<types.DescribeTextTranslationJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTextTranslationJob, input, options) as async.Operation<types.DescribeTextTranslationJobOutput>
+function C:describeTextTranslationJob(input: types.DescribeTextTranslationJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTextTranslationJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTextTranslationJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeTextTranslationJobOutput>
 end
 
-function C:getParallelData(input: types.GetParallelDataInput, options: any): async.Operation<types.GetParallelDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetParallelData, input, options) as async.Operation<types.GetParallelDataOutput>
+function C:getParallelData(input: types.GetParallelDataInput, options?: base_client.InvokeOptions): async.Operation<types.GetParallelDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetParallelData as schema.OperationSchema, input, options) as async.Operation<types.GetParallelDataOutput>
 end
 
-function C:getTerminology(input: types.GetTerminologyInput, options: any): async.Operation<types.GetTerminologyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTerminology, input, options) as async.Operation<types.GetTerminologyOutput>
+function C:getTerminology(input: types.GetTerminologyInput, options?: base_client.InvokeOptions): async.Operation<types.GetTerminologyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTerminology as schema.OperationSchema, input, options) as async.Operation<types.GetTerminologyOutput>
 end
 
-function C:importTerminology(input: types.ImportTerminologyInput, options: any): async.Operation<types.ImportTerminologyOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportTerminology, input, options) as async.Operation<types.ImportTerminologyOutput>
+function C:importTerminology(input: types.ImportTerminologyInput, options?: base_client.InvokeOptions): async.Operation<types.ImportTerminologyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportTerminology as schema.OperationSchema, input, options) as async.Operation<types.ImportTerminologyOutput>
 end
 
-function C:listLanguages(input: types.ListLanguagesInput, options: any): async.Operation<types.ListLanguagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLanguages, input, options) as async.Operation<types.ListLanguagesOutput>
+function C:listLanguages(input: types.ListLanguagesInput, options?: base_client.InvokeOptions): async.Operation<types.ListLanguagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLanguages as schema.OperationSchema, input, options) as async.Operation<types.ListLanguagesOutput>
 end
 
-function C:listParallelData(input: types.ListParallelDataInput, options: any): async.Operation<types.ListParallelDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListParallelData, input, options) as async.Operation<types.ListParallelDataOutput>
+function C:listParallelData(input: types.ListParallelDataInput, options?: base_client.InvokeOptions): async.Operation<types.ListParallelDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListParallelData as schema.OperationSchema, input, options) as async.Operation<types.ListParallelDataOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTerminologies(input: types.ListTerminologiesInput, options: any): async.Operation<types.ListTerminologiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTerminologies, input, options) as async.Operation<types.ListTerminologiesOutput>
+function C:listTerminologies(input: types.ListTerminologiesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTerminologiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTerminologies as schema.OperationSchema, input, options) as async.Operation<types.ListTerminologiesOutput>
 end
 
-function C:listTextTranslationJobs(input: types.ListTextTranslationJobsInput, options: any): async.Operation<types.ListTextTranslationJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTextTranslationJobs, input, options) as async.Operation<types.ListTextTranslationJobsOutput>
+function C:listTextTranslationJobs(input: types.ListTextTranslationJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTextTranslationJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTextTranslationJobs as schema.OperationSchema, input, options) as async.Operation<types.ListTextTranslationJobsOutput>
 end
 
-function C:startTextTranslationJob(input: types.StartTextTranslationJobInput, options: any): async.Operation<types.StartTextTranslationJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartTextTranslationJob, input, options) as async.Operation<types.StartTextTranslationJobOutput>
+function C:startTextTranslationJob(input: types.StartTextTranslationJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartTextTranslationJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartTextTranslationJob as schema.OperationSchema, input, options) as async.Operation<types.StartTextTranslationJobOutput>
 end
 
-function C:stopTextTranslationJob(input: types.StopTextTranslationJobInput, options: any): async.Operation<types.StopTextTranslationJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopTextTranslationJob, input, options) as async.Operation<types.StopTextTranslationJobOutput>
+function C:stopTextTranslationJob(input: types.StopTextTranslationJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopTextTranslationJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopTextTranslationJob as schema.OperationSchema, input, options) as async.Operation<types.StopTextTranslationJobOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:translateDocument(input: types.TranslateDocumentInput, options: any): async.Operation<types.TranslateDocumentOutput>
-    return self:invokeOperation(schemas.Service, schemas.TranslateDocument, input, options) as async.Operation<types.TranslateDocumentOutput>
+function C:translateDocument(input: types.TranslateDocumentInput, options?: base_client.InvokeOptions): async.Operation<types.TranslateDocumentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TranslateDocument as schema.OperationSchema, input, options) as async.Operation<types.TranslateDocumentOutput>
 end
 
-function C:translateText(input: types.TranslateTextInput, options: any): async.Operation<types.TranslateTextOutput>
-    return self:invokeOperation(schemas.Service, schemas.TranslateText, input, options) as async.Operation<types.TranslateTextOutput>
+function C:translateText(input: types.TranslateTextInput, options?: base_client.InvokeOptions): async.Operation<types.TranslateTextOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TranslateText as schema.OperationSchema, input, options) as async.Operation<types.TranslateTextOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateParallelData(input: types.UpdateParallelDataInput, options: any): async.Operation<types.UpdateParallelDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateParallelData, input, options) as async.Operation<types.UpdateParallelDataOutput>
+function C:updateParallelData(input: types.UpdateParallelDataInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateParallelDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateParallelData as schema.OperationSchema, input, options) as async.Operation<types.UpdateParallelDataOutput>
 end
 
 return M

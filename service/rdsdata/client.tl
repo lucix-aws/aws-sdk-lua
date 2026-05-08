@@ -8,45 +8,48 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("rdsdata.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("rdsdata.schemas")
 local traits = require("smithy.traits")
 local types = require("rdsdata.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchExecuteStatement: function(Client, types.BatchExecuteStatementInput, any): async.Operation<types.BatchExecuteStatementOutput>
-    beginTransaction: function(Client, types.BeginTransactionInput, any): async.Operation<types.BeginTransactionOutput>
-    commitTransaction: function(Client, types.CommitTransactionInput, any): async.Operation<types.CommitTransactionOutput>
-    executeSql: function(Client, types.ExecuteSqlInput, any): async.Operation<types.ExecuteSqlOutput>
-    executeStatement: function(Client, types.ExecuteStatementInput, any): async.Operation<types.ExecuteStatementOutput>
-    rollbackTransaction: function(Client, types.RollbackTransactionInput, any): async.Operation<types.RollbackTransactionOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchExecuteStatement: function(Client, types.BatchExecuteStatementInput, ? base_client.InvokeOptions): async.Operation<types.BatchExecuteStatementOutput>
+    beginTransaction: function(Client, types.BeginTransactionInput, ? base_client.InvokeOptions): async.Operation<types.BeginTransactionOutput>
+    commitTransaction: function(Client, types.CommitTransactionInput, ? base_client.InvokeOptions): async.Operation<types.CommitTransactionOutput>
+    executeSql: function(Client, types.ExecuteSqlInput, ? base_client.InvokeOptions): async.Operation<types.ExecuteSqlOutput>
+    executeStatement: function(Client, types.ExecuteStatementInput, ? base_client.InvokeOptions): async.Operation<types.ExecuteStatementOutput>
+    rollbackTransaction: function(Client, types.RollbackTransactionInput, ? base_client.InvokeOptions): async.Operation<types.RollbackTransactionOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "RdsDataService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "rds-data", signing_region = c.region } }
                 else
@@ -65,28 +68,28 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchExecuteStatement(input: types.BatchExecuteStatementInput, options: any): async.Operation<types.BatchExecuteStatementOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchExecuteStatement, input, options) as async.Operation<types.BatchExecuteStatementOutput>
+function C:batchExecuteStatement(input: types.BatchExecuteStatementInput, options?: base_client.InvokeOptions): async.Operation<types.BatchExecuteStatementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchExecuteStatement as schema.OperationSchema, input, options) as async.Operation<types.BatchExecuteStatementOutput>
 end
 
-function C:beginTransaction(input: types.BeginTransactionInput, options: any): async.Operation<types.BeginTransactionOutput>
-    return self:invokeOperation(schemas.Service, schemas.BeginTransaction, input, options) as async.Operation<types.BeginTransactionOutput>
+function C:beginTransaction(input: types.BeginTransactionInput, options?: base_client.InvokeOptions): async.Operation<types.BeginTransactionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BeginTransaction as schema.OperationSchema, input, options) as async.Operation<types.BeginTransactionOutput>
 end
 
-function C:commitTransaction(input: types.CommitTransactionInput, options: any): async.Operation<types.CommitTransactionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CommitTransaction, input, options) as async.Operation<types.CommitTransactionOutput>
+function C:commitTransaction(input: types.CommitTransactionInput, options?: base_client.InvokeOptions): async.Operation<types.CommitTransactionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CommitTransaction as schema.OperationSchema, input, options) as async.Operation<types.CommitTransactionOutput>
 end
 
-function C:executeSql(input: types.ExecuteSqlInput, options: any): async.Operation<types.ExecuteSqlOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExecuteSql, input, options) as async.Operation<types.ExecuteSqlOutput>
+function C:executeSql(input: types.ExecuteSqlInput, options?: base_client.InvokeOptions): async.Operation<types.ExecuteSqlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExecuteSql as schema.OperationSchema, input, options) as async.Operation<types.ExecuteSqlOutput>
 end
 
-function C:executeStatement(input: types.ExecuteStatementInput, options: any): async.Operation<types.ExecuteStatementOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExecuteStatement, input, options) as async.Operation<types.ExecuteStatementOutput>
+function C:executeStatement(input: types.ExecuteStatementInput, options?: base_client.InvokeOptions): async.Operation<types.ExecuteStatementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExecuteStatement as schema.OperationSchema, input, options) as async.Operation<types.ExecuteStatementOutput>
 end
 
-function C:rollbackTransaction(input: types.RollbackTransactionInput, options: any): async.Operation<types.RollbackTransactionOutput>
-    return self:invokeOperation(schemas.Service, schemas.RollbackTransaction, input, options) as async.Operation<types.RollbackTransactionOutput>
+function C:rollbackTransaction(input: types.RollbackTransactionInput, options?: base_client.InvokeOptions): async.Operation<types.RollbackTransactionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RollbackTransaction as schema.OperationSchema, input, options) as async.Operation<types.RollbackTransactionOutput>
 end
 
 return M

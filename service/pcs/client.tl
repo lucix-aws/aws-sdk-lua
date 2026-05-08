@@ -8,58 +8,61 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("pcs.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("pcs.schemas")
 local traits = require("smithy.traits")
 local types = require("pcs.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createCluster: function(Client, types.CreateClusterInput, any): async.Operation<types.CreateClusterOutput>
-    createComputeNodeGroup: function(Client, types.CreateComputeNodeGroupInput, any): async.Operation<types.CreateComputeNodeGroupOutput>
-    createQueue: function(Client, types.CreateQueueInput, any): async.Operation<types.CreateQueueOutput>
-    deleteCluster: function(Client, types.DeleteClusterInput, any): async.Operation<types.DeleteClusterOutput>
-    deleteComputeNodeGroup: function(Client, types.DeleteComputeNodeGroupInput, any): async.Operation<types.DeleteComputeNodeGroupOutput>
-    deleteQueue: function(Client, types.DeleteQueueInput, any): async.Operation<types.DeleteQueueOutput>
-    getCluster: function(Client, types.GetClusterInput, any): async.Operation<types.GetClusterOutput>
-    getComputeNodeGroup: function(Client, types.GetComputeNodeGroupInput, any): async.Operation<types.GetComputeNodeGroupOutput>
-    getQueue: function(Client, types.GetQueueInput, any): async.Operation<types.GetQueueOutput>
-    listClusters: function(Client, types.ListClustersInput, any): async.Operation<types.ListClustersOutput>
-    listComputeNodeGroups: function(Client, types.ListComputeNodeGroupsInput, any): async.Operation<types.ListComputeNodeGroupsOutput>
-    listQueues: function(Client, types.ListQueuesInput, any): async.Operation<types.ListQueuesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    registerComputeNodeGroupInstance: function(Client, types.RegisterComputeNodeGroupInstanceInput, any): async.Operation<types.RegisterComputeNodeGroupInstanceOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateCluster: function(Client, types.UpdateClusterInput, any): async.Operation<types.UpdateClusterOutput>
-    updateComputeNodeGroup: function(Client, types.UpdateComputeNodeGroupInput, any): async.Operation<types.UpdateComputeNodeGroupOutput>
-    updateQueue: function(Client, types.UpdateQueueInput, any): async.Operation<types.UpdateQueueOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createCluster: function(Client, types.CreateClusterInput, ? base_client.InvokeOptions): async.Operation<types.CreateClusterOutput>
+    createComputeNodeGroup: function(Client, types.CreateComputeNodeGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateComputeNodeGroupOutput>
+    createQueue: function(Client, types.CreateQueueInput, ? base_client.InvokeOptions): async.Operation<types.CreateQueueOutput>
+    deleteCluster: function(Client, types.DeleteClusterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteClusterOutput>
+    deleteComputeNodeGroup: function(Client, types.DeleteComputeNodeGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteComputeNodeGroupOutput>
+    deleteQueue: function(Client, types.DeleteQueueInput, ? base_client.InvokeOptions): async.Operation<types.DeleteQueueOutput>
+    getCluster: function(Client, types.GetClusterInput, ? base_client.InvokeOptions): async.Operation<types.GetClusterOutput>
+    getComputeNodeGroup: function(Client, types.GetComputeNodeGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetComputeNodeGroupOutput>
+    getQueue: function(Client, types.GetQueueInput, ? base_client.InvokeOptions): async.Operation<types.GetQueueOutput>
+    listClusters: function(Client, types.ListClustersInput, ? base_client.InvokeOptions): async.Operation<types.ListClustersOutput>
+    listComputeNodeGroups: function(Client, types.ListComputeNodeGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListComputeNodeGroupsOutput>
+    listQueues: function(Client, types.ListQueuesInput, ? base_client.InvokeOptions): async.Operation<types.ListQueuesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    registerComputeNodeGroupInstance: function(Client, types.RegisterComputeNodeGroupInstanceInput, ? base_client.InvokeOptions): async.Operation<types.RegisterComputeNodeGroupInstanceOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateCluster: function(Client, types.UpdateClusterInput, ? base_client.InvokeOptions): async.Operation<types.UpdateClusterOutput>
+    updateComputeNodeGroup: function(Client, types.UpdateComputeNodeGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateComputeNodeGroupOutput>
+    updateQueue: function(Client, types.UpdateQueueInput, ? base_client.InvokeOptions): async.Operation<types.UpdateQueueOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSParallelComputingService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "pcs", signing_region = c.region } }
                 else
@@ -78,80 +81,80 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createCluster(input: types.CreateClusterInput, options: any): async.Operation<types.CreateClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCluster, input, options) as async.Operation<types.CreateClusterOutput>
+function C:createCluster(input: types.CreateClusterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCluster as schema.OperationSchema, input, options) as async.Operation<types.CreateClusterOutput>
 end
 
-function C:createComputeNodeGroup(input: types.CreateComputeNodeGroupInput, options: any): async.Operation<types.CreateComputeNodeGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateComputeNodeGroup, input, options) as async.Operation<types.CreateComputeNodeGroupOutput>
+function C:createComputeNodeGroup(input: types.CreateComputeNodeGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateComputeNodeGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateComputeNodeGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateComputeNodeGroupOutput>
 end
 
-function C:createQueue(input: types.CreateQueueInput, options: any): async.Operation<types.CreateQueueOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateQueue, input, options) as async.Operation<types.CreateQueueOutput>
+function C:createQueue(input: types.CreateQueueInput, options?: base_client.InvokeOptions): async.Operation<types.CreateQueueOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateQueue as schema.OperationSchema, input, options) as async.Operation<types.CreateQueueOutput>
 end
 
-function C:deleteCluster(input: types.DeleteClusterInput, options: any): async.Operation<types.DeleteClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCluster, input, options) as async.Operation<types.DeleteClusterOutput>
+function C:deleteCluster(input: types.DeleteClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCluster as schema.OperationSchema, input, options) as async.Operation<types.DeleteClusterOutput>
 end
 
-function C:deleteComputeNodeGroup(input: types.DeleteComputeNodeGroupInput, options: any): async.Operation<types.DeleteComputeNodeGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteComputeNodeGroup, input, options) as async.Operation<types.DeleteComputeNodeGroupOutput>
+function C:deleteComputeNodeGroup(input: types.DeleteComputeNodeGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteComputeNodeGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteComputeNodeGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteComputeNodeGroupOutput>
 end
 
-function C:deleteQueue(input: types.DeleteQueueInput, options: any): async.Operation<types.DeleteQueueOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteQueue, input, options) as async.Operation<types.DeleteQueueOutput>
+function C:deleteQueue(input: types.DeleteQueueInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteQueueOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteQueue as schema.OperationSchema, input, options) as async.Operation<types.DeleteQueueOutput>
 end
 
-function C:getCluster(input: types.GetClusterInput, options: any): async.Operation<types.GetClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCluster, input, options) as async.Operation<types.GetClusterOutput>
+function C:getCluster(input: types.GetClusterInput, options?: base_client.InvokeOptions): async.Operation<types.GetClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCluster as schema.OperationSchema, input, options) as async.Operation<types.GetClusterOutput>
 end
 
-function C:getComputeNodeGroup(input: types.GetComputeNodeGroupInput, options: any): async.Operation<types.GetComputeNodeGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetComputeNodeGroup, input, options) as async.Operation<types.GetComputeNodeGroupOutput>
+function C:getComputeNodeGroup(input: types.GetComputeNodeGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetComputeNodeGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetComputeNodeGroup as schema.OperationSchema, input, options) as async.Operation<types.GetComputeNodeGroupOutput>
 end
 
-function C:getQueue(input: types.GetQueueInput, options: any): async.Operation<types.GetQueueOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetQueue, input, options) as async.Operation<types.GetQueueOutput>
+function C:getQueue(input: types.GetQueueInput, options?: base_client.InvokeOptions): async.Operation<types.GetQueueOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQueue as schema.OperationSchema, input, options) as async.Operation<types.GetQueueOutput>
 end
 
-function C:listClusters(input: types.ListClustersInput, options: any): async.Operation<types.ListClustersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListClusters, input, options) as async.Operation<types.ListClustersOutput>
+function C:listClusters(input: types.ListClustersInput, options?: base_client.InvokeOptions): async.Operation<types.ListClustersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListClusters as schema.OperationSchema, input, options) as async.Operation<types.ListClustersOutput>
 end
 
-function C:listComputeNodeGroups(input: types.ListComputeNodeGroupsInput, options: any): async.Operation<types.ListComputeNodeGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListComputeNodeGroups, input, options) as async.Operation<types.ListComputeNodeGroupsOutput>
+function C:listComputeNodeGroups(input: types.ListComputeNodeGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListComputeNodeGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListComputeNodeGroups as schema.OperationSchema, input, options) as async.Operation<types.ListComputeNodeGroupsOutput>
 end
 
-function C:listQueues(input: types.ListQueuesInput, options: any): async.Operation<types.ListQueuesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListQueues, input, options) as async.Operation<types.ListQueuesOutput>
+function C:listQueues(input: types.ListQueuesInput, options?: base_client.InvokeOptions): async.Operation<types.ListQueuesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListQueues as schema.OperationSchema, input, options) as async.Operation<types.ListQueuesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:registerComputeNodeGroupInstance(input: types.RegisterComputeNodeGroupInstanceInput, options: any): async.Operation<types.RegisterComputeNodeGroupInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterComputeNodeGroupInstance, input, options) as async.Operation<types.RegisterComputeNodeGroupInstanceOutput>
+function C:registerComputeNodeGroupInstance(input: types.RegisterComputeNodeGroupInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterComputeNodeGroupInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterComputeNodeGroupInstance as schema.OperationSchema, input, options) as async.Operation<types.RegisterComputeNodeGroupInstanceOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateCluster(input: types.UpdateClusterInput, options: any): async.Operation<types.UpdateClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCluster, input, options) as async.Operation<types.UpdateClusterOutput>
+function C:updateCluster(input: types.UpdateClusterInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCluster as schema.OperationSchema, input, options) as async.Operation<types.UpdateClusterOutput>
 end
 
-function C:updateComputeNodeGroup(input: types.UpdateComputeNodeGroupInput, options: any): async.Operation<types.UpdateComputeNodeGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateComputeNodeGroup, input, options) as async.Operation<types.UpdateComputeNodeGroupOutput>
+function C:updateComputeNodeGroup(input: types.UpdateComputeNodeGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateComputeNodeGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateComputeNodeGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateComputeNodeGroupOutput>
 end
 
-function C:updateQueue(input: types.UpdateQueueInput, options: any): async.Operation<types.UpdateQueueOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateQueue, input, options) as async.Operation<types.UpdateQueueOutput>
+function C:updateQueue(input: types.UpdateQueueInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateQueueOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateQueue as schema.OperationSchema, input, options) as async.Operation<types.UpdateQueueOutput>
 end
 
 return M

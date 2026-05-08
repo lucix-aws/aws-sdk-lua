@@ -8,79 +8,82 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("observabilityadmin.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("observabilityadmin.schemas")
 local traits = require("smithy.traits")
 local types = require("observabilityadmin.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createCentralizationRuleForOrganization: function(Client, types.CreateCentralizationRuleForOrganizationInput, any): async.Operation<types.CreateCentralizationRuleForOrganizationOutput>
-    createS3TableIntegration: function(Client, types.CreateS3TableIntegrationInput, any): async.Operation<types.CreateS3TableIntegrationOutput>
-    createTelemetryPipeline: function(Client, types.CreateTelemetryPipelineInput, any): async.Operation<types.CreateTelemetryPipelineOutput>
-    createTelemetryRule: function(Client, types.CreateTelemetryRuleInput, any): async.Operation<types.CreateTelemetryRuleOutput>
-    createTelemetryRuleForOrganization: function(Client, types.CreateTelemetryRuleForOrganizationInput, any): async.Operation<types.CreateTelemetryRuleForOrganizationOutput>
-    deleteCentralizationRuleForOrganization: function(Client, types.DeleteCentralizationRuleForOrganizationInput, any): async.Operation<types.DeleteCentralizationRuleForOrganizationOutput>
-    deleteS3TableIntegration: function(Client, types.DeleteS3TableIntegrationInput, any): async.Operation<types.DeleteS3TableIntegrationOutput>
-    deleteTelemetryPipeline: function(Client, types.DeleteTelemetryPipelineInput, any): async.Operation<types.DeleteTelemetryPipelineOutput>
-    deleteTelemetryRule: function(Client, types.DeleteTelemetryRuleInput, any): async.Operation<types.DeleteTelemetryRuleOutput>
-    deleteTelemetryRuleForOrganization: function(Client, types.DeleteTelemetryRuleForOrganizationInput, any): async.Operation<types.DeleteTelemetryRuleForOrganizationOutput>
-    getCentralizationRuleForOrganization: function(Client, types.GetCentralizationRuleForOrganizationInput, any): async.Operation<types.GetCentralizationRuleForOrganizationOutput>
-    getS3TableIntegration: function(Client, types.GetS3TableIntegrationInput, any): async.Operation<types.GetS3TableIntegrationOutput>
-    getTelemetryEnrichmentStatus: function(Client, types.GetTelemetryEnrichmentStatusInput, any): async.Operation<types.GetTelemetryEnrichmentStatusOutput>
-    getTelemetryEvaluationStatus: function(Client, types.GetTelemetryEvaluationStatusInput, any): async.Operation<types.GetTelemetryEvaluationStatusOutput>
-    getTelemetryEvaluationStatusForOrganization: function(Client, types.GetTelemetryEvaluationStatusForOrganizationInput, any): async.Operation<types.GetTelemetryEvaluationStatusForOrganizationOutput>
-    getTelemetryPipeline: function(Client, types.GetTelemetryPipelineInput, any): async.Operation<types.GetTelemetryPipelineOutput>
-    getTelemetryRule: function(Client, types.GetTelemetryRuleInput, any): async.Operation<types.GetTelemetryRuleOutput>
-    getTelemetryRuleForOrganization: function(Client, types.GetTelemetryRuleForOrganizationInput, any): async.Operation<types.GetTelemetryRuleForOrganizationOutput>
-    listCentralizationRulesForOrganization: function(Client, types.ListCentralizationRulesForOrganizationInput, any): async.Operation<types.ListCentralizationRulesForOrganizationOutput>
-    listResourceTelemetry: function(Client, types.ListResourceTelemetryInput, any): async.Operation<types.ListResourceTelemetryOutput>
-    listResourceTelemetryForOrganization: function(Client, types.ListResourceTelemetryForOrganizationInput, any): async.Operation<types.ListResourceTelemetryForOrganizationOutput>
-    listS3TableIntegrations: function(Client, types.ListS3TableIntegrationsInput, any): async.Operation<types.ListS3TableIntegrationsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTelemetryPipelines: function(Client, types.ListTelemetryPipelinesInput, any): async.Operation<types.ListTelemetryPipelinesOutput>
-    listTelemetryRules: function(Client, types.ListTelemetryRulesInput, any): async.Operation<types.ListTelemetryRulesOutput>
-    listTelemetryRulesForOrganization: function(Client, types.ListTelemetryRulesForOrganizationInput, any): async.Operation<types.ListTelemetryRulesForOrganizationOutput>
-    startTelemetryEnrichment: function(Client, types.StartTelemetryEnrichmentInput, any): async.Operation<types.StartTelemetryEnrichmentOutput>
-    startTelemetryEvaluation: function(Client, types.StartTelemetryEvaluationInput, any): async.Operation<types.StartTelemetryEvaluationOutput>
-    startTelemetryEvaluationForOrganization: function(Client, types.StartTelemetryEvaluationForOrganizationInput, any): async.Operation<types.StartTelemetryEvaluationForOrganizationOutput>
-    stopTelemetryEnrichment: function(Client, types.StopTelemetryEnrichmentInput, any): async.Operation<types.StopTelemetryEnrichmentOutput>
-    stopTelemetryEvaluation: function(Client, types.StopTelemetryEvaluationInput, any): async.Operation<types.StopTelemetryEvaluationOutput>
-    stopTelemetryEvaluationForOrganization: function(Client, types.StopTelemetryEvaluationForOrganizationInput, any): async.Operation<types.StopTelemetryEvaluationForOrganizationOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    testTelemetryPipeline: function(Client, types.TestTelemetryPipelineInput, any): async.Operation<types.TestTelemetryPipelineOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateCentralizationRuleForOrganization: function(Client, types.UpdateCentralizationRuleForOrganizationInput, any): async.Operation<types.UpdateCentralizationRuleForOrganizationOutput>
-    updateTelemetryPipeline: function(Client, types.UpdateTelemetryPipelineInput, any): async.Operation<types.UpdateTelemetryPipelineOutput>
-    updateTelemetryRule: function(Client, types.UpdateTelemetryRuleInput, any): async.Operation<types.UpdateTelemetryRuleOutput>
-    updateTelemetryRuleForOrganization: function(Client, types.UpdateTelemetryRuleForOrganizationInput, any): async.Operation<types.UpdateTelemetryRuleForOrganizationOutput>
-    validateTelemetryPipelineConfiguration: function(Client, types.ValidateTelemetryPipelineConfigurationInput, any): async.Operation<types.ValidateTelemetryPipelineConfigurationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createCentralizationRuleForOrganization: function(Client, types.CreateCentralizationRuleForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.CreateCentralizationRuleForOrganizationOutput>
+    createS3TableIntegration: function(Client, types.CreateS3TableIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.CreateS3TableIntegrationOutput>
+    createTelemetryPipeline: function(Client, types.CreateTelemetryPipelineInput, ? base_client.InvokeOptions): async.Operation<types.CreateTelemetryPipelineOutput>
+    createTelemetryRule: function(Client, types.CreateTelemetryRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateTelemetryRuleOutput>
+    createTelemetryRuleForOrganization: function(Client, types.CreateTelemetryRuleForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.CreateTelemetryRuleForOrganizationOutput>
+    deleteCentralizationRuleForOrganization: function(Client, types.DeleteCentralizationRuleForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCentralizationRuleForOrganizationOutput>
+    deleteS3TableIntegration: function(Client, types.DeleteS3TableIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteS3TableIntegrationOutput>
+    deleteTelemetryPipeline: function(Client, types.DeleteTelemetryPipelineInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTelemetryPipelineOutput>
+    deleteTelemetryRule: function(Client, types.DeleteTelemetryRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTelemetryRuleOutput>
+    deleteTelemetryRuleForOrganization: function(Client, types.DeleteTelemetryRuleForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTelemetryRuleForOrganizationOutput>
+    getCentralizationRuleForOrganization: function(Client, types.GetCentralizationRuleForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.GetCentralizationRuleForOrganizationOutput>
+    getS3TableIntegration: function(Client, types.GetS3TableIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.GetS3TableIntegrationOutput>
+    getTelemetryEnrichmentStatus: function(Client, types.GetTelemetryEnrichmentStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetTelemetryEnrichmentStatusOutput>
+    getTelemetryEvaluationStatus: function(Client, types.GetTelemetryEvaluationStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetTelemetryEvaluationStatusOutput>
+    getTelemetryEvaluationStatusForOrganization: function(Client, types.GetTelemetryEvaluationStatusForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.GetTelemetryEvaluationStatusForOrganizationOutput>
+    getTelemetryPipeline: function(Client, types.GetTelemetryPipelineInput, ? base_client.InvokeOptions): async.Operation<types.GetTelemetryPipelineOutput>
+    getTelemetryRule: function(Client, types.GetTelemetryRuleInput, ? base_client.InvokeOptions): async.Operation<types.GetTelemetryRuleOutput>
+    getTelemetryRuleForOrganization: function(Client, types.GetTelemetryRuleForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.GetTelemetryRuleForOrganizationOutput>
+    listCentralizationRulesForOrganization: function(Client, types.ListCentralizationRulesForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.ListCentralizationRulesForOrganizationOutput>
+    listResourceTelemetry: function(Client, types.ListResourceTelemetryInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceTelemetryOutput>
+    listResourceTelemetryForOrganization: function(Client, types.ListResourceTelemetryForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceTelemetryForOrganizationOutput>
+    listS3TableIntegrations: function(Client, types.ListS3TableIntegrationsInput, ? base_client.InvokeOptions): async.Operation<types.ListS3TableIntegrationsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTelemetryPipelines: function(Client, types.ListTelemetryPipelinesInput, ? base_client.InvokeOptions): async.Operation<types.ListTelemetryPipelinesOutput>
+    listTelemetryRules: function(Client, types.ListTelemetryRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListTelemetryRulesOutput>
+    listTelemetryRulesForOrganization: function(Client, types.ListTelemetryRulesForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.ListTelemetryRulesForOrganizationOutput>
+    startTelemetryEnrichment: function(Client, types.StartTelemetryEnrichmentInput, ? base_client.InvokeOptions): async.Operation<types.StartTelemetryEnrichmentOutput>
+    startTelemetryEvaluation: function(Client, types.StartTelemetryEvaluationInput, ? base_client.InvokeOptions): async.Operation<types.StartTelemetryEvaluationOutput>
+    startTelemetryEvaluationForOrganization: function(Client, types.StartTelemetryEvaluationForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.StartTelemetryEvaluationForOrganizationOutput>
+    stopTelemetryEnrichment: function(Client, types.StopTelemetryEnrichmentInput, ? base_client.InvokeOptions): async.Operation<types.StopTelemetryEnrichmentOutput>
+    stopTelemetryEvaluation: function(Client, types.StopTelemetryEvaluationInput, ? base_client.InvokeOptions): async.Operation<types.StopTelemetryEvaluationOutput>
+    stopTelemetryEvaluationForOrganization: function(Client, types.StopTelemetryEvaluationForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.StopTelemetryEvaluationForOrganizationOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    testTelemetryPipeline: function(Client, types.TestTelemetryPipelineInput, ? base_client.InvokeOptions): async.Operation<types.TestTelemetryPipelineOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateCentralizationRuleForOrganization: function(Client, types.UpdateCentralizationRuleForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCentralizationRuleForOrganizationOutput>
+    updateTelemetryPipeline: function(Client, types.UpdateTelemetryPipelineInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTelemetryPipelineOutput>
+    updateTelemetryRule: function(Client, types.UpdateTelemetryRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTelemetryRuleOutput>
+    updateTelemetryRuleForOrganization: function(Client, types.UpdateTelemetryRuleForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTelemetryRuleForOrganizationOutput>
+    validateTelemetryPipelineConfiguration: function(Client, types.ValidateTelemetryPipelineConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.ValidateTelemetryPipelineConfigurationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "ObservabilityAdmin"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "observabilityadmin", signing_region = c.region } }
                 else
@@ -99,164 +102,164 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createCentralizationRuleForOrganization(input: types.CreateCentralizationRuleForOrganizationInput, options: any): async.Operation<types.CreateCentralizationRuleForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCentralizationRuleForOrganization, input, options) as async.Operation<types.CreateCentralizationRuleForOrganizationOutput>
+function C:createCentralizationRuleForOrganization(input: types.CreateCentralizationRuleForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCentralizationRuleForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCentralizationRuleForOrganization as schema.OperationSchema, input, options) as async.Operation<types.CreateCentralizationRuleForOrganizationOutput>
 end
 
-function C:createS3TableIntegration(input: types.CreateS3TableIntegrationInput, options: any): async.Operation<types.CreateS3TableIntegrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateS3TableIntegration, input, options) as async.Operation<types.CreateS3TableIntegrationOutput>
+function C:createS3TableIntegration(input: types.CreateS3TableIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateS3TableIntegrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateS3TableIntegration as schema.OperationSchema, input, options) as async.Operation<types.CreateS3TableIntegrationOutput>
 end
 
-function C:createTelemetryPipeline(input: types.CreateTelemetryPipelineInput, options: any): async.Operation<types.CreateTelemetryPipelineOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTelemetryPipeline, input, options) as async.Operation<types.CreateTelemetryPipelineOutput>
+function C:createTelemetryPipeline(input: types.CreateTelemetryPipelineInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTelemetryPipelineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTelemetryPipeline as schema.OperationSchema, input, options) as async.Operation<types.CreateTelemetryPipelineOutput>
 end
 
-function C:createTelemetryRule(input: types.CreateTelemetryRuleInput, options: any): async.Operation<types.CreateTelemetryRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTelemetryRule, input, options) as async.Operation<types.CreateTelemetryRuleOutput>
+function C:createTelemetryRule(input: types.CreateTelemetryRuleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTelemetryRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTelemetryRule as schema.OperationSchema, input, options) as async.Operation<types.CreateTelemetryRuleOutput>
 end
 
-function C:createTelemetryRuleForOrganization(input: types.CreateTelemetryRuleForOrganizationInput, options: any): async.Operation<types.CreateTelemetryRuleForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTelemetryRuleForOrganization, input, options) as async.Operation<types.CreateTelemetryRuleForOrganizationOutput>
+function C:createTelemetryRuleForOrganization(input: types.CreateTelemetryRuleForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTelemetryRuleForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTelemetryRuleForOrganization as schema.OperationSchema, input, options) as async.Operation<types.CreateTelemetryRuleForOrganizationOutput>
 end
 
-function C:deleteCentralizationRuleForOrganization(input: types.DeleteCentralizationRuleForOrganizationInput, options: any): async.Operation<types.DeleteCentralizationRuleForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCentralizationRuleForOrganization, input, options) as async.Operation<types.DeleteCentralizationRuleForOrganizationOutput>
+function C:deleteCentralizationRuleForOrganization(input: types.DeleteCentralizationRuleForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCentralizationRuleForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCentralizationRuleForOrganization as schema.OperationSchema, input, options) as async.Operation<types.DeleteCentralizationRuleForOrganizationOutput>
 end
 
-function C:deleteS3TableIntegration(input: types.DeleteS3TableIntegrationInput, options: any): async.Operation<types.DeleteS3TableIntegrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteS3TableIntegration, input, options) as async.Operation<types.DeleteS3TableIntegrationOutput>
+function C:deleteS3TableIntegration(input: types.DeleteS3TableIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteS3TableIntegrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteS3TableIntegration as schema.OperationSchema, input, options) as async.Operation<types.DeleteS3TableIntegrationOutput>
 end
 
-function C:deleteTelemetryPipeline(input: types.DeleteTelemetryPipelineInput, options: any): async.Operation<types.DeleteTelemetryPipelineOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTelemetryPipeline, input, options) as async.Operation<types.DeleteTelemetryPipelineOutput>
+function C:deleteTelemetryPipeline(input: types.DeleteTelemetryPipelineInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTelemetryPipelineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTelemetryPipeline as schema.OperationSchema, input, options) as async.Operation<types.DeleteTelemetryPipelineOutput>
 end
 
-function C:deleteTelemetryRule(input: types.DeleteTelemetryRuleInput, options: any): async.Operation<types.DeleteTelemetryRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTelemetryRule, input, options) as async.Operation<types.DeleteTelemetryRuleOutput>
+function C:deleteTelemetryRule(input: types.DeleteTelemetryRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTelemetryRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTelemetryRule as schema.OperationSchema, input, options) as async.Operation<types.DeleteTelemetryRuleOutput>
 end
 
-function C:deleteTelemetryRuleForOrganization(input: types.DeleteTelemetryRuleForOrganizationInput, options: any): async.Operation<types.DeleteTelemetryRuleForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTelemetryRuleForOrganization, input, options) as async.Operation<types.DeleteTelemetryRuleForOrganizationOutput>
+function C:deleteTelemetryRuleForOrganization(input: types.DeleteTelemetryRuleForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTelemetryRuleForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTelemetryRuleForOrganization as schema.OperationSchema, input, options) as async.Operation<types.DeleteTelemetryRuleForOrganizationOutput>
 end
 
-function C:getCentralizationRuleForOrganization(input: types.GetCentralizationRuleForOrganizationInput, options: any): async.Operation<types.GetCentralizationRuleForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCentralizationRuleForOrganization, input, options) as async.Operation<types.GetCentralizationRuleForOrganizationOutput>
+function C:getCentralizationRuleForOrganization(input: types.GetCentralizationRuleForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.GetCentralizationRuleForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCentralizationRuleForOrganization as schema.OperationSchema, input, options) as async.Operation<types.GetCentralizationRuleForOrganizationOutput>
 end
 
-function C:getS3TableIntegration(input: types.GetS3TableIntegrationInput, options: any): async.Operation<types.GetS3TableIntegrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetS3TableIntegration, input, options) as async.Operation<types.GetS3TableIntegrationOutput>
+function C:getS3TableIntegration(input: types.GetS3TableIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.GetS3TableIntegrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetS3TableIntegration as schema.OperationSchema, input, options) as async.Operation<types.GetS3TableIntegrationOutput>
 end
 
-function C:getTelemetryEnrichmentStatus(input: types.GetTelemetryEnrichmentStatusInput, options: any): async.Operation<types.GetTelemetryEnrichmentStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTelemetryEnrichmentStatus, input, options) as async.Operation<types.GetTelemetryEnrichmentStatusOutput>
+function C:getTelemetryEnrichmentStatus(input: types.GetTelemetryEnrichmentStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetTelemetryEnrichmentStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTelemetryEnrichmentStatus as schema.OperationSchema, input, options) as async.Operation<types.GetTelemetryEnrichmentStatusOutput>
 end
 
-function C:getTelemetryEvaluationStatus(input: types.GetTelemetryEvaluationStatusInput, options: any): async.Operation<types.GetTelemetryEvaluationStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTelemetryEvaluationStatus, input, options) as async.Operation<types.GetTelemetryEvaluationStatusOutput>
+function C:getTelemetryEvaluationStatus(input: types.GetTelemetryEvaluationStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetTelemetryEvaluationStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTelemetryEvaluationStatus as schema.OperationSchema, input, options) as async.Operation<types.GetTelemetryEvaluationStatusOutput>
 end
 
-function C:getTelemetryEvaluationStatusForOrganization(input: types.GetTelemetryEvaluationStatusForOrganizationInput, options: any): async.Operation<types.GetTelemetryEvaluationStatusForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTelemetryEvaluationStatusForOrganization, input, options) as async.Operation<types.GetTelemetryEvaluationStatusForOrganizationOutput>
+function C:getTelemetryEvaluationStatusForOrganization(input: types.GetTelemetryEvaluationStatusForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.GetTelemetryEvaluationStatusForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTelemetryEvaluationStatusForOrganization as schema.OperationSchema, input, options) as async.Operation<types.GetTelemetryEvaluationStatusForOrganizationOutput>
 end
 
-function C:getTelemetryPipeline(input: types.GetTelemetryPipelineInput, options: any): async.Operation<types.GetTelemetryPipelineOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTelemetryPipeline, input, options) as async.Operation<types.GetTelemetryPipelineOutput>
+function C:getTelemetryPipeline(input: types.GetTelemetryPipelineInput, options?: base_client.InvokeOptions): async.Operation<types.GetTelemetryPipelineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTelemetryPipeline as schema.OperationSchema, input, options) as async.Operation<types.GetTelemetryPipelineOutput>
 end
 
-function C:getTelemetryRule(input: types.GetTelemetryRuleInput, options: any): async.Operation<types.GetTelemetryRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTelemetryRule, input, options) as async.Operation<types.GetTelemetryRuleOutput>
+function C:getTelemetryRule(input: types.GetTelemetryRuleInput, options?: base_client.InvokeOptions): async.Operation<types.GetTelemetryRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTelemetryRule as schema.OperationSchema, input, options) as async.Operation<types.GetTelemetryRuleOutput>
 end
 
-function C:getTelemetryRuleForOrganization(input: types.GetTelemetryRuleForOrganizationInput, options: any): async.Operation<types.GetTelemetryRuleForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTelemetryRuleForOrganization, input, options) as async.Operation<types.GetTelemetryRuleForOrganizationOutput>
+function C:getTelemetryRuleForOrganization(input: types.GetTelemetryRuleForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.GetTelemetryRuleForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTelemetryRuleForOrganization as schema.OperationSchema, input, options) as async.Operation<types.GetTelemetryRuleForOrganizationOutput>
 end
 
-function C:listCentralizationRulesForOrganization(input: types.ListCentralizationRulesForOrganizationInput, options: any): async.Operation<types.ListCentralizationRulesForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCentralizationRulesForOrganization, input, options) as async.Operation<types.ListCentralizationRulesForOrganizationOutput>
+function C:listCentralizationRulesForOrganization(input: types.ListCentralizationRulesForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.ListCentralizationRulesForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCentralizationRulesForOrganization as schema.OperationSchema, input, options) as async.Operation<types.ListCentralizationRulesForOrganizationOutput>
 end
 
-function C:listResourceTelemetry(input: types.ListResourceTelemetryInput, options: any): async.Operation<types.ListResourceTelemetryOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResourceTelemetry, input, options) as async.Operation<types.ListResourceTelemetryOutput>
+function C:listResourceTelemetry(input: types.ListResourceTelemetryInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourceTelemetryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourceTelemetry as schema.OperationSchema, input, options) as async.Operation<types.ListResourceTelemetryOutput>
 end
 
-function C:listResourceTelemetryForOrganization(input: types.ListResourceTelemetryForOrganizationInput, options: any): async.Operation<types.ListResourceTelemetryForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResourceTelemetryForOrganization, input, options) as async.Operation<types.ListResourceTelemetryForOrganizationOutput>
+function C:listResourceTelemetryForOrganization(input: types.ListResourceTelemetryForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourceTelemetryForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourceTelemetryForOrganization as schema.OperationSchema, input, options) as async.Operation<types.ListResourceTelemetryForOrganizationOutput>
 end
 
-function C:listS3TableIntegrations(input: types.ListS3TableIntegrationsInput, options: any): async.Operation<types.ListS3TableIntegrationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListS3TableIntegrations, input, options) as async.Operation<types.ListS3TableIntegrationsOutput>
+function C:listS3TableIntegrations(input: types.ListS3TableIntegrationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListS3TableIntegrationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListS3TableIntegrations as schema.OperationSchema, input, options) as async.Operation<types.ListS3TableIntegrationsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTelemetryPipelines(input: types.ListTelemetryPipelinesInput, options: any): async.Operation<types.ListTelemetryPipelinesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTelemetryPipelines, input, options) as async.Operation<types.ListTelemetryPipelinesOutput>
+function C:listTelemetryPipelines(input: types.ListTelemetryPipelinesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTelemetryPipelinesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTelemetryPipelines as schema.OperationSchema, input, options) as async.Operation<types.ListTelemetryPipelinesOutput>
 end
 
-function C:listTelemetryRules(input: types.ListTelemetryRulesInput, options: any): async.Operation<types.ListTelemetryRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTelemetryRules, input, options) as async.Operation<types.ListTelemetryRulesOutput>
+function C:listTelemetryRules(input: types.ListTelemetryRulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTelemetryRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTelemetryRules as schema.OperationSchema, input, options) as async.Operation<types.ListTelemetryRulesOutput>
 end
 
-function C:listTelemetryRulesForOrganization(input: types.ListTelemetryRulesForOrganizationInput, options: any): async.Operation<types.ListTelemetryRulesForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTelemetryRulesForOrganization, input, options) as async.Operation<types.ListTelemetryRulesForOrganizationOutput>
+function C:listTelemetryRulesForOrganization(input: types.ListTelemetryRulesForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.ListTelemetryRulesForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTelemetryRulesForOrganization as schema.OperationSchema, input, options) as async.Operation<types.ListTelemetryRulesForOrganizationOutput>
 end
 
-function C:startTelemetryEnrichment(input: types.StartTelemetryEnrichmentInput, options: any): async.Operation<types.StartTelemetryEnrichmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartTelemetryEnrichment, input, options) as async.Operation<types.StartTelemetryEnrichmentOutput>
+function C:startTelemetryEnrichment(input: types.StartTelemetryEnrichmentInput, options?: base_client.InvokeOptions): async.Operation<types.StartTelemetryEnrichmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartTelemetryEnrichment as schema.OperationSchema, input, options) as async.Operation<types.StartTelemetryEnrichmentOutput>
 end
 
-function C:startTelemetryEvaluation(input: types.StartTelemetryEvaluationInput, options: any): async.Operation<types.StartTelemetryEvaluationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartTelemetryEvaluation, input, options) as async.Operation<types.StartTelemetryEvaluationOutput>
+function C:startTelemetryEvaluation(input: types.StartTelemetryEvaluationInput, options?: base_client.InvokeOptions): async.Operation<types.StartTelemetryEvaluationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartTelemetryEvaluation as schema.OperationSchema, input, options) as async.Operation<types.StartTelemetryEvaluationOutput>
 end
 
-function C:startTelemetryEvaluationForOrganization(input: types.StartTelemetryEvaluationForOrganizationInput, options: any): async.Operation<types.StartTelemetryEvaluationForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartTelemetryEvaluationForOrganization, input, options) as async.Operation<types.StartTelemetryEvaluationForOrganizationOutput>
+function C:startTelemetryEvaluationForOrganization(input: types.StartTelemetryEvaluationForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.StartTelemetryEvaluationForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartTelemetryEvaluationForOrganization as schema.OperationSchema, input, options) as async.Operation<types.StartTelemetryEvaluationForOrganizationOutput>
 end
 
-function C:stopTelemetryEnrichment(input: types.StopTelemetryEnrichmentInput, options: any): async.Operation<types.StopTelemetryEnrichmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopTelemetryEnrichment, input, options) as async.Operation<types.StopTelemetryEnrichmentOutput>
+function C:stopTelemetryEnrichment(input: types.StopTelemetryEnrichmentInput, options?: base_client.InvokeOptions): async.Operation<types.StopTelemetryEnrichmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopTelemetryEnrichment as schema.OperationSchema, input, options) as async.Operation<types.StopTelemetryEnrichmentOutput>
 end
 
-function C:stopTelemetryEvaluation(input: types.StopTelemetryEvaluationInput, options: any): async.Operation<types.StopTelemetryEvaluationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopTelemetryEvaluation, input, options) as async.Operation<types.StopTelemetryEvaluationOutput>
+function C:stopTelemetryEvaluation(input: types.StopTelemetryEvaluationInput, options?: base_client.InvokeOptions): async.Operation<types.StopTelemetryEvaluationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopTelemetryEvaluation as schema.OperationSchema, input, options) as async.Operation<types.StopTelemetryEvaluationOutput>
 end
 
-function C:stopTelemetryEvaluationForOrganization(input: types.StopTelemetryEvaluationForOrganizationInput, options: any): async.Operation<types.StopTelemetryEvaluationForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopTelemetryEvaluationForOrganization, input, options) as async.Operation<types.StopTelemetryEvaluationForOrganizationOutput>
+function C:stopTelemetryEvaluationForOrganization(input: types.StopTelemetryEvaluationForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.StopTelemetryEvaluationForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopTelemetryEvaluationForOrganization as schema.OperationSchema, input, options) as async.Operation<types.StopTelemetryEvaluationForOrganizationOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:testTelemetryPipeline(input: types.TestTelemetryPipelineInput, options: any): async.Operation<types.TestTelemetryPipelineOutput>
-    return self:invokeOperation(schemas.Service, schemas.TestTelemetryPipeline, input, options) as async.Operation<types.TestTelemetryPipelineOutput>
+function C:testTelemetryPipeline(input: types.TestTelemetryPipelineInput, options?: base_client.InvokeOptions): async.Operation<types.TestTelemetryPipelineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TestTelemetryPipeline as schema.OperationSchema, input, options) as async.Operation<types.TestTelemetryPipelineOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateCentralizationRuleForOrganization(input: types.UpdateCentralizationRuleForOrganizationInput, options: any): async.Operation<types.UpdateCentralizationRuleForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCentralizationRuleForOrganization, input, options) as async.Operation<types.UpdateCentralizationRuleForOrganizationOutput>
+function C:updateCentralizationRuleForOrganization(input: types.UpdateCentralizationRuleForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCentralizationRuleForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCentralizationRuleForOrganization as schema.OperationSchema, input, options) as async.Operation<types.UpdateCentralizationRuleForOrganizationOutput>
 end
 
-function C:updateTelemetryPipeline(input: types.UpdateTelemetryPipelineInput, options: any): async.Operation<types.UpdateTelemetryPipelineOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTelemetryPipeline, input, options) as async.Operation<types.UpdateTelemetryPipelineOutput>
+function C:updateTelemetryPipeline(input: types.UpdateTelemetryPipelineInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTelemetryPipelineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTelemetryPipeline as schema.OperationSchema, input, options) as async.Operation<types.UpdateTelemetryPipelineOutput>
 end
 
-function C:updateTelemetryRule(input: types.UpdateTelemetryRuleInput, options: any): async.Operation<types.UpdateTelemetryRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTelemetryRule, input, options) as async.Operation<types.UpdateTelemetryRuleOutput>
+function C:updateTelemetryRule(input: types.UpdateTelemetryRuleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTelemetryRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTelemetryRule as schema.OperationSchema, input, options) as async.Operation<types.UpdateTelemetryRuleOutput>
 end
 
-function C:updateTelemetryRuleForOrganization(input: types.UpdateTelemetryRuleForOrganizationInput, options: any): async.Operation<types.UpdateTelemetryRuleForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTelemetryRuleForOrganization, input, options) as async.Operation<types.UpdateTelemetryRuleForOrganizationOutput>
+function C:updateTelemetryRuleForOrganization(input: types.UpdateTelemetryRuleForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTelemetryRuleForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTelemetryRuleForOrganization as schema.OperationSchema, input, options) as async.Operation<types.UpdateTelemetryRuleForOrganizationOutput>
 end
 
-function C:validateTelemetryPipelineConfiguration(input: types.ValidateTelemetryPipelineConfigurationInput, options: any): async.Operation<types.ValidateTelemetryPipelineConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ValidateTelemetryPipelineConfiguration, input, options) as async.Operation<types.ValidateTelemetryPipelineConfigurationOutput>
+function C:validateTelemetryPipelineConfiguration(input: types.ValidateTelemetryPipelineConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.ValidateTelemetryPipelineConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ValidateTelemetryPipelineConfiguration as schema.OperationSchema, input, options) as async.Operation<types.ValidateTelemetryPipelineConfigurationOutput>
 end
 
 return M

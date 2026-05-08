@@ -8,89 +8,92 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("securityagent.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("securityagent.schemas")
 local traits = require("smithy.traits")
 local types = require("securityagent.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    addArtifact: function(Client, types.AddArtifactInput, any): async.Operation<types.AddArtifactOutput>
-    batchDeletePentests: function(Client, types.BatchDeletePentestsInput, any): async.Operation<types.BatchDeletePentestsOutput>
-    batchGetAgentSpaces: function(Client, types.BatchGetAgentSpacesInput, any): async.Operation<types.BatchGetAgentSpacesOutput>
-    batchGetArtifactMetadata: function(Client, types.BatchGetArtifactMetadataInput, any): async.Operation<types.BatchGetArtifactMetadataOutput>
-    batchGetFindings: function(Client, types.BatchGetFindingsInput, any): async.Operation<types.BatchGetFindingsOutput>
-    batchGetPentestJobs: function(Client, types.BatchGetPentestJobsInput, any): async.Operation<types.BatchGetPentestJobsOutput>
-    batchGetPentestJobTasks: function(Client, types.BatchGetPentestJobTasksInput, any): async.Operation<types.BatchGetPentestJobTasksOutput>
-    batchGetPentests: function(Client, types.BatchGetPentestsInput, any): async.Operation<types.BatchGetPentestsOutput>
-    batchGetTargetDomains: function(Client, types.BatchGetTargetDomainsInput, any): async.Operation<types.BatchGetTargetDomainsOutput>
-    createAgentSpace: function(Client, types.CreateAgentSpaceInput, any): async.Operation<types.CreateAgentSpaceOutput>
-    createApplication: function(Client, types.CreateApplicationInput, any): async.Operation<types.CreateApplicationOutput>
-    createIntegration: function(Client, types.CreateIntegrationInput, any): async.Operation<types.CreateIntegrationOutput>
-    createMembership: function(Client, types.CreateMembershipInput, any): async.Operation<types.CreateMembershipOutput>
-    createPentest: function(Client, types.CreatePentestInput, any): async.Operation<types.CreatePentestOutput>
-    createTargetDomain: function(Client, types.CreateTargetDomainInput, any): async.Operation<types.CreateTargetDomainOutput>
-    deleteAgentSpace: function(Client, types.DeleteAgentSpaceInput, any): async.Operation<types.DeleteAgentSpaceOutput>
-    deleteApplication: function(Client, types.DeleteApplicationInput, any): async.Operation<types.DeleteApplicationOutput>
-    deleteArtifact: function(Client, types.DeleteArtifactInput, any): async.Operation<types.DeleteArtifactOutput>
-    deleteIntegration: function(Client, types.DeleteIntegrationInput, any): async.Operation<types.DeleteIntegrationOutput>
-    deleteMembership: function(Client, types.DeleteMembershipInput, any): async.Operation<types.DeleteMembershipOutput>
-    deleteTargetDomain: function(Client, types.DeleteTargetDomainInput, any): async.Operation<types.DeleteTargetDomainOutput>
-    getApplication: function(Client, types.GetApplicationInput, any): async.Operation<types.GetApplicationOutput>
-    getArtifact: function(Client, types.GetArtifactInput, any): async.Operation<types.GetArtifactOutput>
-    getIntegration: function(Client, types.GetIntegrationInput, any): async.Operation<types.GetIntegrationOutput>
-    initiateProviderRegistration: function(Client, types.InitiateProviderRegistrationInput, any): async.Operation<types.InitiateProviderRegistrationOutput>
-    listAgentSpaces: function(Client, types.ListAgentSpacesInput, any): async.Operation<types.ListAgentSpacesOutput>
-    listApplications: function(Client, types.ListApplicationsInput, any): async.Operation<types.ListApplicationsOutput>
-    listArtifacts: function(Client, types.ListArtifactsInput, any): async.Operation<types.ListArtifactsOutput>
-    listDiscoveredEndpoints: function(Client, types.ListDiscoveredEndpointsInput, any): async.Operation<types.ListDiscoveredEndpointsOutput>
-    listFindings: function(Client, types.ListFindingsInput, any): async.Operation<types.ListFindingsOutput>
-    listIntegratedResources: function(Client, types.ListIntegratedResourcesInput, any): async.Operation<types.ListIntegratedResourcesOutput>
-    listIntegrations: function(Client, types.ListIntegrationsInput, any): async.Operation<types.ListIntegrationsOutput>
-    listMemberships: function(Client, types.ListMembershipsInput, any): async.Operation<types.ListMembershipsOutput>
-    listPentestJobsForPentest: function(Client, types.ListPentestJobsForPentestInput, any): async.Operation<types.ListPentestJobsForPentestOutput>
-    listPentestJobTasks: function(Client, types.ListPentestJobTasksInput, any): async.Operation<types.ListPentestJobTasksOutput>
-    listPentests: function(Client, types.ListPentestsInput, any): async.Operation<types.ListPentestsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTargetDomains: function(Client, types.ListTargetDomainsInput, any): async.Operation<types.ListTargetDomainsOutput>
-    startCodeRemediation: function(Client, types.StartCodeRemediationInput, any): async.Operation<types.StartCodeRemediationOutput>
-    startPentestJob: function(Client, types.StartPentestJobInput, any): async.Operation<types.StartPentestJobOutput>
-    stopPentestJob: function(Client, types.StopPentestJobInput, any): async.Operation<types.StopPentestJobOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAgentSpace: function(Client, types.UpdateAgentSpaceInput, any): async.Operation<types.UpdateAgentSpaceOutput>
-    updateApplication: function(Client, types.UpdateApplicationInput, any): async.Operation<types.UpdateApplicationOutput>
-    updateFinding: function(Client, types.UpdateFindingInput, any): async.Operation<types.UpdateFindingOutput>
-    updateIntegratedResources: function(Client, types.UpdateIntegratedResourcesInput, any): async.Operation<types.UpdateIntegratedResourcesOutput>
-    updatePentest: function(Client, types.UpdatePentestInput, any): async.Operation<types.UpdatePentestOutput>
-    updateTargetDomain: function(Client, types.UpdateTargetDomainInput, any): async.Operation<types.UpdateTargetDomainOutput>
-    verifyTargetDomain: function(Client, types.VerifyTargetDomainInput, any): async.Operation<types.VerifyTargetDomainOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    addArtifact: function(Client, types.AddArtifactInput, ? base_client.InvokeOptions): async.Operation<types.AddArtifactOutput>
+    batchDeletePentests: function(Client, types.BatchDeletePentestsInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeletePentestsOutput>
+    batchGetAgentSpaces: function(Client, types.BatchGetAgentSpacesInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetAgentSpacesOutput>
+    batchGetArtifactMetadata: function(Client, types.BatchGetArtifactMetadataInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetArtifactMetadataOutput>
+    batchGetFindings: function(Client, types.BatchGetFindingsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetFindingsOutput>
+    batchGetPentestJobs: function(Client, types.BatchGetPentestJobsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetPentestJobsOutput>
+    batchGetPentestJobTasks: function(Client, types.BatchGetPentestJobTasksInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetPentestJobTasksOutput>
+    batchGetPentests: function(Client, types.BatchGetPentestsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetPentestsOutput>
+    batchGetTargetDomains: function(Client, types.BatchGetTargetDomainsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetTargetDomainsOutput>
+    createAgentSpace: function(Client, types.CreateAgentSpaceInput, ? base_client.InvokeOptions): async.Operation<types.CreateAgentSpaceOutput>
+    createApplication: function(Client, types.CreateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    createIntegration: function(Client, types.CreateIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.CreateIntegrationOutput>
+    createMembership: function(Client, types.CreateMembershipInput, ? base_client.InvokeOptions): async.Operation<types.CreateMembershipOutput>
+    createPentest: function(Client, types.CreatePentestInput, ? base_client.InvokeOptions): async.Operation<types.CreatePentestOutput>
+    createTargetDomain: function(Client, types.CreateTargetDomainInput, ? base_client.InvokeOptions): async.Operation<types.CreateTargetDomainOutput>
+    deleteAgentSpace: function(Client, types.DeleteAgentSpaceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAgentSpaceOutput>
+    deleteApplication: function(Client, types.DeleteApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
+    deleteArtifact: function(Client, types.DeleteArtifactInput, ? base_client.InvokeOptions): async.Operation<types.DeleteArtifactOutput>
+    deleteIntegration: function(Client, types.DeleteIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIntegrationOutput>
+    deleteMembership: function(Client, types.DeleteMembershipInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMembershipOutput>
+    deleteTargetDomain: function(Client, types.DeleteTargetDomainInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTargetDomainOutput>
+    getApplication: function(Client, types.GetApplicationInput, ? base_client.InvokeOptions): async.Operation<types.GetApplicationOutput>
+    getArtifact: function(Client, types.GetArtifactInput, ? base_client.InvokeOptions): async.Operation<types.GetArtifactOutput>
+    getIntegration: function(Client, types.GetIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.GetIntegrationOutput>
+    initiateProviderRegistration: function(Client, types.InitiateProviderRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.InitiateProviderRegistrationOutput>
+    listAgentSpaces: function(Client, types.ListAgentSpacesInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentSpacesOutput>
+    listApplications: function(Client, types.ListApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    listArtifacts: function(Client, types.ListArtifactsInput, ? base_client.InvokeOptions): async.Operation<types.ListArtifactsOutput>
+    listDiscoveredEndpoints: function(Client, types.ListDiscoveredEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.ListDiscoveredEndpointsOutput>
+    listFindings: function(Client, types.ListFindingsInput, ? base_client.InvokeOptions): async.Operation<types.ListFindingsOutput>
+    listIntegratedResources: function(Client, types.ListIntegratedResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListIntegratedResourcesOutput>
+    listIntegrations: function(Client, types.ListIntegrationsInput, ? base_client.InvokeOptions): async.Operation<types.ListIntegrationsOutput>
+    listMemberships: function(Client, types.ListMembershipsInput, ? base_client.InvokeOptions): async.Operation<types.ListMembershipsOutput>
+    listPentestJobsForPentest: function(Client, types.ListPentestJobsForPentestInput, ? base_client.InvokeOptions): async.Operation<types.ListPentestJobsForPentestOutput>
+    listPentestJobTasks: function(Client, types.ListPentestJobTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListPentestJobTasksOutput>
+    listPentests: function(Client, types.ListPentestsInput, ? base_client.InvokeOptions): async.Operation<types.ListPentestsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTargetDomains: function(Client, types.ListTargetDomainsInput, ? base_client.InvokeOptions): async.Operation<types.ListTargetDomainsOutput>
+    startCodeRemediation: function(Client, types.StartCodeRemediationInput, ? base_client.InvokeOptions): async.Operation<types.StartCodeRemediationOutput>
+    startPentestJob: function(Client, types.StartPentestJobInput, ? base_client.InvokeOptions): async.Operation<types.StartPentestJobOutput>
+    stopPentestJob: function(Client, types.StopPentestJobInput, ? base_client.InvokeOptions): async.Operation<types.StopPentestJobOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAgentSpace: function(Client, types.UpdateAgentSpaceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAgentSpaceOutput>
+    updateApplication: function(Client, types.UpdateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
+    updateFinding: function(Client, types.UpdateFindingInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFindingOutput>
+    updateIntegratedResources: function(Client, types.UpdateIntegratedResourcesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIntegratedResourcesOutput>
+    updatePentest: function(Client, types.UpdatePentestInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePentestOutput>
+    updateTargetDomain: function(Client, types.UpdateTargetDomainInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTargetDomainOutput>
+    verifyTargetDomain: function(Client, types.VerifyTargetDomainInput, ? base_client.InvokeOptions): async.Operation<types.VerifyTargetDomainOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "SecurityAgent"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "securityagent", signing_region = c.region } }
                 else
@@ -109,204 +112,204 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:addArtifact(input: types.AddArtifactInput, options: any): async.Operation<types.AddArtifactOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddArtifact, input, options) as async.Operation<types.AddArtifactOutput>
+function C:addArtifact(input: types.AddArtifactInput, options?: base_client.InvokeOptions): async.Operation<types.AddArtifactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddArtifact as schema.OperationSchema, input, options) as async.Operation<types.AddArtifactOutput>
 end
 
-function C:batchDeletePentests(input: types.BatchDeletePentestsInput, options: any): async.Operation<types.BatchDeletePentestsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDeletePentests, input, options) as async.Operation<types.BatchDeletePentestsOutput>
+function C:batchDeletePentests(input: types.BatchDeletePentestsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeletePentestsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeletePentests as schema.OperationSchema, input, options) as async.Operation<types.BatchDeletePentestsOutput>
 end
 
-function C:batchGetAgentSpaces(input: types.BatchGetAgentSpacesInput, options: any): async.Operation<types.BatchGetAgentSpacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetAgentSpaces, input, options) as async.Operation<types.BatchGetAgentSpacesOutput>
+function C:batchGetAgentSpaces(input: types.BatchGetAgentSpacesInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetAgentSpacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetAgentSpaces as schema.OperationSchema, input, options) as async.Operation<types.BatchGetAgentSpacesOutput>
 end
 
-function C:batchGetArtifactMetadata(input: types.BatchGetArtifactMetadataInput, options: any): async.Operation<types.BatchGetArtifactMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetArtifactMetadata, input, options) as async.Operation<types.BatchGetArtifactMetadataOutput>
+function C:batchGetArtifactMetadata(input: types.BatchGetArtifactMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetArtifactMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetArtifactMetadata as schema.OperationSchema, input, options) as async.Operation<types.BatchGetArtifactMetadataOutput>
 end
 
-function C:batchGetFindings(input: types.BatchGetFindingsInput, options: any): async.Operation<types.BatchGetFindingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetFindings, input, options) as async.Operation<types.BatchGetFindingsOutput>
+function C:batchGetFindings(input: types.BatchGetFindingsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetFindingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetFindings as schema.OperationSchema, input, options) as async.Operation<types.BatchGetFindingsOutput>
 end
 
-function C:batchGetPentestJobs(input: types.BatchGetPentestJobsInput, options: any): async.Operation<types.BatchGetPentestJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetPentestJobs, input, options) as async.Operation<types.BatchGetPentestJobsOutput>
+function C:batchGetPentestJobs(input: types.BatchGetPentestJobsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetPentestJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetPentestJobs as schema.OperationSchema, input, options) as async.Operation<types.BatchGetPentestJobsOutput>
 end
 
-function C:batchGetPentestJobTasks(input: types.BatchGetPentestJobTasksInput, options: any): async.Operation<types.BatchGetPentestJobTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetPentestJobTasks, input, options) as async.Operation<types.BatchGetPentestJobTasksOutput>
+function C:batchGetPentestJobTasks(input: types.BatchGetPentestJobTasksInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetPentestJobTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetPentestJobTasks as schema.OperationSchema, input, options) as async.Operation<types.BatchGetPentestJobTasksOutput>
 end
 
-function C:batchGetPentests(input: types.BatchGetPentestsInput, options: any): async.Operation<types.BatchGetPentestsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetPentests, input, options) as async.Operation<types.BatchGetPentestsOutput>
+function C:batchGetPentests(input: types.BatchGetPentestsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetPentestsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetPentests as schema.OperationSchema, input, options) as async.Operation<types.BatchGetPentestsOutput>
 end
 
-function C:batchGetTargetDomains(input: types.BatchGetTargetDomainsInput, options: any): async.Operation<types.BatchGetTargetDomainsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetTargetDomains, input, options) as async.Operation<types.BatchGetTargetDomainsOutput>
+function C:batchGetTargetDomains(input: types.BatchGetTargetDomainsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetTargetDomainsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetTargetDomains as schema.OperationSchema, input, options) as async.Operation<types.BatchGetTargetDomainsOutput>
 end
 
-function C:createAgentSpace(input: types.CreateAgentSpaceInput, options: any): async.Operation<types.CreateAgentSpaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAgentSpace, input, options) as async.Operation<types.CreateAgentSpaceOutput>
+function C:createAgentSpace(input: types.CreateAgentSpaceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAgentSpaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAgentSpace as schema.OperationSchema, input, options) as async.Operation<types.CreateAgentSpaceOutput>
 end
 
-function C:createApplication(input: types.CreateApplicationInput, options: any): async.Operation<types.CreateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateApplication, input, options) as async.Operation<types.CreateApplicationOutput>
+function C:createApplication(input: types.CreateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApplication as schema.OperationSchema, input, options) as async.Operation<types.CreateApplicationOutput>
 end
 
-function C:createIntegration(input: types.CreateIntegrationInput, options: any): async.Operation<types.CreateIntegrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIntegration, input, options) as async.Operation<types.CreateIntegrationOutput>
+function C:createIntegration(input: types.CreateIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIntegrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIntegration as schema.OperationSchema, input, options) as async.Operation<types.CreateIntegrationOutput>
 end
 
-function C:createMembership(input: types.CreateMembershipInput, options: any): async.Operation<types.CreateMembershipOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMembership, input, options) as async.Operation<types.CreateMembershipOutput>
+function C:createMembership(input: types.CreateMembershipInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMembershipOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMembership as schema.OperationSchema, input, options) as async.Operation<types.CreateMembershipOutput>
 end
 
-function C:createPentest(input: types.CreatePentestInput, options: any): async.Operation<types.CreatePentestOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePentest, input, options) as async.Operation<types.CreatePentestOutput>
+function C:createPentest(input: types.CreatePentestInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePentestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePentest as schema.OperationSchema, input, options) as async.Operation<types.CreatePentestOutput>
 end
 
-function C:createTargetDomain(input: types.CreateTargetDomainInput, options: any): async.Operation<types.CreateTargetDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTargetDomain, input, options) as async.Operation<types.CreateTargetDomainOutput>
+function C:createTargetDomain(input: types.CreateTargetDomainInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTargetDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTargetDomain as schema.OperationSchema, input, options) as async.Operation<types.CreateTargetDomainOutput>
 end
 
-function C:deleteAgentSpace(input: types.DeleteAgentSpaceInput, options: any): async.Operation<types.DeleteAgentSpaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAgentSpace, input, options) as async.Operation<types.DeleteAgentSpaceOutput>
+function C:deleteAgentSpace(input: types.DeleteAgentSpaceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAgentSpaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAgentSpace as schema.OperationSchema, input, options) as async.Operation<types.DeleteAgentSpaceOutput>
 end
 
-function C:deleteApplication(input: types.DeleteApplicationInput, options: any): async.Operation<types.DeleteApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApplication, input, options) as async.Operation<types.DeleteApplicationOutput>
+function C:deleteApplication(input: types.DeleteApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplication as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationOutput>
 end
 
-function C:deleteArtifact(input: types.DeleteArtifactInput, options: any): async.Operation<types.DeleteArtifactOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteArtifact, input, options) as async.Operation<types.DeleteArtifactOutput>
+function C:deleteArtifact(input: types.DeleteArtifactInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteArtifactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteArtifact as schema.OperationSchema, input, options) as async.Operation<types.DeleteArtifactOutput>
 end
 
-function C:deleteIntegration(input: types.DeleteIntegrationInput, options: any): async.Operation<types.DeleteIntegrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIntegration, input, options) as async.Operation<types.DeleteIntegrationOutput>
+function C:deleteIntegration(input: types.DeleteIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIntegrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIntegration as schema.OperationSchema, input, options) as async.Operation<types.DeleteIntegrationOutput>
 end
 
-function C:deleteMembership(input: types.DeleteMembershipInput, options: any): async.Operation<types.DeleteMembershipOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMembership, input, options) as async.Operation<types.DeleteMembershipOutput>
+function C:deleteMembership(input: types.DeleteMembershipInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMembershipOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMembership as schema.OperationSchema, input, options) as async.Operation<types.DeleteMembershipOutput>
 end
 
-function C:deleteTargetDomain(input: types.DeleteTargetDomainInput, options: any): async.Operation<types.DeleteTargetDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTargetDomain, input, options) as async.Operation<types.DeleteTargetDomainOutput>
+function C:deleteTargetDomain(input: types.DeleteTargetDomainInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTargetDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTargetDomain as schema.OperationSchema, input, options) as async.Operation<types.DeleteTargetDomainOutput>
 end
 
-function C:getApplication(input: types.GetApplicationInput, options: any): async.Operation<types.GetApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetApplication, input, options) as async.Operation<types.GetApplicationOutput>
+function C:getApplication(input: types.GetApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.GetApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetApplication as schema.OperationSchema, input, options) as async.Operation<types.GetApplicationOutput>
 end
 
-function C:getArtifact(input: types.GetArtifactInput, options: any): async.Operation<types.GetArtifactOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetArtifact, input, options) as async.Operation<types.GetArtifactOutput>
+function C:getArtifact(input: types.GetArtifactInput, options?: base_client.InvokeOptions): async.Operation<types.GetArtifactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetArtifact as schema.OperationSchema, input, options) as async.Operation<types.GetArtifactOutput>
 end
 
-function C:getIntegration(input: types.GetIntegrationInput, options: any): async.Operation<types.GetIntegrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIntegration, input, options) as async.Operation<types.GetIntegrationOutput>
+function C:getIntegration(input: types.GetIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.GetIntegrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIntegration as schema.OperationSchema, input, options) as async.Operation<types.GetIntegrationOutput>
 end
 
-function C:initiateProviderRegistration(input: types.InitiateProviderRegistrationInput, options: any): async.Operation<types.InitiateProviderRegistrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.InitiateProviderRegistration, input, options) as async.Operation<types.InitiateProviderRegistrationOutput>
+function C:initiateProviderRegistration(input: types.InitiateProviderRegistrationInput, options?: base_client.InvokeOptions): async.Operation<types.InitiateProviderRegistrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InitiateProviderRegistration as schema.OperationSchema, input, options) as async.Operation<types.InitiateProviderRegistrationOutput>
 end
 
-function C:listAgentSpaces(input: types.ListAgentSpacesInput, options: any): async.Operation<types.ListAgentSpacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAgentSpaces, input, options) as async.Operation<types.ListAgentSpacesOutput>
+function C:listAgentSpaces(input: types.ListAgentSpacesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAgentSpacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAgentSpaces as schema.OperationSchema, input, options) as async.Operation<types.ListAgentSpacesOutput>
 end
 
-function C:listApplications(input: types.ListApplicationsInput, options: any): async.Operation<types.ListApplicationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplications, input, options) as async.Operation<types.ListApplicationsOutput>
+function C:listApplications(input: types.ListApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplications as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationsOutput>
 end
 
-function C:listArtifacts(input: types.ListArtifactsInput, options: any): async.Operation<types.ListArtifactsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListArtifacts, input, options) as async.Operation<types.ListArtifactsOutput>
+function C:listArtifacts(input: types.ListArtifactsInput, options?: base_client.InvokeOptions): async.Operation<types.ListArtifactsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListArtifacts as schema.OperationSchema, input, options) as async.Operation<types.ListArtifactsOutput>
 end
 
-function C:listDiscoveredEndpoints(input: types.ListDiscoveredEndpointsInput, options: any): async.Operation<types.ListDiscoveredEndpointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDiscoveredEndpoints, input, options) as async.Operation<types.ListDiscoveredEndpointsOutput>
+function C:listDiscoveredEndpoints(input: types.ListDiscoveredEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDiscoveredEndpointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDiscoveredEndpoints as schema.OperationSchema, input, options) as async.Operation<types.ListDiscoveredEndpointsOutput>
 end
 
-function C:listFindings(input: types.ListFindingsInput, options: any): async.Operation<types.ListFindingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFindings, input, options) as async.Operation<types.ListFindingsOutput>
+function C:listFindings(input: types.ListFindingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFindingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFindings as schema.OperationSchema, input, options) as async.Operation<types.ListFindingsOutput>
 end
 
-function C:listIntegratedResources(input: types.ListIntegratedResourcesInput, options: any): async.Operation<types.ListIntegratedResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIntegratedResources, input, options) as async.Operation<types.ListIntegratedResourcesOutput>
+function C:listIntegratedResources(input: types.ListIntegratedResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListIntegratedResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIntegratedResources as schema.OperationSchema, input, options) as async.Operation<types.ListIntegratedResourcesOutput>
 end
 
-function C:listIntegrations(input: types.ListIntegrationsInput, options: any): async.Operation<types.ListIntegrationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIntegrations, input, options) as async.Operation<types.ListIntegrationsOutput>
+function C:listIntegrations(input: types.ListIntegrationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListIntegrationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIntegrations as schema.OperationSchema, input, options) as async.Operation<types.ListIntegrationsOutput>
 end
 
-function C:listMemberships(input: types.ListMembershipsInput, options: any): async.Operation<types.ListMembershipsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMemberships, input, options) as async.Operation<types.ListMembershipsOutput>
+function C:listMemberships(input: types.ListMembershipsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMembershipsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMemberships as schema.OperationSchema, input, options) as async.Operation<types.ListMembershipsOutput>
 end
 
-function C:listPentestJobsForPentest(input: types.ListPentestJobsForPentestInput, options: any): async.Operation<types.ListPentestJobsForPentestOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPentestJobsForPentest, input, options) as async.Operation<types.ListPentestJobsForPentestOutput>
+function C:listPentestJobsForPentest(input: types.ListPentestJobsForPentestInput, options?: base_client.InvokeOptions): async.Operation<types.ListPentestJobsForPentestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPentestJobsForPentest as schema.OperationSchema, input, options) as async.Operation<types.ListPentestJobsForPentestOutput>
 end
 
-function C:listPentestJobTasks(input: types.ListPentestJobTasksInput, options: any): async.Operation<types.ListPentestJobTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPentestJobTasks, input, options) as async.Operation<types.ListPentestJobTasksOutput>
+function C:listPentestJobTasks(input: types.ListPentestJobTasksInput, options?: base_client.InvokeOptions): async.Operation<types.ListPentestJobTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPentestJobTasks as schema.OperationSchema, input, options) as async.Operation<types.ListPentestJobTasksOutput>
 end
 
-function C:listPentests(input: types.ListPentestsInput, options: any): async.Operation<types.ListPentestsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPentests, input, options) as async.Operation<types.ListPentestsOutput>
+function C:listPentests(input: types.ListPentestsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPentestsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPentests as schema.OperationSchema, input, options) as async.Operation<types.ListPentestsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTargetDomains(input: types.ListTargetDomainsInput, options: any): async.Operation<types.ListTargetDomainsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTargetDomains, input, options) as async.Operation<types.ListTargetDomainsOutput>
+function C:listTargetDomains(input: types.ListTargetDomainsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTargetDomainsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTargetDomains as schema.OperationSchema, input, options) as async.Operation<types.ListTargetDomainsOutput>
 end
 
-function C:startCodeRemediation(input: types.StartCodeRemediationInput, options: any): async.Operation<types.StartCodeRemediationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartCodeRemediation, input, options) as async.Operation<types.StartCodeRemediationOutput>
+function C:startCodeRemediation(input: types.StartCodeRemediationInput, options?: base_client.InvokeOptions): async.Operation<types.StartCodeRemediationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartCodeRemediation as schema.OperationSchema, input, options) as async.Operation<types.StartCodeRemediationOutput>
 end
 
-function C:startPentestJob(input: types.StartPentestJobInput, options: any): async.Operation<types.StartPentestJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartPentestJob, input, options) as async.Operation<types.StartPentestJobOutput>
+function C:startPentestJob(input: types.StartPentestJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartPentestJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartPentestJob as schema.OperationSchema, input, options) as async.Operation<types.StartPentestJobOutput>
 end
 
-function C:stopPentestJob(input: types.StopPentestJobInput, options: any): async.Operation<types.StopPentestJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopPentestJob, input, options) as async.Operation<types.StopPentestJobOutput>
+function C:stopPentestJob(input: types.StopPentestJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopPentestJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopPentestJob as schema.OperationSchema, input, options) as async.Operation<types.StopPentestJobOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAgentSpace(input: types.UpdateAgentSpaceInput, options: any): async.Operation<types.UpdateAgentSpaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAgentSpace, input, options) as async.Operation<types.UpdateAgentSpaceOutput>
+function C:updateAgentSpace(input: types.UpdateAgentSpaceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAgentSpaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAgentSpace as schema.OperationSchema, input, options) as async.Operation<types.UpdateAgentSpaceOutput>
 end
 
-function C:updateApplication(input: types.UpdateApplicationInput, options: any): async.Operation<types.UpdateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateApplication, input, options) as async.Operation<types.UpdateApplicationOutput>
+function C:updateApplication(input: types.UpdateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApplication as schema.OperationSchema, input, options) as async.Operation<types.UpdateApplicationOutput>
 end
 
-function C:updateFinding(input: types.UpdateFindingInput, options: any): async.Operation<types.UpdateFindingOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFinding, input, options) as async.Operation<types.UpdateFindingOutput>
+function C:updateFinding(input: types.UpdateFindingInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFindingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFinding as schema.OperationSchema, input, options) as async.Operation<types.UpdateFindingOutput>
 end
 
-function C:updateIntegratedResources(input: types.UpdateIntegratedResourcesInput, options: any): async.Operation<types.UpdateIntegratedResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateIntegratedResources, input, options) as async.Operation<types.UpdateIntegratedResourcesOutput>
+function C:updateIntegratedResources(input: types.UpdateIntegratedResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIntegratedResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIntegratedResources as schema.OperationSchema, input, options) as async.Operation<types.UpdateIntegratedResourcesOutput>
 end
 
-function C:updatePentest(input: types.UpdatePentestInput, options: any): async.Operation<types.UpdatePentestOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePentest, input, options) as async.Operation<types.UpdatePentestOutput>
+function C:updatePentest(input: types.UpdatePentestInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePentestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePentest as schema.OperationSchema, input, options) as async.Operation<types.UpdatePentestOutput>
 end
 
-function C:updateTargetDomain(input: types.UpdateTargetDomainInput, options: any): async.Operation<types.UpdateTargetDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTargetDomain, input, options) as async.Operation<types.UpdateTargetDomainOutput>
+function C:updateTargetDomain(input: types.UpdateTargetDomainInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTargetDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTargetDomain as schema.OperationSchema, input, options) as async.Operation<types.UpdateTargetDomainOutput>
 end
 
-function C:verifyTargetDomain(input: types.VerifyTargetDomainInput, options: any): async.Operation<types.VerifyTargetDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.VerifyTargetDomain, input, options) as async.Operation<types.VerifyTargetDomainOutput>
+function C:verifyTargetDomain(input: types.VerifyTargetDomainInput, options?: base_client.InvokeOptions): async.Operation<types.VerifyTargetDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.VerifyTargetDomain as schema.OperationSchema, input, options) as async.Operation<types.VerifyTargetDomainOutput>
 end
 
 return M

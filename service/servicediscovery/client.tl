@@ -8,69 +8,72 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("servicediscovery.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("servicediscovery.schemas")
 local traits = require("smithy.traits")
 local types = require("servicediscovery.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createHttpNamespace: function(Client, types.CreateHttpNamespaceInput, any): async.Operation<types.CreateHttpNamespaceOutput>
-    createPrivateDnsNamespace: function(Client, types.CreatePrivateDnsNamespaceInput, any): async.Operation<types.CreatePrivateDnsNamespaceOutput>
-    createPublicDnsNamespace: function(Client, types.CreatePublicDnsNamespaceInput, any): async.Operation<types.CreatePublicDnsNamespaceOutput>
-    createService: function(Client, types.CreateServiceInput, any): async.Operation<types.CreateServiceOutput>
-    deleteNamespace: function(Client, types.DeleteNamespaceInput, any): async.Operation<types.DeleteNamespaceOutput>
-    deleteService: function(Client, types.DeleteServiceInput, any): async.Operation<types.DeleteServiceOutput>
-    deleteServiceAttributes: function(Client, types.DeleteServiceAttributesInput, any): async.Operation<types.DeleteServiceAttributesOutput>
-    deregisterInstance: function(Client, types.DeregisterInstanceInput, any): async.Operation<types.DeregisterInstanceOutput>
-    discoverInstances: function(Client, types.DiscoverInstancesInput, any): async.Operation<types.DiscoverInstancesOutput>
-    discoverInstancesRevision: function(Client, types.DiscoverInstancesRevisionInput, any): async.Operation<types.DiscoverInstancesRevisionOutput>
-    getInstance: function(Client, types.GetInstanceInput, any): async.Operation<types.GetInstanceOutput>
-    getInstancesHealthStatus: function(Client, types.GetInstancesHealthStatusInput, any): async.Operation<types.GetInstancesHealthStatusOutput>
-    getNamespace: function(Client, types.GetNamespaceInput, any): async.Operation<types.GetNamespaceOutput>
-    getOperation: function(Client, types.GetOperationInput, any): async.Operation<types.GetOperationOutput>
-    getService: function(Client, types.GetServiceInput, any): async.Operation<types.GetServiceOutput>
-    getServiceAttributes: function(Client, types.GetServiceAttributesInput, any): async.Operation<types.GetServiceAttributesOutput>
-    listInstances: function(Client, types.ListInstancesInput, any): async.Operation<types.ListInstancesOutput>
-    listNamespaces: function(Client, types.ListNamespacesInput, any): async.Operation<types.ListNamespacesOutput>
-    listOperations: function(Client, types.ListOperationsInput, any): async.Operation<types.ListOperationsOutput>
-    listServices: function(Client, types.ListServicesInput, any): async.Operation<types.ListServicesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    registerInstance: function(Client, types.RegisterInstanceInput, any): async.Operation<types.RegisterInstanceOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateHttpNamespace: function(Client, types.UpdateHttpNamespaceInput, any): async.Operation<types.UpdateHttpNamespaceOutput>
-    updateInstanceCustomHealthStatus: function(Client, types.UpdateInstanceCustomHealthStatusInput, any): async.Operation<types.UpdateInstanceCustomHealthStatusOutput>
-    updatePrivateDnsNamespace: function(Client, types.UpdatePrivateDnsNamespaceInput, any): async.Operation<types.UpdatePrivateDnsNamespaceOutput>
-    updatePublicDnsNamespace: function(Client, types.UpdatePublicDnsNamespaceInput, any): async.Operation<types.UpdatePublicDnsNamespaceOutput>
-    updateService: function(Client, types.UpdateServiceInput, any): async.Operation<types.UpdateServiceOutput>
-    updateServiceAttributes: function(Client, types.UpdateServiceAttributesInput, any): async.Operation<types.UpdateServiceAttributesOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createHttpNamespace: function(Client, types.CreateHttpNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.CreateHttpNamespaceOutput>
+    createPrivateDnsNamespace: function(Client, types.CreatePrivateDnsNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.CreatePrivateDnsNamespaceOutput>
+    createPublicDnsNamespace: function(Client, types.CreatePublicDnsNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.CreatePublicDnsNamespaceOutput>
+    createService: function(Client, types.CreateServiceInput, ? base_client.InvokeOptions): async.Operation<types.CreateServiceOutput>
+    deleteNamespace: function(Client, types.DeleteNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNamespaceOutput>
+    deleteService: function(Client, types.DeleteServiceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteServiceOutput>
+    deleteServiceAttributes: function(Client, types.DeleteServiceAttributesInput, ? base_client.InvokeOptions): async.Operation<types.DeleteServiceAttributesOutput>
+    deregisterInstance: function(Client, types.DeregisterInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterInstanceOutput>
+    discoverInstances: function(Client, types.DiscoverInstancesInput, ? base_client.InvokeOptions): async.Operation<types.DiscoverInstancesOutput>
+    discoverInstancesRevision: function(Client, types.DiscoverInstancesRevisionInput, ? base_client.InvokeOptions): async.Operation<types.DiscoverInstancesRevisionOutput>
+    getInstance: function(Client, types.GetInstanceInput, ? base_client.InvokeOptions): async.Operation<types.GetInstanceOutput>
+    getInstancesHealthStatus: function(Client, types.GetInstancesHealthStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetInstancesHealthStatusOutput>
+    getNamespace: function(Client, types.GetNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.GetNamespaceOutput>
+    getOperation: function(Client, types.GetOperationInput, ? base_client.InvokeOptions): async.Operation<types.GetOperationOutput>
+    getService: function(Client, types.GetServiceInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceOutput>
+    getServiceAttributes: function(Client, types.GetServiceAttributesInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceAttributesOutput>
+    listInstances: function(Client, types.ListInstancesInput, ? base_client.InvokeOptions): async.Operation<types.ListInstancesOutput>
+    listNamespaces: function(Client, types.ListNamespacesInput, ? base_client.InvokeOptions): async.Operation<types.ListNamespacesOutput>
+    listOperations: function(Client, types.ListOperationsInput, ? base_client.InvokeOptions): async.Operation<types.ListOperationsOutput>
+    listServices: function(Client, types.ListServicesInput, ? base_client.InvokeOptions): async.Operation<types.ListServicesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    registerInstance: function(Client, types.RegisterInstanceInput, ? base_client.InvokeOptions): async.Operation<types.RegisterInstanceOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateHttpNamespace: function(Client, types.UpdateHttpNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateHttpNamespaceOutput>
+    updateInstanceCustomHealthStatus: function(Client, types.UpdateInstanceCustomHealthStatusInput, ? base_client.InvokeOptions): async.Operation<types.UpdateInstanceCustomHealthStatusOutput>
+    updatePrivateDnsNamespace: function(Client, types.UpdatePrivateDnsNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePrivateDnsNamespaceOutput>
+    updatePublicDnsNamespace: function(Client, types.UpdatePublicDnsNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePublicDnsNamespaceOutput>
+    updateService: function(Client, types.UpdateServiceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServiceOutput>
+    updateServiceAttributes: function(Client, types.UpdateServiceAttributesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServiceAttributesOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "Route53AutoNaming_v20170314"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "servicediscovery", signing_region = c.region } }
                 else
@@ -89,124 +92,124 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createHttpNamespace(input: types.CreateHttpNamespaceInput, options: any): async.Operation<types.CreateHttpNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateHttpNamespace, input, options) as async.Operation<types.CreateHttpNamespaceOutput>
+function C:createHttpNamespace(input: types.CreateHttpNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateHttpNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateHttpNamespace as schema.OperationSchema, input, options) as async.Operation<types.CreateHttpNamespaceOutput>
 end
 
-function C:createPrivateDnsNamespace(input: types.CreatePrivateDnsNamespaceInput, options: any): async.Operation<types.CreatePrivateDnsNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePrivateDnsNamespace, input, options) as async.Operation<types.CreatePrivateDnsNamespaceOutput>
+function C:createPrivateDnsNamespace(input: types.CreatePrivateDnsNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePrivateDnsNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePrivateDnsNamespace as schema.OperationSchema, input, options) as async.Operation<types.CreatePrivateDnsNamespaceOutput>
 end
 
-function C:createPublicDnsNamespace(input: types.CreatePublicDnsNamespaceInput, options: any): async.Operation<types.CreatePublicDnsNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePublicDnsNamespace, input, options) as async.Operation<types.CreatePublicDnsNamespaceOutput>
+function C:createPublicDnsNamespace(input: types.CreatePublicDnsNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePublicDnsNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePublicDnsNamespace as schema.OperationSchema, input, options) as async.Operation<types.CreatePublicDnsNamespaceOutput>
 end
 
-function C:createService(input: types.CreateServiceInput, options: any): async.Operation<types.CreateServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateService, input, options) as async.Operation<types.CreateServiceOutput>
+function C:createService(input: types.CreateServiceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateService as schema.OperationSchema, input, options) as async.Operation<types.CreateServiceOutput>
 end
 
-function C:deleteNamespace(input: types.DeleteNamespaceInput, options: any): async.Operation<types.DeleteNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNamespace, input, options) as async.Operation<types.DeleteNamespaceOutput>
+function C:deleteNamespace(input: types.DeleteNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNamespace as schema.OperationSchema, input, options) as async.Operation<types.DeleteNamespaceOutput>
 end
 
-function C:deleteService(input: types.DeleteServiceInput, options: any): async.Operation<types.DeleteServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteService, input, options) as async.Operation<types.DeleteServiceOutput>
+function C:deleteService(input: types.DeleteServiceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteService as schema.OperationSchema, input, options) as async.Operation<types.DeleteServiceOutput>
 end
 
-function C:deleteServiceAttributes(input: types.DeleteServiceAttributesInput, options: any): async.Operation<types.DeleteServiceAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteServiceAttributes, input, options) as async.Operation<types.DeleteServiceAttributesOutput>
+function C:deleteServiceAttributes(input: types.DeleteServiceAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteServiceAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteServiceAttributes as schema.OperationSchema, input, options) as async.Operation<types.DeleteServiceAttributesOutput>
 end
 
-function C:deregisterInstance(input: types.DeregisterInstanceInput, options: any): async.Operation<types.DeregisterInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterInstance, input, options) as async.Operation<types.DeregisterInstanceOutput>
+function C:deregisterInstance(input: types.DeregisterInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterInstance as schema.OperationSchema, input, options) as async.Operation<types.DeregisterInstanceOutput>
 end
 
-function C:discoverInstances(input: types.DiscoverInstancesInput, options: any): async.Operation<types.DiscoverInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DiscoverInstances, input, options) as async.Operation<types.DiscoverInstancesOutput>
+function C:discoverInstances(input: types.DiscoverInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.DiscoverInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DiscoverInstances as schema.OperationSchema, input, options) as async.Operation<types.DiscoverInstancesOutput>
 end
 
-function C:discoverInstancesRevision(input: types.DiscoverInstancesRevisionInput, options: any): async.Operation<types.DiscoverInstancesRevisionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DiscoverInstancesRevision, input, options) as async.Operation<types.DiscoverInstancesRevisionOutput>
+function C:discoverInstancesRevision(input: types.DiscoverInstancesRevisionInput, options?: base_client.InvokeOptions): async.Operation<types.DiscoverInstancesRevisionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DiscoverInstancesRevision as schema.OperationSchema, input, options) as async.Operation<types.DiscoverInstancesRevisionOutput>
 end
 
-function C:getInstance(input: types.GetInstanceInput, options: any): async.Operation<types.GetInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInstance, input, options) as async.Operation<types.GetInstanceOutput>
+function C:getInstance(input: types.GetInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.GetInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInstance as schema.OperationSchema, input, options) as async.Operation<types.GetInstanceOutput>
 end
 
-function C:getInstancesHealthStatus(input: types.GetInstancesHealthStatusInput, options: any): async.Operation<types.GetInstancesHealthStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInstancesHealthStatus, input, options) as async.Operation<types.GetInstancesHealthStatusOutput>
+function C:getInstancesHealthStatus(input: types.GetInstancesHealthStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetInstancesHealthStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInstancesHealthStatus as schema.OperationSchema, input, options) as async.Operation<types.GetInstancesHealthStatusOutput>
 end
 
-function C:getNamespace(input: types.GetNamespaceInput, options: any): async.Operation<types.GetNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNamespace, input, options) as async.Operation<types.GetNamespaceOutput>
+function C:getNamespace(input: types.GetNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.GetNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNamespace as schema.OperationSchema, input, options) as async.Operation<types.GetNamespaceOutput>
 end
 
-function C:getOperation(input: types.GetOperationInput, options: any): async.Operation<types.GetOperationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOperation, input, options) as async.Operation<types.GetOperationOutput>
+function C:getOperation(input: types.GetOperationInput, options?: base_client.InvokeOptions): async.Operation<types.GetOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOperation as schema.OperationSchema, input, options) as async.Operation<types.GetOperationOutput>
 end
 
-function C:getService(input: types.GetServiceInput, options: any): async.Operation<types.GetServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetService, input, options) as async.Operation<types.GetServiceOutput>
+function C:getService(input: types.GetServiceInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetService as schema.OperationSchema, input, options) as async.Operation<types.GetServiceOutput>
 end
 
-function C:getServiceAttributes(input: types.GetServiceAttributesInput, options: any): async.Operation<types.GetServiceAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetServiceAttributes, input, options) as async.Operation<types.GetServiceAttributesOutput>
+function C:getServiceAttributes(input: types.GetServiceAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetServiceAttributes as schema.OperationSchema, input, options) as async.Operation<types.GetServiceAttributesOutput>
 end
 
-function C:listInstances(input: types.ListInstancesInput, options: any): async.Operation<types.ListInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInstances, input, options) as async.Operation<types.ListInstancesOutput>
+function C:listInstances(input: types.ListInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.ListInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInstances as schema.OperationSchema, input, options) as async.Operation<types.ListInstancesOutput>
 end
 
-function C:listNamespaces(input: types.ListNamespacesInput, options: any): async.Operation<types.ListNamespacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNamespaces, input, options) as async.Operation<types.ListNamespacesOutput>
+function C:listNamespaces(input: types.ListNamespacesInput, options?: base_client.InvokeOptions): async.Operation<types.ListNamespacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNamespaces as schema.OperationSchema, input, options) as async.Operation<types.ListNamespacesOutput>
 end
 
-function C:listOperations(input: types.ListOperationsInput, options: any): async.Operation<types.ListOperationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOperations, input, options) as async.Operation<types.ListOperationsOutput>
+function C:listOperations(input: types.ListOperationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListOperationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOperations as schema.OperationSchema, input, options) as async.Operation<types.ListOperationsOutput>
 end
 
-function C:listServices(input: types.ListServicesInput, options: any): async.Operation<types.ListServicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServices, input, options) as async.Operation<types.ListServicesOutput>
+function C:listServices(input: types.ListServicesInput, options?: base_client.InvokeOptions): async.Operation<types.ListServicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServices as schema.OperationSchema, input, options) as async.Operation<types.ListServicesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:registerInstance(input: types.RegisterInstanceInput, options: any): async.Operation<types.RegisterInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterInstance, input, options) as async.Operation<types.RegisterInstanceOutput>
+function C:registerInstance(input: types.RegisterInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterInstance as schema.OperationSchema, input, options) as async.Operation<types.RegisterInstanceOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateHttpNamespace(input: types.UpdateHttpNamespaceInput, options: any): async.Operation<types.UpdateHttpNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateHttpNamespace, input, options) as async.Operation<types.UpdateHttpNamespaceOutput>
+function C:updateHttpNamespace(input: types.UpdateHttpNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateHttpNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateHttpNamespace as schema.OperationSchema, input, options) as async.Operation<types.UpdateHttpNamespaceOutput>
 end
 
-function C:updateInstanceCustomHealthStatus(input: types.UpdateInstanceCustomHealthStatusInput, options: any): async.Operation<types.UpdateInstanceCustomHealthStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateInstanceCustomHealthStatus, input, options) as async.Operation<types.UpdateInstanceCustomHealthStatusOutput>
+function C:updateInstanceCustomHealthStatus(input: types.UpdateInstanceCustomHealthStatusInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateInstanceCustomHealthStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateInstanceCustomHealthStatus as schema.OperationSchema, input, options) as async.Operation<types.UpdateInstanceCustomHealthStatusOutput>
 end
 
-function C:updatePrivateDnsNamespace(input: types.UpdatePrivateDnsNamespaceInput, options: any): async.Operation<types.UpdatePrivateDnsNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePrivateDnsNamespace, input, options) as async.Operation<types.UpdatePrivateDnsNamespaceOutput>
+function C:updatePrivateDnsNamespace(input: types.UpdatePrivateDnsNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePrivateDnsNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePrivateDnsNamespace as schema.OperationSchema, input, options) as async.Operation<types.UpdatePrivateDnsNamespaceOutput>
 end
 
-function C:updatePublicDnsNamespace(input: types.UpdatePublicDnsNamespaceInput, options: any): async.Operation<types.UpdatePublicDnsNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePublicDnsNamespace, input, options) as async.Operation<types.UpdatePublicDnsNamespaceOutput>
+function C:updatePublicDnsNamespace(input: types.UpdatePublicDnsNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePublicDnsNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePublicDnsNamespace as schema.OperationSchema, input, options) as async.Operation<types.UpdatePublicDnsNamespaceOutput>
 end
 
-function C:updateService(input: types.UpdateServiceInput, options: any): async.Operation<types.UpdateServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateService, input, options) as async.Operation<types.UpdateServiceOutput>
+function C:updateService(input: types.UpdateServiceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateService as schema.OperationSchema, input, options) as async.Operation<types.UpdateServiceOutput>
 end
 
-function C:updateServiceAttributes(input: types.UpdateServiceAttributesInput, options: any): async.Operation<types.UpdateServiceAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateServiceAttributes, input, options) as async.Operation<types.UpdateServiceAttributesOutput>
+function C:updateServiceAttributes(input: types.UpdateServiceAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateServiceAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateServiceAttributes as schema.OperationSchema, input, options) as async.Operation<types.UpdateServiceAttributesOutput>
 end
 
 return M

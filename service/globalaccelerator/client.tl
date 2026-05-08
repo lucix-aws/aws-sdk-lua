@@ -8,95 +8,98 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("globalaccelerator.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("globalaccelerator.schemas")
 local traits = require("smithy.traits")
 local types = require("globalaccelerator.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    addCustomRoutingEndpoints: function(Client, types.AddCustomRoutingEndpointsInput, any): async.Operation<types.AddCustomRoutingEndpointsOutput>
-    addEndpoints: function(Client, types.AddEndpointsInput, any): async.Operation<types.AddEndpointsOutput>
-    advertiseByoipCidr: function(Client, types.AdvertiseByoipCidrInput, any): async.Operation<types.AdvertiseByoipCidrOutput>
-    allowCustomRoutingTraffic: function(Client, types.AllowCustomRoutingTrafficInput, any): async.Operation<types.AllowCustomRoutingTrafficOutput>
-    createAccelerator: function(Client, types.CreateAcceleratorInput, any): async.Operation<types.CreateAcceleratorOutput>
-    createCrossAccountAttachment: function(Client, types.CreateCrossAccountAttachmentInput, any): async.Operation<types.CreateCrossAccountAttachmentOutput>
-    createCustomRoutingAccelerator: function(Client, types.CreateCustomRoutingAcceleratorInput, any): async.Operation<types.CreateCustomRoutingAcceleratorOutput>
-    createCustomRoutingEndpointGroup: function(Client, types.CreateCustomRoutingEndpointGroupInput, any): async.Operation<types.CreateCustomRoutingEndpointGroupOutput>
-    createCustomRoutingListener: function(Client, types.CreateCustomRoutingListenerInput, any): async.Operation<types.CreateCustomRoutingListenerOutput>
-    createEndpointGroup: function(Client, types.CreateEndpointGroupInput, any): async.Operation<types.CreateEndpointGroupOutput>
-    createListener: function(Client, types.CreateListenerInput, any): async.Operation<types.CreateListenerOutput>
-    deleteAccelerator: function(Client, types.DeleteAcceleratorInput, any): async.Operation<types.DeleteAcceleratorOutput>
-    deleteCrossAccountAttachment: function(Client, types.DeleteCrossAccountAttachmentInput, any): async.Operation<types.DeleteCrossAccountAttachmentOutput>
-    deleteCustomRoutingAccelerator: function(Client, types.DeleteCustomRoutingAcceleratorInput, any): async.Operation<types.DeleteCustomRoutingAcceleratorOutput>
-    deleteCustomRoutingEndpointGroup: function(Client, types.DeleteCustomRoutingEndpointGroupInput, any): async.Operation<types.DeleteCustomRoutingEndpointGroupOutput>
-    deleteCustomRoutingListener: function(Client, types.DeleteCustomRoutingListenerInput, any): async.Operation<types.DeleteCustomRoutingListenerOutput>
-    deleteEndpointGroup: function(Client, types.DeleteEndpointGroupInput, any): async.Operation<types.DeleteEndpointGroupOutput>
-    deleteListener: function(Client, types.DeleteListenerInput, any): async.Operation<types.DeleteListenerOutput>
-    denyCustomRoutingTraffic: function(Client, types.DenyCustomRoutingTrafficInput, any): async.Operation<types.DenyCustomRoutingTrafficOutput>
-    deprovisionByoipCidr: function(Client, types.DeprovisionByoipCidrInput, any): async.Operation<types.DeprovisionByoipCidrOutput>
-    describeAccelerator: function(Client, types.DescribeAcceleratorInput, any): async.Operation<types.DescribeAcceleratorOutput>
-    describeAcceleratorAttributes: function(Client, types.DescribeAcceleratorAttributesInput, any): async.Operation<types.DescribeAcceleratorAttributesOutput>
-    describeCrossAccountAttachment: function(Client, types.DescribeCrossAccountAttachmentInput, any): async.Operation<types.DescribeCrossAccountAttachmentOutput>
-    describeCustomRoutingAccelerator: function(Client, types.DescribeCustomRoutingAcceleratorInput, any): async.Operation<types.DescribeCustomRoutingAcceleratorOutput>
-    describeCustomRoutingAcceleratorAttributes: function(Client, types.DescribeCustomRoutingAcceleratorAttributesInput, any): async.Operation<types.DescribeCustomRoutingAcceleratorAttributesOutput>
-    describeCustomRoutingEndpointGroup: function(Client, types.DescribeCustomRoutingEndpointGroupInput, any): async.Operation<types.DescribeCustomRoutingEndpointGroupOutput>
-    describeCustomRoutingListener: function(Client, types.DescribeCustomRoutingListenerInput, any): async.Operation<types.DescribeCustomRoutingListenerOutput>
-    describeEndpointGroup: function(Client, types.DescribeEndpointGroupInput, any): async.Operation<types.DescribeEndpointGroupOutput>
-    describeListener: function(Client, types.DescribeListenerInput, any): async.Operation<types.DescribeListenerOutput>
-    listAccelerators: function(Client, types.ListAcceleratorsInput, any): async.Operation<types.ListAcceleratorsOutput>
-    listByoipCidrs: function(Client, types.ListByoipCidrsInput, any): async.Operation<types.ListByoipCidrsOutput>
-    listCrossAccountAttachments: function(Client, types.ListCrossAccountAttachmentsInput, any): async.Operation<types.ListCrossAccountAttachmentsOutput>
-    listCrossAccountResourceAccounts: function(Client, types.ListCrossAccountResourceAccountsInput, any): async.Operation<types.ListCrossAccountResourceAccountsOutput>
-    listCrossAccountResources: function(Client, types.ListCrossAccountResourcesInput, any): async.Operation<types.ListCrossAccountResourcesOutput>
-    listCustomRoutingAccelerators: function(Client, types.ListCustomRoutingAcceleratorsInput, any): async.Operation<types.ListCustomRoutingAcceleratorsOutput>
-    listCustomRoutingEndpointGroups: function(Client, types.ListCustomRoutingEndpointGroupsInput, any): async.Operation<types.ListCustomRoutingEndpointGroupsOutput>
-    listCustomRoutingListeners: function(Client, types.ListCustomRoutingListenersInput, any): async.Operation<types.ListCustomRoutingListenersOutput>
-    listCustomRoutingPortMappings: function(Client, types.ListCustomRoutingPortMappingsInput, any): async.Operation<types.ListCustomRoutingPortMappingsOutput>
-    listCustomRoutingPortMappingsByDestination: function(Client, types.ListCustomRoutingPortMappingsByDestinationInput, any): async.Operation<types.ListCustomRoutingPortMappingsByDestinationOutput>
-    listEndpointGroups: function(Client, types.ListEndpointGroupsInput, any): async.Operation<types.ListEndpointGroupsOutput>
-    listListeners: function(Client, types.ListListenersInput, any): async.Operation<types.ListListenersOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    provisionByoipCidr: function(Client, types.ProvisionByoipCidrInput, any): async.Operation<types.ProvisionByoipCidrOutput>
-    removeCustomRoutingEndpoints: function(Client, types.RemoveCustomRoutingEndpointsInput, any): async.Operation<types.RemoveCustomRoutingEndpointsOutput>
-    removeEndpoints: function(Client, types.RemoveEndpointsInput, any): async.Operation<types.RemoveEndpointsOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAccelerator: function(Client, types.UpdateAcceleratorInput, any): async.Operation<types.UpdateAcceleratorOutput>
-    updateAcceleratorAttributes: function(Client, types.UpdateAcceleratorAttributesInput, any): async.Operation<types.UpdateAcceleratorAttributesOutput>
-    updateCrossAccountAttachment: function(Client, types.UpdateCrossAccountAttachmentInput, any): async.Operation<types.UpdateCrossAccountAttachmentOutput>
-    updateCustomRoutingAccelerator: function(Client, types.UpdateCustomRoutingAcceleratorInput, any): async.Operation<types.UpdateCustomRoutingAcceleratorOutput>
-    updateCustomRoutingAcceleratorAttributes: function(Client, types.UpdateCustomRoutingAcceleratorAttributesInput, any): async.Operation<types.UpdateCustomRoutingAcceleratorAttributesOutput>
-    updateCustomRoutingListener: function(Client, types.UpdateCustomRoutingListenerInput, any): async.Operation<types.UpdateCustomRoutingListenerOutput>
-    updateEndpointGroup: function(Client, types.UpdateEndpointGroupInput, any): async.Operation<types.UpdateEndpointGroupOutput>
-    updateListener: function(Client, types.UpdateListenerInput, any): async.Operation<types.UpdateListenerOutput>
-    withdrawByoipCidr: function(Client, types.WithdrawByoipCidrInput, any): async.Operation<types.WithdrawByoipCidrOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    addCustomRoutingEndpoints: function(Client, types.AddCustomRoutingEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.AddCustomRoutingEndpointsOutput>
+    addEndpoints: function(Client, types.AddEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.AddEndpointsOutput>
+    advertiseByoipCidr: function(Client, types.AdvertiseByoipCidrInput, ? base_client.InvokeOptions): async.Operation<types.AdvertiseByoipCidrOutput>
+    allowCustomRoutingTraffic: function(Client, types.AllowCustomRoutingTrafficInput, ? base_client.InvokeOptions): async.Operation<types.AllowCustomRoutingTrafficOutput>
+    createAccelerator: function(Client, types.CreateAcceleratorInput, ? base_client.InvokeOptions): async.Operation<types.CreateAcceleratorOutput>
+    createCrossAccountAttachment: function(Client, types.CreateCrossAccountAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateCrossAccountAttachmentOutput>
+    createCustomRoutingAccelerator: function(Client, types.CreateCustomRoutingAcceleratorInput, ? base_client.InvokeOptions): async.Operation<types.CreateCustomRoutingAcceleratorOutput>
+    createCustomRoutingEndpointGroup: function(Client, types.CreateCustomRoutingEndpointGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateCustomRoutingEndpointGroupOutput>
+    createCustomRoutingListener: function(Client, types.CreateCustomRoutingListenerInput, ? base_client.InvokeOptions): async.Operation<types.CreateCustomRoutingListenerOutput>
+    createEndpointGroup: function(Client, types.CreateEndpointGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateEndpointGroupOutput>
+    createListener: function(Client, types.CreateListenerInput, ? base_client.InvokeOptions): async.Operation<types.CreateListenerOutput>
+    deleteAccelerator: function(Client, types.DeleteAcceleratorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAcceleratorOutput>
+    deleteCrossAccountAttachment: function(Client, types.DeleteCrossAccountAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCrossAccountAttachmentOutput>
+    deleteCustomRoutingAccelerator: function(Client, types.DeleteCustomRoutingAcceleratorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCustomRoutingAcceleratorOutput>
+    deleteCustomRoutingEndpointGroup: function(Client, types.DeleteCustomRoutingEndpointGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCustomRoutingEndpointGroupOutput>
+    deleteCustomRoutingListener: function(Client, types.DeleteCustomRoutingListenerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCustomRoutingListenerOutput>
+    deleteEndpointGroup: function(Client, types.DeleteEndpointGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEndpointGroupOutput>
+    deleteListener: function(Client, types.DeleteListenerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteListenerOutput>
+    denyCustomRoutingTraffic: function(Client, types.DenyCustomRoutingTrafficInput, ? base_client.InvokeOptions): async.Operation<types.DenyCustomRoutingTrafficOutput>
+    deprovisionByoipCidr: function(Client, types.DeprovisionByoipCidrInput, ? base_client.InvokeOptions): async.Operation<types.DeprovisionByoipCidrOutput>
+    describeAccelerator: function(Client, types.DescribeAcceleratorInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAcceleratorOutput>
+    describeAcceleratorAttributes: function(Client, types.DescribeAcceleratorAttributesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAcceleratorAttributesOutput>
+    describeCrossAccountAttachment: function(Client, types.DescribeCrossAccountAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCrossAccountAttachmentOutput>
+    describeCustomRoutingAccelerator: function(Client, types.DescribeCustomRoutingAcceleratorInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCustomRoutingAcceleratorOutput>
+    describeCustomRoutingAcceleratorAttributes: function(Client, types.DescribeCustomRoutingAcceleratorAttributesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCustomRoutingAcceleratorAttributesOutput>
+    describeCustomRoutingEndpointGroup: function(Client, types.DescribeCustomRoutingEndpointGroupInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCustomRoutingEndpointGroupOutput>
+    describeCustomRoutingListener: function(Client, types.DescribeCustomRoutingListenerInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCustomRoutingListenerOutput>
+    describeEndpointGroup: function(Client, types.DescribeEndpointGroupInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEndpointGroupOutput>
+    describeListener: function(Client, types.DescribeListenerInput, ? base_client.InvokeOptions): async.Operation<types.DescribeListenerOutput>
+    listAccelerators: function(Client, types.ListAcceleratorsInput, ? base_client.InvokeOptions): async.Operation<types.ListAcceleratorsOutput>
+    listByoipCidrs: function(Client, types.ListByoipCidrsInput, ? base_client.InvokeOptions): async.Operation<types.ListByoipCidrsOutput>
+    listCrossAccountAttachments: function(Client, types.ListCrossAccountAttachmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListCrossAccountAttachmentsOutput>
+    listCrossAccountResourceAccounts: function(Client, types.ListCrossAccountResourceAccountsInput, ? base_client.InvokeOptions): async.Operation<types.ListCrossAccountResourceAccountsOutput>
+    listCrossAccountResources: function(Client, types.ListCrossAccountResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListCrossAccountResourcesOutput>
+    listCustomRoutingAccelerators: function(Client, types.ListCustomRoutingAcceleratorsInput, ? base_client.InvokeOptions): async.Operation<types.ListCustomRoutingAcceleratorsOutput>
+    listCustomRoutingEndpointGroups: function(Client, types.ListCustomRoutingEndpointGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListCustomRoutingEndpointGroupsOutput>
+    listCustomRoutingListeners: function(Client, types.ListCustomRoutingListenersInput, ? base_client.InvokeOptions): async.Operation<types.ListCustomRoutingListenersOutput>
+    listCustomRoutingPortMappings: function(Client, types.ListCustomRoutingPortMappingsInput, ? base_client.InvokeOptions): async.Operation<types.ListCustomRoutingPortMappingsOutput>
+    listCustomRoutingPortMappingsByDestination: function(Client, types.ListCustomRoutingPortMappingsByDestinationInput, ? base_client.InvokeOptions): async.Operation<types.ListCustomRoutingPortMappingsByDestinationOutput>
+    listEndpointGroups: function(Client, types.ListEndpointGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListEndpointGroupsOutput>
+    listListeners: function(Client, types.ListListenersInput, ? base_client.InvokeOptions): async.Operation<types.ListListenersOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    provisionByoipCidr: function(Client, types.ProvisionByoipCidrInput, ? base_client.InvokeOptions): async.Operation<types.ProvisionByoipCidrOutput>
+    removeCustomRoutingEndpoints: function(Client, types.RemoveCustomRoutingEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.RemoveCustomRoutingEndpointsOutput>
+    removeEndpoints: function(Client, types.RemoveEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.RemoveEndpointsOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAccelerator: function(Client, types.UpdateAcceleratorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAcceleratorOutput>
+    updateAcceleratorAttributes: function(Client, types.UpdateAcceleratorAttributesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAcceleratorAttributesOutput>
+    updateCrossAccountAttachment: function(Client, types.UpdateCrossAccountAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCrossAccountAttachmentOutput>
+    updateCustomRoutingAccelerator: function(Client, types.UpdateCustomRoutingAcceleratorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCustomRoutingAcceleratorOutput>
+    updateCustomRoutingAcceleratorAttributes: function(Client, types.UpdateCustomRoutingAcceleratorAttributesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCustomRoutingAcceleratorAttributesOutput>
+    updateCustomRoutingListener: function(Client, types.UpdateCustomRoutingListenerInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCustomRoutingListenerOutput>
+    updateEndpointGroup: function(Client, types.UpdateEndpointGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEndpointGroupOutput>
+    updateListener: function(Client, types.UpdateListenerInput, ? base_client.InvokeOptions): async.Operation<types.UpdateListenerOutput>
+    withdrawByoipCidr: function(Client, types.WithdrawByoipCidrInput, ? base_client.InvokeOptions): async.Operation<types.WithdrawByoipCidrOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "GlobalAccelerator_V20180706"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "globalaccelerator", signing_region = c.region } }
                 else
@@ -115,228 +118,228 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:addCustomRoutingEndpoints(input: types.AddCustomRoutingEndpointsInput, options: any): async.Operation<types.AddCustomRoutingEndpointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddCustomRoutingEndpoints, input, options) as async.Operation<types.AddCustomRoutingEndpointsOutput>
+function C:addCustomRoutingEndpoints(input: types.AddCustomRoutingEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.AddCustomRoutingEndpointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddCustomRoutingEndpoints as schema.OperationSchema, input, options) as async.Operation<types.AddCustomRoutingEndpointsOutput>
 end
 
-function C:addEndpoints(input: types.AddEndpointsInput, options: any): async.Operation<types.AddEndpointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddEndpoints, input, options) as async.Operation<types.AddEndpointsOutput>
+function C:addEndpoints(input: types.AddEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.AddEndpointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddEndpoints as schema.OperationSchema, input, options) as async.Operation<types.AddEndpointsOutput>
 end
 
-function C:advertiseByoipCidr(input: types.AdvertiseByoipCidrInput, options: any): async.Operation<types.AdvertiseByoipCidrOutput>
-    return self:invokeOperation(schemas.Service, schemas.AdvertiseByoipCidr, input, options) as async.Operation<types.AdvertiseByoipCidrOutput>
+function C:advertiseByoipCidr(input: types.AdvertiseByoipCidrInput, options?: base_client.InvokeOptions): async.Operation<types.AdvertiseByoipCidrOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdvertiseByoipCidr as schema.OperationSchema, input, options) as async.Operation<types.AdvertiseByoipCidrOutput>
 end
 
-function C:allowCustomRoutingTraffic(input: types.AllowCustomRoutingTrafficInput, options: any): async.Operation<types.AllowCustomRoutingTrafficOutput>
-    return self:invokeOperation(schemas.Service, schemas.AllowCustomRoutingTraffic, input, options) as async.Operation<types.AllowCustomRoutingTrafficOutput>
+function C:allowCustomRoutingTraffic(input: types.AllowCustomRoutingTrafficInput, options?: base_client.InvokeOptions): async.Operation<types.AllowCustomRoutingTrafficOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AllowCustomRoutingTraffic as schema.OperationSchema, input, options) as async.Operation<types.AllowCustomRoutingTrafficOutput>
 end
 
-function C:createAccelerator(input: types.CreateAcceleratorInput, options: any): async.Operation<types.CreateAcceleratorOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAccelerator, input, options) as async.Operation<types.CreateAcceleratorOutput>
+function C:createAccelerator(input: types.CreateAcceleratorInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAcceleratorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAccelerator as schema.OperationSchema, input, options) as async.Operation<types.CreateAcceleratorOutput>
 end
 
-function C:createCrossAccountAttachment(input: types.CreateCrossAccountAttachmentInput, options: any): async.Operation<types.CreateCrossAccountAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCrossAccountAttachment, input, options) as async.Operation<types.CreateCrossAccountAttachmentOutput>
+function C:createCrossAccountAttachment(input: types.CreateCrossAccountAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCrossAccountAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCrossAccountAttachment as schema.OperationSchema, input, options) as async.Operation<types.CreateCrossAccountAttachmentOutput>
 end
 
-function C:createCustomRoutingAccelerator(input: types.CreateCustomRoutingAcceleratorInput, options: any): async.Operation<types.CreateCustomRoutingAcceleratorOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCustomRoutingAccelerator, input, options) as async.Operation<types.CreateCustomRoutingAcceleratorOutput>
+function C:createCustomRoutingAccelerator(input: types.CreateCustomRoutingAcceleratorInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCustomRoutingAcceleratorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCustomRoutingAccelerator as schema.OperationSchema, input, options) as async.Operation<types.CreateCustomRoutingAcceleratorOutput>
 end
 
-function C:createCustomRoutingEndpointGroup(input: types.CreateCustomRoutingEndpointGroupInput, options: any): async.Operation<types.CreateCustomRoutingEndpointGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCustomRoutingEndpointGroup, input, options) as async.Operation<types.CreateCustomRoutingEndpointGroupOutput>
+function C:createCustomRoutingEndpointGroup(input: types.CreateCustomRoutingEndpointGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCustomRoutingEndpointGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCustomRoutingEndpointGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateCustomRoutingEndpointGroupOutput>
 end
 
-function C:createCustomRoutingListener(input: types.CreateCustomRoutingListenerInput, options: any): async.Operation<types.CreateCustomRoutingListenerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCustomRoutingListener, input, options) as async.Operation<types.CreateCustomRoutingListenerOutput>
+function C:createCustomRoutingListener(input: types.CreateCustomRoutingListenerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCustomRoutingListenerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCustomRoutingListener as schema.OperationSchema, input, options) as async.Operation<types.CreateCustomRoutingListenerOutput>
 end
 
-function C:createEndpointGroup(input: types.CreateEndpointGroupInput, options: any): async.Operation<types.CreateEndpointGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEndpointGroup, input, options) as async.Operation<types.CreateEndpointGroupOutput>
+function C:createEndpointGroup(input: types.CreateEndpointGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEndpointGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEndpointGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateEndpointGroupOutput>
 end
 
-function C:createListener(input: types.CreateListenerInput, options: any): async.Operation<types.CreateListenerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateListener, input, options) as async.Operation<types.CreateListenerOutput>
+function C:createListener(input: types.CreateListenerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateListenerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateListener as schema.OperationSchema, input, options) as async.Operation<types.CreateListenerOutput>
 end
 
-function C:deleteAccelerator(input: types.DeleteAcceleratorInput, options: any): async.Operation<types.DeleteAcceleratorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAccelerator, input, options) as async.Operation<types.DeleteAcceleratorOutput>
+function C:deleteAccelerator(input: types.DeleteAcceleratorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAcceleratorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAccelerator as schema.OperationSchema, input, options) as async.Operation<types.DeleteAcceleratorOutput>
 end
 
-function C:deleteCrossAccountAttachment(input: types.DeleteCrossAccountAttachmentInput, options: any): async.Operation<types.DeleteCrossAccountAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCrossAccountAttachment, input, options) as async.Operation<types.DeleteCrossAccountAttachmentOutput>
+function C:deleteCrossAccountAttachment(input: types.DeleteCrossAccountAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCrossAccountAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCrossAccountAttachment as schema.OperationSchema, input, options) as async.Operation<types.DeleteCrossAccountAttachmentOutput>
 end
 
-function C:deleteCustomRoutingAccelerator(input: types.DeleteCustomRoutingAcceleratorInput, options: any): async.Operation<types.DeleteCustomRoutingAcceleratorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCustomRoutingAccelerator, input, options) as async.Operation<types.DeleteCustomRoutingAcceleratorOutput>
+function C:deleteCustomRoutingAccelerator(input: types.DeleteCustomRoutingAcceleratorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCustomRoutingAcceleratorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCustomRoutingAccelerator as schema.OperationSchema, input, options) as async.Operation<types.DeleteCustomRoutingAcceleratorOutput>
 end
 
-function C:deleteCustomRoutingEndpointGroup(input: types.DeleteCustomRoutingEndpointGroupInput, options: any): async.Operation<types.DeleteCustomRoutingEndpointGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCustomRoutingEndpointGroup, input, options) as async.Operation<types.DeleteCustomRoutingEndpointGroupOutput>
+function C:deleteCustomRoutingEndpointGroup(input: types.DeleteCustomRoutingEndpointGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCustomRoutingEndpointGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCustomRoutingEndpointGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteCustomRoutingEndpointGroupOutput>
 end
 
-function C:deleteCustomRoutingListener(input: types.DeleteCustomRoutingListenerInput, options: any): async.Operation<types.DeleteCustomRoutingListenerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCustomRoutingListener, input, options) as async.Operation<types.DeleteCustomRoutingListenerOutput>
+function C:deleteCustomRoutingListener(input: types.DeleteCustomRoutingListenerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCustomRoutingListenerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCustomRoutingListener as schema.OperationSchema, input, options) as async.Operation<types.DeleteCustomRoutingListenerOutput>
 end
 
-function C:deleteEndpointGroup(input: types.DeleteEndpointGroupInput, options: any): async.Operation<types.DeleteEndpointGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEndpointGroup, input, options) as async.Operation<types.DeleteEndpointGroupOutput>
+function C:deleteEndpointGroup(input: types.DeleteEndpointGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEndpointGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEndpointGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteEndpointGroupOutput>
 end
 
-function C:deleteListener(input: types.DeleteListenerInput, options: any): async.Operation<types.DeleteListenerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteListener, input, options) as async.Operation<types.DeleteListenerOutput>
+function C:deleteListener(input: types.DeleteListenerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteListenerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteListener as schema.OperationSchema, input, options) as async.Operation<types.DeleteListenerOutput>
 end
 
-function C:denyCustomRoutingTraffic(input: types.DenyCustomRoutingTrafficInput, options: any): async.Operation<types.DenyCustomRoutingTrafficOutput>
-    return self:invokeOperation(schemas.Service, schemas.DenyCustomRoutingTraffic, input, options) as async.Operation<types.DenyCustomRoutingTrafficOutput>
+function C:denyCustomRoutingTraffic(input: types.DenyCustomRoutingTrafficInput, options?: base_client.InvokeOptions): async.Operation<types.DenyCustomRoutingTrafficOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DenyCustomRoutingTraffic as schema.OperationSchema, input, options) as async.Operation<types.DenyCustomRoutingTrafficOutput>
 end
 
-function C:deprovisionByoipCidr(input: types.DeprovisionByoipCidrInput, options: any): async.Operation<types.DeprovisionByoipCidrOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeprovisionByoipCidr, input, options) as async.Operation<types.DeprovisionByoipCidrOutput>
+function C:deprovisionByoipCidr(input: types.DeprovisionByoipCidrInput, options?: base_client.InvokeOptions): async.Operation<types.DeprovisionByoipCidrOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeprovisionByoipCidr as schema.OperationSchema, input, options) as async.Operation<types.DeprovisionByoipCidrOutput>
 end
 
-function C:describeAccelerator(input: types.DescribeAcceleratorInput, options: any): async.Operation<types.DescribeAcceleratorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAccelerator, input, options) as async.Operation<types.DescribeAcceleratorOutput>
+function C:describeAccelerator(input: types.DescribeAcceleratorInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAcceleratorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAccelerator as schema.OperationSchema, input, options) as async.Operation<types.DescribeAcceleratorOutput>
 end
 
-function C:describeAcceleratorAttributes(input: types.DescribeAcceleratorAttributesInput, options: any): async.Operation<types.DescribeAcceleratorAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAcceleratorAttributes, input, options) as async.Operation<types.DescribeAcceleratorAttributesOutput>
+function C:describeAcceleratorAttributes(input: types.DescribeAcceleratorAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAcceleratorAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAcceleratorAttributes as schema.OperationSchema, input, options) as async.Operation<types.DescribeAcceleratorAttributesOutput>
 end
 
-function C:describeCrossAccountAttachment(input: types.DescribeCrossAccountAttachmentInput, options: any): async.Operation<types.DescribeCrossAccountAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCrossAccountAttachment, input, options) as async.Operation<types.DescribeCrossAccountAttachmentOutput>
+function C:describeCrossAccountAttachment(input: types.DescribeCrossAccountAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCrossAccountAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCrossAccountAttachment as schema.OperationSchema, input, options) as async.Operation<types.DescribeCrossAccountAttachmentOutput>
 end
 
-function C:describeCustomRoutingAccelerator(input: types.DescribeCustomRoutingAcceleratorInput, options: any): async.Operation<types.DescribeCustomRoutingAcceleratorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCustomRoutingAccelerator, input, options) as async.Operation<types.DescribeCustomRoutingAcceleratorOutput>
+function C:describeCustomRoutingAccelerator(input: types.DescribeCustomRoutingAcceleratorInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCustomRoutingAcceleratorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCustomRoutingAccelerator as schema.OperationSchema, input, options) as async.Operation<types.DescribeCustomRoutingAcceleratorOutput>
 end
 
-function C:describeCustomRoutingAcceleratorAttributes(input: types.DescribeCustomRoutingAcceleratorAttributesInput, options: any): async.Operation<types.DescribeCustomRoutingAcceleratorAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCustomRoutingAcceleratorAttributes, input, options) as async.Operation<types.DescribeCustomRoutingAcceleratorAttributesOutput>
+function C:describeCustomRoutingAcceleratorAttributes(input: types.DescribeCustomRoutingAcceleratorAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCustomRoutingAcceleratorAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCustomRoutingAcceleratorAttributes as schema.OperationSchema, input, options) as async.Operation<types.DescribeCustomRoutingAcceleratorAttributesOutput>
 end
 
-function C:describeCustomRoutingEndpointGroup(input: types.DescribeCustomRoutingEndpointGroupInput, options: any): async.Operation<types.DescribeCustomRoutingEndpointGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCustomRoutingEndpointGroup, input, options) as async.Operation<types.DescribeCustomRoutingEndpointGroupOutput>
+function C:describeCustomRoutingEndpointGroup(input: types.DescribeCustomRoutingEndpointGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCustomRoutingEndpointGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCustomRoutingEndpointGroup as schema.OperationSchema, input, options) as async.Operation<types.DescribeCustomRoutingEndpointGroupOutput>
 end
 
-function C:describeCustomRoutingListener(input: types.DescribeCustomRoutingListenerInput, options: any): async.Operation<types.DescribeCustomRoutingListenerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCustomRoutingListener, input, options) as async.Operation<types.DescribeCustomRoutingListenerOutput>
+function C:describeCustomRoutingListener(input: types.DescribeCustomRoutingListenerInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCustomRoutingListenerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCustomRoutingListener as schema.OperationSchema, input, options) as async.Operation<types.DescribeCustomRoutingListenerOutput>
 end
 
-function C:describeEndpointGroup(input: types.DescribeEndpointGroupInput, options: any): async.Operation<types.DescribeEndpointGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEndpointGroup, input, options) as async.Operation<types.DescribeEndpointGroupOutput>
+function C:describeEndpointGroup(input: types.DescribeEndpointGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEndpointGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEndpointGroup as schema.OperationSchema, input, options) as async.Operation<types.DescribeEndpointGroupOutput>
 end
 
-function C:describeListener(input: types.DescribeListenerInput, options: any): async.Operation<types.DescribeListenerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeListener, input, options) as async.Operation<types.DescribeListenerOutput>
+function C:describeListener(input: types.DescribeListenerInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeListenerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeListener as schema.OperationSchema, input, options) as async.Operation<types.DescribeListenerOutput>
 end
 
-function C:listAccelerators(input: types.ListAcceleratorsInput, options: any): async.Operation<types.ListAcceleratorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccelerators, input, options) as async.Operation<types.ListAcceleratorsOutput>
+function C:listAccelerators(input: types.ListAcceleratorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAcceleratorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccelerators as schema.OperationSchema, input, options) as async.Operation<types.ListAcceleratorsOutput>
 end
 
-function C:listByoipCidrs(input: types.ListByoipCidrsInput, options: any): async.Operation<types.ListByoipCidrsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListByoipCidrs, input, options) as async.Operation<types.ListByoipCidrsOutput>
+function C:listByoipCidrs(input: types.ListByoipCidrsInput, options?: base_client.InvokeOptions): async.Operation<types.ListByoipCidrsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListByoipCidrs as schema.OperationSchema, input, options) as async.Operation<types.ListByoipCidrsOutput>
 end
 
-function C:listCrossAccountAttachments(input: types.ListCrossAccountAttachmentsInput, options: any): async.Operation<types.ListCrossAccountAttachmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCrossAccountAttachments, input, options) as async.Operation<types.ListCrossAccountAttachmentsOutput>
+function C:listCrossAccountAttachments(input: types.ListCrossAccountAttachmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCrossAccountAttachmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCrossAccountAttachments as schema.OperationSchema, input, options) as async.Operation<types.ListCrossAccountAttachmentsOutput>
 end
 
-function C:listCrossAccountResourceAccounts(input: types.ListCrossAccountResourceAccountsInput, options: any): async.Operation<types.ListCrossAccountResourceAccountsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCrossAccountResourceAccounts, input, options) as async.Operation<types.ListCrossAccountResourceAccountsOutput>
+function C:listCrossAccountResourceAccounts(input: types.ListCrossAccountResourceAccountsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCrossAccountResourceAccountsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCrossAccountResourceAccounts as schema.OperationSchema, input, options) as async.Operation<types.ListCrossAccountResourceAccountsOutput>
 end
 
-function C:listCrossAccountResources(input: types.ListCrossAccountResourcesInput, options: any): async.Operation<types.ListCrossAccountResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCrossAccountResources, input, options) as async.Operation<types.ListCrossAccountResourcesOutput>
+function C:listCrossAccountResources(input: types.ListCrossAccountResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCrossAccountResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCrossAccountResources as schema.OperationSchema, input, options) as async.Operation<types.ListCrossAccountResourcesOutput>
 end
 
-function C:listCustomRoutingAccelerators(input: types.ListCustomRoutingAcceleratorsInput, options: any): async.Operation<types.ListCustomRoutingAcceleratorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCustomRoutingAccelerators, input, options) as async.Operation<types.ListCustomRoutingAcceleratorsOutput>
+function C:listCustomRoutingAccelerators(input: types.ListCustomRoutingAcceleratorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCustomRoutingAcceleratorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCustomRoutingAccelerators as schema.OperationSchema, input, options) as async.Operation<types.ListCustomRoutingAcceleratorsOutput>
 end
 
-function C:listCustomRoutingEndpointGroups(input: types.ListCustomRoutingEndpointGroupsInput, options: any): async.Operation<types.ListCustomRoutingEndpointGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCustomRoutingEndpointGroups, input, options) as async.Operation<types.ListCustomRoutingEndpointGroupsOutput>
+function C:listCustomRoutingEndpointGroups(input: types.ListCustomRoutingEndpointGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCustomRoutingEndpointGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCustomRoutingEndpointGroups as schema.OperationSchema, input, options) as async.Operation<types.ListCustomRoutingEndpointGroupsOutput>
 end
 
-function C:listCustomRoutingListeners(input: types.ListCustomRoutingListenersInput, options: any): async.Operation<types.ListCustomRoutingListenersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCustomRoutingListeners, input, options) as async.Operation<types.ListCustomRoutingListenersOutput>
+function C:listCustomRoutingListeners(input: types.ListCustomRoutingListenersInput, options?: base_client.InvokeOptions): async.Operation<types.ListCustomRoutingListenersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCustomRoutingListeners as schema.OperationSchema, input, options) as async.Operation<types.ListCustomRoutingListenersOutput>
 end
 
-function C:listCustomRoutingPortMappings(input: types.ListCustomRoutingPortMappingsInput, options: any): async.Operation<types.ListCustomRoutingPortMappingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCustomRoutingPortMappings, input, options) as async.Operation<types.ListCustomRoutingPortMappingsOutput>
+function C:listCustomRoutingPortMappings(input: types.ListCustomRoutingPortMappingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCustomRoutingPortMappingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCustomRoutingPortMappings as schema.OperationSchema, input, options) as async.Operation<types.ListCustomRoutingPortMappingsOutput>
 end
 
-function C:listCustomRoutingPortMappingsByDestination(input: types.ListCustomRoutingPortMappingsByDestinationInput, options: any): async.Operation<types.ListCustomRoutingPortMappingsByDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCustomRoutingPortMappingsByDestination, input, options) as async.Operation<types.ListCustomRoutingPortMappingsByDestinationOutput>
+function C:listCustomRoutingPortMappingsByDestination(input: types.ListCustomRoutingPortMappingsByDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.ListCustomRoutingPortMappingsByDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCustomRoutingPortMappingsByDestination as schema.OperationSchema, input, options) as async.Operation<types.ListCustomRoutingPortMappingsByDestinationOutput>
 end
 
-function C:listEndpointGroups(input: types.ListEndpointGroupsInput, options: any): async.Operation<types.ListEndpointGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEndpointGroups, input, options) as async.Operation<types.ListEndpointGroupsOutput>
+function C:listEndpointGroups(input: types.ListEndpointGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEndpointGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEndpointGroups as schema.OperationSchema, input, options) as async.Operation<types.ListEndpointGroupsOutput>
 end
 
-function C:listListeners(input: types.ListListenersInput, options: any): async.Operation<types.ListListenersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListListeners, input, options) as async.Operation<types.ListListenersOutput>
+function C:listListeners(input: types.ListListenersInput, options?: base_client.InvokeOptions): async.Operation<types.ListListenersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListListeners as schema.OperationSchema, input, options) as async.Operation<types.ListListenersOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:provisionByoipCidr(input: types.ProvisionByoipCidrInput, options: any): async.Operation<types.ProvisionByoipCidrOutput>
-    return self:invokeOperation(schemas.Service, schemas.ProvisionByoipCidr, input, options) as async.Operation<types.ProvisionByoipCidrOutput>
+function C:provisionByoipCidr(input: types.ProvisionByoipCidrInput, options?: base_client.InvokeOptions): async.Operation<types.ProvisionByoipCidrOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ProvisionByoipCidr as schema.OperationSchema, input, options) as async.Operation<types.ProvisionByoipCidrOutput>
 end
 
-function C:removeCustomRoutingEndpoints(input: types.RemoveCustomRoutingEndpointsInput, options: any): async.Operation<types.RemoveCustomRoutingEndpointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveCustomRoutingEndpoints, input, options) as async.Operation<types.RemoveCustomRoutingEndpointsOutput>
+function C:removeCustomRoutingEndpoints(input: types.RemoveCustomRoutingEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveCustomRoutingEndpointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveCustomRoutingEndpoints as schema.OperationSchema, input, options) as async.Operation<types.RemoveCustomRoutingEndpointsOutput>
 end
 
-function C:removeEndpoints(input: types.RemoveEndpointsInput, options: any): async.Operation<types.RemoveEndpointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveEndpoints, input, options) as async.Operation<types.RemoveEndpointsOutput>
+function C:removeEndpoints(input: types.RemoveEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveEndpointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveEndpoints as schema.OperationSchema, input, options) as async.Operation<types.RemoveEndpointsOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAccelerator(input: types.UpdateAcceleratorInput, options: any): async.Operation<types.UpdateAcceleratorOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAccelerator, input, options) as async.Operation<types.UpdateAcceleratorOutput>
+function C:updateAccelerator(input: types.UpdateAcceleratorInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAcceleratorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAccelerator as schema.OperationSchema, input, options) as async.Operation<types.UpdateAcceleratorOutput>
 end
 
-function C:updateAcceleratorAttributes(input: types.UpdateAcceleratorAttributesInput, options: any): async.Operation<types.UpdateAcceleratorAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAcceleratorAttributes, input, options) as async.Operation<types.UpdateAcceleratorAttributesOutput>
+function C:updateAcceleratorAttributes(input: types.UpdateAcceleratorAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAcceleratorAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAcceleratorAttributes as schema.OperationSchema, input, options) as async.Operation<types.UpdateAcceleratorAttributesOutput>
 end
 
-function C:updateCrossAccountAttachment(input: types.UpdateCrossAccountAttachmentInput, options: any): async.Operation<types.UpdateCrossAccountAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCrossAccountAttachment, input, options) as async.Operation<types.UpdateCrossAccountAttachmentOutput>
+function C:updateCrossAccountAttachment(input: types.UpdateCrossAccountAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCrossAccountAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCrossAccountAttachment as schema.OperationSchema, input, options) as async.Operation<types.UpdateCrossAccountAttachmentOutput>
 end
 
-function C:updateCustomRoutingAccelerator(input: types.UpdateCustomRoutingAcceleratorInput, options: any): async.Operation<types.UpdateCustomRoutingAcceleratorOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCustomRoutingAccelerator, input, options) as async.Operation<types.UpdateCustomRoutingAcceleratorOutput>
+function C:updateCustomRoutingAccelerator(input: types.UpdateCustomRoutingAcceleratorInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCustomRoutingAcceleratorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCustomRoutingAccelerator as schema.OperationSchema, input, options) as async.Operation<types.UpdateCustomRoutingAcceleratorOutput>
 end
 
-function C:updateCustomRoutingAcceleratorAttributes(input: types.UpdateCustomRoutingAcceleratorAttributesInput, options: any): async.Operation<types.UpdateCustomRoutingAcceleratorAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCustomRoutingAcceleratorAttributes, input, options) as async.Operation<types.UpdateCustomRoutingAcceleratorAttributesOutput>
+function C:updateCustomRoutingAcceleratorAttributes(input: types.UpdateCustomRoutingAcceleratorAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCustomRoutingAcceleratorAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCustomRoutingAcceleratorAttributes as schema.OperationSchema, input, options) as async.Operation<types.UpdateCustomRoutingAcceleratorAttributesOutput>
 end
 
-function C:updateCustomRoutingListener(input: types.UpdateCustomRoutingListenerInput, options: any): async.Operation<types.UpdateCustomRoutingListenerOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCustomRoutingListener, input, options) as async.Operation<types.UpdateCustomRoutingListenerOutput>
+function C:updateCustomRoutingListener(input: types.UpdateCustomRoutingListenerInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCustomRoutingListenerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCustomRoutingListener as schema.OperationSchema, input, options) as async.Operation<types.UpdateCustomRoutingListenerOutput>
 end
 
-function C:updateEndpointGroup(input: types.UpdateEndpointGroupInput, options: any): async.Operation<types.UpdateEndpointGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEndpointGroup, input, options) as async.Operation<types.UpdateEndpointGroupOutput>
+function C:updateEndpointGroup(input: types.UpdateEndpointGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEndpointGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEndpointGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateEndpointGroupOutput>
 end
 
-function C:updateListener(input: types.UpdateListenerInput, options: any): async.Operation<types.UpdateListenerOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateListener, input, options) as async.Operation<types.UpdateListenerOutput>
+function C:updateListener(input: types.UpdateListenerInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateListenerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateListener as schema.OperationSchema, input, options) as async.Operation<types.UpdateListenerOutput>
 end
 
-function C:withdrawByoipCidr(input: types.WithdrawByoipCidrInput, options: any): async.Operation<types.WithdrawByoipCidrOutput>
-    return self:invokeOperation(schemas.Service, schemas.WithdrawByoipCidr, input, options) as async.Operation<types.WithdrawByoipCidrOutput>
+function C:withdrawByoipCidr(input: types.WithdrawByoipCidrInput, options?: base_client.InvokeOptions): async.Operation<types.WithdrawByoipCidrOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.WithdrawByoipCidr as schema.OperationSchema, input, options) as async.Operation<types.WithdrawByoipCidrOutput>
 end
 
 return M

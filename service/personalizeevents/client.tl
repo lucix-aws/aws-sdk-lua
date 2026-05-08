@@ -8,44 +8,47 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("personalizeevents.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("personalizeevents.schemas")
 local traits = require("smithy.traits")
 local types = require("personalizeevents.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    putActionInteractions: function(Client, types.PutActionInteractionsInput, any): async.Operation<types.PutActionInteractionsOutput>
-    putActions: function(Client, types.PutActionsInput, any): async.Operation<types.PutActionsOutput>
-    putEvents: function(Client, types.PutEventsInput, any): async.Operation<types.PutEventsOutput>
-    putItems: function(Client, types.PutItemsInput, any): async.Operation<types.PutItemsOutput>
-    putUsers: function(Client, types.PutUsersInput, any): async.Operation<types.PutUsersOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    putActionInteractions: function(Client, types.PutActionInteractionsInput, ? base_client.InvokeOptions): async.Operation<types.PutActionInteractionsOutput>
+    putActions: function(Client, types.PutActionsInput, ? base_client.InvokeOptions): async.Operation<types.PutActionsOutput>
+    putEvents: function(Client, types.PutEventsInput, ? base_client.InvokeOptions): async.Operation<types.PutEventsOutput>
+    putItems: function(Client, types.PutItemsInput, ? base_client.InvokeOptions): async.Operation<types.PutItemsOutput>
+    putUsers: function(Client, types.PutUsersInput, ? base_client.InvokeOptions): async.Operation<types.PutUsersOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonPersonalizeEvents"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "personalize", signing_region = c.region } }
                 else
@@ -64,24 +67,24 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:putActionInteractions(input: types.PutActionInteractionsInput, options: any): async.Operation<types.PutActionInteractionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutActionInteractions, input, options) as async.Operation<types.PutActionInteractionsOutput>
+function C:putActionInteractions(input: types.PutActionInteractionsInput, options?: base_client.InvokeOptions): async.Operation<types.PutActionInteractionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutActionInteractions as schema.OperationSchema, input, options) as async.Operation<types.PutActionInteractionsOutput>
 end
 
-function C:putActions(input: types.PutActionsInput, options: any): async.Operation<types.PutActionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutActions, input, options) as async.Operation<types.PutActionsOutput>
+function C:putActions(input: types.PutActionsInput, options?: base_client.InvokeOptions): async.Operation<types.PutActionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutActions as schema.OperationSchema, input, options) as async.Operation<types.PutActionsOutput>
 end
 
-function C:putEvents(input: types.PutEventsInput, options: any): async.Operation<types.PutEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutEvents, input, options) as async.Operation<types.PutEventsOutput>
+function C:putEvents(input: types.PutEventsInput, options?: base_client.InvokeOptions): async.Operation<types.PutEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutEvents as schema.OperationSchema, input, options) as async.Operation<types.PutEventsOutput>
 end
 
-function C:putItems(input: types.PutItemsInput, options: any): async.Operation<types.PutItemsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutItems, input, options) as async.Operation<types.PutItemsOutput>
+function C:putItems(input: types.PutItemsInput, options?: base_client.InvokeOptions): async.Operation<types.PutItemsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutItems as schema.OperationSchema, input, options) as async.Operation<types.PutItemsOutput>
 end
 
-function C:putUsers(input: types.PutUsersInput, options: any): async.Operation<types.PutUsersOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutUsers, input, options) as async.Operation<types.PutUsersOutput>
+function C:putUsers(input: types.PutUsersInput, options?: base_client.InvokeOptions): async.Operation<types.PutUsersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutUsers as schema.OperationSchema, input, options) as async.Operation<types.PutUsersOutput>
 end
 
 return M

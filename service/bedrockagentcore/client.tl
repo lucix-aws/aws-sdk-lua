@@ -8,93 +8,96 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("bedrockagentcore.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("bedrockagentcore.schemas")
 local traits = require("smithy.traits")
 local types = require("bedrockagentcore.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchCreateMemoryRecords: function(Client, types.BatchCreateMemoryRecordsInput, any): async.Operation<types.BatchCreateMemoryRecordsOutput>
-    batchDeleteMemoryRecords: function(Client, types.BatchDeleteMemoryRecordsInput, any): async.Operation<types.BatchDeleteMemoryRecordsOutput>
-    batchUpdateMemoryRecords: function(Client, types.BatchUpdateMemoryRecordsInput, any): async.Operation<types.BatchUpdateMemoryRecordsOutput>
-    completeResourceTokenAuth: function(Client, types.CompleteResourceTokenAuthInput, any): async.Operation<types.CompleteResourceTokenAuthOutput>
-    createABTest: function(Client, types.CreateABTestInput, any): async.Operation<types.CreateABTestOutput>
-    createEvent: function(Client, types.CreateEventInput, any): async.Operation<types.CreateEventOutput>
-    deleteABTest: function(Client, types.DeleteABTestInput, any): async.Operation<types.DeleteABTestOutput>
-    deleteBatchEvaluation: function(Client, types.DeleteBatchEvaluationInput, any): async.Operation<types.DeleteBatchEvaluationOutput>
-    deleteEvent: function(Client, types.DeleteEventInput, any): async.Operation<types.DeleteEventOutput>
-    deleteMemoryRecord: function(Client, types.DeleteMemoryRecordInput, any): async.Operation<types.DeleteMemoryRecordOutput>
-    deleteRecommendation: function(Client, types.DeleteRecommendationInput, any): async.Operation<types.DeleteRecommendationOutput>
-    evaluate: function(Client, types.EvaluateInput, any): async.Operation<types.EvaluateOutput>
-    getABTest: function(Client, types.GetABTestInput, any): async.Operation<types.GetABTestOutput>
-    getAgentCard: function(Client, types.GetAgentCardInput, any): async.Operation<types.GetAgentCardOutput>
-    getBatchEvaluation: function(Client, types.GetBatchEvaluationInput, any): async.Operation<types.GetBatchEvaluationOutput>
-    getBrowserSession: function(Client, types.GetBrowserSessionInput, any): async.Operation<types.GetBrowserSessionOutput>
-    getCodeInterpreterSession: function(Client, types.GetCodeInterpreterSessionInput, any): async.Operation<types.GetCodeInterpreterSessionOutput>
-    getEvent: function(Client, types.GetEventInput, any): async.Operation<types.GetEventOutput>
-    getMemoryRecord: function(Client, types.GetMemoryRecordInput, any): async.Operation<types.GetMemoryRecordOutput>
-    getRecommendation: function(Client, types.GetRecommendationInput, any): async.Operation<types.GetRecommendationOutput>
-    getResourceApiKey: function(Client, types.GetResourceApiKeyInput, any): async.Operation<types.GetResourceApiKeyOutput>
-    getResourceOauth2Token: function(Client, types.GetResourceOauth2TokenInput, any): async.Operation<types.GetResourceOauth2TokenOutput>
-    getWorkloadAccessToken: function(Client, types.GetWorkloadAccessTokenInput, any): async.Operation<types.GetWorkloadAccessTokenOutput>
-    getWorkloadAccessTokenForJWT: function(Client, types.GetWorkloadAccessTokenForJWTInput, any): async.Operation<types.GetWorkloadAccessTokenForJWTOutput>
-    getWorkloadAccessTokenForUserId: function(Client, types.GetWorkloadAccessTokenForUserIdInput, any): async.Operation<types.GetWorkloadAccessTokenForUserIdOutput>
-    invokeAgentRuntime: function(Client, types.InvokeAgentRuntimeInput, any): async.Operation<types.InvokeAgentRuntimeOutput>
-    invokeAgentRuntimeCommand: function(Client, types.InvokeAgentRuntimeCommandInput, any): async.Operation<types.InvokeAgentRuntimeCommandOutput>
-    invokeBrowser: function(Client, types.InvokeBrowserInput, any): async.Operation<types.InvokeBrowserOutput>
-    invokeCodeInterpreter: function(Client, types.InvokeCodeInterpreterInput, any): async.Operation<types.InvokeCodeInterpreterOutput>
-    invokeHarness: function(Client, types.InvokeHarnessInput, any): async.Operation<types.InvokeHarnessOutput>
-    listABTests: function(Client, types.ListABTestsInput, any): async.Operation<types.ListABTestsOutput>
-    listActors: function(Client, types.ListActorsInput, any): async.Operation<types.ListActorsOutput>
-    listBatchEvaluations: function(Client, types.ListBatchEvaluationsInput, any): async.Operation<types.ListBatchEvaluationsOutput>
-    listBrowserSessions: function(Client, types.ListBrowserSessionsInput, any): async.Operation<types.ListBrowserSessionsOutput>
-    listCodeInterpreterSessions: function(Client, types.ListCodeInterpreterSessionsInput, any): async.Operation<types.ListCodeInterpreterSessionsOutput>
-    listEvents: function(Client, types.ListEventsInput, any): async.Operation<types.ListEventsOutput>
-    listMemoryExtractionJobs: function(Client, types.ListMemoryExtractionJobsInput, any): async.Operation<types.ListMemoryExtractionJobsOutput>
-    listMemoryRecords: function(Client, types.ListMemoryRecordsInput, any): async.Operation<types.ListMemoryRecordsOutput>
-    listRecommendations: function(Client, types.ListRecommendationsInput, any): async.Operation<types.ListRecommendationsOutput>
-    listSessions: function(Client, types.ListSessionsInput, any): async.Operation<types.ListSessionsOutput>
-    retrieveMemoryRecords: function(Client, types.RetrieveMemoryRecordsInput, any): async.Operation<types.RetrieveMemoryRecordsOutput>
-    saveBrowserSessionProfile: function(Client, types.SaveBrowserSessionProfileInput, any): async.Operation<types.SaveBrowserSessionProfileOutput>
-    searchRegistryRecords: function(Client, types.SearchRegistryRecordsInput, any): async.Operation<types.SearchRegistryRecordsOutput>
-    startBatchEvaluation: function(Client, types.StartBatchEvaluationInput, any): async.Operation<types.StartBatchEvaluationOutput>
-    startBrowserSession: function(Client, types.StartBrowserSessionInput, any): async.Operation<types.StartBrowserSessionOutput>
-    startCodeInterpreterSession: function(Client, types.StartCodeInterpreterSessionInput, any): async.Operation<types.StartCodeInterpreterSessionOutput>
-    startMemoryExtractionJob: function(Client, types.StartMemoryExtractionJobInput, any): async.Operation<types.StartMemoryExtractionJobOutput>
-    startRecommendation: function(Client, types.StartRecommendationInput, any): async.Operation<types.StartRecommendationOutput>
-    stopBatchEvaluation: function(Client, types.StopBatchEvaluationInput, any): async.Operation<types.StopBatchEvaluationOutput>
-    stopBrowserSession: function(Client, types.StopBrowserSessionInput, any): async.Operation<types.StopBrowserSessionOutput>
-    stopCodeInterpreterSession: function(Client, types.StopCodeInterpreterSessionInput, any): async.Operation<types.StopCodeInterpreterSessionOutput>
-    stopRuntimeSession: function(Client, types.StopRuntimeSessionInput, any): async.Operation<types.StopRuntimeSessionOutput>
-    updateABTest: function(Client, types.UpdateABTestInput, any): async.Operation<types.UpdateABTestOutput>
-    updateBrowserStream: function(Client, types.UpdateBrowserStreamInput, any): async.Operation<types.UpdateBrowserStreamOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchCreateMemoryRecords: function(Client, types.BatchCreateMemoryRecordsInput, ? base_client.InvokeOptions): async.Operation<types.BatchCreateMemoryRecordsOutput>
+    batchDeleteMemoryRecords: function(Client, types.BatchDeleteMemoryRecordsInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteMemoryRecordsOutput>
+    batchUpdateMemoryRecords: function(Client, types.BatchUpdateMemoryRecordsInput, ? base_client.InvokeOptions): async.Operation<types.BatchUpdateMemoryRecordsOutput>
+    completeResourceTokenAuth: function(Client, types.CompleteResourceTokenAuthInput, ? base_client.InvokeOptions): async.Operation<types.CompleteResourceTokenAuthOutput>
+    createABTest: function(Client, types.CreateABTestInput, ? base_client.InvokeOptions): async.Operation<types.CreateABTestOutput>
+    createEvent: function(Client, types.CreateEventInput, ? base_client.InvokeOptions): async.Operation<types.CreateEventOutput>
+    deleteABTest: function(Client, types.DeleteABTestInput, ? base_client.InvokeOptions): async.Operation<types.DeleteABTestOutput>
+    deleteBatchEvaluation: function(Client, types.DeleteBatchEvaluationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBatchEvaluationOutput>
+    deleteEvent: function(Client, types.DeleteEventInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEventOutput>
+    deleteMemoryRecord: function(Client, types.DeleteMemoryRecordInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMemoryRecordOutput>
+    deleteRecommendation: function(Client, types.DeleteRecommendationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRecommendationOutput>
+    evaluate: function(Client, types.EvaluateInput, ? base_client.InvokeOptions): async.Operation<types.EvaluateOutput>
+    getABTest: function(Client, types.GetABTestInput, ? base_client.InvokeOptions): async.Operation<types.GetABTestOutput>
+    getAgentCard: function(Client, types.GetAgentCardInput, ? base_client.InvokeOptions): async.Operation<types.GetAgentCardOutput>
+    getBatchEvaluation: function(Client, types.GetBatchEvaluationInput, ? base_client.InvokeOptions): async.Operation<types.GetBatchEvaluationOutput>
+    getBrowserSession: function(Client, types.GetBrowserSessionInput, ? base_client.InvokeOptions): async.Operation<types.GetBrowserSessionOutput>
+    getCodeInterpreterSession: function(Client, types.GetCodeInterpreterSessionInput, ? base_client.InvokeOptions): async.Operation<types.GetCodeInterpreterSessionOutput>
+    getEvent: function(Client, types.GetEventInput, ? base_client.InvokeOptions): async.Operation<types.GetEventOutput>
+    getMemoryRecord: function(Client, types.GetMemoryRecordInput, ? base_client.InvokeOptions): async.Operation<types.GetMemoryRecordOutput>
+    getRecommendation: function(Client, types.GetRecommendationInput, ? base_client.InvokeOptions): async.Operation<types.GetRecommendationOutput>
+    getResourceApiKey: function(Client, types.GetResourceApiKeyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourceApiKeyOutput>
+    getResourceOauth2Token: function(Client, types.GetResourceOauth2TokenInput, ? base_client.InvokeOptions): async.Operation<types.GetResourceOauth2TokenOutput>
+    getWorkloadAccessToken: function(Client, types.GetWorkloadAccessTokenInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkloadAccessTokenOutput>
+    getWorkloadAccessTokenForJWT: function(Client, types.GetWorkloadAccessTokenForJWTInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkloadAccessTokenForJWTOutput>
+    getWorkloadAccessTokenForUserId: function(Client, types.GetWorkloadAccessTokenForUserIdInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkloadAccessTokenForUserIdOutput>
+    invokeAgentRuntime: function(Client, types.InvokeAgentRuntimeInput, ? base_client.InvokeOptions): async.Operation<types.InvokeAgentRuntimeOutput>
+    invokeAgentRuntimeCommand: function(Client, types.InvokeAgentRuntimeCommandInput, ? base_client.InvokeOptions): async.Operation<types.InvokeAgentRuntimeCommandOutput>
+    invokeBrowser: function(Client, types.InvokeBrowserInput, ? base_client.InvokeOptions): async.Operation<types.InvokeBrowserOutput>
+    invokeCodeInterpreter: function(Client, types.InvokeCodeInterpreterInput, ? base_client.InvokeOptions): async.Operation<types.InvokeCodeInterpreterOutput>
+    invokeHarness: function(Client, types.InvokeHarnessInput, ? base_client.InvokeOptions): async.Operation<types.InvokeHarnessOutput>
+    listABTests: function(Client, types.ListABTestsInput, ? base_client.InvokeOptions): async.Operation<types.ListABTestsOutput>
+    listActors: function(Client, types.ListActorsInput, ? base_client.InvokeOptions): async.Operation<types.ListActorsOutput>
+    listBatchEvaluations: function(Client, types.ListBatchEvaluationsInput, ? base_client.InvokeOptions): async.Operation<types.ListBatchEvaluationsOutput>
+    listBrowserSessions: function(Client, types.ListBrowserSessionsInput, ? base_client.InvokeOptions): async.Operation<types.ListBrowserSessionsOutput>
+    listCodeInterpreterSessions: function(Client, types.ListCodeInterpreterSessionsInput, ? base_client.InvokeOptions): async.Operation<types.ListCodeInterpreterSessionsOutput>
+    listEvents: function(Client, types.ListEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListEventsOutput>
+    listMemoryExtractionJobs: function(Client, types.ListMemoryExtractionJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListMemoryExtractionJobsOutput>
+    listMemoryRecords: function(Client, types.ListMemoryRecordsInput, ? base_client.InvokeOptions): async.Operation<types.ListMemoryRecordsOutput>
+    listRecommendations: function(Client, types.ListRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.ListRecommendationsOutput>
+    listSessions: function(Client, types.ListSessionsInput, ? base_client.InvokeOptions): async.Operation<types.ListSessionsOutput>
+    retrieveMemoryRecords: function(Client, types.RetrieveMemoryRecordsInput, ? base_client.InvokeOptions): async.Operation<types.RetrieveMemoryRecordsOutput>
+    saveBrowserSessionProfile: function(Client, types.SaveBrowserSessionProfileInput, ? base_client.InvokeOptions): async.Operation<types.SaveBrowserSessionProfileOutput>
+    searchRegistryRecords: function(Client, types.SearchRegistryRecordsInput, ? base_client.InvokeOptions): async.Operation<types.SearchRegistryRecordsOutput>
+    startBatchEvaluation: function(Client, types.StartBatchEvaluationInput, ? base_client.InvokeOptions): async.Operation<types.StartBatchEvaluationOutput>
+    startBrowserSession: function(Client, types.StartBrowserSessionInput, ? base_client.InvokeOptions): async.Operation<types.StartBrowserSessionOutput>
+    startCodeInterpreterSession: function(Client, types.StartCodeInterpreterSessionInput, ? base_client.InvokeOptions): async.Operation<types.StartCodeInterpreterSessionOutput>
+    startMemoryExtractionJob: function(Client, types.StartMemoryExtractionJobInput, ? base_client.InvokeOptions): async.Operation<types.StartMemoryExtractionJobOutput>
+    startRecommendation: function(Client, types.StartRecommendationInput, ? base_client.InvokeOptions): async.Operation<types.StartRecommendationOutput>
+    stopBatchEvaluation: function(Client, types.StopBatchEvaluationInput, ? base_client.InvokeOptions): async.Operation<types.StopBatchEvaluationOutput>
+    stopBrowserSession: function(Client, types.StopBrowserSessionInput, ? base_client.InvokeOptions): async.Operation<types.StopBrowserSessionOutput>
+    stopCodeInterpreterSession: function(Client, types.StopCodeInterpreterSessionInput, ? base_client.InvokeOptions): async.Operation<types.StopCodeInterpreterSessionOutput>
+    stopRuntimeSession: function(Client, types.StopRuntimeSessionInput, ? base_client.InvokeOptions): async.Operation<types.StopRuntimeSessionOutput>
+    updateABTest: function(Client, types.UpdateABTestInput, ? base_client.InvokeOptions): async.Operation<types.UpdateABTestOutput>
+    updateBrowserStream: function(Client, types.UpdateBrowserStreamInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBrowserStreamOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonBedrockAgentCore"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "bedrock-agentcore", signing_region = c.region } }
                 else
@@ -113,220 +116,220 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchCreateMemoryRecords(input: types.BatchCreateMemoryRecordsInput, options: any): async.Operation<types.BatchCreateMemoryRecordsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchCreateMemoryRecords, input, options) as async.Operation<types.BatchCreateMemoryRecordsOutput>
+function C:batchCreateMemoryRecords(input: types.BatchCreateMemoryRecordsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchCreateMemoryRecordsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchCreateMemoryRecords as schema.OperationSchema, input, options) as async.Operation<types.BatchCreateMemoryRecordsOutput>
 end
 
-function C:batchDeleteMemoryRecords(input: types.BatchDeleteMemoryRecordsInput, options: any): async.Operation<types.BatchDeleteMemoryRecordsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDeleteMemoryRecords, input, options) as async.Operation<types.BatchDeleteMemoryRecordsOutput>
+function C:batchDeleteMemoryRecords(input: types.BatchDeleteMemoryRecordsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteMemoryRecordsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteMemoryRecords as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteMemoryRecordsOutput>
 end
 
-function C:batchUpdateMemoryRecords(input: types.BatchUpdateMemoryRecordsInput, options: any): async.Operation<types.BatchUpdateMemoryRecordsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchUpdateMemoryRecords, input, options) as async.Operation<types.BatchUpdateMemoryRecordsOutput>
+function C:batchUpdateMemoryRecords(input: types.BatchUpdateMemoryRecordsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchUpdateMemoryRecordsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchUpdateMemoryRecords as schema.OperationSchema, input, options) as async.Operation<types.BatchUpdateMemoryRecordsOutput>
 end
 
-function C:completeResourceTokenAuth(input: types.CompleteResourceTokenAuthInput, options: any): async.Operation<types.CompleteResourceTokenAuthOutput>
-    return self:invokeOperation(schemas.Service, schemas.CompleteResourceTokenAuth, input, options) as async.Operation<types.CompleteResourceTokenAuthOutput>
+function C:completeResourceTokenAuth(input: types.CompleteResourceTokenAuthInput, options?: base_client.InvokeOptions): async.Operation<types.CompleteResourceTokenAuthOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CompleteResourceTokenAuth as schema.OperationSchema, input, options) as async.Operation<types.CompleteResourceTokenAuthOutput>
 end
 
-function C:createABTest(input: types.CreateABTestInput, options: any): async.Operation<types.CreateABTestOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateABTest, input, options) as async.Operation<types.CreateABTestOutput>
+function C:createABTest(input: types.CreateABTestInput, options?: base_client.InvokeOptions): async.Operation<types.CreateABTestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateABTest as schema.OperationSchema, input, options) as async.Operation<types.CreateABTestOutput>
 end
 
-function C:createEvent(input: types.CreateEventInput, options: any): async.Operation<types.CreateEventOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEvent, input, options) as async.Operation<types.CreateEventOutput>
+function C:createEvent(input: types.CreateEventInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEventOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEvent as schema.OperationSchema, input, options) as async.Operation<types.CreateEventOutput>
 end
 
-function C:deleteABTest(input: types.DeleteABTestInput, options: any): async.Operation<types.DeleteABTestOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteABTest, input, options) as async.Operation<types.DeleteABTestOutput>
+function C:deleteABTest(input: types.DeleteABTestInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteABTestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteABTest as schema.OperationSchema, input, options) as async.Operation<types.DeleteABTestOutput>
 end
 
-function C:deleteBatchEvaluation(input: types.DeleteBatchEvaluationInput, options: any): async.Operation<types.DeleteBatchEvaluationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBatchEvaluation, input, options) as async.Operation<types.DeleteBatchEvaluationOutput>
+function C:deleteBatchEvaluation(input: types.DeleteBatchEvaluationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBatchEvaluationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBatchEvaluation as schema.OperationSchema, input, options) as async.Operation<types.DeleteBatchEvaluationOutput>
 end
 
-function C:deleteEvent(input: types.DeleteEventInput, options: any): async.Operation<types.DeleteEventOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEvent, input, options) as async.Operation<types.DeleteEventOutput>
+function C:deleteEvent(input: types.DeleteEventInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEventOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEvent as schema.OperationSchema, input, options) as async.Operation<types.DeleteEventOutput>
 end
 
-function C:deleteMemoryRecord(input: types.DeleteMemoryRecordInput, options: any): async.Operation<types.DeleteMemoryRecordOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMemoryRecord, input, options) as async.Operation<types.DeleteMemoryRecordOutput>
+function C:deleteMemoryRecord(input: types.DeleteMemoryRecordInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMemoryRecordOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMemoryRecord as schema.OperationSchema, input, options) as async.Operation<types.DeleteMemoryRecordOutput>
 end
 
-function C:deleteRecommendation(input: types.DeleteRecommendationInput, options: any): async.Operation<types.DeleteRecommendationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRecommendation, input, options) as async.Operation<types.DeleteRecommendationOutput>
+function C:deleteRecommendation(input: types.DeleteRecommendationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRecommendationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRecommendation as schema.OperationSchema, input, options) as async.Operation<types.DeleteRecommendationOutput>
 end
 
-function C:evaluate(input: types.EvaluateInput, options: any): async.Operation<types.EvaluateOutput>
-    return self:invokeOperation(schemas.Service, schemas.Evaluate, input, options) as async.Operation<types.EvaluateOutput>
+function C:evaluate(input: types.EvaluateInput, options?: base_client.InvokeOptions): async.Operation<types.EvaluateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Evaluate as schema.OperationSchema, input, options) as async.Operation<types.EvaluateOutput>
 end
 
-function C:getABTest(input: types.GetABTestInput, options: any): async.Operation<types.GetABTestOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetABTest, input, options) as async.Operation<types.GetABTestOutput>
+function C:getABTest(input: types.GetABTestInput, options?: base_client.InvokeOptions): async.Operation<types.GetABTestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetABTest as schema.OperationSchema, input, options) as async.Operation<types.GetABTestOutput>
 end
 
-function C:getAgentCard(input: types.GetAgentCardInput, options: any): async.Operation<types.GetAgentCardOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAgentCard, input, options) as async.Operation<types.GetAgentCardOutput>
+function C:getAgentCard(input: types.GetAgentCardInput, options?: base_client.InvokeOptions): async.Operation<types.GetAgentCardOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAgentCard as schema.OperationSchema, input, options) as async.Operation<types.GetAgentCardOutput>
 end
 
-function C:getBatchEvaluation(input: types.GetBatchEvaluationInput, options: any): async.Operation<types.GetBatchEvaluationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBatchEvaluation, input, options) as async.Operation<types.GetBatchEvaluationOutput>
+function C:getBatchEvaluation(input: types.GetBatchEvaluationInput, options?: base_client.InvokeOptions): async.Operation<types.GetBatchEvaluationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBatchEvaluation as schema.OperationSchema, input, options) as async.Operation<types.GetBatchEvaluationOutput>
 end
 
-function C:getBrowserSession(input: types.GetBrowserSessionInput, options: any): async.Operation<types.GetBrowserSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBrowserSession, input, options) as async.Operation<types.GetBrowserSessionOutput>
+function C:getBrowserSession(input: types.GetBrowserSessionInput, options?: base_client.InvokeOptions): async.Operation<types.GetBrowserSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBrowserSession as schema.OperationSchema, input, options) as async.Operation<types.GetBrowserSessionOutput>
 end
 
-function C:getCodeInterpreterSession(input: types.GetCodeInterpreterSessionInput, options: any): async.Operation<types.GetCodeInterpreterSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCodeInterpreterSession, input, options) as async.Operation<types.GetCodeInterpreterSessionOutput>
+function C:getCodeInterpreterSession(input: types.GetCodeInterpreterSessionInput, options?: base_client.InvokeOptions): async.Operation<types.GetCodeInterpreterSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCodeInterpreterSession as schema.OperationSchema, input, options) as async.Operation<types.GetCodeInterpreterSessionOutput>
 end
 
-function C:getEvent(input: types.GetEventInput, options: any): async.Operation<types.GetEventOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEvent, input, options) as async.Operation<types.GetEventOutput>
+function C:getEvent(input: types.GetEventInput, options?: base_client.InvokeOptions): async.Operation<types.GetEventOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEvent as schema.OperationSchema, input, options) as async.Operation<types.GetEventOutput>
 end
 
-function C:getMemoryRecord(input: types.GetMemoryRecordInput, options: any): async.Operation<types.GetMemoryRecordOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMemoryRecord, input, options) as async.Operation<types.GetMemoryRecordOutput>
+function C:getMemoryRecord(input: types.GetMemoryRecordInput, options?: base_client.InvokeOptions): async.Operation<types.GetMemoryRecordOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMemoryRecord as schema.OperationSchema, input, options) as async.Operation<types.GetMemoryRecordOutput>
 end
 
-function C:getRecommendation(input: types.GetRecommendationInput, options: any): async.Operation<types.GetRecommendationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRecommendation, input, options) as async.Operation<types.GetRecommendationOutput>
+function C:getRecommendation(input: types.GetRecommendationInput, options?: base_client.InvokeOptions): async.Operation<types.GetRecommendationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRecommendation as schema.OperationSchema, input, options) as async.Operation<types.GetRecommendationOutput>
 end
 
-function C:getResourceApiKey(input: types.GetResourceApiKeyInput, options: any): async.Operation<types.GetResourceApiKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourceApiKey, input, options) as async.Operation<types.GetResourceApiKeyOutput>
+function C:getResourceApiKey(input: types.GetResourceApiKeyInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourceApiKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourceApiKey as schema.OperationSchema, input, options) as async.Operation<types.GetResourceApiKeyOutput>
 end
 
-function C:getResourceOauth2Token(input: types.GetResourceOauth2TokenInput, options: any): async.Operation<types.GetResourceOauth2TokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourceOauth2Token, input, options) as async.Operation<types.GetResourceOauth2TokenOutput>
+function C:getResourceOauth2Token(input: types.GetResourceOauth2TokenInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourceOauth2TokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourceOauth2Token as schema.OperationSchema, input, options) as async.Operation<types.GetResourceOauth2TokenOutput>
 end
 
-function C:getWorkloadAccessToken(input: types.GetWorkloadAccessTokenInput, options: any): async.Operation<types.GetWorkloadAccessTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWorkloadAccessToken, input, options) as async.Operation<types.GetWorkloadAccessTokenOutput>
+function C:getWorkloadAccessToken(input: types.GetWorkloadAccessTokenInput, options?: base_client.InvokeOptions): async.Operation<types.GetWorkloadAccessTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWorkloadAccessToken as schema.OperationSchema, input, options) as async.Operation<types.GetWorkloadAccessTokenOutput>
 end
 
-function C:getWorkloadAccessTokenForJWT(input: types.GetWorkloadAccessTokenForJWTInput, options: any): async.Operation<types.GetWorkloadAccessTokenForJWTOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWorkloadAccessTokenForJWT, input, options) as async.Operation<types.GetWorkloadAccessTokenForJWTOutput>
+function C:getWorkloadAccessTokenForJWT(input: types.GetWorkloadAccessTokenForJWTInput, options?: base_client.InvokeOptions): async.Operation<types.GetWorkloadAccessTokenForJWTOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWorkloadAccessTokenForJWT as schema.OperationSchema, input, options) as async.Operation<types.GetWorkloadAccessTokenForJWTOutput>
 end
 
-function C:getWorkloadAccessTokenForUserId(input: types.GetWorkloadAccessTokenForUserIdInput, options: any): async.Operation<types.GetWorkloadAccessTokenForUserIdOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWorkloadAccessTokenForUserId, input, options) as async.Operation<types.GetWorkloadAccessTokenForUserIdOutput>
+function C:getWorkloadAccessTokenForUserId(input: types.GetWorkloadAccessTokenForUserIdInput, options?: base_client.InvokeOptions): async.Operation<types.GetWorkloadAccessTokenForUserIdOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWorkloadAccessTokenForUserId as schema.OperationSchema, input, options) as async.Operation<types.GetWorkloadAccessTokenForUserIdOutput>
 end
 
-function C:invokeAgentRuntime(input: types.InvokeAgentRuntimeInput, options: any): async.Operation<types.InvokeAgentRuntimeOutput>
-    return self:invokeOperation(schemas.Service, schemas.InvokeAgentRuntime, input, options) as async.Operation<types.InvokeAgentRuntimeOutput>
+function C:invokeAgentRuntime(input: types.InvokeAgentRuntimeInput, options?: base_client.InvokeOptions): async.Operation<types.InvokeAgentRuntimeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InvokeAgentRuntime as schema.OperationSchema, input, options) as async.Operation<types.InvokeAgentRuntimeOutput>
 end
 
-function C:invokeAgentRuntimeCommand(input: types.InvokeAgentRuntimeCommandInput, options: any): async.Operation<types.InvokeAgentRuntimeCommandOutput>
-    return self:invokeOperation(schemas.Service, schemas.InvokeAgentRuntimeCommand, input, options) as async.Operation<types.InvokeAgentRuntimeCommandOutput>
+function C:invokeAgentRuntimeCommand(input: types.InvokeAgentRuntimeCommandInput, options?: base_client.InvokeOptions): async.Operation<types.InvokeAgentRuntimeCommandOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InvokeAgentRuntimeCommand as schema.OperationSchema, input, options) as async.Operation<types.InvokeAgentRuntimeCommandOutput>
 end
 
-function C:invokeBrowser(input: types.InvokeBrowserInput, options: any): async.Operation<types.InvokeBrowserOutput>
-    return self:invokeOperation(schemas.Service, schemas.InvokeBrowser, input, options) as async.Operation<types.InvokeBrowserOutput>
+function C:invokeBrowser(input: types.InvokeBrowserInput, options?: base_client.InvokeOptions): async.Operation<types.InvokeBrowserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InvokeBrowser as schema.OperationSchema, input, options) as async.Operation<types.InvokeBrowserOutput>
 end
 
-function C:invokeCodeInterpreter(input: types.InvokeCodeInterpreterInput, options: any): async.Operation<types.InvokeCodeInterpreterOutput>
-    return self:invokeOperation(schemas.Service, schemas.InvokeCodeInterpreter, input, options) as async.Operation<types.InvokeCodeInterpreterOutput>
+function C:invokeCodeInterpreter(input: types.InvokeCodeInterpreterInput, options?: base_client.InvokeOptions): async.Operation<types.InvokeCodeInterpreterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InvokeCodeInterpreter as schema.OperationSchema, input, options) as async.Operation<types.InvokeCodeInterpreterOutput>
 end
 
-function C:invokeHarness(input: types.InvokeHarnessInput, options: any): async.Operation<types.InvokeHarnessOutput>
-    return self:invokeOperation(schemas.Service, schemas.InvokeHarness, input, options) as async.Operation<types.InvokeHarnessOutput>
+function C:invokeHarness(input: types.InvokeHarnessInput, options?: base_client.InvokeOptions): async.Operation<types.InvokeHarnessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InvokeHarness as schema.OperationSchema, input, options) as async.Operation<types.InvokeHarnessOutput>
 end
 
-function C:listABTests(input: types.ListABTestsInput, options: any): async.Operation<types.ListABTestsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListABTests, input, options) as async.Operation<types.ListABTestsOutput>
+function C:listABTests(input: types.ListABTestsInput, options?: base_client.InvokeOptions): async.Operation<types.ListABTestsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListABTests as schema.OperationSchema, input, options) as async.Operation<types.ListABTestsOutput>
 end
 
-function C:listActors(input: types.ListActorsInput, options: any): async.Operation<types.ListActorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListActors, input, options) as async.Operation<types.ListActorsOutput>
+function C:listActors(input: types.ListActorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListActorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListActors as schema.OperationSchema, input, options) as async.Operation<types.ListActorsOutput>
 end
 
-function C:listBatchEvaluations(input: types.ListBatchEvaluationsInput, options: any): async.Operation<types.ListBatchEvaluationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBatchEvaluations, input, options) as async.Operation<types.ListBatchEvaluationsOutput>
+function C:listBatchEvaluations(input: types.ListBatchEvaluationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBatchEvaluationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBatchEvaluations as schema.OperationSchema, input, options) as async.Operation<types.ListBatchEvaluationsOutput>
 end
 
-function C:listBrowserSessions(input: types.ListBrowserSessionsInput, options: any): async.Operation<types.ListBrowserSessionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBrowserSessions, input, options) as async.Operation<types.ListBrowserSessionsOutput>
+function C:listBrowserSessions(input: types.ListBrowserSessionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBrowserSessionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBrowserSessions as schema.OperationSchema, input, options) as async.Operation<types.ListBrowserSessionsOutput>
 end
 
-function C:listCodeInterpreterSessions(input: types.ListCodeInterpreterSessionsInput, options: any): async.Operation<types.ListCodeInterpreterSessionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCodeInterpreterSessions, input, options) as async.Operation<types.ListCodeInterpreterSessionsOutput>
+function C:listCodeInterpreterSessions(input: types.ListCodeInterpreterSessionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCodeInterpreterSessionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCodeInterpreterSessions as schema.OperationSchema, input, options) as async.Operation<types.ListCodeInterpreterSessionsOutput>
 end
 
-function C:listEvents(input: types.ListEventsInput, options: any): async.Operation<types.ListEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEvents, input, options) as async.Operation<types.ListEventsOutput>
+function C:listEvents(input: types.ListEventsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEvents as schema.OperationSchema, input, options) as async.Operation<types.ListEventsOutput>
 end
 
-function C:listMemoryExtractionJobs(input: types.ListMemoryExtractionJobsInput, options: any): async.Operation<types.ListMemoryExtractionJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMemoryExtractionJobs, input, options) as async.Operation<types.ListMemoryExtractionJobsOutput>
+function C:listMemoryExtractionJobs(input: types.ListMemoryExtractionJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMemoryExtractionJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMemoryExtractionJobs as schema.OperationSchema, input, options) as async.Operation<types.ListMemoryExtractionJobsOutput>
 end
 
-function C:listMemoryRecords(input: types.ListMemoryRecordsInput, options: any): async.Operation<types.ListMemoryRecordsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMemoryRecords, input, options) as async.Operation<types.ListMemoryRecordsOutput>
+function C:listMemoryRecords(input: types.ListMemoryRecordsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMemoryRecordsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMemoryRecords as schema.OperationSchema, input, options) as async.Operation<types.ListMemoryRecordsOutput>
 end
 
-function C:listRecommendations(input: types.ListRecommendationsInput, options: any): async.Operation<types.ListRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRecommendations, input, options) as async.Operation<types.ListRecommendationsOutput>
+function C:listRecommendations(input: types.ListRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecommendations as schema.OperationSchema, input, options) as async.Operation<types.ListRecommendationsOutput>
 end
 
-function C:listSessions(input: types.ListSessionsInput, options: any): async.Operation<types.ListSessionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSessions, input, options) as async.Operation<types.ListSessionsOutput>
+function C:listSessions(input: types.ListSessionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSessionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSessions as schema.OperationSchema, input, options) as async.Operation<types.ListSessionsOutput>
 end
 
-function C:retrieveMemoryRecords(input: types.RetrieveMemoryRecordsInput, options: any): async.Operation<types.RetrieveMemoryRecordsOutput>
-    return self:invokeOperation(schemas.Service, schemas.RetrieveMemoryRecords, input, options) as async.Operation<types.RetrieveMemoryRecordsOutput>
+function C:retrieveMemoryRecords(input: types.RetrieveMemoryRecordsInput, options?: base_client.InvokeOptions): async.Operation<types.RetrieveMemoryRecordsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RetrieveMemoryRecords as schema.OperationSchema, input, options) as async.Operation<types.RetrieveMemoryRecordsOutput>
 end
 
-function C:saveBrowserSessionProfile(input: types.SaveBrowserSessionProfileInput, options: any): async.Operation<types.SaveBrowserSessionProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.SaveBrowserSessionProfile, input, options) as async.Operation<types.SaveBrowserSessionProfileOutput>
+function C:saveBrowserSessionProfile(input: types.SaveBrowserSessionProfileInput, options?: base_client.InvokeOptions): async.Operation<types.SaveBrowserSessionProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SaveBrowserSessionProfile as schema.OperationSchema, input, options) as async.Operation<types.SaveBrowserSessionProfileOutput>
 end
 
-function C:searchRegistryRecords(input: types.SearchRegistryRecordsInput, options: any): async.Operation<types.SearchRegistryRecordsOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchRegistryRecords, input, options) as async.Operation<types.SearchRegistryRecordsOutput>
+function C:searchRegistryRecords(input: types.SearchRegistryRecordsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchRegistryRecordsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchRegistryRecords as schema.OperationSchema, input, options) as async.Operation<types.SearchRegistryRecordsOutput>
 end
 
-function C:startBatchEvaluation(input: types.StartBatchEvaluationInput, options: any): async.Operation<types.StartBatchEvaluationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartBatchEvaluation, input, options) as async.Operation<types.StartBatchEvaluationOutput>
+function C:startBatchEvaluation(input: types.StartBatchEvaluationInput, options?: base_client.InvokeOptions): async.Operation<types.StartBatchEvaluationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartBatchEvaluation as schema.OperationSchema, input, options) as async.Operation<types.StartBatchEvaluationOutput>
 end
 
-function C:startBrowserSession(input: types.StartBrowserSessionInput, options: any): async.Operation<types.StartBrowserSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartBrowserSession, input, options) as async.Operation<types.StartBrowserSessionOutput>
+function C:startBrowserSession(input: types.StartBrowserSessionInput, options?: base_client.InvokeOptions): async.Operation<types.StartBrowserSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartBrowserSession as schema.OperationSchema, input, options) as async.Operation<types.StartBrowserSessionOutput>
 end
 
-function C:startCodeInterpreterSession(input: types.StartCodeInterpreterSessionInput, options: any): async.Operation<types.StartCodeInterpreterSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartCodeInterpreterSession, input, options) as async.Operation<types.StartCodeInterpreterSessionOutput>
+function C:startCodeInterpreterSession(input: types.StartCodeInterpreterSessionInput, options?: base_client.InvokeOptions): async.Operation<types.StartCodeInterpreterSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartCodeInterpreterSession as schema.OperationSchema, input, options) as async.Operation<types.StartCodeInterpreterSessionOutput>
 end
 
-function C:startMemoryExtractionJob(input: types.StartMemoryExtractionJobInput, options: any): async.Operation<types.StartMemoryExtractionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartMemoryExtractionJob, input, options) as async.Operation<types.StartMemoryExtractionJobOutput>
+function C:startMemoryExtractionJob(input: types.StartMemoryExtractionJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartMemoryExtractionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartMemoryExtractionJob as schema.OperationSchema, input, options) as async.Operation<types.StartMemoryExtractionJobOutput>
 end
 
-function C:startRecommendation(input: types.StartRecommendationInput, options: any): async.Operation<types.StartRecommendationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartRecommendation, input, options) as async.Operation<types.StartRecommendationOutput>
+function C:startRecommendation(input: types.StartRecommendationInput, options?: base_client.InvokeOptions): async.Operation<types.StartRecommendationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartRecommendation as schema.OperationSchema, input, options) as async.Operation<types.StartRecommendationOutput>
 end
 
-function C:stopBatchEvaluation(input: types.StopBatchEvaluationInput, options: any): async.Operation<types.StopBatchEvaluationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopBatchEvaluation, input, options) as async.Operation<types.StopBatchEvaluationOutput>
+function C:stopBatchEvaluation(input: types.StopBatchEvaluationInput, options?: base_client.InvokeOptions): async.Operation<types.StopBatchEvaluationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopBatchEvaluation as schema.OperationSchema, input, options) as async.Operation<types.StopBatchEvaluationOutput>
 end
 
-function C:stopBrowserSession(input: types.StopBrowserSessionInput, options: any): async.Operation<types.StopBrowserSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopBrowserSession, input, options) as async.Operation<types.StopBrowserSessionOutput>
+function C:stopBrowserSession(input: types.StopBrowserSessionInput, options?: base_client.InvokeOptions): async.Operation<types.StopBrowserSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopBrowserSession as schema.OperationSchema, input, options) as async.Operation<types.StopBrowserSessionOutput>
 end
 
-function C:stopCodeInterpreterSession(input: types.StopCodeInterpreterSessionInput, options: any): async.Operation<types.StopCodeInterpreterSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopCodeInterpreterSession, input, options) as async.Operation<types.StopCodeInterpreterSessionOutput>
+function C:stopCodeInterpreterSession(input: types.StopCodeInterpreterSessionInput, options?: base_client.InvokeOptions): async.Operation<types.StopCodeInterpreterSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopCodeInterpreterSession as schema.OperationSchema, input, options) as async.Operation<types.StopCodeInterpreterSessionOutput>
 end
 
-function C:stopRuntimeSession(input: types.StopRuntimeSessionInput, options: any): async.Operation<types.StopRuntimeSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopRuntimeSession, input, options) as async.Operation<types.StopRuntimeSessionOutput>
+function C:stopRuntimeSession(input: types.StopRuntimeSessionInput, options?: base_client.InvokeOptions): async.Operation<types.StopRuntimeSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopRuntimeSession as schema.OperationSchema, input, options) as async.Operation<types.StopRuntimeSessionOutput>
 end
 
-function C:updateABTest(input: types.UpdateABTestInput, options: any): async.Operation<types.UpdateABTestOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateABTest, input, options) as async.Operation<types.UpdateABTestOutput>
+function C:updateABTest(input: types.UpdateABTestInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateABTestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateABTest as schema.OperationSchema, input, options) as async.Operation<types.UpdateABTestOutput>
 end
 
-function C:updateBrowserStream(input: types.UpdateBrowserStreamInput, options: any): async.Operation<types.UpdateBrowserStreamOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateBrowserStream, input, options) as async.Operation<types.UpdateBrowserStreamOutput>
+function C:updateBrowserStream(input: types.UpdateBrowserStreamInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBrowserStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBrowserStream as schema.OperationSchema, input, options) as async.Operation<types.UpdateBrowserStreamOutput>
 end
 
 return M

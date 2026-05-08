@@ -8,122 +8,125 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("iotmanagedintegrations.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("iotmanagedintegrations.schemas")
 local traits = require("smithy.traits")
 local types = require("iotmanagedintegrations.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createAccountAssociation: function(Client, types.CreateAccountAssociationInput, any): async.Operation<types.CreateAccountAssociationOutput>
-    createCloudConnector: function(Client, types.CreateCloudConnectorInput, any): async.Operation<types.CreateCloudConnectorOutput>
-    createConnectorDestination: function(Client, types.CreateConnectorDestinationInput, any): async.Operation<types.CreateConnectorDestinationOutput>
-    createCredentialLocker: function(Client, types.CreateCredentialLockerInput, any): async.Operation<types.CreateCredentialLockerOutput>
-    createDestination: function(Client, types.CreateDestinationInput, any): async.Operation<types.CreateDestinationOutput>
-    createEventLogConfiguration: function(Client, types.CreateEventLogConfigurationInput, any): async.Operation<types.CreateEventLogConfigurationOutput>
-    createManagedThing: function(Client, types.CreateManagedThingInput, any): async.Operation<types.CreateManagedThingOutput>
-    createNotificationConfiguration: function(Client, types.CreateNotificationConfigurationInput, any): async.Operation<types.CreateNotificationConfigurationOutput>
-    createOtaTask: function(Client, types.CreateOtaTaskInput, any): async.Operation<types.CreateOtaTaskOutput>
-    createOtaTaskConfiguration: function(Client, types.CreateOtaTaskConfigurationInput, any): async.Operation<types.CreateOtaTaskConfigurationOutput>
-    createProvisioningProfile: function(Client, types.CreateProvisioningProfileInput, any): async.Operation<types.CreateProvisioningProfileOutput>
-    deleteAccountAssociation: function(Client, types.DeleteAccountAssociationInput, any): async.Operation<types.DeleteAccountAssociationOutput>
-    deleteCloudConnector: function(Client, types.DeleteCloudConnectorInput, any): async.Operation<types.DeleteCloudConnectorOutput>
-    deleteConnectorDestination: function(Client, types.DeleteConnectorDestinationInput, any): async.Operation<types.DeleteConnectorDestinationOutput>
-    deleteCredentialLocker: function(Client, types.DeleteCredentialLockerInput, any): async.Operation<types.DeleteCredentialLockerOutput>
-    deleteDestination: function(Client, types.DeleteDestinationInput, any): async.Operation<types.DeleteDestinationOutput>
-    deleteEventLogConfiguration: function(Client, types.DeleteEventLogConfigurationInput, any): async.Operation<types.DeleteEventLogConfigurationOutput>
-    deleteManagedThing: function(Client, types.DeleteManagedThingInput, any): async.Operation<types.DeleteManagedThingOutput>
-    deleteNotificationConfiguration: function(Client, types.DeleteNotificationConfigurationInput, any): async.Operation<types.DeleteNotificationConfigurationOutput>
-    deleteOtaTask: function(Client, types.DeleteOtaTaskInput, any): async.Operation<types.DeleteOtaTaskOutput>
-    deleteOtaTaskConfiguration: function(Client, types.DeleteOtaTaskConfigurationInput, any): async.Operation<types.DeleteOtaTaskConfigurationOutput>
-    deleteProvisioningProfile: function(Client, types.DeleteProvisioningProfileInput, any): async.Operation<types.DeleteProvisioningProfileOutput>
-    deregisterAccountAssociation: function(Client, types.DeregisterAccountAssociationInput, any): async.Operation<types.DeregisterAccountAssociationOutput>
-    getAccountAssociation: function(Client, types.GetAccountAssociationInput, any): async.Operation<types.GetAccountAssociationOutput>
-    getCloudConnector: function(Client, types.GetCloudConnectorInput, any): async.Operation<types.GetCloudConnectorOutput>
-    getConnectorDestination: function(Client, types.GetConnectorDestinationInput, any): async.Operation<types.GetConnectorDestinationOutput>
-    getCredentialLocker: function(Client, types.GetCredentialLockerInput, any): async.Operation<types.GetCredentialLockerOutput>
-    getCustomEndpoint: function(Client, types.GetCustomEndpointInput, any): async.Operation<types.GetCustomEndpointOutput>
-    getDefaultEncryptionConfiguration: function(Client, types.GetDefaultEncryptionConfigurationInput, any): async.Operation<types.GetDefaultEncryptionConfigurationOutput>
-    getDestination: function(Client, types.GetDestinationInput, any): async.Operation<types.GetDestinationOutput>
-    getDeviceDiscovery: function(Client, types.GetDeviceDiscoveryInput, any): async.Operation<types.GetDeviceDiscoveryOutput>
-    getEventLogConfiguration: function(Client, types.GetEventLogConfigurationInput, any): async.Operation<types.GetEventLogConfigurationOutput>
-    getHubConfiguration: function(Client, types.GetHubConfigurationInput, any): async.Operation<types.GetHubConfigurationOutput>
-    getManagedThing: function(Client, types.GetManagedThingInput, any): async.Operation<types.GetManagedThingOutput>
-    getManagedThingCapabilities: function(Client, types.GetManagedThingCapabilitiesInput, any): async.Operation<types.GetManagedThingCapabilitiesOutput>
-    getManagedThingCertificate: function(Client, types.GetManagedThingCertificateInput, any): async.Operation<types.GetManagedThingCertificateOutput>
-    getManagedThingConnectivityData: function(Client, types.GetManagedThingConnectivityDataInput, any): async.Operation<types.GetManagedThingConnectivityDataOutput>
-    getManagedThingMetaData: function(Client, types.GetManagedThingMetaDataInput, any): async.Operation<types.GetManagedThingMetaDataOutput>
-    getManagedThingState: function(Client, types.GetManagedThingStateInput, any): async.Operation<types.GetManagedThingStateOutput>
-    getNotificationConfiguration: function(Client, types.GetNotificationConfigurationInput, any): async.Operation<types.GetNotificationConfigurationOutput>
-    getOtaTask: function(Client, types.GetOtaTaskInput, any): async.Operation<types.GetOtaTaskOutput>
-    getOtaTaskConfiguration: function(Client, types.GetOtaTaskConfigurationInput, any): async.Operation<types.GetOtaTaskConfigurationOutput>
-    getProvisioningProfile: function(Client, types.GetProvisioningProfileInput, any): async.Operation<types.GetProvisioningProfileOutput>
-    getRuntimeLogConfiguration: function(Client, types.GetRuntimeLogConfigurationInput, any): async.Operation<types.GetRuntimeLogConfigurationOutput>
-    getSchemaVersion: function(Client, types.GetSchemaVersionInput, any): async.Operation<types.GetSchemaVersionOutput>
-    listAccountAssociations: function(Client, types.ListAccountAssociationsInput, any): async.Operation<types.ListAccountAssociationsOutput>
-    listCloudConnectors: function(Client, types.ListCloudConnectorsInput, any): async.Operation<types.ListCloudConnectorsOutput>
-    listConnectorDestinations: function(Client, types.ListConnectorDestinationsInput, any): async.Operation<types.ListConnectorDestinationsOutput>
-    listCredentialLockers: function(Client, types.ListCredentialLockersInput, any): async.Operation<types.ListCredentialLockersOutput>
-    listDestinations: function(Client, types.ListDestinationsInput, any): async.Operation<types.ListDestinationsOutput>
-    listDeviceDiscoveries: function(Client, types.ListDeviceDiscoveriesInput, any): async.Operation<types.ListDeviceDiscoveriesOutput>
-    listDiscoveredDevices: function(Client, types.ListDiscoveredDevicesInput, any): async.Operation<types.ListDiscoveredDevicesOutput>
-    listEventLogConfigurations: function(Client, types.ListEventLogConfigurationsInput, any): async.Operation<types.ListEventLogConfigurationsOutput>
-    listManagedThingAccountAssociations: function(Client, types.ListManagedThingAccountAssociationsInput, any): async.Operation<types.ListManagedThingAccountAssociationsOutput>
-    listManagedThings: function(Client, types.ListManagedThingsInput, any): async.Operation<types.ListManagedThingsOutput>
-    listManagedThingSchemas: function(Client, types.ListManagedThingSchemasInput, any): async.Operation<types.ListManagedThingSchemasOutput>
-    listNotificationConfigurations: function(Client, types.ListNotificationConfigurationsInput, any): async.Operation<types.ListNotificationConfigurationsOutput>
-    listOtaTaskConfigurations: function(Client, types.ListOtaTaskConfigurationsInput, any): async.Operation<types.ListOtaTaskConfigurationsOutput>
-    listOtaTaskExecutions: function(Client, types.ListOtaTaskExecutionsInput, any): async.Operation<types.ListOtaTaskExecutionsOutput>
-    listOtaTasks: function(Client, types.ListOtaTasksInput, any): async.Operation<types.ListOtaTasksOutput>
-    listProvisioningProfiles: function(Client, types.ListProvisioningProfilesInput, any): async.Operation<types.ListProvisioningProfilesOutput>
-    listSchemaVersions: function(Client, types.ListSchemaVersionsInput, any): async.Operation<types.ListSchemaVersionsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putDefaultEncryptionConfiguration: function(Client, types.PutDefaultEncryptionConfigurationInput, any): async.Operation<types.PutDefaultEncryptionConfigurationOutput>
-    putHubConfiguration: function(Client, types.PutHubConfigurationInput, any): async.Operation<types.PutHubConfigurationOutput>
-    putRuntimeLogConfiguration: function(Client, types.PutRuntimeLogConfigurationInput, any): async.Operation<types.PutRuntimeLogConfigurationOutput>
-    registerAccountAssociation: function(Client, types.RegisterAccountAssociationInput, any): async.Operation<types.RegisterAccountAssociationOutput>
-    registerCustomEndpoint: function(Client, types.RegisterCustomEndpointInput, any): async.Operation<types.RegisterCustomEndpointOutput>
-    resetRuntimeLogConfiguration: function(Client, types.ResetRuntimeLogConfigurationInput, any): async.Operation<types.ResetRuntimeLogConfigurationOutput>
-    sendConnectorEvent: function(Client, types.SendConnectorEventInput, any): async.Operation<types.SendConnectorEventOutput>
-    sendManagedThingCommand: function(Client, types.SendManagedThingCommandInput, any): async.Operation<types.SendManagedThingCommandOutput>
-    startAccountAssociationRefresh: function(Client, types.StartAccountAssociationRefreshInput, any): async.Operation<types.StartAccountAssociationRefreshOutput>
-    startDeviceDiscovery: function(Client, types.StartDeviceDiscoveryInput, any): async.Operation<types.StartDeviceDiscoveryOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAccountAssociation: function(Client, types.UpdateAccountAssociationInput, any): async.Operation<types.UpdateAccountAssociationOutput>
-    updateCloudConnector: function(Client, types.UpdateCloudConnectorInput, any): async.Operation<types.UpdateCloudConnectorOutput>
-    updateConnectorDestination: function(Client, types.UpdateConnectorDestinationInput, any): async.Operation<types.UpdateConnectorDestinationOutput>
-    updateDestination: function(Client, types.UpdateDestinationInput, any): async.Operation<types.UpdateDestinationOutput>
-    updateEventLogConfiguration: function(Client, types.UpdateEventLogConfigurationInput, any): async.Operation<types.UpdateEventLogConfigurationOutput>
-    updateManagedThing: function(Client, types.UpdateManagedThingInput, any): async.Operation<types.UpdateManagedThingOutput>
-    updateNotificationConfiguration: function(Client, types.UpdateNotificationConfigurationInput, any): async.Operation<types.UpdateNotificationConfigurationOutput>
-    updateOtaTask: function(Client, types.UpdateOtaTaskInput, any): async.Operation<types.UpdateOtaTaskOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createAccountAssociation: function(Client, types.CreateAccountAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateAccountAssociationOutput>
+    createCloudConnector: function(Client, types.CreateCloudConnectorInput, ? base_client.InvokeOptions): async.Operation<types.CreateCloudConnectorOutput>
+    createConnectorDestination: function(Client, types.CreateConnectorDestinationInput, ? base_client.InvokeOptions): async.Operation<types.CreateConnectorDestinationOutput>
+    createCredentialLocker: function(Client, types.CreateCredentialLockerInput, ? base_client.InvokeOptions): async.Operation<types.CreateCredentialLockerOutput>
+    createDestination: function(Client, types.CreateDestinationInput, ? base_client.InvokeOptions): async.Operation<types.CreateDestinationOutput>
+    createEventLogConfiguration: function(Client, types.CreateEventLogConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateEventLogConfigurationOutput>
+    createManagedThing: function(Client, types.CreateManagedThingInput, ? base_client.InvokeOptions): async.Operation<types.CreateManagedThingOutput>
+    createNotificationConfiguration: function(Client, types.CreateNotificationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateNotificationConfigurationOutput>
+    createOtaTask: function(Client, types.CreateOtaTaskInput, ? base_client.InvokeOptions): async.Operation<types.CreateOtaTaskOutput>
+    createOtaTaskConfiguration: function(Client, types.CreateOtaTaskConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateOtaTaskConfigurationOutput>
+    createProvisioningProfile: function(Client, types.CreateProvisioningProfileInput, ? base_client.InvokeOptions): async.Operation<types.CreateProvisioningProfileOutput>
+    deleteAccountAssociation: function(Client, types.DeleteAccountAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccountAssociationOutput>
+    deleteCloudConnector: function(Client, types.DeleteCloudConnectorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCloudConnectorOutput>
+    deleteConnectorDestination: function(Client, types.DeleteConnectorDestinationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConnectorDestinationOutput>
+    deleteCredentialLocker: function(Client, types.DeleteCredentialLockerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCredentialLockerOutput>
+    deleteDestination: function(Client, types.DeleteDestinationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDestinationOutput>
+    deleteEventLogConfiguration: function(Client, types.DeleteEventLogConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEventLogConfigurationOutput>
+    deleteManagedThing: function(Client, types.DeleteManagedThingInput, ? base_client.InvokeOptions): async.Operation<types.DeleteManagedThingOutput>
+    deleteNotificationConfiguration: function(Client, types.DeleteNotificationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNotificationConfigurationOutput>
+    deleteOtaTask: function(Client, types.DeleteOtaTaskInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOtaTaskOutput>
+    deleteOtaTaskConfiguration: function(Client, types.DeleteOtaTaskConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOtaTaskConfigurationOutput>
+    deleteProvisioningProfile: function(Client, types.DeleteProvisioningProfileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProvisioningProfileOutput>
+    deregisterAccountAssociation: function(Client, types.DeregisterAccountAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterAccountAssociationOutput>
+    getAccountAssociation: function(Client, types.GetAccountAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountAssociationOutput>
+    getCloudConnector: function(Client, types.GetCloudConnectorInput, ? base_client.InvokeOptions): async.Operation<types.GetCloudConnectorOutput>
+    getConnectorDestination: function(Client, types.GetConnectorDestinationInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectorDestinationOutput>
+    getCredentialLocker: function(Client, types.GetCredentialLockerInput, ? base_client.InvokeOptions): async.Operation<types.GetCredentialLockerOutput>
+    getCustomEndpoint: function(Client, types.GetCustomEndpointInput, ? base_client.InvokeOptions): async.Operation<types.GetCustomEndpointOutput>
+    getDefaultEncryptionConfiguration: function(Client, types.GetDefaultEncryptionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetDefaultEncryptionConfigurationOutput>
+    getDestination: function(Client, types.GetDestinationInput, ? base_client.InvokeOptions): async.Operation<types.GetDestinationOutput>
+    getDeviceDiscovery: function(Client, types.GetDeviceDiscoveryInput, ? base_client.InvokeOptions): async.Operation<types.GetDeviceDiscoveryOutput>
+    getEventLogConfiguration: function(Client, types.GetEventLogConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetEventLogConfigurationOutput>
+    getHubConfiguration: function(Client, types.GetHubConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetHubConfigurationOutput>
+    getManagedThing: function(Client, types.GetManagedThingInput, ? base_client.InvokeOptions): async.Operation<types.GetManagedThingOutput>
+    getManagedThingCapabilities: function(Client, types.GetManagedThingCapabilitiesInput, ? base_client.InvokeOptions): async.Operation<types.GetManagedThingCapabilitiesOutput>
+    getManagedThingCertificate: function(Client, types.GetManagedThingCertificateInput, ? base_client.InvokeOptions): async.Operation<types.GetManagedThingCertificateOutput>
+    getManagedThingConnectivityData: function(Client, types.GetManagedThingConnectivityDataInput, ? base_client.InvokeOptions): async.Operation<types.GetManagedThingConnectivityDataOutput>
+    getManagedThingMetaData: function(Client, types.GetManagedThingMetaDataInput, ? base_client.InvokeOptions): async.Operation<types.GetManagedThingMetaDataOutput>
+    getManagedThingState: function(Client, types.GetManagedThingStateInput, ? base_client.InvokeOptions): async.Operation<types.GetManagedThingStateOutput>
+    getNotificationConfiguration: function(Client, types.GetNotificationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetNotificationConfigurationOutput>
+    getOtaTask: function(Client, types.GetOtaTaskInput, ? base_client.InvokeOptions): async.Operation<types.GetOtaTaskOutput>
+    getOtaTaskConfiguration: function(Client, types.GetOtaTaskConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetOtaTaskConfigurationOutput>
+    getProvisioningProfile: function(Client, types.GetProvisioningProfileInput, ? base_client.InvokeOptions): async.Operation<types.GetProvisioningProfileOutput>
+    getRuntimeLogConfiguration: function(Client, types.GetRuntimeLogConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetRuntimeLogConfigurationOutput>
+    getSchemaVersion: function(Client, types.GetSchemaVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetSchemaVersionOutput>
+    listAccountAssociations: function(Client, types.ListAccountAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListAccountAssociationsOutput>
+    listCloudConnectors: function(Client, types.ListCloudConnectorsInput, ? base_client.InvokeOptions): async.Operation<types.ListCloudConnectorsOutput>
+    listConnectorDestinations: function(Client, types.ListConnectorDestinationsInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectorDestinationsOutput>
+    listCredentialLockers: function(Client, types.ListCredentialLockersInput, ? base_client.InvokeOptions): async.Operation<types.ListCredentialLockersOutput>
+    listDestinations: function(Client, types.ListDestinationsInput, ? base_client.InvokeOptions): async.Operation<types.ListDestinationsOutput>
+    listDeviceDiscoveries: function(Client, types.ListDeviceDiscoveriesInput, ? base_client.InvokeOptions): async.Operation<types.ListDeviceDiscoveriesOutput>
+    listDiscoveredDevices: function(Client, types.ListDiscoveredDevicesInput, ? base_client.InvokeOptions): async.Operation<types.ListDiscoveredDevicesOutput>
+    listEventLogConfigurations: function(Client, types.ListEventLogConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListEventLogConfigurationsOutput>
+    listManagedThingAccountAssociations: function(Client, types.ListManagedThingAccountAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListManagedThingAccountAssociationsOutput>
+    listManagedThings: function(Client, types.ListManagedThingsInput, ? base_client.InvokeOptions): async.Operation<types.ListManagedThingsOutput>
+    listManagedThingSchemas: function(Client, types.ListManagedThingSchemasInput, ? base_client.InvokeOptions): async.Operation<types.ListManagedThingSchemasOutput>
+    listNotificationConfigurations: function(Client, types.ListNotificationConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListNotificationConfigurationsOutput>
+    listOtaTaskConfigurations: function(Client, types.ListOtaTaskConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListOtaTaskConfigurationsOutput>
+    listOtaTaskExecutions: function(Client, types.ListOtaTaskExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListOtaTaskExecutionsOutput>
+    listOtaTasks: function(Client, types.ListOtaTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListOtaTasksOutput>
+    listProvisioningProfiles: function(Client, types.ListProvisioningProfilesInput, ? base_client.InvokeOptions): async.Operation<types.ListProvisioningProfilesOutput>
+    listSchemaVersions: function(Client, types.ListSchemaVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListSchemaVersionsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putDefaultEncryptionConfiguration: function(Client, types.PutDefaultEncryptionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutDefaultEncryptionConfigurationOutput>
+    putHubConfiguration: function(Client, types.PutHubConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutHubConfigurationOutput>
+    putRuntimeLogConfiguration: function(Client, types.PutRuntimeLogConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutRuntimeLogConfigurationOutput>
+    registerAccountAssociation: function(Client, types.RegisterAccountAssociationInput, ? base_client.InvokeOptions): async.Operation<types.RegisterAccountAssociationOutput>
+    registerCustomEndpoint: function(Client, types.RegisterCustomEndpointInput, ? base_client.InvokeOptions): async.Operation<types.RegisterCustomEndpointOutput>
+    resetRuntimeLogConfiguration: function(Client, types.ResetRuntimeLogConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.ResetRuntimeLogConfigurationOutput>
+    sendConnectorEvent: function(Client, types.SendConnectorEventInput, ? base_client.InvokeOptions): async.Operation<types.SendConnectorEventOutput>
+    sendManagedThingCommand: function(Client, types.SendManagedThingCommandInput, ? base_client.InvokeOptions): async.Operation<types.SendManagedThingCommandOutput>
+    startAccountAssociationRefresh: function(Client, types.StartAccountAssociationRefreshInput, ? base_client.InvokeOptions): async.Operation<types.StartAccountAssociationRefreshOutput>
+    startDeviceDiscovery: function(Client, types.StartDeviceDiscoveryInput, ? base_client.InvokeOptions): async.Operation<types.StartDeviceDiscoveryOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAccountAssociation: function(Client, types.UpdateAccountAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAccountAssociationOutput>
+    updateCloudConnector: function(Client, types.UpdateCloudConnectorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCloudConnectorOutput>
+    updateConnectorDestination: function(Client, types.UpdateConnectorDestinationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConnectorDestinationOutput>
+    updateDestination: function(Client, types.UpdateDestinationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDestinationOutput>
+    updateEventLogConfiguration: function(Client, types.UpdateEventLogConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEventLogConfigurationOutput>
+    updateManagedThing: function(Client, types.UpdateManagedThingInput, ? base_client.InvokeOptions): async.Operation<types.UpdateManagedThingOutput>
+    updateNotificationConfiguration: function(Client, types.UpdateNotificationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNotificationConfigurationOutput>
+    updateOtaTask: function(Client, types.UpdateOtaTaskInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOtaTaskOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "IotManagedIntegrations"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "iotmanagedintegrations", signing_region = c.region } }
                 else
@@ -142,336 +145,336 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createAccountAssociation(input: types.CreateAccountAssociationInput, options: any): async.Operation<types.CreateAccountAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAccountAssociation, input, options) as async.Operation<types.CreateAccountAssociationOutput>
+function C:createAccountAssociation(input: types.CreateAccountAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAccountAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAccountAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreateAccountAssociationOutput>
 end
 
-function C:createCloudConnector(input: types.CreateCloudConnectorInput, options: any): async.Operation<types.CreateCloudConnectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCloudConnector, input, options) as async.Operation<types.CreateCloudConnectorOutput>
+function C:createCloudConnector(input: types.CreateCloudConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCloudConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCloudConnector as schema.OperationSchema, input, options) as async.Operation<types.CreateCloudConnectorOutput>
 end
 
-function C:createConnectorDestination(input: types.CreateConnectorDestinationInput, options: any): async.Operation<types.CreateConnectorDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConnectorDestination, input, options) as async.Operation<types.CreateConnectorDestinationOutput>
+function C:createConnectorDestination(input: types.CreateConnectorDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConnectorDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConnectorDestination as schema.OperationSchema, input, options) as async.Operation<types.CreateConnectorDestinationOutput>
 end
 
-function C:createCredentialLocker(input: types.CreateCredentialLockerInput, options: any): async.Operation<types.CreateCredentialLockerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCredentialLocker, input, options) as async.Operation<types.CreateCredentialLockerOutput>
+function C:createCredentialLocker(input: types.CreateCredentialLockerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCredentialLockerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCredentialLocker as schema.OperationSchema, input, options) as async.Operation<types.CreateCredentialLockerOutput>
 end
 
-function C:createDestination(input: types.CreateDestinationInput, options: any): async.Operation<types.CreateDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDestination, input, options) as async.Operation<types.CreateDestinationOutput>
+function C:createDestination(input: types.CreateDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDestination as schema.OperationSchema, input, options) as async.Operation<types.CreateDestinationOutput>
 end
 
-function C:createEventLogConfiguration(input: types.CreateEventLogConfigurationInput, options: any): async.Operation<types.CreateEventLogConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEventLogConfiguration, input, options) as async.Operation<types.CreateEventLogConfigurationOutput>
+function C:createEventLogConfiguration(input: types.CreateEventLogConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEventLogConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEventLogConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateEventLogConfigurationOutput>
 end
 
-function C:createManagedThing(input: types.CreateManagedThingInput, options: any): async.Operation<types.CreateManagedThingOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateManagedThing, input, options) as async.Operation<types.CreateManagedThingOutput>
+function C:createManagedThing(input: types.CreateManagedThingInput, options?: base_client.InvokeOptions): async.Operation<types.CreateManagedThingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateManagedThing as schema.OperationSchema, input, options) as async.Operation<types.CreateManagedThingOutput>
 end
 
-function C:createNotificationConfiguration(input: types.CreateNotificationConfigurationInput, options: any): async.Operation<types.CreateNotificationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNotificationConfiguration, input, options) as async.Operation<types.CreateNotificationConfigurationOutput>
+function C:createNotificationConfiguration(input: types.CreateNotificationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNotificationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNotificationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateNotificationConfigurationOutput>
 end
 
-function C:createOtaTask(input: types.CreateOtaTaskInput, options: any): async.Operation<types.CreateOtaTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateOtaTask, input, options) as async.Operation<types.CreateOtaTaskOutput>
+function C:createOtaTask(input: types.CreateOtaTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CreateOtaTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateOtaTask as schema.OperationSchema, input, options) as async.Operation<types.CreateOtaTaskOutput>
 end
 
-function C:createOtaTaskConfiguration(input: types.CreateOtaTaskConfigurationInput, options: any): async.Operation<types.CreateOtaTaskConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateOtaTaskConfiguration, input, options) as async.Operation<types.CreateOtaTaskConfigurationOutput>
+function C:createOtaTaskConfiguration(input: types.CreateOtaTaskConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateOtaTaskConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateOtaTaskConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateOtaTaskConfigurationOutput>
 end
 
-function C:createProvisioningProfile(input: types.CreateProvisioningProfileInput, options: any): async.Operation<types.CreateProvisioningProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProvisioningProfile, input, options) as async.Operation<types.CreateProvisioningProfileOutput>
+function C:createProvisioningProfile(input: types.CreateProvisioningProfileInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProvisioningProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProvisioningProfile as schema.OperationSchema, input, options) as async.Operation<types.CreateProvisioningProfileOutput>
 end
 
-function C:deleteAccountAssociation(input: types.DeleteAccountAssociationInput, options: any): async.Operation<types.DeleteAccountAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAccountAssociation, input, options) as async.Operation<types.DeleteAccountAssociationOutput>
+function C:deleteAccountAssociation(input: types.DeleteAccountAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAccountAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAccountAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteAccountAssociationOutput>
 end
 
-function C:deleteCloudConnector(input: types.DeleteCloudConnectorInput, options: any): async.Operation<types.DeleteCloudConnectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCloudConnector, input, options) as async.Operation<types.DeleteCloudConnectorOutput>
+function C:deleteCloudConnector(input: types.DeleteCloudConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCloudConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCloudConnector as schema.OperationSchema, input, options) as async.Operation<types.DeleteCloudConnectorOutput>
 end
 
-function C:deleteConnectorDestination(input: types.DeleteConnectorDestinationInput, options: any): async.Operation<types.DeleteConnectorDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConnectorDestination, input, options) as async.Operation<types.DeleteConnectorDestinationOutput>
+function C:deleteConnectorDestination(input: types.DeleteConnectorDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConnectorDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConnectorDestination as schema.OperationSchema, input, options) as async.Operation<types.DeleteConnectorDestinationOutput>
 end
 
-function C:deleteCredentialLocker(input: types.DeleteCredentialLockerInput, options: any): async.Operation<types.DeleteCredentialLockerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCredentialLocker, input, options) as async.Operation<types.DeleteCredentialLockerOutput>
+function C:deleteCredentialLocker(input: types.DeleteCredentialLockerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCredentialLockerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCredentialLocker as schema.OperationSchema, input, options) as async.Operation<types.DeleteCredentialLockerOutput>
 end
 
-function C:deleteDestination(input: types.DeleteDestinationInput, options: any): async.Operation<types.DeleteDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDestination, input, options) as async.Operation<types.DeleteDestinationOutput>
+function C:deleteDestination(input: types.DeleteDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDestination as schema.OperationSchema, input, options) as async.Operation<types.DeleteDestinationOutput>
 end
 
-function C:deleteEventLogConfiguration(input: types.DeleteEventLogConfigurationInput, options: any): async.Operation<types.DeleteEventLogConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEventLogConfiguration, input, options) as async.Operation<types.DeleteEventLogConfigurationOutput>
+function C:deleteEventLogConfiguration(input: types.DeleteEventLogConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEventLogConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEventLogConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteEventLogConfigurationOutput>
 end
 
-function C:deleteManagedThing(input: types.DeleteManagedThingInput, options: any): async.Operation<types.DeleteManagedThingOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteManagedThing, input, options) as async.Operation<types.DeleteManagedThingOutput>
+function C:deleteManagedThing(input: types.DeleteManagedThingInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteManagedThingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteManagedThing as schema.OperationSchema, input, options) as async.Operation<types.DeleteManagedThingOutput>
 end
 
-function C:deleteNotificationConfiguration(input: types.DeleteNotificationConfigurationInput, options: any): async.Operation<types.DeleteNotificationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNotificationConfiguration, input, options) as async.Operation<types.DeleteNotificationConfigurationOutput>
+function C:deleteNotificationConfiguration(input: types.DeleteNotificationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNotificationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNotificationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteNotificationConfigurationOutput>
 end
 
-function C:deleteOtaTask(input: types.DeleteOtaTaskInput, options: any): async.Operation<types.DeleteOtaTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteOtaTask, input, options) as async.Operation<types.DeleteOtaTaskOutput>
+function C:deleteOtaTask(input: types.DeleteOtaTaskInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteOtaTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteOtaTask as schema.OperationSchema, input, options) as async.Operation<types.DeleteOtaTaskOutput>
 end
 
-function C:deleteOtaTaskConfiguration(input: types.DeleteOtaTaskConfigurationInput, options: any): async.Operation<types.DeleteOtaTaskConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteOtaTaskConfiguration, input, options) as async.Operation<types.DeleteOtaTaskConfigurationOutput>
+function C:deleteOtaTaskConfiguration(input: types.DeleteOtaTaskConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteOtaTaskConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteOtaTaskConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteOtaTaskConfigurationOutput>
 end
 
-function C:deleteProvisioningProfile(input: types.DeleteProvisioningProfileInput, options: any): async.Operation<types.DeleteProvisioningProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProvisioningProfile, input, options) as async.Operation<types.DeleteProvisioningProfileOutput>
+function C:deleteProvisioningProfile(input: types.DeleteProvisioningProfileInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProvisioningProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProvisioningProfile as schema.OperationSchema, input, options) as async.Operation<types.DeleteProvisioningProfileOutput>
 end
 
-function C:deregisterAccountAssociation(input: types.DeregisterAccountAssociationInput, options: any): async.Operation<types.DeregisterAccountAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterAccountAssociation, input, options) as async.Operation<types.DeregisterAccountAssociationOutput>
+function C:deregisterAccountAssociation(input: types.DeregisterAccountAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterAccountAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterAccountAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeregisterAccountAssociationOutput>
 end
 
-function C:getAccountAssociation(input: types.GetAccountAssociationInput, options: any): async.Operation<types.GetAccountAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccountAssociation, input, options) as async.Operation<types.GetAccountAssociationOutput>
+function C:getAccountAssociation(input: types.GetAccountAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccountAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccountAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetAccountAssociationOutput>
 end
 
-function C:getCloudConnector(input: types.GetCloudConnectorInput, options: any): async.Operation<types.GetCloudConnectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCloudConnector, input, options) as async.Operation<types.GetCloudConnectorOutput>
+function C:getCloudConnector(input: types.GetCloudConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.GetCloudConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCloudConnector as schema.OperationSchema, input, options) as async.Operation<types.GetCloudConnectorOutput>
 end
 
-function C:getConnectorDestination(input: types.GetConnectorDestinationInput, options: any): async.Operation<types.GetConnectorDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConnectorDestination, input, options) as async.Operation<types.GetConnectorDestinationOutput>
+function C:getConnectorDestination(input: types.GetConnectorDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.GetConnectorDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConnectorDestination as schema.OperationSchema, input, options) as async.Operation<types.GetConnectorDestinationOutput>
 end
 
-function C:getCredentialLocker(input: types.GetCredentialLockerInput, options: any): async.Operation<types.GetCredentialLockerOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCredentialLocker, input, options) as async.Operation<types.GetCredentialLockerOutput>
+function C:getCredentialLocker(input: types.GetCredentialLockerInput, options?: base_client.InvokeOptions): async.Operation<types.GetCredentialLockerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCredentialLocker as schema.OperationSchema, input, options) as async.Operation<types.GetCredentialLockerOutput>
 end
 
-function C:getCustomEndpoint(input: types.GetCustomEndpointInput, options: any): async.Operation<types.GetCustomEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCustomEndpoint, input, options) as async.Operation<types.GetCustomEndpointOutput>
+function C:getCustomEndpoint(input: types.GetCustomEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.GetCustomEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCustomEndpoint as schema.OperationSchema, input, options) as async.Operation<types.GetCustomEndpointOutput>
 end
 
-function C:getDefaultEncryptionConfiguration(input: types.GetDefaultEncryptionConfigurationInput, options: any): async.Operation<types.GetDefaultEncryptionConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDefaultEncryptionConfiguration, input, options) as async.Operation<types.GetDefaultEncryptionConfigurationOutput>
+function C:getDefaultEncryptionConfiguration(input: types.GetDefaultEncryptionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetDefaultEncryptionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDefaultEncryptionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetDefaultEncryptionConfigurationOutput>
 end
 
-function C:getDestination(input: types.GetDestinationInput, options: any): async.Operation<types.GetDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDestination, input, options) as async.Operation<types.GetDestinationOutput>
+function C:getDestination(input: types.GetDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.GetDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDestination as schema.OperationSchema, input, options) as async.Operation<types.GetDestinationOutput>
 end
 
-function C:getDeviceDiscovery(input: types.GetDeviceDiscoveryInput, options: any): async.Operation<types.GetDeviceDiscoveryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDeviceDiscovery, input, options) as async.Operation<types.GetDeviceDiscoveryOutput>
+function C:getDeviceDiscovery(input: types.GetDeviceDiscoveryInput, options?: base_client.InvokeOptions): async.Operation<types.GetDeviceDiscoveryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDeviceDiscovery as schema.OperationSchema, input, options) as async.Operation<types.GetDeviceDiscoveryOutput>
 end
 
-function C:getEventLogConfiguration(input: types.GetEventLogConfigurationInput, options: any): async.Operation<types.GetEventLogConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEventLogConfiguration, input, options) as async.Operation<types.GetEventLogConfigurationOutput>
+function C:getEventLogConfiguration(input: types.GetEventLogConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetEventLogConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEventLogConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetEventLogConfigurationOutput>
 end
 
-function C:getHubConfiguration(input: types.GetHubConfigurationInput, options: any): async.Operation<types.GetHubConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetHubConfiguration, input, options) as async.Operation<types.GetHubConfigurationOutput>
+function C:getHubConfiguration(input: types.GetHubConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetHubConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetHubConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetHubConfigurationOutput>
 end
 
-function C:getManagedThing(input: types.GetManagedThingInput, options: any): async.Operation<types.GetManagedThingOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetManagedThing, input, options) as async.Operation<types.GetManagedThingOutput>
+function C:getManagedThing(input: types.GetManagedThingInput, options?: base_client.InvokeOptions): async.Operation<types.GetManagedThingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetManagedThing as schema.OperationSchema, input, options) as async.Operation<types.GetManagedThingOutput>
 end
 
-function C:getManagedThingCapabilities(input: types.GetManagedThingCapabilitiesInput, options: any): async.Operation<types.GetManagedThingCapabilitiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetManagedThingCapabilities, input, options) as async.Operation<types.GetManagedThingCapabilitiesOutput>
+function C:getManagedThingCapabilities(input: types.GetManagedThingCapabilitiesInput, options?: base_client.InvokeOptions): async.Operation<types.GetManagedThingCapabilitiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetManagedThingCapabilities as schema.OperationSchema, input, options) as async.Operation<types.GetManagedThingCapabilitiesOutput>
 end
 
-function C:getManagedThingCertificate(input: types.GetManagedThingCertificateInput, options: any): async.Operation<types.GetManagedThingCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetManagedThingCertificate, input, options) as async.Operation<types.GetManagedThingCertificateOutput>
+function C:getManagedThingCertificate(input: types.GetManagedThingCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.GetManagedThingCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetManagedThingCertificate as schema.OperationSchema, input, options) as async.Operation<types.GetManagedThingCertificateOutput>
 end
 
-function C:getManagedThingConnectivityData(input: types.GetManagedThingConnectivityDataInput, options: any): async.Operation<types.GetManagedThingConnectivityDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetManagedThingConnectivityData, input, options) as async.Operation<types.GetManagedThingConnectivityDataOutput>
+function C:getManagedThingConnectivityData(input: types.GetManagedThingConnectivityDataInput, options?: base_client.InvokeOptions): async.Operation<types.GetManagedThingConnectivityDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetManagedThingConnectivityData as schema.OperationSchema, input, options) as async.Operation<types.GetManagedThingConnectivityDataOutput>
 end
 
-function C:getManagedThingMetaData(input: types.GetManagedThingMetaDataInput, options: any): async.Operation<types.GetManagedThingMetaDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetManagedThingMetaData, input, options) as async.Operation<types.GetManagedThingMetaDataOutput>
+function C:getManagedThingMetaData(input: types.GetManagedThingMetaDataInput, options?: base_client.InvokeOptions): async.Operation<types.GetManagedThingMetaDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetManagedThingMetaData as schema.OperationSchema, input, options) as async.Operation<types.GetManagedThingMetaDataOutput>
 end
 
-function C:getManagedThingState(input: types.GetManagedThingStateInput, options: any): async.Operation<types.GetManagedThingStateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetManagedThingState, input, options) as async.Operation<types.GetManagedThingStateOutput>
+function C:getManagedThingState(input: types.GetManagedThingStateInput, options?: base_client.InvokeOptions): async.Operation<types.GetManagedThingStateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetManagedThingState as schema.OperationSchema, input, options) as async.Operation<types.GetManagedThingStateOutput>
 end
 
-function C:getNotificationConfiguration(input: types.GetNotificationConfigurationInput, options: any): async.Operation<types.GetNotificationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNotificationConfiguration, input, options) as async.Operation<types.GetNotificationConfigurationOutput>
+function C:getNotificationConfiguration(input: types.GetNotificationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetNotificationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNotificationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetNotificationConfigurationOutput>
 end
 
-function C:getOtaTask(input: types.GetOtaTaskInput, options: any): async.Operation<types.GetOtaTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOtaTask, input, options) as async.Operation<types.GetOtaTaskOutput>
+function C:getOtaTask(input: types.GetOtaTaskInput, options?: base_client.InvokeOptions): async.Operation<types.GetOtaTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOtaTask as schema.OperationSchema, input, options) as async.Operation<types.GetOtaTaskOutput>
 end
 
-function C:getOtaTaskConfiguration(input: types.GetOtaTaskConfigurationInput, options: any): async.Operation<types.GetOtaTaskConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOtaTaskConfiguration, input, options) as async.Operation<types.GetOtaTaskConfigurationOutput>
+function C:getOtaTaskConfiguration(input: types.GetOtaTaskConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetOtaTaskConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOtaTaskConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetOtaTaskConfigurationOutput>
 end
 
-function C:getProvisioningProfile(input: types.GetProvisioningProfileInput, options: any): async.Operation<types.GetProvisioningProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetProvisioningProfile, input, options) as async.Operation<types.GetProvisioningProfileOutput>
+function C:getProvisioningProfile(input: types.GetProvisioningProfileInput, options?: base_client.InvokeOptions): async.Operation<types.GetProvisioningProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProvisioningProfile as schema.OperationSchema, input, options) as async.Operation<types.GetProvisioningProfileOutput>
 end
 
-function C:getRuntimeLogConfiguration(input: types.GetRuntimeLogConfigurationInput, options: any): async.Operation<types.GetRuntimeLogConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRuntimeLogConfiguration, input, options) as async.Operation<types.GetRuntimeLogConfigurationOutput>
+function C:getRuntimeLogConfiguration(input: types.GetRuntimeLogConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetRuntimeLogConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRuntimeLogConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetRuntimeLogConfigurationOutput>
 end
 
-function C:getSchemaVersion(input: types.GetSchemaVersionInput, options: any): async.Operation<types.GetSchemaVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSchemaVersion, input, options) as async.Operation<types.GetSchemaVersionOutput>
+function C:getSchemaVersion(input: types.GetSchemaVersionInput, options?: base_client.InvokeOptions): async.Operation<types.GetSchemaVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSchemaVersion as schema.OperationSchema, input, options) as async.Operation<types.GetSchemaVersionOutput>
 end
 
-function C:listAccountAssociations(input: types.ListAccountAssociationsInput, options: any): async.Operation<types.ListAccountAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccountAssociations, input, options) as async.Operation<types.ListAccountAssociationsOutput>
+function C:listAccountAssociations(input: types.ListAccountAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccountAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccountAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListAccountAssociationsOutput>
 end
 
-function C:listCloudConnectors(input: types.ListCloudConnectorsInput, options: any): async.Operation<types.ListCloudConnectorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCloudConnectors, input, options) as async.Operation<types.ListCloudConnectorsOutput>
+function C:listCloudConnectors(input: types.ListCloudConnectorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCloudConnectorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCloudConnectors as schema.OperationSchema, input, options) as async.Operation<types.ListCloudConnectorsOutput>
 end
 
-function C:listConnectorDestinations(input: types.ListConnectorDestinationsInput, options: any): async.Operation<types.ListConnectorDestinationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConnectorDestinations, input, options) as async.Operation<types.ListConnectorDestinationsOutput>
+function C:listConnectorDestinations(input: types.ListConnectorDestinationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConnectorDestinationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConnectorDestinations as schema.OperationSchema, input, options) as async.Operation<types.ListConnectorDestinationsOutput>
 end
 
-function C:listCredentialLockers(input: types.ListCredentialLockersInput, options: any): async.Operation<types.ListCredentialLockersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCredentialLockers, input, options) as async.Operation<types.ListCredentialLockersOutput>
+function C:listCredentialLockers(input: types.ListCredentialLockersInput, options?: base_client.InvokeOptions): async.Operation<types.ListCredentialLockersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCredentialLockers as schema.OperationSchema, input, options) as async.Operation<types.ListCredentialLockersOutput>
 end
 
-function C:listDestinations(input: types.ListDestinationsInput, options: any): async.Operation<types.ListDestinationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDestinations, input, options) as async.Operation<types.ListDestinationsOutput>
+function C:listDestinations(input: types.ListDestinationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDestinationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDestinations as schema.OperationSchema, input, options) as async.Operation<types.ListDestinationsOutput>
 end
 
-function C:listDeviceDiscoveries(input: types.ListDeviceDiscoveriesInput, options: any): async.Operation<types.ListDeviceDiscoveriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDeviceDiscoveries, input, options) as async.Operation<types.ListDeviceDiscoveriesOutput>
+function C:listDeviceDiscoveries(input: types.ListDeviceDiscoveriesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDeviceDiscoveriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDeviceDiscoveries as schema.OperationSchema, input, options) as async.Operation<types.ListDeviceDiscoveriesOutput>
 end
 
-function C:listDiscoveredDevices(input: types.ListDiscoveredDevicesInput, options: any): async.Operation<types.ListDiscoveredDevicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDiscoveredDevices, input, options) as async.Operation<types.ListDiscoveredDevicesOutput>
+function C:listDiscoveredDevices(input: types.ListDiscoveredDevicesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDiscoveredDevicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDiscoveredDevices as schema.OperationSchema, input, options) as async.Operation<types.ListDiscoveredDevicesOutput>
 end
 
-function C:listEventLogConfigurations(input: types.ListEventLogConfigurationsInput, options: any): async.Operation<types.ListEventLogConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEventLogConfigurations, input, options) as async.Operation<types.ListEventLogConfigurationsOutput>
+function C:listEventLogConfigurations(input: types.ListEventLogConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEventLogConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEventLogConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListEventLogConfigurationsOutput>
 end
 
-function C:listManagedThingAccountAssociations(input: types.ListManagedThingAccountAssociationsInput, options: any): async.Operation<types.ListManagedThingAccountAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListManagedThingAccountAssociations, input, options) as async.Operation<types.ListManagedThingAccountAssociationsOutput>
+function C:listManagedThingAccountAssociations(input: types.ListManagedThingAccountAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListManagedThingAccountAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListManagedThingAccountAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListManagedThingAccountAssociationsOutput>
 end
 
-function C:listManagedThings(input: types.ListManagedThingsInput, options: any): async.Operation<types.ListManagedThingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListManagedThings, input, options) as async.Operation<types.ListManagedThingsOutput>
+function C:listManagedThings(input: types.ListManagedThingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListManagedThingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListManagedThings as schema.OperationSchema, input, options) as async.Operation<types.ListManagedThingsOutput>
 end
 
-function C:listManagedThingSchemas(input: types.ListManagedThingSchemasInput, options: any): async.Operation<types.ListManagedThingSchemasOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListManagedThingSchemas, input, options) as async.Operation<types.ListManagedThingSchemasOutput>
+function C:listManagedThingSchemas(input: types.ListManagedThingSchemasInput, options?: base_client.InvokeOptions): async.Operation<types.ListManagedThingSchemasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListManagedThingSchemas as schema.OperationSchema, input, options) as async.Operation<types.ListManagedThingSchemasOutput>
 end
 
-function C:listNotificationConfigurations(input: types.ListNotificationConfigurationsInput, options: any): async.Operation<types.ListNotificationConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNotificationConfigurations, input, options) as async.Operation<types.ListNotificationConfigurationsOutput>
+function C:listNotificationConfigurations(input: types.ListNotificationConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListNotificationConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNotificationConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListNotificationConfigurationsOutput>
 end
 
-function C:listOtaTaskConfigurations(input: types.ListOtaTaskConfigurationsInput, options: any): async.Operation<types.ListOtaTaskConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOtaTaskConfigurations, input, options) as async.Operation<types.ListOtaTaskConfigurationsOutput>
+function C:listOtaTaskConfigurations(input: types.ListOtaTaskConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListOtaTaskConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOtaTaskConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListOtaTaskConfigurationsOutput>
 end
 
-function C:listOtaTaskExecutions(input: types.ListOtaTaskExecutionsInput, options: any): async.Operation<types.ListOtaTaskExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOtaTaskExecutions, input, options) as async.Operation<types.ListOtaTaskExecutionsOutput>
+function C:listOtaTaskExecutions(input: types.ListOtaTaskExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListOtaTaskExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOtaTaskExecutions as schema.OperationSchema, input, options) as async.Operation<types.ListOtaTaskExecutionsOutput>
 end
 
-function C:listOtaTasks(input: types.ListOtaTasksInput, options: any): async.Operation<types.ListOtaTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOtaTasks, input, options) as async.Operation<types.ListOtaTasksOutput>
+function C:listOtaTasks(input: types.ListOtaTasksInput, options?: base_client.InvokeOptions): async.Operation<types.ListOtaTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOtaTasks as schema.OperationSchema, input, options) as async.Operation<types.ListOtaTasksOutput>
 end
 
-function C:listProvisioningProfiles(input: types.ListProvisioningProfilesInput, options: any): async.Operation<types.ListProvisioningProfilesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProvisioningProfiles, input, options) as async.Operation<types.ListProvisioningProfilesOutput>
+function C:listProvisioningProfiles(input: types.ListProvisioningProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.ListProvisioningProfilesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProvisioningProfiles as schema.OperationSchema, input, options) as async.Operation<types.ListProvisioningProfilesOutput>
 end
 
-function C:listSchemaVersions(input: types.ListSchemaVersionsInput, options: any): async.Operation<types.ListSchemaVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSchemaVersions, input, options) as async.Operation<types.ListSchemaVersionsOutput>
+function C:listSchemaVersions(input: types.ListSchemaVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSchemaVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSchemaVersions as schema.OperationSchema, input, options) as async.Operation<types.ListSchemaVersionsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putDefaultEncryptionConfiguration(input: types.PutDefaultEncryptionConfigurationInput, options: any): async.Operation<types.PutDefaultEncryptionConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutDefaultEncryptionConfiguration, input, options) as async.Operation<types.PutDefaultEncryptionConfigurationOutput>
+function C:putDefaultEncryptionConfiguration(input: types.PutDefaultEncryptionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutDefaultEncryptionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutDefaultEncryptionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutDefaultEncryptionConfigurationOutput>
 end
 
-function C:putHubConfiguration(input: types.PutHubConfigurationInput, options: any): async.Operation<types.PutHubConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutHubConfiguration, input, options) as async.Operation<types.PutHubConfigurationOutput>
+function C:putHubConfiguration(input: types.PutHubConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutHubConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutHubConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutHubConfigurationOutput>
 end
 
-function C:putRuntimeLogConfiguration(input: types.PutRuntimeLogConfigurationInput, options: any): async.Operation<types.PutRuntimeLogConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutRuntimeLogConfiguration, input, options) as async.Operation<types.PutRuntimeLogConfigurationOutput>
+function C:putRuntimeLogConfiguration(input: types.PutRuntimeLogConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutRuntimeLogConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutRuntimeLogConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutRuntimeLogConfigurationOutput>
 end
 
-function C:registerAccountAssociation(input: types.RegisterAccountAssociationInput, options: any): async.Operation<types.RegisterAccountAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterAccountAssociation, input, options) as async.Operation<types.RegisterAccountAssociationOutput>
+function C:registerAccountAssociation(input: types.RegisterAccountAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterAccountAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterAccountAssociation as schema.OperationSchema, input, options) as async.Operation<types.RegisterAccountAssociationOutput>
 end
 
-function C:registerCustomEndpoint(input: types.RegisterCustomEndpointInput, options: any): async.Operation<types.RegisterCustomEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterCustomEndpoint, input, options) as async.Operation<types.RegisterCustomEndpointOutput>
+function C:registerCustomEndpoint(input: types.RegisterCustomEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterCustomEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterCustomEndpoint as schema.OperationSchema, input, options) as async.Operation<types.RegisterCustomEndpointOutput>
 end
 
-function C:resetRuntimeLogConfiguration(input: types.ResetRuntimeLogConfigurationInput, options: any): async.Operation<types.ResetRuntimeLogConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResetRuntimeLogConfiguration, input, options) as async.Operation<types.ResetRuntimeLogConfigurationOutput>
+function C:resetRuntimeLogConfiguration(input: types.ResetRuntimeLogConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.ResetRuntimeLogConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResetRuntimeLogConfiguration as schema.OperationSchema, input, options) as async.Operation<types.ResetRuntimeLogConfigurationOutput>
 end
 
-function C:sendConnectorEvent(input: types.SendConnectorEventInput, options: any): async.Operation<types.SendConnectorEventOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendConnectorEvent, input, options) as async.Operation<types.SendConnectorEventOutput>
+function C:sendConnectorEvent(input: types.SendConnectorEventInput, options?: base_client.InvokeOptions): async.Operation<types.SendConnectorEventOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendConnectorEvent as schema.OperationSchema, input, options) as async.Operation<types.SendConnectorEventOutput>
 end
 
-function C:sendManagedThingCommand(input: types.SendManagedThingCommandInput, options: any): async.Operation<types.SendManagedThingCommandOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendManagedThingCommand, input, options) as async.Operation<types.SendManagedThingCommandOutput>
+function C:sendManagedThingCommand(input: types.SendManagedThingCommandInput, options?: base_client.InvokeOptions): async.Operation<types.SendManagedThingCommandOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendManagedThingCommand as schema.OperationSchema, input, options) as async.Operation<types.SendManagedThingCommandOutput>
 end
 
-function C:startAccountAssociationRefresh(input: types.StartAccountAssociationRefreshInput, options: any): async.Operation<types.StartAccountAssociationRefreshOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartAccountAssociationRefresh, input, options) as async.Operation<types.StartAccountAssociationRefreshOutput>
+function C:startAccountAssociationRefresh(input: types.StartAccountAssociationRefreshInput, options?: base_client.InvokeOptions): async.Operation<types.StartAccountAssociationRefreshOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartAccountAssociationRefresh as schema.OperationSchema, input, options) as async.Operation<types.StartAccountAssociationRefreshOutput>
 end
 
-function C:startDeviceDiscovery(input: types.StartDeviceDiscoveryInput, options: any): async.Operation<types.StartDeviceDiscoveryOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartDeviceDiscovery, input, options) as async.Operation<types.StartDeviceDiscoveryOutput>
+function C:startDeviceDiscovery(input: types.StartDeviceDiscoveryInput, options?: base_client.InvokeOptions): async.Operation<types.StartDeviceDiscoveryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDeviceDiscovery as schema.OperationSchema, input, options) as async.Operation<types.StartDeviceDiscoveryOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAccountAssociation(input: types.UpdateAccountAssociationInput, options: any): async.Operation<types.UpdateAccountAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAccountAssociation, input, options) as async.Operation<types.UpdateAccountAssociationOutput>
+function C:updateAccountAssociation(input: types.UpdateAccountAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAccountAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAccountAssociation as schema.OperationSchema, input, options) as async.Operation<types.UpdateAccountAssociationOutput>
 end
 
-function C:updateCloudConnector(input: types.UpdateCloudConnectorInput, options: any): async.Operation<types.UpdateCloudConnectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCloudConnector, input, options) as async.Operation<types.UpdateCloudConnectorOutput>
+function C:updateCloudConnector(input: types.UpdateCloudConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCloudConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCloudConnector as schema.OperationSchema, input, options) as async.Operation<types.UpdateCloudConnectorOutput>
 end
 
-function C:updateConnectorDestination(input: types.UpdateConnectorDestinationInput, options: any): async.Operation<types.UpdateConnectorDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConnectorDestination, input, options) as async.Operation<types.UpdateConnectorDestinationOutput>
+function C:updateConnectorDestination(input: types.UpdateConnectorDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConnectorDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConnectorDestination as schema.OperationSchema, input, options) as async.Operation<types.UpdateConnectorDestinationOutput>
 end
 
-function C:updateDestination(input: types.UpdateDestinationInput, options: any): async.Operation<types.UpdateDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDestination, input, options) as async.Operation<types.UpdateDestinationOutput>
+function C:updateDestination(input: types.UpdateDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDestination as schema.OperationSchema, input, options) as async.Operation<types.UpdateDestinationOutput>
 end
 
-function C:updateEventLogConfiguration(input: types.UpdateEventLogConfigurationInput, options: any): async.Operation<types.UpdateEventLogConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEventLogConfiguration, input, options) as async.Operation<types.UpdateEventLogConfigurationOutput>
+function C:updateEventLogConfiguration(input: types.UpdateEventLogConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEventLogConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEventLogConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateEventLogConfigurationOutput>
 end
 
-function C:updateManagedThing(input: types.UpdateManagedThingInput, options: any): async.Operation<types.UpdateManagedThingOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateManagedThing, input, options) as async.Operation<types.UpdateManagedThingOutput>
+function C:updateManagedThing(input: types.UpdateManagedThingInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateManagedThingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateManagedThing as schema.OperationSchema, input, options) as async.Operation<types.UpdateManagedThingOutput>
 end
 
-function C:updateNotificationConfiguration(input: types.UpdateNotificationConfigurationInput, options: any): async.Operation<types.UpdateNotificationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateNotificationConfiguration, input, options) as async.Operation<types.UpdateNotificationConfigurationOutput>
+function C:updateNotificationConfiguration(input: types.UpdateNotificationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNotificationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNotificationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateNotificationConfigurationOutput>
 end
 
-function C:updateOtaTask(input: types.UpdateOtaTaskInput, options: any): async.Operation<types.UpdateOtaTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateOtaTask, input, options) as async.Operation<types.UpdateOtaTaskOutput>
+function C:updateOtaTask(input: types.UpdateOtaTaskInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateOtaTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateOtaTask as schema.OperationSchema, input, options) as async.Operation<types.UpdateOtaTaskOutput>
 end
 
 return M

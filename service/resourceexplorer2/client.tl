@@ -8,71 +8,74 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("resourceexplorer2.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("resourceexplorer2.schemas")
 local traits = require("smithy.traits")
 local types = require("resourceexplorer2.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateDefaultView: function(Client, types.AssociateDefaultViewInput, any): async.Operation<types.AssociateDefaultViewOutput>
-    batchGetView: function(Client, types.BatchGetViewInput, any): async.Operation<types.BatchGetViewOutput>
-    createIndex: function(Client, types.CreateIndexInput, any): async.Operation<types.CreateIndexOutput>
-    createResourceExplorerSetup: function(Client, types.CreateResourceExplorerSetupInput, any): async.Operation<types.CreateResourceExplorerSetupOutput>
-    createView: function(Client, types.CreateViewInput, any): async.Operation<types.CreateViewOutput>
-    deleteIndex: function(Client, types.DeleteIndexInput, any): async.Operation<types.DeleteIndexOutput>
-    deleteResourceExplorerSetup: function(Client, types.DeleteResourceExplorerSetupInput, any): async.Operation<types.DeleteResourceExplorerSetupOutput>
-    deleteView: function(Client, types.DeleteViewInput, any): async.Operation<types.DeleteViewOutput>
-    disassociateDefaultView: function(Client, types.DisassociateDefaultViewInput, any): async.Operation<types.DisassociateDefaultViewOutput>
-    getAccountLevelServiceConfiguration: function(Client, types.GetAccountLevelServiceConfigurationInput, any): async.Operation<types.GetAccountLevelServiceConfigurationOutput>
-    getDefaultView: function(Client, types.GetDefaultViewInput, any): async.Operation<types.GetDefaultViewOutput>
-    getIndex: function(Client, types.GetIndexInput, any): async.Operation<types.GetIndexOutput>
-    getManagedView: function(Client, types.GetManagedViewInput, any): async.Operation<types.GetManagedViewOutput>
-    getResourceExplorerSetup: function(Client, types.GetResourceExplorerSetupInput, any): async.Operation<types.GetResourceExplorerSetupOutput>
-    getServiceIndex: function(Client, types.GetServiceIndexInput, any): async.Operation<types.GetServiceIndexOutput>
-    getServiceView: function(Client, types.GetServiceViewInput, any): async.Operation<types.GetServiceViewOutput>
-    getView: function(Client, types.GetViewInput, any): async.Operation<types.GetViewOutput>
-    listIndexes: function(Client, types.ListIndexesInput, any): async.Operation<types.ListIndexesOutput>
-    listIndexesForMembers: function(Client, types.ListIndexesForMembersInput, any): async.Operation<types.ListIndexesForMembersOutput>
-    listManagedViews: function(Client, types.ListManagedViewsInput, any): async.Operation<types.ListManagedViewsOutput>
-    listResources: function(Client, types.ListResourcesInput, any): async.Operation<types.ListResourcesOutput>
-    listServiceIndexes: function(Client, types.ListServiceIndexesInput, any): async.Operation<types.ListServiceIndexesOutput>
-    listServiceViews: function(Client, types.ListServiceViewsInput, any): async.Operation<types.ListServiceViewsOutput>
-    listStreamingAccessForServices: function(Client, types.ListStreamingAccessForServicesInput, any): async.Operation<types.ListStreamingAccessForServicesOutput>
-    listSupportedResourceTypes: function(Client, types.ListSupportedResourceTypesInput, any): async.Operation<types.ListSupportedResourceTypesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listViews: function(Client, types.ListViewsInput, any): async.Operation<types.ListViewsOutput>
-    search: function(Client, types.SearchInput, any): async.Operation<types.SearchOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateIndexType: function(Client, types.UpdateIndexTypeInput, any): async.Operation<types.UpdateIndexTypeOutput>
-    updateView: function(Client, types.UpdateViewInput, any): async.Operation<types.UpdateViewOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateDefaultView: function(Client, types.AssociateDefaultViewInput, ? base_client.InvokeOptions): async.Operation<types.AssociateDefaultViewOutput>
+    batchGetView: function(Client, types.BatchGetViewInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetViewOutput>
+    createIndex: function(Client, types.CreateIndexInput, ? base_client.InvokeOptions): async.Operation<types.CreateIndexOutput>
+    createResourceExplorerSetup: function(Client, types.CreateResourceExplorerSetupInput, ? base_client.InvokeOptions): async.Operation<types.CreateResourceExplorerSetupOutput>
+    createView: function(Client, types.CreateViewInput, ? base_client.InvokeOptions): async.Operation<types.CreateViewOutput>
+    deleteIndex: function(Client, types.DeleteIndexInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIndexOutput>
+    deleteResourceExplorerSetup: function(Client, types.DeleteResourceExplorerSetupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourceExplorerSetupOutput>
+    deleteView: function(Client, types.DeleteViewInput, ? base_client.InvokeOptions): async.Operation<types.DeleteViewOutput>
+    disassociateDefaultView: function(Client, types.DisassociateDefaultViewInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateDefaultViewOutput>
+    getAccountLevelServiceConfiguration: function(Client, types.GetAccountLevelServiceConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountLevelServiceConfigurationOutput>
+    getDefaultView: function(Client, types.GetDefaultViewInput, ? base_client.InvokeOptions): async.Operation<types.GetDefaultViewOutput>
+    getIndex: function(Client, types.GetIndexInput, ? base_client.InvokeOptions): async.Operation<types.GetIndexOutput>
+    getManagedView: function(Client, types.GetManagedViewInput, ? base_client.InvokeOptions): async.Operation<types.GetManagedViewOutput>
+    getResourceExplorerSetup: function(Client, types.GetResourceExplorerSetupInput, ? base_client.InvokeOptions): async.Operation<types.GetResourceExplorerSetupOutput>
+    getServiceIndex: function(Client, types.GetServiceIndexInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceIndexOutput>
+    getServiceView: function(Client, types.GetServiceViewInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceViewOutput>
+    getView: function(Client, types.GetViewInput, ? base_client.InvokeOptions): async.Operation<types.GetViewOutput>
+    listIndexes: function(Client, types.ListIndexesInput, ? base_client.InvokeOptions): async.Operation<types.ListIndexesOutput>
+    listIndexesForMembers: function(Client, types.ListIndexesForMembersInput, ? base_client.InvokeOptions): async.Operation<types.ListIndexesForMembersOutput>
+    listManagedViews: function(Client, types.ListManagedViewsInput, ? base_client.InvokeOptions): async.Operation<types.ListManagedViewsOutput>
+    listResources: function(Client, types.ListResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListResourcesOutput>
+    listServiceIndexes: function(Client, types.ListServiceIndexesInput, ? base_client.InvokeOptions): async.Operation<types.ListServiceIndexesOutput>
+    listServiceViews: function(Client, types.ListServiceViewsInput, ? base_client.InvokeOptions): async.Operation<types.ListServiceViewsOutput>
+    listStreamingAccessForServices: function(Client, types.ListStreamingAccessForServicesInput, ? base_client.InvokeOptions): async.Operation<types.ListStreamingAccessForServicesOutput>
+    listSupportedResourceTypes: function(Client, types.ListSupportedResourceTypesInput, ? base_client.InvokeOptions): async.Operation<types.ListSupportedResourceTypesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listViews: function(Client, types.ListViewsInput, ? base_client.InvokeOptions): async.Operation<types.ListViewsOutput>
+    search: function(Client, types.SearchInput, ? base_client.InvokeOptions): async.Operation<types.SearchOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateIndexType: function(Client, types.UpdateIndexTypeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIndexTypeOutput>
+    updateView: function(Client, types.UpdateViewInput, ? base_client.InvokeOptions): async.Operation<types.UpdateViewOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "ResourceExplorer"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "resource-explorer-2", signing_region = c.region } }
                 else
@@ -91,132 +94,132 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateDefaultView(input: types.AssociateDefaultViewInput, options: any): async.Operation<types.AssociateDefaultViewOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateDefaultView, input, options) as async.Operation<types.AssociateDefaultViewOutput>
+function C:associateDefaultView(input: types.AssociateDefaultViewInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateDefaultViewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateDefaultView as schema.OperationSchema, input, options) as async.Operation<types.AssociateDefaultViewOutput>
 end
 
-function C:batchGetView(input: types.BatchGetViewInput, options: any): async.Operation<types.BatchGetViewOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetView, input, options) as async.Operation<types.BatchGetViewOutput>
+function C:batchGetView(input: types.BatchGetViewInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetViewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetView as schema.OperationSchema, input, options) as async.Operation<types.BatchGetViewOutput>
 end
 
-function C:createIndex(input: types.CreateIndexInput, options: any): async.Operation<types.CreateIndexOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIndex, input, options) as async.Operation<types.CreateIndexOutput>
+function C:createIndex(input: types.CreateIndexInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIndexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIndex as schema.OperationSchema, input, options) as async.Operation<types.CreateIndexOutput>
 end
 
-function C:createResourceExplorerSetup(input: types.CreateResourceExplorerSetupInput, options: any): async.Operation<types.CreateResourceExplorerSetupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateResourceExplorerSetup, input, options) as async.Operation<types.CreateResourceExplorerSetupOutput>
+function C:createResourceExplorerSetup(input: types.CreateResourceExplorerSetupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateResourceExplorerSetupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateResourceExplorerSetup as schema.OperationSchema, input, options) as async.Operation<types.CreateResourceExplorerSetupOutput>
 end
 
-function C:createView(input: types.CreateViewInput, options: any): async.Operation<types.CreateViewOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateView, input, options) as async.Operation<types.CreateViewOutput>
+function C:createView(input: types.CreateViewInput, options?: base_client.InvokeOptions): async.Operation<types.CreateViewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateView as schema.OperationSchema, input, options) as async.Operation<types.CreateViewOutput>
 end
 
-function C:deleteIndex(input: types.DeleteIndexInput, options: any): async.Operation<types.DeleteIndexOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIndex, input, options) as async.Operation<types.DeleteIndexOutput>
+function C:deleteIndex(input: types.DeleteIndexInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIndexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIndex as schema.OperationSchema, input, options) as async.Operation<types.DeleteIndexOutput>
 end
 
-function C:deleteResourceExplorerSetup(input: types.DeleteResourceExplorerSetupInput, options: any): async.Operation<types.DeleteResourceExplorerSetupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourceExplorerSetup, input, options) as async.Operation<types.DeleteResourceExplorerSetupOutput>
+function C:deleteResourceExplorerSetup(input: types.DeleteResourceExplorerSetupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourceExplorerSetupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourceExplorerSetup as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourceExplorerSetupOutput>
 end
 
-function C:deleteView(input: types.DeleteViewInput, options: any): async.Operation<types.DeleteViewOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteView, input, options) as async.Operation<types.DeleteViewOutput>
+function C:deleteView(input: types.DeleteViewInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteViewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteView as schema.OperationSchema, input, options) as async.Operation<types.DeleteViewOutput>
 end
 
-function C:disassociateDefaultView(input: types.DisassociateDefaultViewInput, options: any): async.Operation<types.DisassociateDefaultViewOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateDefaultView, input, options) as async.Operation<types.DisassociateDefaultViewOutput>
+function C:disassociateDefaultView(input: types.DisassociateDefaultViewInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateDefaultViewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateDefaultView as schema.OperationSchema, input, options) as async.Operation<types.DisassociateDefaultViewOutput>
 end
 
-function C:getAccountLevelServiceConfiguration(input: types.GetAccountLevelServiceConfigurationInput, options: any): async.Operation<types.GetAccountLevelServiceConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccountLevelServiceConfiguration, input, options) as async.Operation<types.GetAccountLevelServiceConfigurationOutput>
+function C:getAccountLevelServiceConfiguration(input: types.GetAccountLevelServiceConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccountLevelServiceConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccountLevelServiceConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetAccountLevelServiceConfigurationOutput>
 end
 
-function C:getDefaultView(input: types.GetDefaultViewInput, options: any): async.Operation<types.GetDefaultViewOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDefaultView, input, options) as async.Operation<types.GetDefaultViewOutput>
+function C:getDefaultView(input: types.GetDefaultViewInput, options?: base_client.InvokeOptions): async.Operation<types.GetDefaultViewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDefaultView as schema.OperationSchema, input, options) as async.Operation<types.GetDefaultViewOutput>
 end
 
-function C:getIndex(input: types.GetIndexInput, options: any): async.Operation<types.GetIndexOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIndex, input, options) as async.Operation<types.GetIndexOutput>
+function C:getIndex(input: types.GetIndexInput, options?: base_client.InvokeOptions): async.Operation<types.GetIndexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIndex as schema.OperationSchema, input, options) as async.Operation<types.GetIndexOutput>
 end
 
-function C:getManagedView(input: types.GetManagedViewInput, options: any): async.Operation<types.GetManagedViewOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetManagedView, input, options) as async.Operation<types.GetManagedViewOutput>
+function C:getManagedView(input: types.GetManagedViewInput, options?: base_client.InvokeOptions): async.Operation<types.GetManagedViewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetManagedView as schema.OperationSchema, input, options) as async.Operation<types.GetManagedViewOutput>
 end
 
-function C:getResourceExplorerSetup(input: types.GetResourceExplorerSetupInput, options: any): async.Operation<types.GetResourceExplorerSetupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourceExplorerSetup, input, options) as async.Operation<types.GetResourceExplorerSetupOutput>
+function C:getResourceExplorerSetup(input: types.GetResourceExplorerSetupInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourceExplorerSetupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourceExplorerSetup as schema.OperationSchema, input, options) as async.Operation<types.GetResourceExplorerSetupOutput>
 end
 
-function C:getServiceIndex(input: types.GetServiceIndexInput, options: any): async.Operation<types.GetServiceIndexOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetServiceIndex, input, options) as async.Operation<types.GetServiceIndexOutput>
+function C:getServiceIndex(input: types.GetServiceIndexInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceIndexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetServiceIndex as schema.OperationSchema, input, options) as async.Operation<types.GetServiceIndexOutput>
 end
 
-function C:getServiceView(input: types.GetServiceViewInput, options: any): async.Operation<types.GetServiceViewOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetServiceView, input, options) as async.Operation<types.GetServiceViewOutput>
+function C:getServiceView(input: types.GetServiceViewInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceViewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetServiceView as schema.OperationSchema, input, options) as async.Operation<types.GetServiceViewOutput>
 end
 
-function C:getView(input: types.GetViewInput, options: any): async.Operation<types.GetViewOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetView, input, options) as async.Operation<types.GetViewOutput>
+function C:getView(input: types.GetViewInput, options?: base_client.InvokeOptions): async.Operation<types.GetViewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetView as schema.OperationSchema, input, options) as async.Operation<types.GetViewOutput>
 end
 
-function C:listIndexes(input: types.ListIndexesInput, options: any): async.Operation<types.ListIndexesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIndexes, input, options) as async.Operation<types.ListIndexesOutput>
+function C:listIndexes(input: types.ListIndexesInput, options?: base_client.InvokeOptions): async.Operation<types.ListIndexesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIndexes as schema.OperationSchema, input, options) as async.Operation<types.ListIndexesOutput>
 end
 
-function C:listIndexesForMembers(input: types.ListIndexesForMembersInput, options: any): async.Operation<types.ListIndexesForMembersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIndexesForMembers, input, options) as async.Operation<types.ListIndexesForMembersOutput>
+function C:listIndexesForMembers(input: types.ListIndexesForMembersInput, options?: base_client.InvokeOptions): async.Operation<types.ListIndexesForMembersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIndexesForMembers as schema.OperationSchema, input, options) as async.Operation<types.ListIndexesForMembersOutput>
 end
 
-function C:listManagedViews(input: types.ListManagedViewsInput, options: any): async.Operation<types.ListManagedViewsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListManagedViews, input, options) as async.Operation<types.ListManagedViewsOutput>
+function C:listManagedViews(input: types.ListManagedViewsInput, options?: base_client.InvokeOptions): async.Operation<types.ListManagedViewsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListManagedViews as schema.OperationSchema, input, options) as async.Operation<types.ListManagedViewsOutput>
 end
 
-function C:listResources(input: types.ListResourcesInput, options: any): async.Operation<types.ListResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResources, input, options) as async.Operation<types.ListResourcesOutput>
+function C:listResources(input: types.ListResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResources as schema.OperationSchema, input, options) as async.Operation<types.ListResourcesOutput>
 end
 
-function C:listServiceIndexes(input: types.ListServiceIndexesInput, options: any): async.Operation<types.ListServiceIndexesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServiceIndexes, input, options) as async.Operation<types.ListServiceIndexesOutput>
+function C:listServiceIndexes(input: types.ListServiceIndexesInput, options?: base_client.InvokeOptions): async.Operation<types.ListServiceIndexesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServiceIndexes as schema.OperationSchema, input, options) as async.Operation<types.ListServiceIndexesOutput>
 end
 
-function C:listServiceViews(input: types.ListServiceViewsInput, options: any): async.Operation<types.ListServiceViewsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServiceViews, input, options) as async.Operation<types.ListServiceViewsOutput>
+function C:listServiceViews(input: types.ListServiceViewsInput, options?: base_client.InvokeOptions): async.Operation<types.ListServiceViewsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServiceViews as schema.OperationSchema, input, options) as async.Operation<types.ListServiceViewsOutput>
 end
 
-function C:listStreamingAccessForServices(input: types.ListStreamingAccessForServicesInput, options: any): async.Operation<types.ListStreamingAccessForServicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStreamingAccessForServices, input, options) as async.Operation<types.ListStreamingAccessForServicesOutput>
+function C:listStreamingAccessForServices(input: types.ListStreamingAccessForServicesInput, options?: base_client.InvokeOptions): async.Operation<types.ListStreamingAccessForServicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStreamingAccessForServices as schema.OperationSchema, input, options) as async.Operation<types.ListStreamingAccessForServicesOutput>
 end
 
-function C:listSupportedResourceTypes(input: types.ListSupportedResourceTypesInput, options: any): async.Operation<types.ListSupportedResourceTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSupportedResourceTypes, input, options) as async.Operation<types.ListSupportedResourceTypesOutput>
+function C:listSupportedResourceTypes(input: types.ListSupportedResourceTypesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSupportedResourceTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSupportedResourceTypes as schema.OperationSchema, input, options) as async.Operation<types.ListSupportedResourceTypesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listViews(input: types.ListViewsInput, options: any): async.Operation<types.ListViewsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListViews, input, options) as async.Operation<types.ListViewsOutput>
+function C:listViews(input: types.ListViewsInput, options?: base_client.InvokeOptions): async.Operation<types.ListViewsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListViews as schema.OperationSchema, input, options) as async.Operation<types.ListViewsOutput>
 end
 
-function C:search(input: types.SearchInput, options: any): async.Operation<types.SearchOutput>
-    return self:invokeOperation(schemas.Service, schemas.Search, input, options) as async.Operation<types.SearchOutput>
+function C:search(input: types.SearchInput, options?: base_client.InvokeOptions): async.Operation<types.SearchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Search as schema.OperationSchema, input, options) as async.Operation<types.SearchOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateIndexType(input: types.UpdateIndexTypeInput, options: any): async.Operation<types.UpdateIndexTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateIndexType, input, options) as async.Operation<types.UpdateIndexTypeOutput>
+function C:updateIndexType(input: types.UpdateIndexTypeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIndexTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIndexType as schema.OperationSchema, input, options) as async.Operation<types.UpdateIndexTypeOutput>
 end
 
-function C:updateView(input: types.UpdateViewInput, options: any): async.Operation<types.UpdateViewOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateView, input, options) as async.Operation<types.UpdateViewOutput>
+function C:updateView(input: types.UpdateViewInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateViewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateView as schema.OperationSchema, input, options) as async.Operation<types.UpdateViewOutput>
 end
 
 return M

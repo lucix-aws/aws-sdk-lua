@@ -8,57 +8,60 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("medicalimaging.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("medicalimaging.schemas")
 local traits = require("smithy.traits")
 local types = require("medicalimaging.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    copyImageSet: function(Client, types.CopyImageSetInput, any): async.Operation<types.CopyImageSetOutput>
-    createDatastore: function(Client, types.CreateDatastoreInput, any): async.Operation<types.CreateDatastoreOutput>
-    deleteDatastore: function(Client, types.DeleteDatastoreInput, any): async.Operation<types.DeleteDatastoreOutput>
-    deleteImageSet: function(Client, types.DeleteImageSetInput, any): async.Operation<types.DeleteImageSetOutput>
-    getDatastore: function(Client, types.GetDatastoreInput, any): async.Operation<types.GetDatastoreOutput>
-    getDICOMImportJob: function(Client, types.GetDICOMImportJobInput, any): async.Operation<types.GetDICOMImportJobOutput>
-    getImageFrame: function(Client, types.GetImageFrameInput, any): async.Operation<types.GetImageFrameOutput>
-    getImageSet: function(Client, types.GetImageSetInput, any): async.Operation<types.GetImageSetOutput>
-    getImageSetMetadata: function(Client, types.GetImageSetMetadataInput, any): async.Operation<types.GetImageSetMetadataOutput>
-    listDatastores: function(Client, types.ListDatastoresInput, any): async.Operation<types.ListDatastoresOutput>
-    listDICOMImportJobs: function(Client, types.ListDICOMImportJobsInput, any): async.Operation<types.ListDICOMImportJobsOutput>
-    listImageSetVersions: function(Client, types.ListImageSetVersionsInput, any): async.Operation<types.ListImageSetVersionsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    searchImageSets: function(Client, types.SearchImageSetsInput, any): async.Operation<types.SearchImageSetsOutput>
-    startDICOMImportJob: function(Client, types.StartDICOMImportJobInput, any): async.Operation<types.StartDICOMImportJobOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateImageSetMetadata: function(Client, types.UpdateImageSetMetadataInput, any): async.Operation<types.UpdateImageSetMetadataOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    copyImageSet: function(Client, types.CopyImageSetInput, ? base_client.InvokeOptions): async.Operation<types.CopyImageSetOutput>
+    createDatastore: function(Client, types.CreateDatastoreInput, ? base_client.InvokeOptions): async.Operation<types.CreateDatastoreOutput>
+    deleteDatastore: function(Client, types.DeleteDatastoreInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDatastoreOutput>
+    deleteImageSet: function(Client, types.DeleteImageSetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteImageSetOutput>
+    getDatastore: function(Client, types.GetDatastoreInput, ? base_client.InvokeOptions): async.Operation<types.GetDatastoreOutput>
+    getDICOMImportJob: function(Client, types.GetDICOMImportJobInput, ? base_client.InvokeOptions): async.Operation<types.GetDICOMImportJobOutput>
+    getImageFrame: function(Client, types.GetImageFrameInput, ? base_client.InvokeOptions): async.Operation<types.GetImageFrameOutput>
+    getImageSet: function(Client, types.GetImageSetInput, ? base_client.InvokeOptions): async.Operation<types.GetImageSetOutput>
+    getImageSetMetadata: function(Client, types.GetImageSetMetadataInput, ? base_client.InvokeOptions): async.Operation<types.GetImageSetMetadataOutput>
+    listDatastores: function(Client, types.ListDatastoresInput, ? base_client.InvokeOptions): async.Operation<types.ListDatastoresOutput>
+    listDICOMImportJobs: function(Client, types.ListDICOMImportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListDICOMImportJobsOutput>
+    listImageSetVersions: function(Client, types.ListImageSetVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListImageSetVersionsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    searchImageSets: function(Client, types.SearchImageSetsInput, ? base_client.InvokeOptions): async.Operation<types.SearchImageSetsOutput>
+    startDICOMImportJob: function(Client, types.StartDICOMImportJobInput, ? base_client.InvokeOptions): async.Operation<types.StartDICOMImportJobOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateImageSetMetadata: function(Client, types.UpdateImageSetMetadataInput, ? base_client.InvokeOptions): async.Operation<types.UpdateImageSetMetadataOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AHIGatewayService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "medical-imaging", signing_region = c.region } }
                 else
@@ -77,76 +80,76 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:copyImageSet(input: types.CopyImageSetInput, options: any): async.Operation<types.CopyImageSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CopyImageSet, input, options) as async.Operation<types.CopyImageSetOutput>
+function C:copyImageSet(input: types.CopyImageSetInput, options?: base_client.InvokeOptions): async.Operation<types.CopyImageSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CopyImageSet as schema.OperationSchema, input, options) as async.Operation<types.CopyImageSetOutput>
 end
 
-function C:createDatastore(input: types.CreateDatastoreInput, options: any): async.Operation<types.CreateDatastoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDatastore, input, options) as async.Operation<types.CreateDatastoreOutput>
+function C:createDatastore(input: types.CreateDatastoreInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDatastoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDatastore as schema.OperationSchema, input, options) as async.Operation<types.CreateDatastoreOutput>
 end
 
-function C:deleteDatastore(input: types.DeleteDatastoreInput, options: any): async.Operation<types.DeleteDatastoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDatastore, input, options) as async.Operation<types.DeleteDatastoreOutput>
+function C:deleteDatastore(input: types.DeleteDatastoreInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDatastoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDatastore as schema.OperationSchema, input, options) as async.Operation<types.DeleteDatastoreOutput>
 end
 
-function C:deleteImageSet(input: types.DeleteImageSetInput, options: any): async.Operation<types.DeleteImageSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteImageSet, input, options) as async.Operation<types.DeleteImageSetOutput>
+function C:deleteImageSet(input: types.DeleteImageSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteImageSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteImageSet as schema.OperationSchema, input, options) as async.Operation<types.DeleteImageSetOutput>
 end
 
-function C:getDatastore(input: types.GetDatastoreInput, options: any): async.Operation<types.GetDatastoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDatastore, input, options) as async.Operation<types.GetDatastoreOutput>
+function C:getDatastore(input: types.GetDatastoreInput, options?: base_client.InvokeOptions): async.Operation<types.GetDatastoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDatastore as schema.OperationSchema, input, options) as async.Operation<types.GetDatastoreOutput>
 end
 
-function C:getDICOMImportJob(input: types.GetDICOMImportJobInput, options: any): async.Operation<types.GetDICOMImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDICOMImportJob, input, options) as async.Operation<types.GetDICOMImportJobOutput>
+function C:getDICOMImportJob(input: types.GetDICOMImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetDICOMImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDICOMImportJob as schema.OperationSchema, input, options) as async.Operation<types.GetDICOMImportJobOutput>
 end
 
-function C:getImageFrame(input: types.GetImageFrameInput, options: any): async.Operation<types.GetImageFrameOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetImageFrame, input, options) as async.Operation<types.GetImageFrameOutput>
+function C:getImageFrame(input: types.GetImageFrameInput, options?: base_client.InvokeOptions): async.Operation<types.GetImageFrameOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetImageFrame as schema.OperationSchema, input, options) as async.Operation<types.GetImageFrameOutput>
 end
 
-function C:getImageSet(input: types.GetImageSetInput, options: any): async.Operation<types.GetImageSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetImageSet, input, options) as async.Operation<types.GetImageSetOutput>
+function C:getImageSet(input: types.GetImageSetInput, options?: base_client.InvokeOptions): async.Operation<types.GetImageSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetImageSet as schema.OperationSchema, input, options) as async.Operation<types.GetImageSetOutput>
 end
 
-function C:getImageSetMetadata(input: types.GetImageSetMetadataInput, options: any): async.Operation<types.GetImageSetMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetImageSetMetadata, input, options) as async.Operation<types.GetImageSetMetadataOutput>
+function C:getImageSetMetadata(input: types.GetImageSetMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.GetImageSetMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetImageSetMetadata as schema.OperationSchema, input, options) as async.Operation<types.GetImageSetMetadataOutput>
 end
 
-function C:listDatastores(input: types.ListDatastoresInput, options: any): async.Operation<types.ListDatastoresOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDatastores, input, options) as async.Operation<types.ListDatastoresOutput>
+function C:listDatastores(input: types.ListDatastoresInput, options?: base_client.InvokeOptions): async.Operation<types.ListDatastoresOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDatastores as schema.OperationSchema, input, options) as async.Operation<types.ListDatastoresOutput>
 end
 
-function C:listDICOMImportJobs(input: types.ListDICOMImportJobsInput, options: any): async.Operation<types.ListDICOMImportJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDICOMImportJobs, input, options) as async.Operation<types.ListDICOMImportJobsOutput>
+function C:listDICOMImportJobs(input: types.ListDICOMImportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDICOMImportJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDICOMImportJobs as schema.OperationSchema, input, options) as async.Operation<types.ListDICOMImportJobsOutput>
 end
 
-function C:listImageSetVersions(input: types.ListImageSetVersionsInput, options: any): async.Operation<types.ListImageSetVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListImageSetVersions, input, options) as async.Operation<types.ListImageSetVersionsOutput>
+function C:listImageSetVersions(input: types.ListImageSetVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListImageSetVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListImageSetVersions as schema.OperationSchema, input, options) as async.Operation<types.ListImageSetVersionsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:searchImageSets(input: types.SearchImageSetsInput, options: any): async.Operation<types.SearchImageSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchImageSets, input, options) as async.Operation<types.SearchImageSetsOutput>
+function C:searchImageSets(input: types.SearchImageSetsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchImageSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchImageSets as schema.OperationSchema, input, options) as async.Operation<types.SearchImageSetsOutput>
 end
 
-function C:startDICOMImportJob(input: types.StartDICOMImportJobInput, options: any): async.Operation<types.StartDICOMImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartDICOMImportJob, input, options) as async.Operation<types.StartDICOMImportJobOutput>
+function C:startDICOMImportJob(input: types.StartDICOMImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartDICOMImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDICOMImportJob as schema.OperationSchema, input, options) as async.Operation<types.StartDICOMImportJobOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateImageSetMetadata(input: types.UpdateImageSetMetadataInput, options: any): async.Operation<types.UpdateImageSetMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateImageSetMetadata, input, options) as async.Operation<types.UpdateImageSetMetadataOutput>
+function C:updateImageSetMetadata(input: types.UpdateImageSetMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateImageSetMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateImageSetMetadata as schema.OperationSchema, input, options) as async.Operation<types.UpdateImageSetMetadataOutput>
 end
 
 return M

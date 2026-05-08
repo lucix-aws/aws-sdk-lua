@@ -8,71 +8,74 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("route53recoveryreadiness.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("route53recoveryreadiness.schemas")
 local traits = require("smithy.traits")
 local types = require("route53recoveryreadiness.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createCell: function(Client, types.CreateCellInput, any): async.Operation<types.CreateCellOutput>
-    createCrossAccountAuthorization: function(Client, types.CreateCrossAccountAuthorizationInput, any): async.Operation<types.CreateCrossAccountAuthorizationOutput>
-    createReadinessCheck: function(Client, types.CreateReadinessCheckInput, any): async.Operation<types.CreateReadinessCheckOutput>
-    createRecoveryGroup: function(Client, types.CreateRecoveryGroupInput, any): async.Operation<types.CreateRecoveryGroupOutput>
-    createResourceSet: function(Client, types.CreateResourceSetInput, any): async.Operation<types.CreateResourceSetOutput>
-    deleteCell: function(Client, types.DeleteCellInput, any): async.Operation<types.DeleteCellOutput>
-    deleteCrossAccountAuthorization: function(Client, types.DeleteCrossAccountAuthorizationInput, any): async.Operation<types.DeleteCrossAccountAuthorizationOutput>
-    deleteReadinessCheck: function(Client, types.DeleteReadinessCheckInput, any): async.Operation<types.DeleteReadinessCheckOutput>
-    deleteRecoveryGroup: function(Client, types.DeleteRecoveryGroupInput, any): async.Operation<types.DeleteRecoveryGroupOutput>
-    deleteResourceSet: function(Client, types.DeleteResourceSetInput, any): async.Operation<types.DeleteResourceSetOutput>
-    getArchitectureRecommendations: function(Client, types.GetArchitectureRecommendationsInput, any): async.Operation<types.GetArchitectureRecommendationsOutput>
-    getCell: function(Client, types.GetCellInput, any): async.Operation<types.GetCellOutput>
-    getCellReadinessSummary: function(Client, types.GetCellReadinessSummaryInput, any): async.Operation<types.GetCellReadinessSummaryOutput>
-    getReadinessCheck: function(Client, types.GetReadinessCheckInput, any): async.Operation<types.GetReadinessCheckOutput>
-    getReadinessCheckResourceStatus: function(Client, types.GetReadinessCheckResourceStatusInput, any): async.Operation<types.GetReadinessCheckResourceStatusOutput>
-    getReadinessCheckStatus: function(Client, types.GetReadinessCheckStatusInput, any): async.Operation<types.GetReadinessCheckStatusOutput>
-    getRecoveryGroup: function(Client, types.GetRecoveryGroupInput, any): async.Operation<types.GetRecoveryGroupOutput>
-    getRecoveryGroupReadinessSummary: function(Client, types.GetRecoveryGroupReadinessSummaryInput, any): async.Operation<types.GetRecoveryGroupReadinessSummaryOutput>
-    getResourceSet: function(Client, types.GetResourceSetInput, any): async.Operation<types.GetResourceSetOutput>
-    listCells: function(Client, types.ListCellsInput, any): async.Operation<types.ListCellsOutput>
-    listCrossAccountAuthorizations: function(Client, types.ListCrossAccountAuthorizationsInput, any): async.Operation<types.ListCrossAccountAuthorizationsOutput>
-    listReadinessChecks: function(Client, types.ListReadinessChecksInput, any): async.Operation<types.ListReadinessChecksOutput>
-    listRecoveryGroups: function(Client, types.ListRecoveryGroupsInput, any): async.Operation<types.ListRecoveryGroupsOutput>
-    listResourceSets: function(Client, types.ListResourceSetsInput, any): async.Operation<types.ListResourceSetsOutput>
-    listRules: function(Client, types.ListRulesInput, any): async.Operation<types.ListRulesOperationOutput>
-    listTagsForResources: function(Client, types.ListTagsForResourcesInput, any): async.Operation<types.ListTagsForResourcesOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateCell: function(Client, types.UpdateCellInput, any): async.Operation<types.UpdateCellOutput>
-    updateReadinessCheck: function(Client, types.UpdateReadinessCheckInput, any): async.Operation<types.UpdateReadinessCheckOutput>
-    updateRecoveryGroup: function(Client, types.UpdateRecoveryGroupInput, any): async.Operation<types.UpdateRecoveryGroupOutput>
-    updateResourceSet: function(Client, types.UpdateResourceSetInput, any): async.Operation<types.UpdateResourceSetOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createCell: function(Client, types.CreateCellInput, ? base_client.InvokeOptions): async.Operation<types.CreateCellOutput>
+    createCrossAccountAuthorization: function(Client, types.CreateCrossAccountAuthorizationInput, ? base_client.InvokeOptions): async.Operation<types.CreateCrossAccountAuthorizationOutput>
+    createReadinessCheck: function(Client, types.CreateReadinessCheckInput, ? base_client.InvokeOptions): async.Operation<types.CreateReadinessCheckOutput>
+    createRecoveryGroup: function(Client, types.CreateRecoveryGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateRecoveryGroupOutput>
+    createResourceSet: function(Client, types.CreateResourceSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateResourceSetOutput>
+    deleteCell: function(Client, types.DeleteCellInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCellOutput>
+    deleteCrossAccountAuthorization: function(Client, types.DeleteCrossAccountAuthorizationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCrossAccountAuthorizationOutput>
+    deleteReadinessCheck: function(Client, types.DeleteReadinessCheckInput, ? base_client.InvokeOptions): async.Operation<types.DeleteReadinessCheckOutput>
+    deleteRecoveryGroup: function(Client, types.DeleteRecoveryGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRecoveryGroupOutput>
+    deleteResourceSet: function(Client, types.DeleteResourceSetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourceSetOutput>
+    getArchitectureRecommendations: function(Client, types.GetArchitectureRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.GetArchitectureRecommendationsOutput>
+    getCell: function(Client, types.GetCellInput, ? base_client.InvokeOptions): async.Operation<types.GetCellOutput>
+    getCellReadinessSummary: function(Client, types.GetCellReadinessSummaryInput, ? base_client.InvokeOptions): async.Operation<types.GetCellReadinessSummaryOutput>
+    getReadinessCheck: function(Client, types.GetReadinessCheckInput, ? base_client.InvokeOptions): async.Operation<types.GetReadinessCheckOutput>
+    getReadinessCheckResourceStatus: function(Client, types.GetReadinessCheckResourceStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetReadinessCheckResourceStatusOutput>
+    getReadinessCheckStatus: function(Client, types.GetReadinessCheckStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetReadinessCheckStatusOutput>
+    getRecoveryGroup: function(Client, types.GetRecoveryGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetRecoveryGroupOutput>
+    getRecoveryGroupReadinessSummary: function(Client, types.GetRecoveryGroupReadinessSummaryInput, ? base_client.InvokeOptions): async.Operation<types.GetRecoveryGroupReadinessSummaryOutput>
+    getResourceSet: function(Client, types.GetResourceSetInput, ? base_client.InvokeOptions): async.Operation<types.GetResourceSetOutput>
+    listCells: function(Client, types.ListCellsInput, ? base_client.InvokeOptions): async.Operation<types.ListCellsOutput>
+    listCrossAccountAuthorizations: function(Client, types.ListCrossAccountAuthorizationsInput, ? base_client.InvokeOptions): async.Operation<types.ListCrossAccountAuthorizationsOutput>
+    listReadinessChecks: function(Client, types.ListReadinessChecksInput, ? base_client.InvokeOptions): async.Operation<types.ListReadinessChecksOutput>
+    listRecoveryGroups: function(Client, types.ListRecoveryGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListRecoveryGroupsOutput>
+    listResourceSets: function(Client, types.ListResourceSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceSetsOutput>
+    listRules: function(Client, types.ListRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListRulesOperationOutput>
+    listTagsForResources: function(Client, types.ListTagsForResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourcesOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateCell: function(Client, types.UpdateCellInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCellOutput>
+    updateReadinessCheck: function(Client, types.UpdateReadinessCheckInput, ? base_client.InvokeOptions): async.Operation<types.UpdateReadinessCheckOutput>
+    updateRecoveryGroup: function(Client, types.UpdateRecoveryGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRecoveryGroupOutput>
+    updateResourceSet: function(Client, types.UpdateResourceSetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResourceSetOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "Route53RecoveryReadiness"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "route53-recovery-readiness", signing_region = c.region } }
                 else
@@ -91,132 +94,132 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createCell(input: types.CreateCellInput, options: any): async.Operation<types.CreateCellOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCell, input, options) as async.Operation<types.CreateCellOutput>
+function C:createCell(input: types.CreateCellInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCellOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCell as schema.OperationSchema, input, options) as async.Operation<types.CreateCellOutput>
 end
 
-function C:createCrossAccountAuthorization(input: types.CreateCrossAccountAuthorizationInput, options: any): async.Operation<types.CreateCrossAccountAuthorizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCrossAccountAuthorization, input, options) as async.Operation<types.CreateCrossAccountAuthorizationOutput>
+function C:createCrossAccountAuthorization(input: types.CreateCrossAccountAuthorizationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCrossAccountAuthorizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCrossAccountAuthorization as schema.OperationSchema, input, options) as async.Operation<types.CreateCrossAccountAuthorizationOutput>
 end
 
-function C:createReadinessCheck(input: types.CreateReadinessCheckInput, options: any): async.Operation<types.CreateReadinessCheckOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateReadinessCheck, input, options) as async.Operation<types.CreateReadinessCheckOutput>
+function C:createReadinessCheck(input: types.CreateReadinessCheckInput, options?: base_client.InvokeOptions): async.Operation<types.CreateReadinessCheckOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateReadinessCheck as schema.OperationSchema, input, options) as async.Operation<types.CreateReadinessCheckOutput>
 end
 
-function C:createRecoveryGroup(input: types.CreateRecoveryGroupInput, options: any): async.Operation<types.CreateRecoveryGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRecoveryGroup, input, options) as async.Operation<types.CreateRecoveryGroupOutput>
+function C:createRecoveryGroup(input: types.CreateRecoveryGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRecoveryGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRecoveryGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateRecoveryGroupOutput>
 end
 
-function C:createResourceSet(input: types.CreateResourceSetInput, options: any): async.Operation<types.CreateResourceSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateResourceSet, input, options) as async.Operation<types.CreateResourceSetOutput>
+function C:createResourceSet(input: types.CreateResourceSetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateResourceSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateResourceSet as schema.OperationSchema, input, options) as async.Operation<types.CreateResourceSetOutput>
 end
 
-function C:deleteCell(input: types.DeleteCellInput, options: any): async.Operation<types.DeleteCellOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCell, input, options) as async.Operation<types.DeleteCellOutput>
+function C:deleteCell(input: types.DeleteCellInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCellOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCell as schema.OperationSchema, input, options) as async.Operation<types.DeleteCellOutput>
 end
 
-function C:deleteCrossAccountAuthorization(input: types.DeleteCrossAccountAuthorizationInput, options: any): async.Operation<types.DeleteCrossAccountAuthorizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCrossAccountAuthorization, input, options) as async.Operation<types.DeleteCrossAccountAuthorizationOutput>
+function C:deleteCrossAccountAuthorization(input: types.DeleteCrossAccountAuthorizationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCrossAccountAuthorizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCrossAccountAuthorization as schema.OperationSchema, input, options) as async.Operation<types.DeleteCrossAccountAuthorizationOutput>
 end
 
-function C:deleteReadinessCheck(input: types.DeleteReadinessCheckInput, options: any): async.Operation<types.DeleteReadinessCheckOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteReadinessCheck, input, options) as async.Operation<types.DeleteReadinessCheckOutput>
+function C:deleteReadinessCheck(input: types.DeleteReadinessCheckInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteReadinessCheckOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteReadinessCheck as schema.OperationSchema, input, options) as async.Operation<types.DeleteReadinessCheckOutput>
 end
 
-function C:deleteRecoveryGroup(input: types.DeleteRecoveryGroupInput, options: any): async.Operation<types.DeleteRecoveryGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRecoveryGroup, input, options) as async.Operation<types.DeleteRecoveryGroupOutput>
+function C:deleteRecoveryGroup(input: types.DeleteRecoveryGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRecoveryGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRecoveryGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteRecoveryGroupOutput>
 end
 
-function C:deleteResourceSet(input: types.DeleteResourceSetInput, options: any): async.Operation<types.DeleteResourceSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourceSet, input, options) as async.Operation<types.DeleteResourceSetOutput>
+function C:deleteResourceSet(input: types.DeleteResourceSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourceSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourceSet as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourceSetOutput>
 end
 
-function C:getArchitectureRecommendations(input: types.GetArchitectureRecommendationsInput, options: any): async.Operation<types.GetArchitectureRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetArchitectureRecommendations, input, options) as async.Operation<types.GetArchitectureRecommendationsOutput>
+function C:getArchitectureRecommendations(input: types.GetArchitectureRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetArchitectureRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetArchitectureRecommendations as schema.OperationSchema, input, options) as async.Operation<types.GetArchitectureRecommendationsOutput>
 end
 
-function C:getCell(input: types.GetCellInput, options: any): async.Operation<types.GetCellOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCell, input, options) as async.Operation<types.GetCellOutput>
+function C:getCell(input: types.GetCellInput, options?: base_client.InvokeOptions): async.Operation<types.GetCellOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCell as schema.OperationSchema, input, options) as async.Operation<types.GetCellOutput>
 end
 
-function C:getCellReadinessSummary(input: types.GetCellReadinessSummaryInput, options: any): async.Operation<types.GetCellReadinessSummaryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCellReadinessSummary, input, options) as async.Operation<types.GetCellReadinessSummaryOutput>
+function C:getCellReadinessSummary(input: types.GetCellReadinessSummaryInput, options?: base_client.InvokeOptions): async.Operation<types.GetCellReadinessSummaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCellReadinessSummary as schema.OperationSchema, input, options) as async.Operation<types.GetCellReadinessSummaryOutput>
 end
 
-function C:getReadinessCheck(input: types.GetReadinessCheckInput, options: any): async.Operation<types.GetReadinessCheckOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReadinessCheck, input, options) as async.Operation<types.GetReadinessCheckOutput>
+function C:getReadinessCheck(input: types.GetReadinessCheckInput, options?: base_client.InvokeOptions): async.Operation<types.GetReadinessCheckOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReadinessCheck as schema.OperationSchema, input, options) as async.Operation<types.GetReadinessCheckOutput>
 end
 
-function C:getReadinessCheckResourceStatus(input: types.GetReadinessCheckResourceStatusInput, options: any): async.Operation<types.GetReadinessCheckResourceStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReadinessCheckResourceStatus, input, options) as async.Operation<types.GetReadinessCheckResourceStatusOutput>
+function C:getReadinessCheckResourceStatus(input: types.GetReadinessCheckResourceStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetReadinessCheckResourceStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReadinessCheckResourceStatus as schema.OperationSchema, input, options) as async.Operation<types.GetReadinessCheckResourceStatusOutput>
 end
 
-function C:getReadinessCheckStatus(input: types.GetReadinessCheckStatusInput, options: any): async.Operation<types.GetReadinessCheckStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReadinessCheckStatus, input, options) as async.Operation<types.GetReadinessCheckStatusOutput>
+function C:getReadinessCheckStatus(input: types.GetReadinessCheckStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetReadinessCheckStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReadinessCheckStatus as schema.OperationSchema, input, options) as async.Operation<types.GetReadinessCheckStatusOutput>
 end
 
-function C:getRecoveryGroup(input: types.GetRecoveryGroupInput, options: any): async.Operation<types.GetRecoveryGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRecoveryGroup, input, options) as async.Operation<types.GetRecoveryGroupOutput>
+function C:getRecoveryGroup(input: types.GetRecoveryGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetRecoveryGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRecoveryGroup as schema.OperationSchema, input, options) as async.Operation<types.GetRecoveryGroupOutput>
 end
 
-function C:getRecoveryGroupReadinessSummary(input: types.GetRecoveryGroupReadinessSummaryInput, options: any): async.Operation<types.GetRecoveryGroupReadinessSummaryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRecoveryGroupReadinessSummary, input, options) as async.Operation<types.GetRecoveryGroupReadinessSummaryOutput>
+function C:getRecoveryGroupReadinessSummary(input: types.GetRecoveryGroupReadinessSummaryInput, options?: base_client.InvokeOptions): async.Operation<types.GetRecoveryGroupReadinessSummaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRecoveryGroupReadinessSummary as schema.OperationSchema, input, options) as async.Operation<types.GetRecoveryGroupReadinessSummaryOutput>
 end
 
-function C:getResourceSet(input: types.GetResourceSetInput, options: any): async.Operation<types.GetResourceSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourceSet, input, options) as async.Operation<types.GetResourceSetOutput>
+function C:getResourceSet(input: types.GetResourceSetInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourceSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourceSet as schema.OperationSchema, input, options) as async.Operation<types.GetResourceSetOutput>
 end
 
-function C:listCells(input: types.ListCellsInput, options: any): async.Operation<types.ListCellsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCells, input, options) as async.Operation<types.ListCellsOutput>
+function C:listCells(input: types.ListCellsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCellsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCells as schema.OperationSchema, input, options) as async.Operation<types.ListCellsOutput>
 end
 
-function C:listCrossAccountAuthorizations(input: types.ListCrossAccountAuthorizationsInput, options: any): async.Operation<types.ListCrossAccountAuthorizationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCrossAccountAuthorizations, input, options) as async.Operation<types.ListCrossAccountAuthorizationsOutput>
+function C:listCrossAccountAuthorizations(input: types.ListCrossAccountAuthorizationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCrossAccountAuthorizationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCrossAccountAuthorizations as schema.OperationSchema, input, options) as async.Operation<types.ListCrossAccountAuthorizationsOutput>
 end
 
-function C:listReadinessChecks(input: types.ListReadinessChecksInput, options: any): async.Operation<types.ListReadinessChecksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReadinessChecks, input, options) as async.Operation<types.ListReadinessChecksOutput>
+function C:listReadinessChecks(input: types.ListReadinessChecksInput, options?: base_client.InvokeOptions): async.Operation<types.ListReadinessChecksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReadinessChecks as schema.OperationSchema, input, options) as async.Operation<types.ListReadinessChecksOutput>
 end
 
-function C:listRecoveryGroups(input: types.ListRecoveryGroupsInput, options: any): async.Operation<types.ListRecoveryGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRecoveryGroups, input, options) as async.Operation<types.ListRecoveryGroupsOutput>
+function C:listRecoveryGroups(input: types.ListRecoveryGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecoveryGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecoveryGroups as schema.OperationSchema, input, options) as async.Operation<types.ListRecoveryGroupsOutput>
 end
 
-function C:listResourceSets(input: types.ListResourceSetsInput, options: any): async.Operation<types.ListResourceSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResourceSets, input, options) as async.Operation<types.ListResourceSetsOutput>
+function C:listResourceSets(input: types.ListResourceSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourceSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourceSets as schema.OperationSchema, input, options) as async.Operation<types.ListResourceSetsOutput>
 end
 
-function C:listRules(input: types.ListRulesInput, options: any): async.Operation<types.ListRulesOperationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRules, input, options) as async.Operation<types.ListRulesOperationOutput>
+function C:listRules(input: types.ListRulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRulesOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRules as schema.OperationSchema, input, options) as async.Operation<types.ListRulesOperationOutput>
 end
 
-function C:listTagsForResources(input: types.ListTagsForResourcesInput, options: any): async.Operation<types.ListTagsForResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResources, input, options) as async.Operation<types.ListTagsForResourcesOutput>
+function C:listTagsForResources(input: types.ListTagsForResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResources as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourcesOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateCell(input: types.UpdateCellInput, options: any): async.Operation<types.UpdateCellOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCell, input, options) as async.Operation<types.UpdateCellOutput>
+function C:updateCell(input: types.UpdateCellInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCellOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCell as schema.OperationSchema, input, options) as async.Operation<types.UpdateCellOutput>
 end
 
-function C:updateReadinessCheck(input: types.UpdateReadinessCheckInput, options: any): async.Operation<types.UpdateReadinessCheckOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateReadinessCheck, input, options) as async.Operation<types.UpdateReadinessCheckOutput>
+function C:updateReadinessCheck(input: types.UpdateReadinessCheckInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateReadinessCheckOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateReadinessCheck as schema.OperationSchema, input, options) as async.Operation<types.UpdateReadinessCheckOutput>
 end
 
-function C:updateRecoveryGroup(input: types.UpdateRecoveryGroupInput, options: any): async.Operation<types.UpdateRecoveryGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRecoveryGroup, input, options) as async.Operation<types.UpdateRecoveryGroupOutput>
+function C:updateRecoveryGroup(input: types.UpdateRecoveryGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRecoveryGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRecoveryGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateRecoveryGroupOutput>
 end
 
-function C:updateResourceSet(input: types.UpdateResourceSetInput, options: any): async.Operation<types.UpdateResourceSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateResourceSet, input, options) as async.Operation<types.UpdateResourceSetOutput>
+function C:updateResourceSet(input: types.UpdateResourceSetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateResourceSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateResourceSet as schema.OperationSchema, input, options) as async.Operation<types.UpdateResourceSetOutput>
 end
 
 return M

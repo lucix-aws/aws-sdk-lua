@@ -8,122 +8,125 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("qbusiness.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("qbusiness.schemas")
 local traits = require("smithy.traits")
 local types = require("qbusiness.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associatePermission: function(Client, types.AssociatePermissionInput, any): async.Operation<types.AssociatePermissionOutput>
-    batchDeleteDocument: function(Client, types.BatchDeleteDocumentInput, any): async.Operation<types.BatchDeleteDocumentOutput>
-    batchPutDocument: function(Client, types.BatchPutDocumentInput, any): async.Operation<types.BatchPutDocumentOutput>
-    cancelSubscription: function(Client, types.CancelSubscriptionInput, any): async.Operation<types.CancelSubscriptionOutput>
-    chat: function(Client, types.ChatInput, any): async.Operation<types.ChatOutput>
-    chatSync: function(Client, types.ChatSyncInput, any): async.Operation<types.ChatSyncOutput>
-    checkDocumentAccess: function(Client, types.CheckDocumentAccessInput, any): async.Operation<types.CheckDocumentAccessOutput>
-    createAnonymousWebExperienceUrl: function(Client, types.CreateAnonymousWebExperienceUrlInput, any): async.Operation<types.CreateAnonymousWebExperienceUrlOutput>
-    createApplication: function(Client, types.CreateApplicationInput, any): async.Operation<types.CreateApplicationOutput>
-    createChatResponseConfiguration: function(Client, types.CreateChatResponseConfigurationInput, any): async.Operation<types.CreateChatResponseConfigurationOutput>
-    createDataAccessor: function(Client, types.CreateDataAccessorInput, any): async.Operation<types.CreateDataAccessorOutput>
-    createDataSource: function(Client, types.CreateDataSourceInput, any): async.Operation<types.CreateDataSourceOutput>
-    createIndex: function(Client, types.CreateIndexInput, any): async.Operation<types.CreateIndexOutput>
-    createPlugin: function(Client, types.CreatePluginInput, any): async.Operation<types.CreatePluginOutput>
-    createRetriever: function(Client, types.CreateRetrieverInput, any): async.Operation<types.CreateRetrieverOutput>
-    createSubscription: function(Client, types.CreateSubscriptionInput, any): async.Operation<types.CreateSubscriptionOutput>
-    createUser: function(Client, types.CreateUserInput, any): async.Operation<types.CreateUserOutput>
-    createWebExperience: function(Client, types.CreateWebExperienceInput, any): async.Operation<types.CreateWebExperienceOutput>
-    deleteApplication: function(Client, types.DeleteApplicationInput, any): async.Operation<types.DeleteApplicationOutput>
-    deleteAttachment: function(Client, types.DeleteAttachmentInput, any): async.Operation<types.DeleteAttachmentOutput>
-    deleteChatControlsConfiguration: function(Client, types.DeleteChatControlsConfigurationInput, any): async.Operation<types.DeleteChatControlsConfigurationOutput>
-    deleteChatResponseConfiguration: function(Client, types.DeleteChatResponseConfigurationInput, any): async.Operation<types.DeleteChatResponseConfigurationOutput>
-    deleteConversation: function(Client, types.DeleteConversationInput, any): async.Operation<types.DeleteConversationOutput>
-    deleteDataAccessor: function(Client, types.DeleteDataAccessorInput, any): async.Operation<types.DeleteDataAccessorOutput>
-    deleteDataSource: function(Client, types.DeleteDataSourceInput, any): async.Operation<types.DeleteDataSourceOutput>
-    deleteGroup: function(Client, types.DeleteGroupInput, any): async.Operation<types.DeleteGroupOutput>
-    deleteIndex: function(Client, types.DeleteIndexInput, any): async.Operation<types.DeleteIndexOutput>
-    deletePlugin: function(Client, types.DeletePluginInput, any): async.Operation<types.DeletePluginOutput>
-    deleteRetriever: function(Client, types.DeleteRetrieverInput, any): async.Operation<types.DeleteRetrieverOutput>
-    deleteUser: function(Client, types.DeleteUserInput, any): async.Operation<types.DeleteUserOutput>
-    deleteWebExperience: function(Client, types.DeleteWebExperienceInput, any): async.Operation<types.DeleteWebExperienceOutput>
-    disassociatePermission: function(Client, types.DisassociatePermissionInput, any): async.Operation<types.DisassociatePermissionOutput>
-    getApplication: function(Client, types.GetApplicationInput, any): async.Operation<types.GetApplicationOutput>
-    getChatControlsConfiguration: function(Client, types.GetChatControlsConfigurationInput, any): async.Operation<types.GetChatControlsConfigurationOutput>
-    getChatResponseConfiguration: function(Client, types.GetChatResponseConfigurationInput, any): async.Operation<types.GetChatResponseConfigurationOutput>
-    getDataAccessor: function(Client, types.GetDataAccessorInput, any): async.Operation<types.GetDataAccessorOutput>
-    getDataSource: function(Client, types.GetDataSourceInput, any): async.Operation<types.GetDataSourceOutput>
-    getDocumentContent: function(Client, types.GetDocumentContentInput, any): async.Operation<types.GetDocumentContentOutput>
-    getGroup: function(Client, types.GetGroupInput, any): async.Operation<types.GetGroupOutput>
-    getIndex: function(Client, types.GetIndexInput, any): async.Operation<types.GetIndexOutput>
-    getMedia: function(Client, types.GetMediaInput, any): async.Operation<types.GetMediaOutput>
-    getPlugin: function(Client, types.GetPluginInput, any): async.Operation<types.GetPluginOutput>
-    getPolicy: function(Client, types.GetPolicyInput, any): async.Operation<types.GetPolicyOutput>
-    getRetriever: function(Client, types.GetRetrieverInput, any): async.Operation<types.GetRetrieverOutput>
-    getUser: function(Client, types.GetUserInput, any): async.Operation<types.GetUserOutput>
-    getWebExperience: function(Client, types.GetWebExperienceInput, any): async.Operation<types.GetWebExperienceOutput>
-    listApplications: function(Client, types.ListApplicationsInput, any): async.Operation<types.ListApplicationsOutput>
-    listAttachments: function(Client, types.ListAttachmentsInput, any): async.Operation<types.ListAttachmentsOutput>
-    listChatResponseConfigurations: function(Client, types.ListChatResponseConfigurationsInput, any): async.Operation<types.ListChatResponseConfigurationsOutput>
-    listConversations: function(Client, types.ListConversationsInput, any): async.Operation<types.ListConversationsOutput>
-    listDataAccessors: function(Client, types.ListDataAccessorsInput, any): async.Operation<types.ListDataAccessorsOutput>
-    listDataSources: function(Client, types.ListDataSourcesInput, any): async.Operation<types.ListDataSourcesOutput>
-    listDataSourceSyncJobs: function(Client, types.ListDataSourceSyncJobsInput, any): async.Operation<types.ListDataSourceSyncJobsOutput>
-    listDocuments: function(Client, types.ListDocumentsInput, any): async.Operation<types.ListDocumentsOutput>
-    listGroups: function(Client, types.ListGroupsInput, any): async.Operation<types.ListGroupsOutput>
-    listIndices: function(Client, types.ListIndicesInput, any): async.Operation<types.ListIndicesOutput>
-    listMessages: function(Client, types.ListMessagesInput, any): async.Operation<types.ListMessagesOutput>
-    listPluginActions: function(Client, types.ListPluginActionsInput, any): async.Operation<types.ListPluginActionsOutput>
-    listPlugins: function(Client, types.ListPluginsInput, any): async.Operation<types.ListPluginsOutput>
-    listPluginTypeActions: function(Client, types.ListPluginTypeActionsInput, any): async.Operation<types.ListPluginTypeActionsOutput>
-    listPluginTypeMetadata: function(Client, types.ListPluginTypeMetadataInput, any): async.Operation<types.ListPluginTypeMetadataOutput>
-    listRetrievers: function(Client, types.ListRetrieversInput, any): async.Operation<types.ListRetrieversOutput>
-    listSubscriptions: function(Client, types.ListSubscriptionsInput, any): async.Operation<types.ListSubscriptionsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listWebExperiences: function(Client, types.ListWebExperiencesInput, any): async.Operation<types.ListWebExperiencesOutput>
-    putFeedback: function(Client, types.PutFeedbackInput, any): async.Operation<types.PutFeedbackOutput>
-    putGroup: function(Client, types.PutGroupInput, any): async.Operation<types.PutGroupOutput>
-    searchRelevantContent: function(Client, types.SearchRelevantContentInput, any): async.Operation<types.SearchRelevantContentOutput>
-    startDataSourceSyncJob: function(Client, types.StartDataSourceSyncJobInput, any): async.Operation<types.StartDataSourceSyncJobOutput>
-    stopDataSourceSyncJob: function(Client, types.StopDataSourceSyncJobInput, any): async.Operation<types.StopDataSourceSyncJobOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateApplication: function(Client, types.UpdateApplicationInput, any): async.Operation<types.UpdateApplicationOutput>
-    updateChatControlsConfiguration: function(Client, types.UpdateChatControlsConfigurationInput, any): async.Operation<types.UpdateChatControlsConfigurationOutput>
-    updateChatResponseConfiguration: function(Client, types.UpdateChatResponseConfigurationInput, any): async.Operation<types.UpdateChatResponseConfigurationOutput>
-    updateDataAccessor: function(Client, types.UpdateDataAccessorInput, any): async.Operation<types.UpdateDataAccessorOutput>
-    updateDataSource: function(Client, types.UpdateDataSourceInput, any): async.Operation<types.UpdateDataSourceOutput>
-    updateIndex: function(Client, types.UpdateIndexInput, any): async.Operation<types.UpdateIndexOutput>
-    updatePlugin: function(Client, types.UpdatePluginInput, any): async.Operation<types.UpdatePluginOutput>
-    updateRetriever: function(Client, types.UpdateRetrieverInput, any): async.Operation<types.UpdateRetrieverOutput>
-    updateSubscription: function(Client, types.UpdateSubscriptionInput, any): async.Operation<types.UpdateSubscriptionOutput>
-    updateUser: function(Client, types.UpdateUserInput, any): async.Operation<types.UpdateUserOutput>
-    updateWebExperience: function(Client, types.UpdateWebExperienceInput, any): async.Operation<types.UpdateWebExperienceOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associatePermission: function(Client, types.AssociatePermissionInput, ? base_client.InvokeOptions): async.Operation<types.AssociatePermissionOutput>
+    batchDeleteDocument: function(Client, types.BatchDeleteDocumentInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteDocumentOutput>
+    batchPutDocument: function(Client, types.BatchPutDocumentInput, ? base_client.InvokeOptions): async.Operation<types.BatchPutDocumentOutput>
+    cancelSubscription: function(Client, types.CancelSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.CancelSubscriptionOutput>
+    chat: function(Client, types.ChatInput, ? base_client.InvokeOptions): async.Operation<types.ChatOutput>
+    chatSync: function(Client, types.ChatSyncInput, ? base_client.InvokeOptions): async.Operation<types.ChatSyncOutput>
+    checkDocumentAccess: function(Client, types.CheckDocumentAccessInput, ? base_client.InvokeOptions): async.Operation<types.CheckDocumentAccessOutput>
+    createAnonymousWebExperienceUrl: function(Client, types.CreateAnonymousWebExperienceUrlInput, ? base_client.InvokeOptions): async.Operation<types.CreateAnonymousWebExperienceUrlOutput>
+    createApplication: function(Client, types.CreateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    createChatResponseConfiguration: function(Client, types.CreateChatResponseConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateChatResponseConfigurationOutput>
+    createDataAccessor: function(Client, types.CreateDataAccessorInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataAccessorOutput>
+    createDataSource: function(Client, types.CreateDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataSourceOutput>
+    createIndex: function(Client, types.CreateIndexInput, ? base_client.InvokeOptions): async.Operation<types.CreateIndexOutput>
+    createPlugin: function(Client, types.CreatePluginInput, ? base_client.InvokeOptions): async.Operation<types.CreatePluginOutput>
+    createRetriever: function(Client, types.CreateRetrieverInput, ? base_client.InvokeOptions): async.Operation<types.CreateRetrieverOutput>
+    createSubscription: function(Client, types.CreateSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.CreateSubscriptionOutput>
+    createUser: function(Client, types.CreateUserInput, ? base_client.InvokeOptions): async.Operation<types.CreateUserOutput>
+    createWebExperience: function(Client, types.CreateWebExperienceInput, ? base_client.InvokeOptions): async.Operation<types.CreateWebExperienceOutput>
+    deleteApplication: function(Client, types.DeleteApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
+    deleteAttachment: function(Client, types.DeleteAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAttachmentOutput>
+    deleteChatControlsConfiguration: function(Client, types.DeleteChatControlsConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteChatControlsConfigurationOutput>
+    deleteChatResponseConfiguration: function(Client, types.DeleteChatResponseConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteChatResponseConfigurationOutput>
+    deleteConversation: function(Client, types.DeleteConversationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConversationOutput>
+    deleteDataAccessor: function(Client, types.DeleteDataAccessorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataAccessorOutput>
+    deleteDataSource: function(Client, types.DeleteDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataSourceOutput>
+    deleteGroup: function(Client, types.DeleteGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGroupOutput>
+    deleteIndex: function(Client, types.DeleteIndexInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIndexOutput>
+    deletePlugin: function(Client, types.DeletePluginInput, ? base_client.InvokeOptions): async.Operation<types.DeletePluginOutput>
+    deleteRetriever: function(Client, types.DeleteRetrieverInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRetrieverOutput>
+    deleteUser: function(Client, types.DeleteUserInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUserOutput>
+    deleteWebExperience: function(Client, types.DeleteWebExperienceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWebExperienceOutput>
+    disassociatePermission: function(Client, types.DisassociatePermissionInput, ? base_client.InvokeOptions): async.Operation<types.DisassociatePermissionOutput>
+    getApplication: function(Client, types.GetApplicationInput, ? base_client.InvokeOptions): async.Operation<types.GetApplicationOutput>
+    getChatControlsConfiguration: function(Client, types.GetChatControlsConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetChatControlsConfigurationOutput>
+    getChatResponseConfiguration: function(Client, types.GetChatResponseConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetChatResponseConfigurationOutput>
+    getDataAccessor: function(Client, types.GetDataAccessorInput, ? base_client.InvokeOptions): async.Operation<types.GetDataAccessorOutput>
+    getDataSource: function(Client, types.GetDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.GetDataSourceOutput>
+    getDocumentContent: function(Client, types.GetDocumentContentInput, ? base_client.InvokeOptions): async.Operation<types.GetDocumentContentOutput>
+    getGroup: function(Client, types.GetGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetGroupOutput>
+    getIndex: function(Client, types.GetIndexInput, ? base_client.InvokeOptions): async.Operation<types.GetIndexOutput>
+    getMedia: function(Client, types.GetMediaInput, ? base_client.InvokeOptions): async.Operation<types.GetMediaOutput>
+    getPlugin: function(Client, types.GetPluginInput, ? base_client.InvokeOptions): async.Operation<types.GetPluginOutput>
+    getPolicy: function(Client, types.GetPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetPolicyOutput>
+    getRetriever: function(Client, types.GetRetrieverInput, ? base_client.InvokeOptions): async.Operation<types.GetRetrieverOutput>
+    getUser: function(Client, types.GetUserInput, ? base_client.InvokeOptions): async.Operation<types.GetUserOutput>
+    getWebExperience: function(Client, types.GetWebExperienceInput, ? base_client.InvokeOptions): async.Operation<types.GetWebExperienceOutput>
+    listApplications: function(Client, types.ListApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    listAttachments: function(Client, types.ListAttachmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListAttachmentsOutput>
+    listChatResponseConfigurations: function(Client, types.ListChatResponseConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListChatResponseConfigurationsOutput>
+    listConversations: function(Client, types.ListConversationsInput, ? base_client.InvokeOptions): async.Operation<types.ListConversationsOutput>
+    listDataAccessors: function(Client, types.ListDataAccessorsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataAccessorsOutput>
+    listDataSources: function(Client, types.ListDataSourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListDataSourcesOutput>
+    listDataSourceSyncJobs: function(Client, types.ListDataSourceSyncJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataSourceSyncJobsOutput>
+    listDocuments: function(Client, types.ListDocumentsInput, ? base_client.InvokeOptions): async.Operation<types.ListDocumentsOutput>
+    listGroups: function(Client, types.ListGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListGroupsOutput>
+    listIndices: function(Client, types.ListIndicesInput, ? base_client.InvokeOptions): async.Operation<types.ListIndicesOutput>
+    listMessages: function(Client, types.ListMessagesInput, ? base_client.InvokeOptions): async.Operation<types.ListMessagesOutput>
+    listPluginActions: function(Client, types.ListPluginActionsInput, ? base_client.InvokeOptions): async.Operation<types.ListPluginActionsOutput>
+    listPlugins: function(Client, types.ListPluginsInput, ? base_client.InvokeOptions): async.Operation<types.ListPluginsOutput>
+    listPluginTypeActions: function(Client, types.ListPluginTypeActionsInput, ? base_client.InvokeOptions): async.Operation<types.ListPluginTypeActionsOutput>
+    listPluginTypeMetadata: function(Client, types.ListPluginTypeMetadataInput, ? base_client.InvokeOptions): async.Operation<types.ListPluginTypeMetadataOutput>
+    listRetrievers: function(Client, types.ListRetrieversInput, ? base_client.InvokeOptions): async.Operation<types.ListRetrieversOutput>
+    listSubscriptions: function(Client, types.ListSubscriptionsInput, ? base_client.InvokeOptions): async.Operation<types.ListSubscriptionsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listWebExperiences: function(Client, types.ListWebExperiencesInput, ? base_client.InvokeOptions): async.Operation<types.ListWebExperiencesOutput>
+    putFeedback: function(Client, types.PutFeedbackInput, ? base_client.InvokeOptions): async.Operation<types.PutFeedbackOutput>
+    putGroup: function(Client, types.PutGroupInput, ? base_client.InvokeOptions): async.Operation<types.PutGroupOutput>
+    searchRelevantContent: function(Client, types.SearchRelevantContentInput, ? base_client.InvokeOptions): async.Operation<types.SearchRelevantContentOutput>
+    startDataSourceSyncJob: function(Client, types.StartDataSourceSyncJobInput, ? base_client.InvokeOptions): async.Operation<types.StartDataSourceSyncJobOutput>
+    stopDataSourceSyncJob: function(Client, types.StopDataSourceSyncJobInput, ? base_client.InvokeOptions): async.Operation<types.StopDataSourceSyncJobOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateApplication: function(Client, types.UpdateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
+    updateChatControlsConfiguration: function(Client, types.UpdateChatControlsConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateChatControlsConfigurationOutput>
+    updateChatResponseConfiguration: function(Client, types.UpdateChatResponseConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateChatResponseConfigurationOutput>
+    updateDataAccessor: function(Client, types.UpdateDataAccessorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataAccessorOutput>
+    updateDataSource: function(Client, types.UpdateDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataSourceOutput>
+    updateIndex: function(Client, types.UpdateIndexInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIndexOutput>
+    updatePlugin: function(Client, types.UpdatePluginInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePluginOutput>
+    updateRetriever: function(Client, types.UpdateRetrieverInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRetrieverOutput>
+    updateSubscription: function(Client, types.UpdateSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSubscriptionOutput>
+    updateUser: function(Client, types.UpdateUserInput, ? base_client.InvokeOptions): async.Operation<types.UpdateUserOutput>
+    updateWebExperience: function(Client, types.UpdateWebExperienceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWebExperienceOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "ExpertQ"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "qbusiness", signing_region = c.region } }
                 else
@@ -142,336 +145,336 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associatePermission(input: types.AssociatePermissionInput, options: any): async.Operation<types.AssociatePermissionOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociatePermission, input, options) as async.Operation<types.AssociatePermissionOutput>
+function C:associatePermission(input: types.AssociatePermissionInput, options?: base_client.InvokeOptions): async.Operation<types.AssociatePermissionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociatePermission as schema.OperationSchema, input, options) as async.Operation<types.AssociatePermissionOutput>
 end
 
-function C:batchDeleteDocument(input: types.BatchDeleteDocumentInput, options: any): async.Operation<types.BatchDeleteDocumentOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDeleteDocument, input, options) as async.Operation<types.BatchDeleteDocumentOutput>
+function C:batchDeleteDocument(input: types.BatchDeleteDocumentInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteDocumentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteDocument as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteDocumentOutput>
 end
 
-function C:batchPutDocument(input: types.BatchPutDocumentInput, options: any): async.Operation<types.BatchPutDocumentOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchPutDocument, input, options) as async.Operation<types.BatchPutDocumentOutput>
+function C:batchPutDocument(input: types.BatchPutDocumentInput, options?: base_client.InvokeOptions): async.Operation<types.BatchPutDocumentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchPutDocument as schema.OperationSchema, input, options) as async.Operation<types.BatchPutDocumentOutput>
 end
 
-function C:cancelSubscription(input: types.CancelSubscriptionInput, options: any): async.Operation<types.CancelSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelSubscription, input, options) as async.Operation<types.CancelSubscriptionOutput>
+function C:cancelSubscription(input: types.CancelSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.CancelSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelSubscription as schema.OperationSchema, input, options) as async.Operation<types.CancelSubscriptionOutput>
 end
 
-function C:chat(input: types.ChatInput, options: any): async.Operation<types.ChatOutput>
-    return self:invokeOperation(schemas.Service, schemas.Chat, input, options) as async.Operation<types.ChatOutput>
+function C:chat(input: types.ChatInput, options?: base_client.InvokeOptions): async.Operation<types.ChatOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Chat as schema.OperationSchema, input, options) as async.Operation<types.ChatOutput>
 end
 
-function C:chatSync(input: types.ChatSyncInput, options: any): async.Operation<types.ChatSyncOutput>
-    return self:invokeOperation(schemas.Service, schemas.ChatSync, input, options) as async.Operation<types.ChatSyncOutput>
+function C:chatSync(input: types.ChatSyncInput, options?: base_client.InvokeOptions): async.Operation<types.ChatSyncOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ChatSync as schema.OperationSchema, input, options) as async.Operation<types.ChatSyncOutput>
 end
 
-function C:checkDocumentAccess(input: types.CheckDocumentAccessInput, options: any): async.Operation<types.CheckDocumentAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.CheckDocumentAccess, input, options) as async.Operation<types.CheckDocumentAccessOutput>
+function C:checkDocumentAccess(input: types.CheckDocumentAccessInput, options?: base_client.InvokeOptions): async.Operation<types.CheckDocumentAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CheckDocumentAccess as schema.OperationSchema, input, options) as async.Operation<types.CheckDocumentAccessOutput>
 end
 
-function C:createAnonymousWebExperienceUrl(input: types.CreateAnonymousWebExperienceUrlInput, options: any): async.Operation<types.CreateAnonymousWebExperienceUrlOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAnonymousWebExperienceUrl, input, options) as async.Operation<types.CreateAnonymousWebExperienceUrlOutput>
+function C:createAnonymousWebExperienceUrl(input: types.CreateAnonymousWebExperienceUrlInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAnonymousWebExperienceUrlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAnonymousWebExperienceUrl as schema.OperationSchema, input, options) as async.Operation<types.CreateAnonymousWebExperienceUrlOutput>
 end
 
-function C:createApplication(input: types.CreateApplicationInput, options: any): async.Operation<types.CreateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateApplication, input, options) as async.Operation<types.CreateApplicationOutput>
+function C:createApplication(input: types.CreateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApplication as schema.OperationSchema, input, options) as async.Operation<types.CreateApplicationOutput>
 end
 
-function C:createChatResponseConfiguration(input: types.CreateChatResponseConfigurationInput, options: any): async.Operation<types.CreateChatResponseConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateChatResponseConfiguration, input, options) as async.Operation<types.CreateChatResponseConfigurationOutput>
+function C:createChatResponseConfiguration(input: types.CreateChatResponseConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateChatResponseConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateChatResponseConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateChatResponseConfigurationOutput>
 end
 
-function C:createDataAccessor(input: types.CreateDataAccessorInput, options: any): async.Operation<types.CreateDataAccessorOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataAccessor, input, options) as async.Operation<types.CreateDataAccessorOutput>
+function C:createDataAccessor(input: types.CreateDataAccessorInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataAccessorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataAccessor as schema.OperationSchema, input, options) as async.Operation<types.CreateDataAccessorOutput>
 end
 
-function C:createDataSource(input: types.CreateDataSourceInput, options: any): async.Operation<types.CreateDataSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataSource, input, options) as async.Operation<types.CreateDataSourceOutput>
+function C:createDataSource(input: types.CreateDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataSource as schema.OperationSchema, input, options) as async.Operation<types.CreateDataSourceOutput>
 end
 
-function C:createIndex(input: types.CreateIndexInput, options: any): async.Operation<types.CreateIndexOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIndex, input, options) as async.Operation<types.CreateIndexOutput>
+function C:createIndex(input: types.CreateIndexInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIndexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIndex as schema.OperationSchema, input, options) as async.Operation<types.CreateIndexOutput>
 end
 
-function C:createPlugin(input: types.CreatePluginInput, options: any): async.Operation<types.CreatePluginOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePlugin, input, options) as async.Operation<types.CreatePluginOutput>
+function C:createPlugin(input: types.CreatePluginInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePluginOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePlugin as schema.OperationSchema, input, options) as async.Operation<types.CreatePluginOutput>
 end
 
-function C:createRetriever(input: types.CreateRetrieverInput, options: any): async.Operation<types.CreateRetrieverOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRetriever, input, options) as async.Operation<types.CreateRetrieverOutput>
+function C:createRetriever(input: types.CreateRetrieverInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRetrieverOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRetriever as schema.OperationSchema, input, options) as async.Operation<types.CreateRetrieverOutput>
 end
 
-function C:createSubscription(input: types.CreateSubscriptionInput, options: any): async.Operation<types.CreateSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSubscription, input, options) as async.Operation<types.CreateSubscriptionOutput>
+function C:createSubscription(input: types.CreateSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSubscription as schema.OperationSchema, input, options) as async.Operation<types.CreateSubscriptionOutput>
 end
 
-function C:createUser(input: types.CreateUserInput, options: any): async.Operation<types.CreateUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateUser, input, options) as async.Operation<types.CreateUserOutput>
+function C:createUser(input: types.CreateUserInput, options?: base_client.InvokeOptions): async.Operation<types.CreateUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateUser as schema.OperationSchema, input, options) as async.Operation<types.CreateUserOutput>
 end
 
-function C:createWebExperience(input: types.CreateWebExperienceInput, options: any): async.Operation<types.CreateWebExperienceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWebExperience, input, options) as async.Operation<types.CreateWebExperienceOutput>
+function C:createWebExperience(input: types.CreateWebExperienceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWebExperienceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWebExperience as schema.OperationSchema, input, options) as async.Operation<types.CreateWebExperienceOutput>
 end
 
-function C:deleteApplication(input: types.DeleteApplicationInput, options: any): async.Operation<types.DeleteApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApplication, input, options) as async.Operation<types.DeleteApplicationOutput>
+function C:deleteApplication(input: types.DeleteApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplication as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationOutput>
 end
 
-function C:deleteAttachment(input: types.DeleteAttachmentInput, options: any): async.Operation<types.DeleteAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAttachment, input, options) as async.Operation<types.DeleteAttachmentOutput>
+function C:deleteAttachment(input: types.DeleteAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAttachment as schema.OperationSchema, input, options) as async.Operation<types.DeleteAttachmentOutput>
 end
 
-function C:deleteChatControlsConfiguration(input: types.DeleteChatControlsConfigurationInput, options: any): async.Operation<types.DeleteChatControlsConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteChatControlsConfiguration, input, options) as async.Operation<types.DeleteChatControlsConfigurationOutput>
+function C:deleteChatControlsConfiguration(input: types.DeleteChatControlsConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteChatControlsConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteChatControlsConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteChatControlsConfigurationOutput>
 end
 
-function C:deleteChatResponseConfiguration(input: types.DeleteChatResponseConfigurationInput, options: any): async.Operation<types.DeleteChatResponseConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteChatResponseConfiguration, input, options) as async.Operation<types.DeleteChatResponseConfigurationOutput>
+function C:deleteChatResponseConfiguration(input: types.DeleteChatResponseConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteChatResponseConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteChatResponseConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteChatResponseConfigurationOutput>
 end
 
-function C:deleteConversation(input: types.DeleteConversationInput, options: any): async.Operation<types.DeleteConversationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConversation, input, options) as async.Operation<types.DeleteConversationOutput>
+function C:deleteConversation(input: types.DeleteConversationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConversationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConversation as schema.OperationSchema, input, options) as async.Operation<types.DeleteConversationOutput>
 end
 
-function C:deleteDataAccessor(input: types.DeleteDataAccessorInput, options: any): async.Operation<types.DeleteDataAccessorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDataAccessor, input, options) as async.Operation<types.DeleteDataAccessorOutput>
+function C:deleteDataAccessor(input: types.DeleteDataAccessorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDataAccessorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataAccessor as schema.OperationSchema, input, options) as async.Operation<types.DeleteDataAccessorOutput>
 end
 
-function C:deleteDataSource(input: types.DeleteDataSourceInput, options: any): async.Operation<types.DeleteDataSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDataSource, input, options) as async.Operation<types.DeleteDataSourceOutput>
+function C:deleteDataSource(input: types.DeleteDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDataSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataSource as schema.OperationSchema, input, options) as async.Operation<types.DeleteDataSourceOutput>
 end
 
-function C:deleteGroup(input: types.DeleteGroupInput, options: any): async.Operation<types.DeleteGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteGroup, input, options) as async.Operation<types.DeleteGroupOutput>
+function C:deleteGroup(input: types.DeleteGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteGroupOutput>
 end
 
-function C:deleteIndex(input: types.DeleteIndexInput, options: any): async.Operation<types.DeleteIndexOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIndex, input, options) as async.Operation<types.DeleteIndexOutput>
+function C:deleteIndex(input: types.DeleteIndexInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIndexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIndex as schema.OperationSchema, input, options) as async.Operation<types.DeleteIndexOutput>
 end
 
-function C:deletePlugin(input: types.DeletePluginInput, options: any): async.Operation<types.DeletePluginOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePlugin, input, options) as async.Operation<types.DeletePluginOutput>
+function C:deletePlugin(input: types.DeletePluginInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePluginOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePlugin as schema.OperationSchema, input, options) as async.Operation<types.DeletePluginOutput>
 end
 
-function C:deleteRetriever(input: types.DeleteRetrieverInput, options: any): async.Operation<types.DeleteRetrieverOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRetriever, input, options) as async.Operation<types.DeleteRetrieverOutput>
+function C:deleteRetriever(input: types.DeleteRetrieverInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRetrieverOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRetriever as schema.OperationSchema, input, options) as async.Operation<types.DeleteRetrieverOutput>
 end
 
-function C:deleteUser(input: types.DeleteUserInput, options: any): async.Operation<types.DeleteUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteUser, input, options) as async.Operation<types.DeleteUserOutput>
+function C:deleteUser(input: types.DeleteUserInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteUser as schema.OperationSchema, input, options) as async.Operation<types.DeleteUserOutput>
 end
 
-function C:deleteWebExperience(input: types.DeleteWebExperienceInput, options: any): async.Operation<types.DeleteWebExperienceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWebExperience, input, options) as async.Operation<types.DeleteWebExperienceOutput>
+function C:deleteWebExperience(input: types.DeleteWebExperienceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWebExperienceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWebExperience as schema.OperationSchema, input, options) as async.Operation<types.DeleteWebExperienceOutput>
 end
 
-function C:disassociatePermission(input: types.DisassociatePermissionInput, options: any): async.Operation<types.DisassociatePermissionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociatePermission, input, options) as async.Operation<types.DisassociatePermissionOutput>
+function C:disassociatePermission(input: types.DisassociatePermissionInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociatePermissionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociatePermission as schema.OperationSchema, input, options) as async.Operation<types.DisassociatePermissionOutput>
 end
 
-function C:getApplication(input: types.GetApplicationInput, options: any): async.Operation<types.GetApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetApplication, input, options) as async.Operation<types.GetApplicationOutput>
+function C:getApplication(input: types.GetApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.GetApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetApplication as schema.OperationSchema, input, options) as async.Operation<types.GetApplicationOutput>
 end
 
-function C:getChatControlsConfiguration(input: types.GetChatControlsConfigurationInput, options: any): async.Operation<types.GetChatControlsConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetChatControlsConfiguration, input, options) as async.Operation<types.GetChatControlsConfigurationOutput>
+function C:getChatControlsConfiguration(input: types.GetChatControlsConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetChatControlsConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetChatControlsConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetChatControlsConfigurationOutput>
 end
 
-function C:getChatResponseConfiguration(input: types.GetChatResponseConfigurationInput, options: any): async.Operation<types.GetChatResponseConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetChatResponseConfiguration, input, options) as async.Operation<types.GetChatResponseConfigurationOutput>
+function C:getChatResponseConfiguration(input: types.GetChatResponseConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetChatResponseConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetChatResponseConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetChatResponseConfigurationOutput>
 end
 
-function C:getDataAccessor(input: types.GetDataAccessorInput, options: any): async.Operation<types.GetDataAccessorOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataAccessor, input, options) as async.Operation<types.GetDataAccessorOutput>
+function C:getDataAccessor(input: types.GetDataAccessorInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataAccessorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataAccessor as schema.OperationSchema, input, options) as async.Operation<types.GetDataAccessorOutput>
 end
 
-function C:getDataSource(input: types.GetDataSourceInput, options: any): async.Operation<types.GetDataSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataSource, input, options) as async.Operation<types.GetDataSourceOutput>
+function C:getDataSource(input: types.GetDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataSource as schema.OperationSchema, input, options) as async.Operation<types.GetDataSourceOutput>
 end
 
-function C:getDocumentContent(input: types.GetDocumentContentInput, options: any): async.Operation<types.GetDocumentContentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDocumentContent, input, options) as async.Operation<types.GetDocumentContentOutput>
+function C:getDocumentContent(input: types.GetDocumentContentInput, options?: base_client.InvokeOptions): async.Operation<types.GetDocumentContentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDocumentContent as schema.OperationSchema, input, options) as async.Operation<types.GetDocumentContentOutput>
 end
 
-function C:getGroup(input: types.GetGroupInput, options: any): async.Operation<types.GetGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetGroup, input, options) as async.Operation<types.GetGroupOutput>
+function C:getGroup(input: types.GetGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGroup as schema.OperationSchema, input, options) as async.Operation<types.GetGroupOutput>
 end
 
-function C:getIndex(input: types.GetIndexInput, options: any): async.Operation<types.GetIndexOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIndex, input, options) as async.Operation<types.GetIndexOutput>
+function C:getIndex(input: types.GetIndexInput, options?: base_client.InvokeOptions): async.Operation<types.GetIndexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIndex as schema.OperationSchema, input, options) as async.Operation<types.GetIndexOutput>
 end
 
-function C:getMedia(input: types.GetMediaInput, options: any): async.Operation<types.GetMediaOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMedia, input, options) as async.Operation<types.GetMediaOutput>
+function C:getMedia(input: types.GetMediaInput, options?: base_client.InvokeOptions): async.Operation<types.GetMediaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMedia as schema.OperationSchema, input, options) as async.Operation<types.GetMediaOutput>
 end
 
-function C:getPlugin(input: types.GetPluginInput, options: any): async.Operation<types.GetPluginOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPlugin, input, options) as async.Operation<types.GetPluginOutput>
+function C:getPlugin(input: types.GetPluginInput, options?: base_client.InvokeOptions): async.Operation<types.GetPluginOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPlugin as schema.OperationSchema, input, options) as async.Operation<types.GetPluginOutput>
 end
 
-function C:getPolicy(input: types.GetPolicyInput, options: any): async.Operation<types.GetPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPolicy, input, options) as async.Operation<types.GetPolicyOutput>
+function C:getPolicy(input: types.GetPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetPolicyOutput>
 end
 
-function C:getRetriever(input: types.GetRetrieverInput, options: any): async.Operation<types.GetRetrieverOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRetriever, input, options) as async.Operation<types.GetRetrieverOutput>
+function C:getRetriever(input: types.GetRetrieverInput, options?: base_client.InvokeOptions): async.Operation<types.GetRetrieverOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRetriever as schema.OperationSchema, input, options) as async.Operation<types.GetRetrieverOutput>
 end
 
-function C:getUser(input: types.GetUserInput, options: any): async.Operation<types.GetUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetUser, input, options) as async.Operation<types.GetUserOutput>
+function C:getUser(input: types.GetUserInput, options?: base_client.InvokeOptions): async.Operation<types.GetUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetUser as schema.OperationSchema, input, options) as async.Operation<types.GetUserOutput>
 end
 
-function C:getWebExperience(input: types.GetWebExperienceInput, options: any): async.Operation<types.GetWebExperienceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWebExperience, input, options) as async.Operation<types.GetWebExperienceOutput>
+function C:getWebExperience(input: types.GetWebExperienceInput, options?: base_client.InvokeOptions): async.Operation<types.GetWebExperienceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWebExperience as schema.OperationSchema, input, options) as async.Operation<types.GetWebExperienceOutput>
 end
 
-function C:listApplications(input: types.ListApplicationsInput, options: any): async.Operation<types.ListApplicationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplications, input, options) as async.Operation<types.ListApplicationsOutput>
+function C:listApplications(input: types.ListApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplications as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationsOutput>
 end
 
-function C:listAttachments(input: types.ListAttachmentsInput, options: any): async.Operation<types.ListAttachmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAttachments, input, options) as async.Operation<types.ListAttachmentsOutput>
+function C:listAttachments(input: types.ListAttachmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAttachmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAttachments as schema.OperationSchema, input, options) as async.Operation<types.ListAttachmentsOutput>
 end
 
-function C:listChatResponseConfigurations(input: types.ListChatResponseConfigurationsInput, options: any): async.Operation<types.ListChatResponseConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListChatResponseConfigurations, input, options) as async.Operation<types.ListChatResponseConfigurationsOutput>
+function C:listChatResponseConfigurations(input: types.ListChatResponseConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListChatResponseConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListChatResponseConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListChatResponseConfigurationsOutput>
 end
 
-function C:listConversations(input: types.ListConversationsInput, options: any): async.Operation<types.ListConversationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConversations, input, options) as async.Operation<types.ListConversationsOutput>
+function C:listConversations(input: types.ListConversationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConversationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConversations as schema.OperationSchema, input, options) as async.Operation<types.ListConversationsOutput>
 end
 
-function C:listDataAccessors(input: types.ListDataAccessorsInput, options: any): async.Operation<types.ListDataAccessorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDataAccessors, input, options) as async.Operation<types.ListDataAccessorsOutput>
+function C:listDataAccessors(input: types.ListDataAccessorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataAccessorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataAccessors as schema.OperationSchema, input, options) as async.Operation<types.ListDataAccessorsOutput>
 end
 
-function C:listDataSources(input: types.ListDataSourcesInput, options: any): async.Operation<types.ListDataSourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDataSources, input, options) as async.Operation<types.ListDataSourcesOutput>
+function C:listDataSources(input: types.ListDataSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataSourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataSources as schema.OperationSchema, input, options) as async.Operation<types.ListDataSourcesOutput>
 end
 
-function C:listDataSourceSyncJobs(input: types.ListDataSourceSyncJobsInput, options: any): async.Operation<types.ListDataSourceSyncJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDataSourceSyncJobs, input, options) as async.Operation<types.ListDataSourceSyncJobsOutput>
+function C:listDataSourceSyncJobs(input: types.ListDataSourceSyncJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataSourceSyncJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataSourceSyncJobs as schema.OperationSchema, input, options) as async.Operation<types.ListDataSourceSyncJobsOutput>
 end
 
-function C:listDocuments(input: types.ListDocumentsInput, options: any): async.Operation<types.ListDocumentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDocuments, input, options) as async.Operation<types.ListDocumentsOutput>
+function C:listDocuments(input: types.ListDocumentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDocumentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDocuments as schema.OperationSchema, input, options) as async.Operation<types.ListDocumentsOutput>
 end
 
-function C:listGroups(input: types.ListGroupsInput, options: any): async.Operation<types.ListGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGroups, input, options) as async.Operation<types.ListGroupsOutput>
+function C:listGroups(input: types.ListGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGroups as schema.OperationSchema, input, options) as async.Operation<types.ListGroupsOutput>
 end
 
-function C:listIndices(input: types.ListIndicesInput, options: any): async.Operation<types.ListIndicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIndices, input, options) as async.Operation<types.ListIndicesOutput>
+function C:listIndices(input: types.ListIndicesInput, options?: base_client.InvokeOptions): async.Operation<types.ListIndicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIndices as schema.OperationSchema, input, options) as async.Operation<types.ListIndicesOutput>
 end
 
-function C:listMessages(input: types.ListMessagesInput, options: any): async.Operation<types.ListMessagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMessages, input, options) as async.Operation<types.ListMessagesOutput>
+function C:listMessages(input: types.ListMessagesInput, options?: base_client.InvokeOptions): async.Operation<types.ListMessagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMessages as schema.OperationSchema, input, options) as async.Operation<types.ListMessagesOutput>
 end
 
-function C:listPluginActions(input: types.ListPluginActionsInput, options: any): async.Operation<types.ListPluginActionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPluginActions, input, options) as async.Operation<types.ListPluginActionsOutput>
+function C:listPluginActions(input: types.ListPluginActionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPluginActionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPluginActions as schema.OperationSchema, input, options) as async.Operation<types.ListPluginActionsOutput>
 end
 
-function C:listPlugins(input: types.ListPluginsInput, options: any): async.Operation<types.ListPluginsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPlugins, input, options) as async.Operation<types.ListPluginsOutput>
+function C:listPlugins(input: types.ListPluginsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPluginsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPlugins as schema.OperationSchema, input, options) as async.Operation<types.ListPluginsOutput>
 end
 
-function C:listPluginTypeActions(input: types.ListPluginTypeActionsInput, options: any): async.Operation<types.ListPluginTypeActionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPluginTypeActions, input, options) as async.Operation<types.ListPluginTypeActionsOutput>
+function C:listPluginTypeActions(input: types.ListPluginTypeActionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPluginTypeActionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPluginTypeActions as schema.OperationSchema, input, options) as async.Operation<types.ListPluginTypeActionsOutput>
 end
 
-function C:listPluginTypeMetadata(input: types.ListPluginTypeMetadataInput, options: any): async.Operation<types.ListPluginTypeMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPluginTypeMetadata, input, options) as async.Operation<types.ListPluginTypeMetadataOutput>
+function C:listPluginTypeMetadata(input: types.ListPluginTypeMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.ListPluginTypeMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPluginTypeMetadata as schema.OperationSchema, input, options) as async.Operation<types.ListPluginTypeMetadataOutput>
 end
 
-function C:listRetrievers(input: types.ListRetrieversInput, options: any): async.Operation<types.ListRetrieversOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRetrievers, input, options) as async.Operation<types.ListRetrieversOutput>
+function C:listRetrievers(input: types.ListRetrieversInput, options?: base_client.InvokeOptions): async.Operation<types.ListRetrieversOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRetrievers as schema.OperationSchema, input, options) as async.Operation<types.ListRetrieversOutput>
 end
 
-function C:listSubscriptions(input: types.ListSubscriptionsInput, options: any): async.Operation<types.ListSubscriptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSubscriptions, input, options) as async.Operation<types.ListSubscriptionsOutput>
+function C:listSubscriptions(input: types.ListSubscriptionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSubscriptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSubscriptions as schema.OperationSchema, input, options) as async.Operation<types.ListSubscriptionsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listWebExperiences(input: types.ListWebExperiencesInput, options: any): async.Operation<types.ListWebExperiencesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWebExperiences, input, options) as async.Operation<types.ListWebExperiencesOutput>
+function C:listWebExperiences(input: types.ListWebExperiencesInput, options?: base_client.InvokeOptions): async.Operation<types.ListWebExperiencesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWebExperiences as schema.OperationSchema, input, options) as async.Operation<types.ListWebExperiencesOutput>
 end
 
-function C:putFeedback(input: types.PutFeedbackInput, options: any): async.Operation<types.PutFeedbackOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutFeedback, input, options) as async.Operation<types.PutFeedbackOutput>
+function C:putFeedback(input: types.PutFeedbackInput, options?: base_client.InvokeOptions): async.Operation<types.PutFeedbackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutFeedback as schema.OperationSchema, input, options) as async.Operation<types.PutFeedbackOutput>
 end
 
-function C:putGroup(input: types.PutGroupInput, options: any): async.Operation<types.PutGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutGroup, input, options) as async.Operation<types.PutGroupOutput>
+function C:putGroup(input: types.PutGroupInput, options?: base_client.InvokeOptions): async.Operation<types.PutGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutGroup as schema.OperationSchema, input, options) as async.Operation<types.PutGroupOutput>
 end
 
-function C:searchRelevantContent(input: types.SearchRelevantContentInput, options: any): async.Operation<types.SearchRelevantContentOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchRelevantContent, input, options) as async.Operation<types.SearchRelevantContentOutput>
+function C:searchRelevantContent(input: types.SearchRelevantContentInput, options?: base_client.InvokeOptions): async.Operation<types.SearchRelevantContentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchRelevantContent as schema.OperationSchema, input, options) as async.Operation<types.SearchRelevantContentOutput>
 end
 
-function C:startDataSourceSyncJob(input: types.StartDataSourceSyncJobInput, options: any): async.Operation<types.StartDataSourceSyncJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartDataSourceSyncJob, input, options) as async.Operation<types.StartDataSourceSyncJobOutput>
+function C:startDataSourceSyncJob(input: types.StartDataSourceSyncJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartDataSourceSyncJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDataSourceSyncJob as schema.OperationSchema, input, options) as async.Operation<types.StartDataSourceSyncJobOutput>
 end
 
-function C:stopDataSourceSyncJob(input: types.StopDataSourceSyncJobInput, options: any): async.Operation<types.StopDataSourceSyncJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopDataSourceSyncJob, input, options) as async.Operation<types.StopDataSourceSyncJobOutput>
+function C:stopDataSourceSyncJob(input: types.StopDataSourceSyncJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopDataSourceSyncJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopDataSourceSyncJob as schema.OperationSchema, input, options) as async.Operation<types.StopDataSourceSyncJobOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateApplication(input: types.UpdateApplicationInput, options: any): async.Operation<types.UpdateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateApplication, input, options) as async.Operation<types.UpdateApplicationOutput>
+function C:updateApplication(input: types.UpdateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApplication as schema.OperationSchema, input, options) as async.Operation<types.UpdateApplicationOutput>
 end
 
-function C:updateChatControlsConfiguration(input: types.UpdateChatControlsConfigurationInput, options: any): async.Operation<types.UpdateChatControlsConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateChatControlsConfiguration, input, options) as async.Operation<types.UpdateChatControlsConfigurationOutput>
+function C:updateChatControlsConfiguration(input: types.UpdateChatControlsConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateChatControlsConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateChatControlsConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateChatControlsConfigurationOutput>
 end
 
-function C:updateChatResponseConfiguration(input: types.UpdateChatResponseConfigurationInput, options: any): async.Operation<types.UpdateChatResponseConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateChatResponseConfiguration, input, options) as async.Operation<types.UpdateChatResponseConfigurationOutput>
+function C:updateChatResponseConfiguration(input: types.UpdateChatResponseConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateChatResponseConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateChatResponseConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateChatResponseConfigurationOutput>
 end
 
-function C:updateDataAccessor(input: types.UpdateDataAccessorInput, options: any): async.Operation<types.UpdateDataAccessorOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDataAccessor, input, options) as async.Operation<types.UpdateDataAccessorOutput>
+function C:updateDataAccessor(input: types.UpdateDataAccessorInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDataAccessorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDataAccessor as schema.OperationSchema, input, options) as async.Operation<types.UpdateDataAccessorOutput>
 end
 
-function C:updateDataSource(input: types.UpdateDataSourceInput, options: any): async.Operation<types.UpdateDataSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDataSource, input, options) as async.Operation<types.UpdateDataSourceOutput>
+function C:updateDataSource(input: types.UpdateDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDataSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDataSource as schema.OperationSchema, input, options) as async.Operation<types.UpdateDataSourceOutput>
 end
 
-function C:updateIndex(input: types.UpdateIndexInput, options: any): async.Operation<types.UpdateIndexOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateIndex, input, options) as async.Operation<types.UpdateIndexOutput>
+function C:updateIndex(input: types.UpdateIndexInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIndexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIndex as schema.OperationSchema, input, options) as async.Operation<types.UpdateIndexOutput>
 end
 
-function C:updatePlugin(input: types.UpdatePluginInput, options: any): async.Operation<types.UpdatePluginOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePlugin, input, options) as async.Operation<types.UpdatePluginOutput>
+function C:updatePlugin(input: types.UpdatePluginInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePluginOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePlugin as schema.OperationSchema, input, options) as async.Operation<types.UpdatePluginOutput>
 end
 
-function C:updateRetriever(input: types.UpdateRetrieverInput, options: any): async.Operation<types.UpdateRetrieverOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRetriever, input, options) as async.Operation<types.UpdateRetrieverOutput>
+function C:updateRetriever(input: types.UpdateRetrieverInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRetrieverOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRetriever as schema.OperationSchema, input, options) as async.Operation<types.UpdateRetrieverOutput>
 end
 
-function C:updateSubscription(input: types.UpdateSubscriptionInput, options: any): async.Operation<types.UpdateSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSubscription, input, options) as async.Operation<types.UpdateSubscriptionOutput>
+function C:updateSubscription(input: types.UpdateSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSubscription as schema.OperationSchema, input, options) as async.Operation<types.UpdateSubscriptionOutput>
 end
 
-function C:updateUser(input: types.UpdateUserInput, options: any): async.Operation<types.UpdateUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateUser, input, options) as async.Operation<types.UpdateUserOutput>
+function C:updateUser(input: types.UpdateUserInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateUser as schema.OperationSchema, input, options) as async.Operation<types.UpdateUserOutput>
 end
 
-function C:updateWebExperience(input: types.UpdateWebExperienceInput, options: any): async.Operation<types.UpdateWebExperienceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateWebExperience, input, options) as async.Operation<types.UpdateWebExperienceOutput>
+function C:updateWebExperience(input: types.UpdateWebExperienceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWebExperienceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWebExperience as schema.OperationSchema, input, options) as async.Operation<types.UpdateWebExperienceOutput>
 end
 
 return M

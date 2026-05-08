@@ -8,76 +8,79 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("amplify.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("amplify.schemas")
 local traits = require("smithy.traits")
 local types = require("amplify.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createApp: function(Client, types.CreateAppInput, any): async.Operation<types.CreateAppOutput>
-    createBackendEnvironment: function(Client, types.CreateBackendEnvironmentInput, any): async.Operation<types.CreateBackendEnvironmentOutput>
-    createBranch: function(Client, types.CreateBranchInput, any): async.Operation<types.CreateBranchOutput>
-    createDeployment: function(Client, types.CreateDeploymentInput, any): async.Operation<types.CreateDeploymentOutput>
-    createDomainAssociation: function(Client, types.CreateDomainAssociationInput, any): async.Operation<types.CreateDomainAssociationOutput>
-    createWebhook: function(Client, types.CreateWebhookInput, any): async.Operation<types.CreateWebhookOutput>
-    deleteApp: function(Client, types.DeleteAppInput, any): async.Operation<types.DeleteAppOutput>
-    deleteBackendEnvironment: function(Client, types.DeleteBackendEnvironmentInput, any): async.Operation<types.DeleteBackendEnvironmentOutput>
-    deleteBranch: function(Client, types.DeleteBranchInput, any): async.Operation<types.DeleteBranchOutput>
-    deleteDomainAssociation: function(Client, types.DeleteDomainAssociationInput, any): async.Operation<types.DeleteDomainAssociationOutput>
-    deleteJob: function(Client, types.DeleteJobInput, any): async.Operation<types.DeleteJobOutput>
-    deleteWebhook: function(Client, types.DeleteWebhookInput, any): async.Operation<types.DeleteWebhookOutput>
-    generateAccessLogs: function(Client, types.GenerateAccessLogsInput, any): async.Operation<types.GenerateAccessLogsOutput>
-    getApp: function(Client, types.GetAppInput, any): async.Operation<types.GetAppOutput>
-    getArtifactUrl: function(Client, types.GetArtifactUrlInput, any): async.Operation<types.GetArtifactUrlOutput>
-    getBackendEnvironment: function(Client, types.GetBackendEnvironmentInput, any): async.Operation<types.GetBackendEnvironmentOutput>
-    getBranch: function(Client, types.GetBranchInput, any): async.Operation<types.GetBranchOutput>
-    getDomainAssociation: function(Client, types.GetDomainAssociationInput, any): async.Operation<types.GetDomainAssociationOutput>
-    getJob: function(Client, types.GetJobInput, any): async.Operation<types.GetJobOutput>
-    getWebhook: function(Client, types.GetWebhookInput, any): async.Operation<types.GetWebhookOutput>
-    listApps: function(Client, types.ListAppsInput, any): async.Operation<types.ListAppsOutput>
-    listArtifacts: function(Client, types.ListArtifactsInput, any): async.Operation<types.ListArtifactsOutput>
-    listBackendEnvironments: function(Client, types.ListBackendEnvironmentsInput, any): async.Operation<types.ListBackendEnvironmentsOutput>
-    listBranches: function(Client, types.ListBranchesInput, any): async.Operation<types.ListBranchesOutput>
-    listDomainAssociations: function(Client, types.ListDomainAssociationsInput, any): async.Operation<types.ListDomainAssociationsOutput>
-    listJobs: function(Client, types.ListJobsInput, any): async.Operation<types.ListJobsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listWebhooks: function(Client, types.ListWebhooksInput, any): async.Operation<types.ListWebhooksOutput>
-    startDeployment: function(Client, types.StartDeploymentInput, any): async.Operation<types.StartDeploymentOutput>
-    startJob: function(Client, types.StartJobInput, any): async.Operation<types.StartJobOutput>
-    stopJob: function(Client, types.StopJobInput, any): async.Operation<types.StopJobOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateApp: function(Client, types.UpdateAppInput, any): async.Operation<types.UpdateAppOutput>
-    updateBranch: function(Client, types.UpdateBranchInput, any): async.Operation<types.UpdateBranchOutput>
-    updateDomainAssociation: function(Client, types.UpdateDomainAssociationInput, any): async.Operation<types.UpdateDomainAssociationOutput>
-    updateWebhook: function(Client, types.UpdateWebhookInput, any): async.Operation<types.UpdateWebhookOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createApp: function(Client, types.CreateAppInput, ? base_client.InvokeOptions): async.Operation<types.CreateAppOutput>
+    createBackendEnvironment: function(Client, types.CreateBackendEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateBackendEnvironmentOutput>
+    createBranch: function(Client, types.CreateBranchInput, ? base_client.InvokeOptions): async.Operation<types.CreateBranchOutput>
+    createDeployment: function(Client, types.CreateDeploymentInput, ? base_client.InvokeOptions): async.Operation<types.CreateDeploymentOutput>
+    createDomainAssociation: function(Client, types.CreateDomainAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateDomainAssociationOutput>
+    createWebhook: function(Client, types.CreateWebhookInput, ? base_client.InvokeOptions): async.Operation<types.CreateWebhookOutput>
+    deleteApp: function(Client, types.DeleteAppInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAppOutput>
+    deleteBackendEnvironment: function(Client, types.DeleteBackendEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBackendEnvironmentOutput>
+    deleteBranch: function(Client, types.DeleteBranchInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBranchOutput>
+    deleteDomainAssociation: function(Client, types.DeleteDomainAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDomainAssociationOutput>
+    deleteJob: function(Client, types.DeleteJobInput, ? base_client.InvokeOptions): async.Operation<types.DeleteJobOutput>
+    deleteWebhook: function(Client, types.DeleteWebhookInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWebhookOutput>
+    generateAccessLogs: function(Client, types.GenerateAccessLogsInput, ? base_client.InvokeOptions): async.Operation<types.GenerateAccessLogsOutput>
+    getApp: function(Client, types.GetAppInput, ? base_client.InvokeOptions): async.Operation<types.GetAppOutput>
+    getArtifactUrl: function(Client, types.GetArtifactUrlInput, ? base_client.InvokeOptions): async.Operation<types.GetArtifactUrlOutput>
+    getBackendEnvironment: function(Client, types.GetBackendEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.GetBackendEnvironmentOutput>
+    getBranch: function(Client, types.GetBranchInput, ? base_client.InvokeOptions): async.Operation<types.GetBranchOutput>
+    getDomainAssociation: function(Client, types.GetDomainAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetDomainAssociationOutput>
+    getJob: function(Client, types.GetJobInput, ? base_client.InvokeOptions): async.Operation<types.GetJobOutput>
+    getWebhook: function(Client, types.GetWebhookInput, ? base_client.InvokeOptions): async.Operation<types.GetWebhookOutput>
+    listApps: function(Client, types.ListAppsInput, ? base_client.InvokeOptions): async.Operation<types.ListAppsOutput>
+    listArtifacts: function(Client, types.ListArtifactsInput, ? base_client.InvokeOptions): async.Operation<types.ListArtifactsOutput>
+    listBackendEnvironments: function(Client, types.ListBackendEnvironmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListBackendEnvironmentsOutput>
+    listBranches: function(Client, types.ListBranchesInput, ? base_client.InvokeOptions): async.Operation<types.ListBranchesOutput>
+    listDomainAssociations: function(Client, types.ListDomainAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListDomainAssociationsOutput>
+    listJobs: function(Client, types.ListJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListJobsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listWebhooks: function(Client, types.ListWebhooksInput, ? base_client.InvokeOptions): async.Operation<types.ListWebhooksOutput>
+    startDeployment: function(Client, types.StartDeploymentInput, ? base_client.InvokeOptions): async.Operation<types.StartDeploymentOutput>
+    startJob: function(Client, types.StartJobInput, ? base_client.InvokeOptions): async.Operation<types.StartJobOutput>
+    stopJob: function(Client, types.StopJobInput, ? base_client.InvokeOptions): async.Operation<types.StopJobOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateApp: function(Client, types.UpdateAppInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAppOutput>
+    updateBranch: function(Client, types.UpdateBranchInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBranchOutput>
+    updateDomainAssociation: function(Client, types.UpdateDomainAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDomainAssociationOutput>
+    updateWebhook: function(Client, types.UpdateWebhookInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWebhookOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "Amplify"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "amplify", signing_region = c.region } }
                 else
@@ -96,152 +99,152 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createApp(input: types.CreateAppInput, options: any): async.Operation<types.CreateAppOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateApp, input, options) as async.Operation<types.CreateAppOutput>
+function C:createApp(input: types.CreateAppInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAppOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApp as schema.OperationSchema, input, options) as async.Operation<types.CreateAppOutput>
 end
 
-function C:createBackendEnvironment(input: types.CreateBackendEnvironmentInput, options: any): async.Operation<types.CreateBackendEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBackendEnvironment, input, options) as async.Operation<types.CreateBackendEnvironmentOutput>
+function C:createBackendEnvironment(input: types.CreateBackendEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBackendEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBackendEnvironment as schema.OperationSchema, input, options) as async.Operation<types.CreateBackendEnvironmentOutput>
 end
 
-function C:createBranch(input: types.CreateBranchInput, options: any): async.Operation<types.CreateBranchOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBranch, input, options) as async.Operation<types.CreateBranchOutput>
+function C:createBranch(input: types.CreateBranchInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBranchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBranch as schema.OperationSchema, input, options) as async.Operation<types.CreateBranchOutput>
 end
 
-function C:createDeployment(input: types.CreateDeploymentInput, options: any): async.Operation<types.CreateDeploymentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDeployment, input, options) as async.Operation<types.CreateDeploymentOutput>
+function C:createDeployment(input: types.CreateDeploymentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDeploymentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDeployment as schema.OperationSchema, input, options) as async.Operation<types.CreateDeploymentOutput>
 end
 
-function C:createDomainAssociation(input: types.CreateDomainAssociationInput, options: any): async.Operation<types.CreateDomainAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDomainAssociation, input, options) as async.Operation<types.CreateDomainAssociationOutput>
+function C:createDomainAssociation(input: types.CreateDomainAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDomainAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDomainAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreateDomainAssociationOutput>
 end
 
-function C:createWebhook(input: types.CreateWebhookInput, options: any): async.Operation<types.CreateWebhookOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWebhook, input, options) as async.Operation<types.CreateWebhookOutput>
+function C:createWebhook(input: types.CreateWebhookInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWebhookOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWebhook as schema.OperationSchema, input, options) as async.Operation<types.CreateWebhookOutput>
 end
 
-function C:deleteApp(input: types.DeleteAppInput, options: any): async.Operation<types.DeleteAppOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApp, input, options) as async.Operation<types.DeleteAppOutput>
+function C:deleteApp(input: types.DeleteAppInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAppOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApp as schema.OperationSchema, input, options) as async.Operation<types.DeleteAppOutput>
 end
 
-function C:deleteBackendEnvironment(input: types.DeleteBackendEnvironmentInput, options: any): async.Operation<types.DeleteBackendEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBackendEnvironment, input, options) as async.Operation<types.DeleteBackendEnvironmentOutput>
+function C:deleteBackendEnvironment(input: types.DeleteBackendEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBackendEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBackendEnvironment as schema.OperationSchema, input, options) as async.Operation<types.DeleteBackendEnvironmentOutput>
 end
 
-function C:deleteBranch(input: types.DeleteBranchInput, options: any): async.Operation<types.DeleteBranchOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBranch, input, options) as async.Operation<types.DeleteBranchOutput>
+function C:deleteBranch(input: types.DeleteBranchInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBranchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBranch as schema.OperationSchema, input, options) as async.Operation<types.DeleteBranchOutput>
 end
 
-function C:deleteDomainAssociation(input: types.DeleteDomainAssociationInput, options: any): async.Operation<types.DeleteDomainAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDomainAssociation, input, options) as async.Operation<types.DeleteDomainAssociationOutput>
+function C:deleteDomainAssociation(input: types.DeleteDomainAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDomainAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDomainAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteDomainAssociationOutput>
 end
 
-function C:deleteJob(input: types.DeleteJobInput, options: any): async.Operation<types.DeleteJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteJob, input, options) as async.Operation<types.DeleteJobOutput>
+function C:deleteJob(input: types.DeleteJobInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteJob as schema.OperationSchema, input, options) as async.Operation<types.DeleteJobOutput>
 end
 
-function C:deleteWebhook(input: types.DeleteWebhookInput, options: any): async.Operation<types.DeleteWebhookOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWebhook, input, options) as async.Operation<types.DeleteWebhookOutput>
+function C:deleteWebhook(input: types.DeleteWebhookInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWebhookOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWebhook as schema.OperationSchema, input, options) as async.Operation<types.DeleteWebhookOutput>
 end
 
-function C:generateAccessLogs(input: types.GenerateAccessLogsInput, options: any): async.Operation<types.GenerateAccessLogsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GenerateAccessLogs, input, options) as async.Operation<types.GenerateAccessLogsOutput>
+function C:generateAccessLogs(input: types.GenerateAccessLogsInput, options?: base_client.InvokeOptions): async.Operation<types.GenerateAccessLogsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GenerateAccessLogs as schema.OperationSchema, input, options) as async.Operation<types.GenerateAccessLogsOutput>
 end
 
-function C:getApp(input: types.GetAppInput, options: any): async.Operation<types.GetAppOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetApp, input, options) as async.Operation<types.GetAppOutput>
+function C:getApp(input: types.GetAppInput, options?: base_client.InvokeOptions): async.Operation<types.GetAppOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetApp as schema.OperationSchema, input, options) as async.Operation<types.GetAppOutput>
 end
 
-function C:getArtifactUrl(input: types.GetArtifactUrlInput, options: any): async.Operation<types.GetArtifactUrlOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetArtifactUrl, input, options) as async.Operation<types.GetArtifactUrlOutput>
+function C:getArtifactUrl(input: types.GetArtifactUrlInput, options?: base_client.InvokeOptions): async.Operation<types.GetArtifactUrlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetArtifactUrl as schema.OperationSchema, input, options) as async.Operation<types.GetArtifactUrlOutput>
 end
 
-function C:getBackendEnvironment(input: types.GetBackendEnvironmentInput, options: any): async.Operation<types.GetBackendEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBackendEnvironment, input, options) as async.Operation<types.GetBackendEnvironmentOutput>
+function C:getBackendEnvironment(input: types.GetBackendEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.GetBackendEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBackendEnvironment as schema.OperationSchema, input, options) as async.Operation<types.GetBackendEnvironmentOutput>
 end
 
-function C:getBranch(input: types.GetBranchInput, options: any): async.Operation<types.GetBranchOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBranch, input, options) as async.Operation<types.GetBranchOutput>
+function C:getBranch(input: types.GetBranchInput, options?: base_client.InvokeOptions): async.Operation<types.GetBranchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBranch as schema.OperationSchema, input, options) as async.Operation<types.GetBranchOutput>
 end
 
-function C:getDomainAssociation(input: types.GetDomainAssociationInput, options: any): async.Operation<types.GetDomainAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDomainAssociation, input, options) as async.Operation<types.GetDomainAssociationOutput>
+function C:getDomainAssociation(input: types.GetDomainAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetDomainAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDomainAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetDomainAssociationOutput>
 end
 
-function C:getJob(input: types.GetJobInput, options: any): async.Operation<types.GetJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetJob, input, options) as async.Operation<types.GetJobOutput>
+function C:getJob(input: types.GetJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetJob as schema.OperationSchema, input, options) as async.Operation<types.GetJobOutput>
 end
 
-function C:getWebhook(input: types.GetWebhookInput, options: any): async.Operation<types.GetWebhookOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWebhook, input, options) as async.Operation<types.GetWebhookOutput>
+function C:getWebhook(input: types.GetWebhookInput, options?: base_client.InvokeOptions): async.Operation<types.GetWebhookOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWebhook as schema.OperationSchema, input, options) as async.Operation<types.GetWebhookOutput>
 end
 
-function C:listApps(input: types.ListAppsInput, options: any): async.Operation<types.ListAppsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApps, input, options) as async.Operation<types.ListAppsOutput>
+function C:listApps(input: types.ListAppsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAppsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApps as schema.OperationSchema, input, options) as async.Operation<types.ListAppsOutput>
 end
 
-function C:listArtifacts(input: types.ListArtifactsInput, options: any): async.Operation<types.ListArtifactsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListArtifacts, input, options) as async.Operation<types.ListArtifactsOutput>
+function C:listArtifacts(input: types.ListArtifactsInput, options?: base_client.InvokeOptions): async.Operation<types.ListArtifactsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListArtifacts as schema.OperationSchema, input, options) as async.Operation<types.ListArtifactsOutput>
 end
 
-function C:listBackendEnvironments(input: types.ListBackendEnvironmentsInput, options: any): async.Operation<types.ListBackendEnvironmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBackendEnvironments, input, options) as async.Operation<types.ListBackendEnvironmentsOutput>
+function C:listBackendEnvironments(input: types.ListBackendEnvironmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBackendEnvironmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBackendEnvironments as schema.OperationSchema, input, options) as async.Operation<types.ListBackendEnvironmentsOutput>
 end
 
-function C:listBranches(input: types.ListBranchesInput, options: any): async.Operation<types.ListBranchesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBranches, input, options) as async.Operation<types.ListBranchesOutput>
+function C:listBranches(input: types.ListBranchesInput, options?: base_client.InvokeOptions): async.Operation<types.ListBranchesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBranches as schema.OperationSchema, input, options) as async.Operation<types.ListBranchesOutput>
 end
 
-function C:listDomainAssociations(input: types.ListDomainAssociationsInput, options: any): async.Operation<types.ListDomainAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDomainAssociations, input, options) as async.Operation<types.ListDomainAssociationsOutput>
+function C:listDomainAssociations(input: types.ListDomainAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDomainAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDomainAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListDomainAssociationsOutput>
 end
 
-function C:listJobs(input: types.ListJobsInput, options: any): async.Operation<types.ListJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListJobs, input, options) as async.Operation<types.ListJobsOutput>
+function C:listJobs(input: types.ListJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListJobs as schema.OperationSchema, input, options) as async.Operation<types.ListJobsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listWebhooks(input: types.ListWebhooksInput, options: any): async.Operation<types.ListWebhooksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWebhooks, input, options) as async.Operation<types.ListWebhooksOutput>
+function C:listWebhooks(input: types.ListWebhooksInput, options?: base_client.InvokeOptions): async.Operation<types.ListWebhooksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWebhooks as schema.OperationSchema, input, options) as async.Operation<types.ListWebhooksOutput>
 end
 
-function C:startDeployment(input: types.StartDeploymentInput, options: any): async.Operation<types.StartDeploymentOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartDeployment, input, options) as async.Operation<types.StartDeploymentOutput>
+function C:startDeployment(input: types.StartDeploymentInput, options?: base_client.InvokeOptions): async.Operation<types.StartDeploymentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDeployment as schema.OperationSchema, input, options) as async.Operation<types.StartDeploymentOutput>
 end
 
-function C:startJob(input: types.StartJobInput, options: any): async.Operation<types.StartJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartJob, input, options) as async.Operation<types.StartJobOutput>
+function C:startJob(input: types.StartJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartJob as schema.OperationSchema, input, options) as async.Operation<types.StartJobOutput>
 end
 
-function C:stopJob(input: types.StopJobInput, options: any): async.Operation<types.StopJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopJob, input, options) as async.Operation<types.StopJobOutput>
+function C:stopJob(input: types.StopJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopJob as schema.OperationSchema, input, options) as async.Operation<types.StopJobOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateApp(input: types.UpdateAppInput, options: any): async.Operation<types.UpdateAppOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateApp, input, options) as async.Operation<types.UpdateAppOutput>
+function C:updateApp(input: types.UpdateAppInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAppOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApp as schema.OperationSchema, input, options) as async.Operation<types.UpdateAppOutput>
 end
 
-function C:updateBranch(input: types.UpdateBranchInput, options: any): async.Operation<types.UpdateBranchOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateBranch, input, options) as async.Operation<types.UpdateBranchOutput>
+function C:updateBranch(input: types.UpdateBranchInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBranchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBranch as schema.OperationSchema, input, options) as async.Operation<types.UpdateBranchOutput>
 end
 
-function C:updateDomainAssociation(input: types.UpdateDomainAssociationInput, options: any): async.Operation<types.UpdateDomainAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDomainAssociation, input, options) as async.Operation<types.UpdateDomainAssociationOutput>
+function C:updateDomainAssociation(input: types.UpdateDomainAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDomainAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDomainAssociation as schema.OperationSchema, input, options) as async.Operation<types.UpdateDomainAssociationOutput>
 end
 
-function C:updateWebhook(input: types.UpdateWebhookInput, options: any): async.Operation<types.UpdateWebhookOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateWebhook, input, options) as async.Operation<types.UpdateWebhookOutput>
+function C:updateWebhook(input: types.UpdateWebhookInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWebhookOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWebhook as schema.OperationSchema, input, options) as async.Operation<types.UpdateWebhookOutput>
 end
 
 return M

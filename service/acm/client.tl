@@ -8,56 +8,59 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("acm.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("acm.schemas")
 local traits = require("smithy.traits")
 local types = require("acm.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    addTagsToCertificate: function(Client, types.AddTagsToCertificateInput, any): async.Operation<types.AddTagsToCertificateOutput>
-    deleteCertificate: function(Client, types.DeleteCertificateInput, any): async.Operation<types.DeleteCertificateOutput>
-    describeCertificate: function(Client, types.DescribeCertificateInput, any): async.Operation<types.DescribeCertificateOutput>
-    exportCertificate: function(Client, types.ExportCertificateInput, any): async.Operation<types.ExportCertificateOutput>
-    getAccountConfiguration: function(Client, types.GetAccountConfigurationInput, any): async.Operation<types.GetAccountConfigurationOutput>
-    getCertificate: function(Client, types.GetCertificateInput, any): async.Operation<types.GetCertificateOutput>
-    importCertificate: function(Client, types.ImportCertificateInput, any): async.Operation<types.ImportCertificateOutput>
-    listCertificates: function(Client, types.ListCertificatesInput, any): async.Operation<types.ListCertificatesOutput>
-    listTagsForCertificate: function(Client, types.ListTagsForCertificateInput, any): async.Operation<types.ListTagsForCertificateOutput>
-    putAccountConfiguration: function(Client, types.PutAccountConfigurationInput, any): async.Operation<types.PutAccountConfigurationOutput>
-    removeTagsFromCertificate: function(Client, types.RemoveTagsFromCertificateInput, any): async.Operation<types.RemoveTagsFromCertificateOutput>
-    renewCertificate: function(Client, types.RenewCertificateInput, any): async.Operation<types.RenewCertificateOutput>
-    requestCertificate: function(Client, types.RequestCertificateInput, any): async.Operation<types.RequestCertificateOutput>
-    resendValidationEmail: function(Client, types.ResendValidationEmailInput, any): async.Operation<types.ResendValidationEmailOutput>
-    revokeCertificate: function(Client, types.RevokeCertificateInput, any): async.Operation<types.RevokeCertificateOutput>
-    searchCertificates: function(Client, types.SearchCertificatesInput, any): async.Operation<types.SearchCertificatesOutput>
-    updateCertificateOptions: function(Client, types.UpdateCertificateOptionsInput, any): async.Operation<types.UpdateCertificateOptionsOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    addTagsToCertificate: function(Client, types.AddTagsToCertificateInput, ? base_client.InvokeOptions): async.Operation<types.AddTagsToCertificateOutput>
+    deleteCertificate: function(Client, types.DeleteCertificateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCertificateOutput>
+    describeCertificate: function(Client, types.DescribeCertificateInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCertificateOutput>
+    exportCertificate: function(Client, types.ExportCertificateInput, ? base_client.InvokeOptions): async.Operation<types.ExportCertificateOutput>
+    getAccountConfiguration: function(Client, types.GetAccountConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountConfigurationOutput>
+    getCertificate: function(Client, types.GetCertificateInput, ? base_client.InvokeOptions): async.Operation<types.GetCertificateOutput>
+    importCertificate: function(Client, types.ImportCertificateInput, ? base_client.InvokeOptions): async.Operation<types.ImportCertificateOutput>
+    listCertificates: function(Client, types.ListCertificatesInput, ? base_client.InvokeOptions): async.Operation<types.ListCertificatesOutput>
+    listTagsForCertificate: function(Client, types.ListTagsForCertificateInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForCertificateOutput>
+    putAccountConfiguration: function(Client, types.PutAccountConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountConfigurationOutput>
+    removeTagsFromCertificate: function(Client, types.RemoveTagsFromCertificateInput, ? base_client.InvokeOptions): async.Operation<types.RemoveTagsFromCertificateOutput>
+    renewCertificate: function(Client, types.RenewCertificateInput, ? base_client.InvokeOptions): async.Operation<types.RenewCertificateOutput>
+    requestCertificate: function(Client, types.RequestCertificateInput, ? base_client.InvokeOptions): async.Operation<types.RequestCertificateOutput>
+    resendValidationEmail: function(Client, types.ResendValidationEmailInput, ? base_client.InvokeOptions): async.Operation<types.ResendValidationEmailOutput>
+    revokeCertificate: function(Client, types.RevokeCertificateInput, ? base_client.InvokeOptions): async.Operation<types.RevokeCertificateOutput>
+    searchCertificates: function(Client, types.SearchCertificatesInput, ? base_client.InvokeOptions): async.Operation<types.SearchCertificatesOutput>
+    updateCertificateOptions: function(Client, types.UpdateCertificateOptionsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCertificateOptionsOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "CertificateManager"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "acm", signing_region = c.region } }
                 else
@@ -76,72 +79,72 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:addTagsToCertificate(input: types.AddTagsToCertificateInput, options: any): async.Operation<types.AddTagsToCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddTagsToCertificate, input, options) as async.Operation<types.AddTagsToCertificateOutput>
+function C:addTagsToCertificate(input: types.AddTagsToCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.AddTagsToCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddTagsToCertificate as schema.OperationSchema, input, options) as async.Operation<types.AddTagsToCertificateOutput>
 end
 
-function C:deleteCertificate(input: types.DeleteCertificateInput, options: any): async.Operation<types.DeleteCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCertificate, input, options) as async.Operation<types.DeleteCertificateOutput>
+function C:deleteCertificate(input: types.DeleteCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCertificate as schema.OperationSchema, input, options) as async.Operation<types.DeleteCertificateOutput>
 end
 
-function C:describeCertificate(input: types.DescribeCertificateInput, options: any): async.Operation<types.DescribeCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCertificate, input, options) as async.Operation<types.DescribeCertificateOutput>
+function C:describeCertificate(input: types.DescribeCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCertificate as schema.OperationSchema, input, options) as async.Operation<types.DescribeCertificateOutput>
 end
 
-function C:exportCertificate(input: types.ExportCertificateInput, options: any): async.Operation<types.ExportCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExportCertificate, input, options) as async.Operation<types.ExportCertificateOutput>
+function C:exportCertificate(input: types.ExportCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.ExportCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportCertificate as schema.OperationSchema, input, options) as async.Operation<types.ExportCertificateOutput>
 end
 
-function C:getAccountConfiguration(input: types.GetAccountConfigurationInput, options: any): async.Operation<types.GetAccountConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccountConfiguration, input, options) as async.Operation<types.GetAccountConfigurationOutput>
+function C:getAccountConfiguration(input: types.GetAccountConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccountConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccountConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetAccountConfigurationOutput>
 end
 
-function C:getCertificate(input: types.GetCertificateInput, options: any): async.Operation<types.GetCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCertificate, input, options) as async.Operation<types.GetCertificateOutput>
+function C:getCertificate(input: types.GetCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.GetCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCertificate as schema.OperationSchema, input, options) as async.Operation<types.GetCertificateOutput>
 end
 
-function C:importCertificate(input: types.ImportCertificateInput, options: any): async.Operation<types.ImportCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportCertificate, input, options) as async.Operation<types.ImportCertificateOutput>
+function C:importCertificate(input: types.ImportCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.ImportCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportCertificate as schema.OperationSchema, input, options) as async.Operation<types.ImportCertificateOutput>
 end
 
-function C:listCertificates(input: types.ListCertificatesInput, options: any): async.Operation<types.ListCertificatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCertificates, input, options) as async.Operation<types.ListCertificatesOutput>
+function C:listCertificates(input: types.ListCertificatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCertificatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCertificates as schema.OperationSchema, input, options) as async.Operation<types.ListCertificatesOutput>
 end
 
-function C:listTagsForCertificate(input: types.ListTagsForCertificateInput, options: any): async.Operation<types.ListTagsForCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForCertificate, input, options) as async.Operation<types.ListTagsForCertificateOutput>
+function C:listTagsForCertificate(input: types.ListTagsForCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForCertificate as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForCertificateOutput>
 end
 
-function C:putAccountConfiguration(input: types.PutAccountConfigurationInput, options: any): async.Operation<types.PutAccountConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAccountConfiguration, input, options) as async.Operation<types.PutAccountConfigurationOutput>
+function C:putAccountConfiguration(input: types.PutAccountConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutAccountConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAccountConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutAccountConfigurationOutput>
 end
 
-function C:removeTagsFromCertificate(input: types.RemoveTagsFromCertificateInput, options: any): async.Operation<types.RemoveTagsFromCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveTagsFromCertificate, input, options) as async.Operation<types.RemoveTagsFromCertificateOutput>
+function C:removeTagsFromCertificate(input: types.RemoveTagsFromCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveTagsFromCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveTagsFromCertificate as schema.OperationSchema, input, options) as async.Operation<types.RemoveTagsFromCertificateOutput>
 end
 
-function C:renewCertificate(input: types.RenewCertificateInput, options: any): async.Operation<types.RenewCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.RenewCertificate, input, options) as async.Operation<types.RenewCertificateOutput>
+function C:renewCertificate(input: types.RenewCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.RenewCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RenewCertificate as schema.OperationSchema, input, options) as async.Operation<types.RenewCertificateOutput>
 end
 
-function C:requestCertificate(input: types.RequestCertificateInput, options: any): async.Operation<types.RequestCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.RequestCertificate, input, options) as async.Operation<types.RequestCertificateOutput>
+function C:requestCertificate(input: types.RequestCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.RequestCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RequestCertificate as schema.OperationSchema, input, options) as async.Operation<types.RequestCertificateOutput>
 end
 
-function C:resendValidationEmail(input: types.ResendValidationEmailInput, options: any): async.Operation<types.ResendValidationEmailOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResendValidationEmail, input, options) as async.Operation<types.ResendValidationEmailOutput>
+function C:resendValidationEmail(input: types.ResendValidationEmailInput, options?: base_client.InvokeOptions): async.Operation<types.ResendValidationEmailOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResendValidationEmail as schema.OperationSchema, input, options) as async.Operation<types.ResendValidationEmailOutput>
 end
 
-function C:revokeCertificate(input: types.RevokeCertificateInput, options: any): async.Operation<types.RevokeCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.RevokeCertificate, input, options) as async.Operation<types.RevokeCertificateOutput>
+function C:revokeCertificate(input: types.RevokeCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.RevokeCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RevokeCertificate as schema.OperationSchema, input, options) as async.Operation<types.RevokeCertificateOutput>
 end
 
-function C:searchCertificates(input: types.SearchCertificatesInput, options: any): async.Operation<types.SearchCertificatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchCertificates, input, options) as async.Operation<types.SearchCertificatesOutput>
+function C:searchCertificates(input: types.SearchCertificatesInput, options?: base_client.InvokeOptions): async.Operation<types.SearchCertificatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchCertificates as schema.OperationSchema, input, options) as async.Operation<types.SearchCertificatesOutput>
 end
 
-function C:updateCertificateOptions(input: types.UpdateCertificateOptionsInput, options: any): async.Operation<types.UpdateCertificateOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCertificateOptions, input, options) as async.Operation<types.UpdateCertificateOptionsOutput>
+function C:updateCertificateOptions(input: types.UpdateCertificateOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCertificateOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCertificateOptions as schema.OperationSchema, input, options) as async.Operation<types.UpdateCertificateOptionsOutput>
 end
 
 return M

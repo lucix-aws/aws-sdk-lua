@@ -8,62 +8,65 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("computeoptimizerautomation.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("computeoptimizerautomation.schemas")
 local traits = require("smithy.traits")
 local types = require("computeoptimizerautomation.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateAccounts: function(Client, types.AssociateAccountsInput, any): async.Operation<types.AssociateAccountsOutput>
-    createAutomationRule: function(Client, types.CreateAutomationRuleInput, any): async.Operation<types.CreateAutomationRuleOutput>
-    deleteAutomationRule: function(Client, types.DeleteAutomationRuleInput, any): async.Operation<types.DeleteAutomationRuleOutput>
-    disassociateAccounts: function(Client, types.DisassociateAccountsInput, any): async.Operation<types.DisassociateAccountsOutput>
-    getAutomationEvent: function(Client, types.GetAutomationEventInput, any): async.Operation<types.GetAutomationEventOutput>
-    getAutomationRule: function(Client, types.GetAutomationRuleInput, any): async.Operation<types.GetAutomationRuleOutput>
-    getEnrollmentConfiguration: function(Client, types.GetEnrollmentConfigurationInput, any): async.Operation<types.GetEnrollmentConfigurationOutput>
-    listAccounts: function(Client, types.ListAccountsInput, any): async.Operation<types.ListAccountsOutput>
-    listAutomationEvents: function(Client, types.ListAutomationEventsInput, any): async.Operation<types.ListAutomationEventsOutput>
-    listAutomationEventSteps: function(Client, types.ListAutomationEventStepsInput, any): async.Operation<types.ListAutomationEventStepsOutput>
-    listAutomationEventSummaries: function(Client, types.ListAutomationEventSummariesInput, any): async.Operation<types.ListAutomationEventSummariesOutput>
-    listAutomationRulePreview: function(Client, types.ListAutomationRulePreviewInput, any): async.Operation<types.ListAutomationRulePreviewOutput>
-    listAutomationRulePreviewSummaries: function(Client, types.ListAutomationRulePreviewSummariesInput, any): async.Operation<types.ListAutomationRulePreviewSummariesOutput>
-    listAutomationRules: function(Client, types.ListAutomationRulesInput, any): async.Operation<types.ListAutomationRulesOutput>
-    listRecommendedActions: function(Client, types.ListRecommendedActionsInput, any): async.Operation<types.ListRecommendedActionsOutput>
-    listRecommendedActionSummaries: function(Client, types.ListRecommendedActionSummariesInput, any): async.Operation<types.ListRecommendedActionSummariesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    rollbackAutomationEvent: function(Client, types.RollbackAutomationEventInput, any): async.Operation<types.RollbackAutomationEventOutput>
-    startAutomationEvent: function(Client, types.StartAutomationEventInput, any): async.Operation<types.StartAutomationEventOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAutomationRule: function(Client, types.UpdateAutomationRuleInput, any): async.Operation<types.UpdateAutomationRuleOutput>
-    updateEnrollmentConfiguration: function(Client, types.UpdateEnrollmentConfigurationInput, any): async.Operation<types.UpdateEnrollmentConfigurationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateAccounts: function(Client, types.AssociateAccountsInput, ? base_client.InvokeOptions): async.Operation<types.AssociateAccountsOutput>
+    createAutomationRule: function(Client, types.CreateAutomationRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateAutomationRuleOutput>
+    deleteAutomationRule: function(Client, types.DeleteAutomationRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAutomationRuleOutput>
+    disassociateAccounts: function(Client, types.DisassociateAccountsInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateAccountsOutput>
+    getAutomationEvent: function(Client, types.GetAutomationEventInput, ? base_client.InvokeOptions): async.Operation<types.GetAutomationEventOutput>
+    getAutomationRule: function(Client, types.GetAutomationRuleInput, ? base_client.InvokeOptions): async.Operation<types.GetAutomationRuleOutput>
+    getEnrollmentConfiguration: function(Client, types.GetEnrollmentConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetEnrollmentConfigurationOutput>
+    listAccounts: function(Client, types.ListAccountsInput, ? base_client.InvokeOptions): async.Operation<types.ListAccountsOutput>
+    listAutomationEvents: function(Client, types.ListAutomationEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListAutomationEventsOutput>
+    listAutomationEventSteps: function(Client, types.ListAutomationEventStepsInput, ? base_client.InvokeOptions): async.Operation<types.ListAutomationEventStepsOutput>
+    listAutomationEventSummaries: function(Client, types.ListAutomationEventSummariesInput, ? base_client.InvokeOptions): async.Operation<types.ListAutomationEventSummariesOutput>
+    listAutomationRulePreview: function(Client, types.ListAutomationRulePreviewInput, ? base_client.InvokeOptions): async.Operation<types.ListAutomationRulePreviewOutput>
+    listAutomationRulePreviewSummaries: function(Client, types.ListAutomationRulePreviewSummariesInput, ? base_client.InvokeOptions): async.Operation<types.ListAutomationRulePreviewSummariesOutput>
+    listAutomationRules: function(Client, types.ListAutomationRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListAutomationRulesOutput>
+    listRecommendedActions: function(Client, types.ListRecommendedActionsInput, ? base_client.InvokeOptions): async.Operation<types.ListRecommendedActionsOutput>
+    listRecommendedActionSummaries: function(Client, types.ListRecommendedActionSummariesInput, ? base_client.InvokeOptions): async.Operation<types.ListRecommendedActionSummariesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    rollbackAutomationEvent: function(Client, types.RollbackAutomationEventInput, ? base_client.InvokeOptions): async.Operation<types.RollbackAutomationEventOutput>
+    startAutomationEvent: function(Client, types.StartAutomationEventInput, ? base_client.InvokeOptions): async.Operation<types.StartAutomationEventOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAutomationRule: function(Client, types.UpdateAutomationRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAutomationRuleOutput>
+    updateEnrollmentConfiguration: function(Client, types.UpdateEnrollmentConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEnrollmentConfigurationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "ComputeOptimizerAutomationService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "aco-automation", signing_region = c.region } }
                 else
@@ -82,96 +85,96 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateAccounts(input: types.AssociateAccountsInput, options: any): async.Operation<types.AssociateAccountsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateAccounts, input, options) as async.Operation<types.AssociateAccountsOutput>
+function C:associateAccounts(input: types.AssociateAccountsInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateAccountsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateAccounts as schema.OperationSchema, input, options) as async.Operation<types.AssociateAccountsOutput>
 end
 
-function C:createAutomationRule(input: types.CreateAutomationRuleInput, options: any): async.Operation<types.CreateAutomationRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAutomationRule, input, options) as async.Operation<types.CreateAutomationRuleOutput>
+function C:createAutomationRule(input: types.CreateAutomationRuleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAutomationRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAutomationRule as schema.OperationSchema, input, options) as async.Operation<types.CreateAutomationRuleOutput>
 end
 
-function C:deleteAutomationRule(input: types.DeleteAutomationRuleInput, options: any): async.Operation<types.DeleteAutomationRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAutomationRule, input, options) as async.Operation<types.DeleteAutomationRuleOutput>
+function C:deleteAutomationRule(input: types.DeleteAutomationRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAutomationRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAutomationRule as schema.OperationSchema, input, options) as async.Operation<types.DeleteAutomationRuleOutput>
 end
 
-function C:disassociateAccounts(input: types.DisassociateAccountsInput, options: any): async.Operation<types.DisassociateAccountsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateAccounts, input, options) as async.Operation<types.DisassociateAccountsOutput>
+function C:disassociateAccounts(input: types.DisassociateAccountsInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateAccountsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateAccounts as schema.OperationSchema, input, options) as async.Operation<types.DisassociateAccountsOutput>
 end
 
-function C:getAutomationEvent(input: types.GetAutomationEventInput, options: any): async.Operation<types.GetAutomationEventOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAutomationEvent, input, options) as async.Operation<types.GetAutomationEventOutput>
+function C:getAutomationEvent(input: types.GetAutomationEventInput, options?: base_client.InvokeOptions): async.Operation<types.GetAutomationEventOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAutomationEvent as schema.OperationSchema, input, options) as async.Operation<types.GetAutomationEventOutput>
 end
 
-function C:getAutomationRule(input: types.GetAutomationRuleInput, options: any): async.Operation<types.GetAutomationRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAutomationRule, input, options) as async.Operation<types.GetAutomationRuleOutput>
+function C:getAutomationRule(input: types.GetAutomationRuleInput, options?: base_client.InvokeOptions): async.Operation<types.GetAutomationRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAutomationRule as schema.OperationSchema, input, options) as async.Operation<types.GetAutomationRuleOutput>
 end
 
-function C:getEnrollmentConfiguration(input: types.GetEnrollmentConfigurationInput, options: any): async.Operation<types.GetEnrollmentConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEnrollmentConfiguration, input, options) as async.Operation<types.GetEnrollmentConfigurationOutput>
+function C:getEnrollmentConfiguration(input: types.GetEnrollmentConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetEnrollmentConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEnrollmentConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetEnrollmentConfigurationOutput>
 end
 
-function C:listAccounts(input: types.ListAccountsInput, options: any): async.Operation<types.ListAccountsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccounts, input, options) as async.Operation<types.ListAccountsOutput>
+function C:listAccounts(input: types.ListAccountsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccountsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccounts as schema.OperationSchema, input, options) as async.Operation<types.ListAccountsOutput>
 end
 
-function C:listAutomationEvents(input: types.ListAutomationEventsInput, options: any): async.Operation<types.ListAutomationEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAutomationEvents, input, options) as async.Operation<types.ListAutomationEventsOutput>
+function C:listAutomationEvents(input: types.ListAutomationEventsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAutomationEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAutomationEvents as schema.OperationSchema, input, options) as async.Operation<types.ListAutomationEventsOutput>
 end
 
-function C:listAutomationEventSteps(input: types.ListAutomationEventStepsInput, options: any): async.Operation<types.ListAutomationEventStepsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAutomationEventSteps, input, options) as async.Operation<types.ListAutomationEventStepsOutput>
+function C:listAutomationEventSteps(input: types.ListAutomationEventStepsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAutomationEventStepsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAutomationEventSteps as schema.OperationSchema, input, options) as async.Operation<types.ListAutomationEventStepsOutput>
 end
 
-function C:listAutomationEventSummaries(input: types.ListAutomationEventSummariesInput, options: any): async.Operation<types.ListAutomationEventSummariesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAutomationEventSummaries, input, options) as async.Operation<types.ListAutomationEventSummariesOutput>
+function C:listAutomationEventSummaries(input: types.ListAutomationEventSummariesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAutomationEventSummariesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAutomationEventSummaries as schema.OperationSchema, input, options) as async.Operation<types.ListAutomationEventSummariesOutput>
 end
 
-function C:listAutomationRulePreview(input: types.ListAutomationRulePreviewInput, options: any): async.Operation<types.ListAutomationRulePreviewOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAutomationRulePreview, input, options) as async.Operation<types.ListAutomationRulePreviewOutput>
+function C:listAutomationRulePreview(input: types.ListAutomationRulePreviewInput, options?: base_client.InvokeOptions): async.Operation<types.ListAutomationRulePreviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAutomationRulePreview as schema.OperationSchema, input, options) as async.Operation<types.ListAutomationRulePreviewOutput>
 end
 
-function C:listAutomationRulePreviewSummaries(input: types.ListAutomationRulePreviewSummariesInput, options: any): async.Operation<types.ListAutomationRulePreviewSummariesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAutomationRulePreviewSummaries, input, options) as async.Operation<types.ListAutomationRulePreviewSummariesOutput>
+function C:listAutomationRulePreviewSummaries(input: types.ListAutomationRulePreviewSummariesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAutomationRulePreviewSummariesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAutomationRulePreviewSummaries as schema.OperationSchema, input, options) as async.Operation<types.ListAutomationRulePreviewSummariesOutput>
 end
 
-function C:listAutomationRules(input: types.ListAutomationRulesInput, options: any): async.Operation<types.ListAutomationRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAutomationRules, input, options) as async.Operation<types.ListAutomationRulesOutput>
+function C:listAutomationRules(input: types.ListAutomationRulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAutomationRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAutomationRules as schema.OperationSchema, input, options) as async.Operation<types.ListAutomationRulesOutput>
 end
 
-function C:listRecommendedActions(input: types.ListRecommendedActionsInput, options: any): async.Operation<types.ListRecommendedActionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRecommendedActions, input, options) as async.Operation<types.ListRecommendedActionsOutput>
+function C:listRecommendedActions(input: types.ListRecommendedActionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecommendedActionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecommendedActions as schema.OperationSchema, input, options) as async.Operation<types.ListRecommendedActionsOutput>
 end
 
-function C:listRecommendedActionSummaries(input: types.ListRecommendedActionSummariesInput, options: any): async.Operation<types.ListRecommendedActionSummariesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRecommendedActionSummaries, input, options) as async.Operation<types.ListRecommendedActionSummariesOutput>
+function C:listRecommendedActionSummaries(input: types.ListRecommendedActionSummariesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecommendedActionSummariesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecommendedActionSummaries as schema.OperationSchema, input, options) as async.Operation<types.ListRecommendedActionSummariesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:rollbackAutomationEvent(input: types.RollbackAutomationEventInput, options: any): async.Operation<types.RollbackAutomationEventOutput>
-    return self:invokeOperation(schemas.Service, schemas.RollbackAutomationEvent, input, options) as async.Operation<types.RollbackAutomationEventOutput>
+function C:rollbackAutomationEvent(input: types.RollbackAutomationEventInput, options?: base_client.InvokeOptions): async.Operation<types.RollbackAutomationEventOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RollbackAutomationEvent as schema.OperationSchema, input, options) as async.Operation<types.RollbackAutomationEventOutput>
 end
 
-function C:startAutomationEvent(input: types.StartAutomationEventInput, options: any): async.Operation<types.StartAutomationEventOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartAutomationEvent, input, options) as async.Operation<types.StartAutomationEventOutput>
+function C:startAutomationEvent(input: types.StartAutomationEventInput, options?: base_client.InvokeOptions): async.Operation<types.StartAutomationEventOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartAutomationEvent as schema.OperationSchema, input, options) as async.Operation<types.StartAutomationEventOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAutomationRule(input: types.UpdateAutomationRuleInput, options: any): async.Operation<types.UpdateAutomationRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAutomationRule, input, options) as async.Operation<types.UpdateAutomationRuleOutput>
+function C:updateAutomationRule(input: types.UpdateAutomationRuleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAutomationRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAutomationRule as schema.OperationSchema, input, options) as async.Operation<types.UpdateAutomationRuleOutput>
 end
 
-function C:updateEnrollmentConfiguration(input: types.UpdateEnrollmentConfigurationInput, options: any): async.Operation<types.UpdateEnrollmentConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEnrollmentConfiguration, input, options) as async.Operation<types.UpdateEnrollmentConfigurationOutput>
+function C:updateEnrollmentConfiguration(input: types.UpdateEnrollmentConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEnrollmentConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEnrollmentConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateEnrollmentConfigurationOutput>
 end
 
 return M

@@ -8,73 +8,76 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("verifiedpermissions.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("verifiedpermissions.schemas")
 local traits = require("smithy.traits")
 local types = require("verifiedpermissions.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchGetPolicy: function(Client, types.BatchGetPolicyInput, any): async.Operation<types.BatchGetPolicyOutput>
-    batchIsAuthorized: function(Client, types.BatchIsAuthorizedInput, any): async.Operation<types.BatchIsAuthorizedOutput>
-    batchIsAuthorizedWithToken: function(Client, types.BatchIsAuthorizedWithTokenInput, any): async.Operation<types.BatchIsAuthorizedWithTokenOutput>
-    createIdentitySource: function(Client, types.CreateIdentitySourceInput, any): async.Operation<types.CreateIdentitySourceOutput>
-    createPolicy: function(Client, types.CreatePolicyInput, any): async.Operation<types.CreatePolicyOutput>
-    createPolicyStore: function(Client, types.CreatePolicyStoreInput, any): async.Operation<types.CreatePolicyStoreOutput>
-    createPolicyStoreAlias: function(Client, types.CreatePolicyStoreAliasInput, any): async.Operation<types.CreatePolicyStoreAliasOutput>
-    createPolicyTemplate: function(Client, types.CreatePolicyTemplateInput, any): async.Operation<types.CreatePolicyTemplateOutput>
-    deleteIdentitySource: function(Client, types.DeleteIdentitySourceInput, any): async.Operation<types.DeleteIdentitySourceOutput>
-    deletePolicy: function(Client, types.DeletePolicyInput, any): async.Operation<types.DeletePolicyOutput>
-    deletePolicyStore: function(Client, types.DeletePolicyStoreInput, any): async.Operation<types.DeletePolicyStoreOutput>
-    deletePolicyStoreAlias: function(Client, types.DeletePolicyStoreAliasInput, any): async.Operation<types.DeletePolicyStoreAliasOutput>
-    deletePolicyTemplate: function(Client, types.DeletePolicyTemplateInput, any): async.Operation<types.DeletePolicyTemplateOutput>
-    getIdentitySource: function(Client, types.GetIdentitySourceInput, any): async.Operation<types.GetIdentitySourceOutput>
-    getPolicy: function(Client, types.GetPolicyInput, any): async.Operation<types.GetPolicyOutput>
-    getPolicyStore: function(Client, types.GetPolicyStoreInput, any): async.Operation<types.GetPolicyStoreOutput>
-    getPolicyStoreAlias: function(Client, types.GetPolicyStoreAliasInput, any): async.Operation<types.GetPolicyStoreAliasOutput>
-    getPolicyTemplate: function(Client, types.GetPolicyTemplateInput, any): async.Operation<types.GetPolicyTemplateOutput>
-    getSchema: function(Client, types.GetSchemaInput, any): async.Operation<types.GetSchemaOutput>
-    isAuthorized: function(Client, types.IsAuthorizedInput, any): async.Operation<types.IsAuthorizedOutput>
-    isAuthorizedWithToken: function(Client, types.IsAuthorizedWithTokenInput, any): async.Operation<types.IsAuthorizedWithTokenOutput>
-    listIdentitySources: function(Client, types.ListIdentitySourcesInput, any): async.Operation<types.ListIdentitySourcesOutput>
-    listPolicies: function(Client, types.ListPoliciesInput, any): async.Operation<types.ListPoliciesOutput>
-    listPolicyStoreAliases: function(Client, types.ListPolicyStoreAliasesInput, any): async.Operation<types.ListPolicyStoreAliasesOutput>
-    listPolicyStores: function(Client, types.ListPolicyStoresInput, any): async.Operation<types.ListPolicyStoresOutput>
-    listPolicyTemplates: function(Client, types.ListPolicyTemplatesInput, any): async.Operation<types.ListPolicyTemplatesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putSchema: function(Client, types.PutSchemaInput, any): async.Operation<types.PutSchemaOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateIdentitySource: function(Client, types.UpdateIdentitySourceInput, any): async.Operation<types.UpdateIdentitySourceOutput>
-    updatePolicy: function(Client, types.UpdatePolicyInput, any): async.Operation<types.UpdatePolicyOutput>
-    updatePolicyStore: function(Client, types.UpdatePolicyStoreInput, any): async.Operation<types.UpdatePolicyStoreOutput>
-    updatePolicyTemplate: function(Client, types.UpdatePolicyTemplateInput, any): async.Operation<types.UpdatePolicyTemplateOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchGetPolicy: function(Client, types.BatchGetPolicyInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetPolicyOutput>
+    batchIsAuthorized: function(Client, types.BatchIsAuthorizedInput, ? base_client.InvokeOptions): async.Operation<types.BatchIsAuthorizedOutput>
+    batchIsAuthorizedWithToken: function(Client, types.BatchIsAuthorizedWithTokenInput, ? base_client.InvokeOptions): async.Operation<types.BatchIsAuthorizedWithTokenOutput>
+    createIdentitySource: function(Client, types.CreateIdentitySourceInput, ? base_client.InvokeOptions): async.Operation<types.CreateIdentitySourceOutput>
+    createPolicy: function(Client, types.CreatePolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreatePolicyOutput>
+    createPolicyStore: function(Client, types.CreatePolicyStoreInput, ? base_client.InvokeOptions): async.Operation<types.CreatePolicyStoreOutput>
+    createPolicyStoreAlias: function(Client, types.CreatePolicyStoreAliasInput, ? base_client.InvokeOptions): async.Operation<types.CreatePolicyStoreAliasOutput>
+    createPolicyTemplate: function(Client, types.CreatePolicyTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreatePolicyTemplateOutput>
+    deleteIdentitySource: function(Client, types.DeleteIdentitySourceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIdentitySourceOutput>
+    deletePolicy: function(Client, types.DeletePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeletePolicyOutput>
+    deletePolicyStore: function(Client, types.DeletePolicyStoreInput, ? base_client.InvokeOptions): async.Operation<types.DeletePolicyStoreOutput>
+    deletePolicyStoreAlias: function(Client, types.DeletePolicyStoreAliasInput, ? base_client.InvokeOptions): async.Operation<types.DeletePolicyStoreAliasOutput>
+    deletePolicyTemplate: function(Client, types.DeletePolicyTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeletePolicyTemplateOutput>
+    getIdentitySource: function(Client, types.GetIdentitySourceInput, ? base_client.InvokeOptions): async.Operation<types.GetIdentitySourceOutput>
+    getPolicy: function(Client, types.GetPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetPolicyOutput>
+    getPolicyStore: function(Client, types.GetPolicyStoreInput, ? base_client.InvokeOptions): async.Operation<types.GetPolicyStoreOutput>
+    getPolicyStoreAlias: function(Client, types.GetPolicyStoreAliasInput, ? base_client.InvokeOptions): async.Operation<types.GetPolicyStoreAliasOutput>
+    getPolicyTemplate: function(Client, types.GetPolicyTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetPolicyTemplateOutput>
+    getSchema: function(Client, types.GetSchemaInput, ? base_client.InvokeOptions): async.Operation<types.GetSchemaOutput>
+    isAuthorized: function(Client, types.IsAuthorizedInput, ? base_client.InvokeOptions): async.Operation<types.IsAuthorizedOutput>
+    isAuthorizedWithToken: function(Client, types.IsAuthorizedWithTokenInput, ? base_client.InvokeOptions): async.Operation<types.IsAuthorizedWithTokenOutput>
+    listIdentitySources: function(Client, types.ListIdentitySourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListIdentitySourcesOutput>
+    listPolicies: function(Client, types.ListPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListPoliciesOutput>
+    listPolicyStoreAliases: function(Client, types.ListPolicyStoreAliasesInput, ? base_client.InvokeOptions): async.Operation<types.ListPolicyStoreAliasesOutput>
+    listPolicyStores: function(Client, types.ListPolicyStoresInput, ? base_client.InvokeOptions): async.Operation<types.ListPolicyStoresOutput>
+    listPolicyTemplates: function(Client, types.ListPolicyTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListPolicyTemplatesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putSchema: function(Client, types.PutSchemaInput, ? base_client.InvokeOptions): async.Operation<types.PutSchemaOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateIdentitySource: function(Client, types.UpdateIdentitySourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIdentitySourceOutput>
+    updatePolicy: function(Client, types.UpdatePolicyInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePolicyOutput>
+    updatePolicyStore: function(Client, types.UpdatePolicyStoreInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePolicyStoreOutput>
+    updatePolicyTemplate: function(Client, types.UpdatePolicyTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePolicyTemplateOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "VerifiedPermissions"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "verifiedpermissions", signing_region = c.region } }
                 else
@@ -93,140 +96,140 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchGetPolicy(input: types.BatchGetPolicyInput, options: any): async.Operation<types.BatchGetPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetPolicy, input, options) as async.Operation<types.BatchGetPolicyOutput>
+function C:batchGetPolicy(input: types.BatchGetPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetPolicy as schema.OperationSchema, input, options) as async.Operation<types.BatchGetPolicyOutput>
 end
 
-function C:batchIsAuthorized(input: types.BatchIsAuthorizedInput, options: any): async.Operation<types.BatchIsAuthorizedOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchIsAuthorized, input, options) as async.Operation<types.BatchIsAuthorizedOutput>
+function C:batchIsAuthorized(input: types.BatchIsAuthorizedInput, options?: base_client.InvokeOptions): async.Operation<types.BatchIsAuthorizedOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchIsAuthorized as schema.OperationSchema, input, options) as async.Operation<types.BatchIsAuthorizedOutput>
 end
 
-function C:batchIsAuthorizedWithToken(input: types.BatchIsAuthorizedWithTokenInput, options: any): async.Operation<types.BatchIsAuthorizedWithTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchIsAuthorizedWithToken, input, options) as async.Operation<types.BatchIsAuthorizedWithTokenOutput>
+function C:batchIsAuthorizedWithToken(input: types.BatchIsAuthorizedWithTokenInput, options?: base_client.InvokeOptions): async.Operation<types.BatchIsAuthorizedWithTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchIsAuthorizedWithToken as schema.OperationSchema, input, options) as async.Operation<types.BatchIsAuthorizedWithTokenOutput>
 end
 
-function C:createIdentitySource(input: types.CreateIdentitySourceInput, options: any): async.Operation<types.CreateIdentitySourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIdentitySource, input, options) as async.Operation<types.CreateIdentitySourceOutput>
+function C:createIdentitySource(input: types.CreateIdentitySourceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIdentitySourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIdentitySource as schema.OperationSchema, input, options) as async.Operation<types.CreateIdentitySourceOutput>
 end
 
-function C:createPolicy(input: types.CreatePolicyInput, options: any): async.Operation<types.CreatePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePolicy, input, options) as async.Operation<types.CreatePolicyOutput>
+function C:createPolicy(input: types.CreatePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePolicy as schema.OperationSchema, input, options) as async.Operation<types.CreatePolicyOutput>
 end
 
-function C:createPolicyStore(input: types.CreatePolicyStoreInput, options: any): async.Operation<types.CreatePolicyStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePolicyStore, input, options) as async.Operation<types.CreatePolicyStoreOutput>
+function C:createPolicyStore(input: types.CreatePolicyStoreInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePolicyStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePolicyStore as schema.OperationSchema, input, options) as async.Operation<types.CreatePolicyStoreOutput>
 end
 
-function C:createPolicyStoreAlias(input: types.CreatePolicyStoreAliasInput, options: any): async.Operation<types.CreatePolicyStoreAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePolicyStoreAlias, input, options) as async.Operation<types.CreatePolicyStoreAliasOutput>
+function C:createPolicyStoreAlias(input: types.CreatePolicyStoreAliasInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePolicyStoreAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePolicyStoreAlias as schema.OperationSchema, input, options) as async.Operation<types.CreatePolicyStoreAliasOutput>
 end
 
-function C:createPolicyTemplate(input: types.CreatePolicyTemplateInput, options: any): async.Operation<types.CreatePolicyTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePolicyTemplate, input, options) as async.Operation<types.CreatePolicyTemplateOutput>
+function C:createPolicyTemplate(input: types.CreatePolicyTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePolicyTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePolicyTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreatePolicyTemplateOutput>
 end
 
-function C:deleteIdentitySource(input: types.DeleteIdentitySourceInput, options: any): async.Operation<types.DeleteIdentitySourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIdentitySource, input, options) as async.Operation<types.DeleteIdentitySourceOutput>
+function C:deleteIdentitySource(input: types.DeleteIdentitySourceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIdentitySourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIdentitySource as schema.OperationSchema, input, options) as async.Operation<types.DeleteIdentitySourceOutput>
 end
 
-function C:deletePolicy(input: types.DeletePolicyInput, options: any): async.Operation<types.DeletePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePolicy, input, options) as async.Operation<types.DeletePolicyOutput>
+function C:deletePolicy(input: types.DeletePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeletePolicyOutput>
 end
 
-function C:deletePolicyStore(input: types.DeletePolicyStoreInput, options: any): async.Operation<types.DeletePolicyStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePolicyStore, input, options) as async.Operation<types.DeletePolicyStoreOutput>
+function C:deletePolicyStore(input: types.DeletePolicyStoreInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePolicyStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePolicyStore as schema.OperationSchema, input, options) as async.Operation<types.DeletePolicyStoreOutput>
 end
 
-function C:deletePolicyStoreAlias(input: types.DeletePolicyStoreAliasInput, options: any): async.Operation<types.DeletePolicyStoreAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePolicyStoreAlias, input, options) as async.Operation<types.DeletePolicyStoreAliasOutput>
+function C:deletePolicyStoreAlias(input: types.DeletePolicyStoreAliasInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePolicyStoreAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePolicyStoreAlias as schema.OperationSchema, input, options) as async.Operation<types.DeletePolicyStoreAliasOutput>
 end
 
-function C:deletePolicyTemplate(input: types.DeletePolicyTemplateInput, options: any): async.Operation<types.DeletePolicyTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePolicyTemplate, input, options) as async.Operation<types.DeletePolicyTemplateOutput>
+function C:deletePolicyTemplate(input: types.DeletePolicyTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePolicyTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePolicyTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeletePolicyTemplateOutput>
 end
 
-function C:getIdentitySource(input: types.GetIdentitySourceInput, options: any): async.Operation<types.GetIdentitySourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIdentitySource, input, options) as async.Operation<types.GetIdentitySourceOutput>
+function C:getIdentitySource(input: types.GetIdentitySourceInput, options?: base_client.InvokeOptions): async.Operation<types.GetIdentitySourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIdentitySource as schema.OperationSchema, input, options) as async.Operation<types.GetIdentitySourceOutput>
 end
 
-function C:getPolicy(input: types.GetPolicyInput, options: any): async.Operation<types.GetPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPolicy, input, options) as async.Operation<types.GetPolicyOutput>
+function C:getPolicy(input: types.GetPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetPolicyOutput>
 end
 
-function C:getPolicyStore(input: types.GetPolicyStoreInput, options: any): async.Operation<types.GetPolicyStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPolicyStore, input, options) as async.Operation<types.GetPolicyStoreOutput>
+function C:getPolicyStore(input: types.GetPolicyStoreInput, options?: base_client.InvokeOptions): async.Operation<types.GetPolicyStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPolicyStore as schema.OperationSchema, input, options) as async.Operation<types.GetPolicyStoreOutput>
 end
 
-function C:getPolicyStoreAlias(input: types.GetPolicyStoreAliasInput, options: any): async.Operation<types.GetPolicyStoreAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPolicyStoreAlias, input, options) as async.Operation<types.GetPolicyStoreAliasOutput>
+function C:getPolicyStoreAlias(input: types.GetPolicyStoreAliasInput, options?: base_client.InvokeOptions): async.Operation<types.GetPolicyStoreAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPolicyStoreAlias as schema.OperationSchema, input, options) as async.Operation<types.GetPolicyStoreAliasOutput>
 end
 
-function C:getPolicyTemplate(input: types.GetPolicyTemplateInput, options: any): async.Operation<types.GetPolicyTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPolicyTemplate, input, options) as async.Operation<types.GetPolicyTemplateOutput>
+function C:getPolicyTemplate(input: types.GetPolicyTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetPolicyTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPolicyTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetPolicyTemplateOutput>
 end
 
-function C:getSchema(input: types.GetSchemaInput, options: any): async.Operation<types.GetSchemaOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSchema, input, options) as async.Operation<types.GetSchemaOutput>
+function C:getSchema(input: types.GetSchemaInput, options?: base_client.InvokeOptions): async.Operation<types.GetSchemaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSchema as schema.OperationSchema, input, options) as async.Operation<types.GetSchemaOutput>
 end
 
-function C:isAuthorized(input: types.IsAuthorizedInput, options: any): async.Operation<types.IsAuthorizedOutput>
-    return self:invokeOperation(schemas.Service, schemas.IsAuthorized, input, options) as async.Operation<types.IsAuthorizedOutput>
+function C:isAuthorized(input: types.IsAuthorizedInput, options?: base_client.InvokeOptions): async.Operation<types.IsAuthorizedOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.IsAuthorized as schema.OperationSchema, input, options) as async.Operation<types.IsAuthorizedOutput>
 end
 
-function C:isAuthorizedWithToken(input: types.IsAuthorizedWithTokenInput, options: any): async.Operation<types.IsAuthorizedWithTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.IsAuthorizedWithToken, input, options) as async.Operation<types.IsAuthorizedWithTokenOutput>
+function C:isAuthorizedWithToken(input: types.IsAuthorizedWithTokenInput, options?: base_client.InvokeOptions): async.Operation<types.IsAuthorizedWithTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.IsAuthorizedWithToken as schema.OperationSchema, input, options) as async.Operation<types.IsAuthorizedWithTokenOutput>
 end
 
-function C:listIdentitySources(input: types.ListIdentitySourcesInput, options: any): async.Operation<types.ListIdentitySourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIdentitySources, input, options) as async.Operation<types.ListIdentitySourcesOutput>
+function C:listIdentitySources(input: types.ListIdentitySourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListIdentitySourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIdentitySources as schema.OperationSchema, input, options) as async.Operation<types.ListIdentitySourcesOutput>
 end
 
-function C:listPolicies(input: types.ListPoliciesInput, options: any): async.Operation<types.ListPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPolicies, input, options) as async.Operation<types.ListPoliciesOutput>
+function C:listPolicies(input: types.ListPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListPoliciesOutput>
 end
 
-function C:listPolicyStoreAliases(input: types.ListPolicyStoreAliasesInput, options: any): async.Operation<types.ListPolicyStoreAliasesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPolicyStoreAliases, input, options) as async.Operation<types.ListPolicyStoreAliasesOutput>
+function C:listPolicyStoreAliases(input: types.ListPolicyStoreAliasesInput, options?: base_client.InvokeOptions): async.Operation<types.ListPolicyStoreAliasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPolicyStoreAliases as schema.OperationSchema, input, options) as async.Operation<types.ListPolicyStoreAliasesOutput>
 end
 
-function C:listPolicyStores(input: types.ListPolicyStoresInput, options: any): async.Operation<types.ListPolicyStoresOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPolicyStores, input, options) as async.Operation<types.ListPolicyStoresOutput>
+function C:listPolicyStores(input: types.ListPolicyStoresInput, options?: base_client.InvokeOptions): async.Operation<types.ListPolicyStoresOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPolicyStores as schema.OperationSchema, input, options) as async.Operation<types.ListPolicyStoresOutput>
 end
 
-function C:listPolicyTemplates(input: types.ListPolicyTemplatesInput, options: any): async.Operation<types.ListPolicyTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPolicyTemplates, input, options) as async.Operation<types.ListPolicyTemplatesOutput>
+function C:listPolicyTemplates(input: types.ListPolicyTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListPolicyTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPolicyTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListPolicyTemplatesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putSchema(input: types.PutSchemaInput, options: any): async.Operation<types.PutSchemaOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutSchema, input, options) as async.Operation<types.PutSchemaOutput>
+function C:putSchema(input: types.PutSchemaInput, options?: base_client.InvokeOptions): async.Operation<types.PutSchemaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutSchema as schema.OperationSchema, input, options) as async.Operation<types.PutSchemaOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateIdentitySource(input: types.UpdateIdentitySourceInput, options: any): async.Operation<types.UpdateIdentitySourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateIdentitySource, input, options) as async.Operation<types.UpdateIdentitySourceOutput>
+function C:updateIdentitySource(input: types.UpdateIdentitySourceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIdentitySourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIdentitySource as schema.OperationSchema, input, options) as async.Operation<types.UpdateIdentitySourceOutput>
 end
 
-function C:updatePolicy(input: types.UpdatePolicyInput, options: any): async.Operation<types.UpdatePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePolicy, input, options) as async.Operation<types.UpdatePolicyOutput>
+function C:updatePolicy(input: types.UpdatePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePolicy as schema.OperationSchema, input, options) as async.Operation<types.UpdatePolicyOutput>
 end
 
-function C:updatePolicyStore(input: types.UpdatePolicyStoreInput, options: any): async.Operation<types.UpdatePolicyStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePolicyStore, input, options) as async.Operation<types.UpdatePolicyStoreOutput>
+function C:updatePolicyStore(input: types.UpdatePolicyStoreInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePolicyStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePolicyStore as schema.OperationSchema, input, options) as async.Operation<types.UpdatePolicyStoreOutput>
 end
 
-function C:updatePolicyTemplate(input: types.UpdatePolicyTemplateInput, options: any): async.Operation<types.UpdatePolicyTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePolicyTemplate, input, options) as async.Operation<types.UpdatePolicyTemplateOutput>
+function C:updatePolicyTemplate(input: types.UpdatePolicyTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePolicyTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePolicyTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdatePolicyTemplateOutput>
 end
 
 return M

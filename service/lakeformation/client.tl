@@ -8,100 +8,103 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("lakeformation.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("lakeformation.schemas")
 local traits = require("smithy.traits")
 local types = require("lakeformation.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    addLFTagsToResource: function(Client, types.AddLFTagsToResourceInput, any): async.Operation<types.AddLFTagsToResourceOutput>
-    assumeDecoratedRoleWithSAML: function(Client, types.AssumeDecoratedRoleWithSAMLInput, any): async.Operation<types.AssumeDecoratedRoleWithSAMLOutput>
-    batchGrantPermissions: function(Client, types.BatchGrantPermissionsInput, any): async.Operation<types.BatchGrantPermissionsOutput>
-    batchRevokePermissions: function(Client, types.BatchRevokePermissionsInput, any): async.Operation<types.BatchRevokePermissionsOutput>
-    cancelTransaction: function(Client, types.CancelTransactionInput, any): async.Operation<types.CancelTransactionOutput>
-    commitTransaction: function(Client, types.CommitTransactionInput, any): async.Operation<types.CommitTransactionOutput>
-    createDataCellsFilter: function(Client, types.CreateDataCellsFilterInput, any): async.Operation<types.CreateDataCellsFilterOutput>
-    createLakeFormationIdentityCenterConfiguration: function(Client, types.CreateLakeFormationIdentityCenterConfigurationInput, any): async.Operation<types.CreateLakeFormationIdentityCenterConfigurationOutput>
-    createLakeFormationOptIn: function(Client, types.CreateLakeFormationOptInInput, any): async.Operation<types.CreateLakeFormationOptInOutput>
-    createLFTag: function(Client, types.CreateLFTagInput, any): async.Operation<types.CreateLFTagOutput>
-    createLFTagExpression: function(Client, types.CreateLFTagExpressionInput, any): async.Operation<types.CreateLFTagExpressionOutput>
-    deleteDataCellsFilter: function(Client, types.DeleteDataCellsFilterInput, any): async.Operation<types.DeleteDataCellsFilterOutput>
-    deleteLakeFormationIdentityCenterConfiguration: function(Client, types.DeleteLakeFormationIdentityCenterConfigurationInput, any): async.Operation<types.DeleteLakeFormationIdentityCenterConfigurationOutput>
-    deleteLakeFormationOptIn: function(Client, types.DeleteLakeFormationOptInInput, any): async.Operation<types.DeleteLakeFormationOptInOutput>
-    deleteLFTag: function(Client, types.DeleteLFTagInput, any): async.Operation<types.DeleteLFTagOutput>
-    deleteLFTagExpression: function(Client, types.DeleteLFTagExpressionInput, any): async.Operation<types.DeleteLFTagExpressionOutput>
-    deleteObjectsOnCancel: function(Client, types.DeleteObjectsOnCancelInput, any): async.Operation<types.DeleteObjectsOnCancelOutput>
-    deregisterResource: function(Client, types.DeregisterResourceInput, any): async.Operation<types.DeregisterResourceOutput>
-    describeLakeFormationIdentityCenterConfiguration: function(Client, types.DescribeLakeFormationIdentityCenterConfigurationInput, any): async.Operation<types.DescribeLakeFormationIdentityCenterConfigurationOutput>
-    describeResource: function(Client, types.DescribeResourceInput, any): async.Operation<types.DescribeResourceOutput>
-    describeTransaction: function(Client, types.DescribeTransactionInput, any): async.Operation<types.DescribeTransactionOutput>
-    extendTransaction: function(Client, types.ExtendTransactionInput, any): async.Operation<types.ExtendTransactionOutput>
-    getDataCellsFilter: function(Client, types.GetDataCellsFilterInput, any): async.Operation<types.GetDataCellsFilterOutput>
-    getDataLakePrincipal: function(Client, types.GetDataLakePrincipalInput, any): async.Operation<types.GetDataLakePrincipalOutput>
-    getDataLakeSettings: function(Client, types.GetDataLakeSettingsInput, any): async.Operation<types.GetDataLakeSettingsOutput>
-    getEffectivePermissionsForPath: function(Client, types.GetEffectivePermissionsForPathInput, any): async.Operation<types.GetEffectivePermissionsForPathOutput>
-    getLFTag: function(Client, types.GetLFTagInput, any): async.Operation<types.GetLFTagOutput>
-    getLFTagExpression: function(Client, types.GetLFTagExpressionInput, any): async.Operation<types.GetLFTagExpressionOutput>
-    getQueryState: function(Client, types.GetQueryStateInput, any): async.Operation<types.GetQueryStateOutput>
-    getQueryStatistics: function(Client, types.GetQueryStatisticsInput, any): async.Operation<types.GetQueryStatisticsOutput>
-    getResourceLFTags: function(Client, types.GetResourceLFTagsInput, any): async.Operation<types.GetResourceLFTagsOutput>
-    getTableObjects: function(Client, types.GetTableObjectsInput, any): async.Operation<types.GetTableObjectsOutput>
-    getTemporaryDataLocationCredentials: function(Client, types.GetTemporaryDataLocationCredentialsInput, any): async.Operation<types.GetTemporaryDataLocationCredentialsOutput>
-    getTemporaryGluePartitionCredentials: function(Client, types.GetTemporaryGluePartitionCredentialsInput, any): async.Operation<types.GetTemporaryGluePartitionCredentialsOutput>
-    getTemporaryGlueTableCredentials: function(Client, types.GetTemporaryGlueTableCredentialsInput, any): async.Operation<types.GetTemporaryGlueTableCredentialsOutput>
-    getWorkUnitResults: function(Client, types.GetWorkUnitResultsInput, any): async.Operation<types.GetWorkUnitResultsOutput>
-    getWorkUnits: function(Client, types.GetWorkUnitsInput, any): async.Operation<types.GetWorkUnitsOutput>
-    grantPermissions: function(Client, types.GrantPermissionsInput, any): async.Operation<types.GrantPermissionsOutput>
-    listDataCellsFilter: function(Client, types.ListDataCellsFilterInput, any): async.Operation<types.ListDataCellsFilterOutput>
-    listLakeFormationOptIns: function(Client, types.ListLakeFormationOptInsInput, any): async.Operation<types.ListLakeFormationOptInsOutput>
-    listLFTagExpressions: function(Client, types.ListLFTagExpressionsInput, any): async.Operation<types.ListLFTagExpressionsOutput>
-    listLFTags: function(Client, types.ListLFTagsInput, any): async.Operation<types.ListLFTagsOutput>
-    listPermissions: function(Client, types.ListPermissionsInput, any): async.Operation<types.ListPermissionsOutput>
-    listResources: function(Client, types.ListResourcesInput, any): async.Operation<types.ListResourcesOutput>
-    listTableStorageOptimizers: function(Client, types.ListTableStorageOptimizersInput, any): async.Operation<types.ListTableStorageOptimizersOutput>
-    listTransactions: function(Client, types.ListTransactionsInput, any): async.Operation<types.ListTransactionsOutput>
-    putDataLakeSettings: function(Client, types.PutDataLakeSettingsInput, any): async.Operation<types.PutDataLakeSettingsOutput>
-    registerResource: function(Client, types.RegisterResourceInput, any): async.Operation<types.RegisterResourceOutput>
-    removeLFTagsFromResource: function(Client, types.RemoveLFTagsFromResourceInput, any): async.Operation<types.RemoveLFTagsFromResourceOutput>
-    revokePermissions: function(Client, types.RevokePermissionsInput, any): async.Operation<types.RevokePermissionsOutput>
-    searchDatabasesByLFTags: function(Client, types.SearchDatabasesByLFTagsInput, any): async.Operation<types.SearchDatabasesByLFTagsOutput>
-    searchTablesByLFTags: function(Client, types.SearchTablesByLFTagsInput, any): async.Operation<types.SearchTablesByLFTagsOutput>
-    startQueryPlanning: function(Client, types.StartQueryPlanningInput, any): async.Operation<types.StartQueryPlanningOutput>
-    startTransaction: function(Client, types.StartTransactionInput, any): async.Operation<types.StartTransactionOutput>
-    updateDataCellsFilter: function(Client, types.UpdateDataCellsFilterInput, any): async.Operation<types.UpdateDataCellsFilterOutput>
-    updateLakeFormationIdentityCenterConfiguration: function(Client, types.UpdateLakeFormationIdentityCenterConfigurationInput, any): async.Operation<types.UpdateLakeFormationIdentityCenterConfigurationOutput>
-    updateLFTag: function(Client, types.UpdateLFTagInput, any): async.Operation<types.UpdateLFTagOutput>
-    updateLFTagExpression: function(Client, types.UpdateLFTagExpressionInput, any): async.Operation<types.UpdateLFTagExpressionOutput>
-    updateResource: function(Client, types.UpdateResourceInput, any): async.Operation<types.UpdateResourceOutput>
-    updateTableObjects: function(Client, types.UpdateTableObjectsInput, any): async.Operation<types.UpdateTableObjectsOutput>
-    updateTableStorageOptimizer: function(Client, types.UpdateTableStorageOptimizerInput, any): async.Operation<types.UpdateTableStorageOptimizerOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    addLFTagsToResource: function(Client, types.AddLFTagsToResourceInput, ? base_client.InvokeOptions): async.Operation<types.AddLFTagsToResourceOutput>
+    assumeDecoratedRoleWithSAML: function(Client, types.AssumeDecoratedRoleWithSAMLInput, ? base_client.InvokeOptions): async.Operation<types.AssumeDecoratedRoleWithSAMLOutput>
+    batchGrantPermissions: function(Client, types.BatchGrantPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGrantPermissionsOutput>
+    batchRevokePermissions: function(Client, types.BatchRevokePermissionsInput, ? base_client.InvokeOptions): async.Operation<types.BatchRevokePermissionsOutput>
+    cancelTransaction: function(Client, types.CancelTransactionInput, ? base_client.InvokeOptions): async.Operation<types.CancelTransactionOutput>
+    commitTransaction: function(Client, types.CommitTransactionInput, ? base_client.InvokeOptions): async.Operation<types.CommitTransactionOutput>
+    createDataCellsFilter: function(Client, types.CreateDataCellsFilterInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataCellsFilterOutput>
+    createLakeFormationIdentityCenterConfiguration: function(Client, types.CreateLakeFormationIdentityCenterConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateLakeFormationIdentityCenterConfigurationOutput>
+    createLakeFormationOptIn: function(Client, types.CreateLakeFormationOptInInput, ? base_client.InvokeOptions): async.Operation<types.CreateLakeFormationOptInOutput>
+    createLFTag: function(Client, types.CreateLFTagInput, ? base_client.InvokeOptions): async.Operation<types.CreateLFTagOutput>
+    createLFTagExpression: function(Client, types.CreateLFTagExpressionInput, ? base_client.InvokeOptions): async.Operation<types.CreateLFTagExpressionOutput>
+    deleteDataCellsFilter: function(Client, types.DeleteDataCellsFilterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataCellsFilterOutput>
+    deleteLakeFormationIdentityCenterConfiguration: function(Client, types.DeleteLakeFormationIdentityCenterConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLakeFormationIdentityCenterConfigurationOutput>
+    deleteLakeFormationOptIn: function(Client, types.DeleteLakeFormationOptInInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLakeFormationOptInOutput>
+    deleteLFTag: function(Client, types.DeleteLFTagInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLFTagOutput>
+    deleteLFTagExpression: function(Client, types.DeleteLFTagExpressionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLFTagExpressionOutput>
+    deleteObjectsOnCancel: function(Client, types.DeleteObjectsOnCancelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteObjectsOnCancelOutput>
+    deregisterResource: function(Client, types.DeregisterResourceInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterResourceOutput>
+    describeLakeFormationIdentityCenterConfiguration: function(Client, types.DescribeLakeFormationIdentityCenterConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLakeFormationIdentityCenterConfigurationOutput>
+    describeResource: function(Client, types.DescribeResourceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeResourceOutput>
+    describeTransaction: function(Client, types.DescribeTransactionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTransactionOutput>
+    extendTransaction: function(Client, types.ExtendTransactionInput, ? base_client.InvokeOptions): async.Operation<types.ExtendTransactionOutput>
+    getDataCellsFilter: function(Client, types.GetDataCellsFilterInput, ? base_client.InvokeOptions): async.Operation<types.GetDataCellsFilterOutput>
+    getDataLakePrincipal: function(Client, types.GetDataLakePrincipalInput, ? base_client.InvokeOptions): async.Operation<types.GetDataLakePrincipalOutput>
+    getDataLakeSettings: function(Client, types.GetDataLakeSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetDataLakeSettingsOutput>
+    getEffectivePermissionsForPath: function(Client, types.GetEffectivePermissionsForPathInput, ? base_client.InvokeOptions): async.Operation<types.GetEffectivePermissionsForPathOutput>
+    getLFTag: function(Client, types.GetLFTagInput, ? base_client.InvokeOptions): async.Operation<types.GetLFTagOutput>
+    getLFTagExpression: function(Client, types.GetLFTagExpressionInput, ? base_client.InvokeOptions): async.Operation<types.GetLFTagExpressionOutput>
+    getQueryState: function(Client, types.GetQueryStateInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryStateOutput>
+    getQueryStatistics: function(Client, types.GetQueryStatisticsInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryStatisticsOutput>
+    getResourceLFTags: function(Client, types.GetResourceLFTagsInput, ? base_client.InvokeOptions): async.Operation<types.GetResourceLFTagsOutput>
+    getTableObjects: function(Client, types.GetTableObjectsInput, ? base_client.InvokeOptions): async.Operation<types.GetTableObjectsOutput>
+    getTemporaryDataLocationCredentials: function(Client, types.GetTemporaryDataLocationCredentialsInput, ? base_client.InvokeOptions): async.Operation<types.GetTemporaryDataLocationCredentialsOutput>
+    getTemporaryGluePartitionCredentials: function(Client, types.GetTemporaryGluePartitionCredentialsInput, ? base_client.InvokeOptions): async.Operation<types.GetTemporaryGluePartitionCredentialsOutput>
+    getTemporaryGlueTableCredentials: function(Client, types.GetTemporaryGlueTableCredentialsInput, ? base_client.InvokeOptions): async.Operation<types.GetTemporaryGlueTableCredentialsOutput>
+    getWorkUnitResults: function(Client, types.GetWorkUnitResultsInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkUnitResultsOutput>
+    getWorkUnits: function(Client, types.GetWorkUnitsInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkUnitsOutput>
+    grantPermissions: function(Client, types.GrantPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.GrantPermissionsOutput>
+    listDataCellsFilter: function(Client, types.ListDataCellsFilterInput, ? base_client.InvokeOptions): async.Operation<types.ListDataCellsFilterOutput>
+    listLakeFormationOptIns: function(Client, types.ListLakeFormationOptInsInput, ? base_client.InvokeOptions): async.Operation<types.ListLakeFormationOptInsOutput>
+    listLFTagExpressions: function(Client, types.ListLFTagExpressionsInput, ? base_client.InvokeOptions): async.Operation<types.ListLFTagExpressionsOutput>
+    listLFTags: function(Client, types.ListLFTagsInput, ? base_client.InvokeOptions): async.Operation<types.ListLFTagsOutput>
+    listPermissions: function(Client, types.ListPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.ListPermissionsOutput>
+    listResources: function(Client, types.ListResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListResourcesOutput>
+    listTableStorageOptimizers: function(Client, types.ListTableStorageOptimizersInput, ? base_client.InvokeOptions): async.Operation<types.ListTableStorageOptimizersOutput>
+    listTransactions: function(Client, types.ListTransactionsInput, ? base_client.InvokeOptions): async.Operation<types.ListTransactionsOutput>
+    putDataLakeSettings: function(Client, types.PutDataLakeSettingsInput, ? base_client.InvokeOptions): async.Operation<types.PutDataLakeSettingsOutput>
+    registerResource: function(Client, types.RegisterResourceInput, ? base_client.InvokeOptions): async.Operation<types.RegisterResourceOutput>
+    removeLFTagsFromResource: function(Client, types.RemoveLFTagsFromResourceInput, ? base_client.InvokeOptions): async.Operation<types.RemoveLFTagsFromResourceOutput>
+    revokePermissions: function(Client, types.RevokePermissionsInput, ? base_client.InvokeOptions): async.Operation<types.RevokePermissionsOutput>
+    searchDatabasesByLFTags: function(Client, types.SearchDatabasesByLFTagsInput, ? base_client.InvokeOptions): async.Operation<types.SearchDatabasesByLFTagsOutput>
+    searchTablesByLFTags: function(Client, types.SearchTablesByLFTagsInput, ? base_client.InvokeOptions): async.Operation<types.SearchTablesByLFTagsOutput>
+    startQueryPlanning: function(Client, types.StartQueryPlanningInput, ? base_client.InvokeOptions): async.Operation<types.StartQueryPlanningOutput>
+    startTransaction: function(Client, types.StartTransactionInput, ? base_client.InvokeOptions): async.Operation<types.StartTransactionOutput>
+    updateDataCellsFilter: function(Client, types.UpdateDataCellsFilterInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataCellsFilterOutput>
+    updateLakeFormationIdentityCenterConfiguration: function(Client, types.UpdateLakeFormationIdentityCenterConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLakeFormationIdentityCenterConfigurationOutput>
+    updateLFTag: function(Client, types.UpdateLFTagInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLFTagOutput>
+    updateLFTagExpression: function(Client, types.UpdateLFTagExpressionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLFTagExpressionOutput>
+    updateResource: function(Client, types.UpdateResourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResourceOutput>
+    updateTableObjects: function(Client, types.UpdateTableObjectsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTableObjectsOutput>
+    updateTableStorageOptimizer: function(Client, types.UpdateTableStorageOptimizerInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTableStorageOptimizerOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSLakeFormation"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "lakeformation", signing_region = c.region } }
                 else
@@ -120,248 +123,248 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:addLFTagsToResource(input: types.AddLFTagsToResourceInput, options: any): async.Operation<types.AddLFTagsToResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddLFTagsToResource, input, options) as async.Operation<types.AddLFTagsToResourceOutput>
+function C:addLFTagsToResource(input: types.AddLFTagsToResourceInput, options?: base_client.InvokeOptions): async.Operation<types.AddLFTagsToResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddLFTagsToResource as schema.OperationSchema, input, options) as async.Operation<types.AddLFTagsToResourceOutput>
 end
 
-function C:assumeDecoratedRoleWithSAML(input: types.AssumeDecoratedRoleWithSAMLInput, options: any): async.Operation<types.AssumeDecoratedRoleWithSAMLOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssumeDecoratedRoleWithSAML, input, options) as async.Operation<types.AssumeDecoratedRoleWithSAMLOutput>
+function C:assumeDecoratedRoleWithSAML(input: types.AssumeDecoratedRoleWithSAMLInput, options?: base_client.InvokeOptions): async.Operation<types.AssumeDecoratedRoleWithSAMLOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssumeDecoratedRoleWithSAML as schema.OperationSchema, input, options) as async.Operation<types.AssumeDecoratedRoleWithSAMLOutput>
 end
 
-function C:batchGrantPermissions(input: types.BatchGrantPermissionsInput, options: any): async.Operation<types.BatchGrantPermissionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGrantPermissions, input, options) as async.Operation<types.BatchGrantPermissionsOutput>
+function C:batchGrantPermissions(input: types.BatchGrantPermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGrantPermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGrantPermissions as schema.OperationSchema, input, options) as async.Operation<types.BatchGrantPermissionsOutput>
 end
 
-function C:batchRevokePermissions(input: types.BatchRevokePermissionsInput, options: any): async.Operation<types.BatchRevokePermissionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchRevokePermissions, input, options) as async.Operation<types.BatchRevokePermissionsOutput>
+function C:batchRevokePermissions(input: types.BatchRevokePermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchRevokePermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchRevokePermissions as schema.OperationSchema, input, options) as async.Operation<types.BatchRevokePermissionsOutput>
 end
 
-function C:cancelTransaction(input: types.CancelTransactionInput, options: any): async.Operation<types.CancelTransactionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelTransaction, input, options) as async.Operation<types.CancelTransactionOutput>
+function C:cancelTransaction(input: types.CancelTransactionInput, options?: base_client.InvokeOptions): async.Operation<types.CancelTransactionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelTransaction as schema.OperationSchema, input, options) as async.Operation<types.CancelTransactionOutput>
 end
 
-function C:commitTransaction(input: types.CommitTransactionInput, options: any): async.Operation<types.CommitTransactionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CommitTransaction, input, options) as async.Operation<types.CommitTransactionOutput>
+function C:commitTransaction(input: types.CommitTransactionInput, options?: base_client.InvokeOptions): async.Operation<types.CommitTransactionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CommitTransaction as schema.OperationSchema, input, options) as async.Operation<types.CommitTransactionOutput>
 end
 
-function C:createDataCellsFilter(input: types.CreateDataCellsFilterInput, options: any): async.Operation<types.CreateDataCellsFilterOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataCellsFilter, input, options) as async.Operation<types.CreateDataCellsFilterOutput>
+function C:createDataCellsFilter(input: types.CreateDataCellsFilterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataCellsFilterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataCellsFilter as schema.OperationSchema, input, options) as async.Operation<types.CreateDataCellsFilterOutput>
 end
 
-function C:createLakeFormationIdentityCenterConfiguration(input: types.CreateLakeFormationIdentityCenterConfigurationInput, options: any): async.Operation<types.CreateLakeFormationIdentityCenterConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLakeFormationIdentityCenterConfiguration, input, options) as async.Operation<types.CreateLakeFormationIdentityCenterConfigurationOutput>
+function C:createLakeFormationIdentityCenterConfiguration(input: types.CreateLakeFormationIdentityCenterConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLakeFormationIdentityCenterConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLakeFormationIdentityCenterConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateLakeFormationIdentityCenterConfigurationOutput>
 end
 
-function C:createLakeFormationOptIn(input: types.CreateLakeFormationOptInInput, options: any): async.Operation<types.CreateLakeFormationOptInOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLakeFormationOptIn, input, options) as async.Operation<types.CreateLakeFormationOptInOutput>
+function C:createLakeFormationOptIn(input: types.CreateLakeFormationOptInInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLakeFormationOptInOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLakeFormationOptIn as schema.OperationSchema, input, options) as async.Operation<types.CreateLakeFormationOptInOutput>
 end
 
-function C:createLFTag(input: types.CreateLFTagInput, options: any): async.Operation<types.CreateLFTagOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLFTag, input, options) as async.Operation<types.CreateLFTagOutput>
+function C:createLFTag(input: types.CreateLFTagInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLFTagOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLFTag as schema.OperationSchema, input, options) as async.Operation<types.CreateLFTagOutput>
 end
 
-function C:createLFTagExpression(input: types.CreateLFTagExpressionInput, options: any): async.Operation<types.CreateLFTagExpressionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLFTagExpression, input, options) as async.Operation<types.CreateLFTagExpressionOutput>
+function C:createLFTagExpression(input: types.CreateLFTagExpressionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLFTagExpressionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLFTagExpression as schema.OperationSchema, input, options) as async.Operation<types.CreateLFTagExpressionOutput>
 end
 
-function C:deleteDataCellsFilter(input: types.DeleteDataCellsFilterInput, options: any): async.Operation<types.DeleteDataCellsFilterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDataCellsFilter, input, options) as async.Operation<types.DeleteDataCellsFilterOutput>
+function C:deleteDataCellsFilter(input: types.DeleteDataCellsFilterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDataCellsFilterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataCellsFilter as schema.OperationSchema, input, options) as async.Operation<types.DeleteDataCellsFilterOutput>
 end
 
-function C:deleteLakeFormationIdentityCenterConfiguration(input: types.DeleteLakeFormationIdentityCenterConfigurationInput, options: any): async.Operation<types.DeleteLakeFormationIdentityCenterConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLakeFormationIdentityCenterConfiguration, input, options) as async.Operation<types.DeleteLakeFormationIdentityCenterConfigurationOutput>
+function C:deleteLakeFormationIdentityCenterConfiguration(input: types.DeleteLakeFormationIdentityCenterConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLakeFormationIdentityCenterConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLakeFormationIdentityCenterConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteLakeFormationIdentityCenterConfigurationOutput>
 end
 
-function C:deleteLakeFormationOptIn(input: types.DeleteLakeFormationOptInInput, options: any): async.Operation<types.DeleteLakeFormationOptInOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLakeFormationOptIn, input, options) as async.Operation<types.DeleteLakeFormationOptInOutput>
+function C:deleteLakeFormationOptIn(input: types.DeleteLakeFormationOptInInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLakeFormationOptInOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLakeFormationOptIn as schema.OperationSchema, input, options) as async.Operation<types.DeleteLakeFormationOptInOutput>
 end
 
-function C:deleteLFTag(input: types.DeleteLFTagInput, options: any): async.Operation<types.DeleteLFTagOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLFTag, input, options) as async.Operation<types.DeleteLFTagOutput>
+function C:deleteLFTag(input: types.DeleteLFTagInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLFTagOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLFTag as schema.OperationSchema, input, options) as async.Operation<types.DeleteLFTagOutput>
 end
 
-function C:deleteLFTagExpression(input: types.DeleteLFTagExpressionInput, options: any): async.Operation<types.DeleteLFTagExpressionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLFTagExpression, input, options) as async.Operation<types.DeleteLFTagExpressionOutput>
+function C:deleteLFTagExpression(input: types.DeleteLFTagExpressionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLFTagExpressionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLFTagExpression as schema.OperationSchema, input, options) as async.Operation<types.DeleteLFTagExpressionOutput>
 end
 
-function C:deleteObjectsOnCancel(input: types.DeleteObjectsOnCancelInput, options: any): async.Operation<types.DeleteObjectsOnCancelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteObjectsOnCancel, input, options) as async.Operation<types.DeleteObjectsOnCancelOutput>
+function C:deleteObjectsOnCancel(input: types.DeleteObjectsOnCancelInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteObjectsOnCancelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteObjectsOnCancel as schema.OperationSchema, input, options) as async.Operation<types.DeleteObjectsOnCancelOutput>
 end
 
-function C:deregisterResource(input: types.DeregisterResourceInput, options: any): async.Operation<types.DeregisterResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterResource, input, options) as async.Operation<types.DeregisterResourceOutput>
+function C:deregisterResource(input: types.DeregisterResourceInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterResource as schema.OperationSchema, input, options) as async.Operation<types.DeregisterResourceOutput>
 end
 
-function C:describeLakeFormationIdentityCenterConfiguration(input: types.DescribeLakeFormationIdentityCenterConfigurationInput, options: any): async.Operation<types.DescribeLakeFormationIdentityCenterConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLakeFormationIdentityCenterConfiguration, input, options) as async.Operation<types.DescribeLakeFormationIdentityCenterConfigurationOutput>
+function C:describeLakeFormationIdentityCenterConfiguration(input: types.DescribeLakeFormationIdentityCenterConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLakeFormationIdentityCenterConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLakeFormationIdentityCenterConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeLakeFormationIdentityCenterConfigurationOutput>
 end
 
-function C:describeResource(input: types.DescribeResourceInput, options: any): async.Operation<types.DescribeResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeResource, input, options) as async.Operation<types.DescribeResourceOutput>
+function C:describeResource(input: types.DescribeResourceInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeResource as schema.OperationSchema, input, options) as async.Operation<types.DescribeResourceOutput>
 end
 
-function C:describeTransaction(input: types.DescribeTransactionInput, options: any): async.Operation<types.DescribeTransactionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTransaction, input, options) as async.Operation<types.DescribeTransactionOutput>
+function C:describeTransaction(input: types.DescribeTransactionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTransactionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTransaction as schema.OperationSchema, input, options) as async.Operation<types.DescribeTransactionOutput>
 end
 
-function C:extendTransaction(input: types.ExtendTransactionInput, options: any): async.Operation<types.ExtendTransactionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExtendTransaction, input, options) as async.Operation<types.ExtendTransactionOutput>
+function C:extendTransaction(input: types.ExtendTransactionInput, options?: base_client.InvokeOptions): async.Operation<types.ExtendTransactionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExtendTransaction as schema.OperationSchema, input, options) as async.Operation<types.ExtendTransactionOutput>
 end
 
-function C:getDataCellsFilter(input: types.GetDataCellsFilterInput, options: any): async.Operation<types.GetDataCellsFilterOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataCellsFilter, input, options) as async.Operation<types.GetDataCellsFilterOutput>
+function C:getDataCellsFilter(input: types.GetDataCellsFilterInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataCellsFilterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataCellsFilter as schema.OperationSchema, input, options) as async.Operation<types.GetDataCellsFilterOutput>
 end
 
-function C:getDataLakePrincipal(input: types.GetDataLakePrincipalInput, options: any): async.Operation<types.GetDataLakePrincipalOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataLakePrincipal, input, options) as async.Operation<types.GetDataLakePrincipalOutput>
+function C:getDataLakePrincipal(input: types.GetDataLakePrincipalInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataLakePrincipalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataLakePrincipal as schema.OperationSchema, input, options) as async.Operation<types.GetDataLakePrincipalOutput>
 end
 
-function C:getDataLakeSettings(input: types.GetDataLakeSettingsInput, options: any): async.Operation<types.GetDataLakeSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataLakeSettings, input, options) as async.Operation<types.GetDataLakeSettingsOutput>
+function C:getDataLakeSettings(input: types.GetDataLakeSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataLakeSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataLakeSettings as schema.OperationSchema, input, options) as async.Operation<types.GetDataLakeSettingsOutput>
 end
 
-function C:getEffectivePermissionsForPath(input: types.GetEffectivePermissionsForPathInput, options: any): async.Operation<types.GetEffectivePermissionsForPathOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEffectivePermissionsForPath, input, options) as async.Operation<types.GetEffectivePermissionsForPathOutput>
+function C:getEffectivePermissionsForPath(input: types.GetEffectivePermissionsForPathInput, options?: base_client.InvokeOptions): async.Operation<types.GetEffectivePermissionsForPathOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEffectivePermissionsForPath as schema.OperationSchema, input, options) as async.Operation<types.GetEffectivePermissionsForPathOutput>
 end
 
-function C:getLFTag(input: types.GetLFTagInput, options: any): async.Operation<types.GetLFTagOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLFTag, input, options) as async.Operation<types.GetLFTagOutput>
+function C:getLFTag(input: types.GetLFTagInput, options?: base_client.InvokeOptions): async.Operation<types.GetLFTagOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLFTag as schema.OperationSchema, input, options) as async.Operation<types.GetLFTagOutput>
 end
 
-function C:getLFTagExpression(input: types.GetLFTagExpressionInput, options: any): async.Operation<types.GetLFTagExpressionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLFTagExpression, input, options) as async.Operation<types.GetLFTagExpressionOutput>
+function C:getLFTagExpression(input: types.GetLFTagExpressionInput, options?: base_client.InvokeOptions): async.Operation<types.GetLFTagExpressionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLFTagExpression as schema.OperationSchema, input, options) as async.Operation<types.GetLFTagExpressionOutput>
 end
 
-function C:getQueryState(input: types.GetQueryStateInput, options: any): async.Operation<types.GetQueryStateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetQueryState, input, options) as async.Operation<types.GetQueryStateOutput>
+function C:getQueryState(input: types.GetQueryStateInput, options?: base_client.InvokeOptions): async.Operation<types.GetQueryStateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQueryState as schema.OperationSchema, input, options) as async.Operation<types.GetQueryStateOutput>
 end
 
-function C:getQueryStatistics(input: types.GetQueryStatisticsInput, options: any): async.Operation<types.GetQueryStatisticsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetQueryStatistics, input, options) as async.Operation<types.GetQueryStatisticsOutput>
+function C:getQueryStatistics(input: types.GetQueryStatisticsInput, options?: base_client.InvokeOptions): async.Operation<types.GetQueryStatisticsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQueryStatistics as schema.OperationSchema, input, options) as async.Operation<types.GetQueryStatisticsOutput>
 end
 
-function C:getResourceLFTags(input: types.GetResourceLFTagsInput, options: any): async.Operation<types.GetResourceLFTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourceLFTags, input, options) as async.Operation<types.GetResourceLFTagsOutput>
+function C:getResourceLFTags(input: types.GetResourceLFTagsInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourceLFTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourceLFTags as schema.OperationSchema, input, options) as async.Operation<types.GetResourceLFTagsOutput>
 end
 
-function C:getTableObjects(input: types.GetTableObjectsInput, options: any): async.Operation<types.GetTableObjectsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTableObjects, input, options) as async.Operation<types.GetTableObjectsOutput>
+function C:getTableObjects(input: types.GetTableObjectsInput, options?: base_client.InvokeOptions): async.Operation<types.GetTableObjectsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTableObjects as schema.OperationSchema, input, options) as async.Operation<types.GetTableObjectsOutput>
 end
 
-function C:getTemporaryDataLocationCredentials(input: types.GetTemporaryDataLocationCredentialsInput, options: any): async.Operation<types.GetTemporaryDataLocationCredentialsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTemporaryDataLocationCredentials, input, options) as async.Operation<types.GetTemporaryDataLocationCredentialsOutput>
+function C:getTemporaryDataLocationCredentials(input: types.GetTemporaryDataLocationCredentialsInput, options?: base_client.InvokeOptions): async.Operation<types.GetTemporaryDataLocationCredentialsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTemporaryDataLocationCredentials as schema.OperationSchema, input, options) as async.Operation<types.GetTemporaryDataLocationCredentialsOutput>
 end
 
-function C:getTemporaryGluePartitionCredentials(input: types.GetTemporaryGluePartitionCredentialsInput, options: any): async.Operation<types.GetTemporaryGluePartitionCredentialsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTemporaryGluePartitionCredentials, input, options) as async.Operation<types.GetTemporaryGluePartitionCredentialsOutput>
+function C:getTemporaryGluePartitionCredentials(input: types.GetTemporaryGluePartitionCredentialsInput, options?: base_client.InvokeOptions): async.Operation<types.GetTemporaryGluePartitionCredentialsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTemporaryGluePartitionCredentials as schema.OperationSchema, input, options) as async.Operation<types.GetTemporaryGluePartitionCredentialsOutput>
 end
 
-function C:getTemporaryGlueTableCredentials(input: types.GetTemporaryGlueTableCredentialsInput, options: any): async.Operation<types.GetTemporaryGlueTableCredentialsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTemporaryGlueTableCredentials, input, options) as async.Operation<types.GetTemporaryGlueTableCredentialsOutput>
+function C:getTemporaryGlueTableCredentials(input: types.GetTemporaryGlueTableCredentialsInput, options?: base_client.InvokeOptions): async.Operation<types.GetTemporaryGlueTableCredentialsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTemporaryGlueTableCredentials as schema.OperationSchema, input, options) as async.Operation<types.GetTemporaryGlueTableCredentialsOutput>
 end
 
-function C:getWorkUnitResults(input: types.GetWorkUnitResultsInput, options: any): async.Operation<types.GetWorkUnitResultsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWorkUnitResults, input, options) as async.Operation<types.GetWorkUnitResultsOutput>
+function C:getWorkUnitResults(input: types.GetWorkUnitResultsInput, options?: base_client.InvokeOptions): async.Operation<types.GetWorkUnitResultsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWorkUnitResults as schema.OperationSchema, input, options) as async.Operation<types.GetWorkUnitResultsOutput>
 end
 
-function C:getWorkUnits(input: types.GetWorkUnitsInput, options: any): async.Operation<types.GetWorkUnitsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWorkUnits, input, options) as async.Operation<types.GetWorkUnitsOutput>
+function C:getWorkUnits(input: types.GetWorkUnitsInput, options?: base_client.InvokeOptions): async.Operation<types.GetWorkUnitsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWorkUnits as schema.OperationSchema, input, options) as async.Operation<types.GetWorkUnitsOutput>
 end
 
-function C:grantPermissions(input: types.GrantPermissionsInput, options: any): async.Operation<types.GrantPermissionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GrantPermissions, input, options) as async.Operation<types.GrantPermissionsOutput>
+function C:grantPermissions(input: types.GrantPermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.GrantPermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GrantPermissions as schema.OperationSchema, input, options) as async.Operation<types.GrantPermissionsOutput>
 end
 
-function C:listDataCellsFilter(input: types.ListDataCellsFilterInput, options: any): async.Operation<types.ListDataCellsFilterOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDataCellsFilter, input, options) as async.Operation<types.ListDataCellsFilterOutput>
+function C:listDataCellsFilter(input: types.ListDataCellsFilterInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataCellsFilterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataCellsFilter as schema.OperationSchema, input, options) as async.Operation<types.ListDataCellsFilterOutput>
 end
 
-function C:listLakeFormationOptIns(input: types.ListLakeFormationOptInsInput, options: any): async.Operation<types.ListLakeFormationOptInsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLakeFormationOptIns, input, options) as async.Operation<types.ListLakeFormationOptInsOutput>
+function C:listLakeFormationOptIns(input: types.ListLakeFormationOptInsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLakeFormationOptInsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLakeFormationOptIns as schema.OperationSchema, input, options) as async.Operation<types.ListLakeFormationOptInsOutput>
 end
 
-function C:listLFTagExpressions(input: types.ListLFTagExpressionsInput, options: any): async.Operation<types.ListLFTagExpressionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLFTagExpressions, input, options) as async.Operation<types.ListLFTagExpressionsOutput>
+function C:listLFTagExpressions(input: types.ListLFTagExpressionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLFTagExpressionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLFTagExpressions as schema.OperationSchema, input, options) as async.Operation<types.ListLFTagExpressionsOutput>
 end
 
-function C:listLFTags(input: types.ListLFTagsInput, options: any): async.Operation<types.ListLFTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLFTags, input, options) as async.Operation<types.ListLFTagsOutput>
+function C:listLFTags(input: types.ListLFTagsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLFTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLFTags as schema.OperationSchema, input, options) as async.Operation<types.ListLFTagsOutput>
 end
 
-function C:listPermissions(input: types.ListPermissionsInput, options: any): async.Operation<types.ListPermissionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPermissions, input, options) as async.Operation<types.ListPermissionsOutput>
+function C:listPermissions(input: types.ListPermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPermissions as schema.OperationSchema, input, options) as async.Operation<types.ListPermissionsOutput>
 end
 
-function C:listResources(input: types.ListResourcesInput, options: any): async.Operation<types.ListResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResources, input, options) as async.Operation<types.ListResourcesOutput>
+function C:listResources(input: types.ListResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResources as schema.OperationSchema, input, options) as async.Operation<types.ListResourcesOutput>
 end
 
-function C:listTableStorageOptimizers(input: types.ListTableStorageOptimizersInput, options: any): async.Operation<types.ListTableStorageOptimizersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTableStorageOptimizers, input, options) as async.Operation<types.ListTableStorageOptimizersOutput>
+function C:listTableStorageOptimizers(input: types.ListTableStorageOptimizersInput, options?: base_client.InvokeOptions): async.Operation<types.ListTableStorageOptimizersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTableStorageOptimizers as schema.OperationSchema, input, options) as async.Operation<types.ListTableStorageOptimizersOutput>
 end
 
-function C:listTransactions(input: types.ListTransactionsInput, options: any): async.Operation<types.ListTransactionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTransactions, input, options) as async.Operation<types.ListTransactionsOutput>
+function C:listTransactions(input: types.ListTransactionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTransactionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTransactions as schema.OperationSchema, input, options) as async.Operation<types.ListTransactionsOutput>
 end
 
-function C:putDataLakeSettings(input: types.PutDataLakeSettingsInput, options: any): async.Operation<types.PutDataLakeSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutDataLakeSettings, input, options) as async.Operation<types.PutDataLakeSettingsOutput>
+function C:putDataLakeSettings(input: types.PutDataLakeSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.PutDataLakeSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutDataLakeSettings as schema.OperationSchema, input, options) as async.Operation<types.PutDataLakeSettingsOutput>
 end
 
-function C:registerResource(input: types.RegisterResourceInput, options: any): async.Operation<types.RegisterResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterResource, input, options) as async.Operation<types.RegisterResourceOutput>
+function C:registerResource(input: types.RegisterResourceInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterResource as schema.OperationSchema, input, options) as async.Operation<types.RegisterResourceOutput>
 end
 
-function C:removeLFTagsFromResource(input: types.RemoveLFTagsFromResourceInput, options: any): async.Operation<types.RemoveLFTagsFromResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveLFTagsFromResource, input, options) as async.Operation<types.RemoveLFTagsFromResourceOutput>
+function C:removeLFTagsFromResource(input: types.RemoveLFTagsFromResourceInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveLFTagsFromResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveLFTagsFromResource as schema.OperationSchema, input, options) as async.Operation<types.RemoveLFTagsFromResourceOutput>
 end
 
-function C:revokePermissions(input: types.RevokePermissionsInput, options: any): async.Operation<types.RevokePermissionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.RevokePermissions, input, options) as async.Operation<types.RevokePermissionsOutput>
+function C:revokePermissions(input: types.RevokePermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.RevokePermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RevokePermissions as schema.OperationSchema, input, options) as async.Operation<types.RevokePermissionsOutput>
 end
 
-function C:searchDatabasesByLFTags(input: types.SearchDatabasesByLFTagsInput, options: any): async.Operation<types.SearchDatabasesByLFTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchDatabasesByLFTags, input, options) as async.Operation<types.SearchDatabasesByLFTagsOutput>
+function C:searchDatabasesByLFTags(input: types.SearchDatabasesByLFTagsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchDatabasesByLFTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchDatabasesByLFTags as schema.OperationSchema, input, options) as async.Operation<types.SearchDatabasesByLFTagsOutput>
 end
 
-function C:searchTablesByLFTags(input: types.SearchTablesByLFTagsInput, options: any): async.Operation<types.SearchTablesByLFTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchTablesByLFTags, input, options) as async.Operation<types.SearchTablesByLFTagsOutput>
+function C:searchTablesByLFTags(input: types.SearchTablesByLFTagsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchTablesByLFTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchTablesByLFTags as schema.OperationSchema, input, options) as async.Operation<types.SearchTablesByLFTagsOutput>
 end
 
-function C:startQueryPlanning(input: types.StartQueryPlanningInput, options: any): async.Operation<types.StartQueryPlanningOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartQueryPlanning, input, options) as async.Operation<types.StartQueryPlanningOutput>
+function C:startQueryPlanning(input: types.StartQueryPlanningInput, options?: base_client.InvokeOptions): async.Operation<types.StartQueryPlanningOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartQueryPlanning as schema.OperationSchema, input, options) as async.Operation<types.StartQueryPlanningOutput>
 end
 
-function C:startTransaction(input: types.StartTransactionInput, options: any): async.Operation<types.StartTransactionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartTransaction, input, options) as async.Operation<types.StartTransactionOutput>
+function C:startTransaction(input: types.StartTransactionInput, options?: base_client.InvokeOptions): async.Operation<types.StartTransactionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartTransaction as schema.OperationSchema, input, options) as async.Operation<types.StartTransactionOutput>
 end
 
-function C:updateDataCellsFilter(input: types.UpdateDataCellsFilterInput, options: any): async.Operation<types.UpdateDataCellsFilterOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDataCellsFilter, input, options) as async.Operation<types.UpdateDataCellsFilterOutput>
+function C:updateDataCellsFilter(input: types.UpdateDataCellsFilterInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDataCellsFilterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDataCellsFilter as schema.OperationSchema, input, options) as async.Operation<types.UpdateDataCellsFilterOutput>
 end
 
-function C:updateLakeFormationIdentityCenterConfiguration(input: types.UpdateLakeFormationIdentityCenterConfigurationInput, options: any): async.Operation<types.UpdateLakeFormationIdentityCenterConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLakeFormationIdentityCenterConfiguration, input, options) as async.Operation<types.UpdateLakeFormationIdentityCenterConfigurationOutput>
+function C:updateLakeFormationIdentityCenterConfiguration(input: types.UpdateLakeFormationIdentityCenterConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLakeFormationIdentityCenterConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLakeFormationIdentityCenterConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateLakeFormationIdentityCenterConfigurationOutput>
 end
 
-function C:updateLFTag(input: types.UpdateLFTagInput, options: any): async.Operation<types.UpdateLFTagOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLFTag, input, options) as async.Operation<types.UpdateLFTagOutput>
+function C:updateLFTag(input: types.UpdateLFTagInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLFTagOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLFTag as schema.OperationSchema, input, options) as async.Operation<types.UpdateLFTagOutput>
 end
 
-function C:updateLFTagExpression(input: types.UpdateLFTagExpressionInput, options: any): async.Operation<types.UpdateLFTagExpressionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLFTagExpression, input, options) as async.Operation<types.UpdateLFTagExpressionOutput>
+function C:updateLFTagExpression(input: types.UpdateLFTagExpressionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLFTagExpressionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLFTagExpression as schema.OperationSchema, input, options) as async.Operation<types.UpdateLFTagExpressionOutput>
 end
 
-function C:updateResource(input: types.UpdateResourceInput, options: any): async.Operation<types.UpdateResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateResource, input, options) as async.Operation<types.UpdateResourceOutput>
+function C:updateResource(input: types.UpdateResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateResource as schema.OperationSchema, input, options) as async.Operation<types.UpdateResourceOutput>
 end
 
-function C:updateTableObjects(input: types.UpdateTableObjectsInput, options: any): async.Operation<types.UpdateTableObjectsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTableObjects, input, options) as async.Operation<types.UpdateTableObjectsOutput>
+function C:updateTableObjects(input: types.UpdateTableObjectsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTableObjectsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTableObjects as schema.OperationSchema, input, options) as async.Operation<types.UpdateTableObjectsOutput>
 end
 
-function C:updateTableStorageOptimizer(input: types.UpdateTableStorageOptimizerInput, options: any): async.Operation<types.UpdateTableStorageOptimizerOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTableStorageOptimizer, input, options) as async.Operation<types.UpdateTableStorageOptimizerOutput>
+function C:updateTableStorageOptimizer(input: types.UpdateTableStorageOptimizerInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTableStorageOptimizerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTableStorageOptimizer as schema.OperationSchema, input, options) as async.Operation<types.UpdateTableStorageOptimizerOutput>
 end
 
 return M

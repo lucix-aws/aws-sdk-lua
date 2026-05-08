@@ -8,110 +8,113 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("transfer.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("transfer.schemas")
 local traits = require("smithy.traits")
 local types = require("transfer.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createAccess: function(Client, types.CreateAccessInput, any): async.Operation<types.CreateAccessOutput>
-    createAgreement: function(Client, types.CreateAgreementInput, any): async.Operation<types.CreateAgreementOutput>
-    createConnector: function(Client, types.CreateConnectorInput, any): async.Operation<types.CreateConnectorOutput>
-    createProfile: function(Client, types.CreateProfileInput, any): async.Operation<types.CreateProfileOutput>
-    createServer: function(Client, types.CreateServerInput, any): async.Operation<types.CreateServerOutput>
-    createUser: function(Client, types.CreateUserInput, any): async.Operation<types.CreateUserOutput>
-    createWebApp: function(Client, types.CreateWebAppInput, any): async.Operation<types.CreateWebAppOutput>
-    createWorkflow: function(Client, types.CreateWorkflowInput, any): async.Operation<types.CreateWorkflowOutput>
-    deleteAccess: function(Client, types.DeleteAccessInput, any): async.Operation<types.DeleteAccessOutput>
-    deleteAgreement: function(Client, types.DeleteAgreementInput, any): async.Operation<types.DeleteAgreementOutput>
-    deleteCertificate: function(Client, types.DeleteCertificateInput, any): async.Operation<types.DeleteCertificateOutput>
-    deleteConnector: function(Client, types.DeleteConnectorInput, any): async.Operation<types.DeleteConnectorOutput>
-    deleteHostKey: function(Client, types.DeleteHostKeyInput, any): async.Operation<types.DeleteHostKeyOutput>
-    deleteProfile: function(Client, types.DeleteProfileInput, any): async.Operation<types.DeleteProfileOutput>
-    deleteServer: function(Client, types.DeleteServerInput, any): async.Operation<types.DeleteServerOutput>
-    deleteSshPublicKey: function(Client, types.DeleteSshPublicKeyInput, any): async.Operation<types.DeleteSshPublicKeyOutput>
-    deleteUser: function(Client, types.DeleteUserInput, any): async.Operation<types.DeleteUserOutput>
-    deleteWebApp: function(Client, types.DeleteWebAppInput, any): async.Operation<types.DeleteWebAppOutput>
-    deleteWebAppCustomization: function(Client, types.DeleteWebAppCustomizationInput, any): async.Operation<types.DeleteWebAppCustomizationOutput>
-    deleteWorkflow: function(Client, types.DeleteWorkflowInput, any): async.Operation<types.DeleteWorkflowOutput>
-    describeAccess: function(Client, types.DescribeAccessInput, any): async.Operation<types.DescribeAccessOutput>
-    describeAgreement: function(Client, types.DescribeAgreementInput, any): async.Operation<types.DescribeAgreementOutput>
-    describeCertificate: function(Client, types.DescribeCertificateInput, any): async.Operation<types.DescribeCertificateOutput>
-    describeConnector: function(Client, types.DescribeConnectorInput, any): async.Operation<types.DescribeConnectorOutput>
-    describeExecution: function(Client, types.DescribeExecutionInput, any): async.Operation<types.DescribeExecutionOutput>
-    describeHostKey: function(Client, types.DescribeHostKeyInput, any): async.Operation<types.DescribeHostKeyOutput>
-    describeProfile: function(Client, types.DescribeProfileInput, any): async.Operation<types.DescribeProfileOutput>
-    describeSecurityPolicy: function(Client, types.DescribeSecurityPolicyInput, any): async.Operation<types.DescribeSecurityPolicyOutput>
-    describeServer: function(Client, types.DescribeServerInput, any): async.Operation<types.DescribeServerOutput>
-    describeUser: function(Client, types.DescribeUserInput, any): async.Operation<types.DescribeUserOutput>
-    describeWebApp: function(Client, types.DescribeWebAppInput, any): async.Operation<types.DescribeWebAppOutput>
-    describeWebAppCustomization: function(Client, types.DescribeWebAppCustomizationInput, any): async.Operation<types.DescribeWebAppCustomizationOutput>
-    describeWorkflow: function(Client, types.DescribeWorkflowInput, any): async.Operation<types.DescribeWorkflowOutput>
-    importCertificate: function(Client, types.ImportCertificateInput, any): async.Operation<types.ImportCertificateOutput>
-    importHostKey: function(Client, types.ImportHostKeyInput, any): async.Operation<types.ImportHostKeyOutput>
-    importSshPublicKey: function(Client, types.ImportSshPublicKeyInput, any): async.Operation<types.ImportSshPublicKeyOutput>
-    listAccesses: function(Client, types.ListAccessesInput, any): async.Operation<types.ListAccessesOutput>
-    listAgreements: function(Client, types.ListAgreementsInput, any): async.Operation<types.ListAgreementsOutput>
-    listCertificates: function(Client, types.ListCertificatesInput, any): async.Operation<types.ListCertificatesOutput>
-    listConnectors: function(Client, types.ListConnectorsInput, any): async.Operation<types.ListConnectorsOutput>
-    listExecutions: function(Client, types.ListExecutionsInput, any): async.Operation<types.ListExecutionsOutput>
-    listFileTransferResults: function(Client, types.ListFileTransferResultsInput, any): async.Operation<types.ListFileTransferResultsOutput>
-    listHostKeys: function(Client, types.ListHostKeysInput, any): async.Operation<types.ListHostKeysOutput>
-    listProfiles: function(Client, types.ListProfilesInput, any): async.Operation<types.ListProfilesOutput>
-    listSecurityPolicies: function(Client, types.ListSecurityPoliciesInput, any): async.Operation<types.ListSecurityPoliciesOutput>
-    listServers: function(Client, types.ListServersInput, any): async.Operation<types.ListServersOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listUsers: function(Client, types.ListUsersInput, any): async.Operation<types.ListUsersOutput>
-    listWebApps: function(Client, types.ListWebAppsInput, any): async.Operation<types.ListWebAppsOutput>
-    listWorkflows: function(Client, types.ListWorkflowsInput, any): async.Operation<types.ListWorkflowsOutput>
-    sendWorkflowStepState: function(Client, types.SendWorkflowStepStateInput, any): async.Operation<types.SendWorkflowStepStateOutput>
-    startDirectoryListing: function(Client, types.StartDirectoryListingInput, any): async.Operation<types.StartDirectoryListingOutput>
-    startFileTransfer: function(Client, types.StartFileTransferInput, any): async.Operation<types.StartFileTransferOutput>
-    startRemoteDelete: function(Client, types.StartRemoteDeleteInput, any): async.Operation<types.StartRemoteDeleteOutput>
-    startRemoteMove: function(Client, types.StartRemoteMoveInput, any): async.Operation<types.StartRemoteMoveOutput>
-    startServer: function(Client, types.StartServerInput, any): async.Operation<types.StartServerOutput>
-    stopServer: function(Client, types.StopServerInput, any): async.Operation<types.StopServerOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    testConnection: function(Client, types.TestConnectionInput, any): async.Operation<types.TestConnectionOutput>
-    testIdentityProvider: function(Client, types.TestIdentityProviderInput, any): async.Operation<types.TestIdentityProviderOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAccess: function(Client, types.UpdateAccessInput, any): async.Operation<types.UpdateAccessOutput>
-    updateAgreement: function(Client, types.UpdateAgreementInput, any): async.Operation<types.UpdateAgreementOutput>
-    updateCertificate: function(Client, types.UpdateCertificateInput, any): async.Operation<types.UpdateCertificateOutput>
-    updateConnector: function(Client, types.UpdateConnectorInput, any): async.Operation<types.UpdateConnectorOutput>
-    updateHostKey: function(Client, types.UpdateHostKeyInput, any): async.Operation<types.UpdateHostKeyOutput>
-    updateProfile: function(Client, types.UpdateProfileInput, any): async.Operation<types.UpdateProfileOutput>
-    updateServer: function(Client, types.UpdateServerInput, any): async.Operation<types.UpdateServerOutput>
-    updateUser: function(Client, types.UpdateUserInput, any): async.Operation<types.UpdateUserOutput>
-    updateWebApp: function(Client, types.UpdateWebAppInput, any): async.Operation<types.UpdateWebAppOutput>
-    updateWebAppCustomization: function(Client, types.UpdateWebAppCustomizationInput, any): async.Operation<types.UpdateWebAppCustomizationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createAccess: function(Client, types.CreateAccessInput, ? base_client.InvokeOptions): async.Operation<types.CreateAccessOutput>
+    createAgreement: function(Client, types.CreateAgreementInput, ? base_client.InvokeOptions): async.Operation<types.CreateAgreementOutput>
+    createConnector: function(Client, types.CreateConnectorInput, ? base_client.InvokeOptions): async.Operation<types.CreateConnectorOutput>
+    createProfile: function(Client, types.CreateProfileInput, ? base_client.InvokeOptions): async.Operation<types.CreateProfileOutput>
+    createServer: function(Client, types.CreateServerInput, ? base_client.InvokeOptions): async.Operation<types.CreateServerOutput>
+    createUser: function(Client, types.CreateUserInput, ? base_client.InvokeOptions): async.Operation<types.CreateUserOutput>
+    createWebApp: function(Client, types.CreateWebAppInput, ? base_client.InvokeOptions): async.Operation<types.CreateWebAppOutput>
+    createWorkflow: function(Client, types.CreateWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkflowOutput>
+    deleteAccess: function(Client, types.DeleteAccessInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccessOutput>
+    deleteAgreement: function(Client, types.DeleteAgreementInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAgreementOutput>
+    deleteCertificate: function(Client, types.DeleteCertificateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCertificateOutput>
+    deleteConnector: function(Client, types.DeleteConnectorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConnectorOutput>
+    deleteHostKey: function(Client, types.DeleteHostKeyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteHostKeyOutput>
+    deleteProfile: function(Client, types.DeleteProfileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProfileOutput>
+    deleteServer: function(Client, types.DeleteServerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteServerOutput>
+    deleteSshPublicKey: function(Client, types.DeleteSshPublicKeyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSshPublicKeyOutput>
+    deleteUser: function(Client, types.DeleteUserInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUserOutput>
+    deleteWebApp: function(Client, types.DeleteWebAppInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWebAppOutput>
+    deleteWebAppCustomization: function(Client, types.DeleteWebAppCustomizationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWebAppCustomizationOutput>
+    deleteWorkflow: function(Client, types.DeleteWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWorkflowOutput>
+    describeAccess: function(Client, types.DescribeAccessInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAccessOutput>
+    describeAgreement: function(Client, types.DescribeAgreementInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAgreementOutput>
+    describeCertificate: function(Client, types.DescribeCertificateInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCertificateOutput>
+    describeConnector: function(Client, types.DescribeConnectorInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConnectorOutput>
+    describeExecution: function(Client, types.DescribeExecutionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeExecutionOutput>
+    describeHostKey: function(Client, types.DescribeHostKeyInput, ? base_client.InvokeOptions): async.Operation<types.DescribeHostKeyOutput>
+    describeProfile: function(Client, types.DescribeProfileInput, ? base_client.InvokeOptions): async.Operation<types.DescribeProfileOutput>
+    describeSecurityPolicy: function(Client, types.DescribeSecurityPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSecurityPolicyOutput>
+    describeServer: function(Client, types.DescribeServerInput, ? base_client.InvokeOptions): async.Operation<types.DescribeServerOutput>
+    describeUser: function(Client, types.DescribeUserInput, ? base_client.InvokeOptions): async.Operation<types.DescribeUserOutput>
+    describeWebApp: function(Client, types.DescribeWebAppInput, ? base_client.InvokeOptions): async.Operation<types.DescribeWebAppOutput>
+    describeWebAppCustomization: function(Client, types.DescribeWebAppCustomizationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeWebAppCustomizationOutput>
+    describeWorkflow: function(Client, types.DescribeWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.DescribeWorkflowOutput>
+    importCertificate: function(Client, types.ImportCertificateInput, ? base_client.InvokeOptions): async.Operation<types.ImportCertificateOutput>
+    importHostKey: function(Client, types.ImportHostKeyInput, ? base_client.InvokeOptions): async.Operation<types.ImportHostKeyOutput>
+    importSshPublicKey: function(Client, types.ImportSshPublicKeyInput, ? base_client.InvokeOptions): async.Operation<types.ImportSshPublicKeyOutput>
+    listAccesses: function(Client, types.ListAccessesInput, ? base_client.InvokeOptions): async.Operation<types.ListAccessesOutput>
+    listAgreements: function(Client, types.ListAgreementsInput, ? base_client.InvokeOptions): async.Operation<types.ListAgreementsOutput>
+    listCertificates: function(Client, types.ListCertificatesInput, ? base_client.InvokeOptions): async.Operation<types.ListCertificatesOutput>
+    listConnectors: function(Client, types.ListConnectorsInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectorsOutput>
+    listExecutions: function(Client, types.ListExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListExecutionsOutput>
+    listFileTransferResults: function(Client, types.ListFileTransferResultsInput, ? base_client.InvokeOptions): async.Operation<types.ListFileTransferResultsOutput>
+    listHostKeys: function(Client, types.ListHostKeysInput, ? base_client.InvokeOptions): async.Operation<types.ListHostKeysOutput>
+    listProfiles: function(Client, types.ListProfilesInput, ? base_client.InvokeOptions): async.Operation<types.ListProfilesOutput>
+    listSecurityPolicies: function(Client, types.ListSecurityPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListSecurityPoliciesOutput>
+    listServers: function(Client, types.ListServersInput, ? base_client.InvokeOptions): async.Operation<types.ListServersOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listUsers: function(Client, types.ListUsersInput, ? base_client.InvokeOptions): async.Operation<types.ListUsersOutput>
+    listWebApps: function(Client, types.ListWebAppsInput, ? base_client.InvokeOptions): async.Operation<types.ListWebAppsOutput>
+    listWorkflows: function(Client, types.ListWorkflowsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkflowsOutput>
+    sendWorkflowStepState: function(Client, types.SendWorkflowStepStateInput, ? base_client.InvokeOptions): async.Operation<types.SendWorkflowStepStateOutput>
+    startDirectoryListing: function(Client, types.StartDirectoryListingInput, ? base_client.InvokeOptions): async.Operation<types.StartDirectoryListingOutput>
+    startFileTransfer: function(Client, types.StartFileTransferInput, ? base_client.InvokeOptions): async.Operation<types.StartFileTransferOutput>
+    startRemoteDelete: function(Client, types.StartRemoteDeleteInput, ? base_client.InvokeOptions): async.Operation<types.StartRemoteDeleteOutput>
+    startRemoteMove: function(Client, types.StartRemoteMoveInput, ? base_client.InvokeOptions): async.Operation<types.StartRemoteMoveOutput>
+    startServer: function(Client, types.StartServerInput, ? base_client.InvokeOptions): async.Operation<types.StartServerOutput>
+    stopServer: function(Client, types.StopServerInput, ? base_client.InvokeOptions): async.Operation<types.StopServerOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    testConnection: function(Client, types.TestConnectionInput, ? base_client.InvokeOptions): async.Operation<types.TestConnectionOutput>
+    testIdentityProvider: function(Client, types.TestIdentityProviderInput, ? base_client.InvokeOptions): async.Operation<types.TestIdentityProviderOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAccess: function(Client, types.UpdateAccessInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAccessOutput>
+    updateAgreement: function(Client, types.UpdateAgreementInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAgreementOutput>
+    updateCertificate: function(Client, types.UpdateCertificateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCertificateOutput>
+    updateConnector: function(Client, types.UpdateConnectorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConnectorOutput>
+    updateHostKey: function(Client, types.UpdateHostKeyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateHostKeyOutput>
+    updateProfile: function(Client, types.UpdateProfileInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProfileOutput>
+    updateServer: function(Client, types.UpdateServerInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServerOutput>
+    updateUser: function(Client, types.UpdateUserInput, ? base_client.InvokeOptions): async.Operation<types.UpdateUserOutput>
+    updateWebApp: function(Client, types.UpdateWebAppInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWebAppOutput>
+    updateWebAppCustomization: function(Client, types.UpdateWebAppCustomizationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWebAppCustomizationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "TransferService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "transfer", signing_region = c.region } }
                 else
@@ -130,288 +133,288 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createAccess(input: types.CreateAccessInput, options: any): async.Operation<types.CreateAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAccess, input, options) as async.Operation<types.CreateAccessOutput>
+function C:createAccess(input: types.CreateAccessInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAccess as schema.OperationSchema, input, options) as async.Operation<types.CreateAccessOutput>
 end
 
-function C:createAgreement(input: types.CreateAgreementInput, options: any): async.Operation<types.CreateAgreementOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAgreement, input, options) as async.Operation<types.CreateAgreementOutput>
+function C:createAgreement(input: types.CreateAgreementInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAgreementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAgreement as schema.OperationSchema, input, options) as async.Operation<types.CreateAgreementOutput>
 end
 
-function C:createConnector(input: types.CreateConnectorInput, options: any): async.Operation<types.CreateConnectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConnector, input, options) as async.Operation<types.CreateConnectorOutput>
+function C:createConnector(input: types.CreateConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConnector as schema.OperationSchema, input, options) as async.Operation<types.CreateConnectorOutput>
 end
 
-function C:createProfile(input: types.CreateProfileInput, options: any): async.Operation<types.CreateProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProfile, input, options) as async.Operation<types.CreateProfileOutput>
+function C:createProfile(input: types.CreateProfileInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProfile as schema.OperationSchema, input, options) as async.Operation<types.CreateProfileOutput>
 end
 
-function C:createServer(input: types.CreateServerInput, options: any): async.Operation<types.CreateServerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateServer, input, options) as async.Operation<types.CreateServerOutput>
+function C:createServer(input: types.CreateServerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateServerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateServer as schema.OperationSchema, input, options) as async.Operation<types.CreateServerOutput>
 end
 
-function C:createUser(input: types.CreateUserInput, options: any): async.Operation<types.CreateUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateUser, input, options) as async.Operation<types.CreateUserOutput>
+function C:createUser(input: types.CreateUserInput, options?: base_client.InvokeOptions): async.Operation<types.CreateUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateUser as schema.OperationSchema, input, options) as async.Operation<types.CreateUserOutput>
 end
 
-function C:createWebApp(input: types.CreateWebAppInput, options: any): async.Operation<types.CreateWebAppOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWebApp, input, options) as async.Operation<types.CreateWebAppOutput>
+function C:createWebApp(input: types.CreateWebAppInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWebAppOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWebApp as schema.OperationSchema, input, options) as async.Operation<types.CreateWebAppOutput>
 end
 
-function C:createWorkflow(input: types.CreateWorkflowInput, options: any): async.Operation<types.CreateWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWorkflow, input, options) as async.Operation<types.CreateWorkflowOutput>
+function C:createWorkflow(input: types.CreateWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWorkflow as schema.OperationSchema, input, options) as async.Operation<types.CreateWorkflowOutput>
 end
 
-function C:deleteAccess(input: types.DeleteAccessInput, options: any): async.Operation<types.DeleteAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAccess, input, options) as async.Operation<types.DeleteAccessOutput>
+function C:deleteAccess(input: types.DeleteAccessInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAccess as schema.OperationSchema, input, options) as async.Operation<types.DeleteAccessOutput>
 end
 
-function C:deleteAgreement(input: types.DeleteAgreementInput, options: any): async.Operation<types.DeleteAgreementOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAgreement, input, options) as async.Operation<types.DeleteAgreementOutput>
+function C:deleteAgreement(input: types.DeleteAgreementInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAgreementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAgreement as schema.OperationSchema, input, options) as async.Operation<types.DeleteAgreementOutput>
 end
 
-function C:deleteCertificate(input: types.DeleteCertificateInput, options: any): async.Operation<types.DeleteCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCertificate, input, options) as async.Operation<types.DeleteCertificateOutput>
+function C:deleteCertificate(input: types.DeleteCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCertificate as schema.OperationSchema, input, options) as async.Operation<types.DeleteCertificateOutput>
 end
 
-function C:deleteConnector(input: types.DeleteConnectorInput, options: any): async.Operation<types.DeleteConnectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConnector, input, options) as async.Operation<types.DeleteConnectorOutput>
+function C:deleteConnector(input: types.DeleteConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConnector as schema.OperationSchema, input, options) as async.Operation<types.DeleteConnectorOutput>
 end
 
-function C:deleteHostKey(input: types.DeleteHostKeyInput, options: any): async.Operation<types.DeleteHostKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteHostKey, input, options) as async.Operation<types.DeleteHostKeyOutput>
+function C:deleteHostKey(input: types.DeleteHostKeyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteHostKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteHostKey as schema.OperationSchema, input, options) as async.Operation<types.DeleteHostKeyOutput>
 end
 
-function C:deleteProfile(input: types.DeleteProfileInput, options: any): async.Operation<types.DeleteProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProfile, input, options) as async.Operation<types.DeleteProfileOutput>
+function C:deleteProfile(input: types.DeleteProfileInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProfile as schema.OperationSchema, input, options) as async.Operation<types.DeleteProfileOutput>
 end
 
-function C:deleteServer(input: types.DeleteServerInput, options: any): async.Operation<types.DeleteServerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteServer, input, options) as async.Operation<types.DeleteServerOutput>
+function C:deleteServer(input: types.DeleteServerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteServerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteServer as schema.OperationSchema, input, options) as async.Operation<types.DeleteServerOutput>
 end
 
-function C:deleteSshPublicKey(input: types.DeleteSshPublicKeyInput, options: any): async.Operation<types.DeleteSshPublicKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSshPublicKey, input, options) as async.Operation<types.DeleteSshPublicKeyOutput>
+function C:deleteSshPublicKey(input: types.DeleteSshPublicKeyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSshPublicKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSshPublicKey as schema.OperationSchema, input, options) as async.Operation<types.DeleteSshPublicKeyOutput>
 end
 
-function C:deleteUser(input: types.DeleteUserInput, options: any): async.Operation<types.DeleteUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteUser, input, options) as async.Operation<types.DeleteUserOutput>
+function C:deleteUser(input: types.DeleteUserInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteUser as schema.OperationSchema, input, options) as async.Operation<types.DeleteUserOutput>
 end
 
-function C:deleteWebApp(input: types.DeleteWebAppInput, options: any): async.Operation<types.DeleteWebAppOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWebApp, input, options) as async.Operation<types.DeleteWebAppOutput>
+function C:deleteWebApp(input: types.DeleteWebAppInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWebAppOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWebApp as schema.OperationSchema, input, options) as async.Operation<types.DeleteWebAppOutput>
 end
 
-function C:deleteWebAppCustomization(input: types.DeleteWebAppCustomizationInput, options: any): async.Operation<types.DeleteWebAppCustomizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWebAppCustomization, input, options) as async.Operation<types.DeleteWebAppCustomizationOutput>
+function C:deleteWebAppCustomization(input: types.DeleteWebAppCustomizationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWebAppCustomizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWebAppCustomization as schema.OperationSchema, input, options) as async.Operation<types.DeleteWebAppCustomizationOutput>
 end
 
-function C:deleteWorkflow(input: types.DeleteWorkflowInput, options: any): async.Operation<types.DeleteWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWorkflow, input, options) as async.Operation<types.DeleteWorkflowOutput>
+function C:deleteWorkflow(input: types.DeleteWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWorkflow as schema.OperationSchema, input, options) as async.Operation<types.DeleteWorkflowOutput>
 end
 
-function C:describeAccess(input: types.DescribeAccessInput, options: any): async.Operation<types.DescribeAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAccess, input, options) as async.Operation<types.DescribeAccessOutput>
+function C:describeAccess(input: types.DescribeAccessInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAccess as schema.OperationSchema, input, options) as async.Operation<types.DescribeAccessOutput>
 end
 
-function C:describeAgreement(input: types.DescribeAgreementInput, options: any): async.Operation<types.DescribeAgreementOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAgreement, input, options) as async.Operation<types.DescribeAgreementOutput>
+function C:describeAgreement(input: types.DescribeAgreementInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAgreementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAgreement as schema.OperationSchema, input, options) as async.Operation<types.DescribeAgreementOutput>
 end
 
-function C:describeCertificate(input: types.DescribeCertificateInput, options: any): async.Operation<types.DescribeCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCertificate, input, options) as async.Operation<types.DescribeCertificateOutput>
+function C:describeCertificate(input: types.DescribeCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCertificate as schema.OperationSchema, input, options) as async.Operation<types.DescribeCertificateOutput>
 end
 
-function C:describeConnector(input: types.DescribeConnectorInput, options: any): async.Operation<types.DescribeConnectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeConnector, input, options) as async.Operation<types.DescribeConnectorOutput>
+function C:describeConnector(input: types.DescribeConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeConnector as schema.OperationSchema, input, options) as async.Operation<types.DescribeConnectorOutput>
 end
 
-function C:describeExecution(input: types.DescribeExecutionInput, options: any): async.Operation<types.DescribeExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeExecution, input, options) as async.Operation<types.DescribeExecutionOutput>
+function C:describeExecution(input: types.DescribeExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeExecution as schema.OperationSchema, input, options) as async.Operation<types.DescribeExecutionOutput>
 end
 
-function C:describeHostKey(input: types.DescribeHostKeyInput, options: any): async.Operation<types.DescribeHostKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeHostKey, input, options) as async.Operation<types.DescribeHostKeyOutput>
+function C:describeHostKey(input: types.DescribeHostKeyInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeHostKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeHostKey as schema.OperationSchema, input, options) as async.Operation<types.DescribeHostKeyOutput>
 end
 
-function C:describeProfile(input: types.DescribeProfileInput, options: any): async.Operation<types.DescribeProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeProfile, input, options) as async.Operation<types.DescribeProfileOutput>
+function C:describeProfile(input: types.DescribeProfileInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeProfile as schema.OperationSchema, input, options) as async.Operation<types.DescribeProfileOutput>
 end
 
-function C:describeSecurityPolicy(input: types.DescribeSecurityPolicyInput, options: any): async.Operation<types.DescribeSecurityPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSecurityPolicy, input, options) as async.Operation<types.DescribeSecurityPolicyOutput>
+function C:describeSecurityPolicy(input: types.DescribeSecurityPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSecurityPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSecurityPolicy as schema.OperationSchema, input, options) as async.Operation<types.DescribeSecurityPolicyOutput>
 end
 
-function C:describeServer(input: types.DescribeServerInput, options: any): async.Operation<types.DescribeServerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeServer, input, options) as async.Operation<types.DescribeServerOutput>
+function C:describeServer(input: types.DescribeServerInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeServerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeServer as schema.OperationSchema, input, options) as async.Operation<types.DescribeServerOutput>
 end
 
-function C:describeUser(input: types.DescribeUserInput, options: any): async.Operation<types.DescribeUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeUser, input, options) as async.Operation<types.DescribeUserOutput>
+function C:describeUser(input: types.DescribeUserInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeUser as schema.OperationSchema, input, options) as async.Operation<types.DescribeUserOutput>
 end
 
-function C:describeWebApp(input: types.DescribeWebAppInput, options: any): async.Operation<types.DescribeWebAppOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeWebApp, input, options) as async.Operation<types.DescribeWebAppOutput>
+function C:describeWebApp(input: types.DescribeWebAppInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeWebAppOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeWebApp as schema.OperationSchema, input, options) as async.Operation<types.DescribeWebAppOutput>
 end
 
-function C:describeWebAppCustomization(input: types.DescribeWebAppCustomizationInput, options: any): async.Operation<types.DescribeWebAppCustomizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeWebAppCustomization, input, options) as async.Operation<types.DescribeWebAppCustomizationOutput>
+function C:describeWebAppCustomization(input: types.DescribeWebAppCustomizationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeWebAppCustomizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeWebAppCustomization as schema.OperationSchema, input, options) as async.Operation<types.DescribeWebAppCustomizationOutput>
 end
 
-function C:describeWorkflow(input: types.DescribeWorkflowInput, options: any): async.Operation<types.DescribeWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeWorkflow, input, options) as async.Operation<types.DescribeWorkflowOutput>
+function C:describeWorkflow(input: types.DescribeWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeWorkflow as schema.OperationSchema, input, options) as async.Operation<types.DescribeWorkflowOutput>
 end
 
-function C:importCertificate(input: types.ImportCertificateInput, options: any): async.Operation<types.ImportCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportCertificate, input, options) as async.Operation<types.ImportCertificateOutput>
+function C:importCertificate(input: types.ImportCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.ImportCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportCertificate as schema.OperationSchema, input, options) as async.Operation<types.ImportCertificateOutput>
 end
 
-function C:importHostKey(input: types.ImportHostKeyInput, options: any): async.Operation<types.ImportHostKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportHostKey, input, options) as async.Operation<types.ImportHostKeyOutput>
+function C:importHostKey(input: types.ImportHostKeyInput, options?: base_client.InvokeOptions): async.Operation<types.ImportHostKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportHostKey as schema.OperationSchema, input, options) as async.Operation<types.ImportHostKeyOutput>
 end
 
-function C:importSshPublicKey(input: types.ImportSshPublicKeyInput, options: any): async.Operation<types.ImportSshPublicKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportSshPublicKey, input, options) as async.Operation<types.ImportSshPublicKeyOutput>
+function C:importSshPublicKey(input: types.ImportSshPublicKeyInput, options?: base_client.InvokeOptions): async.Operation<types.ImportSshPublicKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportSshPublicKey as schema.OperationSchema, input, options) as async.Operation<types.ImportSshPublicKeyOutput>
 end
 
-function C:listAccesses(input: types.ListAccessesInput, options: any): async.Operation<types.ListAccessesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccesses, input, options) as async.Operation<types.ListAccessesOutput>
+function C:listAccesses(input: types.ListAccessesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccessesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccesses as schema.OperationSchema, input, options) as async.Operation<types.ListAccessesOutput>
 end
 
-function C:listAgreements(input: types.ListAgreementsInput, options: any): async.Operation<types.ListAgreementsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAgreements, input, options) as async.Operation<types.ListAgreementsOutput>
+function C:listAgreements(input: types.ListAgreementsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAgreementsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAgreements as schema.OperationSchema, input, options) as async.Operation<types.ListAgreementsOutput>
 end
 
-function C:listCertificates(input: types.ListCertificatesInput, options: any): async.Operation<types.ListCertificatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCertificates, input, options) as async.Operation<types.ListCertificatesOutput>
+function C:listCertificates(input: types.ListCertificatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCertificatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCertificates as schema.OperationSchema, input, options) as async.Operation<types.ListCertificatesOutput>
 end
 
-function C:listConnectors(input: types.ListConnectorsInput, options: any): async.Operation<types.ListConnectorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConnectors, input, options) as async.Operation<types.ListConnectorsOutput>
+function C:listConnectors(input: types.ListConnectorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConnectorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConnectors as schema.OperationSchema, input, options) as async.Operation<types.ListConnectorsOutput>
 end
 
-function C:listExecutions(input: types.ListExecutionsInput, options: any): async.Operation<types.ListExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListExecutions, input, options) as async.Operation<types.ListExecutionsOutput>
+function C:listExecutions(input: types.ListExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExecutions as schema.OperationSchema, input, options) as async.Operation<types.ListExecutionsOutput>
 end
 
-function C:listFileTransferResults(input: types.ListFileTransferResultsInput, options: any): async.Operation<types.ListFileTransferResultsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFileTransferResults, input, options) as async.Operation<types.ListFileTransferResultsOutput>
+function C:listFileTransferResults(input: types.ListFileTransferResultsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFileTransferResultsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFileTransferResults as schema.OperationSchema, input, options) as async.Operation<types.ListFileTransferResultsOutput>
 end
 
-function C:listHostKeys(input: types.ListHostKeysInput, options: any): async.Operation<types.ListHostKeysOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListHostKeys, input, options) as async.Operation<types.ListHostKeysOutput>
+function C:listHostKeys(input: types.ListHostKeysInput, options?: base_client.InvokeOptions): async.Operation<types.ListHostKeysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListHostKeys as schema.OperationSchema, input, options) as async.Operation<types.ListHostKeysOutput>
 end
 
-function C:listProfiles(input: types.ListProfilesInput, options: any): async.Operation<types.ListProfilesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProfiles, input, options) as async.Operation<types.ListProfilesOutput>
+function C:listProfiles(input: types.ListProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.ListProfilesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProfiles as schema.OperationSchema, input, options) as async.Operation<types.ListProfilesOutput>
 end
 
-function C:listSecurityPolicies(input: types.ListSecurityPoliciesInput, options: any): async.Operation<types.ListSecurityPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSecurityPolicies, input, options) as async.Operation<types.ListSecurityPoliciesOutput>
+function C:listSecurityPolicies(input: types.ListSecurityPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSecurityPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSecurityPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListSecurityPoliciesOutput>
 end
 
-function C:listServers(input: types.ListServersInput, options: any): async.Operation<types.ListServersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServers, input, options) as async.Operation<types.ListServersOutput>
+function C:listServers(input: types.ListServersInput, options?: base_client.InvokeOptions): async.Operation<types.ListServersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServers as schema.OperationSchema, input, options) as async.Operation<types.ListServersOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listUsers(input: types.ListUsersInput, options: any): async.Operation<types.ListUsersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListUsers, input, options) as async.Operation<types.ListUsersOutput>
+function C:listUsers(input: types.ListUsersInput, options?: base_client.InvokeOptions): async.Operation<types.ListUsersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUsers as schema.OperationSchema, input, options) as async.Operation<types.ListUsersOutput>
 end
 
-function C:listWebApps(input: types.ListWebAppsInput, options: any): async.Operation<types.ListWebAppsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWebApps, input, options) as async.Operation<types.ListWebAppsOutput>
+function C:listWebApps(input: types.ListWebAppsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWebAppsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWebApps as schema.OperationSchema, input, options) as async.Operation<types.ListWebAppsOutput>
 end
 
-function C:listWorkflows(input: types.ListWorkflowsInput, options: any): async.Operation<types.ListWorkflowsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWorkflows, input, options) as async.Operation<types.ListWorkflowsOutput>
+function C:listWorkflows(input: types.ListWorkflowsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkflowsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkflows as schema.OperationSchema, input, options) as async.Operation<types.ListWorkflowsOutput>
 end
 
-function C:sendWorkflowStepState(input: types.SendWorkflowStepStateInput, options: any): async.Operation<types.SendWorkflowStepStateOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendWorkflowStepState, input, options) as async.Operation<types.SendWorkflowStepStateOutput>
+function C:sendWorkflowStepState(input: types.SendWorkflowStepStateInput, options?: base_client.InvokeOptions): async.Operation<types.SendWorkflowStepStateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendWorkflowStepState as schema.OperationSchema, input, options) as async.Operation<types.SendWorkflowStepStateOutput>
 end
 
-function C:startDirectoryListing(input: types.StartDirectoryListingInput, options: any): async.Operation<types.StartDirectoryListingOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartDirectoryListing, input, options) as async.Operation<types.StartDirectoryListingOutput>
+function C:startDirectoryListing(input: types.StartDirectoryListingInput, options?: base_client.InvokeOptions): async.Operation<types.StartDirectoryListingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDirectoryListing as schema.OperationSchema, input, options) as async.Operation<types.StartDirectoryListingOutput>
 end
 
-function C:startFileTransfer(input: types.StartFileTransferInput, options: any): async.Operation<types.StartFileTransferOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartFileTransfer, input, options) as async.Operation<types.StartFileTransferOutput>
+function C:startFileTransfer(input: types.StartFileTransferInput, options?: base_client.InvokeOptions): async.Operation<types.StartFileTransferOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartFileTransfer as schema.OperationSchema, input, options) as async.Operation<types.StartFileTransferOutput>
 end
 
-function C:startRemoteDelete(input: types.StartRemoteDeleteInput, options: any): async.Operation<types.StartRemoteDeleteOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartRemoteDelete, input, options) as async.Operation<types.StartRemoteDeleteOutput>
+function C:startRemoteDelete(input: types.StartRemoteDeleteInput, options?: base_client.InvokeOptions): async.Operation<types.StartRemoteDeleteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartRemoteDelete as schema.OperationSchema, input, options) as async.Operation<types.StartRemoteDeleteOutput>
 end
 
-function C:startRemoteMove(input: types.StartRemoteMoveInput, options: any): async.Operation<types.StartRemoteMoveOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartRemoteMove, input, options) as async.Operation<types.StartRemoteMoveOutput>
+function C:startRemoteMove(input: types.StartRemoteMoveInput, options?: base_client.InvokeOptions): async.Operation<types.StartRemoteMoveOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartRemoteMove as schema.OperationSchema, input, options) as async.Operation<types.StartRemoteMoveOutput>
 end
 
-function C:startServer(input: types.StartServerInput, options: any): async.Operation<types.StartServerOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartServer, input, options) as async.Operation<types.StartServerOutput>
+function C:startServer(input: types.StartServerInput, options?: base_client.InvokeOptions): async.Operation<types.StartServerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartServer as schema.OperationSchema, input, options) as async.Operation<types.StartServerOutput>
 end
 
-function C:stopServer(input: types.StopServerInput, options: any): async.Operation<types.StopServerOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopServer, input, options) as async.Operation<types.StopServerOutput>
+function C:stopServer(input: types.StopServerInput, options?: base_client.InvokeOptions): async.Operation<types.StopServerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopServer as schema.OperationSchema, input, options) as async.Operation<types.StopServerOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:testConnection(input: types.TestConnectionInput, options: any): async.Operation<types.TestConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.TestConnection, input, options) as async.Operation<types.TestConnectionOutput>
+function C:testConnection(input: types.TestConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.TestConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TestConnection as schema.OperationSchema, input, options) as async.Operation<types.TestConnectionOutput>
 end
 
-function C:testIdentityProvider(input: types.TestIdentityProviderInput, options: any): async.Operation<types.TestIdentityProviderOutput>
-    return self:invokeOperation(schemas.Service, schemas.TestIdentityProvider, input, options) as async.Operation<types.TestIdentityProviderOutput>
+function C:testIdentityProvider(input: types.TestIdentityProviderInput, options?: base_client.InvokeOptions): async.Operation<types.TestIdentityProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TestIdentityProvider as schema.OperationSchema, input, options) as async.Operation<types.TestIdentityProviderOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAccess(input: types.UpdateAccessInput, options: any): async.Operation<types.UpdateAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAccess, input, options) as async.Operation<types.UpdateAccessOutput>
+function C:updateAccess(input: types.UpdateAccessInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAccess as schema.OperationSchema, input, options) as async.Operation<types.UpdateAccessOutput>
 end
 
-function C:updateAgreement(input: types.UpdateAgreementInput, options: any): async.Operation<types.UpdateAgreementOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAgreement, input, options) as async.Operation<types.UpdateAgreementOutput>
+function C:updateAgreement(input: types.UpdateAgreementInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAgreementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAgreement as schema.OperationSchema, input, options) as async.Operation<types.UpdateAgreementOutput>
 end
 
-function C:updateCertificate(input: types.UpdateCertificateInput, options: any): async.Operation<types.UpdateCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCertificate, input, options) as async.Operation<types.UpdateCertificateOutput>
+function C:updateCertificate(input: types.UpdateCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCertificate as schema.OperationSchema, input, options) as async.Operation<types.UpdateCertificateOutput>
 end
 
-function C:updateConnector(input: types.UpdateConnectorInput, options: any): async.Operation<types.UpdateConnectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConnector, input, options) as async.Operation<types.UpdateConnectorOutput>
+function C:updateConnector(input: types.UpdateConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConnector as schema.OperationSchema, input, options) as async.Operation<types.UpdateConnectorOutput>
 end
 
-function C:updateHostKey(input: types.UpdateHostKeyInput, options: any): async.Operation<types.UpdateHostKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateHostKey, input, options) as async.Operation<types.UpdateHostKeyOutput>
+function C:updateHostKey(input: types.UpdateHostKeyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateHostKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateHostKey as schema.OperationSchema, input, options) as async.Operation<types.UpdateHostKeyOutput>
 end
 
-function C:updateProfile(input: types.UpdateProfileInput, options: any): async.Operation<types.UpdateProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProfile, input, options) as async.Operation<types.UpdateProfileOutput>
+function C:updateProfile(input: types.UpdateProfileInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProfile as schema.OperationSchema, input, options) as async.Operation<types.UpdateProfileOutput>
 end
 
-function C:updateServer(input: types.UpdateServerInput, options: any): async.Operation<types.UpdateServerOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateServer, input, options) as async.Operation<types.UpdateServerOutput>
+function C:updateServer(input: types.UpdateServerInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateServerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateServer as schema.OperationSchema, input, options) as async.Operation<types.UpdateServerOutput>
 end
 
-function C:updateUser(input: types.UpdateUserInput, options: any): async.Operation<types.UpdateUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateUser, input, options) as async.Operation<types.UpdateUserOutput>
+function C:updateUser(input: types.UpdateUserInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateUser as schema.OperationSchema, input, options) as async.Operation<types.UpdateUserOutput>
 end
 
-function C:updateWebApp(input: types.UpdateWebAppInput, options: any): async.Operation<types.UpdateWebAppOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateWebApp, input, options) as async.Operation<types.UpdateWebAppOutput>
+function C:updateWebApp(input: types.UpdateWebAppInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWebAppOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWebApp as schema.OperationSchema, input, options) as async.Operation<types.UpdateWebAppOutput>
 end
 
-function C:updateWebAppCustomization(input: types.UpdateWebAppCustomizationInput, options: any): async.Operation<types.UpdateWebAppCustomizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateWebAppCustomization, input, options) as async.Operation<types.UpdateWebAppCustomizationOutput>
+function C:updateWebAppCustomization(input: types.UpdateWebAppCustomizationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWebAppCustomizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWebAppCustomization as schema.OperationSchema, input, options) as async.Operation<types.UpdateWebAppCustomizationOutput>
 end
 
 return M

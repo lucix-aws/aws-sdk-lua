@@ -8,98 +8,101 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("cleanroomsml.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("cleanroomsml.schemas")
 local traits = require("smithy.traits")
 local types = require("cleanroomsml.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    cancelTrainedModel: function(Client, types.CancelTrainedModelInput, any): async.Operation<types.CancelTrainedModelOutput>
-    cancelTrainedModelInferenceJob: function(Client, types.CancelTrainedModelInferenceJobInput, any): async.Operation<types.CancelTrainedModelInferenceJobOutput>
-    createAudienceModel: function(Client, types.CreateAudienceModelInput, any): async.Operation<types.CreateAudienceModelOutput>
-    createConfiguredAudienceModel: function(Client, types.CreateConfiguredAudienceModelInput, any): async.Operation<types.CreateConfiguredAudienceModelOutput>
-    createConfiguredModelAlgorithm: function(Client, types.CreateConfiguredModelAlgorithmInput, any): async.Operation<types.CreateConfiguredModelAlgorithmOutput>
-    createConfiguredModelAlgorithmAssociation: function(Client, types.CreateConfiguredModelAlgorithmAssociationInput, any): async.Operation<types.CreateConfiguredModelAlgorithmAssociationOutput>
-    createMLInputChannel: function(Client, types.CreateMLInputChannelInput, any): async.Operation<types.CreateMLInputChannelOutput>
-    createTrainedModel: function(Client, types.CreateTrainedModelInput, any): async.Operation<types.CreateTrainedModelOutput>
-    createTrainingDataset: function(Client, types.CreateTrainingDatasetInput, any): async.Operation<types.CreateTrainingDatasetOutput>
-    deleteAudienceGenerationJob: function(Client, types.DeleteAudienceGenerationJobInput, any): async.Operation<types.DeleteAudienceGenerationJobOutput>
-    deleteAudienceModel: function(Client, types.DeleteAudienceModelInput, any): async.Operation<types.DeleteAudienceModelOutput>
-    deleteConfiguredAudienceModel: function(Client, types.DeleteConfiguredAudienceModelInput, any): async.Operation<types.DeleteConfiguredAudienceModelOutput>
-    deleteConfiguredAudienceModelPolicy: function(Client, types.DeleteConfiguredAudienceModelPolicyInput, any): async.Operation<types.DeleteConfiguredAudienceModelPolicyOutput>
-    deleteConfiguredModelAlgorithm: function(Client, types.DeleteConfiguredModelAlgorithmInput, any): async.Operation<types.DeleteConfiguredModelAlgorithmOutput>
-    deleteConfiguredModelAlgorithmAssociation: function(Client, types.DeleteConfiguredModelAlgorithmAssociationInput, any): async.Operation<types.DeleteConfiguredModelAlgorithmAssociationOutput>
-    deleteMLConfiguration: function(Client, types.DeleteMLConfigurationInput, any): async.Operation<types.DeleteMLConfigurationOutput>
-    deleteMLInputChannelData: function(Client, types.DeleteMLInputChannelDataInput, any): async.Operation<types.DeleteMLInputChannelDataOutput>
-    deleteTrainedModelOutput: function(Client, types.DeleteTrainedModelOutputInput, any): async.Operation<types.DeleteTrainedModelOutputOutput>
-    deleteTrainingDataset: function(Client, types.DeleteTrainingDatasetInput, any): async.Operation<types.DeleteTrainingDatasetOutput>
-    getAudienceGenerationJob: function(Client, types.GetAudienceGenerationJobInput, any): async.Operation<types.GetAudienceGenerationJobOutput>
-    getAudienceModel: function(Client, types.GetAudienceModelInput, any): async.Operation<types.GetAudienceModelOutput>
-    getCollaborationConfiguredModelAlgorithmAssociation: function(Client, types.GetCollaborationConfiguredModelAlgorithmAssociationInput, any): async.Operation<types.GetCollaborationConfiguredModelAlgorithmAssociationOutput>
-    getCollaborationMLInputChannel: function(Client, types.GetCollaborationMLInputChannelInput, any): async.Operation<types.GetCollaborationMLInputChannelOutput>
-    getCollaborationTrainedModel: function(Client, types.GetCollaborationTrainedModelInput, any): async.Operation<types.GetCollaborationTrainedModelOutput>
-    getConfiguredAudienceModel: function(Client, types.GetConfiguredAudienceModelInput, any): async.Operation<types.GetConfiguredAudienceModelOutput>
-    getConfiguredAudienceModelPolicy: function(Client, types.GetConfiguredAudienceModelPolicyInput, any): async.Operation<types.GetConfiguredAudienceModelPolicyOutput>
-    getConfiguredModelAlgorithm: function(Client, types.GetConfiguredModelAlgorithmInput, any): async.Operation<types.GetConfiguredModelAlgorithmOutput>
-    getConfiguredModelAlgorithmAssociation: function(Client, types.GetConfiguredModelAlgorithmAssociationInput, any): async.Operation<types.GetConfiguredModelAlgorithmAssociationOutput>
-    getMLConfiguration: function(Client, types.GetMLConfigurationInput, any): async.Operation<types.GetMLConfigurationOutput>
-    getMLInputChannel: function(Client, types.GetMLInputChannelInput, any): async.Operation<types.GetMLInputChannelOutput>
-    getTrainedModel: function(Client, types.GetTrainedModelInput, any): async.Operation<types.GetTrainedModelOutput>
-    getTrainedModelInferenceJob: function(Client, types.GetTrainedModelInferenceJobInput, any): async.Operation<types.GetTrainedModelInferenceJobOutput>
-    getTrainingDataset: function(Client, types.GetTrainingDatasetInput, any): async.Operation<types.GetTrainingDatasetOutput>
-    listAudienceExportJobs: function(Client, types.ListAudienceExportJobsInput, any): async.Operation<types.ListAudienceExportJobsOutput>
-    listAudienceGenerationJobs: function(Client, types.ListAudienceGenerationJobsInput, any): async.Operation<types.ListAudienceGenerationJobsOutput>
-    listAudienceModels: function(Client, types.ListAudienceModelsInput, any): async.Operation<types.ListAudienceModelsOutput>
-    listCollaborationConfiguredModelAlgorithmAssociations: function(Client, types.ListCollaborationConfiguredModelAlgorithmAssociationsInput, any): async.Operation<types.ListCollaborationConfiguredModelAlgorithmAssociationsOutput>
-    listCollaborationMLInputChannels: function(Client, types.ListCollaborationMLInputChannelsInput, any): async.Operation<types.ListCollaborationMLInputChannelsOutput>
-    listCollaborationTrainedModelExportJobs: function(Client, types.ListCollaborationTrainedModelExportJobsInput, any): async.Operation<types.ListCollaborationTrainedModelExportJobsOutput>
-    listCollaborationTrainedModelInferenceJobs: function(Client, types.ListCollaborationTrainedModelInferenceJobsInput, any): async.Operation<types.ListCollaborationTrainedModelInferenceJobsOutput>
-    listCollaborationTrainedModels: function(Client, types.ListCollaborationTrainedModelsInput, any): async.Operation<types.ListCollaborationTrainedModelsOutput>
-    listConfiguredAudienceModels: function(Client, types.ListConfiguredAudienceModelsInput, any): async.Operation<types.ListConfiguredAudienceModelsOutput>
-    listConfiguredModelAlgorithmAssociations: function(Client, types.ListConfiguredModelAlgorithmAssociationsInput, any): async.Operation<types.ListConfiguredModelAlgorithmAssociationsOutput>
-    listConfiguredModelAlgorithms: function(Client, types.ListConfiguredModelAlgorithmsInput, any): async.Operation<types.ListConfiguredModelAlgorithmsOutput>
-    listMLInputChannels: function(Client, types.ListMLInputChannelsInput, any): async.Operation<types.ListMLInputChannelsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTrainedModelInferenceJobs: function(Client, types.ListTrainedModelInferenceJobsInput, any): async.Operation<types.ListTrainedModelInferenceJobsOutput>
-    listTrainedModels: function(Client, types.ListTrainedModelsInput, any): async.Operation<types.ListTrainedModelsOutput>
-    listTrainedModelVersions: function(Client, types.ListTrainedModelVersionsInput, any): async.Operation<types.ListTrainedModelVersionsOutput>
-    listTrainingDatasets: function(Client, types.ListTrainingDatasetsInput, any): async.Operation<types.ListTrainingDatasetsOutput>
-    putConfiguredAudienceModelPolicy: function(Client, types.PutConfiguredAudienceModelPolicyInput, any): async.Operation<types.PutConfiguredAudienceModelPolicyOutput>
-    putMLConfiguration: function(Client, types.PutMLConfigurationInput, any): async.Operation<types.PutMLConfigurationOutput>
-    startAudienceExportJob: function(Client, types.StartAudienceExportJobInput, any): async.Operation<types.StartAudienceExportJobOutput>
-    startAudienceGenerationJob: function(Client, types.StartAudienceGenerationJobInput, any): async.Operation<types.StartAudienceGenerationJobOutput>
-    startTrainedModelExportJob: function(Client, types.StartTrainedModelExportJobInput, any): async.Operation<types.StartTrainedModelExportJobOutput>
-    startTrainedModelInferenceJob: function(Client, types.StartTrainedModelInferenceJobInput, any): async.Operation<types.StartTrainedModelInferenceJobOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateConfiguredAudienceModel: function(Client, types.UpdateConfiguredAudienceModelInput, any): async.Operation<types.UpdateConfiguredAudienceModelOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    cancelTrainedModel: function(Client, types.CancelTrainedModelInput, ? base_client.InvokeOptions): async.Operation<types.CancelTrainedModelOutput>
+    cancelTrainedModelInferenceJob: function(Client, types.CancelTrainedModelInferenceJobInput, ? base_client.InvokeOptions): async.Operation<types.CancelTrainedModelInferenceJobOutput>
+    createAudienceModel: function(Client, types.CreateAudienceModelInput, ? base_client.InvokeOptions): async.Operation<types.CreateAudienceModelOutput>
+    createConfiguredAudienceModel: function(Client, types.CreateConfiguredAudienceModelInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfiguredAudienceModelOutput>
+    createConfiguredModelAlgorithm: function(Client, types.CreateConfiguredModelAlgorithmInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfiguredModelAlgorithmOutput>
+    createConfiguredModelAlgorithmAssociation: function(Client, types.CreateConfiguredModelAlgorithmAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfiguredModelAlgorithmAssociationOutput>
+    createMLInputChannel: function(Client, types.CreateMLInputChannelInput, ? base_client.InvokeOptions): async.Operation<types.CreateMLInputChannelOutput>
+    createTrainedModel: function(Client, types.CreateTrainedModelInput, ? base_client.InvokeOptions): async.Operation<types.CreateTrainedModelOutput>
+    createTrainingDataset: function(Client, types.CreateTrainingDatasetInput, ? base_client.InvokeOptions): async.Operation<types.CreateTrainingDatasetOutput>
+    deleteAudienceGenerationJob: function(Client, types.DeleteAudienceGenerationJobInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAudienceGenerationJobOutput>
+    deleteAudienceModel: function(Client, types.DeleteAudienceModelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAudienceModelOutput>
+    deleteConfiguredAudienceModel: function(Client, types.DeleteConfiguredAudienceModelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfiguredAudienceModelOutput>
+    deleteConfiguredAudienceModelPolicy: function(Client, types.DeleteConfiguredAudienceModelPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfiguredAudienceModelPolicyOutput>
+    deleteConfiguredModelAlgorithm: function(Client, types.DeleteConfiguredModelAlgorithmInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfiguredModelAlgorithmOutput>
+    deleteConfiguredModelAlgorithmAssociation: function(Client, types.DeleteConfiguredModelAlgorithmAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfiguredModelAlgorithmAssociationOutput>
+    deleteMLConfiguration: function(Client, types.DeleteMLConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMLConfigurationOutput>
+    deleteMLInputChannelData: function(Client, types.DeleteMLInputChannelDataInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMLInputChannelDataOutput>
+    deleteTrainedModelOutput: function(Client, types.DeleteTrainedModelOutputInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTrainedModelOutputOutput>
+    deleteTrainingDataset: function(Client, types.DeleteTrainingDatasetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTrainingDatasetOutput>
+    getAudienceGenerationJob: function(Client, types.GetAudienceGenerationJobInput, ? base_client.InvokeOptions): async.Operation<types.GetAudienceGenerationJobOutput>
+    getAudienceModel: function(Client, types.GetAudienceModelInput, ? base_client.InvokeOptions): async.Operation<types.GetAudienceModelOutput>
+    getCollaborationConfiguredModelAlgorithmAssociation: function(Client, types.GetCollaborationConfiguredModelAlgorithmAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetCollaborationConfiguredModelAlgorithmAssociationOutput>
+    getCollaborationMLInputChannel: function(Client, types.GetCollaborationMLInputChannelInput, ? base_client.InvokeOptions): async.Operation<types.GetCollaborationMLInputChannelOutput>
+    getCollaborationTrainedModel: function(Client, types.GetCollaborationTrainedModelInput, ? base_client.InvokeOptions): async.Operation<types.GetCollaborationTrainedModelOutput>
+    getConfiguredAudienceModel: function(Client, types.GetConfiguredAudienceModelInput, ? base_client.InvokeOptions): async.Operation<types.GetConfiguredAudienceModelOutput>
+    getConfiguredAudienceModelPolicy: function(Client, types.GetConfiguredAudienceModelPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetConfiguredAudienceModelPolicyOutput>
+    getConfiguredModelAlgorithm: function(Client, types.GetConfiguredModelAlgorithmInput, ? base_client.InvokeOptions): async.Operation<types.GetConfiguredModelAlgorithmOutput>
+    getConfiguredModelAlgorithmAssociation: function(Client, types.GetConfiguredModelAlgorithmAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetConfiguredModelAlgorithmAssociationOutput>
+    getMLConfiguration: function(Client, types.GetMLConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetMLConfigurationOutput>
+    getMLInputChannel: function(Client, types.GetMLInputChannelInput, ? base_client.InvokeOptions): async.Operation<types.GetMLInputChannelOutput>
+    getTrainedModel: function(Client, types.GetTrainedModelInput, ? base_client.InvokeOptions): async.Operation<types.GetTrainedModelOutput>
+    getTrainedModelInferenceJob: function(Client, types.GetTrainedModelInferenceJobInput, ? base_client.InvokeOptions): async.Operation<types.GetTrainedModelInferenceJobOutput>
+    getTrainingDataset: function(Client, types.GetTrainingDatasetInput, ? base_client.InvokeOptions): async.Operation<types.GetTrainingDatasetOutput>
+    listAudienceExportJobs: function(Client, types.ListAudienceExportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListAudienceExportJobsOutput>
+    listAudienceGenerationJobs: function(Client, types.ListAudienceGenerationJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListAudienceGenerationJobsOutput>
+    listAudienceModels: function(Client, types.ListAudienceModelsInput, ? base_client.InvokeOptions): async.Operation<types.ListAudienceModelsOutput>
+    listCollaborationConfiguredModelAlgorithmAssociations: function(Client, types.ListCollaborationConfiguredModelAlgorithmAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListCollaborationConfiguredModelAlgorithmAssociationsOutput>
+    listCollaborationMLInputChannels: function(Client, types.ListCollaborationMLInputChannelsInput, ? base_client.InvokeOptions): async.Operation<types.ListCollaborationMLInputChannelsOutput>
+    listCollaborationTrainedModelExportJobs: function(Client, types.ListCollaborationTrainedModelExportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListCollaborationTrainedModelExportJobsOutput>
+    listCollaborationTrainedModelInferenceJobs: function(Client, types.ListCollaborationTrainedModelInferenceJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListCollaborationTrainedModelInferenceJobsOutput>
+    listCollaborationTrainedModels: function(Client, types.ListCollaborationTrainedModelsInput, ? base_client.InvokeOptions): async.Operation<types.ListCollaborationTrainedModelsOutput>
+    listConfiguredAudienceModels: function(Client, types.ListConfiguredAudienceModelsInput, ? base_client.InvokeOptions): async.Operation<types.ListConfiguredAudienceModelsOutput>
+    listConfiguredModelAlgorithmAssociations: function(Client, types.ListConfiguredModelAlgorithmAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListConfiguredModelAlgorithmAssociationsOutput>
+    listConfiguredModelAlgorithms: function(Client, types.ListConfiguredModelAlgorithmsInput, ? base_client.InvokeOptions): async.Operation<types.ListConfiguredModelAlgorithmsOutput>
+    listMLInputChannels: function(Client, types.ListMLInputChannelsInput, ? base_client.InvokeOptions): async.Operation<types.ListMLInputChannelsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTrainedModelInferenceJobs: function(Client, types.ListTrainedModelInferenceJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListTrainedModelInferenceJobsOutput>
+    listTrainedModels: function(Client, types.ListTrainedModelsInput, ? base_client.InvokeOptions): async.Operation<types.ListTrainedModelsOutput>
+    listTrainedModelVersions: function(Client, types.ListTrainedModelVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListTrainedModelVersionsOutput>
+    listTrainingDatasets: function(Client, types.ListTrainingDatasetsInput, ? base_client.InvokeOptions): async.Operation<types.ListTrainingDatasetsOutput>
+    putConfiguredAudienceModelPolicy: function(Client, types.PutConfiguredAudienceModelPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutConfiguredAudienceModelPolicyOutput>
+    putMLConfiguration: function(Client, types.PutMLConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutMLConfigurationOutput>
+    startAudienceExportJob: function(Client, types.StartAudienceExportJobInput, ? base_client.InvokeOptions): async.Operation<types.StartAudienceExportJobOutput>
+    startAudienceGenerationJob: function(Client, types.StartAudienceGenerationJobInput, ? base_client.InvokeOptions): async.Operation<types.StartAudienceGenerationJobOutput>
+    startTrainedModelExportJob: function(Client, types.StartTrainedModelExportJobInput, ? base_client.InvokeOptions): async.Operation<types.StartTrainedModelExportJobOutput>
+    startTrainedModelInferenceJob: function(Client, types.StartTrainedModelInferenceJobInput, ? base_client.InvokeOptions): async.Operation<types.StartTrainedModelInferenceJobOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateConfiguredAudienceModel: function(Client, types.UpdateConfiguredAudienceModelInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfiguredAudienceModelOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSStarkControlService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "cleanrooms-ml", signing_region = c.region } }
                 else
@@ -118,240 +121,240 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:cancelTrainedModel(input: types.CancelTrainedModelInput, options: any): async.Operation<types.CancelTrainedModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelTrainedModel, input, options) as async.Operation<types.CancelTrainedModelOutput>
+function C:cancelTrainedModel(input: types.CancelTrainedModelInput, options?: base_client.InvokeOptions): async.Operation<types.CancelTrainedModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelTrainedModel as schema.OperationSchema, input, options) as async.Operation<types.CancelTrainedModelOutput>
 end
 
-function C:cancelTrainedModelInferenceJob(input: types.CancelTrainedModelInferenceJobInput, options: any): async.Operation<types.CancelTrainedModelInferenceJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelTrainedModelInferenceJob, input, options) as async.Operation<types.CancelTrainedModelInferenceJobOutput>
+function C:cancelTrainedModelInferenceJob(input: types.CancelTrainedModelInferenceJobInput, options?: base_client.InvokeOptions): async.Operation<types.CancelTrainedModelInferenceJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelTrainedModelInferenceJob as schema.OperationSchema, input, options) as async.Operation<types.CancelTrainedModelInferenceJobOutput>
 end
 
-function C:createAudienceModel(input: types.CreateAudienceModelInput, options: any): async.Operation<types.CreateAudienceModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAudienceModel, input, options) as async.Operation<types.CreateAudienceModelOutput>
+function C:createAudienceModel(input: types.CreateAudienceModelInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAudienceModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAudienceModel as schema.OperationSchema, input, options) as async.Operation<types.CreateAudienceModelOutput>
 end
 
-function C:createConfiguredAudienceModel(input: types.CreateConfiguredAudienceModelInput, options: any): async.Operation<types.CreateConfiguredAudienceModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConfiguredAudienceModel, input, options) as async.Operation<types.CreateConfiguredAudienceModelOutput>
+function C:createConfiguredAudienceModel(input: types.CreateConfiguredAudienceModelInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConfiguredAudienceModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConfiguredAudienceModel as schema.OperationSchema, input, options) as async.Operation<types.CreateConfiguredAudienceModelOutput>
 end
 
-function C:createConfiguredModelAlgorithm(input: types.CreateConfiguredModelAlgorithmInput, options: any): async.Operation<types.CreateConfiguredModelAlgorithmOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConfiguredModelAlgorithm, input, options) as async.Operation<types.CreateConfiguredModelAlgorithmOutput>
+function C:createConfiguredModelAlgorithm(input: types.CreateConfiguredModelAlgorithmInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConfiguredModelAlgorithmOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConfiguredModelAlgorithm as schema.OperationSchema, input, options) as async.Operation<types.CreateConfiguredModelAlgorithmOutput>
 end
 
-function C:createConfiguredModelAlgorithmAssociation(input: types.CreateConfiguredModelAlgorithmAssociationInput, options: any): async.Operation<types.CreateConfiguredModelAlgorithmAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConfiguredModelAlgorithmAssociation, input, options) as async.Operation<types.CreateConfiguredModelAlgorithmAssociationOutput>
+function C:createConfiguredModelAlgorithmAssociation(input: types.CreateConfiguredModelAlgorithmAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConfiguredModelAlgorithmAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConfiguredModelAlgorithmAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreateConfiguredModelAlgorithmAssociationOutput>
 end
 
-function C:createMLInputChannel(input: types.CreateMLInputChannelInput, options: any): async.Operation<types.CreateMLInputChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMLInputChannel, input, options) as async.Operation<types.CreateMLInputChannelOutput>
+function C:createMLInputChannel(input: types.CreateMLInputChannelInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMLInputChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMLInputChannel as schema.OperationSchema, input, options) as async.Operation<types.CreateMLInputChannelOutput>
 end
 
-function C:createTrainedModel(input: types.CreateTrainedModelInput, options: any): async.Operation<types.CreateTrainedModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTrainedModel, input, options) as async.Operation<types.CreateTrainedModelOutput>
+function C:createTrainedModel(input: types.CreateTrainedModelInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTrainedModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTrainedModel as schema.OperationSchema, input, options) as async.Operation<types.CreateTrainedModelOutput>
 end
 
-function C:createTrainingDataset(input: types.CreateTrainingDatasetInput, options: any): async.Operation<types.CreateTrainingDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTrainingDataset, input, options) as async.Operation<types.CreateTrainingDatasetOutput>
+function C:createTrainingDataset(input: types.CreateTrainingDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTrainingDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTrainingDataset as schema.OperationSchema, input, options) as async.Operation<types.CreateTrainingDatasetOutput>
 end
 
-function C:deleteAudienceGenerationJob(input: types.DeleteAudienceGenerationJobInput, options: any): async.Operation<types.DeleteAudienceGenerationJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAudienceGenerationJob, input, options) as async.Operation<types.DeleteAudienceGenerationJobOutput>
+function C:deleteAudienceGenerationJob(input: types.DeleteAudienceGenerationJobInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAudienceGenerationJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAudienceGenerationJob as schema.OperationSchema, input, options) as async.Operation<types.DeleteAudienceGenerationJobOutput>
 end
 
-function C:deleteAudienceModel(input: types.DeleteAudienceModelInput, options: any): async.Operation<types.DeleteAudienceModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAudienceModel, input, options) as async.Operation<types.DeleteAudienceModelOutput>
+function C:deleteAudienceModel(input: types.DeleteAudienceModelInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAudienceModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAudienceModel as schema.OperationSchema, input, options) as async.Operation<types.DeleteAudienceModelOutput>
 end
 
-function C:deleteConfiguredAudienceModel(input: types.DeleteConfiguredAudienceModelInput, options: any): async.Operation<types.DeleteConfiguredAudienceModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConfiguredAudienceModel, input, options) as async.Operation<types.DeleteConfiguredAudienceModelOutput>
+function C:deleteConfiguredAudienceModel(input: types.DeleteConfiguredAudienceModelInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConfiguredAudienceModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConfiguredAudienceModel as schema.OperationSchema, input, options) as async.Operation<types.DeleteConfiguredAudienceModelOutput>
 end
 
-function C:deleteConfiguredAudienceModelPolicy(input: types.DeleteConfiguredAudienceModelPolicyInput, options: any): async.Operation<types.DeleteConfiguredAudienceModelPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConfiguredAudienceModelPolicy, input, options) as async.Operation<types.DeleteConfiguredAudienceModelPolicyOutput>
+function C:deleteConfiguredAudienceModelPolicy(input: types.DeleteConfiguredAudienceModelPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConfiguredAudienceModelPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConfiguredAudienceModelPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteConfiguredAudienceModelPolicyOutput>
 end
 
-function C:deleteConfiguredModelAlgorithm(input: types.DeleteConfiguredModelAlgorithmInput, options: any): async.Operation<types.DeleteConfiguredModelAlgorithmOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConfiguredModelAlgorithm, input, options) as async.Operation<types.DeleteConfiguredModelAlgorithmOutput>
+function C:deleteConfiguredModelAlgorithm(input: types.DeleteConfiguredModelAlgorithmInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConfiguredModelAlgorithmOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConfiguredModelAlgorithm as schema.OperationSchema, input, options) as async.Operation<types.DeleteConfiguredModelAlgorithmOutput>
 end
 
-function C:deleteConfiguredModelAlgorithmAssociation(input: types.DeleteConfiguredModelAlgorithmAssociationInput, options: any): async.Operation<types.DeleteConfiguredModelAlgorithmAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConfiguredModelAlgorithmAssociation, input, options) as async.Operation<types.DeleteConfiguredModelAlgorithmAssociationOutput>
+function C:deleteConfiguredModelAlgorithmAssociation(input: types.DeleteConfiguredModelAlgorithmAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConfiguredModelAlgorithmAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConfiguredModelAlgorithmAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteConfiguredModelAlgorithmAssociationOutput>
 end
 
-function C:deleteMLConfiguration(input: types.DeleteMLConfigurationInput, options: any): async.Operation<types.DeleteMLConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMLConfiguration, input, options) as async.Operation<types.DeleteMLConfigurationOutput>
+function C:deleteMLConfiguration(input: types.DeleteMLConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMLConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMLConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteMLConfigurationOutput>
 end
 
-function C:deleteMLInputChannelData(input: types.DeleteMLInputChannelDataInput, options: any): async.Operation<types.DeleteMLInputChannelDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMLInputChannelData, input, options) as async.Operation<types.DeleteMLInputChannelDataOutput>
+function C:deleteMLInputChannelData(input: types.DeleteMLInputChannelDataInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMLInputChannelDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMLInputChannelData as schema.OperationSchema, input, options) as async.Operation<types.DeleteMLInputChannelDataOutput>
 end
 
-function C:deleteTrainedModelOutput(input: types.DeleteTrainedModelOutputInput, options: any): async.Operation<types.DeleteTrainedModelOutputOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTrainedModelOutput, input, options) as async.Operation<types.DeleteTrainedModelOutputOutput>
+function C:deleteTrainedModelOutput(input: types.DeleteTrainedModelOutputInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTrainedModelOutputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTrainedModelOutput as schema.OperationSchema, input, options) as async.Operation<types.DeleteTrainedModelOutputOutput>
 end
 
-function C:deleteTrainingDataset(input: types.DeleteTrainingDatasetInput, options: any): async.Operation<types.DeleteTrainingDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTrainingDataset, input, options) as async.Operation<types.DeleteTrainingDatasetOutput>
+function C:deleteTrainingDataset(input: types.DeleteTrainingDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTrainingDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTrainingDataset as schema.OperationSchema, input, options) as async.Operation<types.DeleteTrainingDatasetOutput>
 end
 
-function C:getAudienceGenerationJob(input: types.GetAudienceGenerationJobInput, options: any): async.Operation<types.GetAudienceGenerationJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAudienceGenerationJob, input, options) as async.Operation<types.GetAudienceGenerationJobOutput>
+function C:getAudienceGenerationJob(input: types.GetAudienceGenerationJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetAudienceGenerationJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAudienceGenerationJob as schema.OperationSchema, input, options) as async.Operation<types.GetAudienceGenerationJobOutput>
 end
 
-function C:getAudienceModel(input: types.GetAudienceModelInput, options: any): async.Operation<types.GetAudienceModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAudienceModel, input, options) as async.Operation<types.GetAudienceModelOutput>
+function C:getAudienceModel(input: types.GetAudienceModelInput, options?: base_client.InvokeOptions): async.Operation<types.GetAudienceModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAudienceModel as schema.OperationSchema, input, options) as async.Operation<types.GetAudienceModelOutput>
 end
 
-function C:getCollaborationConfiguredModelAlgorithmAssociation(input: types.GetCollaborationConfiguredModelAlgorithmAssociationInput, options: any): async.Operation<types.GetCollaborationConfiguredModelAlgorithmAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCollaborationConfiguredModelAlgorithmAssociation, input, options) as async.Operation<types.GetCollaborationConfiguredModelAlgorithmAssociationOutput>
+function C:getCollaborationConfiguredModelAlgorithmAssociation(input: types.GetCollaborationConfiguredModelAlgorithmAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetCollaborationConfiguredModelAlgorithmAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCollaborationConfiguredModelAlgorithmAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetCollaborationConfiguredModelAlgorithmAssociationOutput>
 end
 
-function C:getCollaborationMLInputChannel(input: types.GetCollaborationMLInputChannelInput, options: any): async.Operation<types.GetCollaborationMLInputChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCollaborationMLInputChannel, input, options) as async.Operation<types.GetCollaborationMLInputChannelOutput>
+function C:getCollaborationMLInputChannel(input: types.GetCollaborationMLInputChannelInput, options?: base_client.InvokeOptions): async.Operation<types.GetCollaborationMLInputChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCollaborationMLInputChannel as schema.OperationSchema, input, options) as async.Operation<types.GetCollaborationMLInputChannelOutput>
 end
 
-function C:getCollaborationTrainedModel(input: types.GetCollaborationTrainedModelInput, options: any): async.Operation<types.GetCollaborationTrainedModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCollaborationTrainedModel, input, options) as async.Operation<types.GetCollaborationTrainedModelOutput>
+function C:getCollaborationTrainedModel(input: types.GetCollaborationTrainedModelInput, options?: base_client.InvokeOptions): async.Operation<types.GetCollaborationTrainedModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCollaborationTrainedModel as schema.OperationSchema, input, options) as async.Operation<types.GetCollaborationTrainedModelOutput>
 end
 
-function C:getConfiguredAudienceModel(input: types.GetConfiguredAudienceModelInput, options: any): async.Operation<types.GetConfiguredAudienceModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConfiguredAudienceModel, input, options) as async.Operation<types.GetConfiguredAudienceModelOutput>
+function C:getConfiguredAudienceModel(input: types.GetConfiguredAudienceModelInput, options?: base_client.InvokeOptions): async.Operation<types.GetConfiguredAudienceModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConfiguredAudienceModel as schema.OperationSchema, input, options) as async.Operation<types.GetConfiguredAudienceModelOutput>
 end
 
-function C:getConfiguredAudienceModelPolicy(input: types.GetConfiguredAudienceModelPolicyInput, options: any): async.Operation<types.GetConfiguredAudienceModelPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConfiguredAudienceModelPolicy, input, options) as async.Operation<types.GetConfiguredAudienceModelPolicyOutput>
+function C:getConfiguredAudienceModelPolicy(input: types.GetConfiguredAudienceModelPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetConfiguredAudienceModelPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConfiguredAudienceModelPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetConfiguredAudienceModelPolicyOutput>
 end
 
-function C:getConfiguredModelAlgorithm(input: types.GetConfiguredModelAlgorithmInput, options: any): async.Operation<types.GetConfiguredModelAlgorithmOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConfiguredModelAlgorithm, input, options) as async.Operation<types.GetConfiguredModelAlgorithmOutput>
+function C:getConfiguredModelAlgorithm(input: types.GetConfiguredModelAlgorithmInput, options?: base_client.InvokeOptions): async.Operation<types.GetConfiguredModelAlgorithmOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConfiguredModelAlgorithm as schema.OperationSchema, input, options) as async.Operation<types.GetConfiguredModelAlgorithmOutput>
 end
 
-function C:getConfiguredModelAlgorithmAssociation(input: types.GetConfiguredModelAlgorithmAssociationInput, options: any): async.Operation<types.GetConfiguredModelAlgorithmAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConfiguredModelAlgorithmAssociation, input, options) as async.Operation<types.GetConfiguredModelAlgorithmAssociationOutput>
+function C:getConfiguredModelAlgorithmAssociation(input: types.GetConfiguredModelAlgorithmAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetConfiguredModelAlgorithmAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConfiguredModelAlgorithmAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetConfiguredModelAlgorithmAssociationOutput>
 end
 
-function C:getMLConfiguration(input: types.GetMLConfigurationInput, options: any): async.Operation<types.GetMLConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMLConfiguration, input, options) as async.Operation<types.GetMLConfigurationOutput>
+function C:getMLConfiguration(input: types.GetMLConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetMLConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMLConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetMLConfigurationOutput>
 end
 
-function C:getMLInputChannel(input: types.GetMLInputChannelInput, options: any): async.Operation<types.GetMLInputChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMLInputChannel, input, options) as async.Operation<types.GetMLInputChannelOutput>
+function C:getMLInputChannel(input: types.GetMLInputChannelInput, options?: base_client.InvokeOptions): async.Operation<types.GetMLInputChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMLInputChannel as schema.OperationSchema, input, options) as async.Operation<types.GetMLInputChannelOutput>
 end
 
-function C:getTrainedModel(input: types.GetTrainedModelInput, options: any): async.Operation<types.GetTrainedModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTrainedModel, input, options) as async.Operation<types.GetTrainedModelOutput>
+function C:getTrainedModel(input: types.GetTrainedModelInput, options?: base_client.InvokeOptions): async.Operation<types.GetTrainedModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTrainedModel as schema.OperationSchema, input, options) as async.Operation<types.GetTrainedModelOutput>
 end
 
-function C:getTrainedModelInferenceJob(input: types.GetTrainedModelInferenceJobInput, options: any): async.Operation<types.GetTrainedModelInferenceJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTrainedModelInferenceJob, input, options) as async.Operation<types.GetTrainedModelInferenceJobOutput>
+function C:getTrainedModelInferenceJob(input: types.GetTrainedModelInferenceJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetTrainedModelInferenceJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTrainedModelInferenceJob as schema.OperationSchema, input, options) as async.Operation<types.GetTrainedModelInferenceJobOutput>
 end
 
-function C:getTrainingDataset(input: types.GetTrainingDatasetInput, options: any): async.Operation<types.GetTrainingDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTrainingDataset, input, options) as async.Operation<types.GetTrainingDatasetOutput>
+function C:getTrainingDataset(input: types.GetTrainingDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.GetTrainingDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTrainingDataset as schema.OperationSchema, input, options) as async.Operation<types.GetTrainingDatasetOutput>
 end
 
-function C:listAudienceExportJobs(input: types.ListAudienceExportJobsInput, options: any): async.Operation<types.ListAudienceExportJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAudienceExportJobs, input, options) as async.Operation<types.ListAudienceExportJobsOutput>
+function C:listAudienceExportJobs(input: types.ListAudienceExportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAudienceExportJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAudienceExportJobs as schema.OperationSchema, input, options) as async.Operation<types.ListAudienceExportJobsOutput>
 end
 
-function C:listAudienceGenerationJobs(input: types.ListAudienceGenerationJobsInput, options: any): async.Operation<types.ListAudienceGenerationJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAudienceGenerationJobs, input, options) as async.Operation<types.ListAudienceGenerationJobsOutput>
+function C:listAudienceGenerationJobs(input: types.ListAudienceGenerationJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAudienceGenerationJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAudienceGenerationJobs as schema.OperationSchema, input, options) as async.Operation<types.ListAudienceGenerationJobsOutput>
 end
 
-function C:listAudienceModels(input: types.ListAudienceModelsInput, options: any): async.Operation<types.ListAudienceModelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAudienceModels, input, options) as async.Operation<types.ListAudienceModelsOutput>
+function C:listAudienceModels(input: types.ListAudienceModelsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAudienceModelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAudienceModels as schema.OperationSchema, input, options) as async.Operation<types.ListAudienceModelsOutput>
 end
 
-function C:listCollaborationConfiguredModelAlgorithmAssociations(input: types.ListCollaborationConfiguredModelAlgorithmAssociationsInput, options: any): async.Operation<types.ListCollaborationConfiguredModelAlgorithmAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCollaborationConfiguredModelAlgorithmAssociations, input, options) as async.Operation<types.ListCollaborationConfiguredModelAlgorithmAssociationsOutput>
+function C:listCollaborationConfiguredModelAlgorithmAssociations(input: types.ListCollaborationConfiguredModelAlgorithmAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCollaborationConfiguredModelAlgorithmAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCollaborationConfiguredModelAlgorithmAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListCollaborationConfiguredModelAlgorithmAssociationsOutput>
 end
 
-function C:listCollaborationMLInputChannels(input: types.ListCollaborationMLInputChannelsInput, options: any): async.Operation<types.ListCollaborationMLInputChannelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCollaborationMLInputChannels, input, options) as async.Operation<types.ListCollaborationMLInputChannelsOutput>
+function C:listCollaborationMLInputChannels(input: types.ListCollaborationMLInputChannelsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCollaborationMLInputChannelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCollaborationMLInputChannels as schema.OperationSchema, input, options) as async.Operation<types.ListCollaborationMLInputChannelsOutput>
 end
 
-function C:listCollaborationTrainedModelExportJobs(input: types.ListCollaborationTrainedModelExportJobsInput, options: any): async.Operation<types.ListCollaborationTrainedModelExportJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCollaborationTrainedModelExportJobs, input, options) as async.Operation<types.ListCollaborationTrainedModelExportJobsOutput>
+function C:listCollaborationTrainedModelExportJobs(input: types.ListCollaborationTrainedModelExportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCollaborationTrainedModelExportJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCollaborationTrainedModelExportJobs as schema.OperationSchema, input, options) as async.Operation<types.ListCollaborationTrainedModelExportJobsOutput>
 end
 
-function C:listCollaborationTrainedModelInferenceJobs(input: types.ListCollaborationTrainedModelInferenceJobsInput, options: any): async.Operation<types.ListCollaborationTrainedModelInferenceJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCollaborationTrainedModelInferenceJobs, input, options) as async.Operation<types.ListCollaborationTrainedModelInferenceJobsOutput>
+function C:listCollaborationTrainedModelInferenceJobs(input: types.ListCollaborationTrainedModelInferenceJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCollaborationTrainedModelInferenceJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCollaborationTrainedModelInferenceJobs as schema.OperationSchema, input, options) as async.Operation<types.ListCollaborationTrainedModelInferenceJobsOutput>
 end
 
-function C:listCollaborationTrainedModels(input: types.ListCollaborationTrainedModelsInput, options: any): async.Operation<types.ListCollaborationTrainedModelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCollaborationTrainedModels, input, options) as async.Operation<types.ListCollaborationTrainedModelsOutput>
+function C:listCollaborationTrainedModels(input: types.ListCollaborationTrainedModelsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCollaborationTrainedModelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCollaborationTrainedModels as schema.OperationSchema, input, options) as async.Operation<types.ListCollaborationTrainedModelsOutput>
 end
 
-function C:listConfiguredAudienceModels(input: types.ListConfiguredAudienceModelsInput, options: any): async.Operation<types.ListConfiguredAudienceModelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConfiguredAudienceModels, input, options) as async.Operation<types.ListConfiguredAudienceModelsOutput>
+function C:listConfiguredAudienceModels(input: types.ListConfiguredAudienceModelsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConfiguredAudienceModelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConfiguredAudienceModels as schema.OperationSchema, input, options) as async.Operation<types.ListConfiguredAudienceModelsOutput>
 end
 
-function C:listConfiguredModelAlgorithmAssociations(input: types.ListConfiguredModelAlgorithmAssociationsInput, options: any): async.Operation<types.ListConfiguredModelAlgorithmAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConfiguredModelAlgorithmAssociations, input, options) as async.Operation<types.ListConfiguredModelAlgorithmAssociationsOutput>
+function C:listConfiguredModelAlgorithmAssociations(input: types.ListConfiguredModelAlgorithmAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConfiguredModelAlgorithmAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConfiguredModelAlgorithmAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListConfiguredModelAlgorithmAssociationsOutput>
 end
 
-function C:listConfiguredModelAlgorithms(input: types.ListConfiguredModelAlgorithmsInput, options: any): async.Operation<types.ListConfiguredModelAlgorithmsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConfiguredModelAlgorithms, input, options) as async.Operation<types.ListConfiguredModelAlgorithmsOutput>
+function C:listConfiguredModelAlgorithms(input: types.ListConfiguredModelAlgorithmsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConfiguredModelAlgorithmsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConfiguredModelAlgorithms as schema.OperationSchema, input, options) as async.Operation<types.ListConfiguredModelAlgorithmsOutput>
 end
 
-function C:listMLInputChannels(input: types.ListMLInputChannelsInput, options: any): async.Operation<types.ListMLInputChannelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMLInputChannels, input, options) as async.Operation<types.ListMLInputChannelsOutput>
+function C:listMLInputChannels(input: types.ListMLInputChannelsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMLInputChannelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMLInputChannels as schema.OperationSchema, input, options) as async.Operation<types.ListMLInputChannelsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTrainedModelInferenceJobs(input: types.ListTrainedModelInferenceJobsInput, options: any): async.Operation<types.ListTrainedModelInferenceJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTrainedModelInferenceJobs, input, options) as async.Operation<types.ListTrainedModelInferenceJobsOutput>
+function C:listTrainedModelInferenceJobs(input: types.ListTrainedModelInferenceJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTrainedModelInferenceJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTrainedModelInferenceJobs as schema.OperationSchema, input, options) as async.Operation<types.ListTrainedModelInferenceJobsOutput>
 end
 
-function C:listTrainedModels(input: types.ListTrainedModelsInput, options: any): async.Operation<types.ListTrainedModelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTrainedModels, input, options) as async.Operation<types.ListTrainedModelsOutput>
+function C:listTrainedModels(input: types.ListTrainedModelsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTrainedModelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTrainedModels as schema.OperationSchema, input, options) as async.Operation<types.ListTrainedModelsOutput>
 end
 
-function C:listTrainedModelVersions(input: types.ListTrainedModelVersionsInput, options: any): async.Operation<types.ListTrainedModelVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTrainedModelVersions, input, options) as async.Operation<types.ListTrainedModelVersionsOutput>
+function C:listTrainedModelVersions(input: types.ListTrainedModelVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTrainedModelVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTrainedModelVersions as schema.OperationSchema, input, options) as async.Operation<types.ListTrainedModelVersionsOutput>
 end
 
-function C:listTrainingDatasets(input: types.ListTrainingDatasetsInput, options: any): async.Operation<types.ListTrainingDatasetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTrainingDatasets, input, options) as async.Operation<types.ListTrainingDatasetsOutput>
+function C:listTrainingDatasets(input: types.ListTrainingDatasetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTrainingDatasetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTrainingDatasets as schema.OperationSchema, input, options) as async.Operation<types.ListTrainingDatasetsOutput>
 end
 
-function C:putConfiguredAudienceModelPolicy(input: types.PutConfiguredAudienceModelPolicyInput, options: any): async.Operation<types.PutConfiguredAudienceModelPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutConfiguredAudienceModelPolicy, input, options) as async.Operation<types.PutConfiguredAudienceModelPolicyOutput>
+function C:putConfiguredAudienceModelPolicy(input: types.PutConfiguredAudienceModelPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutConfiguredAudienceModelPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutConfiguredAudienceModelPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutConfiguredAudienceModelPolicyOutput>
 end
 
-function C:putMLConfiguration(input: types.PutMLConfigurationInput, options: any): async.Operation<types.PutMLConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutMLConfiguration, input, options) as async.Operation<types.PutMLConfigurationOutput>
+function C:putMLConfiguration(input: types.PutMLConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutMLConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutMLConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutMLConfigurationOutput>
 end
 
-function C:startAudienceExportJob(input: types.StartAudienceExportJobInput, options: any): async.Operation<types.StartAudienceExportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartAudienceExportJob, input, options) as async.Operation<types.StartAudienceExportJobOutput>
+function C:startAudienceExportJob(input: types.StartAudienceExportJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartAudienceExportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartAudienceExportJob as schema.OperationSchema, input, options) as async.Operation<types.StartAudienceExportJobOutput>
 end
 
-function C:startAudienceGenerationJob(input: types.StartAudienceGenerationJobInput, options: any): async.Operation<types.StartAudienceGenerationJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartAudienceGenerationJob, input, options) as async.Operation<types.StartAudienceGenerationJobOutput>
+function C:startAudienceGenerationJob(input: types.StartAudienceGenerationJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartAudienceGenerationJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartAudienceGenerationJob as schema.OperationSchema, input, options) as async.Operation<types.StartAudienceGenerationJobOutput>
 end
 
-function C:startTrainedModelExportJob(input: types.StartTrainedModelExportJobInput, options: any): async.Operation<types.StartTrainedModelExportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartTrainedModelExportJob, input, options) as async.Operation<types.StartTrainedModelExportJobOutput>
+function C:startTrainedModelExportJob(input: types.StartTrainedModelExportJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartTrainedModelExportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartTrainedModelExportJob as schema.OperationSchema, input, options) as async.Operation<types.StartTrainedModelExportJobOutput>
 end
 
-function C:startTrainedModelInferenceJob(input: types.StartTrainedModelInferenceJobInput, options: any): async.Operation<types.StartTrainedModelInferenceJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartTrainedModelInferenceJob, input, options) as async.Operation<types.StartTrainedModelInferenceJobOutput>
+function C:startTrainedModelInferenceJob(input: types.StartTrainedModelInferenceJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartTrainedModelInferenceJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartTrainedModelInferenceJob as schema.OperationSchema, input, options) as async.Operation<types.StartTrainedModelInferenceJobOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateConfiguredAudienceModel(input: types.UpdateConfiguredAudienceModelInput, options: any): async.Operation<types.UpdateConfiguredAudienceModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConfiguredAudienceModel, input, options) as async.Operation<types.UpdateConfiguredAudienceModelOutput>
+function C:updateConfiguredAudienceModel(input: types.UpdateConfiguredAudienceModelInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConfiguredAudienceModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConfiguredAudienceModel as schema.OperationSchema, input, options) as async.Operation<types.UpdateConfiguredAudienceModelOutput>
 end
 
 return M

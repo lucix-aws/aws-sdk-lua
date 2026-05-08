@@ -8,86 +8,89 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("costexplorer.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("costexplorer.schemas")
 local traits = require("smithy.traits")
 local types = require("costexplorer.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createAnomalyMonitor: function(Client, types.CreateAnomalyMonitorInput, any): async.Operation<types.CreateAnomalyMonitorOutput>
-    createAnomalySubscription: function(Client, types.CreateAnomalySubscriptionInput, any): async.Operation<types.CreateAnomalySubscriptionOutput>
-    createCostCategoryDefinition: function(Client, types.CreateCostCategoryDefinitionInput, any): async.Operation<types.CreateCostCategoryDefinitionOutput>
-    deleteAnomalyMonitor: function(Client, types.DeleteAnomalyMonitorInput, any): async.Operation<types.DeleteAnomalyMonitorOutput>
-    deleteAnomalySubscription: function(Client, types.DeleteAnomalySubscriptionInput, any): async.Operation<types.DeleteAnomalySubscriptionOutput>
-    deleteCostCategoryDefinition: function(Client, types.DeleteCostCategoryDefinitionInput, any): async.Operation<types.DeleteCostCategoryDefinitionOutput>
-    describeCostCategoryDefinition: function(Client, types.DescribeCostCategoryDefinitionInput, any): async.Operation<types.DescribeCostCategoryDefinitionOutput>
-    getAnomalies: function(Client, types.GetAnomaliesInput, any): async.Operation<types.GetAnomaliesOutput>
-    getAnomalyMonitors: function(Client, types.GetAnomalyMonitorsInput, any): async.Operation<types.GetAnomalyMonitorsOutput>
-    getAnomalySubscriptions: function(Client, types.GetAnomalySubscriptionsInput, any): async.Operation<types.GetAnomalySubscriptionsOutput>
-    getApproximateUsageRecords: function(Client, types.GetApproximateUsageRecordsInput, any): async.Operation<types.GetApproximateUsageRecordsOutput>
-    getCommitmentPurchaseAnalysis: function(Client, types.GetCommitmentPurchaseAnalysisInput, any): async.Operation<types.GetCommitmentPurchaseAnalysisOutput>
-    getCostAndUsage: function(Client, types.GetCostAndUsageInput, any): async.Operation<types.GetCostAndUsageOutput>
-    getCostAndUsageComparisons: function(Client, types.GetCostAndUsageComparisonsInput, any): async.Operation<types.GetCostAndUsageComparisonsOutput>
-    getCostAndUsageWithResources: function(Client, types.GetCostAndUsageWithResourcesInput, any): async.Operation<types.GetCostAndUsageWithResourcesOutput>
-    getCostCategories: function(Client, types.GetCostCategoriesInput, any): async.Operation<types.GetCostCategoriesOutput>
-    getCostComparisonDrivers: function(Client, types.GetCostComparisonDriversInput, any): async.Operation<types.GetCostComparisonDriversOutput>
-    getCostForecast: function(Client, types.GetCostForecastInput, any): async.Operation<types.GetCostForecastOutput>
-    getDimensionValues: function(Client, types.GetDimensionValuesInput, any): async.Operation<types.GetDimensionValuesOutput>
-    getReservationCoverage: function(Client, types.GetReservationCoverageInput, any): async.Operation<types.GetReservationCoverageOutput>
-    getReservationPurchaseRecommendation: function(Client, types.GetReservationPurchaseRecommendationInput, any): async.Operation<types.GetReservationPurchaseRecommendationOutput>
-    getReservationUtilization: function(Client, types.GetReservationUtilizationInput, any): async.Operation<types.GetReservationUtilizationOutput>
-    getRightsizingRecommendation: function(Client, types.GetRightsizingRecommendationInput, any): async.Operation<types.GetRightsizingRecommendationOutput>
-    getSavingsPlanPurchaseRecommendationDetails: function(Client, types.GetSavingsPlanPurchaseRecommendationDetailsInput, any): async.Operation<types.GetSavingsPlanPurchaseRecommendationDetailsOutput>
-    getSavingsPlansCoverage: function(Client, types.GetSavingsPlansCoverageInput, any): async.Operation<types.GetSavingsPlansCoverageOutput>
-    getSavingsPlansPurchaseRecommendation: function(Client, types.GetSavingsPlansPurchaseRecommendationInput, any): async.Operation<types.GetSavingsPlansPurchaseRecommendationOutput>
-    getSavingsPlansUtilization: function(Client, types.GetSavingsPlansUtilizationInput, any): async.Operation<types.GetSavingsPlansUtilizationOutput>
-    getSavingsPlansUtilizationDetails: function(Client, types.GetSavingsPlansUtilizationDetailsInput, any): async.Operation<types.GetSavingsPlansUtilizationDetailsOutput>
-    getTags: function(Client, types.GetTagsInput, any): async.Operation<types.GetTagsOutput>
-    getUsageForecast: function(Client, types.GetUsageForecastInput, any): async.Operation<types.GetUsageForecastOutput>
-    listCommitmentPurchaseAnalyses: function(Client, types.ListCommitmentPurchaseAnalysesInput, any): async.Operation<types.ListCommitmentPurchaseAnalysesOutput>
-    listCostAllocationTagBackfillHistory: function(Client, types.ListCostAllocationTagBackfillHistoryInput, any): async.Operation<types.ListCostAllocationTagBackfillHistoryOutput>
-    listCostAllocationTags: function(Client, types.ListCostAllocationTagsInput, any): async.Operation<types.ListCostAllocationTagsOutput>
-    listCostCategoryDefinitions: function(Client, types.ListCostCategoryDefinitionsInput, any): async.Operation<types.ListCostCategoryDefinitionsOutput>
-    listCostCategoryResourceAssociations: function(Client, types.ListCostCategoryResourceAssociationsInput, any): async.Operation<types.ListCostCategoryResourceAssociationsOutput>
-    listSavingsPlansPurchaseRecommendationGeneration: function(Client, types.ListSavingsPlansPurchaseRecommendationGenerationInput, any): async.Operation<types.ListSavingsPlansPurchaseRecommendationGenerationOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    provideAnomalyFeedback: function(Client, types.ProvideAnomalyFeedbackInput, any): async.Operation<types.ProvideAnomalyFeedbackOutput>
-    startCommitmentPurchaseAnalysis: function(Client, types.StartCommitmentPurchaseAnalysisInput, any): async.Operation<types.StartCommitmentPurchaseAnalysisOutput>
-    startCostAllocationTagBackfill: function(Client, types.StartCostAllocationTagBackfillInput, any): async.Operation<types.StartCostAllocationTagBackfillOutput>
-    startSavingsPlansPurchaseRecommendationGeneration: function(Client, types.StartSavingsPlansPurchaseRecommendationGenerationInput, any): async.Operation<types.StartSavingsPlansPurchaseRecommendationGenerationOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAnomalyMonitor: function(Client, types.UpdateAnomalyMonitorInput, any): async.Operation<types.UpdateAnomalyMonitorOutput>
-    updateAnomalySubscription: function(Client, types.UpdateAnomalySubscriptionInput, any): async.Operation<types.UpdateAnomalySubscriptionOutput>
-    updateCostAllocationTagsStatus: function(Client, types.UpdateCostAllocationTagsStatusInput, any): async.Operation<types.UpdateCostAllocationTagsStatusOutput>
-    updateCostCategoryDefinition: function(Client, types.UpdateCostCategoryDefinitionInput, any): async.Operation<types.UpdateCostCategoryDefinitionOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createAnomalyMonitor: function(Client, types.CreateAnomalyMonitorInput, ? base_client.InvokeOptions): async.Operation<types.CreateAnomalyMonitorOutput>
+    createAnomalySubscription: function(Client, types.CreateAnomalySubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.CreateAnomalySubscriptionOutput>
+    createCostCategoryDefinition: function(Client, types.CreateCostCategoryDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.CreateCostCategoryDefinitionOutput>
+    deleteAnomalyMonitor: function(Client, types.DeleteAnomalyMonitorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAnomalyMonitorOutput>
+    deleteAnomalySubscription: function(Client, types.DeleteAnomalySubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAnomalySubscriptionOutput>
+    deleteCostCategoryDefinition: function(Client, types.DeleteCostCategoryDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCostCategoryDefinitionOutput>
+    describeCostCategoryDefinition: function(Client, types.DescribeCostCategoryDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCostCategoryDefinitionOutput>
+    getAnomalies: function(Client, types.GetAnomaliesInput, ? base_client.InvokeOptions): async.Operation<types.GetAnomaliesOutput>
+    getAnomalyMonitors: function(Client, types.GetAnomalyMonitorsInput, ? base_client.InvokeOptions): async.Operation<types.GetAnomalyMonitorsOutput>
+    getAnomalySubscriptions: function(Client, types.GetAnomalySubscriptionsInput, ? base_client.InvokeOptions): async.Operation<types.GetAnomalySubscriptionsOutput>
+    getApproximateUsageRecords: function(Client, types.GetApproximateUsageRecordsInput, ? base_client.InvokeOptions): async.Operation<types.GetApproximateUsageRecordsOutput>
+    getCommitmentPurchaseAnalysis: function(Client, types.GetCommitmentPurchaseAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.GetCommitmentPurchaseAnalysisOutput>
+    getCostAndUsage: function(Client, types.GetCostAndUsageInput, ? base_client.InvokeOptions): async.Operation<types.GetCostAndUsageOutput>
+    getCostAndUsageComparisons: function(Client, types.GetCostAndUsageComparisonsInput, ? base_client.InvokeOptions): async.Operation<types.GetCostAndUsageComparisonsOutput>
+    getCostAndUsageWithResources: function(Client, types.GetCostAndUsageWithResourcesInput, ? base_client.InvokeOptions): async.Operation<types.GetCostAndUsageWithResourcesOutput>
+    getCostCategories: function(Client, types.GetCostCategoriesInput, ? base_client.InvokeOptions): async.Operation<types.GetCostCategoriesOutput>
+    getCostComparisonDrivers: function(Client, types.GetCostComparisonDriversInput, ? base_client.InvokeOptions): async.Operation<types.GetCostComparisonDriversOutput>
+    getCostForecast: function(Client, types.GetCostForecastInput, ? base_client.InvokeOptions): async.Operation<types.GetCostForecastOutput>
+    getDimensionValues: function(Client, types.GetDimensionValuesInput, ? base_client.InvokeOptions): async.Operation<types.GetDimensionValuesOutput>
+    getReservationCoverage: function(Client, types.GetReservationCoverageInput, ? base_client.InvokeOptions): async.Operation<types.GetReservationCoverageOutput>
+    getReservationPurchaseRecommendation: function(Client, types.GetReservationPurchaseRecommendationInput, ? base_client.InvokeOptions): async.Operation<types.GetReservationPurchaseRecommendationOutput>
+    getReservationUtilization: function(Client, types.GetReservationUtilizationInput, ? base_client.InvokeOptions): async.Operation<types.GetReservationUtilizationOutput>
+    getRightsizingRecommendation: function(Client, types.GetRightsizingRecommendationInput, ? base_client.InvokeOptions): async.Operation<types.GetRightsizingRecommendationOutput>
+    getSavingsPlanPurchaseRecommendationDetails: function(Client, types.GetSavingsPlanPurchaseRecommendationDetailsInput, ? base_client.InvokeOptions): async.Operation<types.GetSavingsPlanPurchaseRecommendationDetailsOutput>
+    getSavingsPlansCoverage: function(Client, types.GetSavingsPlansCoverageInput, ? base_client.InvokeOptions): async.Operation<types.GetSavingsPlansCoverageOutput>
+    getSavingsPlansPurchaseRecommendation: function(Client, types.GetSavingsPlansPurchaseRecommendationInput, ? base_client.InvokeOptions): async.Operation<types.GetSavingsPlansPurchaseRecommendationOutput>
+    getSavingsPlansUtilization: function(Client, types.GetSavingsPlansUtilizationInput, ? base_client.InvokeOptions): async.Operation<types.GetSavingsPlansUtilizationOutput>
+    getSavingsPlansUtilizationDetails: function(Client, types.GetSavingsPlansUtilizationDetailsInput, ? base_client.InvokeOptions): async.Operation<types.GetSavingsPlansUtilizationDetailsOutput>
+    getTags: function(Client, types.GetTagsInput, ? base_client.InvokeOptions): async.Operation<types.GetTagsOutput>
+    getUsageForecast: function(Client, types.GetUsageForecastInput, ? base_client.InvokeOptions): async.Operation<types.GetUsageForecastOutput>
+    listCommitmentPurchaseAnalyses: function(Client, types.ListCommitmentPurchaseAnalysesInput, ? base_client.InvokeOptions): async.Operation<types.ListCommitmentPurchaseAnalysesOutput>
+    listCostAllocationTagBackfillHistory: function(Client, types.ListCostAllocationTagBackfillHistoryInput, ? base_client.InvokeOptions): async.Operation<types.ListCostAllocationTagBackfillHistoryOutput>
+    listCostAllocationTags: function(Client, types.ListCostAllocationTagsInput, ? base_client.InvokeOptions): async.Operation<types.ListCostAllocationTagsOutput>
+    listCostCategoryDefinitions: function(Client, types.ListCostCategoryDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.ListCostCategoryDefinitionsOutput>
+    listCostCategoryResourceAssociations: function(Client, types.ListCostCategoryResourceAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListCostCategoryResourceAssociationsOutput>
+    listSavingsPlansPurchaseRecommendationGeneration: function(Client, types.ListSavingsPlansPurchaseRecommendationGenerationInput, ? base_client.InvokeOptions): async.Operation<types.ListSavingsPlansPurchaseRecommendationGenerationOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    provideAnomalyFeedback: function(Client, types.ProvideAnomalyFeedbackInput, ? base_client.InvokeOptions): async.Operation<types.ProvideAnomalyFeedbackOutput>
+    startCommitmentPurchaseAnalysis: function(Client, types.StartCommitmentPurchaseAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.StartCommitmentPurchaseAnalysisOutput>
+    startCostAllocationTagBackfill: function(Client, types.StartCostAllocationTagBackfillInput, ? base_client.InvokeOptions): async.Operation<types.StartCostAllocationTagBackfillOutput>
+    startSavingsPlansPurchaseRecommendationGeneration: function(Client, types.StartSavingsPlansPurchaseRecommendationGenerationInput, ? base_client.InvokeOptions): async.Operation<types.StartSavingsPlansPurchaseRecommendationGenerationOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAnomalyMonitor: function(Client, types.UpdateAnomalyMonitorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAnomalyMonitorOutput>
+    updateAnomalySubscription: function(Client, types.UpdateAnomalySubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAnomalySubscriptionOutput>
+    updateCostAllocationTagsStatus: function(Client, types.UpdateCostAllocationTagsStatusInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCostAllocationTagsStatusOutput>
+    updateCostCategoryDefinition: function(Client, types.UpdateCostCategoryDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCostCategoryDefinitionOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSInsightsIndexService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ce", signing_region = c.region } }
                 else
@@ -106,192 +109,192 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createAnomalyMonitor(input: types.CreateAnomalyMonitorInput, options: any): async.Operation<types.CreateAnomalyMonitorOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAnomalyMonitor, input, options) as async.Operation<types.CreateAnomalyMonitorOutput>
+function C:createAnomalyMonitor(input: types.CreateAnomalyMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAnomalyMonitorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAnomalyMonitor as schema.OperationSchema, input, options) as async.Operation<types.CreateAnomalyMonitorOutput>
 end
 
-function C:createAnomalySubscription(input: types.CreateAnomalySubscriptionInput, options: any): async.Operation<types.CreateAnomalySubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAnomalySubscription, input, options) as async.Operation<types.CreateAnomalySubscriptionOutput>
+function C:createAnomalySubscription(input: types.CreateAnomalySubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAnomalySubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAnomalySubscription as schema.OperationSchema, input, options) as async.Operation<types.CreateAnomalySubscriptionOutput>
 end
 
-function C:createCostCategoryDefinition(input: types.CreateCostCategoryDefinitionInput, options: any): async.Operation<types.CreateCostCategoryDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCostCategoryDefinition, input, options) as async.Operation<types.CreateCostCategoryDefinitionOutput>
+function C:createCostCategoryDefinition(input: types.CreateCostCategoryDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCostCategoryDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCostCategoryDefinition as schema.OperationSchema, input, options) as async.Operation<types.CreateCostCategoryDefinitionOutput>
 end
 
-function C:deleteAnomalyMonitor(input: types.DeleteAnomalyMonitorInput, options: any): async.Operation<types.DeleteAnomalyMonitorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAnomalyMonitor, input, options) as async.Operation<types.DeleteAnomalyMonitorOutput>
+function C:deleteAnomalyMonitor(input: types.DeleteAnomalyMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAnomalyMonitorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAnomalyMonitor as schema.OperationSchema, input, options) as async.Operation<types.DeleteAnomalyMonitorOutput>
 end
 
-function C:deleteAnomalySubscription(input: types.DeleteAnomalySubscriptionInput, options: any): async.Operation<types.DeleteAnomalySubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAnomalySubscription, input, options) as async.Operation<types.DeleteAnomalySubscriptionOutput>
+function C:deleteAnomalySubscription(input: types.DeleteAnomalySubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAnomalySubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAnomalySubscription as schema.OperationSchema, input, options) as async.Operation<types.DeleteAnomalySubscriptionOutput>
 end
 
-function C:deleteCostCategoryDefinition(input: types.DeleteCostCategoryDefinitionInput, options: any): async.Operation<types.DeleteCostCategoryDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCostCategoryDefinition, input, options) as async.Operation<types.DeleteCostCategoryDefinitionOutput>
+function C:deleteCostCategoryDefinition(input: types.DeleteCostCategoryDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCostCategoryDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCostCategoryDefinition as schema.OperationSchema, input, options) as async.Operation<types.DeleteCostCategoryDefinitionOutput>
 end
 
-function C:describeCostCategoryDefinition(input: types.DescribeCostCategoryDefinitionInput, options: any): async.Operation<types.DescribeCostCategoryDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCostCategoryDefinition, input, options) as async.Operation<types.DescribeCostCategoryDefinitionOutput>
+function C:describeCostCategoryDefinition(input: types.DescribeCostCategoryDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCostCategoryDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCostCategoryDefinition as schema.OperationSchema, input, options) as async.Operation<types.DescribeCostCategoryDefinitionOutput>
 end
 
-function C:getAnomalies(input: types.GetAnomaliesInput, options: any): async.Operation<types.GetAnomaliesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAnomalies, input, options) as async.Operation<types.GetAnomaliesOutput>
+function C:getAnomalies(input: types.GetAnomaliesInput, options?: base_client.InvokeOptions): async.Operation<types.GetAnomaliesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAnomalies as schema.OperationSchema, input, options) as async.Operation<types.GetAnomaliesOutput>
 end
 
-function C:getAnomalyMonitors(input: types.GetAnomalyMonitorsInput, options: any): async.Operation<types.GetAnomalyMonitorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAnomalyMonitors, input, options) as async.Operation<types.GetAnomalyMonitorsOutput>
+function C:getAnomalyMonitors(input: types.GetAnomalyMonitorsInput, options?: base_client.InvokeOptions): async.Operation<types.GetAnomalyMonitorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAnomalyMonitors as schema.OperationSchema, input, options) as async.Operation<types.GetAnomalyMonitorsOutput>
 end
 
-function C:getAnomalySubscriptions(input: types.GetAnomalySubscriptionsInput, options: any): async.Operation<types.GetAnomalySubscriptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAnomalySubscriptions, input, options) as async.Operation<types.GetAnomalySubscriptionsOutput>
+function C:getAnomalySubscriptions(input: types.GetAnomalySubscriptionsInput, options?: base_client.InvokeOptions): async.Operation<types.GetAnomalySubscriptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAnomalySubscriptions as schema.OperationSchema, input, options) as async.Operation<types.GetAnomalySubscriptionsOutput>
 end
 
-function C:getApproximateUsageRecords(input: types.GetApproximateUsageRecordsInput, options: any): async.Operation<types.GetApproximateUsageRecordsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetApproximateUsageRecords, input, options) as async.Operation<types.GetApproximateUsageRecordsOutput>
+function C:getApproximateUsageRecords(input: types.GetApproximateUsageRecordsInput, options?: base_client.InvokeOptions): async.Operation<types.GetApproximateUsageRecordsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetApproximateUsageRecords as schema.OperationSchema, input, options) as async.Operation<types.GetApproximateUsageRecordsOutput>
 end
 
-function C:getCommitmentPurchaseAnalysis(input: types.GetCommitmentPurchaseAnalysisInput, options: any): async.Operation<types.GetCommitmentPurchaseAnalysisOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCommitmentPurchaseAnalysis, input, options) as async.Operation<types.GetCommitmentPurchaseAnalysisOutput>
+function C:getCommitmentPurchaseAnalysis(input: types.GetCommitmentPurchaseAnalysisInput, options?: base_client.InvokeOptions): async.Operation<types.GetCommitmentPurchaseAnalysisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCommitmentPurchaseAnalysis as schema.OperationSchema, input, options) as async.Operation<types.GetCommitmentPurchaseAnalysisOutput>
 end
 
-function C:getCostAndUsage(input: types.GetCostAndUsageInput, options: any): async.Operation<types.GetCostAndUsageOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCostAndUsage, input, options) as async.Operation<types.GetCostAndUsageOutput>
+function C:getCostAndUsage(input: types.GetCostAndUsageInput, options?: base_client.InvokeOptions): async.Operation<types.GetCostAndUsageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCostAndUsage as schema.OperationSchema, input, options) as async.Operation<types.GetCostAndUsageOutput>
 end
 
-function C:getCostAndUsageComparisons(input: types.GetCostAndUsageComparisonsInput, options: any): async.Operation<types.GetCostAndUsageComparisonsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCostAndUsageComparisons, input, options) as async.Operation<types.GetCostAndUsageComparisonsOutput>
+function C:getCostAndUsageComparisons(input: types.GetCostAndUsageComparisonsInput, options?: base_client.InvokeOptions): async.Operation<types.GetCostAndUsageComparisonsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCostAndUsageComparisons as schema.OperationSchema, input, options) as async.Operation<types.GetCostAndUsageComparisonsOutput>
 end
 
-function C:getCostAndUsageWithResources(input: types.GetCostAndUsageWithResourcesInput, options: any): async.Operation<types.GetCostAndUsageWithResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCostAndUsageWithResources, input, options) as async.Operation<types.GetCostAndUsageWithResourcesOutput>
+function C:getCostAndUsageWithResources(input: types.GetCostAndUsageWithResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.GetCostAndUsageWithResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCostAndUsageWithResources as schema.OperationSchema, input, options) as async.Operation<types.GetCostAndUsageWithResourcesOutput>
 end
 
-function C:getCostCategories(input: types.GetCostCategoriesInput, options: any): async.Operation<types.GetCostCategoriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCostCategories, input, options) as async.Operation<types.GetCostCategoriesOutput>
+function C:getCostCategories(input: types.GetCostCategoriesInput, options?: base_client.InvokeOptions): async.Operation<types.GetCostCategoriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCostCategories as schema.OperationSchema, input, options) as async.Operation<types.GetCostCategoriesOutput>
 end
 
-function C:getCostComparisonDrivers(input: types.GetCostComparisonDriversInput, options: any): async.Operation<types.GetCostComparisonDriversOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCostComparisonDrivers, input, options) as async.Operation<types.GetCostComparisonDriversOutput>
+function C:getCostComparisonDrivers(input: types.GetCostComparisonDriversInput, options?: base_client.InvokeOptions): async.Operation<types.GetCostComparisonDriversOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCostComparisonDrivers as schema.OperationSchema, input, options) as async.Operation<types.GetCostComparisonDriversOutput>
 end
 
-function C:getCostForecast(input: types.GetCostForecastInput, options: any): async.Operation<types.GetCostForecastOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCostForecast, input, options) as async.Operation<types.GetCostForecastOutput>
+function C:getCostForecast(input: types.GetCostForecastInput, options?: base_client.InvokeOptions): async.Operation<types.GetCostForecastOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCostForecast as schema.OperationSchema, input, options) as async.Operation<types.GetCostForecastOutput>
 end
 
-function C:getDimensionValues(input: types.GetDimensionValuesInput, options: any): async.Operation<types.GetDimensionValuesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDimensionValues, input, options) as async.Operation<types.GetDimensionValuesOutput>
+function C:getDimensionValues(input: types.GetDimensionValuesInput, options?: base_client.InvokeOptions): async.Operation<types.GetDimensionValuesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDimensionValues as schema.OperationSchema, input, options) as async.Operation<types.GetDimensionValuesOutput>
 end
 
-function C:getReservationCoverage(input: types.GetReservationCoverageInput, options: any): async.Operation<types.GetReservationCoverageOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReservationCoverage, input, options) as async.Operation<types.GetReservationCoverageOutput>
+function C:getReservationCoverage(input: types.GetReservationCoverageInput, options?: base_client.InvokeOptions): async.Operation<types.GetReservationCoverageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReservationCoverage as schema.OperationSchema, input, options) as async.Operation<types.GetReservationCoverageOutput>
 end
 
-function C:getReservationPurchaseRecommendation(input: types.GetReservationPurchaseRecommendationInput, options: any): async.Operation<types.GetReservationPurchaseRecommendationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReservationPurchaseRecommendation, input, options) as async.Operation<types.GetReservationPurchaseRecommendationOutput>
+function C:getReservationPurchaseRecommendation(input: types.GetReservationPurchaseRecommendationInput, options?: base_client.InvokeOptions): async.Operation<types.GetReservationPurchaseRecommendationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReservationPurchaseRecommendation as schema.OperationSchema, input, options) as async.Operation<types.GetReservationPurchaseRecommendationOutput>
 end
 
-function C:getReservationUtilization(input: types.GetReservationUtilizationInput, options: any): async.Operation<types.GetReservationUtilizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReservationUtilization, input, options) as async.Operation<types.GetReservationUtilizationOutput>
+function C:getReservationUtilization(input: types.GetReservationUtilizationInput, options?: base_client.InvokeOptions): async.Operation<types.GetReservationUtilizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReservationUtilization as schema.OperationSchema, input, options) as async.Operation<types.GetReservationUtilizationOutput>
 end
 
-function C:getRightsizingRecommendation(input: types.GetRightsizingRecommendationInput, options: any): async.Operation<types.GetRightsizingRecommendationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRightsizingRecommendation, input, options) as async.Operation<types.GetRightsizingRecommendationOutput>
+function C:getRightsizingRecommendation(input: types.GetRightsizingRecommendationInput, options?: base_client.InvokeOptions): async.Operation<types.GetRightsizingRecommendationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRightsizingRecommendation as schema.OperationSchema, input, options) as async.Operation<types.GetRightsizingRecommendationOutput>
 end
 
-function C:getSavingsPlanPurchaseRecommendationDetails(input: types.GetSavingsPlanPurchaseRecommendationDetailsInput, options: any): async.Operation<types.GetSavingsPlanPurchaseRecommendationDetailsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSavingsPlanPurchaseRecommendationDetails, input, options) as async.Operation<types.GetSavingsPlanPurchaseRecommendationDetailsOutput>
+function C:getSavingsPlanPurchaseRecommendationDetails(input: types.GetSavingsPlanPurchaseRecommendationDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.GetSavingsPlanPurchaseRecommendationDetailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSavingsPlanPurchaseRecommendationDetails as schema.OperationSchema, input, options) as async.Operation<types.GetSavingsPlanPurchaseRecommendationDetailsOutput>
 end
 
-function C:getSavingsPlansCoverage(input: types.GetSavingsPlansCoverageInput, options: any): async.Operation<types.GetSavingsPlansCoverageOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSavingsPlansCoverage, input, options) as async.Operation<types.GetSavingsPlansCoverageOutput>
+function C:getSavingsPlansCoverage(input: types.GetSavingsPlansCoverageInput, options?: base_client.InvokeOptions): async.Operation<types.GetSavingsPlansCoverageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSavingsPlansCoverage as schema.OperationSchema, input, options) as async.Operation<types.GetSavingsPlansCoverageOutput>
 end
 
-function C:getSavingsPlansPurchaseRecommendation(input: types.GetSavingsPlansPurchaseRecommendationInput, options: any): async.Operation<types.GetSavingsPlansPurchaseRecommendationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSavingsPlansPurchaseRecommendation, input, options) as async.Operation<types.GetSavingsPlansPurchaseRecommendationOutput>
+function C:getSavingsPlansPurchaseRecommendation(input: types.GetSavingsPlansPurchaseRecommendationInput, options?: base_client.InvokeOptions): async.Operation<types.GetSavingsPlansPurchaseRecommendationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSavingsPlansPurchaseRecommendation as schema.OperationSchema, input, options) as async.Operation<types.GetSavingsPlansPurchaseRecommendationOutput>
 end
 
-function C:getSavingsPlansUtilization(input: types.GetSavingsPlansUtilizationInput, options: any): async.Operation<types.GetSavingsPlansUtilizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSavingsPlansUtilization, input, options) as async.Operation<types.GetSavingsPlansUtilizationOutput>
+function C:getSavingsPlansUtilization(input: types.GetSavingsPlansUtilizationInput, options?: base_client.InvokeOptions): async.Operation<types.GetSavingsPlansUtilizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSavingsPlansUtilization as schema.OperationSchema, input, options) as async.Operation<types.GetSavingsPlansUtilizationOutput>
 end
 
-function C:getSavingsPlansUtilizationDetails(input: types.GetSavingsPlansUtilizationDetailsInput, options: any): async.Operation<types.GetSavingsPlansUtilizationDetailsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSavingsPlansUtilizationDetails, input, options) as async.Operation<types.GetSavingsPlansUtilizationDetailsOutput>
+function C:getSavingsPlansUtilizationDetails(input: types.GetSavingsPlansUtilizationDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.GetSavingsPlansUtilizationDetailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSavingsPlansUtilizationDetails as schema.OperationSchema, input, options) as async.Operation<types.GetSavingsPlansUtilizationDetailsOutput>
 end
 
-function C:getTags(input: types.GetTagsInput, options: any): async.Operation<types.GetTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTags, input, options) as async.Operation<types.GetTagsOutput>
+function C:getTags(input: types.GetTagsInput, options?: base_client.InvokeOptions): async.Operation<types.GetTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTags as schema.OperationSchema, input, options) as async.Operation<types.GetTagsOutput>
 end
 
-function C:getUsageForecast(input: types.GetUsageForecastInput, options: any): async.Operation<types.GetUsageForecastOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetUsageForecast, input, options) as async.Operation<types.GetUsageForecastOutput>
+function C:getUsageForecast(input: types.GetUsageForecastInput, options?: base_client.InvokeOptions): async.Operation<types.GetUsageForecastOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetUsageForecast as schema.OperationSchema, input, options) as async.Operation<types.GetUsageForecastOutput>
 end
 
-function C:listCommitmentPurchaseAnalyses(input: types.ListCommitmentPurchaseAnalysesInput, options: any): async.Operation<types.ListCommitmentPurchaseAnalysesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCommitmentPurchaseAnalyses, input, options) as async.Operation<types.ListCommitmentPurchaseAnalysesOutput>
+function C:listCommitmentPurchaseAnalyses(input: types.ListCommitmentPurchaseAnalysesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCommitmentPurchaseAnalysesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCommitmentPurchaseAnalyses as schema.OperationSchema, input, options) as async.Operation<types.ListCommitmentPurchaseAnalysesOutput>
 end
 
-function C:listCostAllocationTagBackfillHistory(input: types.ListCostAllocationTagBackfillHistoryInput, options: any): async.Operation<types.ListCostAllocationTagBackfillHistoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCostAllocationTagBackfillHistory, input, options) as async.Operation<types.ListCostAllocationTagBackfillHistoryOutput>
+function C:listCostAllocationTagBackfillHistory(input: types.ListCostAllocationTagBackfillHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.ListCostAllocationTagBackfillHistoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCostAllocationTagBackfillHistory as schema.OperationSchema, input, options) as async.Operation<types.ListCostAllocationTagBackfillHistoryOutput>
 end
 
-function C:listCostAllocationTags(input: types.ListCostAllocationTagsInput, options: any): async.Operation<types.ListCostAllocationTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCostAllocationTags, input, options) as async.Operation<types.ListCostAllocationTagsOutput>
+function C:listCostAllocationTags(input: types.ListCostAllocationTagsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCostAllocationTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCostAllocationTags as schema.OperationSchema, input, options) as async.Operation<types.ListCostAllocationTagsOutput>
 end
 
-function C:listCostCategoryDefinitions(input: types.ListCostCategoryDefinitionsInput, options: any): async.Operation<types.ListCostCategoryDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCostCategoryDefinitions, input, options) as async.Operation<types.ListCostCategoryDefinitionsOutput>
+function C:listCostCategoryDefinitions(input: types.ListCostCategoryDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCostCategoryDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCostCategoryDefinitions as schema.OperationSchema, input, options) as async.Operation<types.ListCostCategoryDefinitionsOutput>
 end
 
-function C:listCostCategoryResourceAssociations(input: types.ListCostCategoryResourceAssociationsInput, options: any): async.Operation<types.ListCostCategoryResourceAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCostCategoryResourceAssociations, input, options) as async.Operation<types.ListCostCategoryResourceAssociationsOutput>
+function C:listCostCategoryResourceAssociations(input: types.ListCostCategoryResourceAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCostCategoryResourceAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCostCategoryResourceAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListCostCategoryResourceAssociationsOutput>
 end
 
-function C:listSavingsPlansPurchaseRecommendationGeneration(input: types.ListSavingsPlansPurchaseRecommendationGenerationInput, options: any): async.Operation<types.ListSavingsPlansPurchaseRecommendationGenerationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSavingsPlansPurchaseRecommendationGeneration, input, options) as async.Operation<types.ListSavingsPlansPurchaseRecommendationGenerationOutput>
+function C:listSavingsPlansPurchaseRecommendationGeneration(input: types.ListSavingsPlansPurchaseRecommendationGenerationInput, options?: base_client.InvokeOptions): async.Operation<types.ListSavingsPlansPurchaseRecommendationGenerationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSavingsPlansPurchaseRecommendationGeneration as schema.OperationSchema, input, options) as async.Operation<types.ListSavingsPlansPurchaseRecommendationGenerationOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:provideAnomalyFeedback(input: types.ProvideAnomalyFeedbackInput, options: any): async.Operation<types.ProvideAnomalyFeedbackOutput>
-    return self:invokeOperation(schemas.Service, schemas.ProvideAnomalyFeedback, input, options) as async.Operation<types.ProvideAnomalyFeedbackOutput>
+function C:provideAnomalyFeedback(input: types.ProvideAnomalyFeedbackInput, options?: base_client.InvokeOptions): async.Operation<types.ProvideAnomalyFeedbackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ProvideAnomalyFeedback as schema.OperationSchema, input, options) as async.Operation<types.ProvideAnomalyFeedbackOutput>
 end
 
-function C:startCommitmentPurchaseAnalysis(input: types.StartCommitmentPurchaseAnalysisInput, options: any): async.Operation<types.StartCommitmentPurchaseAnalysisOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartCommitmentPurchaseAnalysis, input, options) as async.Operation<types.StartCommitmentPurchaseAnalysisOutput>
+function C:startCommitmentPurchaseAnalysis(input: types.StartCommitmentPurchaseAnalysisInput, options?: base_client.InvokeOptions): async.Operation<types.StartCommitmentPurchaseAnalysisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartCommitmentPurchaseAnalysis as schema.OperationSchema, input, options) as async.Operation<types.StartCommitmentPurchaseAnalysisOutput>
 end
 
-function C:startCostAllocationTagBackfill(input: types.StartCostAllocationTagBackfillInput, options: any): async.Operation<types.StartCostAllocationTagBackfillOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartCostAllocationTagBackfill, input, options) as async.Operation<types.StartCostAllocationTagBackfillOutput>
+function C:startCostAllocationTagBackfill(input: types.StartCostAllocationTagBackfillInput, options?: base_client.InvokeOptions): async.Operation<types.StartCostAllocationTagBackfillOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartCostAllocationTagBackfill as schema.OperationSchema, input, options) as async.Operation<types.StartCostAllocationTagBackfillOutput>
 end
 
-function C:startSavingsPlansPurchaseRecommendationGeneration(input: types.StartSavingsPlansPurchaseRecommendationGenerationInput, options: any): async.Operation<types.StartSavingsPlansPurchaseRecommendationGenerationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartSavingsPlansPurchaseRecommendationGeneration, input, options) as async.Operation<types.StartSavingsPlansPurchaseRecommendationGenerationOutput>
+function C:startSavingsPlansPurchaseRecommendationGeneration(input: types.StartSavingsPlansPurchaseRecommendationGenerationInput, options?: base_client.InvokeOptions): async.Operation<types.StartSavingsPlansPurchaseRecommendationGenerationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartSavingsPlansPurchaseRecommendationGeneration as schema.OperationSchema, input, options) as async.Operation<types.StartSavingsPlansPurchaseRecommendationGenerationOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAnomalyMonitor(input: types.UpdateAnomalyMonitorInput, options: any): async.Operation<types.UpdateAnomalyMonitorOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAnomalyMonitor, input, options) as async.Operation<types.UpdateAnomalyMonitorOutput>
+function C:updateAnomalyMonitor(input: types.UpdateAnomalyMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAnomalyMonitorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAnomalyMonitor as schema.OperationSchema, input, options) as async.Operation<types.UpdateAnomalyMonitorOutput>
 end
 
-function C:updateAnomalySubscription(input: types.UpdateAnomalySubscriptionInput, options: any): async.Operation<types.UpdateAnomalySubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAnomalySubscription, input, options) as async.Operation<types.UpdateAnomalySubscriptionOutput>
+function C:updateAnomalySubscription(input: types.UpdateAnomalySubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAnomalySubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAnomalySubscription as schema.OperationSchema, input, options) as async.Operation<types.UpdateAnomalySubscriptionOutput>
 end
 
-function C:updateCostAllocationTagsStatus(input: types.UpdateCostAllocationTagsStatusInput, options: any): async.Operation<types.UpdateCostAllocationTagsStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCostAllocationTagsStatus, input, options) as async.Operation<types.UpdateCostAllocationTagsStatusOutput>
+function C:updateCostAllocationTagsStatus(input: types.UpdateCostAllocationTagsStatusInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCostAllocationTagsStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCostAllocationTagsStatus as schema.OperationSchema, input, options) as async.Operation<types.UpdateCostAllocationTagsStatusOutput>
 end
 
-function C:updateCostCategoryDefinition(input: types.UpdateCostCategoryDefinitionInput, options: any): async.Operation<types.UpdateCostCategoryDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCostCategoryDefinition, input, options) as async.Operation<types.UpdateCostCategoryDefinitionOutput>
+function C:updateCostCategoryDefinition(input: types.UpdateCostCategoryDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCostCategoryDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCostCategoryDefinition as schema.OperationSchema, input, options) as async.Operation<types.UpdateCostCategoryDefinitionOutput>
 end
 
 return M

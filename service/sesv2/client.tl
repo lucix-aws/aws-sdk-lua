@@ -8,149 +8,152 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("sesv2.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("sesv2.schemas")
 local traits = require("smithy.traits")
 local types = require("sesv2.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchGetMetricData: function(Client, types.BatchGetMetricDataInput, any): async.Operation<types.BatchGetMetricDataOutput>
-    cancelExportJob: function(Client, types.CancelExportJobInput, any): async.Operation<types.CancelExportJobOutput>
-    createConfigurationSet: function(Client, types.CreateConfigurationSetInput, any): async.Operation<types.CreateConfigurationSetOutput>
-    createConfigurationSetEventDestination: function(Client, types.CreateConfigurationSetEventDestinationInput, any): async.Operation<types.CreateConfigurationSetEventDestinationOutput>
-    createContact: function(Client, types.CreateContactInput, any): async.Operation<types.CreateContactOutput>
-    createContactList: function(Client, types.CreateContactListInput, any): async.Operation<types.CreateContactListOutput>
-    createCustomVerificationEmailTemplate: function(Client, types.CreateCustomVerificationEmailTemplateInput, any): async.Operation<types.CreateCustomVerificationEmailTemplateOutput>
-    createDedicatedIpPool: function(Client, types.CreateDedicatedIpPoolInput, any): async.Operation<types.CreateDedicatedIpPoolOutput>
-    createDeliverabilityTestReport: function(Client, types.CreateDeliverabilityTestReportInput, any): async.Operation<types.CreateDeliverabilityTestReportOutput>
-    createEmailIdentity: function(Client, types.CreateEmailIdentityInput, any): async.Operation<types.CreateEmailIdentityOutput>
-    createEmailIdentityPolicy: function(Client, types.CreateEmailIdentityPolicyInput, any): async.Operation<types.CreateEmailIdentityPolicyOutput>
-    createEmailTemplate: function(Client, types.CreateEmailTemplateInput, any): async.Operation<types.CreateEmailTemplateOutput>
-    createExportJob: function(Client, types.CreateExportJobInput, any): async.Operation<types.CreateExportJobOutput>
-    createImportJob: function(Client, types.CreateImportJobInput, any): async.Operation<types.CreateImportJobOutput>
-    createMultiRegionEndpoint: function(Client, types.CreateMultiRegionEndpointInput, any): async.Operation<types.CreateMultiRegionEndpointOutput>
-    createTenant: function(Client, types.CreateTenantInput, any): async.Operation<types.CreateTenantOutput>
-    createTenantResourceAssociation: function(Client, types.CreateTenantResourceAssociationInput, any): async.Operation<types.CreateTenantResourceAssociationOutput>
-    deleteConfigurationSet: function(Client, types.DeleteConfigurationSetInput, any): async.Operation<types.DeleteConfigurationSetOutput>
-    deleteConfigurationSetEventDestination: function(Client, types.DeleteConfigurationSetEventDestinationInput, any): async.Operation<types.DeleteConfigurationSetEventDestinationOutput>
-    deleteContact: function(Client, types.DeleteContactInput, any): async.Operation<types.DeleteContactOutput>
-    deleteContactList: function(Client, types.DeleteContactListInput, any): async.Operation<types.DeleteContactListOutput>
-    deleteCustomVerificationEmailTemplate: function(Client, types.DeleteCustomVerificationEmailTemplateInput, any): async.Operation<types.DeleteCustomVerificationEmailTemplateOutput>
-    deleteDedicatedIpPool: function(Client, types.DeleteDedicatedIpPoolInput, any): async.Operation<types.DeleteDedicatedIpPoolOutput>
-    deleteEmailIdentity: function(Client, types.DeleteEmailIdentityInput, any): async.Operation<types.DeleteEmailIdentityOutput>
-    deleteEmailIdentityPolicy: function(Client, types.DeleteEmailIdentityPolicyInput, any): async.Operation<types.DeleteEmailIdentityPolicyOutput>
-    deleteEmailTemplate: function(Client, types.DeleteEmailTemplateInput, any): async.Operation<types.DeleteEmailTemplateOutput>
-    deleteMultiRegionEndpoint: function(Client, types.DeleteMultiRegionEndpointInput, any): async.Operation<types.DeleteMultiRegionEndpointOutput>
-    deleteSuppressedDestination: function(Client, types.DeleteSuppressedDestinationInput, any): async.Operation<types.DeleteSuppressedDestinationOutput>
-    deleteTenant: function(Client, types.DeleteTenantInput, any): async.Operation<types.DeleteTenantOutput>
-    deleteTenantResourceAssociation: function(Client, types.DeleteTenantResourceAssociationInput, any): async.Operation<types.DeleteTenantResourceAssociationOutput>
-    getAccount: function(Client, types.GetAccountInput, any): async.Operation<types.GetAccountOutput>
-    getBlacklistReports: function(Client, types.GetBlacklistReportsInput, any): async.Operation<types.GetBlacklistReportsOutput>
-    getConfigurationSet: function(Client, types.GetConfigurationSetInput, any): async.Operation<types.GetConfigurationSetOutput>
-    getConfigurationSetEventDestinations: function(Client, types.GetConfigurationSetEventDestinationsInput, any): async.Operation<types.GetConfigurationSetEventDestinationsOutput>
-    getContact: function(Client, types.GetContactInput, any): async.Operation<types.GetContactOutput>
-    getContactList: function(Client, types.GetContactListInput, any): async.Operation<types.GetContactListOutput>
-    getCustomVerificationEmailTemplate: function(Client, types.GetCustomVerificationEmailTemplateInput, any): async.Operation<types.GetCustomVerificationEmailTemplateOutput>
-    getDedicatedIp: function(Client, types.GetDedicatedIpInput, any): async.Operation<types.GetDedicatedIpOutput>
-    getDedicatedIpPool: function(Client, types.GetDedicatedIpPoolInput, any): async.Operation<types.GetDedicatedIpPoolOutput>
-    getDedicatedIps: function(Client, types.GetDedicatedIpsInput, any): async.Operation<types.GetDedicatedIpsOutput>
-    getDeliverabilityDashboardOptions: function(Client, types.GetDeliverabilityDashboardOptionsInput, any): async.Operation<types.GetDeliverabilityDashboardOptionsOutput>
-    getDeliverabilityTestReport: function(Client, types.GetDeliverabilityTestReportInput, any): async.Operation<types.GetDeliverabilityTestReportOutput>
-    getDomainDeliverabilityCampaign: function(Client, types.GetDomainDeliverabilityCampaignInput, any): async.Operation<types.GetDomainDeliverabilityCampaignOutput>
-    getDomainStatisticsReport: function(Client, types.GetDomainStatisticsReportInput, any): async.Operation<types.GetDomainStatisticsReportOutput>
-    getEmailAddressInsights: function(Client, types.GetEmailAddressInsightsInput, any): async.Operation<types.GetEmailAddressInsightsOutput>
-    getEmailIdentity: function(Client, types.GetEmailIdentityInput, any): async.Operation<types.GetEmailIdentityOutput>
-    getEmailIdentityPolicies: function(Client, types.GetEmailIdentityPoliciesInput, any): async.Operation<types.GetEmailIdentityPoliciesOutput>
-    getEmailTemplate: function(Client, types.GetEmailTemplateInput, any): async.Operation<types.GetEmailTemplateOutput>
-    getExportJob: function(Client, types.GetExportJobInput, any): async.Operation<types.GetExportJobOutput>
-    getImportJob: function(Client, types.GetImportJobInput, any): async.Operation<types.GetImportJobOutput>
-    getMessageInsights: function(Client, types.GetMessageInsightsInput, any): async.Operation<types.GetMessageInsightsOutput>
-    getMultiRegionEndpoint: function(Client, types.GetMultiRegionEndpointInput, any): async.Operation<types.GetMultiRegionEndpointOutput>
-    getReputationEntity: function(Client, types.GetReputationEntityInput, any): async.Operation<types.GetReputationEntityOutput>
-    getSuppressedDestination: function(Client, types.GetSuppressedDestinationInput, any): async.Operation<types.GetSuppressedDestinationOutput>
-    getTenant: function(Client, types.GetTenantInput, any): async.Operation<types.GetTenantOutput>
-    listConfigurationSets: function(Client, types.ListConfigurationSetsInput, any): async.Operation<types.ListConfigurationSetsOutput>
-    listContactLists: function(Client, types.ListContactListsInput, any): async.Operation<types.ListContactListsOutput>
-    listContacts: function(Client, types.ListContactsInput, any): async.Operation<types.ListContactsOutput>
-    listCustomVerificationEmailTemplates: function(Client, types.ListCustomVerificationEmailTemplatesInput, any): async.Operation<types.ListCustomVerificationEmailTemplatesOutput>
-    listDedicatedIpPools: function(Client, types.ListDedicatedIpPoolsInput, any): async.Operation<types.ListDedicatedIpPoolsOutput>
-    listDeliverabilityTestReports: function(Client, types.ListDeliverabilityTestReportsInput, any): async.Operation<types.ListDeliverabilityTestReportsOutput>
-    listDomainDeliverabilityCampaigns: function(Client, types.ListDomainDeliverabilityCampaignsInput, any): async.Operation<types.ListDomainDeliverabilityCampaignsOutput>
-    listEmailIdentities: function(Client, types.ListEmailIdentitiesInput, any): async.Operation<types.ListEmailIdentitiesOutput>
-    listEmailTemplates: function(Client, types.ListEmailTemplatesInput, any): async.Operation<types.ListEmailTemplatesOutput>
-    listExportJobs: function(Client, types.ListExportJobsInput, any): async.Operation<types.ListExportJobsOutput>
-    listImportJobs: function(Client, types.ListImportJobsInput, any): async.Operation<types.ListImportJobsOutput>
-    listMultiRegionEndpoints: function(Client, types.ListMultiRegionEndpointsInput, any): async.Operation<types.ListMultiRegionEndpointsOutput>
-    listRecommendations: function(Client, types.ListRecommendationsInput, any): async.Operation<types.ListRecommendationsOutput>
-    listReputationEntities: function(Client, types.ListReputationEntitiesInput, any): async.Operation<types.ListReputationEntitiesOutput>
-    listResourceTenants: function(Client, types.ListResourceTenantsInput, any): async.Operation<types.ListResourceTenantsOutput>
-    listSuppressedDestinations: function(Client, types.ListSuppressedDestinationsInput, any): async.Operation<types.ListSuppressedDestinationsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTenantResources: function(Client, types.ListTenantResourcesInput, any): async.Operation<types.ListTenantResourcesOutput>
-    listTenants: function(Client, types.ListTenantsInput, any): async.Operation<types.ListTenantsOutput>
-    putAccountDedicatedIpWarmupAttributes: function(Client, types.PutAccountDedicatedIpWarmupAttributesInput, any): async.Operation<types.PutAccountDedicatedIpWarmupAttributesOutput>
-    putAccountDetails: function(Client, types.PutAccountDetailsInput, any): async.Operation<types.PutAccountDetailsOutput>
-    putAccountSendingAttributes: function(Client, types.PutAccountSendingAttributesInput, any): async.Operation<types.PutAccountSendingAttributesOutput>
-    putAccountSuppressionAttributes: function(Client, types.PutAccountSuppressionAttributesInput, any): async.Operation<types.PutAccountSuppressionAttributesOutput>
-    putAccountVdmAttributes: function(Client, types.PutAccountVdmAttributesInput, any): async.Operation<types.PutAccountVdmAttributesOutput>
-    putConfigurationSetArchivingOptions: function(Client, types.PutConfigurationSetArchivingOptionsInput, any): async.Operation<types.PutConfigurationSetArchivingOptionsOutput>
-    putConfigurationSetDeliveryOptions: function(Client, types.PutConfigurationSetDeliveryOptionsInput, any): async.Operation<types.PutConfigurationSetDeliveryOptionsOutput>
-    putConfigurationSetReputationOptions: function(Client, types.PutConfigurationSetReputationOptionsInput, any): async.Operation<types.PutConfigurationSetReputationOptionsOutput>
-    putConfigurationSetSendingOptions: function(Client, types.PutConfigurationSetSendingOptionsInput, any): async.Operation<types.PutConfigurationSetSendingOptionsOutput>
-    putConfigurationSetSuppressionOptions: function(Client, types.PutConfigurationSetSuppressionOptionsInput, any): async.Operation<types.PutConfigurationSetSuppressionOptionsOutput>
-    putConfigurationSetTrackingOptions: function(Client, types.PutConfigurationSetTrackingOptionsInput, any): async.Operation<types.PutConfigurationSetTrackingOptionsOutput>
-    putConfigurationSetVdmOptions: function(Client, types.PutConfigurationSetVdmOptionsInput, any): async.Operation<types.PutConfigurationSetVdmOptionsOutput>
-    putDedicatedIpInPool: function(Client, types.PutDedicatedIpInPoolInput, any): async.Operation<types.PutDedicatedIpInPoolOutput>
-    putDedicatedIpPoolScalingAttributes: function(Client, types.PutDedicatedIpPoolScalingAttributesInput, any): async.Operation<types.PutDedicatedIpPoolScalingAttributesOutput>
-    putDedicatedIpWarmupAttributes: function(Client, types.PutDedicatedIpWarmupAttributesInput, any): async.Operation<types.PutDedicatedIpWarmupAttributesOutput>
-    putDeliverabilityDashboardOption: function(Client, types.PutDeliverabilityDashboardOptionInput, any): async.Operation<types.PutDeliverabilityDashboardOptionOutput>
-    putEmailIdentityConfigurationSetAttributes: function(Client, types.PutEmailIdentityConfigurationSetAttributesInput, any): async.Operation<types.PutEmailIdentityConfigurationSetAttributesOutput>
-    putEmailIdentityDkimAttributes: function(Client, types.PutEmailIdentityDkimAttributesInput, any): async.Operation<types.PutEmailIdentityDkimAttributesOutput>
-    putEmailIdentityDkimSigningAttributes: function(Client, types.PutEmailIdentityDkimSigningAttributesInput, any): async.Operation<types.PutEmailIdentityDkimSigningAttributesOutput>
-    putEmailIdentityFeedbackAttributes: function(Client, types.PutEmailIdentityFeedbackAttributesInput, any): async.Operation<types.PutEmailIdentityFeedbackAttributesOutput>
-    putEmailIdentityMailFromAttributes: function(Client, types.PutEmailIdentityMailFromAttributesInput, any): async.Operation<types.PutEmailIdentityMailFromAttributesOutput>
-    putSuppressedDestination: function(Client, types.PutSuppressedDestinationInput, any): async.Operation<types.PutSuppressedDestinationOutput>
-    sendBulkEmail: function(Client, types.SendBulkEmailInput, any): async.Operation<types.SendBulkEmailOutput>
-    sendCustomVerificationEmail: function(Client, types.SendCustomVerificationEmailInput, any): async.Operation<types.SendCustomVerificationEmailOutput>
-    sendEmail: function(Client, types.SendEmailInput, any): async.Operation<types.SendEmailOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    testRenderEmailTemplate: function(Client, types.TestRenderEmailTemplateInput, any): async.Operation<types.TestRenderEmailTemplateOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateConfigurationSetEventDestination: function(Client, types.UpdateConfigurationSetEventDestinationInput, any): async.Operation<types.UpdateConfigurationSetEventDestinationOutput>
-    updateContact: function(Client, types.UpdateContactInput, any): async.Operation<types.UpdateContactOutput>
-    updateContactList: function(Client, types.UpdateContactListInput, any): async.Operation<types.UpdateContactListOutput>
-    updateCustomVerificationEmailTemplate: function(Client, types.UpdateCustomVerificationEmailTemplateInput, any): async.Operation<types.UpdateCustomVerificationEmailTemplateOutput>
-    updateEmailIdentityPolicy: function(Client, types.UpdateEmailIdentityPolicyInput, any): async.Operation<types.UpdateEmailIdentityPolicyOutput>
-    updateEmailTemplate: function(Client, types.UpdateEmailTemplateInput, any): async.Operation<types.UpdateEmailTemplateOutput>
-    updateReputationEntityCustomerManagedStatus: function(Client, types.UpdateReputationEntityCustomerManagedStatusInput, any): async.Operation<types.UpdateReputationEntityCustomerManagedStatusOutput>
-    updateReputationEntityPolicy: function(Client, types.UpdateReputationEntityPolicyInput, any): async.Operation<types.UpdateReputationEntityPolicyOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchGetMetricData: function(Client, types.BatchGetMetricDataInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetMetricDataOutput>
+    cancelExportJob: function(Client, types.CancelExportJobInput, ? base_client.InvokeOptions): async.Operation<types.CancelExportJobOutput>
+    createConfigurationSet: function(Client, types.CreateConfigurationSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfigurationSetOutput>
+    createConfigurationSetEventDestination: function(Client, types.CreateConfigurationSetEventDestinationInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfigurationSetEventDestinationOutput>
+    createContact: function(Client, types.CreateContactInput, ? base_client.InvokeOptions): async.Operation<types.CreateContactOutput>
+    createContactList: function(Client, types.CreateContactListInput, ? base_client.InvokeOptions): async.Operation<types.CreateContactListOutput>
+    createCustomVerificationEmailTemplate: function(Client, types.CreateCustomVerificationEmailTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateCustomVerificationEmailTemplateOutput>
+    createDedicatedIpPool: function(Client, types.CreateDedicatedIpPoolInput, ? base_client.InvokeOptions): async.Operation<types.CreateDedicatedIpPoolOutput>
+    createDeliverabilityTestReport: function(Client, types.CreateDeliverabilityTestReportInput, ? base_client.InvokeOptions): async.Operation<types.CreateDeliverabilityTestReportOutput>
+    createEmailIdentity: function(Client, types.CreateEmailIdentityInput, ? base_client.InvokeOptions): async.Operation<types.CreateEmailIdentityOutput>
+    createEmailIdentityPolicy: function(Client, types.CreateEmailIdentityPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateEmailIdentityPolicyOutput>
+    createEmailTemplate: function(Client, types.CreateEmailTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateEmailTemplateOutput>
+    createExportJob: function(Client, types.CreateExportJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateExportJobOutput>
+    createImportJob: function(Client, types.CreateImportJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateImportJobOutput>
+    createMultiRegionEndpoint: function(Client, types.CreateMultiRegionEndpointInput, ? base_client.InvokeOptions): async.Operation<types.CreateMultiRegionEndpointOutput>
+    createTenant: function(Client, types.CreateTenantInput, ? base_client.InvokeOptions): async.Operation<types.CreateTenantOutput>
+    createTenantResourceAssociation: function(Client, types.CreateTenantResourceAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateTenantResourceAssociationOutput>
+    deleteConfigurationSet: function(Client, types.DeleteConfigurationSetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfigurationSetOutput>
+    deleteConfigurationSetEventDestination: function(Client, types.DeleteConfigurationSetEventDestinationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfigurationSetEventDestinationOutput>
+    deleteContact: function(Client, types.DeleteContactInput, ? base_client.InvokeOptions): async.Operation<types.DeleteContactOutput>
+    deleteContactList: function(Client, types.DeleteContactListInput, ? base_client.InvokeOptions): async.Operation<types.DeleteContactListOutput>
+    deleteCustomVerificationEmailTemplate: function(Client, types.DeleteCustomVerificationEmailTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCustomVerificationEmailTemplateOutput>
+    deleteDedicatedIpPool: function(Client, types.DeleteDedicatedIpPoolInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDedicatedIpPoolOutput>
+    deleteEmailIdentity: function(Client, types.DeleteEmailIdentityInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEmailIdentityOutput>
+    deleteEmailIdentityPolicy: function(Client, types.DeleteEmailIdentityPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEmailIdentityPolicyOutput>
+    deleteEmailTemplate: function(Client, types.DeleteEmailTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEmailTemplateOutput>
+    deleteMultiRegionEndpoint: function(Client, types.DeleteMultiRegionEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMultiRegionEndpointOutput>
+    deleteSuppressedDestination: function(Client, types.DeleteSuppressedDestinationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSuppressedDestinationOutput>
+    deleteTenant: function(Client, types.DeleteTenantInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTenantOutput>
+    deleteTenantResourceAssociation: function(Client, types.DeleteTenantResourceAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTenantResourceAssociationOutput>
+    getAccount: function(Client, types.GetAccountInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountOutput>
+    getBlacklistReports: function(Client, types.GetBlacklistReportsInput, ? base_client.InvokeOptions): async.Operation<types.GetBlacklistReportsOutput>
+    getConfigurationSet: function(Client, types.GetConfigurationSetInput, ? base_client.InvokeOptions): async.Operation<types.GetConfigurationSetOutput>
+    getConfigurationSetEventDestinations: function(Client, types.GetConfigurationSetEventDestinationsInput, ? base_client.InvokeOptions): async.Operation<types.GetConfigurationSetEventDestinationsOutput>
+    getContact: function(Client, types.GetContactInput, ? base_client.InvokeOptions): async.Operation<types.GetContactOutput>
+    getContactList: function(Client, types.GetContactListInput, ? base_client.InvokeOptions): async.Operation<types.GetContactListOutput>
+    getCustomVerificationEmailTemplate: function(Client, types.GetCustomVerificationEmailTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetCustomVerificationEmailTemplateOutput>
+    getDedicatedIp: function(Client, types.GetDedicatedIpInput, ? base_client.InvokeOptions): async.Operation<types.GetDedicatedIpOutput>
+    getDedicatedIpPool: function(Client, types.GetDedicatedIpPoolInput, ? base_client.InvokeOptions): async.Operation<types.GetDedicatedIpPoolOutput>
+    getDedicatedIps: function(Client, types.GetDedicatedIpsInput, ? base_client.InvokeOptions): async.Operation<types.GetDedicatedIpsOutput>
+    getDeliverabilityDashboardOptions: function(Client, types.GetDeliverabilityDashboardOptionsInput, ? base_client.InvokeOptions): async.Operation<types.GetDeliverabilityDashboardOptionsOutput>
+    getDeliverabilityTestReport: function(Client, types.GetDeliverabilityTestReportInput, ? base_client.InvokeOptions): async.Operation<types.GetDeliverabilityTestReportOutput>
+    getDomainDeliverabilityCampaign: function(Client, types.GetDomainDeliverabilityCampaignInput, ? base_client.InvokeOptions): async.Operation<types.GetDomainDeliverabilityCampaignOutput>
+    getDomainStatisticsReport: function(Client, types.GetDomainStatisticsReportInput, ? base_client.InvokeOptions): async.Operation<types.GetDomainStatisticsReportOutput>
+    getEmailAddressInsights: function(Client, types.GetEmailAddressInsightsInput, ? base_client.InvokeOptions): async.Operation<types.GetEmailAddressInsightsOutput>
+    getEmailIdentity: function(Client, types.GetEmailIdentityInput, ? base_client.InvokeOptions): async.Operation<types.GetEmailIdentityOutput>
+    getEmailIdentityPolicies: function(Client, types.GetEmailIdentityPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.GetEmailIdentityPoliciesOutput>
+    getEmailTemplate: function(Client, types.GetEmailTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetEmailTemplateOutput>
+    getExportJob: function(Client, types.GetExportJobInput, ? base_client.InvokeOptions): async.Operation<types.GetExportJobOutput>
+    getImportJob: function(Client, types.GetImportJobInput, ? base_client.InvokeOptions): async.Operation<types.GetImportJobOutput>
+    getMessageInsights: function(Client, types.GetMessageInsightsInput, ? base_client.InvokeOptions): async.Operation<types.GetMessageInsightsOutput>
+    getMultiRegionEndpoint: function(Client, types.GetMultiRegionEndpointInput, ? base_client.InvokeOptions): async.Operation<types.GetMultiRegionEndpointOutput>
+    getReputationEntity: function(Client, types.GetReputationEntityInput, ? base_client.InvokeOptions): async.Operation<types.GetReputationEntityOutput>
+    getSuppressedDestination: function(Client, types.GetSuppressedDestinationInput, ? base_client.InvokeOptions): async.Operation<types.GetSuppressedDestinationOutput>
+    getTenant: function(Client, types.GetTenantInput, ? base_client.InvokeOptions): async.Operation<types.GetTenantOutput>
+    listConfigurationSets: function(Client, types.ListConfigurationSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListConfigurationSetsOutput>
+    listContactLists: function(Client, types.ListContactListsInput, ? base_client.InvokeOptions): async.Operation<types.ListContactListsOutput>
+    listContacts: function(Client, types.ListContactsInput, ? base_client.InvokeOptions): async.Operation<types.ListContactsOutput>
+    listCustomVerificationEmailTemplates: function(Client, types.ListCustomVerificationEmailTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListCustomVerificationEmailTemplatesOutput>
+    listDedicatedIpPools: function(Client, types.ListDedicatedIpPoolsInput, ? base_client.InvokeOptions): async.Operation<types.ListDedicatedIpPoolsOutput>
+    listDeliverabilityTestReports: function(Client, types.ListDeliverabilityTestReportsInput, ? base_client.InvokeOptions): async.Operation<types.ListDeliverabilityTestReportsOutput>
+    listDomainDeliverabilityCampaigns: function(Client, types.ListDomainDeliverabilityCampaignsInput, ? base_client.InvokeOptions): async.Operation<types.ListDomainDeliverabilityCampaignsOutput>
+    listEmailIdentities: function(Client, types.ListEmailIdentitiesInput, ? base_client.InvokeOptions): async.Operation<types.ListEmailIdentitiesOutput>
+    listEmailTemplates: function(Client, types.ListEmailTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListEmailTemplatesOutput>
+    listExportJobs: function(Client, types.ListExportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListExportJobsOutput>
+    listImportJobs: function(Client, types.ListImportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListImportJobsOutput>
+    listMultiRegionEndpoints: function(Client, types.ListMultiRegionEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.ListMultiRegionEndpointsOutput>
+    listRecommendations: function(Client, types.ListRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.ListRecommendationsOutput>
+    listReputationEntities: function(Client, types.ListReputationEntitiesInput, ? base_client.InvokeOptions): async.Operation<types.ListReputationEntitiesOutput>
+    listResourceTenants: function(Client, types.ListResourceTenantsInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceTenantsOutput>
+    listSuppressedDestinations: function(Client, types.ListSuppressedDestinationsInput, ? base_client.InvokeOptions): async.Operation<types.ListSuppressedDestinationsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTenantResources: function(Client, types.ListTenantResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListTenantResourcesOutput>
+    listTenants: function(Client, types.ListTenantsInput, ? base_client.InvokeOptions): async.Operation<types.ListTenantsOutput>
+    putAccountDedicatedIpWarmupAttributes: function(Client, types.PutAccountDedicatedIpWarmupAttributesInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountDedicatedIpWarmupAttributesOutput>
+    putAccountDetails: function(Client, types.PutAccountDetailsInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountDetailsOutput>
+    putAccountSendingAttributes: function(Client, types.PutAccountSendingAttributesInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountSendingAttributesOutput>
+    putAccountSuppressionAttributes: function(Client, types.PutAccountSuppressionAttributesInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountSuppressionAttributesOutput>
+    putAccountVdmAttributes: function(Client, types.PutAccountVdmAttributesInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountVdmAttributesOutput>
+    putConfigurationSetArchivingOptions: function(Client, types.PutConfigurationSetArchivingOptionsInput, ? base_client.InvokeOptions): async.Operation<types.PutConfigurationSetArchivingOptionsOutput>
+    putConfigurationSetDeliveryOptions: function(Client, types.PutConfigurationSetDeliveryOptionsInput, ? base_client.InvokeOptions): async.Operation<types.PutConfigurationSetDeliveryOptionsOutput>
+    putConfigurationSetReputationOptions: function(Client, types.PutConfigurationSetReputationOptionsInput, ? base_client.InvokeOptions): async.Operation<types.PutConfigurationSetReputationOptionsOutput>
+    putConfigurationSetSendingOptions: function(Client, types.PutConfigurationSetSendingOptionsInput, ? base_client.InvokeOptions): async.Operation<types.PutConfigurationSetSendingOptionsOutput>
+    putConfigurationSetSuppressionOptions: function(Client, types.PutConfigurationSetSuppressionOptionsInput, ? base_client.InvokeOptions): async.Operation<types.PutConfigurationSetSuppressionOptionsOutput>
+    putConfigurationSetTrackingOptions: function(Client, types.PutConfigurationSetTrackingOptionsInput, ? base_client.InvokeOptions): async.Operation<types.PutConfigurationSetTrackingOptionsOutput>
+    putConfigurationSetVdmOptions: function(Client, types.PutConfigurationSetVdmOptionsInput, ? base_client.InvokeOptions): async.Operation<types.PutConfigurationSetVdmOptionsOutput>
+    putDedicatedIpInPool: function(Client, types.PutDedicatedIpInPoolInput, ? base_client.InvokeOptions): async.Operation<types.PutDedicatedIpInPoolOutput>
+    putDedicatedIpPoolScalingAttributes: function(Client, types.PutDedicatedIpPoolScalingAttributesInput, ? base_client.InvokeOptions): async.Operation<types.PutDedicatedIpPoolScalingAttributesOutput>
+    putDedicatedIpWarmupAttributes: function(Client, types.PutDedicatedIpWarmupAttributesInput, ? base_client.InvokeOptions): async.Operation<types.PutDedicatedIpWarmupAttributesOutput>
+    putDeliverabilityDashboardOption: function(Client, types.PutDeliverabilityDashboardOptionInput, ? base_client.InvokeOptions): async.Operation<types.PutDeliverabilityDashboardOptionOutput>
+    putEmailIdentityConfigurationSetAttributes: function(Client, types.PutEmailIdentityConfigurationSetAttributesInput, ? base_client.InvokeOptions): async.Operation<types.PutEmailIdentityConfigurationSetAttributesOutput>
+    putEmailIdentityDkimAttributes: function(Client, types.PutEmailIdentityDkimAttributesInput, ? base_client.InvokeOptions): async.Operation<types.PutEmailIdentityDkimAttributesOutput>
+    putEmailIdentityDkimSigningAttributes: function(Client, types.PutEmailIdentityDkimSigningAttributesInput, ? base_client.InvokeOptions): async.Operation<types.PutEmailIdentityDkimSigningAttributesOutput>
+    putEmailIdentityFeedbackAttributes: function(Client, types.PutEmailIdentityFeedbackAttributesInput, ? base_client.InvokeOptions): async.Operation<types.PutEmailIdentityFeedbackAttributesOutput>
+    putEmailIdentityMailFromAttributes: function(Client, types.PutEmailIdentityMailFromAttributesInput, ? base_client.InvokeOptions): async.Operation<types.PutEmailIdentityMailFromAttributesOutput>
+    putSuppressedDestination: function(Client, types.PutSuppressedDestinationInput, ? base_client.InvokeOptions): async.Operation<types.PutSuppressedDestinationOutput>
+    sendBulkEmail: function(Client, types.SendBulkEmailInput, ? base_client.InvokeOptions): async.Operation<types.SendBulkEmailOutput>
+    sendCustomVerificationEmail: function(Client, types.SendCustomVerificationEmailInput, ? base_client.InvokeOptions): async.Operation<types.SendCustomVerificationEmailOutput>
+    sendEmail: function(Client, types.SendEmailInput, ? base_client.InvokeOptions): async.Operation<types.SendEmailOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    testRenderEmailTemplate: function(Client, types.TestRenderEmailTemplateInput, ? base_client.InvokeOptions): async.Operation<types.TestRenderEmailTemplateOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateConfigurationSetEventDestination: function(Client, types.UpdateConfigurationSetEventDestinationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfigurationSetEventDestinationOutput>
+    updateContact: function(Client, types.UpdateContactInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContactOutput>
+    updateContactList: function(Client, types.UpdateContactListInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContactListOutput>
+    updateCustomVerificationEmailTemplate: function(Client, types.UpdateCustomVerificationEmailTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCustomVerificationEmailTemplateOutput>
+    updateEmailIdentityPolicy: function(Client, types.UpdateEmailIdentityPolicyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEmailIdentityPolicyOutput>
+    updateEmailTemplate: function(Client, types.UpdateEmailTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEmailTemplateOutput>
+    updateReputationEntityCustomerManagedStatus: function(Client, types.UpdateReputationEntityCustomerManagedStatusInput, ? base_client.InvokeOptions): async.Operation<types.UpdateReputationEntityCustomerManagedStatusOutput>
+    updateReputationEntityPolicy: function(Client, types.UpdateReputationEntityPolicyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateReputationEntityPolicyOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "SimpleEmailService_v2"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ses", signing_region = c.region } }
                 else
@@ -169,444 +172,444 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchGetMetricData(input: types.BatchGetMetricDataInput, options: any): async.Operation<types.BatchGetMetricDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetMetricData, input, options) as async.Operation<types.BatchGetMetricDataOutput>
+function C:batchGetMetricData(input: types.BatchGetMetricDataInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetMetricDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetMetricData as schema.OperationSchema, input, options) as async.Operation<types.BatchGetMetricDataOutput>
 end
 
-function C:cancelExportJob(input: types.CancelExportJobInput, options: any): async.Operation<types.CancelExportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelExportJob, input, options) as async.Operation<types.CancelExportJobOutput>
+function C:cancelExportJob(input: types.CancelExportJobInput, options?: base_client.InvokeOptions): async.Operation<types.CancelExportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelExportJob as schema.OperationSchema, input, options) as async.Operation<types.CancelExportJobOutput>
 end
 
-function C:createConfigurationSet(input: types.CreateConfigurationSetInput, options: any): async.Operation<types.CreateConfigurationSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConfigurationSet, input, options) as async.Operation<types.CreateConfigurationSetOutput>
+function C:createConfigurationSet(input: types.CreateConfigurationSetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConfigurationSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConfigurationSet as schema.OperationSchema, input, options) as async.Operation<types.CreateConfigurationSetOutput>
 end
 
-function C:createConfigurationSetEventDestination(input: types.CreateConfigurationSetEventDestinationInput, options: any): async.Operation<types.CreateConfigurationSetEventDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConfigurationSetEventDestination, input, options) as async.Operation<types.CreateConfigurationSetEventDestinationOutput>
+function C:createConfigurationSetEventDestination(input: types.CreateConfigurationSetEventDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConfigurationSetEventDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConfigurationSetEventDestination as schema.OperationSchema, input, options) as async.Operation<types.CreateConfigurationSetEventDestinationOutput>
 end
 
-function C:createContact(input: types.CreateContactInput, options: any): async.Operation<types.CreateContactOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateContact, input, options) as async.Operation<types.CreateContactOutput>
+function C:createContact(input: types.CreateContactInput, options?: base_client.InvokeOptions): async.Operation<types.CreateContactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateContact as schema.OperationSchema, input, options) as async.Operation<types.CreateContactOutput>
 end
 
-function C:createContactList(input: types.CreateContactListInput, options: any): async.Operation<types.CreateContactListOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateContactList, input, options) as async.Operation<types.CreateContactListOutput>
+function C:createContactList(input: types.CreateContactListInput, options?: base_client.InvokeOptions): async.Operation<types.CreateContactListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateContactList as schema.OperationSchema, input, options) as async.Operation<types.CreateContactListOutput>
 end
 
-function C:createCustomVerificationEmailTemplate(input: types.CreateCustomVerificationEmailTemplateInput, options: any): async.Operation<types.CreateCustomVerificationEmailTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCustomVerificationEmailTemplate, input, options) as async.Operation<types.CreateCustomVerificationEmailTemplateOutput>
+function C:createCustomVerificationEmailTemplate(input: types.CreateCustomVerificationEmailTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCustomVerificationEmailTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCustomVerificationEmailTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateCustomVerificationEmailTemplateOutput>
 end
 
-function C:createDedicatedIpPool(input: types.CreateDedicatedIpPoolInput, options: any): async.Operation<types.CreateDedicatedIpPoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDedicatedIpPool, input, options) as async.Operation<types.CreateDedicatedIpPoolOutput>
+function C:createDedicatedIpPool(input: types.CreateDedicatedIpPoolInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDedicatedIpPoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDedicatedIpPool as schema.OperationSchema, input, options) as async.Operation<types.CreateDedicatedIpPoolOutput>
 end
 
-function C:createDeliverabilityTestReport(input: types.CreateDeliverabilityTestReportInput, options: any): async.Operation<types.CreateDeliverabilityTestReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDeliverabilityTestReport, input, options) as async.Operation<types.CreateDeliverabilityTestReportOutput>
+function C:createDeliverabilityTestReport(input: types.CreateDeliverabilityTestReportInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDeliverabilityTestReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDeliverabilityTestReport as schema.OperationSchema, input, options) as async.Operation<types.CreateDeliverabilityTestReportOutput>
 end
 
-function C:createEmailIdentity(input: types.CreateEmailIdentityInput, options: any): async.Operation<types.CreateEmailIdentityOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEmailIdentity, input, options) as async.Operation<types.CreateEmailIdentityOutput>
+function C:createEmailIdentity(input: types.CreateEmailIdentityInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEmailIdentityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEmailIdentity as schema.OperationSchema, input, options) as async.Operation<types.CreateEmailIdentityOutput>
 end
 
-function C:createEmailIdentityPolicy(input: types.CreateEmailIdentityPolicyInput, options: any): async.Operation<types.CreateEmailIdentityPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEmailIdentityPolicy, input, options) as async.Operation<types.CreateEmailIdentityPolicyOutput>
+function C:createEmailIdentityPolicy(input: types.CreateEmailIdentityPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEmailIdentityPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEmailIdentityPolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateEmailIdentityPolicyOutput>
 end
 
-function C:createEmailTemplate(input: types.CreateEmailTemplateInput, options: any): async.Operation<types.CreateEmailTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEmailTemplate, input, options) as async.Operation<types.CreateEmailTemplateOutput>
+function C:createEmailTemplate(input: types.CreateEmailTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEmailTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEmailTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateEmailTemplateOutput>
 end
 
-function C:createExportJob(input: types.CreateExportJobInput, options: any): async.Operation<types.CreateExportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateExportJob, input, options) as async.Operation<types.CreateExportJobOutput>
+function C:createExportJob(input: types.CreateExportJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateExportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateExportJob as schema.OperationSchema, input, options) as async.Operation<types.CreateExportJobOutput>
 end
 
-function C:createImportJob(input: types.CreateImportJobInput, options: any): async.Operation<types.CreateImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateImportJob, input, options) as async.Operation<types.CreateImportJobOutput>
+function C:createImportJob(input: types.CreateImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateImportJob as schema.OperationSchema, input, options) as async.Operation<types.CreateImportJobOutput>
 end
 
-function C:createMultiRegionEndpoint(input: types.CreateMultiRegionEndpointInput, options: any): async.Operation<types.CreateMultiRegionEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMultiRegionEndpoint, input, options) as async.Operation<types.CreateMultiRegionEndpointOutput>
+function C:createMultiRegionEndpoint(input: types.CreateMultiRegionEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMultiRegionEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMultiRegionEndpoint as schema.OperationSchema, input, options) as async.Operation<types.CreateMultiRegionEndpointOutput>
 end
 
-function C:createTenant(input: types.CreateTenantInput, options: any): async.Operation<types.CreateTenantOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTenant, input, options) as async.Operation<types.CreateTenantOutput>
+function C:createTenant(input: types.CreateTenantInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTenantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTenant as schema.OperationSchema, input, options) as async.Operation<types.CreateTenantOutput>
 end
 
-function C:createTenantResourceAssociation(input: types.CreateTenantResourceAssociationInput, options: any): async.Operation<types.CreateTenantResourceAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTenantResourceAssociation, input, options) as async.Operation<types.CreateTenantResourceAssociationOutput>
+function C:createTenantResourceAssociation(input: types.CreateTenantResourceAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTenantResourceAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTenantResourceAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreateTenantResourceAssociationOutput>
 end
 
-function C:deleteConfigurationSet(input: types.DeleteConfigurationSetInput, options: any): async.Operation<types.DeleteConfigurationSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConfigurationSet, input, options) as async.Operation<types.DeleteConfigurationSetOutput>
+function C:deleteConfigurationSet(input: types.DeleteConfigurationSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConfigurationSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConfigurationSet as schema.OperationSchema, input, options) as async.Operation<types.DeleteConfigurationSetOutput>
 end
 
-function C:deleteConfigurationSetEventDestination(input: types.DeleteConfigurationSetEventDestinationInput, options: any): async.Operation<types.DeleteConfigurationSetEventDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConfigurationSetEventDestination, input, options) as async.Operation<types.DeleteConfigurationSetEventDestinationOutput>
+function C:deleteConfigurationSetEventDestination(input: types.DeleteConfigurationSetEventDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConfigurationSetEventDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConfigurationSetEventDestination as schema.OperationSchema, input, options) as async.Operation<types.DeleteConfigurationSetEventDestinationOutput>
 end
 
-function C:deleteContact(input: types.DeleteContactInput, options: any): async.Operation<types.DeleteContactOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteContact, input, options) as async.Operation<types.DeleteContactOutput>
+function C:deleteContact(input: types.DeleteContactInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteContactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteContact as schema.OperationSchema, input, options) as async.Operation<types.DeleteContactOutput>
 end
 
-function C:deleteContactList(input: types.DeleteContactListInput, options: any): async.Operation<types.DeleteContactListOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteContactList, input, options) as async.Operation<types.DeleteContactListOutput>
+function C:deleteContactList(input: types.DeleteContactListInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteContactListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteContactList as schema.OperationSchema, input, options) as async.Operation<types.DeleteContactListOutput>
 end
 
-function C:deleteCustomVerificationEmailTemplate(input: types.DeleteCustomVerificationEmailTemplateInput, options: any): async.Operation<types.DeleteCustomVerificationEmailTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCustomVerificationEmailTemplate, input, options) as async.Operation<types.DeleteCustomVerificationEmailTemplateOutput>
+function C:deleteCustomVerificationEmailTemplate(input: types.DeleteCustomVerificationEmailTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCustomVerificationEmailTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCustomVerificationEmailTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteCustomVerificationEmailTemplateOutput>
 end
 
-function C:deleteDedicatedIpPool(input: types.DeleteDedicatedIpPoolInput, options: any): async.Operation<types.DeleteDedicatedIpPoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDedicatedIpPool, input, options) as async.Operation<types.DeleteDedicatedIpPoolOutput>
+function C:deleteDedicatedIpPool(input: types.DeleteDedicatedIpPoolInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDedicatedIpPoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDedicatedIpPool as schema.OperationSchema, input, options) as async.Operation<types.DeleteDedicatedIpPoolOutput>
 end
 
-function C:deleteEmailIdentity(input: types.DeleteEmailIdentityInput, options: any): async.Operation<types.DeleteEmailIdentityOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEmailIdentity, input, options) as async.Operation<types.DeleteEmailIdentityOutput>
+function C:deleteEmailIdentity(input: types.DeleteEmailIdentityInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEmailIdentityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEmailIdentity as schema.OperationSchema, input, options) as async.Operation<types.DeleteEmailIdentityOutput>
 end
 
-function C:deleteEmailIdentityPolicy(input: types.DeleteEmailIdentityPolicyInput, options: any): async.Operation<types.DeleteEmailIdentityPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEmailIdentityPolicy, input, options) as async.Operation<types.DeleteEmailIdentityPolicyOutput>
+function C:deleteEmailIdentityPolicy(input: types.DeleteEmailIdentityPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEmailIdentityPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEmailIdentityPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteEmailIdentityPolicyOutput>
 end
 
-function C:deleteEmailTemplate(input: types.DeleteEmailTemplateInput, options: any): async.Operation<types.DeleteEmailTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEmailTemplate, input, options) as async.Operation<types.DeleteEmailTemplateOutput>
+function C:deleteEmailTemplate(input: types.DeleteEmailTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEmailTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEmailTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteEmailTemplateOutput>
 end
 
-function C:deleteMultiRegionEndpoint(input: types.DeleteMultiRegionEndpointInput, options: any): async.Operation<types.DeleteMultiRegionEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMultiRegionEndpoint, input, options) as async.Operation<types.DeleteMultiRegionEndpointOutput>
+function C:deleteMultiRegionEndpoint(input: types.DeleteMultiRegionEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMultiRegionEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMultiRegionEndpoint as schema.OperationSchema, input, options) as async.Operation<types.DeleteMultiRegionEndpointOutput>
 end
 
-function C:deleteSuppressedDestination(input: types.DeleteSuppressedDestinationInput, options: any): async.Operation<types.DeleteSuppressedDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSuppressedDestination, input, options) as async.Operation<types.DeleteSuppressedDestinationOutput>
+function C:deleteSuppressedDestination(input: types.DeleteSuppressedDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSuppressedDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSuppressedDestination as schema.OperationSchema, input, options) as async.Operation<types.DeleteSuppressedDestinationOutput>
 end
 
-function C:deleteTenant(input: types.DeleteTenantInput, options: any): async.Operation<types.DeleteTenantOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTenant, input, options) as async.Operation<types.DeleteTenantOutput>
+function C:deleteTenant(input: types.DeleteTenantInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTenantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTenant as schema.OperationSchema, input, options) as async.Operation<types.DeleteTenantOutput>
 end
 
-function C:deleteTenantResourceAssociation(input: types.DeleteTenantResourceAssociationInput, options: any): async.Operation<types.DeleteTenantResourceAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTenantResourceAssociation, input, options) as async.Operation<types.DeleteTenantResourceAssociationOutput>
+function C:deleteTenantResourceAssociation(input: types.DeleteTenantResourceAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTenantResourceAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTenantResourceAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteTenantResourceAssociationOutput>
 end
 
-function C:getAccount(input: types.GetAccountInput, options: any): async.Operation<types.GetAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccount, input, options) as async.Operation<types.GetAccountOutput>
+function C:getAccount(input: types.GetAccountInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccount as schema.OperationSchema, input, options) as async.Operation<types.GetAccountOutput>
 end
 
-function C:getBlacklistReports(input: types.GetBlacklistReportsInput, options: any): async.Operation<types.GetBlacklistReportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBlacklistReports, input, options) as async.Operation<types.GetBlacklistReportsOutput>
+function C:getBlacklistReports(input: types.GetBlacklistReportsInput, options?: base_client.InvokeOptions): async.Operation<types.GetBlacklistReportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBlacklistReports as schema.OperationSchema, input, options) as async.Operation<types.GetBlacklistReportsOutput>
 end
 
-function C:getConfigurationSet(input: types.GetConfigurationSetInput, options: any): async.Operation<types.GetConfigurationSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConfigurationSet, input, options) as async.Operation<types.GetConfigurationSetOutput>
+function C:getConfigurationSet(input: types.GetConfigurationSetInput, options?: base_client.InvokeOptions): async.Operation<types.GetConfigurationSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConfigurationSet as schema.OperationSchema, input, options) as async.Operation<types.GetConfigurationSetOutput>
 end
 
-function C:getConfigurationSetEventDestinations(input: types.GetConfigurationSetEventDestinationsInput, options: any): async.Operation<types.GetConfigurationSetEventDestinationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConfigurationSetEventDestinations, input, options) as async.Operation<types.GetConfigurationSetEventDestinationsOutput>
+function C:getConfigurationSetEventDestinations(input: types.GetConfigurationSetEventDestinationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetConfigurationSetEventDestinationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConfigurationSetEventDestinations as schema.OperationSchema, input, options) as async.Operation<types.GetConfigurationSetEventDestinationsOutput>
 end
 
-function C:getContact(input: types.GetContactInput, options: any): async.Operation<types.GetContactOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetContact, input, options) as async.Operation<types.GetContactOutput>
+function C:getContact(input: types.GetContactInput, options?: base_client.InvokeOptions): async.Operation<types.GetContactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetContact as schema.OperationSchema, input, options) as async.Operation<types.GetContactOutput>
 end
 
-function C:getContactList(input: types.GetContactListInput, options: any): async.Operation<types.GetContactListOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetContactList, input, options) as async.Operation<types.GetContactListOutput>
+function C:getContactList(input: types.GetContactListInput, options?: base_client.InvokeOptions): async.Operation<types.GetContactListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetContactList as schema.OperationSchema, input, options) as async.Operation<types.GetContactListOutput>
 end
 
-function C:getCustomVerificationEmailTemplate(input: types.GetCustomVerificationEmailTemplateInput, options: any): async.Operation<types.GetCustomVerificationEmailTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCustomVerificationEmailTemplate, input, options) as async.Operation<types.GetCustomVerificationEmailTemplateOutput>
+function C:getCustomVerificationEmailTemplate(input: types.GetCustomVerificationEmailTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetCustomVerificationEmailTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCustomVerificationEmailTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetCustomVerificationEmailTemplateOutput>
 end
 
-function C:getDedicatedIp(input: types.GetDedicatedIpInput, options: any): async.Operation<types.GetDedicatedIpOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDedicatedIp, input, options) as async.Operation<types.GetDedicatedIpOutput>
+function C:getDedicatedIp(input: types.GetDedicatedIpInput, options?: base_client.InvokeOptions): async.Operation<types.GetDedicatedIpOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDedicatedIp as schema.OperationSchema, input, options) as async.Operation<types.GetDedicatedIpOutput>
 end
 
-function C:getDedicatedIpPool(input: types.GetDedicatedIpPoolInput, options: any): async.Operation<types.GetDedicatedIpPoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDedicatedIpPool, input, options) as async.Operation<types.GetDedicatedIpPoolOutput>
+function C:getDedicatedIpPool(input: types.GetDedicatedIpPoolInput, options?: base_client.InvokeOptions): async.Operation<types.GetDedicatedIpPoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDedicatedIpPool as schema.OperationSchema, input, options) as async.Operation<types.GetDedicatedIpPoolOutput>
 end
 
-function C:getDedicatedIps(input: types.GetDedicatedIpsInput, options: any): async.Operation<types.GetDedicatedIpsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDedicatedIps, input, options) as async.Operation<types.GetDedicatedIpsOutput>
+function C:getDedicatedIps(input: types.GetDedicatedIpsInput, options?: base_client.InvokeOptions): async.Operation<types.GetDedicatedIpsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDedicatedIps as schema.OperationSchema, input, options) as async.Operation<types.GetDedicatedIpsOutput>
 end
 
-function C:getDeliverabilityDashboardOptions(input: types.GetDeliverabilityDashboardOptionsInput, options: any): async.Operation<types.GetDeliverabilityDashboardOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDeliverabilityDashboardOptions, input, options) as async.Operation<types.GetDeliverabilityDashboardOptionsOutput>
+function C:getDeliverabilityDashboardOptions(input: types.GetDeliverabilityDashboardOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.GetDeliverabilityDashboardOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDeliverabilityDashboardOptions as schema.OperationSchema, input, options) as async.Operation<types.GetDeliverabilityDashboardOptionsOutput>
 end
 
-function C:getDeliverabilityTestReport(input: types.GetDeliverabilityTestReportInput, options: any): async.Operation<types.GetDeliverabilityTestReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDeliverabilityTestReport, input, options) as async.Operation<types.GetDeliverabilityTestReportOutput>
+function C:getDeliverabilityTestReport(input: types.GetDeliverabilityTestReportInput, options?: base_client.InvokeOptions): async.Operation<types.GetDeliverabilityTestReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDeliverabilityTestReport as schema.OperationSchema, input, options) as async.Operation<types.GetDeliverabilityTestReportOutput>
 end
 
-function C:getDomainDeliverabilityCampaign(input: types.GetDomainDeliverabilityCampaignInput, options: any): async.Operation<types.GetDomainDeliverabilityCampaignOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDomainDeliverabilityCampaign, input, options) as async.Operation<types.GetDomainDeliverabilityCampaignOutput>
+function C:getDomainDeliverabilityCampaign(input: types.GetDomainDeliverabilityCampaignInput, options?: base_client.InvokeOptions): async.Operation<types.GetDomainDeliverabilityCampaignOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDomainDeliverabilityCampaign as schema.OperationSchema, input, options) as async.Operation<types.GetDomainDeliverabilityCampaignOutput>
 end
 
-function C:getDomainStatisticsReport(input: types.GetDomainStatisticsReportInput, options: any): async.Operation<types.GetDomainStatisticsReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDomainStatisticsReport, input, options) as async.Operation<types.GetDomainStatisticsReportOutput>
+function C:getDomainStatisticsReport(input: types.GetDomainStatisticsReportInput, options?: base_client.InvokeOptions): async.Operation<types.GetDomainStatisticsReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDomainStatisticsReport as schema.OperationSchema, input, options) as async.Operation<types.GetDomainStatisticsReportOutput>
 end
 
-function C:getEmailAddressInsights(input: types.GetEmailAddressInsightsInput, options: any): async.Operation<types.GetEmailAddressInsightsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEmailAddressInsights, input, options) as async.Operation<types.GetEmailAddressInsightsOutput>
+function C:getEmailAddressInsights(input: types.GetEmailAddressInsightsInput, options?: base_client.InvokeOptions): async.Operation<types.GetEmailAddressInsightsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEmailAddressInsights as schema.OperationSchema, input, options) as async.Operation<types.GetEmailAddressInsightsOutput>
 end
 
-function C:getEmailIdentity(input: types.GetEmailIdentityInput, options: any): async.Operation<types.GetEmailIdentityOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEmailIdentity, input, options) as async.Operation<types.GetEmailIdentityOutput>
+function C:getEmailIdentity(input: types.GetEmailIdentityInput, options?: base_client.InvokeOptions): async.Operation<types.GetEmailIdentityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEmailIdentity as schema.OperationSchema, input, options) as async.Operation<types.GetEmailIdentityOutput>
 end
 
-function C:getEmailIdentityPolicies(input: types.GetEmailIdentityPoliciesInput, options: any): async.Operation<types.GetEmailIdentityPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEmailIdentityPolicies, input, options) as async.Operation<types.GetEmailIdentityPoliciesOutput>
+function C:getEmailIdentityPolicies(input: types.GetEmailIdentityPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.GetEmailIdentityPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEmailIdentityPolicies as schema.OperationSchema, input, options) as async.Operation<types.GetEmailIdentityPoliciesOutput>
 end
 
-function C:getEmailTemplate(input: types.GetEmailTemplateInput, options: any): async.Operation<types.GetEmailTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEmailTemplate, input, options) as async.Operation<types.GetEmailTemplateOutput>
+function C:getEmailTemplate(input: types.GetEmailTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetEmailTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEmailTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetEmailTemplateOutput>
 end
 
-function C:getExportJob(input: types.GetExportJobInput, options: any): async.Operation<types.GetExportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetExportJob, input, options) as async.Operation<types.GetExportJobOutput>
+function C:getExportJob(input: types.GetExportJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetExportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetExportJob as schema.OperationSchema, input, options) as async.Operation<types.GetExportJobOutput>
 end
 
-function C:getImportJob(input: types.GetImportJobInput, options: any): async.Operation<types.GetImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetImportJob, input, options) as async.Operation<types.GetImportJobOutput>
+function C:getImportJob(input: types.GetImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetImportJob as schema.OperationSchema, input, options) as async.Operation<types.GetImportJobOutput>
 end
 
-function C:getMessageInsights(input: types.GetMessageInsightsInput, options: any): async.Operation<types.GetMessageInsightsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMessageInsights, input, options) as async.Operation<types.GetMessageInsightsOutput>
+function C:getMessageInsights(input: types.GetMessageInsightsInput, options?: base_client.InvokeOptions): async.Operation<types.GetMessageInsightsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMessageInsights as schema.OperationSchema, input, options) as async.Operation<types.GetMessageInsightsOutput>
 end
 
-function C:getMultiRegionEndpoint(input: types.GetMultiRegionEndpointInput, options: any): async.Operation<types.GetMultiRegionEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMultiRegionEndpoint, input, options) as async.Operation<types.GetMultiRegionEndpointOutput>
+function C:getMultiRegionEndpoint(input: types.GetMultiRegionEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.GetMultiRegionEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMultiRegionEndpoint as schema.OperationSchema, input, options) as async.Operation<types.GetMultiRegionEndpointOutput>
 end
 
-function C:getReputationEntity(input: types.GetReputationEntityInput, options: any): async.Operation<types.GetReputationEntityOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReputationEntity, input, options) as async.Operation<types.GetReputationEntityOutput>
+function C:getReputationEntity(input: types.GetReputationEntityInput, options?: base_client.InvokeOptions): async.Operation<types.GetReputationEntityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReputationEntity as schema.OperationSchema, input, options) as async.Operation<types.GetReputationEntityOutput>
 end
 
-function C:getSuppressedDestination(input: types.GetSuppressedDestinationInput, options: any): async.Operation<types.GetSuppressedDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSuppressedDestination, input, options) as async.Operation<types.GetSuppressedDestinationOutput>
+function C:getSuppressedDestination(input: types.GetSuppressedDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.GetSuppressedDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSuppressedDestination as schema.OperationSchema, input, options) as async.Operation<types.GetSuppressedDestinationOutput>
 end
 
-function C:getTenant(input: types.GetTenantInput, options: any): async.Operation<types.GetTenantOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTenant, input, options) as async.Operation<types.GetTenantOutput>
+function C:getTenant(input: types.GetTenantInput, options?: base_client.InvokeOptions): async.Operation<types.GetTenantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTenant as schema.OperationSchema, input, options) as async.Operation<types.GetTenantOutput>
 end
 
-function C:listConfigurationSets(input: types.ListConfigurationSetsInput, options: any): async.Operation<types.ListConfigurationSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConfigurationSets, input, options) as async.Operation<types.ListConfigurationSetsOutput>
+function C:listConfigurationSets(input: types.ListConfigurationSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConfigurationSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConfigurationSets as schema.OperationSchema, input, options) as async.Operation<types.ListConfigurationSetsOutput>
 end
 
-function C:listContactLists(input: types.ListContactListsInput, options: any): async.Operation<types.ListContactListsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListContactLists, input, options) as async.Operation<types.ListContactListsOutput>
+function C:listContactLists(input: types.ListContactListsInput, options?: base_client.InvokeOptions): async.Operation<types.ListContactListsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListContactLists as schema.OperationSchema, input, options) as async.Operation<types.ListContactListsOutput>
 end
 
-function C:listContacts(input: types.ListContactsInput, options: any): async.Operation<types.ListContactsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListContacts, input, options) as async.Operation<types.ListContactsOutput>
+function C:listContacts(input: types.ListContactsInput, options?: base_client.InvokeOptions): async.Operation<types.ListContactsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListContacts as schema.OperationSchema, input, options) as async.Operation<types.ListContactsOutput>
 end
 
-function C:listCustomVerificationEmailTemplates(input: types.ListCustomVerificationEmailTemplatesInput, options: any): async.Operation<types.ListCustomVerificationEmailTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCustomVerificationEmailTemplates, input, options) as async.Operation<types.ListCustomVerificationEmailTemplatesOutput>
+function C:listCustomVerificationEmailTemplates(input: types.ListCustomVerificationEmailTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCustomVerificationEmailTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCustomVerificationEmailTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListCustomVerificationEmailTemplatesOutput>
 end
 
-function C:listDedicatedIpPools(input: types.ListDedicatedIpPoolsInput, options: any): async.Operation<types.ListDedicatedIpPoolsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDedicatedIpPools, input, options) as async.Operation<types.ListDedicatedIpPoolsOutput>
+function C:listDedicatedIpPools(input: types.ListDedicatedIpPoolsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDedicatedIpPoolsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDedicatedIpPools as schema.OperationSchema, input, options) as async.Operation<types.ListDedicatedIpPoolsOutput>
 end
 
-function C:listDeliverabilityTestReports(input: types.ListDeliverabilityTestReportsInput, options: any): async.Operation<types.ListDeliverabilityTestReportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDeliverabilityTestReports, input, options) as async.Operation<types.ListDeliverabilityTestReportsOutput>
+function C:listDeliverabilityTestReports(input: types.ListDeliverabilityTestReportsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDeliverabilityTestReportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDeliverabilityTestReports as schema.OperationSchema, input, options) as async.Operation<types.ListDeliverabilityTestReportsOutput>
 end
 
-function C:listDomainDeliverabilityCampaigns(input: types.ListDomainDeliverabilityCampaignsInput, options: any): async.Operation<types.ListDomainDeliverabilityCampaignsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDomainDeliverabilityCampaigns, input, options) as async.Operation<types.ListDomainDeliverabilityCampaignsOutput>
+function C:listDomainDeliverabilityCampaigns(input: types.ListDomainDeliverabilityCampaignsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDomainDeliverabilityCampaignsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDomainDeliverabilityCampaigns as schema.OperationSchema, input, options) as async.Operation<types.ListDomainDeliverabilityCampaignsOutput>
 end
 
-function C:listEmailIdentities(input: types.ListEmailIdentitiesInput, options: any): async.Operation<types.ListEmailIdentitiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEmailIdentities, input, options) as async.Operation<types.ListEmailIdentitiesOutput>
+function C:listEmailIdentities(input: types.ListEmailIdentitiesInput, options?: base_client.InvokeOptions): async.Operation<types.ListEmailIdentitiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEmailIdentities as schema.OperationSchema, input, options) as async.Operation<types.ListEmailIdentitiesOutput>
 end
 
-function C:listEmailTemplates(input: types.ListEmailTemplatesInput, options: any): async.Operation<types.ListEmailTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEmailTemplates, input, options) as async.Operation<types.ListEmailTemplatesOutput>
+function C:listEmailTemplates(input: types.ListEmailTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListEmailTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEmailTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListEmailTemplatesOutput>
 end
 
-function C:listExportJobs(input: types.ListExportJobsInput, options: any): async.Operation<types.ListExportJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListExportJobs, input, options) as async.Operation<types.ListExportJobsOutput>
+function C:listExportJobs(input: types.ListExportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExportJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExportJobs as schema.OperationSchema, input, options) as async.Operation<types.ListExportJobsOutput>
 end
 
-function C:listImportJobs(input: types.ListImportJobsInput, options: any): async.Operation<types.ListImportJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListImportJobs, input, options) as async.Operation<types.ListImportJobsOutput>
+function C:listImportJobs(input: types.ListImportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListImportJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListImportJobs as schema.OperationSchema, input, options) as async.Operation<types.ListImportJobsOutput>
 end
 
-function C:listMultiRegionEndpoints(input: types.ListMultiRegionEndpointsInput, options: any): async.Operation<types.ListMultiRegionEndpointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMultiRegionEndpoints, input, options) as async.Operation<types.ListMultiRegionEndpointsOutput>
+function C:listMultiRegionEndpoints(input: types.ListMultiRegionEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMultiRegionEndpointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMultiRegionEndpoints as schema.OperationSchema, input, options) as async.Operation<types.ListMultiRegionEndpointsOutput>
 end
 
-function C:listRecommendations(input: types.ListRecommendationsInput, options: any): async.Operation<types.ListRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRecommendations, input, options) as async.Operation<types.ListRecommendationsOutput>
+function C:listRecommendations(input: types.ListRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecommendations as schema.OperationSchema, input, options) as async.Operation<types.ListRecommendationsOutput>
 end
 
-function C:listReputationEntities(input: types.ListReputationEntitiesInput, options: any): async.Operation<types.ListReputationEntitiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReputationEntities, input, options) as async.Operation<types.ListReputationEntitiesOutput>
+function C:listReputationEntities(input: types.ListReputationEntitiesInput, options?: base_client.InvokeOptions): async.Operation<types.ListReputationEntitiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReputationEntities as schema.OperationSchema, input, options) as async.Operation<types.ListReputationEntitiesOutput>
 end
 
-function C:listResourceTenants(input: types.ListResourceTenantsInput, options: any): async.Operation<types.ListResourceTenantsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResourceTenants, input, options) as async.Operation<types.ListResourceTenantsOutput>
+function C:listResourceTenants(input: types.ListResourceTenantsInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourceTenantsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourceTenants as schema.OperationSchema, input, options) as async.Operation<types.ListResourceTenantsOutput>
 end
 
-function C:listSuppressedDestinations(input: types.ListSuppressedDestinationsInput, options: any): async.Operation<types.ListSuppressedDestinationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSuppressedDestinations, input, options) as async.Operation<types.ListSuppressedDestinationsOutput>
+function C:listSuppressedDestinations(input: types.ListSuppressedDestinationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSuppressedDestinationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSuppressedDestinations as schema.OperationSchema, input, options) as async.Operation<types.ListSuppressedDestinationsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTenantResources(input: types.ListTenantResourcesInput, options: any): async.Operation<types.ListTenantResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTenantResources, input, options) as async.Operation<types.ListTenantResourcesOutput>
+function C:listTenantResources(input: types.ListTenantResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTenantResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTenantResources as schema.OperationSchema, input, options) as async.Operation<types.ListTenantResourcesOutput>
 end
 
-function C:listTenants(input: types.ListTenantsInput, options: any): async.Operation<types.ListTenantsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTenants, input, options) as async.Operation<types.ListTenantsOutput>
+function C:listTenants(input: types.ListTenantsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTenantsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTenants as schema.OperationSchema, input, options) as async.Operation<types.ListTenantsOutput>
 end
 
-function C:putAccountDedicatedIpWarmupAttributes(input: types.PutAccountDedicatedIpWarmupAttributesInput, options: any): async.Operation<types.PutAccountDedicatedIpWarmupAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAccountDedicatedIpWarmupAttributes, input, options) as async.Operation<types.PutAccountDedicatedIpWarmupAttributesOutput>
+function C:putAccountDedicatedIpWarmupAttributes(input: types.PutAccountDedicatedIpWarmupAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.PutAccountDedicatedIpWarmupAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAccountDedicatedIpWarmupAttributes as schema.OperationSchema, input, options) as async.Operation<types.PutAccountDedicatedIpWarmupAttributesOutput>
 end
 
-function C:putAccountDetails(input: types.PutAccountDetailsInput, options: any): async.Operation<types.PutAccountDetailsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAccountDetails, input, options) as async.Operation<types.PutAccountDetailsOutput>
+function C:putAccountDetails(input: types.PutAccountDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.PutAccountDetailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAccountDetails as schema.OperationSchema, input, options) as async.Operation<types.PutAccountDetailsOutput>
 end
 
-function C:putAccountSendingAttributes(input: types.PutAccountSendingAttributesInput, options: any): async.Operation<types.PutAccountSendingAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAccountSendingAttributes, input, options) as async.Operation<types.PutAccountSendingAttributesOutput>
+function C:putAccountSendingAttributes(input: types.PutAccountSendingAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.PutAccountSendingAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAccountSendingAttributes as schema.OperationSchema, input, options) as async.Operation<types.PutAccountSendingAttributesOutput>
 end
 
-function C:putAccountSuppressionAttributes(input: types.PutAccountSuppressionAttributesInput, options: any): async.Operation<types.PutAccountSuppressionAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAccountSuppressionAttributes, input, options) as async.Operation<types.PutAccountSuppressionAttributesOutput>
+function C:putAccountSuppressionAttributes(input: types.PutAccountSuppressionAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.PutAccountSuppressionAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAccountSuppressionAttributes as schema.OperationSchema, input, options) as async.Operation<types.PutAccountSuppressionAttributesOutput>
 end
 
-function C:putAccountVdmAttributes(input: types.PutAccountVdmAttributesInput, options: any): async.Operation<types.PutAccountVdmAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAccountVdmAttributes, input, options) as async.Operation<types.PutAccountVdmAttributesOutput>
+function C:putAccountVdmAttributes(input: types.PutAccountVdmAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.PutAccountVdmAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAccountVdmAttributes as schema.OperationSchema, input, options) as async.Operation<types.PutAccountVdmAttributesOutput>
 end
 
-function C:putConfigurationSetArchivingOptions(input: types.PutConfigurationSetArchivingOptionsInput, options: any): async.Operation<types.PutConfigurationSetArchivingOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutConfigurationSetArchivingOptions, input, options) as async.Operation<types.PutConfigurationSetArchivingOptionsOutput>
+function C:putConfigurationSetArchivingOptions(input: types.PutConfigurationSetArchivingOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.PutConfigurationSetArchivingOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutConfigurationSetArchivingOptions as schema.OperationSchema, input, options) as async.Operation<types.PutConfigurationSetArchivingOptionsOutput>
 end
 
-function C:putConfigurationSetDeliveryOptions(input: types.PutConfigurationSetDeliveryOptionsInput, options: any): async.Operation<types.PutConfigurationSetDeliveryOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutConfigurationSetDeliveryOptions, input, options) as async.Operation<types.PutConfigurationSetDeliveryOptionsOutput>
+function C:putConfigurationSetDeliveryOptions(input: types.PutConfigurationSetDeliveryOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.PutConfigurationSetDeliveryOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutConfigurationSetDeliveryOptions as schema.OperationSchema, input, options) as async.Operation<types.PutConfigurationSetDeliveryOptionsOutput>
 end
 
-function C:putConfigurationSetReputationOptions(input: types.PutConfigurationSetReputationOptionsInput, options: any): async.Operation<types.PutConfigurationSetReputationOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutConfigurationSetReputationOptions, input, options) as async.Operation<types.PutConfigurationSetReputationOptionsOutput>
+function C:putConfigurationSetReputationOptions(input: types.PutConfigurationSetReputationOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.PutConfigurationSetReputationOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutConfigurationSetReputationOptions as schema.OperationSchema, input, options) as async.Operation<types.PutConfigurationSetReputationOptionsOutput>
 end
 
-function C:putConfigurationSetSendingOptions(input: types.PutConfigurationSetSendingOptionsInput, options: any): async.Operation<types.PutConfigurationSetSendingOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutConfigurationSetSendingOptions, input, options) as async.Operation<types.PutConfigurationSetSendingOptionsOutput>
+function C:putConfigurationSetSendingOptions(input: types.PutConfigurationSetSendingOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.PutConfigurationSetSendingOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutConfigurationSetSendingOptions as schema.OperationSchema, input, options) as async.Operation<types.PutConfigurationSetSendingOptionsOutput>
 end
 
-function C:putConfigurationSetSuppressionOptions(input: types.PutConfigurationSetSuppressionOptionsInput, options: any): async.Operation<types.PutConfigurationSetSuppressionOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutConfigurationSetSuppressionOptions, input, options) as async.Operation<types.PutConfigurationSetSuppressionOptionsOutput>
+function C:putConfigurationSetSuppressionOptions(input: types.PutConfigurationSetSuppressionOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.PutConfigurationSetSuppressionOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutConfigurationSetSuppressionOptions as schema.OperationSchema, input, options) as async.Operation<types.PutConfigurationSetSuppressionOptionsOutput>
 end
 
-function C:putConfigurationSetTrackingOptions(input: types.PutConfigurationSetTrackingOptionsInput, options: any): async.Operation<types.PutConfigurationSetTrackingOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutConfigurationSetTrackingOptions, input, options) as async.Operation<types.PutConfigurationSetTrackingOptionsOutput>
+function C:putConfigurationSetTrackingOptions(input: types.PutConfigurationSetTrackingOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.PutConfigurationSetTrackingOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutConfigurationSetTrackingOptions as schema.OperationSchema, input, options) as async.Operation<types.PutConfigurationSetTrackingOptionsOutput>
 end
 
-function C:putConfigurationSetVdmOptions(input: types.PutConfigurationSetVdmOptionsInput, options: any): async.Operation<types.PutConfigurationSetVdmOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutConfigurationSetVdmOptions, input, options) as async.Operation<types.PutConfigurationSetVdmOptionsOutput>
+function C:putConfigurationSetVdmOptions(input: types.PutConfigurationSetVdmOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.PutConfigurationSetVdmOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutConfigurationSetVdmOptions as schema.OperationSchema, input, options) as async.Operation<types.PutConfigurationSetVdmOptionsOutput>
 end
 
-function C:putDedicatedIpInPool(input: types.PutDedicatedIpInPoolInput, options: any): async.Operation<types.PutDedicatedIpInPoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutDedicatedIpInPool, input, options) as async.Operation<types.PutDedicatedIpInPoolOutput>
+function C:putDedicatedIpInPool(input: types.PutDedicatedIpInPoolInput, options?: base_client.InvokeOptions): async.Operation<types.PutDedicatedIpInPoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutDedicatedIpInPool as schema.OperationSchema, input, options) as async.Operation<types.PutDedicatedIpInPoolOutput>
 end
 
-function C:putDedicatedIpPoolScalingAttributes(input: types.PutDedicatedIpPoolScalingAttributesInput, options: any): async.Operation<types.PutDedicatedIpPoolScalingAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutDedicatedIpPoolScalingAttributes, input, options) as async.Operation<types.PutDedicatedIpPoolScalingAttributesOutput>
+function C:putDedicatedIpPoolScalingAttributes(input: types.PutDedicatedIpPoolScalingAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.PutDedicatedIpPoolScalingAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutDedicatedIpPoolScalingAttributes as schema.OperationSchema, input, options) as async.Operation<types.PutDedicatedIpPoolScalingAttributesOutput>
 end
 
-function C:putDedicatedIpWarmupAttributes(input: types.PutDedicatedIpWarmupAttributesInput, options: any): async.Operation<types.PutDedicatedIpWarmupAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutDedicatedIpWarmupAttributes, input, options) as async.Operation<types.PutDedicatedIpWarmupAttributesOutput>
+function C:putDedicatedIpWarmupAttributes(input: types.PutDedicatedIpWarmupAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.PutDedicatedIpWarmupAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutDedicatedIpWarmupAttributes as schema.OperationSchema, input, options) as async.Operation<types.PutDedicatedIpWarmupAttributesOutput>
 end
 
-function C:putDeliverabilityDashboardOption(input: types.PutDeliverabilityDashboardOptionInput, options: any): async.Operation<types.PutDeliverabilityDashboardOptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutDeliverabilityDashboardOption, input, options) as async.Operation<types.PutDeliverabilityDashboardOptionOutput>
+function C:putDeliverabilityDashboardOption(input: types.PutDeliverabilityDashboardOptionInput, options?: base_client.InvokeOptions): async.Operation<types.PutDeliverabilityDashboardOptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutDeliverabilityDashboardOption as schema.OperationSchema, input, options) as async.Operation<types.PutDeliverabilityDashboardOptionOutput>
 end
 
-function C:putEmailIdentityConfigurationSetAttributes(input: types.PutEmailIdentityConfigurationSetAttributesInput, options: any): async.Operation<types.PutEmailIdentityConfigurationSetAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutEmailIdentityConfigurationSetAttributes, input, options) as async.Operation<types.PutEmailIdentityConfigurationSetAttributesOutput>
+function C:putEmailIdentityConfigurationSetAttributes(input: types.PutEmailIdentityConfigurationSetAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.PutEmailIdentityConfigurationSetAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutEmailIdentityConfigurationSetAttributes as schema.OperationSchema, input, options) as async.Operation<types.PutEmailIdentityConfigurationSetAttributesOutput>
 end
 
-function C:putEmailIdentityDkimAttributes(input: types.PutEmailIdentityDkimAttributesInput, options: any): async.Operation<types.PutEmailIdentityDkimAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutEmailIdentityDkimAttributes, input, options) as async.Operation<types.PutEmailIdentityDkimAttributesOutput>
+function C:putEmailIdentityDkimAttributes(input: types.PutEmailIdentityDkimAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.PutEmailIdentityDkimAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutEmailIdentityDkimAttributes as schema.OperationSchema, input, options) as async.Operation<types.PutEmailIdentityDkimAttributesOutput>
 end
 
-function C:putEmailIdentityDkimSigningAttributes(input: types.PutEmailIdentityDkimSigningAttributesInput, options: any): async.Operation<types.PutEmailIdentityDkimSigningAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutEmailIdentityDkimSigningAttributes, input, options) as async.Operation<types.PutEmailIdentityDkimSigningAttributesOutput>
+function C:putEmailIdentityDkimSigningAttributes(input: types.PutEmailIdentityDkimSigningAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.PutEmailIdentityDkimSigningAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutEmailIdentityDkimSigningAttributes as schema.OperationSchema, input, options) as async.Operation<types.PutEmailIdentityDkimSigningAttributesOutput>
 end
 
-function C:putEmailIdentityFeedbackAttributes(input: types.PutEmailIdentityFeedbackAttributesInput, options: any): async.Operation<types.PutEmailIdentityFeedbackAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutEmailIdentityFeedbackAttributes, input, options) as async.Operation<types.PutEmailIdentityFeedbackAttributesOutput>
+function C:putEmailIdentityFeedbackAttributes(input: types.PutEmailIdentityFeedbackAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.PutEmailIdentityFeedbackAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutEmailIdentityFeedbackAttributes as schema.OperationSchema, input, options) as async.Operation<types.PutEmailIdentityFeedbackAttributesOutput>
 end
 
-function C:putEmailIdentityMailFromAttributes(input: types.PutEmailIdentityMailFromAttributesInput, options: any): async.Operation<types.PutEmailIdentityMailFromAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutEmailIdentityMailFromAttributes, input, options) as async.Operation<types.PutEmailIdentityMailFromAttributesOutput>
+function C:putEmailIdentityMailFromAttributes(input: types.PutEmailIdentityMailFromAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.PutEmailIdentityMailFromAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutEmailIdentityMailFromAttributes as schema.OperationSchema, input, options) as async.Operation<types.PutEmailIdentityMailFromAttributesOutput>
 end
 
-function C:putSuppressedDestination(input: types.PutSuppressedDestinationInput, options: any): async.Operation<types.PutSuppressedDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutSuppressedDestination, input, options) as async.Operation<types.PutSuppressedDestinationOutput>
+function C:putSuppressedDestination(input: types.PutSuppressedDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.PutSuppressedDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutSuppressedDestination as schema.OperationSchema, input, options) as async.Operation<types.PutSuppressedDestinationOutput>
 end
 
-function C:sendBulkEmail(input: types.SendBulkEmailInput, options: any): async.Operation<types.SendBulkEmailOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendBulkEmail, input, options) as async.Operation<types.SendBulkEmailOutput>
+function C:sendBulkEmail(input: types.SendBulkEmailInput, options?: base_client.InvokeOptions): async.Operation<types.SendBulkEmailOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendBulkEmail as schema.OperationSchema, input, options) as async.Operation<types.SendBulkEmailOutput>
 end
 
-function C:sendCustomVerificationEmail(input: types.SendCustomVerificationEmailInput, options: any): async.Operation<types.SendCustomVerificationEmailOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendCustomVerificationEmail, input, options) as async.Operation<types.SendCustomVerificationEmailOutput>
+function C:sendCustomVerificationEmail(input: types.SendCustomVerificationEmailInput, options?: base_client.InvokeOptions): async.Operation<types.SendCustomVerificationEmailOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendCustomVerificationEmail as schema.OperationSchema, input, options) as async.Operation<types.SendCustomVerificationEmailOutput>
 end
 
-function C:sendEmail(input: types.SendEmailInput, options: any): async.Operation<types.SendEmailOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendEmail, input, options) as async.Operation<types.SendEmailOutput>
+function C:sendEmail(input: types.SendEmailInput, options?: base_client.InvokeOptions): async.Operation<types.SendEmailOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendEmail as schema.OperationSchema, input, options) as async.Operation<types.SendEmailOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:testRenderEmailTemplate(input: types.TestRenderEmailTemplateInput, options: any): async.Operation<types.TestRenderEmailTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.TestRenderEmailTemplate, input, options) as async.Operation<types.TestRenderEmailTemplateOutput>
+function C:testRenderEmailTemplate(input: types.TestRenderEmailTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.TestRenderEmailTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TestRenderEmailTemplate as schema.OperationSchema, input, options) as async.Operation<types.TestRenderEmailTemplateOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateConfigurationSetEventDestination(input: types.UpdateConfigurationSetEventDestinationInput, options: any): async.Operation<types.UpdateConfigurationSetEventDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConfigurationSetEventDestination, input, options) as async.Operation<types.UpdateConfigurationSetEventDestinationOutput>
+function C:updateConfigurationSetEventDestination(input: types.UpdateConfigurationSetEventDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConfigurationSetEventDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConfigurationSetEventDestination as schema.OperationSchema, input, options) as async.Operation<types.UpdateConfigurationSetEventDestinationOutput>
 end
 
-function C:updateContact(input: types.UpdateContactInput, options: any): async.Operation<types.UpdateContactOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateContact, input, options) as async.Operation<types.UpdateContactOutput>
+function C:updateContact(input: types.UpdateContactInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateContactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateContact as schema.OperationSchema, input, options) as async.Operation<types.UpdateContactOutput>
 end
 
-function C:updateContactList(input: types.UpdateContactListInput, options: any): async.Operation<types.UpdateContactListOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateContactList, input, options) as async.Operation<types.UpdateContactListOutput>
+function C:updateContactList(input: types.UpdateContactListInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateContactListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateContactList as schema.OperationSchema, input, options) as async.Operation<types.UpdateContactListOutput>
 end
 
-function C:updateCustomVerificationEmailTemplate(input: types.UpdateCustomVerificationEmailTemplateInput, options: any): async.Operation<types.UpdateCustomVerificationEmailTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCustomVerificationEmailTemplate, input, options) as async.Operation<types.UpdateCustomVerificationEmailTemplateOutput>
+function C:updateCustomVerificationEmailTemplate(input: types.UpdateCustomVerificationEmailTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCustomVerificationEmailTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCustomVerificationEmailTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateCustomVerificationEmailTemplateOutput>
 end
 
-function C:updateEmailIdentityPolicy(input: types.UpdateEmailIdentityPolicyInput, options: any): async.Operation<types.UpdateEmailIdentityPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEmailIdentityPolicy, input, options) as async.Operation<types.UpdateEmailIdentityPolicyOutput>
+function C:updateEmailIdentityPolicy(input: types.UpdateEmailIdentityPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEmailIdentityPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEmailIdentityPolicy as schema.OperationSchema, input, options) as async.Operation<types.UpdateEmailIdentityPolicyOutput>
 end
 
-function C:updateEmailTemplate(input: types.UpdateEmailTemplateInput, options: any): async.Operation<types.UpdateEmailTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEmailTemplate, input, options) as async.Operation<types.UpdateEmailTemplateOutput>
+function C:updateEmailTemplate(input: types.UpdateEmailTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEmailTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEmailTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateEmailTemplateOutput>
 end
 
-function C:updateReputationEntityCustomerManagedStatus(input: types.UpdateReputationEntityCustomerManagedStatusInput, options: any): async.Operation<types.UpdateReputationEntityCustomerManagedStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateReputationEntityCustomerManagedStatus, input, options) as async.Operation<types.UpdateReputationEntityCustomerManagedStatusOutput>
+function C:updateReputationEntityCustomerManagedStatus(input: types.UpdateReputationEntityCustomerManagedStatusInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateReputationEntityCustomerManagedStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateReputationEntityCustomerManagedStatus as schema.OperationSchema, input, options) as async.Operation<types.UpdateReputationEntityCustomerManagedStatusOutput>
 end
 
-function C:updateReputationEntityPolicy(input: types.UpdateReputationEntityPolicyInput, options: any): async.Operation<types.UpdateReputationEntityPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateReputationEntityPolicy, input, options) as async.Operation<types.UpdateReputationEntityPolicyOutput>
+function C:updateReputationEntityPolicy(input: types.UpdateReputationEntityPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateReputationEntityPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateReputationEntityPolicy as schema.OperationSchema, input, options) as async.Operation<types.UpdateReputationEntityPolicyOutput>
 end
 
 return M

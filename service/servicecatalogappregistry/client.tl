@@ -8,63 +8,66 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("servicecatalogappregistry.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("servicecatalogappregistry.schemas")
 local traits = require("smithy.traits")
 local types = require("servicecatalogappregistry.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateAttributeGroup: function(Client, types.AssociateAttributeGroupInput, any): async.Operation<types.AssociateAttributeGroupOutput>
-    associateResource: function(Client, types.AssociateResourceInput, any): async.Operation<types.AssociateResourceOutput>
-    createApplication: function(Client, types.CreateApplicationInput, any): async.Operation<types.CreateApplicationOutput>
-    createAttributeGroup: function(Client, types.CreateAttributeGroupInput, any): async.Operation<types.CreateAttributeGroupOutput>
-    deleteApplication: function(Client, types.DeleteApplicationInput, any): async.Operation<types.DeleteApplicationOutput>
-    deleteAttributeGroup: function(Client, types.DeleteAttributeGroupInput, any): async.Operation<types.DeleteAttributeGroupOutput>
-    disassociateAttributeGroup: function(Client, types.DisassociateAttributeGroupInput, any): async.Operation<types.DisassociateAttributeGroupOutput>
-    disassociateResource: function(Client, types.DisassociateResourceInput, any): async.Operation<types.DisassociateResourceOutput>
-    getApplication: function(Client, types.GetApplicationInput, any): async.Operation<types.GetApplicationOutput>
-    getAssociatedResource: function(Client, types.GetAssociatedResourceInput, any): async.Operation<types.GetAssociatedResourceOutput>
-    getAttributeGroup: function(Client, types.GetAttributeGroupInput, any): async.Operation<types.GetAttributeGroupOutput>
-    getConfiguration: function(Client, types.GetConfigurationInput, any): async.Operation<types.GetConfigurationOutput>
-    listApplications: function(Client, types.ListApplicationsInput, any): async.Operation<types.ListApplicationsOutput>
-    listAssociatedAttributeGroups: function(Client, types.ListAssociatedAttributeGroupsInput, any): async.Operation<types.ListAssociatedAttributeGroupsOutput>
-    listAssociatedResources: function(Client, types.ListAssociatedResourcesInput, any): async.Operation<types.ListAssociatedResourcesOutput>
-    listAttributeGroups: function(Client, types.ListAttributeGroupsInput, any): async.Operation<types.ListAttributeGroupsOutput>
-    listAttributeGroupsForApplication: function(Client, types.ListAttributeGroupsForApplicationInput, any): async.Operation<types.ListAttributeGroupsForApplicationOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putConfiguration: function(Client, types.PutConfigurationInput, any): async.Operation<types.PutConfigurationOutput>
-    syncResource: function(Client, types.SyncResourceInput, any): async.Operation<types.SyncResourceOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateApplication: function(Client, types.UpdateApplicationInput, any): async.Operation<types.UpdateApplicationOutput>
-    updateAttributeGroup: function(Client, types.UpdateAttributeGroupInput, any): async.Operation<types.UpdateAttributeGroupOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateAttributeGroup: function(Client, types.AssociateAttributeGroupInput, ? base_client.InvokeOptions): async.Operation<types.AssociateAttributeGroupOutput>
+    associateResource: function(Client, types.AssociateResourceInput, ? base_client.InvokeOptions): async.Operation<types.AssociateResourceOutput>
+    createApplication: function(Client, types.CreateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    createAttributeGroup: function(Client, types.CreateAttributeGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateAttributeGroupOutput>
+    deleteApplication: function(Client, types.DeleteApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
+    deleteAttributeGroup: function(Client, types.DeleteAttributeGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAttributeGroupOutput>
+    disassociateAttributeGroup: function(Client, types.DisassociateAttributeGroupInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateAttributeGroupOutput>
+    disassociateResource: function(Client, types.DisassociateResourceInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateResourceOutput>
+    getApplication: function(Client, types.GetApplicationInput, ? base_client.InvokeOptions): async.Operation<types.GetApplicationOutput>
+    getAssociatedResource: function(Client, types.GetAssociatedResourceInput, ? base_client.InvokeOptions): async.Operation<types.GetAssociatedResourceOutput>
+    getAttributeGroup: function(Client, types.GetAttributeGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetAttributeGroupOutput>
+    getConfiguration: function(Client, types.GetConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetConfigurationOutput>
+    listApplications: function(Client, types.ListApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    listAssociatedAttributeGroups: function(Client, types.ListAssociatedAttributeGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssociatedAttributeGroupsOutput>
+    listAssociatedResources: function(Client, types.ListAssociatedResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListAssociatedResourcesOutput>
+    listAttributeGroups: function(Client, types.ListAttributeGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListAttributeGroupsOutput>
+    listAttributeGroupsForApplication: function(Client, types.ListAttributeGroupsForApplicationInput, ? base_client.InvokeOptions): async.Operation<types.ListAttributeGroupsForApplicationOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putConfiguration: function(Client, types.PutConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutConfigurationOutput>
+    syncResource: function(Client, types.SyncResourceInput, ? base_client.InvokeOptions): async.Operation<types.SyncResourceOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateApplication: function(Client, types.UpdateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
+    updateAttributeGroup: function(Client, types.UpdateAttributeGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAttributeGroupOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWS242AppRegistry"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "servicecatalog", signing_region = c.region } }
                 else
@@ -83,100 +86,100 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateAttributeGroup(input: types.AssociateAttributeGroupInput, options: any): async.Operation<types.AssociateAttributeGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateAttributeGroup, input, options) as async.Operation<types.AssociateAttributeGroupOutput>
+function C:associateAttributeGroup(input: types.AssociateAttributeGroupInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateAttributeGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateAttributeGroup as schema.OperationSchema, input, options) as async.Operation<types.AssociateAttributeGroupOutput>
 end
 
-function C:associateResource(input: types.AssociateResourceInput, options: any): async.Operation<types.AssociateResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateResource, input, options) as async.Operation<types.AssociateResourceOutput>
+function C:associateResource(input: types.AssociateResourceInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateResource as schema.OperationSchema, input, options) as async.Operation<types.AssociateResourceOutput>
 end
 
-function C:createApplication(input: types.CreateApplicationInput, options: any): async.Operation<types.CreateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateApplication, input, options) as async.Operation<types.CreateApplicationOutput>
+function C:createApplication(input: types.CreateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApplication as schema.OperationSchema, input, options) as async.Operation<types.CreateApplicationOutput>
 end
 
-function C:createAttributeGroup(input: types.CreateAttributeGroupInput, options: any): async.Operation<types.CreateAttributeGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAttributeGroup, input, options) as async.Operation<types.CreateAttributeGroupOutput>
+function C:createAttributeGroup(input: types.CreateAttributeGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAttributeGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAttributeGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateAttributeGroupOutput>
 end
 
-function C:deleteApplication(input: types.DeleteApplicationInput, options: any): async.Operation<types.DeleteApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApplication, input, options) as async.Operation<types.DeleteApplicationOutput>
+function C:deleteApplication(input: types.DeleteApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplication as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationOutput>
 end
 
-function C:deleteAttributeGroup(input: types.DeleteAttributeGroupInput, options: any): async.Operation<types.DeleteAttributeGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAttributeGroup, input, options) as async.Operation<types.DeleteAttributeGroupOutput>
+function C:deleteAttributeGroup(input: types.DeleteAttributeGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAttributeGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAttributeGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteAttributeGroupOutput>
 end
 
-function C:disassociateAttributeGroup(input: types.DisassociateAttributeGroupInput, options: any): async.Operation<types.DisassociateAttributeGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateAttributeGroup, input, options) as async.Operation<types.DisassociateAttributeGroupOutput>
+function C:disassociateAttributeGroup(input: types.DisassociateAttributeGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateAttributeGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateAttributeGroup as schema.OperationSchema, input, options) as async.Operation<types.DisassociateAttributeGroupOutput>
 end
 
-function C:disassociateResource(input: types.DisassociateResourceInput, options: any): async.Operation<types.DisassociateResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateResource, input, options) as async.Operation<types.DisassociateResourceOutput>
+function C:disassociateResource(input: types.DisassociateResourceInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateResource as schema.OperationSchema, input, options) as async.Operation<types.DisassociateResourceOutput>
 end
 
-function C:getApplication(input: types.GetApplicationInput, options: any): async.Operation<types.GetApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetApplication, input, options) as async.Operation<types.GetApplicationOutput>
+function C:getApplication(input: types.GetApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.GetApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetApplication as schema.OperationSchema, input, options) as async.Operation<types.GetApplicationOutput>
 end
 
-function C:getAssociatedResource(input: types.GetAssociatedResourceInput, options: any): async.Operation<types.GetAssociatedResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAssociatedResource, input, options) as async.Operation<types.GetAssociatedResourceOutput>
+function C:getAssociatedResource(input: types.GetAssociatedResourceInput, options?: base_client.InvokeOptions): async.Operation<types.GetAssociatedResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAssociatedResource as schema.OperationSchema, input, options) as async.Operation<types.GetAssociatedResourceOutput>
 end
 
-function C:getAttributeGroup(input: types.GetAttributeGroupInput, options: any): async.Operation<types.GetAttributeGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAttributeGroup, input, options) as async.Operation<types.GetAttributeGroupOutput>
+function C:getAttributeGroup(input: types.GetAttributeGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetAttributeGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAttributeGroup as schema.OperationSchema, input, options) as async.Operation<types.GetAttributeGroupOutput>
 end
 
-function C:getConfiguration(input: types.GetConfigurationInput, options: any): async.Operation<types.GetConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConfiguration, input, options) as async.Operation<types.GetConfigurationOutput>
+function C:getConfiguration(input: types.GetConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetConfigurationOutput>
 end
 
-function C:listApplications(input: types.ListApplicationsInput, options: any): async.Operation<types.ListApplicationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplications, input, options) as async.Operation<types.ListApplicationsOutput>
+function C:listApplications(input: types.ListApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplications as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationsOutput>
 end
 
-function C:listAssociatedAttributeGroups(input: types.ListAssociatedAttributeGroupsInput, options: any): async.Operation<types.ListAssociatedAttributeGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssociatedAttributeGroups, input, options) as async.Operation<types.ListAssociatedAttributeGroupsOutput>
+function C:listAssociatedAttributeGroups(input: types.ListAssociatedAttributeGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssociatedAttributeGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssociatedAttributeGroups as schema.OperationSchema, input, options) as async.Operation<types.ListAssociatedAttributeGroupsOutput>
 end
 
-function C:listAssociatedResources(input: types.ListAssociatedResourcesInput, options: any): async.Operation<types.ListAssociatedResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssociatedResources, input, options) as async.Operation<types.ListAssociatedResourcesOutput>
+function C:listAssociatedResources(input: types.ListAssociatedResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssociatedResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssociatedResources as schema.OperationSchema, input, options) as async.Operation<types.ListAssociatedResourcesOutput>
 end
 
-function C:listAttributeGroups(input: types.ListAttributeGroupsInput, options: any): async.Operation<types.ListAttributeGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAttributeGroups, input, options) as async.Operation<types.ListAttributeGroupsOutput>
+function C:listAttributeGroups(input: types.ListAttributeGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAttributeGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAttributeGroups as schema.OperationSchema, input, options) as async.Operation<types.ListAttributeGroupsOutput>
 end
 
-function C:listAttributeGroupsForApplication(input: types.ListAttributeGroupsForApplicationInput, options: any): async.Operation<types.ListAttributeGroupsForApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAttributeGroupsForApplication, input, options) as async.Operation<types.ListAttributeGroupsForApplicationOutput>
+function C:listAttributeGroupsForApplication(input: types.ListAttributeGroupsForApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.ListAttributeGroupsForApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAttributeGroupsForApplication as schema.OperationSchema, input, options) as async.Operation<types.ListAttributeGroupsForApplicationOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putConfiguration(input: types.PutConfigurationInput, options: any): async.Operation<types.PutConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutConfiguration, input, options) as async.Operation<types.PutConfigurationOutput>
+function C:putConfiguration(input: types.PutConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutConfigurationOutput>
 end
 
-function C:syncResource(input: types.SyncResourceInput, options: any): async.Operation<types.SyncResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.SyncResource, input, options) as async.Operation<types.SyncResourceOutput>
+function C:syncResource(input: types.SyncResourceInput, options?: base_client.InvokeOptions): async.Operation<types.SyncResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SyncResource as schema.OperationSchema, input, options) as async.Operation<types.SyncResourceOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateApplication(input: types.UpdateApplicationInput, options: any): async.Operation<types.UpdateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateApplication, input, options) as async.Operation<types.UpdateApplicationOutput>
+function C:updateApplication(input: types.UpdateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApplication as schema.OperationSchema, input, options) as async.Operation<types.UpdateApplicationOutput>
 end
 
-function C:updateAttributeGroup(input: types.UpdateAttributeGroupInput, options: any): async.Operation<types.UpdateAttributeGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAttributeGroup, input, options) as async.Operation<types.UpdateAttributeGroupOutput>
+function C:updateAttributeGroup(input: types.UpdateAttributeGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAttributeGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAttributeGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateAttributeGroupOutput>
 end
 
 return M

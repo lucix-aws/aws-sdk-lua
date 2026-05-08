@@ -8,61 +8,64 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("connectcampaigns.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("connectcampaigns.schemas")
 local traits = require("smithy.traits")
 local types = require("connectcampaigns.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createCampaign: function(Client, types.CreateCampaignInput, any): async.Operation<types.CreateCampaignOutput>
-    deleteCampaign: function(Client, types.DeleteCampaignInput, any): async.Operation<types.DeleteCampaignOutput>
-    deleteConnectInstanceConfig: function(Client, types.DeleteConnectInstanceConfigInput, any): async.Operation<types.DeleteConnectInstanceConfigOutput>
-    deleteInstanceOnboardingJob: function(Client, types.DeleteInstanceOnboardingJobInput, any): async.Operation<types.DeleteInstanceOnboardingJobOutput>
-    describeCampaign: function(Client, types.DescribeCampaignInput, any): async.Operation<types.DescribeCampaignOutput>
-    getCampaignState: function(Client, types.GetCampaignStateInput, any): async.Operation<types.GetCampaignStateOutput>
-    getCampaignStateBatch: function(Client, types.GetCampaignStateBatchInput, any): async.Operation<types.GetCampaignStateBatchOutput>
-    getConnectInstanceConfig: function(Client, types.GetConnectInstanceConfigInput, any): async.Operation<types.GetConnectInstanceConfigOutput>
-    getInstanceOnboardingJobStatus: function(Client, types.GetInstanceOnboardingJobStatusInput, any): async.Operation<types.GetInstanceOnboardingJobStatusOutput>
-    listCampaigns: function(Client, types.ListCampaignsInput, any): async.Operation<types.ListCampaignsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    pauseCampaign: function(Client, types.PauseCampaignInput, any): async.Operation<types.PauseCampaignOutput>
-    putDialRequestBatch: function(Client, types.PutDialRequestBatchInput, any): async.Operation<types.PutDialRequestBatchOutput>
-    resumeCampaign: function(Client, types.ResumeCampaignInput, any): async.Operation<types.ResumeCampaignOutput>
-    startCampaign: function(Client, types.StartCampaignInput, any): async.Operation<types.StartCampaignOutput>
-    startInstanceOnboardingJob: function(Client, types.StartInstanceOnboardingJobInput, any): async.Operation<types.StartInstanceOnboardingJobOutput>
-    stopCampaign: function(Client, types.StopCampaignInput, any): async.Operation<types.StopCampaignOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateCampaignDialerConfig: function(Client, types.UpdateCampaignDialerConfigInput, any): async.Operation<types.UpdateCampaignDialerConfigOutput>
-    updateCampaignName: function(Client, types.UpdateCampaignNameInput, any): async.Operation<types.UpdateCampaignNameOutput>
-    updateCampaignOutboundCallConfig: function(Client, types.UpdateCampaignOutboundCallConfigInput, any): async.Operation<types.UpdateCampaignOutboundCallConfigOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createCampaign: function(Client, types.CreateCampaignInput, ? base_client.InvokeOptions): async.Operation<types.CreateCampaignOutput>
+    deleteCampaign: function(Client, types.DeleteCampaignInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCampaignOutput>
+    deleteConnectInstanceConfig: function(Client, types.DeleteConnectInstanceConfigInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConnectInstanceConfigOutput>
+    deleteInstanceOnboardingJob: function(Client, types.DeleteInstanceOnboardingJobInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInstanceOnboardingJobOutput>
+    describeCampaign: function(Client, types.DescribeCampaignInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCampaignOutput>
+    getCampaignState: function(Client, types.GetCampaignStateInput, ? base_client.InvokeOptions): async.Operation<types.GetCampaignStateOutput>
+    getCampaignStateBatch: function(Client, types.GetCampaignStateBatchInput, ? base_client.InvokeOptions): async.Operation<types.GetCampaignStateBatchOutput>
+    getConnectInstanceConfig: function(Client, types.GetConnectInstanceConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectInstanceConfigOutput>
+    getInstanceOnboardingJobStatus: function(Client, types.GetInstanceOnboardingJobStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetInstanceOnboardingJobStatusOutput>
+    listCampaigns: function(Client, types.ListCampaignsInput, ? base_client.InvokeOptions): async.Operation<types.ListCampaignsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    pauseCampaign: function(Client, types.PauseCampaignInput, ? base_client.InvokeOptions): async.Operation<types.PauseCampaignOutput>
+    putDialRequestBatch: function(Client, types.PutDialRequestBatchInput, ? base_client.InvokeOptions): async.Operation<types.PutDialRequestBatchOutput>
+    resumeCampaign: function(Client, types.ResumeCampaignInput, ? base_client.InvokeOptions): async.Operation<types.ResumeCampaignOutput>
+    startCampaign: function(Client, types.StartCampaignInput, ? base_client.InvokeOptions): async.Operation<types.StartCampaignOutput>
+    startInstanceOnboardingJob: function(Client, types.StartInstanceOnboardingJobInput, ? base_client.InvokeOptions): async.Operation<types.StartInstanceOnboardingJobOutput>
+    stopCampaign: function(Client, types.StopCampaignInput, ? base_client.InvokeOptions): async.Operation<types.StopCampaignOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateCampaignDialerConfig: function(Client, types.UpdateCampaignDialerConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCampaignDialerConfigOutput>
+    updateCampaignName: function(Client, types.UpdateCampaignNameInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCampaignNameOutput>
+    updateCampaignOutboundCallConfig: function(Client, types.UpdateCampaignOutboundCallConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCampaignOutboundCallConfigOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonConnectCampaignService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "connect-campaigns", signing_region = c.region } }
                 else
@@ -81,92 +84,92 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createCampaign(input: types.CreateCampaignInput, options: any): async.Operation<types.CreateCampaignOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCampaign, input, options) as async.Operation<types.CreateCampaignOutput>
+function C:createCampaign(input: types.CreateCampaignInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCampaignOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCampaign as schema.OperationSchema, input, options) as async.Operation<types.CreateCampaignOutput>
 end
 
-function C:deleteCampaign(input: types.DeleteCampaignInput, options: any): async.Operation<types.DeleteCampaignOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCampaign, input, options) as async.Operation<types.DeleteCampaignOutput>
+function C:deleteCampaign(input: types.DeleteCampaignInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCampaignOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCampaign as schema.OperationSchema, input, options) as async.Operation<types.DeleteCampaignOutput>
 end
 
-function C:deleteConnectInstanceConfig(input: types.DeleteConnectInstanceConfigInput, options: any): async.Operation<types.DeleteConnectInstanceConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConnectInstanceConfig, input, options) as async.Operation<types.DeleteConnectInstanceConfigOutput>
+function C:deleteConnectInstanceConfig(input: types.DeleteConnectInstanceConfigInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConnectInstanceConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConnectInstanceConfig as schema.OperationSchema, input, options) as async.Operation<types.DeleteConnectInstanceConfigOutput>
 end
 
-function C:deleteInstanceOnboardingJob(input: types.DeleteInstanceOnboardingJobInput, options: any): async.Operation<types.DeleteInstanceOnboardingJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteInstanceOnboardingJob, input, options) as async.Operation<types.DeleteInstanceOnboardingJobOutput>
+function C:deleteInstanceOnboardingJob(input: types.DeleteInstanceOnboardingJobInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteInstanceOnboardingJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInstanceOnboardingJob as schema.OperationSchema, input, options) as async.Operation<types.DeleteInstanceOnboardingJobOutput>
 end
 
-function C:describeCampaign(input: types.DescribeCampaignInput, options: any): async.Operation<types.DescribeCampaignOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCampaign, input, options) as async.Operation<types.DescribeCampaignOutput>
+function C:describeCampaign(input: types.DescribeCampaignInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCampaignOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCampaign as schema.OperationSchema, input, options) as async.Operation<types.DescribeCampaignOutput>
 end
 
-function C:getCampaignState(input: types.GetCampaignStateInput, options: any): async.Operation<types.GetCampaignStateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCampaignState, input, options) as async.Operation<types.GetCampaignStateOutput>
+function C:getCampaignState(input: types.GetCampaignStateInput, options?: base_client.InvokeOptions): async.Operation<types.GetCampaignStateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCampaignState as schema.OperationSchema, input, options) as async.Operation<types.GetCampaignStateOutput>
 end
 
-function C:getCampaignStateBatch(input: types.GetCampaignStateBatchInput, options: any): async.Operation<types.GetCampaignStateBatchOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCampaignStateBatch, input, options) as async.Operation<types.GetCampaignStateBatchOutput>
+function C:getCampaignStateBatch(input: types.GetCampaignStateBatchInput, options?: base_client.InvokeOptions): async.Operation<types.GetCampaignStateBatchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCampaignStateBatch as schema.OperationSchema, input, options) as async.Operation<types.GetCampaignStateBatchOutput>
 end
 
-function C:getConnectInstanceConfig(input: types.GetConnectInstanceConfigInput, options: any): async.Operation<types.GetConnectInstanceConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConnectInstanceConfig, input, options) as async.Operation<types.GetConnectInstanceConfigOutput>
+function C:getConnectInstanceConfig(input: types.GetConnectInstanceConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetConnectInstanceConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConnectInstanceConfig as schema.OperationSchema, input, options) as async.Operation<types.GetConnectInstanceConfigOutput>
 end
 
-function C:getInstanceOnboardingJobStatus(input: types.GetInstanceOnboardingJobStatusInput, options: any): async.Operation<types.GetInstanceOnboardingJobStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInstanceOnboardingJobStatus, input, options) as async.Operation<types.GetInstanceOnboardingJobStatusOutput>
+function C:getInstanceOnboardingJobStatus(input: types.GetInstanceOnboardingJobStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetInstanceOnboardingJobStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInstanceOnboardingJobStatus as schema.OperationSchema, input, options) as async.Operation<types.GetInstanceOnboardingJobStatusOutput>
 end
 
-function C:listCampaigns(input: types.ListCampaignsInput, options: any): async.Operation<types.ListCampaignsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCampaigns, input, options) as async.Operation<types.ListCampaignsOutput>
+function C:listCampaigns(input: types.ListCampaignsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCampaignsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCampaigns as schema.OperationSchema, input, options) as async.Operation<types.ListCampaignsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:pauseCampaign(input: types.PauseCampaignInput, options: any): async.Operation<types.PauseCampaignOutput>
-    return self:invokeOperation(schemas.Service, schemas.PauseCampaign, input, options) as async.Operation<types.PauseCampaignOutput>
+function C:pauseCampaign(input: types.PauseCampaignInput, options?: base_client.InvokeOptions): async.Operation<types.PauseCampaignOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PauseCampaign as schema.OperationSchema, input, options) as async.Operation<types.PauseCampaignOutput>
 end
 
-function C:putDialRequestBatch(input: types.PutDialRequestBatchInput, options: any): async.Operation<types.PutDialRequestBatchOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutDialRequestBatch, input, options) as async.Operation<types.PutDialRequestBatchOutput>
+function C:putDialRequestBatch(input: types.PutDialRequestBatchInput, options?: base_client.InvokeOptions): async.Operation<types.PutDialRequestBatchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutDialRequestBatch as schema.OperationSchema, input, options) as async.Operation<types.PutDialRequestBatchOutput>
 end
 
-function C:resumeCampaign(input: types.ResumeCampaignInput, options: any): async.Operation<types.ResumeCampaignOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResumeCampaign, input, options) as async.Operation<types.ResumeCampaignOutput>
+function C:resumeCampaign(input: types.ResumeCampaignInput, options?: base_client.InvokeOptions): async.Operation<types.ResumeCampaignOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResumeCampaign as schema.OperationSchema, input, options) as async.Operation<types.ResumeCampaignOutput>
 end
 
-function C:startCampaign(input: types.StartCampaignInput, options: any): async.Operation<types.StartCampaignOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartCampaign, input, options) as async.Operation<types.StartCampaignOutput>
+function C:startCampaign(input: types.StartCampaignInput, options?: base_client.InvokeOptions): async.Operation<types.StartCampaignOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartCampaign as schema.OperationSchema, input, options) as async.Operation<types.StartCampaignOutput>
 end
 
-function C:startInstanceOnboardingJob(input: types.StartInstanceOnboardingJobInput, options: any): async.Operation<types.StartInstanceOnboardingJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartInstanceOnboardingJob, input, options) as async.Operation<types.StartInstanceOnboardingJobOutput>
+function C:startInstanceOnboardingJob(input: types.StartInstanceOnboardingJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartInstanceOnboardingJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartInstanceOnboardingJob as schema.OperationSchema, input, options) as async.Operation<types.StartInstanceOnboardingJobOutput>
 end
 
-function C:stopCampaign(input: types.StopCampaignInput, options: any): async.Operation<types.StopCampaignOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopCampaign, input, options) as async.Operation<types.StopCampaignOutput>
+function C:stopCampaign(input: types.StopCampaignInput, options?: base_client.InvokeOptions): async.Operation<types.StopCampaignOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopCampaign as schema.OperationSchema, input, options) as async.Operation<types.StopCampaignOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateCampaignDialerConfig(input: types.UpdateCampaignDialerConfigInput, options: any): async.Operation<types.UpdateCampaignDialerConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCampaignDialerConfig, input, options) as async.Operation<types.UpdateCampaignDialerConfigOutput>
+function C:updateCampaignDialerConfig(input: types.UpdateCampaignDialerConfigInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCampaignDialerConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCampaignDialerConfig as schema.OperationSchema, input, options) as async.Operation<types.UpdateCampaignDialerConfigOutput>
 end
 
-function C:updateCampaignName(input: types.UpdateCampaignNameInput, options: any): async.Operation<types.UpdateCampaignNameOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCampaignName, input, options) as async.Operation<types.UpdateCampaignNameOutput>
+function C:updateCampaignName(input: types.UpdateCampaignNameInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCampaignNameOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCampaignName as schema.OperationSchema, input, options) as async.Operation<types.UpdateCampaignNameOutput>
 end
 
-function C:updateCampaignOutboundCallConfig(input: types.UpdateCampaignOutboundCallConfigInput, options: any): async.Operation<types.UpdateCampaignOutboundCallConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCampaignOutboundCallConfig, input, options) as async.Operation<types.UpdateCampaignOutboundCallConfigOutput>
+function C:updateCampaignOutboundCallConfig(input: types.UpdateCampaignOutboundCallConfigInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCampaignOutboundCallConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCampaignOutboundCallConfig as schema.OperationSchema, input, options) as async.Operation<types.UpdateCampaignOutboundCallConfigOutput>
 end
 
 return M

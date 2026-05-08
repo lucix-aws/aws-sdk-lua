@@ -8,55 +8,58 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("route53profiles.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("route53profiles.schemas")
 local traits = require("smithy.traits")
 local types = require("route53profiles.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateProfile: function(Client, types.AssociateProfileInput, any): async.Operation<types.AssociateProfileOutput>
-    associateResourceToProfile: function(Client, types.AssociateResourceToProfileInput, any): async.Operation<types.AssociateResourceToProfileOutput>
-    createProfile: function(Client, types.CreateProfileInput, any): async.Operation<types.CreateProfileOutput>
-    deleteProfile: function(Client, types.DeleteProfileInput, any): async.Operation<types.DeleteProfileOutput>
-    disassociateProfile: function(Client, types.DisassociateProfileInput, any): async.Operation<types.DisassociateProfileOutput>
-    disassociateResourceFromProfile: function(Client, types.DisassociateResourceFromProfileInput, any): async.Operation<types.DisassociateResourceFromProfileOutput>
-    getProfile: function(Client, types.GetProfileInput, any): async.Operation<types.GetProfileOutput>
-    getProfileAssociation: function(Client, types.GetProfileAssociationInput, any): async.Operation<types.GetProfileAssociationOutput>
-    getProfileResourceAssociation: function(Client, types.GetProfileResourceAssociationInput, any): async.Operation<types.GetProfileResourceAssociationOutput>
-    listProfileAssociations: function(Client, types.ListProfileAssociationsInput, any): async.Operation<types.ListProfileAssociationsOutput>
-    listProfileResourceAssociations: function(Client, types.ListProfileResourceAssociationsInput, any): async.Operation<types.ListProfileResourceAssociationsOutput>
-    listProfiles: function(Client, types.ListProfilesInput, any): async.Operation<types.ListProfilesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateProfileResourceAssociation: function(Client, types.UpdateProfileResourceAssociationInput, any): async.Operation<types.UpdateProfileResourceAssociationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateProfile: function(Client, types.AssociateProfileInput, ? base_client.InvokeOptions): async.Operation<types.AssociateProfileOutput>
+    associateResourceToProfile: function(Client, types.AssociateResourceToProfileInput, ? base_client.InvokeOptions): async.Operation<types.AssociateResourceToProfileOutput>
+    createProfile: function(Client, types.CreateProfileInput, ? base_client.InvokeOptions): async.Operation<types.CreateProfileOutput>
+    deleteProfile: function(Client, types.DeleteProfileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProfileOutput>
+    disassociateProfile: function(Client, types.DisassociateProfileInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateProfileOutput>
+    disassociateResourceFromProfile: function(Client, types.DisassociateResourceFromProfileInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateResourceFromProfileOutput>
+    getProfile: function(Client, types.GetProfileInput, ? base_client.InvokeOptions): async.Operation<types.GetProfileOutput>
+    getProfileAssociation: function(Client, types.GetProfileAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetProfileAssociationOutput>
+    getProfileResourceAssociation: function(Client, types.GetProfileResourceAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetProfileResourceAssociationOutput>
+    listProfileAssociations: function(Client, types.ListProfileAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListProfileAssociationsOutput>
+    listProfileResourceAssociations: function(Client, types.ListProfileResourceAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListProfileResourceAssociationsOutput>
+    listProfiles: function(Client, types.ListProfilesInput, ? base_client.InvokeOptions): async.Operation<types.ListProfilesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateProfileResourceAssociation: function(Client, types.UpdateProfileResourceAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProfileResourceAssociationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "Route53Profiles"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "route53profiles", signing_region = c.region } }
                 else
@@ -75,68 +78,68 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateProfile(input: types.AssociateProfileInput, options: any): async.Operation<types.AssociateProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateProfile, input, options) as async.Operation<types.AssociateProfileOutput>
+function C:associateProfile(input: types.AssociateProfileInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateProfile as schema.OperationSchema, input, options) as async.Operation<types.AssociateProfileOutput>
 end
 
-function C:associateResourceToProfile(input: types.AssociateResourceToProfileInput, options: any): async.Operation<types.AssociateResourceToProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateResourceToProfile, input, options) as async.Operation<types.AssociateResourceToProfileOutput>
+function C:associateResourceToProfile(input: types.AssociateResourceToProfileInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateResourceToProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateResourceToProfile as schema.OperationSchema, input, options) as async.Operation<types.AssociateResourceToProfileOutput>
 end
 
-function C:createProfile(input: types.CreateProfileInput, options: any): async.Operation<types.CreateProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProfile, input, options) as async.Operation<types.CreateProfileOutput>
+function C:createProfile(input: types.CreateProfileInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProfile as schema.OperationSchema, input, options) as async.Operation<types.CreateProfileOutput>
 end
 
-function C:deleteProfile(input: types.DeleteProfileInput, options: any): async.Operation<types.DeleteProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProfile, input, options) as async.Operation<types.DeleteProfileOutput>
+function C:deleteProfile(input: types.DeleteProfileInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProfile as schema.OperationSchema, input, options) as async.Operation<types.DeleteProfileOutput>
 end
 
-function C:disassociateProfile(input: types.DisassociateProfileInput, options: any): async.Operation<types.DisassociateProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateProfile, input, options) as async.Operation<types.DisassociateProfileOutput>
+function C:disassociateProfile(input: types.DisassociateProfileInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateProfile as schema.OperationSchema, input, options) as async.Operation<types.DisassociateProfileOutput>
 end
 
-function C:disassociateResourceFromProfile(input: types.DisassociateResourceFromProfileInput, options: any): async.Operation<types.DisassociateResourceFromProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateResourceFromProfile, input, options) as async.Operation<types.DisassociateResourceFromProfileOutput>
+function C:disassociateResourceFromProfile(input: types.DisassociateResourceFromProfileInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateResourceFromProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateResourceFromProfile as schema.OperationSchema, input, options) as async.Operation<types.DisassociateResourceFromProfileOutput>
 end
 
-function C:getProfile(input: types.GetProfileInput, options: any): async.Operation<types.GetProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetProfile, input, options) as async.Operation<types.GetProfileOutput>
+function C:getProfile(input: types.GetProfileInput, options?: base_client.InvokeOptions): async.Operation<types.GetProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProfile as schema.OperationSchema, input, options) as async.Operation<types.GetProfileOutput>
 end
 
-function C:getProfileAssociation(input: types.GetProfileAssociationInput, options: any): async.Operation<types.GetProfileAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetProfileAssociation, input, options) as async.Operation<types.GetProfileAssociationOutput>
+function C:getProfileAssociation(input: types.GetProfileAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetProfileAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProfileAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetProfileAssociationOutput>
 end
 
-function C:getProfileResourceAssociation(input: types.GetProfileResourceAssociationInput, options: any): async.Operation<types.GetProfileResourceAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetProfileResourceAssociation, input, options) as async.Operation<types.GetProfileResourceAssociationOutput>
+function C:getProfileResourceAssociation(input: types.GetProfileResourceAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetProfileResourceAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProfileResourceAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetProfileResourceAssociationOutput>
 end
 
-function C:listProfileAssociations(input: types.ListProfileAssociationsInput, options: any): async.Operation<types.ListProfileAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProfileAssociations, input, options) as async.Operation<types.ListProfileAssociationsOutput>
+function C:listProfileAssociations(input: types.ListProfileAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListProfileAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProfileAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListProfileAssociationsOutput>
 end
 
-function C:listProfileResourceAssociations(input: types.ListProfileResourceAssociationsInput, options: any): async.Operation<types.ListProfileResourceAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProfileResourceAssociations, input, options) as async.Operation<types.ListProfileResourceAssociationsOutput>
+function C:listProfileResourceAssociations(input: types.ListProfileResourceAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListProfileResourceAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProfileResourceAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListProfileResourceAssociationsOutput>
 end
 
-function C:listProfiles(input: types.ListProfilesInput, options: any): async.Operation<types.ListProfilesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProfiles, input, options) as async.Operation<types.ListProfilesOutput>
+function C:listProfiles(input: types.ListProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.ListProfilesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProfiles as schema.OperationSchema, input, options) as async.Operation<types.ListProfilesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateProfileResourceAssociation(input: types.UpdateProfileResourceAssociationInput, options: any): async.Operation<types.UpdateProfileResourceAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProfileResourceAssociation, input, options) as async.Operation<types.UpdateProfileResourceAssociationOutput>
+function C:updateProfileResourceAssociation(input: types.UpdateProfileResourceAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProfileResourceAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProfileResourceAssociation as schema.OperationSchema, input, options) as async.Operation<types.UpdateProfileResourceAssociationOutput>
 end
 
 return M

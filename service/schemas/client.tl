@@ -8,70 +8,73 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("schemas.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("schemas.schemas")
 local traits = require("smithy.traits")
 local types = require("schemas.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createDiscoverer: function(Client, types.CreateDiscovererInput, any): async.Operation<types.CreateDiscovererOutput>
-    createRegistry: function(Client, types.CreateRegistryInput, any): async.Operation<types.CreateRegistryOutput>
-    createSchema: function(Client, types.CreateSchemaInput, any): async.Operation<types.CreateSchemaOutput>
-    deleteDiscoverer: function(Client, types.DeleteDiscovererInput, any): async.Operation<types.DeleteDiscovererOutput>
-    deleteRegistry: function(Client, types.DeleteRegistryInput, any): async.Operation<types.DeleteRegistryOutput>
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, any): async.Operation<types.DeleteResourcePolicyOutput>
-    deleteSchema: function(Client, types.DeleteSchemaInput, any): async.Operation<types.DeleteSchemaOutput>
-    deleteSchemaVersion: function(Client, types.DeleteSchemaVersionInput, any): async.Operation<types.DeleteSchemaVersionOutput>
-    describeCodeBinding: function(Client, types.DescribeCodeBindingInput, any): async.Operation<types.DescribeCodeBindingOutput>
-    describeDiscoverer: function(Client, types.DescribeDiscovererInput, any): async.Operation<types.DescribeDiscovererOutput>
-    describeRegistry: function(Client, types.DescribeRegistryInput, any): async.Operation<types.DescribeRegistryOutput>
-    describeSchema: function(Client, types.DescribeSchemaInput, any): async.Operation<types.DescribeSchemaOutput>
-    exportSchema: function(Client, types.ExportSchemaInput, any): async.Operation<types.ExportSchemaOutput>
-    getCodeBindingSource: function(Client, types.GetCodeBindingSourceInput, any): async.Operation<types.GetCodeBindingSourceOutput>
-    getDiscoveredSchema: function(Client, types.GetDiscoveredSchemaInput, any): async.Operation<types.GetDiscoveredSchemaOutput>
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput, any): async.Operation<types.GetResourcePolicyOutput>
-    listDiscoverers: function(Client, types.ListDiscoverersInput, any): async.Operation<types.ListDiscoverersOutput>
-    listRegistries: function(Client, types.ListRegistriesInput, any): async.Operation<types.ListRegistriesOutput>
-    listSchemas: function(Client, types.ListSchemasInput, any): async.Operation<types.ListSchemasOutput>
-    listSchemaVersions: function(Client, types.ListSchemaVersionsInput, any): async.Operation<types.ListSchemaVersionsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putCodeBinding: function(Client, types.PutCodeBindingInput, any): async.Operation<types.PutCodeBindingOutput>
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput, any): async.Operation<types.PutResourcePolicyOutput>
-    searchSchemas: function(Client, types.SearchSchemasInput, any): async.Operation<types.SearchSchemasOutput>
-    startDiscoverer: function(Client, types.StartDiscovererInput, any): async.Operation<types.StartDiscovererOutput>
-    stopDiscoverer: function(Client, types.StopDiscovererInput, any): async.Operation<types.StopDiscovererOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateDiscoverer: function(Client, types.UpdateDiscovererInput, any): async.Operation<types.UpdateDiscovererOutput>
-    updateRegistry: function(Client, types.UpdateRegistryInput, any): async.Operation<types.UpdateRegistryOutput>
-    updateSchema: function(Client, types.UpdateSchemaInput, any): async.Operation<types.UpdateSchemaOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createDiscoverer: function(Client, types.CreateDiscovererInput, ? base_client.InvokeOptions): async.Operation<types.CreateDiscovererOutput>
+    createRegistry: function(Client, types.CreateRegistryInput, ? base_client.InvokeOptions): async.Operation<types.CreateRegistryOutput>
+    createSchema: function(Client, types.CreateSchemaInput, ? base_client.InvokeOptions): async.Operation<types.CreateSchemaOutput>
+    deleteDiscoverer: function(Client, types.DeleteDiscovererInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDiscovererOutput>
+    deleteRegistry: function(Client, types.DeleteRegistryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRegistryOutput>
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    deleteSchema: function(Client, types.DeleteSchemaInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSchemaOutput>
+    deleteSchemaVersion: function(Client, types.DeleteSchemaVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSchemaVersionOutput>
+    describeCodeBinding: function(Client, types.DescribeCodeBindingInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCodeBindingOutput>
+    describeDiscoverer: function(Client, types.DescribeDiscovererInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDiscovererOutput>
+    describeRegistry: function(Client, types.DescribeRegistryInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRegistryOutput>
+    describeSchema: function(Client, types.DescribeSchemaInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSchemaOutput>
+    exportSchema: function(Client, types.ExportSchemaInput, ? base_client.InvokeOptions): async.Operation<types.ExportSchemaOutput>
+    getCodeBindingSource: function(Client, types.GetCodeBindingSourceInput, ? base_client.InvokeOptions): async.Operation<types.GetCodeBindingSourceOutput>
+    getDiscoveredSchema: function(Client, types.GetDiscoveredSchemaInput, ? base_client.InvokeOptions): async.Operation<types.GetDiscoveredSchemaOutput>
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    listDiscoverers: function(Client, types.ListDiscoverersInput, ? base_client.InvokeOptions): async.Operation<types.ListDiscoverersOutput>
+    listRegistries: function(Client, types.ListRegistriesInput, ? base_client.InvokeOptions): async.Operation<types.ListRegistriesOutput>
+    listSchemas: function(Client, types.ListSchemasInput, ? base_client.InvokeOptions): async.Operation<types.ListSchemasOutput>
+    listSchemaVersions: function(Client, types.ListSchemaVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListSchemaVersionsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putCodeBinding: function(Client, types.PutCodeBindingInput, ? base_client.InvokeOptions): async.Operation<types.PutCodeBindingOutput>
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    searchSchemas: function(Client, types.SearchSchemasInput, ? base_client.InvokeOptions): async.Operation<types.SearchSchemasOutput>
+    startDiscoverer: function(Client, types.StartDiscovererInput, ? base_client.InvokeOptions): async.Operation<types.StartDiscovererOutput>
+    stopDiscoverer: function(Client, types.StopDiscovererInput, ? base_client.InvokeOptions): async.Operation<types.StopDiscovererOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateDiscoverer: function(Client, types.UpdateDiscovererInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDiscovererOutput>
+    updateRegistry: function(Client, types.UpdateRegistryInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRegistryOutput>
+    updateSchema: function(Client, types.UpdateSchemaInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSchemaOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "schemas"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "schemas", signing_region = c.region } }
                 else
@@ -90,128 +93,128 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createDiscoverer(input: types.CreateDiscovererInput, options: any): async.Operation<types.CreateDiscovererOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDiscoverer, input, options) as async.Operation<types.CreateDiscovererOutput>
+function C:createDiscoverer(input: types.CreateDiscovererInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDiscovererOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDiscoverer as schema.OperationSchema, input, options) as async.Operation<types.CreateDiscovererOutput>
 end
 
-function C:createRegistry(input: types.CreateRegistryInput, options: any): async.Operation<types.CreateRegistryOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRegistry, input, options) as async.Operation<types.CreateRegistryOutput>
+function C:createRegistry(input: types.CreateRegistryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRegistryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRegistry as schema.OperationSchema, input, options) as async.Operation<types.CreateRegistryOutput>
 end
 
-function C:createSchema(input: types.CreateSchemaInput, options: any): async.Operation<types.CreateSchemaOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSchema, input, options) as async.Operation<types.CreateSchemaOutput>
+function C:createSchema(input: types.CreateSchemaInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSchemaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSchema as schema.OperationSchema, input, options) as async.Operation<types.CreateSchemaOutput>
 end
 
-function C:deleteDiscoverer(input: types.DeleteDiscovererInput, options: any): async.Operation<types.DeleteDiscovererOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDiscoverer, input, options) as async.Operation<types.DeleteDiscovererOutput>
+function C:deleteDiscoverer(input: types.DeleteDiscovererInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDiscovererOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDiscoverer as schema.OperationSchema, input, options) as async.Operation<types.DeleteDiscovererOutput>
 end
 
-function C:deleteRegistry(input: types.DeleteRegistryInput, options: any): async.Operation<types.DeleteRegistryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRegistry, input, options) as async.Operation<types.DeleteRegistryOutput>
+function C:deleteRegistry(input: types.DeleteRegistryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRegistryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRegistry as schema.OperationSchema, input, options) as async.Operation<types.DeleteRegistryOutput>
 end
 
-function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options: any): async.Operation<types.DeleteResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicy, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
+function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
 end
 
-function C:deleteSchema(input: types.DeleteSchemaInput, options: any): async.Operation<types.DeleteSchemaOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSchema, input, options) as async.Operation<types.DeleteSchemaOutput>
+function C:deleteSchema(input: types.DeleteSchemaInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSchemaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSchema as schema.OperationSchema, input, options) as async.Operation<types.DeleteSchemaOutput>
 end
 
-function C:deleteSchemaVersion(input: types.DeleteSchemaVersionInput, options: any): async.Operation<types.DeleteSchemaVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSchemaVersion, input, options) as async.Operation<types.DeleteSchemaVersionOutput>
+function C:deleteSchemaVersion(input: types.DeleteSchemaVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSchemaVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSchemaVersion as schema.OperationSchema, input, options) as async.Operation<types.DeleteSchemaVersionOutput>
 end
 
-function C:describeCodeBinding(input: types.DescribeCodeBindingInput, options: any): async.Operation<types.DescribeCodeBindingOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCodeBinding, input, options) as async.Operation<types.DescribeCodeBindingOutput>
+function C:describeCodeBinding(input: types.DescribeCodeBindingInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCodeBindingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCodeBinding as schema.OperationSchema, input, options) as async.Operation<types.DescribeCodeBindingOutput>
 end
 
-function C:describeDiscoverer(input: types.DescribeDiscovererInput, options: any): async.Operation<types.DescribeDiscovererOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDiscoverer, input, options) as async.Operation<types.DescribeDiscovererOutput>
+function C:describeDiscoverer(input: types.DescribeDiscovererInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDiscovererOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDiscoverer as schema.OperationSchema, input, options) as async.Operation<types.DescribeDiscovererOutput>
 end
 
-function C:describeRegistry(input: types.DescribeRegistryInput, options: any): async.Operation<types.DescribeRegistryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRegistry, input, options) as async.Operation<types.DescribeRegistryOutput>
+function C:describeRegistry(input: types.DescribeRegistryInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRegistryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRegistry as schema.OperationSchema, input, options) as async.Operation<types.DescribeRegistryOutput>
 end
 
-function C:describeSchema(input: types.DescribeSchemaInput, options: any): async.Operation<types.DescribeSchemaOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSchema, input, options) as async.Operation<types.DescribeSchemaOutput>
+function C:describeSchema(input: types.DescribeSchemaInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSchemaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSchema as schema.OperationSchema, input, options) as async.Operation<types.DescribeSchemaOutput>
 end
 
-function C:exportSchema(input: types.ExportSchemaInput, options: any): async.Operation<types.ExportSchemaOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExportSchema, input, options) as async.Operation<types.ExportSchemaOutput>
+function C:exportSchema(input: types.ExportSchemaInput, options?: base_client.InvokeOptions): async.Operation<types.ExportSchemaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportSchema as schema.OperationSchema, input, options) as async.Operation<types.ExportSchemaOutput>
 end
 
-function C:getCodeBindingSource(input: types.GetCodeBindingSourceInput, options: any): async.Operation<types.GetCodeBindingSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCodeBindingSource, input, options) as async.Operation<types.GetCodeBindingSourceOutput>
+function C:getCodeBindingSource(input: types.GetCodeBindingSourceInput, options?: base_client.InvokeOptions): async.Operation<types.GetCodeBindingSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCodeBindingSource as schema.OperationSchema, input, options) as async.Operation<types.GetCodeBindingSourceOutput>
 end
 
-function C:getDiscoveredSchema(input: types.GetDiscoveredSchemaInput, options: any): async.Operation<types.GetDiscoveredSchemaOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDiscoveredSchema, input, options) as async.Operation<types.GetDiscoveredSchemaOutput>
+function C:getDiscoveredSchema(input: types.GetDiscoveredSchemaInput, options?: base_client.InvokeOptions): async.Operation<types.GetDiscoveredSchemaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDiscoveredSchema as schema.OperationSchema, input, options) as async.Operation<types.GetDiscoveredSchemaOutput>
 end
 
-function C:getResourcePolicy(input: types.GetResourcePolicyInput, options: any): async.Operation<types.GetResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicy, input, options) as async.Operation<types.GetResourcePolicyOutput>
+function C:getResourcePolicy(input: types.GetResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePolicyOutput>
 end
 
-function C:listDiscoverers(input: types.ListDiscoverersInput, options: any): async.Operation<types.ListDiscoverersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDiscoverers, input, options) as async.Operation<types.ListDiscoverersOutput>
+function C:listDiscoverers(input: types.ListDiscoverersInput, options?: base_client.InvokeOptions): async.Operation<types.ListDiscoverersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDiscoverers as schema.OperationSchema, input, options) as async.Operation<types.ListDiscoverersOutput>
 end
 
-function C:listRegistries(input: types.ListRegistriesInput, options: any): async.Operation<types.ListRegistriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRegistries, input, options) as async.Operation<types.ListRegistriesOutput>
+function C:listRegistries(input: types.ListRegistriesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRegistriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRegistries as schema.OperationSchema, input, options) as async.Operation<types.ListRegistriesOutput>
 end
 
-function C:listSchemas(input: types.ListSchemasInput, options: any): async.Operation<types.ListSchemasOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSchemas, input, options) as async.Operation<types.ListSchemasOutput>
+function C:listSchemas(input: types.ListSchemasInput, options?: base_client.InvokeOptions): async.Operation<types.ListSchemasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSchemas as schema.OperationSchema, input, options) as async.Operation<types.ListSchemasOutput>
 end
 
-function C:listSchemaVersions(input: types.ListSchemaVersionsInput, options: any): async.Operation<types.ListSchemaVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSchemaVersions, input, options) as async.Operation<types.ListSchemaVersionsOutput>
+function C:listSchemaVersions(input: types.ListSchemaVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSchemaVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSchemaVersions as schema.OperationSchema, input, options) as async.Operation<types.ListSchemaVersionsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putCodeBinding(input: types.PutCodeBindingInput, options: any): async.Operation<types.PutCodeBindingOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutCodeBinding, input, options) as async.Operation<types.PutCodeBindingOutput>
+function C:putCodeBinding(input: types.PutCodeBindingInput, options?: base_client.InvokeOptions): async.Operation<types.PutCodeBindingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutCodeBinding as schema.OperationSchema, input, options) as async.Operation<types.PutCodeBindingOutput>
 end
 
-function C:putResourcePolicy(input: types.PutResourcePolicyInput, options: any): async.Operation<types.PutResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutResourcePolicy, input, options) as async.Operation<types.PutResourcePolicyOutput>
+function C:putResourcePolicy(input: types.PutResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutResourcePolicyOutput>
 end
 
-function C:searchSchemas(input: types.SearchSchemasInput, options: any): async.Operation<types.SearchSchemasOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchSchemas, input, options) as async.Operation<types.SearchSchemasOutput>
+function C:searchSchemas(input: types.SearchSchemasInput, options?: base_client.InvokeOptions): async.Operation<types.SearchSchemasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchSchemas as schema.OperationSchema, input, options) as async.Operation<types.SearchSchemasOutput>
 end
 
-function C:startDiscoverer(input: types.StartDiscovererInput, options: any): async.Operation<types.StartDiscovererOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartDiscoverer, input, options) as async.Operation<types.StartDiscovererOutput>
+function C:startDiscoverer(input: types.StartDiscovererInput, options?: base_client.InvokeOptions): async.Operation<types.StartDiscovererOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDiscoverer as schema.OperationSchema, input, options) as async.Operation<types.StartDiscovererOutput>
 end
 
-function C:stopDiscoverer(input: types.StopDiscovererInput, options: any): async.Operation<types.StopDiscovererOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopDiscoverer, input, options) as async.Operation<types.StopDiscovererOutput>
+function C:stopDiscoverer(input: types.StopDiscovererInput, options?: base_client.InvokeOptions): async.Operation<types.StopDiscovererOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopDiscoverer as schema.OperationSchema, input, options) as async.Operation<types.StopDiscovererOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateDiscoverer(input: types.UpdateDiscovererInput, options: any): async.Operation<types.UpdateDiscovererOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDiscoverer, input, options) as async.Operation<types.UpdateDiscovererOutput>
+function C:updateDiscoverer(input: types.UpdateDiscovererInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDiscovererOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDiscoverer as schema.OperationSchema, input, options) as async.Operation<types.UpdateDiscovererOutput>
 end
 
-function C:updateRegistry(input: types.UpdateRegistryInput, options: any): async.Operation<types.UpdateRegistryOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRegistry, input, options) as async.Operation<types.UpdateRegistryOutput>
+function C:updateRegistry(input: types.UpdateRegistryInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRegistryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRegistry as schema.OperationSchema, input, options) as async.Operation<types.UpdateRegistryOutput>
 end
 
-function C:updateSchema(input: types.UpdateSchemaInput, options: any): async.Operation<types.UpdateSchemaOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSchema, input, options) as async.Operation<types.UpdateSchemaOutput>
+function C:updateSchema(input: types.UpdateSchemaInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSchemaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSchema as schema.OperationSchema, input, options) as async.Operation<types.UpdateSchemaOutput>
 end
 
 return M

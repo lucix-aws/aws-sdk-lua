@@ -8,81 +8,84 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("fms.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("fms.schemas")
 local traits = require("smithy.traits")
 local types = require("fms.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateAdminAccount: function(Client, types.AssociateAdminAccountInput, any): async.Operation<types.AssociateAdminAccountOutput>
-    associateThirdPartyFirewall: function(Client, types.AssociateThirdPartyFirewallInput, any): async.Operation<types.AssociateThirdPartyFirewallOutput>
-    batchAssociateResource: function(Client, types.BatchAssociateResourceInput, any): async.Operation<types.BatchAssociateResourceOutput>
-    batchDisassociateResource: function(Client, types.BatchDisassociateResourceInput, any): async.Operation<types.BatchDisassociateResourceOutput>
-    deleteAppsList: function(Client, types.DeleteAppsListInput, any): async.Operation<types.DeleteAppsListOutput>
-    deleteNotificationChannel: function(Client, types.DeleteNotificationChannelInput, any): async.Operation<types.DeleteNotificationChannelOutput>
-    deletePolicy: function(Client, types.DeletePolicyInput, any): async.Operation<types.DeletePolicyOutput>
-    deleteProtocolsList: function(Client, types.DeleteProtocolsListInput, any): async.Operation<types.DeleteProtocolsListOutput>
-    deleteResourceSet: function(Client, types.DeleteResourceSetInput, any): async.Operation<types.DeleteResourceSetOutput>
-    disassociateAdminAccount: function(Client, types.DisassociateAdminAccountInput, any): async.Operation<types.DisassociateAdminAccountOutput>
-    disassociateThirdPartyFirewall: function(Client, types.DisassociateThirdPartyFirewallInput, any): async.Operation<types.DisassociateThirdPartyFirewallOutput>
-    getAdminAccount: function(Client, types.GetAdminAccountInput, any): async.Operation<types.GetAdminAccountOutput>
-    getAdminScope: function(Client, types.GetAdminScopeInput, any): async.Operation<types.GetAdminScopeOutput>
-    getAppsList: function(Client, types.GetAppsListInput, any): async.Operation<types.GetAppsListOutput>
-    getComplianceDetail: function(Client, types.GetComplianceDetailInput, any): async.Operation<types.GetComplianceDetailOutput>
-    getNotificationChannel: function(Client, types.GetNotificationChannelInput, any): async.Operation<types.GetNotificationChannelOutput>
-    getPolicy: function(Client, types.GetPolicyInput, any): async.Operation<types.GetPolicyOutput>
-    getProtectionStatus: function(Client, types.GetProtectionStatusInput, any): async.Operation<types.GetProtectionStatusOutput>
-    getProtocolsList: function(Client, types.GetProtocolsListInput, any): async.Operation<types.GetProtocolsListOutput>
-    getResourceSet: function(Client, types.GetResourceSetInput, any): async.Operation<types.GetResourceSetOutput>
-    getThirdPartyFirewallAssociationStatus: function(Client, types.GetThirdPartyFirewallAssociationStatusInput, any): async.Operation<types.GetThirdPartyFirewallAssociationStatusOutput>
-    getViolationDetails: function(Client, types.GetViolationDetailsInput, any): async.Operation<types.GetViolationDetailsOutput>
-    listAdminAccountsForOrganization: function(Client, types.ListAdminAccountsForOrganizationInput, any): async.Operation<types.ListAdminAccountsForOrganizationOutput>
-    listAdminsManagingAccount: function(Client, types.ListAdminsManagingAccountInput, any): async.Operation<types.ListAdminsManagingAccountOutput>
-    listAppsLists: function(Client, types.ListAppsListsInput, any): async.Operation<types.ListAppsListsOutput>
-    listComplianceStatus: function(Client, types.ListComplianceStatusInput, any): async.Operation<types.ListComplianceStatusOutput>
-    listDiscoveredResources: function(Client, types.ListDiscoveredResourcesInput, any): async.Operation<types.ListDiscoveredResourcesOutput>
-    listMemberAccounts: function(Client, types.ListMemberAccountsInput, any): async.Operation<types.ListMemberAccountsOutput>
-    listPolicies: function(Client, types.ListPoliciesInput, any): async.Operation<types.ListPoliciesOutput>
-    listProtocolsLists: function(Client, types.ListProtocolsListsInput, any): async.Operation<types.ListProtocolsListsOutput>
-    listResourceSetResources: function(Client, types.ListResourceSetResourcesInput, any): async.Operation<types.ListResourceSetResourcesOutput>
-    listResourceSets: function(Client, types.ListResourceSetsInput, any): async.Operation<types.ListResourceSetsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listThirdPartyFirewallFirewallPolicies: function(Client, types.ListThirdPartyFirewallFirewallPoliciesInput, any): async.Operation<types.ListThirdPartyFirewallFirewallPoliciesOutput>
-    putAdminAccount: function(Client, types.PutAdminAccountInput, any): async.Operation<types.PutAdminAccountOutput>
-    putAppsList: function(Client, types.PutAppsListInput, any): async.Operation<types.PutAppsListOutput>
-    putNotificationChannel: function(Client, types.PutNotificationChannelInput, any): async.Operation<types.PutNotificationChannelOutput>
-    putPolicy: function(Client, types.PutPolicyInput, any): async.Operation<types.PutPolicyOutput>
-    putProtocolsList: function(Client, types.PutProtocolsListInput, any): async.Operation<types.PutProtocolsListOutput>
-    putResourceSet: function(Client, types.PutResourceSetInput, any): async.Operation<types.PutResourceSetOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateAdminAccount: function(Client, types.AssociateAdminAccountInput, ? base_client.InvokeOptions): async.Operation<types.AssociateAdminAccountOutput>
+    associateThirdPartyFirewall: function(Client, types.AssociateThirdPartyFirewallInput, ? base_client.InvokeOptions): async.Operation<types.AssociateThirdPartyFirewallOutput>
+    batchAssociateResource: function(Client, types.BatchAssociateResourceInput, ? base_client.InvokeOptions): async.Operation<types.BatchAssociateResourceOutput>
+    batchDisassociateResource: function(Client, types.BatchDisassociateResourceInput, ? base_client.InvokeOptions): async.Operation<types.BatchDisassociateResourceOutput>
+    deleteAppsList: function(Client, types.DeleteAppsListInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAppsListOutput>
+    deleteNotificationChannel: function(Client, types.DeleteNotificationChannelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNotificationChannelOutput>
+    deletePolicy: function(Client, types.DeletePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeletePolicyOutput>
+    deleteProtocolsList: function(Client, types.DeleteProtocolsListInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProtocolsListOutput>
+    deleteResourceSet: function(Client, types.DeleteResourceSetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourceSetOutput>
+    disassociateAdminAccount: function(Client, types.DisassociateAdminAccountInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateAdminAccountOutput>
+    disassociateThirdPartyFirewall: function(Client, types.DisassociateThirdPartyFirewallInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateThirdPartyFirewallOutput>
+    getAdminAccount: function(Client, types.GetAdminAccountInput, ? base_client.InvokeOptions): async.Operation<types.GetAdminAccountOutput>
+    getAdminScope: function(Client, types.GetAdminScopeInput, ? base_client.InvokeOptions): async.Operation<types.GetAdminScopeOutput>
+    getAppsList: function(Client, types.GetAppsListInput, ? base_client.InvokeOptions): async.Operation<types.GetAppsListOutput>
+    getComplianceDetail: function(Client, types.GetComplianceDetailInput, ? base_client.InvokeOptions): async.Operation<types.GetComplianceDetailOutput>
+    getNotificationChannel: function(Client, types.GetNotificationChannelInput, ? base_client.InvokeOptions): async.Operation<types.GetNotificationChannelOutput>
+    getPolicy: function(Client, types.GetPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetPolicyOutput>
+    getProtectionStatus: function(Client, types.GetProtectionStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetProtectionStatusOutput>
+    getProtocolsList: function(Client, types.GetProtocolsListInput, ? base_client.InvokeOptions): async.Operation<types.GetProtocolsListOutput>
+    getResourceSet: function(Client, types.GetResourceSetInput, ? base_client.InvokeOptions): async.Operation<types.GetResourceSetOutput>
+    getThirdPartyFirewallAssociationStatus: function(Client, types.GetThirdPartyFirewallAssociationStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetThirdPartyFirewallAssociationStatusOutput>
+    getViolationDetails: function(Client, types.GetViolationDetailsInput, ? base_client.InvokeOptions): async.Operation<types.GetViolationDetailsOutput>
+    listAdminAccountsForOrganization: function(Client, types.ListAdminAccountsForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.ListAdminAccountsForOrganizationOutput>
+    listAdminsManagingAccount: function(Client, types.ListAdminsManagingAccountInput, ? base_client.InvokeOptions): async.Operation<types.ListAdminsManagingAccountOutput>
+    listAppsLists: function(Client, types.ListAppsListsInput, ? base_client.InvokeOptions): async.Operation<types.ListAppsListsOutput>
+    listComplianceStatus: function(Client, types.ListComplianceStatusInput, ? base_client.InvokeOptions): async.Operation<types.ListComplianceStatusOutput>
+    listDiscoveredResources: function(Client, types.ListDiscoveredResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListDiscoveredResourcesOutput>
+    listMemberAccounts: function(Client, types.ListMemberAccountsInput, ? base_client.InvokeOptions): async.Operation<types.ListMemberAccountsOutput>
+    listPolicies: function(Client, types.ListPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListPoliciesOutput>
+    listProtocolsLists: function(Client, types.ListProtocolsListsInput, ? base_client.InvokeOptions): async.Operation<types.ListProtocolsListsOutput>
+    listResourceSetResources: function(Client, types.ListResourceSetResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceSetResourcesOutput>
+    listResourceSets: function(Client, types.ListResourceSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceSetsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listThirdPartyFirewallFirewallPolicies: function(Client, types.ListThirdPartyFirewallFirewallPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListThirdPartyFirewallFirewallPoliciesOutput>
+    putAdminAccount: function(Client, types.PutAdminAccountInput, ? base_client.InvokeOptions): async.Operation<types.PutAdminAccountOutput>
+    putAppsList: function(Client, types.PutAppsListInput, ? base_client.InvokeOptions): async.Operation<types.PutAppsListOutput>
+    putNotificationChannel: function(Client, types.PutNotificationChannelInput, ? base_client.InvokeOptions): async.Operation<types.PutNotificationChannelOutput>
+    putPolicy: function(Client, types.PutPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutPolicyOutput>
+    putProtocolsList: function(Client, types.PutProtocolsListInput, ? base_client.InvokeOptions): async.Operation<types.PutProtocolsListOutput>
+    putResourceSet: function(Client, types.PutResourceSetInput, ? base_client.InvokeOptions): async.Operation<types.PutResourceSetOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSFMS_20180101"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "fms", signing_region = c.region } }
                 else
@@ -101,172 +104,172 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateAdminAccount(input: types.AssociateAdminAccountInput, options: any): async.Operation<types.AssociateAdminAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateAdminAccount, input, options) as async.Operation<types.AssociateAdminAccountOutput>
+function C:associateAdminAccount(input: types.AssociateAdminAccountInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateAdminAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateAdminAccount as schema.OperationSchema, input, options) as async.Operation<types.AssociateAdminAccountOutput>
 end
 
-function C:associateThirdPartyFirewall(input: types.AssociateThirdPartyFirewallInput, options: any): async.Operation<types.AssociateThirdPartyFirewallOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateThirdPartyFirewall, input, options) as async.Operation<types.AssociateThirdPartyFirewallOutput>
+function C:associateThirdPartyFirewall(input: types.AssociateThirdPartyFirewallInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateThirdPartyFirewallOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateThirdPartyFirewall as schema.OperationSchema, input, options) as async.Operation<types.AssociateThirdPartyFirewallOutput>
 end
 
-function C:batchAssociateResource(input: types.BatchAssociateResourceInput, options: any): async.Operation<types.BatchAssociateResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchAssociateResource, input, options) as async.Operation<types.BatchAssociateResourceOutput>
+function C:batchAssociateResource(input: types.BatchAssociateResourceInput, options?: base_client.InvokeOptions): async.Operation<types.BatchAssociateResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchAssociateResource as schema.OperationSchema, input, options) as async.Operation<types.BatchAssociateResourceOutput>
 end
 
-function C:batchDisassociateResource(input: types.BatchDisassociateResourceInput, options: any): async.Operation<types.BatchDisassociateResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDisassociateResource, input, options) as async.Operation<types.BatchDisassociateResourceOutput>
+function C:batchDisassociateResource(input: types.BatchDisassociateResourceInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDisassociateResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDisassociateResource as schema.OperationSchema, input, options) as async.Operation<types.BatchDisassociateResourceOutput>
 end
 
-function C:deleteAppsList(input: types.DeleteAppsListInput, options: any): async.Operation<types.DeleteAppsListOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAppsList, input, options) as async.Operation<types.DeleteAppsListOutput>
+function C:deleteAppsList(input: types.DeleteAppsListInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAppsListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAppsList as schema.OperationSchema, input, options) as async.Operation<types.DeleteAppsListOutput>
 end
 
-function C:deleteNotificationChannel(input: types.DeleteNotificationChannelInput, options: any): async.Operation<types.DeleteNotificationChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNotificationChannel, input, options) as async.Operation<types.DeleteNotificationChannelOutput>
+function C:deleteNotificationChannel(input: types.DeleteNotificationChannelInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNotificationChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNotificationChannel as schema.OperationSchema, input, options) as async.Operation<types.DeleteNotificationChannelOutput>
 end
 
-function C:deletePolicy(input: types.DeletePolicyInput, options: any): async.Operation<types.DeletePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePolicy, input, options) as async.Operation<types.DeletePolicyOutput>
+function C:deletePolicy(input: types.DeletePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeletePolicyOutput>
 end
 
-function C:deleteProtocolsList(input: types.DeleteProtocolsListInput, options: any): async.Operation<types.DeleteProtocolsListOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProtocolsList, input, options) as async.Operation<types.DeleteProtocolsListOutput>
+function C:deleteProtocolsList(input: types.DeleteProtocolsListInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProtocolsListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProtocolsList as schema.OperationSchema, input, options) as async.Operation<types.DeleteProtocolsListOutput>
 end
 
-function C:deleteResourceSet(input: types.DeleteResourceSetInput, options: any): async.Operation<types.DeleteResourceSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourceSet, input, options) as async.Operation<types.DeleteResourceSetOutput>
+function C:deleteResourceSet(input: types.DeleteResourceSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourceSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourceSet as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourceSetOutput>
 end
 
-function C:disassociateAdminAccount(input: types.DisassociateAdminAccountInput, options: any): async.Operation<types.DisassociateAdminAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateAdminAccount, input, options) as async.Operation<types.DisassociateAdminAccountOutput>
+function C:disassociateAdminAccount(input: types.DisassociateAdminAccountInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateAdminAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateAdminAccount as schema.OperationSchema, input, options) as async.Operation<types.DisassociateAdminAccountOutput>
 end
 
-function C:disassociateThirdPartyFirewall(input: types.DisassociateThirdPartyFirewallInput, options: any): async.Operation<types.DisassociateThirdPartyFirewallOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateThirdPartyFirewall, input, options) as async.Operation<types.DisassociateThirdPartyFirewallOutput>
+function C:disassociateThirdPartyFirewall(input: types.DisassociateThirdPartyFirewallInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateThirdPartyFirewallOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateThirdPartyFirewall as schema.OperationSchema, input, options) as async.Operation<types.DisassociateThirdPartyFirewallOutput>
 end
 
-function C:getAdminAccount(input: types.GetAdminAccountInput, options: any): async.Operation<types.GetAdminAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAdminAccount, input, options) as async.Operation<types.GetAdminAccountOutput>
+function C:getAdminAccount(input: types.GetAdminAccountInput, options?: base_client.InvokeOptions): async.Operation<types.GetAdminAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAdminAccount as schema.OperationSchema, input, options) as async.Operation<types.GetAdminAccountOutput>
 end
 
-function C:getAdminScope(input: types.GetAdminScopeInput, options: any): async.Operation<types.GetAdminScopeOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAdminScope, input, options) as async.Operation<types.GetAdminScopeOutput>
+function C:getAdminScope(input: types.GetAdminScopeInput, options?: base_client.InvokeOptions): async.Operation<types.GetAdminScopeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAdminScope as schema.OperationSchema, input, options) as async.Operation<types.GetAdminScopeOutput>
 end
 
-function C:getAppsList(input: types.GetAppsListInput, options: any): async.Operation<types.GetAppsListOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAppsList, input, options) as async.Operation<types.GetAppsListOutput>
+function C:getAppsList(input: types.GetAppsListInput, options?: base_client.InvokeOptions): async.Operation<types.GetAppsListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAppsList as schema.OperationSchema, input, options) as async.Operation<types.GetAppsListOutput>
 end
 
-function C:getComplianceDetail(input: types.GetComplianceDetailInput, options: any): async.Operation<types.GetComplianceDetailOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetComplianceDetail, input, options) as async.Operation<types.GetComplianceDetailOutput>
+function C:getComplianceDetail(input: types.GetComplianceDetailInput, options?: base_client.InvokeOptions): async.Operation<types.GetComplianceDetailOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetComplianceDetail as schema.OperationSchema, input, options) as async.Operation<types.GetComplianceDetailOutput>
 end
 
-function C:getNotificationChannel(input: types.GetNotificationChannelInput, options: any): async.Operation<types.GetNotificationChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNotificationChannel, input, options) as async.Operation<types.GetNotificationChannelOutput>
+function C:getNotificationChannel(input: types.GetNotificationChannelInput, options?: base_client.InvokeOptions): async.Operation<types.GetNotificationChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNotificationChannel as schema.OperationSchema, input, options) as async.Operation<types.GetNotificationChannelOutput>
 end
 
-function C:getPolicy(input: types.GetPolicyInput, options: any): async.Operation<types.GetPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPolicy, input, options) as async.Operation<types.GetPolicyOutput>
+function C:getPolicy(input: types.GetPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetPolicyOutput>
 end
 
-function C:getProtectionStatus(input: types.GetProtectionStatusInput, options: any): async.Operation<types.GetProtectionStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetProtectionStatus, input, options) as async.Operation<types.GetProtectionStatusOutput>
+function C:getProtectionStatus(input: types.GetProtectionStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetProtectionStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProtectionStatus as schema.OperationSchema, input, options) as async.Operation<types.GetProtectionStatusOutput>
 end
 
-function C:getProtocolsList(input: types.GetProtocolsListInput, options: any): async.Operation<types.GetProtocolsListOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetProtocolsList, input, options) as async.Operation<types.GetProtocolsListOutput>
+function C:getProtocolsList(input: types.GetProtocolsListInput, options?: base_client.InvokeOptions): async.Operation<types.GetProtocolsListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProtocolsList as schema.OperationSchema, input, options) as async.Operation<types.GetProtocolsListOutput>
 end
 
-function C:getResourceSet(input: types.GetResourceSetInput, options: any): async.Operation<types.GetResourceSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourceSet, input, options) as async.Operation<types.GetResourceSetOutput>
+function C:getResourceSet(input: types.GetResourceSetInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourceSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourceSet as schema.OperationSchema, input, options) as async.Operation<types.GetResourceSetOutput>
 end
 
-function C:getThirdPartyFirewallAssociationStatus(input: types.GetThirdPartyFirewallAssociationStatusInput, options: any): async.Operation<types.GetThirdPartyFirewallAssociationStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetThirdPartyFirewallAssociationStatus, input, options) as async.Operation<types.GetThirdPartyFirewallAssociationStatusOutput>
+function C:getThirdPartyFirewallAssociationStatus(input: types.GetThirdPartyFirewallAssociationStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetThirdPartyFirewallAssociationStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetThirdPartyFirewallAssociationStatus as schema.OperationSchema, input, options) as async.Operation<types.GetThirdPartyFirewallAssociationStatusOutput>
 end
 
-function C:getViolationDetails(input: types.GetViolationDetailsInput, options: any): async.Operation<types.GetViolationDetailsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetViolationDetails, input, options) as async.Operation<types.GetViolationDetailsOutput>
+function C:getViolationDetails(input: types.GetViolationDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.GetViolationDetailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetViolationDetails as schema.OperationSchema, input, options) as async.Operation<types.GetViolationDetailsOutput>
 end
 
-function C:listAdminAccountsForOrganization(input: types.ListAdminAccountsForOrganizationInput, options: any): async.Operation<types.ListAdminAccountsForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAdminAccountsForOrganization, input, options) as async.Operation<types.ListAdminAccountsForOrganizationOutput>
+function C:listAdminAccountsForOrganization(input: types.ListAdminAccountsForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.ListAdminAccountsForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAdminAccountsForOrganization as schema.OperationSchema, input, options) as async.Operation<types.ListAdminAccountsForOrganizationOutput>
 end
 
-function C:listAdminsManagingAccount(input: types.ListAdminsManagingAccountInput, options: any): async.Operation<types.ListAdminsManagingAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAdminsManagingAccount, input, options) as async.Operation<types.ListAdminsManagingAccountOutput>
+function C:listAdminsManagingAccount(input: types.ListAdminsManagingAccountInput, options?: base_client.InvokeOptions): async.Operation<types.ListAdminsManagingAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAdminsManagingAccount as schema.OperationSchema, input, options) as async.Operation<types.ListAdminsManagingAccountOutput>
 end
 
-function C:listAppsLists(input: types.ListAppsListsInput, options: any): async.Operation<types.ListAppsListsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAppsLists, input, options) as async.Operation<types.ListAppsListsOutput>
+function C:listAppsLists(input: types.ListAppsListsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAppsListsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAppsLists as schema.OperationSchema, input, options) as async.Operation<types.ListAppsListsOutput>
 end
 
-function C:listComplianceStatus(input: types.ListComplianceStatusInput, options: any): async.Operation<types.ListComplianceStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListComplianceStatus, input, options) as async.Operation<types.ListComplianceStatusOutput>
+function C:listComplianceStatus(input: types.ListComplianceStatusInput, options?: base_client.InvokeOptions): async.Operation<types.ListComplianceStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListComplianceStatus as schema.OperationSchema, input, options) as async.Operation<types.ListComplianceStatusOutput>
 end
 
-function C:listDiscoveredResources(input: types.ListDiscoveredResourcesInput, options: any): async.Operation<types.ListDiscoveredResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDiscoveredResources, input, options) as async.Operation<types.ListDiscoveredResourcesOutput>
+function C:listDiscoveredResources(input: types.ListDiscoveredResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDiscoveredResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDiscoveredResources as schema.OperationSchema, input, options) as async.Operation<types.ListDiscoveredResourcesOutput>
 end
 
-function C:listMemberAccounts(input: types.ListMemberAccountsInput, options: any): async.Operation<types.ListMemberAccountsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMemberAccounts, input, options) as async.Operation<types.ListMemberAccountsOutput>
+function C:listMemberAccounts(input: types.ListMemberAccountsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMemberAccountsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMemberAccounts as schema.OperationSchema, input, options) as async.Operation<types.ListMemberAccountsOutput>
 end
 
-function C:listPolicies(input: types.ListPoliciesInput, options: any): async.Operation<types.ListPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPolicies, input, options) as async.Operation<types.ListPoliciesOutput>
+function C:listPolicies(input: types.ListPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListPoliciesOutput>
 end
 
-function C:listProtocolsLists(input: types.ListProtocolsListsInput, options: any): async.Operation<types.ListProtocolsListsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProtocolsLists, input, options) as async.Operation<types.ListProtocolsListsOutput>
+function C:listProtocolsLists(input: types.ListProtocolsListsInput, options?: base_client.InvokeOptions): async.Operation<types.ListProtocolsListsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProtocolsLists as schema.OperationSchema, input, options) as async.Operation<types.ListProtocolsListsOutput>
 end
 
-function C:listResourceSetResources(input: types.ListResourceSetResourcesInput, options: any): async.Operation<types.ListResourceSetResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResourceSetResources, input, options) as async.Operation<types.ListResourceSetResourcesOutput>
+function C:listResourceSetResources(input: types.ListResourceSetResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourceSetResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourceSetResources as schema.OperationSchema, input, options) as async.Operation<types.ListResourceSetResourcesOutput>
 end
 
-function C:listResourceSets(input: types.ListResourceSetsInput, options: any): async.Operation<types.ListResourceSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResourceSets, input, options) as async.Operation<types.ListResourceSetsOutput>
+function C:listResourceSets(input: types.ListResourceSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourceSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourceSets as schema.OperationSchema, input, options) as async.Operation<types.ListResourceSetsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listThirdPartyFirewallFirewallPolicies(input: types.ListThirdPartyFirewallFirewallPoliciesInput, options: any): async.Operation<types.ListThirdPartyFirewallFirewallPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListThirdPartyFirewallFirewallPolicies, input, options) as async.Operation<types.ListThirdPartyFirewallFirewallPoliciesOutput>
+function C:listThirdPartyFirewallFirewallPolicies(input: types.ListThirdPartyFirewallFirewallPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListThirdPartyFirewallFirewallPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListThirdPartyFirewallFirewallPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListThirdPartyFirewallFirewallPoliciesOutput>
 end
 
-function C:putAdminAccount(input: types.PutAdminAccountInput, options: any): async.Operation<types.PutAdminAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAdminAccount, input, options) as async.Operation<types.PutAdminAccountOutput>
+function C:putAdminAccount(input: types.PutAdminAccountInput, options?: base_client.InvokeOptions): async.Operation<types.PutAdminAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAdminAccount as schema.OperationSchema, input, options) as async.Operation<types.PutAdminAccountOutput>
 end
 
-function C:putAppsList(input: types.PutAppsListInput, options: any): async.Operation<types.PutAppsListOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAppsList, input, options) as async.Operation<types.PutAppsListOutput>
+function C:putAppsList(input: types.PutAppsListInput, options?: base_client.InvokeOptions): async.Operation<types.PutAppsListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAppsList as schema.OperationSchema, input, options) as async.Operation<types.PutAppsListOutput>
 end
 
-function C:putNotificationChannel(input: types.PutNotificationChannelInput, options: any): async.Operation<types.PutNotificationChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutNotificationChannel, input, options) as async.Operation<types.PutNotificationChannelOutput>
+function C:putNotificationChannel(input: types.PutNotificationChannelInput, options?: base_client.InvokeOptions): async.Operation<types.PutNotificationChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutNotificationChannel as schema.OperationSchema, input, options) as async.Operation<types.PutNotificationChannelOutput>
 end
 
-function C:putPolicy(input: types.PutPolicyInput, options: any): async.Operation<types.PutPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutPolicy, input, options) as async.Operation<types.PutPolicyOutput>
+function C:putPolicy(input: types.PutPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutPolicyOutput>
 end
 
-function C:putProtocolsList(input: types.PutProtocolsListInput, options: any): async.Operation<types.PutProtocolsListOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutProtocolsList, input, options) as async.Operation<types.PutProtocolsListOutput>
+function C:putProtocolsList(input: types.PutProtocolsListInput, options?: base_client.InvokeOptions): async.Operation<types.PutProtocolsListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutProtocolsList as schema.OperationSchema, input, options) as async.Operation<types.PutProtocolsListOutput>
 end
 
-function C:putResourceSet(input: types.PutResourceSetInput, options: any): async.Operation<types.PutResourceSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutResourceSet, input, options) as async.Operation<types.PutResourceSetOutput>
+function C:putResourceSet(input: types.PutResourceSetInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourceSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourceSet as schema.OperationSchema, input, options) as async.Operation<types.PutResourceSetOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
 return M

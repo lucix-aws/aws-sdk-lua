@@ -8,64 +8,67 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("appflow.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("appflow.schemas")
 local traits = require("smithy.traits")
 local types = require("appflow.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    cancelFlowExecutions: function(Client, types.CancelFlowExecutionsInput, any): async.Operation<types.CancelFlowExecutionsOutput>
-    createConnectorProfile: function(Client, types.CreateConnectorProfileInput, any): async.Operation<types.CreateConnectorProfileOutput>
-    createFlow: function(Client, types.CreateFlowInput, any): async.Operation<types.CreateFlowOutput>
-    deleteConnectorProfile: function(Client, types.DeleteConnectorProfileInput, any): async.Operation<types.DeleteConnectorProfileOutput>
-    deleteFlow: function(Client, types.DeleteFlowInput, any): async.Operation<types.DeleteFlowOutput>
-    describeConnector: function(Client, types.DescribeConnectorInput, any): async.Operation<types.DescribeConnectorOutput>
-    describeConnectorEntity: function(Client, types.DescribeConnectorEntityInput, any): async.Operation<types.DescribeConnectorEntityOutput>
-    describeConnectorProfiles: function(Client, types.DescribeConnectorProfilesInput, any): async.Operation<types.DescribeConnectorProfilesOutput>
-    describeConnectors: function(Client, types.DescribeConnectorsInput, any): async.Operation<types.DescribeConnectorsOutput>
-    describeFlow: function(Client, types.DescribeFlowInput, any): async.Operation<types.DescribeFlowOutput>
-    describeFlowExecutionRecords: function(Client, types.DescribeFlowExecutionRecordsInput, any): async.Operation<types.DescribeFlowExecutionRecordsOutput>
-    listConnectorEntities: function(Client, types.ListConnectorEntitiesInput, any): async.Operation<types.ListConnectorEntitiesOutput>
-    listConnectors: function(Client, types.ListConnectorsInput, any): async.Operation<types.ListConnectorsOutput>
-    listFlows: function(Client, types.ListFlowsInput, any): async.Operation<types.ListFlowsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    registerConnector: function(Client, types.RegisterConnectorInput, any): async.Operation<types.RegisterConnectorOutput>
-    resetConnectorMetadataCache: function(Client, types.ResetConnectorMetadataCacheInput, any): async.Operation<types.ResetConnectorMetadataCacheOutput>
-    startFlow: function(Client, types.StartFlowInput, any): async.Operation<types.StartFlowOutput>
-    stopFlow: function(Client, types.StopFlowInput, any): async.Operation<types.StopFlowOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    unregisterConnector: function(Client, types.UnregisterConnectorInput, any): async.Operation<types.UnregisterConnectorOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateConnectorProfile: function(Client, types.UpdateConnectorProfileInput, any): async.Operation<types.UpdateConnectorProfileOutput>
-    updateConnectorRegistration: function(Client, types.UpdateConnectorRegistrationInput, any): async.Operation<types.UpdateConnectorRegistrationOutput>
-    updateFlow: function(Client, types.UpdateFlowInput, any): async.Operation<types.UpdateFlowOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    cancelFlowExecutions: function(Client, types.CancelFlowExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.CancelFlowExecutionsOutput>
+    createConnectorProfile: function(Client, types.CreateConnectorProfileInput, ? base_client.InvokeOptions): async.Operation<types.CreateConnectorProfileOutput>
+    createFlow: function(Client, types.CreateFlowInput, ? base_client.InvokeOptions): async.Operation<types.CreateFlowOutput>
+    deleteConnectorProfile: function(Client, types.DeleteConnectorProfileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConnectorProfileOutput>
+    deleteFlow: function(Client, types.DeleteFlowInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFlowOutput>
+    describeConnector: function(Client, types.DescribeConnectorInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConnectorOutput>
+    describeConnectorEntity: function(Client, types.DescribeConnectorEntityInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConnectorEntityOutput>
+    describeConnectorProfiles: function(Client, types.DescribeConnectorProfilesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConnectorProfilesOutput>
+    describeConnectors: function(Client, types.DescribeConnectorsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConnectorsOutput>
+    describeFlow: function(Client, types.DescribeFlowInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFlowOutput>
+    describeFlowExecutionRecords: function(Client, types.DescribeFlowExecutionRecordsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFlowExecutionRecordsOutput>
+    listConnectorEntities: function(Client, types.ListConnectorEntitiesInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectorEntitiesOutput>
+    listConnectors: function(Client, types.ListConnectorsInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectorsOutput>
+    listFlows: function(Client, types.ListFlowsInput, ? base_client.InvokeOptions): async.Operation<types.ListFlowsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    registerConnector: function(Client, types.RegisterConnectorInput, ? base_client.InvokeOptions): async.Operation<types.RegisterConnectorOutput>
+    resetConnectorMetadataCache: function(Client, types.ResetConnectorMetadataCacheInput, ? base_client.InvokeOptions): async.Operation<types.ResetConnectorMetadataCacheOutput>
+    startFlow: function(Client, types.StartFlowInput, ? base_client.InvokeOptions): async.Operation<types.StartFlowOutput>
+    stopFlow: function(Client, types.StopFlowInput, ? base_client.InvokeOptions): async.Operation<types.StopFlowOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    unregisterConnector: function(Client, types.UnregisterConnectorInput, ? base_client.InvokeOptions): async.Operation<types.UnregisterConnectorOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateConnectorProfile: function(Client, types.UpdateConnectorProfileInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConnectorProfileOutput>
+    updateConnectorRegistration: function(Client, types.UpdateConnectorRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConnectorRegistrationOutput>
+    updateFlow: function(Client, types.UpdateFlowInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFlowOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "SandstoneConfigurationServiceLambda"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "appflow", signing_region = c.region } }
                 else
@@ -84,104 +87,104 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:cancelFlowExecutions(input: types.CancelFlowExecutionsInput, options: any): async.Operation<types.CancelFlowExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelFlowExecutions, input, options) as async.Operation<types.CancelFlowExecutionsOutput>
+function C:cancelFlowExecutions(input: types.CancelFlowExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.CancelFlowExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelFlowExecutions as schema.OperationSchema, input, options) as async.Operation<types.CancelFlowExecutionsOutput>
 end
 
-function C:createConnectorProfile(input: types.CreateConnectorProfileInput, options: any): async.Operation<types.CreateConnectorProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConnectorProfile, input, options) as async.Operation<types.CreateConnectorProfileOutput>
+function C:createConnectorProfile(input: types.CreateConnectorProfileInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConnectorProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConnectorProfile as schema.OperationSchema, input, options) as async.Operation<types.CreateConnectorProfileOutput>
 end
 
-function C:createFlow(input: types.CreateFlowInput, options: any): async.Operation<types.CreateFlowOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFlow, input, options) as async.Operation<types.CreateFlowOutput>
+function C:createFlow(input: types.CreateFlowInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFlowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFlow as schema.OperationSchema, input, options) as async.Operation<types.CreateFlowOutput>
 end
 
-function C:deleteConnectorProfile(input: types.DeleteConnectorProfileInput, options: any): async.Operation<types.DeleteConnectorProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConnectorProfile, input, options) as async.Operation<types.DeleteConnectorProfileOutput>
+function C:deleteConnectorProfile(input: types.DeleteConnectorProfileInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConnectorProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConnectorProfile as schema.OperationSchema, input, options) as async.Operation<types.DeleteConnectorProfileOutput>
 end
 
-function C:deleteFlow(input: types.DeleteFlowInput, options: any): async.Operation<types.DeleteFlowOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFlow, input, options) as async.Operation<types.DeleteFlowOutput>
+function C:deleteFlow(input: types.DeleteFlowInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFlowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFlow as schema.OperationSchema, input, options) as async.Operation<types.DeleteFlowOutput>
 end
 
-function C:describeConnector(input: types.DescribeConnectorInput, options: any): async.Operation<types.DescribeConnectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeConnector, input, options) as async.Operation<types.DescribeConnectorOutput>
+function C:describeConnector(input: types.DescribeConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeConnector as schema.OperationSchema, input, options) as async.Operation<types.DescribeConnectorOutput>
 end
 
-function C:describeConnectorEntity(input: types.DescribeConnectorEntityInput, options: any): async.Operation<types.DescribeConnectorEntityOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeConnectorEntity, input, options) as async.Operation<types.DescribeConnectorEntityOutput>
+function C:describeConnectorEntity(input: types.DescribeConnectorEntityInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeConnectorEntityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeConnectorEntity as schema.OperationSchema, input, options) as async.Operation<types.DescribeConnectorEntityOutput>
 end
 
-function C:describeConnectorProfiles(input: types.DescribeConnectorProfilesInput, options: any): async.Operation<types.DescribeConnectorProfilesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeConnectorProfiles, input, options) as async.Operation<types.DescribeConnectorProfilesOutput>
+function C:describeConnectorProfiles(input: types.DescribeConnectorProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeConnectorProfilesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeConnectorProfiles as schema.OperationSchema, input, options) as async.Operation<types.DescribeConnectorProfilesOutput>
 end
 
-function C:describeConnectors(input: types.DescribeConnectorsInput, options: any): async.Operation<types.DescribeConnectorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeConnectors, input, options) as async.Operation<types.DescribeConnectorsOutput>
+function C:describeConnectors(input: types.DescribeConnectorsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeConnectorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeConnectors as schema.OperationSchema, input, options) as async.Operation<types.DescribeConnectorsOutput>
 end
 
-function C:describeFlow(input: types.DescribeFlowInput, options: any): async.Operation<types.DescribeFlowOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFlow, input, options) as async.Operation<types.DescribeFlowOutput>
+function C:describeFlow(input: types.DescribeFlowInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFlowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFlow as schema.OperationSchema, input, options) as async.Operation<types.DescribeFlowOutput>
 end
 
-function C:describeFlowExecutionRecords(input: types.DescribeFlowExecutionRecordsInput, options: any): async.Operation<types.DescribeFlowExecutionRecordsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFlowExecutionRecords, input, options) as async.Operation<types.DescribeFlowExecutionRecordsOutput>
+function C:describeFlowExecutionRecords(input: types.DescribeFlowExecutionRecordsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFlowExecutionRecordsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFlowExecutionRecords as schema.OperationSchema, input, options) as async.Operation<types.DescribeFlowExecutionRecordsOutput>
 end
 
-function C:listConnectorEntities(input: types.ListConnectorEntitiesInput, options: any): async.Operation<types.ListConnectorEntitiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConnectorEntities, input, options) as async.Operation<types.ListConnectorEntitiesOutput>
+function C:listConnectorEntities(input: types.ListConnectorEntitiesInput, options?: base_client.InvokeOptions): async.Operation<types.ListConnectorEntitiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConnectorEntities as schema.OperationSchema, input, options) as async.Operation<types.ListConnectorEntitiesOutput>
 end
 
-function C:listConnectors(input: types.ListConnectorsInput, options: any): async.Operation<types.ListConnectorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConnectors, input, options) as async.Operation<types.ListConnectorsOutput>
+function C:listConnectors(input: types.ListConnectorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConnectorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConnectors as schema.OperationSchema, input, options) as async.Operation<types.ListConnectorsOutput>
 end
 
-function C:listFlows(input: types.ListFlowsInput, options: any): async.Operation<types.ListFlowsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFlows, input, options) as async.Operation<types.ListFlowsOutput>
+function C:listFlows(input: types.ListFlowsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFlowsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFlows as schema.OperationSchema, input, options) as async.Operation<types.ListFlowsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:registerConnector(input: types.RegisterConnectorInput, options: any): async.Operation<types.RegisterConnectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterConnector, input, options) as async.Operation<types.RegisterConnectorOutput>
+function C:registerConnector(input: types.RegisterConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterConnector as schema.OperationSchema, input, options) as async.Operation<types.RegisterConnectorOutput>
 end
 
-function C:resetConnectorMetadataCache(input: types.ResetConnectorMetadataCacheInput, options: any): async.Operation<types.ResetConnectorMetadataCacheOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResetConnectorMetadataCache, input, options) as async.Operation<types.ResetConnectorMetadataCacheOutput>
+function C:resetConnectorMetadataCache(input: types.ResetConnectorMetadataCacheInput, options?: base_client.InvokeOptions): async.Operation<types.ResetConnectorMetadataCacheOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResetConnectorMetadataCache as schema.OperationSchema, input, options) as async.Operation<types.ResetConnectorMetadataCacheOutput>
 end
 
-function C:startFlow(input: types.StartFlowInput, options: any): async.Operation<types.StartFlowOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartFlow, input, options) as async.Operation<types.StartFlowOutput>
+function C:startFlow(input: types.StartFlowInput, options?: base_client.InvokeOptions): async.Operation<types.StartFlowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartFlow as schema.OperationSchema, input, options) as async.Operation<types.StartFlowOutput>
 end
 
-function C:stopFlow(input: types.StopFlowInput, options: any): async.Operation<types.StopFlowOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopFlow, input, options) as async.Operation<types.StopFlowOutput>
+function C:stopFlow(input: types.StopFlowInput, options?: base_client.InvokeOptions): async.Operation<types.StopFlowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopFlow as schema.OperationSchema, input, options) as async.Operation<types.StopFlowOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:unregisterConnector(input: types.UnregisterConnectorInput, options: any): async.Operation<types.UnregisterConnectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.UnregisterConnector, input, options) as async.Operation<types.UnregisterConnectorOutput>
+function C:unregisterConnector(input: types.UnregisterConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.UnregisterConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UnregisterConnector as schema.OperationSchema, input, options) as async.Operation<types.UnregisterConnectorOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateConnectorProfile(input: types.UpdateConnectorProfileInput, options: any): async.Operation<types.UpdateConnectorProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConnectorProfile, input, options) as async.Operation<types.UpdateConnectorProfileOutput>
+function C:updateConnectorProfile(input: types.UpdateConnectorProfileInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConnectorProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConnectorProfile as schema.OperationSchema, input, options) as async.Operation<types.UpdateConnectorProfileOutput>
 end
 
-function C:updateConnectorRegistration(input: types.UpdateConnectorRegistrationInput, options: any): async.Operation<types.UpdateConnectorRegistrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConnectorRegistration, input, options) as async.Operation<types.UpdateConnectorRegistrationOutput>
+function C:updateConnectorRegistration(input: types.UpdateConnectorRegistrationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConnectorRegistrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConnectorRegistration as schema.OperationSchema, input, options) as async.Operation<types.UpdateConnectorRegistrationOutput>
 end
 
-function C:updateFlow(input: types.UpdateFlowInput, options: any): async.Operation<types.UpdateFlowOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFlow, input, options) as async.Operation<types.UpdateFlowOutput>
+function C:updateFlow(input: types.UpdateFlowInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFlowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFlow as schema.OperationSchema, input, options) as async.Operation<types.UpdateFlowOutput>
 end
 
 return M

@@ -8,120 +8,123 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("wafregional.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("wafregional.schemas")
 local traits = require("smithy.traits")
 local types = require("wafregional.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateWebACL: function(Client, types.AssociateWebACLInput, any): async.Operation<types.AssociateWebACLOutput>
-    createByteMatchSet: function(Client, types.CreateByteMatchSetInput, any): async.Operation<types.CreateByteMatchSetOutput>
-    createGeoMatchSet: function(Client, types.CreateGeoMatchSetInput, any): async.Operation<types.CreateGeoMatchSetOutput>
-    createIPSet: function(Client, types.CreateIPSetInput, any): async.Operation<types.CreateIPSetOutput>
-    createRateBasedRule: function(Client, types.CreateRateBasedRuleInput, any): async.Operation<types.CreateRateBasedRuleOutput>
-    createRegexMatchSet: function(Client, types.CreateRegexMatchSetInput, any): async.Operation<types.CreateRegexMatchSetOutput>
-    createRegexPatternSet: function(Client, types.CreateRegexPatternSetInput, any): async.Operation<types.CreateRegexPatternSetOutput>
-    createRule: function(Client, types.CreateRuleInput, any): async.Operation<types.CreateRuleOutput>
-    createRuleGroup: function(Client, types.CreateRuleGroupInput, any): async.Operation<types.CreateRuleGroupOutput>
-    createSizeConstraintSet: function(Client, types.CreateSizeConstraintSetInput, any): async.Operation<types.CreateSizeConstraintSetOutput>
-    createSqlInjectionMatchSet: function(Client, types.CreateSqlInjectionMatchSetInput, any): async.Operation<types.CreateSqlInjectionMatchSetOutput>
-    createWebACL: function(Client, types.CreateWebACLInput, any): async.Operation<types.CreateWebACLOutput>
-    createWebACLMigrationStack: function(Client, types.CreateWebACLMigrationStackInput, any): async.Operation<types.CreateWebACLMigrationStackOutput>
-    createXssMatchSet: function(Client, types.CreateXssMatchSetInput, any): async.Operation<types.CreateXssMatchSetOutput>
-    deleteByteMatchSet: function(Client, types.DeleteByteMatchSetInput, any): async.Operation<types.DeleteByteMatchSetOutput>
-    deleteGeoMatchSet: function(Client, types.DeleteGeoMatchSetInput, any): async.Operation<types.DeleteGeoMatchSetOutput>
-    deleteIPSet: function(Client, types.DeleteIPSetInput, any): async.Operation<types.DeleteIPSetOutput>
-    deleteLoggingConfiguration: function(Client, types.DeleteLoggingConfigurationInput, any): async.Operation<types.DeleteLoggingConfigurationOutput>
-    deletePermissionPolicy: function(Client, types.DeletePermissionPolicyInput, any): async.Operation<types.DeletePermissionPolicyOutput>
-    deleteRateBasedRule: function(Client, types.DeleteRateBasedRuleInput, any): async.Operation<types.DeleteRateBasedRuleOutput>
-    deleteRegexMatchSet: function(Client, types.DeleteRegexMatchSetInput, any): async.Operation<types.DeleteRegexMatchSetOutput>
-    deleteRegexPatternSet: function(Client, types.DeleteRegexPatternSetInput, any): async.Operation<types.DeleteRegexPatternSetOutput>
-    deleteRule: function(Client, types.DeleteRuleInput, any): async.Operation<types.DeleteRuleOutput>
-    deleteRuleGroup: function(Client, types.DeleteRuleGroupInput, any): async.Operation<types.DeleteRuleGroupOutput>
-    deleteSizeConstraintSet: function(Client, types.DeleteSizeConstraintSetInput, any): async.Operation<types.DeleteSizeConstraintSetOutput>
-    deleteSqlInjectionMatchSet: function(Client, types.DeleteSqlInjectionMatchSetInput, any): async.Operation<types.DeleteSqlInjectionMatchSetOutput>
-    deleteWebACL: function(Client, types.DeleteWebACLInput, any): async.Operation<types.DeleteWebACLOutput>
-    deleteXssMatchSet: function(Client, types.DeleteXssMatchSetInput, any): async.Operation<types.DeleteXssMatchSetOutput>
-    disassociateWebACL: function(Client, types.DisassociateWebACLInput, any): async.Operation<types.DisassociateWebACLOutput>
-    getByteMatchSet: function(Client, types.GetByteMatchSetInput, any): async.Operation<types.GetByteMatchSetOutput>
-    getChangeToken: function(Client, types.GetChangeTokenInput, any): async.Operation<types.GetChangeTokenOutput>
-    getChangeTokenStatus: function(Client, types.GetChangeTokenStatusInput, any): async.Operation<types.GetChangeTokenStatusOutput>
-    getGeoMatchSet: function(Client, types.GetGeoMatchSetInput, any): async.Operation<types.GetGeoMatchSetOutput>
-    getIPSet: function(Client, types.GetIPSetInput, any): async.Operation<types.GetIPSetOutput>
-    getLoggingConfiguration: function(Client, types.GetLoggingConfigurationInput, any): async.Operation<types.GetLoggingConfigurationOutput>
-    getPermissionPolicy: function(Client, types.GetPermissionPolicyInput, any): async.Operation<types.GetPermissionPolicyOutput>
-    getRateBasedRule: function(Client, types.GetRateBasedRuleInput, any): async.Operation<types.GetRateBasedRuleOutput>
-    getRateBasedRuleManagedKeys: function(Client, types.GetRateBasedRuleManagedKeysInput, any): async.Operation<types.GetRateBasedRuleManagedKeysOutput>
-    getRegexMatchSet: function(Client, types.GetRegexMatchSetInput, any): async.Operation<types.GetRegexMatchSetOutput>
-    getRegexPatternSet: function(Client, types.GetRegexPatternSetInput, any): async.Operation<types.GetRegexPatternSetOutput>
-    getRule: function(Client, types.GetRuleInput, any): async.Operation<types.GetRuleOutput>
-    getRuleGroup: function(Client, types.GetRuleGroupInput, any): async.Operation<types.GetRuleGroupOutput>
-    getSampledRequests: function(Client, types.GetSampledRequestsInput, any): async.Operation<types.GetSampledRequestsOutput>
-    getSizeConstraintSet: function(Client, types.GetSizeConstraintSetInput, any): async.Operation<types.GetSizeConstraintSetOutput>
-    getSqlInjectionMatchSet: function(Client, types.GetSqlInjectionMatchSetInput, any): async.Operation<types.GetSqlInjectionMatchSetOutput>
-    getWebACL: function(Client, types.GetWebACLInput, any): async.Operation<types.GetWebACLOutput>
-    getWebACLForResource: function(Client, types.GetWebACLForResourceInput, any): async.Operation<types.GetWebACLForResourceOutput>
-    getXssMatchSet: function(Client, types.GetXssMatchSetInput, any): async.Operation<types.GetXssMatchSetOutput>
-    listActivatedRulesInRuleGroup: function(Client, types.ListActivatedRulesInRuleGroupInput, any): async.Operation<types.ListActivatedRulesInRuleGroupOutput>
-    listByteMatchSets: function(Client, types.ListByteMatchSetsInput, any): async.Operation<types.ListByteMatchSetsOutput>
-    listGeoMatchSets: function(Client, types.ListGeoMatchSetsInput, any): async.Operation<types.ListGeoMatchSetsOutput>
-    listIPSets: function(Client, types.ListIPSetsInput, any): async.Operation<types.ListIPSetsOutput>
-    listLoggingConfigurations: function(Client, types.ListLoggingConfigurationsInput, any): async.Operation<types.ListLoggingConfigurationsOutput>
-    listRateBasedRules: function(Client, types.ListRateBasedRulesInput, any): async.Operation<types.ListRateBasedRulesOutput>
-    listRegexMatchSets: function(Client, types.ListRegexMatchSetsInput, any): async.Operation<types.ListRegexMatchSetsOutput>
-    listRegexPatternSets: function(Client, types.ListRegexPatternSetsInput, any): async.Operation<types.ListRegexPatternSetsOutput>
-    listResourcesForWebACL: function(Client, types.ListResourcesForWebACLInput, any): async.Operation<types.ListResourcesForWebACLOutput>
-    listRuleGroups: function(Client, types.ListRuleGroupsInput, any): async.Operation<types.ListRuleGroupsOutput>
-    listRules: function(Client, types.ListRulesInput, any): async.Operation<types.ListRulesOutput>
-    listSizeConstraintSets: function(Client, types.ListSizeConstraintSetsInput, any): async.Operation<types.ListSizeConstraintSetsOutput>
-    listSqlInjectionMatchSets: function(Client, types.ListSqlInjectionMatchSetsInput, any): async.Operation<types.ListSqlInjectionMatchSetsOutput>
-    listSubscribedRuleGroups: function(Client, types.ListSubscribedRuleGroupsInput, any): async.Operation<types.ListSubscribedRuleGroupsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listWebACLs: function(Client, types.ListWebACLsInput, any): async.Operation<types.ListWebACLsOutput>
-    listXssMatchSets: function(Client, types.ListXssMatchSetsInput, any): async.Operation<types.ListXssMatchSetsOutput>
-    putLoggingConfiguration: function(Client, types.PutLoggingConfigurationInput, any): async.Operation<types.PutLoggingConfigurationOutput>
-    putPermissionPolicy: function(Client, types.PutPermissionPolicyInput, any): async.Operation<types.PutPermissionPolicyOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateByteMatchSet: function(Client, types.UpdateByteMatchSetInput, any): async.Operation<types.UpdateByteMatchSetOutput>
-    updateGeoMatchSet: function(Client, types.UpdateGeoMatchSetInput, any): async.Operation<types.UpdateGeoMatchSetOutput>
-    updateIPSet: function(Client, types.UpdateIPSetInput, any): async.Operation<types.UpdateIPSetOutput>
-    updateRateBasedRule: function(Client, types.UpdateRateBasedRuleInput, any): async.Operation<types.UpdateRateBasedRuleOutput>
-    updateRegexMatchSet: function(Client, types.UpdateRegexMatchSetInput, any): async.Operation<types.UpdateRegexMatchSetOutput>
-    updateRegexPatternSet: function(Client, types.UpdateRegexPatternSetInput, any): async.Operation<types.UpdateRegexPatternSetOutput>
-    updateRule: function(Client, types.UpdateRuleInput, any): async.Operation<types.UpdateRuleOutput>
-    updateRuleGroup: function(Client, types.UpdateRuleGroupInput, any): async.Operation<types.UpdateRuleGroupOutput>
-    updateSizeConstraintSet: function(Client, types.UpdateSizeConstraintSetInput, any): async.Operation<types.UpdateSizeConstraintSetOutput>
-    updateSqlInjectionMatchSet: function(Client, types.UpdateSqlInjectionMatchSetInput, any): async.Operation<types.UpdateSqlInjectionMatchSetOutput>
-    updateWebACL: function(Client, types.UpdateWebACLInput, any): async.Operation<types.UpdateWebACLOutput>
-    updateXssMatchSet: function(Client, types.UpdateXssMatchSetInput, any): async.Operation<types.UpdateXssMatchSetOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateWebACL: function(Client, types.AssociateWebACLInput, ? base_client.InvokeOptions): async.Operation<types.AssociateWebACLOutput>
+    createByteMatchSet: function(Client, types.CreateByteMatchSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateByteMatchSetOutput>
+    createGeoMatchSet: function(Client, types.CreateGeoMatchSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateGeoMatchSetOutput>
+    createIPSet: function(Client, types.CreateIPSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateIPSetOutput>
+    createRateBasedRule: function(Client, types.CreateRateBasedRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateRateBasedRuleOutput>
+    createRegexMatchSet: function(Client, types.CreateRegexMatchSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateRegexMatchSetOutput>
+    createRegexPatternSet: function(Client, types.CreateRegexPatternSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateRegexPatternSetOutput>
+    createRule: function(Client, types.CreateRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateRuleOutput>
+    createRuleGroup: function(Client, types.CreateRuleGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateRuleGroupOutput>
+    createSizeConstraintSet: function(Client, types.CreateSizeConstraintSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateSizeConstraintSetOutput>
+    createSqlInjectionMatchSet: function(Client, types.CreateSqlInjectionMatchSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateSqlInjectionMatchSetOutput>
+    createWebACL: function(Client, types.CreateWebACLInput, ? base_client.InvokeOptions): async.Operation<types.CreateWebACLOutput>
+    createWebACLMigrationStack: function(Client, types.CreateWebACLMigrationStackInput, ? base_client.InvokeOptions): async.Operation<types.CreateWebACLMigrationStackOutput>
+    createXssMatchSet: function(Client, types.CreateXssMatchSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateXssMatchSetOutput>
+    deleteByteMatchSet: function(Client, types.DeleteByteMatchSetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteByteMatchSetOutput>
+    deleteGeoMatchSet: function(Client, types.DeleteGeoMatchSetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGeoMatchSetOutput>
+    deleteIPSet: function(Client, types.DeleteIPSetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIPSetOutput>
+    deleteLoggingConfiguration: function(Client, types.DeleteLoggingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLoggingConfigurationOutput>
+    deletePermissionPolicy: function(Client, types.DeletePermissionPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeletePermissionPolicyOutput>
+    deleteRateBasedRule: function(Client, types.DeleteRateBasedRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRateBasedRuleOutput>
+    deleteRegexMatchSet: function(Client, types.DeleteRegexMatchSetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRegexMatchSetOutput>
+    deleteRegexPatternSet: function(Client, types.DeleteRegexPatternSetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRegexPatternSetOutput>
+    deleteRule: function(Client, types.DeleteRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRuleOutput>
+    deleteRuleGroup: function(Client, types.DeleteRuleGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRuleGroupOutput>
+    deleteSizeConstraintSet: function(Client, types.DeleteSizeConstraintSetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSizeConstraintSetOutput>
+    deleteSqlInjectionMatchSet: function(Client, types.DeleteSqlInjectionMatchSetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSqlInjectionMatchSetOutput>
+    deleteWebACL: function(Client, types.DeleteWebACLInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWebACLOutput>
+    deleteXssMatchSet: function(Client, types.DeleteXssMatchSetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteXssMatchSetOutput>
+    disassociateWebACL: function(Client, types.DisassociateWebACLInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateWebACLOutput>
+    getByteMatchSet: function(Client, types.GetByteMatchSetInput, ? base_client.InvokeOptions): async.Operation<types.GetByteMatchSetOutput>
+    getChangeToken: function(Client, types.GetChangeTokenInput, ? base_client.InvokeOptions): async.Operation<types.GetChangeTokenOutput>
+    getChangeTokenStatus: function(Client, types.GetChangeTokenStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetChangeTokenStatusOutput>
+    getGeoMatchSet: function(Client, types.GetGeoMatchSetInput, ? base_client.InvokeOptions): async.Operation<types.GetGeoMatchSetOutput>
+    getIPSet: function(Client, types.GetIPSetInput, ? base_client.InvokeOptions): async.Operation<types.GetIPSetOutput>
+    getLoggingConfiguration: function(Client, types.GetLoggingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetLoggingConfigurationOutput>
+    getPermissionPolicy: function(Client, types.GetPermissionPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetPermissionPolicyOutput>
+    getRateBasedRule: function(Client, types.GetRateBasedRuleInput, ? base_client.InvokeOptions): async.Operation<types.GetRateBasedRuleOutput>
+    getRateBasedRuleManagedKeys: function(Client, types.GetRateBasedRuleManagedKeysInput, ? base_client.InvokeOptions): async.Operation<types.GetRateBasedRuleManagedKeysOutput>
+    getRegexMatchSet: function(Client, types.GetRegexMatchSetInput, ? base_client.InvokeOptions): async.Operation<types.GetRegexMatchSetOutput>
+    getRegexPatternSet: function(Client, types.GetRegexPatternSetInput, ? base_client.InvokeOptions): async.Operation<types.GetRegexPatternSetOutput>
+    getRule: function(Client, types.GetRuleInput, ? base_client.InvokeOptions): async.Operation<types.GetRuleOutput>
+    getRuleGroup: function(Client, types.GetRuleGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetRuleGroupOutput>
+    getSampledRequests: function(Client, types.GetSampledRequestsInput, ? base_client.InvokeOptions): async.Operation<types.GetSampledRequestsOutput>
+    getSizeConstraintSet: function(Client, types.GetSizeConstraintSetInput, ? base_client.InvokeOptions): async.Operation<types.GetSizeConstraintSetOutput>
+    getSqlInjectionMatchSet: function(Client, types.GetSqlInjectionMatchSetInput, ? base_client.InvokeOptions): async.Operation<types.GetSqlInjectionMatchSetOutput>
+    getWebACL: function(Client, types.GetWebACLInput, ? base_client.InvokeOptions): async.Operation<types.GetWebACLOutput>
+    getWebACLForResource: function(Client, types.GetWebACLForResourceInput, ? base_client.InvokeOptions): async.Operation<types.GetWebACLForResourceOutput>
+    getXssMatchSet: function(Client, types.GetXssMatchSetInput, ? base_client.InvokeOptions): async.Operation<types.GetXssMatchSetOutput>
+    listActivatedRulesInRuleGroup: function(Client, types.ListActivatedRulesInRuleGroupInput, ? base_client.InvokeOptions): async.Operation<types.ListActivatedRulesInRuleGroupOutput>
+    listByteMatchSets: function(Client, types.ListByteMatchSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListByteMatchSetsOutput>
+    listGeoMatchSets: function(Client, types.ListGeoMatchSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListGeoMatchSetsOutput>
+    listIPSets: function(Client, types.ListIPSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListIPSetsOutput>
+    listLoggingConfigurations: function(Client, types.ListLoggingConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListLoggingConfigurationsOutput>
+    listRateBasedRules: function(Client, types.ListRateBasedRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListRateBasedRulesOutput>
+    listRegexMatchSets: function(Client, types.ListRegexMatchSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListRegexMatchSetsOutput>
+    listRegexPatternSets: function(Client, types.ListRegexPatternSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListRegexPatternSetsOutput>
+    listResourcesForWebACL: function(Client, types.ListResourcesForWebACLInput, ? base_client.InvokeOptions): async.Operation<types.ListResourcesForWebACLOutput>
+    listRuleGroups: function(Client, types.ListRuleGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListRuleGroupsOutput>
+    listRules: function(Client, types.ListRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListRulesOutput>
+    listSizeConstraintSets: function(Client, types.ListSizeConstraintSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListSizeConstraintSetsOutput>
+    listSqlInjectionMatchSets: function(Client, types.ListSqlInjectionMatchSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListSqlInjectionMatchSetsOutput>
+    listSubscribedRuleGroups: function(Client, types.ListSubscribedRuleGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListSubscribedRuleGroupsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listWebACLs: function(Client, types.ListWebACLsInput, ? base_client.InvokeOptions): async.Operation<types.ListWebACLsOutput>
+    listXssMatchSets: function(Client, types.ListXssMatchSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListXssMatchSetsOutput>
+    putLoggingConfiguration: function(Client, types.PutLoggingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutLoggingConfigurationOutput>
+    putPermissionPolicy: function(Client, types.PutPermissionPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutPermissionPolicyOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateByteMatchSet: function(Client, types.UpdateByteMatchSetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateByteMatchSetOutput>
+    updateGeoMatchSet: function(Client, types.UpdateGeoMatchSetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGeoMatchSetOutput>
+    updateIPSet: function(Client, types.UpdateIPSetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIPSetOutput>
+    updateRateBasedRule: function(Client, types.UpdateRateBasedRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRateBasedRuleOutput>
+    updateRegexMatchSet: function(Client, types.UpdateRegexMatchSetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRegexMatchSetOutput>
+    updateRegexPatternSet: function(Client, types.UpdateRegexPatternSetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRegexPatternSetOutput>
+    updateRule: function(Client, types.UpdateRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRuleOutput>
+    updateRuleGroup: function(Client, types.UpdateRuleGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRuleGroupOutput>
+    updateSizeConstraintSet: function(Client, types.UpdateSizeConstraintSetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSizeConstraintSetOutput>
+    updateSqlInjectionMatchSet: function(Client, types.UpdateSqlInjectionMatchSetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSqlInjectionMatchSetOutput>
+    updateWebACL: function(Client, types.UpdateWebACLInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWebACLOutput>
+    updateXssMatchSet: function(Client, types.UpdateXssMatchSetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateXssMatchSetOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSWAF_Regional_20161128"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "waf-regional", signing_region = c.region } }
                 else
@@ -140,328 +143,328 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateWebACL(input: types.AssociateWebACLInput, options: any): async.Operation<types.AssociateWebACLOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateWebACL, input, options) as async.Operation<types.AssociateWebACLOutput>
+function C:associateWebACL(input: types.AssociateWebACLInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateWebACLOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateWebACL as schema.OperationSchema, input, options) as async.Operation<types.AssociateWebACLOutput>
 end
 
-function C:createByteMatchSet(input: types.CreateByteMatchSetInput, options: any): async.Operation<types.CreateByteMatchSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateByteMatchSet, input, options) as async.Operation<types.CreateByteMatchSetOutput>
+function C:createByteMatchSet(input: types.CreateByteMatchSetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateByteMatchSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateByteMatchSet as schema.OperationSchema, input, options) as async.Operation<types.CreateByteMatchSetOutput>
 end
 
-function C:createGeoMatchSet(input: types.CreateGeoMatchSetInput, options: any): async.Operation<types.CreateGeoMatchSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateGeoMatchSet, input, options) as async.Operation<types.CreateGeoMatchSetOutput>
+function C:createGeoMatchSet(input: types.CreateGeoMatchSetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGeoMatchSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGeoMatchSet as schema.OperationSchema, input, options) as async.Operation<types.CreateGeoMatchSetOutput>
 end
 
-function C:createIPSet(input: types.CreateIPSetInput, options: any): async.Operation<types.CreateIPSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIPSet, input, options) as async.Operation<types.CreateIPSetOutput>
+function C:createIPSet(input: types.CreateIPSetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIPSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIPSet as schema.OperationSchema, input, options) as async.Operation<types.CreateIPSetOutput>
 end
 
-function C:createRateBasedRule(input: types.CreateRateBasedRuleInput, options: any): async.Operation<types.CreateRateBasedRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRateBasedRule, input, options) as async.Operation<types.CreateRateBasedRuleOutput>
+function C:createRateBasedRule(input: types.CreateRateBasedRuleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRateBasedRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRateBasedRule as schema.OperationSchema, input, options) as async.Operation<types.CreateRateBasedRuleOutput>
 end
 
-function C:createRegexMatchSet(input: types.CreateRegexMatchSetInput, options: any): async.Operation<types.CreateRegexMatchSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRegexMatchSet, input, options) as async.Operation<types.CreateRegexMatchSetOutput>
+function C:createRegexMatchSet(input: types.CreateRegexMatchSetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRegexMatchSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRegexMatchSet as schema.OperationSchema, input, options) as async.Operation<types.CreateRegexMatchSetOutput>
 end
 
-function C:createRegexPatternSet(input: types.CreateRegexPatternSetInput, options: any): async.Operation<types.CreateRegexPatternSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRegexPatternSet, input, options) as async.Operation<types.CreateRegexPatternSetOutput>
+function C:createRegexPatternSet(input: types.CreateRegexPatternSetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRegexPatternSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRegexPatternSet as schema.OperationSchema, input, options) as async.Operation<types.CreateRegexPatternSetOutput>
 end
 
-function C:createRule(input: types.CreateRuleInput, options: any): async.Operation<types.CreateRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRule, input, options) as async.Operation<types.CreateRuleOutput>
+function C:createRule(input: types.CreateRuleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRule as schema.OperationSchema, input, options) as async.Operation<types.CreateRuleOutput>
 end
 
-function C:createRuleGroup(input: types.CreateRuleGroupInput, options: any): async.Operation<types.CreateRuleGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRuleGroup, input, options) as async.Operation<types.CreateRuleGroupOutput>
+function C:createRuleGroup(input: types.CreateRuleGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRuleGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRuleGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateRuleGroupOutput>
 end
 
-function C:createSizeConstraintSet(input: types.CreateSizeConstraintSetInput, options: any): async.Operation<types.CreateSizeConstraintSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSizeConstraintSet, input, options) as async.Operation<types.CreateSizeConstraintSetOutput>
+function C:createSizeConstraintSet(input: types.CreateSizeConstraintSetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSizeConstraintSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSizeConstraintSet as schema.OperationSchema, input, options) as async.Operation<types.CreateSizeConstraintSetOutput>
 end
 
-function C:createSqlInjectionMatchSet(input: types.CreateSqlInjectionMatchSetInput, options: any): async.Operation<types.CreateSqlInjectionMatchSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSqlInjectionMatchSet, input, options) as async.Operation<types.CreateSqlInjectionMatchSetOutput>
+function C:createSqlInjectionMatchSet(input: types.CreateSqlInjectionMatchSetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSqlInjectionMatchSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSqlInjectionMatchSet as schema.OperationSchema, input, options) as async.Operation<types.CreateSqlInjectionMatchSetOutput>
 end
 
-function C:createWebACL(input: types.CreateWebACLInput, options: any): async.Operation<types.CreateWebACLOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWebACL, input, options) as async.Operation<types.CreateWebACLOutput>
+function C:createWebACL(input: types.CreateWebACLInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWebACLOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWebACL as schema.OperationSchema, input, options) as async.Operation<types.CreateWebACLOutput>
 end
 
-function C:createWebACLMigrationStack(input: types.CreateWebACLMigrationStackInput, options: any): async.Operation<types.CreateWebACLMigrationStackOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWebACLMigrationStack, input, options) as async.Operation<types.CreateWebACLMigrationStackOutput>
+function C:createWebACLMigrationStack(input: types.CreateWebACLMigrationStackInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWebACLMigrationStackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWebACLMigrationStack as schema.OperationSchema, input, options) as async.Operation<types.CreateWebACLMigrationStackOutput>
 end
 
-function C:createXssMatchSet(input: types.CreateXssMatchSetInput, options: any): async.Operation<types.CreateXssMatchSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateXssMatchSet, input, options) as async.Operation<types.CreateXssMatchSetOutput>
+function C:createXssMatchSet(input: types.CreateXssMatchSetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateXssMatchSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateXssMatchSet as schema.OperationSchema, input, options) as async.Operation<types.CreateXssMatchSetOutput>
 end
 
-function C:deleteByteMatchSet(input: types.DeleteByteMatchSetInput, options: any): async.Operation<types.DeleteByteMatchSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteByteMatchSet, input, options) as async.Operation<types.DeleteByteMatchSetOutput>
+function C:deleteByteMatchSet(input: types.DeleteByteMatchSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteByteMatchSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteByteMatchSet as schema.OperationSchema, input, options) as async.Operation<types.DeleteByteMatchSetOutput>
 end
 
-function C:deleteGeoMatchSet(input: types.DeleteGeoMatchSetInput, options: any): async.Operation<types.DeleteGeoMatchSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteGeoMatchSet, input, options) as async.Operation<types.DeleteGeoMatchSetOutput>
+function C:deleteGeoMatchSet(input: types.DeleteGeoMatchSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGeoMatchSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGeoMatchSet as schema.OperationSchema, input, options) as async.Operation<types.DeleteGeoMatchSetOutput>
 end
 
-function C:deleteIPSet(input: types.DeleteIPSetInput, options: any): async.Operation<types.DeleteIPSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIPSet, input, options) as async.Operation<types.DeleteIPSetOutput>
+function C:deleteIPSet(input: types.DeleteIPSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIPSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIPSet as schema.OperationSchema, input, options) as async.Operation<types.DeleteIPSetOutput>
 end
 
-function C:deleteLoggingConfiguration(input: types.DeleteLoggingConfigurationInput, options: any): async.Operation<types.DeleteLoggingConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLoggingConfiguration, input, options) as async.Operation<types.DeleteLoggingConfigurationOutput>
+function C:deleteLoggingConfiguration(input: types.DeleteLoggingConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLoggingConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLoggingConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteLoggingConfigurationOutput>
 end
 
-function C:deletePermissionPolicy(input: types.DeletePermissionPolicyInput, options: any): async.Operation<types.DeletePermissionPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePermissionPolicy, input, options) as async.Operation<types.DeletePermissionPolicyOutput>
+function C:deletePermissionPolicy(input: types.DeletePermissionPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePermissionPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePermissionPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeletePermissionPolicyOutput>
 end
 
-function C:deleteRateBasedRule(input: types.DeleteRateBasedRuleInput, options: any): async.Operation<types.DeleteRateBasedRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRateBasedRule, input, options) as async.Operation<types.DeleteRateBasedRuleOutput>
+function C:deleteRateBasedRule(input: types.DeleteRateBasedRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRateBasedRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRateBasedRule as schema.OperationSchema, input, options) as async.Operation<types.DeleteRateBasedRuleOutput>
 end
 
-function C:deleteRegexMatchSet(input: types.DeleteRegexMatchSetInput, options: any): async.Operation<types.DeleteRegexMatchSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRegexMatchSet, input, options) as async.Operation<types.DeleteRegexMatchSetOutput>
+function C:deleteRegexMatchSet(input: types.DeleteRegexMatchSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRegexMatchSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRegexMatchSet as schema.OperationSchema, input, options) as async.Operation<types.DeleteRegexMatchSetOutput>
 end
 
-function C:deleteRegexPatternSet(input: types.DeleteRegexPatternSetInput, options: any): async.Operation<types.DeleteRegexPatternSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRegexPatternSet, input, options) as async.Operation<types.DeleteRegexPatternSetOutput>
+function C:deleteRegexPatternSet(input: types.DeleteRegexPatternSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRegexPatternSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRegexPatternSet as schema.OperationSchema, input, options) as async.Operation<types.DeleteRegexPatternSetOutput>
 end
 
-function C:deleteRule(input: types.DeleteRuleInput, options: any): async.Operation<types.DeleteRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRule, input, options) as async.Operation<types.DeleteRuleOutput>
+function C:deleteRule(input: types.DeleteRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRule as schema.OperationSchema, input, options) as async.Operation<types.DeleteRuleOutput>
 end
 
-function C:deleteRuleGroup(input: types.DeleteRuleGroupInput, options: any): async.Operation<types.DeleteRuleGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRuleGroup, input, options) as async.Operation<types.DeleteRuleGroupOutput>
+function C:deleteRuleGroup(input: types.DeleteRuleGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRuleGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRuleGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteRuleGroupOutput>
 end
 
-function C:deleteSizeConstraintSet(input: types.DeleteSizeConstraintSetInput, options: any): async.Operation<types.DeleteSizeConstraintSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSizeConstraintSet, input, options) as async.Operation<types.DeleteSizeConstraintSetOutput>
+function C:deleteSizeConstraintSet(input: types.DeleteSizeConstraintSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSizeConstraintSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSizeConstraintSet as schema.OperationSchema, input, options) as async.Operation<types.DeleteSizeConstraintSetOutput>
 end
 
-function C:deleteSqlInjectionMatchSet(input: types.DeleteSqlInjectionMatchSetInput, options: any): async.Operation<types.DeleteSqlInjectionMatchSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSqlInjectionMatchSet, input, options) as async.Operation<types.DeleteSqlInjectionMatchSetOutput>
+function C:deleteSqlInjectionMatchSet(input: types.DeleteSqlInjectionMatchSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSqlInjectionMatchSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSqlInjectionMatchSet as schema.OperationSchema, input, options) as async.Operation<types.DeleteSqlInjectionMatchSetOutput>
 end
 
-function C:deleteWebACL(input: types.DeleteWebACLInput, options: any): async.Operation<types.DeleteWebACLOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWebACL, input, options) as async.Operation<types.DeleteWebACLOutput>
+function C:deleteWebACL(input: types.DeleteWebACLInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWebACLOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWebACL as schema.OperationSchema, input, options) as async.Operation<types.DeleteWebACLOutput>
 end
 
-function C:deleteXssMatchSet(input: types.DeleteXssMatchSetInput, options: any): async.Operation<types.DeleteXssMatchSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteXssMatchSet, input, options) as async.Operation<types.DeleteXssMatchSetOutput>
+function C:deleteXssMatchSet(input: types.DeleteXssMatchSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteXssMatchSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteXssMatchSet as schema.OperationSchema, input, options) as async.Operation<types.DeleteXssMatchSetOutput>
 end
 
-function C:disassociateWebACL(input: types.DisassociateWebACLInput, options: any): async.Operation<types.DisassociateWebACLOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateWebACL, input, options) as async.Operation<types.DisassociateWebACLOutput>
+function C:disassociateWebACL(input: types.DisassociateWebACLInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateWebACLOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateWebACL as schema.OperationSchema, input, options) as async.Operation<types.DisassociateWebACLOutput>
 end
 
-function C:getByteMatchSet(input: types.GetByteMatchSetInput, options: any): async.Operation<types.GetByteMatchSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetByteMatchSet, input, options) as async.Operation<types.GetByteMatchSetOutput>
+function C:getByteMatchSet(input: types.GetByteMatchSetInput, options?: base_client.InvokeOptions): async.Operation<types.GetByteMatchSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetByteMatchSet as schema.OperationSchema, input, options) as async.Operation<types.GetByteMatchSetOutput>
 end
 
-function C:getChangeToken(input: types.GetChangeTokenInput, options: any): async.Operation<types.GetChangeTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetChangeToken, input, options) as async.Operation<types.GetChangeTokenOutput>
+function C:getChangeToken(input: types.GetChangeTokenInput, options?: base_client.InvokeOptions): async.Operation<types.GetChangeTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetChangeToken as schema.OperationSchema, input, options) as async.Operation<types.GetChangeTokenOutput>
 end
 
-function C:getChangeTokenStatus(input: types.GetChangeTokenStatusInput, options: any): async.Operation<types.GetChangeTokenStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetChangeTokenStatus, input, options) as async.Operation<types.GetChangeTokenStatusOutput>
+function C:getChangeTokenStatus(input: types.GetChangeTokenStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetChangeTokenStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetChangeTokenStatus as schema.OperationSchema, input, options) as async.Operation<types.GetChangeTokenStatusOutput>
 end
 
-function C:getGeoMatchSet(input: types.GetGeoMatchSetInput, options: any): async.Operation<types.GetGeoMatchSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetGeoMatchSet, input, options) as async.Operation<types.GetGeoMatchSetOutput>
+function C:getGeoMatchSet(input: types.GetGeoMatchSetInput, options?: base_client.InvokeOptions): async.Operation<types.GetGeoMatchSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGeoMatchSet as schema.OperationSchema, input, options) as async.Operation<types.GetGeoMatchSetOutput>
 end
 
-function C:getIPSet(input: types.GetIPSetInput, options: any): async.Operation<types.GetIPSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIPSet, input, options) as async.Operation<types.GetIPSetOutput>
+function C:getIPSet(input: types.GetIPSetInput, options?: base_client.InvokeOptions): async.Operation<types.GetIPSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIPSet as schema.OperationSchema, input, options) as async.Operation<types.GetIPSetOutput>
 end
 
-function C:getLoggingConfiguration(input: types.GetLoggingConfigurationInput, options: any): async.Operation<types.GetLoggingConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLoggingConfiguration, input, options) as async.Operation<types.GetLoggingConfigurationOutput>
+function C:getLoggingConfiguration(input: types.GetLoggingConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetLoggingConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLoggingConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetLoggingConfigurationOutput>
 end
 
-function C:getPermissionPolicy(input: types.GetPermissionPolicyInput, options: any): async.Operation<types.GetPermissionPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPermissionPolicy, input, options) as async.Operation<types.GetPermissionPolicyOutput>
+function C:getPermissionPolicy(input: types.GetPermissionPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetPermissionPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPermissionPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetPermissionPolicyOutput>
 end
 
-function C:getRateBasedRule(input: types.GetRateBasedRuleInput, options: any): async.Operation<types.GetRateBasedRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRateBasedRule, input, options) as async.Operation<types.GetRateBasedRuleOutput>
+function C:getRateBasedRule(input: types.GetRateBasedRuleInput, options?: base_client.InvokeOptions): async.Operation<types.GetRateBasedRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRateBasedRule as schema.OperationSchema, input, options) as async.Operation<types.GetRateBasedRuleOutput>
 end
 
-function C:getRateBasedRuleManagedKeys(input: types.GetRateBasedRuleManagedKeysInput, options: any): async.Operation<types.GetRateBasedRuleManagedKeysOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRateBasedRuleManagedKeys, input, options) as async.Operation<types.GetRateBasedRuleManagedKeysOutput>
+function C:getRateBasedRuleManagedKeys(input: types.GetRateBasedRuleManagedKeysInput, options?: base_client.InvokeOptions): async.Operation<types.GetRateBasedRuleManagedKeysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRateBasedRuleManagedKeys as schema.OperationSchema, input, options) as async.Operation<types.GetRateBasedRuleManagedKeysOutput>
 end
 
-function C:getRegexMatchSet(input: types.GetRegexMatchSetInput, options: any): async.Operation<types.GetRegexMatchSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRegexMatchSet, input, options) as async.Operation<types.GetRegexMatchSetOutput>
+function C:getRegexMatchSet(input: types.GetRegexMatchSetInput, options?: base_client.InvokeOptions): async.Operation<types.GetRegexMatchSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRegexMatchSet as schema.OperationSchema, input, options) as async.Operation<types.GetRegexMatchSetOutput>
 end
 
-function C:getRegexPatternSet(input: types.GetRegexPatternSetInput, options: any): async.Operation<types.GetRegexPatternSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRegexPatternSet, input, options) as async.Operation<types.GetRegexPatternSetOutput>
+function C:getRegexPatternSet(input: types.GetRegexPatternSetInput, options?: base_client.InvokeOptions): async.Operation<types.GetRegexPatternSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRegexPatternSet as schema.OperationSchema, input, options) as async.Operation<types.GetRegexPatternSetOutput>
 end
 
-function C:getRule(input: types.GetRuleInput, options: any): async.Operation<types.GetRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRule, input, options) as async.Operation<types.GetRuleOutput>
+function C:getRule(input: types.GetRuleInput, options?: base_client.InvokeOptions): async.Operation<types.GetRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRule as schema.OperationSchema, input, options) as async.Operation<types.GetRuleOutput>
 end
 
-function C:getRuleGroup(input: types.GetRuleGroupInput, options: any): async.Operation<types.GetRuleGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRuleGroup, input, options) as async.Operation<types.GetRuleGroupOutput>
+function C:getRuleGroup(input: types.GetRuleGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetRuleGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRuleGroup as schema.OperationSchema, input, options) as async.Operation<types.GetRuleGroupOutput>
 end
 
-function C:getSampledRequests(input: types.GetSampledRequestsInput, options: any): async.Operation<types.GetSampledRequestsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSampledRequests, input, options) as async.Operation<types.GetSampledRequestsOutput>
+function C:getSampledRequests(input: types.GetSampledRequestsInput, options?: base_client.InvokeOptions): async.Operation<types.GetSampledRequestsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSampledRequests as schema.OperationSchema, input, options) as async.Operation<types.GetSampledRequestsOutput>
 end
 
-function C:getSizeConstraintSet(input: types.GetSizeConstraintSetInput, options: any): async.Operation<types.GetSizeConstraintSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSizeConstraintSet, input, options) as async.Operation<types.GetSizeConstraintSetOutput>
+function C:getSizeConstraintSet(input: types.GetSizeConstraintSetInput, options?: base_client.InvokeOptions): async.Operation<types.GetSizeConstraintSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSizeConstraintSet as schema.OperationSchema, input, options) as async.Operation<types.GetSizeConstraintSetOutput>
 end
 
-function C:getSqlInjectionMatchSet(input: types.GetSqlInjectionMatchSetInput, options: any): async.Operation<types.GetSqlInjectionMatchSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSqlInjectionMatchSet, input, options) as async.Operation<types.GetSqlInjectionMatchSetOutput>
+function C:getSqlInjectionMatchSet(input: types.GetSqlInjectionMatchSetInput, options?: base_client.InvokeOptions): async.Operation<types.GetSqlInjectionMatchSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSqlInjectionMatchSet as schema.OperationSchema, input, options) as async.Operation<types.GetSqlInjectionMatchSetOutput>
 end
 
-function C:getWebACL(input: types.GetWebACLInput, options: any): async.Operation<types.GetWebACLOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWebACL, input, options) as async.Operation<types.GetWebACLOutput>
+function C:getWebACL(input: types.GetWebACLInput, options?: base_client.InvokeOptions): async.Operation<types.GetWebACLOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWebACL as schema.OperationSchema, input, options) as async.Operation<types.GetWebACLOutput>
 end
 
-function C:getWebACLForResource(input: types.GetWebACLForResourceInput, options: any): async.Operation<types.GetWebACLForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWebACLForResource, input, options) as async.Operation<types.GetWebACLForResourceOutput>
+function C:getWebACLForResource(input: types.GetWebACLForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.GetWebACLForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWebACLForResource as schema.OperationSchema, input, options) as async.Operation<types.GetWebACLForResourceOutput>
 end
 
-function C:getXssMatchSet(input: types.GetXssMatchSetInput, options: any): async.Operation<types.GetXssMatchSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetXssMatchSet, input, options) as async.Operation<types.GetXssMatchSetOutput>
+function C:getXssMatchSet(input: types.GetXssMatchSetInput, options?: base_client.InvokeOptions): async.Operation<types.GetXssMatchSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetXssMatchSet as schema.OperationSchema, input, options) as async.Operation<types.GetXssMatchSetOutput>
 end
 
-function C:listActivatedRulesInRuleGroup(input: types.ListActivatedRulesInRuleGroupInput, options: any): async.Operation<types.ListActivatedRulesInRuleGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListActivatedRulesInRuleGroup, input, options) as async.Operation<types.ListActivatedRulesInRuleGroupOutput>
+function C:listActivatedRulesInRuleGroup(input: types.ListActivatedRulesInRuleGroupInput, options?: base_client.InvokeOptions): async.Operation<types.ListActivatedRulesInRuleGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListActivatedRulesInRuleGroup as schema.OperationSchema, input, options) as async.Operation<types.ListActivatedRulesInRuleGroupOutput>
 end
 
-function C:listByteMatchSets(input: types.ListByteMatchSetsInput, options: any): async.Operation<types.ListByteMatchSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListByteMatchSets, input, options) as async.Operation<types.ListByteMatchSetsOutput>
+function C:listByteMatchSets(input: types.ListByteMatchSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListByteMatchSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListByteMatchSets as schema.OperationSchema, input, options) as async.Operation<types.ListByteMatchSetsOutput>
 end
 
-function C:listGeoMatchSets(input: types.ListGeoMatchSetsInput, options: any): async.Operation<types.ListGeoMatchSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGeoMatchSets, input, options) as async.Operation<types.ListGeoMatchSetsOutput>
+function C:listGeoMatchSets(input: types.ListGeoMatchSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListGeoMatchSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGeoMatchSets as schema.OperationSchema, input, options) as async.Operation<types.ListGeoMatchSetsOutput>
 end
 
-function C:listIPSets(input: types.ListIPSetsInput, options: any): async.Operation<types.ListIPSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIPSets, input, options) as async.Operation<types.ListIPSetsOutput>
+function C:listIPSets(input: types.ListIPSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListIPSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIPSets as schema.OperationSchema, input, options) as async.Operation<types.ListIPSetsOutput>
 end
 
-function C:listLoggingConfigurations(input: types.ListLoggingConfigurationsInput, options: any): async.Operation<types.ListLoggingConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLoggingConfigurations, input, options) as async.Operation<types.ListLoggingConfigurationsOutput>
+function C:listLoggingConfigurations(input: types.ListLoggingConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLoggingConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLoggingConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListLoggingConfigurationsOutput>
 end
 
-function C:listRateBasedRules(input: types.ListRateBasedRulesInput, options: any): async.Operation<types.ListRateBasedRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRateBasedRules, input, options) as async.Operation<types.ListRateBasedRulesOutput>
+function C:listRateBasedRules(input: types.ListRateBasedRulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRateBasedRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRateBasedRules as schema.OperationSchema, input, options) as async.Operation<types.ListRateBasedRulesOutput>
 end
 
-function C:listRegexMatchSets(input: types.ListRegexMatchSetsInput, options: any): async.Operation<types.ListRegexMatchSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRegexMatchSets, input, options) as async.Operation<types.ListRegexMatchSetsOutput>
+function C:listRegexMatchSets(input: types.ListRegexMatchSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRegexMatchSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRegexMatchSets as schema.OperationSchema, input, options) as async.Operation<types.ListRegexMatchSetsOutput>
 end
 
-function C:listRegexPatternSets(input: types.ListRegexPatternSetsInput, options: any): async.Operation<types.ListRegexPatternSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRegexPatternSets, input, options) as async.Operation<types.ListRegexPatternSetsOutput>
+function C:listRegexPatternSets(input: types.ListRegexPatternSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRegexPatternSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRegexPatternSets as schema.OperationSchema, input, options) as async.Operation<types.ListRegexPatternSetsOutput>
 end
 
-function C:listResourcesForWebACL(input: types.ListResourcesForWebACLInput, options: any): async.Operation<types.ListResourcesForWebACLOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResourcesForWebACL, input, options) as async.Operation<types.ListResourcesForWebACLOutput>
+function C:listResourcesForWebACL(input: types.ListResourcesForWebACLInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourcesForWebACLOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourcesForWebACL as schema.OperationSchema, input, options) as async.Operation<types.ListResourcesForWebACLOutput>
 end
 
-function C:listRuleGroups(input: types.ListRuleGroupsInput, options: any): async.Operation<types.ListRuleGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRuleGroups, input, options) as async.Operation<types.ListRuleGroupsOutput>
+function C:listRuleGroups(input: types.ListRuleGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRuleGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRuleGroups as schema.OperationSchema, input, options) as async.Operation<types.ListRuleGroupsOutput>
 end
 
-function C:listRules(input: types.ListRulesInput, options: any): async.Operation<types.ListRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRules, input, options) as async.Operation<types.ListRulesOutput>
+function C:listRules(input: types.ListRulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRules as schema.OperationSchema, input, options) as async.Operation<types.ListRulesOutput>
 end
 
-function C:listSizeConstraintSets(input: types.ListSizeConstraintSetsInput, options: any): async.Operation<types.ListSizeConstraintSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSizeConstraintSets, input, options) as async.Operation<types.ListSizeConstraintSetsOutput>
+function C:listSizeConstraintSets(input: types.ListSizeConstraintSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSizeConstraintSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSizeConstraintSets as schema.OperationSchema, input, options) as async.Operation<types.ListSizeConstraintSetsOutput>
 end
 
-function C:listSqlInjectionMatchSets(input: types.ListSqlInjectionMatchSetsInput, options: any): async.Operation<types.ListSqlInjectionMatchSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSqlInjectionMatchSets, input, options) as async.Operation<types.ListSqlInjectionMatchSetsOutput>
+function C:listSqlInjectionMatchSets(input: types.ListSqlInjectionMatchSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSqlInjectionMatchSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSqlInjectionMatchSets as schema.OperationSchema, input, options) as async.Operation<types.ListSqlInjectionMatchSetsOutput>
 end
 
-function C:listSubscribedRuleGroups(input: types.ListSubscribedRuleGroupsInput, options: any): async.Operation<types.ListSubscribedRuleGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSubscribedRuleGroups, input, options) as async.Operation<types.ListSubscribedRuleGroupsOutput>
+function C:listSubscribedRuleGroups(input: types.ListSubscribedRuleGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSubscribedRuleGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSubscribedRuleGroups as schema.OperationSchema, input, options) as async.Operation<types.ListSubscribedRuleGroupsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listWebACLs(input: types.ListWebACLsInput, options: any): async.Operation<types.ListWebACLsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWebACLs, input, options) as async.Operation<types.ListWebACLsOutput>
+function C:listWebACLs(input: types.ListWebACLsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWebACLsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWebACLs as schema.OperationSchema, input, options) as async.Operation<types.ListWebACLsOutput>
 end
 
-function C:listXssMatchSets(input: types.ListXssMatchSetsInput, options: any): async.Operation<types.ListXssMatchSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListXssMatchSets, input, options) as async.Operation<types.ListXssMatchSetsOutput>
+function C:listXssMatchSets(input: types.ListXssMatchSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListXssMatchSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListXssMatchSets as schema.OperationSchema, input, options) as async.Operation<types.ListXssMatchSetsOutput>
 end
 
-function C:putLoggingConfiguration(input: types.PutLoggingConfigurationInput, options: any): async.Operation<types.PutLoggingConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutLoggingConfiguration, input, options) as async.Operation<types.PutLoggingConfigurationOutput>
+function C:putLoggingConfiguration(input: types.PutLoggingConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutLoggingConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutLoggingConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutLoggingConfigurationOutput>
 end
 
-function C:putPermissionPolicy(input: types.PutPermissionPolicyInput, options: any): async.Operation<types.PutPermissionPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutPermissionPolicy, input, options) as async.Operation<types.PutPermissionPolicyOutput>
+function C:putPermissionPolicy(input: types.PutPermissionPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutPermissionPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutPermissionPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutPermissionPolicyOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateByteMatchSet(input: types.UpdateByteMatchSetInput, options: any): async.Operation<types.UpdateByteMatchSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateByteMatchSet, input, options) as async.Operation<types.UpdateByteMatchSetOutput>
+function C:updateByteMatchSet(input: types.UpdateByteMatchSetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateByteMatchSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateByteMatchSet as schema.OperationSchema, input, options) as async.Operation<types.UpdateByteMatchSetOutput>
 end
 
-function C:updateGeoMatchSet(input: types.UpdateGeoMatchSetInput, options: any): async.Operation<types.UpdateGeoMatchSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateGeoMatchSet, input, options) as async.Operation<types.UpdateGeoMatchSetOutput>
+function C:updateGeoMatchSet(input: types.UpdateGeoMatchSetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGeoMatchSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGeoMatchSet as schema.OperationSchema, input, options) as async.Operation<types.UpdateGeoMatchSetOutput>
 end
 
-function C:updateIPSet(input: types.UpdateIPSetInput, options: any): async.Operation<types.UpdateIPSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateIPSet, input, options) as async.Operation<types.UpdateIPSetOutput>
+function C:updateIPSet(input: types.UpdateIPSetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIPSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIPSet as schema.OperationSchema, input, options) as async.Operation<types.UpdateIPSetOutput>
 end
 
-function C:updateRateBasedRule(input: types.UpdateRateBasedRuleInput, options: any): async.Operation<types.UpdateRateBasedRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRateBasedRule, input, options) as async.Operation<types.UpdateRateBasedRuleOutput>
+function C:updateRateBasedRule(input: types.UpdateRateBasedRuleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRateBasedRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRateBasedRule as schema.OperationSchema, input, options) as async.Operation<types.UpdateRateBasedRuleOutput>
 end
 
-function C:updateRegexMatchSet(input: types.UpdateRegexMatchSetInput, options: any): async.Operation<types.UpdateRegexMatchSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRegexMatchSet, input, options) as async.Operation<types.UpdateRegexMatchSetOutput>
+function C:updateRegexMatchSet(input: types.UpdateRegexMatchSetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRegexMatchSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRegexMatchSet as schema.OperationSchema, input, options) as async.Operation<types.UpdateRegexMatchSetOutput>
 end
 
-function C:updateRegexPatternSet(input: types.UpdateRegexPatternSetInput, options: any): async.Operation<types.UpdateRegexPatternSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRegexPatternSet, input, options) as async.Operation<types.UpdateRegexPatternSetOutput>
+function C:updateRegexPatternSet(input: types.UpdateRegexPatternSetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRegexPatternSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRegexPatternSet as schema.OperationSchema, input, options) as async.Operation<types.UpdateRegexPatternSetOutput>
 end
 
-function C:updateRule(input: types.UpdateRuleInput, options: any): async.Operation<types.UpdateRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRule, input, options) as async.Operation<types.UpdateRuleOutput>
+function C:updateRule(input: types.UpdateRuleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRule as schema.OperationSchema, input, options) as async.Operation<types.UpdateRuleOutput>
 end
 
-function C:updateRuleGroup(input: types.UpdateRuleGroupInput, options: any): async.Operation<types.UpdateRuleGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRuleGroup, input, options) as async.Operation<types.UpdateRuleGroupOutput>
+function C:updateRuleGroup(input: types.UpdateRuleGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRuleGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRuleGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateRuleGroupOutput>
 end
 
-function C:updateSizeConstraintSet(input: types.UpdateSizeConstraintSetInput, options: any): async.Operation<types.UpdateSizeConstraintSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSizeConstraintSet, input, options) as async.Operation<types.UpdateSizeConstraintSetOutput>
+function C:updateSizeConstraintSet(input: types.UpdateSizeConstraintSetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSizeConstraintSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSizeConstraintSet as schema.OperationSchema, input, options) as async.Operation<types.UpdateSizeConstraintSetOutput>
 end
 
-function C:updateSqlInjectionMatchSet(input: types.UpdateSqlInjectionMatchSetInput, options: any): async.Operation<types.UpdateSqlInjectionMatchSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSqlInjectionMatchSet, input, options) as async.Operation<types.UpdateSqlInjectionMatchSetOutput>
+function C:updateSqlInjectionMatchSet(input: types.UpdateSqlInjectionMatchSetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSqlInjectionMatchSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSqlInjectionMatchSet as schema.OperationSchema, input, options) as async.Operation<types.UpdateSqlInjectionMatchSetOutput>
 end
 
-function C:updateWebACL(input: types.UpdateWebACLInput, options: any): async.Operation<types.UpdateWebACLOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateWebACL, input, options) as async.Operation<types.UpdateWebACLOutput>
+function C:updateWebACL(input: types.UpdateWebACLInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWebACLOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWebACL as schema.OperationSchema, input, options) as async.Operation<types.UpdateWebACLOutput>
 end
 
-function C:updateXssMatchSet(input: types.UpdateXssMatchSetInput, options: any): async.Operation<types.UpdateXssMatchSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateXssMatchSet, input, options) as async.Operation<types.UpdateXssMatchSetOutput>
+function C:updateXssMatchSet(input: types.UpdateXssMatchSetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateXssMatchSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateXssMatchSet as schema.OperationSchema, input, options) as async.Operation<types.UpdateXssMatchSetOutput>
 end
 
 return M

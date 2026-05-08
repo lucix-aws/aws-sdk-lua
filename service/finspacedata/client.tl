@@ -8,70 +8,73 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("finspacedata.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("finspacedata.schemas")
 local traits = require("smithy.traits")
 local types = require("finspacedata.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateUserToPermissionGroup: function(Client, types.AssociateUserToPermissionGroupInput, any): async.Operation<types.AssociateUserToPermissionGroupOutput>
-    createChangeset: function(Client, types.CreateChangesetInput, any): async.Operation<types.CreateChangesetOutput>
-    createDataset: function(Client, types.CreateDatasetInput, any): async.Operation<types.CreateDatasetOutput>
-    createDataView: function(Client, types.CreateDataViewInput, any): async.Operation<types.CreateDataViewOutput>
-    createPermissionGroup: function(Client, types.CreatePermissionGroupInput, any): async.Operation<types.CreatePermissionGroupOutput>
-    createUser: function(Client, types.CreateUserInput, any): async.Operation<types.CreateUserOutput>
-    deleteDataset: function(Client, types.DeleteDatasetInput, any): async.Operation<types.DeleteDatasetOutput>
-    deletePermissionGroup: function(Client, types.DeletePermissionGroupInput, any): async.Operation<types.DeletePermissionGroupOutput>
-    disableUser: function(Client, types.DisableUserInput, any): async.Operation<types.DisableUserOutput>
-    disassociateUserFromPermissionGroup: function(Client, types.DisassociateUserFromPermissionGroupInput, any): async.Operation<types.DisassociateUserFromPermissionGroupOutput>
-    enableUser: function(Client, types.EnableUserInput, any): async.Operation<types.EnableUserOutput>
-    getChangeset: function(Client, types.GetChangesetInput, any): async.Operation<types.GetChangesetOutput>
-    getDataset: function(Client, types.GetDatasetInput, any): async.Operation<types.GetDatasetOutput>
-    getDataView: function(Client, types.GetDataViewInput, any): async.Operation<types.GetDataViewOutput>
-    getExternalDataViewAccessDetails: function(Client, types.GetExternalDataViewAccessDetailsInput, any): async.Operation<types.GetExternalDataViewAccessDetailsOutput>
-    getPermissionGroup: function(Client, types.GetPermissionGroupInput, any): async.Operation<types.GetPermissionGroupOutput>
-    getProgrammaticAccessCredentials: function(Client, types.GetProgrammaticAccessCredentialsInput, any): async.Operation<types.GetProgrammaticAccessCredentialsOutput>
-    getUser: function(Client, types.GetUserInput, any): async.Operation<types.GetUserOutput>
-    getWorkingLocation: function(Client, types.GetWorkingLocationInput, any): async.Operation<types.GetWorkingLocationOutput>
-    listChangesets: function(Client, types.ListChangesetsInput, any): async.Operation<types.ListChangesetsOutput>
-    listDatasets: function(Client, types.ListDatasetsInput, any): async.Operation<types.ListDatasetsOutput>
-    listDataViews: function(Client, types.ListDataViewsInput, any): async.Operation<types.ListDataViewsOutput>
-    listPermissionGroups: function(Client, types.ListPermissionGroupsInput, any): async.Operation<types.ListPermissionGroupsOutput>
-    listPermissionGroupsByUser: function(Client, types.ListPermissionGroupsByUserInput, any): async.Operation<types.ListPermissionGroupsByUserOutput>
-    listUsers: function(Client, types.ListUsersInput, any): async.Operation<types.ListUsersOutput>
-    listUsersByPermissionGroup: function(Client, types.ListUsersByPermissionGroupInput, any): async.Operation<types.ListUsersByPermissionGroupOutput>
-    resetUserPassword: function(Client, types.ResetUserPasswordInput, any): async.Operation<types.ResetUserPasswordOutput>
-    updateChangeset: function(Client, types.UpdateChangesetInput, any): async.Operation<types.UpdateChangesetOutput>
-    updateDataset: function(Client, types.UpdateDatasetInput, any): async.Operation<types.UpdateDatasetOutput>
-    updatePermissionGroup: function(Client, types.UpdatePermissionGroupInput, any): async.Operation<types.UpdatePermissionGroupOutput>
-    updateUser: function(Client, types.UpdateUserInput, any): async.Operation<types.UpdateUserOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateUserToPermissionGroup: function(Client, types.AssociateUserToPermissionGroupInput, ? base_client.InvokeOptions): async.Operation<types.AssociateUserToPermissionGroupOutput>
+    createChangeset: function(Client, types.CreateChangesetInput, ? base_client.InvokeOptions): async.Operation<types.CreateChangesetOutput>
+    createDataset: function(Client, types.CreateDatasetInput, ? base_client.InvokeOptions): async.Operation<types.CreateDatasetOutput>
+    createDataView: function(Client, types.CreateDataViewInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataViewOutput>
+    createPermissionGroup: function(Client, types.CreatePermissionGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreatePermissionGroupOutput>
+    createUser: function(Client, types.CreateUserInput, ? base_client.InvokeOptions): async.Operation<types.CreateUserOutput>
+    deleteDataset: function(Client, types.DeleteDatasetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDatasetOutput>
+    deletePermissionGroup: function(Client, types.DeletePermissionGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeletePermissionGroupOutput>
+    disableUser: function(Client, types.DisableUserInput, ? base_client.InvokeOptions): async.Operation<types.DisableUserOutput>
+    disassociateUserFromPermissionGroup: function(Client, types.DisassociateUserFromPermissionGroupInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateUserFromPermissionGroupOutput>
+    enableUser: function(Client, types.EnableUserInput, ? base_client.InvokeOptions): async.Operation<types.EnableUserOutput>
+    getChangeset: function(Client, types.GetChangesetInput, ? base_client.InvokeOptions): async.Operation<types.GetChangesetOutput>
+    getDataset: function(Client, types.GetDatasetInput, ? base_client.InvokeOptions): async.Operation<types.GetDatasetOutput>
+    getDataView: function(Client, types.GetDataViewInput, ? base_client.InvokeOptions): async.Operation<types.GetDataViewOutput>
+    getExternalDataViewAccessDetails: function(Client, types.GetExternalDataViewAccessDetailsInput, ? base_client.InvokeOptions): async.Operation<types.GetExternalDataViewAccessDetailsOutput>
+    getPermissionGroup: function(Client, types.GetPermissionGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetPermissionGroupOutput>
+    getProgrammaticAccessCredentials: function(Client, types.GetProgrammaticAccessCredentialsInput, ? base_client.InvokeOptions): async.Operation<types.GetProgrammaticAccessCredentialsOutput>
+    getUser: function(Client, types.GetUserInput, ? base_client.InvokeOptions): async.Operation<types.GetUserOutput>
+    getWorkingLocation: function(Client, types.GetWorkingLocationInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkingLocationOutput>
+    listChangesets: function(Client, types.ListChangesetsInput, ? base_client.InvokeOptions): async.Operation<types.ListChangesetsOutput>
+    listDatasets: function(Client, types.ListDatasetsInput, ? base_client.InvokeOptions): async.Operation<types.ListDatasetsOutput>
+    listDataViews: function(Client, types.ListDataViewsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataViewsOutput>
+    listPermissionGroups: function(Client, types.ListPermissionGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListPermissionGroupsOutput>
+    listPermissionGroupsByUser: function(Client, types.ListPermissionGroupsByUserInput, ? base_client.InvokeOptions): async.Operation<types.ListPermissionGroupsByUserOutput>
+    listUsers: function(Client, types.ListUsersInput, ? base_client.InvokeOptions): async.Operation<types.ListUsersOutput>
+    listUsersByPermissionGroup: function(Client, types.ListUsersByPermissionGroupInput, ? base_client.InvokeOptions): async.Operation<types.ListUsersByPermissionGroupOutput>
+    resetUserPassword: function(Client, types.ResetUserPasswordInput, ? base_client.InvokeOptions): async.Operation<types.ResetUserPasswordOutput>
+    updateChangeset: function(Client, types.UpdateChangesetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateChangesetOutput>
+    updateDataset: function(Client, types.UpdateDatasetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDatasetOutput>
+    updatePermissionGroup: function(Client, types.UpdatePermissionGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePermissionGroupOutput>
+    updateUser: function(Client, types.UpdateUserInput, ? base_client.InvokeOptions): async.Operation<types.UpdateUserOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSHabaneroPublicAPI"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "finspace-api", signing_region = c.region } }
                 else
@@ -90,128 +93,128 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateUserToPermissionGroup(input: types.AssociateUserToPermissionGroupInput, options: any): async.Operation<types.AssociateUserToPermissionGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateUserToPermissionGroup, input, options) as async.Operation<types.AssociateUserToPermissionGroupOutput>
+function C:associateUserToPermissionGroup(input: types.AssociateUserToPermissionGroupInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateUserToPermissionGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateUserToPermissionGroup as schema.OperationSchema, input, options) as async.Operation<types.AssociateUserToPermissionGroupOutput>
 end
 
-function C:createChangeset(input: types.CreateChangesetInput, options: any): async.Operation<types.CreateChangesetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateChangeset, input, options) as async.Operation<types.CreateChangesetOutput>
+function C:createChangeset(input: types.CreateChangesetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateChangesetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateChangeset as schema.OperationSchema, input, options) as async.Operation<types.CreateChangesetOutput>
 end
 
-function C:createDataset(input: types.CreateDatasetInput, options: any): async.Operation<types.CreateDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataset, input, options) as async.Operation<types.CreateDatasetOutput>
+function C:createDataset(input: types.CreateDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataset as schema.OperationSchema, input, options) as async.Operation<types.CreateDatasetOutput>
 end
 
-function C:createDataView(input: types.CreateDataViewInput, options: any): async.Operation<types.CreateDataViewOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataView, input, options) as async.Operation<types.CreateDataViewOutput>
+function C:createDataView(input: types.CreateDataViewInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataViewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataView as schema.OperationSchema, input, options) as async.Operation<types.CreateDataViewOutput>
 end
 
-function C:createPermissionGroup(input: types.CreatePermissionGroupInput, options: any): async.Operation<types.CreatePermissionGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePermissionGroup, input, options) as async.Operation<types.CreatePermissionGroupOutput>
+function C:createPermissionGroup(input: types.CreatePermissionGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePermissionGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePermissionGroup as schema.OperationSchema, input, options) as async.Operation<types.CreatePermissionGroupOutput>
 end
 
-function C:createUser(input: types.CreateUserInput, options: any): async.Operation<types.CreateUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateUser, input, options) as async.Operation<types.CreateUserOutput>
+function C:createUser(input: types.CreateUserInput, options?: base_client.InvokeOptions): async.Operation<types.CreateUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateUser as schema.OperationSchema, input, options) as async.Operation<types.CreateUserOutput>
 end
 
-function C:deleteDataset(input: types.DeleteDatasetInput, options: any): async.Operation<types.DeleteDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDataset, input, options) as async.Operation<types.DeleteDatasetOutput>
+function C:deleteDataset(input: types.DeleteDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataset as schema.OperationSchema, input, options) as async.Operation<types.DeleteDatasetOutput>
 end
 
-function C:deletePermissionGroup(input: types.DeletePermissionGroupInput, options: any): async.Operation<types.DeletePermissionGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePermissionGroup, input, options) as async.Operation<types.DeletePermissionGroupOutput>
+function C:deletePermissionGroup(input: types.DeletePermissionGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePermissionGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePermissionGroup as schema.OperationSchema, input, options) as async.Operation<types.DeletePermissionGroupOutput>
 end
 
-function C:disableUser(input: types.DisableUserInput, options: any): async.Operation<types.DisableUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableUser, input, options) as async.Operation<types.DisableUserOutput>
+function C:disableUser(input: types.DisableUserInput, options?: base_client.InvokeOptions): async.Operation<types.DisableUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableUser as schema.OperationSchema, input, options) as async.Operation<types.DisableUserOutput>
 end
 
-function C:disassociateUserFromPermissionGroup(input: types.DisassociateUserFromPermissionGroupInput, options: any): async.Operation<types.DisassociateUserFromPermissionGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateUserFromPermissionGroup, input, options) as async.Operation<types.DisassociateUserFromPermissionGroupOutput>
+function C:disassociateUserFromPermissionGroup(input: types.DisassociateUserFromPermissionGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateUserFromPermissionGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateUserFromPermissionGroup as schema.OperationSchema, input, options) as async.Operation<types.DisassociateUserFromPermissionGroupOutput>
 end
 
-function C:enableUser(input: types.EnableUserInput, options: any): async.Operation<types.EnableUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableUser, input, options) as async.Operation<types.EnableUserOutput>
+function C:enableUser(input: types.EnableUserInput, options?: base_client.InvokeOptions): async.Operation<types.EnableUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableUser as schema.OperationSchema, input, options) as async.Operation<types.EnableUserOutput>
 end
 
-function C:getChangeset(input: types.GetChangesetInput, options: any): async.Operation<types.GetChangesetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetChangeset, input, options) as async.Operation<types.GetChangesetOutput>
+function C:getChangeset(input: types.GetChangesetInput, options?: base_client.InvokeOptions): async.Operation<types.GetChangesetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetChangeset as schema.OperationSchema, input, options) as async.Operation<types.GetChangesetOutput>
 end
 
-function C:getDataset(input: types.GetDatasetInput, options: any): async.Operation<types.GetDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataset, input, options) as async.Operation<types.GetDatasetOutput>
+function C:getDataset(input: types.GetDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.GetDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataset as schema.OperationSchema, input, options) as async.Operation<types.GetDatasetOutput>
 end
 
-function C:getDataView(input: types.GetDataViewInput, options: any): async.Operation<types.GetDataViewOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataView, input, options) as async.Operation<types.GetDataViewOutput>
+function C:getDataView(input: types.GetDataViewInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataViewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataView as schema.OperationSchema, input, options) as async.Operation<types.GetDataViewOutput>
 end
 
-function C:getExternalDataViewAccessDetails(input: types.GetExternalDataViewAccessDetailsInput, options: any): async.Operation<types.GetExternalDataViewAccessDetailsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetExternalDataViewAccessDetails, input, options) as async.Operation<types.GetExternalDataViewAccessDetailsOutput>
+function C:getExternalDataViewAccessDetails(input: types.GetExternalDataViewAccessDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.GetExternalDataViewAccessDetailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetExternalDataViewAccessDetails as schema.OperationSchema, input, options) as async.Operation<types.GetExternalDataViewAccessDetailsOutput>
 end
 
-function C:getPermissionGroup(input: types.GetPermissionGroupInput, options: any): async.Operation<types.GetPermissionGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPermissionGroup, input, options) as async.Operation<types.GetPermissionGroupOutput>
+function C:getPermissionGroup(input: types.GetPermissionGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetPermissionGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPermissionGroup as schema.OperationSchema, input, options) as async.Operation<types.GetPermissionGroupOutput>
 end
 
-function C:getProgrammaticAccessCredentials(input: types.GetProgrammaticAccessCredentialsInput, options: any): async.Operation<types.GetProgrammaticAccessCredentialsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetProgrammaticAccessCredentials, input, options) as async.Operation<types.GetProgrammaticAccessCredentialsOutput>
+function C:getProgrammaticAccessCredentials(input: types.GetProgrammaticAccessCredentialsInput, options?: base_client.InvokeOptions): async.Operation<types.GetProgrammaticAccessCredentialsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProgrammaticAccessCredentials as schema.OperationSchema, input, options) as async.Operation<types.GetProgrammaticAccessCredentialsOutput>
 end
 
-function C:getUser(input: types.GetUserInput, options: any): async.Operation<types.GetUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetUser, input, options) as async.Operation<types.GetUserOutput>
+function C:getUser(input: types.GetUserInput, options?: base_client.InvokeOptions): async.Operation<types.GetUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetUser as schema.OperationSchema, input, options) as async.Operation<types.GetUserOutput>
 end
 
-function C:getWorkingLocation(input: types.GetWorkingLocationInput, options: any): async.Operation<types.GetWorkingLocationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWorkingLocation, input, options) as async.Operation<types.GetWorkingLocationOutput>
+function C:getWorkingLocation(input: types.GetWorkingLocationInput, options?: base_client.InvokeOptions): async.Operation<types.GetWorkingLocationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWorkingLocation as schema.OperationSchema, input, options) as async.Operation<types.GetWorkingLocationOutput>
 end
 
-function C:listChangesets(input: types.ListChangesetsInput, options: any): async.Operation<types.ListChangesetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListChangesets, input, options) as async.Operation<types.ListChangesetsOutput>
+function C:listChangesets(input: types.ListChangesetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListChangesetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListChangesets as schema.OperationSchema, input, options) as async.Operation<types.ListChangesetsOutput>
 end
 
-function C:listDatasets(input: types.ListDatasetsInput, options: any): async.Operation<types.ListDatasetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDatasets, input, options) as async.Operation<types.ListDatasetsOutput>
+function C:listDatasets(input: types.ListDatasetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDatasetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDatasets as schema.OperationSchema, input, options) as async.Operation<types.ListDatasetsOutput>
 end
 
-function C:listDataViews(input: types.ListDataViewsInput, options: any): async.Operation<types.ListDataViewsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDataViews, input, options) as async.Operation<types.ListDataViewsOutput>
+function C:listDataViews(input: types.ListDataViewsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataViewsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataViews as schema.OperationSchema, input, options) as async.Operation<types.ListDataViewsOutput>
 end
 
-function C:listPermissionGroups(input: types.ListPermissionGroupsInput, options: any): async.Operation<types.ListPermissionGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPermissionGroups, input, options) as async.Operation<types.ListPermissionGroupsOutput>
+function C:listPermissionGroups(input: types.ListPermissionGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPermissionGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPermissionGroups as schema.OperationSchema, input, options) as async.Operation<types.ListPermissionGroupsOutput>
 end
 
-function C:listPermissionGroupsByUser(input: types.ListPermissionGroupsByUserInput, options: any): async.Operation<types.ListPermissionGroupsByUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPermissionGroupsByUser, input, options) as async.Operation<types.ListPermissionGroupsByUserOutput>
+function C:listPermissionGroupsByUser(input: types.ListPermissionGroupsByUserInput, options?: base_client.InvokeOptions): async.Operation<types.ListPermissionGroupsByUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPermissionGroupsByUser as schema.OperationSchema, input, options) as async.Operation<types.ListPermissionGroupsByUserOutput>
 end
 
-function C:listUsers(input: types.ListUsersInput, options: any): async.Operation<types.ListUsersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListUsers, input, options) as async.Operation<types.ListUsersOutput>
+function C:listUsers(input: types.ListUsersInput, options?: base_client.InvokeOptions): async.Operation<types.ListUsersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUsers as schema.OperationSchema, input, options) as async.Operation<types.ListUsersOutput>
 end
 
-function C:listUsersByPermissionGroup(input: types.ListUsersByPermissionGroupInput, options: any): async.Operation<types.ListUsersByPermissionGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListUsersByPermissionGroup, input, options) as async.Operation<types.ListUsersByPermissionGroupOutput>
+function C:listUsersByPermissionGroup(input: types.ListUsersByPermissionGroupInput, options?: base_client.InvokeOptions): async.Operation<types.ListUsersByPermissionGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUsersByPermissionGroup as schema.OperationSchema, input, options) as async.Operation<types.ListUsersByPermissionGroupOutput>
 end
 
-function C:resetUserPassword(input: types.ResetUserPasswordInput, options: any): async.Operation<types.ResetUserPasswordOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResetUserPassword, input, options) as async.Operation<types.ResetUserPasswordOutput>
+function C:resetUserPassword(input: types.ResetUserPasswordInput, options?: base_client.InvokeOptions): async.Operation<types.ResetUserPasswordOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResetUserPassword as schema.OperationSchema, input, options) as async.Operation<types.ResetUserPasswordOutput>
 end
 
-function C:updateChangeset(input: types.UpdateChangesetInput, options: any): async.Operation<types.UpdateChangesetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateChangeset, input, options) as async.Operation<types.UpdateChangesetOutput>
+function C:updateChangeset(input: types.UpdateChangesetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateChangesetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateChangeset as schema.OperationSchema, input, options) as async.Operation<types.UpdateChangesetOutput>
 end
 
-function C:updateDataset(input: types.UpdateDatasetInput, options: any): async.Operation<types.UpdateDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDataset, input, options) as async.Operation<types.UpdateDatasetOutput>
+function C:updateDataset(input: types.UpdateDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDataset as schema.OperationSchema, input, options) as async.Operation<types.UpdateDatasetOutput>
 end
 
-function C:updatePermissionGroup(input: types.UpdatePermissionGroupInput, options: any): async.Operation<types.UpdatePermissionGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePermissionGroup, input, options) as async.Operation<types.UpdatePermissionGroupOutput>
+function C:updatePermissionGroup(input: types.UpdatePermissionGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePermissionGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePermissionGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdatePermissionGroupOutput>
 end
 
-function C:updateUser(input: types.UpdateUserInput, options: any): async.Operation<types.UpdateUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateUser, input, options) as async.Operation<types.UpdateUserOutput>
+function C:updateUser(input: types.UpdateUserInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateUser as schema.OperationSchema, input, options) as async.Operation<types.UpdateUserOutput>
 end
 
 return M

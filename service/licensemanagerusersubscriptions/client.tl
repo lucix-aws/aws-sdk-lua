@@ -8,56 +8,59 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("licensemanagerusersubscriptions.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("licensemanagerusersubscriptions.schemas")
 local traits = require("smithy.traits")
 local types = require("licensemanagerusersubscriptions.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateUser: function(Client, types.AssociateUserInput, any): async.Operation<types.AssociateUserOutput>
-    createLicenseServerEndpoint: function(Client, types.CreateLicenseServerEndpointInput, any): async.Operation<types.CreateLicenseServerEndpointOutput>
-    deleteLicenseServerEndpoint: function(Client, types.DeleteLicenseServerEndpointInput, any): async.Operation<types.DeleteLicenseServerEndpointOutput>
-    deregisterIdentityProvider: function(Client, types.DeregisterIdentityProviderInput, any): async.Operation<types.DeregisterIdentityProviderOutput>
-    disassociateUser: function(Client, types.DisassociateUserInput, any): async.Operation<types.DisassociateUserOutput>
-    listIdentityProviders: function(Client, types.ListIdentityProvidersInput, any): async.Operation<types.ListIdentityProvidersOutput>
-    listInstances: function(Client, types.ListInstancesInput, any): async.Operation<types.ListInstancesOutput>
-    listLicenseServerEndpoints: function(Client, types.ListLicenseServerEndpointsInput, any): async.Operation<types.ListLicenseServerEndpointsOutput>
-    listProductSubscriptions: function(Client, types.ListProductSubscriptionsInput, any): async.Operation<types.ListProductSubscriptionsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listUserAssociations: function(Client, types.ListUserAssociationsInput, any): async.Operation<types.ListUserAssociationsOutput>
-    registerIdentityProvider: function(Client, types.RegisterIdentityProviderInput, any): async.Operation<types.RegisterIdentityProviderOutput>
-    startProductSubscription: function(Client, types.StartProductSubscriptionInput, any): async.Operation<types.StartProductSubscriptionOutput>
-    stopProductSubscription: function(Client, types.StopProductSubscriptionInput, any): async.Operation<types.StopProductSubscriptionOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateIdentityProviderSettings: function(Client, types.UpdateIdentityProviderSettingsInput, any): async.Operation<types.UpdateIdentityProviderSettingsOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateUser: function(Client, types.AssociateUserInput, ? base_client.InvokeOptions): async.Operation<types.AssociateUserOutput>
+    createLicenseServerEndpoint: function(Client, types.CreateLicenseServerEndpointInput, ? base_client.InvokeOptions): async.Operation<types.CreateLicenseServerEndpointOutput>
+    deleteLicenseServerEndpoint: function(Client, types.DeleteLicenseServerEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLicenseServerEndpointOutput>
+    deregisterIdentityProvider: function(Client, types.DeregisterIdentityProviderInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterIdentityProviderOutput>
+    disassociateUser: function(Client, types.DisassociateUserInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateUserOutput>
+    listIdentityProviders: function(Client, types.ListIdentityProvidersInput, ? base_client.InvokeOptions): async.Operation<types.ListIdentityProvidersOutput>
+    listInstances: function(Client, types.ListInstancesInput, ? base_client.InvokeOptions): async.Operation<types.ListInstancesOutput>
+    listLicenseServerEndpoints: function(Client, types.ListLicenseServerEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.ListLicenseServerEndpointsOutput>
+    listProductSubscriptions: function(Client, types.ListProductSubscriptionsInput, ? base_client.InvokeOptions): async.Operation<types.ListProductSubscriptionsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listUserAssociations: function(Client, types.ListUserAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListUserAssociationsOutput>
+    registerIdentityProvider: function(Client, types.RegisterIdentityProviderInput, ? base_client.InvokeOptions): async.Operation<types.RegisterIdentityProviderOutput>
+    startProductSubscription: function(Client, types.StartProductSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.StartProductSubscriptionOutput>
+    stopProductSubscription: function(Client, types.StopProductSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.StopProductSubscriptionOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateIdentityProviderSettings: function(Client, types.UpdateIdentityProviderSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIdentityProviderSettingsOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "LicenseManagerUserSubscriptions"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "license-manager-user-subscriptions", signing_region = c.region } }
                 else
@@ -76,72 +79,72 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateUser(input: types.AssociateUserInput, options: any): async.Operation<types.AssociateUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateUser, input, options) as async.Operation<types.AssociateUserOutput>
+function C:associateUser(input: types.AssociateUserInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateUser as schema.OperationSchema, input, options) as async.Operation<types.AssociateUserOutput>
 end
 
-function C:createLicenseServerEndpoint(input: types.CreateLicenseServerEndpointInput, options: any): async.Operation<types.CreateLicenseServerEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLicenseServerEndpoint, input, options) as async.Operation<types.CreateLicenseServerEndpointOutput>
+function C:createLicenseServerEndpoint(input: types.CreateLicenseServerEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLicenseServerEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLicenseServerEndpoint as schema.OperationSchema, input, options) as async.Operation<types.CreateLicenseServerEndpointOutput>
 end
 
-function C:deleteLicenseServerEndpoint(input: types.DeleteLicenseServerEndpointInput, options: any): async.Operation<types.DeleteLicenseServerEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLicenseServerEndpoint, input, options) as async.Operation<types.DeleteLicenseServerEndpointOutput>
+function C:deleteLicenseServerEndpoint(input: types.DeleteLicenseServerEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLicenseServerEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLicenseServerEndpoint as schema.OperationSchema, input, options) as async.Operation<types.DeleteLicenseServerEndpointOutput>
 end
 
-function C:deregisterIdentityProvider(input: types.DeregisterIdentityProviderInput, options: any): async.Operation<types.DeregisterIdentityProviderOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterIdentityProvider, input, options) as async.Operation<types.DeregisterIdentityProviderOutput>
+function C:deregisterIdentityProvider(input: types.DeregisterIdentityProviderInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterIdentityProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterIdentityProvider as schema.OperationSchema, input, options) as async.Operation<types.DeregisterIdentityProviderOutput>
 end
 
-function C:disassociateUser(input: types.DisassociateUserInput, options: any): async.Operation<types.DisassociateUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateUser, input, options) as async.Operation<types.DisassociateUserOutput>
+function C:disassociateUser(input: types.DisassociateUserInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateUser as schema.OperationSchema, input, options) as async.Operation<types.DisassociateUserOutput>
 end
 
-function C:listIdentityProviders(input: types.ListIdentityProvidersInput, options: any): async.Operation<types.ListIdentityProvidersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIdentityProviders, input, options) as async.Operation<types.ListIdentityProvidersOutput>
+function C:listIdentityProviders(input: types.ListIdentityProvidersInput, options?: base_client.InvokeOptions): async.Operation<types.ListIdentityProvidersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIdentityProviders as schema.OperationSchema, input, options) as async.Operation<types.ListIdentityProvidersOutput>
 end
 
-function C:listInstances(input: types.ListInstancesInput, options: any): async.Operation<types.ListInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInstances, input, options) as async.Operation<types.ListInstancesOutput>
+function C:listInstances(input: types.ListInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.ListInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInstances as schema.OperationSchema, input, options) as async.Operation<types.ListInstancesOutput>
 end
 
-function C:listLicenseServerEndpoints(input: types.ListLicenseServerEndpointsInput, options: any): async.Operation<types.ListLicenseServerEndpointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLicenseServerEndpoints, input, options) as async.Operation<types.ListLicenseServerEndpointsOutput>
+function C:listLicenseServerEndpoints(input: types.ListLicenseServerEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLicenseServerEndpointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLicenseServerEndpoints as schema.OperationSchema, input, options) as async.Operation<types.ListLicenseServerEndpointsOutput>
 end
 
-function C:listProductSubscriptions(input: types.ListProductSubscriptionsInput, options: any): async.Operation<types.ListProductSubscriptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProductSubscriptions, input, options) as async.Operation<types.ListProductSubscriptionsOutput>
+function C:listProductSubscriptions(input: types.ListProductSubscriptionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListProductSubscriptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProductSubscriptions as schema.OperationSchema, input, options) as async.Operation<types.ListProductSubscriptionsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listUserAssociations(input: types.ListUserAssociationsInput, options: any): async.Operation<types.ListUserAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListUserAssociations, input, options) as async.Operation<types.ListUserAssociationsOutput>
+function C:listUserAssociations(input: types.ListUserAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListUserAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUserAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListUserAssociationsOutput>
 end
 
-function C:registerIdentityProvider(input: types.RegisterIdentityProviderInput, options: any): async.Operation<types.RegisterIdentityProviderOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterIdentityProvider, input, options) as async.Operation<types.RegisterIdentityProviderOutput>
+function C:registerIdentityProvider(input: types.RegisterIdentityProviderInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterIdentityProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterIdentityProvider as schema.OperationSchema, input, options) as async.Operation<types.RegisterIdentityProviderOutput>
 end
 
-function C:startProductSubscription(input: types.StartProductSubscriptionInput, options: any): async.Operation<types.StartProductSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartProductSubscription, input, options) as async.Operation<types.StartProductSubscriptionOutput>
+function C:startProductSubscription(input: types.StartProductSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.StartProductSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartProductSubscription as schema.OperationSchema, input, options) as async.Operation<types.StartProductSubscriptionOutput>
 end
 
-function C:stopProductSubscription(input: types.StopProductSubscriptionInput, options: any): async.Operation<types.StopProductSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopProductSubscription, input, options) as async.Operation<types.StopProductSubscriptionOutput>
+function C:stopProductSubscription(input: types.StopProductSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.StopProductSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopProductSubscription as schema.OperationSchema, input, options) as async.Operation<types.StopProductSubscriptionOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateIdentityProviderSettings(input: types.UpdateIdentityProviderSettingsInput, options: any): async.Operation<types.UpdateIdentityProviderSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateIdentityProviderSettings, input, options) as async.Operation<types.UpdateIdentityProviderSettingsOutput>
+function C:updateIdentityProviderSettings(input: types.UpdateIdentityProviderSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIdentityProviderSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIdentityProviderSettings as schema.OperationSchema, input, options) as async.Operation<types.UpdateIdentityProviderSettingsOutput>
 end
 
 return M

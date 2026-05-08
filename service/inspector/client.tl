@@ -8,76 +8,79 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("inspector.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("inspector.schemas")
 local traits = require("smithy.traits")
 local types = require("inspector.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    addAttributesToFindings: function(Client, types.AddAttributesToFindingsInput, any): async.Operation<types.AddAttributesToFindingsOutput>
-    createAssessmentTarget: function(Client, types.CreateAssessmentTargetInput, any): async.Operation<types.CreateAssessmentTargetOutput>
-    createAssessmentTemplate: function(Client, types.CreateAssessmentTemplateInput, any): async.Operation<types.CreateAssessmentTemplateOutput>
-    createExclusionsPreview: function(Client, types.CreateExclusionsPreviewInput, any): async.Operation<types.CreateExclusionsPreviewOutput>
-    createResourceGroup: function(Client, types.CreateResourceGroupInput, any): async.Operation<types.CreateResourceGroupOutput>
-    deleteAssessmentRun: function(Client, types.DeleteAssessmentRunInput, any): async.Operation<types.DeleteAssessmentRunOutput>
-    deleteAssessmentTarget: function(Client, types.DeleteAssessmentTargetInput, any): async.Operation<types.DeleteAssessmentTargetOutput>
-    deleteAssessmentTemplate: function(Client, types.DeleteAssessmentTemplateInput, any): async.Operation<types.DeleteAssessmentTemplateOutput>
-    describeAssessmentRuns: function(Client, types.DescribeAssessmentRunsInput, any): async.Operation<types.DescribeAssessmentRunsOutput>
-    describeAssessmentTargets: function(Client, types.DescribeAssessmentTargetsInput, any): async.Operation<types.DescribeAssessmentTargetsOutput>
-    describeAssessmentTemplates: function(Client, types.DescribeAssessmentTemplatesInput, any): async.Operation<types.DescribeAssessmentTemplatesOutput>
-    describeCrossAccountAccessRole: function(Client, types.DescribeCrossAccountAccessRoleInput, any): async.Operation<types.DescribeCrossAccountAccessRoleOutput>
-    describeExclusions: function(Client, types.DescribeExclusionsInput, any): async.Operation<types.DescribeExclusionsOutput>
-    describeFindings: function(Client, types.DescribeFindingsInput, any): async.Operation<types.DescribeFindingsOutput>
-    describeResourceGroups: function(Client, types.DescribeResourceGroupsInput, any): async.Operation<types.DescribeResourceGroupsOutput>
-    describeRulesPackages: function(Client, types.DescribeRulesPackagesInput, any): async.Operation<types.DescribeRulesPackagesOutput>
-    getAssessmentReport: function(Client, types.GetAssessmentReportInput, any): async.Operation<types.GetAssessmentReportOutput>
-    getExclusionsPreview: function(Client, types.GetExclusionsPreviewInput, any): async.Operation<types.GetExclusionsPreviewOutput>
-    getTelemetryMetadata: function(Client, types.GetTelemetryMetadataInput, any): async.Operation<types.GetTelemetryMetadataOutput>
-    listAssessmentRunAgents: function(Client, types.ListAssessmentRunAgentsInput, any): async.Operation<types.ListAssessmentRunAgentsOutput>
-    listAssessmentRuns: function(Client, types.ListAssessmentRunsInput, any): async.Operation<types.ListAssessmentRunsOutput>
-    listAssessmentTargets: function(Client, types.ListAssessmentTargetsInput, any): async.Operation<types.ListAssessmentTargetsOutput>
-    listAssessmentTemplates: function(Client, types.ListAssessmentTemplatesInput, any): async.Operation<types.ListAssessmentTemplatesOutput>
-    listEventSubscriptions: function(Client, types.ListEventSubscriptionsInput, any): async.Operation<types.ListEventSubscriptionsOutput>
-    listExclusions: function(Client, types.ListExclusionsInput, any): async.Operation<types.ListExclusionsOutput>
-    listFindings: function(Client, types.ListFindingsInput, any): async.Operation<types.ListFindingsOutput>
-    listRulesPackages: function(Client, types.ListRulesPackagesInput, any): async.Operation<types.ListRulesPackagesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    previewAgents: function(Client, types.PreviewAgentsInput, any): async.Operation<types.PreviewAgentsOutput>
-    registerCrossAccountAccessRole: function(Client, types.RegisterCrossAccountAccessRoleInput, any): async.Operation<types.RegisterCrossAccountAccessRoleOutput>
-    removeAttributesFromFindings: function(Client, types.RemoveAttributesFromFindingsInput, any): async.Operation<types.RemoveAttributesFromFindingsOutput>
-    setTagsForResource: function(Client, types.SetTagsForResourceInput, any): async.Operation<types.SetTagsForResourceOutput>
-    startAssessmentRun: function(Client, types.StartAssessmentRunInput, any): async.Operation<types.StartAssessmentRunOutput>
-    stopAssessmentRun: function(Client, types.StopAssessmentRunInput, any): async.Operation<types.StopAssessmentRunOutput>
-    subscribeToEvent: function(Client, types.SubscribeToEventInput, any): async.Operation<types.SubscribeToEventOutput>
-    unsubscribeFromEvent: function(Client, types.UnsubscribeFromEventInput, any): async.Operation<types.UnsubscribeFromEventOutput>
-    updateAssessmentTarget: function(Client, types.UpdateAssessmentTargetInput, any): async.Operation<types.UpdateAssessmentTargetOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    addAttributesToFindings: function(Client, types.AddAttributesToFindingsInput, ? base_client.InvokeOptions): async.Operation<types.AddAttributesToFindingsOutput>
+    createAssessmentTarget: function(Client, types.CreateAssessmentTargetInput, ? base_client.InvokeOptions): async.Operation<types.CreateAssessmentTargetOutput>
+    createAssessmentTemplate: function(Client, types.CreateAssessmentTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateAssessmentTemplateOutput>
+    createExclusionsPreview: function(Client, types.CreateExclusionsPreviewInput, ? base_client.InvokeOptions): async.Operation<types.CreateExclusionsPreviewOutput>
+    createResourceGroup: function(Client, types.CreateResourceGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateResourceGroupOutput>
+    deleteAssessmentRun: function(Client, types.DeleteAssessmentRunInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAssessmentRunOutput>
+    deleteAssessmentTarget: function(Client, types.DeleteAssessmentTargetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAssessmentTargetOutput>
+    deleteAssessmentTemplate: function(Client, types.DeleteAssessmentTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAssessmentTemplateOutput>
+    describeAssessmentRuns: function(Client, types.DescribeAssessmentRunsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAssessmentRunsOutput>
+    describeAssessmentTargets: function(Client, types.DescribeAssessmentTargetsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAssessmentTargetsOutput>
+    describeAssessmentTemplates: function(Client, types.DescribeAssessmentTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAssessmentTemplatesOutput>
+    describeCrossAccountAccessRole: function(Client, types.DescribeCrossAccountAccessRoleInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCrossAccountAccessRoleOutput>
+    describeExclusions: function(Client, types.DescribeExclusionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeExclusionsOutput>
+    describeFindings: function(Client, types.DescribeFindingsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFindingsOutput>
+    describeResourceGroups: function(Client, types.DescribeResourceGroupsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeResourceGroupsOutput>
+    describeRulesPackages: function(Client, types.DescribeRulesPackagesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRulesPackagesOutput>
+    getAssessmentReport: function(Client, types.GetAssessmentReportInput, ? base_client.InvokeOptions): async.Operation<types.GetAssessmentReportOutput>
+    getExclusionsPreview: function(Client, types.GetExclusionsPreviewInput, ? base_client.InvokeOptions): async.Operation<types.GetExclusionsPreviewOutput>
+    getTelemetryMetadata: function(Client, types.GetTelemetryMetadataInput, ? base_client.InvokeOptions): async.Operation<types.GetTelemetryMetadataOutput>
+    listAssessmentRunAgents: function(Client, types.ListAssessmentRunAgentsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssessmentRunAgentsOutput>
+    listAssessmentRuns: function(Client, types.ListAssessmentRunsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssessmentRunsOutput>
+    listAssessmentTargets: function(Client, types.ListAssessmentTargetsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssessmentTargetsOutput>
+    listAssessmentTemplates: function(Client, types.ListAssessmentTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListAssessmentTemplatesOutput>
+    listEventSubscriptions: function(Client, types.ListEventSubscriptionsInput, ? base_client.InvokeOptions): async.Operation<types.ListEventSubscriptionsOutput>
+    listExclusions: function(Client, types.ListExclusionsInput, ? base_client.InvokeOptions): async.Operation<types.ListExclusionsOutput>
+    listFindings: function(Client, types.ListFindingsInput, ? base_client.InvokeOptions): async.Operation<types.ListFindingsOutput>
+    listRulesPackages: function(Client, types.ListRulesPackagesInput, ? base_client.InvokeOptions): async.Operation<types.ListRulesPackagesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    previewAgents: function(Client, types.PreviewAgentsInput, ? base_client.InvokeOptions): async.Operation<types.PreviewAgentsOutput>
+    registerCrossAccountAccessRole: function(Client, types.RegisterCrossAccountAccessRoleInput, ? base_client.InvokeOptions): async.Operation<types.RegisterCrossAccountAccessRoleOutput>
+    removeAttributesFromFindings: function(Client, types.RemoveAttributesFromFindingsInput, ? base_client.InvokeOptions): async.Operation<types.RemoveAttributesFromFindingsOutput>
+    setTagsForResource: function(Client, types.SetTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.SetTagsForResourceOutput>
+    startAssessmentRun: function(Client, types.StartAssessmentRunInput, ? base_client.InvokeOptions): async.Operation<types.StartAssessmentRunOutput>
+    stopAssessmentRun: function(Client, types.StopAssessmentRunInput, ? base_client.InvokeOptions): async.Operation<types.StopAssessmentRunOutput>
+    subscribeToEvent: function(Client, types.SubscribeToEventInput, ? base_client.InvokeOptions): async.Operation<types.SubscribeToEventOutput>
+    unsubscribeFromEvent: function(Client, types.UnsubscribeFromEventInput, ? base_client.InvokeOptions): async.Operation<types.UnsubscribeFromEventOutput>
+    updateAssessmentTarget: function(Client, types.UpdateAssessmentTargetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAssessmentTargetOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "InspectorService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "inspector", signing_region = c.region } }
                 else
@@ -96,152 +99,152 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:addAttributesToFindings(input: types.AddAttributesToFindingsInput, options: any): async.Operation<types.AddAttributesToFindingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddAttributesToFindings, input, options) as async.Operation<types.AddAttributesToFindingsOutput>
+function C:addAttributesToFindings(input: types.AddAttributesToFindingsInput, options?: base_client.InvokeOptions): async.Operation<types.AddAttributesToFindingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddAttributesToFindings as schema.OperationSchema, input, options) as async.Operation<types.AddAttributesToFindingsOutput>
 end
 
-function C:createAssessmentTarget(input: types.CreateAssessmentTargetInput, options: any): async.Operation<types.CreateAssessmentTargetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAssessmentTarget, input, options) as async.Operation<types.CreateAssessmentTargetOutput>
+function C:createAssessmentTarget(input: types.CreateAssessmentTargetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAssessmentTargetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAssessmentTarget as schema.OperationSchema, input, options) as async.Operation<types.CreateAssessmentTargetOutput>
 end
 
-function C:createAssessmentTemplate(input: types.CreateAssessmentTemplateInput, options: any): async.Operation<types.CreateAssessmentTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAssessmentTemplate, input, options) as async.Operation<types.CreateAssessmentTemplateOutput>
+function C:createAssessmentTemplate(input: types.CreateAssessmentTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAssessmentTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAssessmentTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateAssessmentTemplateOutput>
 end
 
-function C:createExclusionsPreview(input: types.CreateExclusionsPreviewInput, options: any): async.Operation<types.CreateExclusionsPreviewOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateExclusionsPreview, input, options) as async.Operation<types.CreateExclusionsPreviewOutput>
+function C:createExclusionsPreview(input: types.CreateExclusionsPreviewInput, options?: base_client.InvokeOptions): async.Operation<types.CreateExclusionsPreviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateExclusionsPreview as schema.OperationSchema, input, options) as async.Operation<types.CreateExclusionsPreviewOutput>
 end
 
-function C:createResourceGroup(input: types.CreateResourceGroupInput, options: any): async.Operation<types.CreateResourceGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateResourceGroup, input, options) as async.Operation<types.CreateResourceGroupOutput>
+function C:createResourceGroup(input: types.CreateResourceGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateResourceGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateResourceGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateResourceGroupOutput>
 end
 
-function C:deleteAssessmentRun(input: types.DeleteAssessmentRunInput, options: any): async.Operation<types.DeleteAssessmentRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAssessmentRun, input, options) as async.Operation<types.DeleteAssessmentRunOutput>
+function C:deleteAssessmentRun(input: types.DeleteAssessmentRunInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAssessmentRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAssessmentRun as schema.OperationSchema, input, options) as async.Operation<types.DeleteAssessmentRunOutput>
 end
 
-function C:deleteAssessmentTarget(input: types.DeleteAssessmentTargetInput, options: any): async.Operation<types.DeleteAssessmentTargetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAssessmentTarget, input, options) as async.Operation<types.DeleteAssessmentTargetOutput>
+function C:deleteAssessmentTarget(input: types.DeleteAssessmentTargetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAssessmentTargetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAssessmentTarget as schema.OperationSchema, input, options) as async.Operation<types.DeleteAssessmentTargetOutput>
 end
 
-function C:deleteAssessmentTemplate(input: types.DeleteAssessmentTemplateInput, options: any): async.Operation<types.DeleteAssessmentTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAssessmentTemplate, input, options) as async.Operation<types.DeleteAssessmentTemplateOutput>
+function C:deleteAssessmentTemplate(input: types.DeleteAssessmentTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAssessmentTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAssessmentTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteAssessmentTemplateOutput>
 end
 
-function C:describeAssessmentRuns(input: types.DescribeAssessmentRunsInput, options: any): async.Operation<types.DescribeAssessmentRunsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAssessmentRuns, input, options) as async.Operation<types.DescribeAssessmentRunsOutput>
+function C:describeAssessmentRuns(input: types.DescribeAssessmentRunsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAssessmentRunsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAssessmentRuns as schema.OperationSchema, input, options) as async.Operation<types.DescribeAssessmentRunsOutput>
 end
 
-function C:describeAssessmentTargets(input: types.DescribeAssessmentTargetsInput, options: any): async.Operation<types.DescribeAssessmentTargetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAssessmentTargets, input, options) as async.Operation<types.DescribeAssessmentTargetsOutput>
+function C:describeAssessmentTargets(input: types.DescribeAssessmentTargetsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAssessmentTargetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAssessmentTargets as schema.OperationSchema, input, options) as async.Operation<types.DescribeAssessmentTargetsOutput>
 end
 
-function C:describeAssessmentTemplates(input: types.DescribeAssessmentTemplatesInput, options: any): async.Operation<types.DescribeAssessmentTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAssessmentTemplates, input, options) as async.Operation<types.DescribeAssessmentTemplatesOutput>
+function C:describeAssessmentTemplates(input: types.DescribeAssessmentTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAssessmentTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAssessmentTemplates as schema.OperationSchema, input, options) as async.Operation<types.DescribeAssessmentTemplatesOutput>
 end
 
-function C:describeCrossAccountAccessRole(input: types.DescribeCrossAccountAccessRoleInput, options: any): async.Operation<types.DescribeCrossAccountAccessRoleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCrossAccountAccessRole, input, options) as async.Operation<types.DescribeCrossAccountAccessRoleOutput>
+function C:describeCrossAccountAccessRole(input: types.DescribeCrossAccountAccessRoleInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCrossAccountAccessRoleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCrossAccountAccessRole as schema.OperationSchema, input, options) as async.Operation<types.DescribeCrossAccountAccessRoleOutput>
 end
 
-function C:describeExclusions(input: types.DescribeExclusionsInput, options: any): async.Operation<types.DescribeExclusionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeExclusions, input, options) as async.Operation<types.DescribeExclusionsOutput>
+function C:describeExclusions(input: types.DescribeExclusionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeExclusionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeExclusions as schema.OperationSchema, input, options) as async.Operation<types.DescribeExclusionsOutput>
 end
 
-function C:describeFindings(input: types.DescribeFindingsInput, options: any): async.Operation<types.DescribeFindingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFindings, input, options) as async.Operation<types.DescribeFindingsOutput>
+function C:describeFindings(input: types.DescribeFindingsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFindingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFindings as schema.OperationSchema, input, options) as async.Operation<types.DescribeFindingsOutput>
 end
 
-function C:describeResourceGroups(input: types.DescribeResourceGroupsInput, options: any): async.Operation<types.DescribeResourceGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeResourceGroups, input, options) as async.Operation<types.DescribeResourceGroupsOutput>
+function C:describeResourceGroups(input: types.DescribeResourceGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeResourceGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeResourceGroups as schema.OperationSchema, input, options) as async.Operation<types.DescribeResourceGroupsOutput>
 end
 
-function C:describeRulesPackages(input: types.DescribeRulesPackagesInput, options: any): async.Operation<types.DescribeRulesPackagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRulesPackages, input, options) as async.Operation<types.DescribeRulesPackagesOutput>
+function C:describeRulesPackages(input: types.DescribeRulesPackagesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRulesPackagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRulesPackages as schema.OperationSchema, input, options) as async.Operation<types.DescribeRulesPackagesOutput>
 end
 
-function C:getAssessmentReport(input: types.GetAssessmentReportInput, options: any): async.Operation<types.GetAssessmentReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAssessmentReport, input, options) as async.Operation<types.GetAssessmentReportOutput>
+function C:getAssessmentReport(input: types.GetAssessmentReportInput, options?: base_client.InvokeOptions): async.Operation<types.GetAssessmentReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAssessmentReport as schema.OperationSchema, input, options) as async.Operation<types.GetAssessmentReportOutput>
 end
 
-function C:getExclusionsPreview(input: types.GetExclusionsPreviewInput, options: any): async.Operation<types.GetExclusionsPreviewOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetExclusionsPreview, input, options) as async.Operation<types.GetExclusionsPreviewOutput>
+function C:getExclusionsPreview(input: types.GetExclusionsPreviewInput, options?: base_client.InvokeOptions): async.Operation<types.GetExclusionsPreviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetExclusionsPreview as schema.OperationSchema, input, options) as async.Operation<types.GetExclusionsPreviewOutput>
 end
 
-function C:getTelemetryMetadata(input: types.GetTelemetryMetadataInput, options: any): async.Operation<types.GetTelemetryMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTelemetryMetadata, input, options) as async.Operation<types.GetTelemetryMetadataOutput>
+function C:getTelemetryMetadata(input: types.GetTelemetryMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.GetTelemetryMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTelemetryMetadata as schema.OperationSchema, input, options) as async.Operation<types.GetTelemetryMetadataOutput>
 end
 
-function C:listAssessmentRunAgents(input: types.ListAssessmentRunAgentsInput, options: any): async.Operation<types.ListAssessmentRunAgentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssessmentRunAgents, input, options) as async.Operation<types.ListAssessmentRunAgentsOutput>
+function C:listAssessmentRunAgents(input: types.ListAssessmentRunAgentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssessmentRunAgentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssessmentRunAgents as schema.OperationSchema, input, options) as async.Operation<types.ListAssessmentRunAgentsOutput>
 end
 
-function C:listAssessmentRuns(input: types.ListAssessmentRunsInput, options: any): async.Operation<types.ListAssessmentRunsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssessmentRuns, input, options) as async.Operation<types.ListAssessmentRunsOutput>
+function C:listAssessmentRuns(input: types.ListAssessmentRunsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssessmentRunsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssessmentRuns as schema.OperationSchema, input, options) as async.Operation<types.ListAssessmentRunsOutput>
 end
 
-function C:listAssessmentTargets(input: types.ListAssessmentTargetsInput, options: any): async.Operation<types.ListAssessmentTargetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssessmentTargets, input, options) as async.Operation<types.ListAssessmentTargetsOutput>
+function C:listAssessmentTargets(input: types.ListAssessmentTargetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssessmentTargetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssessmentTargets as schema.OperationSchema, input, options) as async.Operation<types.ListAssessmentTargetsOutput>
 end
 
-function C:listAssessmentTemplates(input: types.ListAssessmentTemplatesInput, options: any): async.Operation<types.ListAssessmentTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssessmentTemplates, input, options) as async.Operation<types.ListAssessmentTemplatesOutput>
+function C:listAssessmentTemplates(input: types.ListAssessmentTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssessmentTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssessmentTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListAssessmentTemplatesOutput>
 end
 
-function C:listEventSubscriptions(input: types.ListEventSubscriptionsInput, options: any): async.Operation<types.ListEventSubscriptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEventSubscriptions, input, options) as async.Operation<types.ListEventSubscriptionsOutput>
+function C:listEventSubscriptions(input: types.ListEventSubscriptionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEventSubscriptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEventSubscriptions as schema.OperationSchema, input, options) as async.Operation<types.ListEventSubscriptionsOutput>
 end
 
-function C:listExclusions(input: types.ListExclusionsInput, options: any): async.Operation<types.ListExclusionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListExclusions, input, options) as async.Operation<types.ListExclusionsOutput>
+function C:listExclusions(input: types.ListExclusionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExclusionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExclusions as schema.OperationSchema, input, options) as async.Operation<types.ListExclusionsOutput>
 end
 
-function C:listFindings(input: types.ListFindingsInput, options: any): async.Operation<types.ListFindingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFindings, input, options) as async.Operation<types.ListFindingsOutput>
+function C:listFindings(input: types.ListFindingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFindingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFindings as schema.OperationSchema, input, options) as async.Operation<types.ListFindingsOutput>
 end
 
-function C:listRulesPackages(input: types.ListRulesPackagesInput, options: any): async.Operation<types.ListRulesPackagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRulesPackages, input, options) as async.Operation<types.ListRulesPackagesOutput>
+function C:listRulesPackages(input: types.ListRulesPackagesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRulesPackagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRulesPackages as schema.OperationSchema, input, options) as async.Operation<types.ListRulesPackagesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:previewAgents(input: types.PreviewAgentsInput, options: any): async.Operation<types.PreviewAgentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PreviewAgents, input, options) as async.Operation<types.PreviewAgentsOutput>
+function C:previewAgents(input: types.PreviewAgentsInput, options?: base_client.InvokeOptions): async.Operation<types.PreviewAgentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PreviewAgents as schema.OperationSchema, input, options) as async.Operation<types.PreviewAgentsOutput>
 end
 
-function C:registerCrossAccountAccessRole(input: types.RegisterCrossAccountAccessRoleInput, options: any): async.Operation<types.RegisterCrossAccountAccessRoleOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterCrossAccountAccessRole, input, options) as async.Operation<types.RegisterCrossAccountAccessRoleOutput>
+function C:registerCrossAccountAccessRole(input: types.RegisterCrossAccountAccessRoleInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterCrossAccountAccessRoleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterCrossAccountAccessRole as schema.OperationSchema, input, options) as async.Operation<types.RegisterCrossAccountAccessRoleOutput>
 end
 
-function C:removeAttributesFromFindings(input: types.RemoveAttributesFromFindingsInput, options: any): async.Operation<types.RemoveAttributesFromFindingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveAttributesFromFindings, input, options) as async.Operation<types.RemoveAttributesFromFindingsOutput>
+function C:removeAttributesFromFindings(input: types.RemoveAttributesFromFindingsInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveAttributesFromFindingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveAttributesFromFindings as schema.OperationSchema, input, options) as async.Operation<types.RemoveAttributesFromFindingsOutput>
 end
 
-function C:setTagsForResource(input: types.SetTagsForResourceInput, options: any): async.Operation<types.SetTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetTagsForResource, input, options) as async.Operation<types.SetTagsForResourceOutput>
+function C:setTagsForResource(input: types.SetTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.SetTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.SetTagsForResourceOutput>
 end
 
-function C:startAssessmentRun(input: types.StartAssessmentRunInput, options: any): async.Operation<types.StartAssessmentRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartAssessmentRun, input, options) as async.Operation<types.StartAssessmentRunOutput>
+function C:startAssessmentRun(input: types.StartAssessmentRunInput, options?: base_client.InvokeOptions): async.Operation<types.StartAssessmentRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartAssessmentRun as schema.OperationSchema, input, options) as async.Operation<types.StartAssessmentRunOutput>
 end
 
-function C:stopAssessmentRun(input: types.StopAssessmentRunInput, options: any): async.Operation<types.StopAssessmentRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopAssessmentRun, input, options) as async.Operation<types.StopAssessmentRunOutput>
+function C:stopAssessmentRun(input: types.StopAssessmentRunInput, options?: base_client.InvokeOptions): async.Operation<types.StopAssessmentRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopAssessmentRun as schema.OperationSchema, input, options) as async.Operation<types.StopAssessmentRunOutput>
 end
 
-function C:subscribeToEvent(input: types.SubscribeToEventInput, options: any): async.Operation<types.SubscribeToEventOutput>
-    return self:invokeOperation(schemas.Service, schemas.SubscribeToEvent, input, options) as async.Operation<types.SubscribeToEventOutput>
+function C:subscribeToEvent(input: types.SubscribeToEventInput, options?: base_client.InvokeOptions): async.Operation<types.SubscribeToEventOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SubscribeToEvent as schema.OperationSchema, input, options) as async.Operation<types.SubscribeToEventOutput>
 end
 
-function C:unsubscribeFromEvent(input: types.UnsubscribeFromEventInput, options: any): async.Operation<types.UnsubscribeFromEventOutput>
-    return self:invokeOperation(schemas.Service, schemas.UnsubscribeFromEvent, input, options) as async.Operation<types.UnsubscribeFromEventOutput>
+function C:unsubscribeFromEvent(input: types.UnsubscribeFromEventInput, options?: base_client.InvokeOptions): async.Operation<types.UnsubscribeFromEventOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UnsubscribeFromEvent as schema.OperationSchema, input, options) as async.Operation<types.UnsubscribeFromEventOutput>
 end
 
-function C:updateAssessmentTarget(input: types.UpdateAssessmentTargetInput, options: any): async.Operation<types.UpdateAssessmentTargetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAssessmentTarget, input, options) as async.Operation<types.UpdateAssessmentTargetOutput>
+function C:updateAssessmentTarget(input: types.UpdateAssessmentTargetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAssessmentTargetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAssessmentTarget as schema.OperationSchema, input, options) as async.Operation<types.UpdateAssessmentTargetOutput>
 end
 
 return M

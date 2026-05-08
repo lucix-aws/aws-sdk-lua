@@ -8,135 +8,138 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("storagegateway.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("storagegateway.schemas")
 local traits = require("smithy.traits")
 local types = require("storagegateway.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    activateGateway: function(Client, types.ActivateGatewayInput, any): async.Operation<types.ActivateGatewayOutput>
-    addCache: function(Client, types.AddCacheInput, any): async.Operation<types.AddCacheOutput>
-    addTagsToResource: function(Client, types.AddTagsToResourceInput, any): async.Operation<types.AddTagsToResourceOutput>
-    addUploadBuffer: function(Client, types.AddUploadBufferInput, any): async.Operation<types.AddUploadBufferOutput>
-    addWorkingStorage: function(Client, types.AddWorkingStorageInput, any): async.Operation<types.AddWorkingStorageOutput>
-    assignTapePool: function(Client, types.AssignTapePoolInput, any): async.Operation<types.AssignTapePoolOutput>
-    associateFileSystem: function(Client, types.AssociateFileSystemInput, any): async.Operation<types.AssociateFileSystemOutput>
-    attachVolume: function(Client, types.AttachVolumeInput, any): async.Operation<types.AttachVolumeOutput>
-    cancelArchival: function(Client, types.CancelArchivalInput, any): async.Operation<types.CancelArchivalOutput>
-    cancelCacheReport: function(Client, types.CancelCacheReportInput, any): async.Operation<types.CancelCacheReportOutput>
-    cancelRetrieval: function(Client, types.CancelRetrievalInput, any): async.Operation<types.CancelRetrievalOutput>
-    createCachediSCSIVolume: function(Client, types.CreateCachediSCSIVolumeInput, any): async.Operation<types.CreateCachediSCSIVolumeOutput>
-    createNFSFileShare: function(Client, types.CreateNFSFileShareInput, any): async.Operation<types.CreateNFSFileShareOutput>
-    createSMBFileShare: function(Client, types.CreateSMBFileShareInput, any): async.Operation<types.CreateSMBFileShareOutput>
-    createSnapshot: function(Client, types.CreateSnapshotInput, any): async.Operation<types.CreateSnapshotOutput>
-    createSnapshotFromVolumeRecoveryPoint: function(Client, types.CreateSnapshotFromVolumeRecoveryPointInput, any): async.Operation<types.CreateSnapshotFromVolumeRecoveryPointOutput>
-    createStorediSCSIVolume: function(Client, types.CreateStorediSCSIVolumeInput, any): async.Operation<types.CreateStorediSCSIVolumeOutput>
-    createTapePool: function(Client, types.CreateTapePoolInput, any): async.Operation<types.CreateTapePoolOutput>
-    createTapes: function(Client, types.CreateTapesInput, any): async.Operation<types.CreateTapesOutput>
-    createTapeWithBarcode: function(Client, types.CreateTapeWithBarcodeInput, any): async.Operation<types.CreateTapeWithBarcodeOutput>
-    deleteAutomaticTapeCreationPolicy: function(Client, types.DeleteAutomaticTapeCreationPolicyInput, any): async.Operation<types.DeleteAutomaticTapeCreationPolicyOutput>
-    deleteBandwidthRateLimit: function(Client, types.DeleteBandwidthRateLimitInput, any): async.Operation<types.DeleteBandwidthRateLimitOutput>
-    deleteCacheReport: function(Client, types.DeleteCacheReportInput, any): async.Operation<types.DeleteCacheReportOutput>
-    deleteChapCredentials: function(Client, types.DeleteChapCredentialsInput, any): async.Operation<types.DeleteChapCredentialsOutput>
-    deleteFileShare: function(Client, types.DeleteFileShareInput, any): async.Operation<types.DeleteFileShareOutput>
-    deleteGateway: function(Client, types.DeleteGatewayInput, any): async.Operation<types.DeleteGatewayOutput>
-    deleteSnapshotSchedule: function(Client, types.DeleteSnapshotScheduleInput, any): async.Operation<types.DeleteSnapshotScheduleOutput>
-    deleteTape: function(Client, types.DeleteTapeInput, any): async.Operation<types.DeleteTapeOutput>
-    deleteTapeArchive: function(Client, types.DeleteTapeArchiveInput, any): async.Operation<types.DeleteTapeArchiveOutput>
-    deleteTapePool: function(Client, types.DeleteTapePoolInput, any): async.Operation<types.DeleteTapePoolOutput>
-    deleteVolume: function(Client, types.DeleteVolumeInput, any): async.Operation<types.DeleteVolumeOutput>
-    describeAvailabilityMonitorTest: function(Client, types.DescribeAvailabilityMonitorTestInput, any): async.Operation<types.DescribeAvailabilityMonitorTestOutput>
-    describeBandwidthRateLimit: function(Client, types.DescribeBandwidthRateLimitInput, any): async.Operation<types.DescribeBandwidthRateLimitOutput>
-    describeBandwidthRateLimitSchedule: function(Client, types.DescribeBandwidthRateLimitScheduleInput, any): async.Operation<types.DescribeBandwidthRateLimitScheduleOutput>
-    describeCache: function(Client, types.DescribeCacheInput, any): async.Operation<types.DescribeCacheOutput>
-    describeCachediSCSIVolumes: function(Client, types.DescribeCachediSCSIVolumesInput, any): async.Operation<types.DescribeCachediSCSIVolumesOutput>
-    describeCacheReport: function(Client, types.DescribeCacheReportInput, any): async.Operation<types.DescribeCacheReportOutput>
-    describeChapCredentials: function(Client, types.DescribeChapCredentialsInput, any): async.Operation<types.DescribeChapCredentialsOutput>
-    describeFileSystemAssociations: function(Client, types.DescribeFileSystemAssociationsInput, any): async.Operation<types.DescribeFileSystemAssociationsOutput>
-    describeGatewayInformation: function(Client, types.DescribeGatewayInformationInput, any): async.Operation<types.DescribeGatewayInformationOutput>
-    describeMaintenanceStartTime: function(Client, types.DescribeMaintenanceStartTimeInput, any): async.Operation<types.DescribeMaintenanceStartTimeOutput>
-    describeNFSFileShares: function(Client, types.DescribeNFSFileSharesInput, any): async.Operation<types.DescribeNFSFileSharesOutput>
-    describeSMBFileShares: function(Client, types.DescribeSMBFileSharesInput, any): async.Operation<types.DescribeSMBFileSharesOutput>
-    describeSMBSettings: function(Client, types.DescribeSMBSettingsInput, any): async.Operation<types.DescribeSMBSettingsOutput>
-    describeSnapshotSchedule: function(Client, types.DescribeSnapshotScheduleInput, any): async.Operation<types.DescribeSnapshotScheduleOutput>
-    describeStorediSCSIVolumes: function(Client, types.DescribeStorediSCSIVolumesInput, any): async.Operation<types.DescribeStorediSCSIVolumesOutput>
-    describeTapeArchives: function(Client, types.DescribeTapeArchivesInput, any): async.Operation<types.DescribeTapeArchivesOutput>
-    describeTapeRecoveryPoints: function(Client, types.DescribeTapeRecoveryPointsInput, any): async.Operation<types.DescribeTapeRecoveryPointsOutput>
-    describeTapes: function(Client, types.DescribeTapesInput, any): async.Operation<types.DescribeTapesOutput>
-    describeUploadBuffer: function(Client, types.DescribeUploadBufferInput, any): async.Operation<types.DescribeUploadBufferOutput>
-    describeVTLDevices: function(Client, types.DescribeVTLDevicesInput, any): async.Operation<types.DescribeVTLDevicesOutput>
-    describeWorkingStorage: function(Client, types.DescribeWorkingStorageInput, any): async.Operation<types.DescribeWorkingStorageOutput>
-    detachVolume: function(Client, types.DetachVolumeInput, any): async.Operation<types.DetachVolumeOutput>
-    disableGateway: function(Client, types.DisableGatewayInput, any): async.Operation<types.DisableGatewayOutput>
-    disassociateFileSystem: function(Client, types.DisassociateFileSystemInput, any): async.Operation<types.DisassociateFileSystemOutput>
-    evictFilesFailingUpload: function(Client, types.EvictFilesFailingUploadInput, any): async.Operation<types.EvictFilesFailingUploadOutput>
-    joinDomain: function(Client, types.JoinDomainInput, any): async.Operation<types.JoinDomainOutput>
-    listAutomaticTapeCreationPolicies: function(Client, types.ListAutomaticTapeCreationPoliciesInput, any): async.Operation<types.ListAutomaticTapeCreationPoliciesOutput>
-    listCacheReports: function(Client, types.ListCacheReportsInput, any): async.Operation<types.ListCacheReportsOutput>
-    listFileShares: function(Client, types.ListFileSharesInput, any): async.Operation<types.ListFileSharesOutput>
-    listFileSystemAssociations: function(Client, types.ListFileSystemAssociationsInput, any): async.Operation<types.ListFileSystemAssociationsOutput>
-    listGateways: function(Client, types.ListGatewaysInput, any): async.Operation<types.ListGatewaysOutput>
-    listLocalDisks: function(Client, types.ListLocalDisksInput, any): async.Operation<types.ListLocalDisksOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTapePools: function(Client, types.ListTapePoolsInput, any): async.Operation<types.ListTapePoolsOutput>
-    listTapes: function(Client, types.ListTapesInput, any): async.Operation<types.ListTapesOutput>
-    listVolumeInitiators: function(Client, types.ListVolumeInitiatorsInput, any): async.Operation<types.ListVolumeInitiatorsOutput>
-    listVolumeRecoveryPoints: function(Client, types.ListVolumeRecoveryPointsInput, any): async.Operation<types.ListVolumeRecoveryPointsOutput>
-    listVolumes: function(Client, types.ListVolumesInput, any): async.Operation<types.ListVolumesOutput>
-    notifyWhenUploaded: function(Client, types.NotifyWhenUploadedInput, any): async.Operation<types.NotifyWhenUploadedOutput>
-    refreshCache: function(Client, types.RefreshCacheInput, any): async.Operation<types.RefreshCacheOutput>
-    removeTagsFromResource: function(Client, types.RemoveTagsFromResourceInput, any): async.Operation<types.RemoveTagsFromResourceOutput>
-    resetCache: function(Client, types.ResetCacheInput, any): async.Operation<types.ResetCacheOutput>
-    retrieveTapeArchive: function(Client, types.RetrieveTapeArchiveInput, any): async.Operation<types.RetrieveTapeArchiveOutput>
-    retrieveTapeRecoveryPoint: function(Client, types.RetrieveTapeRecoveryPointInput, any): async.Operation<types.RetrieveTapeRecoveryPointOutput>
-    setLocalConsolePassword: function(Client, types.SetLocalConsolePasswordInput, any): async.Operation<types.SetLocalConsolePasswordOutput>
-    setSMBGuestPassword: function(Client, types.SetSMBGuestPasswordInput, any): async.Operation<types.SetSMBGuestPasswordOutput>
-    shutdownGateway: function(Client, types.ShutdownGatewayInput, any): async.Operation<types.ShutdownGatewayOutput>
-    startAvailabilityMonitorTest: function(Client, types.StartAvailabilityMonitorTestInput, any): async.Operation<types.StartAvailabilityMonitorTestOutput>
-    startCacheReport: function(Client, types.StartCacheReportInput, any): async.Operation<types.StartCacheReportOutput>
-    startGateway: function(Client, types.StartGatewayInput, any): async.Operation<types.StartGatewayOutput>
-    updateAutomaticTapeCreationPolicy: function(Client, types.UpdateAutomaticTapeCreationPolicyInput, any): async.Operation<types.UpdateAutomaticTapeCreationPolicyOutput>
-    updateBandwidthRateLimit: function(Client, types.UpdateBandwidthRateLimitInput, any): async.Operation<types.UpdateBandwidthRateLimitOutput>
-    updateBandwidthRateLimitSchedule: function(Client, types.UpdateBandwidthRateLimitScheduleInput, any): async.Operation<types.UpdateBandwidthRateLimitScheduleOutput>
-    updateChapCredentials: function(Client, types.UpdateChapCredentialsInput, any): async.Operation<types.UpdateChapCredentialsOutput>
-    updateFileSystemAssociation: function(Client, types.UpdateFileSystemAssociationInput, any): async.Operation<types.UpdateFileSystemAssociationOutput>
-    updateGatewayInformation: function(Client, types.UpdateGatewayInformationInput, any): async.Operation<types.UpdateGatewayInformationOutput>
-    updateGatewaySoftwareNow: function(Client, types.UpdateGatewaySoftwareNowInput, any): async.Operation<types.UpdateGatewaySoftwareNowOutput>
-    updateMaintenanceStartTime: function(Client, types.UpdateMaintenanceStartTimeInput, any): async.Operation<types.UpdateMaintenanceStartTimeOutput>
-    updateNFSFileShare: function(Client, types.UpdateNFSFileShareInput, any): async.Operation<types.UpdateNFSFileShareOutput>
-    updateSMBFileShare: function(Client, types.UpdateSMBFileShareInput, any): async.Operation<types.UpdateSMBFileShareOutput>
-    updateSMBFileShareVisibility: function(Client, types.UpdateSMBFileShareVisibilityInput, any): async.Operation<types.UpdateSMBFileShareVisibilityOutput>
-    updateSMBLocalGroups: function(Client, types.UpdateSMBLocalGroupsInput, any): async.Operation<types.UpdateSMBLocalGroupsOutput>
-    updateSMBSecurityStrategy: function(Client, types.UpdateSMBSecurityStrategyInput, any): async.Operation<types.UpdateSMBSecurityStrategyOutput>
-    updateSnapshotSchedule: function(Client, types.UpdateSnapshotScheduleInput, any): async.Operation<types.UpdateSnapshotScheduleOutput>
-    updateVTLDeviceType: function(Client, types.UpdateVTLDeviceTypeInput, any): async.Operation<types.UpdateVTLDeviceTypeOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    activateGateway: function(Client, types.ActivateGatewayInput, ? base_client.InvokeOptions): async.Operation<types.ActivateGatewayOutput>
+    addCache: function(Client, types.AddCacheInput, ? base_client.InvokeOptions): async.Operation<types.AddCacheOutput>
+    addTagsToResource: function(Client, types.AddTagsToResourceInput, ? base_client.InvokeOptions): async.Operation<types.AddTagsToResourceOutput>
+    addUploadBuffer: function(Client, types.AddUploadBufferInput, ? base_client.InvokeOptions): async.Operation<types.AddUploadBufferOutput>
+    addWorkingStorage: function(Client, types.AddWorkingStorageInput, ? base_client.InvokeOptions): async.Operation<types.AddWorkingStorageOutput>
+    assignTapePool: function(Client, types.AssignTapePoolInput, ? base_client.InvokeOptions): async.Operation<types.AssignTapePoolOutput>
+    associateFileSystem: function(Client, types.AssociateFileSystemInput, ? base_client.InvokeOptions): async.Operation<types.AssociateFileSystemOutput>
+    attachVolume: function(Client, types.AttachVolumeInput, ? base_client.InvokeOptions): async.Operation<types.AttachVolumeOutput>
+    cancelArchival: function(Client, types.CancelArchivalInput, ? base_client.InvokeOptions): async.Operation<types.CancelArchivalOutput>
+    cancelCacheReport: function(Client, types.CancelCacheReportInput, ? base_client.InvokeOptions): async.Operation<types.CancelCacheReportOutput>
+    cancelRetrieval: function(Client, types.CancelRetrievalInput, ? base_client.InvokeOptions): async.Operation<types.CancelRetrievalOutput>
+    createCachediSCSIVolume: function(Client, types.CreateCachediSCSIVolumeInput, ? base_client.InvokeOptions): async.Operation<types.CreateCachediSCSIVolumeOutput>
+    createNFSFileShare: function(Client, types.CreateNFSFileShareInput, ? base_client.InvokeOptions): async.Operation<types.CreateNFSFileShareOutput>
+    createSMBFileShare: function(Client, types.CreateSMBFileShareInput, ? base_client.InvokeOptions): async.Operation<types.CreateSMBFileShareOutput>
+    createSnapshot: function(Client, types.CreateSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.CreateSnapshotOutput>
+    createSnapshotFromVolumeRecoveryPoint: function(Client, types.CreateSnapshotFromVolumeRecoveryPointInput, ? base_client.InvokeOptions): async.Operation<types.CreateSnapshotFromVolumeRecoveryPointOutput>
+    createStorediSCSIVolume: function(Client, types.CreateStorediSCSIVolumeInput, ? base_client.InvokeOptions): async.Operation<types.CreateStorediSCSIVolumeOutput>
+    createTapePool: function(Client, types.CreateTapePoolInput, ? base_client.InvokeOptions): async.Operation<types.CreateTapePoolOutput>
+    createTapes: function(Client, types.CreateTapesInput, ? base_client.InvokeOptions): async.Operation<types.CreateTapesOutput>
+    createTapeWithBarcode: function(Client, types.CreateTapeWithBarcodeInput, ? base_client.InvokeOptions): async.Operation<types.CreateTapeWithBarcodeOutput>
+    deleteAutomaticTapeCreationPolicy: function(Client, types.DeleteAutomaticTapeCreationPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAutomaticTapeCreationPolicyOutput>
+    deleteBandwidthRateLimit: function(Client, types.DeleteBandwidthRateLimitInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBandwidthRateLimitOutput>
+    deleteCacheReport: function(Client, types.DeleteCacheReportInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCacheReportOutput>
+    deleteChapCredentials: function(Client, types.DeleteChapCredentialsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteChapCredentialsOutput>
+    deleteFileShare: function(Client, types.DeleteFileShareInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFileShareOutput>
+    deleteGateway: function(Client, types.DeleteGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGatewayOutput>
+    deleteSnapshotSchedule: function(Client, types.DeleteSnapshotScheduleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSnapshotScheduleOutput>
+    deleteTape: function(Client, types.DeleteTapeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTapeOutput>
+    deleteTapeArchive: function(Client, types.DeleteTapeArchiveInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTapeArchiveOutput>
+    deleteTapePool: function(Client, types.DeleteTapePoolInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTapePoolOutput>
+    deleteVolume: function(Client, types.DeleteVolumeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVolumeOutput>
+    describeAvailabilityMonitorTest: function(Client, types.DescribeAvailabilityMonitorTestInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAvailabilityMonitorTestOutput>
+    describeBandwidthRateLimit: function(Client, types.DescribeBandwidthRateLimitInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBandwidthRateLimitOutput>
+    describeBandwidthRateLimitSchedule: function(Client, types.DescribeBandwidthRateLimitScheduleInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBandwidthRateLimitScheduleOutput>
+    describeCache: function(Client, types.DescribeCacheInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCacheOutput>
+    describeCachediSCSIVolumes: function(Client, types.DescribeCachediSCSIVolumesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCachediSCSIVolumesOutput>
+    describeCacheReport: function(Client, types.DescribeCacheReportInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCacheReportOutput>
+    describeChapCredentials: function(Client, types.DescribeChapCredentialsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeChapCredentialsOutput>
+    describeFileSystemAssociations: function(Client, types.DescribeFileSystemAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFileSystemAssociationsOutput>
+    describeGatewayInformation: function(Client, types.DescribeGatewayInformationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeGatewayInformationOutput>
+    describeMaintenanceStartTime: function(Client, types.DescribeMaintenanceStartTimeInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMaintenanceStartTimeOutput>
+    describeNFSFileShares: function(Client, types.DescribeNFSFileSharesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNFSFileSharesOutput>
+    describeSMBFileShares: function(Client, types.DescribeSMBFileSharesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSMBFileSharesOutput>
+    describeSMBSettings: function(Client, types.DescribeSMBSettingsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSMBSettingsOutput>
+    describeSnapshotSchedule: function(Client, types.DescribeSnapshotScheduleInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSnapshotScheduleOutput>
+    describeStorediSCSIVolumes: function(Client, types.DescribeStorediSCSIVolumesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeStorediSCSIVolumesOutput>
+    describeTapeArchives: function(Client, types.DescribeTapeArchivesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTapeArchivesOutput>
+    describeTapeRecoveryPoints: function(Client, types.DescribeTapeRecoveryPointsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTapeRecoveryPointsOutput>
+    describeTapes: function(Client, types.DescribeTapesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTapesOutput>
+    describeUploadBuffer: function(Client, types.DescribeUploadBufferInput, ? base_client.InvokeOptions): async.Operation<types.DescribeUploadBufferOutput>
+    describeVTLDevices: function(Client, types.DescribeVTLDevicesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVTLDevicesOutput>
+    describeWorkingStorage: function(Client, types.DescribeWorkingStorageInput, ? base_client.InvokeOptions): async.Operation<types.DescribeWorkingStorageOutput>
+    detachVolume: function(Client, types.DetachVolumeInput, ? base_client.InvokeOptions): async.Operation<types.DetachVolumeOutput>
+    disableGateway: function(Client, types.DisableGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DisableGatewayOutput>
+    disassociateFileSystem: function(Client, types.DisassociateFileSystemInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateFileSystemOutput>
+    evictFilesFailingUpload: function(Client, types.EvictFilesFailingUploadInput, ? base_client.InvokeOptions): async.Operation<types.EvictFilesFailingUploadOutput>
+    joinDomain: function(Client, types.JoinDomainInput, ? base_client.InvokeOptions): async.Operation<types.JoinDomainOutput>
+    listAutomaticTapeCreationPolicies: function(Client, types.ListAutomaticTapeCreationPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListAutomaticTapeCreationPoliciesOutput>
+    listCacheReports: function(Client, types.ListCacheReportsInput, ? base_client.InvokeOptions): async.Operation<types.ListCacheReportsOutput>
+    listFileShares: function(Client, types.ListFileSharesInput, ? base_client.InvokeOptions): async.Operation<types.ListFileSharesOutput>
+    listFileSystemAssociations: function(Client, types.ListFileSystemAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListFileSystemAssociationsOutput>
+    listGateways: function(Client, types.ListGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.ListGatewaysOutput>
+    listLocalDisks: function(Client, types.ListLocalDisksInput, ? base_client.InvokeOptions): async.Operation<types.ListLocalDisksOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTapePools: function(Client, types.ListTapePoolsInput, ? base_client.InvokeOptions): async.Operation<types.ListTapePoolsOutput>
+    listTapes: function(Client, types.ListTapesInput, ? base_client.InvokeOptions): async.Operation<types.ListTapesOutput>
+    listVolumeInitiators: function(Client, types.ListVolumeInitiatorsInput, ? base_client.InvokeOptions): async.Operation<types.ListVolumeInitiatorsOutput>
+    listVolumeRecoveryPoints: function(Client, types.ListVolumeRecoveryPointsInput, ? base_client.InvokeOptions): async.Operation<types.ListVolumeRecoveryPointsOutput>
+    listVolumes: function(Client, types.ListVolumesInput, ? base_client.InvokeOptions): async.Operation<types.ListVolumesOutput>
+    notifyWhenUploaded: function(Client, types.NotifyWhenUploadedInput, ? base_client.InvokeOptions): async.Operation<types.NotifyWhenUploadedOutput>
+    refreshCache: function(Client, types.RefreshCacheInput, ? base_client.InvokeOptions): async.Operation<types.RefreshCacheOutput>
+    removeTagsFromResource: function(Client, types.RemoveTagsFromResourceInput, ? base_client.InvokeOptions): async.Operation<types.RemoveTagsFromResourceOutput>
+    resetCache: function(Client, types.ResetCacheInput, ? base_client.InvokeOptions): async.Operation<types.ResetCacheOutput>
+    retrieveTapeArchive: function(Client, types.RetrieveTapeArchiveInput, ? base_client.InvokeOptions): async.Operation<types.RetrieveTapeArchiveOutput>
+    retrieveTapeRecoveryPoint: function(Client, types.RetrieveTapeRecoveryPointInput, ? base_client.InvokeOptions): async.Operation<types.RetrieveTapeRecoveryPointOutput>
+    setLocalConsolePassword: function(Client, types.SetLocalConsolePasswordInput, ? base_client.InvokeOptions): async.Operation<types.SetLocalConsolePasswordOutput>
+    setSMBGuestPassword: function(Client, types.SetSMBGuestPasswordInput, ? base_client.InvokeOptions): async.Operation<types.SetSMBGuestPasswordOutput>
+    shutdownGateway: function(Client, types.ShutdownGatewayInput, ? base_client.InvokeOptions): async.Operation<types.ShutdownGatewayOutput>
+    startAvailabilityMonitorTest: function(Client, types.StartAvailabilityMonitorTestInput, ? base_client.InvokeOptions): async.Operation<types.StartAvailabilityMonitorTestOutput>
+    startCacheReport: function(Client, types.StartCacheReportInput, ? base_client.InvokeOptions): async.Operation<types.StartCacheReportOutput>
+    startGateway: function(Client, types.StartGatewayInput, ? base_client.InvokeOptions): async.Operation<types.StartGatewayOutput>
+    updateAutomaticTapeCreationPolicy: function(Client, types.UpdateAutomaticTapeCreationPolicyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAutomaticTapeCreationPolicyOutput>
+    updateBandwidthRateLimit: function(Client, types.UpdateBandwidthRateLimitInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBandwidthRateLimitOutput>
+    updateBandwidthRateLimitSchedule: function(Client, types.UpdateBandwidthRateLimitScheduleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBandwidthRateLimitScheduleOutput>
+    updateChapCredentials: function(Client, types.UpdateChapCredentialsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateChapCredentialsOutput>
+    updateFileSystemAssociation: function(Client, types.UpdateFileSystemAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFileSystemAssociationOutput>
+    updateGatewayInformation: function(Client, types.UpdateGatewayInformationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGatewayInformationOutput>
+    updateGatewaySoftwareNow: function(Client, types.UpdateGatewaySoftwareNowInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGatewaySoftwareNowOutput>
+    updateMaintenanceStartTime: function(Client, types.UpdateMaintenanceStartTimeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMaintenanceStartTimeOutput>
+    updateNFSFileShare: function(Client, types.UpdateNFSFileShareInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNFSFileShareOutput>
+    updateSMBFileShare: function(Client, types.UpdateSMBFileShareInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSMBFileShareOutput>
+    updateSMBFileShareVisibility: function(Client, types.UpdateSMBFileShareVisibilityInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSMBFileShareVisibilityOutput>
+    updateSMBLocalGroups: function(Client, types.UpdateSMBLocalGroupsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSMBLocalGroupsOutput>
+    updateSMBSecurityStrategy: function(Client, types.UpdateSMBSecurityStrategyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSMBSecurityStrategyOutput>
+    updateSnapshotSchedule: function(Client, types.UpdateSnapshotScheduleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSnapshotScheduleOutput>
+    updateVTLDeviceType: function(Client, types.UpdateVTLDeviceTypeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateVTLDeviceTypeOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "StorageGateway_20130630"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "storagegateway", signing_region = c.region } }
                 else
@@ -155,388 +158,388 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:activateGateway(input: types.ActivateGatewayInput, options: any): async.Operation<types.ActivateGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.ActivateGateway, input, options) as async.Operation<types.ActivateGatewayOutput>
+function C:activateGateway(input: types.ActivateGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.ActivateGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ActivateGateway as schema.OperationSchema, input, options) as async.Operation<types.ActivateGatewayOutput>
 end
 
-function C:addCache(input: types.AddCacheInput, options: any): async.Operation<types.AddCacheOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddCache, input, options) as async.Operation<types.AddCacheOutput>
+function C:addCache(input: types.AddCacheInput, options?: base_client.InvokeOptions): async.Operation<types.AddCacheOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddCache as schema.OperationSchema, input, options) as async.Operation<types.AddCacheOutput>
 end
 
-function C:addTagsToResource(input: types.AddTagsToResourceInput, options: any): async.Operation<types.AddTagsToResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddTagsToResource, input, options) as async.Operation<types.AddTagsToResourceOutput>
+function C:addTagsToResource(input: types.AddTagsToResourceInput, options?: base_client.InvokeOptions): async.Operation<types.AddTagsToResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddTagsToResource as schema.OperationSchema, input, options) as async.Operation<types.AddTagsToResourceOutput>
 end
 
-function C:addUploadBuffer(input: types.AddUploadBufferInput, options: any): async.Operation<types.AddUploadBufferOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddUploadBuffer, input, options) as async.Operation<types.AddUploadBufferOutput>
+function C:addUploadBuffer(input: types.AddUploadBufferInput, options?: base_client.InvokeOptions): async.Operation<types.AddUploadBufferOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddUploadBuffer as schema.OperationSchema, input, options) as async.Operation<types.AddUploadBufferOutput>
 end
 
-function C:addWorkingStorage(input: types.AddWorkingStorageInput, options: any): async.Operation<types.AddWorkingStorageOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddWorkingStorage, input, options) as async.Operation<types.AddWorkingStorageOutput>
+function C:addWorkingStorage(input: types.AddWorkingStorageInput, options?: base_client.InvokeOptions): async.Operation<types.AddWorkingStorageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddWorkingStorage as schema.OperationSchema, input, options) as async.Operation<types.AddWorkingStorageOutput>
 end
 
-function C:assignTapePool(input: types.AssignTapePoolInput, options: any): async.Operation<types.AssignTapePoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssignTapePool, input, options) as async.Operation<types.AssignTapePoolOutput>
+function C:assignTapePool(input: types.AssignTapePoolInput, options?: base_client.InvokeOptions): async.Operation<types.AssignTapePoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssignTapePool as schema.OperationSchema, input, options) as async.Operation<types.AssignTapePoolOutput>
 end
 
-function C:associateFileSystem(input: types.AssociateFileSystemInput, options: any): async.Operation<types.AssociateFileSystemOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateFileSystem, input, options) as async.Operation<types.AssociateFileSystemOutput>
+function C:associateFileSystem(input: types.AssociateFileSystemInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateFileSystemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateFileSystem as schema.OperationSchema, input, options) as async.Operation<types.AssociateFileSystemOutput>
 end
 
-function C:attachVolume(input: types.AttachVolumeInput, options: any): async.Operation<types.AttachVolumeOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachVolume, input, options) as async.Operation<types.AttachVolumeOutput>
+function C:attachVolume(input: types.AttachVolumeInput, options?: base_client.InvokeOptions): async.Operation<types.AttachVolumeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachVolume as schema.OperationSchema, input, options) as async.Operation<types.AttachVolumeOutput>
 end
 
-function C:cancelArchival(input: types.CancelArchivalInput, options: any): async.Operation<types.CancelArchivalOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelArchival, input, options) as async.Operation<types.CancelArchivalOutput>
+function C:cancelArchival(input: types.CancelArchivalInput, options?: base_client.InvokeOptions): async.Operation<types.CancelArchivalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelArchival as schema.OperationSchema, input, options) as async.Operation<types.CancelArchivalOutput>
 end
 
-function C:cancelCacheReport(input: types.CancelCacheReportInput, options: any): async.Operation<types.CancelCacheReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelCacheReport, input, options) as async.Operation<types.CancelCacheReportOutput>
+function C:cancelCacheReport(input: types.CancelCacheReportInput, options?: base_client.InvokeOptions): async.Operation<types.CancelCacheReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelCacheReport as schema.OperationSchema, input, options) as async.Operation<types.CancelCacheReportOutput>
 end
 
-function C:cancelRetrieval(input: types.CancelRetrievalInput, options: any): async.Operation<types.CancelRetrievalOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelRetrieval, input, options) as async.Operation<types.CancelRetrievalOutput>
+function C:cancelRetrieval(input: types.CancelRetrievalInput, options?: base_client.InvokeOptions): async.Operation<types.CancelRetrievalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelRetrieval as schema.OperationSchema, input, options) as async.Operation<types.CancelRetrievalOutput>
 end
 
-function C:createCachediSCSIVolume(input: types.CreateCachediSCSIVolumeInput, options: any): async.Operation<types.CreateCachediSCSIVolumeOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCachediSCSIVolume, input, options) as async.Operation<types.CreateCachediSCSIVolumeOutput>
+function C:createCachediSCSIVolume(input: types.CreateCachediSCSIVolumeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCachediSCSIVolumeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCachediSCSIVolume as schema.OperationSchema, input, options) as async.Operation<types.CreateCachediSCSIVolumeOutput>
 end
 
-function C:createNFSFileShare(input: types.CreateNFSFileShareInput, options: any): async.Operation<types.CreateNFSFileShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNFSFileShare, input, options) as async.Operation<types.CreateNFSFileShareOutput>
+function C:createNFSFileShare(input: types.CreateNFSFileShareInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNFSFileShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNFSFileShare as schema.OperationSchema, input, options) as async.Operation<types.CreateNFSFileShareOutput>
 end
 
-function C:createSMBFileShare(input: types.CreateSMBFileShareInput, options: any): async.Operation<types.CreateSMBFileShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSMBFileShare, input, options) as async.Operation<types.CreateSMBFileShareOutput>
+function C:createSMBFileShare(input: types.CreateSMBFileShareInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSMBFileShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSMBFileShare as schema.OperationSchema, input, options) as async.Operation<types.CreateSMBFileShareOutput>
 end
 
-function C:createSnapshot(input: types.CreateSnapshotInput, options: any): async.Operation<types.CreateSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSnapshot, input, options) as async.Operation<types.CreateSnapshotOutput>
+function C:createSnapshot(input: types.CreateSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSnapshot as schema.OperationSchema, input, options) as async.Operation<types.CreateSnapshotOutput>
 end
 
-function C:createSnapshotFromVolumeRecoveryPoint(input: types.CreateSnapshotFromVolumeRecoveryPointInput, options: any): async.Operation<types.CreateSnapshotFromVolumeRecoveryPointOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSnapshotFromVolumeRecoveryPoint, input, options) as async.Operation<types.CreateSnapshotFromVolumeRecoveryPointOutput>
+function C:createSnapshotFromVolumeRecoveryPoint(input: types.CreateSnapshotFromVolumeRecoveryPointInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSnapshotFromVolumeRecoveryPointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSnapshotFromVolumeRecoveryPoint as schema.OperationSchema, input, options) as async.Operation<types.CreateSnapshotFromVolumeRecoveryPointOutput>
 end
 
-function C:createStorediSCSIVolume(input: types.CreateStorediSCSIVolumeInput, options: any): async.Operation<types.CreateStorediSCSIVolumeOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateStorediSCSIVolume, input, options) as async.Operation<types.CreateStorediSCSIVolumeOutput>
+function C:createStorediSCSIVolume(input: types.CreateStorediSCSIVolumeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateStorediSCSIVolumeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateStorediSCSIVolume as schema.OperationSchema, input, options) as async.Operation<types.CreateStorediSCSIVolumeOutput>
 end
 
-function C:createTapePool(input: types.CreateTapePoolInput, options: any): async.Operation<types.CreateTapePoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTapePool, input, options) as async.Operation<types.CreateTapePoolOutput>
+function C:createTapePool(input: types.CreateTapePoolInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTapePoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTapePool as schema.OperationSchema, input, options) as async.Operation<types.CreateTapePoolOutput>
 end
 
-function C:createTapes(input: types.CreateTapesInput, options: any): async.Operation<types.CreateTapesOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTapes, input, options) as async.Operation<types.CreateTapesOutput>
+function C:createTapes(input: types.CreateTapesInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTapesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTapes as schema.OperationSchema, input, options) as async.Operation<types.CreateTapesOutput>
 end
 
-function C:createTapeWithBarcode(input: types.CreateTapeWithBarcodeInput, options: any): async.Operation<types.CreateTapeWithBarcodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTapeWithBarcode, input, options) as async.Operation<types.CreateTapeWithBarcodeOutput>
+function C:createTapeWithBarcode(input: types.CreateTapeWithBarcodeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTapeWithBarcodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTapeWithBarcode as schema.OperationSchema, input, options) as async.Operation<types.CreateTapeWithBarcodeOutput>
 end
 
-function C:deleteAutomaticTapeCreationPolicy(input: types.DeleteAutomaticTapeCreationPolicyInput, options: any): async.Operation<types.DeleteAutomaticTapeCreationPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAutomaticTapeCreationPolicy, input, options) as async.Operation<types.DeleteAutomaticTapeCreationPolicyOutput>
+function C:deleteAutomaticTapeCreationPolicy(input: types.DeleteAutomaticTapeCreationPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAutomaticTapeCreationPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAutomaticTapeCreationPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteAutomaticTapeCreationPolicyOutput>
 end
 
-function C:deleteBandwidthRateLimit(input: types.DeleteBandwidthRateLimitInput, options: any): async.Operation<types.DeleteBandwidthRateLimitOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBandwidthRateLimit, input, options) as async.Operation<types.DeleteBandwidthRateLimitOutput>
+function C:deleteBandwidthRateLimit(input: types.DeleteBandwidthRateLimitInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBandwidthRateLimitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBandwidthRateLimit as schema.OperationSchema, input, options) as async.Operation<types.DeleteBandwidthRateLimitOutput>
 end
 
-function C:deleteCacheReport(input: types.DeleteCacheReportInput, options: any): async.Operation<types.DeleteCacheReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCacheReport, input, options) as async.Operation<types.DeleteCacheReportOutput>
+function C:deleteCacheReport(input: types.DeleteCacheReportInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCacheReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCacheReport as schema.OperationSchema, input, options) as async.Operation<types.DeleteCacheReportOutput>
 end
 
-function C:deleteChapCredentials(input: types.DeleteChapCredentialsInput, options: any): async.Operation<types.DeleteChapCredentialsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteChapCredentials, input, options) as async.Operation<types.DeleteChapCredentialsOutput>
+function C:deleteChapCredentials(input: types.DeleteChapCredentialsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteChapCredentialsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteChapCredentials as schema.OperationSchema, input, options) as async.Operation<types.DeleteChapCredentialsOutput>
 end
 
-function C:deleteFileShare(input: types.DeleteFileShareInput, options: any): async.Operation<types.DeleteFileShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFileShare, input, options) as async.Operation<types.DeleteFileShareOutput>
+function C:deleteFileShare(input: types.DeleteFileShareInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFileShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFileShare as schema.OperationSchema, input, options) as async.Operation<types.DeleteFileShareOutput>
 end
 
-function C:deleteGateway(input: types.DeleteGatewayInput, options: any): async.Operation<types.DeleteGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteGateway, input, options) as async.Operation<types.DeleteGatewayOutput>
+function C:deleteGateway(input: types.DeleteGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGateway as schema.OperationSchema, input, options) as async.Operation<types.DeleteGatewayOutput>
 end
 
-function C:deleteSnapshotSchedule(input: types.DeleteSnapshotScheduleInput, options: any): async.Operation<types.DeleteSnapshotScheduleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSnapshotSchedule, input, options) as async.Operation<types.DeleteSnapshotScheduleOutput>
+function C:deleteSnapshotSchedule(input: types.DeleteSnapshotScheduleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSnapshotScheduleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSnapshotSchedule as schema.OperationSchema, input, options) as async.Operation<types.DeleteSnapshotScheduleOutput>
 end
 
-function C:deleteTape(input: types.DeleteTapeInput, options: any): async.Operation<types.DeleteTapeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTape, input, options) as async.Operation<types.DeleteTapeOutput>
+function C:deleteTape(input: types.DeleteTapeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTapeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTape as schema.OperationSchema, input, options) as async.Operation<types.DeleteTapeOutput>
 end
 
-function C:deleteTapeArchive(input: types.DeleteTapeArchiveInput, options: any): async.Operation<types.DeleteTapeArchiveOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTapeArchive, input, options) as async.Operation<types.DeleteTapeArchiveOutput>
+function C:deleteTapeArchive(input: types.DeleteTapeArchiveInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTapeArchiveOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTapeArchive as schema.OperationSchema, input, options) as async.Operation<types.DeleteTapeArchiveOutput>
 end
 
-function C:deleteTapePool(input: types.DeleteTapePoolInput, options: any): async.Operation<types.DeleteTapePoolOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTapePool, input, options) as async.Operation<types.DeleteTapePoolOutput>
+function C:deleteTapePool(input: types.DeleteTapePoolInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTapePoolOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTapePool as schema.OperationSchema, input, options) as async.Operation<types.DeleteTapePoolOutput>
 end
 
-function C:deleteVolume(input: types.DeleteVolumeInput, options: any): async.Operation<types.DeleteVolumeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVolume, input, options) as async.Operation<types.DeleteVolumeOutput>
+function C:deleteVolume(input: types.DeleteVolumeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVolumeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVolume as schema.OperationSchema, input, options) as async.Operation<types.DeleteVolumeOutput>
 end
 
-function C:describeAvailabilityMonitorTest(input: types.DescribeAvailabilityMonitorTestInput, options: any): async.Operation<types.DescribeAvailabilityMonitorTestOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAvailabilityMonitorTest, input, options) as async.Operation<types.DescribeAvailabilityMonitorTestOutput>
+function C:describeAvailabilityMonitorTest(input: types.DescribeAvailabilityMonitorTestInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAvailabilityMonitorTestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAvailabilityMonitorTest as schema.OperationSchema, input, options) as async.Operation<types.DescribeAvailabilityMonitorTestOutput>
 end
 
-function C:describeBandwidthRateLimit(input: types.DescribeBandwidthRateLimitInput, options: any): async.Operation<types.DescribeBandwidthRateLimitOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeBandwidthRateLimit, input, options) as async.Operation<types.DescribeBandwidthRateLimitOutput>
+function C:describeBandwidthRateLimit(input: types.DescribeBandwidthRateLimitInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBandwidthRateLimitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeBandwidthRateLimit as schema.OperationSchema, input, options) as async.Operation<types.DescribeBandwidthRateLimitOutput>
 end
 
-function C:describeBandwidthRateLimitSchedule(input: types.DescribeBandwidthRateLimitScheduleInput, options: any): async.Operation<types.DescribeBandwidthRateLimitScheduleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeBandwidthRateLimitSchedule, input, options) as async.Operation<types.DescribeBandwidthRateLimitScheduleOutput>
+function C:describeBandwidthRateLimitSchedule(input: types.DescribeBandwidthRateLimitScheduleInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBandwidthRateLimitScheduleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeBandwidthRateLimitSchedule as schema.OperationSchema, input, options) as async.Operation<types.DescribeBandwidthRateLimitScheduleOutput>
 end
 
-function C:describeCache(input: types.DescribeCacheInput, options: any): async.Operation<types.DescribeCacheOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCache, input, options) as async.Operation<types.DescribeCacheOutput>
+function C:describeCache(input: types.DescribeCacheInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCacheOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCache as schema.OperationSchema, input, options) as async.Operation<types.DescribeCacheOutput>
 end
 
-function C:describeCachediSCSIVolumes(input: types.DescribeCachediSCSIVolumesInput, options: any): async.Operation<types.DescribeCachediSCSIVolumesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCachediSCSIVolumes, input, options) as async.Operation<types.DescribeCachediSCSIVolumesOutput>
+function C:describeCachediSCSIVolumes(input: types.DescribeCachediSCSIVolumesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCachediSCSIVolumesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCachediSCSIVolumes as schema.OperationSchema, input, options) as async.Operation<types.DescribeCachediSCSIVolumesOutput>
 end
 
-function C:describeCacheReport(input: types.DescribeCacheReportInput, options: any): async.Operation<types.DescribeCacheReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCacheReport, input, options) as async.Operation<types.DescribeCacheReportOutput>
+function C:describeCacheReport(input: types.DescribeCacheReportInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCacheReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCacheReport as schema.OperationSchema, input, options) as async.Operation<types.DescribeCacheReportOutput>
 end
 
-function C:describeChapCredentials(input: types.DescribeChapCredentialsInput, options: any): async.Operation<types.DescribeChapCredentialsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeChapCredentials, input, options) as async.Operation<types.DescribeChapCredentialsOutput>
+function C:describeChapCredentials(input: types.DescribeChapCredentialsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeChapCredentialsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeChapCredentials as schema.OperationSchema, input, options) as async.Operation<types.DescribeChapCredentialsOutput>
 end
 
-function C:describeFileSystemAssociations(input: types.DescribeFileSystemAssociationsInput, options: any): async.Operation<types.DescribeFileSystemAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFileSystemAssociations, input, options) as async.Operation<types.DescribeFileSystemAssociationsOutput>
+function C:describeFileSystemAssociations(input: types.DescribeFileSystemAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFileSystemAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFileSystemAssociations as schema.OperationSchema, input, options) as async.Operation<types.DescribeFileSystemAssociationsOutput>
 end
 
-function C:describeGatewayInformation(input: types.DescribeGatewayInformationInput, options: any): async.Operation<types.DescribeGatewayInformationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeGatewayInformation, input, options) as async.Operation<types.DescribeGatewayInformationOutput>
+function C:describeGatewayInformation(input: types.DescribeGatewayInformationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeGatewayInformationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeGatewayInformation as schema.OperationSchema, input, options) as async.Operation<types.DescribeGatewayInformationOutput>
 end
 
-function C:describeMaintenanceStartTime(input: types.DescribeMaintenanceStartTimeInput, options: any): async.Operation<types.DescribeMaintenanceStartTimeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeMaintenanceStartTime, input, options) as async.Operation<types.DescribeMaintenanceStartTimeOutput>
+function C:describeMaintenanceStartTime(input: types.DescribeMaintenanceStartTimeInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMaintenanceStartTimeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMaintenanceStartTime as schema.OperationSchema, input, options) as async.Operation<types.DescribeMaintenanceStartTimeOutput>
 end
 
-function C:describeNFSFileShares(input: types.DescribeNFSFileSharesInput, options: any): async.Operation<types.DescribeNFSFileSharesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeNFSFileShares, input, options) as async.Operation<types.DescribeNFSFileSharesOutput>
+function C:describeNFSFileShares(input: types.DescribeNFSFileSharesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeNFSFileSharesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeNFSFileShares as schema.OperationSchema, input, options) as async.Operation<types.DescribeNFSFileSharesOutput>
 end
 
-function C:describeSMBFileShares(input: types.DescribeSMBFileSharesInput, options: any): async.Operation<types.DescribeSMBFileSharesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSMBFileShares, input, options) as async.Operation<types.DescribeSMBFileSharesOutput>
+function C:describeSMBFileShares(input: types.DescribeSMBFileSharesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSMBFileSharesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSMBFileShares as schema.OperationSchema, input, options) as async.Operation<types.DescribeSMBFileSharesOutput>
 end
 
-function C:describeSMBSettings(input: types.DescribeSMBSettingsInput, options: any): async.Operation<types.DescribeSMBSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSMBSettings, input, options) as async.Operation<types.DescribeSMBSettingsOutput>
+function C:describeSMBSettings(input: types.DescribeSMBSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSMBSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSMBSettings as schema.OperationSchema, input, options) as async.Operation<types.DescribeSMBSettingsOutput>
 end
 
-function C:describeSnapshotSchedule(input: types.DescribeSnapshotScheduleInput, options: any): async.Operation<types.DescribeSnapshotScheduleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSnapshotSchedule, input, options) as async.Operation<types.DescribeSnapshotScheduleOutput>
+function C:describeSnapshotSchedule(input: types.DescribeSnapshotScheduleInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSnapshotScheduleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSnapshotSchedule as schema.OperationSchema, input, options) as async.Operation<types.DescribeSnapshotScheduleOutput>
 end
 
-function C:describeStorediSCSIVolumes(input: types.DescribeStorediSCSIVolumesInput, options: any): async.Operation<types.DescribeStorediSCSIVolumesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeStorediSCSIVolumes, input, options) as async.Operation<types.DescribeStorediSCSIVolumesOutput>
+function C:describeStorediSCSIVolumes(input: types.DescribeStorediSCSIVolumesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeStorediSCSIVolumesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeStorediSCSIVolumes as schema.OperationSchema, input, options) as async.Operation<types.DescribeStorediSCSIVolumesOutput>
 end
 
-function C:describeTapeArchives(input: types.DescribeTapeArchivesInput, options: any): async.Operation<types.DescribeTapeArchivesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTapeArchives, input, options) as async.Operation<types.DescribeTapeArchivesOutput>
+function C:describeTapeArchives(input: types.DescribeTapeArchivesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTapeArchivesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTapeArchives as schema.OperationSchema, input, options) as async.Operation<types.DescribeTapeArchivesOutput>
 end
 
-function C:describeTapeRecoveryPoints(input: types.DescribeTapeRecoveryPointsInput, options: any): async.Operation<types.DescribeTapeRecoveryPointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTapeRecoveryPoints, input, options) as async.Operation<types.DescribeTapeRecoveryPointsOutput>
+function C:describeTapeRecoveryPoints(input: types.DescribeTapeRecoveryPointsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTapeRecoveryPointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTapeRecoveryPoints as schema.OperationSchema, input, options) as async.Operation<types.DescribeTapeRecoveryPointsOutput>
 end
 
-function C:describeTapes(input: types.DescribeTapesInput, options: any): async.Operation<types.DescribeTapesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTapes, input, options) as async.Operation<types.DescribeTapesOutput>
+function C:describeTapes(input: types.DescribeTapesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTapesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTapes as schema.OperationSchema, input, options) as async.Operation<types.DescribeTapesOutput>
 end
 
-function C:describeUploadBuffer(input: types.DescribeUploadBufferInput, options: any): async.Operation<types.DescribeUploadBufferOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeUploadBuffer, input, options) as async.Operation<types.DescribeUploadBufferOutput>
+function C:describeUploadBuffer(input: types.DescribeUploadBufferInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeUploadBufferOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeUploadBuffer as schema.OperationSchema, input, options) as async.Operation<types.DescribeUploadBufferOutput>
 end
 
-function C:describeVTLDevices(input: types.DescribeVTLDevicesInput, options: any): async.Operation<types.DescribeVTLDevicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVTLDevices, input, options) as async.Operation<types.DescribeVTLDevicesOutput>
+function C:describeVTLDevices(input: types.DescribeVTLDevicesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVTLDevicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVTLDevices as schema.OperationSchema, input, options) as async.Operation<types.DescribeVTLDevicesOutput>
 end
 
-function C:describeWorkingStorage(input: types.DescribeWorkingStorageInput, options: any): async.Operation<types.DescribeWorkingStorageOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeWorkingStorage, input, options) as async.Operation<types.DescribeWorkingStorageOutput>
+function C:describeWorkingStorage(input: types.DescribeWorkingStorageInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeWorkingStorageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeWorkingStorage as schema.OperationSchema, input, options) as async.Operation<types.DescribeWorkingStorageOutput>
 end
 
-function C:detachVolume(input: types.DetachVolumeInput, options: any): async.Operation<types.DetachVolumeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetachVolume, input, options) as async.Operation<types.DetachVolumeOutput>
+function C:detachVolume(input: types.DetachVolumeInput, options?: base_client.InvokeOptions): async.Operation<types.DetachVolumeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachVolume as schema.OperationSchema, input, options) as async.Operation<types.DetachVolumeOutput>
 end
 
-function C:disableGateway(input: types.DisableGatewayInput, options: any): async.Operation<types.DisableGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableGateway, input, options) as async.Operation<types.DisableGatewayOutput>
+function C:disableGateway(input: types.DisableGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DisableGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableGateway as schema.OperationSchema, input, options) as async.Operation<types.DisableGatewayOutput>
 end
 
-function C:disassociateFileSystem(input: types.DisassociateFileSystemInput, options: any): async.Operation<types.DisassociateFileSystemOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateFileSystem, input, options) as async.Operation<types.DisassociateFileSystemOutput>
+function C:disassociateFileSystem(input: types.DisassociateFileSystemInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateFileSystemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateFileSystem as schema.OperationSchema, input, options) as async.Operation<types.DisassociateFileSystemOutput>
 end
 
-function C:evictFilesFailingUpload(input: types.EvictFilesFailingUploadInput, options: any): async.Operation<types.EvictFilesFailingUploadOutput>
-    return self:invokeOperation(schemas.Service, schemas.EvictFilesFailingUpload, input, options) as async.Operation<types.EvictFilesFailingUploadOutput>
+function C:evictFilesFailingUpload(input: types.EvictFilesFailingUploadInput, options?: base_client.InvokeOptions): async.Operation<types.EvictFilesFailingUploadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EvictFilesFailingUpload as schema.OperationSchema, input, options) as async.Operation<types.EvictFilesFailingUploadOutput>
 end
 
-function C:joinDomain(input: types.JoinDomainInput, options: any): async.Operation<types.JoinDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.JoinDomain, input, options) as async.Operation<types.JoinDomainOutput>
+function C:joinDomain(input: types.JoinDomainInput, options?: base_client.InvokeOptions): async.Operation<types.JoinDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.JoinDomain as schema.OperationSchema, input, options) as async.Operation<types.JoinDomainOutput>
 end
 
-function C:listAutomaticTapeCreationPolicies(input: types.ListAutomaticTapeCreationPoliciesInput, options: any): async.Operation<types.ListAutomaticTapeCreationPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAutomaticTapeCreationPolicies, input, options) as async.Operation<types.ListAutomaticTapeCreationPoliciesOutput>
+function C:listAutomaticTapeCreationPolicies(input: types.ListAutomaticTapeCreationPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAutomaticTapeCreationPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAutomaticTapeCreationPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListAutomaticTapeCreationPoliciesOutput>
 end
 
-function C:listCacheReports(input: types.ListCacheReportsInput, options: any): async.Operation<types.ListCacheReportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCacheReports, input, options) as async.Operation<types.ListCacheReportsOutput>
+function C:listCacheReports(input: types.ListCacheReportsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCacheReportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCacheReports as schema.OperationSchema, input, options) as async.Operation<types.ListCacheReportsOutput>
 end
 
-function C:listFileShares(input: types.ListFileSharesInput, options: any): async.Operation<types.ListFileSharesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFileShares, input, options) as async.Operation<types.ListFileSharesOutput>
+function C:listFileShares(input: types.ListFileSharesInput, options?: base_client.InvokeOptions): async.Operation<types.ListFileSharesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFileShares as schema.OperationSchema, input, options) as async.Operation<types.ListFileSharesOutput>
 end
 
-function C:listFileSystemAssociations(input: types.ListFileSystemAssociationsInput, options: any): async.Operation<types.ListFileSystemAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFileSystemAssociations, input, options) as async.Operation<types.ListFileSystemAssociationsOutput>
+function C:listFileSystemAssociations(input: types.ListFileSystemAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFileSystemAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFileSystemAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListFileSystemAssociationsOutput>
 end
 
-function C:listGateways(input: types.ListGatewaysInput, options: any): async.Operation<types.ListGatewaysOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGateways, input, options) as async.Operation<types.ListGatewaysOutput>
+function C:listGateways(input: types.ListGatewaysInput, options?: base_client.InvokeOptions): async.Operation<types.ListGatewaysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGateways as schema.OperationSchema, input, options) as async.Operation<types.ListGatewaysOutput>
 end
 
-function C:listLocalDisks(input: types.ListLocalDisksInput, options: any): async.Operation<types.ListLocalDisksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLocalDisks, input, options) as async.Operation<types.ListLocalDisksOutput>
+function C:listLocalDisks(input: types.ListLocalDisksInput, options?: base_client.InvokeOptions): async.Operation<types.ListLocalDisksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLocalDisks as schema.OperationSchema, input, options) as async.Operation<types.ListLocalDisksOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTapePools(input: types.ListTapePoolsInput, options: any): async.Operation<types.ListTapePoolsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTapePools, input, options) as async.Operation<types.ListTapePoolsOutput>
+function C:listTapePools(input: types.ListTapePoolsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTapePoolsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTapePools as schema.OperationSchema, input, options) as async.Operation<types.ListTapePoolsOutput>
 end
 
-function C:listTapes(input: types.ListTapesInput, options: any): async.Operation<types.ListTapesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTapes, input, options) as async.Operation<types.ListTapesOutput>
+function C:listTapes(input: types.ListTapesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTapesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTapes as schema.OperationSchema, input, options) as async.Operation<types.ListTapesOutput>
 end
 
-function C:listVolumeInitiators(input: types.ListVolumeInitiatorsInput, options: any): async.Operation<types.ListVolumeInitiatorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVolumeInitiators, input, options) as async.Operation<types.ListVolumeInitiatorsOutput>
+function C:listVolumeInitiators(input: types.ListVolumeInitiatorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListVolumeInitiatorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVolumeInitiators as schema.OperationSchema, input, options) as async.Operation<types.ListVolumeInitiatorsOutput>
 end
 
-function C:listVolumeRecoveryPoints(input: types.ListVolumeRecoveryPointsInput, options: any): async.Operation<types.ListVolumeRecoveryPointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVolumeRecoveryPoints, input, options) as async.Operation<types.ListVolumeRecoveryPointsOutput>
+function C:listVolumeRecoveryPoints(input: types.ListVolumeRecoveryPointsInput, options?: base_client.InvokeOptions): async.Operation<types.ListVolumeRecoveryPointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVolumeRecoveryPoints as schema.OperationSchema, input, options) as async.Operation<types.ListVolumeRecoveryPointsOutput>
 end
 
-function C:listVolumes(input: types.ListVolumesInput, options: any): async.Operation<types.ListVolumesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVolumes, input, options) as async.Operation<types.ListVolumesOutput>
+function C:listVolumes(input: types.ListVolumesInput, options?: base_client.InvokeOptions): async.Operation<types.ListVolumesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVolumes as schema.OperationSchema, input, options) as async.Operation<types.ListVolumesOutput>
 end
 
-function C:notifyWhenUploaded(input: types.NotifyWhenUploadedInput, options: any): async.Operation<types.NotifyWhenUploadedOutput>
-    return self:invokeOperation(schemas.Service, schemas.NotifyWhenUploaded, input, options) as async.Operation<types.NotifyWhenUploadedOutput>
+function C:notifyWhenUploaded(input: types.NotifyWhenUploadedInput, options?: base_client.InvokeOptions): async.Operation<types.NotifyWhenUploadedOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.NotifyWhenUploaded as schema.OperationSchema, input, options) as async.Operation<types.NotifyWhenUploadedOutput>
 end
 
-function C:refreshCache(input: types.RefreshCacheInput, options: any): async.Operation<types.RefreshCacheOutput>
-    return self:invokeOperation(schemas.Service, schemas.RefreshCache, input, options) as async.Operation<types.RefreshCacheOutput>
+function C:refreshCache(input: types.RefreshCacheInput, options?: base_client.InvokeOptions): async.Operation<types.RefreshCacheOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RefreshCache as schema.OperationSchema, input, options) as async.Operation<types.RefreshCacheOutput>
 end
 
-function C:removeTagsFromResource(input: types.RemoveTagsFromResourceInput, options: any): async.Operation<types.RemoveTagsFromResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveTagsFromResource, input, options) as async.Operation<types.RemoveTagsFromResourceOutput>
+function C:removeTagsFromResource(input: types.RemoveTagsFromResourceInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveTagsFromResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveTagsFromResource as schema.OperationSchema, input, options) as async.Operation<types.RemoveTagsFromResourceOutput>
 end
 
-function C:resetCache(input: types.ResetCacheInput, options: any): async.Operation<types.ResetCacheOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResetCache, input, options) as async.Operation<types.ResetCacheOutput>
+function C:resetCache(input: types.ResetCacheInput, options?: base_client.InvokeOptions): async.Operation<types.ResetCacheOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResetCache as schema.OperationSchema, input, options) as async.Operation<types.ResetCacheOutput>
 end
 
-function C:retrieveTapeArchive(input: types.RetrieveTapeArchiveInput, options: any): async.Operation<types.RetrieveTapeArchiveOutput>
-    return self:invokeOperation(schemas.Service, schemas.RetrieveTapeArchive, input, options) as async.Operation<types.RetrieveTapeArchiveOutput>
+function C:retrieveTapeArchive(input: types.RetrieveTapeArchiveInput, options?: base_client.InvokeOptions): async.Operation<types.RetrieveTapeArchiveOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RetrieveTapeArchive as schema.OperationSchema, input, options) as async.Operation<types.RetrieveTapeArchiveOutput>
 end
 
-function C:retrieveTapeRecoveryPoint(input: types.RetrieveTapeRecoveryPointInput, options: any): async.Operation<types.RetrieveTapeRecoveryPointOutput>
-    return self:invokeOperation(schemas.Service, schemas.RetrieveTapeRecoveryPoint, input, options) as async.Operation<types.RetrieveTapeRecoveryPointOutput>
+function C:retrieveTapeRecoveryPoint(input: types.RetrieveTapeRecoveryPointInput, options?: base_client.InvokeOptions): async.Operation<types.RetrieveTapeRecoveryPointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RetrieveTapeRecoveryPoint as schema.OperationSchema, input, options) as async.Operation<types.RetrieveTapeRecoveryPointOutput>
 end
 
-function C:setLocalConsolePassword(input: types.SetLocalConsolePasswordInput, options: any): async.Operation<types.SetLocalConsolePasswordOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetLocalConsolePassword, input, options) as async.Operation<types.SetLocalConsolePasswordOutput>
+function C:setLocalConsolePassword(input: types.SetLocalConsolePasswordInput, options?: base_client.InvokeOptions): async.Operation<types.SetLocalConsolePasswordOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetLocalConsolePassword as schema.OperationSchema, input, options) as async.Operation<types.SetLocalConsolePasswordOutput>
 end
 
-function C:setSMBGuestPassword(input: types.SetSMBGuestPasswordInput, options: any): async.Operation<types.SetSMBGuestPasswordOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetSMBGuestPassword, input, options) as async.Operation<types.SetSMBGuestPasswordOutput>
+function C:setSMBGuestPassword(input: types.SetSMBGuestPasswordInput, options?: base_client.InvokeOptions): async.Operation<types.SetSMBGuestPasswordOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetSMBGuestPassword as schema.OperationSchema, input, options) as async.Operation<types.SetSMBGuestPasswordOutput>
 end
 
-function C:shutdownGateway(input: types.ShutdownGatewayInput, options: any): async.Operation<types.ShutdownGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.ShutdownGateway, input, options) as async.Operation<types.ShutdownGatewayOutput>
+function C:shutdownGateway(input: types.ShutdownGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.ShutdownGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ShutdownGateway as schema.OperationSchema, input, options) as async.Operation<types.ShutdownGatewayOutput>
 end
 
-function C:startAvailabilityMonitorTest(input: types.StartAvailabilityMonitorTestInput, options: any): async.Operation<types.StartAvailabilityMonitorTestOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartAvailabilityMonitorTest, input, options) as async.Operation<types.StartAvailabilityMonitorTestOutput>
+function C:startAvailabilityMonitorTest(input: types.StartAvailabilityMonitorTestInput, options?: base_client.InvokeOptions): async.Operation<types.StartAvailabilityMonitorTestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartAvailabilityMonitorTest as schema.OperationSchema, input, options) as async.Operation<types.StartAvailabilityMonitorTestOutput>
 end
 
-function C:startCacheReport(input: types.StartCacheReportInput, options: any): async.Operation<types.StartCacheReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartCacheReport, input, options) as async.Operation<types.StartCacheReportOutput>
+function C:startCacheReport(input: types.StartCacheReportInput, options?: base_client.InvokeOptions): async.Operation<types.StartCacheReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartCacheReport as schema.OperationSchema, input, options) as async.Operation<types.StartCacheReportOutput>
 end
 
-function C:startGateway(input: types.StartGatewayInput, options: any): async.Operation<types.StartGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartGateway, input, options) as async.Operation<types.StartGatewayOutput>
+function C:startGateway(input: types.StartGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.StartGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartGateway as schema.OperationSchema, input, options) as async.Operation<types.StartGatewayOutput>
 end
 
-function C:updateAutomaticTapeCreationPolicy(input: types.UpdateAutomaticTapeCreationPolicyInput, options: any): async.Operation<types.UpdateAutomaticTapeCreationPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAutomaticTapeCreationPolicy, input, options) as async.Operation<types.UpdateAutomaticTapeCreationPolicyOutput>
+function C:updateAutomaticTapeCreationPolicy(input: types.UpdateAutomaticTapeCreationPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAutomaticTapeCreationPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAutomaticTapeCreationPolicy as schema.OperationSchema, input, options) as async.Operation<types.UpdateAutomaticTapeCreationPolicyOutput>
 end
 
-function C:updateBandwidthRateLimit(input: types.UpdateBandwidthRateLimitInput, options: any): async.Operation<types.UpdateBandwidthRateLimitOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateBandwidthRateLimit, input, options) as async.Operation<types.UpdateBandwidthRateLimitOutput>
+function C:updateBandwidthRateLimit(input: types.UpdateBandwidthRateLimitInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBandwidthRateLimitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBandwidthRateLimit as schema.OperationSchema, input, options) as async.Operation<types.UpdateBandwidthRateLimitOutput>
 end
 
-function C:updateBandwidthRateLimitSchedule(input: types.UpdateBandwidthRateLimitScheduleInput, options: any): async.Operation<types.UpdateBandwidthRateLimitScheduleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateBandwidthRateLimitSchedule, input, options) as async.Operation<types.UpdateBandwidthRateLimitScheduleOutput>
+function C:updateBandwidthRateLimitSchedule(input: types.UpdateBandwidthRateLimitScheduleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBandwidthRateLimitScheduleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBandwidthRateLimitSchedule as schema.OperationSchema, input, options) as async.Operation<types.UpdateBandwidthRateLimitScheduleOutput>
 end
 
-function C:updateChapCredentials(input: types.UpdateChapCredentialsInput, options: any): async.Operation<types.UpdateChapCredentialsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateChapCredentials, input, options) as async.Operation<types.UpdateChapCredentialsOutput>
+function C:updateChapCredentials(input: types.UpdateChapCredentialsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateChapCredentialsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateChapCredentials as schema.OperationSchema, input, options) as async.Operation<types.UpdateChapCredentialsOutput>
 end
 
-function C:updateFileSystemAssociation(input: types.UpdateFileSystemAssociationInput, options: any): async.Operation<types.UpdateFileSystemAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFileSystemAssociation, input, options) as async.Operation<types.UpdateFileSystemAssociationOutput>
+function C:updateFileSystemAssociation(input: types.UpdateFileSystemAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFileSystemAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFileSystemAssociation as schema.OperationSchema, input, options) as async.Operation<types.UpdateFileSystemAssociationOutput>
 end
 
-function C:updateGatewayInformation(input: types.UpdateGatewayInformationInput, options: any): async.Operation<types.UpdateGatewayInformationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateGatewayInformation, input, options) as async.Operation<types.UpdateGatewayInformationOutput>
+function C:updateGatewayInformation(input: types.UpdateGatewayInformationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGatewayInformationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGatewayInformation as schema.OperationSchema, input, options) as async.Operation<types.UpdateGatewayInformationOutput>
 end
 
-function C:updateGatewaySoftwareNow(input: types.UpdateGatewaySoftwareNowInput, options: any): async.Operation<types.UpdateGatewaySoftwareNowOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateGatewaySoftwareNow, input, options) as async.Operation<types.UpdateGatewaySoftwareNowOutput>
+function C:updateGatewaySoftwareNow(input: types.UpdateGatewaySoftwareNowInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGatewaySoftwareNowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGatewaySoftwareNow as schema.OperationSchema, input, options) as async.Operation<types.UpdateGatewaySoftwareNowOutput>
 end
 
-function C:updateMaintenanceStartTime(input: types.UpdateMaintenanceStartTimeInput, options: any): async.Operation<types.UpdateMaintenanceStartTimeOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateMaintenanceStartTime, input, options) as async.Operation<types.UpdateMaintenanceStartTimeOutput>
+function C:updateMaintenanceStartTime(input: types.UpdateMaintenanceStartTimeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMaintenanceStartTimeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMaintenanceStartTime as schema.OperationSchema, input, options) as async.Operation<types.UpdateMaintenanceStartTimeOutput>
 end
 
-function C:updateNFSFileShare(input: types.UpdateNFSFileShareInput, options: any): async.Operation<types.UpdateNFSFileShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateNFSFileShare, input, options) as async.Operation<types.UpdateNFSFileShareOutput>
+function C:updateNFSFileShare(input: types.UpdateNFSFileShareInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNFSFileShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNFSFileShare as schema.OperationSchema, input, options) as async.Operation<types.UpdateNFSFileShareOutput>
 end
 
-function C:updateSMBFileShare(input: types.UpdateSMBFileShareInput, options: any): async.Operation<types.UpdateSMBFileShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSMBFileShare, input, options) as async.Operation<types.UpdateSMBFileShareOutput>
+function C:updateSMBFileShare(input: types.UpdateSMBFileShareInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSMBFileShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSMBFileShare as schema.OperationSchema, input, options) as async.Operation<types.UpdateSMBFileShareOutput>
 end
 
-function C:updateSMBFileShareVisibility(input: types.UpdateSMBFileShareVisibilityInput, options: any): async.Operation<types.UpdateSMBFileShareVisibilityOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSMBFileShareVisibility, input, options) as async.Operation<types.UpdateSMBFileShareVisibilityOutput>
+function C:updateSMBFileShareVisibility(input: types.UpdateSMBFileShareVisibilityInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSMBFileShareVisibilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSMBFileShareVisibility as schema.OperationSchema, input, options) as async.Operation<types.UpdateSMBFileShareVisibilityOutput>
 end
 
-function C:updateSMBLocalGroups(input: types.UpdateSMBLocalGroupsInput, options: any): async.Operation<types.UpdateSMBLocalGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSMBLocalGroups, input, options) as async.Operation<types.UpdateSMBLocalGroupsOutput>
+function C:updateSMBLocalGroups(input: types.UpdateSMBLocalGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSMBLocalGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSMBLocalGroups as schema.OperationSchema, input, options) as async.Operation<types.UpdateSMBLocalGroupsOutput>
 end
 
-function C:updateSMBSecurityStrategy(input: types.UpdateSMBSecurityStrategyInput, options: any): async.Operation<types.UpdateSMBSecurityStrategyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSMBSecurityStrategy, input, options) as async.Operation<types.UpdateSMBSecurityStrategyOutput>
+function C:updateSMBSecurityStrategy(input: types.UpdateSMBSecurityStrategyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSMBSecurityStrategyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSMBSecurityStrategy as schema.OperationSchema, input, options) as async.Operation<types.UpdateSMBSecurityStrategyOutput>
 end
 
-function C:updateSnapshotSchedule(input: types.UpdateSnapshotScheduleInput, options: any): async.Operation<types.UpdateSnapshotScheduleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSnapshotSchedule, input, options) as async.Operation<types.UpdateSnapshotScheduleOutput>
+function C:updateSnapshotSchedule(input: types.UpdateSnapshotScheduleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSnapshotScheduleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSnapshotSchedule as schema.OperationSchema, input, options) as async.Operation<types.UpdateSnapshotScheduleOutput>
 end
 
-function C:updateVTLDeviceType(input: types.UpdateVTLDeviceTypeInput, options: any): async.Operation<types.UpdateVTLDeviceTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateVTLDeviceType, input, options) as async.Operation<types.UpdateVTLDeviceTypeOutput>
+function C:updateVTLDeviceType(input: types.UpdateVTLDeviceTypeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateVTLDeviceTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateVTLDeviceType as schema.OperationSchema, input, options) as async.Operation<types.UpdateVTLDeviceTypeOutput>
 end
 
 return M

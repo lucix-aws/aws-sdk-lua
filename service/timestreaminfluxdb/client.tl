@@ -8,58 +8,61 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("timestreaminfluxdb.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("timestreaminfluxdb.schemas")
 local traits = require("smithy.traits")
 local types = require("timestreaminfluxdb.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createDbCluster: function(Client, types.CreateDbClusterInput, any): async.Operation<types.CreateDbClusterOutput>
-    createDbInstance: function(Client, types.CreateDbInstanceInput, any): async.Operation<types.CreateDbInstanceOutput>
-    createDbParameterGroup: function(Client, types.CreateDbParameterGroupInput, any): async.Operation<types.CreateDbParameterGroupOutput>
-    deleteDbCluster: function(Client, types.DeleteDbClusterInput, any): async.Operation<types.DeleteDbClusterOutput>
-    deleteDbInstance: function(Client, types.DeleteDbInstanceInput, any): async.Operation<types.DeleteDbInstanceOutput>
-    getDbCluster: function(Client, types.GetDbClusterInput, any): async.Operation<types.GetDbClusterOutput>
-    getDbInstance: function(Client, types.GetDbInstanceInput, any): async.Operation<types.GetDbInstanceOutput>
-    getDbParameterGroup: function(Client, types.GetDbParameterGroupInput, any): async.Operation<types.GetDbParameterGroupOutput>
-    listDbClusters: function(Client, types.ListDbClustersInput, any): async.Operation<types.ListDbClustersOutput>
-    listDbInstances: function(Client, types.ListDbInstancesInput, any): async.Operation<types.ListDbInstancesOutput>
-    listDbInstancesForCluster: function(Client, types.ListDbInstancesForClusterInput, any): async.Operation<types.ListDbInstancesForClusterOutput>
-    listDbParameterGroups: function(Client, types.ListDbParameterGroupsInput, any): async.Operation<types.ListDbParameterGroupsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    rebootDbCluster: function(Client, types.RebootDbClusterInput, any): async.Operation<types.RebootDbClusterOutput>
-    rebootDbInstance: function(Client, types.RebootDbInstanceInput, any): async.Operation<types.RebootDbInstanceOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateDbCluster: function(Client, types.UpdateDbClusterInput, any): async.Operation<types.UpdateDbClusterOutput>
-    updateDbInstance: function(Client, types.UpdateDbInstanceInput, any): async.Operation<types.UpdateDbInstanceOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createDbCluster: function(Client, types.CreateDbClusterInput, ? base_client.InvokeOptions): async.Operation<types.CreateDbClusterOutput>
+    createDbInstance: function(Client, types.CreateDbInstanceInput, ? base_client.InvokeOptions): async.Operation<types.CreateDbInstanceOutput>
+    createDbParameterGroup: function(Client, types.CreateDbParameterGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateDbParameterGroupOutput>
+    deleteDbCluster: function(Client, types.DeleteDbClusterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDbClusterOutput>
+    deleteDbInstance: function(Client, types.DeleteDbInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDbInstanceOutput>
+    getDbCluster: function(Client, types.GetDbClusterInput, ? base_client.InvokeOptions): async.Operation<types.GetDbClusterOutput>
+    getDbInstance: function(Client, types.GetDbInstanceInput, ? base_client.InvokeOptions): async.Operation<types.GetDbInstanceOutput>
+    getDbParameterGroup: function(Client, types.GetDbParameterGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetDbParameterGroupOutput>
+    listDbClusters: function(Client, types.ListDbClustersInput, ? base_client.InvokeOptions): async.Operation<types.ListDbClustersOutput>
+    listDbInstances: function(Client, types.ListDbInstancesInput, ? base_client.InvokeOptions): async.Operation<types.ListDbInstancesOutput>
+    listDbInstancesForCluster: function(Client, types.ListDbInstancesForClusterInput, ? base_client.InvokeOptions): async.Operation<types.ListDbInstancesForClusterOutput>
+    listDbParameterGroups: function(Client, types.ListDbParameterGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListDbParameterGroupsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    rebootDbCluster: function(Client, types.RebootDbClusterInput, ? base_client.InvokeOptions): async.Operation<types.RebootDbClusterOutput>
+    rebootDbInstance: function(Client, types.RebootDbInstanceInput, ? base_client.InvokeOptions): async.Operation<types.RebootDbInstanceOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateDbCluster: function(Client, types.UpdateDbClusterInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDbClusterOutput>
+    updateDbInstance: function(Client, types.UpdateDbInstanceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDbInstanceOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonTimestreamInfluxDB"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "timestream-influxdb", signing_region = c.region } }
                 else
@@ -78,80 +81,80 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createDbCluster(input: types.CreateDbClusterInput, options: any): async.Operation<types.CreateDbClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDbCluster, input, options) as async.Operation<types.CreateDbClusterOutput>
+function C:createDbCluster(input: types.CreateDbClusterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDbClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDbCluster as schema.OperationSchema, input, options) as async.Operation<types.CreateDbClusterOutput>
 end
 
-function C:createDbInstance(input: types.CreateDbInstanceInput, options: any): async.Operation<types.CreateDbInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDbInstance, input, options) as async.Operation<types.CreateDbInstanceOutput>
+function C:createDbInstance(input: types.CreateDbInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDbInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDbInstance as schema.OperationSchema, input, options) as async.Operation<types.CreateDbInstanceOutput>
 end
 
-function C:createDbParameterGroup(input: types.CreateDbParameterGroupInput, options: any): async.Operation<types.CreateDbParameterGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDbParameterGroup, input, options) as async.Operation<types.CreateDbParameterGroupOutput>
+function C:createDbParameterGroup(input: types.CreateDbParameterGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDbParameterGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDbParameterGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateDbParameterGroupOutput>
 end
 
-function C:deleteDbCluster(input: types.DeleteDbClusterInput, options: any): async.Operation<types.DeleteDbClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDbCluster, input, options) as async.Operation<types.DeleteDbClusterOutput>
+function C:deleteDbCluster(input: types.DeleteDbClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDbClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDbCluster as schema.OperationSchema, input, options) as async.Operation<types.DeleteDbClusterOutput>
 end
 
-function C:deleteDbInstance(input: types.DeleteDbInstanceInput, options: any): async.Operation<types.DeleteDbInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDbInstance, input, options) as async.Operation<types.DeleteDbInstanceOutput>
+function C:deleteDbInstance(input: types.DeleteDbInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDbInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDbInstance as schema.OperationSchema, input, options) as async.Operation<types.DeleteDbInstanceOutput>
 end
 
-function C:getDbCluster(input: types.GetDbClusterInput, options: any): async.Operation<types.GetDbClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDbCluster, input, options) as async.Operation<types.GetDbClusterOutput>
+function C:getDbCluster(input: types.GetDbClusterInput, options?: base_client.InvokeOptions): async.Operation<types.GetDbClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDbCluster as schema.OperationSchema, input, options) as async.Operation<types.GetDbClusterOutput>
 end
 
-function C:getDbInstance(input: types.GetDbInstanceInput, options: any): async.Operation<types.GetDbInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDbInstance, input, options) as async.Operation<types.GetDbInstanceOutput>
+function C:getDbInstance(input: types.GetDbInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.GetDbInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDbInstance as schema.OperationSchema, input, options) as async.Operation<types.GetDbInstanceOutput>
 end
 
-function C:getDbParameterGroup(input: types.GetDbParameterGroupInput, options: any): async.Operation<types.GetDbParameterGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDbParameterGroup, input, options) as async.Operation<types.GetDbParameterGroupOutput>
+function C:getDbParameterGroup(input: types.GetDbParameterGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetDbParameterGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDbParameterGroup as schema.OperationSchema, input, options) as async.Operation<types.GetDbParameterGroupOutput>
 end
 
-function C:listDbClusters(input: types.ListDbClustersInput, options: any): async.Operation<types.ListDbClustersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDbClusters, input, options) as async.Operation<types.ListDbClustersOutput>
+function C:listDbClusters(input: types.ListDbClustersInput, options?: base_client.InvokeOptions): async.Operation<types.ListDbClustersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDbClusters as schema.OperationSchema, input, options) as async.Operation<types.ListDbClustersOutput>
 end
 
-function C:listDbInstances(input: types.ListDbInstancesInput, options: any): async.Operation<types.ListDbInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDbInstances, input, options) as async.Operation<types.ListDbInstancesOutput>
+function C:listDbInstances(input: types.ListDbInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDbInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDbInstances as schema.OperationSchema, input, options) as async.Operation<types.ListDbInstancesOutput>
 end
 
-function C:listDbInstancesForCluster(input: types.ListDbInstancesForClusterInput, options: any): async.Operation<types.ListDbInstancesForClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDbInstancesForCluster, input, options) as async.Operation<types.ListDbInstancesForClusterOutput>
+function C:listDbInstancesForCluster(input: types.ListDbInstancesForClusterInput, options?: base_client.InvokeOptions): async.Operation<types.ListDbInstancesForClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDbInstancesForCluster as schema.OperationSchema, input, options) as async.Operation<types.ListDbInstancesForClusterOutput>
 end
 
-function C:listDbParameterGroups(input: types.ListDbParameterGroupsInput, options: any): async.Operation<types.ListDbParameterGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDbParameterGroups, input, options) as async.Operation<types.ListDbParameterGroupsOutput>
+function C:listDbParameterGroups(input: types.ListDbParameterGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDbParameterGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDbParameterGroups as schema.OperationSchema, input, options) as async.Operation<types.ListDbParameterGroupsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:rebootDbCluster(input: types.RebootDbClusterInput, options: any): async.Operation<types.RebootDbClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.RebootDbCluster, input, options) as async.Operation<types.RebootDbClusterOutput>
+function C:rebootDbCluster(input: types.RebootDbClusterInput, options?: base_client.InvokeOptions): async.Operation<types.RebootDbClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RebootDbCluster as schema.OperationSchema, input, options) as async.Operation<types.RebootDbClusterOutput>
 end
 
-function C:rebootDbInstance(input: types.RebootDbInstanceInput, options: any): async.Operation<types.RebootDbInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.RebootDbInstance, input, options) as async.Operation<types.RebootDbInstanceOutput>
+function C:rebootDbInstance(input: types.RebootDbInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.RebootDbInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RebootDbInstance as schema.OperationSchema, input, options) as async.Operation<types.RebootDbInstanceOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateDbCluster(input: types.UpdateDbClusterInput, options: any): async.Operation<types.UpdateDbClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDbCluster, input, options) as async.Operation<types.UpdateDbClusterOutput>
+function C:updateDbCluster(input: types.UpdateDbClusterInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDbClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDbCluster as schema.OperationSchema, input, options) as async.Operation<types.UpdateDbClusterOutput>
 end
 
-function C:updateDbInstance(input: types.UpdateDbInstanceInput, options: any): async.Operation<types.UpdateDbInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDbInstance, input, options) as async.Operation<types.UpdateDbInstanceOutput>
+function C:updateDbInstance(input: types.UpdateDbInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDbInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDbInstance as schema.OperationSchema, input, options) as async.Operation<types.UpdateDbInstanceOutput>
 end
 
 return M

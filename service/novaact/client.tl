@@ -8,55 +8,58 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("novaact.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("novaact.schemas")
 local traits = require("smithy.traits")
 local types = require("novaact.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createAct: function(Client, types.CreateActInput, any): async.Operation<types.CreateActOutput>
-    createSession: function(Client, types.CreateSessionInput, any): async.Operation<types.CreateSessionOutput>
-    createWorkflowDefinition: function(Client, types.CreateWorkflowDefinitionInput, any): async.Operation<types.CreateWorkflowDefinitionOutput>
-    createWorkflowRun: function(Client, types.CreateWorkflowRunInput, any): async.Operation<types.CreateWorkflowRunOutput>
-    deleteWorkflowDefinition: function(Client, types.DeleteWorkflowDefinitionInput, any): async.Operation<types.DeleteWorkflowDefinitionOutput>
-    deleteWorkflowRun: function(Client, types.DeleteWorkflowRunInput, any): async.Operation<types.DeleteWorkflowRunOutput>
-    getWorkflowDefinition: function(Client, types.GetWorkflowDefinitionInput, any): async.Operation<types.GetWorkflowDefinitionOutput>
-    getWorkflowRun: function(Client, types.GetWorkflowRunInput, any): async.Operation<types.GetWorkflowRunOutput>
-    invokeActStep: function(Client, types.InvokeActStepInput, any): async.Operation<types.InvokeActStepOutput>
-    listActs: function(Client, types.ListActsInput, any): async.Operation<types.ListActsOutput>
-    listModels: function(Client, types.ListModelsInput, any): async.Operation<types.ListModelsOutput>
-    listSessions: function(Client, types.ListSessionsInput, any): async.Operation<types.ListSessionsOutput>
-    listWorkflowDefinitions: function(Client, types.ListWorkflowDefinitionsInput, any): async.Operation<types.ListWorkflowDefinitionsOutput>
-    listWorkflowRuns: function(Client, types.ListWorkflowRunsInput, any): async.Operation<types.ListWorkflowRunsOutput>
-    updateAct: function(Client, types.UpdateActInput, any): async.Operation<types.UpdateActOutput>
-    updateWorkflowRun: function(Client, types.UpdateWorkflowRunInput, any): async.Operation<types.UpdateWorkflowRunOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createAct: function(Client, types.CreateActInput, ? base_client.InvokeOptions): async.Operation<types.CreateActOutput>
+    createSession: function(Client, types.CreateSessionInput, ? base_client.InvokeOptions): async.Operation<types.CreateSessionOutput>
+    createWorkflowDefinition: function(Client, types.CreateWorkflowDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkflowDefinitionOutput>
+    createWorkflowRun: function(Client, types.CreateWorkflowRunInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkflowRunOutput>
+    deleteWorkflowDefinition: function(Client, types.DeleteWorkflowDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWorkflowDefinitionOutput>
+    deleteWorkflowRun: function(Client, types.DeleteWorkflowRunInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWorkflowRunOutput>
+    getWorkflowDefinition: function(Client, types.GetWorkflowDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkflowDefinitionOutput>
+    getWorkflowRun: function(Client, types.GetWorkflowRunInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkflowRunOutput>
+    invokeActStep: function(Client, types.InvokeActStepInput, ? base_client.InvokeOptions): async.Operation<types.InvokeActStepOutput>
+    listActs: function(Client, types.ListActsInput, ? base_client.InvokeOptions): async.Operation<types.ListActsOutput>
+    listModels: function(Client, types.ListModelsInput, ? base_client.InvokeOptions): async.Operation<types.ListModelsOutput>
+    listSessions: function(Client, types.ListSessionsInput, ? base_client.InvokeOptions): async.Operation<types.ListSessionsOutput>
+    listWorkflowDefinitions: function(Client, types.ListWorkflowDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkflowDefinitionsOutput>
+    listWorkflowRuns: function(Client, types.ListWorkflowRunsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkflowRunsOutput>
+    updateAct: function(Client, types.UpdateActInput, ? base_client.InvokeOptions): async.Operation<types.UpdateActOutput>
+    updateWorkflowRun: function(Client, types.UpdateWorkflowRunInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWorkflowRunOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonNovaAgentsDataPlane"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "nova-act", signing_region = c.region } }
                 else
@@ -75,68 +78,68 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createAct(input: types.CreateActInput, options: any): async.Operation<types.CreateActOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAct, input, options) as async.Operation<types.CreateActOutput>
+function C:createAct(input: types.CreateActInput, options?: base_client.InvokeOptions): async.Operation<types.CreateActOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAct as schema.OperationSchema, input, options) as async.Operation<types.CreateActOutput>
 end
 
-function C:createSession(input: types.CreateSessionInput, options: any): async.Operation<types.CreateSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSession, input, options) as async.Operation<types.CreateSessionOutput>
+function C:createSession(input: types.CreateSessionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSession as schema.OperationSchema, input, options) as async.Operation<types.CreateSessionOutput>
 end
 
-function C:createWorkflowDefinition(input: types.CreateWorkflowDefinitionInput, options: any): async.Operation<types.CreateWorkflowDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWorkflowDefinition, input, options) as async.Operation<types.CreateWorkflowDefinitionOutput>
+function C:createWorkflowDefinition(input: types.CreateWorkflowDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWorkflowDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWorkflowDefinition as schema.OperationSchema, input, options) as async.Operation<types.CreateWorkflowDefinitionOutput>
 end
 
-function C:createWorkflowRun(input: types.CreateWorkflowRunInput, options: any): async.Operation<types.CreateWorkflowRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWorkflowRun, input, options) as async.Operation<types.CreateWorkflowRunOutput>
+function C:createWorkflowRun(input: types.CreateWorkflowRunInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWorkflowRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWorkflowRun as schema.OperationSchema, input, options) as async.Operation<types.CreateWorkflowRunOutput>
 end
 
-function C:deleteWorkflowDefinition(input: types.DeleteWorkflowDefinitionInput, options: any): async.Operation<types.DeleteWorkflowDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWorkflowDefinition, input, options) as async.Operation<types.DeleteWorkflowDefinitionOutput>
+function C:deleteWorkflowDefinition(input: types.DeleteWorkflowDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWorkflowDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWorkflowDefinition as schema.OperationSchema, input, options) as async.Operation<types.DeleteWorkflowDefinitionOutput>
 end
 
-function C:deleteWorkflowRun(input: types.DeleteWorkflowRunInput, options: any): async.Operation<types.DeleteWorkflowRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWorkflowRun, input, options) as async.Operation<types.DeleteWorkflowRunOutput>
+function C:deleteWorkflowRun(input: types.DeleteWorkflowRunInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWorkflowRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWorkflowRun as schema.OperationSchema, input, options) as async.Operation<types.DeleteWorkflowRunOutput>
 end
 
-function C:getWorkflowDefinition(input: types.GetWorkflowDefinitionInput, options: any): async.Operation<types.GetWorkflowDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWorkflowDefinition, input, options) as async.Operation<types.GetWorkflowDefinitionOutput>
+function C:getWorkflowDefinition(input: types.GetWorkflowDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.GetWorkflowDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWorkflowDefinition as schema.OperationSchema, input, options) as async.Operation<types.GetWorkflowDefinitionOutput>
 end
 
-function C:getWorkflowRun(input: types.GetWorkflowRunInput, options: any): async.Operation<types.GetWorkflowRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWorkflowRun, input, options) as async.Operation<types.GetWorkflowRunOutput>
+function C:getWorkflowRun(input: types.GetWorkflowRunInput, options?: base_client.InvokeOptions): async.Operation<types.GetWorkflowRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWorkflowRun as schema.OperationSchema, input, options) as async.Operation<types.GetWorkflowRunOutput>
 end
 
-function C:invokeActStep(input: types.InvokeActStepInput, options: any): async.Operation<types.InvokeActStepOutput>
-    return self:invokeOperation(schemas.Service, schemas.InvokeActStep, input, options) as async.Operation<types.InvokeActStepOutput>
+function C:invokeActStep(input: types.InvokeActStepInput, options?: base_client.InvokeOptions): async.Operation<types.InvokeActStepOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InvokeActStep as schema.OperationSchema, input, options) as async.Operation<types.InvokeActStepOutput>
 end
 
-function C:listActs(input: types.ListActsInput, options: any): async.Operation<types.ListActsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListActs, input, options) as async.Operation<types.ListActsOutput>
+function C:listActs(input: types.ListActsInput, options?: base_client.InvokeOptions): async.Operation<types.ListActsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListActs as schema.OperationSchema, input, options) as async.Operation<types.ListActsOutput>
 end
 
-function C:listModels(input: types.ListModelsInput, options: any): async.Operation<types.ListModelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListModels, input, options) as async.Operation<types.ListModelsOutput>
+function C:listModels(input: types.ListModelsInput, options?: base_client.InvokeOptions): async.Operation<types.ListModelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListModels as schema.OperationSchema, input, options) as async.Operation<types.ListModelsOutput>
 end
 
-function C:listSessions(input: types.ListSessionsInput, options: any): async.Operation<types.ListSessionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSessions, input, options) as async.Operation<types.ListSessionsOutput>
+function C:listSessions(input: types.ListSessionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSessionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSessions as schema.OperationSchema, input, options) as async.Operation<types.ListSessionsOutput>
 end
 
-function C:listWorkflowDefinitions(input: types.ListWorkflowDefinitionsInput, options: any): async.Operation<types.ListWorkflowDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWorkflowDefinitions, input, options) as async.Operation<types.ListWorkflowDefinitionsOutput>
+function C:listWorkflowDefinitions(input: types.ListWorkflowDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkflowDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkflowDefinitions as schema.OperationSchema, input, options) as async.Operation<types.ListWorkflowDefinitionsOutput>
 end
 
-function C:listWorkflowRuns(input: types.ListWorkflowRunsInput, options: any): async.Operation<types.ListWorkflowRunsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWorkflowRuns, input, options) as async.Operation<types.ListWorkflowRunsOutput>
+function C:listWorkflowRuns(input: types.ListWorkflowRunsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkflowRunsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkflowRuns as schema.OperationSchema, input, options) as async.Operation<types.ListWorkflowRunsOutput>
 end
 
-function C:updateAct(input: types.UpdateActInput, options: any): async.Operation<types.UpdateActOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAct, input, options) as async.Operation<types.UpdateActOutput>
+function C:updateAct(input: types.UpdateActInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateActOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAct as schema.OperationSchema, input, options) as async.Operation<types.UpdateActOutput>
 end
 
-function C:updateWorkflowRun(input: types.UpdateWorkflowRunInput, options: any): async.Operation<types.UpdateWorkflowRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateWorkflowRun, input, options) as async.Operation<types.UpdateWorkflowRunOutput>
+function C:updateWorkflowRun(input: types.UpdateWorkflowRunInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWorkflowRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWorkflowRun as schema.OperationSchema, input, options) as async.Operation<types.UpdateWorkflowRunOutput>
 end
 
 return M

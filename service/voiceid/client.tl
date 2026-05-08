@@ -8,68 +8,71 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("voiceid.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("voiceid.schemas")
 local traits = require("smithy.traits")
 local types = require("voiceid.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateFraudster: function(Client, types.AssociateFraudsterInput, any): async.Operation<types.AssociateFraudsterOutput>
-    createDomain: function(Client, types.CreateDomainInput, any): async.Operation<types.CreateDomainOutput>
-    createWatchlist: function(Client, types.CreateWatchlistInput, any): async.Operation<types.CreateWatchlistOutput>
-    deleteDomain: function(Client, types.DeleteDomainInput, any): async.Operation<types.DeleteDomainOutput>
-    deleteFraudster: function(Client, types.DeleteFraudsterInput, any): async.Operation<types.DeleteFraudsterOutput>
-    deleteSpeaker: function(Client, types.DeleteSpeakerInput, any): async.Operation<types.DeleteSpeakerOutput>
-    deleteWatchlist: function(Client, types.DeleteWatchlistInput, any): async.Operation<types.DeleteWatchlistOutput>
-    describeDomain: function(Client, types.DescribeDomainInput, any): async.Operation<types.DescribeDomainOutput>
-    describeFraudster: function(Client, types.DescribeFraudsterInput, any): async.Operation<types.DescribeFraudsterOutput>
-    describeFraudsterRegistrationJob: function(Client, types.DescribeFraudsterRegistrationJobInput, any): async.Operation<types.DescribeFraudsterRegistrationJobOutput>
-    describeSpeaker: function(Client, types.DescribeSpeakerInput, any): async.Operation<types.DescribeSpeakerOutput>
-    describeSpeakerEnrollmentJob: function(Client, types.DescribeSpeakerEnrollmentJobInput, any): async.Operation<types.DescribeSpeakerEnrollmentJobOutput>
-    describeWatchlist: function(Client, types.DescribeWatchlistInput, any): async.Operation<types.DescribeWatchlistOutput>
-    disassociateFraudster: function(Client, types.DisassociateFraudsterInput, any): async.Operation<types.DisassociateFraudsterOutput>
-    evaluateSession: function(Client, types.EvaluateSessionInput, any): async.Operation<types.EvaluateSessionOutput>
-    listDomains: function(Client, types.ListDomainsInput, any): async.Operation<types.ListDomainsOutput>
-    listFraudsterRegistrationJobs: function(Client, types.ListFraudsterRegistrationJobsInput, any): async.Operation<types.ListFraudsterRegistrationJobsOutput>
-    listFraudsters: function(Client, types.ListFraudstersInput, any): async.Operation<types.ListFraudstersOutput>
-    listSpeakerEnrollmentJobs: function(Client, types.ListSpeakerEnrollmentJobsInput, any): async.Operation<types.ListSpeakerEnrollmentJobsOutput>
-    listSpeakers: function(Client, types.ListSpeakersInput, any): async.Operation<types.ListSpeakersOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listWatchlists: function(Client, types.ListWatchlistsInput, any): async.Operation<types.ListWatchlistsOutput>
-    optOutSpeaker: function(Client, types.OptOutSpeakerInput, any): async.Operation<types.OptOutSpeakerOutput>
-    startFraudsterRegistrationJob: function(Client, types.StartFraudsterRegistrationJobInput, any): async.Operation<types.StartFraudsterRegistrationJobOutput>
-    startSpeakerEnrollmentJob: function(Client, types.StartSpeakerEnrollmentJobInput, any): async.Operation<types.StartSpeakerEnrollmentJobOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateDomain: function(Client, types.UpdateDomainInput, any): async.Operation<types.UpdateDomainOutput>
-    updateWatchlist: function(Client, types.UpdateWatchlistInput, any): async.Operation<types.UpdateWatchlistOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateFraudster: function(Client, types.AssociateFraudsterInput, ? base_client.InvokeOptions): async.Operation<types.AssociateFraudsterOutput>
+    createDomain: function(Client, types.CreateDomainInput, ? base_client.InvokeOptions): async.Operation<types.CreateDomainOutput>
+    createWatchlist: function(Client, types.CreateWatchlistInput, ? base_client.InvokeOptions): async.Operation<types.CreateWatchlistOutput>
+    deleteDomain: function(Client, types.DeleteDomainInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDomainOutput>
+    deleteFraudster: function(Client, types.DeleteFraudsterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFraudsterOutput>
+    deleteSpeaker: function(Client, types.DeleteSpeakerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSpeakerOutput>
+    deleteWatchlist: function(Client, types.DeleteWatchlistInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWatchlistOutput>
+    describeDomain: function(Client, types.DescribeDomainInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDomainOutput>
+    describeFraudster: function(Client, types.DescribeFraudsterInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFraudsterOutput>
+    describeFraudsterRegistrationJob: function(Client, types.DescribeFraudsterRegistrationJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFraudsterRegistrationJobOutput>
+    describeSpeaker: function(Client, types.DescribeSpeakerInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSpeakerOutput>
+    describeSpeakerEnrollmentJob: function(Client, types.DescribeSpeakerEnrollmentJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSpeakerEnrollmentJobOutput>
+    describeWatchlist: function(Client, types.DescribeWatchlistInput, ? base_client.InvokeOptions): async.Operation<types.DescribeWatchlistOutput>
+    disassociateFraudster: function(Client, types.DisassociateFraudsterInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateFraudsterOutput>
+    evaluateSession: function(Client, types.EvaluateSessionInput, ? base_client.InvokeOptions): async.Operation<types.EvaluateSessionOutput>
+    listDomains: function(Client, types.ListDomainsInput, ? base_client.InvokeOptions): async.Operation<types.ListDomainsOutput>
+    listFraudsterRegistrationJobs: function(Client, types.ListFraudsterRegistrationJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListFraudsterRegistrationJobsOutput>
+    listFraudsters: function(Client, types.ListFraudstersInput, ? base_client.InvokeOptions): async.Operation<types.ListFraudstersOutput>
+    listSpeakerEnrollmentJobs: function(Client, types.ListSpeakerEnrollmentJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListSpeakerEnrollmentJobsOutput>
+    listSpeakers: function(Client, types.ListSpeakersInput, ? base_client.InvokeOptions): async.Operation<types.ListSpeakersOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listWatchlists: function(Client, types.ListWatchlistsInput, ? base_client.InvokeOptions): async.Operation<types.ListWatchlistsOutput>
+    optOutSpeaker: function(Client, types.OptOutSpeakerInput, ? base_client.InvokeOptions): async.Operation<types.OptOutSpeakerOutput>
+    startFraudsterRegistrationJob: function(Client, types.StartFraudsterRegistrationJobInput, ? base_client.InvokeOptions): async.Operation<types.StartFraudsterRegistrationJobOutput>
+    startSpeakerEnrollmentJob: function(Client, types.StartSpeakerEnrollmentJobInput, ? base_client.InvokeOptions): async.Operation<types.StartSpeakerEnrollmentJobOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateDomain: function(Client, types.UpdateDomainInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDomainOutput>
+    updateWatchlist: function(Client, types.UpdateWatchlistInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWatchlistOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "VoiceID"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "voiceid", signing_region = c.region } }
                 else
@@ -88,120 +91,120 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateFraudster(input: types.AssociateFraudsterInput, options: any): async.Operation<types.AssociateFraudsterOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateFraudster, input, options) as async.Operation<types.AssociateFraudsterOutput>
+function C:associateFraudster(input: types.AssociateFraudsterInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateFraudsterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateFraudster as schema.OperationSchema, input, options) as async.Operation<types.AssociateFraudsterOutput>
 end
 
-function C:createDomain(input: types.CreateDomainInput, options: any): async.Operation<types.CreateDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDomain, input, options) as async.Operation<types.CreateDomainOutput>
+function C:createDomain(input: types.CreateDomainInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDomain as schema.OperationSchema, input, options) as async.Operation<types.CreateDomainOutput>
 end
 
-function C:createWatchlist(input: types.CreateWatchlistInput, options: any): async.Operation<types.CreateWatchlistOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWatchlist, input, options) as async.Operation<types.CreateWatchlistOutput>
+function C:createWatchlist(input: types.CreateWatchlistInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWatchlistOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWatchlist as schema.OperationSchema, input, options) as async.Operation<types.CreateWatchlistOutput>
 end
 
-function C:deleteDomain(input: types.DeleteDomainInput, options: any): async.Operation<types.DeleteDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDomain, input, options) as async.Operation<types.DeleteDomainOutput>
+function C:deleteDomain(input: types.DeleteDomainInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDomain as schema.OperationSchema, input, options) as async.Operation<types.DeleteDomainOutput>
 end
 
-function C:deleteFraudster(input: types.DeleteFraudsterInput, options: any): async.Operation<types.DeleteFraudsterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFraudster, input, options) as async.Operation<types.DeleteFraudsterOutput>
+function C:deleteFraudster(input: types.DeleteFraudsterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFraudsterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFraudster as schema.OperationSchema, input, options) as async.Operation<types.DeleteFraudsterOutput>
 end
 
-function C:deleteSpeaker(input: types.DeleteSpeakerInput, options: any): async.Operation<types.DeleteSpeakerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSpeaker, input, options) as async.Operation<types.DeleteSpeakerOutput>
+function C:deleteSpeaker(input: types.DeleteSpeakerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSpeakerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSpeaker as schema.OperationSchema, input, options) as async.Operation<types.DeleteSpeakerOutput>
 end
 
-function C:deleteWatchlist(input: types.DeleteWatchlistInput, options: any): async.Operation<types.DeleteWatchlistOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWatchlist, input, options) as async.Operation<types.DeleteWatchlistOutput>
+function C:deleteWatchlist(input: types.DeleteWatchlistInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWatchlistOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWatchlist as schema.OperationSchema, input, options) as async.Operation<types.DeleteWatchlistOutput>
 end
 
-function C:describeDomain(input: types.DescribeDomainInput, options: any): async.Operation<types.DescribeDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDomain, input, options) as async.Operation<types.DescribeDomainOutput>
+function C:describeDomain(input: types.DescribeDomainInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDomain as schema.OperationSchema, input, options) as async.Operation<types.DescribeDomainOutput>
 end
 
-function C:describeFraudster(input: types.DescribeFraudsterInput, options: any): async.Operation<types.DescribeFraudsterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFraudster, input, options) as async.Operation<types.DescribeFraudsterOutput>
+function C:describeFraudster(input: types.DescribeFraudsterInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFraudsterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFraudster as schema.OperationSchema, input, options) as async.Operation<types.DescribeFraudsterOutput>
 end
 
-function C:describeFraudsterRegistrationJob(input: types.DescribeFraudsterRegistrationJobInput, options: any): async.Operation<types.DescribeFraudsterRegistrationJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFraudsterRegistrationJob, input, options) as async.Operation<types.DescribeFraudsterRegistrationJobOutput>
+function C:describeFraudsterRegistrationJob(input: types.DescribeFraudsterRegistrationJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFraudsterRegistrationJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFraudsterRegistrationJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeFraudsterRegistrationJobOutput>
 end
 
-function C:describeSpeaker(input: types.DescribeSpeakerInput, options: any): async.Operation<types.DescribeSpeakerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSpeaker, input, options) as async.Operation<types.DescribeSpeakerOutput>
+function C:describeSpeaker(input: types.DescribeSpeakerInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSpeakerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSpeaker as schema.OperationSchema, input, options) as async.Operation<types.DescribeSpeakerOutput>
 end
 
-function C:describeSpeakerEnrollmentJob(input: types.DescribeSpeakerEnrollmentJobInput, options: any): async.Operation<types.DescribeSpeakerEnrollmentJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSpeakerEnrollmentJob, input, options) as async.Operation<types.DescribeSpeakerEnrollmentJobOutput>
+function C:describeSpeakerEnrollmentJob(input: types.DescribeSpeakerEnrollmentJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSpeakerEnrollmentJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSpeakerEnrollmentJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeSpeakerEnrollmentJobOutput>
 end
 
-function C:describeWatchlist(input: types.DescribeWatchlistInput, options: any): async.Operation<types.DescribeWatchlistOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeWatchlist, input, options) as async.Operation<types.DescribeWatchlistOutput>
+function C:describeWatchlist(input: types.DescribeWatchlistInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeWatchlistOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeWatchlist as schema.OperationSchema, input, options) as async.Operation<types.DescribeWatchlistOutput>
 end
 
-function C:disassociateFraudster(input: types.DisassociateFraudsterInput, options: any): async.Operation<types.DisassociateFraudsterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateFraudster, input, options) as async.Operation<types.DisassociateFraudsterOutput>
+function C:disassociateFraudster(input: types.DisassociateFraudsterInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateFraudsterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateFraudster as schema.OperationSchema, input, options) as async.Operation<types.DisassociateFraudsterOutput>
 end
 
-function C:evaluateSession(input: types.EvaluateSessionInput, options: any): async.Operation<types.EvaluateSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.EvaluateSession, input, options) as async.Operation<types.EvaluateSessionOutput>
+function C:evaluateSession(input: types.EvaluateSessionInput, options?: base_client.InvokeOptions): async.Operation<types.EvaluateSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EvaluateSession as schema.OperationSchema, input, options) as async.Operation<types.EvaluateSessionOutput>
 end
 
-function C:listDomains(input: types.ListDomainsInput, options: any): async.Operation<types.ListDomainsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDomains, input, options) as async.Operation<types.ListDomainsOutput>
+function C:listDomains(input: types.ListDomainsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDomainsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDomains as schema.OperationSchema, input, options) as async.Operation<types.ListDomainsOutput>
 end
 
-function C:listFraudsterRegistrationJobs(input: types.ListFraudsterRegistrationJobsInput, options: any): async.Operation<types.ListFraudsterRegistrationJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFraudsterRegistrationJobs, input, options) as async.Operation<types.ListFraudsterRegistrationJobsOutput>
+function C:listFraudsterRegistrationJobs(input: types.ListFraudsterRegistrationJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFraudsterRegistrationJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFraudsterRegistrationJobs as schema.OperationSchema, input, options) as async.Operation<types.ListFraudsterRegistrationJobsOutput>
 end
 
-function C:listFraudsters(input: types.ListFraudstersInput, options: any): async.Operation<types.ListFraudstersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFraudsters, input, options) as async.Operation<types.ListFraudstersOutput>
+function C:listFraudsters(input: types.ListFraudstersInput, options?: base_client.InvokeOptions): async.Operation<types.ListFraudstersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFraudsters as schema.OperationSchema, input, options) as async.Operation<types.ListFraudstersOutput>
 end
 
-function C:listSpeakerEnrollmentJobs(input: types.ListSpeakerEnrollmentJobsInput, options: any): async.Operation<types.ListSpeakerEnrollmentJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSpeakerEnrollmentJobs, input, options) as async.Operation<types.ListSpeakerEnrollmentJobsOutput>
+function C:listSpeakerEnrollmentJobs(input: types.ListSpeakerEnrollmentJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSpeakerEnrollmentJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSpeakerEnrollmentJobs as schema.OperationSchema, input, options) as async.Operation<types.ListSpeakerEnrollmentJobsOutput>
 end
 
-function C:listSpeakers(input: types.ListSpeakersInput, options: any): async.Operation<types.ListSpeakersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSpeakers, input, options) as async.Operation<types.ListSpeakersOutput>
+function C:listSpeakers(input: types.ListSpeakersInput, options?: base_client.InvokeOptions): async.Operation<types.ListSpeakersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSpeakers as schema.OperationSchema, input, options) as async.Operation<types.ListSpeakersOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listWatchlists(input: types.ListWatchlistsInput, options: any): async.Operation<types.ListWatchlistsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWatchlists, input, options) as async.Operation<types.ListWatchlistsOutput>
+function C:listWatchlists(input: types.ListWatchlistsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWatchlistsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWatchlists as schema.OperationSchema, input, options) as async.Operation<types.ListWatchlistsOutput>
 end
 
-function C:optOutSpeaker(input: types.OptOutSpeakerInput, options: any): async.Operation<types.OptOutSpeakerOutput>
-    return self:invokeOperation(schemas.Service, schemas.OptOutSpeaker, input, options) as async.Operation<types.OptOutSpeakerOutput>
+function C:optOutSpeaker(input: types.OptOutSpeakerInput, options?: base_client.InvokeOptions): async.Operation<types.OptOutSpeakerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.OptOutSpeaker as schema.OperationSchema, input, options) as async.Operation<types.OptOutSpeakerOutput>
 end
 
-function C:startFraudsterRegistrationJob(input: types.StartFraudsterRegistrationJobInput, options: any): async.Operation<types.StartFraudsterRegistrationJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartFraudsterRegistrationJob, input, options) as async.Operation<types.StartFraudsterRegistrationJobOutput>
+function C:startFraudsterRegistrationJob(input: types.StartFraudsterRegistrationJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartFraudsterRegistrationJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartFraudsterRegistrationJob as schema.OperationSchema, input, options) as async.Operation<types.StartFraudsterRegistrationJobOutput>
 end
 
-function C:startSpeakerEnrollmentJob(input: types.StartSpeakerEnrollmentJobInput, options: any): async.Operation<types.StartSpeakerEnrollmentJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartSpeakerEnrollmentJob, input, options) as async.Operation<types.StartSpeakerEnrollmentJobOutput>
+function C:startSpeakerEnrollmentJob(input: types.StartSpeakerEnrollmentJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartSpeakerEnrollmentJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartSpeakerEnrollmentJob as schema.OperationSchema, input, options) as async.Operation<types.StartSpeakerEnrollmentJobOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateDomain(input: types.UpdateDomainInput, options: any): async.Operation<types.UpdateDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDomain, input, options) as async.Operation<types.UpdateDomainOutput>
+function C:updateDomain(input: types.UpdateDomainInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDomain as schema.OperationSchema, input, options) as async.Operation<types.UpdateDomainOutput>
 end
 
-function C:updateWatchlist(input: types.UpdateWatchlistInput, options: any): async.Operation<types.UpdateWatchlistOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateWatchlist, input, options) as async.Operation<types.UpdateWatchlistOutput>
+function C:updateWatchlist(input: types.UpdateWatchlistInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWatchlistOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWatchlist as schema.OperationSchema, input, options) as async.Operation<types.UpdateWatchlistOutput>
 end
 
 return M

@@ -8,124 +8,127 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("comprehend.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("comprehend.schemas")
 local traits = require("smithy.traits")
 local types = require("comprehend.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchDetectDominantLanguage: function(Client, types.BatchDetectDominantLanguageInput, any): async.Operation<types.BatchDetectDominantLanguageOutput>
-    batchDetectEntities: function(Client, types.BatchDetectEntitiesInput, any): async.Operation<types.BatchDetectEntitiesOutput>
-    batchDetectKeyPhrases: function(Client, types.BatchDetectKeyPhrasesInput, any): async.Operation<types.BatchDetectKeyPhrasesOutput>
-    batchDetectSentiment: function(Client, types.BatchDetectSentimentInput, any): async.Operation<types.BatchDetectSentimentOutput>
-    batchDetectSyntax: function(Client, types.BatchDetectSyntaxInput, any): async.Operation<types.BatchDetectSyntaxOutput>
-    batchDetectTargetedSentiment: function(Client, types.BatchDetectTargetedSentimentInput, any): async.Operation<types.BatchDetectTargetedSentimentOutput>
-    classifyDocument: function(Client, types.ClassifyDocumentInput, any): async.Operation<types.ClassifyDocumentOutput>
-    containsPiiEntities: function(Client, types.ContainsPiiEntitiesInput, any): async.Operation<types.ContainsPiiEntitiesOutput>
-    createDataset: function(Client, types.CreateDatasetInput, any): async.Operation<types.CreateDatasetOutput>
-    createDocumentClassifier: function(Client, types.CreateDocumentClassifierInput, any): async.Operation<types.CreateDocumentClassifierOutput>
-    createEndpoint: function(Client, types.CreateEndpointInput, any): async.Operation<types.CreateEndpointOutput>
-    createEntityRecognizer: function(Client, types.CreateEntityRecognizerInput, any): async.Operation<types.CreateEntityRecognizerOutput>
-    createFlywheel: function(Client, types.CreateFlywheelInput, any): async.Operation<types.CreateFlywheelOutput>
-    deleteDocumentClassifier: function(Client, types.DeleteDocumentClassifierInput, any): async.Operation<types.DeleteDocumentClassifierOutput>
-    deleteEndpoint: function(Client, types.DeleteEndpointInput, any): async.Operation<types.DeleteEndpointOutput>
-    deleteEntityRecognizer: function(Client, types.DeleteEntityRecognizerInput, any): async.Operation<types.DeleteEntityRecognizerOutput>
-    deleteFlywheel: function(Client, types.DeleteFlywheelInput, any): async.Operation<types.DeleteFlywheelOutput>
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, any): async.Operation<types.DeleteResourcePolicyOutput>
-    describeDataset: function(Client, types.DescribeDatasetInput, any): async.Operation<types.DescribeDatasetOutput>
-    describeDocumentClassificationJob: function(Client, types.DescribeDocumentClassificationJobInput, any): async.Operation<types.DescribeDocumentClassificationJobOutput>
-    describeDocumentClassifier: function(Client, types.DescribeDocumentClassifierInput, any): async.Operation<types.DescribeDocumentClassifierOutput>
-    describeDominantLanguageDetectionJob: function(Client, types.DescribeDominantLanguageDetectionJobInput, any): async.Operation<types.DescribeDominantLanguageDetectionJobOutput>
-    describeEndpoint: function(Client, types.DescribeEndpointInput, any): async.Operation<types.DescribeEndpointOutput>
-    describeEntitiesDetectionJob: function(Client, types.DescribeEntitiesDetectionJobInput, any): async.Operation<types.DescribeEntitiesDetectionJobOutput>
-    describeEntityRecognizer: function(Client, types.DescribeEntityRecognizerInput, any): async.Operation<types.DescribeEntityRecognizerOutput>
-    describeEventsDetectionJob: function(Client, types.DescribeEventsDetectionJobInput, any): async.Operation<types.DescribeEventsDetectionJobOutput>
-    describeFlywheel: function(Client, types.DescribeFlywheelInput, any): async.Operation<types.DescribeFlywheelOutput>
-    describeFlywheelIteration: function(Client, types.DescribeFlywheelIterationInput, any): async.Operation<types.DescribeFlywheelIterationOutput>
-    describeKeyPhrasesDetectionJob: function(Client, types.DescribeKeyPhrasesDetectionJobInput, any): async.Operation<types.DescribeKeyPhrasesDetectionJobOutput>
-    describePiiEntitiesDetectionJob: function(Client, types.DescribePiiEntitiesDetectionJobInput, any): async.Operation<types.DescribePiiEntitiesDetectionJobOutput>
-    describeResourcePolicy: function(Client, types.DescribeResourcePolicyInput, any): async.Operation<types.DescribeResourcePolicyOutput>
-    describeSentimentDetectionJob: function(Client, types.DescribeSentimentDetectionJobInput, any): async.Operation<types.DescribeSentimentDetectionJobOutput>
-    describeTargetedSentimentDetectionJob: function(Client, types.DescribeTargetedSentimentDetectionJobInput, any): async.Operation<types.DescribeTargetedSentimentDetectionJobOutput>
-    describeTopicsDetectionJob: function(Client, types.DescribeTopicsDetectionJobInput, any): async.Operation<types.DescribeTopicsDetectionJobOutput>
-    detectDominantLanguage: function(Client, types.DetectDominantLanguageInput, any): async.Operation<types.DetectDominantLanguageOutput>
-    detectEntities: function(Client, types.DetectEntitiesInput, any): async.Operation<types.DetectEntitiesOutput>
-    detectKeyPhrases: function(Client, types.DetectKeyPhrasesInput, any): async.Operation<types.DetectKeyPhrasesOutput>
-    detectPiiEntities: function(Client, types.DetectPiiEntitiesInput, any): async.Operation<types.DetectPiiEntitiesOutput>
-    detectSentiment: function(Client, types.DetectSentimentInput, any): async.Operation<types.DetectSentimentOutput>
-    detectSyntax: function(Client, types.DetectSyntaxInput, any): async.Operation<types.DetectSyntaxOutput>
-    detectTargetedSentiment: function(Client, types.DetectTargetedSentimentInput, any): async.Operation<types.DetectTargetedSentimentOutput>
-    detectToxicContent: function(Client, types.DetectToxicContentInput, any): async.Operation<types.DetectToxicContentOutput>
-    importModel: function(Client, types.ImportModelInput, any): async.Operation<types.ImportModelOutput>
-    listDatasets: function(Client, types.ListDatasetsInput, any): async.Operation<types.ListDatasetsOutput>
-    listDocumentClassificationJobs: function(Client, types.ListDocumentClassificationJobsInput, any): async.Operation<types.ListDocumentClassificationJobsOutput>
-    listDocumentClassifiers: function(Client, types.ListDocumentClassifiersInput, any): async.Operation<types.ListDocumentClassifiersOutput>
-    listDocumentClassifierSummaries: function(Client, types.ListDocumentClassifierSummariesInput, any): async.Operation<types.ListDocumentClassifierSummariesOutput>
-    listDominantLanguageDetectionJobs: function(Client, types.ListDominantLanguageDetectionJobsInput, any): async.Operation<types.ListDominantLanguageDetectionJobsOutput>
-    listEndpoints: function(Client, types.ListEndpointsInput, any): async.Operation<types.ListEndpointsOutput>
-    listEntitiesDetectionJobs: function(Client, types.ListEntitiesDetectionJobsInput, any): async.Operation<types.ListEntitiesDetectionJobsOutput>
-    listEntityRecognizers: function(Client, types.ListEntityRecognizersInput, any): async.Operation<types.ListEntityRecognizersOutput>
-    listEntityRecognizerSummaries: function(Client, types.ListEntityRecognizerSummariesInput, any): async.Operation<types.ListEntityRecognizerSummariesOutput>
-    listEventsDetectionJobs: function(Client, types.ListEventsDetectionJobsInput, any): async.Operation<types.ListEventsDetectionJobsOutput>
-    listFlywheelIterationHistory: function(Client, types.ListFlywheelIterationHistoryInput, any): async.Operation<types.ListFlywheelIterationHistoryOutput>
-    listFlywheels: function(Client, types.ListFlywheelsInput, any): async.Operation<types.ListFlywheelsOutput>
-    listKeyPhrasesDetectionJobs: function(Client, types.ListKeyPhrasesDetectionJobsInput, any): async.Operation<types.ListKeyPhrasesDetectionJobsOutput>
-    listPiiEntitiesDetectionJobs: function(Client, types.ListPiiEntitiesDetectionJobsInput, any): async.Operation<types.ListPiiEntitiesDetectionJobsOutput>
-    listSentimentDetectionJobs: function(Client, types.ListSentimentDetectionJobsInput, any): async.Operation<types.ListSentimentDetectionJobsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTargetedSentimentDetectionJobs: function(Client, types.ListTargetedSentimentDetectionJobsInput, any): async.Operation<types.ListTargetedSentimentDetectionJobsOutput>
-    listTopicsDetectionJobs: function(Client, types.ListTopicsDetectionJobsInput, any): async.Operation<types.ListTopicsDetectionJobsOutput>
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput, any): async.Operation<types.PutResourcePolicyOutput>
-    startDocumentClassificationJob: function(Client, types.StartDocumentClassificationJobInput, any): async.Operation<types.StartDocumentClassificationJobOutput>
-    startDominantLanguageDetectionJob: function(Client, types.StartDominantLanguageDetectionJobInput, any): async.Operation<types.StartDominantLanguageDetectionJobOutput>
-    startEntitiesDetectionJob: function(Client, types.StartEntitiesDetectionJobInput, any): async.Operation<types.StartEntitiesDetectionJobOutput>
-    startEventsDetectionJob: function(Client, types.StartEventsDetectionJobInput, any): async.Operation<types.StartEventsDetectionJobOutput>
-    startFlywheelIteration: function(Client, types.StartFlywheelIterationInput, any): async.Operation<types.StartFlywheelIterationOutput>
-    startKeyPhrasesDetectionJob: function(Client, types.StartKeyPhrasesDetectionJobInput, any): async.Operation<types.StartKeyPhrasesDetectionJobOutput>
-    startPiiEntitiesDetectionJob: function(Client, types.StartPiiEntitiesDetectionJobInput, any): async.Operation<types.StartPiiEntitiesDetectionJobOutput>
-    startSentimentDetectionJob: function(Client, types.StartSentimentDetectionJobInput, any): async.Operation<types.StartSentimentDetectionJobOutput>
-    startTargetedSentimentDetectionJob: function(Client, types.StartTargetedSentimentDetectionJobInput, any): async.Operation<types.StartTargetedSentimentDetectionJobOutput>
-    startTopicsDetectionJob: function(Client, types.StartTopicsDetectionJobInput, any): async.Operation<types.StartTopicsDetectionJobOutput>
-    stopDominantLanguageDetectionJob: function(Client, types.StopDominantLanguageDetectionJobInput, any): async.Operation<types.StopDominantLanguageDetectionJobOutput>
-    stopEntitiesDetectionJob: function(Client, types.StopEntitiesDetectionJobInput, any): async.Operation<types.StopEntitiesDetectionJobOutput>
-    stopEventsDetectionJob: function(Client, types.StopEventsDetectionJobInput, any): async.Operation<types.StopEventsDetectionJobOutput>
-    stopKeyPhrasesDetectionJob: function(Client, types.StopKeyPhrasesDetectionJobInput, any): async.Operation<types.StopKeyPhrasesDetectionJobOutput>
-    stopPiiEntitiesDetectionJob: function(Client, types.StopPiiEntitiesDetectionJobInput, any): async.Operation<types.StopPiiEntitiesDetectionJobOutput>
-    stopSentimentDetectionJob: function(Client, types.StopSentimentDetectionJobInput, any): async.Operation<types.StopSentimentDetectionJobOutput>
-    stopTargetedSentimentDetectionJob: function(Client, types.StopTargetedSentimentDetectionJobInput, any): async.Operation<types.StopTargetedSentimentDetectionJobOutput>
-    stopTrainingDocumentClassifier: function(Client, types.StopTrainingDocumentClassifierInput, any): async.Operation<types.StopTrainingDocumentClassifierOutput>
-    stopTrainingEntityRecognizer: function(Client, types.StopTrainingEntityRecognizerInput, any): async.Operation<types.StopTrainingEntityRecognizerOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateEndpoint: function(Client, types.UpdateEndpointInput, any): async.Operation<types.UpdateEndpointOutput>
-    updateFlywheel: function(Client, types.UpdateFlywheelInput, any): async.Operation<types.UpdateFlywheelOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchDetectDominantLanguage: function(Client, types.BatchDetectDominantLanguageInput, ? base_client.InvokeOptions): async.Operation<types.BatchDetectDominantLanguageOutput>
+    batchDetectEntities: function(Client, types.BatchDetectEntitiesInput, ? base_client.InvokeOptions): async.Operation<types.BatchDetectEntitiesOutput>
+    batchDetectKeyPhrases: function(Client, types.BatchDetectKeyPhrasesInput, ? base_client.InvokeOptions): async.Operation<types.BatchDetectKeyPhrasesOutput>
+    batchDetectSentiment: function(Client, types.BatchDetectSentimentInput, ? base_client.InvokeOptions): async.Operation<types.BatchDetectSentimentOutput>
+    batchDetectSyntax: function(Client, types.BatchDetectSyntaxInput, ? base_client.InvokeOptions): async.Operation<types.BatchDetectSyntaxOutput>
+    batchDetectTargetedSentiment: function(Client, types.BatchDetectTargetedSentimentInput, ? base_client.InvokeOptions): async.Operation<types.BatchDetectTargetedSentimentOutput>
+    classifyDocument: function(Client, types.ClassifyDocumentInput, ? base_client.InvokeOptions): async.Operation<types.ClassifyDocumentOutput>
+    containsPiiEntities: function(Client, types.ContainsPiiEntitiesInput, ? base_client.InvokeOptions): async.Operation<types.ContainsPiiEntitiesOutput>
+    createDataset: function(Client, types.CreateDatasetInput, ? base_client.InvokeOptions): async.Operation<types.CreateDatasetOutput>
+    createDocumentClassifier: function(Client, types.CreateDocumentClassifierInput, ? base_client.InvokeOptions): async.Operation<types.CreateDocumentClassifierOutput>
+    createEndpoint: function(Client, types.CreateEndpointInput, ? base_client.InvokeOptions): async.Operation<types.CreateEndpointOutput>
+    createEntityRecognizer: function(Client, types.CreateEntityRecognizerInput, ? base_client.InvokeOptions): async.Operation<types.CreateEntityRecognizerOutput>
+    createFlywheel: function(Client, types.CreateFlywheelInput, ? base_client.InvokeOptions): async.Operation<types.CreateFlywheelOutput>
+    deleteDocumentClassifier: function(Client, types.DeleteDocumentClassifierInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDocumentClassifierOutput>
+    deleteEndpoint: function(Client, types.DeleteEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEndpointOutput>
+    deleteEntityRecognizer: function(Client, types.DeleteEntityRecognizerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEntityRecognizerOutput>
+    deleteFlywheel: function(Client, types.DeleteFlywheelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFlywheelOutput>
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    describeDataset: function(Client, types.DescribeDatasetInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDatasetOutput>
+    describeDocumentClassificationJob: function(Client, types.DescribeDocumentClassificationJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDocumentClassificationJobOutput>
+    describeDocumentClassifier: function(Client, types.DescribeDocumentClassifierInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDocumentClassifierOutput>
+    describeDominantLanguageDetectionJob: function(Client, types.DescribeDominantLanguageDetectionJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDominantLanguageDetectionJobOutput>
+    describeEndpoint: function(Client, types.DescribeEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEndpointOutput>
+    describeEntitiesDetectionJob: function(Client, types.DescribeEntitiesDetectionJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEntitiesDetectionJobOutput>
+    describeEntityRecognizer: function(Client, types.DescribeEntityRecognizerInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEntityRecognizerOutput>
+    describeEventsDetectionJob: function(Client, types.DescribeEventsDetectionJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEventsDetectionJobOutput>
+    describeFlywheel: function(Client, types.DescribeFlywheelInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFlywheelOutput>
+    describeFlywheelIteration: function(Client, types.DescribeFlywheelIterationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFlywheelIterationOutput>
+    describeKeyPhrasesDetectionJob: function(Client, types.DescribeKeyPhrasesDetectionJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeKeyPhrasesDetectionJobOutput>
+    describePiiEntitiesDetectionJob: function(Client, types.DescribePiiEntitiesDetectionJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribePiiEntitiesDetectionJobOutput>
+    describeResourcePolicy: function(Client, types.DescribeResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DescribeResourcePolicyOutput>
+    describeSentimentDetectionJob: function(Client, types.DescribeSentimentDetectionJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSentimentDetectionJobOutput>
+    describeTargetedSentimentDetectionJob: function(Client, types.DescribeTargetedSentimentDetectionJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTargetedSentimentDetectionJobOutput>
+    describeTopicsDetectionJob: function(Client, types.DescribeTopicsDetectionJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTopicsDetectionJobOutput>
+    detectDominantLanguage: function(Client, types.DetectDominantLanguageInput, ? base_client.InvokeOptions): async.Operation<types.DetectDominantLanguageOutput>
+    detectEntities: function(Client, types.DetectEntitiesInput, ? base_client.InvokeOptions): async.Operation<types.DetectEntitiesOutput>
+    detectKeyPhrases: function(Client, types.DetectKeyPhrasesInput, ? base_client.InvokeOptions): async.Operation<types.DetectKeyPhrasesOutput>
+    detectPiiEntities: function(Client, types.DetectPiiEntitiesInput, ? base_client.InvokeOptions): async.Operation<types.DetectPiiEntitiesOutput>
+    detectSentiment: function(Client, types.DetectSentimentInput, ? base_client.InvokeOptions): async.Operation<types.DetectSentimentOutput>
+    detectSyntax: function(Client, types.DetectSyntaxInput, ? base_client.InvokeOptions): async.Operation<types.DetectSyntaxOutput>
+    detectTargetedSentiment: function(Client, types.DetectTargetedSentimentInput, ? base_client.InvokeOptions): async.Operation<types.DetectTargetedSentimentOutput>
+    detectToxicContent: function(Client, types.DetectToxicContentInput, ? base_client.InvokeOptions): async.Operation<types.DetectToxicContentOutput>
+    importModel: function(Client, types.ImportModelInput, ? base_client.InvokeOptions): async.Operation<types.ImportModelOutput>
+    listDatasets: function(Client, types.ListDatasetsInput, ? base_client.InvokeOptions): async.Operation<types.ListDatasetsOutput>
+    listDocumentClassificationJobs: function(Client, types.ListDocumentClassificationJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListDocumentClassificationJobsOutput>
+    listDocumentClassifiers: function(Client, types.ListDocumentClassifiersInput, ? base_client.InvokeOptions): async.Operation<types.ListDocumentClassifiersOutput>
+    listDocumentClassifierSummaries: function(Client, types.ListDocumentClassifierSummariesInput, ? base_client.InvokeOptions): async.Operation<types.ListDocumentClassifierSummariesOutput>
+    listDominantLanguageDetectionJobs: function(Client, types.ListDominantLanguageDetectionJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListDominantLanguageDetectionJobsOutput>
+    listEndpoints: function(Client, types.ListEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.ListEndpointsOutput>
+    listEntitiesDetectionJobs: function(Client, types.ListEntitiesDetectionJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListEntitiesDetectionJobsOutput>
+    listEntityRecognizers: function(Client, types.ListEntityRecognizersInput, ? base_client.InvokeOptions): async.Operation<types.ListEntityRecognizersOutput>
+    listEntityRecognizerSummaries: function(Client, types.ListEntityRecognizerSummariesInput, ? base_client.InvokeOptions): async.Operation<types.ListEntityRecognizerSummariesOutput>
+    listEventsDetectionJobs: function(Client, types.ListEventsDetectionJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListEventsDetectionJobsOutput>
+    listFlywheelIterationHistory: function(Client, types.ListFlywheelIterationHistoryInput, ? base_client.InvokeOptions): async.Operation<types.ListFlywheelIterationHistoryOutput>
+    listFlywheels: function(Client, types.ListFlywheelsInput, ? base_client.InvokeOptions): async.Operation<types.ListFlywheelsOutput>
+    listKeyPhrasesDetectionJobs: function(Client, types.ListKeyPhrasesDetectionJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListKeyPhrasesDetectionJobsOutput>
+    listPiiEntitiesDetectionJobs: function(Client, types.ListPiiEntitiesDetectionJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListPiiEntitiesDetectionJobsOutput>
+    listSentimentDetectionJobs: function(Client, types.ListSentimentDetectionJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListSentimentDetectionJobsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTargetedSentimentDetectionJobs: function(Client, types.ListTargetedSentimentDetectionJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListTargetedSentimentDetectionJobsOutput>
+    listTopicsDetectionJobs: function(Client, types.ListTopicsDetectionJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListTopicsDetectionJobsOutput>
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    startDocumentClassificationJob: function(Client, types.StartDocumentClassificationJobInput, ? base_client.InvokeOptions): async.Operation<types.StartDocumentClassificationJobOutput>
+    startDominantLanguageDetectionJob: function(Client, types.StartDominantLanguageDetectionJobInput, ? base_client.InvokeOptions): async.Operation<types.StartDominantLanguageDetectionJobOutput>
+    startEntitiesDetectionJob: function(Client, types.StartEntitiesDetectionJobInput, ? base_client.InvokeOptions): async.Operation<types.StartEntitiesDetectionJobOutput>
+    startEventsDetectionJob: function(Client, types.StartEventsDetectionJobInput, ? base_client.InvokeOptions): async.Operation<types.StartEventsDetectionJobOutput>
+    startFlywheelIteration: function(Client, types.StartFlywheelIterationInput, ? base_client.InvokeOptions): async.Operation<types.StartFlywheelIterationOutput>
+    startKeyPhrasesDetectionJob: function(Client, types.StartKeyPhrasesDetectionJobInput, ? base_client.InvokeOptions): async.Operation<types.StartKeyPhrasesDetectionJobOutput>
+    startPiiEntitiesDetectionJob: function(Client, types.StartPiiEntitiesDetectionJobInput, ? base_client.InvokeOptions): async.Operation<types.StartPiiEntitiesDetectionJobOutput>
+    startSentimentDetectionJob: function(Client, types.StartSentimentDetectionJobInput, ? base_client.InvokeOptions): async.Operation<types.StartSentimentDetectionJobOutput>
+    startTargetedSentimentDetectionJob: function(Client, types.StartTargetedSentimentDetectionJobInput, ? base_client.InvokeOptions): async.Operation<types.StartTargetedSentimentDetectionJobOutput>
+    startTopicsDetectionJob: function(Client, types.StartTopicsDetectionJobInput, ? base_client.InvokeOptions): async.Operation<types.StartTopicsDetectionJobOutput>
+    stopDominantLanguageDetectionJob: function(Client, types.StopDominantLanguageDetectionJobInput, ? base_client.InvokeOptions): async.Operation<types.StopDominantLanguageDetectionJobOutput>
+    stopEntitiesDetectionJob: function(Client, types.StopEntitiesDetectionJobInput, ? base_client.InvokeOptions): async.Operation<types.StopEntitiesDetectionJobOutput>
+    stopEventsDetectionJob: function(Client, types.StopEventsDetectionJobInput, ? base_client.InvokeOptions): async.Operation<types.StopEventsDetectionJobOutput>
+    stopKeyPhrasesDetectionJob: function(Client, types.StopKeyPhrasesDetectionJobInput, ? base_client.InvokeOptions): async.Operation<types.StopKeyPhrasesDetectionJobOutput>
+    stopPiiEntitiesDetectionJob: function(Client, types.StopPiiEntitiesDetectionJobInput, ? base_client.InvokeOptions): async.Operation<types.StopPiiEntitiesDetectionJobOutput>
+    stopSentimentDetectionJob: function(Client, types.StopSentimentDetectionJobInput, ? base_client.InvokeOptions): async.Operation<types.StopSentimentDetectionJobOutput>
+    stopTargetedSentimentDetectionJob: function(Client, types.StopTargetedSentimentDetectionJobInput, ? base_client.InvokeOptions): async.Operation<types.StopTargetedSentimentDetectionJobOutput>
+    stopTrainingDocumentClassifier: function(Client, types.StopTrainingDocumentClassifierInput, ? base_client.InvokeOptions): async.Operation<types.StopTrainingDocumentClassifierOutput>
+    stopTrainingEntityRecognizer: function(Client, types.StopTrainingEntityRecognizerInput, ? base_client.InvokeOptions): async.Operation<types.StopTrainingEntityRecognizerOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateEndpoint: function(Client, types.UpdateEndpointInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEndpointOutput>
+    updateFlywheel: function(Client, types.UpdateFlywheelInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFlywheelOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "Comprehend_20171127"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "comprehend", signing_region = c.region } }
                 else
@@ -144,344 +147,344 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchDetectDominantLanguage(input: types.BatchDetectDominantLanguageInput, options: any): async.Operation<types.BatchDetectDominantLanguageOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDetectDominantLanguage, input, options) as async.Operation<types.BatchDetectDominantLanguageOutput>
+function C:batchDetectDominantLanguage(input: types.BatchDetectDominantLanguageInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDetectDominantLanguageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDetectDominantLanguage as schema.OperationSchema, input, options) as async.Operation<types.BatchDetectDominantLanguageOutput>
 end
 
-function C:batchDetectEntities(input: types.BatchDetectEntitiesInput, options: any): async.Operation<types.BatchDetectEntitiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDetectEntities, input, options) as async.Operation<types.BatchDetectEntitiesOutput>
+function C:batchDetectEntities(input: types.BatchDetectEntitiesInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDetectEntitiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDetectEntities as schema.OperationSchema, input, options) as async.Operation<types.BatchDetectEntitiesOutput>
 end
 
-function C:batchDetectKeyPhrases(input: types.BatchDetectKeyPhrasesInput, options: any): async.Operation<types.BatchDetectKeyPhrasesOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDetectKeyPhrases, input, options) as async.Operation<types.BatchDetectKeyPhrasesOutput>
+function C:batchDetectKeyPhrases(input: types.BatchDetectKeyPhrasesInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDetectKeyPhrasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDetectKeyPhrases as schema.OperationSchema, input, options) as async.Operation<types.BatchDetectKeyPhrasesOutput>
 end
 
-function C:batchDetectSentiment(input: types.BatchDetectSentimentInput, options: any): async.Operation<types.BatchDetectSentimentOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDetectSentiment, input, options) as async.Operation<types.BatchDetectSentimentOutput>
+function C:batchDetectSentiment(input: types.BatchDetectSentimentInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDetectSentimentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDetectSentiment as schema.OperationSchema, input, options) as async.Operation<types.BatchDetectSentimentOutput>
 end
 
-function C:batchDetectSyntax(input: types.BatchDetectSyntaxInput, options: any): async.Operation<types.BatchDetectSyntaxOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDetectSyntax, input, options) as async.Operation<types.BatchDetectSyntaxOutput>
+function C:batchDetectSyntax(input: types.BatchDetectSyntaxInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDetectSyntaxOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDetectSyntax as schema.OperationSchema, input, options) as async.Operation<types.BatchDetectSyntaxOutput>
 end
 
-function C:batchDetectTargetedSentiment(input: types.BatchDetectTargetedSentimentInput, options: any): async.Operation<types.BatchDetectTargetedSentimentOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDetectTargetedSentiment, input, options) as async.Operation<types.BatchDetectTargetedSentimentOutput>
+function C:batchDetectTargetedSentiment(input: types.BatchDetectTargetedSentimentInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDetectTargetedSentimentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDetectTargetedSentiment as schema.OperationSchema, input, options) as async.Operation<types.BatchDetectTargetedSentimentOutput>
 end
 
-function C:classifyDocument(input: types.ClassifyDocumentInput, options: any): async.Operation<types.ClassifyDocumentOutput>
-    return self:invokeOperation(schemas.Service, schemas.ClassifyDocument, input, options) as async.Operation<types.ClassifyDocumentOutput>
+function C:classifyDocument(input: types.ClassifyDocumentInput, options?: base_client.InvokeOptions): async.Operation<types.ClassifyDocumentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ClassifyDocument as schema.OperationSchema, input, options) as async.Operation<types.ClassifyDocumentOutput>
 end
 
-function C:containsPiiEntities(input: types.ContainsPiiEntitiesInput, options: any): async.Operation<types.ContainsPiiEntitiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ContainsPiiEntities, input, options) as async.Operation<types.ContainsPiiEntitiesOutput>
+function C:containsPiiEntities(input: types.ContainsPiiEntitiesInput, options?: base_client.InvokeOptions): async.Operation<types.ContainsPiiEntitiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ContainsPiiEntities as schema.OperationSchema, input, options) as async.Operation<types.ContainsPiiEntitiesOutput>
 end
 
-function C:createDataset(input: types.CreateDatasetInput, options: any): async.Operation<types.CreateDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataset, input, options) as async.Operation<types.CreateDatasetOutput>
+function C:createDataset(input: types.CreateDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataset as schema.OperationSchema, input, options) as async.Operation<types.CreateDatasetOutput>
 end
 
-function C:createDocumentClassifier(input: types.CreateDocumentClassifierInput, options: any): async.Operation<types.CreateDocumentClassifierOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDocumentClassifier, input, options) as async.Operation<types.CreateDocumentClassifierOutput>
+function C:createDocumentClassifier(input: types.CreateDocumentClassifierInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDocumentClassifierOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDocumentClassifier as schema.OperationSchema, input, options) as async.Operation<types.CreateDocumentClassifierOutput>
 end
 
-function C:createEndpoint(input: types.CreateEndpointInput, options: any): async.Operation<types.CreateEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEndpoint, input, options) as async.Operation<types.CreateEndpointOutput>
+function C:createEndpoint(input: types.CreateEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEndpoint as schema.OperationSchema, input, options) as async.Operation<types.CreateEndpointOutput>
 end
 
-function C:createEntityRecognizer(input: types.CreateEntityRecognizerInput, options: any): async.Operation<types.CreateEntityRecognizerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEntityRecognizer, input, options) as async.Operation<types.CreateEntityRecognizerOutput>
+function C:createEntityRecognizer(input: types.CreateEntityRecognizerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEntityRecognizerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEntityRecognizer as schema.OperationSchema, input, options) as async.Operation<types.CreateEntityRecognizerOutput>
 end
 
-function C:createFlywheel(input: types.CreateFlywheelInput, options: any): async.Operation<types.CreateFlywheelOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFlywheel, input, options) as async.Operation<types.CreateFlywheelOutput>
+function C:createFlywheel(input: types.CreateFlywheelInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFlywheelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFlywheel as schema.OperationSchema, input, options) as async.Operation<types.CreateFlywheelOutput>
 end
 
-function C:deleteDocumentClassifier(input: types.DeleteDocumentClassifierInput, options: any): async.Operation<types.DeleteDocumentClassifierOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDocumentClassifier, input, options) as async.Operation<types.DeleteDocumentClassifierOutput>
+function C:deleteDocumentClassifier(input: types.DeleteDocumentClassifierInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDocumentClassifierOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDocumentClassifier as schema.OperationSchema, input, options) as async.Operation<types.DeleteDocumentClassifierOutput>
 end
 
-function C:deleteEndpoint(input: types.DeleteEndpointInput, options: any): async.Operation<types.DeleteEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEndpoint, input, options) as async.Operation<types.DeleteEndpointOutput>
+function C:deleteEndpoint(input: types.DeleteEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEndpoint as schema.OperationSchema, input, options) as async.Operation<types.DeleteEndpointOutput>
 end
 
-function C:deleteEntityRecognizer(input: types.DeleteEntityRecognizerInput, options: any): async.Operation<types.DeleteEntityRecognizerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEntityRecognizer, input, options) as async.Operation<types.DeleteEntityRecognizerOutput>
+function C:deleteEntityRecognizer(input: types.DeleteEntityRecognizerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEntityRecognizerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEntityRecognizer as schema.OperationSchema, input, options) as async.Operation<types.DeleteEntityRecognizerOutput>
 end
 
-function C:deleteFlywheel(input: types.DeleteFlywheelInput, options: any): async.Operation<types.DeleteFlywheelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFlywheel, input, options) as async.Operation<types.DeleteFlywheelOutput>
+function C:deleteFlywheel(input: types.DeleteFlywheelInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFlywheelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFlywheel as schema.OperationSchema, input, options) as async.Operation<types.DeleteFlywheelOutput>
 end
 
-function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options: any): async.Operation<types.DeleteResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicy, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
+function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
 end
 
-function C:describeDataset(input: types.DescribeDatasetInput, options: any): async.Operation<types.DescribeDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDataset, input, options) as async.Operation<types.DescribeDatasetOutput>
+function C:describeDataset(input: types.DescribeDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDataset as schema.OperationSchema, input, options) as async.Operation<types.DescribeDatasetOutput>
 end
 
-function C:describeDocumentClassificationJob(input: types.DescribeDocumentClassificationJobInput, options: any): async.Operation<types.DescribeDocumentClassificationJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDocumentClassificationJob, input, options) as async.Operation<types.DescribeDocumentClassificationJobOutput>
+function C:describeDocumentClassificationJob(input: types.DescribeDocumentClassificationJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDocumentClassificationJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDocumentClassificationJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeDocumentClassificationJobOutput>
 end
 
-function C:describeDocumentClassifier(input: types.DescribeDocumentClassifierInput, options: any): async.Operation<types.DescribeDocumentClassifierOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDocumentClassifier, input, options) as async.Operation<types.DescribeDocumentClassifierOutput>
+function C:describeDocumentClassifier(input: types.DescribeDocumentClassifierInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDocumentClassifierOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDocumentClassifier as schema.OperationSchema, input, options) as async.Operation<types.DescribeDocumentClassifierOutput>
 end
 
-function C:describeDominantLanguageDetectionJob(input: types.DescribeDominantLanguageDetectionJobInput, options: any): async.Operation<types.DescribeDominantLanguageDetectionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDominantLanguageDetectionJob, input, options) as async.Operation<types.DescribeDominantLanguageDetectionJobOutput>
+function C:describeDominantLanguageDetectionJob(input: types.DescribeDominantLanguageDetectionJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDominantLanguageDetectionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDominantLanguageDetectionJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeDominantLanguageDetectionJobOutput>
 end
 
-function C:describeEndpoint(input: types.DescribeEndpointInput, options: any): async.Operation<types.DescribeEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEndpoint, input, options) as async.Operation<types.DescribeEndpointOutput>
+function C:describeEndpoint(input: types.DescribeEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEndpoint as schema.OperationSchema, input, options) as async.Operation<types.DescribeEndpointOutput>
 end
 
-function C:describeEntitiesDetectionJob(input: types.DescribeEntitiesDetectionJobInput, options: any): async.Operation<types.DescribeEntitiesDetectionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEntitiesDetectionJob, input, options) as async.Operation<types.DescribeEntitiesDetectionJobOutput>
+function C:describeEntitiesDetectionJob(input: types.DescribeEntitiesDetectionJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEntitiesDetectionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEntitiesDetectionJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeEntitiesDetectionJobOutput>
 end
 
-function C:describeEntityRecognizer(input: types.DescribeEntityRecognizerInput, options: any): async.Operation<types.DescribeEntityRecognizerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEntityRecognizer, input, options) as async.Operation<types.DescribeEntityRecognizerOutput>
+function C:describeEntityRecognizer(input: types.DescribeEntityRecognizerInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEntityRecognizerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEntityRecognizer as schema.OperationSchema, input, options) as async.Operation<types.DescribeEntityRecognizerOutput>
 end
 
-function C:describeEventsDetectionJob(input: types.DescribeEventsDetectionJobInput, options: any): async.Operation<types.DescribeEventsDetectionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEventsDetectionJob, input, options) as async.Operation<types.DescribeEventsDetectionJobOutput>
+function C:describeEventsDetectionJob(input: types.DescribeEventsDetectionJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEventsDetectionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEventsDetectionJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeEventsDetectionJobOutput>
 end
 
-function C:describeFlywheel(input: types.DescribeFlywheelInput, options: any): async.Operation<types.DescribeFlywheelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFlywheel, input, options) as async.Operation<types.DescribeFlywheelOutput>
+function C:describeFlywheel(input: types.DescribeFlywheelInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFlywheelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFlywheel as schema.OperationSchema, input, options) as async.Operation<types.DescribeFlywheelOutput>
 end
 
-function C:describeFlywheelIteration(input: types.DescribeFlywheelIterationInput, options: any): async.Operation<types.DescribeFlywheelIterationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFlywheelIteration, input, options) as async.Operation<types.DescribeFlywheelIterationOutput>
+function C:describeFlywheelIteration(input: types.DescribeFlywheelIterationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFlywheelIterationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFlywheelIteration as schema.OperationSchema, input, options) as async.Operation<types.DescribeFlywheelIterationOutput>
 end
 
-function C:describeKeyPhrasesDetectionJob(input: types.DescribeKeyPhrasesDetectionJobInput, options: any): async.Operation<types.DescribeKeyPhrasesDetectionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeKeyPhrasesDetectionJob, input, options) as async.Operation<types.DescribeKeyPhrasesDetectionJobOutput>
+function C:describeKeyPhrasesDetectionJob(input: types.DescribeKeyPhrasesDetectionJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeKeyPhrasesDetectionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeKeyPhrasesDetectionJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeKeyPhrasesDetectionJobOutput>
 end
 
-function C:describePiiEntitiesDetectionJob(input: types.DescribePiiEntitiesDetectionJobInput, options: any): async.Operation<types.DescribePiiEntitiesDetectionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePiiEntitiesDetectionJob, input, options) as async.Operation<types.DescribePiiEntitiesDetectionJobOutput>
+function C:describePiiEntitiesDetectionJob(input: types.DescribePiiEntitiesDetectionJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePiiEntitiesDetectionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePiiEntitiesDetectionJob as schema.OperationSchema, input, options) as async.Operation<types.DescribePiiEntitiesDetectionJobOutput>
 end
 
-function C:describeResourcePolicy(input: types.DescribeResourcePolicyInput, options: any): async.Operation<types.DescribeResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeResourcePolicy, input, options) as async.Operation<types.DescribeResourcePolicyOutput>
+function C:describeResourcePolicy(input: types.DescribeResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DescribeResourcePolicyOutput>
 end
 
-function C:describeSentimentDetectionJob(input: types.DescribeSentimentDetectionJobInput, options: any): async.Operation<types.DescribeSentimentDetectionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSentimentDetectionJob, input, options) as async.Operation<types.DescribeSentimentDetectionJobOutput>
+function C:describeSentimentDetectionJob(input: types.DescribeSentimentDetectionJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSentimentDetectionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSentimentDetectionJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeSentimentDetectionJobOutput>
 end
 
-function C:describeTargetedSentimentDetectionJob(input: types.DescribeTargetedSentimentDetectionJobInput, options: any): async.Operation<types.DescribeTargetedSentimentDetectionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTargetedSentimentDetectionJob, input, options) as async.Operation<types.DescribeTargetedSentimentDetectionJobOutput>
+function C:describeTargetedSentimentDetectionJob(input: types.DescribeTargetedSentimentDetectionJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTargetedSentimentDetectionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTargetedSentimentDetectionJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeTargetedSentimentDetectionJobOutput>
 end
 
-function C:describeTopicsDetectionJob(input: types.DescribeTopicsDetectionJobInput, options: any): async.Operation<types.DescribeTopicsDetectionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTopicsDetectionJob, input, options) as async.Operation<types.DescribeTopicsDetectionJobOutput>
+function C:describeTopicsDetectionJob(input: types.DescribeTopicsDetectionJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTopicsDetectionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTopicsDetectionJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeTopicsDetectionJobOutput>
 end
 
-function C:detectDominantLanguage(input: types.DetectDominantLanguageInput, options: any): async.Operation<types.DetectDominantLanguageOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetectDominantLanguage, input, options) as async.Operation<types.DetectDominantLanguageOutput>
+function C:detectDominantLanguage(input: types.DetectDominantLanguageInput, options?: base_client.InvokeOptions): async.Operation<types.DetectDominantLanguageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetectDominantLanguage as schema.OperationSchema, input, options) as async.Operation<types.DetectDominantLanguageOutput>
 end
 
-function C:detectEntities(input: types.DetectEntitiesInput, options: any): async.Operation<types.DetectEntitiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetectEntities, input, options) as async.Operation<types.DetectEntitiesOutput>
+function C:detectEntities(input: types.DetectEntitiesInput, options?: base_client.InvokeOptions): async.Operation<types.DetectEntitiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetectEntities as schema.OperationSchema, input, options) as async.Operation<types.DetectEntitiesOutput>
 end
 
-function C:detectKeyPhrases(input: types.DetectKeyPhrasesInput, options: any): async.Operation<types.DetectKeyPhrasesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetectKeyPhrases, input, options) as async.Operation<types.DetectKeyPhrasesOutput>
+function C:detectKeyPhrases(input: types.DetectKeyPhrasesInput, options?: base_client.InvokeOptions): async.Operation<types.DetectKeyPhrasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetectKeyPhrases as schema.OperationSchema, input, options) as async.Operation<types.DetectKeyPhrasesOutput>
 end
 
-function C:detectPiiEntities(input: types.DetectPiiEntitiesInput, options: any): async.Operation<types.DetectPiiEntitiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetectPiiEntities, input, options) as async.Operation<types.DetectPiiEntitiesOutput>
+function C:detectPiiEntities(input: types.DetectPiiEntitiesInput, options?: base_client.InvokeOptions): async.Operation<types.DetectPiiEntitiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetectPiiEntities as schema.OperationSchema, input, options) as async.Operation<types.DetectPiiEntitiesOutput>
 end
 
-function C:detectSentiment(input: types.DetectSentimentInput, options: any): async.Operation<types.DetectSentimentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetectSentiment, input, options) as async.Operation<types.DetectSentimentOutput>
+function C:detectSentiment(input: types.DetectSentimentInput, options?: base_client.InvokeOptions): async.Operation<types.DetectSentimentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetectSentiment as schema.OperationSchema, input, options) as async.Operation<types.DetectSentimentOutput>
 end
 
-function C:detectSyntax(input: types.DetectSyntaxInput, options: any): async.Operation<types.DetectSyntaxOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetectSyntax, input, options) as async.Operation<types.DetectSyntaxOutput>
+function C:detectSyntax(input: types.DetectSyntaxInput, options?: base_client.InvokeOptions): async.Operation<types.DetectSyntaxOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetectSyntax as schema.OperationSchema, input, options) as async.Operation<types.DetectSyntaxOutput>
 end
 
-function C:detectTargetedSentiment(input: types.DetectTargetedSentimentInput, options: any): async.Operation<types.DetectTargetedSentimentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetectTargetedSentiment, input, options) as async.Operation<types.DetectTargetedSentimentOutput>
+function C:detectTargetedSentiment(input: types.DetectTargetedSentimentInput, options?: base_client.InvokeOptions): async.Operation<types.DetectTargetedSentimentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetectTargetedSentiment as schema.OperationSchema, input, options) as async.Operation<types.DetectTargetedSentimentOutput>
 end
 
-function C:detectToxicContent(input: types.DetectToxicContentInput, options: any): async.Operation<types.DetectToxicContentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetectToxicContent, input, options) as async.Operation<types.DetectToxicContentOutput>
+function C:detectToxicContent(input: types.DetectToxicContentInput, options?: base_client.InvokeOptions): async.Operation<types.DetectToxicContentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetectToxicContent as schema.OperationSchema, input, options) as async.Operation<types.DetectToxicContentOutput>
 end
 
-function C:importModel(input: types.ImportModelInput, options: any): async.Operation<types.ImportModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportModel, input, options) as async.Operation<types.ImportModelOutput>
+function C:importModel(input: types.ImportModelInput, options?: base_client.InvokeOptions): async.Operation<types.ImportModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportModel as schema.OperationSchema, input, options) as async.Operation<types.ImportModelOutput>
 end
 
-function C:listDatasets(input: types.ListDatasetsInput, options: any): async.Operation<types.ListDatasetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDatasets, input, options) as async.Operation<types.ListDatasetsOutput>
+function C:listDatasets(input: types.ListDatasetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDatasetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDatasets as schema.OperationSchema, input, options) as async.Operation<types.ListDatasetsOutput>
 end
 
-function C:listDocumentClassificationJobs(input: types.ListDocumentClassificationJobsInput, options: any): async.Operation<types.ListDocumentClassificationJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDocumentClassificationJobs, input, options) as async.Operation<types.ListDocumentClassificationJobsOutput>
+function C:listDocumentClassificationJobs(input: types.ListDocumentClassificationJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDocumentClassificationJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDocumentClassificationJobs as schema.OperationSchema, input, options) as async.Operation<types.ListDocumentClassificationJobsOutput>
 end
 
-function C:listDocumentClassifiers(input: types.ListDocumentClassifiersInput, options: any): async.Operation<types.ListDocumentClassifiersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDocumentClassifiers, input, options) as async.Operation<types.ListDocumentClassifiersOutput>
+function C:listDocumentClassifiers(input: types.ListDocumentClassifiersInput, options?: base_client.InvokeOptions): async.Operation<types.ListDocumentClassifiersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDocumentClassifiers as schema.OperationSchema, input, options) as async.Operation<types.ListDocumentClassifiersOutput>
 end
 
-function C:listDocumentClassifierSummaries(input: types.ListDocumentClassifierSummariesInput, options: any): async.Operation<types.ListDocumentClassifierSummariesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDocumentClassifierSummaries, input, options) as async.Operation<types.ListDocumentClassifierSummariesOutput>
+function C:listDocumentClassifierSummaries(input: types.ListDocumentClassifierSummariesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDocumentClassifierSummariesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDocumentClassifierSummaries as schema.OperationSchema, input, options) as async.Operation<types.ListDocumentClassifierSummariesOutput>
 end
 
-function C:listDominantLanguageDetectionJobs(input: types.ListDominantLanguageDetectionJobsInput, options: any): async.Operation<types.ListDominantLanguageDetectionJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDominantLanguageDetectionJobs, input, options) as async.Operation<types.ListDominantLanguageDetectionJobsOutput>
+function C:listDominantLanguageDetectionJobs(input: types.ListDominantLanguageDetectionJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDominantLanguageDetectionJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDominantLanguageDetectionJobs as schema.OperationSchema, input, options) as async.Operation<types.ListDominantLanguageDetectionJobsOutput>
 end
 
-function C:listEndpoints(input: types.ListEndpointsInput, options: any): async.Operation<types.ListEndpointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEndpoints, input, options) as async.Operation<types.ListEndpointsOutput>
+function C:listEndpoints(input: types.ListEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEndpointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEndpoints as schema.OperationSchema, input, options) as async.Operation<types.ListEndpointsOutput>
 end
 
-function C:listEntitiesDetectionJobs(input: types.ListEntitiesDetectionJobsInput, options: any): async.Operation<types.ListEntitiesDetectionJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEntitiesDetectionJobs, input, options) as async.Operation<types.ListEntitiesDetectionJobsOutput>
+function C:listEntitiesDetectionJobs(input: types.ListEntitiesDetectionJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEntitiesDetectionJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEntitiesDetectionJobs as schema.OperationSchema, input, options) as async.Operation<types.ListEntitiesDetectionJobsOutput>
 end
 
-function C:listEntityRecognizers(input: types.ListEntityRecognizersInput, options: any): async.Operation<types.ListEntityRecognizersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEntityRecognizers, input, options) as async.Operation<types.ListEntityRecognizersOutput>
+function C:listEntityRecognizers(input: types.ListEntityRecognizersInput, options?: base_client.InvokeOptions): async.Operation<types.ListEntityRecognizersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEntityRecognizers as schema.OperationSchema, input, options) as async.Operation<types.ListEntityRecognizersOutput>
 end
 
-function C:listEntityRecognizerSummaries(input: types.ListEntityRecognizerSummariesInput, options: any): async.Operation<types.ListEntityRecognizerSummariesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEntityRecognizerSummaries, input, options) as async.Operation<types.ListEntityRecognizerSummariesOutput>
+function C:listEntityRecognizerSummaries(input: types.ListEntityRecognizerSummariesInput, options?: base_client.InvokeOptions): async.Operation<types.ListEntityRecognizerSummariesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEntityRecognizerSummaries as schema.OperationSchema, input, options) as async.Operation<types.ListEntityRecognizerSummariesOutput>
 end
 
-function C:listEventsDetectionJobs(input: types.ListEventsDetectionJobsInput, options: any): async.Operation<types.ListEventsDetectionJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEventsDetectionJobs, input, options) as async.Operation<types.ListEventsDetectionJobsOutput>
+function C:listEventsDetectionJobs(input: types.ListEventsDetectionJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEventsDetectionJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEventsDetectionJobs as schema.OperationSchema, input, options) as async.Operation<types.ListEventsDetectionJobsOutput>
 end
 
-function C:listFlywheelIterationHistory(input: types.ListFlywheelIterationHistoryInput, options: any): async.Operation<types.ListFlywheelIterationHistoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFlywheelIterationHistory, input, options) as async.Operation<types.ListFlywheelIterationHistoryOutput>
+function C:listFlywheelIterationHistory(input: types.ListFlywheelIterationHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.ListFlywheelIterationHistoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFlywheelIterationHistory as schema.OperationSchema, input, options) as async.Operation<types.ListFlywheelIterationHistoryOutput>
 end
 
-function C:listFlywheels(input: types.ListFlywheelsInput, options: any): async.Operation<types.ListFlywheelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFlywheels, input, options) as async.Operation<types.ListFlywheelsOutput>
+function C:listFlywheels(input: types.ListFlywheelsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFlywheelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFlywheels as schema.OperationSchema, input, options) as async.Operation<types.ListFlywheelsOutput>
 end
 
-function C:listKeyPhrasesDetectionJobs(input: types.ListKeyPhrasesDetectionJobsInput, options: any): async.Operation<types.ListKeyPhrasesDetectionJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListKeyPhrasesDetectionJobs, input, options) as async.Operation<types.ListKeyPhrasesDetectionJobsOutput>
+function C:listKeyPhrasesDetectionJobs(input: types.ListKeyPhrasesDetectionJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListKeyPhrasesDetectionJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListKeyPhrasesDetectionJobs as schema.OperationSchema, input, options) as async.Operation<types.ListKeyPhrasesDetectionJobsOutput>
 end
 
-function C:listPiiEntitiesDetectionJobs(input: types.ListPiiEntitiesDetectionJobsInput, options: any): async.Operation<types.ListPiiEntitiesDetectionJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPiiEntitiesDetectionJobs, input, options) as async.Operation<types.ListPiiEntitiesDetectionJobsOutput>
+function C:listPiiEntitiesDetectionJobs(input: types.ListPiiEntitiesDetectionJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPiiEntitiesDetectionJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPiiEntitiesDetectionJobs as schema.OperationSchema, input, options) as async.Operation<types.ListPiiEntitiesDetectionJobsOutput>
 end
 
-function C:listSentimentDetectionJobs(input: types.ListSentimentDetectionJobsInput, options: any): async.Operation<types.ListSentimentDetectionJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSentimentDetectionJobs, input, options) as async.Operation<types.ListSentimentDetectionJobsOutput>
+function C:listSentimentDetectionJobs(input: types.ListSentimentDetectionJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSentimentDetectionJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSentimentDetectionJobs as schema.OperationSchema, input, options) as async.Operation<types.ListSentimentDetectionJobsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTargetedSentimentDetectionJobs(input: types.ListTargetedSentimentDetectionJobsInput, options: any): async.Operation<types.ListTargetedSentimentDetectionJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTargetedSentimentDetectionJobs, input, options) as async.Operation<types.ListTargetedSentimentDetectionJobsOutput>
+function C:listTargetedSentimentDetectionJobs(input: types.ListTargetedSentimentDetectionJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTargetedSentimentDetectionJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTargetedSentimentDetectionJobs as schema.OperationSchema, input, options) as async.Operation<types.ListTargetedSentimentDetectionJobsOutput>
 end
 
-function C:listTopicsDetectionJobs(input: types.ListTopicsDetectionJobsInput, options: any): async.Operation<types.ListTopicsDetectionJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTopicsDetectionJobs, input, options) as async.Operation<types.ListTopicsDetectionJobsOutput>
+function C:listTopicsDetectionJobs(input: types.ListTopicsDetectionJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTopicsDetectionJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTopicsDetectionJobs as schema.OperationSchema, input, options) as async.Operation<types.ListTopicsDetectionJobsOutput>
 end
 
-function C:putResourcePolicy(input: types.PutResourcePolicyInput, options: any): async.Operation<types.PutResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutResourcePolicy, input, options) as async.Operation<types.PutResourcePolicyOutput>
+function C:putResourcePolicy(input: types.PutResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutResourcePolicyOutput>
 end
 
-function C:startDocumentClassificationJob(input: types.StartDocumentClassificationJobInput, options: any): async.Operation<types.StartDocumentClassificationJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartDocumentClassificationJob, input, options) as async.Operation<types.StartDocumentClassificationJobOutput>
+function C:startDocumentClassificationJob(input: types.StartDocumentClassificationJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartDocumentClassificationJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDocumentClassificationJob as schema.OperationSchema, input, options) as async.Operation<types.StartDocumentClassificationJobOutput>
 end
 
-function C:startDominantLanguageDetectionJob(input: types.StartDominantLanguageDetectionJobInput, options: any): async.Operation<types.StartDominantLanguageDetectionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartDominantLanguageDetectionJob, input, options) as async.Operation<types.StartDominantLanguageDetectionJobOutput>
+function C:startDominantLanguageDetectionJob(input: types.StartDominantLanguageDetectionJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartDominantLanguageDetectionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDominantLanguageDetectionJob as schema.OperationSchema, input, options) as async.Operation<types.StartDominantLanguageDetectionJobOutput>
 end
 
-function C:startEntitiesDetectionJob(input: types.StartEntitiesDetectionJobInput, options: any): async.Operation<types.StartEntitiesDetectionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartEntitiesDetectionJob, input, options) as async.Operation<types.StartEntitiesDetectionJobOutput>
+function C:startEntitiesDetectionJob(input: types.StartEntitiesDetectionJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartEntitiesDetectionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartEntitiesDetectionJob as schema.OperationSchema, input, options) as async.Operation<types.StartEntitiesDetectionJobOutput>
 end
 
-function C:startEventsDetectionJob(input: types.StartEventsDetectionJobInput, options: any): async.Operation<types.StartEventsDetectionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartEventsDetectionJob, input, options) as async.Operation<types.StartEventsDetectionJobOutput>
+function C:startEventsDetectionJob(input: types.StartEventsDetectionJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartEventsDetectionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartEventsDetectionJob as schema.OperationSchema, input, options) as async.Operation<types.StartEventsDetectionJobOutput>
 end
 
-function C:startFlywheelIteration(input: types.StartFlywheelIterationInput, options: any): async.Operation<types.StartFlywheelIterationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartFlywheelIteration, input, options) as async.Operation<types.StartFlywheelIterationOutput>
+function C:startFlywheelIteration(input: types.StartFlywheelIterationInput, options?: base_client.InvokeOptions): async.Operation<types.StartFlywheelIterationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartFlywheelIteration as schema.OperationSchema, input, options) as async.Operation<types.StartFlywheelIterationOutput>
 end
 
-function C:startKeyPhrasesDetectionJob(input: types.StartKeyPhrasesDetectionJobInput, options: any): async.Operation<types.StartKeyPhrasesDetectionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartKeyPhrasesDetectionJob, input, options) as async.Operation<types.StartKeyPhrasesDetectionJobOutput>
+function C:startKeyPhrasesDetectionJob(input: types.StartKeyPhrasesDetectionJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartKeyPhrasesDetectionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartKeyPhrasesDetectionJob as schema.OperationSchema, input, options) as async.Operation<types.StartKeyPhrasesDetectionJobOutput>
 end
 
-function C:startPiiEntitiesDetectionJob(input: types.StartPiiEntitiesDetectionJobInput, options: any): async.Operation<types.StartPiiEntitiesDetectionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartPiiEntitiesDetectionJob, input, options) as async.Operation<types.StartPiiEntitiesDetectionJobOutput>
+function C:startPiiEntitiesDetectionJob(input: types.StartPiiEntitiesDetectionJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartPiiEntitiesDetectionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartPiiEntitiesDetectionJob as schema.OperationSchema, input, options) as async.Operation<types.StartPiiEntitiesDetectionJobOutput>
 end
 
-function C:startSentimentDetectionJob(input: types.StartSentimentDetectionJobInput, options: any): async.Operation<types.StartSentimentDetectionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartSentimentDetectionJob, input, options) as async.Operation<types.StartSentimentDetectionJobOutput>
+function C:startSentimentDetectionJob(input: types.StartSentimentDetectionJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartSentimentDetectionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartSentimentDetectionJob as schema.OperationSchema, input, options) as async.Operation<types.StartSentimentDetectionJobOutput>
 end
 
-function C:startTargetedSentimentDetectionJob(input: types.StartTargetedSentimentDetectionJobInput, options: any): async.Operation<types.StartTargetedSentimentDetectionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartTargetedSentimentDetectionJob, input, options) as async.Operation<types.StartTargetedSentimentDetectionJobOutput>
+function C:startTargetedSentimentDetectionJob(input: types.StartTargetedSentimentDetectionJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartTargetedSentimentDetectionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartTargetedSentimentDetectionJob as schema.OperationSchema, input, options) as async.Operation<types.StartTargetedSentimentDetectionJobOutput>
 end
 
-function C:startTopicsDetectionJob(input: types.StartTopicsDetectionJobInput, options: any): async.Operation<types.StartTopicsDetectionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartTopicsDetectionJob, input, options) as async.Operation<types.StartTopicsDetectionJobOutput>
+function C:startTopicsDetectionJob(input: types.StartTopicsDetectionJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartTopicsDetectionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartTopicsDetectionJob as schema.OperationSchema, input, options) as async.Operation<types.StartTopicsDetectionJobOutput>
 end
 
-function C:stopDominantLanguageDetectionJob(input: types.StopDominantLanguageDetectionJobInput, options: any): async.Operation<types.StopDominantLanguageDetectionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopDominantLanguageDetectionJob, input, options) as async.Operation<types.StopDominantLanguageDetectionJobOutput>
+function C:stopDominantLanguageDetectionJob(input: types.StopDominantLanguageDetectionJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopDominantLanguageDetectionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopDominantLanguageDetectionJob as schema.OperationSchema, input, options) as async.Operation<types.StopDominantLanguageDetectionJobOutput>
 end
 
-function C:stopEntitiesDetectionJob(input: types.StopEntitiesDetectionJobInput, options: any): async.Operation<types.StopEntitiesDetectionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopEntitiesDetectionJob, input, options) as async.Operation<types.StopEntitiesDetectionJobOutput>
+function C:stopEntitiesDetectionJob(input: types.StopEntitiesDetectionJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopEntitiesDetectionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopEntitiesDetectionJob as schema.OperationSchema, input, options) as async.Operation<types.StopEntitiesDetectionJobOutput>
 end
 
-function C:stopEventsDetectionJob(input: types.StopEventsDetectionJobInput, options: any): async.Operation<types.StopEventsDetectionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopEventsDetectionJob, input, options) as async.Operation<types.StopEventsDetectionJobOutput>
+function C:stopEventsDetectionJob(input: types.StopEventsDetectionJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopEventsDetectionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopEventsDetectionJob as schema.OperationSchema, input, options) as async.Operation<types.StopEventsDetectionJobOutput>
 end
 
-function C:stopKeyPhrasesDetectionJob(input: types.StopKeyPhrasesDetectionJobInput, options: any): async.Operation<types.StopKeyPhrasesDetectionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopKeyPhrasesDetectionJob, input, options) as async.Operation<types.StopKeyPhrasesDetectionJobOutput>
+function C:stopKeyPhrasesDetectionJob(input: types.StopKeyPhrasesDetectionJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopKeyPhrasesDetectionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopKeyPhrasesDetectionJob as schema.OperationSchema, input, options) as async.Operation<types.StopKeyPhrasesDetectionJobOutput>
 end
 
-function C:stopPiiEntitiesDetectionJob(input: types.StopPiiEntitiesDetectionJobInput, options: any): async.Operation<types.StopPiiEntitiesDetectionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopPiiEntitiesDetectionJob, input, options) as async.Operation<types.StopPiiEntitiesDetectionJobOutput>
+function C:stopPiiEntitiesDetectionJob(input: types.StopPiiEntitiesDetectionJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopPiiEntitiesDetectionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopPiiEntitiesDetectionJob as schema.OperationSchema, input, options) as async.Operation<types.StopPiiEntitiesDetectionJobOutput>
 end
 
-function C:stopSentimentDetectionJob(input: types.StopSentimentDetectionJobInput, options: any): async.Operation<types.StopSentimentDetectionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopSentimentDetectionJob, input, options) as async.Operation<types.StopSentimentDetectionJobOutput>
+function C:stopSentimentDetectionJob(input: types.StopSentimentDetectionJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopSentimentDetectionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopSentimentDetectionJob as schema.OperationSchema, input, options) as async.Operation<types.StopSentimentDetectionJobOutput>
 end
 
-function C:stopTargetedSentimentDetectionJob(input: types.StopTargetedSentimentDetectionJobInput, options: any): async.Operation<types.StopTargetedSentimentDetectionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopTargetedSentimentDetectionJob, input, options) as async.Operation<types.StopTargetedSentimentDetectionJobOutput>
+function C:stopTargetedSentimentDetectionJob(input: types.StopTargetedSentimentDetectionJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopTargetedSentimentDetectionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopTargetedSentimentDetectionJob as schema.OperationSchema, input, options) as async.Operation<types.StopTargetedSentimentDetectionJobOutput>
 end
 
-function C:stopTrainingDocumentClassifier(input: types.StopTrainingDocumentClassifierInput, options: any): async.Operation<types.StopTrainingDocumentClassifierOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopTrainingDocumentClassifier, input, options) as async.Operation<types.StopTrainingDocumentClassifierOutput>
+function C:stopTrainingDocumentClassifier(input: types.StopTrainingDocumentClassifierInput, options?: base_client.InvokeOptions): async.Operation<types.StopTrainingDocumentClassifierOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopTrainingDocumentClassifier as schema.OperationSchema, input, options) as async.Operation<types.StopTrainingDocumentClassifierOutput>
 end
 
-function C:stopTrainingEntityRecognizer(input: types.StopTrainingEntityRecognizerInput, options: any): async.Operation<types.StopTrainingEntityRecognizerOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopTrainingEntityRecognizer, input, options) as async.Operation<types.StopTrainingEntityRecognizerOutput>
+function C:stopTrainingEntityRecognizer(input: types.StopTrainingEntityRecognizerInput, options?: base_client.InvokeOptions): async.Operation<types.StopTrainingEntityRecognizerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopTrainingEntityRecognizer as schema.OperationSchema, input, options) as async.Operation<types.StopTrainingEntityRecognizerOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateEndpoint(input: types.UpdateEndpointInput, options: any): async.Operation<types.UpdateEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEndpoint, input, options) as async.Operation<types.UpdateEndpointOutput>
+function C:updateEndpoint(input: types.UpdateEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEndpoint as schema.OperationSchema, input, options) as async.Operation<types.UpdateEndpointOutput>
 end
 
-function C:updateFlywheel(input: types.UpdateFlywheelInput, options: any): async.Operation<types.UpdateFlywheelOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFlywheel, input, options) as async.Operation<types.UpdateFlywheelOutput>
+function C:updateFlywheel(input: types.UpdateFlywheelInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFlywheelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFlywheel as schema.OperationSchema, input, options) as async.Operation<types.UpdateFlywheelOutput>
 end
 
 return M

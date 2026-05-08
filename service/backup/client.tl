@@ -8,147 +8,150 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("backup.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("backup.schemas")
 local traits = require("smithy.traits")
 local types = require("backup.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateBackupVaultMpaApprovalTeam: function(Client, types.AssociateBackupVaultMpaApprovalTeamInput, any): async.Operation<types.AssociateBackupVaultMpaApprovalTeamOutput>
-    cancelLegalHold: function(Client, types.CancelLegalHoldInput, any): async.Operation<types.CancelLegalHoldOutput>
-    createBackupPlan: function(Client, types.CreateBackupPlanInput, any): async.Operation<types.CreateBackupPlanOutput>
-    createBackupSelection: function(Client, types.CreateBackupSelectionInput, any): async.Operation<types.CreateBackupSelectionOutput>
-    createBackupVault: function(Client, types.CreateBackupVaultInput, any): async.Operation<types.CreateBackupVaultOutput>
-    createFramework: function(Client, types.CreateFrameworkInput, any): async.Operation<types.CreateFrameworkOutput>
-    createLegalHold: function(Client, types.CreateLegalHoldInput, any): async.Operation<types.CreateLegalHoldOutput>
-    createLogicallyAirGappedBackupVault: function(Client, types.CreateLogicallyAirGappedBackupVaultInput, any): async.Operation<types.CreateLogicallyAirGappedBackupVaultOutput>
-    createReportPlan: function(Client, types.CreateReportPlanInput, any): async.Operation<types.CreateReportPlanOutput>
-    createRestoreAccessBackupVault: function(Client, types.CreateRestoreAccessBackupVaultInput, any): async.Operation<types.CreateRestoreAccessBackupVaultOutput>
-    createRestoreTestingPlan: function(Client, types.CreateRestoreTestingPlanInput, any): async.Operation<types.CreateRestoreTestingPlanOutput>
-    createRestoreTestingSelection: function(Client, types.CreateRestoreTestingSelectionInput, any): async.Operation<types.CreateRestoreTestingSelectionOutput>
-    createTieringConfiguration: function(Client, types.CreateTieringConfigurationInput, any): async.Operation<types.CreateTieringConfigurationOutput>
-    deleteBackupPlan: function(Client, types.DeleteBackupPlanInput, any): async.Operation<types.DeleteBackupPlanOutput>
-    deleteBackupSelection: function(Client, types.DeleteBackupSelectionInput, any): async.Operation<types.DeleteBackupSelectionOutput>
-    deleteBackupVault: function(Client, types.DeleteBackupVaultInput, any): async.Operation<types.DeleteBackupVaultOutput>
-    deleteBackupVaultAccessPolicy: function(Client, types.DeleteBackupVaultAccessPolicyInput, any): async.Operation<types.DeleteBackupVaultAccessPolicyOutput>
-    deleteBackupVaultLockConfiguration: function(Client, types.DeleteBackupVaultLockConfigurationInput, any): async.Operation<types.DeleteBackupVaultLockConfigurationOutput>
-    deleteBackupVaultNotifications: function(Client, types.DeleteBackupVaultNotificationsInput, any): async.Operation<types.DeleteBackupVaultNotificationsOutput>
-    deleteFramework: function(Client, types.DeleteFrameworkInput, any): async.Operation<types.DeleteFrameworkOutput>
-    deleteRecoveryPoint: function(Client, types.DeleteRecoveryPointInput, any): async.Operation<types.DeleteRecoveryPointOutput>
-    deleteReportPlan: function(Client, types.DeleteReportPlanInput, any): async.Operation<types.DeleteReportPlanOutput>
-    deleteRestoreTestingPlan: function(Client, types.DeleteRestoreTestingPlanInput, any): async.Operation<types.DeleteRestoreTestingPlanOutput>
-    deleteRestoreTestingSelection: function(Client, types.DeleteRestoreTestingSelectionInput, any): async.Operation<types.DeleteRestoreTestingSelectionOutput>
-    deleteTieringConfiguration: function(Client, types.DeleteTieringConfigurationInput, any): async.Operation<types.DeleteTieringConfigurationOutput>
-    describeBackupJob: function(Client, types.DescribeBackupJobInput, any): async.Operation<types.DescribeBackupJobOutput>
-    describeBackupVault: function(Client, types.DescribeBackupVaultInput, any): async.Operation<types.DescribeBackupVaultOutput>
-    describeCopyJob: function(Client, types.DescribeCopyJobInput, any): async.Operation<types.DescribeCopyJobOutput>
-    describeFramework: function(Client, types.DescribeFrameworkInput, any): async.Operation<types.DescribeFrameworkOutput>
-    describeGlobalSettings: function(Client, types.DescribeGlobalSettingsInput, any): async.Operation<types.DescribeGlobalSettingsOutput>
-    describeProtectedResource: function(Client, types.DescribeProtectedResourceInput, any): async.Operation<types.DescribeProtectedResourceOutput>
-    describeRecoveryPoint: function(Client, types.DescribeRecoveryPointInput, any): async.Operation<types.DescribeRecoveryPointOutput>
-    describeRegionSettings: function(Client, types.DescribeRegionSettingsInput, any): async.Operation<types.DescribeRegionSettingsOutput>
-    describeReportJob: function(Client, types.DescribeReportJobInput, any): async.Operation<types.DescribeReportJobOutput>
-    describeReportPlan: function(Client, types.DescribeReportPlanInput, any): async.Operation<types.DescribeReportPlanOutput>
-    describeRestoreJob: function(Client, types.DescribeRestoreJobInput, any): async.Operation<types.DescribeRestoreJobOutput>
-    describeScanJob: function(Client, types.DescribeScanJobInput, any): async.Operation<types.DescribeScanJobOutput>
-    disassociateBackupVaultMpaApprovalTeam: function(Client, types.DisassociateBackupVaultMpaApprovalTeamInput, any): async.Operation<types.DisassociateBackupVaultMpaApprovalTeamOutput>
-    disassociateRecoveryPoint: function(Client, types.DisassociateRecoveryPointInput, any): async.Operation<types.DisassociateRecoveryPointOutput>
-    disassociateRecoveryPointFromParent: function(Client, types.DisassociateRecoveryPointFromParentInput, any): async.Operation<types.DisassociateRecoveryPointFromParentOutput>
-    exportBackupPlanTemplate: function(Client, types.ExportBackupPlanTemplateInput, any): async.Operation<types.ExportBackupPlanTemplateOutput>
-    getBackupPlan: function(Client, types.GetBackupPlanInput, any): async.Operation<types.GetBackupPlanOutput>
-    getBackupPlanFromJSON: function(Client, types.GetBackupPlanFromJSONInput, any): async.Operation<types.GetBackupPlanFromJSONOutput>
-    getBackupPlanFromTemplate: function(Client, types.GetBackupPlanFromTemplateInput, any): async.Operation<types.GetBackupPlanFromTemplateOutput>
-    getBackupSelection: function(Client, types.GetBackupSelectionInput, any): async.Operation<types.GetBackupSelectionOutput>
-    getBackupVaultAccessPolicy: function(Client, types.GetBackupVaultAccessPolicyInput, any): async.Operation<types.GetBackupVaultAccessPolicyOutput>
-    getBackupVaultNotifications: function(Client, types.GetBackupVaultNotificationsInput, any): async.Operation<types.GetBackupVaultNotificationsOutput>
-    getLegalHold: function(Client, types.GetLegalHoldInput, any): async.Operation<types.GetLegalHoldOutput>
-    getRecoveryPointIndexDetails: function(Client, types.GetRecoveryPointIndexDetailsInput, any): async.Operation<types.GetRecoveryPointIndexDetailsOutput>
-    getRecoveryPointRestoreMetadata: function(Client, types.GetRecoveryPointRestoreMetadataInput, any): async.Operation<types.GetRecoveryPointRestoreMetadataOutput>
-    getRestoreJobMetadata: function(Client, types.GetRestoreJobMetadataInput, any): async.Operation<types.GetRestoreJobMetadataOutput>
-    getRestoreTestingInferredMetadata: function(Client, types.GetRestoreTestingInferredMetadataInput, any): async.Operation<types.GetRestoreTestingInferredMetadataOutput>
-    getRestoreTestingPlan: function(Client, types.GetRestoreTestingPlanInput, any): async.Operation<types.GetRestoreTestingPlanOutput>
-    getRestoreTestingSelection: function(Client, types.GetRestoreTestingSelectionInput, any): async.Operation<types.GetRestoreTestingSelectionOutput>
-    getSupportedResourceTypes: function(Client, types.GetSupportedResourceTypesInput, any): async.Operation<types.GetSupportedResourceTypesOutput>
-    getTieringConfiguration: function(Client, types.GetTieringConfigurationInput, any): async.Operation<types.GetTieringConfigurationOutput>
-    listBackupJobs: function(Client, types.ListBackupJobsInput, any): async.Operation<types.ListBackupJobsOutput>
-    listBackupJobSummaries: function(Client, types.ListBackupJobSummariesInput, any): async.Operation<types.ListBackupJobSummariesOutput>
-    listBackupPlans: function(Client, types.ListBackupPlansInput, any): async.Operation<types.ListBackupPlansOutput>
-    listBackupPlanTemplates: function(Client, types.ListBackupPlanTemplatesInput, any): async.Operation<types.ListBackupPlanTemplatesOutput>
-    listBackupPlanVersions: function(Client, types.ListBackupPlanVersionsInput, any): async.Operation<types.ListBackupPlanVersionsOutput>
-    listBackupSelections: function(Client, types.ListBackupSelectionsInput, any): async.Operation<types.ListBackupSelectionsOutput>
-    listBackupVaults: function(Client, types.ListBackupVaultsInput, any): async.Operation<types.ListBackupVaultsOutput>
-    listCopyJobs: function(Client, types.ListCopyJobsInput, any): async.Operation<types.ListCopyJobsOutput>
-    listCopyJobSummaries: function(Client, types.ListCopyJobSummariesInput, any): async.Operation<types.ListCopyJobSummariesOutput>
-    listFrameworks: function(Client, types.ListFrameworksInput, any): async.Operation<types.ListFrameworksOutput>
-    listIndexedRecoveryPoints: function(Client, types.ListIndexedRecoveryPointsInput, any): async.Operation<types.ListIndexedRecoveryPointsOutput>
-    listLegalHolds: function(Client, types.ListLegalHoldsInput, any): async.Operation<types.ListLegalHoldsOutput>
-    listProtectedResources: function(Client, types.ListProtectedResourcesInput, any): async.Operation<types.ListProtectedResourcesOutput>
-    listProtectedResourcesByBackupVault: function(Client, types.ListProtectedResourcesByBackupVaultInput, any): async.Operation<types.ListProtectedResourcesByBackupVaultOutput>
-    listRecoveryPointsByBackupVault: function(Client, types.ListRecoveryPointsByBackupVaultInput, any): async.Operation<types.ListRecoveryPointsByBackupVaultOutput>
-    listRecoveryPointsByLegalHold: function(Client, types.ListRecoveryPointsByLegalHoldInput, any): async.Operation<types.ListRecoveryPointsByLegalHoldOutput>
-    listRecoveryPointsByResource: function(Client, types.ListRecoveryPointsByResourceInput, any): async.Operation<types.ListRecoveryPointsByResourceOutput>
-    listReportJobs: function(Client, types.ListReportJobsInput, any): async.Operation<types.ListReportJobsOutput>
-    listReportPlans: function(Client, types.ListReportPlansInput, any): async.Operation<types.ListReportPlansOutput>
-    listRestoreAccessBackupVaults: function(Client, types.ListRestoreAccessBackupVaultsInput, any): async.Operation<types.ListRestoreAccessBackupVaultsOutput>
-    listRestoreJobs: function(Client, types.ListRestoreJobsInput, any): async.Operation<types.ListRestoreJobsOutput>
-    listRestoreJobsByProtectedResource: function(Client, types.ListRestoreJobsByProtectedResourceInput, any): async.Operation<types.ListRestoreJobsByProtectedResourceOutput>
-    listRestoreJobSummaries: function(Client, types.ListRestoreJobSummariesInput, any): async.Operation<types.ListRestoreJobSummariesOutput>
-    listRestoreTestingPlans: function(Client, types.ListRestoreTestingPlansInput, any): async.Operation<types.ListRestoreTestingPlansOutput>
-    listRestoreTestingSelections: function(Client, types.ListRestoreTestingSelectionsInput, any): async.Operation<types.ListRestoreTestingSelectionsOutput>
-    listScanJobs: function(Client, types.ListScanJobsInput, any): async.Operation<types.ListScanJobsOutput>
-    listScanJobSummaries: function(Client, types.ListScanJobSummariesInput, any): async.Operation<types.ListScanJobSummariesOutput>
-    listTags: function(Client, types.ListTagsInput, any): async.Operation<types.ListTagsOutput>
-    listTieringConfigurations: function(Client, types.ListTieringConfigurationsInput, any): async.Operation<types.ListTieringConfigurationsOutput>
-    putBackupVaultAccessPolicy: function(Client, types.PutBackupVaultAccessPolicyInput, any): async.Operation<types.PutBackupVaultAccessPolicyOutput>
-    putBackupVaultLockConfiguration: function(Client, types.PutBackupVaultLockConfigurationInput, any): async.Operation<types.PutBackupVaultLockConfigurationOutput>
-    putBackupVaultNotifications: function(Client, types.PutBackupVaultNotificationsInput, any): async.Operation<types.PutBackupVaultNotificationsOutput>
-    putRestoreValidationResult: function(Client, types.PutRestoreValidationResultInput, any): async.Operation<types.PutRestoreValidationResultOutput>
-    revokeRestoreAccessBackupVault: function(Client, types.RevokeRestoreAccessBackupVaultInput, any): async.Operation<types.RevokeRestoreAccessBackupVaultOutput>
-    startBackupJob: function(Client, types.StartBackupJobInput, any): async.Operation<types.StartBackupJobOutput>
-    startCopyJob: function(Client, types.StartCopyJobInput, any): async.Operation<types.StartCopyJobOutput>
-    startReportJob: function(Client, types.StartReportJobInput, any): async.Operation<types.StartReportJobOutput>
-    startRestoreJob: function(Client, types.StartRestoreJobInput, any): async.Operation<types.StartRestoreJobOutput>
-    startScanJob: function(Client, types.StartScanJobInput, any): async.Operation<types.StartScanJobOutput>
-    stopBackupJob: function(Client, types.StopBackupJobInput, any): async.Operation<types.StopBackupJobOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateBackupPlan: function(Client, types.UpdateBackupPlanInput, any): async.Operation<types.UpdateBackupPlanOutput>
-    updateFramework: function(Client, types.UpdateFrameworkInput, any): async.Operation<types.UpdateFrameworkOutput>
-    updateGlobalSettings: function(Client, types.UpdateGlobalSettingsInput, any): async.Operation<types.UpdateGlobalSettingsOutput>
-    updateRecoveryPointIndexSettings: function(Client, types.UpdateRecoveryPointIndexSettingsInput, any): async.Operation<types.UpdateRecoveryPointIndexSettingsOutput>
-    updateRecoveryPointLifecycle: function(Client, types.UpdateRecoveryPointLifecycleInput, any): async.Operation<types.UpdateRecoveryPointLifecycleOutput>
-    updateRegionSettings: function(Client, types.UpdateRegionSettingsInput, any): async.Operation<types.UpdateRegionSettingsOutput>
-    updateReportPlan: function(Client, types.UpdateReportPlanInput, any): async.Operation<types.UpdateReportPlanOutput>
-    updateRestoreTestingPlan: function(Client, types.UpdateRestoreTestingPlanInput, any): async.Operation<types.UpdateRestoreTestingPlanOutput>
-    updateRestoreTestingSelection: function(Client, types.UpdateRestoreTestingSelectionInput, any): async.Operation<types.UpdateRestoreTestingSelectionOutput>
-    updateTieringConfiguration: function(Client, types.UpdateTieringConfigurationInput, any): async.Operation<types.UpdateTieringConfigurationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateBackupVaultMpaApprovalTeam: function(Client, types.AssociateBackupVaultMpaApprovalTeamInput, ? base_client.InvokeOptions): async.Operation<types.AssociateBackupVaultMpaApprovalTeamOutput>
+    cancelLegalHold: function(Client, types.CancelLegalHoldInput, ? base_client.InvokeOptions): async.Operation<types.CancelLegalHoldOutput>
+    createBackupPlan: function(Client, types.CreateBackupPlanInput, ? base_client.InvokeOptions): async.Operation<types.CreateBackupPlanOutput>
+    createBackupSelection: function(Client, types.CreateBackupSelectionInput, ? base_client.InvokeOptions): async.Operation<types.CreateBackupSelectionOutput>
+    createBackupVault: function(Client, types.CreateBackupVaultInput, ? base_client.InvokeOptions): async.Operation<types.CreateBackupVaultOutput>
+    createFramework: function(Client, types.CreateFrameworkInput, ? base_client.InvokeOptions): async.Operation<types.CreateFrameworkOutput>
+    createLegalHold: function(Client, types.CreateLegalHoldInput, ? base_client.InvokeOptions): async.Operation<types.CreateLegalHoldOutput>
+    createLogicallyAirGappedBackupVault: function(Client, types.CreateLogicallyAirGappedBackupVaultInput, ? base_client.InvokeOptions): async.Operation<types.CreateLogicallyAirGappedBackupVaultOutput>
+    createReportPlan: function(Client, types.CreateReportPlanInput, ? base_client.InvokeOptions): async.Operation<types.CreateReportPlanOutput>
+    createRestoreAccessBackupVault: function(Client, types.CreateRestoreAccessBackupVaultInput, ? base_client.InvokeOptions): async.Operation<types.CreateRestoreAccessBackupVaultOutput>
+    createRestoreTestingPlan: function(Client, types.CreateRestoreTestingPlanInput, ? base_client.InvokeOptions): async.Operation<types.CreateRestoreTestingPlanOutput>
+    createRestoreTestingSelection: function(Client, types.CreateRestoreTestingSelectionInput, ? base_client.InvokeOptions): async.Operation<types.CreateRestoreTestingSelectionOutput>
+    createTieringConfiguration: function(Client, types.CreateTieringConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateTieringConfigurationOutput>
+    deleteBackupPlan: function(Client, types.DeleteBackupPlanInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBackupPlanOutput>
+    deleteBackupSelection: function(Client, types.DeleteBackupSelectionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBackupSelectionOutput>
+    deleteBackupVault: function(Client, types.DeleteBackupVaultInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBackupVaultOutput>
+    deleteBackupVaultAccessPolicy: function(Client, types.DeleteBackupVaultAccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBackupVaultAccessPolicyOutput>
+    deleteBackupVaultLockConfiguration: function(Client, types.DeleteBackupVaultLockConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBackupVaultLockConfigurationOutput>
+    deleteBackupVaultNotifications: function(Client, types.DeleteBackupVaultNotificationsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBackupVaultNotificationsOutput>
+    deleteFramework: function(Client, types.DeleteFrameworkInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFrameworkOutput>
+    deleteRecoveryPoint: function(Client, types.DeleteRecoveryPointInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRecoveryPointOutput>
+    deleteReportPlan: function(Client, types.DeleteReportPlanInput, ? base_client.InvokeOptions): async.Operation<types.DeleteReportPlanOutput>
+    deleteRestoreTestingPlan: function(Client, types.DeleteRestoreTestingPlanInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRestoreTestingPlanOutput>
+    deleteRestoreTestingSelection: function(Client, types.DeleteRestoreTestingSelectionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRestoreTestingSelectionOutput>
+    deleteTieringConfiguration: function(Client, types.DeleteTieringConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTieringConfigurationOutput>
+    describeBackupJob: function(Client, types.DescribeBackupJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBackupJobOutput>
+    describeBackupVault: function(Client, types.DescribeBackupVaultInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBackupVaultOutput>
+    describeCopyJob: function(Client, types.DescribeCopyJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCopyJobOutput>
+    describeFramework: function(Client, types.DescribeFrameworkInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFrameworkOutput>
+    describeGlobalSettings: function(Client, types.DescribeGlobalSettingsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeGlobalSettingsOutput>
+    describeProtectedResource: function(Client, types.DescribeProtectedResourceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeProtectedResourceOutput>
+    describeRecoveryPoint: function(Client, types.DescribeRecoveryPointInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRecoveryPointOutput>
+    describeRegionSettings: function(Client, types.DescribeRegionSettingsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRegionSettingsOutput>
+    describeReportJob: function(Client, types.DescribeReportJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeReportJobOutput>
+    describeReportPlan: function(Client, types.DescribeReportPlanInput, ? base_client.InvokeOptions): async.Operation<types.DescribeReportPlanOutput>
+    describeRestoreJob: function(Client, types.DescribeRestoreJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRestoreJobOutput>
+    describeScanJob: function(Client, types.DescribeScanJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeScanJobOutput>
+    disassociateBackupVaultMpaApprovalTeam: function(Client, types.DisassociateBackupVaultMpaApprovalTeamInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateBackupVaultMpaApprovalTeamOutput>
+    disassociateRecoveryPoint: function(Client, types.DisassociateRecoveryPointInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateRecoveryPointOutput>
+    disassociateRecoveryPointFromParent: function(Client, types.DisassociateRecoveryPointFromParentInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateRecoveryPointFromParentOutput>
+    exportBackupPlanTemplate: function(Client, types.ExportBackupPlanTemplateInput, ? base_client.InvokeOptions): async.Operation<types.ExportBackupPlanTemplateOutput>
+    getBackupPlan: function(Client, types.GetBackupPlanInput, ? base_client.InvokeOptions): async.Operation<types.GetBackupPlanOutput>
+    getBackupPlanFromJSON: function(Client, types.GetBackupPlanFromJSONInput, ? base_client.InvokeOptions): async.Operation<types.GetBackupPlanFromJSONOutput>
+    getBackupPlanFromTemplate: function(Client, types.GetBackupPlanFromTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetBackupPlanFromTemplateOutput>
+    getBackupSelection: function(Client, types.GetBackupSelectionInput, ? base_client.InvokeOptions): async.Operation<types.GetBackupSelectionOutput>
+    getBackupVaultAccessPolicy: function(Client, types.GetBackupVaultAccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetBackupVaultAccessPolicyOutput>
+    getBackupVaultNotifications: function(Client, types.GetBackupVaultNotificationsInput, ? base_client.InvokeOptions): async.Operation<types.GetBackupVaultNotificationsOutput>
+    getLegalHold: function(Client, types.GetLegalHoldInput, ? base_client.InvokeOptions): async.Operation<types.GetLegalHoldOutput>
+    getRecoveryPointIndexDetails: function(Client, types.GetRecoveryPointIndexDetailsInput, ? base_client.InvokeOptions): async.Operation<types.GetRecoveryPointIndexDetailsOutput>
+    getRecoveryPointRestoreMetadata: function(Client, types.GetRecoveryPointRestoreMetadataInput, ? base_client.InvokeOptions): async.Operation<types.GetRecoveryPointRestoreMetadataOutput>
+    getRestoreJobMetadata: function(Client, types.GetRestoreJobMetadataInput, ? base_client.InvokeOptions): async.Operation<types.GetRestoreJobMetadataOutput>
+    getRestoreTestingInferredMetadata: function(Client, types.GetRestoreTestingInferredMetadataInput, ? base_client.InvokeOptions): async.Operation<types.GetRestoreTestingInferredMetadataOutput>
+    getRestoreTestingPlan: function(Client, types.GetRestoreTestingPlanInput, ? base_client.InvokeOptions): async.Operation<types.GetRestoreTestingPlanOutput>
+    getRestoreTestingSelection: function(Client, types.GetRestoreTestingSelectionInput, ? base_client.InvokeOptions): async.Operation<types.GetRestoreTestingSelectionOutput>
+    getSupportedResourceTypes: function(Client, types.GetSupportedResourceTypesInput, ? base_client.InvokeOptions): async.Operation<types.GetSupportedResourceTypesOutput>
+    getTieringConfiguration: function(Client, types.GetTieringConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetTieringConfigurationOutput>
+    listBackupJobs: function(Client, types.ListBackupJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListBackupJobsOutput>
+    listBackupJobSummaries: function(Client, types.ListBackupJobSummariesInput, ? base_client.InvokeOptions): async.Operation<types.ListBackupJobSummariesOutput>
+    listBackupPlans: function(Client, types.ListBackupPlansInput, ? base_client.InvokeOptions): async.Operation<types.ListBackupPlansOutput>
+    listBackupPlanTemplates: function(Client, types.ListBackupPlanTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListBackupPlanTemplatesOutput>
+    listBackupPlanVersions: function(Client, types.ListBackupPlanVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListBackupPlanVersionsOutput>
+    listBackupSelections: function(Client, types.ListBackupSelectionsInput, ? base_client.InvokeOptions): async.Operation<types.ListBackupSelectionsOutput>
+    listBackupVaults: function(Client, types.ListBackupVaultsInput, ? base_client.InvokeOptions): async.Operation<types.ListBackupVaultsOutput>
+    listCopyJobs: function(Client, types.ListCopyJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListCopyJobsOutput>
+    listCopyJobSummaries: function(Client, types.ListCopyJobSummariesInput, ? base_client.InvokeOptions): async.Operation<types.ListCopyJobSummariesOutput>
+    listFrameworks: function(Client, types.ListFrameworksInput, ? base_client.InvokeOptions): async.Operation<types.ListFrameworksOutput>
+    listIndexedRecoveryPoints: function(Client, types.ListIndexedRecoveryPointsInput, ? base_client.InvokeOptions): async.Operation<types.ListIndexedRecoveryPointsOutput>
+    listLegalHolds: function(Client, types.ListLegalHoldsInput, ? base_client.InvokeOptions): async.Operation<types.ListLegalHoldsOutput>
+    listProtectedResources: function(Client, types.ListProtectedResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListProtectedResourcesOutput>
+    listProtectedResourcesByBackupVault: function(Client, types.ListProtectedResourcesByBackupVaultInput, ? base_client.InvokeOptions): async.Operation<types.ListProtectedResourcesByBackupVaultOutput>
+    listRecoveryPointsByBackupVault: function(Client, types.ListRecoveryPointsByBackupVaultInput, ? base_client.InvokeOptions): async.Operation<types.ListRecoveryPointsByBackupVaultOutput>
+    listRecoveryPointsByLegalHold: function(Client, types.ListRecoveryPointsByLegalHoldInput, ? base_client.InvokeOptions): async.Operation<types.ListRecoveryPointsByLegalHoldOutput>
+    listRecoveryPointsByResource: function(Client, types.ListRecoveryPointsByResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListRecoveryPointsByResourceOutput>
+    listReportJobs: function(Client, types.ListReportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListReportJobsOutput>
+    listReportPlans: function(Client, types.ListReportPlansInput, ? base_client.InvokeOptions): async.Operation<types.ListReportPlansOutput>
+    listRestoreAccessBackupVaults: function(Client, types.ListRestoreAccessBackupVaultsInput, ? base_client.InvokeOptions): async.Operation<types.ListRestoreAccessBackupVaultsOutput>
+    listRestoreJobs: function(Client, types.ListRestoreJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListRestoreJobsOutput>
+    listRestoreJobsByProtectedResource: function(Client, types.ListRestoreJobsByProtectedResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListRestoreJobsByProtectedResourceOutput>
+    listRestoreJobSummaries: function(Client, types.ListRestoreJobSummariesInput, ? base_client.InvokeOptions): async.Operation<types.ListRestoreJobSummariesOutput>
+    listRestoreTestingPlans: function(Client, types.ListRestoreTestingPlansInput, ? base_client.InvokeOptions): async.Operation<types.ListRestoreTestingPlansOutput>
+    listRestoreTestingSelections: function(Client, types.ListRestoreTestingSelectionsInput, ? base_client.InvokeOptions): async.Operation<types.ListRestoreTestingSelectionsOutput>
+    listScanJobs: function(Client, types.ListScanJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListScanJobsOutput>
+    listScanJobSummaries: function(Client, types.ListScanJobSummariesInput, ? base_client.InvokeOptions): async.Operation<types.ListScanJobSummariesOutput>
+    listTags: function(Client, types.ListTagsInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsOutput>
+    listTieringConfigurations: function(Client, types.ListTieringConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListTieringConfigurationsOutput>
+    putBackupVaultAccessPolicy: function(Client, types.PutBackupVaultAccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutBackupVaultAccessPolicyOutput>
+    putBackupVaultLockConfiguration: function(Client, types.PutBackupVaultLockConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutBackupVaultLockConfigurationOutput>
+    putBackupVaultNotifications: function(Client, types.PutBackupVaultNotificationsInput, ? base_client.InvokeOptions): async.Operation<types.PutBackupVaultNotificationsOutput>
+    putRestoreValidationResult: function(Client, types.PutRestoreValidationResultInput, ? base_client.InvokeOptions): async.Operation<types.PutRestoreValidationResultOutput>
+    revokeRestoreAccessBackupVault: function(Client, types.RevokeRestoreAccessBackupVaultInput, ? base_client.InvokeOptions): async.Operation<types.RevokeRestoreAccessBackupVaultOutput>
+    startBackupJob: function(Client, types.StartBackupJobInput, ? base_client.InvokeOptions): async.Operation<types.StartBackupJobOutput>
+    startCopyJob: function(Client, types.StartCopyJobInput, ? base_client.InvokeOptions): async.Operation<types.StartCopyJobOutput>
+    startReportJob: function(Client, types.StartReportJobInput, ? base_client.InvokeOptions): async.Operation<types.StartReportJobOutput>
+    startRestoreJob: function(Client, types.StartRestoreJobInput, ? base_client.InvokeOptions): async.Operation<types.StartRestoreJobOutput>
+    startScanJob: function(Client, types.StartScanJobInput, ? base_client.InvokeOptions): async.Operation<types.StartScanJobOutput>
+    stopBackupJob: function(Client, types.StopBackupJobInput, ? base_client.InvokeOptions): async.Operation<types.StopBackupJobOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateBackupPlan: function(Client, types.UpdateBackupPlanInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBackupPlanOutput>
+    updateFramework: function(Client, types.UpdateFrameworkInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFrameworkOutput>
+    updateGlobalSettings: function(Client, types.UpdateGlobalSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGlobalSettingsOutput>
+    updateRecoveryPointIndexSettings: function(Client, types.UpdateRecoveryPointIndexSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRecoveryPointIndexSettingsOutput>
+    updateRecoveryPointLifecycle: function(Client, types.UpdateRecoveryPointLifecycleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRecoveryPointLifecycleOutput>
+    updateRegionSettings: function(Client, types.UpdateRegionSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRegionSettingsOutput>
+    updateReportPlan: function(Client, types.UpdateReportPlanInput, ? base_client.InvokeOptions): async.Operation<types.UpdateReportPlanOutput>
+    updateRestoreTestingPlan: function(Client, types.UpdateRestoreTestingPlanInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRestoreTestingPlanOutput>
+    updateRestoreTestingSelection: function(Client, types.UpdateRestoreTestingSelectionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRestoreTestingSelectionOutput>
+    updateTieringConfiguration: function(Client, types.UpdateTieringConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTieringConfigurationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "CryoControllerUserManager"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "backup", signing_region = c.region } }
                 else
@@ -167,436 +170,436 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateBackupVaultMpaApprovalTeam(input: types.AssociateBackupVaultMpaApprovalTeamInput, options: any): async.Operation<types.AssociateBackupVaultMpaApprovalTeamOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateBackupVaultMpaApprovalTeam, input, options) as async.Operation<types.AssociateBackupVaultMpaApprovalTeamOutput>
+function C:associateBackupVaultMpaApprovalTeam(input: types.AssociateBackupVaultMpaApprovalTeamInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateBackupVaultMpaApprovalTeamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateBackupVaultMpaApprovalTeam as schema.OperationSchema, input, options) as async.Operation<types.AssociateBackupVaultMpaApprovalTeamOutput>
 end
 
-function C:cancelLegalHold(input: types.CancelLegalHoldInput, options: any): async.Operation<types.CancelLegalHoldOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelLegalHold, input, options) as async.Operation<types.CancelLegalHoldOutput>
+function C:cancelLegalHold(input: types.CancelLegalHoldInput, options?: base_client.InvokeOptions): async.Operation<types.CancelLegalHoldOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelLegalHold as schema.OperationSchema, input, options) as async.Operation<types.CancelLegalHoldOutput>
 end
 
-function C:createBackupPlan(input: types.CreateBackupPlanInput, options: any): async.Operation<types.CreateBackupPlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBackupPlan, input, options) as async.Operation<types.CreateBackupPlanOutput>
+function C:createBackupPlan(input: types.CreateBackupPlanInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBackupPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBackupPlan as schema.OperationSchema, input, options) as async.Operation<types.CreateBackupPlanOutput>
 end
 
-function C:createBackupSelection(input: types.CreateBackupSelectionInput, options: any): async.Operation<types.CreateBackupSelectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBackupSelection, input, options) as async.Operation<types.CreateBackupSelectionOutput>
+function C:createBackupSelection(input: types.CreateBackupSelectionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBackupSelectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBackupSelection as schema.OperationSchema, input, options) as async.Operation<types.CreateBackupSelectionOutput>
 end
 
-function C:createBackupVault(input: types.CreateBackupVaultInput, options: any): async.Operation<types.CreateBackupVaultOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBackupVault, input, options) as async.Operation<types.CreateBackupVaultOutput>
+function C:createBackupVault(input: types.CreateBackupVaultInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBackupVaultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBackupVault as schema.OperationSchema, input, options) as async.Operation<types.CreateBackupVaultOutput>
 end
 
-function C:createFramework(input: types.CreateFrameworkInput, options: any): async.Operation<types.CreateFrameworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFramework, input, options) as async.Operation<types.CreateFrameworkOutput>
+function C:createFramework(input: types.CreateFrameworkInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFrameworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFramework as schema.OperationSchema, input, options) as async.Operation<types.CreateFrameworkOutput>
 end
 
-function C:createLegalHold(input: types.CreateLegalHoldInput, options: any): async.Operation<types.CreateLegalHoldOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLegalHold, input, options) as async.Operation<types.CreateLegalHoldOutput>
+function C:createLegalHold(input: types.CreateLegalHoldInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLegalHoldOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLegalHold as schema.OperationSchema, input, options) as async.Operation<types.CreateLegalHoldOutput>
 end
 
-function C:createLogicallyAirGappedBackupVault(input: types.CreateLogicallyAirGappedBackupVaultInput, options: any): async.Operation<types.CreateLogicallyAirGappedBackupVaultOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLogicallyAirGappedBackupVault, input, options) as async.Operation<types.CreateLogicallyAirGappedBackupVaultOutput>
+function C:createLogicallyAirGappedBackupVault(input: types.CreateLogicallyAirGappedBackupVaultInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLogicallyAirGappedBackupVaultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLogicallyAirGappedBackupVault as schema.OperationSchema, input, options) as async.Operation<types.CreateLogicallyAirGappedBackupVaultOutput>
 end
 
-function C:createReportPlan(input: types.CreateReportPlanInput, options: any): async.Operation<types.CreateReportPlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateReportPlan, input, options) as async.Operation<types.CreateReportPlanOutput>
+function C:createReportPlan(input: types.CreateReportPlanInput, options?: base_client.InvokeOptions): async.Operation<types.CreateReportPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateReportPlan as schema.OperationSchema, input, options) as async.Operation<types.CreateReportPlanOutput>
 end
 
-function C:createRestoreAccessBackupVault(input: types.CreateRestoreAccessBackupVaultInput, options: any): async.Operation<types.CreateRestoreAccessBackupVaultOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRestoreAccessBackupVault, input, options) as async.Operation<types.CreateRestoreAccessBackupVaultOutput>
+function C:createRestoreAccessBackupVault(input: types.CreateRestoreAccessBackupVaultInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRestoreAccessBackupVaultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRestoreAccessBackupVault as schema.OperationSchema, input, options) as async.Operation<types.CreateRestoreAccessBackupVaultOutput>
 end
 
-function C:createRestoreTestingPlan(input: types.CreateRestoreTestingPlanInput, options: any): async.Operation<types.CreateRestoreTestingPlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRestoreTestingPlan, input, options) as async.Operation<types.CreateRestoreTestingPlanOutput>
+function C:createRestoreTestingPlan(input: types.CreateRestoreTestingPlanInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRestoreTestingPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRestoreTestingPlan as schema.OperationSchema, input, options) as async.Operation<types.CreateRestoreTestingPlanOutput>
 end
 
-function C:createRestoreTestingSelection(input: types.CreateRestoreTestingSelectionInput, options: any): async.Operation<types.CreateRestoreTestingSelectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRestoreTestingSelection, input, options) as async.Operation<types.CreateRestoreTestingSelectionOutput>
+function C:createRestoreTestingSelection(input: types.CreateRestoreTestingSelectionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRestoreTestingSelectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRestoreTestingSelection as schema.OperationSchema, input, options) as async.Operation<types.CreateRestoreTestingSelectionOutput>
 end
 
-function C:createTieringConfiguration(input: types.CreateTieringConfigurationInput, options: any): async.Operation<types.CreateTieringConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTieringConfiguration, input, options) as async.Operation<types.CreateTieringConfigurationOutput>
+function C:createTieringConfiguration(input: types.CreateTieringConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTieringConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTieringConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateTieringConfigurationOutput>
 end
 
-function C:deleteBackupPlan(input: types.DeleteBackupPlanInput, options: any): async.Operation<types.DeleteBackupPlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBackupPlan, input, options) as async.Operation<types.DeleteBackupPlanOutput>
+function C:deleteBackupPlan(input: types.DeleteBackupPlanInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBackupPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBackupPlan as schema.OperationSchema, input, options) as async.Operation<types.DeleteBackupPlanOutput>
 end
 
-function C:deleteBackupSelection(input: types.DeleteBackupSelectionInput, options: any): async.Operation<types.DeleteBackupSelectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBackupSelection, input, options) as async.Operation<types.DeleteBackupSelectionOutput>
+function C:deleteBackupSelection(input: types.DeleteBackupSelectionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBackupSelectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBackupSelection as schema.OperationSchema, input, options) as async.Operation<types.DeleteBackupSelectionOutput>
 end
 
-function C:deleteBackupVault(input: types.DeleteBackupVaultInput, options: any): async.Operation<types.DeleteBackupVaultOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBackupVault, input, options) as async.Operation<types.DeleteBackupVaultOutput>
+function C:deleteBackupVault(input: types.DeleteBackupVaultInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBackupVaultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBackupVault as schema.OperationSchema, input, options) as async.Operation<types.DeleteBackupVaultOutput>
 end
 
-function C:deleteBackupVaultAccessPolicy(input: types.DeleteBackupVaultAccessPolicyInput, options: any): async.Operation<types.DeleteBackupVaultAccessPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBackupVaultAccessPolicy, input, options) as async.Operation<types.DeleteBackupVaultAccessPolicyOutput>
+function C:deleteBackupVaultAccessPolicy(input: types.DeleteBackupVaultAccessPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBackupVaultAccessPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBackupVaultAccessPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteBackupVaultAccessPolicyOutput>
 end
 
-function C:deleteBackupVaultLockConfiguration(input: types.DeleteBackupVaultLockConfigurationInput, options: any): async.Operation<types.DeleteBackupVaultLockConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBackupVaultLockConfiguration, input, options) as async.Operation<types.DeleteBackupVaultLockConfigurationOutput>
+function C:deleteBackupVaultLockConfiguration(input: types.DeleteBackupVaultLockConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBackupVaultLockConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBackupVaultLockConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteBackupVaultLockConfigurationOutput>
 end
 
-function C:deleteBackupVaultNotifications(input: types.DeleteBackupVaultNotificationsInput, options: any): async.Operation<types.DeleteBackupVaultNotificationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBackupVaultNotifications, input, options) as async.Operation<types.DeleteBackupVaultNotificationsOutput>
+function C:deleteBackupVaultNotifications(input: types.DeleteBackupVaultNotificationsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBackupVaultNotificationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBackupVaultNotifications as schema.OperationSchema, input, options) as async.Operation<types.DeleteBackupVaultNotificationsOutput>
 end
 
-function C:deleteFramework(input: types.DeleteFrameworkInput, options: any): async.Operation<types.DeleteFrameworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFramework, input, options) as async.Operation<types.DeleteFrameworkOutput>
+function C:deleteFramework(input: types.DeleteFrameworkInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFrameworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFramework as schema.OperationSchema, input, options) as async.Operation<types.DeleteFrameworkOutput>
 end
 
-function C:deleteRecoveryPoint(input: types.DeleteRecoveryPointInput, options: any): async.Operation<types.DeleteRecoveryPointOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRecoveryPoint, input, options) as async.Operation<types.DeleteRecoveryPointOutput>
+function C:deleteRecoveryPoint(input: types.DeleteRecoveryPointInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRecoveryPointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRecoveryPoint as schema.OperationSchema, input, options) as async.Operation<types.DeleteRecoveryPointOutput>
 end
 
-function C:deleteReportPlan(input: types.DeleteReportPlanInput, options: any): async.Operation<types.DeleteReportPlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteReportPlan, input, options) as async.Operation<types.DeleteReportPlanOutput>
+function C:deleteReportPlan(input: types.DeleteReportPlanInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteReportPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteReportPlan as schema.OperationSchema, input, options) as async.Operation<types.DeleteReportPlanOutput>
 end
 
-function C:deleteRestoreTestingPlan(input: types.DeleteRestoreTestingPlanInput, options: any): async.Operation<types.DeleteRestoreTestingPlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRestoreTestingPlan, input, options) as async.Operation<types.DeleteRestoreTestingPlanOutput>
+function C:deleteRestoreTestingPlan(input: types.DeleteRestoreTestingPlanInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRestoreTestingPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRestoreTestingPlan as schema.OperationSchema, input, options) as async.Operation<types.DeleteRestoreTestingPlanOutput>
 end
 
-function C:deleteRestoreTestingSelection(input: types.DeleteRestoreTestingSelectionInput, options: any): async.Operation<types.DeleteRestoreTestingSelectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRestoreTestingSelection, input, options) as async.Operation<types.DeleteRestoreTestingSelectionOutput>
+function C:deleteRestoreTestingSelection(input: types.DeleteRestoreTestingSelectionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRestoreTestingSelectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRestoreTestingSelection as schema.OperationSchema, input, options) as async.Operation<types.DeleteRestoreTestingSelectionOutput>
 end
 
-function C:deleteTieringConfiguration(input: types.DeleteTieringConfigurationInput, options: any): async.Operation<types.DeleteTieringConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTieringConfiguration, input, options) as async.Operation<types.DeleteTieringConfigurationOutput>
+function C:deleteTieringConfiguration(input: types.DeleteTieringConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTieringConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTieringConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteTieringConfigurationOutput>
 end
 
-function C:describeBackupJob(input: types.DescribeBackupJobInput, options: any): async.Operation<types.DescribeBackupJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeBackupJob, input, options) as async.Operation<types.DescribeBackupJobOutput>
+function C:describeBackupJob(input: types.DescribeBackupJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBackupJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeBackupJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeBackupJobOutput>
 end
 
-function C:describeBackupVault(input: types.DescribeBackupVaultInput, options: any): async.Operation<types.DescribeBackupVaultOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeBackupVault, input, options) as async.Operation<types.DescribeBackupVaultOutput>
+function C:describeBackupVault(input: types.DescribeBackupVaultInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBackupVaultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeBackupVault as schema.OperationSchema, input, options) as async.Operation<types.DescribeBackupVaultOutput>
 end
 
-function C:describeCopyJob(input: types.DescribeCopyJobInput, options: any): async.Operation<types.DescribeCopyJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCopyJob, input, options) as async.Operation<types.DescribeCopyJobOutput>
+function C:describeCopyJob(input: types.DescribeCopyJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCopyJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCopyJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeCopyJobOutput>
 end
 
-function C:describeFramework(input: types.DescribeFrameworkInput, options: any): async.Operation<types.DescribeFrameworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFramework, input, options) as async.Operation<types.DescribeFrameworkOutput>
+function C:describeFramework(input: types.DescribeFrameworkInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFrameworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFramework as schema.OperationSchema, input, options) as async.Operation<types.DescribeFrameworkOutput>
 end
 
-function C:describeGlobalSettings(input: types.DescribeGlobalSettingsInput, options: any): async.Operation<types.DescribeGlobalSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeGlobalSettings, input, options) as async.Operation<types.DescribeGlobalSettingsOutput>
+function C:describeGlobalSettings(input: types.DescribeGlobalSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeGlobalSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeGlobalSettings as schema.OperationSchema, input, options) as async.Operation<types.DescribeGlobalSettingsOutput>
 end
 
-function C:describeProtectedResource(input: types.DescribeProtectedResourceInput, options: any): async.Operation<types.DescribeProtectedResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeProtectedResource, input, options) as async.Operation<types.DescribeProtectedResourceOutput>
+function C:describeProtectedResource(input: types.DescribeProtectedResourceInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeProtectedResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeProtectedResource as schema.OperationSchema, input, options) as async.Operation<types.DescribeProtectedResourceOutput>
 end
 
-function C:describeRecoveryPoint(input: types.DescribeRecoveryPointInput, options: any): async.Operation<types.DescribeRecoveryPointOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRecoveryPoint, input, options) as async.Operation<types.DescribeRecoveryPointOutput>
+function C:describeRecoveryPoint(input: types.DescribeRecoveryPointInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRecoveryPointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRecoveryPoint as schema.OperationSchema, input, options) as async.Operation<types.DescribeRecoveryPointOutput>
 end
 
-function C:describeRegionSettings(input: types.DescribeRegionSettingsInput, options: any): async.Operation<types.DescribeRegionSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRegionSettings, input, options) as async.Operation<types.DescribeRegionSettingsOutput>
+function C:describeRegionSettings(input: types.DescribeRegionSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRegionSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRegionSettings as schema.OperationSchema, input, options) as async.Operation<types.DescribeRegionSettingsOutput>
 end
 
-function C:describeReportJob(input: types.DescribeReportJobInput, options: any): async.Operation<types.DescribeReportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeReportJob, input, options) as async.Operation<types.DescribeReportJobOutput>
+function C:describeReportJob(input: types.DescribeReportJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeReportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeReportJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeReportJobOutput>
 end
 
-function C:describeReportPlan(input: types.DescribeReportPlanInput, options: any): async.Operation<types.DescribeReportPlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeReportPlan, input, options) as async.Operation<types.DescribeReportPlanOutput>
+function C:describeReportPlan(input: types.DescribeReportPlanInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeReportPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeReportPlan as schema.OperationSchema, input, options) as async.Operation<types.DescribeReportPlanOutput>
 end
 
-function C:describeRestoreJob(input: types.DescribeRestoreJobInput, options: any): async.Operation<types.DescribeRestoreJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRestoreJob, input, options) as async.Operation<types.DescribeRestoreJobOutput>
+function C:describeRestoreJob(input: types.DescribeRestoreJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRestoreJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRestoreJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeRestoreJobOutput>
 end
 
-function C:describeScanJob(input: types.DescribeScanJobInput, options: any): async.Operation<types.DescribeScanJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeScanJob, input, options) as async.Operation<types.DescribeScanJobOutput>
+function C:describeScanJob(input: types.DescribeScanJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeScanJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeScanJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeScanJobOutput>
 end
 
-function C:disassociateBackupVaultMpaApprovalTeam(input: types.DisassociateBackupVaultMpaApprovalTeamInput, options: any): async.Operation<types.DisassociateBackupVaultMpaApprovalTeamOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateBackupVaultMpaApprovalTeam, input, options) as async.Operation<types.DisassociateBackupVaultMpaApprovalTeamOutput>
+function C:disassociateBackupVaultMpaApprovalTeam(input: types.DisassociateBackupVaultMpaApprovalTeamInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateBackupVaultMpaApprovalTeamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateBackupVaultMpaApprovalTeam as schema.OperationSchema, input, options) as async.Operation<types.DisassociateBackupVaultMpaApprovalTeamOutput>
 end
 
-function C:disassociateRecoveryPoint(input: types.DisassociateRecoveryPointInput, options: any): async.Operation<types.DisassociateRecoveryPointOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateRecoveryPoint, input, options) as async.Operation<types.DisassociateRecoveryPointOutput>
+function C:disassociateRecoveryPoint(input: types.DisassociateRecoveryPointInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateRecoveryPointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateRecoveryPoint as schema.OperationSchema, input, options) as async.Operation<types.DisassociateRecoveryPointOutput>
 end
 
-function C:disassociateRecoveryPointFromParent(input: types.DisassociateRecoveryPointFromParentInput, options: any): async.Operation<types.DisassociateRecoveryPointFromParentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateRecoveryPointFromParent, input, options) as async.Operation<types.DisassociateRecoveryPointFromParentOutput>
+function C:disassociateRecoveryPointFromParent(input: types.DisassociateRecoveryPointFromParentInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateRecoveryPointFromParentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateRecoveryPointFromParent as schema.OperationSchema, input, options) as async.Operation<types.DisassociateRecoveryPointFromParentOutput>
 end
 
-function C:exportBackupPlanTemplate(input: types.ExportBackupPlanTemplateInput, options: any): async.Operation<types.ExportBackupPlanTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExportBackupPlanTemplate, input, options) as async.Operation<types.ExportBackupPlanTemplateOutput>
+function C:exportBackupPlanTemplate(input: types.ExportBackupPlanTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.ExportBackupPlanTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportBackupPlanTemplate as schema.OperationSchema, input, options) as async.Operation<types.ExportBackupPlanTemplateOutput>
 end
 
-function C:getBackupPlan(input: types.GetBackupPlanInput, options: any): async.Operation<types.GetBackupPlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBackupPlan, input, options) as async.Operation<types.GetBackupPlanOutput>
+function C:getBackupPlan(input: types.GetBackupPlanInput, options?: base_client.InvokeOptions): async.Operation<types.GetBackupPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBackupPlan as schema.OperationSchema, input, options) as async.Operation<types.GetBackupPlanOutput>
 end
 
-function C:getBackupPlanFromJSON(input: types.GetBackupPlanFromJSONInput, options: any): async.Operation<types.GetBackupPlanFromJSONOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBackupPlanFromJSON, input, options) as async.Operation<types.GetBackupPlanFromJSONOutput>
+function C:getBackupPlanFromJSON(input: types.GetBackupPlanFromJSONInput, options?: base_client.InvokeOptions): async.Operation<types.GetBackupPlanFromJSONOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBackupPlanFromJSON as schema.OperationSchema, input, options) as async.Operation<types.GetBackupPlanFromJSONOutput>
 end
 
-function C:getBackupPlanFromTemplate(input: types.GetBackupPlanFromTemplateInput, options: any): async.Operation<types.GetBackupPlanFromTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBackupPlanFromTemplate, input, options) as async.Operation<types.GetBackupPlanFromTemplateOutput>
+function C:getBackupPlanFromTemplate(input: types.GetBackupPlanFromTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetBackupPlanFromTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBackupPlanFromTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetBackupPlanFromTemplateOutput>
 end
 
-function C:getBackupSelection(input: types.GetBackupSelectionInput, options: any): async.Operation<types.GetBackupSelectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBackupSelection, input, options) as async.Operation<types.GetBackupSelectionOutput>
+function C:getBackupSelection(input: types.GetBackupSelectionInput, options?: base_client.InvokeOptions): async.Operation<types.GetBackupSelectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBackupSelection as schema.OperationSchema, input, options) as async.Operation<types.GetBackupSelectionOutput>
 end
 
-function C:getBackupVaultAccessPolicy(input: types.GetBackupVaultAccessPolicyInput, options: any): async.Operation<types.GetBackupVaultAccessPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBackupVaultAccessPolicy, input, options) as async.Operation<types.GetBackupVaultAccessPolicyOutput>
+function C:getBackupVaultAccessPolicy(input: types.GetBackupVaultAccessPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetBackupVaultAccessPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBackupVaultAccessPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetBackupVaultAccessPolicyOutput>
 end
 
-function C:getBackupVaultNotifications(input: types.GetBackupVaultNotificationsInput, options: any): async.Operation<types.GetBackupVaultNotificationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBackupVaultNotifications, input, options) as async.Operation<types.GetBackupVaultNotificationsOutput>
+function C:getBackupVaultNotifications(input: types.GetBackupVaultNotificationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetBackupVaultNotificationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBackupVaultNotifications as schema.OperationSchema, input, options) as async.Operation<types.GetBackupVaultNotificationsOutput>
 end
 
-function C:getLegalHold(input: types.GetLegalHoldInput, options: any): async.Operation<types.GetLegalHoldOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLegalHold, input, options) as async.Operation<types.GetLegalHoldOutput>
+function C:getLegalHold(input: types.GetLegalHoldInput, options?: base_client.InvokeOptions): async.Operation<types.GetLegalHoldOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLegalHold as schema.OperationSchema, input, options) as async.Operation<types.GetLegalHoldOutput>
 end
 
-function C:getRecoveryPointIndexDetails(input: types.GetRecoveryPointIndexDetailsInput, options: any): async.Operation<types.GetRecoveryPointIndexDetailsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRecoveryPointIndexDetails, input, options) as async.Operation<types.GetRecoveryPointIndexDetailsOutput>
+function C:getRecoveryPointIndexDetails(input: types.GetRecoveryPointIndexDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.GetRecoveryPointIndexDetailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRecoveryPointIndexDetails as schema.OperationSchema, input, options) as async.Operation<types.GetRecoveryPointIndexDetailsOutput>
 end
 
-function C:getRecoveryPointRestoreMetadata(input: types.GetRecoveryPointRestoreMetadataInput, options: any): async.Operation<types.GetRecoveryPointRestoreMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRecoveryPointRestoreMetadata, input, options) as async.Operation<types.GetRecoveryPointRestoreMetadataOutput>
+function C:getRecoveryPointRestoreMetadata(input: types.GetRecoveryPointRestoreMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.GetRecoveryPointRestoreMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRecoveryPointRestoreMetadata as schema.OperationSchema, input, options) as async.Operation<types.GetRecoveryPointRestoreMetadataOutput>
 end
 
-function C:getRestoreJobMetadata(input: types.GetRestoreJobMetadataInput, options: any): async.Operation<types.GetRestoreJobMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRestoreJobMetadata, input, options) as async.Operation<types.GetRestoreJobMetadataOutput>
+function C:getRestoreJobMetadata(input: types.GetRestoreJobMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.GetRestoreJobMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRestoreJobMetadata as schema.OperationSchema, input, options) as async.Operation<types.GetRestoreJobMetadataOutput>
 end
 
-function C:getRestoreTestingInferredMetadata(input: types.GetRestoreTestingInferredMetadataInput, options: any): async.Operation<types.GetRestoreTestingInferredMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRestoreTestingInferredMetadata, input, options) as async.Operation<types.GetRestoreTestingInferredMetadataOutput>
+function C:getRestoreTestingInferredMetadata(input: types.GetRestoreTestingInferredMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.GetRestoreTestingInferredMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRestoreTestingInferredMetadata as schema.OperationSchema, input, options) as async.Operation<types.GetRestoreTestingInferredMetadataOutput>
 end
 
-function C:getRestoreTestingPlan(input: types.GetRestoreTestingPlanInput, options: any): async.Operation<types.GetRestoreTestingPlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRestoreTestingPlan, input, options) as async.Operation<types.GetRestoreTestingPlanOutput>
+function C:getRestoreTestingPlan(input: types.GetRestoreTestingPlanInput, options?: base_client.InvokeOptions): async.Operation<types.GetRestoreTestingPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRestoreTestingPlan as schema.OperationSchema, input, options) as async.Operation<types.GetRestoreTestingPlanOutput>
 end
 
-function C:getRestoreTestingSelection(input: types.GetRestoreTestingSelectionInput, options: any): async.Operation<types.GetRestoreTestingSelectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRestoreTestingSelection, input, options) as async.Operation<types.GetRestoreTestingSelectionOutput>
+function C:getRestoreTestingSelection(input: types.GetRestoreTestingSelectionInput, options?: base_client.InvokeOptions): async.Operation<types.GetRestoreTestingSelectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRestoreTestingSelection as schema.OperationSchema, input, options) as async.Operation<types.GetRestoreTestingSelectionOutput>
 end
 
-function C:getSupportedResourceTypes(input: types.GetSupportedResourceTypesInput, options: any): async.Operation<types.GetSupportedResourceTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSupportedResourceTypes, input, options) as async.Operation<types.GetSupportedResourceTypesOutput>
+function C:getSupportedResourceTypes(input: types.GetSupportedResourceTypesInput, options?: base_client.InvokeOptions): async.Operation<types.GetSupportedResourceTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSupportedResourceTypes as schema.OperationSchema, input, options) as async.Operation<types.GetSupportedResourceTypesOutput>
 end
 
-function C:getTieringConfiguration(input: types.GetTieringConfigurationInput, options: any): async.Operation<types.GetTieringConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTieringConfiguration, input, options) as async.Operation<types.GetTieringConfigurationOutput>
+function C:getTieringConfiguration(input: types.GetTieringConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetTieringConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTieringConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetTieringConfigurationOutput>
 end
 
-function C:listBackupJobs(input: types.ListBackupJobsInput, options: any): async.Operation<types.ListBackupJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBackupJobs, input, options) as async.Operation<types.ListBackupJobsOutput>
+function C:listBackupJobs(input: types.ListBackupJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBackupJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBackupJobs as schema.OperationSchema, input, options) as async.Operation<types.ListBackupJobsOutput>
 end
 
-function C:listBackupJobSummaries(input: types.ListBackupJobSummariesInput, options: any): async.Operation<types.ListBackupJobSummariesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBackupJobSummaries, input, options) as async.Operation<types.ListBackupJobSummariesOutput>
+function C:listBackupJobSummaries(input: types.ListBackupJobSummariesInput, options?: base_client.InvokeOptions): async.Operation<types.ListBackupJobSummariesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBackupJobSummaries as schema.OperationSchema, input, options) as async.Operation<types.ListBackupJobSummariesOutput>
 end
 
-function C:listBackupPlans(input: types.ListBackupPlansInput, options: any): async.Operation<types.ListBackupPlansOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBackupPlans, input, options) as async.Operation<types.ListBackupPlansOutput>
+function C:listBackupPlans(input: types.ListBackupPlansInput, options?: base_client.InvokeOptions): async.Operation<types.ListBackupPlansOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBackupPlans as schema.OperationSchema, input, options) as async.Operation<types.ListBackupPlansOutput>
 end
 
-function C:listBackupPlanTemplates(input: types.ListBackupPlanTemplatesInput, options: any): async.Operation<types.ListBackupPlanTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBackupPlanTemplates, input, options) as async.Operation<types.ListBackupPlanTemplatesOutput>
+function C:listBackupPlanTemplates(input: types.ListBackupPlanTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListBackupPlanTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBackupPlanTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListBackupPlanTemplatesOutput>
 end
 
-function C:listBackupPlanVersions(input: types.ListBackupPlanVersionsInput, options: any): async.Operation<types.ListBackupPlanVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBackupPlanVersions, input, options) as async.Operation<types.ListBackupPlanVersionsOutput>
+function C:listBackupPlanVersions(input: types.ListBackupPlanVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBackupPlanVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBackupPlanVersions as schema.OperationSchema, input, options) as async.Operation<types.ListBackupPlanVersionsOutput>
 end
 
-function C:listBackupSelections(input: types.ListBackupSelectionsInput, options: any): async.Operation<types.ListBackupSelectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBackupSelections, input, options) as async.Operation<types.ListBackupSelectionsOutput>
+function C:listBackupSelections(input: types.ListBackupSelectionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBackupSelectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBackupSelections as schema.OperationSchema, input, options) as async.Operation<types.ListBackupSelectionsOutput>
 end
 
-function C:listBackupVaults(input: types.ListBackupVaultsInput, options: any): async.Operation<types.ListBackupVaultsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBackupVaults, input, options) as async.Operation<types.ListBackupVaultsOutput>
+function C:listBackupVaults(input: types.ListBackupVaultsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBackupVaultsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBackupVaults as schema.OperationSchema, input, options) as async.Operation<types.ListBackupVaultsOutput>
 end
 
-function C:listCopyJobs(input: types.ListCopyJobsInput, options: any): async.Operation<types.ListCopyJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCopyJobs, input, options) as async.Operation<types.ListCopyJobsOutput>
+function C:listCopyJobs(input: types.ListCopyJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCopyJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCopyJobs as schema.OperationSchema, input, options) as async.Operation<types.ListCopyJobsOutput>
 end
 
-function C:listCopyJobSummaries(input: types.ListCopyJobSummariesInput, options: any): async.Operation<types.ListCopyJobSummariesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCopyJobSummaries, input, options) as async.Operation<types.ListCopyJobSummariesOutput>
+function C:listCopyJobSummaries(input: types.ListCopyJobSummariesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCopyJobSummariesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCopyJobSummaries as schema.OperationSchema, input, options) as async.Operation<types.ListCopyJobSummariesOutput>
 end
 
-function C:listFrameworks(input: types.ListFrameworksInput, options: any): async.Operation<types.ListFrameworksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFrameworks, input, options) as async.Operation<types.ListFrameworksOutput>
+function C:listFrameworks(input: types.ListFrameworksInput, options?: base_client.InvokeOptions): async.Operation<types.ListFrameworksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFrameworks as schema.OperationSchema, input, options) as async.Operation<types.ListFrameworksOutput>
 end
 
-function C:listIndexedRecoveryPoints(input: types.ListIndexedRecoveryPointsInput, options: any): async.Operation<types.ListIndexedRecoveryPointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIndexedRecoveryPoints, input, options) as async.Operation<types.ListIndexedRecoveryPointsOutput>
+function C:listIndexedRecoveryPoints(input: types.ListIndexedRecoveryPointsInput, options?: base_client.InvokeOptions): async.Operation<types.ListIndexedRecoveryPointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIndexedRecoveryPoints as schema.OperationSchema, input, options) as async.Operation<types.ListIndexedRecoveryPointsOutput>
 end
 
-function C:listLegalHolds(input: types.ListLegalHoldsInput, options: any): async.Operation<types.ListLegalHoldsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLegalHolds, input, options) as async.Operation<types.ListLegalHoldsOutput>
+function C:listLegalHolds(input: types.ListLegalHoldsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLegalHoldsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLegalHolds as schema.OperationSchema, input, options) as async.Operation<types.ListLegalHoldsOutput>
 end
 
-function C:listProtectedResources(input: types.ListProtectedResourcesInput, options: any): async.Operation<types.ListProtectedResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProtectedResources, input, options) as async.Operation<types.ListProtectedResourcesOutput>
+function C:listProtectedResources(input: types.ListProtectedResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListProtectedResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProtectedResources as schema.OperationSchema, input, options) as async.Operation<types.ListProtectedResourcesOutput>
 end
 
-function C:listProtectedResourcesByBackupVault(input: types.ListProtectedResourcesByBackupVaultInput, options: any): async.Operation<types.ListProtectedResourcesByBackupVaultOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProtectedResourcesByBackupVault, input, options) as async.Operation<types.ListProtectedResourcesByBackupVaultOutput>
+function C:listProtectedResourcesByBackupVault(input: types.ListProtectedResourcesByBackupVaultInput, options?: base_client.InvokeOptions): async.Operation<types.ListProtectedResourcesByBackupVaultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProtectedResourcesByBackupVault as schema.OperationSchema, input, options) as async.Operation<types.ListProtectedResourcesByBackupVaultOutput>
 end
 
-function C:listRecoveryPointsByBackupVault(input: types.ListRecoveryPointsByBackupVaultInput, options: any): async.Operation<types.ListRecoveryPointsByBackupVaultOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRecoveryPointsByBackupVault, input, options) as async.Operation<types.ListRecoveryPointsByBackupVaultOutput>
+function C:listRecoveryPointsByBackupVault(input: types.ListRecoveryPointsByBackupVaultInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecoveryPointsByBackupVaultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecoveryPointsByBackupVault as schema.OperationSchema, input, options) as async.Operation<types.ListRecoveryPointsByBackupVaultOutput>
 end
 
-function C:listRecoveryPointsByLegalHold(input: types.ListRecoveryPointsByLegalHoldInput, options: any): async.Operation<types.ListRecoveryPointsByLegalHoldOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRecoveryPointsByLegalHold, input, options) as async.Operation<types.ListRecoveryPointsByLegalHoldOutput>
+function C:listRecoveryPointsByLegalHold(input: types.ListRecoveryPointsByLegalHoldInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecoveryPointsByLegalHoldOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecoveryPointsByLegalHold as schema.OperationSchema, input, options) as async.Operation<types.ListRecoveryPointsByLegalHoldOutput>
 end
 
-function C:listRecoveryPointsByResource(input: types.ListRecoveryPointsByResourceInput, options: any): async.Operation<types.ListRecoveryPointsByResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRecoveryPointsByResource, input, options) as async.Operation<types.ListRecoveryPointsByResourceOutput>
+function C:listRecoveryPointsByResource(input: types.ListRecoveryPointsByResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecoveryPointsByResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecoveryPointsByResource as schema.OperationSchema, input, options) as async.Operation<types.ListRecoveryPointsByResourceOutput>
 end
 
-function C:listReportJobs(input: types.ListReportJobsInput, options: any): async.Operation<types.ListReportJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReportJobs, input, options) as async.Operation<types.ListReportJobsOutput>
+function C:listReportJobs(input: types.ListReportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListReportJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReportJobs as schema.OperationSchema, input, options) as async.Operation<types.ListReportJobsOutput>
 end
 
-function C:listReportPlans(input: types.ListReportPlansInput, options: any): async.Operation<types.ListReportPlansOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReportPlans, input, options) as async.Operation<types.ListReportPlansOutput>
+function C:listReportPlans(input: types.ListReportPlansInput, options?: base_client.InvokeOptions): async.Operation<types.ListReportPlansOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReportPlans as schema.OperationSchema, input, options) as async.Operation<types.ListReportPlansOutput>
 end
 
-function C:listRestoreAccessBackupVaults(input: types.ListRestoreAccessBackupVaultsInput, options: any): async.Operation<types.ListRestoreAccessBackupVaultsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRestoreAccessBackupVaults, input, options) as async.Operation<types.ListRestoreAccessBackupVaultsOutput>
+function C:listRestoreAccessBackupVaults(input: types.ListRestoreAccessBackupVaultsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRestoreAccessBackupVaultsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRestoreAccessBackupVaults as schema.OperationSchema, input, options) as async.Operation<types.ListRestoreAccessBackupVaultsOutput>
 end
 
-function C:listRestoreJobs(input: types.ListRestoreJobsInput, options: any): async.Operation<types.ListRestoreJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRestoreJobs, input, options) as async.Operation<types.ListRestoreJobsOutput>
+function C:listRestoreJobs(input: types.ListRestoreJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRestoreJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRestoreJobs as schema.OperationSchema, input, options) as async.Operation<types.ListRestoreJobsOutput>
 end
 
-function C:listRestoreJobsByProtectedResource(input: types.ListRestoreJobsByProtectedResourceInput, options: any): async.Operation<types.ListRestoreJobsByProtectedResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRestoreJobsByProtectedResource, input, options) as async.Operation<types.ListRestoreJobsByProtectedResourceOutput>
+function C:listRestoreJobsByProtectedResource(input: types.ListRestoreJobsByProtectedResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListRestoreJobsByProtectedResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRestoreJobsByProtectedResource as schema.OperationSchema, input, options) as async.Operation<types.ListRestoreJobsByProtectedResourceOutput>
 end
 
-function C:listRestoreJobSummaries(input: types.ListRestoreJobSummariesInput, options: any): async.Operation<types.ListRestoreJobSummariesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRestoreJobSummaries, input, options) as async.Operation<types.ListRestoreJobSummariesOutput>
+function C:listRestoreJobSummaries(input: types.ListRestoreJobSummariesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRestoreJobSummariesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRestoreJobSummaries as schema.OperationSchema, input, options) as async.Operation<types.ListRestoreJobSummariesOutput>
 end
 
-function C:listRestoreTestingPlans(input: types.ListRestoreTestingPlansInput, options: any): async.Operation<types.ListRestoreTestingPlansOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRestoreTestingPlans, input, options) as async.Operation<types.ListRestoreTestingPlansOutput>
+function C:listRestoreTestingPlans(input: types.ListRestoreTestingPlansInput, options?: base_client.InvokeOptions): async.Operation<types.ListRestoreTestingPlansOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRestoreTestingPlans as schema.OperationSchema, input, options) as async.Operation<types.ListRestoreTestingPlansOutput>
 end
 
-function C:listRestoreTestingSelections(input: types.ListRestoreTestingSelectionsInput, options: any): async.Operation<types.ListRestoreTestingSelectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRestoreTestingSelections, input, options) as async.Operation<types.ListRestoreTestingSelectionsOutput>
+function C:listRestoreTestingSelections(input: types.ListRestoreTestingSelectionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRestoreTestingSelectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRestoreTestingSelections as schema.OperationSchema, input, options) as async.Operation<types.ListRestoreTestingSelectionsOutput>
 end
 
-function C:listScanJobs(input: types.ListScanJobsInput, options: any): async.Operation<types.ListScanJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListScanJobs, input, options) as async.Operation<types.ListScanJobsOutput>
+function C:listScanJobs(input: types.ListScanJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListScanJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListScanJobs as schema.OperationSchema, input, options) as async.Operation<types.ListScanJobsOutput>
 end
 
-function C:listScanJobSummaries(input: types.ListScanJobSummariesInput, options: any): async.Operation<types.ListScanJobSummariesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListScanJobSummaries, input, options) as async.Operation<types.ListScanJobSummariesOutput>
+function C:listScanJobSummaries(input: types.ListScanJobSummariesInput, options?: base_client.InvokeOptions): async.Operation<types.ListScanJobSummariesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListScanJobSummaries as schema.OperationSchema, input, options) as async.Operation<types.ListScanJobSummariesOutput>
 end
 
-function C:listTags(input: types.ListTagsInput, options: any): async.Operation<types.ListTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTags, input, options) as async.Operation<types.ListTagsOutput>
+function C:listTags(input: types.ListTagsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTags as schema.OperationSchema, input, options) as async.Operation<types.ListTagsOutput>
 end
 
-function C:listTieringConfigurations(input: types.ListTieringConfigurationsInput, options: any): async.Operation<types.ListTieringConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTieringConfigurations, input, options) as async.Operation<types.ListTieringConfigurationsOutput>
+function C:listTieringConfigurations(input: types.ListTieringConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTieringConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTieringConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListTieringConfigurationsOutput>
 end
 
-function C:putBackupVaultAccessPolicy(input: types.PutBackupVaultAccessPolicyInput, options: any): async.Operation<types.PutBackupVaultAccessPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutBackupVaultAccessPolicy, input, options) as async.Operation<types.PutBackupVaultAccessPolicyOutput>
+function C:putBackupVaultAccessPolicy(input: types.PutBackupVaultAccessPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutBackupVaultAccessPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutBackupVaultAccessPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutBackupVaultAccessPolicyOutput>
 end
 
-function C:putBackupVaultLockConfiguration(input: types.PutBackupVaultLockConfigurationInput, options: any): async.Operation<types.PutBackupVaultLockConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutBackupVaultLockConfiguration, input, options) as async.Operation<types.PutBackupVaultLockConfigurationOutput>
+function C:putBackupVaultLockConfiguration(input: types.PutBackupVaultLockConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutBackupVaultLockConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutBackupVaultLockConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutBackupVaultLockConfigurationOutput>
 end
 
-function C:putBackupVaultNotifications(input: types.PutBackupVaultNotificationsInput, options: any): async.Operation<types.PutBackupVaultNotificationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutBackupVaultNotifications, input, options) as async.Operation<types.PutBackupVaultNotificationsOutput>
+function C:putBackupVaultNotifications(input: types.PutBackupVaultNotificationsInput, options?: base_client.InvokeOptions): async.Operation<types.PutBackupVaultNotificationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutBackupVaultNotifications as schema.OperationSchema, input, options) as async.Operation<types.PutBackupVaultNotificationsOutput>
 end
 
-function C:putRestoreValidationResult(input: types.PutRestoreValidationResultInput, options: any): async.Operation<types.PutRestoreValidationResultOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutRestoreValidationResult, input, options) as async.Operation<types.PutRestoreValidationResultOutput>
+function C:putRestoreValidationResult(input: types.PutRestoreValidationResultInput, options?: base_client.InvokeOptions): async.Operation<types.PutRestoreValidationResultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutRestoreValidationResult as schema.OperationSchema, input, options) as async.Operation<types.PutRestoreValidationResultOutput>
 end
 
-function C:revokeRestoreAccessBackupVault(input: types.RevokeRestoreAccessBackupVaultInput, options: any): async.Operation<types.RevokeRestoreAccessBackupVaultOutput>
-    return self:invokeOperation(schemas.Service, schemas.RevokeRestoreAccessBackupVault, input, options) as async.Operation<types.RevokeRestoreAccessBackupVaultOutput>
+function C:revokeRestoreAccessBackupVault(input: types.RevokeRestoreAccessBackupVaultInput, options?: base_client.InvokeOptions): async.Operation<types.RevokeRestoreAccessBackupVaultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RevokeRestoreAccessBackupVault as schema.OperationSchema, input, options) as async.Operation<types.RevokeRestoreAccessBackupVaultOutput>
 end
 
-function C:startBackupJob(input: types.StartBackupJobInput, options: any): async.Operation<types.StartBackupJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartBackupJob, input, options) as async.Operation<types.StartBackupJobOutput>
+function C:startBackupJob(input: types.StartBackupJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartBackupJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartBackupJob as schema.OperationSchema, input, options) as async.Operation<types.StartBackupJobOutput>
 end
 
-function C:startCopyJob(input: types.StartCopyJobInput, options: any): async.Operation<types.StartCopyJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartCopyJob, input, options) as async.Operation<types.StartCopyJobOutput>
+function C:startCopyJob(input: types.StartCopyJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartCopyJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartCopyJob as schema.OperationSchema, input, options) as async.Operation<types.StartCopyJobOutput>
 end
 
-function C:startReportJob(input: types.StartReportJobInput, options: any): async.Operation<types.StartReportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartReportJob, input, options) as async.Operation<types.StartReportJobOutput>
+function C:startReportJob(input: types.StartReportJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartReportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartReportJob as schema.OperationSchema, input, options) as async.Operation<types.StartReportJobOutput>
 end
 
-function C:startRestoreJob(input: types.StartRestoreJobInput, options: any): async.Operation<types.StartRestoreJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartRestoreJob, input, options) as async.Operation<types.StartRestoreJobOutput>
+function C:startRestoreJob(input: types.StartRestoreJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartRestoreJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartRestoreJob as schema.OperationSchema, input, options) as async.Operation<types.StartRestoreJobOutput>
 end
 
-function C:startScanJob(input: types.StartScanJobInput, options: any): async.Operation<types.StartScanJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartScanJob, input, options) as async.Operation<types.StartScanJobOutput>
+function C:startScanJob(input: types.StartScanJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartScanJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartScanJob as schema.OperationSchema, input, options) as async.Operation<types.StartScanJobOutput>
 end
 
-function C:stopBackupJob(input: types.StopBackupJobInput, options: any): async.Operation<types.StopBackupJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopBackupJob, input, options) as async.Operation<types.StopBackupJobOutput>
+function C:stopBackupJob(input: types.StopBackupJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopBackupJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopBackupJob as schema.OperationSchema, input, options) as async.Operation<types.StopBackupJobOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateBackupPlan(input: types.UpdateBackupPlanInput, options: any): async.Operation<types.UpdateBackupPlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateBackupPlan, input, options) as async.Operation<types.UpdateBackupPlanOutput>
+function C:updateBackupPlan(input: types.UpdateBackupPlanInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBackupPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBackupPlan as schema.OperationSchema, input, options) as async.Operation<types.UpdateBackupPlanOutput>
 end
 
-function C:updateFramework(input: types.UpdateFrameworkInput, options: any): async.Operation<types.UpdateFrameworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFramework, input, options) as async.Operation<types.UpdateFrameworkOutput>
+function C:updateFramework(input: types.UpdateFrameworkInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFrameworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFramework as schema.OperationSchema, input, options) as async.Operation<types.UpdateFrameworkOutput>
 end
 
-function C:updateGlobalSettings(input: types.UpdateGlobalSettingsInput, options: any): async.Operation<types.UpdateGlobalSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateGlobalSettings, input, options) as async.Operation<types.UpdateGlobalSettingsOutput>
+function C:updateGlobalSettings(input: types.UpdateGlobalSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGlobalSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGlobalSettings as schema.OperationSchema, input, options) as async.Operation<types.UpdateGlobalSettingsOutput>
 end
 
-function C:updateRecoveryPointIndexSettings(input: types.UpdateRecoveryPointIndexSettingsInput, options: any): async.Operation<types.UpdateRecoveryPointIndexSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRecoveryPointIndexSettings, input, options) as async.Operation<types.UpdateRecoveryPointIndexSettingsOutput>
+function C:updateRecoveryPointIndexSettings(input: types.UpdateRecoveryPointIndexSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRecoveryPointIndexSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRecoveryPointIndexSettings as schema.OperationSchema, input, options) as async.Operation<types.UpdateRecoveryPointIndexSettingsOutput>
 end
 
-function C:updateRecoveryPointLifecycle(input: types.UpdateRecoveryPointLifecycleInput, options: any): async.Operation<types.UpdateRecoveryPointLifecycleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRecoveryPointLifecycle, input, options) as async.Operation<types.UpdateRecoveryPointLifecycleOutput>
+function C:updateRecoveryPointLifecycle(input: types.UpdateRecoveryPointLifecycleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRecoveryPointLifecycleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRecoveryPointLifecycle as schema.OperationSchema, input, options) as async.Operation<types.UpdateRecoveryPointLifecycleOutput>
 end
 
-function C:updateRegionSettings(input: types.UpdateRegionSettingsInput, options: any): async.Operation<types.UpdateRegionSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRegionSettings, input, options) as async.Operation<types.UpdateRegionSettingsOutput>
+function C:updateRegionSettings(input: types.UpdateRegionSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRegionSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRegionSettings as schema.OperationSchema, input, options) as async.Operation<types.UpdateRegionSettingsOutput>
 end
 
-function C:updateReportPlan(input: types.UpdateReportPlanInput, options: any): async.Operation<types.UpdateReportPlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateReportPlan, input, options) as async.Operation<types.UpdateReportPlanOutput>
+function C:updateReportPlan(input: types.UpdateReportPlanInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateReportPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateReportPlan as schema.OperationSchema, input, options) as async.Operation<types.UpdateReportPlanOutput>
 end
 
-function C:updateRestoreTestingPlan(input: types.UpdateRestoreTestingPlanInput, options: any): async.Operation<types.UpdateRestoreTestingPlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRestoreTestingPlan, input, options) as async.Operation<types.UpdateRestoreTestingPlanOutput>
+function C:updateRestoreTestingPlan(input: types.UpdateRestoreTestingPlanInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRestoreTestingPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRestoreTestingPlan as schema.OperationSchema, input, options) as async.Operation<types.UpdateRestoreTestingPlanOutput>
 end
 
-function C:updateRestoreTestingSelection(input: types.UpdateRestoreTestingSelectionInput, options: any): async.Operation<types.UpdateRestoreTestingSelectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRestoreTestingSelection, input, options) as async.Operation<types.UpdateRestoreTestingSelectionOutput>
+function C:updateRestoreTestingSelection(input: types.UpdateRestoreTestingSelectionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRestoreTestingSelectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRestoreTestingSelection as schema.OperationSchema, input, options) as async.Operation<types.UpdateRestoreTestingSelectionOutput>
 end
 
-function C:updateTieringConfiguration(input: types.UpdateTieringConfigurationInput, options: any): async.Operation<types.UpdateTieringConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTieringConfiguration, input, options) as async.Operation<types.UpdateTieringConfigurationOutput>
+function C:updateTieringConfiguration(input: types.UpdateTieringConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTieringConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTieringConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateTieringConfigurationOutput>
 end
 
 return M

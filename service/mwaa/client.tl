@@ -8,51 +8,54 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("mwaa.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("mwaa.schemas")
 local traits = require("smithy.traits")
 local types = require("mwaa.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createCliToken: function(Client, types.CreateCliTokenInput, any): async.Operation<types.CreateCliTokenOutput>
-    createEnvironment: function(Client, types.CreateEnvironmentInput, any): async.Operation<types.CreateEnvironmentOutput>
-    createWebLoginToken: function(Client, types.CreateWebLoginTokenInput, any): async.Operation<types.CreateWebLoginTokenOutput>
-    deleteEnvironment: function(Client, types.DeleteEnvironmentInput, any): async.Operation<types.DeleteEnvironmentOutput>
-    getEnvironment: function(Client, types.GetEnvironmentInput, any): async.Operation<types.GetEnvironmentOutput>
-    invokeRestApi: function(Client, types.InvokeRestApiInput, any): async.Operation<types.InvokeRestApiOutput>
-    listEnvironments: function(Client, types.ListEnvironmentsInput, any): async.Operation<types.ListEnvironmentsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    publishMetrics: function(Client, types.PublishMetricsInput, any): async.Operation<types.PublishMetricsOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateEnvironment: function(Client, types.UpdateEnvironmentInput, any): async.Operation<types.UpdateEnvironmentOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createCliToken: function(Client, types.CreateCliTokenInput, ? base_client.InvokeOptions): async.Operation<types.CreateCliTokenOutput>
+    createEnvironment: function(Client, types.CreateEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateEnvironmentOutput>
+    createWebLoginToken: function(Client, types.CreateWebLoginTokenInput, ? base_client.InvokeOptions): async.Operation<types.CreateWebLoginTokenOutput>
+    deleteEnvironment: function(Client, types.DeleteEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentOutput>
+    getEnvironment: function(Client, types.GetEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.GetEnvironmentOutput>
+    invokeRestApi: function(Client, types.InvokeRestApiInput, ? base_client.InvokeOptions): async.Operation<types.InvokeRestApiOutput>
+    listEnvironments: function(Client, types.ListEnvironmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListEnvironmentsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    publishMetrics: function(Client, types.PublishMetricsInput, ? base_client.InvokeOptions): async.Operation<types.PublishMetricsOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateEnvironment: function(Client, types.UpdateEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEnvironmentOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonMWAA"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "airflow", signing_region = c.region } }
                 else
@@ -71,52 +74,52 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createCliToken(input: types.CreateCliTokenInput, options: any): async.Operation<types.CreateCliTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCliToken, input, options) as async.Operation<types.CreateCliTokenOutput>
+function C:createCliToken(input: types.CreateCliTokenInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCliTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCliToken as schema.OperationSchema, input, options) as async.Operation<types.CreateCliTokenOutput>
 end
 
-function C:createEnvironment(input: types.CreateEnvironmentInput, options: any): async.Operation<types.CreateEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEnvironment, input, options) as async.Operation<types.CreateEnvironmentOutput>
+function C:createEnvironment(input: types.CreateEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEnvironment as schema.OperationSchema, input, options) as async.Operation<types.CreateEnvironmentOutput>
 end
 
-function C:createWebLoginToken(input: types.CreateWebLoginTokenInput, options: any): async.Operation<types.CreateWebLoginTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWebLoginToken, input, options) as async.Operation<types.CreateWebLoginTokenOutput>
+function C:createWebLoginToken(input: types.CreateWebLoginTokenInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWebLoginTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWebLoginToken as schema.OperationSchema, input, options) as async.Operation<types.CreateWebLoginTokenOutput>
 end
 
-function C:deleteEnvironment(input: types.DeleteEnvironmentInput, options: any): async.Operation<types.DeleteEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEnvironment, input, options) as async.Operation<types.DeleteEnvironmentOutput>
+function C:deleteEnvironment(input: types.DeleteEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEnvironment as schema.OperationSchema, input, options) as async.Operation<types.DeleteEnvironmentOutput>
 end
 
-function C:getEnvironment(input: types.GetEnvironmentInput, options: any): async.Operation<types.GetEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEnvironment, input, options) as async.Operation<types.GetEnvironmentOutput>
+function C:getEnvironment(input: types.GetEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.GetEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEnvironment as schema.OperationSchema, input, options) as async.Operation<types.GetEnvironmentOutput>
 end
 
-function C:invokeRestApi(input: types.InvokeRestApiInput, options: any): async.Operation<types.InvokeRestApiOutput>
-    return self:invokeOperation(schemas.Service, schemas.InvokeRestApi, input, options) as async.Operation<types.InvokeRestApiOutput>
+function C:invokeRestApi(input: types.InvokeRestApiInput, options?: base_client.InvokeOptions): async.Operation<types.InvokeRestApiOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InvokeRestApi as schema.OperationSchema, input, options) as async.Operation<types.InvokeRestApiOutput>
 end
 
-function C:listEnvironments(input: types.ListEnvironmentsInput, options: any): async.Operation<types.ListEnvironmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEnvironments, input, options) as async.Operation<types.ListEnvironmentsOutput>
+function C:listEnvironments(input: types.ListEnvironmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEnvironmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEnvironments as schema.OperationSchema, input, options) as async.Operation<types.ListEnvironmentsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:publishMetrics(input: types.PublishMetricsInput, options: any): async.Operation<types.PublishMetricsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PublishMetrics, input, options) as async.Operation<types.PublishMetricsOutput>
+function C:publishMetrics(input: types.PublishMetricsInput, options?: base_client.InvokeOptions): async.Operation<types.PublishMetricsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PublishMetrics as schema.OperationSchema, input, options) as async.Operation<types.PublishMetricsOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateEnvironment(input: types.UpdateEnvironmentInput, options: any): async.Operation<types.UpdateEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEnvironment, input, options) as async.Operation<types.UpdateEnvironmentOutput>
+function C:updateEnvironment(input: types.UpdateEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEnvironment as schema.OperationSchema, input, options) as async.Operation<types.UpdateEnvironmentOutput>
 end
 
 return M

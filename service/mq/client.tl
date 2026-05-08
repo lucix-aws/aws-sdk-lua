@@ -8,63 +8,66 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("mq.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("mq.schemas")
 local traits = require("smithy.traits")
 local types = require("mq.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createBroker: function(Client, types.CreateBrokerInput, any): async.Operation<types.CreateBrokerOutput>
-    createConfiguration: function(Client, types.CreateConfigurationInput, any): async.Operation<types.CreateConfigurationOutput>
-    createTags: function(Client, types.CreateTagsInput, any): async.Operation<types.CreateTagsOutput>
-    createUser: function(Client, types.CreateUserInput, any): async.Operation<types.CreateUserOutput>
-    deleteBroker: function(Client, types.DeleteBrokerInput, any): async.Operation<types.DeleteBrokerOutput>
-    deleteConfiguration: function(Client, types.DeleteConfigurationInput, any): async.Operation<types.DeleteConfigurationOutput>
-    deleteTags: function(Client, types.DeleteTagsInput, any): async.Operation<types.DeleteTagsOutput>
-    deleteUser: function(Client, types.DeleteUserInput, any): async.Operation<types.DeleteUserOutput>
-    describeBroker: function(Client, types.DescribeBrokerInput, any): async.Operation<types.DescribeBrokerOutput>
-    describeBrokerEngineTypes: function(Client, types.DescribeBrokerEngineTypesInput, any): async.Operation<types.DescribeBrokerEngineTypesOutput>
-    describeBrokerInstanceOptions: function(Client, types.DescribeBrokerInstanceOptionsInput, any): async.Operation<types.DescribeBrokerInstanceOptionsOutput>
-    describeConfiguration: function(Client, types.DescribeConfigurationInput, any): async.Operation<types.DescribeConfigurationOutput>
-    describeConfigurationRevision: function(Client, types.DescribeConfigurationRevisionInput, any): async.Operation<types.DescribeConfigurationRevisionOutput>
-    describeUser: function(Client, types.DescribeUserInput, any): async.Operation<types.DescribeUserOutput>
-    listBrokers: function(Client, types.ListBrokersInput, any): async.Operation<types.ListBrokersOutput>
-    listConfigurationRevisions: function(Client, types.ListConfigurationRevisionsInput, any): async.Operation<types.ListConfigurationRevisionsOutput>
-    listConfigurations: function(Client, types.ListConfigurationsInput, any): async.Operation<types.ListConfigurationsOutput>
-    listTags: function(Client, types.ListTagsInput, any): async.Operation<types.ListTagsOutput>
-    listUsers: function(Client, types.ListUsersInput, any): async.Operation<types.ListUsersOutput>
-    promote: function(Client, types.PromoteInput, any): async.Operation<types.PromoteOutput>
-    rebootBroker: function(Client, types.RebootBrokerInput, any): async.Operation<types.RebootBrokerOutput>
-    updateBroker: function(Client, types.UpdateBrokerInput, any): async.Operation<types.UpdateBrokerOutput>
-    updateConfiguration: function(Client, types.UpdateConfigurationInput, any): async.Operation<types.UpdateConfigurationOutput>
-    updateUser: function(Client, types.UpdateUserInput, any): async.Operation<types.UpdateUserOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createBroker: function(Client, types.CreateBrokerInput, ? base_client.InvokeOptions): async.Operation<types.CreateBrokerOutput>
+    createConfiguration: function(Client, types.CreateConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfigurationOutput>
+    createTags: function(Client, types.CreateTagsInput, ? base_client.InvokeOptions): async.Operation<types.CreateTagsOutput>
+    createUser: function(Client, types.CreateUserInput, ? base_client.InvokeOptions): async.Operation<types.CreateUserOutput>
+    deleteBroker: function(Client, types.DeleteBrokerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBrokerOutput>
+    deleteConfiguration: function(Client, types.DeleteConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfigurationOutput>
+    deleteTags: function(Client, types.DeleteTagsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTagsOutput>
+    deleteUser: function(Client, types.DeleteUserInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUserOutput>
+    describeBroker: function(Client, types.DescribeBrokerInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBrokerOutput>
+    describeBrokerEngineTypes: function(Client, types.DescribeBrokerEngineTypesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBrokerEngineTypesOutput>
+    describeBrokerInstanceOptions: function(Client, types.DescribeBrokerInstanceOptionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBrokerInstanceOptionsOutput>
+    describeConfiguration: function(Client, types.DescribeConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConfigurationOutput>
+    describeConfigurationRevision: function(Client, types.DescribeConfigurationRevisionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConfigurationRevisionOutput>
+    describeUser: function(Client, types.DescribeUserInput, ? base_client.InvokeOptions): async.Operation<types.DescribeUserOutput>
+    listBrokers: function(Client, types.ListBrokersInput, ? base_client.InvokeOptions): async.Operation<types.ListBrokersOutput>
+    listConfigurationRevisions: function(Client, types.ListConfigurationRevisionsInput, ? base_client.InvokeOptions): async.Operation<types.ListConfigurationRevisionsOutput>
+    listConfigurations: function(Client, types.ListConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListConfigurationsOutput>
+    listTags: function(Client, types.ListTagsInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsOutput>
+    listUsers: function(Client, types.ListUsersInput, ? base_client.InvokeOptions): async.Operation<types.ListUsersOutput>
+    promote: function(Client, types.PromoteInput, ? base_client.InvokeOptions): async.Operation<types.PromoteOutput>
+    rebootBroker: function(Client, types.RebootBrokerInput, ? base_client.InvokeOptions): async.Operation<types.RebootBrokerOutput>
+    updateBroker: function(Client, types.UpdateBrokerInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBrokerOutput>
+    updateConfiguration: function(Client, types.UpdateConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfigurationOutput>
+    updateUser: function(Client, types.UpdateUserInput, ? base_client.InvokeOptions): async.Operation<types.UpdateUserOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "mq"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "mq", signing_region = c.region } }
                 else
@@ -83,100 +86,100 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createBroker(input: types.CreateBrokerInput, options: any): async.Operation<types.CreateBrokerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBroker, input, options) as async.Operation<types.CreateBrokerOutput>
+function C:createBroker(input: types.CreateBrokerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBrokerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBroker as schema.OperationSchema, input, options) as async.Operation<types.CreateBrokerOutput>
 end
 
-function C:createConfiguration(input: types.CreateConfigurationInput, options: any): async.Operation<types.CreateConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConfiguration, input, options) as async.Operation<types.CreateConfigurationOutput>
+function C:createConfiguration(input: types.CreateConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateConfigurationOutput>
 end
 
-function C:createTags(input: types.CreateTagsInput, options: any): async.Operation<types.CreateTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTags, input, options) as async.Operation<types.CreateTagsOutput>
+function C:createTags(input: types.CreateTagsInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTags as schema.OperationSchema, input, options) as async.Operation<types.CreateTagsOutput>
 end
 
-function C:createUser(input: types.CreateUserInput, options: any): async.Operation<types.CreateUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateUser, input, options) as async.Operation<types.CreateUserOutput>
+function C:createUser(input: types.CreateUserInput, options?: base_client.InvokeOptions): async.Operation<types.CreateUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateUser as schema.OperationSchema, input, options) as async.Operation<types.CreateUserOutput>
 end
 
-function C:deleteBroker(input: types.DeleteBrokerInput, options: any): async.Operation<types.DeleteBrokerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBroker, input, options) as async.Operation<types.DeleteBrokerOutput>
+function C:deleteBroker(input: types.DeleteBrokerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBrokerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBroker as schema.OperationSchema, input, options) as async.Operation<types.DeleteBrokerOutput>
 end
 
-function C:deleteConfiguration(input: types.DeleteConfigurationInput, options: any): async.Operation<types.DeleteConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConfiguration, input, options) as async.Operation<types.DeleteConfigurationOutput>
+function C:deleteConfiguration(input: types.DeleteConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteConfigurationOutput>
 end
 
-function C:deleteTags(input: types.DeleteTagsInput, options: any): async.Operation<types.DeleteTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTags, input, options) as async.Operation<types.DeleteTagsOutput>
+function C:deleteTags(input: types.DeleteTagsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTags as schema.OperationSchema, input, options) as async.Operation<types.DeleteTagsOutput>
 end
 
-function C:deleteUser(input: types.DeleteUserInput, options: any): async.Operation<types.DeleteUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteUser, input, options) as async.Operation<types.DeleteUserOutput>
+function C:deleteUser(input: types.DeleteUserInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteUser as schema.OperationSchema, input, options) as async.Operation<types.DeleteUserOutput>
 end
 
-function C:describeBroker(input: types.DescribeBrokerInput, options: any): async.Operation<types.DescribeBrokerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeBroker, input, options) as async.Operation<types.DescribeBrokerOutput>
+function C:describeBroker(input: types.DescribeBrokerInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBrokerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeBroker as schema.OperationSchema, input, options) as async.Operation<types.DescribeBrokerOutput>
 end
 
-function C:describeBrokerEngineTypes(input: types.DescribeBrokerEngineTypesInput, options: any): async.Operation<types.DescribeBrokerEngineTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeBrokerEngineTypes, input, options) as async.Operation<types.DescribeBrokerEngineTypesOutput>
+function C:describeBrokerEngineTypes(input: types.DescribeBrokerEngineTypesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBrokerEngineTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeBrokerEngineTypes as schema.OperationSchema, input, options) as async.Operation<types.DescribeBrokerEngineTypesOutput>
 end
 
-function C:describeBrokerInstanceOptions(input: types.DescribeBrokerInstanceOptionsInput, options: any): async.Operation<types.DescribeBrokerInstanceOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeBrokerInstanceOptions, input, options) as async.Operation<types.DescribeBrokerInstanceOptionsOutput>
+function C:describeBrokerInstanceOptions(input: types.DescribeBrokerInstanceOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBrokerInstanceOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeBrokerInstanceOptions as schema.OperationSchema, input, options) as async.Operation<types.DescribeBrokerInstanceOptionsOutput>
 end
 
-function C:describeConfiguration(input: types.DescribeConfigurationInput, options: any): async.Operation<types.DescribeConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeConfiguration, input, options) as async.Operation<types.DescribeConfigurationOutput>
+function C:describeConfiguration(input: types.DescribeConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeConfigurationOutput>
 end
 
-function C:describeConfigurationRevision(input: types.DescribeConfigurationRevisionInput, options: any): async.Operation<types.DescribeConfigurationRevisionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeConfigurationRevision, input, options) as async.Operation<types.DescribeConfigurationRevisionOutput>
+function C:describeConfigurationRevision(input: types.DescribeConfigurationRevisionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeConfigurationRevisionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeConfigurationRevision as schema.OperationSchema, input, options) as async.Operation<types.DescribeConfigurationRevisionOutput>
 end
 
-function C:describeUser(input: types.DescribeUserInput, options: any): async.Operation<types.DescribeUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeUser, input, options) as async.Operation<types.DescribeUserOutput>
+function C:describeUser(input: types.DescribeUserInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeUser as schema.OperationSchema, input, options) as async.Operation<types.DescribeUserOutput>
 end
 
-function C:listBrokers(input: types.ListBrokersInput, options: any): async.Operation<types.ListBrokersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBrokers, input, options) as async.Operation<types.ListBrokersOutput>
+function C:listBrokers(input: types.ListBrokersInput, options?: base_client.InvokeOptions): async.Operation<types.ListBrokersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBrokers as schema.OperationSchema, input, options) as async.Operation<types.ListBrokersOutput>
 end
 
-function C:listConfigurationRevisions(input: types.ListConfigurationRevisionsInput, options: any): async.Operation<types.ListConfigurationRevisionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConfigurationRevisions, input, options) as async.Operation<types.ListConfigurationRevisionsOutput>
+function C:listConfigurationRevisions(input: types.ListConfigurationRevisionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConfigurationRevisionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConfigurationRevisions as schema.OperationSchema, input, options) as async.Operation<types.ListConfigurationRevisionsOutput>
 end
 
-function C:listConfigurations(input: types.ListConfigurationsInput, options: any): async.Operation<types.ListConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConfigurations, input, options) as async.Operation<types.ListConfigurationsOutput>
+function C:listConfigurations(input: types.ListConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListConfigurationsOutput>
 end
 
-function C:listTags(input: types.ListTagsInput, options: any): async.Operation<types.ListTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTags, input, options) as async.Operation<types.ListTagsOutput>
+function C:listTags(input: types.ListTagsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTags as schema.OperationSchema, input, options) as async.Operation<types.ListTagsOutput>
 end
 
-function C:listUsers(input: types.ListUsersInput, options: any): async.Operation<types.ListUsersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListUsers, input, options) as async.Operation<types.ListUsersOutput>
+function C:listUsers(input: types.ListUsersInput, options?: base_client.InvokeOptions): async.Operation<types.ListUsersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUsers as schema.OperationSchema, input, options) as async.Operation<types.ListUsersOutput>
 end
 
-function C:promote(input: types.PromoteInput, options: any): async.Operation<types.PromoteOutput>
-    return self:invokeOperation(schemas.Service, schemas.Promote, input, options) as async.Operation<types.PromoteOutput>
+function C:promote(input: types.PromoteInput, options?: base_client.InvokeOptions): async.Operation<types.PromoteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Promote as schema.OperationSchema, input, options) as async.Operation<types.PromoteOutput>
 end
 
-function C:rebootBroker(input: types.RebootBrokerInput, options: any): async.Operation<types.RebootBrokerOutput>
-    return self:invokeOperation(schemas.Service, schemas.RebootBroker, input, options) as async.Operation<types.RebootBrokerOutput>
+function C:rebootBroker(input: types.RebootBrokerInput, options?: base_client.InvokeOptions): async.Operation<types.RebootBrokerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RebootBroker as schema.OperationSchema, input, options) as async.Operation<types.RebootBrokerOutput>
 end
 
-function C:updateBroker(input: types.UpdateBrokerInput, options: any): async.Operation<types.UpdateBrokerOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateBroker, input, options) as async.Operation<types.UpdateBrokerOutput>
+function C:updateBroker(input: types.UpdateBrokerInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBrokerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBroker as schema.OperationSchema, input, options) as async.Operation<types.UpdateBrokerOutput>
 end
 
-function C:updateConfiguration(input: types.UpdateConfigurationInput, options: any): async.Operation<types.UpdateConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConfiguration, input, options) as async.Operation<types.UpdateConfigurationOutput>
+function C:updateConfiguration(input: types.UpdateConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateConfigurationOutput>
 end
 
-function C:updateUser(input: types.UpdateUserInput, options: any): async.Operation<types.UpdateUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateUser, input, options) as async.Operation<types.UpdateUserOutput>
+function C:updateUser(input: types.UpdateUserInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateUser as schema.OperationSchema, input, options) as async.Operation<types.UpdateUserOutput>
 end
 
 return M

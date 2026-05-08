@@ -8,78 +8,81 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("ivsrealtime.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("ivsrealtime.schemas")
 local traits = require("smithy.traits")
 local types = require("ivsrealtime.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createEncoderConfiguration: function(Client, types.CreateEncoderConfigurationInput, any): async.Operation<types.CreateEncoderConfigurationOutput>
-    createIngestConfiguration: function(Client, types.CreateIngestConfigurationInput, any): async.Operation<types.CreateIngestConfigurationOutput>
-    createParticipantToken: function(Client, types.CreateParticipantTokenInput, any): async.Operation<types.CreateParticipantTokenOutput>
-    createStage: function(Client, types.CreateStageInput, any): async.Operation<types.CreateStageOutput>
-    createStorageConfiguration: function(Client, types.CreateStorageConfigurationInput, any): async.Operation<types.CreateStorageConfigurationOutput>
-    deleteEncoderConfiguration: function(Client, types.DeleteEncoderConfigurationInput, any): async.Operation<types.DeleteEncoderConfigurationOutput>
-    deleteIngestConfiguration: function(Client, types.DeleteIngestConfigurationInput, any): async.Operation<types.DeleteIngestConfigurationOutput>
-    deletePublicKey: function(Client, types.DeletePublicKeyInput, any): async.Operation<types.DeletePublicKeyOutput>
-    deleteStage: function(Client, types.DeleteStageInput, any): async.Operation<types.DeleteStageOutput>
-    deleteStorageConfiguration: function(Client, types.DeleteStorageConfigurationInput, any): async.Operation<types.DeleteStorageConfigurationOutput>
-    disconnectParticipant: function(Client, types.DisconnectParticipantInput, any): async.Operation<types.DisconnectParticipantOutput>
-    getComposition: function(Client, types.GetCompositionInput, any): async.Operation<types.GetCompositionOutput>
-    getEncoderConfiguration: function(Client, types.GetEncoderConfigurationInput, any): async.Operation<types.GetEncoderConfigurationOutput>
-    getIngestConfiguration: function(Client, types.GetIngestConfigurationInput, any): async.Operation<types.GetIngestConfigurationOutput>
-    getParticipant: function(Client, types.GetParticipantInput, any): async.Operation<types.GetParticipantOutput>
-    getPublicKey: function(Client, types.GetPublicKeyInput, any): async.Operation<types.GetPublicKeyOutput>
-    getStage: function(Client, types.GetStageInput, any): async.Operation<types.GetStageOutput>
-    getStageSession: function(Client, types.GetStageSessionInput, any): async.Operation<types.GetStageSessionOutput>
-    getStorageConfiguration: function(Client, types.GetStorageConfigurationInput, any): async.Operation<types.GetStorageConfigurationOutput>
-    importPublicKey: function(Client, types.ImportPublicKeyInput, any): async.Operation<types.ImportPublicKeyOutput>
-    listCompositions: function(Client, types.ListCompositionsInput, any): async.Operation<types.ListCompositionsOutput>
-    listEncoderConfigurations: function(Client, types.ListEncoderConfigurationsInput, any): async.Operation<types.ListEncoderConfigurationsOutput>
-    listIngestConfigurations: function(Client, types.ListIngestConfigurationsInput, any): async.Operation<types.ListIngestConfigurationsOutput>
-    listParticipantEvents: function(Client, types.ListParticipantEventsInput, any): async.Operation<types.ListParticipantEventsOutput>
-    listParticipantReplicas: function(Client, types.ListParticipantReplicasInput, any): async.Operation<types.ListParticipantReplicasOutput>
-    listParticipants: function(Client, types.ListParticipantsInput, any): async.Operation<types.ListParticipantsOutput>
-    listPublicKeys: function(Client, types.ListPublicKeysInput, any): async.Operation<types.ListPublicKeysOutput>
-    listStages: function(Client, types.ListStagesInput, any): async.Operation<types.ListStagesOutput>
-    listStageSessions: function(Client, types.ListStageSessionsInput, any): async.Operation<types.ListStageSessionsOutput>
-    listStorageConfigurations: function(Client, types.ListStorageConfigurationsInput, any): async.Operation<types.ListStorageConfigurationsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    startComposition: function(Client, types.StartCompositionInput, any): async.Operation<types.StartCompositionOutput>
-    startParticipantReplication: function(Client, types.StartParticipantReplicationInput, any): async.Operation<types.StartParticipantReplicationOutput>
-    stopComposition: function(Client, types.StopCompositionInput, any): async.Operation<types.StopCompositionOutput>
-    stopParticipantReplication: function(Client, types.StopParticipantReplicationInput, any): async.Operation<types.StopParticipantReplicationOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateIngestConfiguration: function(Client, types.UpdateIngestConfigurationInput, any): async.Operation<types.UpdateIngestConfigurationOutput>
-    updateStage: function(Client, types.UpdateStageInput, any): async.Operation<types.UpdateStageOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createEncoderConfiguration: function(Client, types.CreateEncoderConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateEncoderConfigurationOutput>
+    createIngestConfiguration: function(Client, types.CreateIngestConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateIngestConfigurationOutput>
+    createParticipantToken: function(Client, types.CreateParticipantTokenInput, ? base_client.InvokeOptions): async.Operation<types.CreateParticipantTokenOutput>
+    createStage: function(Client, types.CreateStageInput, ? base_client.InvokeOptions): async.Operation<types.CreateStageOutput>
+    createStorageConfiguration: function(Client, types.CreateStorageConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateStorageConfigurationOutput>
+    deleteEncoderConfiguration: function(Client, types.DeleteEncoderConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEncoderConfigurationOutput>
+    deleteIngestConfiguration: function(Client, types.DeleteIngestConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIngestConfigurationOutput>
+    deletePublicKey: function(Client, types.DeletePublicKeyInput, ? base_client.InvokeOptions): async.Operation<types.DeletePublicKeyOutput>
+    deleteStage: function(Client, types.DeleteStageInput, ? base_client.InvokeOptions): async.Operation<types.DeleteStageOutput>
+    deleteStorageConfiguration: function(Client, types.DeleteStorageConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteStorageConfigurationOutput>
+    disconnectParticipant: function(Client, types.DisconnectParticipantInput, ? base_client.InvokeOptions): async.Operation<types.DisconnectParticipantOutput>
+    getComposition: function(Client, types.GetCompositionInput, ? base_client.InvokeOptions): async.Operation<types.GetCompositionOutput>
+    getEncoderConfiguration: function(Client, types.GetEncoderConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetEncoderConfigurationOutput>
+    getIngestConfiguration: function(Client, types.GetIngestConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetIngestConfigurationOutput>
+    getParticipant: function(Client, types.GetParticipantInput, ? base_client.InvokeOptions): async.Operation<types.GetParticipantOutput>
+    getPublicKey: function(Client, types.GetPublicKeyInput, ? base_client.InvokeOptions): async.Operation<types.GetPublicKeyOutput>
+    getStage: function(Client, types.GetStageInput, ? base_client.InvokeOptions): async.Operation<types.GetStageOutput>
+    getStageSession: function(Client, types.GetStageSessionInput, ? base_client.InvokeOptions): async.Operation<types.GetStageSessionOutput>
+    getStorageConfiguration: function(Client, types.GetStorageConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetStorageConfigurationOutput>
+    importPublicKey: function(Client, types.ImportPublicKeyInput, ? base_client.InvokeOptions): async.Operation<types.ImportPublicKeyOutput>
+    listCompositions: function(Client, types.ListCompositionsInput, ? base_client.InvokeOptions): async.Operation<types.ListCompositionsOutput>
+    listEncoderConfigurations: function(Client, types.ListEncoderConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListEncoderConfigurationsOutput>
+    listIngestConfigurations: function(Client, types.ListIngestConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListIngestConfigurationsOutput>
+    listParticipantEvents: function(Client, types.ListParticipantEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListParticipantEventsOutput>
+    listParticipantReplicas: function(Client, types.ListParticipantReplicasInput, ? base_client.InvokeOptions): async.Operation<types.ListParticipantReplicasOutput>
+    listParticipants: function(Client, types.ListParticipantsInput, ? base_client.InvokeOptions): async.Operation<types.ListParticipantsOutput>
+    listPublicKeys: function(Client, types.ListPublicKeysInput, ? base_client.InvokeOptions): async.Operation<types.ListPublicKeysOutput>
+    listStages: function(Client, types.ListStagesInput, ? base_client.InvokeOptions): async.Operation<types.ListStagesOutput>
+    listStageSessions: function(Client, types.ListStageSessionsInput, ? base_client.InvokeOptions): async.Operation<types.ListStageSessionsOutput>
+    listStorageConfigurations: function(Client, types.ListStorageConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListStorageConfigurationsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    startComposition: function(Client, types.StartCompositionInput, ? base_client.InvokeOptions): async.Operation<types.StartCompositionOutput>
+    startParticipantReplication: function(Client, types.StartParticipantReplicationInput, ? base_client.InvokeOptions): async.Operation<types.StartParticipantReplicationOutput>
+    stopComposition: function(Client, types.StopCompositionInput, ? base_client.InvokeOptions): async.Operation<types.StopCompositionOutput>
+    stopParticipantReplication: function(Client, types.StopParticipantReplicationInput, ? base_client.InvokeOptions): async.Operation<types.StopParticipantReplicationOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateIngestConfiguration: function(Client, types.UpdateIngestConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIngestConfigurationOutput>
+    updateStage: function(Client, types.UpdateStageInput, ? base_client.InvokeOptions): async.Operation<types.UpdateStageOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonInteractiveVideoServiceRealTime"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ivs", signing_region = c.region } }
                 else
@@ -98,160 +101,160 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createEncoderConfiguration(input: types.CreateEncoderConfigurationInput, options: any): async.Operation<types.CreateEncoderConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEncoderConfiguration, input, options) as async.Operation<types.CreateEncoderConfigurationOutput>
+function C:createEncoderConfiguration(input: types.CreateEncoderConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEncoderConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEncoderConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateEncoderConfigurationOutput>
 end
 
-function C:createIngestConfiguration(input: types.CreateIngestConfigurationInput, options: any): async.Operation<types.CreateIngestConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIngestConfiguration, input, options) as async.Operation<types.CreateIngestConfigurationOutput>
+function C:createIngestConfiguration(input: types.CreateIngestConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIngestConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIngestConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateIngestConfigurationOutput>
 end
 
-function C:createParticipantToken(input: types.CreateParticipantTokenInput, options: any): async.Operation<types.CreateParticipantTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateParticipantToken, input, options) as async.Operation<types.CreateParticipantTokenOutput>
+function C:createParticipantToken(input: types.CreateParticipantTokenInput, options?: base_client.InvokeOptions): async.Operation<types.CreateParticipantTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateParticipantToken as schema.OperationSchema, input, options) as async.Operation<types.CreateParticipantTokenOutput>
 end
 
-function C:createStage(input: types.CreateStageInput, options: any): async.Operation<types.CreateStageOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateStage, input, options) as async.Operation<types.CreateStageOutput>
+function C:createStage(input: types.CreateStageInput, options?: base_client.InvokeOptions): async.Operation<types.CreateStageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateStage as schema.OperationSchema, input, options) as async.Operation<types.CreateStageOutput>
 end
 
-function C:createStorageConfiguration(input: types.CreateStorageConfigurationInput, options: any): async.Operation<types.CreateStorageConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateStorageConfiguration, input, options) as async.Operation<types.CreateStorageConfigurationOutput>
+function C:createStorageConfiguration(input: types.CreateStorageConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateStorageConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateStorageConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateStorageConfigurationOutput>
 end
 
-function C:deleteEncoderConfiguration(input: types.DeleteEncoderConfigurationInput, options: any): async.Operation<types.DeleteEncoderConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEncoderConfiguration, input, options) as async.Operation<types.DeleteEncoderConfigurationOutput>
+function C:deleteEncoderConfiguration(input: types.DeleteEncoderConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEncoderConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEncoderConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteEncoderConfigurationOutput>
 end
 
-function C:deleteIngestConfiguration(input: types.DeleteIngestConfigurationInput, options: any): async.Operation<types.DeleteIngestConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIngestConfiguration, input, options) as async.Operation<types.DeleteIngestConfigurationOutput>
+function C:deleteIngestConfiguration(input: types.DeleteIngestConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIngestConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIngestConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteIngestConfigurationOutput>
 end
 
-function C:deletePublicKey(input: types.DeletePublicKeyInput, options: any): async.Operation<types.DeletePublicKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePublicKey, input, options) as async.Operation<types.DeletePublicKeyOutput>
+function C:deletePublicKey(input: types.DeletePublicKeyInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePublicKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePublicKey as schema.OperationSchema, input, options) as async.Operation<types.DeletePublicKeyOutput>
 end
 
-function C:deleteStage(input: types.DeleteStageInput, options: any): async.Operation<types.DeleteStageOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteStage, input, options) as async.Operation<types.DeleteStageOutput>
+function C:deleteStage(input: types.DeleteStageInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteStageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteStage as schema.OperationSchema, input, options) as async.Operation<types.DeleteStageOutput>
 end
 
-function C:deleteStorageConfiguration(input: types.DeleteStorageConfigurationInput, options: any): async.Operation<types.DeleteStorageConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteStorageConfiguration, input, options) as async.Operation<types.DeleteStorageConfigurationOutput>
+function C:deleteStorageConfiguration(input: types.DeleteStorageConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteStorageConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteStorageConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteStorageConfigurationOutput>
 end
 
-function C:disconnectParticipant(input: types.DisconnectParticipantInput, options: any): async.Operation<types.DisconnectParticipantOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisconnectParticipant, input, options) as async.Operation<types.DisconnectParticipantOutput>
+function C:disconnectParticipant(input: types.DisconnectParticipantInput, options?: base_client.InvokeOptions): async.Operation<types.DisconnectParticipantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisconnectParticipant as schema.OperationSchema, input, options) as async.Operation<types.DisconnectParticipantOutput>
 end
 
-function C:getComposition(input: types.GetCompositionInput, options: any): async.Operation<types.GetCompositionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetComposition, input, options) as async.Operation<types.GetCompositionOutput>
+function C:getComposition(input: types.GetCompositionInput, options?: base_client.InvokeOptions): async.Operation<types.GetCompositionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetComposition as schema.OperationSchema, input, options) as async.Operation<types.GetCompositionOutput>
 end
 
-function C:getEncoderConfiguration(input: types.GetEncoderConfigurationInput, options: any): async.Operation<types.GetEncoderConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEncoderConfiguration, input, options) as async.Operation<types.GetEncoderConfigurationOutput>
+function C:getEncoderConfiguration(input: types.GetEncoderConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetEncoderConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEncoderConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetEncoderConfigurationOutput>
 end
 
-function C:getIngestConfiguration(input: types.GetIngestConfigurationInput, options: any): async.Operation<types.GetIngestConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIngestConfiguration, input, options) as async.Operation<types.GetIngestConfigurationOutput>
+function C:getIngestConfiguration(input: types.GetIngestConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetIngestConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIngestConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetIngestConfigurationOutput>
 end
 
-function C:getParticipant(input: types.GetParticipantInput, options: any): async.Operation<types.GetParticipantOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetParticipant, input, options) as async.Operation<types.GetParticipantOutput>
+function C:getParticipant(input: types.GetParticipantInput, options?: base_client.InvokeOptions): async.Operation<types.GetParticipantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetParticipant as schema.OperationSchema, input, options) as async.Operation<types.GetParticipantOutput>
 end
 
-function C:getPublicKey(input: types.GetPublicKeyInput, options: any): async.Operation<types.GetPublicKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPublicKey, input, options) as async.Operation<types.GetPublicKeyOutput>
+function C:getPublicKey(input: types.GetPublicKeyInput, options?: base_client.InvokeOptions): async.Operation<types.GetPublicKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPublicKey as schema.OperationSchema, input, options) as async.Operation<types.GetPublicKeyOutput>
 end
 
-function C:getStage(input: types.GetStageInput, options: any): async.Operation<types.GetStageOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetStage, input, options) as async.Operation<types.GetStageOutput>
+function C:getStage(input: types.GetStageInput, options?: base_client.InvokeOptions): async.Operation<types.GetStageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetStage as schema.OperationSchema, input, options) as async.Operation<types.GetStageOutput>
 end
 
-function C:getStageSession(input: types.GetStageSessionInput, options: any): async.Operation<types.GetStageSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetStageSession, input, options) as async.Operation<types.GetStageSessionOutput>
+function C:getStageSession(input: types.GetStageSessionInput, options?: base_client.InvokeOptions): async.Operation<types.GetStageSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetStageSession as schema.OperationSchema, input, options) as async.Operation<types.GetStageSessionOutput>
 end
 
-function C:getStorageConfiguration(input: types.GetStorageConfigurationInput, options: any): async.Operation<types.GetStorageConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetStorageConfiguration, input, options) as async.Operation<types.GetStorageConfigurationOutput>
+function C:getStorageConfiguration(input: types.GetStorageConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetStorageConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetStorageConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetStorageConfigurationOutput>
 end
 
-function C:importPublicKey(input: types.ImportPublicKeyInput, options: any): async.Operation<types.ImportPublicKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportPublicKey, input, options) as async.Operation<types.ImportPublicKeyOutput>
+function C:importPublicKey(input: types.ImportPublicKeyInput, options?: base_client.InvokeOptions): async.Operation<types.ImportPublicKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportPublicKey as schema.OperationSchema, input, options) as async.Operation<types.ImportPublicKeyOutput>
 end
 
-function C:listCompositions(input: types.ListCompositionsInput, options: any): async.Operation<types.ListCompositionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCompositions, input, options) as async.Operation<types.ListCompositionsOutput>
+function C:listCompositions(input: types.ListCompositionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCompositionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCompositions as schema.OperationSchema, input, options) as async.Operation<types.ListCompositionsOutput>
 end
 
-function C:listEncoderConfigurations(input: types.ListEncoderConfigurationsInput, options: any): async.Operation<types.ListEncoderConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEncoderConfigurations, input, options) as async.Operation<types.ListEncoderConfigurationsOutput>
+function C:listEncoderConfigurations(input: types.ListEncoderConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEncoderConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEncoderConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListEncoderConfigurationsOutput>
 end
 
-function C:listIngestConfigurations(input: types.ListIngestConfigurationsInput, options: any): async.Operation<types.ListIngestConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIngestConfigurations, input, options) as async.Operation<types.ListIngestConfigurationsOutput>
+function C:listIngestConfigurations(input: types.ListIngestConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListIngestConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIngestConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListIngestConfigurationsOutput>
 end
 
-function C:listParticipantEvents(input: types.ListParticipantEventsInput, options: any): async.Operation<types.ListParticipantEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListParticipantEvents, input, options) as async.Operation<types.ListParticipantEventsOutput>
+function C:listParticipantEvents(input: types.ListParticipantEventsInput, options?: base_client.InvokeOptions): async.Operation<types.ListParticipantEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListParticipantEvents as schema.OperationSchema, input, options) as async.Operation<types.ListParticipantEventsOutput>
 end
 
-function C:listParticipantReplicas(input: types.ListParticipantReplicasInput, options: any): async.Operation<types.ListParticipantReplicasOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListParticipantReplicas, input, options) as async.Operation<types.ListParticipantReplicasOutput>
+function C:listParticipantReplicas(input: types.ListParticipantReplicasInput, options?: base_client.InvokeOptions): async.Operation<types.ListParticipantReplicasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListParticipantReplicas as schema.OperationSchema, input, options) as async.Operation<types.ListParticipantReplicasOutput>
 end
 
-function C:listParticipants(input: types.ListParticipantsInput, options: any): async.Operation<types.ListParticipantsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListParticipants, input, options) as async.Operation<types.ListParticipantsOutput>
+function C:listParticipants(input: types.ListParticipantsInput, options?: base_client.InvokeOptions): async.Operation<types.ListParticipantsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListParticipants as schema.OperationSchema, input, options) as async.Operation<types.ListParticipantsOutput>
 end
 
-function C:listPublicKeys(input: types.ListPublicKeysInput, options: any): async.Operation<types.ListPublicKeysOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPublicKeys, input, options) as async.Operation<types.ListPublicKeysOutput>
+function C:listPublicKeys(input: types.ListPublicKeysInput, options?: base_client.InvokeOptions): async.Operation<types.ListPublicKeysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPublicKeys as schema.OperationSchema, input, options) as async.Operation<types.ListPublicKeysOutput>
 end
 
-function C:listStages(input: types.ListStagesInput, options: any): async.Operation<types.ListStagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStages, input, options) as async.Operation<types.ListStagesOutput>
+function C:listStages(input: types.ListStagesInput, options?: base_client.InvokeOptions): async.Operation<types.ListStagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStages as schema.OperationSchema, input, options) as async.Operation<types.ListStagesOutput>
 end
 
-function C:listStageSessions(input: types.ListStageSessionsInput, options: any): async.Operation<types.ListStageSessionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStageSessions, input, options) as async.Operation<types.ListStageSessionsOutput>
+function C:listStageSessions(input: types.ListStageSessionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListStageSessionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStageSessions as schema.OperationSchema, input, options) as async.Operation<types.ListStageSessionsOutput>
 end
 
-function C:listStorageConfigurations(input: types.ListStorageConfigurationsInput, options: any): async.Operation<types.ListStorageConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStorageConfigurations, input, options) as async.Operation<types.ListStorageConfigurationsOutput>
+function C:listStorageConfigurations(input: types.ListStorageConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListStorageConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStorageConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListStorageConfigurationsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:startComposition(input: types.StartCompositionInput, options: any): async.Operation<types.StartCompositionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartComposition, input, options) as async.Operation<types.StartCompositionOutput>
+function C:startComposition(input: types.StartCompositionInput, options?: base_client.InvokeOptions): async.Operation<types.StartCompositionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartComposition as schema.OperationSchema, input, options) as async.Operation<types.StartCompositionOutput>
 end
 
-function C:startParticipantReplication(input: types.StartParticipantReplicationInput, options: any): async.Operation<types.StartParticipantReplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartParticipantReplication, input, options) as async.Operation<types.StartParticipantReplicationOutput>
+function C:startParticipantReplication(input: types.StartParticipantReplicationInput, options?: base_client.InvokeOptions): async.Operation<types.StartParticipantReplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartParticipantReplication as schema.OperationSchema, input, options) as async.Operation<types.StartParticipantReplicationOutput>
 end
 
-function C:stopComposition(input: types.StopCompositionInput, options: any): async.Operation<types.StopCompositionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopComposition, input, options) as async.Operation<types.StopCompositionOutput>
+function C:stopComposition(input: types.StopCompositionInput, options?: base_client.InvokeOptions): async.Operation<types.StopCompositionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopComposition as schema.OperationSchema, input, options) as async.Operation<types.StopCompositionOutput>
 end
 
-function C:stopParticipantReplication(input: types.StopParticipantReplicationInput, options: any): async.Operation<types.StopParticipantReplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopParticipantReplication, input, options) as async.Operation<types.StopParticipantReplicationOutput>
+function C:stopParticipantReplication(input: types.StopParticipantReplicationInput, options?: base_client.InvokeOptions): async.Operation<types.StopParticipantReplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopParticipantReplication as schema.OperationSchema, input, options) as async.Operation<types.StopParticipantReplicationOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateIngestConfiguration(input: types.UpdateIngestConfigurationInput, options: any): async.Operation<types.UpdateIngestConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateIngestConfiguration, input, options) as async.Operation<types.UpdateIngestConfigurationOutput>
+function C:updateIngestConfiguration(input: types.UpdateIngestConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIngestConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIngestConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateIngestConfigurationOutput>
 end
 
-function C:updateStage(input: types.UpdateStageInput, options: any): async.Operation<types.UpdateStageOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateStage, input, options) as async.Operation<types.UpdateStageOutput>
+function C:updateStage(input: types.UpdateStageInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateStageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateStage as schema.OperationSchema, input, options) as async.Operation<types.UpdateStageOutput>
 end
 
 return M

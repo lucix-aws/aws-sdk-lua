@@ -8,54 +8,57 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("timestreamquery.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("timestreamquery.schemas")
 local traits = require("smithy.traits")
 local types = require("timestreamquery.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    cancelQuery: function(Client, types.CancelQueryInput, any): async.Operation<types.CancelQueryOutput>
-    createScheduledQuery: function(Client, types.CreateScheduledQueryInput, any): async.Operation<types.CreateScheduledQueryOutput>
-    deleteScheduledQuery: function(Client, types.DeleteScheduledQueryInput, any): async.Operation<types.DeleteScheduledQueryOutput>
-    describeAccountSettings: function(Client, types.DescribeAccountSettingsInput, any): async.Operation<types.DescribeAccountSettingsOutput>
-    describeEndpoints: function(Client, types.DescribeEndpointsInput, any): async.Operation<types.DescribeEndpointsOutput>
-    describeScheduledQuery: function(Client, types.DescribeScheduledQueryInput, any): async.Operation<types.DescribeScheduledQueryOutput>
-    executeScheduledQuery: function(Client, types.ExecuteScheduledQueryInput, any): async.Operation<types.ExecuteScheduledQueryOutput>
-    listScheduledQueries: function(Client, types.ListScheduledQueriesInput, any): async.Operation<types.ListScheduledQueriesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    prepareQuery: function(Client, types.PrepareQueryInput, any): async.Operation<types.PrepareQueryOutput>
-    query: function(Client, types.QueryInput, any): async.Operation<types.QueryOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAccountSettings: function(Client, types.UpdateAccountSettingsInput, any): async.Operation<types.UpdateAccountSettingsOutput>
-    updateScheduledQuery: function(Client, types.UpdateScheduledQueryInput, any): async.Operation<types.UpdateScheduledQueryOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    cancelQuery: function(Client, types.CancelQueryInput, ? base_client.InvokeOptions): async.Operation<types.CancelQueryOutput>
+    createScheduledQuery: function(Client, types.CreateScheduledQueryInput, ? base_client.InvokeOptions): async.Operation<types.CreateScheduledQueryOutput>
+    deleteScheduledQuery: function(Client, types.DeleteScheduledQueryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteScheduledQueryOutput>
+    describeAccountSettings: function(Client, types.DescribeAccountSettingsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAccountSettingsOutput>
+    describeEndpoints: function(Client, types.DescribeEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEndpointsOutput>
+    describeScheduledQuery: function(Client, types.DescribeScheduledQueryInput, ? base_client.InvokeOptions): async.Operation<types.DescribeScheduledQueryOutput>
+    executeScheduledQuery: function(Client, types.ExecuteScheduledQueryInput, ? base_client.InvokeOptions): async.Operation<types.ExecuteScheduledQueryOutput>
+    listScheduledQueries: function(Client, types.ListScheduledQueriesInput, ? base_client.InvokeOptions): async.Operation<types.ListScheduledQueriesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    prepareQuery: function(Client, types.PrepareQueryInput, ? base_client.InvokeOptions): async.Operation<types.PrepareQueryOutput>
+    query: function(Client, types.QueryInput, ? base_client.InvokeOptions): async.Operation<types.QueryOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAccountSettings: function(Client, types.UpdateAccountSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAccountSettingsOutput>
+    updateScheduledQuery: function(Client, types.UpdateScheduledQueryInput, ? base_client.InvokeOptions): async.Operation<types.UpdateScheduledQueryOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "Timestream_20181101"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "timestream", signing_region = c.region } }
                 else
@@ -74,64 +77,64 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:cancelQuery(input: types.CancelQueryInput, options: any): async.Operation<types.CancelQueryOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelQuery, input, options) as async.Operation<types.CancelQueryOutput>
+function C:cancelQuery(input: types.CancelQueryInput, options?: base_client.InvokeOptions): async.Operation<types.CancelQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelQuery as schema.OperationSchema, input, options) as async.Operation<types.CancelQueryOutput>
 end
 
-function C:createScheduledQuery(input: types.CreateScheduledQueryInput, options: any): async.Operation<types.CreateScheduledQueryOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateScheduledQuery, input, options) as async.Operation<types.CreateScheduledQueryOutput>
+function C:createScheduledQuery(input: types.CreateScheduledQueryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateScheduledQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateScheduledQuery as schema.OperationSchema, input, options) as async.Operation<types.CreateScheduledQueryOutput>
 end
 
-function C:deleteScheduledQuery(input: types.DeleteScheduledQueryInput, options: any): async.Operation<types.DeleteScheduledQueryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteScheduledQuery, input, options) as async.Operation<types.DeleteScheduledQueryOutput>
+function C:deleteScheduledQuery(input: types.DeleteScheduledQueryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteScheduledQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteScheduledQuery as schema.OperationSchema, input, options) as async.Operation<types.DeleteScheduledQueryOutput>
 end
 
-function C:describeAccountSettings(input: types.DescribeAccountSettingsInput, options: any): async.Operation<types.DescribeAccountSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAccountSettings, input, options) as async.Operation<types.DescribeAccountSettingsOutput>
+function C:describeAccountSettings(input: types.DescribeAccountSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAccountSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAccountSettings as schema.OperationSchema, input, options) as async.Operation<types.DescribeAccountSettingsOutput>
 end
 
-function C:describeEndpoints(input: types.DescribeEndpointsInput, options: any): async.Operation<types.DescribeEndpointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEndpoints, input, options) as async.Operation<types.DescribeEndpointsOutput>
+function C:describeEndpoints(input: types.DescribeEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEndpointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEndpoints as schema.OperationSchema, input, options) as async.Operation<types.DescribeEndpointsOutput>
 end
 
-function C:describeScheduledQuery(input: types.DescribeScheduledQueryInput, options: any): async.Operation<types.DescribeScheduledQueryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeScheduledQuery, input, options) as async.Operation<types.DescribeScheduledQueryOutput>
+function C:describeScheduledQuery(input: types.DescribeScheduledQueryInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeScheduledQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeScheduledQuery as schema.OperationSchema, input, options) as async.Operation<types.DescribeScheduledQueryOutput>
 end
 
-function C:executeScheduledQuery(input: types.ExecuteScheduledQueryInput, options: any): async.Operation<types.ExecuteScheduledQueryOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExecuteScheduledQuery, input, options) as async.Operation<types.ExecuteScheduledQueryOutput>
+function C:executeScheduledQuery(input: types.ExecuteScheduledQueryInput, options?: base_client.InvokeOptions): async.Operation<types.ExecuteScheduledQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExecuteScheduledQuery as schema.OperationSchema, input, options) as async.Operation<types.ExecuteScheduledQueryOutput>
 end
 
-function C:listScheduledQueries(input: types.ListScheduledQueriesInput, options: any): async.Operation<types.ListScheduledQueriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListScheduledQueries, input, options) as async.Operation<types.ListScheduledQueriesOutput>
+function C:listScheduledQueries(input: types.ListScheduledQueriesInput, options?: base_client.InvokeOptions): async.Operation<types.ListScheduledQueriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListScheduledQueries as schema.OperationSchema, input, options) as async.Operation<types.ListScheduledQueriesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:prepareQuery(input: types.PrepareQueryInput, options: any): async.Operation<types.PrepareQueryOutput>
-    return self:invokeOperation(schemas.Service, schemas.PrepareQuery, input, options) as async.Operation<types.PrepareQueryOutput>
+function C:prepareQuery(input: types.PrepareQueryInput, options?: base_client.InvokeOptions): async.Operation<types.PrepareQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PrepareQuery as schema.OperationSchema, input, options) as async.Operation<types.PrepareQueryOutput>
 end
 
-function C:query(input: types.QueryInput, options: any): async.Operation<types.QueryOutput>
-    return self:invokeOperation(schemas.Service, schemas.Query, input, options) as async.Operation<types.QueryOutput>
+function C:query(input: types.QueryInput, options?: base_client.InvokeOptions): async.Operation<types.QueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Query as schema.OperationSchema, input, options) as async.Operation<types.QueryOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAccountSettings(input: types.UpdateAccountSettingsInput, options: any): async.Operation<types.UpdateAccountSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAccountSettings, input, options) as async.Operation<types.UpdateAccountSettingsOutput>
+function C:updateAccountSettings(input: types.UpdateAccountSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAccountSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAccountSettings as schema.OperationSchema, input, options) as async.Operation<types.UpdateAccountSettingsOutput>
 end
 
-function C:updateScheduledQuery(input: types.UpdateScheduledQueryInput, options: any): async.Operation<types.UpdateScheduledQueryOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateScheduledQuery, input, options) as async.Operation<types.UpdateScheduledQueryOutput>
+function C:updateScheduledQuery(input: types.UpdateScheduledQueryInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateScheduledQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateScheduledQuery as schema.OperationSchema, input, options) as async.Operation<types.UpdateScheduledQueryOutput>
 end
 
 return M

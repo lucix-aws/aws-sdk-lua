@@ -8,103 +8,106 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("eks.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("eks.schemas")
 local traits = require("smithy.traits")
 local types = require("eks.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateAccessPolicy: function(Client, types.AssociateAccessPolicyInput, any): async.Operation<types.AssociateAccessPolicyOutput>
-    associateEncryptionConfig: function(Client, types.AssociateEncryptionConfigInput, any): async.Operation<types.AssociateEncryptionConfigOutput>
-    associateIdentityProviderConfig: function(Client, types.AssociateIdentityProviderConfigInput, any): async.Operation<types.AssociateIdentityProviderConfigOutput>
-    createAccessEntry: function(Client, types.CreateAccessEntryInput, any): async.Operation<types.CreateAccessEntryOutput>
-    createAddon: function(Client, types.CreateAddonInput, any): async.Operation<types.CreateAddonOutput>
-    createCapability: function(Client, types.CreateCapabilityInput, any): async.Operation<types.CreateCapabilityOutput>
-    createCluster: function(Client, types.CreateClusterInput, any): async.Operation<types.CreateClusterOutput>
-    createEksAnywhereSubscription: function(Client, types.CreateEksAnywhereSubscriptionInput, any): async.Operation<types.CreateEksAnywhereSubscriptionOutput>
-    createFargateProfile: function(Client, types.CreateFargateProfileInput, any): async.Operation<types.CreateFargateProfileOutput>
-    createNodegroup: function(Client, types.CreateNodegroupInput, any): async.Operation<types.CreateNodegroupOutput>
-    createPodIdentityAssociation: function(Client, types.CreatePodIdentityAssociationInput, any): async.Operation<types.CreatePodIdentityAssociationOutput>
-    deleteAccessEntry: function(Client, types.DeleteAccessEntryInput, any): async.Operation<types.DeleteAccessEntryOutput>
-    deleteAddon: function(Client, types.DeleteAddonInput, any): async.Operation<types.DeleteAddonOutput>
-    deleteCapability: function(Client, types.DeleteCapabilityInput, any): async.Operation<types.DeleteCapabilityOutput>
-    deleteCluster: function(Client, types.DeleteClusterInput, any): async.Operation<types.DeleteClusterOutput>
-    deleteEksAnywhereSubscription: function(Client, types.DeleteEksAnywhereSubscriptionInput, any): async.Operation<types.DeleteEksAnywhereSubscriptionOutput>
-    deleteFargateProfile: function(Client, types.DeleteFargateProfileInput, any): async.Operation<types.DeleteFargateProfileOutput>
-    deleteNodegroup: function(Client, types.DeleteNodegroupInput, any): async.Operation<types.DeleteNodegroupOutput>
-    deletePodIdentityAssociation: function(Client, types.DeletePodIdentityAssociationInput, any): async.Operation<types.DeletePodIdentityAssociationOutput>
-    deregisterCluster: function(Client, types.DeregisterClusterInput, any): async.Operation<types.DeregisterClusterOutput>
-    describeAccessEntry: function(Client, types.DescribeAccessEntryInput, any): async.Operation<types.DescribeAccessEntryOutput>
-    describeAddon: function(Client, types.DescribeAddonInput, any): async.Operation<types.DescribeAddonOutput>
-    describeAddonConfiguration: function(Client, types.DescribeAddonConfigurationInput, any): async.Operation<types.DescribeAddonConfigurationOutput>
-    describeAddonVersions: function(Client, types.DescribeAddonVersionsInput, any): async.Operation<types.DescribeAddonVersionsOutput>
-    describeCapability: function(Client, types.DescribeCapabilityInput, any): async.Operation<types.DescribeCapabilityOutput>
-    describeCluster: function(Client, types.DescribeClusterInput, any): async.Operation<types.DescribeClusterOutput>
-    describeClusterVersions: function(Client, types.DescribeClusterVersionsInput, any): async.Operation<types.DescribeClusterVersionsOutput>
-    describeEksAnywhereSubscription: function(Client, types.DescribeEksAnywhereSubscriptionInput, any): async.Operation<types.DescribeEksAnywhereSubscriptionOutput>
-    describeFargateProfile: function(Client, types.DescribeFargateProfileInput, any): async.Operation<types.DescribeFargateProfileOutput>
-    describeIdentityProviderConfig: function(Client, types.DescribeIdentityProviderConfigInput, any): async.Operation<types.DescribeIdentityProviderConfigOutput>
-    describeInsight: function(Client, types.DescribeInsightInput, any): async.Operation<types.DescribeInsightOutput>
-    describeInsightsRefresh: function(Client, types.DescribeInsightsRefreshInput, any): async.Operation<types.DescribeInsightsRefreshOutput>
-    describeNodegroup: function(Client, types.DescribeNodegroupInput, any): async.Operation<types.DescribeNodegroupOutput>
-    describePodIdentityAssociation: function(Client, types.DescribePodIdentityAssociationInput, any): async.Operation<types.DescribePodIdentityAssociationOutput>
-    describeUpdate: function(Client, types.DescribeUpdateInput, any): async.Operation<types.DescribeUpdateOutput>
-    disassociateAccessPolicy: function(Client, types.DisassociateAccessPolicyInput, any): async.Operation<types.DisassociateAccessPolicyOutput>
-    disassociateIdentityProviderConfig: function(Client, types.DisassociateIdentityProviderConfigInput, any): async.Operation<types.DisassociateIdentityProviderConfigOutput>
-    listAccessEntries: function(Client, types.ListAccessEntriesInput, any): async.Operation<types.ListAccessEntriesOutput>
-    listAccessPolicies: function(Client, types.ListAccessPoliciesInput, any): async.Operation<types.ListAccessPoliciesOutput>
-    listAddons: function(Client, types.ListAddonsInput, any): async.Operation<types.ListAddonsOutput>
-    listAssociatedAccessPolicies: function(Client, types.ListAssociatedAccessPoliciesInput, any): async.Operation<types.ListAssociatedAccessPoliciesOutput>
-    listCapabilities: function(Client, types.ListCapabilitiesInput, any): async.Operation<types.ListCapabilitiesOutput>
-    listClusters: function(Client, types.ListClustersInput, any): async.Operation<types.ListClustersOutput>
-    listEksAnywhereSubscriptions: function(Client, types.ListEksAnywhereSubscriptionsInput, any): async.Operation<types.ListEksAnywhereSubscriptionsOutput>
-    listFargateProfiles: function(Client, types.ListFargateProfilesInput, any): async.Operation<types.ListFargateProfilesOutput>
-    listIdentityProviderConfigs: function(Client, types.ListIdentityProviderConfigsInput, any): async.Operation<types.ListIdentityProviderConfigsOutput>
-    listInsights: function(Client, types.ListInsightsInput, any): async.Operation<types.ListInsightsOutput>
-    listNodegroups: function(Client, types.ListNodegroupsInput, any): async.Operation<types.ListNodegroupsOutput>
-    listPodIdentityAssociations: function(Client, types.ListPodIdentityAssociationsInput, any): async.Operation<types.ListPodIdentityAssociationsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listUpdates: function(Client, types.ListUpdatesInput, any): async.Operation<types.ListUpdatesOutput>
-    registerCluster: function(Client, types.RegisterClusterInput, any): async.Operation<types.RegisterClusterOutput>
-    startInsightsRefresh: function(Client, types.StartInsightsRefreshInput, any): async.Operation<types.StartInsightsRefreshOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAccessEntry: function(Client, types.UpdateAccessEntryInput, any): async.Operation<types.UpdateAccessEntryOutput>
-    updateAddon: function(Client, types.UpdateAddonInput, any): async.Operation<types.UpdateAddonOutput>
-    updateCapability: function(Client, types.UpdateCapabilityInput, any): async.Operation<types.UpdateCapabilityOutput>
-    updateClusterConfig: function(Client, types.UpdateClusterConfigInput, any): async.Operation<types.UpdateClusterConfigOutput>
-    updateClusterVersion: function(Client, types.UpdateClusterVersionInput, any): async.Operation<types.UpdateClusterVersionOutput>
-    updateEksAnywhereSubscription: function(Client, types.UpdateEksAnywhereSubscriptionInput, any): async.Operation<types.UpdateEksAnywhereSubscriptionOutput>
-    updateNodegroupConfig: function(Client, types.UpdateNodegroupConfigInput, any): async.Operation<types.UpdateNodegroupConfigOutput>
-    updateNodegroupVersion: function(Client, types.UpdateNodegroupVersionInput, any): async.Operation<types.UpdateNodegroupVersionOutput>
-    updatePodIdentityAssociation: function(Client, types.UpdatePodIdentityAssociationInput, any): async.Operation<types.UpdatePodIdentityAssociationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateAccessPolicy: function(Client, types.AssociateAccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.AssociateAccessPolicyOutput>
+    associateEncryptionConfig: function(Client, types.AssociateEncryptionConfigInput, ? base_client.InvokeOptions): async.Operation<types.AssociateEncryptionConfigOutput>
+    associateIdentityProviderConfig: function(Client, types.AssociateIdentityProviderConfigInput, ? base_client.InvokeOptions): async.Operation<types.AssociateIdentityProviderConfigOutput>
+    createAccessEntry: function(Client, types.CreateAccessEntryInput, ? base_client.InvokeOptions): async.Operation<types.CreateAccessEntryOutput>
+    createAddon: function(Client, types.CreateAddonInput, ? base_client.InvokeOptions): async.Operation<types.CreateAddonOutput>
+    createCapability: function(Client, types.CreateCapabilityInput, ? base_client.InvokeOptions): async.Operation<types.CreateCapabilityOutput>
+    createCluster: function(Client, types.CreateClusterInput, ? base_client.InvokeOptions): async.Operation<types.CreateClusterOutput>
+    createEksAnywhereSubscription: function(Client, types.CreateEksAnywhereSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.CreateEksAnywhereSubscriptionOutput>
+    createFargateProfile: function(Client, types.CreateFargateProfileInput, ? base_client.InvokeOptions): async.Operation<types.CreateFargateProfileOutput>
+    createNodegroup: function(Client, types.CreateNodegroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateNodegroupOutput>
+    createPodIdentityAssociation: function(Client, types.CreatePodIdentityAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreatePodIdentityAssociationOutput>
+    deleteAccessEntry: function(Client, types.DeleteAccessEntryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccessEntryOutput>
+    deleteAddon: function(Client, types.DeleteAddonInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAddonOutput>
+    deleteCapability: function(Client, types.DeleteCapabilityInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCapabilityOutput>
+    deleteCluster: function(Client, types.DeleteClusterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteClusterOutput>
+    deleteEksAnywhereSubscription: function(Client, types.DeleteEksAnywhereSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEksAnywhereSubscriptionOutput>
+    deleteFargateProfile: function(Client, types.DeleteFargateProfileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFargateProfileOutput>
+    deleteNodegroup: function(Client, types.DeleteNodegroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNodegroupOutput>
+    deletePodIdentityAssociation: function(Client, types.DeletePodIdentityAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeletePodIdentityAssociationOutput>
+    deregisterCluster: function(Client, types.DeregisterClusterInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterClusterOutput>
+    describeAccessEntry: function(Client, types.DescribeAccessEntryInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAccessEntryOutput>
+    describeAddon: function(Client, types.DescribeAddonInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAddonOutput>
+    describeAddonConfiguration: function(Client, types.DescribeAddonConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAddonConfigurationOutput>
+    describeAddonVersions: function(Client, types.DescribeAddonVersionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAddonVersionsOutput>
+    describeCapability: function(Client, types.DescribeCapabilityInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCapabilityOutput>
+    describeCluster: function(Client, types.DescribeClusterInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClusterOutput>
+    describeClusterVersions: function(Client, types.DescribeClusterVersionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClusterVersionsOutput>
+    describeEksAnywhereSubscription: function(Client, types.DescribeEksAnywhereSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEksAnywhereSubscriptionOutput>
+    describeFargateProfile: function(Client, types.DescribeFargateProfileInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFargateProfileOutput>
+    describeIdentityProviderConfig: function(Client, types.DescribeIdentityProviderConfigInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIdentityProviderConfigOutput>
+    describeInsight: function(Client, types.DescribeInsightInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInsightOutput>
+    describeInsightsRefresh: function(Client, types.DescribeInsightsRefreshInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInsightsRefreshOutput>
+    describeNodegroup: function(Client, types.DescribeNodegroupInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNodegroupOutput>
+    describePodIdentityAssociation: function(Client, types.DescribePodIdentityAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DescribePodIdentityAssociationOutput>
+    describeUpdate: function(Client, types.DescribeUpdateInput, ? base_client.InvokeOptions): async.Operation<types.DescribeUpdateOutput>
+    disassociateAccessPolicy: function(Client, types.DisassociateAccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateAccessPolicyOutput>
+    disassociateIdentityProviderConfig: function(Client, types.DisassociateIdentityProviderConfigInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateIdentityProviderConfigOutput>
+    listAccessEntries: function(Client, types.ListAccessEntriesInput, ? base_client.InvokeOptions): async.Operation<types.ListAccessEntriesOutput>
+    listAccessPolicies: function(Client, types.ListAccessPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListAccessPoliciesOutput>
+    listAddons: function(Client, types.ListAddonsInput, ? base_client.InvokeOptions): async.Operation<types.ListAddonsOutput>
+    listAssociatedAccessPolicies: function(Client, types.ListAssociatedAccessPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListAssociatedAccessPoliciesOutput>
+    listCapabilities: function(Client, types.ListCapabilitiesInput, ? base_client.InvokeOptions): async.Operation<types.ListCapabilitiesOutput>
+    listClusters: function(Client, types.ListClustersInput, ? base_client.InvokeOptions): async.Operation<types.ListClustersOutput>
+    listEksAnywhereSubscriptions: function(Client, types.ListEksAnywhereSubscriptionsInput, ? base_client.InvokeOptions): async.Operation<types.ListEksAnywhereSubscriptionsOutput>
+    listFargateProfiles: function(Client, types.ListFargateProfilesInput, ? base_client.InvokeOptions): async.Operation<types.ListFargateProfilesOutput>
+    listIdentityProviderConfigs: function(Client, types.ListIdentityProviderConfigsInput, ? base_client.InvokeOptions): async.Operation<types.ListIdentityProviderConfigsOutput>
+    listInsights: function(Client, types.ListInsightsInput, ? base_client.InvokeOptions): async.Operation<types.ListInsightsOutput>
+    listNodegroups: function(Client, types.ListNodegroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListNodegroupsOutput>
+    listPodIdentityAssociations: function(Client, types.ListPodIdentityAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListPodIdentityAssociationsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listUpdates: function(Client, types.ListUpdatesInput, ? base_client.InvokeOptions): async.Operation<types.ListUpdatesOutput>
+    registerCluster: function(Client, types.RegisterClusterInput, ? base_client.InvokeOptions): async.Operation<types.RegisterClusterOutput>
+    startInsightsRefresh: function(Client, types.StartInsightsRefreshInput, ? base_client.InvokeOptions): async.Operation<types.StartInsightsRefreshOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAccessEntry: function(Client, types.UpdateAccessEntryInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAccessEntryOutput>
+    updateAddon: function(Client, types.UpdateAddonInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAddonOutput>
+    updateCapability: function(Client, types.UpdateCapabilityInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCapabilityOutput>
+    updateClusterConfig: function(Client, types.UpdateClusterConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateClusterConfigOutput>
+    updateClusterVersion: function(Client, types.UpdateClusterVersionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateClusterVersionOutput>
+    updateEksAnywhereSubscription: function(Client, types.UpdateEksAnywhereSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEksAnywhereSubscriptionOutput>
+    updateNodegroupConfig: function(Client, types.UpdateNodegroupConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNodegroupConfigOutput>
+    updateNodegroupVersion: function(Client, types.UpdateNodegroupVersionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNodegroupVersionOutput>
+    updatePodIdentityAssociation: function(Client, types.UpdatePodIdentityAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePodIdentityAssociationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSWesleyFrontend"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "eks", signing_region = c.region } }
                 else
@@ -123,260 +126,260 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateAccessPolicy(input: types.AssociateAccessPolicyInput, options: any): async.Operation<types.AssociateAccessPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateAccessPolicy, input, options) as async.Operation<types.AssociateAccessPolicyOutput>
+function C:associateAccessPolicy(input: types.AssociateAccessPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateAccessPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateAccessPolicy as schema.OperationSchema, input, options) as async.Operation<types.AssociateAccessPolicyOutput>
 end
 
-function C:associateEncryptionConfig(input: types.AssociateEncryptionConfigInput, options: any): async.Operation<types.AssociateEncryptionConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateEncryptionConfig, input, options) as async.Operation<types.AssociateEncryptionConfigOutput>
+function C:associateEncryptionConfig(input: types.AssociateEncryptionConfigInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateEncryptionConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateEncryptionConfig as schema.OperationSchema, input, options) as async.Operation<types.AssociateEncryptionConfigOutput>
 end
 
-function C:associateIdentityProviderConfig(input: types.AssociateIdentityProviderConfigInput, options: any): async.Operation<types.AssociateIdentityProviderConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateIdentityProviderConfig, input, options) as async.Operation<types.AssociateIdentityProviderConfigOutput>
+function C:associateIdentityProviderConfig(input: types.AssociateIdentityProviderConfigInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateIdentityProviderConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateIdentityProviderConfig as schema.OperationSchema, input, options) as async.Operation<types.AssociateIdentityProviderConfigOutput>
 end
 
-function C:createAccessEntry(input: types.CreateAccessEntryInput, options: any): async.Operation<types.CreateAccessEntryOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAccessEntry, input, options) as async.Operation<types.CreateAccessEntryOutput>
+function C:createAccessEntry(input: types.CreateAccessEntryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAccessEntryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAccessEntry as schema.OperationSchema, input, options) as async.Operation<types.CreateAccessEntryOutput>
 end
 
-function C:createAddon(input: types.CreateAddonInput, options: any): async.Operation<types.CreateAddonOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAddon, input, options) as async.Operation<types.CreateAddonOutput>
+function C:createAddon(input: types.CreateAddonInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAddonOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAddon as schema.OperationSchema, input, options) as async.Operation<types.CreateAddonOutput>
 end
 
-function C:createCapability(input: types.CreateCapabilityInput, options: any): async.Operation<types.CreateCapabilityOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCapability, input, options) as async.Operation<types.CreateCapabilityOutput>
+function C:createCapability(input: types.CreateCapabilityInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCapabilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCapability as schema.OperationSchema, input, options) as async.Operation<types.CreateCapabilityOutput>
 end
 
-function C:createCluster(input: types.CreateClusterInput, options: any): async.Operation<types.CreateClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCluster, input, options) as async.Operation<types.CreateClusterOutput>
+function C:createCluster(input: types.CreateClusterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCluster as schema.OperationSchema, input, options) as async.Operation<types.CreateClusterOutput>
 end
 
-function C:createEksAnywhereSubscription(input: types.CreateEksAnywhereSubscriptionInput, options: any): async.Operation<types.CreateEksAnywhereSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEksAnywhereSubscription, input, options) as async.Operation<types.CreateEksAnywhereSubscriptionOutput>
+function C:createEksAnywhereSubscription(input: types.CreateEksAnywhereSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEksAnywhereSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEksAnywhereSubscription as schema.OperationSchema, input, options) as async.Operation<types.CreateEksAnywhereSubscriptionOutput>
 end
 
-function C:createFargateProfile(input: types.CreateFargateProfileInput, options: any): async.Operation<types.CreateFargateProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFargateProfile, input, options) as async.Operation<types.CreateFargateProfileOutput>
+function C:createFargateProfile(input: types.CreateFargateProfileInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFargateProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFargateProfile as schema.OperationSchema, input, options) as async.Operation<types.CreateFargateProfileOutput>
 end
 
-function C:createNodegroup(input: types.CreateNodegroupInput, options: any): async.Operation<types.CreateNodegroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNodegroup, input, options) as async.Operation<types.CreateNodegroupOutput>
+function C:createNodegroup(input: types.CreateNodegroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNodegroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNodegroup as schema.OperationSchema, input, options) as async.Operation<types.CreateNodegroupOutput>
 end
 
-function C:createPodIdentityAssociation(input: types.CreatePodIdentityAssociationInput, options: any): async.Operation<types.CreatePodIdentityAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePodIdentityAssociation, input, options) as async.Operation<types.CreatePodIdentityAssociationOutput>
+function C:createPodIdentityAssociation(input: types.CreatePodIdentityAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePodIdentityAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePodIdentityAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreatePodIdentityAssociationOutput>
 end
 
-function C:deleteAccessEntry(input: types.DeleteAccessEntryInput, options: any): async.Operation<types.DeleteAccessEntryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAccessEntry, input, options) as async.Operation<types.DeleteAccessEntryOutput>
+function C:deleteAccessEntry(input: types.DeleteAccessEntryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAccessEntryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAccessEntry as schema.OperationSchema, input, options) as async.Operation<types.DeleteAccessEntryOutput>
 end
 
-function C:deleteAddon(input: types.DeleteAddonInput, options: any): async.Operation<types.DeleteAddonOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAddon, input, options) as async.Operation<types.DeleteAddonOutput>
+function C:deleteAddon(input: types.DeleteAddonInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAddonOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAddon as schema.OperationSchema, input, options) as async.Operation<types.DeleteAddonOutput>
 end
 
-function C:deleteCapability(input: types.DeleteCapabilityInput, options: any): async.Operation<types.DeleteCapabilityOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCapability, input, options) as async.Operation<types.DeleteCapabilityOutput>
+function C:deleteCapability(input: types.DeleteCapabilityInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCapabilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCapability as schema.OperationSchema, input, options) as async.Operation<types.DeleteCapabilityOutput>
 end
 
-function C:deleteCluster(input: types.DeleteClusterInput, options: any): async.Operation<types.DeleteClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCluster, input, options) as async.Operation<types.DeleteClusterOutput>
+function C:deleteCluster(input: types.DeleteClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCluster as schema.OperationSchema, input, options) as async.Operation<types.DeleteClusterOutput>
 end
 
-function C:deleteEksAnywhereSubscription(input: types.DeleteEksAnywhereSubscriptionInput, options: any): async.Operation<types.DeleteEksAnywhereSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEksAnywhereSubscription, input, options) as async.Operation<types.DeleteEksAnywhereSubscriptionOutput>
+function C:deleteEksAnywhereSubscription(input: types.DeleteEksAnywhereSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEksAnywhereSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEksAnywhereSubscription as schema.OperationSchema, input, options) as async.Operation<types.DeleteEksAnywhereSubscriptionOutput>
 end
 
-function C:deleteFargateProfile(input: types.DeleteFargateProfileInput, options: any): async.Operation<types.DeleteFargateProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFargateProfile, input, options) as async.Operation<types.DeleteFargateProfileOutput>
+function C:deleteFargateProfile(input: types.DeleteFargateProfileInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFargateProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFargateProfile as schema.OperationSchema, input, options) as async.Operation<types.DeleteFargateProfileOutput>
 end
 
-function C:deleteNodegroup(input: types.DeleteNodegroupInput, options: any): async.Operation<types.DeleteNodegroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNodegroup, input, options) as async.Operation<types.DeleteNodegroupOutput>
+function C:deleteNodegroup(input: types.DeleteNodegroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNodegroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNodegroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteNodegroupOutput>
 end
 
-function C:deletePodIdentityAssociation(input: types.DeletePodIdentityAssociationInput, options: any): async.Operation<types.DeletePodIdentityAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePodIdentityAssociation, input, options) as async.Operation<types.DeletePodIdentityAssociationOutput>
+function C:deletePodIdentityAssociation(input: types.DeletePodIdentityAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePodIdentityAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePodIdentityAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeletePodIdentityAssociationOutput>
 end
 
-function C:deregisterCluster(input: types.DeregisterClusterInput, options: any): async.Operation<types.DeregisterClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterCluster, input, options) as async.Operation<types.DeregisterClusterOutput>
+function C:deregisterCluster(input: types.DeregisterClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterCluster as schema.OperationSchema, input, options) as async.Operation<types.DeregisterClusterOutput>
 end
 
-function C:describeAccessEntry(input: types.DescribeAccessEntryInput, options: any): async.Operation<types.DescribeAccessEntryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAccessEntry, input, options) as async.Operation<types.DescribeAccessEntryOutput>
+function C:describeAccessEntry(input: types.DescribeAccessEntryInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAccessEntryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAccessEntry as schema.OperationSchema, input, options) as async.Operation<types.DescribeAccessEntryOutput>
 end
 
-function C:describeAddon(input: types.DescribeAddonInput, options: any): async.Operation<types.DescribeAddonOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAddon, input, options) as async.Operation<types.DescribeAddonOutput>
+function C:describeAddon(input: types.DescribeAddonInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAddonOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAddon as schema.OperationSchema, input, options) as async.Operation<types.DescribeAddonOutput>
 end
 
-function C:describeAddonConfiguration(input: types.DescribeAddonConfigurationInput, options: any): async.Operation<types.DescribeAddonConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAddonConfiguration, input, options) as async.Operation<types.DescribeAddonConfigurationOutput>
+function C:describeAddonConfiguration(input: types.DescribeAddonConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAddonConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAddonConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeAddonConfigurationOutput>
 end
 
-function C:describeAddonVersions(input: types.DescribeAddonVersionsInput, options: any): async.Operation<types.DescribeAddonVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAddonVersions, input, options) as async.Operation<types.DescribeAddonVersionsOutput>
+function C:describeAddonVersions(input: types.DescribeAddonVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAddonVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAddonVersions as schema.OperationSchema, input, options) as async.Operation<types.DescribeAddonVersionsOutput>
 end
 
-function C:describeCapability(input: types.DescribeCapabilityInput, options: any): async.Operation<types.DescribeCapabilityOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCapability, input, options) as async.Operation<types.DescribeCapabilityOutput>
+function C:describeCapability(input: types.DescribeCapabilityInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCapabilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCapability as schema.OperationSchema, input, options) as async.Operation<types.DescribeCapabilityOutput>
 end
 
-function C:describeCluster(input: types.DescribeClusterInput, options: any): async.Operation<types.DescribeClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCluster, input, options) as async.Operation<types.DescribeClusterOutput>
+function C:describeCluster(input: types.DescribeClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCluster as schema.OperationSchema, input, options) as async.Operation<types.DescribeClusterOutput>
 end
 
-function C:describeClusterVersions(input: types.DescribeClusterVersionsInput, options: any): async.Operation<types.DescribeClusterVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeClusterVersions, input, options) as async.Operation<types.DescribeClusterVersionsOutput>
+function C:describeClusterVersions(input: types.DescribeClusterVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeClusterVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeClusterVersions as schema.OperationSchema, input, options) as async.Operation<types.DescribeClusterVersionsOutput>
 end
 
-function C:describeEksAnywhereSubscription(input: types.DescribeEksAnywhereSubscriptionInput, options: any): async.Operation<types.DescribeEksAnywhereSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEksAnywhereSubscription, input, options) as async.Operation<types.DescribeEksAnywhereSubscriptionOutput>
+function C:describeEksAnywhereSubscription(input: types.DescribeEksAnywhereSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEksAnywhereSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEksAnywhereSubscription as schema.OperationSchema, input, options) as async.Operation<types.DescribeEksAnywhereSubscriptionOutput>
 end
 
-function C:describeFargateProfile(input: types.DescribeFargateProfileInput, options: any): async.Operation<types.DescribeFargateProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFargateProfile, input, options) as async.Operation<types.DescribeFargateProfileOutput>
+function C:describeFargateProfile(input: types.DescribeFargateProfileInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFargateProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFargateProfile as schema.OperationSchema, input, options) as async.Operation<types.DescribeFargateProfileOutput>
 end
 
-function C:describeIdentityProviderConfig(input: types.DescribeIdentityProviderConfigInput, options: any): async.Operation<types.DescribeIdentityProviderConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeIdentityProviderConfig, input, options) as async.Operation<types.DescribeIdentityProviderConfigOutput>
+function C:describeIdentityProviderConfig(input: types.DescribeIdentityProviderConfigInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIdentityProviderConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIdentityProviderConfig as schema.OperationSchema, input, options) as async.Operation<types.DescribeIdentityProviderConfigOutput>
 end
 
-function C:describeInsight(input: types.DescribeInsightInput, options: any): async.Operation<types.DescribeInsightOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInsight, input, options) as async.Operation<types.DescribeInsightOutput>
+function C:describeInsight(input: types.DescribeInsightInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInsightOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInsight as schema.OperationSchema, input, options) as async.Operation<types.DescribeInsightOutput>
 end
 
-function C:describeInsightsRefresh(input: types.DescribeInsightsRefreshInput, options: any): async.Operation<types.DescribeInsightsRefreshOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInsightsRefresh, input, options) as async.Operation<types.DescribeInsightsRefreshOutput>
+function C:describeInsightsRefresh(input: types.DescribeInsightsRefreshInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInsightsRefreshOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInsightsRefresh as schema.OperationSchema, input, options) as async.Operation<types.DescribeInsightsRefreshOutput>
 end
 
-function C:describeNodegroup(input: types.DescribeNodegroupInput, options: any): async.Operation<types.DescribeNodegroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeNodegroup, input, options) as async.Operation<types.DescribeNodegroupOutput>
+function C:describeNodegroup(input: types.DescribeNodegroupInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeNodegroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeNodegroup as schema.OperationSchema, input, options) as async.Operation<types.DescribeNodegroupOutput>
 end
 
-function C:describePodIdentityAssociation(input: types.DescribePodIdentityAssociationInput, options: any): async.Operation<types.DescribePodIdentityAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePodIdentityAssociation, input, options) as async.Operation<types.DescribePodIdentityAssociationOutput>
+function C:describePodIdentityAssociation(input: types.DescribePodIdentityAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePodIdentityAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePodIdentityAssociation as schema.OperationSchema, input, options) as async.Operation<types.DescribePodIdentityAssociationOutput>
 end
 
-function C:describeUpdate(input: types.DescribeUpdateInput, options: any): async.Operation<types.DescribeUpdateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeUpdate, input, options) as async.Operation<types.DescribeUpdateOutput>
+function C:describeUpdate(input: types.DescribeUpdateInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeUpdateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeUpdate as schema.OperationSchema, input, options) as async.Operation<types.DescribeUpdateOutput>
 end
 
-function C:disassociateAccessPolicy(input: types.DisassociateAccessPolicyInput, options: any): async.Operation<types.DisassociateAccessPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateAccessPolicy, input, options) as async.Operation<types.DisassociateAccessPolicyOutput>
+function C:disassociateAccessPolicy(input: types.DisassociateAccessPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateAccessPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateAccessPolicy as schema.OperationSchema, input, options) as async.Operation<types.DisassociateAccessPolicyOutput>
 end
 
-function C:disassociateIdentityProviderConfig(input: types.DisassociateIdentityProviderConfigInput, options: any): async.Operation<types.DisassociateIdentityProviderConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateIdentityProviderConfig, input, options) as async.Operation<types.DisassociateIdentityProviderConfigOutput>
+function C:disassociateIdentityProviderConfig(input: types.DisassociateIdentityProviderConfigInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateIdentityProviderConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateIdentityProviderConfig as schema.OperationSchema, input, options) as async.Operation<types.DisassociateIdentityProviderConfigOutput>
 end
 
-function C:listAccessEntries(input: types.ListAccessEntriesInput, options: any): async.Operation<types.ListAccessEntriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccessEntries, input, options) as async.Operation<types.ListAccessEntriesOutput>
+function C:listAccessEntries(input: types.ListAccessEntriesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccessEntriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccessEntries as schema.OperationSchema, input, options) as async.Operation<types.ListAccessEntriesOutput>
 end
 
-function C:listAccessPolicies(input: types.ListAccessPoliciesInput, options: any): async.Operation<types.ListAccessPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccessPolicies, input, options) as async.Operation<types.ListAccessPoliciesOutput>
+function C:listAccessPolicies(input: types.ListAccessPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccessPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccessPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListAccessPoliciesOutput>
 end
 
-function C:listAddons(input: types.ListAddonsInput, options: any): async.Operation<types.ListAddonsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAddons, input, options) as async.Operation<types.ListAddonsOutput>
+function C:listAddons(input: types.ListAddonsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAddonsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAddons as schema.OperationSchema, input, options) as async.Operation<types.ListAddonsOutput>
 end
 
-function C:listAssociatedAccessPolicies(input: types.ListAssociatedAccessPoliciesInput, options: any): async.Operation<types.ListAssociatedAccessPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssociatedAccessPolicies, input, options) as async.Operation<types.ListAssociatedAccessPoliciesOutput>
+function C:listAssociatedAccessPolicies(input: types.ListAssociatedAccessPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssociatedAccessPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssociatedAccessPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListAssociatedAccessPoliciesOutput>
 end
 
-function C:listCapabilities(input: types.ListCapabilitiesInput, options: any): async.Operation<types.ListCapabilitiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCapabilities, input, options) as async.Operation<types.ListCapabilitiesOutput>
+function C:listCapabilities(input: types.ListCapabilitiesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCapabilitiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCapabilities as schema.OperationSchema, input, options) as async.Operation<types.ListCapabilitiesOutput>
 end
 
-function C:listClusters(input: types.ListClustersInput, options: any): async.Operation<types.ListClustersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListClusters, input, options) as async.Operation<types.ListClustersOutput>
+function C:listClusters(input: types.ListClustersInput, options?: base_client.InvokeOptions): async.Operation<types.ListClustersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListClusters as schema.OperationSchema, input, options) as async.Operation<types.ListClustersOutput>
 end
 
-function C:listEksAnywhereSubscriptions(input: types.ListEksAnywhereSubscriptionsInput, options: any): async.Operation<types.ListEksAnywhereSubscriptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEksAnywhereSubscriptions, input, options) as async.Operation<types.ListEksAnywhereSubscriptionsOutput>
+function C:listEksAnywhereSubscriptions(input: types.ListEksAnywhereSubscriptionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEksAnywhereSubscriptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEksAnywhereSubscriptions as schema.OperationSchema, input, options) as async.Operation<types.ListEksAnywhereSubscriptionsOutput>
 end
 
-function C:listFargateProfiles(input: types.ListFargateProfilesInput, options: any): async.Operation<types.ListFargateProfilesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFargateProfiles, input, options) as async.Operation<types.ListFargateProfilesOutput>
+function C:listFargateProfiles(input: types.ListFargateProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.ListFargateProfilesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFargateProfiles as schema.OperationSchema, input, options) as async.Operation<types.ListFargateProfilesOutput>
 end
 
-function C:listIdentityProviderConfigs(input: types.ListIdentityProviderConfigsInput, options: any): async.Operation<types.ListIdentityProviderConfigsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIdentityProviderConfigs, input, options) as async.Operation<types.ListIdentityProviderConfigsOutput>
+function C:listIdentityProviderConfigs(input: types.ListIdentityProviderConfigsInput, options?: base_client.InvokeOptions): async.Operation<types.ListIdentityProviderConfigsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIdentityProviderConfigs as schema.OperationSchema, input, options) as async.Operation<types.ListIdentityProviderConfigsOutput>
 end
 
-function C:listInsights(input: types.ListInsightsInput, options: any): async.Operation<types.ListInsightsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInsights, input, options) as async.Operation<types.ListInsightsOutput>
+function C:listInsights(input: types.ListInsightsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInsightsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInsights as schema.OperationSchema, input, options) as async.Operation<types.ListInsightsOutput>
 end
 
-function C:listNodegroups(input: types.ListNodegroupsInput, options: any): async.Operation<types.ListNodegroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNodegroups, input, options) as async.Operation<types.ListNodegroupsOutput>
+function C:listNodegroups(input: types.ListNodegroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListNodegroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNodegroups as schema.OperationSchema, input, options) as async.Operation<types.ListNodegroupsOutput>
 end
 
-function C:listPodIdentityAssociations(input: types.ListPodIdentityAssociationsInput, options: any): async.Operation<types.ListPodIdentityAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPodIdentityAssociations, input, options) as async.Operation<types.ListPodIdentityAssociationsOutput>
+function C:listPodIdentityAssociations(input: types.ListPodIdentityAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPodIdentityAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPodIdentityAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListPodIdentityAssociationsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listUpdates(input: types.ListUpdatesInput, options: any): async.Operation<types.ListUpdatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListUpdates, input, options) as async.Operation<types.ListUpdatesOutput>
+function C:listUpdates(input: types.ListUpdatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListUpdatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUpdates as schema.OperationSchema, input, options) as async.Operation<types.ListUpdatesOutput>
 end
 
-function C:registerCluster(input: types.RegisterClusterInput, options: any): async.Operation<types.RegisterClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterCluster, input, options) as async.Operation<types.RegisterClusterOutput>
+function C:registerCluster(input: types.RegisterClusterInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterCluster as schema.OperationSchema, input, options) as async.Operation<types.RegisterClusterOutput>
 end
 
-function C:startInsightsRefresh(input: types.StartInsightsRefreshInput, options: any): async.Operation<types.StartInsightsRefreshOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartInsightsRefresh, input, options) as async.Operation<types.StartInsightsRefreshOutput>
+function C:startInsightsRefresh(input: types.StartInsightsRefreshInput, options?: base_client.InvokeOptions): async.Operation<types.StartInsightsRefreshOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartInsightsRefresh as schema.OperationSchema, input, options) as async.Operation<types.StartInsightsRefreshOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAccessEntry(input: types.UpdateAccessEntryInput, options: any): async.Operation<types.UpdateAccessEntryOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAccessEntry, input, options) as async.Operation<types.UpdateAccessEntryOutput>
+function C:updateAccessEntry(input: types.UpdateAccessEntryInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAccessEntryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAccessEntry as schema.OperationSchema, input, options) as async.Operation<types.UpdateAccessEntryOutput>
 end
 
-function C:updateAddon(input: types.UpdateAddonInput, options: any): async.Operation<types.UpdateAddonOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAddon, input, options) as async.Operation<types.UpdateAddonOutput>
+function C:updateAddon(input: types.UpdateAddonInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAddonOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAddon as schema.OperationSchema, input, options) as async.Operation<types.UpdateAddonOutput>
 end
 
-function C:updateCapability(input: types.UpdateCapabilityInput, options: any): async.Operation<types.UpdateCapabilityOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCapability, input, options) as async.Operation<types.UpdateCapabilityOutput>
+function C:updateCapability(input: types.UpdateCapabilityInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCapabilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCapability as schema.OperationSchema, input, options) as async.Operation<types.UpdateCapabilityOutput>
 end
 
-function C:updateClusterConfig(input: types.UpdateClusterConfigInput, options: any): async.Operation<types.UpdateClusterConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateClusterConfig, input, options) as async.Operation<types.UpdateClusterConfigOutput>
+function C:updateClusterConfig(input: types.UpdateClusterConfigInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateClusterConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateClusterConfig as schema.OperationSchema, input, options) as async.Operation<types.UpdateClusterConfigOutput>
 end
 
-function C:updateClusterVersion(input: types.UpdateClusterVersionInput, options: any): async.Operation<types.UpdateClusterVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateClusterVersion, input, options) as async.Operation<types.UpdateClusterVersionOutput>
+function C:updateClusterVersion(input: types.UpdateClusterVersionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateClusterVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateClusterVersion as schema.OperationSchema, input, options) as async.Operation<types.UpdateClusterVersionOutput>
 end
 
-function C:updateEksAnywhereSubscription(input: types.UpdateEksAnywhereSubscriptionInput, options: any): async.Operation<types.UpdateEksAnywhereSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEksAnywhereSubscription, input, options) as async.Operation<types.UpdateEksAnywhereSubscriptionOutput>
+function C:updateEksAnywhereSubscription(input: types.UpdateEksAnywhereSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEksAnywhereSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEksAnywhereSubscription as schema.OperationSchema, input, options) as async.Operation<types.UpdateEksAnywhereSubscriptionOutput>
 end
 
-function C:updateNodegroupConfig(input: types.UpdateNodegroupConfigInput, options: any): async.Operation<types.UpdateNodegroupConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateNodegroupConfig, input, options) as async.Operation<types.UpdateNodegroupConfigOutput>
+function C:updateNodegroupConfig(input: types.UpdateNodegroupConfigInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNodegroupConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNodegroupConfig as schema.OperationSchema, input, options) as async.Operation<types.UpdateNodegroupConfigOutput>
 end
 
-function C:updateNodegroupVersion(input: types.UpdateNodegroupVersionInput, options: any): async.Operation<types.UpdateNodegroupVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateNodegroupVersion, input, options) as async.Operation<types.UpdateNodegroupVersionOutput>
+function C:updateNodegroupVersion(input: types.UpdateNodegroupVersionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNodegroupVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNodegroupVersion as schema.OperationSchema, input, options) as async.Operation<types.UpdateNodegroupVersionOutput>
 end
 
-function C:updatePodIdentityAssociation(input: types.UpdatePodIdentityAssociationInput, options: any): async.Operation<types.UpdatePodIdentityAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePodIdentityAssociation, input, options) as async.Operation<types.UpdatePodIdentityAssociationOutput>
+function C:updatePodIdentityAssociation(input: types.UpdatePodIdentityAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePodIdentityAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePodIdentityAssociation as schema.OperationSchema, input, options) as async.Operation<types.UpdatePodIdentityAssociationOutput>
 end
 
 return M

@@ -8,59 +8,62 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("rum.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("rum.schemas")
 local traits = require("smithy.traits")
 local types = require("rum.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchCreateRumMetricDefinitions: function(Client, types.BatchCreateRumMetricDefinitionsInput, any): async.Operation<types.BatchCreateRumMetricDefinitionsOutput>
-    batchDeleteRumMetricDefinitions: function(Client, types.BatchDeleteRumMetricDefinitionsInput, any): async.Operation<types.BatchDeleteRumMetricDefinitionsOutput>
-    batchGetRumMetricDefinitions: function(Client, types.BatchGetRumMetricDefinitionsInput, any): async.Operation<types.BatchGetRumMetricDefinitionsOutput>
-    createAppMonitor: function(Client, types.CreateAppMonitorInput, any): async.Operation<types.CreateAppMonitorOutput>
-    deleteAppMonitor: function(Client, types.DeleteAppMonitorInput, any): async.Operation<types.DeleteAppMonitorOutput>
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, any): async.Operation<types.DeleteResourcePolicyOutput>
-    deleteRumMetricsDestination: function(Client, types.DeleteRumMetricsDestinationInput, any): async.Operation<types.DeleteRumMetricsDestinationOutput>
-    getAppMonitor: function(Client, types.GetAppMonitorInput, any): async.Operation<types.GetAppMonitorOutput>
-    getAppMonitorData: function(Client, types.GetAppMonitorDataInput, any): async.Operation<types.GetAppMonitorDataOutput>
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput, any): async.Operation<types.GetResourcePolicyOutput>
-    listAppMonitors: function(Client, types.ListAppMonitorsInput, any): async.Operation<types.ListAppMonitorsOutput>
-    listRumMetricsDestinations: function(Client, types.ListRumMetricsDestinationsInput, any): async.Operation<types.ListRumMetricsDestinationsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput, any): async.Operation<types.PutResourcePolicyOutput>
-    putRumEvents: function(Client, types.PutRumEventsInput, any): async.Operation<types.PutRumEventsOutput>
-    putRumMetricsDestination: function(Client, types.PutRumMetricsDestinationInput, any): async.Operation<types.PutRumMetricsDestinationOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAppMonitor: function(Client, types.UpdateAppMonitorInput, any): async.Operation<types.UpdateAppMonitorOutput>
-    updateRumMetricDefinition: function(Client, types.UpdateRumMetricDefinitionInput, any): async.Operation<types.UpdateRumMetricDefinitionOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchCreateRumMetricDefinitions: function(Client, types.BatchCreateRumMetricDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.BatchCreateRumMetricDefinitionsOutput>
+    batchDeleteRumMetricDefinitions: function(Client, types.BatchDeleteRumMetricDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteRumMetricDefinitionsOutput>
+    batchGetRumMetricDefinitions: function(Client, types.BatchGetRumMetricDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetRumMetricDefinitionsOutput>
+    createAppMonitor: function(Client, types.CreateAppMonitorInput, ? base_client.InvokeOptions): async.Operation<types.CreateAppMonitorOutput>
+    deleteAppMonitor: function(Client, types.DeleteAppMonitorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAppMonitorOutput>
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    deleteRumMetricsDestination: function(Client, types.DeleteRumMetricsDestinationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRumMetricsDestinationOutput>
+    getAppMonitor: function(Client, types.GetAppMonitorInput, ? base_client.InvokeOptions): async.Operation<types.GetAppMonitorOutput>
+    getAppMonitorData: function(Client, types.GetAppMonitorDataInput, ? base_client.InvokeOptions): async.Operation<types.GetAppMonitorDataOutput>
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    listAppMonitors: function(Client, types.ListAppMonitorsInput, ? base_client.InvokeOptions): async.Operation<types.ListAppMonitorsOutput>
+    listRumMetricsDestinations: function(Client, types.ListRumMetricsDestinationsInput, ? base_client.InvokeOptions): async.Operation<types.ListRumMetricsDestinationsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    putRumEvents: function(Client, types.PutRumEventsInput, ? base_client.InvokeOptions): async.Operation<types.PutRumEventsOutput>
+    putRumMetricsDestination: function(Client, types.PutRumMetricsDestinationInput, ? base_client.InvokeOptions): async.Operation<types.PutRumMetricsDestinationOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAppMonitor: function(Client, types.UpdateAppMonitorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAppMonitorOutput>
+    updateRumMetricDefinition: function(Client, types.UpdateRumMetricDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRumMetricDefinitionOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "RUM"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "rum", signing_region = c.region } }
                 else
@@ -79,84 +82,84 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchCreateRumMetricDefinitions(input: types.BatchCreateRumMetricDefinitionsInput, options: any): async.Operation<types.BatchCreateRumMetricDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchCreateRumMetricDefinitions, input, options) as async.Operation<types.BatchCreateRumMetricDefinitionsOutput>
+function C:batchCreateRumMetricDefinitions(input: types.BatchCreateRumMetricDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchCreateRumMetricDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchCreateRumMetricDefinitions as schema.OperationSchema, input, options) as async.Operation<types.BatchCreateRumMetricDefinitionsOutput>
 end
 
-function C:batchDeleteRumMetricDefinitions(input: types.BatchDeleteRumMetricDefinitionsInput, options: any): async.Operation<types.BatchDeleteRumMetricDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDeleteRumMetricDefinitions, input, options) as async.Operation<types.BatchDeleteRumMetricDefinitionsOutput>
+function C:batchDeleteRumMetricDefinitions(input: types.BatchDeleteRumMetricDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteRumMetricDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteRumMetricDefinitions as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteRumMetricDefinitionsOutput>
 end
 
-function C:batchGetRumMetricDefinitions(input: types.BatchGetRumMetricDefinitionsInput, options: any): async.Operation<types.BatchGetRumMetricDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetRumMetricDefinitions, input, options) as async.Operation<types.BatchGetRumMetricDefinitionsOutput>
+function C:batchGetRumMetricDefinitions(input: types.BatchGetRumMetricDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetRumMetricDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetRumMetricDefinitions as schema.OperationSchema, input, options) as async.Operation<types.BatchGetRumMetricDefinitionsOutput>
 end
 
-function C:createAppMonitor(input: types.CreateAppMonitorInput, options: any): async.Operation<types.CreateAppMonitorOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAppMonitor, input, options) as async.Operation<types.CreateAppMonitorOutput>
+function C:createAppMonitor(input: types.CreateAppMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAppMonitorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAppMonitor as schema.OperationSchema, input, options) as async.Operation<types.CreateAppMonitorOutput>
 end
 
-function C:deleteAppMonitor(input: types.DeleteAppMonitorInput, options: any): async.Operation<types.DeleteAppMonitorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAppMonitor, input, options) as async.Operation<types.DeleteAppMonitorOutput>
+function C:deleteAppMonitor(input: types.DeleteAppMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAppMonitorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAppMonitor as schema.OperationSchema, input, options) as async.Operation<types.DeleteAppMonitorOutput>
 end
 
-function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options: any): async.Operation<types.DeleteResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicy, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
+function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
 end
 
-function C:deleteRumMetricsDestination(input: types.DeleteRumMetricsDestinationInput, options: any): async.Operation<types.DeleteRumMetricsDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRumMetricsDestination, input, options) as async.Operation<types.DeleteRumMetricsDestinationOutput>
+function C:deleteRumMetricsDestination(input: types.DeleteRumMetricsDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRumMetricsDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRumMetricsDestination as schema.OperationSchema, input, options) as async.Operation<types.DeleteRumMetricsDestinationOutput>
 end
 
-function C:getAppMonitor(input: types.GetAppMonitorInput, options: any): async.Operation<types.GetAppMonitorOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAppMonitor, input, options) as async.Operation<types.GetAppMonitorOutput>
+function C:getAppMonitor(input: types.GetAppMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.GetAppMonitorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAppMonitor as schema.OperationSchema, input, options) as async.Operation<types.GetAppMonitorOutput>
 end
 
-function C:getAppMonitorData(input: types.GetAppMonitorDataInput, options: any): async.Operation<types.GetAppMonitorDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAppMonitorData, input, options) as async.Operation<types.GetAppMonitorDataOutput>
+function C:getAppMonitorData(input: types.GetAppMonitorDataInput, options?: base_client.InvokeOptions): async.Operation<types.GetAppMonitorDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAppMonitorData as schema.OperationSchema, input, options) as async.Operation<types.GetAppMonitorDataOutput>
 end
 
-function C:getResourcePolicy(input: types.GetResourcePolicyInput, options: any): async.Operation<types.GetResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicy, input, options) as async.Operation<types.GetResourcePolicyOutput>
+function C:getResourcePolicy(input: types.GetResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePolicyOutput>
 end
 
-function C:listAppMonitors(input: types.ListAppMonitorsInput, options: any): async.Operation<types.ListAppMonitorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAppMonitors, input, options) as async.Operation<types.ListAppMonitorsOutput>
+function C:listAppMonitors(input: types.ListAppMonitorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAppMonitorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAppMonitors as schema.OperationSchema, input, options) as async.Operation<types.ListAppMonitorsOutput>
 end
 
-function C:listRumMetricsDestinations(input: types.ListRumMetricsDestinationsInput, options: any): async.Operation<types.ListRumMetricsDestinationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRumMetricsDestinations, input, options) as async.Operation<types.ListRumMetricsDestinationsOutput>
+function C:listRumMetricsDestinations(input: types.ListRumMetricsDestinationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRumMetricsDestinationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRumMetricsDestinations as schema.OperationSchema, input, options) as async.Operation<types.ListRumMetricsDestinationsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putResourcePolicy(input: types.PutResourcePolicyInput, options: any): async.Operation<types.PutResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutResourcePolicy, input, options) as async.Operation<types.PutResourcePolicyOutput>
+function C:putResourcePolicy(input: types.PutResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutResourcePolicyOutput>
 end
 
-function C:putRumEvents(input: types.PutRumEventsInput, options: any): async.Operation<types.PutRumEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutRumEvents, input, options) as async.Operation<types.PutRumEventsOutput>
+function C:putRumEvents(input: types.PutRumEventsInput, options?: base_client.InvokeOptions): async.Operation<types.PutRumEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutRumEvents as schema.OperationSchema, input, options) as async.Operation<types.PutRumEventsOutput>
 end
 
-function C:putRumMetricsDestination(input: types.PutRumMetricsDestinationInput, options: any): async.Operation<types.PutRumMetricsDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutRumMetricsDestination, input, options) as async.Operation<types.PutRumMetricsDestinationOutput>
+function C:putRumMetricsDestination(input: types.PutRumMetricsDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.PutRumMetricsDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutRumMetricsDestination as schema.OperationSchema, input, options) as async.Operation<types.PutRumMetricsDestinationOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAppMonitor(input: types.UpdateAppMonitorInput, options: any): async.Operation<types.UpdateAppMonitorOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAppMonitor, input, options) as async.Operation<types.UpdateAppMonitorOutput>
+function C:updateAppMonitor(input: types.UpdateAppMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAppMonitorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAppMonitor as schema.OperationSchema, input, options) as async.Operation<types.UpdateAppMonitorOutput>
 end
 
-function C:updateRumMetricDefinition(input: types.UpdateRumMetricDefinitionInput, options: any): async.Operation<types.UpdateRumMetricDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRumMetricDefinition, input, options) as async.Operation<types.UpdateRumMetricDefinitionOutput>
+function C:updateRumMetricDefinition(input: types.UpdateRumMetricDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRumMetricDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRumMetricDefinition as schema.OperationSchema, input, options) as async.Operation<types.UpdateRumMetricDefinitionOutput>
 end
 
 return M

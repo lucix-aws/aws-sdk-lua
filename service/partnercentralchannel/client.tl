@@ -8,56 +8,59 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("partnercentralchannel.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("partnercentralchannel.schemas")
 local traits = require("smithy.traits")
 local types = require("partnercentralchannel.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    acceptChannelHandshake: function(Client, types.AcceptChannelHandshakeInput, any): async.Operation<types.AcceptChannelHandshakeOutput>
-    cancelChannelHandshake: function(Client, types.CancelChannelHandshakeInput, any): async.Operation<types.CancelChannelHandshakeOutput>
-    createChannelHandshake: function(Client, types.CreateChannelHandshakeInput, any): async.Operation<types.CreateChannelHandshakeOutput>
-    createProgramManagementAccount: function(Client, types.CreateProgramManagementAccountInput, any): async.Operation<types.CreateProgramManagementAccountOutput>
-    createRelationship: function(Client, types.CreateRelationshipInput, any): async.Operation<types.CreateRelationshipOutput>
-    deleteProgramManagementAccount: function(Client, types.DeleteProgramManagementAccountInput, any): async.Operation<types.DeleteProgramManagementAccountOutput>
-    deleteRelationship: function(Client, types.DeleteRelationshipInput, any): async.Operation<types.DeleteRelationshipOutput>
-    getRelationship: function(Client, types.GetRelationshipInput, any): async.Operation<types.GetRelationshipOutput>
-    listChannelHandshakes: function(Client, types.ListChannelHandshakesInput, any): async.Operation<types.ListChannelHandshakesOutput>
-    listProgramManagementAccounts: function(Client, types.ListProgramManagementAccountsInput, any): async.Operation<types.ListProgramManagementAccountsOutput>
-    listRelationships: function(Client, types.ListRelationshipsInput, any): async.Operation<types.ListRelationshipsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    rejectChannelHandshake: function(Client, types.RejectChannelHandshakeInput, any): async.Operation<types.RejectChannelHandshakeOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateProgramManagementAccount: function(Client, types.UpdateProgramManagementAccountInput, any): async.Operation<types.UpdateProgramManagementAccountOutput>
-    updateRelationship: function(Client, types.UpdateRelationshipInput, any): async.Operation<types.UpdateRelationshipOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    acceptChannelHandshake: function(Client, types.AcceptChannelHandshakeInput, ? base_client.InvokeOptions): async.Operation<types.AcceptChannelHandshakeOutput>
+    cancelChannelHandshake: function(Client, types.CancelChannelHandshakeInput, ? base_client.InvokeOptions): async.Operation<types.CancelChannelHandshakeOutput>
+    createChannelHandshake: function(Client, types.CreateChannelHandshakeInput, ? base_client.InvokeOptions): async.Operation<types.CreateChannelHandshakeOutput>
+    createProgramManagementAccount: function(Client, types.CreateProgramManagementAccountInput, ? base_client.InvokeOptions): async.Operation<types.CreateProgramManagementAccountOutput>
+    createRelationship: function(Client, types.CreateRelationshipInput, ? base_client.InvokeOptions): async.Operation<types.CreateRelationshipOutput>
+    deleteProgramManagementAccount: function(Client, types.DeleteProgramManagementAccountInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProgramManagementAccountOutput>
+    deleteRelationship: function(Client, types.DeleteRelationshipInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRelationshipOutput>
+    getRelationship: function(Client, types.GetRelationshipInput, ? base_client.InvokeOptions): async.Operation<types.GetRelationshipOutput>
+    listChannelHandshakes: function(Client, types.ListChannelHandshakesInput, ? base_client.InvokeOptions): async.Operation<types.ListChannelHandshakesOutput>
+    listProgramManagementAccounts: function(Client, types.ListProgramManagementAccountsInput, ? base_client.InvokeOptions): async.Operation<types.ListProgramManagementAccountsOutput>
+    listRelationships: function(Client, types.ListRelationshipsInput, ? base_client.InvokeOptions): async.Operation<types.ListRelationshipsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    rejectChannelHandshake: function(Client, types.RejectChannelHandshakeInput, ? base_client.InvokeOptions): async.Operation<types.RejectChannelHandshakeOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateProgramManagementAccount: function(Client, types.UpdateProgramManagementAccountInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProgramManagementAccountOutput>
+    updateRelationship: function(Client, types.UpdateRelationshipInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRelationshipOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "PartnerCentralChannel"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "partnercentral-channel", signing_region = c.region } }
                 else
@@ -76,72 +79,72 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:acceptChannelHandshake(input: types.AcceptChannelHandshakeInput, options: any): async.Operation<types.AcceptChannelHandshakeOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptChannelHandshake, input, options) as async.Operation<types.AcceptChannelHandshakeOutput>
+function C:acceptChannelHandshake(input: types.AcceptChannelHandshakeInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptChannelHandshakeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptChannelHandshake as schema.OperationSchema, input, options) as async.Operation<types.AcceptChannelHandshakeOutput>
 end
 
-function C:cancelChannelHandshake(input: types.CancelChannelHandshakeInput, options: any): async.Operation<types.CancelChannelHandshakeOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelChannelHandshake, input, options) as async.Operation<types.CancelChannelHandshakeOutput>
+function C:cancelChannelHandshake(input: types.CancelChannelHandshakeInput, options?: base_client.InvokeOptions): async.Operation<types.CancelChannelHandshakeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelChannelHandshake as schema.OperationSchema, input, options) as async.Operation<types.CancelChannelHandshakeOutput>
 end
 
-function C:createChannelHandshake(input: types.CreateChannelHandshakeInput, options: any): async.Operation<types.CreateChannelHandshakeOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateChannelHandshake, input, options) as async.Operation<types.CreateChannelHandshakeOutput>
+function C:createChannelHandshake(input: types.CreateChannelHandshakeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateChannelHandshakeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateChannelHandshake as schema.OperationSchema, input, options) as async.Operation<types.CreateChannelHandshakeOutput>
 end
 
-function C:createProgramManagementAccount(input: types.CreateProgramManagementAccountInput, options: any): async.Operation<types.CreateProgramManagementAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProgramManagementAccount, input, options) as async.Operation<types.CreateProgramManagementAccountOutput>
+function C:createProgramManagementAccount(input: types.CreateProgramManagementAccountInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProgramManagementAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProgramManagementAccount as schema.OperationSchema, input, options) as async.Operation<types.CreateProgramManagementAccountOutput>
 end
 
-function C:createRelationship(input: types.CreateRelationshipInput, options: any): async.Operation<types.CreateRelationshipOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRelationship, input, options) as async.Operation<types.CreateRelationshipOutput>
+function C:createRelationship(input: types.CreateRelationshipInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRelationshipOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRelationship as schema.OperationSchema, input, options) as async.Operation<types.CreateRelationshipOutput>
 end
 
-function C:deleteProgramManagementAccount(input: types.DeleteProgramManagementAccountInput, options: any): async.Operation<types.DeleteProgramManagementAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProgramManagementAccount, input, options) as async.Operation<types.DeleteProgramManagementAccountOutput>
+function C:deleteProgramManagementAccount(input: types.DeleteProgramManagementAccountInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProgramManagementAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProgramManagementAccount as schema.OperationSchema, input, options) as async.Operation<types.DeleteProgramManagementAccountOutput>
 end
 
-function C:deleteRelationship(input: types.DeleteRelationshipInput, options: any): async.Operation<types.DeleteRelationshipOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRelationship, input, options) as async.Operation<types.DeleteRelationshipOutput>
+function C:deleteRelationship(input: types.DeleteRelationshipInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRelationshipOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRelationship as schema.OperationSchema, input, options) as async.Operation<types.DeleteRelationshipOutput>
 end
 
-function C:getRelationship(input: types.GetRelationshipInput, options: any): async.Operation<types.GetRelationshipOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRelationship, input, options) as async.Operation<types.GetRelationshipOutput>
+function C:getRelationship(input: types.GetRelationshipInput, options?: base_client.InvokeOptions): async.Operation<types.GetRelationshipOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRelationship as schema.OperationSchema, input, options) as async.Operation<types.GetRelationshipOutput>
 end
 
-function C:listChannelHandshakes(input: types.ListChannelHandshakesInput, options: any): async.Operation<types.ListChannelHandshakesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListChannelHandshakes, input, options) as async.Operation<types.ListChannelHandshakesOutput>
+function C:listChannelHandshakes(input: types.ListChannelHandshakesInput, options?: base_client.InvokeOptions): async.Operation<types.ListChannelHandshakesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListChannelHandshakes as schema.OperationSchema, input, options) as async.Operation<types.ListChannelHandshakesOutput>
 end
 
-function C:listProgramManagementAccounts(input: types.ListProgramManagementAccountsInput, options: any): async.Operation<types.ListProgramManagementAccountsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProgramManagementAccounts, input, options) as async.Operation<types.ListProgramManagementAccountsOutput>
+function C:listProgramManagementAccounts(input: types.ListProgramManagementAccountsInput, options?: base_client.InvokeOptions): async.Operation<types.ListProgramManagementAccountsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProgramManagementAccounts as schema.OperationSchema, input, options) as async.Operation<types.ListProgramManagementAccountsOutput>
 end
 
-function C:listRelationships(input: types.ListRelationshipsInput, options: any): async.Operation<types.ListRelationshipsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRelationships, input, options) as async.Operation<types.ListRelationshipsOutput>
+function C:listRelationships(input: types.ListRelationshipsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRelationshipsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRelationships as schema.OperationSchema, input, options) as async.Operation<types.ListRelationshipsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:rejectChannelHandshake(input: types.RejectChannelHandshakeInput, options: any): async.Operation<types.RejectChannelHandshakeOutput>
-    return self:invokeOperation(schemas.Service, schemas.RejectChannelHandshake, input, options) as async.Operation<types.RejectChannelHandshakeOutput>
+function C:rejectChannelHandshake(input: types.RejectChannelHandshakeInput, options?: base_client.InvokeOptions): async.Operation<types.RejectChannelHandshakeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RejectChannelHandshake as schema.OperationSchema, input, options) as async.Operation<types.RejectChannelHandshakeOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateProgramManagementAccount(input: types.UpdateProgramManagementAccountInput, options: any): async.Operation<types.UpdateProgramManagementAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProgramManagementAccount, input, options) as async.Operation<types.UpdateProgramManagementAccountOutput>
+function C:updateProgramManagementAccount(input: types.UpdateProgramManagementAccountInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProgramManagementAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProgramManagementAccount as schema.OperationSchema, input, options) as async.Operation<types.UpdateProgramManagementAccountOutput>
 end
 
-function C:updateRelationship(input: types.UpdateRelationshipInput, options: any): async.Operation<types.UpdateRelationshipOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRelationship, input, options) as async.Operation<types.UpdateRelationshipOutput>
+function C:updateRelationship(input: types.UpdateRelationshipInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRelationshipOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRelationship as schema.OperationSchema, input, options) as async.Operation<types.UpdateRelationshipOutput>
 end
 
 return M

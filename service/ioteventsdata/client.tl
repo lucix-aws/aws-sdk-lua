@@ -8,51 +8,54 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("ioteventsdata.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("ioteventsdata.schemas")
 local traits = require("smithy.traits")
 local types = require("ioteventsdata.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchAcknowledgeAlarm: function(Client, types.BatchAcknowledgeAlarmInput, any): async.Operation<types.BatchAcknowledgeAlarmOutput>
-    batchDeleteDetector: function(Client, types.BatchDeleteDetectorInput, any): async.Operation<types.BatchDeleteDetectorOutput>
-    batchDisableAlarm: function(Client, types.BatchDisableAlarmInput, any): async.Operation<types.BatchDisableAlarmOutput>
-    batchEnableAlarm: function(Client, types.BatchEnableAlarmInput, any): async.Operation<types.BatchEnableAlarmOutput>
-    batchPutMessage: function(Client, types.BatchPutMessageInput, any): async.Operation<types.BatchPutMessageOutput>
-    batchResetAlarm: function(Client, types.BatchResetAlarmInput, any): async.Operation<types.BatchResetAlarmOutput>
-    batchSnoozeAlarm: function(Client, types.BatchSnoozeAlarmInput, any): async.Operation<types.BatchSnoozeAlarmOutput>
-    batchUpdateDetector: function(Client, types.BatchUpdateDetectorInput, any): async.Operation<types.BatchUpdateDetectorOutput>
-    describeAlarm: function(Client, types.DescribeAlarmInput, any): async.Operation<types.DescribeAlarmOutput>
-    describeDetector: function(Client, types.DescribeDetectorInput, any): async.Operation<types.DescribeDetectorOutput>
-    listAlarms: function(Client, types.ListAlarmsInput, any): async.Operation<types.ListAlarmsOutput>
-    listDetectors: function(Client, types.ListDetectorsInput, any): async.Operation<types.ListDetectorsOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchAcknowledgeAlarm: function(Client, types.BatchAcknowledgeAlarmInput, ? base_client.InvokeOptions): async.Operation<types.BatchAcknowledgeAlarmOutput>
+    batchDeleteDetector: function(Client, types.BatchDeleteDetectorInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteDetectorOutput>
+    batchDisableAlarm: function(Client, types.BatchDisableAlarmInput, ? base_client.InvokeOptions): async.Operation<types.BatchDisableAlarmOutput>
+    batchEnableAlarm: function(Client, types.BatchEnableAlarmInput, ? base_client.InvokeOptions): async.Operation<types.BatchEnableAlarmOutput>
+    batchPutMessage: function(Client, types.BatchPutMessageInput, ? base_client.InvokeOptions): async.Operation<types.BatchPutMessageOutput>
+    batchResetAlarm: function(Client, types.BatchResetAlarmInput, ? base_client.InvokeOptions): async.Operation<types.BatchResetAlarmOutput>
+    batchSnoozeAlarm: function(Client, types.BatchSnoozeAlarmInput, ? base_client.InvokeOptions): async.Operation<types.BatchSnoozeAlarmOutput>
+    batchUpdateDetector: function(Client, types.BatchUpdateDetectorInput, ? base_client.InvokeOptions): async.Operation<types.BatchUpdateDetectorOutput>
+    describeAlarm: function(Client, types.DescribeAlarmInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAlarmOutput>
+    describeDetector: function(Client, types.DescribeDetectorInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDetectorOutput>
+    listAlarms: function(Client, types.ListAlarmsInput, ? base_client.InvokeOptions): async.Operation<types.ListAlarmsOutput>
+    listDetectors: function(Client, types.ListDetectorsInput, ? base_client.InvokeOptions): async.Operation<types.ListDetectorsOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "IotColumboDataService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ioteventsdata", signing_region = c.region } }
                 else
@@ -71,52 +74,52 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchAcknowledgeAlarm(input: types.BatchAcknowledgeAlarmInput, options: any): async.Operation<types.BatchAcknowledgeAlarmOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchAcknowledgeAlarm, input, options) as async.Operation<types.BatchAcknowledgeAlarmOutput>
+function C:batchAcknowledgeAlarm(input: types.BatchAcknowledgeAlarmInput, options?: base_client.InvokeOptions): async.Operation<types.BatchAcknowledgeAlarmOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchAcknowledgeAlarm as schema.OperationSchema, input, options) as async.Operation<types.BatchAcknowledgeAlarmOutput>
 end
 
-function C:batchDeleteDetector(input: types.BatchDeleteDetectorInput, options: any): async.Operation<types.BatchDeleteDetectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDeleteDetector, input, options) as async.Operation<types.BatchDeleteDetectorOutput>
+function C:batchDeleteDetector(input: types.BatchDeleteDetectorInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteDetectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteDetector as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteDetectorOutput>
 end
 
-function C:batchDisableAlarm(input: types.BatchDisableAlarmInput, options: any): async.Operation<types.BatchDisableAlarmOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDisableAlarm, input, options) as async.Operation<types.BatchDisableAlarmOutput>
+function C:batchDisableAlarm(input: types.BatchDisableAlarmInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDisableAlarmOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDisableAlarm as schema.OperationSchema, input, options) as async.Operation<types.BatchDisableAlarmOutput>
 end
 
-function C:batchEnableAlarm(input: types.BatchEnableAlarmInput, options: any): async.Operation<types.BatchEnableAlarmOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchEnableAlarm, input, options) as async.Operation<types.BatchEnableAlarmOutput>
+function C:batchEnableAlarm(input: types.BatchEnableAlarmInput, options?: base_client.InvokeOptions): async.Operation<types.BatchEnableAlarmOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchEnableAlarm as schema.OperationSchema, input, options) as async.Operation<types.BatchEnableAlarmOutput>
 end
 
-function C:batchPutMessage(input: types.BatchPutMessageInput, options: any): async.Operation<types.BatchPutMessageOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchPutMessage, input, options) as async.Operation<types.BatchPutMessageOutput>
+function C:batchPutMessage(input: types.BatchPutMessageInput, options?: base_client.InvokeOptions): async.Operation<types.BatchPutMessageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchPutMessage as schema.OperationSchema, input, options) as async.Operation<types.BatchPutMessageOutput>
 end
 
-function C:batchResetAlarm(input: types.BatchResetAlarmInput, options: any): async.Operation<types.BatchResetAlarmOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchResetAlarm, input, options) as async.Operation<types.BatchResetAlarmOutput>
+function C:batchResetAlarm(input: types.BatchResetAlarmInput, options?: base_client.InvokeOptions): async.Operation<types.BatchResetAlarmOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchResetAlarm as schema.OperationSchema, input, options) as async.Operation<types.BatchResetAlarmOutput>
 end
 
-function C:batchSnoozeAlarm(input: types.BatchSnoozeAlarmInput, options: any): async.Operation<types.BatchSnoozeAlarmOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchSnoozeAlarm, input, options) as async.Operation<types.BatchSnoozeAlarmOutput>
+function C:batchSnoozeAlarm(input: types.BatchSnoozeAlarmInput, options?: base_client.InvokeOptions): async.Operation<types.BatchSnoozeAlarmOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchSnoozeAlarm as schema.OperationSchema, input, options) as async.Operation<types.BatchSnoozeAlarmOutput>
 end
 
-function C:batchUpdateDetector(input: types.BatchUpdateDetectorInput, options: any): async.Operation<types.BatchUpdateDetectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchUpdateDetector, input, options) as async.Operation<types.BatchUpdateDetectorOutput>
+function C:batchUpdateDetector(input: types.BatchUpdateDetectorInput, options?: base_client.InvokeOptions): async.Operation<types.BatchUpdateDetectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchUpdateDetector as schema.OperationSchema, input, options) as async.Operation<types.BatchUpdateDetectorOutput>
 end
 
-function C:describeAlarm(input: types.DescribeAlarmInput, options: any): async.Operation<types.DescribeAlarmOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAlarm, input, options) as async.Operation<types.DescribeAlarmOutput>
+function C:describeAlarm(input: types.DescribeAlarmInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAlarmOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAlarm as schema.OperationSchema, input, options) as async.Operation<types.DescribeAlarmOutput>
 end
 
-function C:describeDetector(input: types.DescribeDetectorInput, options: any): async.Operation<types.DescribeDetectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDetector, input, options) as async.Operation<types.DescribeDetectorOutput>
+function C:describeDetector(input: types.DescribeDetectorInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDetectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDetector as schema.OperationSchema, input, options) as async.Operation<types.DescribeDetectorOutput>
 end
 
-function C:listAlarms(input: types.ListAlarmsInput, options: any): async.Operation<types.ListAlarmsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAlarms, input, options) as async.Operation<types.ListAlarmsOutput>
+function C:listAlarms(input: types.ListAlarmsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAlarmsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAlarms as schema.OperationSchema, input, options) as async.Operation<types.ListAlarmsOutput>
 end
 
-function C:listDetectors(input: types.ListDetectorsInput, options: any): async.Operation<types.ListDetectorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDetectors, input, options) as async.Operation<types.ListDetectorsOutput>
+function C:listDetectors(input: types.ListDetectorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDetectorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDetectors as schema.OperationSchema, input, options) as async.Operation<types.ListDetectorsOutput>
 end
 
 return M

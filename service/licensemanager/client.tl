@@ -8,101 +8,104 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("licensemanager.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("licensemanager.schemas")
 local traits = require("smithy.traits")
 local types = require("licensemanager.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    acceptGrant: function(Client, types.AcceptGrantInput, any): async.Operation<types.AcceptGrantOutput>
-    checkInLicense: function(Client, types.CheckInLicenseInput, any): async.Operation<types.CheckInLicenseOutput>
-    checkoutBorrowLicense: function(Client, types.CheckoutBorrowLicenseInput, any): async.Operation<types.CheckoutBorrowLicenseOutput>
-    checkoutLicense: function(Client, types.CheckoutLicenseInput, any): async.Operation<types.CheckoutLicenseOutput>
-    createGrant: function(Client, types.CreateGrantInput, any): async.Operation<types.CreateGrantOutput>
-    createGrantVersion: function(Client, types.CreateGrantVersionInput, any): async.Operation<types.CreateGrantVersionOutput>
-    createLicense: function(Client, types.CreateLicenseInput, any): async.Operation<types.CreateLicenseOutput>
-    createLicenseAssetGroup: function(Client, types.CreateLicenseAssetGroupInput, any): async.Operation<types.CreateLicenseAssetGroupOutput>
-    createLicenseAssetRuleset: function(Client, types.CreateLicenseAssetRulesetInput, any): async.Operation<types.CreateLicenseAssetRulesetOutput>
-    createLicenseConfiguration: function(Client, types.CreateLicenseConfigurationInput, any): async.Operation<types.CreateLicenseConfigurationOutput>
-    createLicenseConversionTaskForResource: function(Client, types.CreateLicenseConversionTaskForResourceInput, any): async.Operation<types.CreateLicenseConversionTaskForResourceOutput>
-    createLicenseManagerReportGenerator: function(Client, types.CreateLicenseManagerReportGeneratorInput, any): async.Operation<types.CreateLicenseManagerReportGeneratorOutput>
-    createLicenseVersion: function(Client, types.CreateLicenseVersionInput, any): async.Operation<types.CreateLicenseVersionOutput>
-    createToken: function(Client, types.CreateTokenInput, any): async.Operation<types.CreateTokenOutput>
-    deleteGrant: function(Client, types.DeleteGrantInput, any): async.Operation<types.DeleteGrantOutput>
-    deleteLicense: function(Client, types.DeleteLicenseInput, any): async.Operation<types.DeleteLicenseOutput>
-    deleteLicenseAssetGroup: function(Client, types.DeleteLicenseAssetGroupInput, any): async.Operation<types.DeleteLicenseAssetGroupOutput>
-    deleteLicenseAssetRuleset: function(Client, types.DeleteLicenseAssetRulesetInput, any): async.Operation<types.DeleteLicenseAssetRulesetOutput>
-    deleteLicenseConfiguration: function(Client, types.DeleteLicenseConfigurationInput, any): async.Operation<types.DeleteLicenseConfigurationOutput>
-    deleteLicenseManagerReportGenerator: function(Client, types.DeleteLicenseManagerReportGeneratorInput, any): async.Operation<types.DeleteLicenseManagerReportGeneratorOutput>
-    deleteToken: function(Client, types.DeleteTokenInput, any): async.Operation<types.DeleteTokenOutput>
-    extendLicenseConsumption: function(Client, types.ExtendLicenseConsumptionInput, any): async.Operation<types.ExtendLicenseConsumptionOutput>
-    getAccessToken: function(Client, types.GetAccessTokenInput, any): async.Operation<types.GetAccessTokenOutput>
-    getGrant: function(Client, types.GetGrantInput, any): async.Operation<types.GetGrantOutput>
-    getLicense: function(Client, types.GetLicenseInput, any): async.Operation<types.GetLicenseOutput>
-    getLicenseAssetGroup: function(Client, types.GetLicenseAssetGroupInput, any): async.Operation<types.GetLicenseAssetGroupOutput>
-    getLicenseAssetRuleset: function(Client, types.GetLicenseAssetRulesetInput, any): async.Operation<types.GetLicenseAssetRulesetOutput>
-    getLicenseConfiguration: function(Client, types.GetLicenseConfigurationInput, any): async.Operation<types.GetLicenseConfigurationOutput>
-    getLicenseConversionTask: function(Client, types.GetLicenseConversionTaskInput, any): async.Operation<types.GetLicenseConversionTaskOutput>
-    getLicenseManagerReportGenerator: function(Client, types.GetLicenseManagerReportGeneratorInput, any): async.Operation<types.GetLicenseManagerReportGeneratorOutput>
-    getLicenseUsage: function(Client, types.GetLicenseUsageInput, any): async.Operation<types.GetLicenseUsageOutput>
-    getServiceSettings: function(Client, types.GetServiceSettingsInput, any): async.Operation<types.GetServiceSettingsOutput>
-    listAssetsForLicenseAssetGroup: function(Client, types.ListAssetsForLicenseAssetGroupInput, any): async.Operation<types.ListAssetsForLicenseAssetGroupOutput>
-    listAssociationsForLicenseConfiguration: function(Client, types.ListAssociationsForLicenseConfigurationInput, any): async.Operation<types.ListAssociationsForLicenseConfigurationOutput>
-    listDistributedGrants: function(Client, types.ListDistributedGrantsInput, any): async.Operation<types.ListDistributedGrantsOutput>
-    listFailuresForLicenseConfigurationOperations: function(Client, types.ListFailuresForLicenseConfigurationOperationsInput, any): async.Operation<types.ListFailuresForLicenseConfigurationOperationsOutput>
-    listLicenseAssetGroups: function(Client, types.ListLicenseAssetGroupsInput, any): async.Operation<types.ListLicenseAssetGroupsOutput>
-    listLicenseAssetRulesets: function(Client, types.ListLicenseAssetRulesetsInput, any): async.Operation<types.ListLicenseAssetRulesetsOutput>
-    listLicenseConfigurations: function(Client, types.ListLicenseConfigurationsInput, any): async.Operation<types.ListLicenseConfigurationsOutput>
-    listLicenseConfigurationsForOrganization: function(Client, types.ListLicenseConfigurationsForOrganizationInput, any): async.Operation<types.ListLicenseConfigurationsForOrganizationOutput>
-    listLicenseConversionTasks: function(Client, types.ListLicenseConversionTasksInput, any): async.Operation<types.ListLicenseConversionTasksOutput>
-    listLicenseManagerReportGenerators: function(Client, types.ListLicenseManagerReportGeneratorsInput, any): async.Operation<types.ListLicenseManagerReportGeneratorsOutput>
-    listLicenses: function(Client, types.ListLicensesInput, any): async.Operation<types.ListLicensesOutput>
-    listLicenseSpecificationsForResource: function(Client, types.ListLicenseSpecificationsForResourceInput, any): async.Operation<types.ListLicenseSpecificationsForResourceOutput>
-    listLicenseVersions: function(Client, types.ListLicenseVersionsInput, any): async.Operation<types.ListLicenseVersionsOutput>
-    listReceivedGrants: function(Client, types.ListReceivedGrantsInput, any): async.Operation<types.ListReceivedGrantsOutput>
-    listReceivedGrantsForOrganization: function(Client, types.ListReceivedGrantsForOrganizationInput, any): async.Operation<types.ListReceivedGrantsForOrganizationOutput>
-    listReceivedLicenses: function(Client, types.ListReceivedLicensesInput, any): async.Operation<types.ListReceivedLicensesOutput>
-    listReceivedLicensesForOrganization: function(Client, types.ListReceivedLicensesForOrganizationInput, any): async.Operation<types.ListReceivedLicensesForOrganizationOutput>
-    listResourceInventory: function(Client, types.ListResourceInventoryInput, any): async.Operation<types.ListResourceInventoryOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTokens: function(Client, types.ListTokensInput, any): async.Operation<types.ListTokensOutput>
-    listUsageForLicenseConfiguration: function(Client, types.ListUsageForLicenseConfigurationInput, any): async.Operation<types.ListUsageForLicenseConfigurationOutput>
-    rejectGrant: function(Client, types.RejectGrantInput, any): async.Operation<types.RejectGrantOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateLicenseAssetGroup: function(Client, types.UpdateLicenseAssetGroupInput, any): async.Operation<types.UpdateLicenseAssetGroupOutput>
-    updateLicenseAssetRuleset: function(Client, types.UpdateLicenseAssetRulesetInput, any): async.Operation<types.UpdateLicenseAssetRulesetOutput>
-    updateLicenseConfiguration: function(Client, types.UpdateLicenseConfigurationInput, any): async.Operation<types.UpdateLicenseConfigurationOutput>
-    updateLicenseManagerReportGenerator: function(Client, types.UpdateLicenseManagerReportGeneratorInput, any): async.Operation<types.UpdateLicenseManagerReportGeneratorOutput>
-    updateLicenseSpecificationsForResource: function(Client, types.UpdateLicenseSpecificationsForResourceInput, any): async.Operation<types.UpdateLicenseSpecificationsForResourceOutput>
-    updateServiceSettings: function(Client, types.UpdateServiceSettingsInput, any): async.Operation<types.UpdateServiceSettingsOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    acceptGrant: function(Client, types.AcceptGrantInput, ? base_client.InvokeOptions): async.Operation<types.AcceptGrantOutput>
+    checkInLicense: function(Client, types.CheckInLicenseInput, ? base_client.InvokeOptions): async.Operation<types.CheckInLicenseOutput>
+    checkoutBorrowLicense: function(Client, types.CheckoutBorrowLicenseInput, ? base_client.InvokeOptions): async.Operation<types.CheckoutBorrowLicenseOutput>
+    checkoutLicense: function(Client, types.CheckoutLicenseInput, ? base_client.InvokeOptions): async.Operation<types.CheckoutLicenseOutput>
+    createGrant: function(Client, types.CreateGrantInput, ? base_client.InvokeOptions): async.Operation<types.CreateGrantOutput>
+    createGrantVersion: function(Client, types.CreateGrantVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateGrantVersionOutput>
+    createLicense: function(Client, types.CreateLicenseInput, ? base_client.InvokeOptions): async.Operation<types.CreateLicenseOutput>
+    createLicenseAssetGroup: function(Client, types.CreateLicenseAssetGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateLicenseAssetGroupOutput>
+    createLicenseAssetRuleset: function(Client, types.CreateLicenseAssetRulesetInput, ? base_client.InvokeOptions): async.Operation<types.CreateLicenseAssetRulesetOutput>
+    createLicenseConfiguration: function(Client, types.CreateLicenseConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateLicenseConfigurationOutput>
+    createLicenseConversionTaskForResource: function(Client, types.CreateLicenseConversionTaskForResourceInput, ? base_client.InvokeOptions): async.Operation<types.CreateLicenseConversionTaskForResourceOutput>
+    createLicenseManagerReportGenerator: function(Client, types.CreateLicenseManagerReportGeneratorInput, ? base_client.InvokeOptions): async.Operation<types.CreateLicenseManagerReportGeneratorOutput>
+    createLicenseVersion: function(Client, types.CreateLicenseVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateLicenseVersionOutput>
+    createToken: function(Client, types.CreateTokenInput, ? base_client.InvokeOptions): async.Operation<types.CreateTokenOutput>
+    deleteGrant: function(Client, types.DeleteGrantInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGrantOutput>
+    deleteLicense: function(Client, types.DeleteLicenseInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLicenseOutput>
+    deleteLicenseAssetGroup: function(Client, types.DeleteLicenseAssetGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLicenseAssetGroupOutput>
+    deleteLicenseAssetRuleset: function(Client, types.DeleteLicenseAssetRulesetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLicenseAssetRulesetOutput>
+    deleteLicenseConfiguration: function(Client, types.DeleteLicenseConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLicenseConfigurationOutput>
+    deleteLicenseManagerReportGenerator: function(Client, types.DeleteLicenseManagerReportGeneratorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLicenseManagerReportGeneratorOutput>
+    deleteToken: function(Client, types.DeleteTokenInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTokenOutput>
+    extendLicenseConsumption: function(Client, types.ExtendLicenseConsumptionInput, ? base_client.InvokeOptions): async.Operation<types.ExtendLicenseConsumptionOutput>
+    getAccessToken: function(Client, types.GetAccessTokenInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessTokenOutput>
+    getGrant: function(Client, types.GetGrantInput, ? base_client.InvokeOptions): async.Operation<types.GetGrantOutput>
+    getLicense: function(Client, types.GetLicenseInput, ? base_client.InvokeOptions): async.Operation<types.GetLicenseOutput>
+    getLicenseAssetGroup: function(Client, types.GetLicenseAssetGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetLicenseAssetGroupOutput>
+    getLicenseAssetRuleset: function(Client, types.GetLicenseAssetRulesetInput, ? base_client.InvokeOptions): async.Operation<types.GetLicenseAssetRulesetOutput>
+    getLicenseConfiguration: function(Client, types.GetLicenseConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetLicenseConfigurationOutput>
+    getLicenseConversionTask: function(Client, types.GetLicenseConversionTaskInput, ? base_client.InvokeOptions): async.Operation<types.GetLicenseConversionTaskOutput>
+    getLicenseManagerReportGenerator: function(Client, types.GetLicenseManagerReportGeneratorInput, ? base_client.InvokeOptions): async.Operation<types.GetLicenseManagerReportGeneratorOutput>
+    getLicenseUsage: function(Client, types.GetLicenseUsageInput, ? base_client.InvokeOptions): async.Operation<types.GetLicenseUsageOutput>
+    getServiceSettings: function(Client, types.GetServiceSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceSettingsOutput>
+    listAssetsForLicenseAssetGroup: function(Client, types.ListAssetsForLicenseAssetGroupInput, ? base_client.InvokeOptions): async.Operation<types.ListAssetsForLicenseAssetGroupOutput>
+    listAssociationsForLicenseConfiguration: function(Client, types.ListAssociationsForLicenseConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.ListAssociationsForLicenseConfigurationOutput>
+    listDistributedGrants: function(Client, types.ListDistributedGrantsInput, ? base_client.InvokeOptions): async.Operation<types.ListDistributedGrantsOutput>
+    listFailuresForLicenseConfigurationOperations: function(Client, types.ListFailuresForLicenseConfigurationOperationsInput, ? base_client.InvokeOptions): async.Operation<types.ListFailuresForLicenseConfigurationOperationsOutput>
+    listLicenseAssetGroups: function(Client, types.ListLicenseAssetGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListLicenseAssetGroupsOutput>
+    listLicenseAssetRulesets: function(Client, types.ListLicenseAssetRulesetsInput, ? base_client.InvokeOptions): async.Operation<types.ListLicenseAssetRulesetsOutput>
+    listLicenseConfigurations: function(Client, types.ListLicenseConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListLicenseConfigurationsOutput>
+    listLicenseConfigurationsForOrganization: function(Client, types.ListLicenseConfigurationsForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.ListLicenseConfigurationsForOrganizationOutput>
+    listLicenseConversionTasks: function(Client, types.ListLicenseConversionTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListLicenseConversionTasksOutput>
+    listLicenseManagerReportGenerators: function(Client, types.ListLicenseManagerReportGeneratorsInput, ? base_client.InvokeOptions): async.Operation<types.ListLicenseManagerReportGeneratorsOutput>
+    listLicenses: function(Client, types.ListLicensesInput, ? base_client.InvokeOptions): async.Operation<types.ListLicensesOutput>
+    listLicenseSpecificationsForResource: function(Client, types.ListLicenseSpecificationsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListLicenseSpecificationsForResourceOutput>
+    listLicenseVersions: function(Client, types.ListLicenseVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListLicenseVersionsOutput>
+    listReceivedGrants: function(Client, types.ListReceivedGrantsInput, ? base_client.InvokeOptions): async.Operation<types.ListReceivedGrantsOutput>
+    listReceivedGrantsForOrganization: function(Client, types.ListReceivedGrantsForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.ListReceivedGrantsForOrganizationOutput>
+    listReceivedLicenses: function(Client, types.ListReceivedLicensesInput, ? base_client.InvokeOptions): async.Operation<types.ListReceivedLicensesOutput>
+    listReceivedLicensesForOrganization: function(Client, types.ListReceivedLicensesForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.ListReceivedLicensesForOrganizationOutput>
+    listResourceInventory: function(Client, types.ListResourceInventoryInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceInventoryOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTokens: function(Client, types.ListTokensInput, ? base_client.InvokeOptions): async.Operation<types.ListTokensOutput>
+    listUsageForLicenseConfiguration: function(Client, types.ListUsageForLicenseConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.ListUsageForLicenseConfigurationOutput>
+    rejectGrant: function(Client, types.RejectGrantInput, ? base_client.InvokeOptions): async.Operation<types.RejectGrantOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateLicenseAssetGroup: function(Client, types.UpdateLicenseAssetGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLicenseAssetGroupOutput>
+    updateLicenseAssetRuleset: function(Client, types.UpdateLicenseAssetRulesetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLicenseAssetRulesetOutput>
+    updateLicenseConfiguration: function(Client, types.UpdateLicenseConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLicenseConfigurationOutput>
+    updateLicenseManagerReportGenerator: function(Client, types.UpdateLicenseManagerReportGeneratorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLicenseManagerReportGeneratorOutput>
+    updateLicenseSpecificationsForResource: function(Client, types.UpdateLicenseSpecificationsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLicenseSpecificationsForResourceOutput>
+    updateServiceSettings: function(Client, types.UpdateServiceSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServiceSettingsOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSLicenseManager"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "license-manager", signing_region = c.region } }
                 else
@@ -121,252 +124,252 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:acceptGrant(input: types.AcceptGrantInput, options: any): async.Operation<types.AcceptGrantOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptGrant, input, options) as async.Operation<types.AcceptGrantOutput>
+function C:acceptGrant(input: types.AcceptGrantInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptGrantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptGrant as schema.OperationSchema, input, options) as async.Operation<types.AcceptGrantOutput>
 end
 
-function C:checkInLicense(input: types.CheckInLicenseInput, options: any): async.Operation<types.CheckInLicenseOutput>
-    return self:invokeOperation(schemas.Service, schemas.CheckInLicense, input, options) as async.Operation<types.CheckInLicenseOutput>
+function C:checkInLicense(input: types.CheckInLicenseInput, options?: base_client.InvokeOptions): async.Operation<types.CheckInLicenseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CheckInLicense as schema.OperationSchema, input, options) as async.Operation<types.CheckInLicenseOutput>
 end
 
-function C:checkoutBorrowLicense(input: types.CheckoutBorrowLicenseInput, options: any): async.Operation<types.CheckoutBorrowLicenseOutput>
-    return self:invokeOperation(schemas.Service, schemas.CheckoutBorrowLicense, input, options) as async.Operation<types.CheckoutBorrowLicenseOutput>
+function C:checkoutBorrowLicense(input: types.CheckoutBorrowLicenseInput, options?: base_client.InvokeOptions): async.Operation<types.CheckoutBorrowLicenseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CheckoutBorrowLicense as schema.OperationSchema, input, options) as async.Operation<types.CheckoutBorrowLicenseOutput>
 end
 
-function C:checkoutLicense(input: types.CheckoutLicenseInput, options: any): async.Operation<types.CheckoutLicenseOutput>
-    return self:invokeOperation(schemas.Service, schemas.CheckoutLicense, input, options) as async.Operation<types.CheckoutLicenseOutput>
+function C:checkoutLicense(input: types.CheckoutLicenseInput, options?: base_client.InvokeOptions): async.Operation<types.CheckoutLicenseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CheckoutLicense as schema.OperationSchema, input, options) as async.Operation<types.CheckoutLicenseOutput>
 end
 
-function C:createGrant(input: types.CreateGrantInput, options: any): async.Operation<types.CreateGrantOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateGrant, input, options) as async.Operation<types.CreateGrantOutput>
+function C:createGrant(input: types.CreateGrantInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGrantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGrant as schema.OperationSchema, input, options) as async.Operation<types.CreateGrantOutput>
 end
 
-function C:createGrantVersion(input: types.CreateGrantVersionInput, options: any): async.Operation<types.CreateGrantVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateGrantVersion, input, options) as async.Operation<types.CreateGrantVersionOutput>
+function C:createGrantVersion(input: types.CreateGrantVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGrantVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGrantVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateGrantVersionOutput>
 end
 
-function C:createLicense(input: types.CreateLicenseInput, options: any): async.Operation<types.CreateLicenseOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLicense, input, options) as async.Operation<types.CreateLicenseOutput>
+function C:createLicense(input: types.CreateLicenseInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLicenseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLicense as schema.OperationSchema, input, options) as async.Operation<types.CreateLicenseOutput>
 end
 
-function C:createLicenseAssetGroup(input: types.CreateLicenseAssetGroupInput, options: any): async.Operation<types.CreateLicenseAssetGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLicenseAssetGroup, input, options) as async.Operation<types.CreateLicenseAssetGroupOutput>
+function C:createLicenseAssetGroup(input: types.CreateLicenseAssetGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLicenseAssetGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLicenseAssetGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateLicenseAssetGroupOutput>
 end
 
-function C:createLicenseAssetRuleset(input: types.CreateLicenseAssetRulesetInput, options: any): async.Operation<types.CreateLicenseAssetRulesetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLicenseAssetRuleset, input, options) as async.Operation<types.CreateLicenseAssetRulesetOutput>
+function C:createLicenseAssetRuleset(input: types.CreateLicenseAssetRulesetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLicenseAssetRulesetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLicenseAssetRuleset as schema.OperationSchema, input, options) as async.Operation<types.CreateLicenseAssetRulesetOutput>
 end
 
-function C:createLicenseConfiguration(input: types.CreateLicenseConfigurationInput, options: any): async.Operation<types.CreateLicenseConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLicenseConfiguration, input, options) as async.Operation<types.CreateLicenseConfigurationOutput>
+function C:createLicenseConfiguration(input: types.CreateLicenseConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLicenseConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLicenseConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateLicenseConfigurationOutput>
 end
 
-function C:createLicenseConversionTaskForResource(input: types.CreateLicenseConversionTaskForResourceInput, options: any): async.Operation<types.CreateLicenseConversionTaskForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLicenseConversionTaskForResource, input, options) as async.Operation<types.CreateLicenseConversionTaskForResourceOutput>
+function C:createLicenseConversionTaskForResource(input: types.CreateLicenseConversionTaskForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLicenseConversionTaskForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLicenseConversionTaskForResource as schema.OperationSchema, input, options) as async.Operation<types.CreateLicenseConversionTaskForResourceOutput>
 end
 
-function C:createLicenseManagerReportGenerator(input: types.CreateLicenseManagerReportGeneratorInput, options: any): async.Operation<types.CreateLicenseManagerReportGeneratorOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLicenseManagerReportGenerator, input, options) as async.Operation<types.CreateLicenseManagerReportGeneratorOutput>
+function C:createLicenseManagerReportGenerator(input: types.CreateLicenseManagerReportGeneratorInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLicenseManagerReportGeneratorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLicenseManagerReportGenerator as schema.OperationSchema, input, options) as async.Operation<types.CreateLicenseManagerReportGeneratorOutput>
 end
 
-function C:createLicenseVersion(input: types.CreateLicenseVersionInput, options: any): async.Operation<types.CreateLicenseVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLicenseVersion, input, options) as async.Operation<types.CreateLicenseVersionOutput>
+function C:createLicenseVersion(input: types.CreateLicenseVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLicenseVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLicenseVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateLicenseVersionOutput>
 end
 
-function C:createToken(input: types.CreateTokenInput, options: any): async.Operation<types.CreateTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateToken, input, options) as async.Operation<types.CreateTokenOutput>
+function C:createToken(input: types.CreateTokenInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateToken as schema.OperationSchema, input, options) as async.Operation<types.CreateTokenOutput>
 end
 
-function C:deleteGrant(input: types.DeleteGrantInput, options: any): async.Operation<types.DeleteGrantOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteGrant, input, options) as async.Operation<types.DeleteGrantOutput>
+function C:deleteGrant(input: types.DeleteGrantInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGrantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGrant as schema.OperationSchema, input, options) as async.Operation<types.DeleteGrantOutput>
 end
 
-function C:deleteLicense(input: types.DeleteLicenseInput, options: any): async.Operation<types.DeleteLicenseOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLicense, input, options) as async.Operation<types.DeleteLicenseOutput>
+function C:deleteLicense(input: types.DeleteLicenseInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLicenseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLicense as schema.OperationSchema, input, options) as async.Operation<types.DeleteLicenseOutput>
 end
 
-function C:deleteLicenseAssetGroup(input: types.DeleteLicenseAssetGroupInput, options: any): async.Operation<types.DeleteLicenseAssetGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLicenseAssetGroup, input, options) as async.Operation<types.DeleteLicenseAssetGroupOutput>
+function C:deleteLicenseAssetGroup(input: types.DeleteLicenseAssetGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLicenseAssetGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLicenseAssetGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteLicenseAssetGroupOutput>
 end
 
-function C:deleteLicenseAssetRuleset(input: types.DeleteLicenseAssetRulesetInput, options: any): async.Operation<types.DeleteLicenseAssetRulesetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLicenseAssetRuleset, input, options) as async.Operation<types.DeleteLicenseAssetRulesetOutput>
+function C:deleteLicenseAssetRuleset(input: types.DeleteLicenseAssetRulesetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLicenseAssetRulesetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLicenseAssetRuleset as schema.OperationSchema, input, options) as async.Operation<types.DeleteLicenseAssetRulesetOutput>
 end
 
-function C:deleteLicenseConfiguration(input: types.DeleteLicenseConfigurationInput, options: any): async.Operation<types.DeleteLicenseConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLicenseConfiguration, input, options) as async.Operation<types.DeleteLicenseConfigurationOutput>
+function C:deleteLicenseConfiguration(input: types.DeleteLicenseConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLicenseConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLicenseConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteLicenseConfigurationOutput>
 end
 
-function C:deleteLicenseManagerReportGenerator(input: types.DeleteLicenseManagerReportGeneratorInput, options: any): async.Operation<types.DeleteLicenseManagerReportGeneratorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLicenseManagerReportGenerator, input, options) as async.Operation<types.DeleteLicenseManagerReportGeneratorOutput>
+function C:deleteLicenseManagerReportGenerator(input: types.DeleteLicenseManagerReportGeneratorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLicenseManagerReportGeneratorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLicenseManagerReportGenerator as schema.OperationSchema, input, options) as async.Operation<types.DeleteLicenseManagerReportGeneratorOutput>
 end
 
-function C:deleteToken(input: types.DeleteTokenInput, options: any): async.Operation<types.DeleteTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteToken, input, options) as async.Operation<types.DeleteTokenOutput>
+function C:deleteToken(input: types.DeleteTokenInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteToken as schema.OperationSchema, input, options) as async.Operation<types.DeleteTokenOutput>
 end
 
-function C:extendLicenseConsumption(input: types.ExtendLicenseConsumptionInput, options: any): async.Operation<types.ExtendLicenseConsumptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExtendLicenseConsumption, input, options) as async.Operation<types.ExtendLicenseConsumptionOutput>
+function C:extendLicenseConsumption(input: types.ExtendLicenseConsumptionInput, options?: base_client.InvokeOptions): async.Operation<types.ExtendLicenseConsumptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExtendLicenseConsumption as schema.OperationSchema, input, options) as async.Operation<types.ExtendLicenseConsumptionOutput>
 end
 
-function C:getAccessToken(input: types.GetAccessTokenInput, options: any): async.Operation<types.GetAccessTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccessToken, input, options) as async.Operation<types.GetAccessTokenOutput>
+function C:getAccessToken(input: types.GetAccessTokenInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccessTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccessToken as schema.OperationSchema, input, options) as async.Operation<types.GetAccessTokenOutput>
 end
 
-function C:getGrant(input: types.GetGrantInput, options: any): async.Operation<types.GetGrantOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetGrant, input, options) as async.Operation<types.GetGrantOutput>
+function C:getGrant(input: types.GetGrantInput, options?: base_client.InvokeOptions): async.Operation<types.GetGrantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGrant as schema.OperationSchema, input, options) as async.Operation<types.GetGrantOutput>
 end
 
-function C:getLicense(input: types.GetLicenseInput, options: any): async.Operation<types.GetLicenseOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLicense, input, options) as async.Operation<types.GetLicenseOutput>
+function C:getLicense(input: types.GetLicenseInput, options?: base_client.InvokeOptions): async.Operation<types.GetLicenseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLicense as schema.OperationSchema, input, options) as async.Operation<types.GetLicenseOutput>
 end
 
-function C:getLicenseAssetGroup(input: types.GetLicenseAssetGroupInput, options: any): async.Operation<types.GetLicenseAssetGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLicenseAssetGroup, input, options) as async.Operation<types.GetLicenseAssetGroupOutput>
+function C:getLicenseAssetGroup(input: types.GetLicenseAssetGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetLicenseAssetGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLicenseAssetGroup as schema.OperationSchema, input, options) as async.Operation<types.GetLicenseAssetGroupOutput>
 end
 
-function C:getLicenseAssetRuleset(input: types.GetLicenseAssetRulesetInput, options: any): async.Operation<types.GetLicenseAssetRulesetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLicenseAssetRuleset, input, options) as async.Operation<types.GetLicenseAssetRulesetOutput>
+function C:getLicenseAssetRuleset(input: types.GetLicenseAssetRulesetInput, options?: base_client.InvokeOptions): async.Operation<types.GetLicenseAssetRulesetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLicenseAssetRuleset as schema.OperationSchema, input, options) as async.Operation<types.GetLicenseAssetRulesetOutput>
 end
 
-function C:getLicenseConfiguration(input: types.GetLicenseConfigurationInput, options: any): async.Operation<types.GetLicenseConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLicenseConfiguration, input, options) as async.Operation<types.GetLicenseConfigurationOutput>
+function C:getLicenseConfiguration(input: types.GetLicenseConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetLicenseConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLicenseConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetLicenseConfigurationOutput>
 end
 
-function C:getLicenseConversionTask(input: types.GetLicenseConversionTaskInput, options: any): async.Operation<types.GetLicenseConversionTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLicenseConversionTask, input, options) as async.Operation<types.GetLicenseConversionTaskOutput>
+function C:getLicenseConversionTask(input: types.GetLicenseConversionTaskInput, options?: base_client.InvokeOptions): async.Operation<types.GetLicenseConversionTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLicenseConversionTask as schema.OperationSchema, input, options) as async.Operation<types.GetLicenseConversionTaskOutput>
 end
 
-function C:getLicenseManagerReportGenerator(input: types.GetLicenseManagerReportGeneratorInput, options: any): async.Operation<types.GetLicenseManagerReportGeneratorOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLicenseManagerReportGenerator, input, options) as async.Operation<types.GetLicenseManagerReportGeneratorOutput>
+function C:getLicenseManagerReportGenerator(input: types.GetLicenseManagerReportGeneratorInput, options?: base_client.InvokeOptions): async.Operation<types.GetLicenseManagerReportGeneratorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLicenseManagerReportGenerator as schema.OperationSchema, input, options) as async.Operation<types.GetLicenseManagerReportGeneratorOutput>
 end
 
-function C:getLicenseUsage(input: types.GetLicenseUsageInput, options: any): async.Operation<types.GetLicenseUsageOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLicenseUsage, input, options) as async.Operation<types.GetLicenseUsageOutput>
+function C:getLicenseUsage(input: types.GetLicenseUsageInput, options?: base_client.InvokeOptions): async.Operation<types.GetLicenseUsageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLicenseUsage as schema.OperationSchema, input, options) as async.Operation<types.GetLicenseUsageOutput>
 end
 
-function C:getServiceSettings(input: types.GetServiceSettingsInput, options: any): async.Operation<types.GetServiceSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetServiceSettings, input, options) as async.Operation<types.GetServiceSettingsOutput>
+function C:getServiceSettings(input: types.GetServiceSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetServiceSettings as schema.OperationSchema, input, options) as async.Operation<types.GetServiceSettingsOutput>
 end
 
-function C:listAssetsForLicenseAssetGroup(input: types.ListAssetsForLicenseAssetGroupInput, options: any): async.Operation<types.ListAssetsForLicenseAssetGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssetsForLicenseAssetGroup, input, options) as async.Operation<types.ListAssetsForLicenseAssetGroupOutput>
+function C:listAssetsForLicenseAssetGroup(input: types.ListAssetsForLicenseAssetGroupInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssetsForLicenseAssetGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssetsForLicenseAssetGroup as schema.OperationSchema, input, options) as async.Operation<types.ListAssetsForLicenseAssetGroupOutput>
 end
 
-function C:listAssociationsForLicenseConfiguration(input: types.ListAssociationsForLicenseConfigurationInput, options: any): async.Operation<types.ListAssociationsForLicenseConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssociationsForLicenseConfiguration, input, options) as async.Operation<types.ListAssociationsForLicenseConfigurationOutput>
+function C:listAssociationsForLicenseConfiguration(input: types.ListAssociationsForLicenseConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssociationsForLicenseConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssociationsForLicenseConfiguration as schema.OperationSchema, input, options) as async.Operation<types.ListAssociationsForLicenseConfigurationOutput>
 end
 
-function C:listDistributedGrants(input: types.ListDistributedGrantsInput, options: any): async.Operation<types.ListDistributedGrantsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDistributedGrants, input, options) as async.Operation<types.ListDistributedGrantsOutput>
+function C:listDistributedGrants(input: types.ListDistributedGrantsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDistributedGrantsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDistributedGrants as schema.OperationSchema, input, options) as async.Operation<types.ListDistributedGrantsOutput>
 end
 
-function C:listFailuresForLicenseConfigurationOperations(input: types.ListFailuresForLicenseConfigurationOperationsInput, options: any): async.Operation<types.ListFailuresForLicenseConfigurationOperationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFailuresForLicenseConfigurationOperations, input, options) as async.Operation<types.ListFailuresForLicenseConfigurationOperationsOutput>
+function C:listFailuresForLicenseConfigurationOperations(input: types.ListFailuresForLicenseConfigurationOperationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFailuresForLicenseConfigurationOperationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFailuresForLicenseConfigurationOperations as schema.OperationSchema, input, options) as async.Operation<types.ListFailuresForLicenseConfigurationOperationsOutput>
 end
 
-function C:listLicenseAssetGroups(input: types.ListLicenseAssetGroupsInput, options: any): async.Operation<types.ListLicenseAssetGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLicenseAssetGroups, input, options) as async.Operation<types.ListLicenseAssetGroupsOutput>
+function C:listLicenseAssetGroups(input: types.ListLicenseAssetGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLicenseAssetGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLicenseAssetGroups as schema.OperationSchema, input, options) as async.Operation<types.ListLicenseAssetGroupsOutput>
 end
 
-function C:listLicenseAssetRulesets(input: types.ListLicenseAssetRulesetsInput, options: any): async.Operation<types.ListLicenseAssetRulesetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLicenseAssetRulesets, input, options) as async.Operation<types.ListLicenseAssetRulesetsOutput>
+function C:listLicenseAssetRulesets(input: types.ListLicenseAssetRulesetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLicenseAssetRulesetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLicenseAssetRulesets as schema.OperationSchema, input, options) as async.Operation<types.ListLicenseAssetRulesetsOutput>
 end
 
-function C:listLicenseConfigurations(input: types.ListLicenseConfigurationsInput, options: any): async.Operation<types.ListLicenseConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLicenseConfigurations, input, options) as async.Operation<types.ListLicenseConfigurationsOutput>
+function C:listLicenseConfigurations(input: types.ListLicenseConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLicenseConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLicenseConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListLicenseConfigurationsOutput>
 end
 
-function C:listLicenseConfigurationsForOrganization(input: types.ListLicenseConfigurationsForOrganizationInput, options: any): async.Operation<types.ListLicenseConfigurationsForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLicenseConfigurationsForOrganization, input, options) as async.Operation<types.ListLicenseConfigurationsForOrganizationOutput>
+function C:listLicenseConfigurationsForOrganization(input: types.ListLicenseConfigurationsForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.ListLicenseConfigurationsForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLicenseConfigurationsForOrganization as schema.OperationSchema, input, options) as async.Operation<types.ListLicenseConfigurationsForOrganizationOutput>
 end
 
-function C:listLicenseConversionTasks(input: types.ListLicenseConversionTasksInput, options: any): async.Operation<types.ListLicenseConversionTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLicenseConversionTasks, input, options) as async.Operation<types.ListLicenseConversionTasksOutput>
+function C:listLicenseConversionTasks(input: types.ListLicenseConversionTasksInput, options?: base_client.InvokeOptions): async.Operation<types.ListLicenseConversionTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLicenseConversionTasks as schema.OperationSchema, input, options) as async.Operation<types.ListLicenseConversionTasksOutput>
 end
 
-function C:listLicenseManagerReportGenerators(input: types.ListLicenseManagerReportGeneratorsInput, options: any): async.Operation<types.ListLicenseManagerReportGeneratorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLicenseManagerReportGenerators, input, options) as async.Operation<types.ListLicenseManagerReportGeneratorsOutput>
+function C:listLicenseManagerReportGenerators(input: types.ListLicenseManagerReportGeneratorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLicenseManagerReportGeneratorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLicenseManagerReportGenerators as schema.OperationSchema, input, options) as async.Operation<types.ListLicenseManagerReportGeneratorsOutput>
 end
 
-function C:listLicenses(input: types.ListLicensesInput, options: any): async.Operation<types.ListLicensesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLicenses, input, options) as async.Operation<types.ListLicensesOutput>
+function C:listLicenses(input: types.ListLicensesInput, options?: base_client.InvokeOptions): async.Operation<types.ListLicensesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLicenses as schema.OperationSchema, input, options) as async.Operation<types.ListLicensesOutput>
 end
 
-function C:listLicenseSpecificationsForResource(input: types.ListLicenseSpecificationsForResourceInput, options: any): async.Operation<types.ListLicenseSpecificationsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLicenseSpecificationsForResource, input, options) as async.Operation<types.ListLicenseSpecificationsForResourceOutput>
+function C:listLicenseSpecificationsForResource(input: types.ListLicenseSpecificationsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListLicenseSpecificationsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLicenseSpecificationsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListLicenseSpecificationsForResourceOutput>
 end
 
-function C:listLicenseVersions(input: types.ListLicenseVersionsInput, options: any): async.Operation<types.ListLicenseVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLicenseVersions, input, options) as async.Operation<types.ListLicenseVersionsOutput>
+function C:listLicenseVersions(input: types.ListLicenseVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLicenseVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLicenseVersions as schema.OperationSchema, input, options) as async.Operation<types.ListLicenseVersionsOutput>
 end
 
-function C:listReceivedGrants(input: types.ListReceivedGrantsInput, options: any): async.Operation<types.ListReceivedGrantsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReceivedGrants, input, options) as async.Operation<types.ListReceivedGrantsOutput>
+function C:listReceivedGrants(input: types.ListReceivedGrantsInput, options?: base_client.InvokeOptions): async.Operation<types.ListReceivedGrantsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReceivedGrants as schema.OperationSchema, input, options) as async.Operation<types.ListReceivedGrantsOutput>
 end
 
-function C:listReceivedGrantsForOrganization(input: types.ListReceivedGrantsForOrganizationInput, options: any): async.Operation<types.ListReceivedGrantsForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReceivedGrantsForOrganization, input, options) as async.Operation<types.ListReceivedGrantsForOrganizationOutput>
+function C:listReceivedGrantsForOrganization(input: types.ListReceivedGrantsForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.ListReceivedGrantsForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReceivedGrantsForOrganization as schema.OperationSchema, input, options) as async.Operation<types.ListReceivedGrantsForOrganizationOutput>
 end
 
-function C:listReceivedLicenses(input: types.ListReceivedLicensesInput, options: any): async.Operation<types.ListReceivedLicensesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReceivedLicenses, input, options) as async.Operation<types.ListReceivedLicensesOutput>
+function C:listReceivedLicenses(input: types.ListReceivedLicensesInput, options?: base_client.InvokeOptions): async.Operation<types.ListReceivedLicensesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReceivedLicenses as schema.OperationSchema, input, options) as async.Operation<types.ListReceivedLicensesOutput>
 end
 
-function C:listReceivedLicensesForOrganization(input: types.ListReceivedLicensesForOrganizationInput, options: any): async.Operation<types.ListReceivedLicensesForOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReceivedLicensesForOrganization, input, options) as async.Operation<types.ListReceivedLicensesForOrganizationOutput>
+function C:listReceivedLicensesForOrganization(input: types.ListReceivedLicensesForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.ListReceivedLicensesForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReceivedLicensesForOrganization as schema.OperationSchema, input, options) as async.Operation<types.ListReceivedLicensesForOrganizationOutput>
 end
 
-function C:listResourceInventory(input: types.ListResourceInventoryInput, options: any): async.Operation<types.ListResourceInventoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResourceInventory, input, options) as async.Operation<types.ListResourceInventoryOutput>
+function C:listResourceInventory(input: types.ListResourceInventoryInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourceInventoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourceInventory as schema.OperationSchema, input, options) as async.Operation<types.ListResourceInventoryOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTokens(input: types.ListTokensInput, options: any): async.Operation<types.ListTokensOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTokens, input, options) as async.Operation<types.ListTokensOutput>
+function C:listTokens(input: types.ListTokensInput, options?: base_client.InvokeOptions): async.Operation<types.ListTokensOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTokens as schema.OperationSchema, input, options) as async.Operation<types.ListTokensOutput>
 end
 
-function C:listUsageForLicenseConfiguration(input: types.ListUsageForLicenseConfigurationInput, options: any): async.Operation<types.ListUsageForLicenseConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListUsageForLicenseConfiguration, input, options) as async.Operation<types.ListUsageForLicenseConfigurationOutput>
+function C:listUsageForLicenseConfiguration(input: types.ListUsageForLicenseConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.ListUsageForLicenseConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUsageForLicenseConfiguration as schema.OperationSchema, input, options) as async.Operation<types.ListUsageForLicenseConfigurationOutput>
 end
 
-function C:rejectGrant(input: types.RejectGrantInput, options: any): async.Operation<types.RejectGrantOutput>
-    return self:invokeOperation(schemas.Service, schemas.RejectGrant, input, options) as async.Operation<types.RejectGrantOutput>
+function C:rejectGrant(input: types.RejectGrantInput, options?: base_client.InvokeOptions): async.Operation<types.RejectGrantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RejectGrant as schema.OperationSchema, input, options) as async.Operation<types.RejectGrantOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateLicenseAssetGroup(input: types.UpdateLicenseAssetGroupInput, options: any): async.Operation<types.UpdateLicenseAssetGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLicenseAssetGroup, input, options) as async.Operation<types.UpdateLicenseAssetGroupOutput>
+function C:updateLicenseAssetGroup(input: types.UpdateLicenseAssetGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLicenseAssetGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLicenseAssetGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateLicenseAssetGroupOutput>
 end
 
-function C:updateLicenseAssetRuleset(input: types.UpdateLicenseAssetRulesetInput, options: any): async.Operation<types.UpdateLicenseAssetRulesetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLicenseAssetRuleset, input, options) as async.Operation<types.UpdateLicenseAssetRulesetOutput>
+function C:updateLicenseAssetRuleset(input: types.UpdateLicenseAssetRulesetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLicenseAssetRulesetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLicenseAssetRuleset as schema.OperationSchema, input, options) as async.Operation<types.UpdateLicenseAssetRulesetOutput>
 end
 
-function C:updateLicenseConfiguration(input: types.UpdateLicenseConfigurationInput, options: any): async.Operation<types.UpdateLicenseConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLicenseConfiguration, input, options) as async.Operation<types.UpdateLicenseConfigurationOutput>
+function C:updateLicenseConfiguration(input: types.UpdateLicenseConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLicenseConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLicenseConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateLicenseConfigurationOutput>
 end
 
-function C:updateLicenseManagerReportGenerator(input: types.UpdateLicenseManagerReportGeneratorInput, options: any): async.Operation<types.UpdateLicenseManagerReportGeneratorOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLicenseManagerReportGenerator, input, options) as async.Operation<types.UpdateLicenseManagerReportGeneratorOutput>
+function C:updateLicenseManagerReportGenerator(input: types.UpdateLicenseManagerReportGeneratorInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLicenseManagerReportGeneratorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLicenseManagerReportGenerator as schema.OperationSchema, input, options) as async.Operation<types.UpdateLicenseManagerReportGeneratorOutput>
 end
 
-function C:updateLicenseSpecificationsForResource(input: types.UpdateLicenseSpecificationsForResourceInput, options: any): async.Operation<types.UpdateLicenseSpecificationsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLicenseSpecificationsForResource, input, options) as async.Operation<types.UpdateLicenseSpecificationsForResourceOutput>
+function C:updateLicenseSpecificationsForResource(input: types.UpdateLicenseSpecificationsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLicenseSpecificationsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLicenseSpecificationsForResource as schema.OperationSchema, input, options) as async.Operation<types.UpdateLicenseSpecificationsForResourceOutput>
 end
 
-function C:updateServiceSettings(input: types.UpdateServiceSettingsInput, options: any): async.Operation<types.UpdateServiceSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateServiceSettings, input, options) as async.Operation<types.UpdateServiceSettingsOutput>
+function C:updateServiceSettings(input: types.UpdateServiceSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateServiceSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateServiceSettings as schema.OperationSchema, input, options) as async.Operation<types.UpdateServiceSettingsOutput>
 end
 
 return M

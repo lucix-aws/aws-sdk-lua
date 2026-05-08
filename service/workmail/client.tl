@@ -8,131 +8,134 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("workmail.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("workmail.schemas")
 local traits = require("smithy.traits")
 local types = require("workmail.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateDelegateToResource: function(Client, types.AssociateDelegateToResourceInput, any): async.Operation<types.AssociateDelegateToResourceOutput>
-    associateMemberToGroup: function(Client, types.AssociateMemberToGroupInput, any): async.Operation<types.AssociateMemberToGroupOutput>
-    assumeImpersonationRole: function(Client, types.AssumeImpersonationRoleInput, any): async.Operation<types.AssumeImpersonationRoleOutput>
-    cancelMailboxExportJob: function(Client, types.CancelMailboxExportJobInput, any): async.Operation<types.CancelMailboxExportJobOutput>
-    createAlias: function(Client, types.CreateAliasInput, any): async.Operation<types.CreateAliasOutput>
-    createAvailabilityConfiguration: function(Client, types.CreateAvailabilityConfigurationInput, any): async.Operation<types.CreateAvailabilityConfigurationOutput>
-    createGroup: function(Client, types.CreateGroupInput, any): async.Operation<types.CreateGroupOutput>
-    createIdentityCenterApplication: function(Client, types.CreateIdentityCenterApplicationInput, any): async.Operation<types.CreateIdentityCenterApplicationOutput>
-    createImpersonationRole: function(Client, types.CreateImpersonationRoleInput, any): async.Operation<types.CreateImpersonationRoleOutput>
-    createMobileDeviceAccessRule: function(Client, types.CreateMobileDeviceAccessRuleInput, any): async.Operation<types.CreateMobileDeviceAccessRuleOutput>
-    createOrganization: function(Client, types.CreateOrganizationInput, any): async.Operation<types.CreateOrganizationOutput>
-    createResource: function(Client, types.CreateResourceInput, any): async.Operation<types.CreateResourceOutput>
-    createUser: function(Client, types.CreateUserInput, any): async.Operation<types.CreateUserOutput>
-    deleteAccessControlRule: function(Client, types.DeleteAccessControlRuleInput, any): async.Operation<types.DeleteAccessControlRuleOutput>
-    deleteAlias: function(Client, types.DeleteAliasInput, any): async.Operation<types.DeleteAliasOutput>
-    deleteAvailabilityConfiguration: function(Client, types.DeleteAvailabilityConfigurationInput, any): async.Operation<types.DeleteAvailabilityConfigurationOutput>
-    deleteEmailMonitoringConfiguration: function(Client, types.DeleteEmailMonitoringConfigurationInput, any): async.Operation<types.DeleteEmailMonitoringConfigurationOutput>
-    deleteGroup: function(Client, types.DeleteGroupInput, any): async.Operation<types.DeleteGroupOutput>
-    deleteIdentityCenterApplication: function(Client, types.DeleteIdentityCenterApplicationInput, any): async.Operation<types.DeleteIdentityCenterApplicationOutput>
-    deleteIdentityProviderConfiguration: function(Client, types.DeleteIdentityProviderConfigurationInput, any): async.Operation<types.DeleteIdentityProviderConfigurationOutput>
-    deleteImpersonationRole: function(Client, types.DeleteImpersonationRoleInput, any): async.Operation<types.DeleteImpersonationRoleOutput>
-    deleteMailboxPermissions: function(Client, types.DeleteMailboxPermissionsInput, any): async.Operation<types.DeleteMailboxPermissionsOutput>
-    deleteMobileDeviceAccessOverride: function(Client, types.DeleteMobileDeviceAccessOverrideInput, any): async.Operation<types.DeleteMobileDeviceAccessOverrideOutput>
-    deleteMobileDeviceAccessRule: function(Client, types.DeleteMobileDeviceAccessRuleInput, any): async.Operation<types.DeleteMobileDeviceAccessRuleOutput>
-    deleteOrganization: function(Client, types.DeleteOrganizationInput, any): async.Operation<types.DeleteOrganizationOutput>
-    deletePersonalAccessToken: function(Client, types.DeletePersonalAccessTokenInput, any): async.Operation<types.DeletePersonalAccessTokenOutput>
-    deleteResource: function(Client, types.DeleteResourceInput, any): async.Operation<types.DeleteResourceOutput>
-    deleteRetentionPolicy: function(Client, types.DeleteRetentionPolicyInput, any): async.Operation<types.DeleteRetentionPolicyOutput>
-    deleteUser: function(Client, types.DeleteUserInput, any): async.Operation<types.DeleteUserOutput>
-    deregisterFromWorkMail: function(Client, types.DeregisterFromWorkMailInput, any): async.Operation<types.DeregisterFromWorkMailOutput>
-    deregisterMailDomain: function(Client, types.DeregisterMailDomainInput, any): async.Operation<types.DeregisterMailDomainOutput>
-    describeEmailMonitoringConfiguration: function(Client, types.DescribeEmailMonitoringConfigurationInput, any): async.Operation<types.DescribeEmailMonitoringConfigurationOutput>
-    describeEntity: function(Client, types.DescribeEntityInput, any): async.Operation<types.DescribeEntityOutput>
-    describeGroup: function(Client, types.DescribeGroupInput, any): async.Operation<types.DescribeGroupOutput>
-    describeIdentityProviderConfiguration: function(Client, types.DescribeIdentityProviderConfigurationInput, any): async.Operation<types.DescribeIdentityProviderConfigurationOutput>
-    describeInboundDmarcSettings: function(Client, types.DescribeInboundDmarcSettingsInput, any): async.Operation<types.DescribeInboundDmarcSettingsOutput>
-    describeMailboxExportJob: function(Client, types.DescribeMailboxExportJobInput, any): async.Operation<types.DescribeMailboxExportJobOutput>
-    describeOrganization: function(Client, types.DescribeOrganizationInput, any): async.Operation<types.DescribeOrganizationOutput>
-    describeResource: function(Client, types.DescribeResourceInput, any): async.Operation<types.DescribeResourceOutput>
-    describeUser: function(Client, types.DescribeUserInput, any): async.Operation<types.DescribeUserOutput>
-    disassociateDelegateFromResource: function(Client, types.DisassociateDelegateFromResourceInput, any): async.Operation<types.DisassociateDelegateFromResourceOutput>
-    disassociateMemberFromGroup: function(Client, types.DisassociateMemberFromGroupInput, any): async.Operation<types.DisassociateMemberFromGroupOutput>
-    getAccessControlEffect: function(Client, types.GetAccessControlEffectInput, any): async.Operation<types.GetAccessControlEffectOutput>
-    getDefaultRetentionPolicy: function(Client, types.GetDefaultRetentionPolicyInput, any): async.Operation<types.GetDefaultRetentionPolicyOutput>
-    getImpersonationRole: function(Client, types.GetImpersonationRoleInput, any): async.Operation<types.GetImpersonationRoleOutput>
-    getImpersonationRoleEffect: function(Client, types.GetImpersonationRoleEffectInput, any): async.Operation<types.GetImpersonationRoleEffectOutput>
-    getMailboxDetails: function(Client, types.GetMailboxDetailsInput, any): async.Operation<types.GetMailboxDetailsOutput>
-    getMailDomain: function(Client, types.GetMailDomainInput, any): async.Operation<types.GetMailDomainOutput>
-    getMobileDeviceAccessEffect: function(Client, types.GetMobileDeviceAccessEffectInput, any): async.Operation<types.GetMobileDeviceAccessEffectOutput>
-    getMobileDeviceAccessOverride: function(Client, types.GetMobileDeviceAccessOverrideInput, any): async.Operation<types.GetMobileDeviceAccessOverrideOutput>
-    getPersonalAccessTokenMetadata: function(Client, types.GetPersonalAccessTokenMetadataInput, any): async.Operation<types.GetPersonalAccessTokenMetadataOutput>
-    listAccessControlRules: function(Client, types.ListAccessControlRulesInput, any): async.Operation<types.ListAccessControlRulesOutput>
-    listAliases: function(Client, types.ListAliasesInput, any): async.Operation<types.ListAliasesOutput>
-    listAvailabilityConfigurations: function(Client, types.ListAvailabilityConfigurationsInput, any): async.Operation<types.ListAvailabilityConfigurationsOutput>
-    listGroupMembers: function(Client, types.ListGroupMembersInput, any): async.Operation<types.ListGroupMembersOutput>
-    listGroups: function(Client, types.ListGroupsInput, any): async.Operation<types.ListGroupsOutput>
-    listGroupsForEntity: function(Client, types.ListGroupsForEntityInput, any): async.Operation<types.ListGroupsForEntityOutput>
-    listImpersonationRoles: function(Client, types.ListImpersonationRolesInput, any): async.Operation<types.ListImpersonationRolesOutput>
-    listMailboxExportJobs: function(Client, types.ListMailboxExportJobsInput, any): async.Operation<types.ListMailboxExportJobsOutput>
-    listMailboxPermissions: function(Client, types.ListMailboxPermissionsInput, any): async.Operation<types.ListMailboxPermissionsOutput>
-    listMailDomains: function(Client, types.ListMailDomainsInput, any): async.Operation<types.ListMailDomainsOutput>
-    listMobileDeviceAccessOverrides: function(Client, types.ListMobileDeviceAccessOverridesInput, any): async.Operation<types.ListMobileDeviceAccessOverridesOutput>
-    listMobileDeviceAccessRules: function(Client, types.ListMobileDeviceAccessRulesInput, any): async.Operation<types.ListMobileDeviceAccessRulesOutput>
-    listOrganizations: function(Client, types.ListOrganizationsInput, any): async.Operation<types.ListOrganizationsOutput>
-    listPersonalAccessTokens: function(Client, types.ListPersonalAccessTokensInput, any): async.Operation<types.ListPersonalAccessTokensOutput>
-    listResourceDelegates: function(Client, types.ListResourceDelegatesInput, any): async.Operation<types.ListResourceDelegatesOutput>
-    listResources: function(Client, types.ListResourcesInput, any): async.Operation<types.ListResourcesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listUsers: function(Client, types.ListUsersInput, any): async.Operation<types.ListUsersOutput>
-    putAccessControlRule: function(Client, types.PutAccessControlRuleInput, any): async.Operation<types.PutAccessControlRuleOutput>
-    putEmailMonitoringConfiguration: function(Client, types.PutEmailMonitoringConfigurationInput, any): async.Operation<types.PutEmailMonitoringConfigurationOutput>
-    putIdentityProviderConfiguration: function(Client, types.PutIdentityProviderConfigurationInput, any): async.Operation<types.PutIdentityProviderConfigurationOutput>
-    putInboundDmarcSettings: function(Client, types.PutInboundDmarcSettingsInput, any): async.Operation<types.PutInboundDmarcSettingsOutput>
-    putMailboxPermissions: function(Client, types.PutMailboxPermissionsInput, any): async.Operation<types.PutMailboxPermissionsOutput>
-    putMobileDeviceAccessOverride: function(Client, types.PutMobileDeviceAccessOverrideInput, any): async.Operation<types.PutMobileDeviceAccessOverrideOutput>
-    putRetentionPolicy: function(Client, types.PutRetentionPolicyInput, any): async.Operation<types.PutRetentionPolicyOutput>
-    registerMailDomain: function(Client, types.RegisterMailDomainInput, any): async.Operation<types.RegisterMailDomainOutput>
-    registerToWorkMail: function(Client, types.RegisterToWorkMailInput, any): async.Operation<types.RegisterToWorkMailOutput>
-    resetPassword: function(Client, types.ResetPasswordInput, any): async.Operation<types.ResetPasswordOutput>
-    startMailboxExportJob: function(Client, types.StartMailboxExportJobInput, any): async.Operation<types.StartMailboxExportJobOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    testAvailabilityConfiguration: function(Client, types.TestAvailabilityConfigurationInput, any): async.Operation<types.TestAvailabilityConfigurationOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAvailabilityConfiguration: function(Client, types.UpdateAvailabilityConfigurationInput, any): async.Operation<types.UpdateAvailabilityConfigurationOutput>
-    updateDefaultMailDomain: function(Client, types.UpdateDefaultMailDomainInput, any): async.Operation<types.UpdateDefaultMailDomainOutput>
-    updateGroup: function(Client, types.UpdateGroupInput, any): async.Operation<types.UpdateGroupOutput>
-    updateImpersonationRole: function(Client, types.UpdateImpersonationRoleInput, any): async.Operation<types.UpdateImpersonationRoleOutput>
-    updateMailboxQuota: function(Client, types.UpdateMailboxQuotaInput, any): async.Operation<types.UpdateMailboxQuotaOutput>
-    updateMobileDeviceAccessRule: function(Client, types.UpdateMobileDeviceAccessRuleInput, any): async.Operation<types.UpdateMobileDeviceAccessRuleOutput>
-    updatePrimaryEmailAddress: function(Client, types.UpdatePrimaryEmailAddressInput, any): async.Operation<types.UpdatePrimaryEmailAddressOutput>
-    updateResource: function(Client, types.UpdateResourceInput, any): async.Operation<types.UpdateResourceOutput>
-    updateUser: function(Client, types.UpdateUserInput, any): async.Operation<types.UpdateUserOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateDelegateToResource: function(Client, types.AssociateDelegateToResourceInput, ? base_client.InvokeOptions): async.Operation<types.AssociateDelegateToResourceOutput>
+    associateMemberToGroup: function(Client, types.AssociateMemberToGroupInput, ? base_client.InvokeOptions): async.Operation<types.AssociateMemberToGroupOutput>
+    assumeImpersonationRole: function(Client, types.AssumeImpersonationRoleInput, ? base_client.InvokeOptions): async.Operation<types.AssumeImpersonationRoleOutput>
+    cancelMailboxExportJob: function(Client, types.CancelMailboxExportJobInput, ? base_client.InvokeOptions): async.Operation<types.CancelMailboxExportJobOutput>
+    createAlias: function(Client, types.CreateAliasInput, ? base_client.InvokeOptions): async.Operation<types.CreateAliasOutput>
+    createAvailabilityConfiguration: function(Client, types.CreateAvailabilityConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateAvailabilityConfigurationOutput>
+    createGroup: function(Client, types.CreateGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateGroupOutput>
+    createIdentityCenterApplication: function(Client, types.CreateIdentityCenterApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateIdentityCenterApplicationOutput>
+    createImpersonationRole: function(Client, types.CreateImpersonationRoleInput, ? base_client.InvokeOptions): async.Operation<types.CreateImpersonationRoleOutput>
+    createMobileDeviceAccessRule: function(Client, types.CreateMobileDeviceAccessRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateMobileDeviceAccessRuleOutput>
+    createOrganization: function(Client, types.CreateOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.CreateOrganizationOutput>
+    createResource: function(Client, types.CreateResourceInput, ? base_client.InvokeOptions): async.Operation<types.CreateResourceOutput>
+    createUser: function(Client, types.CreateUserInput, ? base_client.InvokeOptions): async.Operation<types.CreateUserOutput>
+    deleteAccessControlRule: function(Client, types.DeleteAccessControlRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccessControlRuleOutput>
+    deleteAlias: function(Client, types.DeleteAliasInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAliasOutput>
+    deleteAvailabilityConfiguration: function(Client, types.DeleteAvailabilityConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAvailabilityConfigurationOutput>
+    deleteEmailMonitoringConfiguration: function(Client, types.DeleteEmailMonitoringConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEmailMonitoringConfigurationOutput>
+    deleteGroup: function(Client, types.DeleteGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGroupOutput>
+    deleteIdentityCenterApplication: function(Client, types.DeleteIdentityCenterApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIdentityCenterApplicationOutput>
+    deleteIdentityProviderConfiguration: function(Client, types.DeleteIdentityProviderConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIdentityProviderConfigurationOutput>
+    deleteImpersonationRole: function(Client, types.DeleteImpersonationRoleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteImpersonationRoleOutput>
+    deleteMailboxPermissions: function(Client, types.DeleteMailboxPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMailboxPermissionsOutput>
+    deleteMobileDeviceAccessOverride: function(Client, types.DeleteMobileDeviceAccessOverrideInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMobileDeviceAccessOverrideOutput>
+    deleteMobileDeviceAccessRule: function(Client, types.DeleteMobileDeviceAccessRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMobileDeviceAccessRuleOutput>
+    deleteOrganization: function(Client, types.DeleteOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOrganizationOutput>
+    deletePersonalAccessToken: function(Client, types.DeletePersonalAccessTokenInput, ? base_client.InvokeOptions): async.Operation<types.DeletePersonalAccessTokenOutput>
+    deleteResource: function(Client, types.DeleteResourceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourceOutput>
+    deleteRetentionPolicy: function(Client, types.DeleteRetentionPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRetentionPolicyOutput>
+    deleteUser: function(Client, types.DeleteUserInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUserOutput>
+    deregisterFromWorkMail: function(Client, types.DeregisterFromWorkMailInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterFromWorkMailOutput>
+    deregisterMailDomain: function(Client, types.DeregisterMailDomainInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterMailDomainOutput>
+    describeEmailMonitoringConfiguration: function(Client, types.DescribeEmailMonitoringConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEmailMonitoringConfigurationOutput>
+    describeEntity: function(Client, types.DescribeEntityInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEntityOutput>
+    describeGroup: function(Client, types.DescribeGroupInput, ? base_client.InvokeOptions): async.Operation<types.DescribeGroupOutput>
+    describeIdentityProviderConfiguration: function(Client, types.DescribeIdentityProviderConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIdentityProviderConfigurationOutput>
+    describeInboundDmarcSettings: function(Client, types.DescribeInboundDmarcSettingsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInboundDmarcSettingsOutput>
+    describeMailboxExportJob: function(Client, types.DescribeMailboxExportJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMailboxExportJobOutput>
+    describeOrganization: function(Client, types.DescribeOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeOrganizationOutput>
+    describeResource: function(Client, types.DescribeResourceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeResourceOutput>
+    describeUser: function(Client, types.DescribeUserInput, ? base_client.InvokeOptions): async.Operation<types.DescribeUserOutput>
+    disassociateDelegateFromResource: function(Client, types.DisassociateDelegateFromResourceInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateDelegateFromResourceOutput>
+    disassociateMemberFromGroup: function(Client, types.DisassociateMemberFromGroupInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateMemberFromGroupOutput>
+    getAccessControlEffect: function(Client, types.GetAccessControlEffectInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessControlEffectOutput>
+    getDefaultRetentionPolicy: function(Client, types.GetDefaultRetentionPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetDefaultRetentionPolicyOutput>
+    getImpersonationRole: function(Client, types.GetImpersonationRoleInput, ? base_client.InvokeOptions): async.Operation<types.GetImpersonationRoleOutput>
+    getImpersonationRoleEffect: function(Client, types.GetImpersonationRoleEffectInput, ? base_client.InvokeOptions): async.Operation<types.GetImpersonationRoleEffectOutput>
+    getMailboxDetails: function(Client, types.GetMailboxDetailsInput, ? base_client.InvokeOptions): async.Operation<types.GetMailboxDetailsOutput>
+    getMailDomain: function(Client, types.GetMailDomainInput, ? base_client.InvokeOptions): async.Operation<types.GetMailDomainOutput>
+    getMobileDeviceAccessEffect: function(Client, types.GetMobileDeviceAccessEffectInput, ? base_client.InvokeOptions): async.Operation<types.GetMobileDeviceAccessEffectOutput>
+    getMobileDeviceAccessOverride: function(Client, types.GetMobileDeviceAccessOverrideInput, ? base_client.InvokeOptions): async.Operation<types.GetMobileDeviceAccessOverrideOutput>
+    getPersonalAccessTokenMetadata: function(Client, types.GetPersonalAccessTokenMetadataInput, ? base_client.InvokeOptions): async.Operation<types.GetPersonalAccessTokenMetadataOutput>
+    listAccessControlRules: function(Client, types.ListAccessControlRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListAccessControlRulesOutput>
+    listAliases: function(Client, types.ListAliasesInput, ? base_client.InvokeOptions): async.Operation<types.ListAliasesOutput>
+    listAvailabilityConfigurations: function(Client, types.ListAvailabilityConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListAvailabilityConfigurationsOutput>
+    listGroupMembers: function(Client, types.ListGroupMembersInput, ? base_client.InvokeOptions): async.Operation<types.ListGroupMembersOutput>
+    listGroups: function(Client, types.ListGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListGroupsOutput>
+    listGroupsForEntity: function(Client, types.ListGroupsForEntityInput, ? base_client.InvokeOptions): async.Operation<types.ListGroupsForEntityOutput>
+    listImpersonationRoles: function(Client, types.ListImpersonationRolesInput, ? base_client.InvokeOptions): async.Operation<types.ListImpersonationRolesOutput>
+    listMailboxExportJobs: function(Client, types.ListMailboxExportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListMailboxExportJobsOutput>
+    listMailboxPermissions: function(Client, types.ListMailboxPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.ListMailboxPermissionsOutput>
+    listMailDomains: function(Client, types.ListMailDomainsInput, ? base_client.InvokeOptions): async.Operation<types.ListMailDomainsOutput>
+    listMobileDeviceAccessOverrides: function(Client, types.ListMobileDeviceAccessOverridesInput, ? base_client.InvokeOptions): async.Operation<types.ListMobileDeviceAccessOverridesOutput>
+    listMobileDeviceAccessRules: function(Client, types.ListMobileDeviceAccessRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListMobileDeviceAccessRulesOutput>
+    listOrganizations: function(Client, types.ListOrganizationsInput, ? base_client.InvokeOptions): async.Operation<types.ListOrganizationsOutput>
+    listPersonalAccessTokens: function(Client, types.ListPersonalAccessTokensInput, ? base_client.InvokeOptions): async.Operation<types.ListPersonalAccessTokensOutput>
+    listResourceDelegates: function(Client, types.ListResourceDelegatesInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceDelegatesOutput>
+    listResources: function(Client, types.ListResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListResourcesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listUsers: function(Client, types.ListUsersInput, ? base_client.InvokeOptions): async.Operation<types.ListUsersOutput>
+    putAccessControlRule: function(Client, types.PutAccessControlRuleInput, ? base_client.InvokeOptions): async.Operation<types.PutAccessControlRuleOutput>
+    putEmailMonitoringConfiguration: function(Client, types.PutEmailMonitoringConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutEmailMonitoringConfigurationOutput>
+    putIdentityProviderConfiguration: function(Client, types.PutIdentityProviderConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutIdentityProviderConfigurationOutput>
+    putInboundDmarcSettings: function(Client, types.PutInboundDmarcSettingsInput, ? base_client.InvokeOptions): async.Operation<types.PutInboundDmarcSettingsOutput>
+    putMailboxPermissions: function(Client, types.PutMailboxPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.PutMailboxPermissionsOutput>
+    putMobileDeviceAccessOverride: function(Client, types.PutMobileDeviceAccessOverrideInput, ? base_client.InvokeOptions): async.Operation<types.PutMobileDeviceAccessOverrideOutput>
+    putRetentionPolicy: function(Client, types.PutRetentionPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutRetentionPolicyOutput>
+    registerMailDomain: function(Client, types.RegisterMailDomainInput, ? base_client.InvokeOptions): async.Operation<types.RegisterMailDomainOutput>
+    registerToWorkMail: function(Client, types.RegisterToWorkMailInput, ? base_client.InvokeOptions): async.Operation<types.RegisterToWorkMailOutput>
+    resetPassword: function(Client, types.ResetPasswordInput, ? base_client.InvokeOptions): async.Operation<types.ResetPasswordOutput>
+    startMailboxExportJob: function(Client, types.StartMailboxExportJobInput, ? base_client.InvokeOptions): async.Operation<types.StartMailboxExportJobOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    testAvailabilityConfiguration: function(Client, types.TestAvailabilityConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.TestAvailabilityConfigurationOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAvailabilityConfiguration: function(Client, types.UpdateAvailabilityConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAvailabilityConfigurationOutput>
+    updateDefaultMailDomain: function(Client, types.UpdateDefaultMailDomainInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDefaultMailDomainOutput>
+    updateGroup: function(Client, types.UpdateGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGroupOutput>
+    updateImpersonationRole: function(Client, types.UpdateImpersonationRoleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateImpersonationRoleOutput>
+    updateMailboxQuota: function(Client, types.UpdateMailboxQuotaInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMailboxQuotaOutput>
+    updateMobileDeviceAccessRule: function(Client, types.UpdateMobileDeviceAccessRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMobileDeviceAccessRuleOutput>
+    updatePrimaryEmailAddress: function(Client, types.UpdatePrimaryEmailAddressInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePrimaryEmailAddressOutput>
+    updateResource: function(Client, types.UpdateResourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResourceOutput>
+    updateUser: function(Client, types.UpdateUserInput, ? base_client.InvokeOptions): async.Operation<types.UpdateUserOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "WorkMailService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "workmail", signing_region = c.region } }
                 else
@@ -151,372 +154,372 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateDelegateToResource(input: types.AssociateDelegateToResourceInput, options: any): async.Operation<types.AssociateDelegateToResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateDelegateToResource, input, options) as async.Operation<types.AssociateDelegateToResourceOutput>
+function C:associateDelegateToResource(input: types.AssociateDelegateToResourceInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateDelegateToResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateDelegateToResource as schema.OperationSchema, input, options) as async.Operation<types.AssociateDelegateToResourceOutput>
 end
 
-function C:associateMemberToGroup(input: types.AssociateMemberToGroupInput, options: any): async.Operation<types.AssociateMemberToGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateMemberToGroup, input, options) as async.Operation<types.AssociateMemberToGroupOutput>
+function C:associateMemberToGroup(input: types.AssociateMemberToGroupInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateMemberToGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateMemberToGroup as schema.OperationSchema, input, options) as async.Operation<types.AssociateMemberToGroupOutput>
 end
 
-function C:assumeImpersonationRole(input: types.AssumeImpersonationRoleInput, options: any): async.Operation<types.AssumeImpersonationRoleOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssumeImpersonationRole, input, options) as async.Operation<types.AssumeImpersonationRoleOutput>
+function C:assumeImpersonationRole(input: types.AssumeImpersonationRoleInput, options?: base_client.InvokeOptions): async.Operation<types.AssumeImpersonationRoleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssumeImpersonationRole as schema.OperationSchema, input, options) as async.Operation<types.AssumeImpersonationRoleOutput>
 end
 
-function C:cancelMailboxExportJob(input: types.CancelMailboxExportJobInput, options: any): async.Operation<types.CancelMailboxExportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelMailboxExportJob, input, options) as async.Operation<types.CancelMailboxExportJobOutput>
+function C:cancelMailboxExportJob(input: types.CancelMailboxExportJobInput, options?: base_client.InvokeOptions): async.Operation<types.CancelMailboxExportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelMailboxExportJob as schema.OperationSchema, input, options) as async.Operation<types.CancelMailboxExportJobOutput>
 end
 
-function C:createAlias(input: types.CreateAliasInput, options: any): async.Operation<types.CreateAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAlias, input, options) as async.Operation<types.CreateAliasOutput>
+function C:createAlias(input: types.CreateAliasInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAlias as schema.OperationSchema, input, options) as async.Operation<types.CreateAliasOutput>
 end
 
-function C:createAvailabilityConfiguration(input: types.CreateAvailabilityConfigurationInput, options: any): async.Operation<types.CreateAvailabilityConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAvailabilityConfiguration, input, options) as async.Operation<types.CreateAvailabilityConfigurationOutput>
+function C:createAvailabilityConfiguration(input: types.CreateAvailabilityConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAvailabilityConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAvailabilityConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateAvailabilityConfigurationOutput>
 end
 
-function C:createGroup(input: types.CreateGroupInput, options: any): async.Operation<types.CreateGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateGroup, input, options) as async.Operation<types.CreateGroupOutput>
+function C:createGroup(input: types.CreateGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateGroupOutput>
 end
 
-function C:createIdentityCenterApplication(input: types.CreateIdentityCenterApplicationInput, options: any): async.Operation<types.CreateIdentityCenterApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIdentityCenterApplication, input, options) as async.Operation<types.CreateIdentityCenterApplicationOutput>
+function C:createIdentityCenterApplication(input: types.CreateIdentityCenterApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIdentityCenterApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIdentityCenterApplication as schema.OperationSchema, input, options) as async.Operation<types.CreateIdentityCenterApplicationOutput>
 end
 
-function C:createImpersonationRole(input: types.CreateImpersonationRoleInput, options: any): async.Operation<types.CreateImpersonationRoleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateImpersonationRole, input, options) as async.Operation<types.CreateImpersonationRoleOutput>
+function C:createImpersonationRole(input: types.CreateImpersonationRoleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateImpersonationRoleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateImpersonationRole as schema.OperationSchema, input, options) as async.Operation<types.CreateImpersonationRoleOutput>
 end
 
-function C:createMobileDeviceAccessRule(input: types.CreateMobileDeviceAccessRuleInput, options: any): async.Operation<types.CreateMobileDeviceAccessRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMobileDeviceAccessRule, input, options) as async.Operation<types.CreateMobileDeviceAccessRuleOutput>
+function C:createMobileDeviceAccessRule(input: types.CreateMobileDeviceAccessRuleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMobileDeviceAccessRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMobileDeviceAccessRule as schema.OperationSchema, input, options) as async.Operation<types.CreateMobileDeviceAccessRuleOutput>
 end
 
-function C:createOrganization(input: types.CreateOrganizationInput, options: any): async.Operation<types.CreateOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateOrganization, input, options) as async.Operation<types.CreateOrganizationOutput>
+function C:createOrganization(input: types.CreateOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateOrganization as schema.OperationSchema, input, options) as async.Operation<types.CreateOrganizationOutput>
 end
 
-function C:createResource(input: types.CreateResourceInput, options: any): async.Operation<types.CreateResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateResource, input, options) as async.Operation<types.CreateResourceOutput>
+function C:createResource(input: types.CreateResourceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateResource as schema.OperationSchema, input, options) as async.Operation<types.CreateResourceOutput>
 end
 
-function C:createUser(input: types.CreateUserInput, options: any): async.Operation<types.CreateUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateUser, input, options) as async.Operation<types.CreateUserOutput>
+function C:createUser(input: types.CreateUserInput, options?: base_client.InvokeOptions): async.Operation<types.CreateUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateUser as schema.OperationSchema, input, options) as async.Operation<types.CreateUserOutput>
 end
 
-function C:deleteAccessControlRule(input: types.DeleteAccessControlRuleInput, options: any): async.Operation<types.DeleteAccessControlRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAccessControlRule, input, options) as async.Operation<types.DeleteAccessControlRuleOutput>
+function C:deleteAccessControlRule(input: types.DeleteAccessControlRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAccessControlRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAccessControlRule as schema.OperationSchema, input, options) as async.Operation<types.DeleteAccessControlRuleOutput>
 end
 
-function C:deleteAlias(input: types.DeleteAliasInput, options: any): async.Operation<types.DeleteAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAlias, input, options) as async.Operation<types.DeleteAliasOutput>
+function C:deleteAlias(input: types.DeleteAliasInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAlias as schema.OperationSchema, input, options) as async.Operation<types.DeleteAliasOutput>
 end
 
-function C:deleteAvailabilityConfiguration(input: types.DeleteAvailabilityConfigurationInput, options: any): async.Operation<types.DeleteAvailabilityConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAvailabilityConfiguration, input, options) as async.Operation<types.DeleteAvailabilityConfigurationOutput>
+function C:deleteAvailabilityConfiguration(input: types.DeleteAvailabilityConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAvailabilityConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAvailabilityConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteAvailabilityConfigurationOutput>
 end
 
-function C:deleteEmailMonitoringConfiguration(input: types.DeleteEmailMonitoringConfigurationInput, options: any): async.Operation<types.DeleteEmailMonitoringConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEmailMonitoringConfiguration, input, options) as async.Operation<types.DeleteEmailMonitoringConfigurationOutput>
+function C:deleteEmailMonitoringConfiguration(input: types.DeleteEmailMonitoringConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEmailMonitoringConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEmailMonitoringConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteEmailMonitoringConfigurationOutput>
 end
 
-function C:deleteGroup(input: types.DeleteGroupInput, options: any): async.Operation<types.DeleteGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteGroup, input, options) as async.Operation<types.DeleteGroupOutput>
+function C:deleteGroup(input: types.DeleteGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteGroupOutput>
 end
 
-function C:deleteIdentityCenterApplication(input: types.DeleteIdentityCenterApplicationInput, options: any): async.Operation<types.DeleteIdentityCenterApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIdentityCenterApplication, input, options) as async.Operation<types.DeleteIdentityCenterApplicationOutput>
+function C:deleteIdentityCenterApplication(input: types.DeleteIdentityCenterApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIdentityCenterApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIdentityCenterApplication as schema.OperationSchema, input, options) as async.Operation<types.DeleteIdentityCenterApplicationOutput>
 end
 
-function C:deleteIdentityProviderConfiguration(input: types.DeleteIdentityProviderConfigurationInput, options: any): async.Operation<types.DeleteIdentityProviderConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIdentityProviderConfiguration, input, options) as async.Operation<types.DeleteIdentityProviderConfigurationOutput>
+function C:deleteIdentityProviderConfiguration(input: types.DeleteIdentityProviderConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIdentityProviderConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIdentityProviderConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteIdentityProviderConfigurationOutput>
 end
 
-function C:deleteImpersonationRole(input: types.DeleteImpersonationRoleInput, options: any): async.Operation<types.DeleteImpersonationRoleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteImpersonationRole, input, options) as async.Operation<types.DeleteImpersonationRoleOutput>
+function C:deleteImpersonationRole(input: types.DeleteImpersonationRoleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteImpersonationRoleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteImpersonationRole as schema.OperationSchema, input, options) as async.Operation<types.DeleteImpersonationRoleOutput>
 end
 
-function C:deleteMailboxPermissions(input: types.DeleteMailboxPermissionsInput, options: any): async.Operation<types.DeleteMailboxPermissionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMailboxPermissions, input, options) as async.Operation<types.DeleteMailboxPermissionsOutput>
+function C:deleteMailboxPermissions(input: types.DeleteMailboxPermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMailboxPermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMailboxPermissions as schema.OperationSchema, input, options) as async.Operation<types.DeleteMailboxPermissionsOutput>
 end
 
-function C:deleteMobileDeviceAccessOverride(input: types.DeleteMobileDeviceAccessOverrideInput, options: any): async.Operation<types.DeleteMobileDeviceAccessOverrideOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMobileDeviceAccessOverride, input, options) as async.Operation<types.DeleteMobileDeviceAccessOverrideOutput>
+function C:deleteMobileDeviceAccessOverride(input: types.DeleteMobileDeviceAccessOverrideInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMobileDeviceAccessOverrideOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMobileDeviceAccessOverride as schema.OperationSchema, input, options) as async.Operation<types.DeleteMobileDeviceAccessOverrideOutput>
 end
 
-function C:deleteMobileDeviceAccessRule(input: types.DeleteMobileDeviceAccessRuleInput, options: any): async.Operation<types.DeleteMobileDeviceAccessRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMobileDeviceAccessRule, input, options) as async.Operation<types.DeleteMobileDeviceAccessRuleOutput>
+function C:deleteMobileDeviceAccessRule(input: types.DeleteMobileDeviceAccessRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMobileDeviceAccessRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMobileDeviceAccessRule as schema.OperationSchema, input, options) as async.Operation<types.DeleteMobileDeviceAccessRuleOutput>
 end
 
-function C:deleteOrganization(input: types.DeleteOrganizationInput, options: any): async.Operation<types.DeleteOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteOrganization, input, options) as async.Operation<types.DeleteOrganizationOutput>
+function C:deleteOrganization(input: types.DeleteOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteOrganization as schema.OperationSchema, input, options) as async.Operation<types.DeleteOrganizationOutput>
 end
 
-function C:deletePersonalAccessToken(input: types.DeletePersonalAccessTokenInput, options: any): async.Operation<types.DeletePersonalAccessTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePersonalAccessToken, input, options) as async.Operation<types.DeletePersonalAccessTokenOutput>
+function C:deletePersonalAccessToken(input: types.DeletePersonalAccessTokenInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePersonalAccessTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePersonalAccessToken as schema.OperationSchema, input, options) as async.Operation<types.DeletePersonalAccessTokenOutput>
 end
 
-function C:deleteResource(input: types.DeleteResourceInput, options: any): async.Operation<types.DeleteResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResource, input, options) as async.Operation<types.DeleteResourceOutput>
+function C:deleteResource(input: types.DeleteResourceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResource as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourceOutput>
 end
 
-function C:deleteRetentionPolicy(input: types.DeleteRetentionPolicyInput, options: any): async.Operation<types.DeleteRetentionPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRetentionPolicy, input, options) as async.Operation<types.DeleteRetentionPolicyOutput>
+function C:deleteRetentionPolicy(input: types.DeleteRetentionPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRetentionPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRetentionPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteRetentionPolicyOutput>
 end
 
-function C:deleteUser(input: types.DeleteUserInput, options: any): async.Operation<types.DeleteUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteUser, input, options) as async.Operation<types.DeleteUserOutput>
+function C:deleteUser(input: types.DeleteUserInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteUser as schema.OperationSchema, input, options) as async.Operation<types.DeleteUserOutput>
 end
 
-function C:deregisterFromWorkMail(input: types.DeregisterFromWorkMailInput, options: any): async.Operation<types.DeregisterFromWorkMailOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterFromWorkMail, input, options) as async.Operation<types.DeregisterFromWorkMailOutput>
+function C:deregisterFromWorkMail(input: types.DeregisterFromWorkMailInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterFromWorkMailOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterFromWorkMail as schema.OperationSchema, input, options) as async.Operation<types.DeregisterFromWorkMailOutput>
 end
 
-function C:deregisterMailDomain(input: types.DeregisterMailDomainInput, options: any): async.Operation<types.DeregisterMailDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterMailDomain, input, options) as async.Operation<types.DeregisterMailDomainOutput>
+function C:deregisterMailDomain(input: types.DeregisterMailDomainInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterMailDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterMailDomain as schema.OperationSchema, input, options) as async.Operation<types.DeregisterMailDomainOutput>
 end
 
-function C:describeEmailMonitoringConfiguration(input: types.DescribeEmailMonitoringConfigurationInput, options: any): async.Operation<types.DescribeEmailMonitoringConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEmailMonitoringConfiguration, input, options) as async.Operation<types.DescribeEmailMonitoringConfigurationOutput>
+function C:describeEmailMonitoringConfiguration(input: types.DescribeEmailMonitoringConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEmailMonitoringConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEmailMonitoringConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeEmailMonitoringConfigurationOutput>
 end
 
-function C:describeEntity(input: types.DescribeEntityInput, options: any): async.Operation<types.DescribeEntityOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEntity, input, options) as async.Operation<types.DescribeEntityOutput>
+function C:describeEntity(input: types.DescribeEntityInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEntityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEntity as schema.OperationSchema, input, options) as async.Operation<types.DescribeEntityOutput>
 end
 
-function C:describeGroup(input: types.DescribeGroupInput, options: any): async.Operation<types.DescribeGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeGroup, input, options) as async.Operation<types.DescribeGroupOutput>
+function C:describeGroup(input: types.DescribeGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeGroup as schema.OperationSchema, input, options) as async.Operation<types.DescribeGroupOutput>
 end
 
-function C:describeIdentityProviderConfiguration(input: types.DescribeIdentityProviderConfigurationInput, options: any): async.Operation<types.DescribeIdentityProviderConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeIdentityProviderConfiguration, input, options) as async.Operation<types.DescribeIdentityProviderConfigurationOutput>
+function C:describeIdentityProviderConfiguration(input: types.DescribeIdentityProviderConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIdentityProviderConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIdentityProviderConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeIdentityProviderConfigurationOutput>
 end
 
-function C:describeInboundDmarcSettings(input: types.DescribeInboundDmarcSettingsInput, options: any): async.Operation<types.DescribeInboundDmarcSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInboundDmarcSettings, input, options) as async.Operation<types.DescribeInboundDmarcSettingsOutput>
+function C:describeInboundDmarcSettings(input: types.DescribeInboundDmarcSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInboundDmarcSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInboundDmarcSettings as schema.OperationSchema, input, options) as async.Operation<types.DescribeInboundDmarcSettingsOutput>
 end
 
-function C:describeMailboxExportJob(input: types.DescribeMailboxExportJobInput, options: any): async.Operation<types.DescribeMailboxExportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeMailboxExportJob, input, options) as async.Operation<types.DescribeMailboxExportJobOutput>
+function C:describeMailboxExportJob(input: types.DescribeMailboxExportJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMailboxExportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMailboxExportJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeMailboxExportJobOutput>
 end
 
-function C:describeOrganization(input: types.DescribeOrganizationInput, options: any): async.Operation<types.DescribeOrganizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeOrganization, input, options) as async.Operation<types.DescribeOrganizationOutput>
+function C:describeOrganization(input: types.DescribeOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeOrganization as schema.OperationSchema, input, options) as async.Operation<types.DescribeOrganizationOutput>
 end
 
-function C:describeResource(input: types.DescribeResourceInput, options: any): async.Operation<types.DescribeResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeResource, input, options) as async.Operation<types.DescribeResourceOutput>
+function C:describeResource(input: types.DescribeResourceInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeResource as schema.OperationSchema, input, options) as async.Operation<types.DescribeResourceOutput>
 end
 
-function C:describeUser(input: types.DescribeUserInput, options: any): async.Operation<types.DescribeUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeUser, input, options) as async.Operation<types.DescribeUserOutput>
+function C:describeUser(input: types.DescribeUserInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeUser as schema.OperationSchema, input, options) as async.Operation<types.DescribeUserOutput>
 end
 
-function C:disassociateDelegateFromResource(input: types.DisassociateDelegateFromResourceInput, options: any): async.Operation<types.DisassociateDelegateFromResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateDelegateFromResource, input, options) as async.Operation<types.DisassociateDelegateFromResourceOutput>
+function C:disassociateDelegateFromResource(input: types.DisassociateDelegateFromResourceInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateDelegateFromResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateDelegateFromResource as schema.OperationSchema, input, options) as async.Operation<types.DisassociateDelegateFromResourceOutput>
 end
 
-function C:disassociateMemberFromGroup(input: types.DisassociateMemberFromGroupInput, options: any): async.Operation<types.DisassociateMemberFromGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateMemberFromGroup, input, options) as async.Operation<types.DisassociateMemberFromGroupOutput>
+function C:disassociateMemberFromGroup(input: types.DisassociateMemberFromGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateMemberFromGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateMemberFromGroup as schema.OperationSchema, input, options) as async.Operation<types.DisassociateMemberFromGroupOutput>
 end
 
-function C:getAccessControlEffect(input: types.GetAccessControlEffectInput, options: any): async.Operation<types.GetAccessControlEffectOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccessControlEffect, input, options) as async.Operation<types.GetAccessControlEffectOutput>
+function C:getAccessControlEffect(input: types.GetAccessControlEffectInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccessControlEffectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccessControlEffect as schema.OperationSchema, input, options) as async.Operation<types.GetAccessControlEffectOutput>
 end
 
-function C:getDefaultRetentionPolicy(input: types.GetDefaultRetentionPolicyInput, options: any): async.Operation<types.GetDefaultRetentionPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDefaultRetentionPolicy, input, options) as async.Operation<types.GetDefaultRetentionPolicyOutput>
+function C:getDefaultRetentionPolicy(input: types.GetDefaultRetentionPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetDefaultRetentionPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDefaultRetentionPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetDefaultRetentionPolicyOutput>
 end
 
-function C:getImpersonationRole(input: types.GetImpersonationRoleInput, options: any): async.Operation<types.GetImpersonationRoleOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetImpersonationRole, input, options) as async.Operation<types.GetImpersonationRoleOutput>
+function C:getImpersonationRole(input: types.GetImpersonationRoleInput, options?: base_client.InvokeOptions): async.Operation<types.GetImpersonationRoleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetImpersonationRole as schema.OperationSchema, input, options) as async.Operation<types.GetImpersonationRoleOutput>
 end
 
-function C:getImpersonationRoleEffect(input: types.GetImpersonationRoleEffectInput, options: any): async.Operation<types.GetImpersonationRoleEffectOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetImpersonationRoleEffect, input, options) as async.Operation<types.GetImpersonationRoleEffectOutput>
+function C:getImpersonationRoleEffect(input: types.GetImpersonationRoleEffectInput, options?: base_client.InvokeOptions): async.Operation<types.GetImpersonationRoleEffectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetImpersonationRoleEffect as schema.OperationSchema, input, options) as async.Operation<types.GetImpersonationRoleEffectOutput>
 end
 
-function C:getMailboxDetails(input: types.GetMailboxDetailsInput, options: any): async.Operation<types.GetMailboxDetailsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMailboxDetails, input, options) as async.Operation<types.GetMailboxDetailsOutput>
+function C:getMailboxDetails(input: types.GetMailboxDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.GetMailboxDetailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMailboxDetails as schema.OperationSchema, input, options) as async.Operation<types.GetMailboxDetailsOutput>
 end
 
-function C:getMailDomain(input: types.GetMailDomainInput, options: any): async.Operation<types.GetMailDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMailDomain, input, options) as async.Operation<types.GetMailDomainOutput>
+function C:getMailDomain(input: types.GetMailDomainInput, options?: base_client.InvokeOptions): async.Operation<types.GetMailDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMailDomain as schema.OperationSchema, input, options) as async.Operation<types.GetMailDomainOutput>
 end
 
-function C:getMobileDeviceAccessEffect(input: types.GetMobileDeviceAccessEffectInput, options: any): async.Operation<types.GetMobileDeviceAccessEffectOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMobileDeviceAccessEffect, input, options) as async.Operation<types.GetMobileDeviceAccessEffectOutput>
+function C:getMobileDeviceAccessEffect(input: types.GetMobileDeviceAccessEffectInput, options?: base_client.InvokeOptions): async.Operation<types.GetMobileDeviceAccessEffectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMobileDeviceAccessEffect as schema.OperationSchema, input, options) as async.Operation<types.GetMobileDeviceAccessEffectOutput>
 end
 
-function C:getMobileDeviceAccessOverride(input: types.GetMobileDeviceAccessOverrideInput, options: any): async.Operation<types.GetMobileDeviceAccessOverrideOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMobileDeviceAccessOverride, input, options) as async.Operation<types.GetMobileDeviceAccessOverrideOutput>
+function C:getMobileDeviceAccessOverride(input: types.GetMobileDeviceAccessOverrideInput, options?: base_client.InvokeOptions): async.Operation<types.GetMobileDeviceAccessOverrideOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMobileDeviceAccessOverride as schema.OperationSchema, input, options) as async.Operation<types.GetMobileDeviceAccessOverrideOutput>
 end
 
-function C:getPersonalAccessTokenMetadata(input: types.GetPersonalAccessTokenMetadataInput, options: any): async.Operation<types.GetPersonalAccessTokenMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPersonalAccessTokenMetadata, input, options) as async.Operation<types.GetPersonalAccessTokenMetadataOutput>
+function C:getPersonalAccessTokenMetadata(input: types.GetPersonalAccessTokenMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.GetPersonalAccessTokenMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPersonalAccessTokenMetadata as schema.OperationSchema, input, options) as async.Operation<types.GetPersonalAccessTokenMetadataOutput>
 end
 
-function C:listAccessControlRules(input: types.ListAccessControlRulesInput, options: any): async.Operation<types.ListAccessControlRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccessControlRules, input, options) as async.Operation<types.ListAccessControlRulesOutput>
+function C:listAccessControlRules(input: types.ListAccessControlRulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccessControlRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccessControlRules as schema.OperationSchema, input, options) as async.Operation<types.ListAccessControlRulesOutput>
 end
 
-function C:listAliases(input: types.ListAliasesInput, options: any): async.Operation<types.ListAliasesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAliases, input, options) as async.Operation<types.ListAliasesOutput>
+function C:listAliases(input: types.ListAliasesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAliasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAliases as schema.OperationSchema, input, options) as async.Operation<types.ListAliasesOutput>
 end
 
-function C:listAvailabilityConfigurations(input: types.ListAvailabilityConfigurationsInput, options: any): async.Operation<types.ListAvailabilityConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAvailabilityConfigurations, input, options) as async.Operation<types.ListAvailabilityConfigurationsOutput>
+function C:listAvailabilityConfigurations(input: types.ListAvailabilityConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAvailabilityConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAvailabilityConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListAvailabilityConfigurationsOutput>
 end
 
-function C:listGroupMembers(input: types.ListGroupMembersInput, options: any): async.Operation<types.ListGroupMembersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGroupMembers, input, options) as async.Operation<types.ListGroupMembersOutput>
+function C:listGroupMembers(input: types.ListGroupMembersInput, options?: base_client.InvokeOptions): async.Operation<types.ListGroupMembersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGroupMembers as schema.OperationSchema, input, options) as async.Operation<types.ListGroupMembersOutput>
 end
 
-function C:listGroups(input: types.ListGroupsInput, options: any): async.Operation<types.ListGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGroups, input, options) as async.Operation<types.ListGroupsOutput>
+function C:listGroups(input: types.ListGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGroups as schema.OperationSchema, input, options) as async.Operation<types.ListGroupsOutput>
 end
 
-function C:listGroupsForEntity(input: types.ListGroupsForEntityInput, options: any): async.Operation<types.ListGroupsForEntityOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGroupsForEntity, input, options) as async.Operation<types.ListGroupsForEntityOutput>
+function C:listGroupsForEntity(input: types.ListGroupsForEntityInput, options?: base_client.InvokeOptions): async.Operation<types.ListGroupsForEntityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGroupsForEntity as schema.OperationSchema, input, options) as async.Operation<types.ListGroupsForEntityOutput>
 end
 
-function C:listImpersonationRoles(input: types.ListImpersonationRolesInput, options: any): async.Operation<types.ListImpersonationRolesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListImpersonationRoles, input, options) as async.Operation<types.ListImpersonationRolesOutput>
+function C:listImpersonationRoles(input: types.ListImpersonationRolesInput, options?: base_client.InvokeOptions): async.Operation<types.ListImpersonationRolesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListImpersonationRoles as schema.OperationSchema, input, options) as async.Operation<types.ListImpersonationRolesOutput>
 end
 
-function C:listMailboxExportJobs(input: types.ListMailboxExportJobsInput, options: any): async.Operation<types.ListMailboxExportJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMailboxExportJobs, input, options) as async.Operation<types.ListMailboxExportJobsOutput>
+function C:listMailboxExportJobs(input: types.ListMailboxExportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMailboxExportJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMailboxExportJobs as schema.OperationSchema, input, options) as async.Operation<types.ListMailboxExportJobsOutput>
 end
 
-function C:listMailboxPermissions(input: types.ListMailboxPermissionsInput, options: any): async.Operation<types.ListMailboxPermissionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMailboxPermissions, input, options) as async.Operation<types.ListMailboxPermissionsOutput>
+function C:listMailboxPermissions(input: types.ListMailboxPermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMailboxPermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMailboxPermissions as schema.OperationSchema, input, options) as async.Operation<types.ListMailboxPermissionsOutput>
 end
 
-function C:listMailDomains(input: types.ListMailDomainsInput, options: any): async.Operation<types.ListMailDomainsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMailDomains, input, options) as async.Operation<types.ListMailDomainsOutput>
+function C:listMailDomains(input: types.ListMailDomainsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMailDomainsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMailDomains as schema.OperationSchema, input, options) as async.Operation<types.ListMailDomainsOutput>
 end
 
-function C:listMobileDeviceAccessOverrides(input: types.ListMobileDeviceAccessOverridesInput, options: any): async.Operation<types.ListMobileDeviceAccessOverridesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMobileDeviceAccessOverrides, input, options) as async.Operation<types.ListMobileDeviceAccessOverridesOutput>
+function C:listMobileDeviceAccessOverrides(input: types.ListMobileDeviceAccessOverridesInput, options?: base_client.InvokeOptions): async.Operation<types.ListMobileDeviceAccessOverridesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMobileDeviceAccessOverrides as schema.OperationSchema, input, options) as async.Operation<types.ListMobileDeviceAccessOverridesOutput>
 end
 
-function C:listMobileDeviceAccessRules(input: types.ListMobileDeviceAccessRulesInput, options: any): async.Operation<types.ListMobileDeviceAccessRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMobileDeviceAccessRules, input, options) as async.Operation<types.ListMobileDeviceAccessRulesOutput>
+function C:listMobileDeviceAccessRules(input: types.ListMobileDeviceAccessRulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListMobileDeviceAccessRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMobileDeviceAccessRules as schema.OperationSchema, input, options) as async.Operation<types.ListMobileDeviceAccessRulesOutput>
 end
 
-function C:listOrganizations(input: types.ListOrganizationsInput, options: any): async.Operation<types.ListOrganizationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOrganizations, input, options) as async.Operation<types.ListOrganizationsOutput>
+function C:listOrganizations(input: types.ListOrganizationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListOrganizationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOrganizations as schema.OperationSchema, input, options) as async.Operation<types.ListOrganizationsOutput>
 end
 
-function C:listPersonalAccessTokens(input: types.ListPersonalAccessTokensInput, options: any): async.Operation<types.ListPersonalAccessTokensOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPersonalAccessTokens, input, options) as async.Operation<types.ListPersonalAccessTokensOutput>
+function C:listPersonalAccessTokens(input: types.ListPersonalAccessTokensInput, options?: base_client.InvokeOptions): async.Operation<types.ListPersonalAccessTokensOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPersonalAccessTokens as schema.OperationSchema, input, options) as async.Operation<types.ListPersonalAccessTokensOutput>
 end
 
-function C:listResourceDelegates(input: types.ListResourceDelegatesInput, options: any): async.Operation<types.ListResourceDelegatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResourceDelegates, input, options) as async.Operation<types.ListResourceDelegatesOutput>
+function C:listResourceDelegates(input: types.ListResourceDelegatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourceDelegatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourceDelegates as schema.OperationSchema, input, options) as async.Operation<types.ListResourceDelegatesOutput>
 end
 
-function C:listResources(input: types.ListResourcesInput, options: any): async.Operation<types.ListResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResources, input, options) as async.Operation<types.ListResourcesOutput>
+function C:listResources(input: types.ListResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResources as schema.OperationSchema, input, options) as async.Operation<types.ListResourcesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listUsers(input: types.ListUsersInput, options: any): async.Operation<types.ListUsersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListUsers, input, options) as async.Operation<types.ListUsersOutput>
+function C:listUsers(input: types.ListUsersInput, options?: base_client.InvokeOptions): async.Operation<types.ListUsersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUsers as schema.OperationSchema, input, options) as async.Operation<types.ListUsersOutput>
 end
 
-function C:putAccessControlRule(input: types.PutAccessControlRuleInput, options: any): async.Operation<types.PutAccessControlRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAccessControlRule, input, options) as async.Operation<types.PutAccessControlRuleOutput>
+function C:putAccessControlRule(input: types.PutAccessControlRuleInput, options?: base_client.InvokeOptions): async.Operation<types.PutAccessControlRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAccessControlRule as schema.OperationSchema, input, options) as async.Operation<types.PutAccessControlRuleOutput>
 end
 
-function C:putEmailMonitoringConfiguration(input: types.PutEmailMonitoringConfigurationInput, options: any): async.Operation<types.PutEmailMonitoringConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutEmailMonitoringConfiguration, input, options) as async.Operation<types.PutEmailMonitoringConfigurationOutput>
+function C:putEmailMonitoringConfiguration(input: types.PutEmailMonitoringConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutEmailMonitoringConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutEmailMonitoringConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutEmailMonitoringConfigurationOutput>
 end
 
-function C:putIdentityProviderConfiguration(input: types.PutIdentityProviderConfigurationInput, options: any): async.Operation<types.PutIdentityProviderConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutIdentityProviderConfiguration, input, options) as async.Operation<types.PutIdentityProviderConfigurationOutput>
+function C:putIdentityProviderConfiguration(input: types.PutIdentityProviderConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutIdentityProviderConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutIdentityProviderConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutIdentityProviderConfigurationOutput>
 end
 
-function C:putInboundDmarcSettings(input: types.PutInboundDmarcSettingsInput, options: any): async.Operation<types.PutInboundDmarcSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutInboundDmarcSettings, input, options) as async.Operation<types.PutInboundDmarcSettingsOutput>
+function C:putInboundDmarcSettings(input: types.PutInboundDmarcSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.PutInboundDmarcSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutInboundDmarcSettings as schema.OperationSchema, input, options) as async.Operation<types.PutInboundDmarcSettingsOutput>
 end
 
-function C:putMailboxPermissions(input: types.PutMailboxPermissionsInput, options: any): async.Operation<types.PutMailboxPermissionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutMailboxPermissions, input, options) as async.Operation<types.PutMailboxPermissionsOutput>
+function C:putMailboxPermissions(input: types.PutMailboxPermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.PutMailboxPermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutMailboxPermissions as schema.OperationSchema, input, options) as async.Operation<types.PutMailboxPermissionsOutput>
 end
 
-function C:putMobileDeviceAccessOverride(input: types.PutMobileDeviceAccessOverrideInput, options: any): async.Operation<types.PutMobileDeviceAccessOverrideOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutMobileDeviceAccessOverride, input, options) as async.Operation<types.PutMobileDeviceAccessOverrideOutput>
+function C:putMobileDeviceAccessOverride(input: types.PutMobileDeviceAccessOverrideInput, options?: base_client.InvokeOptions): async.Operation<types.PutMobileDeviceAccessOverrideOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutMobileDeviceAccessOverride as schema.OperationSchema, input, options) as async.Operation<types.PutMobileDeviceAccessOverrideOutput>
 end
 
-function C:putRetentionPolicy(input: types.PutRetentionPolicyInput, options: any): async.Operation<types.PutRetentionPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutRetentionPolicy, input, options) as async.Operation<types.PutRetentionPolicyOutput>
+function C:putRetentionPolicy(input: types.PutRetentionPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutRetentionPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutRetentionPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutRetentionPolicyOutput>
 end
 
-function C:registerMailDomain(input: types.RegisterMailDomainInput, options: any): async.Operation<types.RegisterMailDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterMailDomain, input, options) as async.Operation<types.RegisterMailDomainOutput>
+function C:registerMailDomain(input: types.RegisterMailDomainInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterMailDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterMailDomain as schema.OperationSchema, input, options) as async.Operation<types.RegisterMailDomainOutput>
 end
 
-function C:registerToWorkMail(input: types.RegisterToWorkMailInput, options: any): async.Operation<types.RegisterToWorkMailOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterToWorkMail, input, options) as async.Operation<types.RegisterToWorkMailOutput>
+function C:registerToWorkMail(input: types.RegisterToWorkMailInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterToWorkMailOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterToWorkMail as schema.OperationSchema, input, options) as async.Operation<types.RegisterToWorkMailOutput>
 end
 
-function C:resetPassword(input: types.ResetPasswordInput, options: any): async.Operation<types.ResetPasswordOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResetPassword, input, options) as async.Operation<types.ResetPasswordOutput>
+function C:resetPassword(input: types.ResetPasswordInput, options?: base_client.InvokeOptions): async.Operation<types.ResetPasswordOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResetPassword as schema.OperationSchema, input, options) as async.Operation<types.ResetPasswordOutput>
 end
 
-function C:startMailboxExportJob(input: types.StartMailboxExportJobInput, options: any): async.Operation<types.StartMailboxExportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartMailboxExportJob, input, options) as async.Operation<types.StartMailboxExportJobOutput>
+function C:startMailboxExportJob(input: types.StartMailboxExportJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartMailboxExportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartMailboxExportJob as schema.OperationSchema, input, options) as async.Operation<types.StartMailboxExportJobOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:testAvailabilityConfiguration(input: types.TestAvailabilityConfigurationInput, options: any): async.Operation<types.TestAvailabilityConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.TestAvailabilityConfiguration, input, options) as async.Operation<types.TestAvailabilityConfigurationOutput>
+function C:testAvailabilityConfiguration(input: types.TestAvailabilityConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.TestAvailabilityConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TestAvailabilityConfiguration as schema.OperationSchema, input, options) as async.Operation<types.TestAvailabilityConfigurationOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAvailabilityConfiguration(input: types.UpdateAvailabilityConfigurationInput, options: any): async.Operation<types.UpdateAvailabilityConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAvailabilityConfiguration, input, options) as async.Operation<types.UpdateAvailabilityConfigurationOutput>
+function C:updateAvailabilityConfiguration(input: types.UpdateAvailabilityConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAvailabilityConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAvailabilityConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateAvailabilityConfigurationOutput>
 end
 
-function C:updateDefaultMailDomain(input: types.UpdateDefaultMailDomainInput, options: any): async.Operation<types.UpdateDefaultMailDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDefaultMailDomain, input, options) as async.Operation<types.UpdateDefaultMailDomainOutput>
+function C:updateDefaultMailDomain(input: types.UpdateDefaultMailDomainInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDefaultMailDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDefaultMailDomain as schema.OperationSchema, input, options) as async.Operation<types.UpdateDefaultMailDomainOutput>
 end
 
-function C:updateGroup(input: types.UpdateGroupInput, options: any): async.Operation<types.UpdateGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateGroup, input, options) as async.Operation<types.UpdateGroupOutput>
+function C:updateGroup(input: types.UpdateGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateGroupOutput>
 end
 
-function C:updateImpersonationRole(input: types.UpdateImpersonationRoleInput, options: any): async.Operation<types.UpdateImpersonationRoleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateImpersonationRole, input, options) as async.Operation<types.UpdateImpersonationRoleOutput>
+function C:updateImpersonationRole(input: types.UpdateImpersonationRoleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateImpersonationRoleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateImpersonationRole as schema.OperationSchema, input, options) as async.Operation<types.UpdateImpersonationRoleOutput>
 end
 
-function C:updateMailboxQuota(input: types.UpdateMailboxQuotaInput, options: any): async.Operation<types.UpdateMailboxQuotaOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateMailboxQuota, input, options) as async.Operation<types.UpdateMailboxQuotaOutput>
+function C:updateMailboxQuota(input: types.UpdateMailboxQuotaInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMailboxQuotaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMailboxQuota as schema.OperationSchema, input, options) as async.Operation<types.UpdateMailboxQuotaOutput>
 end
 
-function C:updateMobileDeviceAccessRule(input: types.UpdateMobileDeviceAccessRuleInput, options: any): async.Operation<types.UpdateMobileDeviceAccessRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateMobileDeviceAccessRule, input, options) as async.Operation<types.UpdateMobileDeviceAccessRuleOutput>
+function C:updateMobileDeviceAccessRule(input: types.UpdateMobileDeviceAccessRuleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMobileDeviceAccessRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMobileDeviceAccessRule as schema.OperationSchema, input, options) as async.Operation<types.UpdateMobileDeviceAccessRuleOutput>
 end
 
-function C:updatePrimaryEmailAddress(input: types.UpdatePrimaryEmailAddressInput, options: any): async.Operation<types.UpdatePrimaryEmailAddressOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePrimaryEmailAddress, input, options) as async.Operation<types.UpdatePrimaryEmailAddressOutput>
+function C:updatePrimaryEmailAddress(input: types.UpdatePrimaryEmailAddressInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePrimaryEmailAddressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePrimaryEmailAddress as schema.OperationSchema, input, options) as async.Operation<types.UpdatePrimaryEmailAddressOutput>
 end
 
-function C:updateResource(input: types.UpdateResourceInput, options: any): async.Operation<types.UpdateResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateResource, input, options) as async.Operation<types.UpdateResourceOutput>
+function C:updateResource(input: types.UpdateResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateResource as schema.OperationSchema, input, options) as async.Operation<types.UpdateResourceOutput>
 end
 
-function C:updateUser(input: types.UpdateUserInput, options: any): async.Operation<types.UpdateUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateUser, input, options) as async.Operation<types.UpdateUserOutput>
+function C:updateUser(input: types.UpdateUserInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateUser as schema.OperationSchema, input, options) as async.Operation<types.UpdateUserOutput>
 end
 
 return M

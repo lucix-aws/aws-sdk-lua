@@ -8,114 +8,117 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("inspector2.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("inspector2.schemas")
 local traits = require("smithy.traits")
 local types = require("inspector2.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateMember: function(Client, types.AssociateMemberInput, any): async.Operation<types.AssociateMemberOutput>
-    batchAssociateCodeSecurityScanConfiguration: function(Client, types.BatchAssociateCodeSecurityScanConfigurationInput, any): async.Operation<types.BatchAssociateCodeSecurityScanConfigurationOutput>
-    batchDisassociateCodeSecurityScanConfiguration: function(Client, types.BatchDisassociateCodeSecurityScanConfigurationInput, any): async.Operation<types.BatchDisassociateCodeSecurityScanConfigurationOutput>
-    batchGetAccountStatus: function(Client, types.BatchGetAccountStatusInput, any): async.Operation<types.BatchGetAccountStatusOutput>
-    batchGetCodeSnippet: function(Client, types.BatchGetCodeSnippetInput, any): async.Operation<types.BatchGetCodeSnippetOutput>
-    batchGetFindingDetails: function(Client, types.BatchGetFindingDetailsInput, any): async.Operation<types.BatchGetFindingDetailsOutput>
-    batchGetFreeTrialInfo: function(Client, types.BatchGetFreeTrialInfoInput, any): async.Operation<types.BatchGetFreeTrialInfoOutput>
-    batchGetMemberEc2DeepInspectionStatus: function(Client, types.BatchGetMemberEc2DeepInspectionStatusInput, any): async.Operation<types.BatchGetMemberEc2DeepInspectionStatusOutput>
-    batchUpdateMemberEc2DeepInspectionStatus: function(Client, types.BatchUpdateMemberEc2DeepInspectionStatusInput, any): async.Operation<types.BatchUpdateMemberEc2DeepInspectionStatusOutput>
-    cancelFindingsReport: function(Client, types.CancelFindingsReportInput, any): async.Operation<types.CancelFindingsReportOutput>
-    cancelSbomExport: function(Client, types.CancelSbomExportInput, any): async.Operation<types.CancelSbomExportOutput>
-    createCisScanConfiguration: function(Client, types.CreateCisScanConfigurationInput, any): async.Operation<types.CreateCisScanConfigurationOutput>
-    createCodeSecurityIntegration: function(Client, types.CreateCodeSecurityIntegrationInput, any): async.Operation<types.CreateCodeSecurityIntegrationOutput>
-    createCodeSecurityScanConfiguration: function(Client, types.CreateCodeSecurityScanConfigurationInput, any): async.Operation<types.CreateCodeSecurityScanConfigurationOutput>
-    createFilter: function(Client, types.CreateFilterInput, any): async.Operation<types.CreateFilterOutput>
-    createFindingsReport: function(Client, types.CreateFindingsReportInput, any): async.Operation<types.CreateFindingsReportOutput>
-    createSbomExport: function(Client, types.CreateSbomExportInput, any): async.Operation<types.CreateSbomExportOutput>
-    deleteCisScanConfiguration: function(Client, types.DeleteCisScanConfigurationInput, any): async.Operation<types.DeleteCisScanConfigurationOutput>
-    deleteCodeSecurityIntegration: function(Client, types.DeleteCodeSecurityIntegrationInput, any): async.Operation<types.DeleteCodeSecurityIntegrationOutput>
-    deleteCodeSecurityScanConfiguration: function(Client, types.DeleteCodeSecurityScanConfigurationInput, any): async.Operation<types.DeleteCodeSecurityScanConfigurationOutput>
-    deleteFilter: function(Client, types.DeleteFilterInput, any): async.Operation<types.DeleteFilterOutput>
-    describeOrganizationConfiguration: function(Client, types.DescribeOrganizationConfigurationInput, any): async.Operation<types.DescribeOrganizationConfigurationOutput>
-    disable: function(Client, types.DisableInput, any): async.Operation<types.DisableOutput>
-    disableDelegatedAdminAccount: function(Client, types.DisableDelegatedAdminAccountInput, any): async.Operation<types.DisableDelegatedAdminAccountOutput>
-    disassociateMember: function(Client, types.DisassociateMemberInput, any): async.Operation<types.DisassociateMemberOutput>
-    enable: function(Client, types.EnableInput, any): async.Operation<types.EnableOutput>
-    enableDelegatedAdminAccount: function(Client, types.EnableDelegatedAdminAccountInput, any): async.Operation<types.EnableDelegatedAdminAccountOutput>
-    getCisScanReport: function(Client, types.GetCisScanReportInput, any): async.Operation<types.GetCisScanReportOutput>
-    getCisScanResultDetails: function(Client, types.GetCisScanResultDetailsInput, any): async.Operation<types.GetCisScanResultDetailsOutput>
-    getClustersForImage: function(Client, types.GetClustersForImageInput, any): async.Operation<types.GetClustersForImageOutput>
-    getCodeSecurityIntegration: function(Client, types.GetCodeSecurityIntegrationInput, any): async.Operation<types.GetCodeSecurityIntegrationOutput>
-    getCodeSecurityScan: function(Client, types.GetCodeSecurityScanInput, any): async.Operation<types.GetCodeSecurityScanOutput>
-    getCodeSecurityScanConfiguration: function(Client, types.GetCodeSecurityScanConfigurationInput, any): async.Operation<types.GetCodeSecurityScanConfigurationOutput>
-    getConfiguration: function(Client, types.GetConfigurationInput, any): async.Operation<types.GetConfigurationOutput>
-    getDelegatedAdminAccount: function(Client, types.GetDelegatedAdminAccountInput, any): async.Operation<types.GetDelegatedAdminAccountOutput>
-    getEc2DeepInspectionConfiguration: function(Client, types.GetEc2DeepInspectionConfigurationInput, any): async.Operation<types.GetEc2DeepInspectionConfigurationOutput>
-    getEncryptionKey: function(Client, types.GetEncryptionKeyInput, any): async.Operation<types.GetEncryptionKeyOutput>
-    getFindingsReportStatus: function(Client, types.GetFindingsReportStatusInput, any): async.Operation<types.GetFindingsReportStatusOutput>
-    getMember: function(Client, types.GetMemberInput, any): async.Operation<types.GetMemberOutput>
-    getSbomExport: function(Client, types.GetSbomExportInput, any): async.Operation<types.GetSbomExportOutput>
-    listAccountPermissions: function(Client, types.ListAccountPermissionsInput, any): async.Operation<types.ListAccountPermissionsOutput>
-    listCisScanConfigurations: function(Client, types.ListCisScanConfigurationsInput, any): async.Operation<types.ListCisScanConfigurationsOutput>
-    listCisScanResultsAggregatedByChecks: function(Client, types.ListCisScanResultsAggregatedByChecksInput, any): async.Operation<types.ListCisScanResultsAggregatedByChecksOutput>
-    listCisScanResultsAggregatedByTargetResource: function(Client, types.ListCisScanResultsAggregatedByTargetResourceInput, any): async.Operation<types.ListCisScanResultsAggregatedByTargetResourceOutput>
-    listCisScans: function(Client, types.ListCisScansInput, any): async.Operation<types.ListCisScansOutput>
-    listCodeSecurityIntegrations: function(Client, types.ListCodeSecurityIntegrationsInput, any): async.Operation<types.ListCodeSecurityIntegrationsOutput>
-    listCodeSecurityScanConfigurationAssociations: function(Client, types.ListCodeSecurityScanConfigurationAssociationsInput, any): async.Operation<types.ListCodeSecurityScanConfigurationAssociationsOutput>
-    listCodeSecurityScanConfigurations: function(Client, types.ListCodeSecurityScanConfigurationsInput, any): async.Operation<types.ListCodeSecurityScanConfigurationsOutput>
-    listCoverage: function(Client, types.ListCoverageInput, any): async.Operation<types.ListCoverageOutput>
-    listCoverageStatistics: function(Client, types.ListCoverageStatisticsInput, any): async.Operation<types.ListCoverageStatisticsOutput>
-    listDelegatedAdminAccounts: function(Client, types.ListDelegatedAdminAccountsInput, any): async.Operation<types.ListDelegatedAdminAccountsOutput>
-    listFilters: function(Client, types.ListFiltersInput, any): async.Operation<types.ListFiltersOutput>
-    listFindingAggregations: function(Client, types.ListFindingAggregationsInput, any): async.Operation<types.ListFindingAggregationsOutput>
-    listFindings: function(Client, types.ListFindingsInput, any): async.Operation<types.ListFindingsOutput>
-    listMembers: function(Client, types.ListMembersInput, any): async.Operation<types.ListMembersOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listUsageTotals: function(Client, types.ListUsageTotalsInput, any): async.Operation<types.ListUsageTotalsOutput>
-    resetEncryptionKey: function(Client, types.ResetEncryptionKeyInput, any): async.Operation<types.ResetEncryptionKeyOutput>
-    searchVulnerabilities: function(Client, types.SearchVulnerabilitiesInput, any): async.Operation<types.SearchVulnerabilitiesOutput>
-    sendCisSessionHealth: function(Client, types.SendCisSessionHealthInput, any): async.Operation<types.SendCisSessionHealthOutput>
-    sendCisSessionTelemetry: function(Client, types.SendCisSessionTelemetryInput, any): async.Operation<types.SendCisSessionTelemetryOutput>
-    startCisSession: function(Client, types.StartCisSessionInput, any): async.Operation<types.StartCisSessionOutput>
-    startCodeSecurityScan: function(Client, types.StartCodeSecurityScanInput, any): async.Operation<types.StartCodeSecurityScanOutput>
-    stopCisSession: function(Client, types.StopCisSessionInput, any): async.Operation<types.StopCisSessionOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateCisScanConfiguration: function(Client, types.UpdateCisScanConfigurationInput, any): async.Operation<types.UpdateCisScanConfigurationOutput>
-    updateCodeSecurityIntegration: function(Client, types.UpdateCodeSecurityIntegrationInput, any): async.Operation<types.UpdateCodeSecurityIntegrationOutput>
-    updateCodeSecurityScanConfiguration: function(Client, types.UpdateCodeSecurityScanConfigurationInput, any): async.Operation<types.UpdateCodeSecurityScanConfigurationOutput>
-    updateConfiguration: function(Client, types.UpdateConfigurationInput, any): async.Operation<types.UpdateConfigurationOutput>
-    updateEc2DeepInspectionConfiguration: function(Client, types.UpdateEc2DeepInspectionConfigurationInput, any): async.Operation<types.UpdateEc2DeepInspectionConfigurationOutput>
-    updateEncryptionKey: function(Client, types.UpdateEncryptionKeyInput, any): async.Operation<types.UpdateEncryptionKeyOutput>
-    updateFilter: function(Client, types.UpdateFilterInput, any): async.Operation<types.UpdateFilterOutput>
-    updateOrganizationConfiguration: function(Client, types.UpdateOrganizationConfigurationInput, any): async.Operation<types.UpdateOrganizationConfigurationOutput>
-    updateOrgEc2DeepInspectionConfiguration: function(Client, types.UpdateOrgEc2DeepInspectionConfigurationInput, any): async.Operation<types.UpdateOrgEc2DeepInspectionConfigurationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateMember: function(Client, types.AssociateMemberInput, ? base_client.InvokeOptions): async.Operation<types.AssociateMemberOutput>
+    batchAssociateCodeSecurityScanConfiguration: function(Client, types.BatchAssociateCodeSecurityScanConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.BatchAssociateCodeSecurityScanConfigurationOutput>
+    batchDisassociateCodeSecurityScanConfiguration: function(Client, types.BatchDisassociateCodeSecurityScanConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.BatchDisassociateCodeSecurityScanConfigurationOutput>
+    batchGetAccountStatus: function(Client, types.BatchGetAccountStatusInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetAccountStatusOutput>
+    batchGetCodeSnippet: function(Client, types.BatchGetCodeSnippetInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetCodeSnippetOutput>
+    batchGetFindingDetails: function(Client, types.BatchGetFindingDetailsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetFindingDetailsOutput>
+    batchGetFreeTrialInfo: function(Client, types.BatchGetFreeTrialInfoInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetFreeTrialInfoOutput>
+    batchGetMemberEc2DeepInspectionStatus: function(Client, types.BatchGetMemberEc2DeepInspectionStatusInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetMemberEc2DeepInspectionStatusOutput>
+    batchUpdateMemberEc2DeepInspectionStatus: function(Client, types.BatchUpdateMemberEc2DeepInspectionStatusInput, ? base_client.InvokeOptions): async.Operation<types.BatchUpdateMemberEc2DeepInspectionStatusOutput>
+    cancelFindingsReport: function(Client, types.CancelFindingsReportInput, ? base_client.InvokeOptions): async.Operation<types.CancelFindingsReportOutput>
+    cancelSbomExport: function(Client, types.CancelSbomExportInput, ? base_client.InvokeOptions): async.Operation<types.CancelSbomExportOutput>
+    createCisScanConfiguration: function(Client, types.CreateCisScanConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateCisScanConfigurationOutput>
+    createCodeSecurityIntegration: function(Client, types.CreateCodeSecurityIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.CreateCodeSecurityIntegrationOutput>
+    createCodeSecurityScanConfiguration: function(Client, types.CreateCodeSecurityScanConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateCodeSecurityScanConfigurationOutput>
+    createFilter: function(Client, types.CreateFilterInput, ? base_client.InvokeOptions): async.Operation<types.CreateFilterOutput>
+    createFindingsReport: function(Client, types.CreateFindingsReportInput, ? base_client.InvokeOptions): async.Operation<types.CreateFindingsReportOutput>
+    createSbomExport: function(Client, types.CreateSbomExportInput, ? base_client.InvokeOptions): async.Operation<types.CreateSbomExportOutput>
+    deleteCisScanConfiguration: function(Client, types.DeleteCisScanConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCisScanConfigurationOutput>
+    deleteCodeSecurityIntegration: function(Client, types.DeleteCodeSecurityIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCodeSecurityIntegrationOutput>
+    deleteCodeSecurityScanConfiguration: function(Client, types.DeleteCodeSecurityScanConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCodeSecurityScanConfigurationOutput>
+    deleteFilter: function(Client, types.DeleteFilterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFilterOutput>
+    describeOrganizationConfiguration: function(Client, types.DescribeOrganizationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeOrganizationConfigurationOutput>
+    disable: function(Client, types.DisableInput, ? base_client.InvokeOptions): async.Operation<types.DisableOutput>
+    disableDelegatedAdminAccount: function(Client, types.DisableDelegatedAdminAccountInput, ? base_client.InvokeOptions): async.Operation<types.DisableDelegatedAdminAccountOutput>
+    disassociateMember: function(Client, types.DisassociateMemberInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateMemberOutput>
+    enable: function(Client, types.EnableInput, ? base_client.InvokeOptions): async.Operation<types.EnableOutput>
+    enableDelegatedAdminAccount: function(Client, types.EnableDelegatedAdminAccountInput, ? base_client.InvokeOptions): async.Operation<types.EnableDelegatedAdminAccountOutput>
+    getCisScanReport: function(Client, types.GetCisScanReportInput, ? base_client.InvokeOptions): async.Operation<types.GetCisScanReportOutput>
+    getCisScanResultDetails: function(Client, types.GetCisScanResultDetailsInput, ? base_client.InvokeOptions): async.Operation<types.GetCisScanResultDetailsOutput>
+    getClustersForImage: function(Client, types.GetClustersForImageInput, ? base_client.InvokeOptions): async.Operation<types.GetClustersForImageOutput>
+    getCodeSecurityIntegration: function(Client, types.GetCodeSecurityIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.GetCodeSecurityIntegrationOutput>
+    getCodeSecurityScan: function(Client, types.GetCodeSecurityScanInput, ? base_client.InvokeOptions): async.Operation<types.GetCodeSecurityScanOutput>
+    getCodeSecurityScanConfiguration: function(Client, types.GetCodeSecurityScanConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetCodeSecurityScanConfigurationOutput>
+    getConfiguration: function(Client, types.GetConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetConfigurationOutput>
+    getDelegatedAdminAccount: function(Client, types.GetDelegatedAdminAccountInput, ? base_client.InvokeOptions): async.Operation<types.GetDelegatedAdminAccountOutput>
+    getEc2DeepInspectionConfiguration: function(Client, types.GetEc2DeepInspectionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetEc2DeepInspectionConfigurationOutput>
+    getEncryptionKey: function(Client, types.GetEncryptionKeyInput, ? base_client.InvokeOptions): async.Operation<types.GetEncryptionKeyOutput>
+    getFindingsReportStatus: function(Client, types.GetFindingsReportStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetFindingsReportStatusOutput>
+    getMember: function(Client, types.GetMemberInput, ? base_client.InvokeOptions): async.Operation<types.GetMemberOutput>
+    getSbomExport: function(Client, types.GetSbomExportInput, ? base_client.InvokeOptions): async.Operation<types.GetSbomExportOutput>
+    listAccountPermissions: function(Client, types.ListAccountPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.ListAccountPermissionsOutput>
+    listCisScanConfigurations: function(Client, types.ListCisScanConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListCisScanConfigurationsOutput>
+    listCisScanResultsAggregatedByChecks: function(Client, types.ListCisScanResultsAggregatedByChecksInput, ? base_client.InvokeOptions): async.Operation<types.ListCisScanResultsAggregatedByChecksOutput>
+    listCisScanResultsAggregatedByTargetResource: function(Client, types.ListCisScanResultsAggregatedByTargetResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListCisScanResultsAggregatedByTargetResourceOutput>
+    listCisScans: function(Client, types.ListCisScansInput, ? base_client.InvokeOptions): async.Operation<types.ListCisScansOutput>
+    listCodeSecurityIntegrations: function(Client, types.ListCodeSecurityIntegrationsInput, ? base_client.InvokeOptions): async.Operation<types.ListCodeSecurityIntegrationsOutput>
+    listCodeSecurityScanConfigurationAssociations: function(Client, types.ListCodeSecurityScanConfigurationAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListCodeSecurityScanConfigurationAssociationsOutput>
+    listCodeSecurityScanConfigurations: function(Client, types.ListCodeSecurityScanConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListCodeSecurityScanConfigurationsOutput>
+    listCoverage: function(Client, types.ListCoverageInput, ? base_client.InvokeOptions): async.Operation<types.ListCoverageOutput>
+    listCoverageStatistics: function(Client, types.ListCoverageStatisticsInput, ? base_client.InvokeOptions): async.Operation<types.ListCoverageStatisticsOutput>
+    listDelegatedAdminAccounts: function(Client, types.ListDelegatedAdminAccountsInput, ? base_client.InvokeOptions): async.Operation<types.ListDelegatedAdminAccountsOutput>
+    listFilters: function(Client, types.ListFiltersInput, ? base_client.InvokeOptions): async.Operation<types.ListFiltersOutput>
+    listFindingAggregations: function(Client, types.ListFindingAggregationsInput, ? base_client.InvokeOptions): async.Operation<types.ListFindingAggregationsOutput>
+    listFindings: function(Client, types.ListFindingsInput, ? base_client.InvokeOptions): async.Operation<types.ListFindingsOutput>
+    listMembers: function(Client, types.ListMembersInput, ? base_client.InvokeOptions): async.Operation<types.ListMembersOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listUsageTotals: function(Client, types.ListUsageTotalsInput, ? base_client.InvokeOptions): async.Operation<types.ListUsageTotalsOutput>
+    resetEncryptionKey: function(Client, types.ResetEncryptionKeyInput, ? base_client.InvokeOptions): async.Operation<types.ResetEncryptionKeyOutput>
+    searchVulnerabilities: function(Client, types.SearchVulnerabilitiesInput, ? base_client.InvokeOptions): async.Operation<types.SearchVulnerabilitiesOutput>
+    sendCisSessionHealth: function(Client, types.SendCisSessionHealthInput, ? base_client.InvokeOptions): async.Operation<types.SendCisSessionHealthOutput>
+    sendCisSessionTelemetry: function(Client, types.SendCisSessionTelemetryInput, ? base_client.InvokeOptions): async.Operation<types.SendCisSessionTelemetryOutput>
+    startCisSession: function(Client, types.StartCisSessionInput, ? base_client.InvokeOptions): async.Operation<types.StartCisSessionOutput>
+    startCodeSecurityScan: function(Client, types.StartCodeSecurityScanInput, ? base_client.InvokeOptions): async.Operation<types.StartCodeSecurityScanOutput>
+    stopCisSession: function(Client, types.StopCisSessionInput, ? base_client.InvokeOptions): async.Operation<types.StopCisSessionOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateCisScanConfiguration: function(Client, types.UpdateCisScanConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCisScanConfigurationOutput>
+    updateCodeSecurityIntegration: function(Client, types.UpdateCodeSecurityIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCodeSecurityIntegrationOutput>
+    updateCodeSecurityScanConfiguration: function(Client, types.UpdateCodeSecurityScanConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCodeSecurityScanConfigurationOutput>
+    updateConfiguration: function(Client, types.UpdateConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfigurationOutput>
+    updateEc2DeepInspectionConfiguration: function(Client, types.UpdateEc2DeepInspectionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEc2DeepInspectionConfigurationOutput>
+    updateEncryptionKey: function(Client, types.UpdateEncryptionKeyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEncryptionKeyOutput>
+    updateFilter: function(Client, types.UpdateFilterInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFilterOutput>
+    updateOrganizationConfiguration: function(Client, types.UpdateOrganizationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOrganizationConfigurationOutput>
+    updateOrgEc2DeepInspectionConfiguration: function(Client, types.UpdateOrgEc2DeepInspectionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOrgEc2DeepInspectionConfigurationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "Inspector2"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "inspector2", signing_region = c.region } }
                 else
@@ -134,304 +137,304 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateMember(input: types.AssociateMemberInput, options: any): async.Operation<types.AssociateMemberOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateMember, input, options) as async.Operation<types.AssociateMemberOutput>
+function C:associateMember(input: types.AssociateMemberInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateMemberOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateMember as schema.OperationSchema, input, options) as async.Operation<types.AssociateMemberOutput>
 end
 
-function C:batchAssociateCodeSecurityScanConfiguration(input: types.BatchAssociateCodeSecurityScanConfigurationInput, options: any): async.Operation<types.BatchAssociateCodeSecurityScanConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchAssociateCodeSecurityScanConfiguration, input, options) as async.Operation<types.BatchAssociateCodeSecurityScanConfigurationOutput>
+function C:batchAssociateCodeSecurityScanConfiguration(input: types.BatchAssociateCodeSecurityScanConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.BatchAssociateCodeSecurityScanConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchAssociateCodeSecurityScanConfiguration as schema.OperationSchema, input, options) as async.Operation<types.BatchAssociateCodeSecurityScanConfigurationOutput>
 end
 
-function C:batchDisassociateCodeSecurityScanConfiguration(input: types.BatchDisassociateCodeSecurityScanConfigurationInput, options: any): async.Operation<types.BatchDisassociateCodeSecurityScanConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDisassociateCodeSecurityScanConfiguration, input, options) as async.Operation<types.BatchDisassociateCodeSecurityScanConfigurationOutput>
+function C:batchDisassociateCodeSecurityScanConfiguration(input: types.BatchDisassociateCodeSecurityScanConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDisassociateCodeSecurityScanConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDisassociateCodeSecurityScanConfiguration as schema.OperationSchema, input, options) as async.Operation<types.BatchDisassociateCodeSecurityScanConfigurationOutput>
 end
 
-function C:batchGetAccountStatus(input: types.BatchGetAccountStatusInput, options: any): async.Operation<types.BatchGetAccountStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetAccountStatus, input, options) as async.Operation<types.BatchGetAccountStatusOutput>
+function C:batchGetAccountStatus(input: types.BatchGetAccountStatusInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetAccountStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetAccountStatus as schema.OperationSchema, input, options) as async.Operation<types.BatchGetAccountStatusOutput>
 end
 
-function C:batchGetCodeSnippet(input: types.BatchGetCodeSnippetInput, options: any): async.Operation<types.BatchGetCodeSnippetOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetCodeSnippet, input, options) as async.Operation<types.BatchGetCodeSnippetOutput>
+function C:batchGetCodeSnippet(input: types.BatchGetCodeSnippetInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetCodeSnippetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetCodeSnippet as schema.OperationSchema, input, options) as async.Operation<types.BatchGetCodeSnippetOutput>
 end
 
-function C:batchGetFindingDetails(input: types.BatchGetFindingDetailsInput, options: any): async.Operation<types.BatchGetFindingDetailsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetFindingDetails, input, options) as async.Operation<types.BatchGetFindingDetailsOutput>
+function C:batchGetFindingDetails(input: types.BatchGetFindingDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetFindingDetailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetFindingDetails as schema.OperationSchema, input, options) as async.Operation<types.BatchGetFindingDetailsOutput>
 end
 
-function C:batchGetFreeTrialInfo(input: types.BatchGetFreeTrialInfoInput, options: any): async.Operation<types.BatchGetFreeTrialInfoOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetFreeTrialInfo, input, options) as async.Operation<types.BatchGetFreeTrialInfoOutput>
+function C:batchGetFreeTrialInfo(input: types.BatchGetFreeTrialInfoInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetFreeTrialInfoOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetFreeTrialInfo as schema.OperationSchema, input, options) as async.Operation<types.BatchGetFreeTrialInfoOutput>
 end
 
-function C:batchGetMemberEc2DeepInspectionStatus(input: types.BatchGetMemberEc2DeepInspectionStatusInput, options: any): async.Operation<types.BatchGetMemberEc2DeepInspectionStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetMemberEc2DeepInspectionStatus, input, options) as async.Operation<types.BatchGetMemberEc2DeepInspectionStatusOutput>
+function C:batchGetMemberEc2DeepInspectionStatus(input: types.BatchGetMemberEc2DeepInspectionStatusInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetMemberEc2DeepInspectionStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetMemberEc2DeepInspectionStatus as schema.OperationSchema, input, options) as async.Operation<types.BatchGetMemberEc2DeepInspectionStatusOutput>
 end
 
-function C:batchUpdateMemberEc2DeepInspectionStatus(input: types.BatchUpdateMemberEc2DeepInspectionStatusInput, options: any): async.Operation<types.BatchUpdateMemberEc2DeepInspectionStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchUpdateMemberEc2DeepInspectionStatus, input, options) as async.Operation<types.BatchUpdateMemberEc2DeepInspectionStatusOutput>
+function C:batchUpdateMemberEc2DeepInspectionStatus(input: types.BatchUpdateMemberEc2DeepInspectionStatusInput, options?: base_client.InvokeOptions): async.Operation<types.BatchUpdateMemberEc2DeepInspectionStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchUpdateMemberEc2DeepInspectionStatus as schema.OperationSchema, input, options) as async.Operation<types.BatchUpdateMemberEc2DeepInspectionStatusOutput>
 end
 
-function C:cancelFindingsReport(input: types.CancelFindingsReportInput, options: any): async.Operation<types.CancelFindingsReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelFindingsReport, input, options) as async.Operation<types.CancelFindingsReportOutput>
+function C:cancelFindingsReport(input: types.CancelFindingsReportInput, options?: base_client.InvokeOptions): async.Operation<types.CancelFindingsReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelFindingsReport as schema.OperationSchema, input, options) as async.Operation<types.CancelFindingsReportOutput>
 end
 
-function C:cancelSbomExport(input: types.CancelSbomExportInput, options: any): async.Operation<types.CancelSbomExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelSbomExport, input, options) as async.Operation<types.CancelSbomExportOutput>
+function C:cancelSbomExport(input: types.CancelSbomExportInput, options?: base_client.InvokeOptions): async.Operation<types.CancelSbomExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelSbomExport as schema.OperationSchema, input, options) as async.Operation<types.CancelSbomExportOutput>
 end
 
-function C:createCisScanConfiguration(input: types.CreateCisScanConfigurationInput, options: any): async.Operation<types.CreateCisScanConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCisScanConfiguration, input, options) as async.Operation<types.CreateCisScanConfigurationOutput>
+function C:createCisScanConfiguration(input: types.CreateCisScanConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCisScanConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCisScanConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateCisScanConfigurationOutput>
 end
 
-function C:createCodeSecurityIntegration(input: types.CreateCodeSecurityIntegrationInput, options: any): async.Operation<types.CreateCodeSecurityIntegrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCodeSecurityIntegration, input, options) as async.Operation<types.CreateCodeSecurityIntegrationOutput>
+function C:createCodeSecurityIntegration(input: types.CreateCodeSecurityIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCodeSecurityIntegrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCodeSecurityIntegration as schema.OperationSchema, input, options) as async.Operation<types.CreateCodeSecurityIntegrationOutput>
 end
 
-function C:createCodeSecurityScanConfiguration(input: types.CreateCodeSecurityScanConfigurationInput, options: any): async.Operation<types.CreateCodeSecurityScanConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCodeSecurityScanConfiguration, input, options) as async.Operation<types.CreateCodeSecurityScanConfigurationOutput>
+function C:createCodeSecurityScanConfiguration(input: types.CreateCodeSecurityScanConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCodeSecurityScanConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCodeSecurityScanConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateCodeSecurityScanConfigurationOutput>
 end
 
-function C:createFilter(input: types.CreateFilterInput, options: any): async.Operation<types.CreateFilterOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFilter, input, options) as async.Operation<types.CreateFilterOutput>
+function C:createFilter(input: types.CreateFilterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFilterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFilter as schema.OperationSchema, input, options) as async.Operation<types.CreateFilterOutput>
 end
 
-function C:createFindingsReport(input: types.CreateFindingsReportInput, options: any): async.Operation<types.CreateFindingsReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFindingsReport, input, options) as async.Operation<types.CreateFindingsReportOutput>
+function C:createFindingsReport(input: types.CreateFindingsReportInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFindingsReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFindingsReport as schema.OperationSchema, input, options) as async.Operation<types.CreateFindingsReportOutput>
 end
 
-function C:createSbomExport(input: types.CreateSbomExportInput, options: any): async.Operation<types.CreateSbomExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSbomExport, input, options) as async.Operation<types.CreateSbomExportOutput>
+function C:createSbomExport(input: types.CreateSbomExportInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSbomExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSbomExport as schema.OperationSchema, input, options) as async.Operation<types.CreateSbomExportOutput>
 end
 
-function C:deleteCisScanConfiguration(input: types.DeleteCisScanConfigurationInput, options: any): async.Operation<types.DeleteCisScanConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCisScanConfiguration, input, options) as async.Operation<types.DeleteCisScanConfigurationOutput>
+function C:deleteCisScanConfiguration(input: types.DeleteCisScanConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCisScanConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCisScanConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteCisScanConfigurationOutput>
 end
 
-function C:deleteCodeSecurityIntegration(input: types.DeleteCodeSecurityIntegrationInput, options: any): async.Operation<types.DeleteCodeSecurityIntegrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCodeSecurityIntegration, input, options) as async.Operation<types.DeleteCodeSecurityIntegrationOutput>
+function C:deleteCodeSecurityIntegration(input: types.DeleteCodeSecurityIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCodeSecurityIntegrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCodeSecurityIntegration as schema.OperationSchema, input, options) as async.Operation<types.DeleteCodeSecurityIntegrationOutput>
 end
 
-function C:deleteCodeSecurityScanConfiguration(input: types.DeleteCodeSecurityScanConfigurationInput, options: any): async.Operation<types.DeleteCodeSecurityScanConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCodeSecurityScanConfiguration, input, options) as async.Operation<types.DeleteCodeSecurityScanConfigurationOutput>
+function C:deleteCodeSecurityScanConfiguration(input: types.DeleteCodeSecurityScanConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCodeSecurityScanConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCodeSecurityScanConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteCodeSecurityScanConfigurationOutput>
 end
 
-function C:deleteFilter(input: types.DeleteFilterInput, options: any): async.Operation<types.DeleteFilterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFilter, input, options) as async.Operation<types.DeleteFilterOutput>
+function C:deleteFilter(input: types.DeleteFilterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFilterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFilter as schema.OperationSchema, input, options) as async.Operation<types.DeleteFilterOutput>
 end
 
-function C:describeOrganizationConfiguration(input: types.DescribeOrganizationConfigurationInput, options: any): async.Operation<types.DescribeOrganizationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeOrganizationConfiguration, input, options) as async.Operation<types.DescribeOrganizationConfigurationOutput>
+function C:describeOrganizationConfiguration(input: types.DescribeOrganizationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeOrganizationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeOrganizationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeOrganizationConfigurationOutput>
 end
 
-function C:disable(input: types.DisableInput, options: any): async.Operation<types.DisableOutput>
-    return self:invokeOperation(schemas.Service, schemas.Disable, input, options) as async.Operation<types.DisableOutput>
+function C:disable(input: types.DisableInput, options?: base_client.InvokeOptions): async.Operation<types.DisableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Disable as schema.OperationSchema, input, options) as async.Operation<types.DisableOutput>
 end
 
-function C:disableDelegatedAdminAccount(input: types.DisableDelegatedAdminAccountInput, options: any): async.Operation<types.DisableDelegatedAdminAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableDelegatedAdminAccount, input, options) as async.Operation<types.DisableDelegatedAdminAccountOutput>
+function C:disableDelegatedAdminAccount(input: types.DisableDelegatedAdminAccountInput, options?: base_client.InvokeOptions): async.Operation<types.DisableDelegatedAdminAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableDelegatedAdminAccount as schema.OperationSchema, input, options) as async.Operation<types.DisableDelegatedAdminAccountOutput>
 end
 
-function C:disassociateMember(input: types.DisassociateMemberInput, options: any): async.Operation<types.DisassociateMemberOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateMember, input, options) as async.Operation<types.DisassociateMemberOutput>
+function C:disassociateMember(input: types.DisassociateMemberInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateMemberOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateMember as schema.OperationSchema, input, options) as async.Operation<types.DisassociateMemberOutput>
 end
 
-function C:enable(input: types.EnableInput, options: any): async.Operation<types.EnableOutput>
-    return self:invokeOperation(schemas.Service, schemas.Enable, input, options) as async.Operation<types.EnableOutput>
+function C:enable(input: types.EnableInput, options?: base_client.InvokeOptions): async.Operation<types.EnableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Enable as schema.OperationSchema, input, options) as async.Operation<types.EnableOutput>
 end
 
-function C:enableDelegatedAdminAccount(input: types.EnableDelegatedAdminAccountInput, options: any): async.Operation<types.EnableDelegatedAdminAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableDelegatedAdminAccount, input, options) as async.Operation<types.EnableDelegatedAdminAccountOutput>
+function C:enableDelegatedAdminAccount(input: types.EnableDelegatedAdminAccountInput, options?: base_client.InvokeOptions): async.Operation<types.EnableDelegatedAdminAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableDelegatedAdminAccount as schema.OperationSchema, input, options) as async.Operation<types.EnableDelegatedAdminAccountOutput>
 end
 
-function C:getCisScanReport(input: types.GetCisScanReportInput, options: any): async.Operation<types.GetCisScanReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCisScanReport, input, options) as async.Operation<types.GetCisScanReportOutput>
+function C:getCisScanReport(input: types.GetCisScanReportInput, options?: base_client.InvokeOptions): async.Operation<types.GetCisScanReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCisScanReport as schema.OperationSchema, input, options) as async.Operation<types.GetCisScanReportOutput>
 end
 
-function C:getCisScanResultDetails(input: types.GetCisScanResultDetailsInput, options: any): async.Operation<types.GetCisScanResultDetailsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCisScanResultDetails, input, options) as async.Operation<types.GetCisScanResultDetailsOutput>
+function C:getCisScanResultDetails(input: types.GetCisScanResultDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.GetCisScanResultDetailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCisScanResultDetails as schema.OperationSchema, input, options) as async.Operation<types.GetCisScanResultDetailsOutput>
 end
 
-function C:getClustersForImage(input: types.GetClustersForImageInput, options: any): async.Operation<types.GetClustersForImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetClustersForImage, input, options) as async.Operation<types.GetClustersForImageOutput>
+function C:getClustersForImage(input: types.GetClustersForImageInput, options?: base_client.InvokeOptions): async.Operation<types.GetClustersForImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetClustersForImage as schema.OperationSchema, input, options) as async.Operation<types.GetClustersForImageOutput>
 end
 
-function C:getCodeSecurityIntegration(input: types.GetCodeSecurityIntegrationInput, options: any): async.Operation<types.GetCodeSecurityIntegrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCodeSecurityIntegration, input, options) as async.Operation<types.GetCodeSecurityIntegrationOutput>
+function C:getCodeSecurityIntegration(input: types.GetCodeSecurityIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.GetCodeSecurityIntegrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCodeSecurityIntegration as schema.OperationSchema, input, options) as async.Operation<types.GetCodeSecurityIntegrationOutput>
 end
 
-function C:getCodeSecurityScan(input: types.GetCodeSecurityScanInput, options: any): async.Operation<types.GetCodeSecurityScanOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCodeSecurityScan, input, options) as async.Operation<types.GetCodeSecurityScanOutput>
+function C:getCodeSecurityScan(input: types.GetCodeSecurityScanInput, options?: base_client.InvokeOptions): async.Operation<types.GetCodeSecurityScanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCodeSecurityScan as schema.OperationSchema, input, options) as async.Operation<types.GetCodeSecurityScanOutput>
 end
 
-function C:getCodeSecurityScanConfiguration(input: types.GetCodeSecurityScanConfigurationInput, options: any): async.Operation<types.GetCodeSecurityScanConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCodeSecurityScanConfiguration, input, options) as async.Operation<types.GetCodeSecurityScanConfigurationOutput>
+function C:getCodeSecurityScanConfiguration(input: types.GetCodeSecurityScanConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetCodeSecurityScanConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCodeSecurityScanConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetCodeSecurityScanConfigurationOutput>
 end
 
-function C:getConfiguration(input: types.GetConfigurationInput, options: any): async.Operation<types.GetConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConfiguration, input, options) as async.Operation<types.GetConfigurationOutput>
+function C:getConfiguration(input: types.GetConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetConfigurationOutput>
 end
 
-function C:getDelegatedAdminAccount(input: types.GetDelegatedAdminAccountInput, options: any): async.Operation<types.GetDelegatedAdminAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDelegatedAdminAccount, input, options) as async.Operation<types.GetDelegatedAdminAccountOutput>
+function C:getDelegatedAdminAccount(input: types.GetDelegatedAdminAccountInput, options?: base_client.InvokeOptions): async.Operation<types.GetDelegatedAdminAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDelegatedAdminAccount as schema.OperationSchema, input, options) as async.Operation<types.GetDelegatedAdminAccountOutput>
 end
 
-function C:getEc2DeepInspectionConfiguration(input: types.GetEc2DeepInspectionConfigurationInput, options: any): async.Operation<types.GetEc2DeepInspectionConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEc2DeepInspectionConfiguration, input, options) as async.Operation<types.GetEc2DeepInspectionConfigurationOutput>
+function C:getEc2DeepInspectionConfiguration(input: types.GetEc2DeepInspectionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetEc2DeepInspectionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEc2DeepInspectionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetEc2DeepInspectionConfigurationOutput>
 end
 
-function C:getEncryptionKey(input: types.GetEncryptionKeyInput, options: any): async.Operation<types.GetEncryptionKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEncryptionKey, input, options) as async.Operation<types.GetEncryptionKeyOutput>
+function C:getEncryptionKey(input: types.GetEncryptionKeyInput, options?: base_client.InvokeOptions): async.Operation<types.GetEncryptionKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEncryptionKey as schema.OperationSchema, input, options) as async.Operation<types.GetEncryptionKeyOutput>
 end
 
-function C:getFindingsReportStatus(input: types.GetFindingsReportStatusInput, options: any): async.Operation<types.GetFindingsReportStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFindingsReportStatus, input, options) as async.Operation<types.GetFindingsReportStatusOutput>
+function C:getFindingsReportStatus(input: types.GetFindingsReportStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetFindingsReportStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFindingsReportStatus as schema.OperationSchema, input, options) as async.Operation<types.GetFindingsReportStatusOutput>
 end
 
-function C:getMember(input: types.GetMemberInput, options: any): async.Operation<types.GetMemberOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMember, input, options) as async.Operation<types.GetMemberOutput>
+function C:getMember(input: types.GetMemberInput, options?: base_client.InvokeOptions): async.Operation<types.GetMemberOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMember as schema.OperationSchema, input, options) as async.Operation<types.GetMemberOutput>
 end
 
-function C:getSbomExport(input: types.GetSbomExportInput, options: any): async.Operation<types.GetSbomExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSbomExport, input, options) as async.Operation<types.GetSbomExportOutput>
+function C:getSbomExport(input: types.GetSbomExportInput, options?: base_client.InvokeOptions): async.Operation<types.GetSbomExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSbomExport as schema.OperationSchema, input, options) as async.Operation<types.GetSbomExportOutput>
 end
 
-function C:listAccountPermissions(input: types.ListAccountPermissionsInput, options: any): async.Operation<types.ListAccountPermissionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccountPermissions, input, options) as async.Operation<types.ListAccountPermissionsOutput>
+function C:listAccountPermissions(input: types.ListAccountPermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccountPermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccountPermissions as schema.OperationSchema, input, options) as async.Operation<types.ListAccountPermissionsOutput>
 end
 
-function C:listCisScanConfigurations(input: types.ListCisScanConfigurationsInput, options: any): async.Operation<types.ListCisScanConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCisScanConfigurations, input, options) as async.Operation<types.ListCisScanConfigurationsOutput>
+function C:listCisScanConfigurations(input: types.ListCisScanConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCisScanConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCisScanConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListCisScanConfigurationsOutput>
 end
 
-function C:listCisScanResultsAggregatedByChecks(input: types.ListCisScanResultsAggregatedByChecksInput, options: any): async.Operation<types.ListCisScanResultsAggregatedByChecksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCisScanResultsAggregatedByChecks, input, options) as async.Operation<types.ListCisScanResultsAggregatedByChecksOutput>
+function C:listCisScanResultsAggregatedByChecks(input: types.ListCisScanResultsAggregatedByChecksInput, options?: base_client.InvokeOptions): async.Operation<types.ListCisScanResultsAggregatedByChecksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCisScanResultsAggregatedByChecks as schema.OperationSchema, input, options) as async.Operation<types.ListCisScanResultsAggregatedByChecksOutput>
 end
 
-function C:listCisScanResultsAggregatedByTargetResource(input: types.ListCisScanResultsAggregatedByTargetResourceInput, options: any): async.Operation<types.ListCisScanResultsAggregatedByTargetResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCisScanResultsAggregatedByTargetResource, input, options) as async.Operation<types.ListCisScanResultsAggregatedByTargetResourceOutput>
+function C:listCisScanResultsAggregatedByTargetResource(input: types.ListCisScanResultsAggregatedByTargetResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListCisScanResultsAggregatedByTargetResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCisScanResultsAggregatedByTargetResource as schema.OperationSchema, input, options) as async.Operation<types.ListCisScanResultsAggregatedByTargetResourceOutput>
 end
 
-function C:listCisScans(input: types.ListCisScansInput, options: any): async.Operation<types.ListCisScansOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCisScans, input, options) as async.Operation<types.ListCisScansOutput>
+function C:listCisScans(input: types.ListCisScansInput, options?: base_client.InvokeOptions): async.Operation<types.ListCisScansOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCisScans as schema.OperationSchema, input, options) as async.Operation<types.ListCisScansOutput>
 end
 
-function C:listCodeSecurityIntegrations(input: types.ListCodeSecurityIntegrationsInput, options: any): async.Operation<types.ListCodeSecurityIntegrationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCodeSecurityIntegrations, input, options) as async.Operation<types.ListCodeSecurityIntegrationsOutput>
+function C:listCodeSecurityIntegrations(input: types.ListCodeSecurityIntegrationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCodeSecurityIntegrationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCodeSecurityIntegrations as schema.OperationSchema, input, options) as async.Operation<types.ListCodeSecurityIntegrationsOutput>
 end
 
-function C:listCodeSecurityScanConfigurationAssociations(input: types.ListCodeSecurityScanConfigurationAssociationsInput, options: any): async.Operation<types.ListCodeSecurityScanConfigurationAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCodeSecurityScanConfigurationAssociations, input, options) as async.Operation<types.ListCodeSecurityScanConfigurationAssociationsOutput>
+function C:listCodeSecurityScanConfigurationAssociations(input: types.ListCodeSecurityScanConfigurationAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCodeSecurityScanConfigurationAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCodeSecurityScanConfigurationAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListCodeSecurityScanConfigurationAssociationsOutput>
 end
 
-function C:listCodeSecurityScanConfigurations(input: types.ListCodeSecurityScanConfigurationsInput, options: any): async.Operation<types.ListCodeSecurityScanConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCodeSecurityScanConfigurations, input, options) as async.Operation<types.ListCodeSecurityScanConfigurationsOutput>
+function C:listCodeSecurityScanConfigurations(input: types.ListCodeSecurityScanConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCodeSecurityScanConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCodeSecurityScanConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListCodeSecurityScanConfigurationsOutput>
 end
 
-function C:listCoverage(input: types.ListCoverageInput, options: any): async.Operation<types.ListCoverageOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCoverage, input, options) as async.Operation<types.ListCoverageOutput>
+function C:listCoverage(input: types.ListCoverageInput, options?: base_client.InvokeOptions): async.Operation<types.ListCoverageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCoverage as schema.OperationSchema, input, options) as async.Operation<types.ListCoverageOutput>
 end
 
-function C:listCoverageStatistics(input: types.ListCoverageStatisticsInput, options: any): async.Operation<types.ListCoverageStatisticsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCoverageStatistics, input, options) as async.Operation<types.ListCoverageStatisticsOutput>
+function C:listCoverageStatistics(input: types.ListCoverageStatisticsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCoverageStatisticsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCoverageStatistics as schema.OperationSchema, input, options) as async.Operation<types.ListCoverageStatisticsOutput>
 end
 
-function C:listDelegatedAdminAccounts(input: types.ListDelegatedAdminAccountsInput, options: any): async.Operation<types.ListDelegatedAdminAccountsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDelegatedAdminAccounts, input, options) as async.Operation<types.ListDelegatedAdminAccountsOutput>
+function C:listDelegatedAdminAccounts(input: types.ListDelegatedAdminAccountsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDelegatedAdminAccountsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDelegatedAdminAccounts as schema.OperationSchema, input, options) as async.Operation<types.ListDelegatedAdminAccountsOutput>
 end
 
-function C:listFilters(input: types.ListFiltersInput, options: any): async.Operation<types.ListFiltersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFilters, input, options) as async.Operation<types.ListFiltersOutput>
+function C:listFilters(input: types.ListFiltersInput, options?: base_client.InvokeOptions): async.Operation<types.ListFiltersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFilters as schema.OperationSchema, input, options) as async.Operation<types.ListFiltersOutput>
 end
 
-function C:listFindingAggregations(input: types.ListFindingAggregationsInput, options: any): async.Operation<types.ListFindingAggregationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFindingAggregations, input, options) as async.Operation<types.ListFindingAggregationsOutput>
+function C:listFindingAggregations(input: types.ListFindingAggregationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFindingAggregationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFindingAggregations as schema.OperationSchema, input, options) as async.Operation<types.ListFindingAggregationsOutput>
 end
 
-function C:listFindings(input: types.ListFindingsInput, options: any): async.Operation<types.ListFindingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFindings, input, options) as async.Operation<types.ListFindingsOutput>
+function C:listFindings(input: types.ListFindingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFindingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFindings as schema.OperationSchema, input, options) as async.Operation<types.ListFindingsOutput>
 end
 
-function C:listMembers(input: types.ListMembersInput, options: any): async.Operation<types.ListMembersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMembers, input, options) as async.Operation<types.ListMembersOutput>
+function C:listMembers(input: types.ListMembersInput, options?: base_client.InvokeOptions): async.Operation<types.ListMembersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMembers as schema.OperationSchema, input, options) as async.Operation<types.ListMembersOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listUsageTotals(input: types.ListUsageTotalsInput, options: any): async.Operation<types.ListUsageTotalsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListUsageTotals, input, options) as async.Operation<types.ListUsageTotalsOutput>
+function C:listUsageTotals(input: types.ListUsageTotalsInput, options?: base_client.InvokeOptions): async.Operation<types.ListUsageTotalsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUsageTotals as schema.OperationSchema, input, options) as async.Operation<types.ListUsageTotalsOutput>
 end
 
-function C:resetEncryptionKey(input: types.ResetEncryptionKeyInput, options: any): async.Operation<types.ResetEncryptionKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResetEncryptionKey, input, options) as async.Operation<types.ResetEncryptionKeyOutput>
+function C:resetEncryptionKey(input: types.ResetEncryptionKeyInput, options?: base_client.InvokeOptions): async.Operation<types.ResetEncryptionKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResetEncryptionKey as schema.OperationSchema, input, options) as async.Operation<types.ResetEncryptionKeyOutput>
 end
 
-function C:searchVulnerabilities(input: types.SearchVulnerabilitiesInput, options: any): async.Operation<types.SearchVulnerabilitiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchVulnerabilities, input, options) as async.Operation<types.SearchVulnerabilitiesOutput>
+function C:searchVulnerabilities(input: types.SearchVulnerabilitiesInput, options?: base_client.InvokeOptions): async.Operation<types.SearchVulnerabilitiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchVulnerabilities as schema.OperationSchema, input, options) as async.Operation<types.SearchVulnerabilitiesOutput>
 end
 
-function C:sendCisSessionHealth(input: types.SendCisSessionHealthInput, options: any): async.Operation<types.SendCisSessionHealthOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendCisSessionHealth, input, options) as async.Operation<types.SendCisSessionHealthOutput>
+function C:sendCisSessionHealth(input: types.SendCisSessionHealthInput, options?: base_client.InvokeOptions): async.Operation<types.SendCisSessionHealthOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendCisSessionHealth as schema.OperationSchema, input, options) as async.Operation<types.SendCisSessionHealthOutput>
 end
 
-function C:sendCisSessionTelemetry(input: types.SendCisSessionTelemetryInput, options: any): async.Operation<types.SendCisSessionTelemetryOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendCisSessionTelemetry, input, options) as async.Operation<types.SendCisSessionTelemetryOutput>
+function C:sendCisSessionTelemetry(input: types.SendCisSessionTelemetryInput, options?: base_client.InvokeOptions): async.Operation<types.SendCisSessionTelemetryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendCisSessionTelemetry as schema.OperationSchema, input, options) as async.Operation<types.SendCisSessionTelemetryOutput>
 end
 
-function C:startCisSession(input: types.StartCisSessionInput, options: any): async.Operation<types.StartCisSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartCisSession, input, options) as async.Operation<types.StartCisSessionOutput>
+function C:startCisSession(input: types.StartCisSessionInput, options?: base_client.InvokeOptions): async.Operation<types.StartCisSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartCisSession as schema.OperationSchema, input, options) as async.Operation<types.StartCisSessionOutput>
 end
 
-function C:startCodeSecurityScan(input: types.StartCodeSecurityScanInput, options: any): async.Operation<types.StartCodeSecurityScanOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartCodeSecurityScan, input, options) as async.Operation<types.StartCodeSecurityScanOutput>
+function C:startCodeSecurityScan(input: types.StartCodeSecurityScanInput, options?: base_client.InvokeOptions): async.Operation<types.StartCodeSecurityScanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartCodeSecurityScan as schema.OperationSchema, input, options) as async.Operation<types.StartCodeSecurityScanOutput>
 end
 
-function C:stopCisSession(input: types.StopCisSessionInput, options: any): async.Operation<types.StopCisSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopCisSession, input, options) as async.Operation<types.StopCisSessionOutput>
+function C:stopCisSession(input: types.StopCisSessionInput, options?: base_client.InvokeOptions): async.Operation<types.StopCisSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopCisSession as schema.OperationSchema, input, options) as async.Operation<types.StopCisSessionOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateCisScanConfiguration(input: types.UpdateCisScanConfigurationInput, options: any): async.Operation<types.UpdateCisScanConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCisScanConfiguration, input, options) as async.Operation<types.UpdateCisScanConfigurationOutput>
+function C:updateCisScanConfiguration(input: types.UpdateCisScanConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCisScanConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCisScanConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateCisScanConfigurationOutput>
 end
 
-function C:updateCodeSecurityIntegration(input: types.UpdateCodeSecurityIntegrationInput, options: any): async.Operation<types.UpdateCodeSecurityIntegrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCodeSecurityIntegration, input, options) as async.Operation<types.UpdateCodeSecurityIntegrationOutput>
+function C:updateCodeSecurityIntegration(input: types.UpdateCodeSecurityIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCodeSecurityIntegrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCodeSecurityIntegration as schema.OperationSchema, input, options) as async.Operation<types.UpdateCodeSecurityIntegrationOutput>
 end
 
-function C:updateCodeSecurityScanConfiguration(input: types.UpdateCodeSecurityScanConfigurationInput, options: any): async.Operation<types.UpdateCodeSecurityScanConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCodeSecurityScanConfiguration, input, options) as async.Operation<types.UpdateCodeSecurityScanConfigurationOutput>
+function C:updateCodeSecurityScanConfiguration(input: types.UpdateCodeSecurityScanConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCodeSecurityScanConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCodeSecurityScanConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateCodeSecurityScanConfigurationOutput>
 end
 
-function C:updateConfiguration(input: types.UpdateConfigurationInput, options: any): async.Operation<types.UpdateConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConfiguration, input, options) as async.Operation<types.UpdateConfigurationOutput>
+function C:updateConfiguration(input: types.UpdateConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateConfigurationOutput>
 end
 
-function C:updateEc2DeepInspectionConfiguration(input: types.UpdateEc2DeepInspectionConfigurationInput, options: any): async.Operation<types.UpdateEc2DeepInspectionConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEc2DeepInspectionConfiguration, input, options) as async.Operation<types.UpdateEc2DeepInspectionConfigurationOutput>
+function C:updateEc2DeepInspectionConfiguration(input: types.UpdateEc2DeepInspectionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEc2DeepInspectionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEc2DeepInspectionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateEc2DeepInspectionConfigurationOutput>
 end
 
-function C:updateEncryptionKey(input: types.UpdateEncryptionKeyInput, options: any): async.Operation<types.UpdateEncryptionKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEncryptionKey, input, options) as async.Operation<types.UpdateEncryptionKeyOutput>
+function C:updateEncryptionKey(input: types.UpdateEncryptionKeyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEncryptionKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEncryptionKey as schema.OperationSchema, input, options) as async.Operation<types.UpdateEncryptionKeyOutput>
 end
 
-function C:updateFilter(input: types.UpdateFilterInput, options: any): async.Operation<types.UpdateFilterOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFilter, input, options) as async.Operation<types.UpdateFilterOutput>
+function C:updateFilter(input: types.UpdateFilterInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFilterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFilter as schema.OperationSchema, input, options) as async.Operation<types.UpdateFilterOutput>
 end
 
-function C:updateOrganizationConfiguration(input: types.UpdateOrganizationConfigurationInput, options: any): async.Operation<types.UpdateOrganizationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateOrganizationConfiguration, input, options) as async.Operation<types.UpdateOrganizationConfigurationOutput>
+function C:updateOrganizationConfiguration(input: types.UpdateOrganizationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateOrganizationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateOrganizationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateOrganizationConfigurationOutput>
 end
 
-function C:updateOrgEc2DeepInspectionConfiguration(input: types.UpdateOrgEc2DeepInspectionConfigurationInput, options: any): async.Operation<types.UpdateOrgEc2DeepInspectionConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateOrgEc2DeepInspectionConfiguration, input, options) as async.Operation<types.UpdateOrgEc2DeepInspectionConfigurationOutput>
+function C:updateOrgEc2DeepInspectionConfiguration(input: types.UpdateOrgEc2DeepInspectionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateOrgEc2DeepInspectionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateOrgEc2DeepInspectionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateOrgEc2DeepInspectionConfigurationOutput>
 end
 
 return M

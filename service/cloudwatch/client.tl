@@ -8,85 +8,88 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("cloudwatch.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("cloudwatch.schemas")
 local traits = require("smithy.traits")
 local types = require("cloudwatch.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    deleteAlarmMuteRule: function(Client, types.DeleteAlarmMuteRuleInput, any): async.Operation<types.DeleteAlarmMuteRuleOutput>
-    deleteAlarms: function(Client, types.DeleteAlarmsInput, any): async.Operation<types.DeleteAlarmsOutput>
-    deleteAnomalyDetector: function(Client, types.DeleteAnomalyDetectorInput, any): async.Operation<types.DeleteAnomalyDetectorOutput>
-    deleteDashboards: function(Client, types.DeleteDashboardsInput, any): async.Operation<types.DeleteDashboardsOutput>
-    deleteInsightRules: function(Client, types.DeleteInsightRulesInput, any): async.Operation<types.DeleteInsightRulesOutput>
-    deleteMetricStream: function(Client, types.DeleteMetricStreamInput, any): async.Operation<types.DeleteMetricStreamOutput>
-    describeAlarmContributors: function(Client, types.DescribeAlarmContributorsInput, any): async.Operation<types.DescribeAlarmContributorsOutput>
-    describeAlarmHistory: function(Client, types.DescribeAlarmHistoryInput, any): async.Operation<types.DescribeAlarmHistoryOutput>
-    describeAlarms: function(Client, types.DescribeAlarmsInput, any): async.Operation<types.DescribeAlarmsOutput>
-    describeAlarmsForMetric: function(Client, types.DescribeAlarmsForMetricInput, any): async.Operation<types.DescribeAlarmsForMetricOutput>
-    describeAnomalyDetectors: function(Client, types.DescribeAnomalyDetectorsInput, any): async.Operation<types.DescribeAnomalyDetectorsOutput>
-    describeInsightRules: function(Client, types.DescribeInsightRulesInput, any): async.Operation<types.DescribeInsightRulesOutput>
-    disableAlarmActions: function(Client, types.DisableAlarmActionsInput, any): async.Operation<types.DisableAlarmActionsOutput>
-    disableInsightRules: function(Client, types.DisableInsightRulesInput, any): async.Operation<types.DisableInsightRulesOutput>
-    enableAlarmActions: function(Client, types.EnableAlarmActionsInput, any): async.Operation<types.EnableAlarmActionsOutput>
-    enableInsightRules: function(Client, types.EnableInsightRulesInput, any): async.Operation<types.EnableInsightRulesOutput>
-    getAlarmMuteRule: function(Client, types.GetAlarmMuteRuleInput, any): async.Operation<types.GetAlarmMuteRuleOutput>
-    getDashboard: function(Client, types.GetDashboardInput, any): async.Operation<types.GetDashboardOutput>
-    getInsightRuleReport: function(Client, types.GetInsightRuleReportInput, any): async.Operation<types.GetInsightRuleReportOutput>
-    getMetricData: function(Client, types.GetMetricDataInput, any): async.Operation<types.GetMetricDataOutput>
-    getMetricStatistics: function(Client, types.GetMetricStatisticsInput, any): async.Operation<types.GetMetricStatisticsOutput>
-    getMetricStream: function(Client, types.GetMetricStreamInput, any): async.Operation<types.GetMetricStreamOutput>
-    getMetricWidgetImage: function(Client, types.GetMetricWidgetImageInput, any): async.Operation<types.GetMetricWidgetImageOutput>
-    getOTelEnrichment: function(Client, types.GetOTelEnrichmentInput, any): async.Operation<types.GetOTelEnrichmentOutput>
-    listAlarmMuteRules: function(Client, types.ListAlarmMuteRulesInput, any): async.Operation<types.ListAlarmMuteRulesOutput>
-    listDashboards: function(Client, types.ListDashboardsInput, any): async.Operation<types.ListDashboardsOutput>
-    listManagedInsightRules: function(Client, types.ListManagedInsightRulesInput, any): async.Operation<types.ListManagedInsightRulesOutput>
-    listMetrics: function(Client, types.ListMetricsInput, any): async.Operation<types.ListMetricsOutput>
-    listMetricStreams: function(Client, types.ListMetricStreamsInput, any): async.Operation<types.ListMetricStreamsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putAlarmMuteRule: function(Client, types.PutAlarmMuteRuleInput, any): async.Operation<types.PutAlarmMuteRuleOutput>
-    putAnomalyDetector: function(Client, types.PutAnomalyDetectorInput, any): async.Operation<types.PutAnomalyDetectorOutput>
-    putCompositeAlarm: function(Client, types.PutCompositeAlarmInput, any): async.Operation<types.PutCompositeAlarmOutput>
-    putDashboard: function(Client, types.PutDashboardInput, any): async.Operation<types.PutDashboardOutput>
-    putInsightRule: function(Client, types.PutInsightRuleInput, any): async.Operation<types.PutInsightRuleOutput>
-    putManagedInsightRules: function(Client, types.PutManagedInsightRulesInput, any): async.Operation<types.PutManagedInsightRulesOutput>
-    putMetricAlarm: function(Client, types.PutMetricAlarmInput, any): async.Operation<types.PutMetricAlarmOutput>
-    putMetricData: function(Client, types.PutMetricDataInput, any): async.Operation<types.PutMetricDataOutput>
-    putMetricStream: function(Client, types.PutMetricStreamInput, any): async.Operation<types.PutMetricStreamOutput>
-    setAlarmState: function(Client, types.SetAlarmStateInput, any): async.Operation<types.SetAlarmStateOutput>
-    startMetricStreams: function(Client, types.StartMetricStreamsInput, any): async.Operation<types.StartMetricStreamsOutput>
-    startOTelEnrichment: function(Client, types.StartOTelEnrichmentInput, any): async.Operation<types.StartOTelEnrichmentOutput>
-    stopMetricStreams: function(Client, types.StopMetricStreamsInput, any): async.Operation<types.StopMetricStreamsOutput>
-    stopOTelEnrichment: function(Client, types.StopOTelEnrichmentInput, any): async.Operation<types.StopOTelEnrichmentOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    deleteAlarmMuteRule: function(Client, types.DeleteAlarmMuteRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAlarmMuteRuleOutput>
+    deleteAlarms: function(Client, types.DeleteAlarmsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAlarmsOutput>
+    deleteAnomalyDetector: function(Client, types.DeleteAnomalyDetectorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAnomalyDetectorOutput>
+    deleteDashboards: function(Client, types.DeleteDashboardsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDashboardsOutput>
+    deleteInsightRules: function(Client, types.DeleteInsightRulesInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInsightRulesOutput>
+    deleteMetricStream: function(Client, types.DeleteMetricStreamInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMetricStreamOutput>
+    describeAlarmContributors: function(Client, types.DescribeAlarmContributorsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAlarmContributorsOutput>
+    describeAlarmHistory: function(Client, types.DescribeAlarmHistoryInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAlarmHistoryOutput>
+    describeAlarms: function(Client, types.DescribeAlarmsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAlarmsOutput>
+    describeAlarmsForMetric: function(Client, types.DescribeAlarmsForMetricInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAlarmsForMetricOutput>
+    describeAnomalyDetectors: function(Client, types.DescribeAnomalyDetectorsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAnomalyDetectorsOutput>
+    describeInsightRules: function(Client, types.DescribeInsightRulesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInsightRulesOutput>
+    disableAlarmActions: function(Client, types.DisableAlarmActionsInput, ? base_client.InvokeOptions): async.Operation<types.DisableAlarmActionsOutput>
+    disableInsightRules: function(Client, types.DisableInsightRulesInput, ? base_client.InvokeOptions): async.Operation<types.DisableInsightRulesOutput>
+    enableAlarmActions: function(Client, types.EnableAlarmActionsInput, ? base_client.InvokeOptions): async.Operation<types.EnableAlarmActionsOutput>
+    enableInsightRules: function(Client, types.EnableInsightRulesInput, ? base_client.InvokeOptions): async.Operation<types.EnableInsightRulesOutput>
+    getAlarmMuteRule: function(Client, types.GetAlarmMuteRuleInput, ? base_client.InvokeOptions): async.Operation<types.GetAlarmMuteRuleOutput>
+    getDashboard: function(Client, types.GetDashboardInput, ? base_client.InvokeOptions): async.Operation<types.GetDashboardOutput>
+    getInsightRuleReport: function(Client, types.GetInsightRuleReportInput, ? base_client.InvokeOptions): async.Operation<types.GetInsightRuleReportOutput>
+    getMetricData: function(Client, types.GetMetricDataInput, ? base_client.InvokeOptions): async.Operation<types.GetMetricDataOutput>
+    getMetricStatistics: function(Client, types.GetMetricStatisticsInput, ? base_client.InvokeOptions): async.Operation<types.GetMetricStatisticsOutput>
+    getMetricStream: function(Client, types.GetMetricStreamInput, ? base_client.InvokeOptions): async.Operation<types.GetMetricStreamOutput>
+    getMetricWidgetImage: function(Client, types.GetMetricWidgetImageInput, ? base_client.InvokeOptions): async.Operation<types.GetMetricWidgetImageOutput>
+    getOTelEnrichment: function(Client, types.GetOTelEnrichmentInput, ? base_client.InvokeOptions): async.Operation<types.GetOTelEnrichmentOutput>
+    listAlarmMuteRules: function(Client, types.ListAlarmMuteRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListAlarmMuteRulesOutput>
+    listDashboards: function(Client, types.ListDashboardsInput, ? base_client.InvokeOptions): async.Operation<types.ListDashboardsOutput>
+    listManagedInsightRules: function(Client, types.ListManagedInsightRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListManagedInsightRulesOutput>
+    listMetrics: function(Client, types.ListMetricsInput, ? base_client.InvokeOptions): async.Operation<types.ListMetricsOutput>
+    listMetricStreams: function(Client, types.ListMetricStreamsInput, ? base_client.InvokeOptions): async.Operation<types.ListMetricStreamsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putAlarmMuteRule: function(Client, types.PutAlarmMuteRuleInput, ? base_client.InvokeOptions): async.Operation<types.PutAlarmMuteRuleOutput>
+    putAnomalyDetector: function(Client, types.PutAnomalyDetectorInput, ? base_client.InvokeOptions): async.Operation<types.PutAnomalyDetectorOutput>
+    putCompositeAlarm: function(Client, types.PutCompositeAlarmInput, ? base_client.InvokeOptions): async.Operation<types.PutCompositeAlarmOutput>
+    putDashboard: function(Client, types.PutDashboardInput, ? base_client.InvokeOptions): async.Operation<types.PutDashboardOutput>
+    putInsightRule: function(Client, types.PutInsightRuleInput, ? base_client.InvokeOptions): async.Operation<types.PutInsightRuleOutput>
+    putManagedInsightRules: function(Client, types.PutManagedInsightRulesInput, ? base_client.InvokeOptions): async.Operation<types.PutManagedInsightRulesOutput>
+    putMetricAlarm: function(Client, types.PutMetricAlarmInput, ? base_client.InvokeOptions): async.Operation<types.PutMetricAlarmOutput>
+    putMetricData: function(Client, types.PutMetricDataInput, ? base_client.InvokeOptions): async.Operation<types.PutMetricDataOutput>
+    putMetricStream: function(Client, types.PutMetricStreamInput, ? base_client.InvokeOptions): async.Operation<types.PutMetricStreamOutput>
+    setAlarmState: function(Client, types.SetAlarmStateInput, ? base_client.InvokeOptions): async.Operation<types.SetAlarmStateOutput>
+    startMetricStreams: function(Client, types.StartMetricStreamsInput, ? base_client.InvokeOptions): async.Operation<types.StartMetricStreamsOutput>
+    startOTelEnrichment: function(Client, types.StartOTelEnrichmentInput, ? base_client.InvokeOptions): async.Operation<types.StartOTelEnrichmentOutput>
+    stopMetricStreams: function(Client, types.StopMetricStreamsInput, ? base_client.InvokeOptions): async.Operation<types.StopMetricStreamsOutput>
+    stopOTelEnrichment: function(Client, types.StopOTelEnrichmentInput, ? base_client.InvokeOptions): async.Operation<types.StopOTelEnrichmentOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "GraniteServiceVersion20100801"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "monitoring", signing_region = c.region } }
                 else
@@ -105,188 +108,188 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:deleteAlarmMuteRule(input: types.DeleteAlarmMuteRuleInput, options: any): async.Operation<types.DeleteAlarmMuteRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAlarmMuteRule, input, options) as async.Operation<types.DeleteAlarmMuteRuleOutput>
+function C:deleteAlarmMuteRule(input: types.DeleteAlarmMuteRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAlarmMuteRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAlarmMuteRule as schema.OperationSchema, input, options) as async.Operation<types.DeleteAlarmMuteRuleOutput>
 end
 
-function C:deleteAlarms(input: types.DeleteAlarmsInput, options: any): async.Operation<types.DeleteAlarmsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAlarms, input, options) as async.Operation<types.DeleteAlarmsOutput>
+function C:deleteAlarms(input: types.DeleteAlarmsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAlarmsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAlarms as schema.OperationSchema, input, options) as async.Operation<types.DeleteAlarmsOutput>
 end
 
-function C:deleteAnomalyDetector(input: types.DeleteAnomalyDetectorInput, options: any): async.Operation<types.DeleteAnomalyDetectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAnomalyDetector, input, options) as async.Operation<types.DeleteAnomalyDetectorOutput>
+function C:deleteAnomalyDetector(input: types.DeleteAnomalyDetectorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAnomalyDetectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAnomalyDetector as schema.OperationSchema, input, options) as async.Operation<types.DeleteAnomalyDetectorOutput>
 end
 
-function C:deleteDashboards(input: types.DeleteDashboardsInput, options: any): async.Operation<types.DeleteDashboardsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDashboards, input, options) as async.Operation<types.DeleteDashboardsOutput>
+function C:deleteDashboards(input: types.DeleteDashboardsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDashboardsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDashboards as schema.OperationSchema, input, options) as async.Operation<types.DeleteDashboardsOutput>
 end
 
-function C:deleteInsightRules(input: types.DeleteInsightRulesInput, options: any): async.Operation<types.DeleteInsightRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteInsightRules, input, options) as async.Operation<types.DeleteInsightRulesOutput>
+function C:deleteInsightRules(input: types.DeleteInsightRulesInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteInsightRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInsightRules as schema.OperationSchema, input, options) as async.Operation<types.DeleteInsightRulesOutput>
 end
 
-function C:deleteMetricStream(input: types.DeleteMetricStreamInput, options: any): async.Operation<types.DeleteMetricStreamOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMetricStream, input, options) as async.Operation<types.DeleteMetricStreamOutput>
+function C:deleteMetricStream(input: types.DeleteMetricStreamInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMetricStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMetricStream as schema.OperationSchema, input, options) as async.Operation<types.DeleteMetricStreamOutput>
 end
 
-function C:describeAlarmContributors(input: types.DescribeAlarmContributorsInput, options: any): async.Operation<types.DescribeAlarmContributorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAlarmContributors, input, options) as async.Operation<types.DescribeAlarmContributorsOutput>
+function C:describeAlarmContributors(input: types.DescribeAlarmContributorsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAlarmContributorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAlarmContributors as schema.OperationSchema, input, options) as async.Operation<types.DescribeAlarmContributorsOutput>
 end
 
-function C:describeAlarmHistory(input: types.DescribeAlarmHistoryInput, options: any): async.Operation<types.DescribeAlarmHistoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAlarmHistory, input, options) as async.Operation<types.DescribeAlarmHistoryOutput>
+function C:describeAlarmHistory(input: types.DescribeAlarmHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAlarmHistoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAlarmHistory as schema.OperationSchema, input, options) as async.Operation<types.DescribeAlarmHistoryOutput>
 end
 
-function C:describeAlarms(input: types.DescribeAlarmsInput, options: any): async.Operation<types.DescribeAlarmsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAlarms, input, options) as async.Operation<types.DescribeAlarmsOutput>
+function C:describeAlarms(input: types.DescribeAlarmsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAlarmsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAlarms as schema.OperationSchema, input, options) as async.Operation<types.DescribeAlarmsOutput>
 end
 
-function C:describeAlarmsForMetric(input: types.DescribeAlarmsForMetricInput, options: any): async.Operation<types.DescribeAlarmsForMetricOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAlarmsForMetric, input, options) as async.Operation<types.DescribeAlarmsForMetricOutput>
+function C:describeAlarmsForMetric(input: types.DescribeAlarmsForMetricInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAlarmsForMetricOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAlarmsForMetric as schema.OperationSchema, input, options) as async.Operation<types.DescribeAlarmsForMetricOutput>
 end
 
-function C:describeAnomalyDetectors(input: types.DescribeAnomalyDetectorsInput, options: any): async.Operation<types.DescribeAnomalyDetectorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAnomalyDetectors, input, options) as async.Operation<types.DescribeAnomalyDetectorsOutput>
+function C:describeAnomalyDetectors(input: types.DescribeAnomalyDetectorsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAnomalyDetectorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAnomalyDetectors as schema.OperationSchema, input, options) as async.Operation<types.DescribeAnomalyDetectorsOutput>
 end
 
-function C:describeInsightRules(input: types.DescribeInsightRulesInput, options: any): async.Operation<types.DescribeInsightRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInsightRules, input, options) as async.Operation<types.DescribeInsightRulesOutput>
+function C:describeInsightRules(input: types.DescribeInsightRulesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInsightRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInsightRules as schema.OperationSchema, input, options) as async.Operation<types.DescribeInsightRulesOutput>
 end
 
-function C:disableAlarmActions(input: types.DisableAlarmActionsInput, options: any): async.Operation<types.DisableAlarmActionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableAlarmActions, input, options) as async.Operation<types.DisableAlarmActionsOutput>
+function C:disableAlarmActions(input: types.DisableAlarmActionsInput, options?: base_client.InvokeOptions): async.Operation<types.DisableAlarmActionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableAlarmActions as schema.OperationSchema, input, options) as async.Operation<types.DisableAlarmActionsOutput>
 end
 
-function C:disableInsightRules(input: types.DisableInsightRulesInput, options: any): async.Operation<types.DisableInsightRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableInsightRules, input, options) as async.Operation<types.DisableInsightRulesOutput>
+function C:disableInsightRules(input: types.DisableInsightRulesInput, options?: base_client.InvokeOptions): async.Operation<types.DisableInsightRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableInsightRules as schema.OperationSchema, input, options) as async.Operation<types.DisableInsightRulesOutput>
 end
 
-function C:enableAlarmActions(input: types.EnableAlarmActionsInput, options: any): async.Operation<types.EnableAlarmActionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableAlarmActions, input, options) as async.Operation<types.EnableAlarmActionsOutput>
+function C:enableAlarmActions(input: types.EnableAlarmActionsInput, options?: base_client.InvokeOptions): async.Operation<types.EnableAlarmActionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableAlarmActions as schema.OperationSchema, input, options) as async.Operation<types.EnableAlarmActionsOutput>
 end
 
-function C:enableInsightRules(input: types.EnableInsightRulesInput, options: any): async.Operation<types.EnableInsightRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableInsightRules, input, options) as async.Operation<types.EnableInsightRulesOutput>
+function C:enableInsightRules(input: types.EnableInsightRulesInput, options?: base_client.InvokeOptions): async.Operation<types.EnableInsightRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableInsightRules as schema.OperationSchema, input, options) as async.Operation<types.EnableInsightRulesOutput>
 end
 
-function C:getAlarmMuteRule(input: types.GetAlarmMuteRuleInput, options: any): async.Operation<types.GetAlarmMuteRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAlarmMuteRule, input, options) as async.Operation<types.GetAlarmMuteRuleOutput>
+function C:getAlarmMuteRule(input: types.GetAlarmMuteRuleInput, options?: base_client.InvokeOptions): async.Operation<types.GetAlarmMuteRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAlarmMuteRule as schema.OperationSchema, input, options) as async.Operation<types.GetAlarmMuteRuleOutput>
 end
 
-function C:getDashboard(input: types.GetDashboardInput, options: any): async.Operation<types.GetDashboardOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDashboard, input, options) as async.Operation<types.GetDashboardOutput>
+function C:getDashboard(input: types.GetDashboardInput, options?: base_client.InvokeOptions): async.Operation<types.GetDashboardOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDashboard as schema.OperationSchema, input, options) as async.Operation<types.GetDashboardOutput>
 end
 
-function C:getInsightRuleReport(input: types.GetInsightRuleReportInput, options: any): async.Operation<types.GetInsightRuleReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInsightRuleReport, input, options) as async.Operation<types.GetInsightRuleReportOutput>
+function C:getInsightRuleReport(input: types.GetInsightRuleReportInput, options?: base_client.InvokeOptions): async.Operation<types.GetInsightRuleReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInsightRuleReport as schema.OperationSchema, input, options) as async.Operation<types.GetInsightRuleReportOutput>
 end
 
-function C:getMetricData(input: types.GetMetricDataInput, options: any): async.Operation<types.GetMetricDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMetricData, input, options) as async.Operation<types.GetMetricDataOutput>
+function C:getMetricData(input: types.GetMetricDataInput, options?: base_client.InvokeOptions): async.Operation<types.GetMetricDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMetricData as schema.OperationSchema, input, options) as async.Operation<types.GetMetricDataOutput>
 end
 
-function C:getMetricStatistics(input: types.GetMetricStatisticsInput, options: any): async.Operation<types.GetMetricStatisticsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMetricStatistics, input, options) as async.Operation<types.GetMetricStatisticsOutput>
+function C:getMetricStatistics(input: types.GetMetricStatisticsInput, options?: base_client.InvokeOptions): async.Operation<types.GetMetricStatisticsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMetricStatistics as schema.OperationSchema, input, options) as async.Operation<types.GetMetricStatisticsOutput>
 end
 
-function C:getMetricStream(input: types.GetMetricStreamInput, options: any): async.Operation<types.GetMetricStreamOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMetricStream, input, options) as async.Operation<types.GetMetricStreamOutput>
+function C:getMetricStream(input: types.GetMetricStreamInput, options?: base_client.InvokeOptions): async.Operation<types.GetMetricStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMetricStream as schema.OperationSchema, input, options) as async.Operation<types.GetMetricStreamOutput>
 end
 
-function C:getMetricWidgetImage(input: types.GetMetricWidgetImageInput, options: any): async.Operation<types.GetMetricWidgetImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMetricWidgetImage, input, options) as async.Operation<types.GetMetricWidgetImageOutput>
+function C:getMetricWidgetImage(input: types.GetMetricWidgetImageInput, options?: base_client.InvokeOptions): async.Operation<types.GetMetricWidgetImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMetricWidgetImage as schema.OperationSchema, input, options) as async.Operation<types.GetMetricWidgetImageOutput>
 end
 
-function C:getOTelEnrichment(input: types.GetOTelEnrichmentInput, options: any): async.Operation<types.GetOTelEnrichmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOTelEnrichment, input, options) as async.Operation<types.GetOTelEnrichmentOutput>
+function C:getOTelEnrichment(input: types.GetOTelEnrichmentInput, options?: base_client.InvokeOptions): async.Operation<types.GetOTelEnrichmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOTelEnrichment as schema.OperationSchema, input, options) as async.Operation<types.GetOTelEnrichmentOutput>
 end
 
-function C:listAlarmMuteRules(input: types.ListAlarmMuteRulesInput, options: any): async.Operation<types.ListAlarmMuteRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAlarmMuteRules, input, options) as async.Operation<types.ListAlarmMuteRulesOutput>
+function C:listAlarmMuteRules(input: types.ListAlarmMuteRulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAlarmMuteRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAlarmMuteRules as schema.OperationSchema, input, options) as async.Operation<types.ListAlarmMuteRulesOutput>
 end
 
-function C:listDashboards(input: types.ListDashboardsInput, options: any): async.Operation<types.ListDashboardsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDashboards, input, options) as async.Operation<types.ListDashboardsOutput>
+function C:listDashboards(input: types.ListDashboardsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDashboardsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDashboards as schema.OperationSchema, input, options) as async.Operation<types.ListDashboardsOutput>
 end
 
-function C:listManagedInsightRules(input: types.ListManagedInsightRulesInput, options: any): async.Operation<types.ListManagedInsightRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListManagedInsightRules, input, options) as async.Operation<types.ListManagedInsightRulesOutput>
+function C:listManagedInsightRules(input: types.ListManagedInsightRulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListManagedInsightRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListManagedInsightRules as schema.OperationSchema, input, options) as async.Operation<types.ListManagedInsightRulesOutput>
 end
 
-function C:listMetrics(input: types.ListMetricsInput, options: any): async.Operation<types.ListMetricsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMetrics, input, options) as async.Operation<types.ListMetricsOutput>
+function C:listMetrics(input: types.ListMetricsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMetricsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMetrics as schema.OperationSchema, input, options) as async.Operation<types.ListMetricsOutput>
 end
 
-function C:listMetricStreams(input: types.ListMetricStreamsInput, options: any): async.Operation<types.ListMetricStreamsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMetricStreams, input, options) as async.Operation<types.ListMetricStreamsOutput>
+function C:listMetricStreams(input: types.ListMetricStreamsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMetricStreamsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMetricStreams as schema.OperationSchema, input, options) as async.Operation<types.ListMetricStreamsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putAlarmMuteRule(input: types.PutAlarmMuteRuleInput, options: any): async.Operation<types.PutAlarmMuteRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAlarmMuteRule, input, options) as async.Operation<types.PutAlarmMuteRuleOutput>
+function C:putAlarmMuteRule(input: types.PutAlarmMuteRuleInput, options?: base_client.InvokeOptions): async.Operation<types.PutAlarmMuteRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAlarmMuteRule as schema.OperationSchema, input, options) as async.Operation<types.PutAlarmMuteRuleOutput>
 end
 
-function C:putAnomalyDetector(input: types.PutAnomalyDetectorInput, options: any): async.Operation<types.PutAnomalyDetectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAnomalyDetector, input, options) as async.Operation<types.PutAnomalyDetectorOutput>
+function C:putAnomalyDetector(input: types.PutAnomalyDetectorInput, options?: base_client.InvokeOptions): async.Operation<types.PutAnomalyDetectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAnomalyDetector as schema.OperationSchema, input, options) as async.Operation<types.PutAnomalyDetectorOutput>
 end
 
-function C:putCompositeAlarm(input: types.PutCompositeAlarmInput, options: any): async.Operation<types.PutCompositeAlarmOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutCompositeAlarm, input, options) as async.Operation<types.PutCompositeAlarmOutput>
+function C:putCompositeAlarm(input: types.PutCompositeAlarmInput, options?: base_client.InvokeOptions): async.Operation<types.PutCompositeAlarmOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutCompositeAlarm as schema.OperationSchema, input, options) as async.Operation<types.PutCompositeAlarmOutput>
 end
 
-function C:putDashboard(input: types.PutDashboardInput, options: any): async.Operation<types.PutDashboardOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutDashboard, input, options) as async.Operation<types.PutDashboardOutput>
+function C:putDashboard(input: types.PutDashboardInput, options?: base_client.InvokeOptions): async.Operation<types.PutDashboardOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutDashboard as schema.OperationSchema, input, options) as async.Operation<types.PutDashboardOutput>
 end
 
-function C:putInsightRule(input: types.PutInsightRuleInput, options: any): async.Operation<types.PutInsightRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutInsightRule, input, options) as async.Operation<types.PutInsightRuleOutput>
+function C:putInsightRule(input: types.PutInsightRuleInput, options?: base_client.InvokeOptions): async.Operation<types.PutInsightRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutInsightRule as schema.OperationSchema, input, options) as async.Operation<types.PutInsightRuleOutput>
 end
 
-function C:putManagedInsightRules(input: types.PutManagedInsightRulesInput, options: any): async.Operation<types.PutManagedInsightRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutManagedInsightRules, input, options) as async.Operation<types.PutManagedInsightRulesOutput>
+function C:putManagedInsightRules(input: types.PutManagedInsightRulesInput, options?: base_client.InvokeOptions): async.Operation<types.PutManagedInsightRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutManagedInsightRules as schema.OperationSchema, input, options) as async.Operation<types.PutManagedInsightRulesOutput>
 end
 
-function C:putMetricAlarm(input: types.PutMetricAlarmInput, options: any): async.Operation<types.PutMetricAlarmOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutMetricAlarm, input, options) as async.Operation<types.PutMetricAlarmOutput>
+function C:putMetricAlarm(input: types.PutMetricAlarmInput, options?: base_client.InvokeOptions): async.Operation<types.PutMetricAlarmOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutMetricAlarm as schema.OperationSchema, input, options) as async.Operation<types.PutMetricAlarmOutput>
 end
 
-function C:putMetricData(input: types.PutMetricDataInput, options: any): async.Operation<types.PutMetricDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutMetricData, input, options) as async.Operation<types.PutMetricDataOutput>
+function C:putMetricData(input: types.PutMetricDataInput, options?: base_client.InvokeOptions): async.Operation<types.PutMetricDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutMetricData as schema.OperationSchema, input, options) as async.Operation<types.PutMetricDataOutput>
 end
 
-function C:putMetricStream(input: types.PutMetricStreamInput, options: any): async.Operation<types.PutMetricStreamOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutMetricStream, input, options) as async.Operation<types.PutMetricStreamOutput>
+function C:putMetricStream(input: types.PutMetricStreamInput, options?: base_client.InvokeOptions): async.Operation<types.PutMetricStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutMetricStream as schema.OperationSchema, input, options) as async.Operation<types.PutMetricStreamOutput>
 end
 
-function C:setAlarmState(input: types.SetAlarmStateInput, options: any): async.Operation<types.SetAlarmStateOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetAlarmState, input, options) as async.Operation<types.SetAlarmStateOutput>
+function C:setAlarmState(input: types.SetAlarmStateInput, options?: base_client.InvokeOptions): async.Operation<types.SetAlarmStateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetAlarmState as schema.OperationSchema, input, options) as async.Operation<types.SetAlarmStateOutput>
 end
 
-function C:startMetricStreams(input: types.StartMetricStreamsInput, options: any): async.Operation<types.StartMetricStreamsOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartMetricStreams, input, options) as async.Operation<types.StartMetricStreamsOutput>
+function C:startMetricStreams(input: types.StartMetricStreamsInput, options?: base_client.InvokeOptions): async.Operation<types.StartMetricStreamsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartMetricStreams as schema.OperationSchema, input, options) as async.Operation<types.StartMetricStreamsOutput>
 end
 
-function C:startOTelEnrichment(input: types.StartOTelEnrichmentInput, options: any): async.Operation<types.StartOTelEnrichmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartOTelEnrichment, input, options) as async.Operation<types.StartOTelEnrichmentOutput>
+function C:startOTelEnrichment(input: types.StartOTelEnrichmentInput, options?: base_client.InvokeOptions): async.Operation<types.StartOTelEnrichmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartOTelEnrichment as schema.OperationSchema, input, options) as async.Operation<types.StartOTelEnrichmentOutput>
 end
 
-function C:stopMetricStreams(input: types.StopMetricStreamsInput, options: any): async.Operation<types.StopMetricStreamsOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopMetricStreams, input, options) as async.Operation<types.StopMetricStreamsOutput>
+function C:stopMetricStreams(input: types.StopMetricStreamsInput, options?: base_client.InvokeOptions): async.Operation<types.StopMetricStreamsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopMetricStreams as schema.OperationSchema, input, options) as async.Operation<types.StopMetricStreamsOutput>
 end
 
-function C:stopOTelEnrichment(input: types.StopOTelEnrichmentInput, options: any): async.Operation<types.StopOTelEnrichmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopOTelEnrichment, input, options) as async.Operation<types.StopOTelEnrichmentOutput>
+function C:stopOTelEnrichment(input: types.StopOTelEnrichmentInput, options?: base_client.InvokeOptions): async.Operation<types.StopOTelEnrichmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopOTelEnrichment as schema.OperationSchema, input, options) as async.Operation<types.StopOTelEnrichmentOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
 return M

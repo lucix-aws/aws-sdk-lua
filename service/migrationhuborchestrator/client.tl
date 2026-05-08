@@ -8,70 +8,73 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("migrationhuborchestrator.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("migrationhuborchestrator.schemas")
 local traits = require("smithy.traits")
 local types = require("migrationhuborchestrator.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createTemplate: function(Client, types.CreateTemplateInput, any): async.Operation<types.CreateTemplateOutput>
-    createWorkflow: function(Client, types.CreateWorkflowInput, any): async.Operation<types.CreateWorkflowOutput>
-    createWorkflowStep: function(Client, types.CreateWorkflowStepInput, any): async.Operation<types.CreateWorkflowStepOutput>
-    createWorkflowStepGroup: function(Client, types.CreateWorkflowStepGroupInput, any): async.Operation<types.CreateWorkflowStepGroupOutput>
-    deleteTemplate: function(Client, types.DeleteTemplateInput, any): async.Operation<types.DeleteTemplateOutput>
-    deleteWorkflow: function(Client, types.DeleteWorkflowInput, any): async.Operation<types.DeleteWorkflowOutput>
-    deleteWorkflowStep: function(Client, types.DeleteWorkflowStepInput, any): async.Operation<types.DeleteWorkflowStepOutput>
-    deleteWorkflowStepGroup: function(Client, types.DeleteWorkflowStepGroupInput, any): async.Operation<types.DeleteWorkflowStepGroupOutput>
-    getTemplate: function(Client, types.GetTemplateInput, any): async.Operation<types.GetTemplateOutput>
-    getTemplateStep: function(Client, types.GetTemplateStepInput, any): async.Operation<types.GetTemplateStepOutput>
-    getTemplateStepGroup: function(Client, types.GetTemplateStepGroupInput, any): async.Operation<types.GetTemplateStepGroupOutput>
-    getWorkflow: function(Client, types.GetWorkflowInput, any): async.Operation<types.GetWorkflowOutput>
-    getWorkflowStep: function(Client, types.GetWorkflowStepInput, any): async.Operation<types.GetWorkflowStepOutput>
-    getWorkflowStepGroup: function(Client, types.GetWorkflowStepGroupInput, any): async.Operation<types.GetWorkflowStepGroupOutput>
-    listPlugins: function(Client, types.ListPluginsInput, any): async.Operation<types.ListPluginsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTemplates: function(Client, types.ListTemplatesInput, any): async.Operation<types.ListTemplatesOutput>
-    listTemplateStepGroups: function(Client, types.ListTemplateStepGroupsInput, any): async.Operation<types.ListTemplateStepGroupsOutput>
-    listTemplateSteps: function(Client, types.ListTemplateStepsInput, any): async.Operation<types.ListTemplateStepsOutput>
-    listWorkflows: function(Client, types.ListWorkflowsInput, any): async.Operation<types.ListWorkflowsOutput>
-    listWorkflowStepGroups: function(Client, types.ListWorkflowStepGroupsInput, any): async.Operation<types.ListWorkflowStepGroupsOutput>
-    listWorkflowSteps: function(Client, types.ListWorkflowStepsInput, any): async.Operation<types.ListWorkflowStepsOutput>
-    retryWorkflowStep: function(Client, types.RetryWorkflowStepInput, any): async.Operation<types.RetryWorkflowStepOutput>
-    startWorkflow: function(Client, types.StartWorkflowInput, any): async.Operation<types.StartWorkflowOutput>
-    stopWorkflow: function(Client, types.StopWorkflowInput, any): async.Operation<types.StopWorkflowOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateTemplate: function(Client, types.UpdateTemplateInput, any): async.Operation<types.UpdateTemplateOutput>
-    updateWorkflow: function(Client, types.UpdateWorkflowInput, any): async.Operation<types.UpdateWorkflowOutput>
-    updateWorkflowStep: function(Client, types.UpdateWorkflowStepInput, any): async.Operation<types.UpdateWorkflowStepOutput>
-    updateWorkflowStepGroup: function(Client, types.UpdateWorkflowStepGroupInput, any): async.Operation<types.UpdateWorkflowStepGroupOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createTemplate: function(Client, types.CreateTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateTemplateOutput>
+    createWorkflow: function(Client, types.CreateWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkflowOutput>
+    createWorkflowStep: function(Client, types.CreateWorkflowStepInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkflowStepOutput>
+    createWorkflowStepGroup: function(Client, types.CreateWorkflowStepGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkflowStepGroupOutput>
+    deleteTemplate: function(Client, types.DeleteTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTemplateOutput>
+    deleteWorkflow: function(Client, types.DeleteWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWorkflowOutput>
+    deleteWorkflowStep: function(Client, types.DeleteWorkflowStepInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWorkflowStepOutput>
+    deleteWorkflowStepGroup: function(Client, types.DeleteWorkflowStepGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWorkflowStepGroupOutput>
+    getTemplate: function(Client, types.GetTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetTemplateOutput>
+    getTemplateStep: function(Client, types.GetTemplateStepInput, ? base_client.InvokeOptions): async.Operation<types.GetTemplateStepOutput>
+    getTemplateStepGroup: function(Client, types.GetTemplateStepGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetTemplateStepGroupOutput>
+    getWorkflow: function(Client, types.GetWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkflowOutput>
+    getWorkflowStep: function(Client, types.GetWorkflowStepInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkflowStepOutput>
+    getWorkflowStepGroup: function(Client, types.GetWorkflowStepGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkflowStepGroupOutput>
+    listPlugins: function(Client, types.ListPluginsInput, ? base_client.InvokeOptions): async.Operation<types.ListPluginsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTemplates: function(Client, types.ListTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListTemplatesOutput>
+    listTemplateStepGroups: function(Client, types.ListTemplateStepGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListTemplateStepGroupsOutput>
+    listTemplateSteps: function(Client, types.ListTemplateStepsInput, ? base_client.InvokeOptions): async.Operation<types.ListTemplateStepsOutput>
+    listWorkflows: function(Client, types.ListWorkflowsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkflowsOutput>
+    listWorkflowStepGroups: function(Client, types.ListWorkflowStepGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkflowStepGroupsOutput>
+    listWorkflowSteps: function(Client, types.ListWorkflowStepsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkflowStepsOutput>
+    retryWorkflowStep: function(Client, types.RetryWorkflowStepInput, ? base_client.InvokeOptions): async.Operation<types.RetryWorkflowStepOutput>
+    startWorkflow: function(Client, types.StartWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.StartWorkflowOutput>
+    stopWorkflow: function(Client, types.StopWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.StopWorkflowOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateTemplate: function(Client, types.UpdateTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTemplateOutput>
+    updateWorkflow: function(Client, types.UpdateWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWorkflowOutput>
+    updateWorkflowStep: function(Client, types.UpdateWorkflowStepInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWorkflowStepOutput>
+    updateWorkflowStepGroup: function(Client, types.UpdateWorkflowStepGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWorkflowStepGroupOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSMigrationHubOrchestrator"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "migrationhub-orchestrator", signing_region = c.region } }
                 else
@@ -90,128 +93,128 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createTemplate(input: types.CreateTemplateInput, options: any): async.Operation<types.CreateTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTemplate, input, options) as async.Operation<types.CreateTemplateOutput>
+function C:createTemplate(input: types.CreateTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateTemplateOutput>
 end
 
-function C:createWorkflow(input: types.CreateWorkflowInput, options: any): async.Operation<types.CreateWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWorkflow, input, options) as async.Operation<types.CreateWorkflowOutput>
+function C:createWorkflow(input: types.CreateWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWorkflow as schema.OperationSchema, input, options) as async.Operation<types.CreateWorkflowOutput>
 end
 
-function C:createWorkflowStep(input: types.CreateWorkflowStepInput, options: any): async.Operation<types.CreateWorkflowStepOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWorkflowStep, input, options) as async.Operation<types.CreateWorkflowStepOutput>
+function C:createWorkflowStep(input: types.CreateWorkflowStepInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWorkflowStepOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWorkflowStep as schema.OperationSchema, input, options) as async.Operation<types.CreateWorkflowStepOutput>
 end
 
-function C:createWorkflowStepGroup(input: types.CreateWorkflowStepGroupInput, options: any): async.Operation<types.CreateWorkflowStepGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWorkflowStepGroup, input, options) as async.Operation<types.CreateWorkflowStepGroupOutput>
+function C:createWorkflowStepGroup(input: types.CreateWorkflowStepGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWorkflowStepGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWorkflowStepGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateWorkflowStepGroupOutput>
 end
 
-function C:deleteTemplate(input: types.DeleteTemplateInput, options: any): async.Operation<types.DeleteTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTemplate, input, options) as async.Operation<types.DeleteTemplateOutput>
+function C:deleteTemplate(input: types.DeleteTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteTemplateOutput>
 end
 
-function C:deleteWorkflow(input: types.DeleteWorkflowInput, options: any): async.Operation<types.DeleteWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWorkflow, input, options) as async.Operation<types.DeleteWorkflowOutput>
+function C:deleteWorkflow(input: types.DeleteWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWorkflow as schema.OperationSchema, input, options) as async.Operation<types.DeleteWorkflowOutput>
 end
 
-function C:deleteWorkflowStep(input: types.DeleteWorkflowStepInput, options: any): async.Operation<types.DeleteWorkflowStepOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWorkflowStep, input, options) as async.Operation<types.DeleteWorkflowStepOutput>
+function C:deleteWorkflowStep(input: types.DeleteWorkflowStepInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWorkflowStepOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWorkflowStep as schema.OperationSchema, input, options) as async.Operation<types.DeleteWorkflowStepOutput>
 end
 
-function C:deleteWorkflowStepGroup(input: types.DeleteWorkflowStepGroupInput, options: any): async.Operation<types.DeleteWorkflowStepGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWorkflowStepGroup, input, options) as async.Operation<types.DeleteWorkflowStepGroupOutput>
+function C:deleteWorkflowStepGroup(input: types.DeleteWorkflowStepGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWorkflowStepGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWorkflowStepGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteWorkflowStepGroupOutput>
 end
 
-function C:getTemplate(input: types.GetTemplateInput, options: any): async.Operation<types.GetTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTemplate, input, options) as async.Operation<types.GetTemplateOutput>
+function C:getTemplate(input: types.GetTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetTemplateOutput>
 end
 
-function C:getTemplateStep(input: types.GetTemplateStepInput, options: any): async.Operation<types.GetTemplateStepOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTemplateStep, input, options) as async.Operation<types.GetTemplateStepOutput>
+function C:getTemplateStep(input: types.GetTemplateStepInput, options?: base_client.InvokeOptions): async.Operation<types.GetTemplateStepOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTemplateStep as schema.OperationSchema, input, options) as async.Operation<types.GetTemplateStepOutput>
 end
 
-function C:getTemplateStepGroup(input: types.GetTemplateStepGroupInput, options: any): async.Operation<types.GetTemplateStepGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTemplateStepGroup, input, options) as async.Operation<types.GetTemplateStepGroupOutput>
+function C:getTemplateStepGroup(input: types.GetTemplateStepGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetTemplateStepGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTemplateStepGroup as schema.OperationSchema, input, options) as async.Operation<types.GetTemplateStepGroupOutput>
 end
 
-function C:getWorkflow(input: types.GetWorkflowInput, options: any): async.Operation<types.GetWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWorkflow, input, options) as async.Operation<types.GetWorkflowOutput>
+function C:getWorkflow(input: types.GetWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.GetWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWorkflow as schema.OperationSchema, input, options) as async.Operation<types.GetWorkflowOutput>
 end
 
-function C:getWorkflowStep(input: types.GetWorkflowStepInput, options: any): async.Operation<types.GetWorkflowStepOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWorkflowStep, input, options) as async.Operation<types.GetWorkflowStepOutput>
+function C:getWorkflowStep(input: types.GetWorkflowStepInput, options?: base_client.InvokeOptions): async.Operation<types.GetWorkflowStepOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWorkflowStep as schema.OperationSchema, input, options) as async.Operation<types.GetWorkflowStepOutput>
 end
 
-function C:getWorkflowStepGroup(input: types.GetWorkflowStepGroupInput, options: any): async.Operation<types.GetWorkflowStepGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWorkflowStepGroup, input, options) as async.Operation<types.GetWorkflowStepGroupOutput>
+function C:getWorkflowStepGroup(input: types.GetWorkflowStepGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetWorkflowStepGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWorkflowStepGroup as schema.OperationSchema, input, options) as async.Operation<types.GetWorkflowStepGroupOutput>
 end
 
-function C:listPlugins(input: types.ListPluginsInput, options: any): async.Operation<types.ListPluginsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPlugins, input, options) as async.Operation<types.ListPluginsOutput>
+function C:listPlugins(input: types.ListPluginsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPluginsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPlugins as schema.OperationSchema, input, options) as async.Operation<types.ListPluginsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTemplates(input: types.ListTemplatesInput, options: any): async.Operation<types.ListTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTemplates, input, options) as async.Operation<types.ListTemplatesOutput>
+function C:listTemplates(input: types.ListTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListTemplatesOutput>
 end
 
-function C:listTemplateStepGroups(input: types.ListTemplateStepGroupsInput, options: any): async.Operation<types.ListTemplateStepGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTemplateStepGroups, input, options) as async.Operation<types.ListTemplateStepGroupsOutput>
+function C:listTemplateStepGroups(input: types.ListTemplateStepGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTemplateStepGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTemplateStepGroups as schema.OperationSchema, input, options) as async.Operation<types.ListTemplateStepGroupsOutput>
 end
 
-function C:listTemplateSteps(input: types.ListTemplateStepsInput, options: any): async.Operation<types.ListTemplateStepsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTemplateSteps, input, options) as async.Operation<types.ListTemplateStepsOutput>
+function C:listTemplateSteps(input: types.ListTemplateStepsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTemplateStepsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTemplateSteps as schema.OperationSchema, input, options) as async.Operation<types.ListTemplateStepsOutput>
 end
 
-function C:listWorkflows(input: types.ListWorkflowsInput, options: any): async.Operation<types.ListWorkflowsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWorkflows, input, options) as async.Operation<types.ListWorkflowsOutput>
+function C:listWorkflows(input: types.ListWorkflowsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkflowsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkflows as schema.OperationSchema, input, options) as async.Operation<types.ListWorkflowsOutput>
 end
 
-function C:listWorkflowStepGroups(input: types.ListWorkflowStepGroupsInput, options: any): async.Operation<types.ListWorkflowStepGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWorkflowStepGroups, input, options) as async.Operation<types.ListWorkflowStepGroupsOutput>
+function C:listWorkflowStepGroups(input: types.ListWorkflowStepGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkflowStepGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkflowStepGroups as schema.OperationSchema, input, options) as async.Operation<types.ListWorkflowStepGroupsOutput>
 end
 
-function C:listWorkflowSteps(input: types.ListWorkflowStepsInput, options: any): async.Operation<types.ListWorkflowStepsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWorkflowSteps, input, options) as async.Operation<types.ListWorkflowStepsOutput>
+function C:listWorkflowSteps(input: types.ListWorkflowStepsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkflowStepsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkflowSteps as schema.OperationSchema, input, options) as async.Operation<types.ListWorkflowStepsOutput>
 end
 
-function C:retryWorkflowStep(input: types.RetryWorkflowStepInput, options: any): async.Operation<types.RetryWorkflowStepOutput>
-    return self:invokeOperation(schemas.Service, schemas.RetryWorkflowStep, input, options) as async.Operation<types.RetryWorkflowStepOutput>
+function C:retryWorkflowStep(input: types.RetryWorkflowStepInput, options?: base_client.InvokeOptions): async.Operation<types.RetryWorkflowStepOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RetryWorkflowStep as schema.OperationSchema, input, options) as async.Operation<types.RetryWorkflowStepOutput>
 end
 
-function C:startWorkflow(input: types.StartWorkflowInput, options: any): async.Operation<types.StartWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartWorkflow, input, options) as async.Operation<types.StartWorkflowOutput>
+function C:startWorkflow(input: types.StartWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.StartWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartWorkflow as schema.OperationSchema, input, options) as async.Operation<types.StartWorkflowOutput>
 end
 
-function C:stopWorkflow(input: types.StopWorkflowInput, options: any): async.Operation<types.StopWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopWorkflow, input, options) as async.Operation<types.StopWorkflowOutput>
+function C:stopWorkflow(input: types.StopWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.StopWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopWorkflow as schema.OperationSchema, input, options) as async.Operation<types.StopWorkflowOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateTemplate(input: types.UpdateTemplateInput, options: any): async.Operation<types.UpdateTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTemplate, input, options) as async.Operation<types.UpdateTemplateOutput>
+function C:updateTemplate(input: types.UpdateTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateTemplateOutput>
 end
 
-function C:updateWorkflow(input: types.UpdateWorkflowInput, options: any): async.Operation<types.UpdateWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateWorkflow, input, options) as async.Operation<types.UpdateWorkflowOutput>
+function C:updateWorkflow(input: types.UpdateWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWorkflow as schema.OperationSchema, input, options) as async.Operation<types.UpdateWorkflowOutput>
 end
 
-function C:updateWorkflowStep(input: types.UpdateWorkflowStepInput, options: any): async.Operation<types.UpdateWorkflowStepOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateWorkflowStep, input, options) as async.Operation<types.UpdateWorkflowStepOutput>
+function C:updateWorkflowStep(input: types.UpdateWorkflowStepInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWorkflowStepOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWorkflowStep as schema.OperationSchema, input, options) as async.Operation<types.UpdateWorkflowStepOutput>
 end
 
-function C:updateWorkflowStepGroup(input: types.UpdateWorkflowStepGroupInput, options: any): async.Operation<types.UpdateWorkflowStepGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateWorkflowStepGroup, input, options) as async.Operation<types.UpdateWorkflowStepGroupOutput>
+function C:updateWorkflowStepGroup(input: types.UpdateWorkflowStepGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWorkflowStepGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWorkflowStepGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateWorkflowStepGroupOutput>
 end
 
 return M

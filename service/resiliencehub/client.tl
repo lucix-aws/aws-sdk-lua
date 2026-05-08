@@ -8,102 +8,105 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("resiliencehub.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("resiliencehub.schemas")
 local traits = require("smithy.traits")
 local types = require("resiliencehub.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    acceptResourceGroupingRecommendations: function(Client, types.AcceptResourceGroupingRecommendationsInput, any): async.Operation<types.AcceptResourceGroupingRecommendationsOutput>
-    addDraftAppVersionResourceMappings: function(Client, types.AddDraftAppVersionResourceMappingsInput, any): async.Operation<types.AddDraftAppVersionResourceMappingsOutput>
-    batchUpdateRecommendationStatus: function(Client, types.BatchUpdateRecommendationStatusInput, any): async.Operation<types.BatchUpdateRecommendationStatusOutput>
-    createApp: function(Client, types.CreateAppInput, any): async.Operation<types.CreateAppOutput>
-    createAppVersionAppComponent: function(Client, types.CreateAppVersionAppComponentInput, any): async.Operation<types.CreateAppVersionAppComponentOutput>
-    createAppVersionResource: function(Client, types.CreateAppVersionResourceInput, any): async.Operation<types.CreateAppVersionResourceOutput>
-    createRecommendationTemplate: function(Client, types.CreateRecommendationTemplateInput, any): async.Operation<types.CreateRecommendationTemplateOutput>
-    createResiliencyPolicy: function(Client, types.CreateResiliencyPolicyInput, any): async.Operation<types.CreateResiliencyPolicyOutput>
-    deleteApp: function(Client, types.DeleteAppInput, any): async.Operation<types.DeleteAppOutput>
-    deleteAppAssessment: function(Client, types.DeleteAppAssessmentInput, any): async.Operation<types.DeleteAppAssessmentOutput>
-    deleteAppInputSource: function(Client, types.DeleteAppInputSourceInput, any): async.Operation<types.DeleteAppInputSourceOutput>
-    deleteAppVersionAppComponent: function(Client, types.DeleteAppVersionAppComponentInput, any): async.Operation<types.DeleteAppVersionAppComponentOutput>
-    deleteAppVersionResource: function(Client, types.DeleteAppVersionResourceInput, any): async.Operation<types.DeleteAppVersionResourceOutput>
-    deleteRecommendationTemplate: function(Client, types.DeleteRecommendationTemplateInput, any): async.Operation<types.DeleteRecommendationTemplateOutput>
-    deleteResiliencyPolicy: function(Client, types.DeleteResiliencyPolicyInput, any): async.Operation<types.DeleteResiliencyPolicyOutput>
-    describeApp: function(Client, types.DescribeAppInput, any): async.Operation<types.DescribeAppOutput>
-    describeAppAssessment: function(Client, types.DescribeAppAssessmentInput, any): async.Operation<types.DescribeAppAssessmentOutput>
-    describeAppVersion: function(Client, types.DescribeAppVersionInput, any): async.Operation<types.DescribeAppVersionOutput>
-    describeAppVersionAppComponent: function(Client, types.DescribeAppVersionAppComponentInput, any): async.Operation<types.DescribeAppVersionAppComponentOutput>
-    describeAppVersionResource: function(Client, types.DescribeAppVersionResourceInput, any): async.Operation<types.DescribeAppVersionResourceOutput>
-    describeAppVersionResourcesResolutionStatus: function(Client, types.DescribeAppVersionResourcesResolutionStatusInput, any): async.Operation<types.DescribeAppVersionResourcesResolutionStatusOutput>
-    describeAppVersionTemplate: function(Client, types.DescribeAppVersionTemplateInput, any): async.Operation<types.DescribeAppVersionTemplateOutput>
-    describeDraftAppVersionResourcesImportStatus: function(Client, types.DescribeDraftAppVersionResourcesImportStatusInput, any): async.Operation<types.DescribeDraftAppVersionResourcesImportStatusOutput>
-    describeMetricsExport: function(Client, types.DescribeMetricsExportInput, any): async.Operation<types.DescribeMetricsExportOutput>
-    describeResiliencyPolicy: function(Client, types.DescribeResiliencyPolicyInput, any): async.Operation<types.DescribeResiliencyPolicyOutput>
-    describeResourceGroupingRecommendationTask: function(Client, types.DescribeResourceGroupingRecommendationTaskInput, any): async.Operation<types.DescribeResourceGroupingRecommendationTaskOutput>
-    importResourcesToDraftAppVersion: function(Client, types.ImportResourcesToDraftAppVersionInput, any): async.Operation<types.ImportResourcesToDraftAppVersionOutput>
-    listAlarmRecommendations: function(Client, types.ListAlarmRecommendationsInput, any): async.Operation<types.ListAlarmRecommendationsOutput>
-    listAppAssessmentComplianceDrifts: function(Client, types.ListAppAssessmentComplianceDriftsInput, any): async.Operation<types.ListAppAssessmentComplianceDriftsOutput>
-    listAppAssessmentResourceDrifts: function(Client, types.ListAppAssessmentResourceDriftsInput, any): async.Operation<types.ListAppAssessmentResourceDriftsOutput>
-    listAppAssessments: function(Client, types.ListAppAssessmentsInput, any): async.Operation<types.ListAppAssessmentsOutput>
-    listAppComponentCompliances: function(Client, types.ListAppComponentCompliancesInput, any): async.Operation<types.ListAppComponentCompliancesOutput>
-    listAppComponentRecommendations: function(Client, types.ListAppComponentRecommendationsInput, any): async.Operation<types.ListAppComponentRecommendationsOutput>
-    listAppInputSources: function(Client, types.ListAppInputSourcesInput, any): async.Operation<types.ListAppInputSourcesOutput>
-    listApps: function(Client, types.ListAppsInput, any): async.Operation<types.ListAppsOutput>
-    listAppVersionAppComponents: function(Client, types.ListAppVersionAppComponentsInput, any): async.Operation<types.ListAppVersionAppComponentsOutput>
-    listAppVersionResourceMappings: function(Client, types.ListAppVersionResourceMappingsInput, any): async.Operation<types.ListAppVersionResourceMappingsOutput>
-    listAppVersionResources: function(Client, types.ListAppVersionResourcesInput, any): async.Operation<types.ListAppVersionResourcesOutput>
-    listAppVersions: function(Client, types.ListAppVersionsInput, any): async.Operation<types.ListAppVersionsOutput>
-    listMetrics: function(Client, types.ListMetricsInput, any): async.Operation<types.ListMetricsOutput>
-    listRecommendationTemplates: function(Client, types.ListRecommendationTemplatesInput, any): async.Operation<types.ListRecommendationTemplatesOutput>
-    listResiliencyPolicies: function(Client, types.ListResiliencyPoliciesInput, any): async.Operation<types.ListResiliencyPoliciesOutput>
-    listResourceGroupingRecommendations: function(Client, types.ListResourceGroupingRecommendationsInput, any): async.Operation<types.ListResourceGroupingRecommendationsOutput>
-    listSopRecommendations: function(Client, types.ListSopRecommendationsInput, any): async.Operation<types.ListSopRecommendationsOutput>
-    listSuggestedResiliencyPolicies: function(Client, types.ListSuggestedResiliencyPoliciesInput, any): async.Operation<types.ListSuggestedResiliencyPoliciesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTestRecommendations: function(Client, types.ListTestRecommendationsInput, any): async.Operation<types.ListTestRecommendationsOutput>
-    listUnsupportedAppVersionResources: function(Client, types.ListUnsupportedAppVersionResourcesInput, any): async.Operation<types.ListUnsupportedAppVersionResourcesOutput>
-    publishAppVersion: function(Client, types.PublishAppVersionInput, any): async.Operation<types.PublishAppVersionOutput>
-    putDraftAppVersionTemplate: function(Client, types.PutDraftAppVersionTemplateInput, any): async.Operation<types.PutDraftAppVersionTemplateOutput>
-    rejectResourceGroupingRecommendations: function(Client, types.RejectResourceGroupingRecommendationsInput, any): async.Operation<types.RejectResourceGroupingRecommendationsOutput>
-    removeDraftAppVersionResourceMappings: function(Client, types.RemoveDraftAppVersionResourceMappingsInput, any): async.Operation<types.RemoveDraftAppVersionResourceMappingsOutput>
-    resolveAppVersionResources: function(Client, types.ResolveAppVersionResourcesInput, any): async.Operation<types.ResolveAppVersionResourcesOutput>
-    startAppAssessment: function(Client, types.StartAppAssessmentInput, any): async.Operation<types.StartAppAssessmentOutput>
-    startMetricsExport: function(Client, types.StartMetricsExportInput, any): async.Operation<types.StartMetricsExportOutput>
-    startResourceGroupingRecommendationTask: function(Client, types.StartResourceGroupingRecommendationTaskInput, any): async.Operation<types.StartResourceGroupingRecommendationTaskOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateApp: function(Client, types.UpdateAppInput, any): async.Operation<types.UpdateAppOutput>
-    updateAppVersion: function(Client, types.UpdateAppVersionInput, any): async.Operation<types.UpdateAppVersionOutput>
-    updateAppVersionAppComponent: function(Client, types.UpdateAppVersionAppComponentInput, any): async.Operation<types.UpdateAppVersionAppComponentOutput>
-    updateAppVersionResource: function(Client, types.UpdateAppVersionResourceInput, any): async.Operation<types.UpdateAppVersionResourceOutput>
-    updateResiliencyPolicy: function(Client, types.UpdateResiliencyPolicyInput, any): async.Operation<types.UpdateResiliencyPolicyOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    acceptResourceGroupingRecommendations: function(Client, types.AcceptResourceGroupingRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.AcceptResourceGroupingRecommendationsOutput>
+    addDraftAppVersionResourceMappings: function(Client, types.AddDraftAppVersionResourceMappingsInput, ? base_client.InvokeOptions): async.Operation<types.AddDraftAppVersionResourceMappingsOutput>
+    batchUpdateRecommendationStatus: function(Client, types.BatchUpdateRecommendationStatusInput, ? base_client.InvokeOptions): async.Operation<types.BatchUpdateRecommendationStatusOutput>
+    createApp: function(Client, types.CreateAppInput, ? base_client.InvokeOptions): async.Operation<types.CreateAppOutput>
+    createAppVersionAppComponent: function(Client, types.CreateAppVersionAppComponentInput, ? base_client.InvokeOptions): async.Operation<types.CreateAppVersionAppComponentOutput>
+    createAppVersionResource: function(Client, types.CreateAppVersionResourceInput, ? base_client.InvokeOptions): async.Operation<types.CreateAppVersionResourceOutput>
+    createRecommendationTemplate: function(Client, types.CreateRecommendationTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateRecommendationTemplateOutput>
+    createResiliencyPolicy: function(Client, types.CreateResiliencyPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateResiliencyPolicyOutput>
+    deleteApp: function(Client, types.DeleteAppInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAppOutput>
+    deleteAppAssessment: function(Client, types.DeleteAppAssessmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAppAssessmentOutput>
+    deleteAppInputSource: function(Client, types.DeleteAppInputSourceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAppInputSourceOutput>
+    deleteAppVersionAppComponent: function(Client, types.DeleteAppVersionAppComponentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAppVersionAppComponentOutput>
+    deleteAppVersionResource: function(Client, types.DeleteAppVersionResourceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAppVersionResourceOutput>
+    deleteRecommendationTemplate: function(Client, types.DeleteRecommendationTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRecommendationTemplateOutput>
+    deleteResiliencyPolicy: function(Client, types.DeleteResiliencyPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResiliencyPolicyOutput>
+    describeApp: function(Client, types.DescribeAppInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAppOutput>
+    describeAppAssessment: function(Client, types.DescribeAppAssessmentInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAppAssessmentOutput>
+    describeAppVersion: function(Client, types.DescribeAppVersionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAppVersionOutput>
+    describeAppVersionAppComponent: function(Client, types.DescribeAppVersionAppComponentInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAppVersionAppComponentOutput>
+    describeAppVersionResource: function(Client, types.DescribeAppVersionResourceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAppVersionResourceOutput>
+    describeAppVersionResourcesResolutionStatus: function(Client, types.DescribeAppVersionResourcesResolutionStatusInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAppVersionResourcesResolutionStatusOutput>
+    describeAppVersionTemplate: function(Client, types.DescribeAppVersionTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAppVersionTemplateOutput>
+    describeDraftAppVersionResourcesImportStatus: function(Client, types.DescribeDraftAppVersionResourcesImportStatusInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDraftAppVersionResourcesImportStatusOutput>
+    describeMetricsExport: function(Client, types.DescribeMetricsExportInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMetricsExportOutput>
+    describeResiliencyPolicy: function(Client, types.DescribeResiliencyPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DescribeResiliencyPolicyOutput>
+    describeResourceGroupingRecommendationTask: function(Client, types.DescribeResourceGroupingRecommendationTaskInput, ? base_client.InvokeOptions): async.Operation<types.DescribeResourceGroupingRecommendationTaskOutput>
+    importResourcesToDraftAppVersion: function(Client, types.ImportResourcesToDraftAppVersionInput, ? base_client.InvokeOptions): async.Operation<types.ImportResourcesToDraftAppVersionOutput>
+    listAlarmRecommendations: function(Client, types.ListAlarmRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.ListAlarmRecommendationsOutput>
+    listAppAssessmentComplianceDrifts: function(Client, types.ListAppAssessmentComplianceDriftsInput, ? base_client.InvokeOptions): async.Operation<types.ListAppAssessmentComplianceDriftsOutput>
+    listAppAssessmentResourceDrifts: function(Client, types.ListAppAssessmentResourceDriftsInput, ? base_client.InvokeOptions): async.Operation<types.ListAppAssessmentResourceDriftsOutput>
+    listAppAssessments: function(Client, types.ListAppAssessmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListAppAssessmentsOutput>
+    listAppComponentCompliances: function(Client, types.ListAppComponentCompliancesInput, ? base_client.InvokeOptions): async.Operation<types.ListAppComponentCompliancesOutput>
+    listAppComponentRecommendations: function(Client, types.ListAppComponentRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.ListAppComponentRecommendationsOutput>
+    listAppInputSources: function(Client, types.ListAppInputSourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListAppInputSourcesOutput>
+    listApps: function(Client, types.ListAppsInput, ? base_client.InvokeOptions): async.Operation<types.ListAppsOutput>
+    listAppVersionAppComponents: function(Client, types.ListAppVersionAppComponentsInput, ? base_client.InvokeOptions): async.Operation<types.ListAppVersionAppComponentsOutput>
+    listAppVersionResourceMappings: function(Client, types.ListAppVersionResourceMappingsInput, ? base_client.InvokeOptions): async.Operation<types.ListAppVersionResourceMappingsOutput>
+    listAppVersionResources: function(Client, types.ListAppVersionResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListAppVersionResourcesOutput>
+    listAppVersions: function(Client, types.ListAppVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListAppVersionsOutput>
+    listMetrics: function(Client, types.ListMetricsInput, ? base_client.InvokeOptions): async.Operation<types.ListMetricsOutput>
+    listRecommendationTemplates: function(Client, types.ListRecommendationTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListRecommendationTemplatesOutput>
+    listResiliencyPolicies: function(Client, types.ListResiliencyPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListResiliencyPoliciesOutput>
+    listResourceGroupingRecommendations: function(Client, types.ListResourceGroupingRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceGroupingRecommendationsOutput>
+    listSopRecommendations: function(Client, types.ListSopRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.ListSopRecommendationsOutput>
+    listSuggestedResiliencyPolicies: function(Client, types.ListSuggestedResiliencyPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListSuggestedResiliencyPoliciesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTestRecommendations: function(Client, types.ListTestRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.ListTestRecommendationsOutput>
+    listUnsupportedAppVersionResources: function(Client, types.ListUnsupportedAppVersionResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListUnsupportedAppVersionResourcesOutput>
+    publishAppVersion: function(Client, types.PublishAppVersionInput, ? base_client.InvokeOptions): async.Operation<types.PublishAppVersionOutput>
+    putDraftAppVersionTemplate: function(Client, types.PutDraftAppVersionTemplateInput, ? base_client.InvokeOptions): async.Operation<types.PutDraftAppVersionTemplateOutput>
+    rejectResourceGroupingRecommendations: function(Client, types.RejectResourceGroupingRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.RejectResourceGroupingRecommendationsOutput>
+    removeDraftAppVersionResourceMappings: function(Client, types.RemoveDraftAppVersionResourceMappingsInput, ? base_client.InvokeOptions): async.Operation<types.RemoveDraftAppVersionResourceMappingsOutput>
+    resolveAppVersionResources: function(Client, types.ResolveAppVersionResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ResolveAppVersionResourcesOutput>
+    startAppAssessment: function(Client, types.StartAppAssessmentInput, ? base_client.InvokeOptions): async.Operation<types.StartAppAssessmentOutput>
+    startMetricsExport: function(Client, types.StartMetricsExportInput, ? base_client.InvokeOptions): async.Operation<types.StartMetricsExportOutput>
+    startResourceGroupingRecommendationTask: function(Client, types.StartResourceGroupingRecommendationTaskInput, ? base_client.InvokeOptions): async.Operation<types.StartResourceGroupingRecommendationTaskOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateApp: function(Client, types.UpdateAppInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAppOutput>
+    updateAppVersion: function(Client, types.UpdateAppVersionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAppVersionOutput>
+    updateAppVersionAppComponent: function(Client, types.UpdateAppVersionAppComponentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAppVersionAppComponentOutput>
+    updateAppVersionResource: function(Client, types.UpdateAppVersionResourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAppVersionResourceOutput>
+    updateResiliencyPolicy: function(Client, types.UpdateResiliencyPolicyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResiliencyPolicyOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AwsResilienceHub"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "resiliencehub", signing_region = c.region } }
                 else
@@ -122,256 +125,256 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:acceptResourceGroupingRecommendations(input: types.AcceptResourceGroupingRecommendationsInput, options: any): async.Operation<types.AcceptResourceGroupingRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptResourceGroupingRecommendations, input, options) as async.Operation<types.AcceptResourceGroupingRecommendationsOutput>
+function C:acceptResourceGroupingRecommendations(input: types.AcceptResourceGroupingRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptResourceGroupingRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptResourceGroupingRecommendations as schema.OperationSchema, input, options) as async.Operation<types.AcceptResourceGroupingRecommendationsOutput>
 end
 
-function C:addDraftAppVersionResourceMappings(input: types.AddDraftAppVersionResourceMappingsInput, options: any): async.Operation<types.AddDraftAppVersionResourceMappingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddDraftAppVersionResourceMappings, input, options) as async.Operation<types.AddDraftAppVersionResourceMappingsOutput>
+function C:addDraftAppVersionResourceMappings(input: types.AddDraftAppVersionResourceMappingsInput, options?: base_client.InvokeOptions): async.Operation<types.AddDraftAppVersionResourceMappingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddDraftAppVersionResourceMappings as schema.OperationSchema, input, options) as async.Operation<types.AddDraftAppVersionResourceMappingsOutput>
 end
 
-function C:batchUpdateRecommendationStatus(input: types.BatchUpdateRecommendationStatusInput, options: any): async.Operation<types.BatchUpdateRecommendationStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchUpdateRecommendationStatus, input, options) as async.Operation<types.BatchUpdateRecommendationStatusOutput>
+function C:batchUpdateRecommendationStatus(input: types.BatchUpdateRecommendationStatusInput, options?: base_client.InvokeOptions): async.Operation<types.BatchUpdateRecommendationStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchUpdateRecommendationStatus as schema.OperationSchema, input, options) as async.Operation<types.BatchUpdateRecommendationStatusOutput>
 end
 
-function C:createApp(input: types.CreateAppInput, options: any): async.Operation<types.CreateAppOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateApp, input, options) as async.Operation<types.CreateAppOutput>
+function C:createApp(input: types.CreateAppInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAppOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApp as schema.OperationSchema, input, options) as async.Operation<types.CreateAppOutput>
 end
 
-function C:createAppVersionAppComponent(input: types.CreateAppVersionAppComponentInput, options: any): async.Operation<types.CreateAppVersionAppComponentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAppVersionAppComponent, input, options) as async.Operation<types.CreateAppVersionAppComponentOutput>
+function C:createAppVersionAppComponent(input: types.CreateAppVersionAppComponentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAppVersionAppComponentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAppVersionAppComponent as schema.OperationSchema, input, options) as async.Operation<types.CreateAppVersionAppComponentOutput>
 end
 
-function C:createAppVersionResource(input: types.CreateAppVersionResourceInput, options: any): async.Operation<types.CreateAppVersionResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAppVersionResource, input, options) as async.Operation<types.CreateAppVersionResourceOutput>
+function C:createAppVersionResource(input: types.CreateAppVersionResourceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAppVersionResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAppVersionResource as schema.OperationSchema, input, options) as async.Operation<types.CreateAppVersionResourceOutput>
 end
 
-function C:createRecommendationTemplate(input: types.CreateRecommendationTemplateInput, options: any): async.Operation<types.CreateRecommendationTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRecommendationTemplate, input, options) as async.Operation<types.CreateRecommendationTemplateOutput>
+function C:createRecommendationTemplate(input: types.CreateRecommendationTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRecommendationTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRecommendationTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateRecommendationTemplateOutput>
 end
 
-function C:createResiliencyPolicy(input: types.CreateResiliencyPolicyInput, options: any): async.Operation<types.CreateResiliencyPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateResiliencyPolicy, input, options) as async.Operation<types.CreateResiliencyPolicyOutput>
+function C:createResiliencyPolicy(input: types.CreateResiliencyPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateResiliencyPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateResiliencyPolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateResiliencyPolicyOutput>
 end
 
-function C:deleteApp(input: types.DeleteAppInput, options: any): async.Operation<types.DeleteAppOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApp, input, options) as async.Operation<types.DeleteAppOutput>
+function C:deleteApp(input: types.DeleteAppInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAppOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApp as schema.OperationSchema, input, options) as async.Operation<types.DeleteAppOutput>
 end
 
-function C:deleteAppAssessment(input: types.DeleteAppAssessmentInput, options: any): async.Operation<types.DeleteAppAssessmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAppAssessment, input, options) as async.Operation<types.DeleteAppAssessmentOutput>
+function C:deleteAppAssessment(input: types.DeleteAppAssessmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAppAssessmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAppAssessment as schema.OperationSchema, input, options) as async.Operation<types.DeleteAppAssessmentOutput>
 end
 
-function C:deleteAppInputSource(input: types.DeleteAppInputSourceInput, options: any): async.Operation<types.DeleteAppInputSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAppInputSource, input, options) as async.Operation<types.DeleteAppInputSourceOutput>
+function C:deleteAppInputSource(input: types.DeleteAppInputSourceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAppInputSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAppInputSource as schema.OperationSchema, input, options) as async.Operation<types.DeleteAppInputSourceOutput>
 end
 
-function C:deleteAppVersionAppComponent(input: types.DeleteAppVersionAppComponentInput, options: any): async.Operation<types.DeleteAppVersionAppComponentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAppVersionAppComponent, input, options) as async.Operation<types.DeleteAppVersionAppComponentOutput>
+function C:deleteAppVersionAppComponent(input: types.DeleteAppVersionAppComponentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAppVersionAppComponentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAppVersionAppComponent as schema.OperationSchema, input, options) as async.Operation<types.DeleteAppVersionAppComponentOutput>
 end
 
-function C:deleteAppVersionResource(input: types.DeleteAppVersionResourceInput, options: any): async.Operation<types.DeleteAppVersionResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAppVersionResource, input, options) as async.Operation<types.DeleteAppVersionResourceOutput>
+function C:deleteAppVersionResource(input: types.DeleteAppVersionResourceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAppVersionResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAppVersionResource as schema.OperationSchema, input, options) as async.Operation<types.DeleteAppVersionResourceOutput>
 end
 
-function C:deleteRecommendationTemplate(input: types.DeleteRecommendationTemplateInput, options: any): async.Operation<types.DeleteRecommendationTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRecommendationTemplate, input, options) as async.Operation<types.DeleteRecommendationTemplateOutput>
+function C:deleteRecommendationTemplate(input: types.DeleteRecommendationTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRecommendationTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRecommendationTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteRecommendationTemplateOutput>
 end
 
-function C:deleteResiliencyPolicy(input: types.DeleteResiliencyPolicyInput, options: any): async.Operation<types.DeleteResiliencyPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResiliencyPolicy, input, options) as async.Operation<types.DeleteResiliencyPolicyOutput>
+function C:deleteResiliencyPolicy(input: types.DeleteResiliencyPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResiliencyPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResiliencyPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteResiliencyPolicyOutput>
 end
 
-function C:describeApp(input: types.DescribeAppInput, options: any): async.Operation<types.DescribeAppOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeApp, input, options) as async.Operation<types.DescribeAppOutput>
+function C:describeApp(input: types.DescribeAppInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAppOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeApp as schema.OperationSchema, input, options) as async.Operation<types.DescribeAppOutput>
 end
 
-function C:describeAppAssessment(input: types.DescribeAppAssessmentInput, options: any): async.Operation<types.DescribeAppAssessmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAppAssessment, input, options) as async.Operation<types.DescribeAppAssessmentOutput>
+function C:describeAppAssessment(input: types.DescribeAppAssessmentInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAppAssessmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAppAssessment as schema.OperationSchema, input, options) as async.Operation<types.DescribeAppAssessmentOutput>
 end
 
-function C:describeAppVersion(input: types.DescribeAppVersionInput, options: any): async.Operation<types.DescribeAppVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAppVersion, input, options) as async.Operation<types.DescribeAppVersionOutput>
+function C:describeAppVersion(input: types.DescribeAppVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAppVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAppVersion as schema.OperationSchema, input, options) as async.Operation<types.DescribeAppVersionOutput>
 end
 
-function C:describeAppVersionAppComponent(input: types.DescribeAppVersionAppComponentInput, options: any): async.Operation<types.DescribeAppVersionAppComponentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAppVersionAppComponent, input, options) as async.Operation<types.DescribeAppVersionAppComponentOutput>
+function C:describeAppVersionAppComponent(input: types.DescribeAppVersionAppComponentInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAppVersionAppComponentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAppVersionAppComponent as schema.OperationSchema, input, options) as async.Operation<types.DescribeAppVersionAppComponentOutput>
 end
 
-function C:describeAppVersionResource(input: types.DescribeAppVersionResourceInput, options: any): async.Operation<types.DescribeAppVersionResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAppVersionResource, input, options) as async.Operation<types.DescribeAppVersionResourceOutput>
+function C:describeAppVersionResource(input: types.DescribeAppVersionResourceInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAppVersionResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAppVersionResource as schema.OperationSchema, input, options) as async.Operation<types.DescribeAppVersionResourceOutput>
 end
 
-function C:describeAppVersionResourcesResolutionStatus(input: types.DescribeAppVersionResourcesResolutionStatusInput, options: any): async.Operation<types.DescribeAppVersionResourcesResolutionStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAppVersionResourcesResolutionStatus, input, options) as async.Operation<types.DescribeAppVersionResourcesResolutionStatusOutput>
+function C:describeAppVersionResourcesResolutionStatus(input: types.DescribeAppVersionResourcesResolutionStatusInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAppVersionResourcesResolutionStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAppVersionResourcesResolutionStatus as schema.OperationSchema, input, options) as async.Operation<types.DescribeAppVersionResourcesResolutionStatusOutput>
 end
 
-function C:describeAppVersionTemplate(input: types.DescribeAppVersionTemplateInput, options: any): async.Operation<types.DescribeAppVersionTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAppVersionTemplate, input, options) as async.Operation<types.DescribeAppVersionTemplateOutput>
+function C:describeAppVersionTemplate(input: types.DescribeAppVersionTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAppVersionTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAppVersionTemplate as schema.OperationSchema, input, options) as async.Operation<types.DescribeAppVersionTemplateOutput>
 end
 
-function C:describeDraftAppVersionResourcesImportStatus(input: types.DescribeDraftAppVersionResourcesImportStatusInput, options: any): async.Operation<types.DescribeDraftAppVersionResourcesImportStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDraftAppVersionResourcesImportStatus, input, options) as async.Operation<types.DescribeDraftAppVersionResourcesImportStatusOutput>
+function C:describeDraftAppVersionResourcesImportStatus(input: types.DescribeDraftAppVersionResourcesImportStatusInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDraftAppVersionResourcesImportStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDraftAppVersionResourcesImportStatus as schema.OperationSchema, input, options) as async.Operation<types.DescribeDraftAppVersionResourcesImportStatusOutput>
 end
 
-function C:describeMetricsExport(input: types.DescribeMetricsExportInput, options: any): async.Operation<types.DescribeMetricsExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeMetricsExport, input, options) as async.Operation<types.DescribeMetricsExportOutput>
+function C:describeMetricsExport(input: types.DescribeMetricsExportInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMetricsExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMetricsExport as schema.OperationSchema, input, options) as async.Operation<types.DescribeMetricsExportOutput>
 end
 
-function C:describeResiliencyPolicy(input: types.DescribeResiliencyPolicyInput, options: any): async.Operation<types.DescribeResiliencyPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeResiliencyPolicy, input, options) as async.Operation<types.DescribeResiliencyPolicyOutput>
+function C:describeResiliencyPolicy(input: types.DescribeResiliencyPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeResiliencyPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeResiliencyPolicy as schema.OperationSchema, input, options) as async.Operation<types.DescribeResiliencyPolicyOutput>
 end
 
-function C:describeResourceGroupingRecommendationTask(input: types.DescribeResourceGroupingRecommendationTaskInput, options: any): async.Operation<types.DescribeResourceGroupingRecommendationTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeResourceGroupingRecommendationTask, input, options) as async.Operation<types.DescribeResourceGroupingRecommendationTaskOutput>
+function C:describeResourceGroupingRecommendationTask(input: types.DescribeResourceGroupingRecommendationTaskInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeResourceGroupingRecommendationTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeResourceGroupingRecommendationTask as schema.OperationSchema, input, options) as async.Operation<types.DescribeResourceGroupingRecommendationTaskOutput>
 end
 
-function C:importResourcesToDraftAppVersion(input: types.ImportResourcesToDraftAppVersionInput, options: any): async.Operation<types.ImportResourcesToDraftAppVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportResourcesToDraftAppVersion, input, options) as async.Operation<types.ImportResourcesToDraftAppVersionOutput>
+function C:importResourcesToDraftAppVersion(input: types.ImportResourcesToDraftAppVersionInput, options?: base_client.InvokeOptions): async.Operation<types.ImportResourcesToDraftAppVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportResourcesToDraftAppVersion as schema.OperationSchema, input, options) as async.Operation<types.ImportResourcesToDraftAppVersionOutput>
 end
 
-function C:listAlarmRecommendations(input: types.ListAlarmRecommendationsInput, options: any): async.Operation<types.ListAlarmRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAlarmRecommendations, input, options) as async.Operation<types.ListAlarmRecommendationsOutput>
+function C:listAlarmRecommendations(input: types.ListAlarmRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAlarmRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAlarmRecommendations as schema.OperationSchema, input, options) as async.Operation<types.ListAlarmRecommendationsOutput>
 end
 
-function C:listAppAssessmentComplianceDrifts(input: types.ListAppAssessmentComplianceDriftsInput, options: any): async.Operation<types.ListAppAssessmentComplianceDriftsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAppAssessmentComplianceDrifts, input, options) as async.Operation<types.ListAppAssessmentComplianceDriftsOutput>
+function C:listAppAssessmentComplianceDrifts(input: types.ListAppAssessmentComplianceDriftsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAppAssessmentComplianceDriftsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAppAssessmentComplianceDrifts as schema.OperationSchema, input, options) as async.Operation<types.ListAppAssessmentComplianceDriftsOutput>
 end
 
-function C:listAppAssessmentResourceDrifts(input: types.ListAppAssessmentResourceDriftsInput, options: any): async.Operation<types.ListAppAssessmentResourceDriftsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAppAssessmentResourceDrifts, input, options) as async.Operation<types.ListAppAssessmentResourceDriftsOutput>
+function C:listAppAssessmentResourceDrifts(input: types.ListAppAssessmentResourceDriftsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAppAssessmentResourceDriftsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAppAssessmentResourceDrifts as schema.OperationSchema, input, options) as async.Operation<types.ListAppAssessmentResourceDriftsOutput>
 end
 
-function C:listAppAssessments(input: types.ListAppAssessmentsInput, options: any): async.Operation<types.ListAppAssessmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAppAssessments, input, options) as async.Operation<types.ListAppAssessmentsOutput>
+function C:listAppAssessments(input: types.ListAppAssessmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAppAssessmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAppAssessments as schema.OperationSchema, input, options) as async.Operation<types.ListAppAssessmentsOutput>
 end
 
-function C:listAppComponentCompliances(input: types.ListAppComponentCompliancesInput, options: any): async.Operation<types.ListAppComponentCompliancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAppComponentCompliances, input, options) as async.Operation<types.ListAppComponentCompliancesOutput>
+function C:listAppComponentCompliances(input: types.ListAppComponentCompliancesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAppComponentCompliancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAppComponentCompliances as schema.OperationSchema, input, options) as async.Operation<types.ListAppComponentCompliancesOutput>
 end
 
-function C:listAppComponentRecommendations(input: types.ListAppComponentRecommendationsInput, options: any): async.Operation<types.ListAppComponentRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAppComponentRecommendations, input, options) as async.Operation<types.ListAppComponentRecommendationsOutput>
+function C:listAppComponentRecommendations(input: types.ListAppComponentRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAppComponentRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAppComponentRecommendations as schema.OperationSchema, input, options) as async.Operation<types.ListAppComponentRecommendationsOutput>
 end
 
-function C:listAppInputSources(input: types.ListAppInputSourcesInput, options: any): async.Operation<types.ListAppInputSourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAppInputSources, input, options) as async.Operation<types.ListAppInputSourcesOutput>
+function C:listAppInputSources(input: types.ListAppInputSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAppInputSourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAppInputSources as schema.OperationSchema, input, options) as async.Operation<types.ListAppInputSourcesOutput>
 end
 
-function C:listApps(input: types.ListAppsInput, options: any): async.Operation<types.ListAppsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApps, input, options) as async.Operation<types.ListAppsOutput>
+function C:listApps(input: types.ListAppsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAppsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApps as schema.OperationSchema, input, options) as async.Operation<types.ListAppsOutput>
 end
 
-function C:listAppVersionAppComponents(input: types.ListAppVersionAppComponentsInput, options: any): async.Operation<types.ListAppVersionAppComponentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAppVersionAppComponents, input, options) as async.Operation<types.ListAppVersionAppComponentsOutput>
+function C:listAppVersionAppComponents(input: types.ListAppVersionAppComponentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAppVersionAppComponentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAppVersionAppComponents as schema.OperationSchema, input, options) as async.Operation<types.ListAppVersionAppComponentsOutput>
 end
 
-function C:listAppVersionResourceMappings(input: types.ListAppVersionResourceMappingsInput, options: any): async.Operation<types.ListAppVersionResourceMappingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAppVersionResourceMappings, input, options) as async.Operation<types.ListAppVersionResourceMappingsOutput>
+function C:listAppVersionResourceMappings(input: types.ListAppVersionResourceMappingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAppVersionResourceMappingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAppVersionResourceMappings as schema.OperationSchema, input, options) as async.Operation<types.ListAppVersionResourceMappingsOutput>
 end
 
-function C:listAppVersionResources(input: types.ListAppVersionResourcesInput, options: any): async.Operation<types.ListAppVersionResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAppVersionResources, input, options) as async.Operation<types.ListAppVersionResourcesOutput>
+function C:listAppVersionResources(input: types.ListAppVersionResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAppVersionResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAppVersionResources as schema.OperationSchema, input, options) as async.Operation<types.ListAppVersionResourcesOutput>
 end
 
-function C:listAppVersions(input: types.ListAppVersionsInput, options: any): async.Operation<types.ListAppVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAppVersions, input, options) as async.Operation<types.ListAppVersionsOutput>
+function C:listAppVersions(input: types.ListAppVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAppVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAppVersions as schema.OperationSchema, input, options) as async.Operation<types.ListAppVersionsOutput>
 end
 
-function C:listMetrics(input: types.ListMetricsInput, options: any): async.Operation<types.ListMetricsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMetrics, input, options) as async.Operation<types.ListMetricsOutput>
+function C:listMetrics(input: types.ListMetricsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMetricsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMetrics as schema.OperationSchema, input, options) as async.Operation<types.ListMetricsOutput>
 end
 
-function C:listRecommendationTemplates(input: types.ListRecommendationTemplatesInput, options: any): async.Operation<types.ListRecommendationTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRecommendationTemplates, input, options) as async.Operation<types.ListRecommendationTemplatesOutput>
+function C:listRecommendationTemplates(input: types.ListRecommendationTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecommendationTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecommendationTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListRecommendationTemplatesOutput>
 end
 
-function C:listResiliencyPolicies(input: types.ListResiliencyPoliciesInput, options: any): async.Operation<types.ListResiliencyPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResiliencyPolicies, input, options) as async.Operation<types.ListResiliencyPoliciesOutput>
+function C:listResiliencyPolicies(input: types.ListResiliencyPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListResiliencyPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResiliencyPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListResiliencyPoliciesOutput>
 end
 
-function C:listResourceGroupingRecommendations(input: types.ListResourceGroupingRecommendationsInput, options: any): async.Operation<types.ListResourceGroupingRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResourceGroupingRecommendations, input, options) as async.Operation<types.ListResourceGroupingRecommendationsOutput>
+function C:listResourceGroupingRecommendations(input: types.ListResourceGroupingRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourceGroupingRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourceGroupingRecommendations as schema.OperationSchema, input, options) as async.Operation<types.ListResourceGroupingRecommendationsOutput>
 end
 
-function C:listSopRecommendations(input: types.ListSopRecommendationsInput, options: any): async.Operation<types.ListSopRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSopRecommendations, input, options) as async.Operation<types.ListSopRecommendationsOutput>
+function C:listSopRecommendations(input: types.ListSopRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSopRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSopRecommendations as schema.OperationSchema, input, options) as async.Operation<types.ListSopRecommendationsOutput>
 end
 
-function C:listSuggestedResiliencyPolicies(input: types.ListSuggestedResiliencyPoliciesInput, options: any): async.Operation<types.ListSuggestedResiliencyPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSuggestedResiliencyPolicies, input, options) as async.Operation<types.ListSuggestedResiliencyPoliciesOutput>
+function C:listSuggestedResiliencyPolicies(input: types.ListSuggestedResiliencyPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSuggestedResiliencyPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSuggestedResiliencyPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListSuggestedResiliencyPoliciesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTestRecommendations(input: types.ListTestRecommendationsInput, options: any): async.Operation<types.ListTestRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTestRecommendations, input, options) as async.Operation<types.ListTestRecommendationsOutput>
+function C:listTestRecommendations(input: types.ListTestRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTestRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTestRecommendations as schema.OperationSchema, input, options) as async.Operation<types.ListTestRecommendationsOutput>
 end
 
-function C:listUnsupportedAppVersionResources(input: types.ListUnsupportedAppVersionResourcesInput, options: any): async.Operation<types.ListUnsupportedAppVersionResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListUnsupportedAppVersionResources, input, options) as async.Operation<types.ListUnsupportedAppVersionResourcesOutput>
+function C:listUnsupportedAppVersionResources(input: types.ListUnsupportedAppVersionResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListUnsupportedAppVersionResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUnsupportedAppVersionResources as schema.OperationSchema, input, options) as async.Operation<types.ListUnsupportedAppVersionResourcesOutput>
 end
 
-function C:publishAppVersion(input: types.PublishAppVersionInput, options: any): async.Operation<types.PublishAppVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.PublishAppVersion, input, options) as async.Operation<types.PublishAppVersionOutput>
+function C:publishAppVersion(input: types.PublishAppVersionInput, options?: base_client.InvokeOptions): async.Operation<types.PublishAppVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PublishAppVersion as schema.OperationSchema, input, options) as async.Operation<types.PublishAppVersionOutput>
 end
 
-function C:putDraftAppVersionTemplate(input: types.PutDraftAppVersionTemplateInput, options: any): async.Operation<types.PutDraftAppVersionTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutDraftAppVersionTemplate, input, options) as async.Operation<types.PutDraftAppVersionTemplateOutput>
+function C:putDraftAppVersionTemplate(input: types.PutDraftAppVersionTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.PutDraftAppVersionTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutDraftAppVersionTemplate as schema.OperationSchema, input, options) as async.Operation<types.PutDraftAppVersionTemplateOutput>
 end
 
-function C:rejectResourceGroupingRecommendations(input: types.RejectResourceGroupingRecommendationsInput, options: any): async.Operation<types.RejectResourceGroupingRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.RejectResourceGroupingRecommendations, input, options) as async.Operation<types.RejectResourceGroupingRecommendationsOutput>
+function C:rejectResourceGroupingRecommendations(input: types.RejectResourceGroupingRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.RejectResourceGroupingRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RejectResourceGroupingRecommendations as schema.OperationSchema, input, options) as async.Operation<types.RejectResourceGroupingRecommendationsOutput>
 end
 
-function C:removeDraftAppVersionResourceMappings(input: types.RemoveDraftAppVersionResourceMappingsInput, options: any): async.Operation<types.RemoveDraftAppVersionResourceMappingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveDraftAppVersionResourceMappings, input, options) as async.Operation<types.RemoveDraftAppVersionResourceMappingsOutput>
+function C:removeDraftAppVersionResourceMappings(input: types.RemoveDraftAppVersionResourceMappingsInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveDraftAppVersionResourceMappingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveDraftAppVersionResourceMappings as schema.OperationSchema, input, options) as async.Operation<types.RemoveDraftAppVersionResourceMappingsOutput>
 end
 
-function C:resolveAppVersionResources(input: types.ResolveAppVersionResourcesInput, options: any): async.Operation<types.ResolveAppVersionResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResolveAppVersionResources, input, options) as async.Operation<types.ResolveAppVersionResourcesOutput>
+function C:resolveAppVersionResources(input: types.ResolveAppVersionResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ResolveAppVersionResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResolveAppVersionResources as schema.OperationSchema, input, options) as async.Operation<types.ResolveAppVersionResourcesOutput>
 end
 
-function C:startAppAssessment(input: types.StartAppAssessmentInput, options: any): async.Operation<types.StartAppAssessmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartAppAssessment, input, options) as async.Operation<types.StartAppAssessmentOutput>
+function C:startAppAssessment(input: types.StartAppAssessmentInput, options?: base_client.InvokeOptions): async.Operation<types.StartAppAssessmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartAppAssessment as schema.OperationSchema, input, options) as async.Operation<types.StartAppAssessmentOutput>
 end
 
-function C:startMetricsExport(input: types.StartMetricsExportInput, options: any): async.Operation<types.StartMetricsExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartMetricsExport, input, options) as async.Operation<types.StartMetricsExportOutput>
+function C:startMetricsExport(input: types.StartMetricsExportInput, options?: base_client.InvokeOptions): async.Operation<types.StartMetricsExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartMetricsExport as schema.OperationSchema, input, options) as async.Operation<types.StartMetricsExportOutput>
 end
 
-function C:startResourceGroupingRecommendationTask(input: types.StartResourceGroupingRecommendationTaskInput, options: any): async.Operation<types.StartResourceGroupingRecommendationTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartResourceGroupingRecommendationTask, input, options) as async.Operation<types.StartResourceGroupingRecommendationTaskOutput>
+function C:startResourceGroupingRecommendationTask(input: types.StartResourceGroupingRecommendationTaskInput, options?: base_client.InvokeOptions): async.Operation<types.StartResourceGroupingRecommendationTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartResourceGroupingRecommendationTask as schema.OperationSchema, input, options) as async.Operation<types.StartResourceGroupingRecommendationTaskOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateApp(input: types.UpdateAppInput, options: any): async.Operation<types.UpdateAppOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateApp, input, options) as async.Operation<types.UpdateAppOutput>
+function C:updateApp(input: types.UpdateAppInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAppOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApp as schema.OperationSchema, input, options) as async.Operation<types.UpdateAppOutput>
 end
 
-function C:updateAppVersion(input: types.UpdateAppVersionInput, options: any): async.Operation<types.UpdateAppVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAppVersion, input, options) as async.Operation<types.UpdateAppVersionOutput>
+function C:updateAppVersion(input: types.UpdateAppVersionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAppVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAppVersion as schema.OperationSchema, input, options) as async.Operation<types.UpdateAppVersionOutput>
 end
 
-function C:updateAppVersionAppComponent(input: types.UpdateAppVersionAppComponentInput, options: any): async.Operation<types.UpdateAppVersionAppComponentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAppVersionAppComponent, input, options) as async.Operation<types.UpdateAppVersionAppComponentOutput>
+function C:updateAppVersionAppComponent(input: types.UpdateAppVersionAppComponentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAppVersionAppComponentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAppVersionAppComponent as schema.OperationSchema, input, options) as async.Operation<types.UpdateAppVersionAppComponentOutput>
 end
 
-function C:updateAppVersionResource(input: types.UpdateAppVersionResourceInput, options: any): async.Operation<types.UpdateAppVersionResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAppVersionResource, input, options) as async.Operation<types.UpdateAppVersionResourceOutput>
+function C:updateAppVersionResource(input: types.UpdateAppVersionResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAppVersionResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAppVersionResource as schema.OperationSchema, input, options) as async.Operation<types.UpdateAppVersionResourceOutput>
 end
 
-function C:updateResiliencyPolicy(input: types.UpdateResiliencyPolicyInput, options: any): async.Operation<types.UpdateResiliencyPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateResiliencyPolicy, input, options) as async.Operation<types.UpdateResiliencyPolicyOutput>
+function C:updateResiliencyPolicy(input: types.UpdateResiliencyPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateResiliencyPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateResiliencyPolicy as schema.OperationSchema, input, options) as async.Operation<types.UpdateResiliencyPolicyOutput>
 end
 
 return M

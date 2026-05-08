@@ -8,89 +8,92 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("finspace.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("finspace.schemas")
 local traits = require("smithy.traits")
 local types = require("finspace.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createEnvironment: function(Client, types.CreateEnvironmentInput, any): async.Operation<types.CreateEnvironmentOutput>
-    createKxChangeset: function(Client, types.CreateKxChangesetInput, any): async.Operation<types.CreateKxChangesetOutput>
-    createKxCluster: function(Client, types.CreateKxClusterInput, any): async.Operation<types.CreateKxClusterOutput>
-    createKxDatabase: function(Client, types.CreateKxDatabaseInput, any): async.Operation<types.CreateKxDatabaseOutput>
-    createKxDataview: function(Client, types.CreateKxDataviewInput, any): async.Operation<types.CreateKxDataviewOutput>
-    createKxEnvironment: function(Client, types.CreateKxEnvironmentInput, any): async.Operation<types.CreateKxEnvironmentOutput>
-    createKxScalingGroup: function(Client, types.CreateKxScalingGroupInput, any): async.Operation<types.CreateKxScalingGroupOutput>
-    createKxUser: function(Client, types.CreateKxUserInput, any): async.Operation<types.CreateKxUserOutput>
-    createKxVolume: function(Client, types.CreateKxVolumeInput, any): async.Operation<types.CreateKxVolumeOutput>
-    deleteEnvironment: function(Client, types.DeleteEnvironmentInput, any): async.Operation<types.DeleteEnvironmentOutput>
-    deleteKxCluster: function(Client, types.DeleteKxClusterInput, any): async.Operation<types.DeleteKxClusterOutput>
-    deleteKxClusterNode: function(Client, types.DeleteKxClusterNodeInput, any): async.Operation<types.DeleteKxClusterNodeOutput>
-    deleteKxDatabase: function(Client, types.DeleteKxDatabaseInput, any): async.Operation<types.DeleteKxDatabaseOutput>
-    deleteKxDataview: function(Client, types.DeleteKxDataviewInput, any): async.Operation<types.DeleteKxDataviewOutput>
-    deleteKxEnvironment: function(Client, types.DeleteKxEnvironmentInput, any): async.Operation<types.DeleteKxEnvironmentOutput>
-    deleteKxScalingGroup: function(Client, types.DeleteKxScalingGroupInput, any): async.Operation<types.DeleteKxScalingGroupOutput>
-    deleteKxUser: function(Client, types.DeleteKxUserInput, any): async.Operation<types.DeleteKxUserOutput>
-    deleteKxVolume: function(Client, types.DeleteKxVolumeInput, any): async.Operation<types.DeleteKxVolumeOutput>
-    getEnvironment: function(Client, types.GetEnvironmentInput, any): async.Operation<types.GetEnvironmentOutput>
-    getKxChangeset: function(Client, types.GetKxChangesetInput, any): async.Operation<types.GetKxChangesetOutput>
-    getKxCluster: function(Client, types.GetKxClusterInput, any): async.Operation<types.GetKxClusterOutput>
-    getKxConnectionString: function(Client, types.GetKxConnectionStringInput, any): async.Operation<types.GetKxConnectionStringOutput>
-    getKxDatabase: function(Client, types.GetKxDatabaseInput, any): async.Operation<types.GetKxDatabaseOutput>
-    getKxDataview: function(Client, types.GetKxDataviewInput, any): async.Operation<types.GetKxDataviewOutput>
-    getKxEnvironment: function(Client, types.GetKxEnvironmentInput, any): async.Operation<types.GetKxEnvironmentOutput>
-    getKxScalingGroup: function(Client, types.GetKxScalingGroupInput, any): async.Operation<types.GetKxScalingGroupOutput>
-    getKxUser: function(Client, types.GetKxUserInput, any): async.Operation<types.GetKxUserOutput>
-    getKxVolume: function(Client, types.GetKxVolumeInput, any): async.Operation<types.GetKxVolumeOutput>
-    listEnvironments: function(Client, types.ListEnvironmentsInput, any): async.Operation<types.ListEnvironmentsOutput>
-    listKxChangesets: function(Client, types.ListKxChangesetsInput, any): async.Operation<types.ListKxChangesetsOutput>
-    listKxClusterNodes: function(Client, types.ListKxClusterNodesInput, any): async.Operation<types.ListKxClusterNodesOutput>
-    listKxClusters: function(Client, types.ListKxClustersInput, any): async.Operation<types.ListKxClustersOutput>
-    listKxDatabases: function(Client, types.ListKxDatabasesInput, any): async.Operation<types.ListKxDatabasesOutput>
-    listKxDataviews: function(Client, types.ListKxDataviewsInput, any): async.Operation<types.ListKxDataviewsOutput>
-    listKxEnvironments: function(Client, types.ListKxEnvironmentsInput, any): async.Operation<types.ListKxEnvironmentsOutput>
-    listKxScalingGroups: function(Client, types.ListKxScalingGroupsInput, any): async.Operation<types.ListKxScalingGroupsOutput>
-    listKxUsers: function(Client, types.ListKxUsersInput, any): async.Operation<types.ListKxUsersOutput>
-    listKxVolumes: function(Client, types.ListKxVolumesInput, any): async.Operation<types.ListKxVolumesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateEnvironment: function(Client, types.UpdateEnvironmentInput, any): async.Operation<types.UpdateEnvironmentOutput>
-    updateKxClusterCodeConfiguration: function(Client, types.UpdateKxClusterCodeConfigurationInput, any): async.Operation<types.UpdateKxClusterCodeConfigurationOutput>
-    updateKxClusterDatabases: function(Client, types.UpdateKxClusterDatabasesInput, any): async.Operation<types.UpdateKxClusterDatabasesOutput>
-    updateKxDatabase: function(Client, types.UpdateKxDatabaseInput, any): async.Operation<types.UpdateKxDatabaseOutput>
-    updateKxDataview: function(Client, types.UpdateKxDataviewInput, any): async.Operation<types.UpdateKxDataviewOutput>
-    updateKxEnvironment: function(Client, types.UpdateKxEnvironmentInput, any): async.Operation<types.UpdateKxEnvironmentOutput>
-    updateKxEnvironmentNetwork: function(Client, types.UpdateKxEnvironmentNetworkInput, any): async.Operation<types.UpdateKxEnvironmentNetworkOutput>
-    updateKxUser: function(Client, types.UpdateKxUserInput, any): async.Operation<types.UpdateKxUserOutput>
-    updateKxVolume: function(Client, types.UpdateKxVolumeInput, any): async.Operation<types.UpdateKxVolumeOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createEnvironment: function(Client, types.CreateEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateEnvironmentOutput>
+    createKxChangeset: function(Client, types.CreateKxChangesetInput, ? base_client.InvokeOptions): async.Operation<types.CreateKxChangesetOutput>
+    createKxCluster: function(Client, types.CreateKxClusterInput, ? base_client.InvokeOptions): async.Operation<types.CreateKxClusterOutput>
+    createKxDatabase: function(Client, types.CreateKxDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.CreateKxDatabaseOutput>
+    createKxDataview: function(Client, types.CreateKxDataviewInput, ? base_client.InvokeOptions): async.Operation<types.CreateKxDataviewOutput>
+    createKxEnvironment: function(Client, types.CreateKxEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateKxEnvironmentOutput>
+    createKxScalingGroup: function(Client, types.CreateKxScalingGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateKxScalingGroupOutput>
+    createKxUser: function(Client, types.CreateKxUserInput, ? base_client.InvokeOptions): async.Operation<types.CreateKxUserOutput>
+    createKxVolume: function(Client, types.CreateKxVolumeInput, ? base_client.InvokeOptions): async.Operation<types.CreateKxVolumeOutput>
+    deleteEnvironment: function(Client, types.DeleteEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentOutput>
+    deleteKxCluster: function(Client, types.DeleteKxClusterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKxClusterOutput>
+    deleteKxClusterNode: function(Client, types.DeleteKxClusterNodeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKxClusterNodeOutput>
+    deleteKxDatabase: function(Client, types.DeleteKxDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKxDatabaseOutput>
+    deleteKxDataview: function(Client, types.DeleteKxDataviewInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKxDataviewOutput>
+    deleteKxEnvironment: function(Client, types.DeleteKxEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKxEnvironmentOutput>
+    deleteKxScalingGroup: function(Client, types.DeleteKxScalingGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKxScalingGroupOutput>
+    deleteKxUser: function(Client, types.DeleteKxUserInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKxUserOutput>
+    deleteKxVolume: function(Client, types.DeleteKxVolumeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKxVolumeOutput>
+    getEnvironment: function(Client, types.GetEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.GetEnvironmentOutput>
+    getKxChangeset: function(Client, types.GetKxChangesetInput, ? base_client.InvokeOptions): async.Operation<types.GetKxChangesetOutput>
+    getKxCluster: function(Client, types.GetKxClusterInput, ? base_client.InvokeOptions): async.Operation<types.GetKxClusterOutput>
+    getKxConnectionString: function(Client, types.GetKxConnectionStringInput, ? base_client.InvokeOptions): async.Operation<types.GetKxConnectionStringOutput>
+    getKxDatabase: function(Client, types.GetKxDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.GetKxDatabaseOutput>
+    getKxDataview: function(Client, types.GetKxDataviewInput, ? base_client.InvokeOptions): async.Operation<types.GetKxDataviewOutput>
+    getKxEnvironment: function(Client, types.GetKxEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.GetKxEnvironmentOutput>
+    getKxScalingGroup: function(Client, types.GetKxScalingGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetKxScalingGroupOutput>
+    getKxUser: function(Client, types.GetKxUserInput, ? base_client.InvokeOptions): async.Operation<types.GetKxUserOutput>
+    getKxVolume: function(Client, types.GetKxVolumeInput, ? base_client.InvokeOptions): async.Operation<types.GetKxVolumeOutput>
+    listEnvironments: function(Client, types.ListEnvironmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListEnvironmentsOutput>
+    listKxChangesets: function(Client, types.ListKxChangesetsInput, ? base_client.InvokeOptions): async.Operation<types.ListKxChangesetsOutput>
+    listKxClusterNodes: function(Client, types.ListKxClusterNodesInput, ? base_client.InvokeOptions): async.Operation<types.ListKxClusterNodesOutput>
+    listKxClusters: function(Client, types.ListKxClustersInput, ? base_client.InvokeOptions): async.Operation<types.ListKxClustersOutput>
+    listKxDatabases: function(Client, types.ListKxDatabasesInput, ? base_client.InvokeOptions): async.Operation<types.ListKxDatabasesOutput>
+    listKxDataviews: function(Client, types.ListKxDataviewsInput, ? base_client.InvokeOptions): async.Operation<types.ListKxDataviewsOutput>
+    listKxEnvironments: function(Client, types.ListKxEnvironmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListKxEnvironmentsOutput>
+    listKxScalingGroups: function(Client, types.ListKxScalingGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListKxScalingGroupsOutput>
+    listKxUsers: function(Client, types.ListKxUsersInput, ? base_client.InvokeOptions): async.Operation<types.ListKxUsersOutput>
+    listKxVolumes: function(Client, types.ListKxVolumesInput, ? base_client.InvokeOptions): async.Operation<types.ListKxVolumesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateEnvironment: function(Client, types.UpdateEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEnvironmentOutput>
+    updateKxClusterCodeConfiguration: function(Client, types.UpdateKxClusterCodeConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateKxClusterCodeConfigurationOutput>
+    updateKxClusterDatabases: function(Client, types.UpdateKxClusterDatabasesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateKxClusterDatabasesOutput>
+    updateKxDatabase: function(Client, types.UpdateKxDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.UpdateKxDatabaseOutput>
+    updateKxDataview: function(Client, types.UpdateKxDataviewInput, ? base_client.InvokeOptions): async.Operation<types.UpdateKxDataviewOutput>
+    updateKxEnvironment: function(Client, types.UpdateKxEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateKxEnvironmentOutput>
+    updateKxEnvironmentNetwork: function(Client, types.UpdateKxEnvironmentNetworkInput, ? base_client.InvokeOptions): async.Operation<types.UpdateKxEnvironmentNetworkOutput>
+    updateKxUser: function(Client, types.UpdateKxUserInput, ? base_client.InvokeOptions): async.Operation<types.UpdateKxUserOutput>
+    updateKxVolume: function(Client, types.UpdateKxVolumeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateKxVolumeOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSHabaneroManagementService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "finspace", signing_region = c.region } }
                 else
@@ -109,204 +112,204 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createEnvironment(input: types.CreateEnvironmentInput, options: any): async.Operation<types.CreateEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEnvironment, input, options) as async.Operation<types.CreateEnvironmentOutput>
+function C:createEnvironment(input: types.CreateEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEnvironment as schema.OperationSchema, input, options) as async.Operation<types.CreateEnvironmentOutput>
 end
 
-function C:createKxChangeset(input: types.CreateKxChangesetInput, options: any): async.Operation<types.CreateKxChangesetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateKxChangeset, input, options) as async.Operation<types.CreateKxChangesetOutput>
+function C:createKxChangeset(input: types.CreateKxChangesetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateKxChangesetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateKxChangeset as schema.OperationSchema, input, options) as async.Operation<types.CreateKxChangesetOutput>
 end
 
-function C:createKxCluster(input: types.CreateKxClusterInput, options: any): async.Operation<types.CreateKxClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateKxCluster, input, options) as async.Operation<types.CreateKxClusterOutput>
+function C:createKxCluster(input: types.CreateKxClusterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateKxClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateKxCluster as schema.OperationSchema, input, options) as async.Operation<types.CreateKxClusterOutput>
 end
 
-function C:createKxDatabase(input: types.CreateKxDatabaseInput, options: any): async.Operation<types.CreateKxDatabaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateKxDatabase, input, options) as async.Operation<types.CreateKxDatabaseOutput>
+function C:createKxDatabase(input: types.CreateKxDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.CreateKxDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateKxDatabase as schema.OperationSchema, input, options) as async.Operation<types.CreateKxDatabaseOutput>
 end
 
-function C:createKxDataview(input: types.CreateKxDataviewInput, options: any): async.Operation<types.CreateKxDataviewOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateKxDataview, input, options) as async.Operation<types.CreateKxDataviewOutput>
+function C:createKxDataview(input: types.CreateKxDataviewInput, options?: base_client.InvokeOptions): async.Operation<types.CreateKxDataviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateKxDataview as schema.OperationSchema, input, options) as async.Operation<types.CreateKxDataviewOutput>
 end
 
-function C:createKxEnvironment(input: types.CreateKxEnvironmentInput, options: any): async.Operation<types.CreateKxEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateKxEnvironment, input, options) as async.Operation<types.CreateKxEnvironmentOutput>
+function C:createKxEnvironment(input: types.CreateKxEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateKxEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateKxEnvironment as schema.OperationSchema, input, options) as async.Operation<types.CreateKxEnvironmentOutput>
 end
 
-function C:createKxScalingGroup(input: types.CreateKxScalingGroupInput, options: any): async.Operation<types.CreateKxScalingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateKxScalingGroup, input, options) as async.Operation<types.CreateKxScalingGroupOutput>
+function C:createKxScalingGroup(input: types.CreateKxScalingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateKxScalingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateKxScalingGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateKxScalingGroupOutput>
 end
 
-function C:createKxUser(input: types.CreateKxUserInput, options: any): async.Operation<types.CreateKxUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateKxUser, input, options) as async.Operation<types.CreateKxUserOutput>
+function C:createKxUser(input: types.CreateKxUserInput, options?: base_client.InvokeOptions): async.Operation<types.CreateKxUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateKxUser as schema.OperationSchema, input, options) as async.Operation<types.CreateKxUserOutput>
 end
 
-function C:createKxVolume(input: types.CreateKxVolumeInput, options: any): async.Operation<types.CreateKxVolumeOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateKxVolume, input, options) as async.Operation<types.CreateKxVolumeOutput>
+function C:createKxVolume(input: types.CreateKxVolumeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateKxVolumeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateKxVolume as schema.OperationSchema, input, options) as async.Operation<types.CreateKxVolumeOutput>
 end
 
-function C:deleteEnvironment(input: types.DeleteEnvironmentInput, options: any): async.Operation<types.DeleteEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEnvironment, input, options) as async.Operation<types.DeleteEnvironmentOutput>
+function C:deleteEnvironment(input: types.DeleteEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEnvironment as schema.OperationSchema, input, options) as async.Operation<types.DeleteEnvironmentOutput>
 end
 
-function C:deleteKxCluster(input: types.DeleteKxClusterInput, options: any): async.Operation<types.DeleteKxClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteKxCluster, input, options) as async.Operation<types.DeleteKxClusterOutput>
+function C:deleteKxCluster(input: types.DeleteKxClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteKxClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteKxCluster as schema.OperationSchema, input, options) as async.Operation<types.DeleteKxClusterOutput>
 end
 
-function C:deleteKxClusterNode(input: types.DeleteKxClusterNodeInput, options: any): async.Operation<types.DeleteKxClusterNodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteKxClusterNode, input, options) as async.Operation<types.DeleteKxClusterNodeOutput>
+function C:deleteKxClusterNode(input: types.DeleteKxClusterNodeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteKxClusterNodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteKxClusterNode as schema.OperationSchema, input, options) as async.Operation<types.DeleteKxClusterNodeOutput>
 end
 
-function C:deleteKxDatabase(input: types.DeleteKxDatabaseInput, options: any): async.Operation<types.DeleteKxDatabaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteKxDatabase, input, options) as async.Operation<types.DeleteKxDatabaseOutput>
+function C:deleteKxDatabase(input: types.DeleteKxDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteKxDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteKxDatabase as schema.OperationSchema, input, options) as async.Operation<types.DeleteKxDatabaseOutput>
 end
 
-function C:deleteKxDataview(input: types.DeleteKxDataviewInput, options: any): async.Operation<types.DeleteKxDataviewOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteKxDataview, input, options) as async.Operation<types.DeleteKxDataviewOutput>
+function C:deleteKxDataview(input: types.DeleteKxDataviewInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteKxDataviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteKxDataview as schema.OperationSchema, input, options) as async.Operation<types.DeleteKxDataviewOutput>
 end
 
-function C:deleteKxEnvironment(input: types.DeleteKxEnvironmentInput, options: any): async.Operation<types.DeleteKxEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteKxEnvironment, input, options) as async.Operation<types.DeleteKxEnvironmentOutput>
+function C:deleteKxEnvironment(input: types.DeleteKxEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteKxEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteKxEnvironment as schema.OperationSchema, input, options) as async.Operation<types.DeleteKxEnvironmentOutput>
 end
 
-function C:deleteKxScalingGroup(input: types.DeleteKxScalingGroupInput, options: any): async.Operation<types.DeleteKxScalingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteKxScalingGroup, input, options) as async.Operation<types.DeleteKxScalingGroupOutput>
+function C:deleteKxScalingGroup(input: types.DeleteKxScalingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteKxScalingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteKxScalingGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteKxScalingGroupOutput>
 end
 
-function C:deleteKxUser(input: types.DeleteKxUserInput, options: any): async.Operation<types.DeleteKxUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteKxUser, input, options) as async.Operation<types.DeleteKxUserOutput>
+function C:deleteKxUser(input: types.DeleteKxUserInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteKxUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteKxUser as schema.OperationSchema, input, options) as async.Operation<types.DeleteKxUserOutput>
 end
 
-function C:deleteKxVolume(input: types.DeleteKxVolumeInput, options: any): async.Operation<types.DeleteKxVolumeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteKxVolume, input, options) as async.Operation<types.DeleteKxVolumeOutput>
+function C:deleteKxVolume(input: types.DeleteKxVolumeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteKxVolumeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteKxVolume as schema.OperationSchema, input, options) as async.Operation<types.DeleteKxVolumeOutput>
 end
 
-function C:getEnvironment(input: types.GetEnvironmentInput, options: any): async.Operation<types.GetEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEnvironment, input, options) as async.Operation<types.GetEnvironmentOutput>
+function C:getEnvironment(input: types.GetEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.GetEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEnvironment as schema.OperationSchema, input, options) as async.Operation<types.GetEnvironmentOutput>
 end
 
-function C:getKxChangeset(input: types.GetKxChangesetInput, options: any): async.Operation<types.GetKxChangesetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetKxChangeset, input, options) as async.Operation<types.GetKxChangesetOutput>
+function C:getKxChangeset(input: types.GetKxChangesetInput, options?: base_client.InvokeOptions): async.Operation<types.GetKxChangesetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetKxChangeset as schema.OperationSchema, input, options) as async.Operation<types.GetKxChangesetOutput>
 end
 
-function C:getKxCluster(input: types.GetKxClusterInput, options: any): async.Operation<types.GetKxClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetKxCluster, input, options) as async.Operation<types.GetKxClusterOutput>
+function C:getKxCluster(input: types.GetKxClusterInput, options?: base_client.InvokeOptions): async.Operation<types.GetKxClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetKxCluster as schema.OperationSchema, input, options) as async.Operation<types.GetKxClusterOutput>
 end
 
-function C:getKxConnectionString(input: types.GetKxConnectionStringInput, options: any): async.Operation<types.GetKxConnectionStringOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetKxConnectionString, input, options) as async.Operation<types.GetKxConnectionStringOutput>
+function C:getKxConnectionString(input: types.GetKxConnectionStringInput, options?: base_client.InvokeOptions): async.Operation<types.GetKxConnectionStringOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetKxConnectionString as schema.OperationSchema, input, options) as async.Operation<types.GetKxConnectionStringOutput>
 end
 
-function C:getKxDatabase(input: types.GetKxDatabaseInput, options: any): async.Operation<types.GetKxDatabaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetKxDatabase, input, options) as async.Operation<types.GetKxDatabaseOutput>
+function C:getKxDatabase(input: types.GetKxDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.GetKxDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetKxDatabase as schema.OperationSchema, input, options) as async.Operation<types.GetKxDatabaseOutput>
 end
 
-function C:getKxDataview(input: types.GetKxDataviewInput, options: any): async.Operation<types.GetKxDataviewOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetKxDataview, input, options) as async.Operation<types.GetKxDataviewOutput>
+function C:getKxDataview(input: types.GetKxDataviewInput, options?: base_client.InvokeOptions): async.Operation<types.GetKxDataviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetKxDataview as schema.OperationSchema, input, options) as async.Operation<types.GetKxDataviewOutput>
 end
 
-function C:getKxEnvironment(input: types.GetKxEnvironmentInput, options: any): async.Operation<types.GetKxEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetKxEnvironment, input, options) as async.Operation<types.GetKxEnvironmentOutput>
+function C:getKxEnvironment(input: types.GetKxEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.GetKxEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetKxEnvironment as schema.OperationSchema, input, options) as async.Operation<types.GetKxEnvironmentOutput>
 end
 
-function C:getKxScalingGroup(input: types.GetKxScalingGroupInput, options: any): async.Operation<types.GetKxScalingGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetKxScalingGroup, input, options) as async.Operation<types.GetKxScalingGroupOutput>
+function C:getKxScalingGroup(input: types.GetKxScalingGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetKxScalingGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetKxScalingGroup as schema.OperationSchema, input, options) as async.Operation<types.GetKxScalingGroupOutput>
 end
 
-function C:getKxUser(input: types.GetKxUserInput, options: any): async.Operation<types.GetKxUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetKxUser, input, options) as async.Operation<types.GetKxUserOutput>
+function C:getKxUser(input: types.GetKxUserInput, options?: base_client.InvokeOptions): async.Operation<types.GetKxUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetKxUser as schema.OperationSchema, input, options) as async.Operation<types.GetKxUserOutput>
 end
 
-function C:getKxVolume(input: types.GetKxVolumeInput, options: any): async.Operation<types.GetKxVolumeOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetKxVolume, input, options) as async.Operation<types.GetKxVolumeOutput>
+function C:getKxVolume(input: types.GetKxVolumeInput, options?: base_client.InvokeOptions): async.Operation<types.GetKxVolumeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetKxVolume as schema.OperationSchema, input, options) as async.Operation<types.GetKxVolumeOutput>
 end
 
-function C:listEnvironments(input: types.ListEnvironmentsInput, options: any): async.Operation<types.ListEnvironmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEnvironments, input, options) as async.Operation<types.ListEnvironmentsOutput>
+function C:listEnvironments(input: types.ListEnvironmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEnvironmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEnvironments as schema.OperationSchema, input, options) as async.Operation<types.ListEnvironmentsOutput>
 end
 
-function C:listKxChangesets(input: types.ListKxChangesetsInput, options: any): async.Operation<types.ListKxChangesetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListKxChangesets, input, options) as async.Operation<types.ListKxChangesetsOutput>
+function C:listKxChangesets(input: types.ListKxChangesetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListKxChangesetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListKxChangesets as schema.OperationSchema, input, options) as async.Operation<types.ListKxChangesetsOutput>
 end
 
-function C:listKxClusterNodes(input: types.ListKxClusterNodesInput, options: any): async.Operation<types.ListKxClusterNodesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListKxClusterNodes, input, options) as async.Operation<types.ListKxClusterNodesOutput>
+function C:listKxClusterNodes(input: types.ListKxClusterNodesInput, options?: base_client.InvokeOptions): async.Operation<types.ListKxClusterNodesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListKxClusterNodes as schema.OperationSchema, input, options) as async.Operation<types.ListKxClusterNodesOutput>
 end
 
-function C:listKxClusters(input: types.ListKxClustersInput, options: any): async.Operation<types.ListKxClustersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListKxClusters, input, options) as async.Operation<types.ListKxClustersOutput>
+function C:listKxClusters(input: types.ListKxClustersInput, options?: base_client.InvokeOptions): async.Operation<types.ListKxClustersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListKxClusters as schema.OperationSchema, input, options) as async.Operation<types.ListKxClustersOutput>
 end
 
-function C:listKxDatabases(input: types.ListKxDatabasesInput, options: any): async.Operation<types.ListKxDatabasesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListKxDatabases, input, options) as async.Operation<types.ListKxDatabasesOutput>
+function C:listKxDatabases(input: types.ListKxDatabasesInput, options?: base_client.InvokeOptions): async.Operation<types.ListKxDatabasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListKxDatabases as schema.OperationSchema, input, options) as async.Operation<types.ListKxDatabasesOutput>
 end
 
-function C:listKxDataviews(input: types.ListKxDataviewsInput, options: any): async.Operation<types.ListKxDataviewsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListKxDataviews, input, options) as async.Operation<types.ListKxDataviewsOutput>
+function C:listKxDataviews(input: types.ListKxDataviewsInput, options?: base_client.InvokeOptions): async.Operation<types.ListKxDataviewsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListKxDataviews as schema.OperationSchema, input, options) as async.Operation<types.ListKxDataviewsOutput>
 end
 
-function C:listKxEnvironments(input: types.ListKxEnvironmentsInput, options: any): async.Operation<types.ListKxEnvironmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListKxEnvironments, input, options) as async.Operation<types.ListKxEnvironmentsOutput>
+function C:listKxEnvironments(input: types.ListKxEnvironmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListKxEnvironmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListKxEnvironments as schema.OperationSchema, input, options) as async.Operation<types.ListKxEnvironmentsOutput>
 end
 
-function C:listKxScalingGroups(input: types.ListKxScalingGroupsInput, options: any): async.Operation<types.ListKxScalingGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListKxScalingGroups, input, options) as async.Operation<types.ListKxScalingGroupsOutput>
+function C:listKxScalingGroups(input: types.ListKxScalingGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListKxScalingGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListKxScalingGroups as schema.OperationSchema, input, options) as async.Operation<types.ListKxScalingGroupsOutput>
 end
 
-function C:listKxUsers(input: types.ListKxUsersInput, options: any): async.Operation<types.ListKxUsersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListKxUsers, input, options) as async.Operation<types.ListKxUsersOutput>
+function C:listKxUsers(input: types.ListKxUsersInput, options?: base_client.InvokeOptions): async.Operation<types.ListKxUsersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListKxUsers as schema.OperationSchema, input, options) as async.Operation<types.ListKxUsersOutput>
 end
 
-function C:listKxVolumes(input: types.ListKxVolumesInput, options: any): async.Operation<types.ListKxVolumesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListKxVolumes, input, options) as async.Operation<types.ListKxVolumesOutput>
+function C:listKxVolumes(input: types.ListKxVolumesInput, options?: base_client.InvokeOptions): async.Operation<types.ListKxVolumesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListKxVolumes as schema.OperationSchema, input, options) as async.Operation<types.ListKxVolumesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateEnvironment(input: types.UpdateEnvironmentInput, options: any): async.Operation<types.UpdateEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEnvironment, input, options) as async.Operation<types.UpdateEnvironmentOutput>
+function C:updateEnvironment(input: types.UpdateEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEnvironment as schema.OperationSchema, input, options) as async.Operation<types.UpdateEnvironmentOutput>
 end
 
-function C:updateKxClusterCodeConfiguration(input: types.UpdateKxClusterCodeConfigurationInput, options: any): async.Operation<types.UpdateKxClusterCodeConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateKxClusterCodeConfiguration, input, options) as async.Operation<types.UpdateKxClusterCodeConfigurationOutput>
+function C:updateKxClusterCodeConfiguration(input: types.UpdateKxClusterCodeConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateKxClusterCodeConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateKxClusterCodeConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateKxClusterCodeConfigurationOutput>
 end
 
-function C:updateKxClusterDatabases(input: types.UpdateKxClusterDatabasesInput, options: any): async.Operation<types.UpdateKxClusterDatabasesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateKxClusterDatabases, input, options) as async.Operation<types.UpdateKxClusterDatabasesOutput>
+function C:updateKxClusterDatabases(input: types.UpdateKxClusterDatabasesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateKxClusterDatabasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateKxClusterDatabases as schema.OperationSchema, input, options) as async.Operation<types.UpdateKxClusterDatabasesOutput>
 end
 
-function C:updateKxDatabase(input: types.UpdateKxDatabaseInput, options: any): async.Operation<types.UpdateKxDatabaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateKxDatabase, input, options) as async.Operation<types.UpdateKxDatabaseOutput>
+function C:updateKxDatabase(input: types.UpdateKxDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateKxDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateKxDatabase as schema.OperationSchema, input, options) as async.Operation<types.UpdateKxDatabaseOutput>
 end
 
-function C:updateKxDataview(input: types.UpdateKxDataviewInput, options: any): async.Operation<types.UpdateKxDataviewOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateKxDataview, input, options) as async.Operation<types.UpdateKxDataviewOutput>
+function C:updateKxDataview(input: types.UpdateKxDataviewInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateKxDataviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateKxDataview as schema.OperationSchema, input, options) as async.Operation<types.UpdateKxDataviewOutput>
 end
 
-function C:updateKxEnvironment(input: types.UpdateKxEnvironmentInput, options: any): async.Operation<types.UpdateKxEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateKxEnvironment, input, options) as async.Operation<types.UpdateKxEnvironmentOutput>
+function C:updateKxEnvironment(input: types.UpdateKxEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateKxEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateKxEnvironment as schema.OperationSchema, input, options) as async.Operation<types.UpdateKxEnvironmentOutput>
 end
 
-function C:updateKxEnvironmentNetwork(input: types.UpdateKxEnvironmentNetworkInput, options: any): async.Operation<types.UpdateKxEnvironmentNetworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateKxEnvironmentNetwork, input, options) as async.Operation<types.UpdateKxEnvironmentNetworkOutput>
+function C:updateKxEnvironmentNetwork(input: types.UpdateKxEnvironmentNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateKxEnvironmentNetworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateKxEnvironmentNetwork as schema.OperationSchema, input, options) as async.Operation<types.UpdateKxEnvironmentNetworkOutput>
 end
 
-function C:updateKxUser(input: types.UpdateKxUserInput, options: any): async.Operation<types.UpdateKxUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateKxUser, input, options) as async.Operation<types.UpdateKxUserOutput>
+function C:updateKxUser(input: types.UpdateKxUserInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateKxUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateKxUser as schema.OperationSchema, input, options) as async.Operation<types.UpdateKxUserOutput>
 end
 
-function C:updateKxVolume(input: types.UpdateKxVolumeInput, options: any): async.Operation<types.UpdateKxVolumeOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateKxVolume, input, options) as async.Operation<types.UpdateKxVolumeOutput>
+function C:updateKxVolume(input: types.UpdateKxVolumeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateKxVolumeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateKxVolume as schema.OperationSchema, input, options) as async.Operation<types.UpdateKxVolumeOutput>
 end
 
 return M

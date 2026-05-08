@@ -8,65 +8,68 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("appfabric.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("appfabric.schemas")
 local traits = require("smithy.traits")
 local types = require("appfabric.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchGetUserAccessTasks: function(Client, types.BatchGetUserAccessTasksInput, any): async.Operation<types.BatchGetUserAccessTasksOutput>
-    connectAppAuthorization: function(Client, types.ConnectAppAuthorizationInput, any): async.Operation<types.ConnectAppAuthorizationOutput>
-    createAppAuthorization: function(Client, types.CreateAppAuthorizationInput, any): async.Operation<types.CreateAppAuthorizationOutput>
-    createAppBundle: function(Client, types.CreateAppBundleInput, any): async.Operation<types.CreateAppBundleOutput>
-    createIngestion: function(Client, types.CreateIngestionInput, any): async.Operation<types.CreateIngestionOutput>
-    createIngestionDestination: function(Client, types.CreateIngestionDestinationInput, any): async.Operation<types.CreateIngestionDestinationOutput>
-    deleteAppAuthorization: function(Client, types.DeleteAppAuthorizationInput, any): async.Operation<types.DeleteAppAuthorizationOutput>
-    deleteAppBundle: function(Client, types.DeleteAppBundleInput, any): async.Operation<types.DeleteAppBundleOutput>
-    deleteIngestion: function(Client, types.DeleteIngestionInput, any): async.Operation<types.DeleteIngestionOutput>
-    deleteIngestionDestination: function(Client, types.DeleteIngestionDestinationInput, any): async.Operation<types.DeleteIngestionDestinationOutput>
-    getAppAuthorization: function(Client, types.GetAppAuthorizationInput, any): async.Operation<types.GetAppAuthorizationOutput>
-    getAppBundle: function(Client, types.GetAppBundleInput, any): async.Operation<types.GetAppBundleOutput>
-    getIngestion: function(Client, types.GetIngestionInput, any): async.Operation<types.GetIngestionOutput>
-    getIngestionDestination: function(Client, types.GetIngestionDestinationInput, any): async.Operation<types.GetIngestionDestinationOutput>
-    listAppAuthorizations: function(Client, types.ListAppAuthorizationsInput, any): async.Operation<types.ListAppAuthorizationsOutput>
-    listAppBundles: function(Client, types.ListAppBundlesInput, any): async.Operation<types.ListAppBundlesOutput>
-    listIngestionDestinations: function(Client, types.ListIngestionDestinationsInput, any): async.Operation<types.ListIngestionDestinationsOutput>
-    listIngestions: function(Client, types.ListIngestionsInput, any): async.Operation<types.ListIngestionsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    startIngestion: function(Client, types.StartIngestionInput, any): async.Operation<types.StartIngestionOutput>
-    startUserAccessTasks: function(Client, types.StartUserAccessTasksInput, any): async.Operation<types.StartUserAccessTasksOutput>
-    stopIngestion: function(Client, types.StopIngestionInput, any): async.Operation<types.StopIngestionOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAppAuthorization: function(Client, types.UpdateAppAuthorizationInput, any): async.Operation<types.UpdateAppAuthorizationOutput>
-    updateIngestionDestination: function(Client, types.UpdateIngestionDestinationInput, any): async.Operation<types.UpdateIngestionDestinationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchGetUserAccessTasks: function(Client, types.BatchGetUserAccessTasksInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetUserAccessTasksOutput>
+    connectAppAuthorization: function(Client, types.ConnectAppAuthorizationInput, ? base_client.InvokeOptions): async.Operation<types.ConnectAppAuthorizationOutput>
+    createAppAuthorization: function(Client, types.CreateAppAuthorizationInput, ? base_client.InvokeOptions): async.Operation<types.CreateAppAuthorizationOutput>
+    createAppBundle: function(Client, types.CreateAppBundleInput, ? base_client.InvokeOptions): async.Operation<types.CreateAppBundleOutput>
+    createIngestion: function(Client, types.CreateIngestionInput, ? base_client.InvokeOptions): async.Operation<types.CreateIngestionOutput>
+    createIngestionDestination: function(Client, types.CreateIngestionDestinationInput, ? base_client.InvokeOptions): async.Operation<types.CreateIngestionDestinationOutput>
+    deleteAppAuthorization: function(Client, types.DeleteAppAuthorizationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAppAuthorizationOutput>
+    deleteAppBundle: function(Client, types.DeleteAppBundleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAppBundleOutput>
+    deleteIngestion: function(Client, types.DeleteIngestionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIngestionOutput>
+    deleteIngestionDestination: function(Client, types.DeleteIngestionDestinationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIngestionDestinationOutput>
+    getAppAuthorization: function(Client, types.GetAppAuthorizationInput, ? base_client.InvokeOptions): async.Operation<types.GetAppAuthorizationOutput>
+    getAppBundle: function(Client, types.GetAppBundleInput, ? base_client.InvokeOptions): async.Operation<types.GetAppBundleOutput>
+    getIngestion: function(Client, types.GetIngestionInput, ? base_client.InvokeOptions): async.Operation<types.GetIngestionOutput>
+    getIngestionDestination: function(Client, types.GetIngestionDestinationInput, ? base_client.InvokeOptions): async.Operation<types.GetIngestionDestinationOutput>
+    listAppAuthorizations: function(Client, types.ListAppAuthorizationsInput, ? base_client.InvokeOptions): async.Operation<types.ListAppAuthorizationsOutput>
+    listAppBundles: function(Client, types.ListAppBundlesInput, ? base_client.InvokeOptions): async.Operation<types.ListAppBundlesOutput>
+    listIngestionDestinations: function(Client, types.ListIngestionDestinationsInput, ? base_client.InvokeOptions): async.Operation<types.ListIngestionDestinationsOutput>
+    listIngestions: function(Client, types.ListIngestionsInput, ? base_client.InvokeOptions): async.Operation<types.ListIngestionsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    startIngestion: function(Client, types.StartIngestionInput, ? base_client.InvokeOptions): async.Operation<types.StartIngestionOutput>
+    startUserAccessTasks: function(Client, types.StartUserAccessTasksInput, ? base_client.InvokeOptions): async.Operation<types.StartUserAccessTasksOutput>
+    stopIngestion: function(Client, types.StopIngestionInput, ? base_client.InvokeOptions): async.Operation<types.StopIngestionOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAppAuthorization: function(Client, types.UpdateAppAuthorizationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAppAuthorizationOutput>
+    updateIngestionDestination: function(Client, types.UpdateIngestionDestinationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIngestionDestinationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "FabricFrontEndService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "appfabric", signing_region = c.region } }
                 else
@@ -85,108 +88,108 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchGetUserAccessTasks(input: types.BatchGetUserAccessTasksInput, options: any): async.Operation<types.BatchGetUserAccessTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetUserAccessTasks, input, options) as async.Operation<types.BatchGetUserAccessTasksOutput>
+function C:batchGetUserAccessTasks(input: types.BatchGetUserAccessTasksInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetUserAccessTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetUserAccessTasks as schema.OperationSchema, input, options) as async.Operation<types.BatchGetUserAccessTasksOutput>
 end
 
-function C:connectAppAuthorization(input: types.ConnectAppAuthorizationInput, options: any): async.Operation<types.ConnectAppAuthorizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ConnectAppAuthorization, input, options) as async.Operation<types.ConnectAppAuthorizationOutput>
+function C:connectAppAuthorization(input: types.ConnectAppAuthorizationInput, options?: base_client.InvokeOptions): async.Operation<types.ConnectAppAuthorizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ConnectAppAuthorization as schema.OperationSchema, input, options) as async.Operation<types.ConnectAppAuthorizationOutput>
 end
 
-function C:createAppAuthorization(input: types.CreateAppAuthorizationInput, options: any): async.Operation<types.CreateAppAuthorizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAppAuthorization, input, options) as async.Operation<types.CreateAppAuthorizationOutput>
+function C:createAppAuthorization(input: types.CreateAppAuthorizationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAppAuthorizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAppAuthorization as schema.OperationSchema, input, options) as async.Operation<types.CreateAppAuthorizationOutput>
 end
 
-function C:createAppBundle(input: types.CreateAppBundleInput, options: any): async.Operation<types.CreateAppBundleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAppBundle, input, options) as async.Operation<types.CreateAppBundleOutput>
+function C:createAppBundle(input: types.CreateAppBundleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAppBundleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAppBundle as schema.OperationSchema, input, options) as async.Operation<types.CreateAppBundleOutput>
 end
 
-function C:createIngestion(input: types.CreateIngestionInput, options: any): async.Operation<types.CreateIngestionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIngestion, input, options) as async.Operation<types.CreateIngestionOutput>
+function C:createIngestion(input: types.CreateIngestionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIngestionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIngestion as schema.OperationSchema, input, options) as async.Operation<types.CreateIngestionOutput>
 end
 
-function C:createIngestionDestination(input: types.CreateIngestionDestinationInput, options: any): async.Operation<types.CreateIngestionDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIngestionDestination, input, options) as async.Operation<types.CreateIngestionDestinationOutput>
+function C:createIngestionDestination(input: types.CreateIngestionDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIngestionDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIngestionDestination as schema.OperationSchema, input, options) as async.Operation<types.CreateIngestionDestinationOutput>
 end
 
-function C:deleteAppAuthorization(input: types.DeleteAppAuthorizationInput, options: any): async.Operation<types.DeleteAppAuthorizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAppAuthorization, input, options) as async.Operation<types.DeleteAppAuthorizationOutput>
+function C:deleteAppAuthorization(input: types.DeleteAppAuthorizationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAppAuthorizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAppAuthorization as schema.OperationSchema, input, options) as async.Operation<types.DeleteAppAuthorizationOutput>
 end
 
-function C:deleteAppBundle(input: types.DeleteAppBundleInput, options: any): async.Operation<types.DeleteAppBundleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAppBundle, input, options) as async.Operation<types.DeleteAppBundleOutput>
+function C:deleteAppBundle(input: types.DeleteAppBundleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAppBundleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAppBundle as schema.OperationSchema, input, options) as async.Operation<types.DeleteAppBundleOutput>
 end
 
-function C:deleteIngestion(input: types.DeleteIngestionInput, options: any): async.Operation<types.DeleteIngestionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIngestion, input, options) as async.Operation<types.DeleteIngestionOutput>
+function C:deleteIngestion(input: types.DeleteIngestionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIngestionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIngestion as schema.OperationSchema, input, options) as async.Operation<types.DeleteIngestionOutput>
 end
 
-function C:deleteIngestionDestination(input: types.DeleteIngestionDestinationInput, options: any): async.Operation<types.DeleteIngestionDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIngestionDestination, input, options) as async.Operation<types.DeleteIngestionDestinationOutput>
+function C:deleteIngestionDestination(input: types.DeleteIngestionDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIngestionDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIngestionDestination as schema.OperationSchema, input, options) as async.Operation<types.DeleteIngestionDestinationOutput>
 end
 
-function C:getAppAuthorization(input: types.GetAppAuthorizationInput, options: any): async.Operation<types.GetAppAuthorizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAppAuthorization, input, options) as async.Operation<types.GetAppAuthorizationOutput>
+function C:getAppAuthorization(input: types.GetAppAuthorizationInput, options?: base_client.InvokeOptions): async.Operation<types.GetAppAuthorizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAppAuthorization as schema.OperationSchema, input, options) as async.Operation<types.GetAppAuthorizationOutput>
 end
 
-function C:getAppBundle(input: types.GetAppBundleInput, options: any): async.Operation<types.GetAppBundleOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAppBundle, input, options) as async.Operation<types.GetAppBundleOutput>
+function C:getAppBundle(input: types.GetAppBundleInput, options?: base_client.InvokeOptions): async.Operation<types.GetAppBundleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAppBundle as schema.OperationSchema, input, options) as async.Operation<types.GetAppBundleOutput>
 end
 
-function C:getIngestion(input: types.GetIngestionInput, options: any): async.Operation<types.GetIngestionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIngestion, input, options) as async.Operation<types.GetIngestionOutput>
+function C:getIngestion(input: types.GetIngestionInput, options?: base_client.InvokeOptions): async.Operation<types.GetIngestionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIngestion as schema.OperationSchema, input, options) as async.Operation<types.GetIngestionOutput>
 end
 
-function C:getIngestionDestination(input: types.GetIngestionDestinationInput, options: any): async.Operation<types.GetIngestionDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIngestionDestination, input, options) as async.Operation<types.GetIngestionDestinationOutput>
+function C:getIngestionDestination(input: types.GetIngestionDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.GetIngestionDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIngestionDestination as schema.OperationSchema, input, options) as async.Operation<types.GetIngestionDestinationOutput>
 end
 
-function C:listAppAuthorizations(input: types.ListAppAuthorizationsInput, options: any): async.Operation<types.ListAppAuthorizationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAppAuthorizations, input, options) as async.Operation<types.ListAppAuthorizationsOutput>
+function C:listAppAuthorizations(input: types.ListAppAuthorizationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAppAuthorizationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAppAuthorizations as schema.OperationSchema, input, options) as async.Operation<types.ListAppAuthorizationsOutput>
 end
 
-function C:listAppBundles(input: types.ListAppBundlesInput, options: any): async.Operation<types.ListAppBundlesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAppBundles, input, options) as async.Operation<types.ListAppBundlesOutput>
+function C:listAppBundles(input: types.ListAppBundlesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAppBundlesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAppBundles as schema.OperationSchema, input, options) as async.Operation<types.ListAppBundlesOutput>
 end
 
-function C:listIngestionDestinations(input: types.ListIngestionDestinationsInput, options: any): async.Operation<types.ListIngestionDestinationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIngestionDestinations, input, options) as async.Operation<types.ListIngestionDestinationsOutput>
+function C:listIngestionDestinations(input: types.ListIngestionDestinationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListIngestionDestinationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIngestionDestinations as schema.OperationSchema, input, options) as async.Operation<types.ListIngestionDestinationsOutput>
 end
 
-function C:listIngestions(input: types.ListIngestionsInput, options: any): async.Operation<types.ListIngestionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIngestions, input, options) as async.Operation<types.ListIngestionsOutput>
+function C:listIngestions(input: types.ListIngestionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListIngestionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIngestions as schema.OperationSchema, input, options) as async.Operation<types.ListIngestionsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:startIngestion(input: types.StartIngestionInput, options: any): async.Operation<types.StartIngestionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartIngestion, input, options) as async.Operation<types.StartIngestionOutput>
+function C:startIngestion(input: types.StartIngestionInput, options?: base_client.InvokeOptions): async.Operation<types.StartIngestionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartIngestion as schema.OperationSchema, input, options) as async.Operation<types.StartIngestionOutput>
 end
 
-function C:startUserAccessTasks(input: types.StartUserAccessTasksInput, options: any): async.Operation<types.StartUserAccessTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartUserAccessTasks, input, options) as async.Operation<types.StartUserAccessTasksOutput>
+function C:startUserAccessTasks(input: types.StartUserAccessTasksInput, options?: base_client.InvokeOptions): async.Operation<types.StartUserAccessTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartUserAccessTasks as schema.OperationSchema, input, options) as async.Operation<types.StartUserAccessTasksOutput>
 end
 
-function C:stopIngestion(input: types.StopIngestionInput, options: any): async.Operation<types.StopIngestionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopIngestion, input, options) as async.Operation<types.StopIngestionOutput>
+function C:stopIngestion(input: types.StopIngestionInput, options?: base_client.InvokeOptions): async.Operation<types.StopIngestionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopIngestion as schema.OperationSchema, input, options) as async.Operation<types.StopIngestionOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAppAuthorization(input: types.UpdateAppAuthorizationInput, options: any): async.Operation<types.UpdateAppAuthorizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAppAuthorization, input, options) as async.Operation<types.UpdateAppAuthorizationOutput>
+function C:updateAppAuthorization(input: types.UpdateAppAuthorizationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAppAuthorizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAppAuthorization as schema.OperationSchema, input, options) as async.Operation<types.UpdateAppAuthorizationOutput>
 end
 
-function C:updateIngestionDestination(input: types.UpdateIngestionDestinationInput, options: any): async.Operation<types.UpdateIngestionDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateIngestionDestination, input, options) as async.Operation<types.UpdateIngestionDestinationOutput>
+function C:updateIngestionDestination(input: types.UpdateIngestionDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIngestionDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIngestionDestination as schema.OperationSchema, input, options) as async.Operation<types.UpdateIngestionDestinationOutput>
 end
 
 return M

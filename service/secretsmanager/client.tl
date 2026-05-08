@@ -8,62 +8,65 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("secretsmanager.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("secretsmanager.schemas")
 local traits = require("smithy.traits")
 local types = require("secretsmanager.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchGetSecretValue: function(Client, types.BatchGetSecretValueInput, any): async.Operation<types.BatchGetSecretValueOutput>
-    cancelRotateSecret: function(Client, types.CancelRotateSecretInput, any): async.Operation<types.CancelRotateSecretOutput>
-    createSecret: function(Client, types.CreateSecretInput, any): async.Operation<types.CreateSecretOutput>
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, any): async.Operation<types.DeleteResourcePolicyOutput>
-    deleteSecret: function(Client, types.DeleteSecretInput, any): async.Operation<types.DeleteSecretOutput>
-    describeSecret: function(Client, types.DescribeSecretInput, any): async.Operation<types.DescribeSecretOutput>
-    getRandomPassword: function(Client, types.GetRandomPasswordInput, any): async.Operation<types.GetRandomPasswordOutput>
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput, any): async.Operation<types.GetResourcePolicyOutput>
-    getSecretValue: function(Client, types.GetSecretValueInput, any): async.Operation<types.GetSecretValueOutput>
-    listSecrets: function(Client, types.ListSecretsInput, any): async.Operation<types.ListSecretsOutput>
-    listSecretVersionIds: function(Client, types.ListSecretVersionIdsInput, any): async.Operation<types.ListSecretVersionIdsOutput>
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput, any): async.Operation<types.PutResourcePolicyOutput>
-    putSecretValue: function(Client, types.PutSecretValueInput, any): async.Operation<types.PutSecretValueOutput>
-    removeRegionsFromReplication: function(Client, types.RemoveRegionsFromReplicationInput, any): async.Operation<types.RemoveRegionsFromReplicationOutput>
-    replicateSecretToRegions: function(Client, types.ReplicateSecretToRegionsInput, any): async.Operation<types.ReplicateSecretToRegionsOutput>
-    restoreSecret: function(Client, types.RestoreSecretInput, any): async.Operation<types.RestoreSecretOutput>
-    rotateSecret: function(Client, types.RotateSecretInput, any): async.Operation<types.RotateSecretOutput>
-    stopReplicationToReplica: function(Client, types.StopReplicationToReplicaInput, any): async.Operation<types.StopReplicationToReplicaOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateSecret: function(Client, types.UpdateSecretInput, any): async.Operation<types.UpdateSecretOutput>
-    updateSecretVersionStage: function(Client, types.UpdateSecretVersionStageInput, any): async.Operation<types.UpdateSecretVersionStageOutput>
-    validateResourcePolicy: function(Client, types.ValidateResourcePolicyInput, any): async.Operation<types.ValidateResourcePolicyOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchGetSecretValue: function(Client, types.BatchGetSecretValueInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetSecretValueOutput>
+    cancelRotateSecret: function(Client, types.CancelRotateSecretInput, ? base_client.InvokeOptions): async.Operation<types.CancelRotateSecretOutput>
+    createSecret: function(Client, types.CreateSecretInput, ? base_client.InvokeOptions): async.Operation<types.CreateSecretOutput>
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    deleteSecret: function(Client, types.DeleteSecretInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSecretOutput>
+    describeSecret: function(Client, types.DescribeSecretInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSecretOutput>
+    getRandomPassword: function(Client, types.GetRandomPasswordInput, ? base_client.InvokeOptions): async.Operation<types.GetRandomPasswordOutput>
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    getSecretValue: function(Client, types.GetSecretValueInput, ? base_client.InvokeOptions): async.Operation<types.GetSecretValueOutput>
+    listSecrets: function(Client, types.ListSecretsInput, ? base_client.InvokeOptions): async.Operation<types.ListSecretsOutput>
+    listSecretVersionIds: function(Client, types.ListSecretVersionIdsInput, ? base_client.InvokeOptions): async.Operation<types.ListSecretVersionIdsOutput>
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    putSecretValue: function(Client, types.PutSecretValueInput, ? base_client.InvokeOptions): async.Operation<types.PutSecretValueOutput>
+    removeRegionsFromReplication: function(Client, types.RemoveRegionsFromReplicationInput, ? base_client.InvokeOptions): async.Operation<types.RemoveRegionsFromReplicationOutput>
+    replicateSecretToRegions: function(Client, types.ReplicateSecretToRegionsInput, ? base_client.InvokeOptions): async.Operation<types.ReplicateSecretToRegionsOutput>
+    restoreSecret: function(Client, types.RestoreSecretInput, ? base_client.InvokeOptions): async.Operation<types.RestoreSecretOutput>
+    rotateSecret: function(Client, types.RotateSecretInput, ? base_client.InvokeOptions): async.Operation<types.RotateSecretOutput>
+    stopReplicationToReplica: function(Client, types.StopReplicationToReplicaInput, ? base_client.InvokeOptions): async.Operation<types.StopReplicationToReplicaOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateSecret: function(Client, types.UpdateSecretInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSecretOutput>
+    updateSecretVersionStage: function(Client, types.UpdateSecretVersionStageInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSecretVersionStageOutput>
+    validateResourcePolicy: function(Client, types.ValidateResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.ValidateResourcePolicyOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "secretsmanager"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "secretsmanager", signing_region = c.region } }
                 else
@@ -82,96 +85,96 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchGetSecretValue(input: types.BatchGetSecretValueInput, options: any): async.Operation<types.BatchGetSecretValueOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetSecretValue, input, options) as async.Operation<types.BatchGetSecretValueOutput>
+function C:batchGetSecretValue(input: types.BatchGetSecretValueInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetSecretValueOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetSecretValue as schema.OperationSchema, input, options) as async.Operation<types.BatchGetSecretValueOutput>
 end
 
-function C:cancelRotateSecret(input: types.CancelRotateSecretInput, options: any): async.Operation<types.CancelRotateSecretOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelRotateSecret, input, options) as async.Operation<types.CancelRotateSecretOutput>
+function C:cancelRotateSecret(input: types.CancelRotateSecretInput, options?: base_client.InvokeOptions): async.Operation<types.CancelRotateSecretOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelRotateSecret as schema.OperationSchema, input, options) as async.Operation<types.CancelRotateSecretOutput>
 end
 
-function C:createSecret(input: types.CreateSecretInput, options: any): async.Operation<types.CreateSecretOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSecret, input, options) as async.Operation<types.CreateSecretOutput>
+function C:createSecret(input: types.CreateSecretInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSecretOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSecret as schema.OperationSchema, input, options) as async.Operation<types.CreateSecretOutput>
 end
 
-function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options: any): async.Operation<types.DeleteResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicy, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
+function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
 end
 
-function C:deleteSecret(input: types.DeleteSecretInput, options: any): async.Operation<types.DeleteSecretOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSecret, input, options) as async.Operation<types.DeleteSecretOutput>
+function C:deleteSecret(input: types.DeleteSecretInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSecretOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSecret as schema.OperationSchema, input, options) as async.Operation<types.DeleteSecretOutput>
 end
 
-function C:describeSecret(input: types.DescribeSecretInput, options: any): async.Operation<types.DescribeSecretOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSecret, input, options) as async.Operation<types.DescribeSecretOutput>
+function C:describeSecret(input: types.DescribeSecretInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSecretOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSecret as schema.OperationSchema, input, options) as async.Operation<types.DescribeSecretOutput>
 end
 
-function C:getRandomPassword(input: types.GetRandomPasswordInput, options: any): async.Operation<types.GetRandomPasswordOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRandomPassword, input, options) as async.Operation<types.GetRandomPasswordOutput>
+function C:getRandomPassword(input: types.GetRandomPasswordInput, options?: base_client.InvokeOptions): async.Operation<types.GetRandomPasswordOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRandomPassword as schema.OperationSchema, input, options) as async.Operation<types.GetRandomPasswordOutput>
 end
 
-function C:getResourcePolicy(input: types.GetResourcePolicyInput, options: any): async.Operation<types.GetResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicy, input, options) as async.Operation<types.GetResourcePolicyOutput>
+function C:getResourcePolicy(input: types.GetResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePolicyOutput>
 end
 
-function C:getSecretValue(input: types.GetSecretValueInput, options: any): async.Operation<types.GetSecretValueOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSecretValue, input, options) as async.Operation<types.GetSecretValueOutput>
+function C:getSecretValue(input: types.GetSecretValueInput, options?: base_client.InvokeOptions): async.Operation<types.GetSecretValueOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSecretValue as schema.OperationSchema, input, options) as async.Operation<types.GetSecretValueOutput>
 end
 
-function C:listSecrets(input: types.ListSecretsInput, options: any): async.Operation<types.ListSecretsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSecrets, input, options) as async.Operation<types.ListSecretsOutput>
+function C:listSecrets(input: types.ListSecretsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSecretsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSecrets as schema.OperationSchema, input, options) as async.Operation<types.ListSecretsOutput>
 end
 
-function C:listSecretVersionIds(input: types.ListSecretVersionIdsInput, options: any): async.Operation<types.ListSecretVersionIdsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSecretVersionIds, input, options) as async.Operation<types.ListSecretVersionIdsOutput>
+function C:listSecretVersionIds(input: types.ListSecretVersionIdsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSecretVersionIdsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSecretVersionIds as schema.OperationSchema, input, options) as async.Operation<types.ListSecretVersionIdsOutput>
 end
 
-function C:putResourcePolicy(input: types.PutResourcePolicyInput, options: any): async.Operation<types.PutResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutResourcePolicy, input, options) as async.Operation<types.PutResourcePolicyOutput>
+function C:putResourcePolicy(input: types.PutResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutResourcePolicyOutput>
 end
 
-function C:putSecretValue(input: types.PutSecretValueInput, options: any): async.Operation<types.PutSecretValueOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutSecretValue, input, options) as async.Operation<types.PutSecretValueOutput>
+function C:putSecretValue(input: types.PutSecretValueInput, options?: base_client.InvokeOptions): async.Operation<types.PutSecretValueOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutSecretValue as schema.OperationSchema, input, options) as async.Operation<types.PutSecretValueOutput>
 end
 
-function C:removeRegionsFromReplication(input: types.RemoveRegionsFromReplicationInput, options: any): async.Operation<types.RemoveRegionsFromReplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveRegionsFromReplication, input, options) as async.Operation<types.RemoveRegionsFromReplicationOutput>
+function C:removeRegionsFromReplication(input: types.RemoveRegionsFromReplicationInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveRegionsFromReplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveRegionsFromReplication as schema.OperationSchema, input, options) as async.Operation<types.RemoveRegionsFromReplicationOutput>
 end
 
-function C:replicateSecretToRegions(input: types.ReplicateSecretToRegionsInput, options: any): async.Operation<types.ReplicateSecretToRegionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ReplicateSecretToRegions, input, options) as async.Operation<types.ReplicateSecretToRegionsOutput>
+function C:replicateSecretToRegions(input: types.ReplicateSecretToRegionsInput, options?: base_client.InvokeOptions): async.Operation<types.ReplicateSecretToRegionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReplicateSecretToRegions as schema.OperationSchema, input, options) as async.Operation<types.ReplicateSecretToRegionsOutput>
 end
 
-function C:restoreSecret(input: types.RestoreSecretInput, options: any): async.Operation<types.RestoreSecretOutput>
-    return self:invokeOperation(schemas.Service, schemas.RestoreSecret, input, options) as async.Operation<types.RestoreSecretOutput>
+function C:restoreSecret(input: types.RestoreSecretInput, options?: base_client.InvokeOptions): async.Operation<types.RestoreSecretOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestoreSecret as schema.OperationSchema, input, options) as async.Operation<types.RestoreSecretOutput>
 end
 
-function C:rotateSecret(input: types.RotateSecretInput, options: any): async.Operation<types.RotateSecretOutput>
-    return self:invokeOperation(schemas.Service, schemas.RotateSecret, input, options) as async.Operation<types.RotateSecretOutput>
+function C:rotateSecret(input: types.RotateSecretInput, options?: base_client.InvokeOptions): async.Operation<types.RotateSecretOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RotateSecret as schema.OperationSchema, input, options) as async.Operation<types.RotateSecretOutput>
 end
 
-function C:stopReplicationToReplica(input: types.StopReplicationToReplicaInput, options: any): async.Operation<types.StopReplicationToReplicaOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopReplicationToReplica, input, options) as async.Operation<types.StopReplicationToReplicaOutput>
+function C:stopReplicationToReplica(input: types.StopReplicationToReplicaInput, options?: base_client.InvokeOptions): async.Operation<types.StopReplicationToReplicaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopReplicationToReplica as schema.OperationSchema, input, options) as async.Operation<types.StopReplicationToReplicaOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateSecret(input: types.UpdateSecretInput, options: any): async.Operation<types.UpdateSecretOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSecret, input, options) as async.Operation<types.UpdateSecretOutput>
+function C:updateSecret(input: types.UpdateSecretInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSecretOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSecret as schema.OperationSchema, input, options) as async.Operation<types.UpdateSecretOutput>
 end
 
-function C:updateSecretVersionStage(input: types.UpdateSecretVersionStageInput, options: any): async.Operation<types.UpdateSecretVersionStageOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSecretVersionStage, input, options) as async.Operation<types.UpdateSecretVersionStageOutput>
+function C:updateSecretVersionStage(input: types.UpdateSecretVersionStageInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSecretVersionStageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSecretVersionStage as schema.OperationSchema, input, options) as async.Operation<types.UpdateSecretVersionStageOutput>
 end
 
-function C:validateResourcePolicy(input: types.ValidateResourcePolicyInput, options: any): async.Operation<types.ValidateResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.ValidateResourcePolicy, input, options) as async.Operation<types.ValidateResourcePolicyOutput>
+function C:validateResourcePolicy(input: types.ValidateResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.ValidateResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ValidateResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.ValidateResourcePolicyOutput>
 end
 
 return M

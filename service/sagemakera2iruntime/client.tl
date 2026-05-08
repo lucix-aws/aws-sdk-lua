@@ -8,44 +8,47 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("sagemakera2iruntime.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("sagemakera2iruntime.schemas")
 local traits = require("smithy.traits")
 local types = require("sagemakera2iruntime.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    deleteHumanLoop: function(Client, types.DeleteHumanLoopInput, any): async.Operation<types.DeleteHumanLoopOutput>
-    describeHumanLoop: function(Client, types.DescribeHumanLoopInput, any): async.Operation<types.DescribeHumanLoopOutput>
-    listHumanLoops: function(Client, types.ListHumanLoopsInput, any): async.Operation<types.ListHumanLoopsOutput>
-    startHumanLoop: function(Client, types.StartHumanLoopInput, any): async.Operation<types.StartHumanLoopOutput>
-    stopHumanLoop: function(Client, types.StopHumanLoopInput, any): async.Operation<types.StopHumanLoopOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    deleteHumanLoop: function(Client, types.DeleteHumanLoopInput, ? base_client.InvokeOptions): async.Operation<types.DeleteHumanLoopOutput>
+    describeHumanLoop: function(Client, types.DescribeHumanLoopInput, ? base_client.InvokeOptions): async.Operation<types.DescribeHumanLoopOutput>
+    listHumanLoops: function(Client, types.ListHumanLoopsInput, ? base_client.InvokeOptions): async.Operation<types.ListHumanLoopsOutput>
+    startHumanLoop: function(Client, types.StartHumanLoopInput, ? base_client.InvokeOptions): async.Operation<types.StartHumanLoopOutput>
+    stopHumanLoop: function(Client, types.StopHumanLoopInput, ? base_client.InvokeOptions): async.Operation<types.StopHumanLoopOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonSageMakerA2IRuntime"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "sagemaker", signing_region = c.region } }
                 else
@@ -64,24 +67,24 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:deleteHumanLoop(input: types.DeleteHumanLoopInput, options: any): async.Operation<types.DeleteHumanLoopOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteHumanLoop, input, options) as async.Operation<types.DeleteHumanLoopOutput>
+function C:deleteHumanLoop(input: types.DeleteHumanLoopInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteHumanLoopOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteHumanLoop as schema.OperationSchema, input, options) as async.Operation<types.DeleteHumanLoopOutput>
 end
 
-function C:describeHumanLoop(input: types.DescribeHumanLoopInput, options: any): async.Operation<types.DescribeHumanLoopOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeHumanLoop, input, options) as async.Operation<types.DescribeHumanLoopOutput>
+function C:describeHumanLoop(input: types.DescribeHumanLoopInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeHumanLoopOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeHumanLoop as schema.OperationSchema, input, options) as async.Operation<types.DescribeHumanLoopOutput>
 end
 
-function C:listHumanLoops(input: types.ListHumanLoopsInput, options: any): async.Operation<types.ListHumanLoopsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListHumanLoops, input, options) as async.Operation<types.ListHumanLoopsOutput>
+function C:listHumanLoops(input: types.ListHumanLoopsInput, options?: base_client.InvokeOptions): async.Operation<types.ListHumanLoopsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListHumanLoops as schema.OperationSchema, input, options) as async.Operation<types.ListHumanLoopsOutput>
 end
 
-function C:startHumanLoop(input: types.StartHumanLoopInput, options: any): async.Operation<types.StartHumanLoopOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartHumanLoop, input, options) as async.Operation<types.StartHumanLoopOutput>
+function C:startHumanLoop(input: types.StartHumanLoopInput, options?: base_client.InvokeOptions): async.Operation<types.StartHumanLoopOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartHumanLoop as schema.OperationSchema, input, options) as async.Operation<types.StartHumanLoopOutput>
 end
 
-function C:stopHumanLoop(input: types.StopHumanLoopInput, options: any): async.Operation<types.StopHumanLoopOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopHumanLoop, input, options) as async.Operation<types.StopHumanLoopOutput>
+function C:stopHumanLoop(input: types.StopHumanLoopInput, options?: base_client.InvokeOptions): async.Operation<types.StopHumanLoopOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopHumanLoop as schema.OperationSchema, input, options) as async.Operation<types.StopHumanLoopOutput>
 end
 
 return M

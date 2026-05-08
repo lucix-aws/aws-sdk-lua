@@ -8,68 +8,71 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("greengrassv2.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("greengrassv2.schemas")
 local traits = require("smithy.traits")
 local types = require("greengrassv2.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateServiceRoleToAccount: function(Client, types.AssociateServiceRoleToAccountInput, any): async.Operation<types.AssociateServiceRoleToAccountOutput>
-    batchAssociateClientDeviceWithCoreDevice: function(Client, types.BatchAssociateClientDeviceWithCoreDeviceInput, any): async.Operation<types.BatchAssociateClientDeviceWithCoreDeviceOutput>
-    batchDisassociateClientDeviceFromCoreDevice: function(Client, types.BatchDisassociateClientDeviceFromCoreDeviceInput, any): async.Operation<types.BatchDisassociateClientDeviceFromCoreDeviceOutput>
-    cancelDeployment: function(Client, types.CancelDeploymentInput, any): async.Operation<types.CancelDeploymentOutput>
-    createComponentVersion: function(Client, types.CreateComponentVersionInput, any): async.Operation<types.CreateComponentVersionOutput>
-    createDeployment: function(Client, types.CreateDeploymentInput, any): async.Operation<types.CreateDeploymentOutput>
-    deleteComponent: function(Client, types.DeleteComponentInput, any): async.Operation<types.DeleteComponentOutput>
-    deleteCoreDevice: function(Client, types.DeleteCoreDeviceInput, any): async.Operation<types.DeleteCoreDeviceOutput>
-    deleteDeployment: function(Client, types.DeleteDeploymentInput, any): async.Operation<types.DeleteDeploymentOutput>
-    describeComponent: function(Client, types.DescribeComponentInput, any): async.Operation<types.DescribeComponentOutput>
-    disassociateServiceRoleFromAccount: function(Client, types.DisassociateServiceRoleFromAccountInput, any): async.Operation<types.DisassociateServiceRoleFromAccountOutput>
-    getComponent: function(Client, types.GetComponentInput, any): async.Operation<types.GetComponentOutput>
-    getComponentVersionArtifact: function(Client, types.GetComponentVersionArtifactInput, any): async.Operation<types.GetComponentVersionArtifactOutput>
-    getConnectivityInfo: function(Client, types.GetConnectivityInfoInput, any): async.Operation<types.GetConnectivityInfoOutput>
-    getCoreDevice: function(Client, types.GetCoreDeviceInput, any): async.Operation<types.GetCoreDeviceOutput>
-    getDeployment: function(Client, types.GetDeploymentInput, any): async.Operation<types.GetDeploymentOutput>
-    getServiceRoleForAccount: function(Client, types.GetServiceRoleForAccountInput, any): async.Operation<types.GetServiceRoleForAccountOutput>
-    listClientDevicesAssociatedWithCoreDevice: function(Client, types.ListClientDevicesAssociatedWithCoreDeviceInput, any): async.Operation<types.ListClientDevicesAssociatedWithCoreDeviceOutput>
-    listComponents: function(Client, types.ListComponentsInput, any): async.Operation<types.ListComponentsOutput>
-    listComponentVersions: function(Client, types.ListComponentVersionsInput, any): async.Operation<types.ListComponentVersionsOutput>
-    listCoreDevices: function(Client, types.ListCoreDevicesInput, any): async.Operation<types.ListCoreDevicesOutput>
-    listDeployments: function(Client, types.ListDeploymentsInput, any): async.Operation<types.ListDeploymentsOutput>
-    listEffectiveDeployments: function(Client, types.ListEffectiveDeploymentsInput, any): async.Operation<types.ListEffectiveDeploymentsOutput>
-    listInstalledComponents: function(Client, types.ListInstalledComponentsInput, any): async.Operation<types.ListInstalledComponentsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    resolveComponentCandidates: function(Client, types.ResolveComponentCandidatesInput, any): async.Operation<types.ResolveComponentCandidatesOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateConnectivityInfo: function(Client, types.UpdateConnectivityInfoInput, any): async.Operation<types.UpdateConnectivityInfoOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateServiceRoleToAccount: function(Client, types.AssociateServiceRoleToAccountInput, ? base_client.InvokeOptions): async.Operation<types.AssociateServiceRoleToAccountOutput>
+    batchAssociateClientDeviceWithCoreDevice: function(Client, types.BatchAssociateClientDeviceWithCoreDeviceInput, ? base_client.InvokeOptions): async.Operation<types.BatchAssociateClientDeviceWithCoreDeviceOutput>
+    batchDisassociateClientDeviceFromCoreDevice: function(Client, types.BatchDisassociateClientDeviceFromCoreDeviceInput, ? base_client.InvokeOptions): async.Operation<types.BatchDisassociateClientDeviceFromCoreDeviceOutput>
+    cancelDeployment: function(Client, types.CancelDeploymentInput, ? base_client.InvokeOptions): async.Operation<types.CancelDeploymentOutput>
+    createComponentVersion: function(Client, types.CreateComponentVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateComponentVersionOutput>
+    createDeployment: function(Client, types.CreateDeploymentInput, ? base_client.InvokeOptions): async.Operation<types.CreateDeploymentOutput>
+    deleteComponent: function(Client, types.DeleteComponentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteComponentOutput>
+    deleteCoreDevice: function(Client, types.DeleteCoreDeviceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCoreDeviceOutput>
+    deleteDeployment: function(Client, types.DeleteDeploymentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDeploymentOutput>
+    describeComponent: function(Client, types.DescribeComponentInput, ? base_client.InvokeOptions): async.Operation<types.DescribeComponentOutput>
+    disassociateServiceRoleFromAccount: function(Client, types.DisassociateServiceRoleFromAccountInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateServiceRoleFromAccountOutput>
+    getComponent: function(Client, types.GetComponentInput, ? base_client.InvokeOptions): async.Operation<types.GetComponentOutput>
+    getComponentVersionArtifact: function(Client, types.GetComponentVersionArtifactInput, ? base_client.InvokeOptions): async.Operation<types.GetComponentVersionArtifactOutput>
+    getConnectivityInfo: function(Client, types.GetConnectivityInfoInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectivityInfoOutput>
+    getCoreDevice: function(Client, types.GetCoreDeviceInput, ? base_client.InvokeOptions): async.Operation<types.GetCoreDeviceOutput>
+    getDeployment: function(Client, types.GetDeploymentInput, ? base_client.InvokeOptions): async.Operation<types.GetDeploymentOutput>
+    getServiceRoleForAccount: function(Client, types.GetServiceRoleForAccountInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceRoleForAccountOutput>
+    listClientDevicesAssociatedWithCoreDevice: function(Client, types.ListClientDevicesAssociatedWithCoreDeviceInput, ? base_client.InvokeOptions): async.Operation<types.ListClientDevicesAssociatedWithCoreDeviceOutput>
+    listComponents: function(Client, types.ListComponentsInput, ? base_client.InvokeOptions): async.Operation<types.ListComponentsOutput>
+    listComponentVersions: function(Client, types.ListComponentVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListComponentVersionsOutput>
+    listCoreDevices: function(Client, types.ListCoreDevicesInput, ? base_client.InvokeOptions): async.Operation<types.ListCoreDevicesOutput>
+    listDeployments: function(Client, types.ListDeploymentsInput, ? base_client.InvokeOptions): async.Operation<types.ListDeploymentsOutput>
+    listEffectiveDeployments: function(Client, types.ListEffectiveDeploymentsInput, ? base_client.InvokeOptions): async.Operation<types.ListEffectiveDeploymentsOutput>
+    listInstalledComponents: function(Client, types.ListInstalledComponentsInput, ? base_client.InvokeOptions): async.Operation<types.ListInstalledComponentsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    resolveComponentCandidates: function(Client, types.ResolveComponentCandidatesInput, ? base_client.InvokeOptions): async.Operation<types.ResolveComponentCandidatesOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateConnectivityInfo: function(Client, types.UpdateConnectivityInfoInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConnectivityInfoOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "GreengrassV2"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "greengrass", signing_region = c.region } }
                 else
@@ -88,120 +91,120 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateServiceRoleToAccount(input: types.AssociateServiceRoleToAccountInput, options: any): async.Operation<types.AssociateServiceRoleToAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateServiceRoleToAccount, input, options) as async.Operation<types.AssociateServiceRoleToAccountOutput>
+function C:associateServiceRoleToAccount(input: types.AssociateServiceRoleToAccountInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateServiceRoleToAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateServiceRoleToAccount as schema.OperationSchema, input, options) as async.Operation<types.AssociateServiceRoleToAccountOutput>
 end
 
-function C:batchAssociateClientDeviceWithCoreDevice(input: types.BatchAssociateClientDeviceWithCoreDeviceInput, options: any): async.Operation<types.BatchAssociateClientDeviceWithCoreDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchAssociateClientDeviceWithCoreDevice, input, options) as async.Operation<types.BatchAssociateClientDeviceWithCoreDeviceOutput>
+function C:batchAssociateClientDeviceWithCoreDevice(input: types.BatchAssociateClientDeviceWithCoreDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.BatchAssociateClientDeviceWithCoreDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchAssociateClientDeviceWithCoreDevice as schema.OperationSchema, input, options) as async.Operation<types.BatchAssociateClientDeviceWithCoreDeviceOutput>
 end
 
-function C:batchDisassociateClientDeviceFromCoreDevice(input: types.BatchDisassociateClientDeviceFromCoreDeviceInput, options: any): async.Operation<types.BatchDisassociateClientDeviceFromCoreDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDisassociateClientDeviceFromCoreDevice, input, options) as async.Operation<types.BatchDisassociateClientDeviceFromCoreDeviceOutput>
+function C:batchDisassociateClientDeviceFromCoreDevice(input: types.BatchDisassociateClientDeviceFromCoreDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDisassociateClientDeviceFromCoreDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDisassociateClientDeviceFromCoreDevice as schema.OperationSchema, input, options) as async.Operation<types.BatchDisassociateClientDeviceFromCoreDeviceOutput>
 end
 
-function C:cancelDeployment(input: types.CancelDeploymentInput, options: any): async.Operation<types.CancelDeploymentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelDeployment, input, options) as async.Operation<types.CancelDeploymentOutput>
+function C:cancelDeployment(input: types.CancelDeploymentInput, options?: base_client.InvokeOptions): async.Operation<types.CancelDeploymentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelDeployment as schema.OperationSchema, input, options) as async.Operation<types.CancelDeploymentOutput>
 end
 
-function C:createComponentVersion(input: types.CreateComponentVersionInput, options: any): async.Operation<types.CreateComponentVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateComponentVersion, input, options) as async.Operation<types.CreateComponentVersionOutput>
+function C:createComponentVersion(input: types.CreateComponentVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateComponentVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateComponentVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateComponentVersionOutput>
 end
 
-function C:createDeployment(input: types.CreateDeploymentInput, options: any): async.Operation<types.CreateDeploymentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDeployment, input, options) as async.Operation<types.CreateDeploymentOutput>
+function C:createDeployment(input: types.CreateDeploymentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDeploymentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDeployment as schema.OperationSchema, input, options) as async.Operation<types.CreateDeploymentOutput>
 end
 
-function C:deleteComponent(input: types.DeleteComponentInput, options: any): async.Operation<types.DeleteComponentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteComponent, input, options) as async.Operation<types.DeleteComponentOutput>
+function C:deleteComponent(input: types.DeleteComponentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteComponentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteComponent as schema.OperationSchema, input, options) as async.Operation<types.DeleteComponentOutput>
 end
 
-function C:deleteCoreDevice(input: types.DeleteCoreDeviceInput, options: any): async.Operation<types.DeleteCoreDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCoreDevice, input, options) as async.Operation<types.DeleteCoreDeviceOutput>
+function C:deleteCoreDevice(input: types.DeleteCoreDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCoreDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCoreDevice as schema.OperationSchema, input, options) as async.Operation<types.DeleteCoreDeviceOutput>
 end
 
-function C:deleteDeployment(input: types.DeleteDeploymentInput, options: any): async.Operation<types.DeleteDeploymentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDeployment, input, options) as async.Operation<types.DeleteDeploymentOutput>
+function C:deleteDeployment(input: types.DeleteDeploymentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDeploymentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDeployment as schema.OperationSchema, input, options) as async.Operation<types.DeleteDeploymentOutput>
 end
 
-function C:describeComponent(input: types.DescribeComponentInput, options: any): async.Operation<types.DescribeComponentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeComponent, input, options) as async.Operation<types.DescribeComponentOutput>
+function C:describeComponent(input: types.DescribeComponentInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeComponentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeComponent as schema.OperationSchema, input, options) as async.Operation<types.DescribeComponentOutput>
 end
 
-function C:disassociateServiceRoleFromAccount(input: types.DisassociateServiceRoleFromAccountInput, options: any): async.Operation<types.DisassociateServiceRoleFromAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateServiceRoleFromAccount, input, options) as async.Operation<types.DisassociateServiceRoleFromAccountOutput>
+function C:disassociateServiceRoleFromAccount(input: types.DisassociateServiceRoleFromAccountInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateServiceRoleFromAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateServiceRoleFromAccount as schema.OperationSchema, input, options) as async.Operation<types.DisassociateServiceRoleFromAccountOutput>
 end
 
-function C:getComponent(input: types.GetComponentInput, options: any): async.Operation<types.GetComponentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetComponent, input, options) as async.Operation<types.GetComponentOutput>
+function C:getComponent(input: types.GetComponentInput, options?: base_client.InvokeOptions): async.Operation<types.GetComponentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetComponent as schema.OperationSchema, input, options) as async.Operation<types.GetComponentOutput>
 end
 
-function C:getComponentVersionArtifact(input: types.GetComponentVersionArtifactInput, options: any): async.Operation<types.GetComponentVersionArtifactOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetComponentVersionArtifact, input, options) as async.Operation<types.GetComponentVersionArtifactOutput>
+function C:getComponentVersionArtifact(input: types.GetComponentVersionArtifactInput, options?: base_client.InvokeOptions): async.Operation<types.GetComponentVersionArtifactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetComponentVersionArtifact as schema.OperationSchema, input, options) as async.Operation<types.GetComponentVersionArtifactOutput>
 end
 
-function C:getConnectivityInfo(input: types.GetConnectivityInfoInput, options: any): async.Operation<types.GetConnectivityInfoOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConnectivityInfo, input, options) as async.Operation<types.GetConnectivityInfoOutput>
+function C:getConnectivityInfo(input: types.GetConnectivityInfoInput, options?: base_client.InvokeOptions): async.Operation<types.GetConnectivityInfoOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConnectivityInfo as schema.OperationSchema, input, options) as async.Operation<types.GetConnectivityInfoOutput>
 end
 
-function C:getCoreDevice(input: types.GetCoreDeviceInput, options: any): async.Operation<types.GetCoreDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCoreDevice, input, options) as async.Operation<types.GetCoreDeviceOutput>
+function C:getCoreDevice(input: types.GetCoreDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.GetCoreDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCoreDevice as schema.OperationSchema, input, options) as async.Operation<types.GetCoreDeviceOutput>
 end
 
-function C:getDeployment(input: types.GetDeploymentInput, options: any): async.Operation<types.GetDeploymentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDeployment, input, options) as async.Operation<types.GetDeploymentOutput>
+function C:getDeployment(input: types.GetDeploymentInput, options?: base_client.InvokeOptions): async.Operation<types.GetDeploymentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDeployment as schema.OperationSchema, input, options) as async.Operation<types.GetDeploymentOutput>
 end
 
-function C:getServiceRoleForAccount(input: types.GetServiceRoleForAccountInput, options: any): async.Operation<types.GetServiceRoleForAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetServiceRoleForAccount, input, options) as async.Operation<types.GetServiceRoleForAccountOutput>
+function C:getServiceRoleForAccount(input: types.GetServiceRoleForAccountInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceRoleForAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetServiceRoleForAccount as schema.OperationSchema, input, options) as async.Operation<types.GetServiceRoleForAccountOutput>
 end
 
-function C:listClientDevicesAssociatedWithCoreDevice(input: types.ListClientDevicesAssociatedWithCoreDeviceInput, options: any): async.Operation<types.ListClientDevicesAssociatedWithCoreDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListClientDevicesAssociatedWithCoreDevice, input, options) as async.Operation<types.ListClientDevicesAssociatedWithCoreDeviceOutput>
+function C:listClientDevicesAssociatedWithCoreDevice(input: types.ListClientDevicesAssociatedWithCoreDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.ListClientDevicesAssociatedWithCoreDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListClientDevicesAssociatedWithCoreDevice as schema.OperationSchema, input, options) as async.Operation<types.ListClientDevicesAssociatedWithCoreDeviceOutput>
 end
 
-function C:listComponents(input: types.ListComponentsInput, options: any): async.Operation<types.ListComponentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListComponents, input, options) as async.Operation<types.ListComponentsOutput>
+function C:listComponents(input: types.ListComponentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListComponentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListComponents as schema.OperationSchema, input, options) as async.Operation<types.ListComponentsOutput>
 end
 
-function C:listComponentVersions(input: types.ListComponentVersionsInput, options: any): async.Operation<types.ListComponentVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListComponentVersions, input, options) as async.Operation<types.ListComponentVersionsOutput>
+function C:listComponentVersions(input: types.ListComponentVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListComponentVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListComponentVersions as schema.OperationSchema, input, options) as async.Operation<types.ListComponentVersionsOutput>
 end
 
-function C:listCoreDevices(input: types.ListCoreDevicesInput, options: any): async.Operation<types.ListCoreDevicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCoreDevices, input, options) as async.Operation<types.ListCoreDevicesOutput>
+function C:listCoreDevices(input: types.ListCoreDevicesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCoreDevicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCoreDevices as schema.OperationSchema, input, options) as async.Operation<types.ListCoreDevicesOutput>
 end
 
-function C:listDeployments(input: types.ListDeploymentsInput, options: any): async.Operation<types.ListDeploymentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDeployments, input, options) as async.Operation<types.ListDeploymentsOutput>
+function C:listDeployments(input: types.ListDeploymentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDeploymentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDeployments as schema.OperationSchema, input, options) as async.Operation<types.ListDeploymentsOutput>
 end
 
-function C:listEffectiveDeployments(input: types.ListEffectiveDeploymentsInput, options: any): async.Operation<types.ListEffectiveDeploymentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEffectiveDeployments, input, options) as async.Operation<types.ListEffectiveDeploymentsOutput>
+function C:listEffectiveDeployments(input: types.ListEffectiveDeploymentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEffectiveDeploymentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEffectiveDeployments as schema.OperationSchema, input, options) as async.Operation<types.ListEffectiveDeploymentsOutput>
 end
 
-function C:listInstalledComponents(input: types.ListInstalledComponentsInput, options: any): async.Operation<types.ListInstalledComponentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInstalledComponents, input, options) as async.Operation<types.ListInstalledComponentsOutput>
+function C:listInstalledComponents(input: types.ListInstalledComponentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInstalledComponentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInstalledComponents as schema.OperationSchema, input, options) as async.Operation<types.ListInstalledComponentsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:resolveComponentCandidates(input: types.ResolveComponentCandidatesInput, options: any): async.Operation<types.ResolveComponentCandidatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResolveComponentCandidates, input, options) as async.Operation<types.ResolveComponentCandidatesOutput>
+function C:resolveComponentCandidates(input: types.ResolveComponentCandidatesInput, options?: base_client.InvokeOptions): async.Operation<types.ResolveComponentCandidatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResolveComponentCandidates as schema.OperationSchema, input, options) as async.Operation<types.ResolveComponentCandidatesOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateConnectivityInfo(input: types.UpdateConnectivityInfoInput, options: any): async.Operation<types.UpdateConnectivityInfoOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConnectivityInfo, input, options) as async.Operation<types.UpdateConnectivityInfoOutput>
+function C:updateConnectivityInfo(input: types.UpdateConnectivityInfoInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConnectivityInfoOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConnectivityInfo as schema.OperationSchema, input, options) as async.Operation<types.UpdateConnectivityInfoOutput>
 end
 
 return M

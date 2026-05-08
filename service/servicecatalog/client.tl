@@ -8,129 +8,132 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("servicecatalog.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("servicecatalog.schemas")
 local traits = require("smithy.traits")
 local types = require("servicecatalog.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    acceptPortfolioShare: function(Client, types.AcceptPortfolioShareInput, any): async.Operation<types.AcceptPortfolioShareOutput>
-    associateBudgetWithResource: function(Client, types.AssociateBudgetWithResourceInput, any): async.Operation<types.AssociateBudgetWithResourceOutput>
-    associatePrincipalWithPortfolio: function(Client, types.AssociatePrincipalWithPortfolioInput, any): async.Operation<types.AssociatePrincipalWithPortfolioOutput>
-    associateProductWithPortfolio: function(Client, types.AssociateProductWithPortfolioInput, any): async.Operation<types.AssociateProductWithPortfolioOutput>
-    associateServiceActionWithProvisioningArtifact: function(Client, types.AssociateServiceActionWithProvisioningArtifactInput, any): async.Operation<types.AssociateServiceActionWithProvisioningArtifactOutput>
-    associateTagOptionWithResource: function(Client, types.AssociateTagOptionWithResourceInput, any): async.Operation<types.AssociateTagOptionWithResourceOutput>
-    batchAssociateServiceActionWithProvisioningArtifact: function(Client, types.BatchAssociateServiceActionWithProvisioningArtifactInput, any): async.Operation<types.BatchAssociateServiceActionWithProvisioningArtifactOutput>
-    batchDisassociateServiceActionFromProvisioningArtifact: function(Client, types.BatchDisassociateServiceActionFromProvisioningArtifactInput, any): async.Operation<types.BatchDisassociateServiceActionFromProvisioningArtifactOutput>
-    copyProduct: function(Client, types.CopyProductInput, any): async.Operation<types.CopyProductOutput>
-    createConstraint: function(Client, types.CreateConstraintInput, any): async.Operation<types.CreateConstraintOutput>
-    createPortfolio: function(Client, types.CreatePortfolioInput, any): async.Operation<types.CreatePortfolioOutput>
-    createPortfolioShare: function(Client, types.CreatePortfolioShareInput, any): async.Operation<types.CreatePortfolioShareOutput>
-    createProduct: function(Client, types.CreateProductInput, any): async.Operation<types.CreateProductOutput>
-    createProvisionedProductPlan: function(Client, types.CreateProvisionedProductPlanInput, any): async.Operation<types.CreateProvisionedProductPlanOutput>
-    createProvisioningArtifact: function(Client, types.CreateProvisioningArtifactInput, any): async.Operation<types.CreateProvisioningArtifactOutput>
-    createServiceAction: function(Client, types.CreateServiceActionInput, any): async.Operation<types.CreateServiceActionOutput>
-    createTagOption: function(Client, types.CreateTagOptionInput, any): async.Operation<types.CreateTagOptionOutput>
-    deleteConstraint: function(Client, types.DeleteConstraintInput, any): async.Operation<types.DeleteConstraintOutput>
-    deletePortfolio: function(Client, types.DeletePortfolioInput, any): async.Operation<types.DeletePortfolioOutput>
-    deletePortfolioShare: function(Client, types.DeletePortfolioShareInput, any): async.Operation<types.DeletePortfolioShareOutput>
-    deleteProduct: function(Client, types.DeleteProductInput, any): async.Operation<types.DeleteProductOutput>
-    deleteProvisionedProductPlan: function(Client, types.DeleteProvisionedProductPlanInput, any): async.Operation<types.DeleteProvisionedProductPlanOutput>
-    deleteProvisioningArtifact: function(Client, types.DeleteProvisioningArtifactInput, any): async.Operation<types.DeleteProvisioningArtifactOutput>
-    deleteServiceAction: function(Client, types.DeleteServiceActionInput, any): async.Operation<types.DeleteServiceActionOutput>
-    deleteTagOption: function(Client, types.DeleteTagOptionInput, any): async.Operation<types.DeleteTagOptionOutput>
-    describeConstraint: function(Client, types.DescribeConstraintInput, any): async.Operation<types.DescribeConstraintOutput>
-    describeCopyProductStatus: function(Client, types.DescribeCopyProductStatusInput, any): async.Operation<types.DescribeCopyProductStatusOutput>
-    describePortfolio: function(Client, types.DescribePortfolioInput, any): async.Operation<types.DescribePortfolioOutput>
-    describePortfolioShares: function(Client, types.DescribePortfolioSharesInput, any): async.Operation<types.DescribePortfolioSharesOutput>
-    describePortfolioShareStatus: function(Client, types.DescribePortfolioShareStatusInput, any): async.Operation<types.DescribePortfolioShareStatusOutput>
-    describeProduct: function(Client, types.DescribeProductInput, any): async.Operation<types.DescribeProductOutput>
-    describeProductAsAdmin: function(Client, types.DescribeProductAsAdminInput, any): async.Operation<types.DescribeProductAsAdminOutput>
-    describeProductView: function(Client, types.DescribeProductViewInput, any): async.Operation<types.DescribeProductViewOutput>
-    describeProvisionedProduct: function(Client, types.DescribeProvisionedProductInput, any): async.Operation<types.DescribeProvisionedProductOutput>
-    describeProvisionedProductPlan: function(Client, types.DescribeProvisionedProductPlanInput, any): async.Operation<types.DescribeProvisionedProductPlanOutput>
-    describeProvisioningArtifact: function(Client, types.DescribeProvisioningArtifactInput, any): async.Operation<types.DescribeProvisioningArtifactOutput>
-    describeProvisioningParameters: function(Client, types.DescribeProvisioningParametersInput, any): async.Operation<types.DescribeProvisioningParametersOutput>
-    describeRecord: function(Client, types.DescribeRecordInput, any): async.Operation<types.DescribeRecordOutput>
-    describeServiceAction: function(Client, types.DescribeServiceActionInput, any): async.Operation<types.DescribeServiceActionOutput>
-    describeServiceActionExecutionParameters: function(Client, types.DescribeServiceActionExecutionParametersInput, any): async.Operation<types.DescribeServiceActionExecutionParametersOutput>
-    describeTagOption: function(Client, types.DescribeTagOptionInput, any): async.Operation<types.DescribeTagOptionOutput>
-    disableAWSOrganizationsAccess: function(Client, types.DisableAWSOrganizationsAccessInput, any): async.Operation<types.DisableAWSOrganizationsAccessOutput>
-    disassociateBudgetFromResource: function(Client, types.DisassociateBudgetFromResourceInput, any): async.Operation<types.DisassociateBudgetFromResourceOutput>
-    disassociatePrincipalFromPortfolio: function(Client, types.DisassociatePrincipalFromPortfolioInput, any): async.Operation<types.DisassociatePrincipalFromPortfolioOutput>
-    disassociateProductFromPortfolio: function(Client, types.DisassociateProductFromPortfolioInput, any): async.Operation<types.DisassociateProductFromPortfolioOutput>
-    disassociateServiceActionFromProvisioningArtifact: function(Client, types.DisassociateServiceActionFromProvisioningArtifactInput, any): async.Operation<types.DisassociateServiceActionFromProvisioningArtifactOutput>
-    disassociateTagOptionFromResource: function(Client, types.DisassociateTagOptionFromResourceInput, any): async.Operation<types.DisassociateTagOptionFromResourceOutput>
-    enableAWSOrganizationsAccess: function(Client, types.EnableAWSOrganizationsAccessInput, any): async.Operation<types.EnableAWSOrganizationsAccessOutput>
-    executeProvisionedProductPlan: function(Client, types.ExecuteProvisionedProductPlanInput, any): async.Operation<types.ExecuteProvisionedProductPlanOutput>
-    executeProvisionedProductServiceAction: function(Client, types.ExecuteProvisionedProductServiceActionInput, any): async.Operation<types.ExecuteProvisionedProductServiceActionOutput>
-    getAWSOrganizationsAccessStatus: function(Client, types.GetAWSOrganizationsAccessStatusInput, any): async.Operation<types.GetAWSOrganizationsAccessStatusOutput>
-    getProvisionedProductOutputs: function(Client, types.GetProvisionedProductOutputsInput, any): async.Operation<types.GetProvisionedProductOutputsOutput>
-    importAsProvisionedProduct: function(Client, types.ImportAsProvisionedProductInput, any): async.Operation<types.ImportAsProvisionedProductOutput>
-    listAcceptedPortfolioShares: function(Client, types.ListAcceptedPortfolioSharesInput, any): async.Operation<types.ListAcceptedPortfolioSharesOutput>
-    listBudgetsForResource: function(Client, types.ListBudgetsForResourceInput, any): async.Operation<types.ListBudgetsForResourceOutput>
-    listConstraintsForPortfolio: function(Client, types.ListConstraintsForPortfolioInput, any): async.Operation<types.ListConstraintsForPortfolioOutput>
-    listLaunchPaths: function(Client, types.ListLaunchPathsInput, any): async.Operation<types.ListLaunchPathsOutput>
-    listOrganizationPortfolioAccess: function(Client, types.ListOrganizationPortfolioAccessInput, any): async.Operation<types.ListOrganizationPortfolioAccessOutput>
-    listPortfolioAccess: function(Client, types.ListPortfolioAccessInput, any): async.Operation<types.ListPortfolioAccessOutput>
-    listPortfolios: function(Client, types.ListPortfoliosInput, any): async.Operation<types.ListPortfoliosOutput>
-    listPortfoliosForProduct: function(Client, types.ListPortfoliosForProductInput, any): async.Operation<types.ListPortfoliosForProductOutput>
-    listPrincipalsForPortfolio: function(Client, types.ListPrincipalsForPortfolioInput, any): async.Operation<types.ListPrincipalsForPortfolioOutput>
-    listProvisionedProductPlans: function(Client, types.ListProvisionedProductPlansInput, any): async.Operation<types.ListProvisionedProductPlansOutput>
-    listProvisioningArtifacts: function(Client, types.ListProvisioningArtifactsInput, any): async.Operation<types.ListProvisioningArtifactsOutput>
-    listProvisioningArtifactsForServiceAction: function(Client, types.ListProvisioningArtifactsForServiceActionInput, any): async.Operation<types.ListProvisioningArtifactsForServiceActionOutput>
-    listRecordHistory: function(Client, types.ListRecordHistoryInput, any): async.Operation<types.ListRecordHistoryOutput>
-    listResourcesForTagOption: function(Client, types.ListResourcesForTagOptionInput, any): async.Operation<types.ListResourcesForTagOptionOutput>
-    listServiceActions: function(Client, types.ListServiceActionsInput, any): async.Operation<types.ListServiceActionsOutput>
-    listServiceActionsForProvisioningArtifact: function(Client, types.ListServiceActionsForProvisioningArtifactInput, any): async.Operation<types.ListServiceActionsForProvisioningArtifactOutput>
-    listStackInstancesForProvisionedProduct: function(Client, types.ListStackInstancesForProvisionedProductInput, any): async.Operation<types.ListStackInstancesForProvisionedProductOutput>
-    listTagOptions: function(Client, types.ListTagOptionsInput, any): async.Operation<types.ListTagOptionsOutput>
-    notifyProvisionProductEngineWorkflowResult: function(Client, types.NotifyProvisionProductEngineWorkflowResultInput, any): async.Operation<types.NotifyProvisionProductEngineWorkflowResultOutput>
-    notifyTerminateProvisionedProductEngineWorkflowResult: function(Client, types.NotifyTerminateProvisionedProductEngineWorkflowResultInput, any): async.Operation<types.NotifyTerminateProvisionedProductEngineWorkflowResultOutput>
-    notifyUpdateProvisionedProductEngineWorkflowResult: function(Client, types.NotifyUpdateProvisionedProductEngineWorkflowResultInput, any): async.Operation<types.NotifyUpdateProvisionedProductEngineWorkflowResultOutput>
-    provisionProduct: function(Client, types.ProvisionProductInput, any): async.Operation<types.ProvisionProductOutput>
-    rejectPortfolioShare: function(Client, types.RejectPortfolioShareInput, any): async.Operation<types.RejectPortfolioShareOutput>
-    scanProvisionedProducts: function(Client, types.ScanProvisionedProductsInput, any): async.Operation<types.ScanProvisionedProductsOutput>
-    searchProducts: function(Client, types.SearchProductsInput, any): async.Operation<types.SearchProductsOutput>
-    searchProductsAsAdmin: function(Client, types.SearchProductsAsAdminInput, any): async.Operation<types.SearchProductsAsAdminOutput>
-    searchProvisionedProducts: function(Client, types.SearchProvisionedProductsInput, any): async.Operation<types.SearchProvisionedProductsOutput>
-    terminateProvisionedProduct: function(Client, types.TerminateProvisionedProductInput, any): async.Operation<types.TerminateProvisionedProductOutput>
-    updateConstraint: function(Client, types.UpdateConstraintInput, any): async.Operation<types.UpdateConstraintOutput>
-    updatePortfolio: function(Client, types.UpdatePortfolioInput, any): async.Operation<types.UpdatePortfolioOutput>
-    updatePortfolioShare: function(Client, types.UpdatePortfolioShareInput, any): async.Operation<types.UpdatePortfolioShareOutput>
-    updateProduct: function(Client, types.UpdateProductInput, any): async.Operation<types.UpdateProductOutput>
-    updateProvisionedProduct: function(Client, types.UpdateProvisionedProductInput, any): async.Operation<types.UpdateProvisionedProductOutput>
-    updateProvisionedProductProperties: function(Client, types.UpdateProvisionedProductPropertiesInput, any): async.Operation<types.UpdateProvisionedProductPropertiesOutput>
-    updateProvisioningArtifact: function(Client, types.UpdateProvisioningArtifactInput, any): async.Operation<types.UpdateProvisioningArtifactOutput>
-    updateServiceAction: function(Client, types.UpdateServiceActionInput, any): async.Operation<types.UpdateServiceActionOutput>
-    updateTagOption: function(Client, types.UpdateTagOptionInput, any): async.Operation<types.UpdateTagOptionOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    acceptPortfolioShare: function(Client, types.AcceptPortfolioShareInput, ? base_client.InvokeOptions): async.Operation<types.AcceptPortfolioShareOutput>
+    associateBudgetWithResource: function(Client, types.AssociateBudgetWithResourceInput, ? base_client.InvokeOptions): async.Operation<types.AssociateBudgetWithResourceOutput>
+    associatePrincipalWithPortfolio: function(Client, types.AssociatePrincipalWithPortfolioInput, ? base_client.InvokeOptions): async.Operation<types.AssociatePrincipalWithPortfolioOutput>
+    associateProductWithPortfolio: function(Client, types.AssociateProductWithPortfolioInput, ? base_client.InvokeOptions): async.Operation<types.AssociateProductWithPortfolioOutput>
+    associateServiceActionWithProvisioningArtifact: function(Client, types.AssociateServiceActionWithProvisioningArtifactInput, ? base_client.InvokeOptions): async.Operation<types.AssociateServiceActionWithProvisioningArtifactOutput>
+    associateTagOptionWithResource: function(Client, types.AssociateTagOptionWithResourceInput, ? base_client.InvokeOptions): async.Operation<types.AssociateTagOptionWithResourceOutput>
+    batchAssociateServiceActionWithProvisioningArtifact: function(Client, types.BatchAssociateServiceActionWithProvisioningArtifactInput, ? base_client.InvokeOptions): async.Operation<types.BatchAssociateServiceActionWithProvisioningArtifactOutput>
+    batchDisassociateServiceActionFromProvisioningArtifact: function(Client, types.BatchDisassociateServiceActionFromProvisioningArtifactInput, ? base_client.InvokeOptions): async.Operation<types.BatchDisassociateServiceActionFromProvisioningArtifactOutput>
+    copyProduct: function(Client, types.CopyProductInput, ? base_client.InvokeOptions): async.Operation<types.CopyProductOutput>
+    createConstraint: function(Client, types.CreateConstraintInput, ? base_client.InvokeOptions): async.Operation<types.CreateConstraintOutput>
+    createPortfolio: function(Client, types.CreatePortfolioInput, ? base_client.InvokeOptions): async.Operation<types.CreatePortfolioOutput>
+    createPortfolioShare: function(Client, types.CreatePortfolioShareInput, ? base_client.InvokeOptions): async.Operation<types.CreatePortfolioShareOutput>
+    createProduct: function(Client, types.CreateProductInput, ? base_client.InvokeOptions): async.Operation<types.CreateProductOutput>
+    createProvisionedProductPlan: function(Client, types.CreateProvisionedProductPlanInput, ? base_client.InvokeOptions): async.Operation<types.CreateProvisionedProductPlanOutput>
+    createProvisioningArtifact: function(Client, types.CreateProvisioningArtifactInput, ? base_client.InvokeOptions): async.Operation<types.CreateProvisioningArtifactOutput>
+    createServiceAction: function(Client, types.CreateServiceActionInput, ? base_client.InvokeOptions): async.Operation<types.CreateServiceActionOutput>
+    createTagOption: function(Client, types.CreateTagOptionInput, ? base_client.InvokeOptions): async.Operation<types.CreateTagOptionOutput>
+    deleteConstraint: function(Client, types.DeleteConstraintInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConstraintOutput>
+    deletePortfolio: function(Client, types.DeletePortfolioInput, ? base_client.InvokeOptions): async.Operation<types.DeletePortfolioOutput>
+    deletePortfolioShare: function(Client, types.DeletePortfolioShareInput, ? base_client.InvokeOptions): async.Operation<types.DeletePortfolioShareOutput>
+    deleteProduct: function(Client, types.DeleteProductInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProductOutput>
+    deleteProvisionedProductPlan: function(Client, types.DeleteProvisionedProductPlanInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProvisionedProductPlanOutput>
+    deleteProvisioningArtifact: function(Client, types.DeleteProvisioningArtifactInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProvisioningArtifactOutput>
+    deleteServiceAction: function(Client, types.DeleteServiceActionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteServiceActionOutput>
+    deleteTagOption: function(Client, types.DeleteTagOptionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTagOptionOutput>
+    describeConstraint: function(Client, types.DescribeConstraintInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConstraintOutput>
+    describeCopyProductStatus: function(Client, types.DescribeCopyProductStatusInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCopyProductStatusOutput>
+    describePortfolio: function(Client, types.DescribePortfolioInput, ? base_client.InvokeOptions): async.Operation<types.DescribePortfolioOutput>
+    describePortfolioShares: function(Client, types.DescribePortfolioSharesInput, ? base_client.InvokeOptions): async.Operation<types.DescribePortfolioSharesOutput>
+    describePortfolioShareStatus: function(Client, types.DescribePortfolioShareStatusInput, ? base_client.InvokeOptions): async.Operation<types.DescribePortfolioShareStatusOutput>
+    describeProduct: function(Client, types.DescribeProductInput, ? base_client.InvokeOptions): async.Operation<types.DescribeProductOutput>
+    describeProductAsAdmin: function(Client, types.DescribeProductAsAdminInput, ? base_client.InvokeOptions): async.Operation<types.DescribeProductAsAdminOutput>
+    describeProductView: function(Client, types.DescribeProductViewInput, ? base_client.InvokeOptions): async.Operation<types.DescribeProductViewOutput>
+    describeProvisionedProduct: function(Client, types.DescribeProvisionedProductInput, ? base_client.InvokeOptions): async.Operation<types.DescribeProvisionedProductOutput>
+    describeProvisionedProductPlan: function(Client, types.DescribeProvisionedProductPlanInput, ? base_client.InvokeOptions): async.Operation<types.DescribeProvisionedProductPlanOutput>
+    describeProvisioningArtifact: function(Client, types.DescribeProvisioningArtifactInput, ? base_client.InvokeOptions): async.Operation<types.DescribeProvisioningArtifactOutput>
+    describeProvisioningParameters: function(Client, types.DescribeProvisioningParametersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeProvisioningParametersOutput>
+    describeRecord: function(Client, types.DescribeRecordInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRecordOutput>
+    describeServiceAction: function(Client, types.DescribeServiceActionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeServiceActionOutput>
+    describeServiceActionExecutionParameters: function(Client, types.DescribeServiceActionExecutionParametersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeServiceActionExecutionParametersOutput>
+    describeTagOption: function(Client, types.DescribeTagOptionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTagOptionOutput>
+    disableAWSOrganizationsAccess: function(Client, types.DisableAWSOrganizationsAccessInput, ? base_client.InvokeOptions): async.Operation<types.DisableAWSOrganizationsAccessOutput>
+    disassociateBudgetFromResource: function(Client, types.DisassociateBudgetFromResourceInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateBudgetFromResourceOutput>
+    disassociatePrincipalFromPortfolio: function(Client, types.DisassociatePrincipalFromPortfolioInput, ? base_client.InvokeOptions): async.Operation<types.DisassociatePrincipalFromPortfolioOutput>
+    disassociateProductFromPortfolio: function(Client, types.DisassociateProductFromPortfolioInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateProductFromPortfolioOutput>
+    disassociateServiceActionFromProvisioningArtifact: function(Client, types.DisassociateServiceActionFromProvisioningArtifactInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateServiceActionFromProvisioningArtifactOutput>
+    disassociateTagOptionFromResource: function(Client, types.DisassociateTagOptionFromResourceInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateTagOptionFromResourceOutput>
+    enableAWSOrganizationsAccess: function(Client, types.EnableAWSOrganizationsAccessInput, ? base_client.InvokeOptions): async.Operation<types.EnableAWSOrganizationsAccessOutput>
+    executeProvisionedProductPlan: function(Client, types.ExecuteProvisionedProductPlanInput, ? base_client.InvokeOptions): async.Operation<types.ExecuteProvisionedProductPlanOutput>
+    executeProvisionedProductServiceAction: function(Client, types.ExecuteProvisionedProductServiceActionInput, ? base_client.InvokeOptions): async.Operation<types.ExecuteProvisionedProductServiceActionOutput>
+    getAWSOrganizationsAccessStatus: function(Client, types.GetAWSOrganizationsAccessStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetAWSOrganizationsAccessStatusOutput>
+    getProvisionedProductOutputs: function(Client, types.GetProvisionedProductOutputsInput, ? base_client.InvokeOptions): async.Operation<types.GetProvisionedProductOutputsOutput>
+    importAsProvisionedProduct: function(Client, types.ImportAsProvisionedProductInput, ? base_client.InvokeOptions): async.Operation<types.ImportAsProvisionedProductOutput>
+    listAcceptedPortfolioShares: function(Client, types.ListAcceptedPortfolioSharesInput, ? base_client.InvokeOptions): async.Operation<types.ListAcceptedPortfolioSharesOutput>
+    listBudgetsForResource: function(Client, types.ListBudgetsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListBudgetsForResourceOutput>
+    listConstraintsForPortfolio: function(Client, types.ListConstraintsForPortfolioInput, ? base_client.InvokeOptions): async.Operation<types.ListConstraintsForPortfolioOutput>
+    listLaunchPaths: function(Client, types.ListLaunchPathsInput, ? base_client.InvokeOptions): async.Operation<types.ListLaunchPathsOutput>
+    listOrganizationPortfolioAccess: function(Client, types.ListOrganizationPortfolioAccessInput, ? base_client.InvokeOptions): async.Operation<types.ListOrganizationPortfolioAccessOutput>
+    listPortfolioAccess: function(Client, types.ListPortfolioAccessInput, ? base_client.InvokeOptions): async.Operation<types.ListPortfolioAccessOutput>
+    listPortfolios: function(Client, types.ListPortfoliosInput, ? base_client.InvokeOptions): async.Operation<types.ListPortfoliosOutput>
+    listPortfoliosForProduct: function(Client, types.ListPortfoliosForProductInput, ? base_client.InvokeOptions): async.Operation<types.ListPortfoliosForProductOutput>
+    listPrincipalsForPortfolio: function(Client, types.ListPrincipalsForPortfolioInput, ? base_client.InvokeOptions): async.Operation<types.ListPrincipalsForPortfolioOutput>
+    listProvisionedProductPlans: function(Client, types.ListProvisionedProductPlansInput, ? base_client.InvokeOptions): async.Operation<types.ListProvisionedProductPlansOutput>
+    listProvisioningArtifacts: function(Client, types.ListProvisioningArtifactsInput, ? base_client.InvokeOptions): async.Operation<types.ListProvisioningArtifactsOutput>
+    listProvisioningArtifactsForServiceAction: function(Client, types.ListProvisioningArtifactsForServiceActionInput, ? base_client.InvokeOptions): async.Operation<types.ListProvisioningArtifactsForServiceActionOutput>
+    listRecordHistory: function(Client, types.ListRecordHistoryInput, ? base_client.InvokeOptions): async.Operation<types.ListRecordHistoryOutput>
+    listResourcesForTagOption: function(Client, types.ListResourcesForTagOptionInput, ? base_client.InvokeOptions): async.Operation<types.ListResourcesForTagOptionOutput>
+    listServiceActions: function(Client, types.ListServiceActionsInput, ? base_client.InvokeOptions): async.Operation<types.ListServiceActionsOutput>
+    listServiceActionsForProvisioningArtifact: function(Client, types.ListServiceActionsForProvisioningArtifactInput, ? base_client.InvokeOptions): async.Operation<types.ListServiceActionsForProvisioningArtifactOutput>
+    listStackInstancesForProvisionedProduct: function(Client, types.ListStackInstancesForProvisionedProductInput, ? base_client.InvokeOptions): async.Operation<types.ListStackInstancesForProvisionedProductOutput>
+    listTagOptions: function(Client, types.ListTagOptionsInput, ? base_client.InvokeOptions): async.Operation<types.ListTagOptionsOutput>
+    notifyProvisionProductEngineWorkflowResult: function(Client, types.NotifyProvisionProductEngineWorkflowResultInput, ? base_client.InvokeOptions): async.Operation<types.NotifyProvisionProductEngineWorkflowResultOutput>
+    notifyTerminateProvisionedProductEngineWorkflowResult: function(Client, types.NotifyTerminateProvisionedProductEngineWorkflowResultInput, ? base_client.InvokeOptions): async.Operation<types.NotifyTerminateProvisionedProductEngineWorkflowResultOutput>
+    notifyUpdateProvisionedProductEngineWorkflowResult: function(Client, types.NotifyUpdateProvisionedProductEngineWorkflowResultInput, ? base_client.InvokeOptions): async.Operation<types.NotifyUpdateProvisionedProductEngineWorkflowResultOutput>
+    provisionProduct: function(Client, types.ProvisionProductInput, ? base_client.InvokeOptions): async.Operation<types.ProvisionProductOutput>
+    rejectPortfolioShare: function(Client, types.RejectPortfolioShareInput, ? base_client.InvokeOptions): async.Operation<types.RejectPortfolioShareOutput>
+    scanProvisionedProducts: function(Client, types.ScanProvisionedProductsInput, ? base_client.InvokeOptions): async.Operation<types.ScanProvisionedProductsOutput>
+    searchProducts: function(Client, types.SearchProductsInput, ? base_client.InvokeOptions): async.Operation<types.SearchProductsOutput>
+    searchProductsAsAdmin: function(Client, types.SearchProductsAsAdminInput, ? base_client.InvokeOptions): async.Operation<types.SearchProductsAsAdminOutput>
+    searchProvisionedProducts: function(Client, types.SearchProvisionedProductsInput, ? base_client.InvokeOptions): async.Operation<types.SearchProvisionedProductsOutput>
+    terminateProvisionedProduct: function(Client, types.TerminateProvisionedProductInput, ? base_client.InvokeOptions): async.Operation<types.TerminateProvisionedProductOutput>
+    updateConstraint: function(Client, types.UpdateConstraintInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConstraintOutput>
+    updatePortfolio: function(Client, types.UpdatePortfolioInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePortfolioOutput>
+    updatePortfolioShare: function(Client, types.UpdatePortfolioShareInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePortfolioShareOutput>
+    updateProduct: function(Client, types.UpdateProductInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProductOutput>
+    updateProvisionedProduct: function(Client, types.UpdateProvisionedProductInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProvisionedProductOutput>
+    updateProvisionedProductProperties: function(Client, types.UpdateProvisionedProductPropertiesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProvisionedProductPropertiesOutput>
+    updateProvisioningArtifact: function(Client, types.UpdateProvisioningArtifactInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProvisioningArtifactOutput>
+    updateServiceAction: function(Client, types.UpdateServiceActionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServiceActionOutput>
+    updateTagOption: function(Client, types.UpdateTagOptionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTagOptionOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWS242ServiceCatalogService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "servicecatalog", signing_region = c.region } }
                 else
@@ -149,364 +152,364 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:acceptPortfolioShare(input: types.AcceptPortfolioShareInput, options: any): async.Operation<types.AcceptPortfolioShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptPortfolioShare, input, options) as async.Operation<types.AcceptPortfolioShareOutput>
+function C:acceptPortfolioShare(input: types.AcceptPortfolioShareInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptPortfolioShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptPortfolioShare as schema.OperationSchema, input, options) as async.Operation<types.AcceptPortfolioShareOutput>
 end
 
-function C:associateBudgetWithResource(input: types.AssociateBudgetWithResourceInput, options: any): async.Operation<types.AssociateBudgetWithResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateBudgetWithResource, input, options) as async.Operation<types.AssociateBudgetWithResourceOutput>
+function C:associateBudgetWithResource(input: types.AssociateBudgetWithResourceInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateBudgetWithResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateBudgetWithResource as schema.OperationSchema, input, options) as async.Operation<types.AssociateBudgetWithResourceOutput>
 end
 
-function C:associatePrincipalWithPortfolio(input: types.AssociatePrincipalWithPortfolioInput, options: any): async.Operation<types.AssociatePrincipalWithPortfolioOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociatePrincipalWithPortfolio, input, options) as async.Operation<types.AssociatePrincipalWithPortfolioOutput>
+function C:associatePrincipalWithPortfolio(input: types.AssociatePrincipalWithPortfolioInput, options?: base_client.InvokeOptions): async.Operation<types.AssociatePrincipalWithPortfolioOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociatePrincipalWithPortfolio as schema.OperationSchema, input, options) as async.Operation<types.AssociatePrincipalWithPortfolioOutput>
 end
 
-function C:associateProductWithPortfolio(input: types.AssociateProductWithPortfolioInput, options: any): async.Operation<types.AssociateProductWithPortfolioOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateProductWithPortfolio, input, options) as async.Operation<types.AssociateProductWithPortfolioOutput>
+function C:associateProductWithPortfolio(input: types.AssociateProductWithPortfolioInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateProductWithPortfolioOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateProductWithPortfolio as schema.OperationSchema, input, options) as async.Operation<types.AssociateProductWithPortfolioOutput>
 end
 
-function C:associateServiceActionWithProvisioningArtifact(input: types.AssociateServiceActionWithProvisioningArtifactInput, options: any): async.Operation<types.AssociateServiceActionWithProvisioningArtifactOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateServiceActionWithProvisioningArtifact, input, options) as async.Operation<types.AssociateServiceActionWithProvisioningArtifactOutput>
+function C:associateServiceActionWithProvisioningArtifact(input: types.AssociateServiceActionWithProvisioningArtifactInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateServiceActionWithProvisioningArtifactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateServiceActionWithProvisioningArtifact as schema.OperationSchema, input, options) as async.Operation<types.AssociateServiceActionWithProvisioningArtifactOutput>
 end
 
-function C:associateTagOptionWithResource(input: types.AssociateTagOptionWithResourceInput, options: any): async.Operation<types.AssociateTagOptionWithResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateTagOptionWithResource, input, options) as async.Operation<types.AssociateTagOptionWithResourceOutput>
+function C:associateTagOptionWithResource(input: types.AssociateTagOptionWithResourceInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateTagOptionWithResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateTagOptionWithResource as schema.OperationSchema, input, options) as async.Operation<types.AssociateTagOptionWithResourceOutput>
 end
 
-function C:batchAssociateServiceActionWithProvisioningArtifact(input: types.BatchAssociateServiceActionWithProvisioningArtifactInput, options: any): async.Operation<types.BatchAssociateServiceActionWithProvisioningArtifactOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchAssociateServiceActionWithProvisioningArtifact, input, options) as async.Operation<types.BatchAssociateServiceActionWithProvisioningArtifactOutput>
+function C:batchAssociateServiceActionWithProvisioningArtifact(input: types.BatchAssociateServiceActionWithProvisioningArtifactInput, options?: base_client.InvokeOptions): async.Operation<types.BatchAssociateServiceActionWithProvisioningArtifactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchAssociateServiceActionWithProvisioningArtifact as schema.OperationSchema, input, options) as async.Operation<types.BatchAssociateServiceActionWithProvisioningArtifactOutput>
 end
 
-function C:batchDisassociateServiceActionFromProvisioningArtifact(input: types.BatchDisassociateServiceActionFromProvisioningArtifactInput, options: any): async.Operation<types.BatchDisassociateServiceActionFromProvisioningArtifactOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDisassociateServiceActionFromProvisioningArtifact, input, options) as async.Operation<types.BatchDisassociateServiceActionFromProvisioningArtifactOutput>
+function C:batchDisassociateServiceActionFromProvisioningArtifact(input: types.BatchDisassociateServiceActionFromProvisioningArtifactInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDisassociateServiceActionFromProvisioningArtifactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDisassociateServiceActionFromProvisioningArtifact as schema.OperationSchema, input, options) as async.Operation<types.BatchDisassociateServiceActionFromProvisioningArtifactOutput>
 end
 
-function C:copyProduct(input: types.CopyProductInput, options: any): async.Operation<types.CopyProductOutput>
-    return self:invokeOperation(schemas.Service, schemas.CopyProduct, input, options) as async.Operation<types.CopyProductOutput>
+function C:copyProduct(input: types.CopyProductInput, options?: base_client.InvokeOptions): async.Operation<types.CopyProductOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CopyProduct as schema.OperationSchema, input, options) as async.Operation<types.CopyProductOutput>
 end
 
-function C:createConstraint(input: types.CreateConstraintInput, options: any): async.Operation<types.CreateConstraintOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConstraint, input, options) as async.Operation<types.CreateConstraintOutput>
+function C:createConstraint(input: types.CreateConstraintInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConstraintOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConstraint as schema.OperationSchema, input, options) as async.Operation<types.CreateConstraintOutput>
 end
 
-function C:createPortfolio(input: types.CreatePortfolioInput, options: any): async.Operation<types.CreatePortfolioOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePortfolio, input, options) as async.Operation<types.CreatePortfolioOutput>
+function C:createPortfolio(input: types.CreatePortfolioInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePortfolioOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePortfolio as schema.OperationSchema, input, options) as async.Operation<types.CreatePortfolioOutput>
 end
 
-function C:createPortfolioShare(input: types.CreatePortfolioShareInput, options: any): async.Operation<types.CreatePortfolioShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePortfolioShare, input, options) as async.Operation<types.CreatePortfolioShareOutput>
+function C:createPortfolioShare(input: types.CreatePortfolioShareInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePortfolioShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePortfolioShare as schema.OperationSchema, input, options) as async.Operation<types.CreatePortfolioShareOutput>
 end
 
-function C:createProduct(input: types.CreateProductInput, options: any): async.Operation<types.CreateProductOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProduct, input, options) as async.Operation<types.CreateProductOutput>
+function C:createProduct(input: types.CreateProductInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProductOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProduct as schema.OperationSchema, input, options) as async.Operation<types.CreateProductOutput>
 end
 
-function C:createProvisionedProductPlan(input: types.CreateProvisionedProductPlanInput, options: any): async.Operation<types.CreateProvisionedProductPlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProvisionedProductPlan, input, options) as async.Operation<types.CreateProvisionedProductPlanOutput>
+function C:createProvisionedProductPlan(input: types.CreateProvisionedProductPlanInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProvisionedProductPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProvisionedProductPlan as schema.OperationSchema, input, options) as async.Operation<types.CreateProvisionedProductPlanOutput>
 end
 
-function C:createProvisioningArtifact(input: types.CreateProvisioningArtifactInput, options: any): async.Operation<types.CreateProvisioningArtifactOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProvisioningArtifact, input, options) as async.Operation<types.CreateProvisioningArtifactOutput>
+function C:createProvisioningArtifact(input: types.CreateProvisioningArtifactInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProvisioningArtifactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProvisioningArtifact as schema.OperationSchema, input, options) as async.Operation<types.CreateProvisioningArtifactOutput>
 end
 
-function C:createServiceAction(input: types.CreateServiceActionInput, options: any): async.Operation<types.CreateServiceActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateServiceAction, input, options) as async.Operation<types.CreateServiceActionOutput>
+function C:createServiceAction(input: types.CreateServiceActionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateServiceActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateServiceAction as schema.OperationSchema, input, options) as async.Operation<types.CreateServiceActionOutput>
 end
 
-function C:createTagOption(input: types.CreateTagOptionInput, options: any): async.Operation<types.CreateTagOptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTagOption, input, options) as async.Operation<types.CreateTagOptionOutput>
+function C:createTagOption(input: types.CreateTagOptionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTagOptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTagOption as schema.OperationSchema, input, options) as async.Operation<types.CreateTagOptionOutput>
 end
 
-function C:deleteConstraint(input: types.DeleteConstraintInput, options: any): async.Operation<types.DeleteConstraintOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConstraint, input, options) as async.Operation<types.DeleteConstraintOutput>
+function C:deleteConstraint(input: types.DeleteConstraintInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConstraintOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConstraint as schema.OperationSchema, input, options) as async.Operation<types.DeleteConstraintOutput>
 end
 
-function C:deletePortfolio(input: types.DeletePortfolioInput, options: any): async.Operation<types.DeletePortfolioOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePortfolio, input, options) as async.Operation<types.DeletePortfolioOutput>
+function C:deletePortfolio(input: types.DeletePortfolioInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePortfolioOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePortfolio as schema.OperationSchema, input, options) as async.Operation<types.DeletePortfolioOutput>
 end
 
-function C:deletePortfolioShare(input: types.DeletePortfolioShareInput, options: any): async.Operation<types.DeletePortfolioShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePortfolioShare, input, options) as async.Operation<types.DeletePortfolioShareOutput>
+function C:deletePortfolioShare(input: types.DeletePortfolioShareInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePortfolioShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePortfolioShare as schema.OperationSchema, input, options) as async.Operation<types.DeletePortfolioShareOutput>
 end
 
-function C:deleteProduct(input: types.DeleteProductInput, options: any): async.Operation<types.DeleteProductOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProduct, input, options) as async.Operation<types.DeleteProductOutput>
+function C:deleteProduct(input: types.DeleteProductInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProductOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProduct as schema.OperationSchema, input, options) as async.Operation<types.DeleteProductOutput>
 end
 
-function C:deleteProvisionedProductPlan(input: types.DeleteProvisionedProductPlanInput, options: any): async.Operation<types.DeleteProvisionedProductPlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProvisionedProductPlan, input, options) as async.Operation<types.DeleteProvisionedProductPlanOutput>
+function C:deleteProvisionedProductPlan(input: types.DeleteProvisionedProductPlanInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProvisionedProductPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProvisionedProductPlan as schema.OperationSchema, input, options) as async.Operation<types.DeleteProvisionedProductPlanOutput>
 end
 
-function C:deleteProvisioningArtifact(input: types.DeleteProvisioningArtifactInput, options: any): async.Operation<types.DeleteProvisioningArtifactOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProvisioningArtifact, input, options) as async.Operation<types.DeleteProvisioningArtifactOutput>
+function C:deleteProvisioningArtifact(input: types.DeleteProvisioningArtifactInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProvisioningArtifactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProvisioningArtifact as schema.OperationSchema, input, options) as async.Operation<types.DeleteProvisioningArtifactOutput>
 end
 
-function C:deleteServiceAction(input: types.DeleteServiceActionInput, options: any): async.Operation<types.DeleteServiceActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteServiceAction, input, options) as async.Operation<types.DeleteServiceActionOutput>
+function C:deleteServiceAction(input: types.DeleteServiceActionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteServiceActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteServiceAction as schema.OperationSchema, input, options) as async.Operation<types.DeleteServiceActionOutput>
 end
 
-function C:deleteTagOption(input: types.DeleteTagOptionInput, options: any): async.Operation<types.DeleteTagOptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTagOption, input, options) as async.Operation<types.DeleteTagOptionOutput>
+function C:deleteTagOption(input: types.DeleteTagOptionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTagOptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTagOption as schema.OperationSchema, input, options) as async.Operation<types.DeleteTagOptionOutput>
 end
 
-function C:describeConstraint(input: types.DescribeConstraintInput, options: any): async.Operation<types.DescribeConstraintOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeConstraint, input, options) as async.Operation<types.DescribeConstraintOutput>
+function C:describeConstraint(input: types.DescribeConstraintInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeConstraintOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeConstraint as schema.OperationSchema, input, options) as async.Operation<types.DescribeConstraintOutput>
 end
 
-function C:describeCopyProductStatus(input: types.DescribeCopyProductStatusInput, options: any): async.Operation<types.DescribeCopyProductStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCopyProductStatus, input, options) as async.Operation<types.DescribeCopyProductStatusOutput>
+function C:describeCopyProductStatus(input: types.DescribeCopyProductStatusInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCopyProductStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCopyProductStatus as schema.OperationSchema, input, options) as async.Operation<types.DescribeCopyProductStatusOutput>
 end
 
-function C:describePortfolio(input: types.DescribePortfolioInput, options: any): async.Operation<types.DescribePortfolioOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePortfolio, input, options) as async.Operation<types.DescribePortfolioOutput>
+function C:describePortfolio(input: types.DescribePortfolioInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePortfolioOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePortfolio as schema.OperationSchema, input, options) as async.Operation<types.DescribePortfolioOutput>
 end
 
-function C:describePortfolioShares(input: types.DescribePortfolioSharesInput, options: any): async.Operation<types.DescribePortfolioSharesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePortfolioShares, input, options) as async.Operation<types.DescribePortfolioSharesOutput>
+function C:describePortfolioShares(input: types.DescribePortfolioSharesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePortfolioSharesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePortfolioShares as schema.OperationSchema, input, options) as async.Operation<types.DescribePortfolioSharesOutput>
 end
 
-function C:describePortfolioShareStatus(input: types.DescribePortfolioShareStatusInput, options: any): async.Operation<types.DescribePortfolioShareStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePortfolioShareStatus, input, options) as async.Operation<types.DescribePortfolioShareStatusOutput>
+function C:describePortfolioShareStatus(input: types.DescribePortfolioShareStatusInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePortfolioShareStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePortfolioShareStatus as schema.OperationSchema, input, options) as async.Operation<types.DescribePortfolioShareStatusOutput>
 end
 
-function C:describeProduct(input: types.DescribeProductInput, options: any): async.Operation<types.DescribeProductOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeProduct, input, options) as async.Operation<types.DescribeProductOutput>
+function C:describeProduct(input: types.DescribeProductInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeProductOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeProduct as schema.OperationSchema, input, options) as async.Operation<types.DescribeProductOutput>
 end
 
-function C:describeProductAsAdmin(input: types.DescribeProductAsAdminInput, options: any): async.Operation<types.DescribeProductAsAdminOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeProductAsAdmin, input, options) as async.Operation<types.DescribeProductAsAdminOutput>
+function C:describeProductAsAdmin(input: types.DescribeProductAsAdminInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeProductAsAdminOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeProductAsAdmin as schema.OperationSchema, input, options) as async.Operation<types.DescribeProductAsAdminOutput>
 end
 
-function C:describeProductView(input: types.DescribeProductViewInput, options: any): async.Operation<types.DescribeProductViewOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeProductView, input, options) as async.Operation<types.DescribeProductViewOutput>
+function C:describeProductView(input: types.DescribeProductViewInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeProductViewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeProductView as schema.OperationSchema, input, options) as async.Operation<types.DescribeProductViewOutput>
 end
 
-function C:describeProvisionedProduct(input: types.DescribeProvisionedProductInput, options: any): async.Operation<types.DescribeProvisionedProductOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeProvisionedProduct, input, options) as async.Operation<types.DescribeProvisionedProductOutput>
+function C:describeProvisionedProduct(input: types.DescribeProvisionedProductInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeProvisionedProductOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeProvisionedProduct as schema.OperationSchema, input, options) as async.Operation<types.DescribeProvisionedProductOutput>
 end
 
-function C:describeProvisionedProductPlan(input: types.DescribeProvisionedProductPlanInput, options: any): async.Operation<types.DescribeProvisionedProductPlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeProvisionedProductPlan, input, options) as async.Operation<types.DescribeProvisionedProductPlanOutput>
+function C:describeProvisionedProductPlan(input: types.DescribeProvisionedProductPlanInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeProvisionedProductPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeProvisionedProductPlan as schema.OperationSchema, input, options) as async.Operation<types.DescribeProvisionedProductPlanOutput>
 end
 
-function C:describeProvisioningArtifact(input: types.DescribeProvisioningArtifactInput, options: any): async.Operation<types.DescribeProvisioningArtifactOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeProvisioningArtifact, input, options) as async.Operation<types.DescribeProvisioningArtifactOutput>
+function C:describeProvisioningArtifact(input: types.DescribeProvisioningArtifactInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeProvisioningArtifactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeProvisioningArtifact as schema.OperationSchema, input, options) as async.Operation<types.DescribeProvisioningArtifactOutput>
 end
 
-function C:describeProvisioningParameters(input: types.DescribeProvisioningParametersInput, options: any): async.Operation<types.DescribeProvisioningParametersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeProvisioningParameters, input, options) as async.Operation<types.DescribeProvisioningParametersOutput>
+function C:describeProvisioningParameters(input: types.DescribeProvisioningParametersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeProvisioningParametersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeProvisioningParameters as schema.OperationSchema, input, options) as async.Operation<types.DescribeProvisioningParametersOutput>
 end
 
-function C:describeRecord(input: types.DescribeRecordInput, options: any): async.Operation<types.DescribeRecordOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRecord, input, options) as async.Operation<types.DescribeRecordOutput>
+function C:describeRecord(input: types.DescribeRecordInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRecordOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRecord as schema.OperationSchema, input, options) as async.Operation<types.DescribeRecordOutput>
 end
 
-function C:describeServiceAction(input: types.DescribeServiceActionInput, options: any): async.Operation<types.DescribeServiceActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeServiceAction, input, options) as async.Operation<types.DescribeServiceActionOutput>
+function C:describeServiceAction(input: types.DescribeServiceActionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeServiceActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeServiceAction as schema.OperationSchema, input, options) as async.Operation<types.DescribeServiceActionOutput>
 end
 
-function C:describeServiceActionExecutionParameters(input: types.DescribeServiceActionExecutionParametersInput, options: any): async.Operation<types.DescribeServiceActionExecutionParametersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeServiceActionExecutionParameters, input, options) as async.Operation<types.DescribeServiceActionExecutionParametersOutput>
+function C:describeServiceActionExecutionParameters(input: types.DescribeServiceActionExecutionParametersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeServiceActionExecutionParametersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeServiceActionExecutionParameters as schema.OperationSchema, input, options) as async.Operation<types.DescribeServiceActionExecutionParametersOutput>
 end
 
-function C:describeTagOption(input: types.DescribeTagOptionInput, options: any): async.Operation<types.DescribeTagOptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTagOption, input, options) as async.Operation<types.DescribeTagOptionOutput>
+function C:describeTagOption(input: types.DescribeTagOptionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTagOptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTagOption as schema.OperationSchema, input, options) as async.Operation<types.DescribeTagOptionOutput>
 end
 
-function C:disableAWSOrganizationsAccess(input: types.DisableAWSOrganizationsAccessInput, options: any): async.Operation<types.DisableAWSOrganizationsAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableAWSOrganizationsAccess, input, options) as async.Operation<types.DisableAWSOrganizationsAccessOutput>
+function C:disableAWSOrganizationsAccess(input: types.DisableAWSOrganizationsAccessInput, options?: base_client.InvokeOptions): async.Operation<types.DisableAWSOrganizationsAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableAWSOrganizationsAccess as schema.OperationSchema, input, options) as async.Operation<types.DisableAWSOrganizationsAccessOutput>
 end
 
-function C:disassociateBudgetFromResource(input: types.DisassociateBudgetFromResourceInput, options: any): async.Operation<types.DisassociateBudgetFromResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateBudgetFromResource, input, options) as async.Operation<types.DisassociateBudgetFromResourceOutput>
+function C:disassociateBudgetFromResource(input: types.DisassociateBudgetFromResourceInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateBudgetFromResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateBudgetFromResource as schema.OperationSchema, input, options) as async.Operation<types.DisassociateBudgetFromResourceOutput>
 end
 
-function C:disassociatePrincipalFromPortfolio(input: types.DisassociatePrincipalFromPortfolioInput, options: any): async.Operation<types.DisassociatePrincipalFromPortfolioOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociatePrincipalFromPortfolio, input, options) as async.Operation<types.DisassociatePrincipalFromPortfolioOutput>
+function C:disassociatePrincipalFromPortfolio(input: types.DisassociatePrincipalFromPortfolioInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociatePrincipalFromPortfolioOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociatePrincipalFromPortfolio as schema.OperationSchema, input, options) as async.Operation<types.DisassociatePrincipalFromPortfolioOutput>
 end
 
-function C:disassociateProductFromPortfolio(input: types.DisassociateProductFromPortfolioInput, options: any): async.Operation<types.DisassociateProductFromPortfolioOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateProductFromPortfolio, input, options) as async.Operation<types.DisassociateProductFromPortfolioOutput>
+function C:disassociateProductFromPortfolio(input: types.DisassociateProductFromPortfolioInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateProductFromPortfolioOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateProductFromPortfolio as schema.OperationSchema, input, options) as async.Operation<types.DisassociateProductFromPortfolioOutput>
 end
 
-function C:disassociateServiceActionFromProvisioningArtifact(input: types.DisassociateServiceActionFromProvisioningArtifactInput, options: any): async.Operation<types.DisassociateServiceActionFromProvisioningArtifactOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateServiceActionFromProvisioningArtifact, input, options) as async.Operation<types.DisassociateServiceActionFromProvisioningArtifactOutput>
+function C:disassociateServiceActionFromProvisioningArtifact(input: types.DisassociateServiceActionFromProvisioningArtifactInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateServiceActionFromProvisioningArtifactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateServiceActionFromProvisioningArtifact as schema.OperationSchema, input, options) as async.Operation<types.DisassociateServiceActionFromProvisioningArtifactOutput>
 end
 
-function C:disassociateTagOptionFromResource(input: types.DisassociateTagOptionFromResourceInput, options: any): async.Operation<types.DisassociateTagOptionFromResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateTagOptionFromResource, input, options) as async.Operation<types.DisassociateTagOptionFromResourceOutput>
+function C:disassociateTagOptionFromResource(input: types.DisassociateTagOptionFromResourceInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateTagOptionFromResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateTagOptionFromResource as schema.OperationSchema, input, options) as async.Operation<types.DisassociateTagOptionFromResourceOutput>
 end
 
-function C:enableAWSOrganizationsAccess(input: types.EnableAWSOrganizationsAccessInput, options: any): async.Operation<types.EnableAWSOrganizationsAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableAWSOrganizationsAccess, input, options) as async.Operation<types.EnableAWSOrganizationsAccessOutput>
+function C:enableAWSOrganizationsAccess(input: types.EnableAWSOrganizationsAccessInput, options?: base_client.InvokeOptions): async.Operation<types.EnableAWSOrganizationsAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableAWSOrganizationsAccess as schema.OperationSchema, input, options) as async.Operation<types.EnableAWSOrganizationsAccessOutput>
 end
 
-function C:executeProvisionedProductPlan(input: types.ExecuteProvisionedProductPlanInput, options: any): async.Operation<types.ExecuteProvisionedProductPlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExecuteProvisionedProductPlan, input, options) as async.Operation<types.ExecuteProvisionedProductPlanOutput>
+function C:executeProvisionedProductPlan(input: types.ExecuteProvisionedProductPlanInput, options?: base_client.InvokeOptions): async.Operation<types.ExecuteProvisionedProductPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExecuteProvisionedProductPlan as schema.OperationSchema, input, options) as async.Operation<types.ExecuteProvisionedProductPlanOutput>
 end
 
-function C:executeProvisionedProductServiceAction(input: types.ExecuteProvisionedProductServiceActionInput, options: any): async.Operation<types.ExecuteProvisionedProductServiceActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExecuteProvisionedProductServiceAction, input, options) as async.Operation<types.ExecuteProvisionedProductServiceActionOutput>
+function C:executeProvisionedProductServiceAction(input: types.ExecuteProvisionedProductServiceActionInput, options?: base_client.InvokeOptions): async.Operation<types.ExecuteProvisionedProductServiceActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExecuteProvisionedProductServiceAction as schema.OperationSchema, input, options) as async.Operation<types.ExecuteProvisionedProductServiceActionOutput>
 end
 
-function C:getAWSOrganizationsAccessStatus(input: types.GetAWSOrganizationsAccessStatusInput, options: any): async.Operation<types.GetAWSOrganizationsAccessStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAWSOrganizationsAccessStatus, input, options) as async.Operation<types.GetAWSOrganizationsAccessStatusOutput>
+function C:getAWSOrganizationsAccessStatus(input: types.GetAWSOrganizationsAccessStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetAWSOrganizationsAccessStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAWSOrganizationsAccessStatus as schema.OperationSchema, input, options) as async.Operation<types.GetAWSOrganizationsAccessStatusOutput>
 end
 
-function C:getProvisionedProductOutputs(input: types.GetProvisionedProductOutputsInput, options: any): async.Operation<types.GetProvisionedProductOutputsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetProvisionedProductOutputs, input, options) as async.Operation<types.GetProvisionedProductOutputsOutput>
+function C:getProvisionedProductOutputs(input: types.GetProvisionedProductOutputsInput, options?: base_client.InvokeOptions): async.Operation<types.GetProvisionedProductOutputsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProvisionedProductOutputs as schema.OperationSchema, input, options) as async.Operation<types.GetProvisionedProductOutputsOutput>
 end
 
-function C:importAsProvisionedProduct(input: types.ImportAsProvisionedProductInput, options: any): async.Operation<types.ImportAsProvisionedProductOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportAsProvisionedProduct, input, options) as async.Operation<types.ImportAsProvisionedProductOutput>
+function C:importAsProvisionedProduct(input: types.ImportAsProvisionedProductInput, options?: base_client.InvokeOptions): async.Operation<types.ImportAsProvisionedProductOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportAsProvisionedProduct as schema.OperationSchema, input, options) as async.Operation<types.ImportAsProvisionedProductOutput>
 end
 
-function C:listAcceptedPortfolioShares(input: types.ListAcceptedPortfolioSharesInput, options: any): async.Operation<types.ListAcceptedPortfolioSharesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAcceptedPortfolioShares, input, options) as async.Operation<types.ListAcceptedPortfolioSharesOutput>
+function C:listAcceptedPortfolioShares(input: types.ListAcceptedPortfolioSharesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAcceptedPortfolioSharesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAcceptedPortfolioShares as schema.OperationSchema, input, options) as async.Operation<types.ListAcceptedPortfolioSharesOutput>
 end
 
-function C:listBudgetsForResource(input: types.ListBudgetsForResourceInput, options: any): async.Operation<types.ListBudgetsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBudgetsForResource, input, options) as async.Operation<types.ListBudgetsForResourceOutput>
+function C:listBudgetsForResource(input: types.ListBudgetsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListBudgetsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBudgetsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListBudgetsForResourceOutput>
 end
 
-function C:listConstraintsForPortfolio(input: types.ListConstraintsForPortfolioInput, options: any): async.Operation<types.ListConstraintsForPortfolioOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConstraintsForPortfolio, input, options) as async.Operation<types.ListConstraintsForPortfolioOutput>
+function C:listConstraintsForPortfolio(input: types.ListConstraintsForPortfolioInput, options?: base_client.InvokeOptions): async.Operation<types.ListConstraintsForPortfolioOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConstraintsForPortfolio as schema.OperationSchema, input, options) as async.Operation<types.ListConstraintsForPortfolioOutput>
 end
 
-function C:listLaunchPaths(input: types.ListLaunchPathsInput, options: any): async.Operation<types.ListLaunchPathsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLaunchPaths, input, options) as async.Operation<types.ListLaunchPathsOutput>
+function C:listLaunchPaths(input: types.ListLaunchPathsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLaunchPathsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLaunchPaths as schema.OperationSchema, input, options) as async.Operation<types.ListLaunchPathsOutput>
 end
 
-function C:listOrganizationPortfolioAccess(input: types.ListOrganizationPortfolioAccessInput, options: any): async.Operation<types.ListOrganizationPortfolioAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOrganizationPortfolioAccess, input, options) as async.Operation<types.ListOrganizationPortfolioAccessOutput>
+function C:listOrganizationPortfolioAccess(input: types.ListOrganizationPortfolioAccessInput, options?: base_client.InvokeOptions): async.Operation<types.ListOrganizationPortfolioAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOrganizationPortfolioAccess as schema.OperationSchema, input, options) as async.Operation<types.ListOrganizationPortfolioAccessOutput>
 end
 
-function C:listPortfolioAccess(input: types.ListPortfolioAccessInput, options: any): async.Operation<types.ListPortfolioAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPortfolioAccess, input, options) as async.Operation<types.ListPortfolioAccessOutput>
+function C:listPortfolioAccess(input: types.ListPortfolioAccessInput, options?: base_client.InvokeOptions): async.Operation<types.ListPortfolioAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPortfolioAccess as schema.OperationSchema, input, options) as async.Operation<types.ListPortfolioAccessOutput>
 end
 
-function C:listPortfolios(input: types.ListPortfoliosInput, options: any): async.Operation<types.ListPortfoliosOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPortfolios, input, options) as async.Operation<types.ListPortfoliosOutput>
+function C:listPortfolios(input: types.ListPortfoliosInput, options?: base_client.InvokeOptions): async.Operation<types.ListPortfoliosOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPortfolios as schema.OperationSchema, input, options) as async.Operation<types.ListPortfoliosOutput>
 end
 
-function C:listPortfoliosForProduct(input: types.ListPortfoliosForProductInput, options: any): async.Operation<types.ListPortfoliosForProductOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPortfoliosForProduct, input, options) as async.Operation<types.ListPortfoliosForProductOutput>
+function C:listPortfoliosForProduct(input: types.ListPortfoliosForProductInput, options?: base_client.InvokeOptions): async.Operation<types.ListPortfoliosForProductOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPortfoliosForProduct as schema.OperationSchema, input, options) as async.Operation<types.ListPortfoliosForProductOutput>
 end
 
-function C:listPrincipalsForPortfolio(input: types.ListPrincipalsForPortfolioInput, options: any): async.Operation<types.ListPrincipalsForPortfolioOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPrincipalsForPortfolio, input, options) as async.Operation<types.ListPrincipalsForPortfolioOutput>
+function C:listPrincipalsForPortfolio(input: types.ListPrincipalsForPortfolioInput, options?: base_client.InvokeOptions): async.Operation<types.ListPrincipalsForPortfolioOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPrincipalsForPortfolio as schema.OperationSchema, input, options) as async.Operation<types.ListPrincipalsForPortfolioOutput>
 end
 
-function C:listProvisionedProductPlans(input: types.ListProvisionedProductPlansInput, options: any): async.Operation<types.ListProvisionedProductPlansOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProvisionedProductPlans, input, options) as async.Operation<types.ListProvisionedProductPlansOutput>
+function C:listProvisionedProductPlans(input: types.ListProvisionedProductPlansInput, options?: base_client.InvokeOptions): async.Operation<types.ListProvisionedProductPlansOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProvisionedProductPlans as schema.OperationSchema, input, options) as async.Operation<types.ListProvisionedProductPlansOutput>
 end
 
-function C:listProvisioningArtifacts(input: types.ListProvisioningArtifactsInput, options: any): async.Operation<types.ListProvisioningArtifactsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProvisioningArtifacts, input, options) as async.Operation<types.ListProvisioningArtifactsOutput>
+function C:listProvisioningArtifacts(input: types.ListProvisioningArtifactsInput, options?: base_client.InvokeOptions): async.Operation<types.ListProvisioningArtifactsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProvisioningArtifacts as schema.OperationSchema, input, options) as async.Operation<types.ListProvisioningArtifactsOutput>
 end
 
-function C:listProvisioningArtifactsForServiceAction(input: types.ListProvisioningArtifactsForServiceActionInput, options: any): async.Operation<types.ListProvisioningArtifactsForServiceActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProvisioningArtifactsForServiceAction, input, options) as async.Operation<types.ListProvisioningArtifactsForServiceActionOutput>
+function C:listProvisioningArtifactsForServiceAction(input: types.ListProvisioningArtifactsForServiceActionInput, options?: base_client.InvokeOptions): async.Operation<types.ListProvisioningArtifactsForServiceActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProvisioningArtifactsForServiceAction as schema.OperationSchema, input, options) as async.Operation<types.ListProvisioningArtifactsForServiceActionOutput>
 end
 
-function C:listRecordHistory(input: types.ListRecordHistoryInput, options: any): async.Operation<types.ListRecordHistoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRecordHistory, input, options) as async.Operation<types.ListRecordHistoryOutput>
+function C:listRecordHistory(input: types.ListRecordHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecordHistoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecordHistory as schema.OperationSchema, input, options) as async.Operation<types.ListRecordHistoryOutput>
 end
 
-function C:listResourcesForTagOption(input: types.ListResourcesForTagOptionInput, options: any): async.Operation<types.ListResourcesForTagOptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResourcesForTagOption, input, options) as async.Operation<types.ListResourcesForTagOptionOutput>
+function C:listResourcesForTagOption(input: types.ListResourcesForTagOptionInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourcesForTagOptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourcesForTagOption as schema.OperationSchema, input, options) as async.Operation<types.ListResourcesForTagOptionOutput>
 end
 
-function C:listServiceActions(input: types.ListServiceActionsInput, options: any): async.Operation<types.ListServiceActionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServiceActions, input, options) as async.Operation<types.ListServiceActionsOutput>
+function C:listServiceActions(input: types.ListServiceActionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListServiceActionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServiceActions as schema.OperationSchema, input, options) as async.Operation<types.ListServiceActionsOutput>
 end
 
-function C:listServiceActionsForProvisioningArtifact(input: types.ListServiceActionsForProvisioningArtifactInput, options: any): async.Operation<types.ListServiceActionsForProvisioningArtifactOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServiceActionsForProvisioningArtifact, input, options) as async.Operation<types.ListServiceActionsForProvisioningArtifactOutput>
+function C:listServiceActionsForProvisioningArtifact(input: types.ListServiceActionsForProvisioningArtifactInput, options?: base_client.InvokeOptions): async.Operation<types.ListServiceActionsForProvisioningArtifactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServiceActionsForProvisioningArtifact as schema.OperationSchema, input, options) as async.Operation<types.ListServiceActionsForProvisioningArtifactOutput>
 end
 
-function C:listStackInstancesForProvisionedProduct(input: types.ListStackInstancesForProvisionedProductInput, options: any): async.Operation<types.ListStackInstancesForProvisionedProductOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStackInstancesForProvisionedProduct, input, options) as async.Operation<types.ListStackInstancesForProvisionedProductOutput>
+function C:listStackInstancesForProvisionedProduct(input: types.ListStackInstancesForProvisionedProductInput, options?: base_client.InvokeOptions): async.Operation<types.ListStackInstancesForProvisionedProductOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStackInstancesForProvisionedProduct as schema.OperationSchema, input, options) as async.Operation<types.ListStackInstancesForProvisionedProductOutput>
 end
 
-function C:listTagOptions(input: types.ListTagOptionsInput, options: any): async.Operation<types.ListTagOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagOptions, input, options) as async.Operation<types.ListTagOptionsOutput>
+function C:listTagOptions(input: types.ListTagOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagOptions as schema.OperationSchema, input, options) as async.Operation<types.ListTagOptionsOutput>
 end
 
-function C:notifyProvisionProductEngineWorkflowResult(input: types.NotifyProvisionProductEngineWorkflowResultInput, options: any): async.Operation<types.NotifyProvisionProductEngineWorkflowResultOutput>
-    return self:invokeOperation(schemas.Service, schemas.NotifyProvisionProductEngineWorkflowResult, input, options) as async.Operation<types.NotifyProvisionProductEngineWorkflowResultOutput>
+function C:notifyProvisionProductEngineWorkflowResult(input: types.NotifyProvisionProductEngineWorkflowResultInput, options?: base_client.InvokeOptions): async.Operation<types.NotifyProvisionProductEngineWorkflowResultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.NotifyProvisionProductEngineWorkflowResult as schema.OperationSchema, input, options) as async.Operation<types.NotifyProvisionProductEngineWorkflowResultOutput>
 end
 
-function C:notifyTerminateProvisionedProductEngineWorkflowResult(input: types.NotifyTerminateProvisionedProductEngineWorkflowResultInput, options: any): async.Operation<types.NotifyTerminateProvisionedProductEngineWorkflowResultOutput>
-    return self:invokeOperation(schemas.Service, schemas.NotifyTerminateProvisionedProductEngineWorkflowResult, input, options) as async.Operation<types.NotifyTerminateProvisionedProductEngineWorkflowResultOutput>
+function C:notifyTerminateProvisionedProductEngineWorkflowResult(input: types.NotifyTerminateProvisionedProductEngineWorkflowResultInput, options?: base_client.InvokeOptions): async.Operation<types.NotifyTerminateProvisionedProductEngineWorkflowResultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.NotifyTerminateProvisionedProductEngineWorkflowResult as schema.OperationSchema, input, options) as async.Operation<types.NotifyTerminateProvisionedProductEngineWorkflowResultOutput>
 end
 
-function C:notifyUpdateProvisionedProductEngineWorkflowResult(input: types.NotifyUpdateProvisionedProductEngineWorkflowResultInput, options: any): async.Operation<types.NotifyUpdateProvisionedProductEngineWorkflowResultOutput>
-    return self:invokeOperation(schemas.Service, schemas.NotifyUpdateProvisionedProductEngineWorkflowResult, input, options) as async.Operation<types.NotifyUpdateProvisionedProductEngineWorkflowResultOutput>
+function C:notifyUpdateProvisionedProductEngineWorkflowResult(input: types.NotifyUpdateProvisionedProductEngineWorkflowResultInput, options?: base_client.InvokeOptions): async.Operation<types.NotifyUpdateProvisionedProductEngineWorkflowResultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.NotifyUpdateProvisionedProductEngineWorkflowResult as schema.OperationSchema, input, options) as async.Operation<types.NotifyUpdateProvisionedProductEngineWorkflowResultOutput>
 end
 
-function C:provisionProduct(input: types.ProvisionProductInput, options: any): async.Operation<types.ProvisionProductOutput>
-    return self:invokeOperation(schemas.Service, schemas.ProvisionProduct, input, options) as async.Operation<types.ProvisionProductOutput>
+function C:provisionProduct(input: types.ProvisionProductInput, options?: base_client.InvokeOptions): async.Operation<types.ProvisionProductOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ProvisionProduct as schema.OperationSchema, input, options) as async.Operation<types.ProvisionProductOutput>
 end
 
-function C:rejectPortfolioShare(input: types.RejectPortfolioShareInput, options: any): async.Operation<types.RejectPortfolioShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.RejectPortfolioShare, input, options) as async.Operation<types.RejectPortfolioShareOutput>
+function C:rejectPortfolioShare(input: types.RejectPortfolioShareInput, options?: base_client.InvokeOptions): async.Operation<types.RejectPortfolioShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RejectPortfolioShare as schema.OperationSchema, input, options) as async.Operation<types.RejectPortfolioShareOutput>
 end
 
-function C:scanProvisionedProducts(input: types.ScanProvisionedProductsInput, options: any): async.Operation<types.ScanProvisionedProductsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ScanProvisionedProducts, input, options) as async.Operation<types.ScanProvisionedProductsOutput>
+function C:scanProvisionedProducts(input: types.ScanProvisionedProductsInput, options?: base_client.InvokeOptions): async.Operation<types.ScanProvisionedProductsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ScanProvisionedProducts as schema.OperationSchema, input, options) as async.Operation<types.ScanProvisionedProductsOutput>
 end
 
-function C:searchProducts(input: types.SearchProductsInput, options: any): async.Operation<types.SearchProductsOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchProducts, input, options) as async.Operation<types.SearchProductsOutput>
+function C:searchProducts(input: types.SearchProductsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchProductsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchProducts as schema.OperationSchema, input, options) as async.Operation<types.SearchProductsOutput>
 end
 
-function C:searchProductsAsAdmin(input: types.SearchProductsAsAdminInput, options: any): async.Operation<types.SearchProductsAsAdminOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchProductsAsAdmin, input, options) as async.Operation<types.SearchProductsAsAdminOutput>
+function C:searchProductsAsAdmin(input: types.SearchProductsAsAdminInput, options?: base_client.InvokeOptions): async.Operation<types.SearchProductsAsAdminOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchProductsAsAdmin as schema.OperationSchema, input, options) as async.Operation<types.SearchProductsAsAdminOutput>
 end
 
-function C:searchProvisionedProducts(input: types.SearchProvisionedProductsInput, options: any): async.Operation<types.SearchProvisionedProductsOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchProvisionedProducts, input, options) as async.Operation<types.SearchProvisionedProductsOutput>
+function C:searchProvisionedProducts(input: types.SearchProvisionedProductsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchProvisionedProductsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchProvisionedProducts as schema.OperationSchema, input, options) as async.Operation<types.SearchProvisionedProductsOutput>
 end
 
-function C:terminateProvisionedProduct(input: types.TerminateProvisionedProductInput, options: any): async.Operation<types.TerminateProvisionedProductOutput>
-    return self:invokeOperation(schemas.Service, schemas.TerminateProvisionedProduct, input, options) as async.Operation<types.TerminateProvisionedProductOutput>
+function C:terminateProvisionedProduct(input: types.TerminateProvisionedProductInput, options?: base_client.InvokeOptions): async.Operation<types.TerminateProvisionedProductOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TerminateProvisionedProduct as schema.OperationSchema, input, options) as async.Operation<types.TerminateProvisionedProductOutput>
 end
 
-function C:updateConstraint(input: types.UpdateConstraintInput, options: any): async.Operation<types.UpdateConstraintOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConstraint, input, options) as async.Operation<types.UpdateConstraintOutput>
+function C:updateConstraint(input: types.UpdateConstraintInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConstraintOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConstraint as schema.OperationSchema, input, options) as async.Operation<types.UpdateConstraintOutput>
 end
 
-function C:updatePortfolio(input: types.UpdatePortfolioInput, options: any): async.Operation<types.UpdatePortfolioOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePortfolio, input, options) as async.Operation<types.UpdatePortfolioOutput>
+function C:updatePortfolio(input: types.UpdatePortfolioInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePortfolioOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePortfolio as schema.OperationSchema, input, options) as async.Operation<types.UpdatePortfolioOutput>
 end
 
-function C:updatePortfolioShare(input: types.UpdatePortfolioShareInput, options: any): async.Operation<types.UpdatePortfolioShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePortfolioShare, input, options) as async.Operation<types.UpdatePortfolioShareOutput>
+function C:updatePortfolioShare(input: types.UpdatePortfolioShareInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePortfolioShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePortfolioShare as schema.OperationSchema, input, options) as async.Operation<types.UpdatePortfolioShareOutput>
 end
 
-function C:updateProduct(input: types.UpdateProductInput, options: any): async.Operation<types.UpdateProductOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProduct, input, options) as async.Operation<types.UpdateProductOutput>
+function C:updateProduct(input: types.UpdateProductInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProductOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProduct as schema.OperationSchema, input, options) as async.Operation<types.UpdateProductOutput>
 end
 
-function C:updateProvisionedProduct(input: types.UpdateProvisionedProductInput, options: any): async.Operation<types.UpdateProvisionedProductOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProvisionedProduct, input, options) as async.Operation<types.UpdateProvisionedProductOutput>
+function C:updateProvisionedProduct(input: types.UpdateProvisionedProductInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProvisionedProductOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProvisionedProduct as schema.OperationSchema, input, options) as async.Operation<types.UpdateProvisionedProductOutput>
 end
 
-function C:updateProvisionedProductProperties(input: types.UpdateProvisionedProductPropertiesInput, options: any): async.Operation<types.UpdateProvisionedProductPropertiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProvisionedProductProperties, input, options) as async.Operation<types.UpdateProvisionedProductPropertiesOutput>
+function C:updateProvisionedProductProperties(input: types.UpdateProvisionedProductPropertiesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProvisionedProductPropertiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProvisionedProductProperties as schema.OperationSchema, input, options) as async.Operation<types.UpdateProvisionedProductPropertiesOutput>
 end
 
-function C:updateProvisioningArtifact(input: types.UpdateProvisioningArtifactInput, options: any): async.Operation<types.UpdateProvisioningArtifactOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProvisioningArtifact, input, options) as async.Operation<types.UpdateProvisioningArtifactOutput>
+function C:updateProvisioningArtifact(input: types.UpdateProvisioningArtifactInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProvisioningArtifactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProvisioningArtifact as schema.OperationSchema, input, options) as async.Operation<types.UpdateProvisioningArtifactOutput>
 end
 
-function C:updateServiceAction(input: types.UpdateServiceActionInput, options: any): async.Operation<types.UpdateServiceActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateServiceAction, input, options) as async.Operation<types.UpdateServiceActionOutput>
+function C:updateServiceAction(input: types.UpdateServiceActionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateServiceActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateServiceAction as schema.OperationSchema, input, options) as async.Operation<types.UpdateServiceActionOutput>
 end
 
-function C:updateTagOption(input: types.UpdateTagOptionInput, options: any): async.Operation<types.UpdateTagOptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTagOption, input, options) as async.Operation<types.UpdateTagOptionOutput>
+function C:updateTagOption(input: types.UpdateTagOptionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTagOptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTagOption as schema.OperationSchema, input, options) as async.Operation<types.UpdateTagOptionOutput>
 end
 
 return M

@@ -8,52 +8,55 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("healthlake.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("healthlake.schemas")
 local traits = require("smithy.traits")
 local types = require("healthlake.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createFHIRDatastore: function(Client, types.CreateFHIRDatastoreInput, any): async.Operation<types.CreateFHIRDatastoreOutput>
-    deleteFHIRDatastore: function(Client, types.DeleteFHIRDatastoreInput, any): async.Operation<types.DeleteFHIRDatastoreOutput>
-    describeFHIRDatastore: function(Client, types.DescribeFHIRDatastoreInput, any): async.Operation<types.DescribeFHIRDatastoreOutput>
-    describeFHIRExportJob: function(Client, types.DescribeFHIRExportJobInput, any): async.Operation<types.DescribeFHIRExportJobOutput>
-    describeFHIRImportJob: function(Client, types.DescribeFHIRImportJobInput, any): async.Operation<types.DescribeFHIRImportJobOutput>
-    listFHIRDatastores: function(Client, types.ListFHIRDatastoresInput, any): async.Operation<types.ListFHIRDatastoresOutput>
-    listFHIRExportJobs: function(Client, types.ListFHIRExportJobsInput, any): async.Operation<types.ListFHIRExportJobsOutput>
-    listFHIRImportJobs: function(Client, types.ListFHIRImportJobsInput, any): async.Operation<types.ListFHIRImportJobsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    startFHIRExportJob: function(Client, types.StartFHIRExportJobInput, any): async.Operation<types.StartFHIRExportJobOutput>
-    startFHIRImportJob: function(Client, types.StartFHIRImportJobInput, any): async.Operation<types.StartFHIRImportJobOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createFHIRDatastore: function(Client, types.CreateFHIRDatastoreInput, ? base_client.InvokeOptions): async.Operation<types.CreateFHIRDatastoreOutput>
+    deleteFHIRDatastore: function(Client, types.DeleteFHIRDatastoreInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFHIRDatastoreOutput>
+    describeFHIRDatastore: function(Client, types.DescribeFHIRDatastoreInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFHIRDatastoreOutput>
+    describeFHIRExportJob: function(Client, types.DescribeFHIRExportJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFHIRExportJobOutput>
+    describeFHIRImportJob: function(Client, types.DescribeFHIRImportJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFHIRImportJobOutput>
+    listFHIRDatastores: function(Client, types.ListFHIRDatastoresInput, ? base_client.InvokeOptions): async.Operation<types.ListFHIRDatastoresOutput>
+    listFHIRExportJobs: function(Client, types.ListFHIRExportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListFHIRExportJobsOutput>
+    listFHIRImportJobs: function(Client, types.ListFHIRImportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListFHIRImportJobsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    startFHIRExportJob: function(Client, types.StartFHIRExportJobInput, ? base_client.InvokeOptions): async.Operation<types.StartFHIRExportJobOutput>
+    startFHIRImportJob: function(Client, types.StartFHIRImportJobInput, ? base_client.InvokeOptions): async.Operation<types.StartFHIRImportJobOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "HealthLake"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "healthlake", signing_region = c.region } }
                 else
@@ -72,56 +75,56 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createFHIRDatastore(input: types.CreateFHIRDatastoreInput, options: any): async.Operation<types.CreateFHIRDatastoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFHIRDatastore, input, options) as async.Operation<types.CreateFHIRDatastoreOutput>
+function C:createFHIRDatastore(input: types.CreateFHIRDatastoreInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFHIRDatastoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFHIRDatastore as schema.OperationSchema, input, options) as async.Operation<types.CreateFHIRDatastoreOutput>
 end
 
-function C:deleteFHIRDatastore(input: types.DeleteFHIRDatastoreInput, options: any): async.Operation<types.DeleteFHIRDatastoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFHIRDatastore, input, options) as async.Operation<types.DeleteFHIRDatastoreOutput>
+function C:deleteFHIRDatastore(input: types.DeleteFHIRDatastoreInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFHIRDatastoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFHIRDatastore as schema.OperationSchema, input, options) as async.Operation<types.DeleteFHIRDatastoreOutput>
 end
 
-function C:describeFHIRDatastore(input: types.DescribeFHIRDatastoreInput, options: any): async.Operation<types.DescribeFHIRDatastoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFHIRDatastore, input, options) as async.Operation<types.DescribeFHIRDatastoreOutput>
+function C:describeFHIRDatastore(input: types.DescribeFHIRDatastoreInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFHIRDatastoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFHIRDatastore as schema.OperationSchema, input, options) as async.Operation<types.DescribeFHIRDatastoreOutput>
 end
 
-function C:describeFHIRExportJob(input: types.DescribeFHIRExportJobInput, options: any): async.Operation<types.DescribeFHIRExportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFHIRExportJob, input, options) as async.Operation<types.DescribeFHIRExportJobOutput>
+function C:describeFHIRExportJob(input: types.DescribeFHIRExportJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFHIRExportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFHIRExportJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeFHIRExportJobOutput>
 end
 
-function C:describeFHIRImportJob(input: types.DescribeFHIRImportJobInput, options: any): async.Operation<types.DescribeFHIRImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFHIRImportJob, input, options) as async.Operation<types.DescribeFHIRImportJobOutput>
+function C:describeFHIRImportJob(input: types.DescribeFHIRImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFHIRImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFHIRImportJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeFHIRImportJobOutput>
 end
 
-function C:listFHIRDatastores(input: types.ListFHIRDatastoresInput, options: any): async.Operation<types.ListFHIRDatastoresOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFHIRDatastores, input, options) as async.Operation<types.ListFHIRDatastoresOutput>
+function C:listFHIRDatastores(input: types.ListFHIRDatastoresInput, options?: base_client.InvokeOptions): async.Operation<types.ListFHIRDatastoresOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFHIRDatastores as schema.OperationSchema, input, options) as async.Operation<types.ListFHIRDatastoresOutput>
 end
 
-function C:listFHIRExportJobs(input: types.ListFHIRExportJobsInput, options: any): async.Operation<types.ListFHIRExportJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFHIRExportJobs, input, options) as async.Operation<types.ListFHIRExportJobsOutput>
+function C:listFHIRExportJobs(input: types.ListFHIRExportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFHIRExportJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFHIRExportJobs as schema.OperationSchema, input, options) as async.Operation<types.ListFHIRExportJobsOutput>
 end
 
-function C:listFHIRImportJobs(input: types.ListFHIRImportJobsInput, options: any): async.Operation<types.ListFHIRImportJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFHIRImportJobs, input, options) as async.Operation<types.ListFHIRImportJobsOutput>
+function C:listFHIRImportJobs(input: types.ListFHIRImportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFHIRImportJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFHIRImportJobs as schema.OperationSchema, input, options) as async.Operation<types.ListFHIRImportJobsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:startFHIRExportJob(input: types.StartFHIRExportJobInput, options: any): async.Operation<types.StartFHIRExportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartFHIRExportJob, input, options) as async.Operation<types.StartFHIRExportJobOutput>
+function C:startFHIRExportJob(input: types.StartFHIRExportJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartFHIRExportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartFHIRExportJob as schema.OperationSchema, input, options) as async.Operation<types.StartFHIRExportJobOutput>
 end
 
-function C:startFHIRImportJob(input: types.StartFHIRImportJobInput, options: any): async.Operation<types.StartFHIRImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartFHIRImportJob, input, options) as async.Operation<types.StartFHIRImportJobOutput>
+function C:startFHIRImportJob(input: types.StartFHIRImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartFHIRImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartFHIRImportJob as schema.OperationSchema, input, options) as async.Operation<types.StartFHIRImportJobOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
 return M

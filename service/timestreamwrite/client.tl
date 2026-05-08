@@ -8,58 +8,61 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("timestreamwrite.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("timestreamwrite.schemas")
 local traits = require("smithy.traits")
 local types = require("timestreamwrite.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createBatchLoadTask: function(Client, types.CreateBatchLoadTaskInput, any): async.Operation<types.CreateBatchLoadTaskOutput>
-    createDatabase: function(Client, types.CreateDatabaseInput, any): async.Operation<types.CreateDatabaseOutput>
-    createTable: function(Client, types.CreateTableInput, any): async.Operation<types.CreateTableOutput>
-    deleteDatabase: function(Client, types.DeleteDatabaseInput, any): async.Operation<types.DeleteDatabaseOutput>
-    deleteTable: function(Client, types.DeleteTableInput, any): async.Operation<types.DeleteTableOutput>
-    describeBatchLoadTask: function(Client, types.DescribeBatchLoadTaskInput, any): async.Operation<types.DescribeBatchLoadTaskOutput>
-    describeDatabase: function(Client, types.DescribeDatabaseInput, any): async.Operation<types.DescribeDatabaseOutput>
-    describeEndpoints: function(Client, types.DescribeEndpointsInput, any): async.Operation<types.DescribeEndpointsOutput>
-    describeTable: function(Client, types.DescribeTableInput, any): async.Operation<types.DescribeTableOutput>
-    listBatchLoadTasks: function(Client, types.ListBatchLoadTasksInput, any): async.Operation<types.ListBatchLoadTasksOutput>
-    listDatabases: function(Client, types.ListDatabasesInput, any): async.Operation<types.ListDatabasesOutput>
-    listTables: function(Client, types.ListTablesInput, any): async.Operation<types.ListTablesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    resumeBatchLoadTask: function(Client, types.ResumeBatchLoadTaskInput, any): async.Operation<types.ResumeBatchLoadTaskOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateDatabase: function(Client, types.UpdateDatabaseInput, any): async.Operation<types.UpdateDatabaseOutput>
-    updateTable: function(Client, types.UpdateTableInput, any): async.Operation<types.UpdateTableOutput>
-    writeRecords: function(Client, types.WriteRecordsInput, any): async.Operation<types.WriteRecordsOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createBatchLoadTask: function(Client, types.CreateBatchLoadTaskInput, ? base_client.InvokeOptions): async.Operation<types.CreateBatchLoadTaskOutput>
+    createDatabase: function(Client, types.CreateDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.CreateDatabaseOutput>
+    createTable: function(Client, types.CreateTableInput, ? base_client.InvokeOptions): async.Operation<types.CreateTableOutput>
+    deleteDatabase: function(Client, types.DeleteDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDatabaseOutput>
+    deleteTable: function(Client, types.DeleteTableInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTableOutput>
+    describeBatchLoadTask: function(Client, types.DescribeBatchLoadTaskInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBatchLoadTaskOutput>
+    describeDatabase: function(Client, types.DescribeDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDatabaseOutput>
+    describeEndpoints: function(Client, types.DescribeEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEndpointsOutput>
+    describeTable: function(Client, types.DescribeTableInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTableOutput>
+    listBatchLoadTasks: function(Client, types.ListBatchLoadTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListBatchLoadTasksOutput>
+    listDatabases: function(Client, types.ListDatabasesInput, ? base_client.InvokeOptions): async.Operation<types.ListDatabasesOutput>
+    listTables: function(Client, types.ListTablesInput, ? base_client.InvokeOptions): async.Operation<types.ListTablesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    resumeBatchLoadTask: function(Client, types.ResumeBatchLoadTaskInput, ? base_client.InvokeOptions): async.Operation<types.ResumeBatchLoadTaskOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateDatabase: function(Client, types.UpdateDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDatabaseOutput>
+    updateTable: function(Client, types.UpdateTableInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTableOutput>
+    writeRecords: function(Client, types.WriteRecordsInput, ? base_client.InvokeOptions): async.Operation<types.WriteRecordsOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "Timestream_20181101"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "timestream", signing_region = c.region } }
                 else
@@ -78,80 +81,80 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createBatchLoadTask(input: types.CreateBatchLoadTaskInput, options: any): async.Operation<types.CreateBatchLoadTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBatchLoadTask, input, options) as async.Operation<types.CreateBatchLoadTaskOutput>
+function C:createBatchLoadTask(input: types.CreateBatchLoadTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBatchLoadTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBatchLoadTask as schema.OperationSchema, input, options) as async.Operation<types.CreateBatchLoadTaskOutput>
 end
 
-function C:createDatabase(input: types.CreateDatabaseInput, options: any): async.Operation<types.CreateDatabaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDatabase, input, options) as async.Operation<types.CreateDatabaseOutput>
+function C:createDatabase(input: types.CreateDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDatabase as schema.OperationSchema, input, options) as async.Operation<types.CreateDatabaseOutput>
 end
 
-function C:createTable(input: types.CreateTableInput, options: any): async.Operation<types.CreateTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTable, input, options) as async.Operation<types.CreateTableOutput>
+function C:createTable(input: types.CreateTableInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTable as schema.OperationSchema, input, options) as async.Operation<types.CreateTableOutput>
 end
 
-function C:deleteDatabase(input: types.DeleteDatabaseInput, options: any): async.Operation<types.DeleteDatabaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDatabase, input, options) as async.Operation<types.DeleteDatabaseOutput>
+function C:deleteDatabase(input: types.DeleteDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDatabase as schema.OperationSchema, input, options) as async.Operation<types.DeleteDatabaseOutput>
 end
 
-function C:deleteTable(input: types.DeleteTableInput, options: any): async.Operation<types.DeleteTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTable, input, options) as async.Operation<types.DeleteTableOutput>
+function C:deleteTable(input: types.DeleteTableInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTable as schema.OperationSchema, input, options) as async.Operation<types.DeleteTableOutput>
 end
 
-function C:describeBatchLoadTask(input: types.DescribeBatchLoadTaskInput, options: any): async.Operation<types.DescribeBatchLoadTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeBatchLoadTask, input, options) as async.Operation<types.DescribeBatchLoadTaskOutput>
+function C:describeBatchLoadTask(input: types.DescribeBatchLoadTaskInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBatchLoadTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeBatchLoadTask as schema.OperationSchema, input, options) as async.Operation<types.DescribeBatchLoadTaskOutput>
 end
 
-function C:describeDatabase(input: types.DescribeDatabaseInput, options: any): async.Operation<types.DescribeDatabaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDatabase, input, options) as async.Operation<types.DescribeDatabaseOutput>
+function C:describeDatabase(input: types.DescribeDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDatabase as schema.OperationSchema, input, options) as async.Operation<types.DescribeDatabaseOutput>
 end
 
-function C:describeEndpoints(input: types.DescribeEndpointsInput, options: any): async.Operation<types.DescribeEndpointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEndpoints, input, options) as async.Operation<types.DescribeEndpointsOutput>
+function C:describeEndpoints(input: types.DescribeEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEndpointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEndpoints as schema.OperationSchema, input, options) as async.Operation<types.DescribeEndpointsOutput>
 end
 
-function C:describeTable(input: types.DescribeTableInput, options: any): async.Operation<types.DescribeTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTable, input, options) as async.Operation<types.DescribeTableOutput>
+function C:describeTable(input: types.DescribeTableInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTable as schema.OperationSchema, input, options) as async.Operation<types.DescribeTableOutput>
 end
 
-function C:listBatchLoadTasks(input: types.ListBatchLoadTasksInput, options: any): async.Operation<types.ListBatchLoadTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBatchLoadTasks, input, options) as async.Operation<types.ListBatchLoadTasksOutput>
+function C:listBatchLoadTasks(input: types.ListBatchLoadTasksInput, options?: base_client.InvokeOptions): async.Operation<types.ListBatchLoadTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBatchLoadTasks as schema.OperationSchema, input, options) as async.Operation<types.ListBatchLoadTasksOutput>
 end
 
-function C:listDatabases(input: types.ListDatabasesInput, options: any): async.Operation<types.ListDatabasesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDatabases, input, options) as async.Operation<types.ListDatabasesOutput>
+function C:listDatabases(input: types.ListDatabasesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDatabasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDatabases as schema.OperationSchema, input, options) as async.Operation<types.ListDatabasesOutput>
 end
 
-function C:listTables(input: types.ListTablesInput, options: any): async.Operation<types.ListTablesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTables, input, options) as async.Operation<types.ListTablesOutput>
+function C:listTables(input: types.ListTablesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTablesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTables as schema.OperationSchema, input, options) as async.Operation<types.ListTablesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:resumeBatchLoadTask(input: types.ResumeBatchLoadTaskInput, options: any): async.Operation<types.ResumeBatchLoadTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResumeBatchLoadTask, input, options) as async.Operation<types.ResumeBatchLoadTaskOutput>
+function C:resumeBatchLoadTask(input: types.ResumeBatchLoadTaskInput, options?: base_client.InvokeOptions): async.Operation<types.ResumeBatchLoadTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResumeBatchLoadTask as schema.OperationSchema, input, options) as async.Operation<types.ResumeBatchLoadTaskOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateDatabase(input: types.UpdateDatabaseInput, options: any): async.Operation<types.UpdateDatabaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDatabase, input, options) as async.Operation<types.UpdateDatabaseOutput>
+function C:updateDatabase(input: types.UpdateDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDatabase as schema.OperationSchema, input, options) as async.Operation<types.UpdateDatabaseOutput>
 end
 
-function C:updateTable(input: types.UpdateTableInput, options: any): async.Operation<types.UpdateTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTable, input, options) as async.Operation<types.UpdateTableOutput>
+function C:updateTable(input: types.UpdateTableInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTable as schema.OperationSchema, input, options) as async.Operation<types.UpdateTableOutput>
 end
 
-function C:writeRecords(input: types.WriteRecordsInput, options: any): async.Operation<types.WriteRecordsOutput>
-    return self:invokeOperation(schemas.Service, schemas.WriteRecords, input, options) as async.Operation<types.WriteRecordsOutput>
+function C:writeRecords(input: types.WriteRecordsInput, options?: base_client.InvokeOptions): async.Operation<types.WriteRecordsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.WriteRecords as schema.OperationSchema, input, options) as async.Operation<types.WriteRecordsOutput>
 end
 
 return M

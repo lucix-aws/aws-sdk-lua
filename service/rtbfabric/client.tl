@@ -8,66 +8,69 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("rtbfabric.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("rtbfabric.schemas")
 local traits = require("smithy.traits")
 local types = require("rtbfabric.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    acceptLink: function(Client, types.AcceptLinkInput, any): async.Operation<types.AcceptLinkOutput>
-    createInboundExternalLink: function(Client, types.CreateInboundExternalLinkInput, any): async.Operation<types.CreateInboundExternalLinkOutput>
-    createLink: function(Client, types.CreateLinkInput, any): async.Operation<types.CreateLinkOutput>
-    createOutboundExternalLink: function(Client, types.CreateOutboundExternalLinkInput, any): async.Operation<types.CreateOutboundExternalLinkOutput>
-    createRequesterGateway: function(Client, types.CreateRequesterGatewayInput, any): async.Operation<types.CreateRequesterGatewayOutput>
-    createResponderGateway: function(Client, types.CreateResponderGatewayInput, any): async.Operation<types.CreateResponderGatewayOutput>
-    deleteInboundExternalLink: function(Client, types.DeleteInboundExternalLinkInput, any): async.Operation<types.DeleteInboundExternalLinkOutput>
-    deleteLink: function(Client, types.DeleteLinkInput, any): async.Operation<types.DeleteLinkOutput>
-    deleteOutboundExternalLink: function(Client, types.DeleteOutboundExternalLinkInput, any): async.Operation<types.DeleteOutboundExternalLinkOutput>
-    deleteRequesterGateway: function(Client, types.DeleteRequesterGatewayInput, any): async.Operation<types.DeleteRequesterGatewayOutput>
-    deleteResponderGateway: function(Client, types.DeleteResponderGatewayInput, any): async.Operation<types.DeleteResponderGatewayOutput>
-    getInboundExternalLink: function(Client, types.GetInboundExternalLinkInput, any): async.Operation<types.GetInboundExternalLinkOutput>
-    getLink: function(Client, types.GetLinkInput, any): async.Operation<types.GetLinkOutput>
-    getOutboundExternalLink: function(Client, types.GetOutboundExternalLinkInput, any): async.Operation<types.GetOutboundExternalLinkOutput>
-    getRequesterGateway: function(Client, types.GetRequesterGatewayInput, any): async.Operation<types.GetRequesterGatewayOutput>
-    getResponderGateway: function(Client, types.GetResponderGatewayInput, any): async.Operation<types.GetResponderGatewayOutput>
-    listLinks: function(Client, types.ListLinksInput, any): async.Operation<types.ListLinksOutput>
-    listRequesterGateways: function(Client, types.ListRequesterGatewaysInput, any): async.Operation<types.ListRequesterGatewaysOutput>
-    listResponderGateways: function(Client, types.ListResponderGatewaysInput, any): async.Operation<types.ListResponderGatewaysOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    rejectLink: function(Client, types.RejectLinkInput, any): async.Operation<types.RejectLinkOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateLink: function(Client, types.UpdateLinkInput, any): async.Operation<types.UpdateLinkOutput>
-    updateLinkModuleFlow: function(Client, types.UpdateLinkModuleFlowInput, any): async.Operation<types.UpdateLinkModuleFlowOutput>
-    updateRequesterGateway: function(Client, types.UpdateRequesterGatewayInput, any): async.Operation<types.UpdateRequesterGatewayOutput>
-    updateResponderGateway: function(Client, types.UpdateResponderGatewayInput, any): async.Operation<types.UpdateResponderGatewayOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    acceptLink: function(Client, types.AcceptLinkInput, ? base_client.InvokeOptions): async.Operation<types.AcceptLinkOutput>
+    createInboundExternalLink: function(Client, types.CreateInboundExternalLinkInput, ? base_client.InvokeOptions): async.Operation<types.CreateInboundExternalLinkOutput>
+    createLink: function(Client, types.CreateLinkInput, ? base_client.InvokeOptions): async.Operation<types.CreateLinkOutput>
+    createOutboundExternalLink: function(Client, types.CreateOutboundExternalLinkInput, ? base_client.InvokeOptions): async.Operation<types.CreateOutboundExternalLinkOutput>
+    createRequesterGateway: function(Client, types.CreateRequesterGatewayInput, ? base_client.InvokeOptions): async.Operation<types.CreateRequesterGatewayOutput>
+    createResponderGateway: function(Client, types.CreateResponderGatewayInput, ? base_client.InvokeOptions): async.Operation<types.CreateResponderGatewayOutput>
+    deleteInboundExternalLink: function(Client, types.DeleteInboundExternalLinkInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInboundExternalLinkOutput>
+    deleteLink: function(Client, types.DeleteLinkInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLinkOutput>
+    deleteOutboundExternalLink: function(Client, types.DeleteOutboundExternalLinkInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOutboundExternalLinkOutput>
+    deleteRequesterGateway: function(Client, types.DeleteRequesterGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRequesterGatewayOutput>
+    deleteResponderGateway: function(Client, types.DeleteResponderGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResponderGatewayOutput>
+    getInboundExternalLink: function(Client, types.GetInboundExternalLinkInput, ? base_client.InvokeOptions): async.Operation<types.GetInboundExternalLinkOutput>
+    getLink: function(Client, types.GetLinkInput, ? base_client.InvokeOptions): async.Operation<types.GetLinkOutput>
+    getOutboundExternalLink: function(Client, types.GetOutboundExternalLinkInput, ? base_client.InvokeOptions): async.Operation<types.GetOutboundExternalLinkOutput>
+    getRequesterGateway: function(Client, types.GetRequesterGatewayInput, ? base_client.InvokeOptions): async.Operation<types.GetRequesterGatewayOutput>
+    getResponderGateway: function(Client, types.GetResponderGatewayInput, ? base_client.InvokeOptions): async.Operation<types.GetResponderGatewayOutput>
+    listLinks: function(Client, types.ListLinksInput, ? base_client.InvokeOptions): async.Operation<types.ListLinksOutput>
+    listRequesterGateways: function(Client, types.ListRequesterGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.ListRequesterGatewaysOutput>
+    listResponderGateways: function(Client, types.ListResponderGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.ListResponderGatewaysOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    rejectLink: function(Client, types.RejectLinkInput, ? base_client.InvokeOptions): async.Operation<types.RejectLinkOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateLink: function(Client, types.UpdateLinkInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLinkOutput>
+    updateLinkModuleFlow: function(Client, types.UpdateLinkModuleFlowInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLinkModuleFlowOutput>
+    updateRequesterGateway: function(Client, types.UpdateRequesterGatewayInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRequesterGatewayOutput>
+    updateResponderGateway: function(Client, types.UpdateResponderGatewayInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResponderGatewayOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "RTBFabric"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "rtbfabric", signing_region = c.region } }
                 else
@@ -86,112 +89,112 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:acceptLink(input: types.AcceptLinkInput, options: any): async.Operation<types.AcceptLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptLink, input, options) as async.Operation<types.AcceptLinkOutput>
+function C:acceptLink(input: types.AcceptLinkInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptLink as schema.OperationSchema, input, options) as async.Operation<types.AcceptLinkOutput>
 end
 
-function C:createInboundExternalLink(input: types.CreateInboundExternalLinkInput, options: any): async.Operation<types.CreateInboundExternalLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateInboundExternalLink, input, options) as async.Operation<types.CreateInboundExternalLinkOutput>
+function C:createInboundExternalLink(input: types.CreateInboundExternalLinkInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInboundExternalLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInboundExternalLink as schema.OperationSchema, input, options) as async.Operation<types.CreateInboundExternalLinkOutput>
 end
 
-function C:createLink(input: types.CreateLinkInput, options: any): async.Operation<types.CreateLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLink, input, options) as async.Operation<types.CreateLinkOutput>
+function C:createLink(input: types.CreateLinkInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLink as schema.OperationSchema, input, options) as async.Operation<types.CreateLinkOutput>
 end
 
-function C:createOutboundExternalLink(input: types.CreateOutboundExternalLinkInput, options: any): async.Operation<types.CreateOutboundExternalLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateOutboundExternalLink, input, options) as async.Operation<types.CreateOutboundExternalLinkOutput>
+function C:createOutboundExternalLink(input: types.CreateOutboundExternalLinkInput, options?: base_client.InvokeOptions): async.Operation<types.CreateOutboundExternalLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateOutboundExternalLink as schema.OperationSchema, input, options) as async.Operation<types.CreateOutboundExternalLinkOutput>
 end
 
-function C:createRequesterGateway(input: types.CreateRequesterGatewayInput, options: any): async.Operation<types.CreateRequesterGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRequesterGateway, input, options) as async.Operation<types.CreateRequesterGatewayOutput>
+function C:createRequesterGateway(input: types.CreateRequesterGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRequesterGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRequesterGateway as schema.OperationSchema, input, options) as async.Operation<types.CreateRequesterGatewayOutput>
 end
 
-function C:createResponderGateway(input: types.CreateResponderGatewayInput, options: any): async.Operation<types.CreateResponderGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateResponderGateway, input, options) as async.Operation<types.CreateResponderGatewayOutput>
+function C:createResponderGateway(input: types.CreateResponderGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.CreateResponderGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateResponderGateway as schema.OperationSchema, input, options) as async.Operation<types.CreateResponderGatewayOutput>
 end
 
-function C:deleteInboundExternalLink(input: types.DeleteInboundExternalLinkInput, options: any): async.Operation<types.DeleteInboundExternalLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteInboundExternalLink, input, options) as async.Operation<types.DeleteInboundExternalLinkOutput>
+function C:deleteInboundExternalLink(input: types.DeleteInboundExternalLinkInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteInboundExternalLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInboundExternalLink as schema.OperationSchema, input, options) as async.Operation<types.DeleteInboundExternalLinkOutput>
 end
 
-function C:deleteLink(input: types.DeleteLinkInput, options: any): async.Operation<types.DeleteLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLink, input, options) as async.Operation<types.DeleteLinkOutput>
+function C:deleteLink(input: types.DeleteLinkInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLink as schema.OperationSchema, input, options) as async.Operation<types.DeleteLinkOutput>
 end
 
-function C:deleteOutboundExternalLink(input: types.DeleteOutboundExternalLinkInput, options: any): async.Operation<types.DeleteOutboundExternalLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteOutboundExternalLink, input, options) as async.Operation<types.DeleteOutboundExternalLinkOutput>
+function C:deleteOutboundExternalLink(input: types.DeleteOutboundExternalLinkInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteOutboundExternalLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteOutboundExternalLink as schema.OperationSchema, input, options) as async.Operation<types.DeleteOutboundExternalLinkOutput>
 end
 
-function C:deleteRequesterGateway(input: types.DeleteRequesterGatewayInput, options: any): async.Operation<types.DeleteRequesterGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRequesterGateway, input, options) as async.Operation<types.DeleteRequesterGatewayOutput>
+function C:deleteRequesterGateway(input: types.DeleteRequesterGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRequesterGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRequesterGateway as schema.OperationSchema, input, options) as async.Operation<types.DeleteRequesterGatewayOutput>
 end
 
-function C:deleteResponderGateway(input: types.DeleteResponderGatewayInput, options: any): async.Operation<types.DeleteResponderGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResponderGateway, input, options) as async.Operation<types.DeleteResponderGatewayOutput>
+function C:deleteResponderGateway(input: types.DeleteResponderGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResponderGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResponderGateway as schema.OperationSchema, input, options) as async.Operation<types.DeleteResponderGatewayOutput>
 end
 
-function C:getInboundExternalLink(input: types.GetInboundExternalLinkInput, options: any): async.Operation<types.GetInboundExternalLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInboundExternalLink, input, options) as async.Operation<types.GetInboundExternalLinkOutput>
+function C:getInboundExternalLink(input: types.GetInboundExternalLinkInput, options?: base_client.InvokeOptions): async.Operation<types.GetInboundExternalLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInboundExternalLink as schema.OperationSchema, input, options) as async.Operation<types.GetInboundExternalLinkOutput>
 end
 
-function C:getLink(input: types.GetLinkInput, options: any): async.Operation<types.GetLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLink, input, options) as async.Operation<types.GetLinkOutput>
+function C:getLink(input: types.GetLinkInput, options?: base_client.InvokeOptions): async.Operation<types.GetLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLink as schema.OperationSchema, input, options) as async.Operation<types.GetLinkOutput>
 end
 
-function C:getOutboundExternalLink(input: types.GetOutboundExternalLinkInput, options: any): async.Operation<types.GetOutboundExternalLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOutboundExternalLink, input, options) as async.Operation<types.GetOutboundExternalLinkOutput>
+function C:getOutboundExternalLink(input: types.GetOutboundExternalLinkInput, options?: base_client.InvokeOptions): async.Operation<types.GetOutboundExternalLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOutboundExternalLink as schema.OperationSchema, input, options) as async.Operation<types.GetOutboundExternalLinkOutput>
 end
 
-function C:getRequesterGateway(input: types.GetRequesterGatewayInput, options: any): async.Operation<types.GetRequesterGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRequesterGateway, input, options) as async.Operation<types.GetRequesterGatewayOutput>
+function C:getRequesterGateway(input: types.GetRequesterGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.GetRequesterGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRequesterGateway as schema.OperationSchema, input, options) as async.Operation<types.GetRequesterGatewayOutput>
 end
 
-function C:getResponderGateway(input: types.GetResponderGatewayInput, options: any): async.Operation<types.GetResponderGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResponderGateway, input, options) as async.Operation<types.GetResponderGatewayOutput>
+function C:getResponderGateway(input: types.GetResponderGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.GetResponderGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResponderGateway as schema.OperationSchema, input, options) as async.Operation<types.GetResponderGatewayOutput>
 end
 
-function C:listLinks(input: types.ListLinksInput, options: any): async.Operation<types.ListLinksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLinks, input, options) as async.Operation<types.ListLinksOutput>
+function C:listLinks(input: types.ListLinksInput, options?: base_client.InvokeOptions): async.Operation<types.ListLinksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLinks as schema.OperationSchema, input, options) as async.Operation<types.ListLinksOutput>
 end
 
-function C:listRequesterGateways(input: types.ListRequesterGatewaysInput, options: any): async.Operation<types.ListRequesterGatewaysOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRequesterGateways, input, options) as async.Operation<types.ListRequesterGatewaysOutput>
+function C:listRequesterGateways(input: types.ListRequesterGatewaysInput, options?: base_client.InvokeOptions): async.Operation<types.ListRequesterGatewaysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRequesterGateways as schema.OperationSchema, input, options) as async.Operation<types.ListRequesterGatewaysOutput>
 end
 
-function C:listResponderGateways(input: types.ListResponderGatewaysInput, options: any): async.Operation<types.ListResponderGatewaysOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResponderGateways, input, options) as async.Operation<types.ListResponderGatewaysOutput>
+function C:listResponderGateways(input: types.ListResponderGatewaysInput, options?: base_client.InvokeOptions): async.Operation<types.ListResponderGatewaysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResponderGateways as schema.OperationSchema, input, options) as async.Operation<types.ListResponderGatewaysOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:rejectLink(input: types.RejectLinkInput, options: any): async.Operation<types.RejectLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.RejectLink, input, options) as async.Operation<types.RejectLinkOutput>
+function C:rejectLink(input: types.RejectLinkInput, options?: base_client.InvokeOptions): async.Operation<types.RejectLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RejectLink as schema.OperationSchema, input, options) as async.Operation<types.RejectLinkOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateLink(input: types.UpdateLinkInput, options: any): async.Operation<types.UpdateLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLink, input, options) as async.Operation<types.UpdateLinkOutput>
+function C:updateLink(input: types.UpdateLinkInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLink as schema.OperationSchema, input, options) as async.Operation<types.UpdateLinkOutput>
 end
 
-function C:updateLinkModuleFlow(input: types.UpdateLinkModuleFlowInput, options: any): async.Operation<types.UpdateLinkModuleFlowOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLinkModuleFlow, input, options) as async.Operation<types.UpdateLinkModuleFlowOutput>
+function C:updateLinkModuleFlow(input: types.UpdateLinkModuleFlowInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLinkModuleFlowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLinkModuleFlow as schema.OperationSchema, input, options) as async.Operation<types.UpdateLinkModuleFlowOutput>
 end
 
-function C:updateRequesterGateway(input: types.UpdateRequesterGatewayInput, options: any): async.Operation<types.UpdateRequesterGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRequesterGateway, input, options) as async.Operation<types.UpdateRequesterGatewayOutput>
+function C:updateRequesterGateway(input: types.UpdateRequesterGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRequesterGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRequesterGateway as schema.OperationSchema, input, options) as async.Operation<types.UpdateRequesterGatewayOutput>
 end
 
-function C:updateResponderGateway(input: types.UpdateResponderGatewayInput, options: any): async.Operation<types.UpdateResponderGatewayOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateResponderGateway, input, options) as async.Operation<types.UpdateResponderGatewayOutput>
+function C:updateResponderGateway(input: types.UpdateResponderGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateResponderGatewayOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateResponderGateway as schema.OperationSchema, input, options) as async.Operation<types.UpdateResponderGatewayOutput>
 end
 
 return M

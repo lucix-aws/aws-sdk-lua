@@ -8,70 +8,73 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("bedrockagentruntime.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("bedrockagentruntime.schemas")
 local traits = require("smithy.traits")
 local types = require("bedrockagentruntime.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createInvocation: function(Client, types.CreateInvocationInput, any): async.Operation<types.CreateInvocationOutput>
-    createSession: function(Client, types.CreateSessionInput, any): async.Operation<types.CreateSessionOutput>
-    deleteAgentMemory: function(Client, types.DeleteAgentMemoryInput, any): async.Operation<types.DeleteAgentMemoryOutput>
-    deleteSession: function(Client, types.DeleteSessionInput, any): async.Operation<types.DeleteSessionOutput>
-    endSession: function(Client, types.EndSessionInput, any): async.Operation<types.EndSessionOutput>
-    generateQuery: function(Client, types.GenerateQueryInput, any): async.Operation<types.GenerateQueryOutput>
-    getAgentMemory: function(Client, types.GetAgentMemoryInput, any): async.Operation<types.GetAgentMemoryOutput>
-    getExecutionFlowSnapshot: function(Client, types.GetExecutionFlowSnapshotInput, any): async.Operation<types.GetExecutionFlowSnapshotOutput>
-    getFlowExecution: function(Client, types.GetFlowExecutionInput, any): async.Operation<types.GetFlowExecutionOutput>
-    getInvocationStep: function(Client, types.GetInvocationStepInput, any): async.Operation<types.GetInvocationStepOutput>
-    getSession: function(Client, types.GetSessionInput, any): async.Operation<types.GetSessionOutput>
-    invokeAgent: function(Client, types.InvokeAgentInput, any): async.Operation<types.InvokeAgentOutput>
-    invokeFlow: function(Client, types.InvokeFlowInput, any): async.Operation<types.InvokeFlowOutput>
-    invokeInlineAgent: function(Client, types.InvokeInlineAgentInput, any): async.Operation<types.InvokeInlineAgentOutput>
-    listFlowExecutionEvents: function(Client, types.ListFlowExecutionEventsInput, any): async.Operation<types.ListFlowExecutionEventsOutput>
-    listFlowExecutions: function(Client, types.ListFlowExecutionsInput, any): async.Operation<types.ListFlowExecutionsOutput>
-    listInvocations: function(Client, types.ListInvocationsInput, any): async.Operation<types.ListInvocationsOutput>
-    listInvocationSteps: function(Client, types.ListInvocationStepsInput, any): async.Operation<types.ListInvocationStepsOutput>
-    listSessions: function(Client, types.ListSessionsInput, any): async.Operation<types.ListSessionsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    optimizePrompt: function(Client, types.OptimizePromptInput, any): async.Operation<types.OptimizePromptOutput>
-    putInvocationStep: function(Client, types.PutInvocationStepInput, any): async.Operation<types.PutInvocationStepOutput>
-    rerank: function(Client, types.RerankInput, any): async.Operation<types.RerankOutput>
-    retrieve: function(Client, types.RetrieveInput, any): async.Operation<types.RetrieveOutput>
-    retrieveAndGenerate: function(Client, types.RetrieveAndGenerateOperationInput, any): async.Operation<types.RetrieveAndGenerateOperationOutput>
-    retrieveAndGenerateStream: function(Client, types.RetrieveAndGenerateStreamInput, any): async.Operation<types.RetrieveAndGenerateStreamOutput>
-    startFlowExecution: function(Client, types.StartFlowExecutionInput, any): async.Operation<types.StartFlowExecutionOutput>
-    stopFlowExecution: function(Client, types.StopFlowExecutionInput, any): async.Operation<types.StopFlowExecutionOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateSession: function(Client, types.UpdateSessionInput, any): async.Operation<types.UpdateSessionOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createInvocation: function(Client, types.CreateInvocationInput, ? base_client.InvokeOptions): async.Operation<types.CreateInvocationOutput>
+    createSession: function(Client, types.CreateSessionInput, ? base_client.InvokeOptions): async.Operation<types.CreateSessionOutput>
+    deleteAgentMemory: function(Client, types.DeleteAgentMemoryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAgentMemoryOutput>
+    deleteSession: function(Client, types.DeleteSessionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSessionOutput>
+    endSession: function(Client, types.EndSessionInput, ? base_client.InvokeOptions): async.Operation<types.EndSessionOutput>
+    generateQuery: function(Client, types.GenerateQueryInput, ? base_client.InvokeOptions): async.Operation<types.GenerateQueryOutput>
+    getAgentMemory: function(Client, types.GetAgentMemoryInput, ? base_client.InvokeOptions): async.Operation<types.GetAgentMemoryOutput>
+    getExecutionFlowSnapshot: function(Client, types.GetExecutionFlowSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.GetExecutionFlowSnapshotOutput>
+    getFlowExecution: function(Client, types.GetFlowExecutionInput, ? base_client.InvokeOptions): async.Operation<types.GetFlowExecutionOutput>
+    getInvocationStep: function(Client, types.GetInvocationStepInput, ? base_client.InvokeOptions): async.Operation<types.GetInvocationStepOutput>
+    getSession: function(Client, types.GetSessionInput, ? base_client.InvokeOptions): async.Operation<types.GetSessionOutput>
+    invokeAgent: function(Client, types.InvokeAgentInput, ? base_client.InvokeOptions): async.Operation<types.InvokeAgentOutput>
+    invokeFlow: function(Client, types.InvokeFlowInput, ? base_client.InvokeOptions): async.Operation<types.InvokeFlowOutput>
+    invokeInlineAgent: function(Client, types.InvokeInlineAgentInput, ? base_client.InvokeOptions): async.Operation<types.InvokeInlineAgentOutput>
+    listFlowExecutionEvents: function(Client, types.ListFlowExecutionEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListFlowExecutionEventsOutput>
+    listFlowExecutions: function(Client, types.ListFlowExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListFlowExecutionsOutput>
+    listInvocations: function(Client, types.ListInvocationsInput, ? base_client.InvokeOptions): async.Operation<types.ListInvocationsOutput>
+    listInvocationSteps: function(Client, types.ListInvocationStepsInput, ? base_client.InvokeOptions): async.Operation<types.ListInvocationStepsOutput>
+    listSessions: function(Client, types.ListSessionsInput, ? base_client.InvokeOptions): async.Operation<types.ListSessionsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    optimizePrompt: function(Client, types.OptimizePromptInput, ? base_client.InvokeOptions): async.Operation<types.OptimizePromptOutput>
+    putInvocationStep: function(Client, types.PutInvocationStepInput, ? base_client.InvokeOptions): async.Operation<types.PutInvocationStepOutput>
+    rerank: function(Client, types.RerankInput, ? base_client.InvokeOptions): async.Operation<types.RerankOutput>
+    retrieve: function(Client, types.RetrieveInput, ? base_client.InvokeOptions): async.Operation<types.RetrieveOutput>
+    retrieveAndGenerate: function(Client, types.RetrieveAndGenerateOperationInput, ? base_client.InvokeOptions): async.Operation<types.RetrieveAndGenerateOperationOutput>
+    retrieveAndGenerateStream: function(Client, types.RetrieveAndGenerateStreamInput, ? base_client.InvokeOptions): async.Operation<types.RetrieveAndGenerateStreamOutput>
+    startFlowExecution: function(Client, types.StartFlowExecutionInput, ? base_client.InvokeOptions): async.Operation<types.StartFlowExecutionOutput>
+    stopFlowExecution: function(Client, types.StopFlowExecutionInput, ? base_client.InvokeOptions): async.Operation<types.StopFlowExecutionOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateSession: function(Client, types.UpdateSessionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSessionOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonBedrockAgentRunTimeService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "bedrock", signing_region = c.region } }
                 else
@@ -90,128 +93,128 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createInvocation(input: types.CreateInvocationInput, options: any): async.Operation<types.CreateInvocationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateInvocation, input, options) as async.Operation<types.CreateInvocationOutput>
+function C:createInvocation(input: types.CreateInvocationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInvocationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInvocation as schema.OperationSchema, input, options) as async.Operation<types.CreateInvocationOutput>
 end
 
-function C:createSession(input: types.CreateSessionInput, options: any): async.Operation<types.CreateSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSession, input, options) as async.Operation<types.CreateSessionOutput>
+function C:createSession(input: types.CreateSessionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSession as schema.OperationSchema, input, options) as async.Operation<types.CreateSessionOutput>
 end
 
-function C:deleteAgentMemory(input: types.DeleteAgentMemoryInput, options: any): async.Operation<types.DeleteAgentMemoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAgentMemory, input, options) as async.Operation<types.DeleteAgentMemoryOutput>
+function C:deleteAgentMemory(input: types.DeleteAgentMemoryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAgentMemoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAgentMemory as schema.OperationSchema, input, options) as async.Operation<types.DeleteAgentMemoryOutput>
 end
 
-function C:deleteSession(input: types.DeleteSessionInput, options: any): async.Operation<types.DeleteSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSession, input, options) as async.Operation<types.DeleteSessionOutput>
+function C:deleteSession(input: types.DeleteSessionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSession as schema.OperationSchema, input, options) as async.Operation<types.DeleteSessionOutput>
 end
 
-function C:endSession(input: types.EndSessionInput, options: any): async.Operation<types.EndSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.EndSession, input, options) as async.Operation<types.EndSessionOutput>
+function C:endSession(input: types.EndSessionInput, options?: base_client.InvokeOptions): async.Operation<types.EndSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EndSession as schema.OperationSchema, input, options) as async.Operation<types.EndSessionOutput>
 end
 
-function C:generateQuery(input: types.GenerateQueryInput, options: any): async.Operation<types.GenerateQueryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GenerateQuery, input, options) as async.Operation<types.GenerateQueryOutput>
+function C:generateQuery(input: types.GenerateQueryInput, options?: base_client.InvokeOptions): async.Operation<types.GenerateQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GenerateQuery as schema.OperationSchema, input, options) as async.Operation<types.GenerateQueryOutput>
 end
 
-function C:getAgentMemory(input: types.GetAgentMemoryInput, options: any): async.Operation<types.GetAgentMemoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAgentMemory, input, options) as async.Operation<types.GetAgentMemoryOutput>
+function C:getAgentMemory(input: types.GetAgentMemoryInput, options?: base_client.InvokeOptions): async.Operation<types.GetAgentMemoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAgentMemory as schema.OperationSchema, input, options) as async.Operation<types.GetAgentMemoryOutput>
 end
 
-function C:getExecutionFlowSnapshot(input: types.GetExecutionFlowSnapshotInput, options: any): async.Operation<types.GetExecutionFlowSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetExecutionFlowSnapshot, input, options) as async.Operation<types.GetExecutionFlowSnapshotOutput>
+function C:getExecutionFlowSnapshot(input: types.GetExecutionFlowSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.GetExecutionFlowSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetExecutionFlowSnapshot as schema.OperationSchema, input, options) as async.Operation<types.GetExecutionFlowSnapshotOutput>
 end
 
-function C:getFlowExecution(input: types.GetFlowExecutionInput, options: any): async.Operation<types.GetFlowExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFlowExecution, input, options) as async.Operation<types.GetFlowExecutionOutput>
+function C:getFlowExecution(input: types.GetFlowExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.GetFlowExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFlowExecution as schema.OperationSchema, input, options) as async.Operation<types.GetFlowExecutionOutput>
 end
 
-function C:getInvocationStep(input: types.GetInvocationStepInput, options: any): async.Operation<types.GetInvocationStepOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInvocationStep, input, options) as async.Operation<types.GetInvocationStepOutput>
+function C:getInvocationStep(input: types.GetInvocationStepInput, options?: base_client.InvokeOptions): async.Operation<types.GetInvocationStepOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInvocationStep as schema.OperationSchema, input, options) as async.Operation<types.GetInvocationStepOutput>
 end
 
-function C:getSession(input: types.GetSessionInput, options: any): async.Operation<types.GetSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSession, input, options) as async.Operation<types.GetSessionOutput>
+function C:getSession(input: types.GetSessionInput, options?: base_client.InvokeOptions): async.Operation<types.GetSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSession as schema.OperationSchema, input, options) as async.Operation<types.GetSessionOutput>
 end
 
-function C:invokeAgent(input: types.InvokeAgentInput, options: any): async.Operation<types.InvokeAgentOutput>
-    return self:invokeOperation(schemas.Service, schemas.InvokeAgent, input, options) as async.Operation<types.InvokeAgentOutput>
+function C:invokeAgent(input: types.InvokeAgentInput, options?: base_client.InvokeOptions): async.Operation<types.InvokeAgentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InvokeAgent as schema.OperationSchema, input, options) as async.Operation<types.InvokeAgentOutput>
 end
 
-function C:invokeFlow(input: types.InvokeFlowInput, options: any): async.Operation<types.InvokeFlowOutput>
-    return self:invokeOperation(schemas.Service, schemas.InvokeFlow, input, options) as async.Operation<types.InvokeFlowOutput>
+function C:invokeFlow(input: types.InvokeFlowInput, options?: base_client.InvokeOptions): async.Operation<types.InvokeFlowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InvokeFlow as schema.OperationSchema, input, options) as async.Operation<types.InvokeFlowOutput>
 end
 
-function C:invokeInlineAgent(input: types.InvokeInlineAgentInput, options: any): async.Operation<types.InvokeInlineAgentOutput>
-    return self:invokeOperation(schemas.Service, schemas.InvokeInlineAgent, input, options) as async.Operation<types.InvokeInlineAgentOutput>
+function C:invokeInlineAgent(input: types.InvokeInlineAgentInput, options?: base_client.InvokeOptions): async.Operation<types.InvokeInlineAgentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InvokeInlineAgent as schema.OperationSchema, input, options) as async.Operation<types.InvokeInlineAgentOutput>
 end
 
-function C:listFlowExecutionEvents(input: types.ListFlowExecutionEventsInput, options: any): async.Operation<types.ListFlowExecutionEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFlowExecutionEvents, input, options) as async.Operation<types.ListFlowExecutionEventsOutput>
+function C:listFlowExecutionEvents(input: types.ListFlowExecutionEventsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFlowExecutionEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFlowExecutionEvents as schema.OperationSchema, input, options) as async.Operation<types.ListFlowExecutionEventsOutput>
 end
 
-function C:listFlowExecutions(input: types.ListFlowExecutionsInput, options: any): async.Operation<types.ListFlowExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFlowExecutions, input, options) as async.Operation<types.ListFlowExecutionsOutput>
+function C:listFlowExecutions(input: types.ListFlowExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFlowExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFlowExecutions as schema.OperationSchema, input, options) as async.Operation<types.ListFlowExecutionsOutput>
 end
 
-function C:listInvocations(input: types.ListInvocationsInput, options: any): async.Operation<types.ListInvocationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInvocations, input, options) as async.Operation<types.ListInvocationsOutput>
+function C:listInvocations(input: types.ListInvocationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInvocationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInvocations as schema.OperationSchema, input, options) as async.Operation<types.ListInvocationsOutput>
 end
 
-function C:listInvocationSteps(input: types.ListInvocationStepsInput, options: any): async.Operation<types.ListInvocationStepsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInvocationSteps, input, options) as async.Operation<types.ListInvocationStepsOutput>
+function C:listInvocationSteps(input: types.ListInvocationStepsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInvocationStepsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInvocationSteps as schema.OperationSchema, input, options) as async.Operation<types.ListInvocationStepsOutput>
 end
 
-function C:listSessions(input: types.ListSessionsInput, options: any): async.Operation<types.ListSessionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSessions, input, options) as async.Operation<types.ListSessionsOutput>
+function C:listSessions(input: types.ListSessionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSessionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSessions as schema.OperationSchema, input, options) as async.Operation<types.ListSessionsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:optimizePrompt(input: types.OptimizePromptInput, options: any): async.Operation<types.OptimizePromptOutput>
-    return self:invokeOperation(schemas.Service, schemas.OptimizePrompt, input, options) as async.Operation<types.OptimizePromptOutput>
+function C:optimizePrompt(input: types.OptimizePromptInput, options?: base_client.InvokeOptions): async.Operation<types.OptimizePromptOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.OptimizePrompt as schema.OperationSchema, input, options) as async.Operation<types.OptimizePromptOutput>
 end
 
-function C:putInvocationStep(input: types.PutInvocationStepInput, options: any): async.Operation<types.PutInvocationStepOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutInvocationStep, input, options) as async.Operation<types.PutInvocationStepOutput>
+function C:putInvocationStep(input: types.PutInvocationStepInput, options?: base_client.InvokeOptions): async.Operation<types.PutInvocationStepOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutInvocationStep as schema.OperationSchema, input, options) as async.Operation<types.PutInvocationStepOutput>
 end
 
-function C:rerank(input: types.RerankInput, options: any): async.Operation<types.RerankOutput>
-    return self:invokeOperation(schemas.Service, schemas.Rerank, input, options) as async.Operation<types.RerankOutput>
+function C:rerank(input: types.RerankInput, options?: base_client.InvokeOptions): async.Operation<types.RerankOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Rerank as schema.OperationSchema, input, options) as async.Operation<types.RerankOutput>
 end
 
-function C:retrieve(input: types.RetrieveInput, options: any): async.Operation<types.RetrieveOutput>
-    return self:invokeOperation(schemas.Service, schemas.Retrieve, input, options) as async.Operation<types.RetrieveOutput>
+function C:retrieve(input: types.RetrieveInput, options?: base_client.InvokeOptions): async.Operation<types.RetrieveOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Retrieve as schema.OperationSchema, input, options) as async.Operation<types.RetrieveOutput>
 end
 
-function C:retrieveAndGenerate(input: types.RetrieveAndGenerateOperationInput, options: any): async.Operation<types.RetrieveAndGenerateOperationOutput>
-    return self:invokeOperation(schemas.Service, schemas.RetrieveAndGenerate, input, options) as async.Operation<types.RetrieveAndGenerateOperationOutput>
+function C:retrieveAndGenerate(input: types.RetrieveAndGenerateOperationInput, options?: base_client.InvokeOptions): async.Operation<types.RetrieveAndGenerateOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RetrieveAndGenerate as schema.OperationSchema, input, options) as async.Operation<types.RetrieveAndGenerateOperationOutput>
 end
 
-function C:retrieveAndGenerateStream(input: types.RetrieveAndGenerateStreamInput, options: any): async.Operation<types.RetrieveAndGenerateStreamOutput>
-    return self:invokeOperation(schemas.Service, schemas.RetrieveAndGenerateStream, input, options) as async.Operation<types.RetrieveAndGenerateStreamOutput>
+function C:retrieveAndGenerateStream(input: types.RetrieveAndGenerateStreamInput, options?: base_client.InvokeOptions): async.Operation<types.RetrieveAndGenerateStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RetrieveAndGenerateStream as schema.OperationSchema, input, options) as async.Operation<types.RetrieveAndGenerateStreamOutput>
 end
 
-function C:startFlowExecution(input: types.StartFlowExecutionInput, options: any): async.Operation<types.StartFlowExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartFlowExecution, input, options) as async.Operation<types.StartFlowExecutionOutput>
+function C:startFlowExecution(input: types.StartFlowExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.StartFlowExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartFlowExecution as schema.OperationSchema, input, options) as async.Operation<types.StartFlowExecutionOutput>
 end
 
-function C:stopFlowExecution(input: types.StopFlowExecutionInput, options: any): async.Operation<types.StopFlowExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopFlowExecution, input, options) as async.Operation<types.StopFlowExecutionOutput>
+function C:stopFlowExecution(input: types.StopFlowExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.StopFlowExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopFlowExecution as schema.OperationSchema, input, options) as async.Operation<types.StopFlowExecutionOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateSession(input: types.UpdateSessionInput, options: any): async.Operation<types.UpdateSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSession, input, options) as async.Operation<types.UpdateSessionOutput>
+function C:updateSession(input: types.UpdateSessionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSession as schema.OperationSchema, input, options) as async.Operation<types.UpdateSessionOutput>
 end
 
 return M

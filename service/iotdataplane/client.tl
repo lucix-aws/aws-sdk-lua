@@ -8,47 +8,50 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("iotdataplane.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("iotdataplane.schemas")
 local traits = require("smithy.traits")
 local types = require("iotdataplane.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    deleteConnection: function(Client, types.DeleteConnectionInput, any): async.Operation<types.DeleteConnectionOutput>
-    deleteThingShadow: function(Client, types.DeleteThingShadowInput, any): async.Operation<types.DeleteThingShadowOutput>
-    getRetainedMessage: function(Client, types.GetRetainedMessageInput, any): async.Operation<types.GetRetainedMessageOutput>
-    getThingShadow: function(Client, types.GetThingShadowInput, any): async.Operation<types.GetThingShadowOutput>
-    listNamedShadowsForThing: function(Client, types.ListNamedShadowsForThingInput, any): async.Operation<types.ListNamedShadowsForThingOutput>
-    listRetainedMessages: function(Client, types.ListRetainedMessagesInput, any): async.Operation<types.ListRetainedMessagesOutput>
-    publish: function(Client, types.PublishInput, any): async.Operation<types.PublishOutput>
-    updateThingShadow: function(Client, types.UpdateThingShadowInput, any): async.Operation<types.UpdateThingShadowOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    deleteConnection: function(Client, types.DeleteConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConnectionOutput>
+    deleteThingShadow: function(Client, types.DeleteThingShadowInput, ? base_client.InvokeOptions): async.Operation<types.DeleteThingShadowOutput>
+    getRetainedMessage: function(Client, types.GetRetainedMessageInput, ? base_client.InvokeOptions): async.Operation<types.GetRetainedMessageOutput>
+    getThingShadow: function(Client, types.GetThingShadowInput, ? base_client.InvokeOptions): async.Operation<types.GetThingShadowOutput>
+    listNamedShadowsForThing: function(Client, types.ListNamedShadowsForThingInput, ? base_client.InvokeOptions): async.Operation<types.ListNamedShadowsForThingOutput>
+    listRetainedMessages: function(Client, types.ListRetainedMessagesInput, ? base_client.InvokeOptions): async.Operation<types.ListRetainedMessagesOutput>
+    publish: function(Client, types.PublishInput, ? base_client.InvokeOptions): async.Operation<types.PublishOutput>
+    updateThingShadow: function(Client, types.UpdateThingShadowInput, ? base_client.InvokeOptions): async.Operation<types.UpdateThingShadowOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "IotMoonrakerService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "iotdata", signing_region = c.region } }
                 else
@@ -67,36 +70,36 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:deleteConnection(input: types.DeleteConnectionInput, options: any): async.Operation<types.DeleteConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConnection, input, options) as async.Operation<types.DeleteConnectionOutput>
+function C:deleteConnection(input: types.DeleteConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConnection as schema.OperationSchema, input, options) as async.Operation<types.DeleteConnectionOutput>
 end
 
-function C:deleteThingShadow(input: types.DeleteThingShadowInput, options: any): async.Operation<types.DeleteThingShadowOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteThingShadow, input, options) as async.Operation<types.DeleteThingShadowOutput>
+function C:deleteThingShadow(input: types.DeleteThingShadowInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteThingShadowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteThingShadow as schema.OperationSchema, input, options) as async.Operation<types.DeleteThingShadowOutput>
 end
 
-function C:getRetainedMessage(input: types.GetRetainedMessageInput, options: any): async.Operation<types.GetRetainedMessageOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRetainedMessage, input, options) as async.Operation<types.GetRetainedMessageOutput>
+function C:getRetainedMessage(input: types.GetRetainedMessageInput, options?: base_client.InvokeOptions): async.Operation<types.GetRetainedMessageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRetainedMessage as schema.OperationSchema, input, options) as async.Operation<types.GetRetainedMessageOutput>
 end
 
-function C:getThingShadow(input: types.GetThingShadowInput, options: any): async.Operation<types.GetThingShadowOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetThingShadow, input, options) as async.Operation<types.GetThingShadowOutput>
+function C:getThingShadow(input: types.GetThingShadowInput, options?: base_client.InvokeOptions): async.Operation<types.GetThingShadowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetThingShadow as schema.OperationSchema, input, options) as async.Operation<types.GetThingShadowOutput>
 end
 
-function C:listNamedShadowsForThing(input: types.ListNamedShadowsForThingInput, options: any): async.Operation<types.ListNamedShadowsForThingOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNamedShadowsForThing, input, options) as async.Operation<types.ListNamedShadowsForThingOutput>
+function C:listNamedShadowsForThing(input: types.ListNamedShadowsForThingInput, options?: base_client.InvokeOptions): async.Operation<types.ListNamedShadowsForThingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNamedShadowsForThing as schema.OperationSchema, input, options) as async.Operation<types.ListNamedShadowsForThingOutput>
 end
 
-function C:listRetainedMessages(input: types.ListRetainedMessagesInput, options: any): async.Operation<types.ListRetainedMessagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRetainedMessages, input, options) as async.Operation<types.ListRetainedMessagesOutput>
+function C:listRetainedMessages(input: types.ListRetainedMessagesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRetainedMessagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRetainedMessages as schema.OperationSchema, input, options) as async.Operation<types.ListRetainedMessagesOutput>
 end
 
-function C:publish(input: types.PublishInput, options: any): async.Operation<types.PublishOutput>
-    return self:invokeOperation(schemas.Service, schemas.Publish, input, options) as async.Operation<types.PublishOutput>
+function C:publish(input: types.PublishInput, options?: base_client.InvokeOptions): async.Operation<types.PublishOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Publish as schema.OperationSchema, input, options) as async.Operation<types.PublishOutput>
 end
 
-function C:updateThingShadow(input: types.UpdateThingShadowInput, options: any): async.Operation<types.UpdateThingShadowOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateThingShadow, input, options) as async.Operation<types.UpdateThingShadowOutput>
+function C:updateThingShadow(input: types.UpdateThingShadowInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateThingShadowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateThingShadow as schema.OperationSchema, input, options) as async.Operation<types.UpdateThingShadowOutput>
 end
 
 return M

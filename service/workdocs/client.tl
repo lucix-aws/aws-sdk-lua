@@ -8,83 +8,86 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("workdocs.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("workdocs.schemas")
 local traits = require("smithy.traits")
 local types = require("workdocs.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    abortDocumentVersionUpload: function(Client, types.AbortDocumentVersionUploadInput, any): async.Operation<types.AbortDocumentVersionUploadOutput>
-    activateUser: function(Client, types.ActivateUserInput, any): async.Operation<types.ActivateUserOutput>
-    addResourcePermissions: function(Client, types.AddResourcePermissionsInput, any): async.Operation<types.AddResourcePermissionsOutput>
-    createComment: function(Client, types.CreateCommentInput, any): async.Operation<types.CreateCommentOutput>
-    createCustomMetadata: function(Client, types.CreateCustomMetadataInput, any): async.Operation<types.CreateCustomMetadataOutput>
-    createFolder: function(Client, types.CreateFolderInput, any): async.Operation<types.CreateFolderOutput>
-    createLabels: function(Client, types.CreateLabelsInput, any): async.Operation<types.CreateLabelsOutput>
-    createNotificationSubscription: function(Client, types.CreateNotificationSubscriptionInput, any): async.Operation<types.CreateNotificationSubscriptionOutput>
-    createUser: function(Client, types.CreateUserInput, any): async.Operation<types.CreateUserOutput>
-    deactivateUser: function(Client, types.DeactivateUserInput, any): async.Operation<types.DeactivateUserOutput>
-    deleteComment: function(Client, types.DeleteCommentInput, any): async.Operation<types.DeleteCommentOutput>
-    deleteCustomMetadata: function(Client, types.DeleteCustomMetadataInput, any): async.Operation<types.DeleteCustomMetadataOutput>
-    deleteDocument: function(Client, types.DeleteDocumentInput, any): async.Operation<types.DeleteDocumentOutput>
-    deleteDocumentVersion: function(Client, types.DeleteDocumentVersionInput, any): async.Operation<types.DeleteDocumentVersionOutput>
-    deleteFolder: function(Client, types.DeleteFolderInput, any): async.Operation<types.DeleteFolderOutput>
-    deleteFolderContents: function(Client, types.DeleteFolderContentsInput, any): async.Operation<types.DeleteFolderContentsOutput>
-    deleteLabels: function(Client, types.DeleteLabelsInput, any): async.Operation<types.DeleteLabelsOutput>
-    deleteNotificationSubscription: function(Client, types.DeleteNotificationSubscriptionInput, any): async.Operation<types.DeleteNotificationSubscriptionOutput>
-    deleteUser: function(Client, types.DeleteUserInput, any): async.Operation<types.DeleteUserOutput>
-    describeActivities: function(Client, types.DescribeActivitiesInput, any): async.Operation<types.DescribeActivitiesOutput>
-    describeComments: function(Client, types.DescribeCommentsInput, any): async.Operation<types.DescribeCommentsOutput>
-    describeDocumentVersions: function(Client, types.DescribeDocumentVersionsInput, any): async.Operation<types.DescribeDocumentVersionsOutput>
-    describeFolderContents: function(Client, types.DescribeFolderContentsInput, any): async.Operation<types.DescribeFolderContentsOutput>
-    describeGroups: function(Client, types.DescribeGroupsInput, any): async.Operation<types.DescribeGroupsOutput>
-    describeNotificationSubscriptions: function(Client, types.DescribeNotificationSubscriptionsInput, any): async.Operation<types.DescribeNotificationSubscriptionsOutput>
-    describeResourcePermissions: function(Client, types.DescribeResourcePermissionsInput, any): async.Operation<types.DescribeResourcePermissionsOutput>
-    describeRootFolders: function(Client, types.DescribeRootFoldersInput, any): async.Operation<types.DescribeRootFoldersOutput>
-    describeUsers: function(Client, types.DescribeUsersInput, any): async.Operation<types.DescribeUsersOutput>
-    getCurrentUser: function(Client, types.GetCurrentUserInput, any): async.Operation<types.GetCurrentUserOutput>
-    getDocument: function(Client, types.GetDocumentInput, any): async.Operation<types.GetDocumentOutput>
-    getDocumentPath: function(Client, types.GetDocumentPathInput, any): async.Operation<types.GetDocumentPathOutput>
-    getDocumentVersion: function(Client, types.GetDocumentVersionInput, any): async.Operation<types.GetDocumentVersionOutput>
-    getFolder: function(Client, types.GetFolderInput, any): async.Operation<types.GetFolderOutput>
-    getFolderPath: function(Client, types.GetFolderPathInput, any): async.Operation<types.GetFolderPathOutput>
-    getResources: function(Client, types.GetResourcesInput, any): async.Operation<types.GetResourcesOutput>
-    initiateDocumentVersionUpload: function(Client, types.InitiateDocumentVersionUploadInput, any): async.Operation<types.InitiateDocumentVersionUploadOutput>
-    removeAllResourcePermissions: function(Client, types.RemoveAllResourcePermissionsInput, any): async.Operation<types.RemoveAllResourcePermissionsOutput>
-    removeResourcePermission: function(Client, types.RemoveResourcePermissionInput, any): async.Operation<types.RemoveResourcePermissionOutput>
-    restoreDocumentVersions: function(Client, types.RestoreDocumentVersionsInput, any): async.Operation<types.RestoreDocumentVersionsOutput>
-    searchResources: function(Client, types.SearchResourcesInput, any): async.Operation<types.SearchResourcesOutput>
-    updateDocument: function(Client, types.UpdateDocumentInput, any): async.Operation<types.UpdateDocumentOutput>
-    updateDocumentVersion: function(Client, types.UpdateDocumentVersionInput, any): async.Operation<types.UpdateDocumentVersionOutput>
-    updateFolder: function(Client, types.UpdateFolderInput, any): async.Operation<types.UpdateFolderOutput>
-    updateUser: function(Client, types.UpdateUserInput, any): async.Operation<types.UpdateUserOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    abortDocumentVersionUpload: function(Client, types.AbortDocumentVersionUploadInput, ? base_client.InvokeOptions): async.Operation<types.AbortDocumentVersionUploadOutput>
+    activateUser: function(Client, types.ActivateUserInput, ? base_client.InvokeOptions): async.Operation<types.ActivateUserOutput>
+    addResourcePermissions: function(Client, types.AddResourcePermissionsInput, ? base_client.InvokeOptions): async.Operation<types.AddResourcePermissionsOutput>
+    createComment: function(Client, types.CreateCommentInput, ? base_client.InvokeOptions): async.Operation<types.CreateCommentOutput>
+    createCustomMetadata: function(Client, types.CreateCustomMetadataInput, ? base_client.InvokeOptions): async.Operation<types.CreateCustomMetadataOutput>
+    createFolder: function(Client, types.CreateFolderInput, ? base_client.InvokeOptions): async.Operation<types.CreateFolderOutput>
+    createLabels: function(Client, types.CreateLabelsInput, ? base_client.InvokeOptions): async.Operation<types.CreateLabelsOutput>
+    createNotificationSubscription: function(Client, types.CreateNotificationSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.CreateNotificationSubscriptionOutput>
+    createUser: function(Client, types.CreateUserInput, ? base_client.InvokeOptions): async.Operation<types.CreateUserOutput>
+    deactivateUser: function(Client, types.DeactivateUserInput, ? base_client.InvokeOptions): async.Operation<types.DeactivateUserOutput>
+    deleteComment: function(Client, types.DeleteCommentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCommentOutput>
+    deleteCustomMetadata: function(Client, types.DeleteCustomMetadataInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCustomMetadataOutput>
+    deleteDocument: function(Client, types.DeleteDocumentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDocumentOutput>
+    deleteDocumentVersion: function(Client, types.DeleteDocumentVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDocumentVersionOutput>
+    deleteFolder: function(Client, types.DeleteFolderInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFolderOutput>
+    deleteFolderContents: function(Client, types.DeleteFolderContentsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFolderContentsOutput>
+    deleteLabels: function(Client, types.DeleteLabelsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLabelsOutput>
+    deleteNotificationSubscription: function(Client, types.DeleteNotificationSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNotificationSubscriptionOutput>
+    deleteUser: function(Client, types.DeleteUserInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUserOutput>
+    describeActivities: function(Client, types.DescribeActivitiesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeActivitiesOutput>
+    describeComments: function(Client, types.DescribeCommentsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCommentsOutput>
+    describeDocumentVersions: function(Client, types.DescribeDocumentVersionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDocumentVersionsOutput>
+    describeFolderContents: function(Client, types.DescribeFolderContentsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFolderContentsOutput>
+    describeGroups: function(Client, types.DescribeGroupsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeGroupsOutput>
+    describeNotificationSubscriptions: function(Client, types.DescribeNotificationSubscriptionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNotificationSubscriptionsOutput>
+    describeResourcePermissions: function(Client, types.DescribeResourcePermissionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeResourcePermissionsOutput>
+    describeRootFolders: function(Client, types.DescribeRootFoldersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRootFoldersOutput>
+    describeUsers: function(Client, types.DescribeUsersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeUsersOutput>
+    getCurrentUser: function(Client, types.GetCurrentUserInput, ? base_client.InvokeOptions): async.Operation<types.GetCurrentUserOutput>
+    getDocument: function(Client, types.GetDocumentInput, ? base_client.InvokeOptions): async.Operation<types.GetDocumentOutput>
+    getDocumentPath: function(Client, types.GetDocumentPathInput, ? base_client.InvokeOptions): async.Operation<types.GetDocumentPathOutput>
+    getDocumentVersion: function(Client, types.GetDocumentVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetDocumentVersionOutput>
+    getFolder: function(Client, types.GetFolderInput, ? base_client.InvokeOptions): async.Operation<types.GetFolderOutput>
+    getFolderPath: function(Client, types.GetFolderPathInput, ? base_client.InvokeOptions): async.Operation<types.GetFolderPathOutput>
+    getResources: function(Client, types.GetResourcesInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcesOutput>
+    initiateDocumentVersionUpload: function(Client, types.InitiateDocumentVersionUploadInput, ? base_client.InvokeOptions): async.Operation<types.InitiateDocumentVersionUploadOutput>
+    removeAllResourcePermissions: function(Client, types.RemoveAllResourcePermissionsInput, ? base_client.InvokeOptions): async.Operation<types.RemoveAllResourcePermissionsOutput>
+    removeResourcePermission: function(Client, types.RemoveResourcePermissionInput, ? base_client.InvokeOptions): async.Operation<types.RemoveResourcePermissionOutput>
+    restoreDocumentVersions: function(Client, types.RestoreDocumentVersionsInput, ? base_client.InvokeOptions): async.Operation<types.RestoreDocumentVersionsOutput>
+    searchResources: function(Client, types.SearchResourcesInput, ? base_client.InvokeOptions): async.Operation<types.SearchResourcesOutput>
+    updateDocument: function(Client, types.UpdateDocumentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDocumentOutput>
+    updateDocumentVersion: function(Client, types.UpdateDocumentVersionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDocumentVersionOutput>
+    updateFolder: function(Client, types.UpdateFolderInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFolderOutput>
+    updateUser: function(Client, types.UpdateUserInput, ? base_client.InvokeOptions): async.Operation<types.UpdateUserOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSGorillaBoyService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "workdocs", signing_region = c.region } }
                 else
@@ -103,180 +106,180 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:abortDocumentVersionUpload(input: types.AbortDocumentVersionUploadInput, options: any): async.Operation<types.AbortDocumentVersionUploadOutput>
-    return self:invokeOperation(schemas.Service, schemas.AbortDocumentVersionUpload, input, options) as async.Operation<types.AbortDocumentVersionUploadOutput>
+function C:abortDocumentVersionUpload(input: types.AbortDocumentVersionUploadInput, options?: base_client.InvokeOptions): async.Operation<types.AbortDocumentVersionUploadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AbortDocumentVersionUpload as schema.OperationSchema, input, options) as async.Operation<types.AbortDocumentVersionUploadOutput>
 end
 
-function C:activateUser(input: types.ActivateUserInput, options: any): async.Operation<types.ActivateUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.ActivateUser, input, options) as async.Operation<types.ActivateUserOutput>
+function C:activateUser(input: types.ActivateUserInput, options?: base_client.InvokeOptions): async.Operation<types.ActivateUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ActivateUser as schema.OperationSchema, input, options) as async.Operation<types.ActivateUserOutput>
 end
 
-function C:addResourcePermissions(input: types.AddResourcePermissionsInput, options: any): async.Operation<types.AddResourcePermissionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddResourcePermissions, input, options) as async.Operation<types.AddResourcePermissionsOutput>
+function C:addResourcePermissions(input: types.AddResourcePermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.AddResourcePermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddResourcePermissions as schema.OperationSchema, input, options) as async.Operation<types.AddResourcePermissionsOutput>
 end
 
-function C:createComment(input: types.CreateCommentInput, options: any): async.Operation<types.CreateCommentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateComment, input, options) as async.Operation<types.CreateCommentOutput>
+function C:createComment(input: types.CreateCommentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCommentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateComment as schema.OperationSchema, input, options) as async.Operation<types.CreateCommentOutput>
 end
 
-function C:createCustomMetadata(input: types.CreateCustomMetadataInput, options: any): async.Operation<types.CreateCustomMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCustomMetadata, input, options) as async.Operation<types.CreateCustomMetadataOutput>
+function C:createCustomMetadata(input: types.CreateCustomMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCustomMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCustomMetadata as schema.OperationSchema, input, options) as async.Operation<types.CreateCustomMetadataOutput>
 end
 
-function C:createFolder(input: types.CreateFolderInput, options: any): async.Operation<types.CreateFolderOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFolder, input, options) as async.Operation<types.CreateFolderOutput>
+function C:createFolder(input: types.CreateFolderInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFolderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFolder as schema.OperationSchema, input, options) as async.Operation<types.CreateFolderOutput>
 end
 
-function C:createLabels(input: types.CreateLabelsInput, options: any): async.Operation<types.CreateLabelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLabels, input, options) as async.Operation<types.CreateLabelsOutput>
+function C:createLabels(input: types.CreateLabelsInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLabelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLabels as schema.OperationSchema, input, options) as async.Operation<types.CreateLabelsOutput>
 end
 
-function C:createNotificationSubscription(input: types.CreateNotificationSubscriptionInput, options: any): async.Operation<types.CreateNotificationSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNotificationSubscription, input, options) as async.Operation<types.CreateNotificationSubscriptionOutput>
+function C:createNotificationSubscription(input: types.CreateNotificationSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNotificationSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNotificationSubscription as schema.OperationSchema, input, options) as async.Operation<types.CreateNotificationSubscriptionOutput>
 end
 
-function C:createUser(input: types.CreateUserInput, options: any): async.Operation<types.CreateUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateUser, input, options) as async.Operation<types.CreateUserOutput>
+function C:createUser(input: types.CreateUserInput, options?: base_client.InvokeOptions): async.Operation<types.CreateUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateUser as schema.OperationSchema, input, options) as async.Operation<types.CreateUserOutput>
 end
 
-function C:deactivateUser(input: types.DeactivateUserInput, options: any): async.Operation<types.DeactivateUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeactivateUser, input, options) as async.Operation<types.DeactivateUserOutput>
+function C:deactivateUser(input: types.DeactivateUserInput, options?: base_client.InvokeOptions): async.Operation<types.DeactivateUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeactivateUser as schema.OperationSchema, input, options) as async.Operation<types.DeactivateUserOutput>
 end
 
-function C:deleteComment(input: types.DeleteCommentInput, options: any): async.Operation<types.DeleteCommentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteComment, input, options) as async.Operation<types.DeleteCommentOutput>
+function C:deleteComment(input: types.DeleteCommentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCommentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteComment as schema.OperationSchema, input, options) as async.Operation<types.DeleteCommentOutput>
 end
 
-function C:deleteCustomMetadata(input: types.DeleteCustomMetadataInput, options: any): async.Operation<types.DeleteCustomMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCustomMetadata, input, options) as async.Operation<types.DeleteCustomMetadataOutput>
+function C:deleteCustomMetadata(input: types.DeleteCustomMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCustomMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCustomMetadata as schema.OperationSchema, input, options) as async.Operation<types.DeleteCustomMetadataOutput>
 end
 
-function C:deleteDocument(input: types.DeleteDocumentInput, options: any): async.Operation<types.DeleteDocumentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDocument, input, options) as async.Operation<types.DeleteDocumentOutput>
+function C:deleteDocument(input: types.DeleteDocumentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDocumentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDocument as schema.OperationSchema, input, options) as async.Operation<types.DeleteDocumentOutput>
 end
 
-function C:deleteDocumentVersion(input: types.DeleteDocumentVersionInput, options: any): async.Operation<types.DeleteDocumentVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDocumentVersion, input, options) as async.Operation<types.DeleteDocumentVersionOutput>
+function C:deleteDocumentVersion(input: types.DeleteDocumentVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDocumentVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDocumentVersion as schema.OperationSchema, input, options) as async.Operation<types.DeleteDocumentVersionOutput>
 end
 
-function C:deleteFolder(input: types.DeleteFolderInput, options: any): async.Operation<types.DeleteFolderOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFolder, input, options) as async.Operation<types.DeleteFolderOutput>
+function C:deleteFolder(input: types.DeleteFolderInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFolderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFolder as schema.OperationSchema, input, options) as async.Operation<types.DeleteFolderOutput>
 end
 
-function C:deleteFolderContents(input: types.DeleteFolderContentsInput, options: any): async.Operation<types.DeleteFolderContentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFolderContents, input, options) as async.Operation<types.DeleteFolderContentsOutput>
+function C:deleteFolderContents(input: types.DeleteFolderContentsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFolderContentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFolderContents as schema.OperationSchema, input, options) as async.Operation<types.DeleteFolderContentsOutput>
 end
 
-function C:deleteLabels(input: types.DeleteLabelsInput, options: any): async.Operation<types.DeleteLabelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLabels, input, options) as async.Operation<types.DeleteLabelsOutput>
+function C:deleteLabels(input: types.DeleteLabelsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLabelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLabels as schema.OperationSchema, input, options) as async.Operation<types.DeleteLabelsOutput>
 end
 
-function C:deleteNotificationSubscription(input: types.DeleteNotificationSubscriptionInput, options: any): async.Operation<types.DeleteNotificationSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNotificationSubscription, input, options) as async.Operation<types.DeleteNotificationSubscriptionOutput>
+function C:deleteNotificationSubscription(input: types.DeleteNotificationSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNotificationSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNotificationSubscription as schema.OperationSchema, input, options) as async.Operation<types.DeleteNotificationSubscriptionOutput>
 end
 
-function C:deleteUser(input: types.DeleteUserInput, options: any): async.Operation<types.DeleteUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteUser, input, options) as async.Operation<types.DeleteUserOutput>
+function C:deleteUser(input: types.DeleteUserInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteUser as schema.OperationSchema, input, options) as async.Operation<types.DeleteUserOutput>
 end
 
-function C:describeActivities(input: types.DescribeActivitiesInput, options: any): async.Operation<types.DescribeActivitiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeActivities, input, options) as async.Operation<types.DescribeActivitiesOutput>
+function C:describeActivities(input: types.DescribeActivitiesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeActivitiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeActivities as schema.OperationSchema, input, options) as async.Operation<types.DescribeActivitiesOutput>
 end
 
-function C:describeComments(input: types.DescribeCommentsInput, options: any): async.Operation<types.DescribeCommentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeComments, input, options) as async.Operation<types.DescribeCommentsOutput>
+function C:describeComments(input: types.DescribeCommentsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCommentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeComments as schema.OperationSchema, input, options) as async.Operation<types.DescribeCommentsOutput>
 end
 
-function C:describeDocumentVersions(input: types.DescribeDocumentVersionsInput, options: any): async.Operation<types.DescribeDocumentVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDocumentVersions, input, options) as async.Operation<types.DescribeDocumentVersionsOutput>
+function C:describeDocumentVersions(input: types.DescribeDocumentVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDocumentVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDocumentVersions as schema.OperationSchema, input, options) as async.Operation<types.DescribeDocumentVersionsOutput>
 end
 
-function C:describeFolderContents(input: types.DescribeFolderContentsInput, options: any): async.Operation<types.DescribeFolderContentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFolderContents, input, options) as async.Operation<types.DescribeFolderContentsOutput>
+function C:describeFolderContents(input: types.DescribeFolderContentsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFolderContentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFolderContents as schema.OperationSchema, input, options) as async.Operation<types.DescribeFolderContentsOutput>
 end
 
-function C:describeGroups(input: types.DescribeGroupsInput, options: any): async.Operation<types.DescribeGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeGroups, input, options) as async.Operation<types.DescribeGroupsOutput>
+function C:describeGroups(input: types.DescribeGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeGroups as schema.OperationSchema, input, options) as async.Operation<types.DescribeGroupsOutput>
 end
 
-function C:describeNotificationSubscriptions(input: types.DescribeNotificationSubscriptionsInput, options: any): async.Operation<types.DescribeNotificationSubscriptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeNotificationSubscriptions, input, options) as async.Operation<types.DescribeNotificationSubscriptionsOutput>
+function C:describeNotificationSubscriptions(input: types.DescribeNotificationSubscriptionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeNotificationSubscriptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeNotificationSubscriptions as schema.OperationSchema, input, options) as async.Operation<types.DescribeNotificationSubscriptionsOutput>
 end
 
-function C:describeResourcePermissions(input: types.DescribeResourcePermissionsInput, options: any): async.Operation<types.DescribeResourcePermissionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeResourcePermissions, input, options) as async.Operation<types.DescribeResourcePermissionsOutput>
+function C:describeResourcePermissions(input: types.DescribeResourcePermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeResourcePermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeResourcePermissions as schema.OperationSchema, input, options) as async.Operation<types.DescribeResourcePermissionsOutput>
 end
 
-function C:describeRootFolders(input: types.DescribeRootFoldersInput, options: any): async.Operation<types.DescribeRootFoldersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRootFolders, input, options) as async.Operation<types.DescribeRootFoldersOutput>
+function C:describeRootFolders(input: types.DescribeRootFoldersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRootFoldersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRootFolders as schema.OperationSchema, input, options) as async.Operation<types.DescribeRootFoldersOutput>
 end
 
-function C:describeUsers(input: types.DescribeUsersInput, options: any): async.Operation<types.DescribeUsersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeUsers, input, options) as async.Operation<types.DescribeUsersOutput>
+function C:describeUsers(input: types.DescribeUsersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeUsersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeUsers as schema.OperationSchema, input, options) as async.Operation<types.DescribeUsersOutput>
 end
 
-function C:getCurrentUser(input: types.GetCurrentUserInput, options: any): async.Operation<types.GetCurrentUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCurrentUser, input, options) as async.Operation<types.GetCurrentUserOutput>
+function C:getCurrentUser(input: types.GetCurrentUserInput, options?: base_client.InvokeOptions): async.Operation<types.GetCurrentUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCurrentUser as schema.OperationSchema, input, options) as async.Operation<types.GetCurrentUserOutput>
 end
 
-function C:getDocument(input: types.GetDocumentInput, options: any): async.Operation<types.GetDocumentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDocument, input, options) as async.Operation<types.GetDocumentOutput>
+function C:getDocument(input: types.GetDocumentInput, options?: base_client.InvokeOptions): async.Operation<types.GetDocumentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDocument as schema.OperationSchema, input, options) as async.Operation<types.GetDocumentOutput>
 end
 
-function C:getDocumentPath(input: types.GetDocumentPathInput, options: any): async.Operation<types.GetDocumentPathOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDocumentPath, input, options) as async.Operation<types.GetDocumentPathOutput>
+function C:getDocumentPath(input: types.GetDocumentPathInput, options?: base_client.InvokeOptions): async.Operation<types.GetDocumentPathOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDocumentPath as schema.OperationSchema, input, options) as async.Operation<types.GetDocumentPathOutput>
 end
 
-function C:getDocumentVersion(input: types.GetDocumentVersionInput, options: any): async.Operation<types.GetDocumentVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDocumentVersion, input, options) as async.Operation<types.GetDocumentVersionOutput>
+function C:getDocumentVersion(input: types.GetDocumentVersionInput, options?: base_client.InvokeOptions): async.Operation<types.GetDocumentVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDocumentVersion as schema.OperationSchema, input, options) as async.Operation<types.GetDocumentVersionOutput>
 end
 
-function C:getFolder(input: types.GetFolderInput, options: any): async.Operation<types.GetFolderOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFolder, input, options) as async.Operation<types.GetFolderOutput>
+function C:getFolder(input: types.GetFolderInput, options?: base_client.InvokeOptions): async.Operation<types.GetFolderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFolder as schema.OperationSchema, input, options) as async.Operation<types.GetFolderOutput>
 end
 
-function C:getFolderPath(input: types.GetFolderPathInput, options: any): async.Operation<types.GetFolderPathOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFolderPath, input, options) as async.Operation<types.GetFolderPathOutput>
+function C:getFolderPath(input: types.GetFolderPathInput, options?: base_client.InvokeOptions): async.Operation<types.GetFolderPathOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFolderPath as schema.OperationSchema, input, options) as async.Operation<types.GetFolderPathOutput>
 end
 
-function C:getResources(input: types.GetResourcesInput, options: any): async.Operation<types.GetResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResources, input, options) as async.Operation<types.GetResourcesOutput>
+function C:getResources(input: types.GetResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResources as schema.OperationSchema, input, options) as async.Operation<types.GetResourcesOutput>
 end
 
-function C:initiateDocumentVersionUpload(input: types.InitiateDocumentVersionUploadInput, options: any): async.Operation<types.InitiateDocumentVersionUploadOutput>
-    return self:invokeOperation(schemas.Service, schemas.InitiateDocumentVersionUpload, input, options) as async.Operation<types.InitiateDocumentVersionUploadOutput>
+function C:initiateDocumentVersionUpload(input: types.InitiateDocumentVersionUploadInput, options?: base_client.InvokeOptions): async.Operation<types.InitiateDocumentVersionUploadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InitiateDocumentVersionUpload as schema.OperationSchema, input, options) as async.Operation<types.InitiateDocumentVersionUploadOutput>
 end
 
-function C:removeAllResourcePermissions(input: types.RemoveAllResourcePermissionsInput, options: any): async.Operation<types.RemoveAllResourcePermissionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveAllResourcePermissions, input, options) as async.Operation<types.RemoveAllResourcePermissionsOutput>
+function C:removeAllResourcePermissions(input: types.RemoveAllResourcePermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveAllResourcePermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveAllResourcePermissions as schema.OperationSchema, input, options) as async.Operation<types.RemoveAllResourcePermissionsOutput>
 end
 
-function C:removeResourcePermission(input: types.RemoveResourcePermissionInput, options: any): async.Operation<types.RemoveResourcePermissionOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveResourcePermission, input, options) as async.Operation<types.RemoveResourcePermissionOutput>
+function C:removeResourcePermission(input: types.RemoveResourcePermissionInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveResourcePermissionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveResourcePermission as schema.OperationSchema, input, options) as async.Operation<types.RemoveResourcePermissionOutput>
 end
 
-function C:restoreDocumentVersions(input: types.RestoreDocumentVersionsInput, options: any): async.Operation<types.RestoreDocumentVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.RestoreDocumentVersions, input, options) as async.Operation<types.RestoreDocumentVersionsOutput>
+function C:restoreDocumentVersions(input: types.RestoreDocumentVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.RestoreDocumentVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestoreDocumentVersions as schema.OperationSchema, input, options) as async.Operation<types.RestoreDocumentVersionsOutput>
 end
 
-function C:searchResources(input: types.SearchResourcesInput, options: any): async.Operation<types.SearchResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchResources, input, options) as async.Operation<types.SearchResourcesOutput>
+function C:searchResources(input: types.SearchResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.SearchResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchResources as schema.OperationSchema, input, options) as async.Operation<types.SearchResourcesOutput>
 end
 
-function C:updateDocument(input: types.UpdateDocumentInput, options: any): async.Operation<types.UpdateDocumentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDocument, input, options) as async.Operation<types.UpdateDocumentOutput>
+function C:updateDocument(input: types.UpdateDocumentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDocumentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDocument as schema.OperationSchema, input, options) as async.Operation<types.UpdateDocumentOutput>
 end
 
-function C:updateDocumentVersion(input: types.UpdateDocumentVersionInput, options: any): async.Operation<types.UpdateDocumentVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDocumentVersion, input, options) as async.Operation<types.UpdateDocumentVersionOutput>
+function C:updateDocumentVersion(input: types.UpdateDocumentVersionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDocumentVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDocumentVersion as schema.OperationSchema, input, options) as async.Operation<types.UpdateDocumentVersionOutput>
 end
 
-function C:updateFolder(input: types.UpdateFolderInput, options: any): async.Operation<types.UpdateFolderOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFolder, input, options) as async.Operation<types.UpdateFolderOutput>
+function C:updateFolder(input: types.UpdateFolderInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFolderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFolder as schema.OperationSchema, input, options) as async.Operation<types.UpdateFolderOutput>
 end
 
-function C:updateUser(input: types.UpdateUserInput, options: any): async.Operation<types.UpdateUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateUser, input, options) as async.Operation<types.UpdateUserOutput>
+function C:updateUser(input: types.UpdateUserInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateUser as schema.OperationSchema, input, options) as async.Operation<types.UpdateUserOutput>
 end
 
 return M

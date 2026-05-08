@@ -8,145 +8,148 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("customerprofiles.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("customerprofiles.schemas")
 local traits = require("smithy.traits")
 local types = require("customerprofiles.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    addProfileKey: function(Client, types.AddProfileKeyInput, any): async.Operation<types.AddProfileKeyOutput>
-    batchGetCalculatedAttributeForProfile: function(Client, types.BatchGetCalculatedAttributeForProfileInput, any): async.Operation<types.BatchGetCalculatedAttributeForProfileOutput>
-    batchGetProfile: function(Client, types.BatchGetProfileInput, any): async.Operation<types.BatchGetProfileOutput>
-    createCalculatedAttributeDefinition: function(Client, types.CreateCalculatedAttributeDefinitionInput, any): async.Operation<types.CreateCalculatedAttributeDefinitionOutput>
-    createDomain: function(Client, types.CreateDomainInput, any): async.Operation<types.CreateDomainOutput>
-    createDomainLayout: function(Client, types.CreateDomainLayoutInput, any): async.Operation<types.CreateDomainLayoutOutput>
-    createEventStream: function(Client, types.CreateEventStreamInput, any): async.Operation<types.CreateEventStreamOutput>
-    createEventTrigger: function(Client, types.CreateEventTriggerInput, any): async.Operation<types.CreateEventTriggerOutput>
-    createIntegrationWorkflow: function(Client, types.CreateIntegrationWorkflowInput, any): async.Operation<types.CreateIntegrationWorkflowOutput>
-    createProfile: function(Client, types.CreateProfileInput, any): async.Operation<types.CreateProfileOutput>
-    createRecommender: function(Client, types.CreateRecommenderInput, any): async.Operation<types.CreateRecommenderOutput>
-    createRecommenderFilter: function(Client, types.CreateRecommenderFilterInput, any): async.Operation<types.CreateRecommenderFilterOutput>
-    createRecommenderSchema: function(Client, types.CreateRecommenderSchemaInput, any): async.Operation<types.CreateRecommenderSchemaOutput>
-    createSegmentDefinition: function(Client, types.CreateSegmentDefinitionInput, any): async.Operation<types.CreateSegmentDefinitionOutput>
-    createSegmentEstimate: function(Client, types.CreateSegmentEstimateInput, any): async.Operation<types.CreateSegmentEstimateOutput>
-    createSegmentSnapshot: function(Client, types.CreateSegmentSnapshotInput, any): async.Operation<types.CreateSegmentSnapshotOutput>
-    createUploadJob: function(Client, types.CreateUploadJobInput, any): async.Operation<types.CreateUploadJobOutput>
-    deleteCalculatedAttributeDefinition: function(Client, types.DeleteCalculatedAttributeDefinitionInput, any): async.Operation<types.DeleteCalculatedAttributeDefinitionOutput>
-    deleteDomain: function(Client, types.DeleteDomainInput, any): async.Operation<types.DeleteDomainOutput>
-    deleteDomainLayout: function(Client, types.DeleteDomainLayoutInput, any): async.Operation<types.DeleteDomainLayoutOutput>
-    deleteDomainObjectType: function(Client, types.DeleteDomainObjectTypeInput, any): async.Operation<types.DeleteDomainObjectTypeOutput>
-    deleteEventStream: function(Client, types.DeleteEventStreamInput, any): async.Operation<types.DeleteEventStreamOutput>
-    deleteEventTrigger: function(Client, types.DeleteEventTriggerInput, any): async.Operation<types.DeleteEventTriggerOutput>
-    deleteIntegration: function(Client, types.DeleteIntegrationInput, any): async.Operation<types.DeleteIntegrationOutput>
-    deleteProfile: function(Client, types.DeleteProfileInput, any): async.Operation<types.DeleteProfileOutput>
-    deleteProfileKey: function(Client, types.DeleteProfileKeyInput, any): async.Operation<types.DeleteProfileKeyOutput>
-    deleteProfileObject: function(Client, types.DeleteProfileObjectInput, any): async.Operation<types.DeleteProfileObjectOutput>
-    deleteProfileObjectType: function(Client, types.DeleteProfileObjectTypeInput, any): async.Operation<types.DeleteProfileObjectTypeOutput>
-    deleteRecommender: function(Client, types.DeleteRecommenderInput, any): async.Operation<types.DeleteRecommenderOutput>
-    deleteRecommenderFilter: function(Client, types.DeleteRecommenderFilterInput, any): async.Operation<types.DeleteRecommenderFilterOutput>
-    deleteRecommenderSchema: function(Client, types.DeleteRecommenderSchemaInput, any): async.Operation<types.DeleteRecommenderSchemaOutput>
-    deleteSegmentDefinition: function(Client, types.DeleteSegmentDefinitionInput, any): async.Operation<types.DeleteSegmentDefinitionOutput>
-    deleteWorkflow: function(Client, types.DeleteWorkflowInput, any): async.Operation<types.DeleteWorkflowOutput>
-    detectProfileObjectType: function(Client, types.DetectProfileObjectTypeInput, any): async.Operation<types.DetectProfileObjectTypeOutput>
-    getAutoMergingPreview: function(Client, types.GetAutoMergingPreviewInput, any): async.Operation<types.GetAutoMergingPreviewOutput>
-    getCalculatedAttributeDefinition: function(Client, types.GetCalculatedAttributeDefinitionInput, any): async.Operation<types.GetCalculatedAttributeDefinitionOutput>
-    getCalculatedAttributeForProfile: function(Client, types.GetCalculatedAttributeForProfileInput, any): async.Operation<types.GetCalculatedAttributeForProfileOutput>
-    getDomain: function(Client, types.GetDomainInput, any): async.Operation<types.GetDomainOutput>
-    getDomainLayout: function(Client, types.GetDomainLayoutInput, any): async.Operation<types.GetDomainLayoutOutput>
-    getDomainObjectType: function(Client, types.GetDomainObjectTypeInput, any): async.Operation<types.GetDomainObjectTypeOutput>
-    getEventStream: function(Client, types.GetEventStreamInput, any): async.Operation<types.GetEventStreamOutput>
-    getEventTrigger: function(Client, types.GetEventTriggerInput, any): async.Operation<types.GetEventTriggerOutput>
-    getIdentityResolutionJob: function(Client, types.GetIdentityResolutionJobInput, any): async.Operation<types.GetIdentityResolutionJobOutput>
-    getIntegration: function(Client, types.GetIntegrationInput, any): async.Operation<types.GetIntegrationOutput>
-    getMatches: function(Client, types.GetMatchesInput, any): async.Operation<types.GetMatchesOutput>
-    getObjectTypeAttributeStatistics: function(Client, types.GetObjectTypeAttributeStatisticsInput, any): async.Operation<types.GetObjectTypeAttributeStatisticsOutput>
-    getProfileHistoryRecord: function(Client, types.GetProfileHistoryRecordInput, any): async.Operation<types.GetProfileHistoryRecordOutput>
-    getProfileObjectType: function(Client, types.GetProfileObjectTypeInput, any): async.Operation<types.GetProfileObjectTypeOutput>
-    getProfileObjectTypeTemplate: function(Client, types.GetProfileObjectTypeTemplateInput, any): async.Operation<types.GetProfileObjectTypeTemplateOutput>
-    getProfileRecommendations: function(Client, types.GetProfileRecommendationsInput, any): async.Operation<types.GetProfileRecommendationsOutput>
-    getRecommender: function(Client, types.GetRecommenderInput, any): async.Operation<types.GetRecommenderOutput>
-    getRecommenderFilter: function(Client, types.GetRecommenderFilterInput, any): async.Operation<types.GetRecommenderFilterOutput>
-    getRecommenderSchema: function(Client, types.GetRecommenderSchemaInput, any): async.Operation<types.GetRecommenderSchemaOutput>
-    getSegmentDefinition: function(Client, types.GetSegmentDefinitionInput, any): async.Operation<types.GetSegmentDefinitionOutput>
-    getSegmentEstimate: function(Client, types.GetSegmentEstimateInput, any): async.Operation<types.GetSegmentEstimateOutput>
-    getSegmentMembership: function(Client, types.GetSegmentMembershipInput, any): async.Operation<types.GetSegmentMembershipOutput>
-    getSegmentSnapshot: function(Client, types.GetSegmentSnapshotInput, any): async.Operation<types.GetSegmentSnapshotOutput>
-    getSimilarProfiles: function(Client, types.GetSimilarProfilesInput, any): async.Operation<types.GetSimilarProfilesOutput>
-    getUploadJob: function(Client, types.GetUploadJobInput, any): async.Operation<types.GetUploadJobOutput>
-    getUploadJobPath: function(Client, types.GetUploadJobPathInput, any): async.Operation<types.GetUploadJobPathOutput>
-    getWorkflow: function(Client, types.GetWorkflowInput, any): async.Operation<types.GetWorkflowOutput>
-    getWorkflowSteps: function(Client, types.GetWorkflowStepsInput, any): async.Operation<types.GetWorkflowStepsOutput>
-    listAccountIntegrations: function(Client, types.ListAccountIntegrationsInput, any): async.Operation<types.ListAccountIntegrationsOutput>
-    listCalculatedAttributeDefinitions: function(Client, types.ListCalculatedAttributeDefinitionsInput, any): async.Operation<types.ListCalculatedAttributeDefinitionsOutput>
-    listCalculatedAttributesForProfile: function(Client, types.ListCalculatedAttributesForProfileInput, any): async.Operation<types.ListCalculatedAttributesForProfileOutput>
-    listDomainLayouts: function(Client, types.ListDomainLayoutsInput, any): async.Operation<types.ListDomainLayoutsOutput>
-    listDomainObjectTypes: function(Client, types.ListDomainObjectTypesInput, any): async.Operation<types.ListDomainObjectTypesOutput>
-    listDomains: function(Client, types.ListDomainsInput, any): async.Operation<types.ListDomainsOutput>
-    listEventStreams: function(Client, types.ListEventStreamsInput, any): async.Operation<types.ListEventStreamsOutput>
-    listEventTriggers: function(Client, types.ListEventTriggersInput, any): async.Operation<types.ListEventTriggersOutput>
-    listIdentityResolutionJobs: function(Client, types.ListIdentityResolutionJobsInput, any): async.Operation<types.ListIdentityResolutionJobsOutput>
-    listIntegrations: function(Client, types.ListIntegrationsInput, any): async.Operation<types.ListIntegrationsOutput>
-    listObjectTypeAttributes: function(Client, types.ListObjectTypeAttributesInput, any): async.Operation<types.ListObjectTypeAttributesOutput>
-    listObjectTypeAttributeValues: function(Client, types.ListObjectTypeAttributeValuesInput, any): async.Operation<types.ListObjectTypeAttributeValuesOutput>
-    listProfileAttributeValues: function(Client, types.ListProfileAttributeValuesInput, any): async.Operation<types.ListProfileAttributeValuesOutput>
-    listProfileHistoryRecords: function(Client, types.ListProfileHistoryRecordsInput, any): async.Operation<types.ListProfileHistoryRecordsOutput>
-    listProfileObjects: function(Client, types.ListProfileObjectsInput, any): async.Operation<types.ListProfileObjectsOutput>
-    listProfileObjectTypes: function(Client, types.ListProfileObjectTypesInput, any): async.Operation<types.ListProfileObjectTypesOutput>
-    listProfileObjectTypeTemplates: function(Client, types.ListProfileObjectTypeTemplatesInput, any): async.Operation<types.ListProfileObjectTypeTemplatesOutput>
-    listRecommenderFilters: function(Client, types.ListRecommenderFiltersInput, any): async.Operation<types.ListRecommenderFiltersOutput>
-    listRecommenderRecipes: function(Client, types.ListRecommenderRecipesInput, any): async.Operation<types.ListRecommenderRecipesOutput>
-    listRecommenders: function(Client, types.ListRecommendersInput, any): async.Operation<types.ListRecommendersOutput>
-    listRecommenderSchemas: function(Client, types.ListRecommenderSchemasInput, any): async.Operation<types.ListRecommenderSchemasOutput>
-    listRuleBasedMatches: function(Client, types.ListRuleBasedMatchesInput, any): async.Operation<types.ListRuleBasedMatchesOutput>
-    listSegmentDefinitions: function(Client, types.ListSegmentDefinitionsInput, any): async.Operation<types.ListSegmentDefinitionsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listUploadJobs: function(Client, types.ListUploadJobsInput, any): async.Operation<types.ListUploadJobsOutput>
-    listWorkflows: function(Client, types.ListWorkflowsInput, any): async.Operation<types.ListWorkflowsOutput>
-    mergeProfiles: function(Client, types.MergeProfilesInput, any): async.Operation<types.MergeProfilesOutput>
-    putDomainObjectType: function(Client, types.PutDomainObjectTypeInput, any): async.Operation<types.PutDomainObjectTypeOutput>
-    putIntegration: function(Client, types.PutIntegrationInput, any): async.Operation<types.PutIntegrationOutput>
-    putProfileObject: function(Client, types.PutProfileObjectInput, any): async.Operation<types.PutProfileObjectOutput>
-    putProfileObjectType: function(Client, types.PutProfileObjectTypeInput, any): async.Operation<types.PutProfileObjectTypeOutput>
-    searchProfiles: function(Client, types.SearchProfilesInput, any): async.Operation<types.SearchProfilesOutput>
-    startRecommender: function(Client, types.StartRecommenderInput, any): async.Operation<types.StartRecommenderOutput>
-    startUploadJob: function(Client, types.StartUploadJobInput, any): async.Operation<types.StartUploadJobOutput>
-    stopRecommender: function(Client, types.StopRecommenderInput, any): async.Operation<types.StopRecommenderOutput>
-    stopUploadJob: function(Client, types.StopUploadJobInput, any): async.Operation<types.StopUploadJobOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateCalculatedAttributeDefinition: function(Client, types.UpdateCalculatedAttributeDefinitionInput, any): async.Operation<types.UpdateCalculatedAttributeDefinitionOutput>
-    updateDomain: function(Client, types.UpdateDomainInput, any): async.Operation<types.UpdateDomainOutput>
-    updateDomainLayout: function(Client, types.UpdateDomainLayoutInput, any): async.Operation<types.UpdateDomainLayoutOutput>
-    updateEventTrigger: function(Client, types.UpdateEventTriggerInput, any): async.Operation<types.UpdateEventTriggerOutput>
-    updateProfile: function(Client, types.UpdateProfileInput, any): async.Operation<types.UpdateProfileOutput>
-    updateRecommender: function(Client, types.UpdateRecommenderInput, any): async.Operation<types.UpdateRecommenderOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    addProfileKey: function(Client, types.AddProfileKeyInput, ? base_client.InvokeOptions): async.Operation<types.AddProfileKeyOutput>
+    batchGetCalculatedAttributeForProfile: function(Client, types.BatchGetCalculatedAttributeForProfileInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetCalculatedAttributeForProfileOutput>
+    batchGetProfile: function(Client, types.BatchGetProfileInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetProfileOutput>
+    createCalculatedAttributeDefinition: function(Client, types.CreateCalculatedAttributeDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.CreateCalculatedAttributeDefinitionOutput>
+    createDomain: function(Client, types.CreateDomainInput, ? base_client.InvokeOptions): async.Operation<types.CreateDomainOutput>
+    createDomainLayout: function(Client, types.CreateDomainLayoutInput, ? base_client.InvokeOptions): async.Operation<types.CreateDomainLayoutOutput>
+    createEventStream: function(Client, types.CreateEventStreamInput, ? base_client.InvokeOptions): async.Operation<types.CreateEventStreamOutput>
+    createEventTrigger: function(Client, types.CreateEventTriggerInput, ? base_client.InvokeOptions): async.Operation<types.CreateEventTriggerOutput>
+    createIntegrationWorkflow: function(Client, types.CreateIntegrationWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.CreateIntegrationWorkflowOutput>
+    createProfile: function(Client, types.CreateProfileInput, ? base_client.InvokeOptions): async.Operation<types.CreateProfileOutput>
+    createRecommender: function(Client, types.CreateRecommenderInput, ? base_client.InvokeOptions): async.Operation<types.CreateRecommenderOutput>
+    createRecommenderFilter: function(Client, types.CreateRecommenderFilterInput, ? base_client.InvokeOptions): async.Operation<types.CreateRecommenderFilterOutput>
+    createRecommenderSchema: function(Client, types.CreateRecommenderSchemaInput, ? base_client.InvokeOptions): async.Operation<types.CreateRecommenderSchemaOutput>
+    createSegmentDefinition: function(Client, types.CreateSegmentDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.CreateSegmentDefinitionOutput>
+    createSegmentEstimate: function(Client, types.CreateSegmentEstimateInput, ? base_client.InvokeOptions): async.Operation<types.CreateSegmentEstimateOutput>
+    createSegmentSnapshot: function(Client, types.CreateSegmentSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.CreateSegmentSnapshotOutput>
+    createUploadJob: function(Client, types.CreateUploadJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateUploadJobOutput>
+    deleteCalculatedAttributeDefinition: function(Client, types.DeleteCalculatedAttributeDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCalculatedAttributeDefinitionOutput>
+    deleteDomain: function(Client, types.DeleteDomainInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDomainOutput>
+    deleteDomainLayout: function(Client, types.DeleteDomainLayoutInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDomainLayoutOutput>
+    deleteDomainObjectType: function(Client, types.DeleteDomainObjectTypeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDomainObjectTypeOutput>
+    deleteEventStream: function(Client, types.DeleteEventStreamInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEventStreamOutput>
+    deleteEventTrigger: function(Client, types.DeleteEventTriggerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEventTriggerOutput>
+    deleteIntegration: function(Client, types.DeleteIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIntegrationOutput>
+    deleteProfile: function(Client, types.DeleteProfileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProfileOutput>
+    deleteProfileKey: function(Client, types.DeleteProfileKeyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProfileKeyOutput>
+    deleteProfileObject: function(Client, types.DeleteProfileObjectInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProfileObjectOutput>
+    deleteProfileObjectType: function(Client, types.DeleteProfileObjectTypeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProfileObjectTypeOutput>
+    deleteRecommender: function(Client, types.DeleteRecommenderInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRecommenderOutput>
+    deleteRecommenderFilter: function(Client, types.DeleteRecommenderFilterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRecommenderFilterOutput>
+    deleteRecommenderSchema: function(Client, types.DeleteRecommenderSchemaInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRecommenderSchemaOutput>
+    deleteSegmentDefinition: function(Client, types.DeleteSegmentDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSegmentDefinitionOutput>
+    deleteWorkflow: function(Client, types.DeleteWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWorkflowOutput>
+    detectProfileObjectType: function(Client, types.DetectProfileObjectTypeInput, ? base_client.InvokeOptions): async.Operation<types.DetectProfileObjectTypeOutput>
+    getAutoMergingPreview: function(Client, types.GetAutoMergingPreviewInput, ? base_client.InvokeOptions): async.Operation<types.GetAutoMergingPreviewOutput>
+    getCalculatedAttributeDefinition: function(Client, types.GetCalculatedAttributeDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.GetCalculatedAttributeDefinitionOutput>
+    getCalculatedAttributeForProfile: function(Client, types.GetCalculatedAttributeForProfileInput, ? base_client.InvokeOptions): async.Operation<types.GetCalculatedAttributeForProfileOutput>
+    getDomain: function(Client, types.GetDomainInput, ? base_client.InvokeOptions): async.Operation<types.GetDomainOutput>
+    getDomainLayout: function(Client, types.GetDomainLayoutInput, ? base_client.InvokeOptions): async.Operation<types.GetDomainLayoutOutput>
+    getDomainObjectType: function(Client, types.GetDomainObjectTypeInput, ? base_client.InvokeOptions): async.Operation<types.GetDomainObjectTypeOutput>
+    getEventStream: function(Client, types.GetEventStreamInput, ? base_client.InvokeOptions): async.Operation<types.GetEventStreamOutput>
+    getEventTrigger: function(Client, types.GetEventTriggerInput, ? base_client.InvokeOptions): async.Operation<types.GetEventTriggerOutput>
+    getIdentityResolutionJob: function(Client, types.GetIdentityResolutionJobInput, ? base_client.InvokeOptions): async.Operation<types.GetIdentityResolutionJobOutput>
+    getIntegration: function(Client, types.GetIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.GetIntegrationOutput>
+    getMatches: function(Client, types.GetMatchesInput, ? base_client.InvokeOptions): async.Operation<types.GetMatchesOutput>
+    getObjectTypeAttributeStatistics: function(Client, types.GetObjectTypeAttributeStatisticsInput, ? base_client.InvokeOptions): async.Operation<types.GetObjectTypeAttributeStatisticsOutput>
+    getProfileHistoryRecord: function(Client, types.GetProfileHistoryRecordInput, ? base_client.InvokeOptions): async.Operation<types.GetProfileHistoryRecordOutput>
+    getProfileObjectType: function(Client, types.GetProfileObjectTypeInput, ? base_client.InvokeOptions): async.Operation<types.GetProfileObjectTypeOutput>
+    getProfileObjectTypeTemplate: function(Client, types.GetProfileObjectTypeTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetProfileObjectTypeTemplateOutput>
+    getProfileRecommendations: function(Client, types.GetProfileRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.GetProfileRecommendationsOutput>
+    getRecommender: function(Client, types.GetRecommenderInput, ? base_client.InvokeOptions): async.Operation<types.GetRecommenderOutput>
+    getRecommenderFilter: function(Client, types.GetRecommenderFilterInput, ? base_client.InvokeOptions): async.Operation<types.GetRecommenderFilterOutput>
+    getRecommenderSchema: function(Client, types.GetRecommenderSchemaInput, ? base_client.InvokeOptions): async.Operation<types.GetRecommenderSchemaOutput>
+    getSegmentDefinition: function(Client, types.GetSegmentDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.GetSegmentDefinitionOutput>
+    getSegmentEstimate: function(Client, types.GetSegmentEstimateInput, ? base_client.InvokeOptions): async.Operation<types.GetSegmentEstimateOutput>
+    getSegmentMembership: function(Client, types.GetSegmentMembershipInput, ? base_client.InvokeOptions): async.Operation<types.GetSegmentMembershipOutput>
+    getSegmentSnapshot: function(Client, types.GetSegmentSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.GetSegmentSnapshotOutput>
+    getSimilarProfiles: function(Client, types.GetSimilarProfilesInput, ? base_client.InvokeOptions): async.Operation<types.GetSimilarProfilesOutput>
+    getUploadJob: function(Client, types.GetUploadJobInput, ? base_client.InvokeOptions): async.Operation<types.GetUploadJobOutput>
+    getUploadJobPath: function(Client, types.GetUploadJobPathInput, ? base_client.InvokeOptions): async.Operation<types.GetUploadJobPathOutput>
+    getWorkflow: function(Client, types.GetWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkflowOutput>
+    getWorkflowSteps: function(Client, types.GetWorkflowStepsInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkflowStepsOutput>
+    listAccountIntegrations: function(Client, types.ListAccountIntegrationsInput, ? base_client.InvokeOptions): async.Operation<types.ListAccountIntegrationsOutput>
+    listCalculatedAttributeDefinitions: function(Client, types.ListCalculatedAttributeDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.ListCalculatedAttributeDefinitionsOutput>
+    listCalculatedAttributesForProfile: function(Client, types.ListCalculatedAttributesForProfileInput, ? base_client.InvokeOptions): async.Operation<types.ListCalculatedAttributesForProfileOutput>
+    listDomainLayouts: function(Client, types.ListDomainLayoutsInput, ? base_client.InvokeOptions): async.Operation<types.ListDomainLayoutsOutput>
+    listDomainObjectTypes: function(Client, types.ListDomainObjectTypesInput, ? base_client.InvokeOptions): async.Operation<types.ListDomainObjectTypesOutput>
+    listDomains: function(Client, types.ListDomainsInput, ? base_client.InvokeOptions): async.Operation<types.ListDomainsOutput>
+    listEventStreams: function(Client, types.ListEventStreamsInput, ? base_client.InvokeOptions): async.Operation<types.ListEventStreamsOutput>
+    listEventTriggers: function(Client, types.ListEventTriggersInput, ? base_client.InvokeOptions): async.Operation<types.ListEventTriggersOutput>
+    listIdentityResolutionJobs: function(Client, types.ListIdentityResolutionJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListIdentityResolutionJobsOutput>
+    listIntegrations: function(Client, types.ListIntegrationsInput, ? base_client.InvokeOptions): async.Operation<types.ListIntegrationsOutput>
+    listObjectTypeAttributes: function(Client, types.ListObjectTypeAttributesInput, ? base_client.InvokeOptions): async.Operation<types.ListObjectTypeAttributesOutput>
+    listObjectTypeAttributeValues: function(Client, types.ListObjectTypeAttributeValuesInput, ? base_client.InvokeOptions): async.Operation<types.ListObjectTypeAttributeValuesOutput>
+    listProfileAttributeValues: function(Client, types.ListProfileAttributeValuesInput, ? base_client.InvokeOptions): async.Operation<types.ListProfileAttributeValuesOutput>
+    listProfileHistoryRecords: function(Client, types.ListProfileHistoryRecordsInput, ? base_client.InvokeOptions): async.Operation<types.ListProfileHistoryRecordsOutput>
+    listProfileObjects: function(Client, types.ListProfileObjectsInput, ? base_client.InvokeOptions): async.Operation<types.ListProfileObjectsOutput>
+    listProfileObjectTypes: function(Client, types.ListProfileObjectTypesInput, ? base_client.InvokeOptions): async.Operation<types.ListProfileObjectTypesOutput>
+    listProfileObjectTypeTemplates: function(Client, types.ListProfileObjectTypeTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListProfileObjectTypeTemplatesOutput>
+    listRecommenderFilters: function(Client, types.ListRecommenderFiltersInput, ? base_client.InvokeOptions): async.Operation<types.ListRecommenderFiltersOutput>
+    listRecommenderRecipes: function(Client, types.ListRecommenderRecipesInput, ? base_client.InvokeOptions): async.Operation<types.ListRecommenderRecipesOutput>
+    listRecommenders: function(Client, types.ListRecommendersInput, ? base_client.InvokeOptions): async.Operation<types.ListRecommendersOutput>
+    listRecommenderSchemas: function(Client, types.ListRecommenderSchemasInput, ? base_client.InvokeOptions): async.Operation<types.ListRecommenderSchemasOutput>
+    listRuleBasedMatches: function(Client, types.ListRuleBasedMatchesInput, ? base_client.InvokeOptions): async.Operation<types.ListRuleBasedMatchesOutput>
+    listSegmentDefinitions: function(Client, types.ListSegmentDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.ListSegmentDefinitionsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listUploadJobs: function(Client, types.ListUploadJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListUploadJobsOutput>
+    listWorkflows: function(Client, types.ListWorkflowsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkflowsOutput>
+    mergeProfiles: function(Client, types.MergeProfilesInput, ? base_client.InvokeOptions): async.Operation<types.MergeProfilesOutput>
+    putDomainObjectType: function(Client, types.PutDomainObjectTypeInput, ? base_client.InvokeOptions): async.Operation<types.PutDomainObjectTypeOutput>
+    putIntegration: function(Client, types.PutIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.PutIntegrationOutput>
+    putProfileObject: function(Client, types.PutProfileObjectInput, ? base_client.InvokeOptions): async.Operation<types.PutProfileObjectOutput>
+    putProfileObjectType: function(Client, types.PutProfileObjectTypeInput, ? base_client.InvokeOptions): async.Operation<types.PutProfileObjectTypeOutput>
+    searchProfiles: function(Client, types.SearchProfilesInput, ? base_client.InvokeOptions): async.Operation<types.SearchProfilesOutput>
+    startRecommender: function(Client, types.StartRecommenderInput, ? base_client.InvokeOptions): async.Operation<types.StartRecommenderOutput>
+    startUploadJob: function(Client, types.StartUploadJobInput, ? base_client.InvokeOptions): async.Operation<types.StartUploadJobOutput>
+    stopRecommender: function(Client, types.StopRecommenderInput, ? base_client.InvokeOptions): async.Operation<types.StopRecommenderOutput>
+    stopUploadJob: function(Client, types.StopUploadJobInput, ? base_client.InvokeOptions): async.Operation<types.StopUploadJobOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateCalculatedAttributeDefinition: function(Client, types.UpdateCalculatedAttributeDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCalculatedAttributeDefinitionOutput>
+    updateDomain: function(Client, types.UpdateDomainInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDomainOutput>
+    updateDomainLayout: function(Client, types.UpdateDomainLayoutInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDomainLayoutOutput>
+    updateEventTrigger: function(Client, types.UpdateEventTriggerInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEventTriggerOutput>
+    updateProfile: function(Client, types.UpdateProfileInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProfileOutput>
+    updateRecommender: function(Client, types.UpdateRecommenderInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRecommenderOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "CustomerProfiles_20200815"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "profile", signing_region = c.region } }
                 else
@@ -165,428 +168,428 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:addProfileKey(input: types.AddProfileKeyInput, options: any): async.Operation<types.AddProfileKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddProfileKey, input, options) as async.Operation<types.AddProfileKeyOutput>
+function C:addProfileKey(input: types.AddProfileKeyInput, options?: base_client.InvokeOptions): async.Operation<types.AddProfileKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddProfileKey as schema.OperationSchema, input, options) as async.Operation<types.AddProfileKeyOutput>
 end
 
-function C:batchGetCalculatedAttributeForProfile(input: types.BatchGetCalculatedAttributeForProfileInput, options: any): async.Operation<types.BatchGetCalculatedAttributeForProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetCalculatedAttributeForProfile, input, options) as async.Operation<types.BatchGetCalculatedAttributeForProfileOutput>
+function C:batchGetCalculatedAttributeForProfile(input: types.BatchGetCalculatedAttributeForProfileInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetCalculatedAttributeForProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetCalculatedAttributeForProfile as schema.OperationSchema, input, options) as async.Operation<types.BatchGetCalculatedAttributeForProfileOutput>
 end
 
-function C:batchGetProfile(input: types.BatchGetProfileInput, options: any): async.Operation<types.BatchGetProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetProfile, input, options) as async.Operation<types.BatchGetProfileOutput>
+function C:batchGetProfile(input: types.BatchGetProfileInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetProfile as schema.OperationSchema, input, options) as async.Operation<types.BatchGetProfileOutput>
 end
 
-function C:createCalculatedAttributeDefinition(input: types.CreateCalculatedAttributeDefinitionInput, options: any): async.Operation<types.CreateCalculatedAttributeDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCalculatedAttributeDefinition, input, options) as async.Operation<types.CreateCalculatedAttributeDefinitionOutput>
+function C:createCalculatedAttributeDefinition(input: types.CreateCalculatedAttributeDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCalculatedAttributeDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCalculatedAttributeDefinition as schema.OperationSchema, input, options) as async.Operation<types.CreateCalculatedAttributeDefinitionOutput>
 end
 
-function C:createDomain(input: types.CreateDomainInput, options: any): async.Operation<types.CreateDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDomain, input, options) as async.Operation<types.CreateDomainOutput>
+function C:createDomain(input: types.CreateDomainInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDomain as schema.OperationSchema, input, options) as async.Operation<types.CreateDomainOutput>
 end
 
-function C:createDomainLayout(input: types.CreateDomainLayoutInput, options: any): async.Operation<types.CreateDomainLayoutOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDomainLayout, input, options) as async.Operation<types.CreateDomainLayoutOutput>
+function C:createDomainLayout(input: types.CreateDomainLayoutInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDomainLayoutOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDomainLayout as schema.OperationSchema, input, options) as async.Operation<types.CreateDomainLayoutOutput>
 end
 
-function C:createEventStream(input: types.CreateEventStreamInput, options: any): async.Operation<types.CreateEventStreamOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEventStream, input, options) as async.Operation<types.CreateEventStreamOutput>
+function C:createEventStream(input: types.CreateEventStreamInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEventStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEventStream as schema.OperationSchema, input, options) as async.Operation<types.CreateEventStreamOutput>
 end
 
-function C:createEventTrigger(input: types.CreateEventTriggerInput, options: any): async.Operation<types.CreateEventTriggerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEventTrigger, input, options) as async.Operation<types.CreateEventTriggerOutput>
+function C:createEventTrigger(input: types.CreateEventTriggerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEventTriggerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEventTrigger as schema.OperationSchema, input, options) as async.Operation<types.CreateEventTriggerOutput>
 end
 
-function C:createIntegrationWorkflow(input: types.CreateIntegrationWorkflowInput, options: any): async.Operation<types.CreateIntegrationWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIntegrationWorkflow, input, options) as async.Operation<types.CreateIntegrationWorkflowOutput>
+function C:createIntegrationWorkflow(input: types.CreateIntegrationWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIntegrationWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIntegrationWorkflow as schema.OperationSchema, input, options) as async.Operation<types.CreateIntegrationWorkflowOutput>
 end
 
-function C:createProfile(input: types.CreateProfileInput, options: any): async.Operation<types.CreateProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProfile, input, options) as async.Operation<types.CreateProfileOutput>
+function C:createProfile(input: types.CreateProfileInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProfile as schema.OperationSchema, input, options) as async.Operation<types.CreateProfileOutput>
 end
 
-function C:createRecommender(input: types.CreateRecommenderInput, options: any): async.Operation<types.CreateRecommenderOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRecommender, input, options) as async.Operation<types.CreateRecommenderOutput>
+function C:createRecommender(input: types.CreateRecommenderInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRecommenderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRecommender as schema.OperationSchema, input, options) as async.Operation<types.CreateRecommenderOutput>
 end
 
-function C:createRecommenderFilter(input: types.CreateRecommenderFilterInput, options: any): async.Operation<types.CreateRecommenderFilterOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRecommenderFilter, input, options) as async.Operation<types.CreateRecommenderFilterOutput>
+function C:createRecommenderFilter(input: types.CreateRecommenderFilterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRecommenderFilterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRecommenderFilter as schema.OperationSchema, input, options) as async.Operation<types.CreateRecommenderFilterOutput>
 end
 
-function C:createRecommenderSchema(input: types.CreateRecommenderSchemaInput, options: any): async.Operation<types.CreateRecommenderSchemaOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRecommenderSchema, input, options) as async.Operation<types.CreateRecommenderSchemaOutput>
+function C:createRecommenderSchema(input: types.CreateRecommenderSchemaInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRecommenderSchemaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRecommenderSchema as schema.OperationSchema, input, options) as async.Operation<types.CreateRecommenderSchemaOutput>
 end
 
-function C:createSegmentDefinition(input: types.CreateSegmentDefinitionInput, options: any): async.Operation<types.CreateSegmentDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSegmentDefinition, input, options) as async.Operation<types.CreateSegmentDefinitionOutput>
+function C:createSegmentDefinition(input: types.CreateSegmentDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSegmentDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSegmentDefinition as schema.OperationSchema, input, options) as async.Operation<types.CreateSegmentDefinitionOutput>
 end
 
-function C:createSegmentEstimate(input: types.CreateSegmentEstimateInput, options: any): async.Operation<types.CreateSegmentEstimateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSegmentEstimate, input, options) as async.Operation<types.CreateSegmentEstimateOutput>
+function C:createSegmentEstimate(input: types.CreateSegmentEstimateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSegmentEstimateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSegmentEstimate as schema.OperationSchema, input, options) as async.Operation<types.CreateSegmentEstimateOutput>
 end
 
-function C:createSegmentSnapshot(input: types.CreateSegmentSnapshotInput, options: any): async.Operation<types.CreateSegmentSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSegmentSnapshot, input, options) as async.Operation<types.CreateSegmentSnapshotOutput>
+function C:createSegmentSnapshot(input: types.CreateSegmentSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSegmentSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSegmentSnapshot as schema.OperationSchema, input, options) as async.Operation<types.CreateSegmentSnapshotOutput>
 end
 
-function C:createUploadJob(input: types.CreateUploadJobInput, options: any): async.Operation<types.CreateUploadJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateUploadJob, input, options) as async.Operation<types.CreateUploadJobOutput>
+function C:createUploadJob(input: types.CreateUploadJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateUploadJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateUploadJob as schema.OperationSchema, input, options) as async.Operation<types.CreateUploadJobOutput>
 end
 
-function C:deleteCalculatedAttributeDefinition(input: types.DeleteCalculatedAttributeDefinitionInput, options: any): async.Operation<types.DeleteCalculatedAttributeDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCalculatedAttributeDefinition, input, options) as async.Operation<types.DeleteCalculatedAttributeDefinitionOutput>
+function C:deleteCalculatedAttributeDefinition(input: types.DeleteCalculatedAttributeDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCalculatedAttributeDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCalculatedAttributeDefinition as schema.OperationSchema, input, options) as async.Operation<types.DeleteCalculatedAttributeDefinitionOutput>
 end
 
-function C:deleteDomain(input: types.DeleteDomainInput, options: any): async.Operation<types.DeleteDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDomain, input, options) as async.Operation<types.DeleteDomainOutput>
+function C:deleteDomain(input: types.DeleteDomainInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDomain as schema.OperationSchema, input, options) as async.Operation<types.DeleteDomainOutput>
 end
 
-function C:deleteDomainLayout(input: types.DeleteDomainLayoutInput, options: any): async.Operation<types.DeleteDomainLayoutOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDomainLayout, input, options) as async.Operation<types.DeleteDomainLayoutOutput>
+function C:deleteDomainLayout(input: types.DeleteDomainLayoutInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDomainLayoutOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDomainLayout as schema.OperationSchema, input, options) as async.Operation<types.DeleteDomainLayoutOutput>
 end
 
-function C:deleteDomainObjectType(input: types.DeleteDomainObjectTypeInput, options: any): async.Operation<types.DeleteDomainObjectTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDomainObjectType, input, options) as async.Operation<types.DeleteDomainObjectTypeOutput>
+function C:deleteDomainObjectType(input: types.DeleteDomainObjectTypeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDomainObjectTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDomainObjectType as schema.OperationSchema, input, options) as async.Operation<types.DeleteDomainObjectTypeOutput>
 end
 
-function C:deleteEventStream(input: types.DeleteEventStreamInput, options: any): async.Operation<types.DeleteEventStreamOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEventStream, input, options) as async.Operation<types.DeleteEventStreamOutput>
+function C:deleteEventStream(input: types.DeleteEventStreamInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEventStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEventStream as schema.OperationSchema, input, options) as async.Operation<types.DeleteEventStreamOutput>
 end
 
-function C:deleteEventTrigger(input: types.DeleteEventTriggerInput, options: any): async.Operation<types.DeleteEventTriggerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEventTrigger, input, options) as async.Operation<types.DeleteEventTriggerOutput>
+function C:deleteEventTrigger(input: types.DeleteEventTriggerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEventTriggerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEventTrigger as schema.OperationSchema, input, options) as async.Operation<types.DeleteEventTriggerOutput>
 end
 
-function C:deleteIntegration(input: types.DeleteIntegrationInput, options: any): async.Operation<types.DeleteIntegrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIntegration, input, options) as async.Operation<types.DeleteIntegrationOutput>
+function C:deleteIntegration(input: types.DeleteIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIntegrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIntegration as schema.OperationSchema, input, options) as async.Operation<types.DeleteIntegrationOutput>
 end
 
-function C:deleteProfile(input: types.DeleteProfileInput, options: any): async.Operation<types.DeleteProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProfile, input, options) as async.Operation<types.DeleteProfileOutput>
+function C:deleteProfile(input: types.DeleteProfileInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProfile as schema.OperationSchema, input, options) as async.Operation<types.DeleteProfileOutput>
 end
 
-function C:deleteProfileKey(input: types.DeleteProfileKeyInput, options: any): async.Operation<types.DeleteProfileKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProfileKey, input, options) as async.Operation<types.DeleteProfileKeyOutput>
+function C:deleteProfileKey(input: types.DeleteProfileKeyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProfileKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProfileKey as schema.OperationSchema, input, options) as async.Operation<types.DeleteProfileKeyOutput>
 end
 
-function C:deleteProfileObject(input: types.DeleteProfileObjectInput, options: any): async.Operation<types.DeleteProfileObjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProfileObject, input, options) as async.Operation<types.DeleteProfileObjectOutput>
+function C:deleteProfileObject(input: types.DeleteProfileObjectInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProfileObjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProfileObject as schema.OperationSchema, input, options) as async.Operation<types.DeleteProfileObjectOutput>
 end
 
-function C:deleteProfileObjectType(input: types.DeleteProfileObjectTypeInput, options: any): async.Operation<types.DeleteProfileObjectTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProfileObjectType, input, options) as async.Operation<types.DeleteProfileObjectTypeOutput>
+function C:deleteProfileObjectType(input: types.DeleteProfileObjectTypeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProfileObjectTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProfileObjectType as schema.OperationSchema, input, options) as async.Operation<types.DeleteProfileObjectTypeOutput>
 end
 
-function C:deleteRecommender(input: types.DeleteRecommenderInput, options: any): async.Operation<types.DeleteRecommenderOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRecommender, input, options) as async.Operation<types.DeleteRecommenderOutput>
+function C:deleteRecommender(input: types.DeleteRecommenderInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRecommenderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRecommender as schema.OperationSchema, input, options) as async.Operation<types.DeleteRecommenderOutput>
 end
 
-function C:deleteRecommenderFilter(input: types.DeleteRecommenderFilterInput, options: any): async.Operation<types.DeleteRecommenderFilterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRecommenderFilter, input, options) as async.Operation<types.DeleteRecommenderFilterOutput>
+function C:deleteRecommenderFilter(input: types.DeleteRecommenderFilterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRecommenderFilterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRecommenderFilter as schema.OperationSchema, input, options) as async.Operation<types.DeleteRecommenderFilterOutput>
 end
 
-function C:deleteRecommenderSchema(input: types.DeleteRecommenderSchemaInput, options: any): async.Operation<types.DeleteRecommenderSchemaOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRecommenderSchema, input, options) as async.Operation<types.DeleteRecommenderSchemaOutput>
+function C:deleteRecommenderSchema(input: types.DeleteRecommenderSchemaInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRecommenderSchemaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRecommenderSchema as schema.OperationSchema, input, options) as async.Operation<types.DeleteRecommenderSchemaOutput>
 end
 
-function C:deleteSegmentDefinition(input: types.DeleteSegmentDefinitionInput, options: any): async.Operation<types.DeleteSegmentDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSegmentDefinition, input, options) as async.Operation<types.DeleteSegmentDefinitionOutput>
+function C:deleteSegmentDefinition(input: types.DeleteSegmentDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSegmentDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSegmentDefinition as schema.OperationSchema, input, options) as async.Operation<types.DeleteSegmentDefinitionOutput>
 end
 
-function C:deleteWorkflow(input: types.DeleteWorkflowInput, options: any): async.Operation<types.DeleteWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWorkflow, input, options) as async.Operation<types.DeleteWorkflowOutput>
+function C:deleteWorkflow(input: types.DeleteWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWorkflow as schema.OperationSchema, input, options) as async.Operation<types.DeleteWorkflowOutput>
 end
 
-function C:detectProfileObjectType(input: types.DetectProfileObjectTypeInput, options: any): async.Operation<types.DetectProfileObjectTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetectProfileObjectType, input, options) as async.Operation<types.DetectProfileObjectTypeOutput>
+function C:detectProfileObjectType(input: types.DetectProfileObjectTypeInput, options?: base_client.InvokeOptions): async.Operation<types.DetectProfileObjectTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetectProfileObjectType as schema.OperationSchema, input, options) as async.Operation<types.DetectProfileObjectTypeOutput>
 end
 
-function C:getAutoMergingPreview(input: types.GetAutoMergingPreviewInput, options: any): async.Operation<types.GetAutoMergingPreviewOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAutoMergingPreview, input, options) as async.Operation<types.GetAutoMergingPreviewOutput>
+function C:getAutoMergingPreview(input: types.GetAutoMergingPreviewInput, options?: base_client.InvokeOptions): async.Operation<types.GetAutoMergingPreviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAutoMergingPreview as schema.OperationSchema, input, options) as async.Operation<types.GetAutoMergingPreviewOutput>
 end
 
-function C:getCalculatedAttributeDefinition(input: types.GetCalculatedAttributeDefinitionInput, options: any): async.Operation<types.GetCalculatedAttributeDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCalculatedAttributeDefinition, input, options) as async.Operation<types.GetCalculatedAttributeDefinitionOutput>
+function C:getCalculatedAttributeDefinition(input: types.GetCalculatedAttributeDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.GetCalculatedAttributeDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCalculatedAttributeDefinition as schema.OperationSchema, input, options) as async.Operation<types.GetCalculatedAttributeDefinitionOutput>
 end
 
-function C:getCalculatedAttributeForProfile(input: types.GetCalculatedAttributeForProfileInput, options: any): async.Operation<types.GetCalculatedAttributeForProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCalculatedAttributeForProfile, input, options) as async.Operation<types.GetCalculatedAttributeForProfileOutput>
+function C:getCalculatedAttributeForProfile(input: types.GetCalculatedAttributeForProfileInput, options?: base_client.InvokeOptions): async.Operation<types.GetCalculatedAttributeForProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCalculatedAttributeForProfile as schema.OperationSchema, input, options) as async.Operation<types.GetCalculatedAttributeForProfileOutput>
 end
 
-function C:getDomain(input: types.GetDomainInput, options: any): async.Operation<types.GetDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDomain, input, options) as async.Operation<types.GetDomainOutput>
+function C:getDomain(input: types.GetDomainInput, options?: base_client.InvokeOptions): async.Operation<types.GetDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDomain as schema.OperationSchema, input, options) as async.Operation<types.GetDomainOutput>
 end
 
-function C:getDomainLayout(input: types.GetDomainLayoutInput, options: any): async.Operation<types.GetDomainLayoutOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDomainLayout, input, options) as async.Operation<types.GetDomainLayoutOutput>
+function C:getDomainLayout(input: types.GetDomainLayoutInput, options?: base_client.InvokeOptions): async.Operation<types.GetDomainLayoutOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDomainLayout as schema.OperationSchema, input, options) as async.Operation<types.GetDomainLayoutOutput>
 end
 
-function C:getDomainObjectType(input: types.GetDomainObjectTypeInput, options: any): async.Operation<types.GetDomainObjectTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDomainObjectType, input, options) as async.Operation<types.GetDomainObjectTypeOutput>
+function C:getDomainObjectType(input: types.GetDomainObjectTypeInput, options?: base_client.InvokeOptions): async.Operation<types.GetDomainObjectTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDomainObjectType as schema.OperationSchema, input, options) as async.Operation<types.GetDomainObjectTypeOutput>
 end
 
-function C:getEventStream(input: types.GetEventStreamInput, options: any): async.Operation<types.GetEventStreamOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEventStream, input, options) as async.Operation<types.GetEventStreamOutput>
+function C:getEventStream(input: types.GetEventStreamInput, options?: base_client.InvokeOptions): async.Operation<types.GetEventStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEventStream as schema.OperationSchema, input, options) as async.Operation<types.GetEventStreamOutput>
 end
 
-function C:getEventTrigger(input: types.GetEventTriggerInput, options: any): async.Operation<types.GetEventTriggerOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEventTrigger, input, options) as async.Operation<types.GetEventTriggerOutput>
+function C:getEventTrigger(input: types.GetEventTriggerInput, options?: base_client.InvokeOptions): async.Operation<types.GetEventTriggerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEventTrigger as schema.OperationSchema, input, options) as async.Operation<types.GetEventTriggerOutput>
 end
 
-function C:getIdentityResolutionJob(input: types.GetIdentityResolutionJobInput, options: any): async.Operation<types.GetIdentityResolutionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIdentityResolutionJob, input, options) as async.Operation<types.GetIdentityResolutionJobOutput>
+function C:getIdentityResolutionJob(input: types.GetIdentityResolutionJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetIdentityResolutionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIdentityResolutionJob as schema.OperationSchema, input, options) as async.Operation<types.GetIdentityResolutionJobOutput>
 end
 
-function C:getIntegration(input: types.GetIntegrationInput, options: any): async.Operation<types.GetIntegrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIntegration, input, options) as async.Operation<types.GetIntegrationOutput>
+function C:getIntegration(input: types.GetIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.GetIntegrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIntegration as schema.OperationSchema, input, options) as async.Operation<types.GetIntegrationOutput>
 end
 
-function C:getMatches(input: types.GetMatchesInput, options: any): async.Operation<types.GetMatchesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMatches, input, options) as async.Operation<types.GetMatchesOutput>
+function C:getMatches(input: types.GetMatchesInput, options?: base_client.InvokeOptions): async.Operation<types.GetMatchesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMatches as schema.OperationSchema, input, options) as async.Operation<types.GetMatchesOutput>
 end
 
-function C:getObjectTypeAttributeStatistics(input: types.GetObjectTypeAttributeStatisticsInput, options: any): async.Operation<types.GetObjectTypeAttributeStatisticsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetObjectTypeAttributeStatistics, input, options) as async.Operation<types.GetObjectTypeAttributeStatisticsOutput>
+function C:getObjectTypeAttributeStatistics(input: types.GetObjectTypeAttributeStatisticsInput, options?: base_client.InvokeOptions): async.Operation<types.GetObjectTypeAttributeStatisticsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetObjectTypeAttributeStatistics as schema.OperationSchema, input, options) as async.Operation<types.GetObjectTypeAttributeStatisticsOutput>
 end
 
-function C:getProfileHistoryRecord(input: types.GetProfileHistoryRecordInput, options: any): async.Operation<types.GetProfileHistoryRecordOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetProfileHistoryRecord, input, options) as async.Operation<types.GetProfileHistoryRecordOutput>
+function C:getProfileHistoryRecord(input: types.GetProfileHistoryRecordInput, options?: base_client.InvokeOptions): async.Operation<types.GetProfileHistoryRecordOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProfileHistoryRecord as schema.OperationSchema, input, options) as async.Operation<types.GetProfileHistoryRecordOutput>
 end
 
-function C:getProfileObjectType(input: types.GetProfileObjectTypeInput, options: any): async.Operation<types.GetProfileObjectTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetProfileObjectType, input, options) as async.Operation<types.GetProfileObjectTypeOutput>
+function C:getProfileObjectType(input: types.GetProfileObjectTypeInput, options?: base_client.InvokeOptions): async.Operation<types.GetProfileObjectTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProfileObjectType as schema.OperationSchema, input, options) as async.Operation<types.GetProfileObjectTypeOutput>
 end
 
-function C:getProfileObjectTypeTemplate(input: types.GetProfileObjectTypeTemplateInput, options: any): async.Operation<types.GetProfileObjectTypeTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetProfileObjectTypeTemplate, input, options) as async.Operation<types.GetProfileObjectTypeTemplateOutput>
+function C:getProfileObjectTypeTemplate(input: types.GetProfileObjectTypeTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetProfileObjectTypeTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProfileObjectTypeTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetProfileObjectTypeTemplateOutput>
 end
 
-function C:getProfileRecommendations(input: types.GetProfileRecommendationsInput, options: any): async.Operation<types.GetProfileRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetProfileRecommendations, input, options) as async.Operation<types.GetProfileRecommendationsOutput>
+function C:getProfileRecommendations(input: types.GetProfileRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetProfileRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProfileRecommendations as schema.OperationSchema, input, options) as async.Operation<types.GetProfileRecommendationsOutput>
 end
 
-function C:getRecommender(input: types.GetRecommenderInput, options: any): async.Operation<types.GetRecommenderOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRecommender, input, options) as async.Operation<types.GetRecommenderOutput>
+function C:getRecommender(input: types.GetRecommenderInput, options?: base_client.InvokeOptions): async.Operation<types.GetRecommenderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRecommender as schema.OperationSchema, input, options) as async.Operation<types.GetRecommenderOutput>
 end
 
-function C:getRecommenderFilter(input: types.GetRecommenderFilterInput, options: any): async.Operation<types.GetRecommenderFilterOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRecommenderFilter, input, options) as async.Operation<types.GetRecommenderFilterOutput>
+function C:getRecommenderFilter(input: types.GetRecommenderFilterInput, options?: base_client.InvokeOptions): async.Operation<types.GetRecommenderFilterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRecommenderFilter as schema.OperationSchema, input, options) as async.Operation<types.GetRecommenderFilterOutput>
 end
 
-function C:getRecommenderSchema(input: types.GetRecommenderSchemaInput, options: any): async.Operation<types.GetRecommenderSchemaOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRecommenderSchema, input, options) as async.Operation<types.GetRecommenderSchemaOutput>
+function C:getRecommenderSchema(input: types.GetRecommenderSchemaInput, options?: base_client.InvokeOptions): async.Operation<types.GetRecommenderSchemaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRecommenderSchema as schema.OperationSchema, input, options) as async.Operation<types.GetRecommenderSchemaOutput>
 end
 
-function C:getSegmentDefinition(input: types.GetSegmentDefinitionInput, options: any): async.Operation<types.GetSegmentDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSegmentDefinition, input, options) as async.Operation<types.GetSegmentDefinitionOutput>
+function C:getSegmentDefinition(input: types.GetSegmentDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.GetSegmentDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSegmentDefinition as schema.OperationSchema, input, options) as async.Operation<types.GetSegmentDefinitionOutput>
 end
 
-function C:getSegmentEstimate(input: types.GetSegmentEstimateInput, options: any): async.Operation<types.GetSegmentEstimateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSegmentEstimate, input, options) as async.Operation<types.GetSegmentEstimateOutput>
+function C:getSegmentEstimate(input: types.GetSegmentEstimateInput, options?: base_client.InvokeOptions): async.Operation<types.GetSegmentEstimateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSegmentEstimate as schema.OperationSchema, input, options) as async.Operation<types.GetSegmentEstimateOutput>
 end
 
-function C:getSegmentMembership(input: types.GetSegmentMembershipInput, options: any): async.Operation<types.GetSegmentMembershipOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSegmentMembership, input, options) as async.Operation<types.GetSegmentMembershipOutput>
+function C:getSegmentMembership(input: types.GetSegmentMembershipInput, options?: base_client.InvokeOptions): async.Operation<types.GetSegmentMembershipOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSegmentMembership as schema.OperationSchema, input, options) as async.Operation<types.GetSegmentMembershipOutput>
 end
 
-function C:getSegmentSnapshot(input: types.GetSegmentSnapshotInput, options: any): async.Operation<types.GetSegmentSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSegmentSnapshot, input, options) as async.Operation<types.GetSegmentSnapshotOutput>
+function C:getSegmentSnapshot(input: types.GetSegmentSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.GetSegmentSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSegmentSnapshot as schema.OperationSchema, input, options) as async.Operation<types.GetSegmentSnapshotOutput>
 end
 
-function C:getSimilarProfiles(input: types.GetSimilarProfilesInput, options: any): async.Operation<types.GetSimilarProfilesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSimilarProfiles, input, options) as async.Operation<types.GetSimilarProfilesOutput>
+function C:getSimilarProfiles(input: types.GetSimilarProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.GetSimilarProfilesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSimilarProfiles as schema.OperationSchema, input, options) as async.Operation<types.GetSimilarProfilesOutput>
 end
 
-function C:getUploadJob(input: types.GetUploadJobInput, options: any): async.Operation<types.GetUploadJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetUploadJob, input, options) as async.Operation<types.GetUploadJobOutput>
+function C:getUploadJob(input: types.GetUploadJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetUploadJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetUploadJob as schema.OperationSchema, input, options) as async.Operation<types.GetUploadJobOutput>
 end
 
-function C:getUploadJobPath(input: types.GetUploadJobPathInput, options: any): async.Operation<types.GetUploadJobPathOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetUploadJobPath, input, options) as async.Operation<types.GetUploadJobPathOutput>
+function C:getUploadJobPath(input: types.GetUploadJobPathInput, options?: base_client.InvokeOptions): async.Operation<types.GetUploadJobPathOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetUploadJobPath as schema.OperationSchema, input, options) as async.Operation<types.GetUploadJobPathOutput>
 end
 
-function C:getWorkflow(input: types.GetWorkflowInput, options: any): async.Operation<types.GetWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWorkflow, input, options) as async.Operation<types.GetWorkflowOutput>
+function C:getWorkflow(input: types.GetWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.GetWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWorkflow as schema.OperationSchema, input, options) as async.Operation<types.GetWorkflowOutput>
 end
 
-function C:getWorkflowSteps(input: types.GetWorkflowStepsInput, options: any): async.Operation<types.GetWorkflowStepsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWorkflowSteps, input, options) as async.Operation<types.GetWorkflowStepsOutput>
+function C:getWorkflowSteps(input: types.GetWorkflowStepsInput, options?: base_client.InvokeOptions): async.Operation<types.GetWorkflowStepsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWorkflowSteps as schema.OperationSchema, input, options) as async.Operation<types.GetWorkflowStepsOutput>
 end
 
-function C:listAccountIntegrations(input: types.ListAccountIntegrationsInput, options: any): async.Operation<types.ListAccountIntegrationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccountIntegrations, input, options) as async.Operation<types.ListAccountIntegrationsOutput>
+function C:listAccountIntegrations(input: types.ListAccountIntegrationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccountIntegrationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccountIntegrations as schema.OperationSchema, input, options) as async.Operation<types.ListAccountIntegrationsOutput>
 end
 
-function C:listCalculatedAttributeDefinitions(input: types.ListCalculatedAttributeDefinitionsInput, options: any): async.Operation<types.ListCalculatedAttributeDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCalculatedAttributeDefinitions, input, options) as async.Operation<types.ListCalculatedAttributeDefinitionsOutput>
+function C:listCalculatedAttributeDefinitions(input: types.ListCalculatedAttributeDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCalculatedAttributeDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCalculatedAttributeDefinitions as schema.OperationSchema, input, options) as async.Operation<types.ListCalculatedAttributeDefinitionsOutput>
 end
 
-function C:listCalculatedAttributesForProfile(input: types.ListCalculatedAttributesForProfileInput, options: any): async.Operation<types.ListCalculatedAttributesForProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCalculatedAttributesForProfile, input, options) as async.Operation<types.ListCalculatedAttributesForProfileOutput>
+function C:listCalculatedAttributesForProfile(input: types.ListCalculatedAttributesForProfileInput, options?: base_client.InvokeOptions): async.Operation<types.ListCalculatedAttributesForProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCalculatedAttributesForProfile as schema.OperationSchema, input, options) as async.Operation<types.ListCalculatedAttributesForProfileOutput>
 end
 
-function C:listDomainLayouts(input: types.ListDomainLayoutsInput, options: any): async.Operation<types.ListDomainLayoutsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDomainLayouts, input, options) as async.Operation<types.ListDomainLayoutsOutput>
+function C:listDomainLayouts(input: types.ListDomainLayoutsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDomainLayoutsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDomainLayouts as schema.OperationSchema, input, options) as async.Operation<types.ListDomainLayoutsOutput>
 end
 
-function C:listDomainObjectTypes(input: types.ListDomainObjectTypesInput, options: any): async.Operation<types.ListDomainObjectTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDomainObjectTypes, input, options) as async.Operation<types.ListDomainObjectTypesOutput>
+function C:listDomainObjectTypes(input: types.ListDomainObjectTypesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDomainObjectTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDomainObjectTypes as schema.OperationSchema, input, options) as async.Operation<types.ListDomainObjectTypesOutput>
 end
 
-function C:listDomains(input: types.ListDomainsInput, options: any): async.Operation<types.ListDomainsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDomains, input, options) as async.Operation<types.ListDomainsOutput>
+function C:listDomains(input: types.ListDomainsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDomainsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDomains as schema.OperationSchema, input, options) as async.Operation<types.ListDomainsOutput>
 end
 
-function C:listEventStreams(input: types.ListEventStreamsInput, options: any): async.Operation<types.ListEventStreamsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEventStreams, input, options) as async.Operation<types.ListEventStreamsOutput>
+function C:listEventStreams(input: types.ListEventStreamsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEventStreamsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEventStreams as schema.OperationSchema, input, options) as async.Operation<types.ListEventStreamsOutput>
 end
 
-function C:listEventTriggers(input: types.ListEventTriggersInput, options: any): async.Operation<types.ListEventTriggersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEventTriggers, input, options) as async.Operation<types.ListEventTriggersOutput>
+function C:listEventTriggers(input: types.ListEventTriggersInput, options?: base_client.InvokeOptions): async.Operation<types.ListEventTriggersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEventTriggers as schema.OperationSchema, input, options) as async.Operation<types.ListEventTriggersOutput>
 end
 
-function C:listIdentityResolutionJobs(input: types.ListIdentityResolutionJobsInput, options: any): async.Operation<types.ListIdentityResolutionJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIdentityResolutionJobs, input, options) as async.Operation<types.ListIdentityResolutionJobsOutput>
+function C:listIdentityResolutionJobs(input: types.ListIdentityResolutionJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListIdentityResolutionJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIdentityResolutionJobs as schema.OperationSchema, input, options) as async.Operation<types.ListIdentityResolutionJobsOutput>
 end
 
-function C:listIntegrations(input: types.ListIntegrationsInput, options: any): async.Operation<types.ListIntegrationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIntegrations, input, options) as async.Operation<types.ListIntegrationsOutput>
+function C:listIntegrations(input: types.ListIntegrationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListIntegrationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIntegrations as schema.OperationSchema, input, options) as async.Operation<types.ListIntegrationsOutput>
 end
 
-function C:listObjectTypeAttributes(input: types.ListObjectTypeAttributesInput, options: any): async.Operation<types.ListObjectTypeAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListObjectTypeAttributes, input, options) as async.Operation<types.ListObjectTypeAttributesOutput>
+function C:listObjectTypeAttributes(input: types.ListObjectTypeAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.ListObjectTypeAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListObjectTypeAttributes as schema.OperationSchema, input, options) as async.Operation<types.ListObjectTypeAttributesOutput>
 end
 
-function C:listObjectTypeAttributeValues(input: types.ListObjectTypeAttributeValuesInput, options: any): async.Operation<types.ListObjectTypeAttributeValuesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListObjectTypeAttributeValues, input, options) as async.Operation<types.ListObjectTypeAttributeValuesOutput>
+function C:listObjectTypeAttributeValues(input: types.ListObjectTypeAttributeValuesInput, options?: base_client.InvokeOptions): async.Operation<types.ListObjectTypeAttributeValuesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListObjectTypeAttributeValues as schema.OperationSchema, input, options) as async.Operation<types.ListObjectTypeAttributeValuesOutput>
 end
 
-function C:listProfileAttributeValues(input: types.ListProfileAttributeValuesInput, options: any): async.Operation<types.ListProfileAttributeValuesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProfileAttributeValues, input, options) as async.Operation<types.ListProfileAttributeValuesOutput>
+function C:listProfileAttributeValues(input: types.ListProfileAttributeValuesInput, options?: base_client.InvokeOptions): async.Operation<types.ListProfileAttributeValuesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProfileAttributeValues as schema.OperationSchema, input, options) as async.Operation<types.ListProfileAttributeValuesOutput>
 end
 
-function C:listProfileHistoryRecords(input: types.ListProfileHistoryRecordsInput, options: any): async.Operation<types.ListProfileHistoryRecordsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProfileHistoryRecords, input, options) as async.Operation<types.ListProfileHistoryRecordsOutput>
+function C:listProfileHistoryRecords(input: types.ListProfileHistoryRecordsInput, options?: base_client.InvokeOptions): async.Operation<types.ListProfileHistoryRecordsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProfileHistoryRecords as schema.OperationSchema, input, options) as async.Operation<types.ListProfileHistoryRecordsOutput>
 end
 
-function C:listProfileObjects(input: types.ListProfileObjectsInput, options: any): async.Operation<types.ListProfileObjectsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProfileObjects, input, options) as async.Operation<types.ListProfileObjectsOutput>
+function C:listProfileObjects(input: types.ListProfileObjectsInput, options?: base_client.InvokeOptions): async.Operation<types.ListProfileObjectsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProfileObjects as schema.OperationSchema, input, options) as async.Operation<types.ListProfileObjectsOutput>
 end
 
-function C:listProfileObjectTypes(input: types.ListProfileObjectTypesInput, options: any): async.Operation<types.ListProfileObjectTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProfileObjectTypes, input, options) as async.Operation<types.ListProfileObjectTypesOutput>
+function C:listProfileObjectTypes(input: types.ListProfileObjectTypesInput, options?: base_client.InvokeOptions): async.Operation<types.ListProfileObjectTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProfileObjectTypes as schema.OperationSchema, input, options) as async.Operation<types.ListProfileObjectTypesOutput>
 end
 
-function C:listProfileObjectTypeTemplates(input: types.ListProfileObjectTypeTemplatesInput, options: any): async.Operation<types.ListProfileObjectTypeTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProfileObjectTypeTemplates, input, options) as async.Operation<types.ListProfileObjectTypeTemplatesOutput>
+function C:listProfileObjectTypeTemplates(input: types.ListProfileObjectTypeTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListProfileObjectTypeTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProfileObjectTypeTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListProfileObjectTypeTemplatesOutput>
 end
 
-function C:listRecommenderFilters(input: types.ListRecommenderFiltersInput, options: any): async.Operation<types.ListRecommenderFiltersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRecommenderFilters, input, options) as async.Operation<types.ListRecommenderFiltersOutput>
+function C:listRecommenderFilters(input: types.ListRecommenderFiltersInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecommenderFiltersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecommenderFilters as schema.OperationSchema, input, options) as async.Operation<types.ListRecommenderFiltersOutput>
 end
 
-function C:listRecommenderRecipes(input: types.ListRecommenderRecipesInput, options: any): async.Operation<types.ListRecommenderRecipesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRecommenderRecipes, input, options) as async.Operation<types.ListRecommenderRecipesOutput>
+function C:listRecommenderRecipes(input: types.ListRecommenderRecipesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecommenderRecipesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecommenderRecipes as schema.OperationSchema, input, options) as async.Operation<types.ListRecommenderRecipesOutput>
 end
 
-function C:listRecommenders(input: types.ListRecommendersInput, options: any): async.Operation<types.ListRecommendersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRecommenders, input, options) as async.Operation<types.ListRecommendersOutput>
+function C:listRecommenders(input: types.ListRecommendersInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecommendersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecommenders as schema.OperationSchema, input, options) as async.Operation<types.ListRecommendersOutput>
 end
 
-function C:listRecommenderSchemas(input: types.ListRecommenderSchemasInput, options: any): async.Operation<types.ListRecommenderSchemasOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRecommenderSchemas, input, options) as async.Operation<types.ListRecommenderSchemasOutput>
+function C:listRecommenderSchemas(input: types.ListRecommenderSchemasInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecommenderSchemasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecommenderSchemas as schema.OperationSchema, input, options) as async.Operation<types.ListRecommenderSchemasOutput>
 end
 
-function C:listRuleBasedMatches(input: types.ListRuleBasedMatchesInput, options: any): async.Operation<types.ListRuleBasedMatchesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRuleBasedMatches, input, options) as async.Operation<types.ListRuleBasedMatchesOutput>
+function C:listRuleBasedMatches(input: types.ListRuleBasedMatchesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRuleBasedMatchesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRuleBasedMatches as schema.OperationSchema, input, options) as async.Operation<types.ListRuleBasedMatchesOutput>
 end
 
-function C:listSegmentDefinitions(input: types.ListSegmentDefinitionsInput, options: any): async.Operation<types.ListSegmentDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSegmentDefinitions, input, options) as async.Operation<types.ListSegmentDefinitionsOutput>
+function C:listSegmentDefinitions(input: types.ListSegmentDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSegmentDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSegmentDefinitions as schema.OperationSchema, input, options) as async.Operation<types.ListSegmentDefinitionsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listUploadJobs(input: types.ListUploadJobsInput, options: any): async.Operation<types.ListUploadJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListUploadJobs, input, options) as async.Operation<types.ListUploadJobsOutput>
+function C:listUploadJobs(input: types.ListUploadJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListUploadJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUploadJobs as schema.OperationSchema, input, options) as async.Operation<types.ListUploadJobsOutput>
 end
 
-function C:listWorkflows(input: types.ListWorkflowsInput, options: any): async.Operation<types.ListWorkflowsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWorkflows, input, options) as async.Operation<types.ListWorkflowsOutput>
+function C:listWorkflows(input: types.ListWorkflowsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkflowsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkflows as schema.OperationSchema, input, options) as async.Operation<types.ListWorkflowsOutput>
 end
 
-function C:mergeProfiles(input: types.MergeProfilesInput, options: any): async.Operation<types.MergeProfilesOutput>
-    return self:invokeOperation(schemas.Service, schemas.MergeProfiles, input, options) as async.Operation<types.MergeProfilesOutput>
+function C:mergeProfiles(input: types.MergeProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.MergeProfilesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.MergeProfiles as schema.OperationSchema, input, options) as async.Operation<types.MergeProfilesOutput>
 end
 
-function C:putDomainObjectType(input: types.PutDomainObjectTypeInput, options: any): async.Operation<types.PutDomainObjectTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutDomainObjectType, input, options) as async.Operation<types.PutDomainObjectTypeOutput>
+function C:putDomainObjectType(input: types.PutDomainObjectTypeInput, options?: base_client.InvokeOptions): async.Operation<types.PutDomainObjectTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutDomainObjectType as schema.OperationSchema, input, options) as async.Operation<types.PutDomainObjectTypeOutput>
 end
 
-function C:putIntegration(input: types.PutIntegrationInput, options: any): async.Operation<types.PutIntegrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutIntegration, input, options) as async.Operation<types.PutIntegrationOutput>
+function C:putIntegration(input: types.PutIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.PutIntegrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutIntegration as schema.OperationSchema, input, options) as async.Operation<types.PutIntegrationOutput>
 end
 
-function C:putProfileObject(input: types.PutProfileObjectInput, options: any): async.Operation<types.PutProfileObjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutProfileObject, input, options) as async.Operation<types.PutProfileObjectOutput>
+function C:putProfileObject(input: types.PutProfileObjectInput, options?: base_client.InvokeOptions): async.Operation<types.PutProfileObjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutProfileObject as schema.OperationSchema, input, options) as async.Operation<types.PutProfileObjectOutput>
 end
 
-function C:putProfileObjectType(input: types.PutProfileObjectTypeInput, options: any): async.Operation<types.PutProfileObjectTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutProfileObjectType, input, options) as async.Operation<types.PutProfileObjectTypeOutput>
+function C:putProfileObjectType(input: types.PutProfileObjectTypeInput, options?: base_client.InvokeOptions): async.Operation<types.PutProfileObjectTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutProfileObjectType as schema.OperationSchema, input, options) as async.Operation<types.PutProfileObjectTypeOutput>
 end
 
-function C:searchProfiles(input: types.SearchProfilesInput, options: any): async.Operation<types.SearchProfilesOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchProfiles, input, options) as async.Operation<types.SearchProfilesOutput>
+function C:searchProfiles(input: types.SearchProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.SearchProfilesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchProfiles as schema.OperationSchema, input, options) as async.Operation<types.SearchProfilesOutput>
 end
 
-function C:startRecommender(input: types.StartRecommenderInput, options: any): async.Operation<types.StartRecommenderOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartRecommender, input, options) as async.Operation<types.StartRecommenderOutput>
+function C:startRecommender(input: types.StartRecommenderInput, options?: base_client.InvokeOptions): async.Operation<types.StartRecommenderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartRecommender as schema.OperationSchema, input, options) as async.Operation<types.StartRecommenderOutput>
 end
 
-function C:startUploadJob(input: types.StartUploadJobInput, options: any): async.Operation<types.StartUploadJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartUploadJob, input, options) as async.Operation<types.StartUploadJobOutput>
+function C:startUploadJob(input: types.StartUploadJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartUploadJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartUploadJob as schema.OperationSchema, input, options) as async.Operation<types.StartUploadJobOutput>
 end
 
-function C:stopRecommender(input: types.StopRecommenderInput, options: any): async.Operation<types.StopRecommenderOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopRecommender, input, options) as async.Operation<types.StopRecommenderOutput>
+function C:stopRecommender(input: types.StopRecommenderInput, options?: base_client.InvokeOptions): async.Operation<types.StopRecommenderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopRecommender as schema.OperationSchema, input, options) as async.Operation<types.StopRecommenderOutput>
 end
 
-function C:stopUploadJob(input: types.StopUploadJobInput, options: any): async.Operation<types.StopUploadJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopUploadJob, input, options) as async.Operation<types.StopUploadJobOutput>
+function C:stopUploadJob(input: types.StopUploadJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopUploadJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopUploadJob as schema.OperationSchema, input, options) as async.Operation<types.StopUploadJobOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateCalculatedAttributeDefinition(input: types.UpdateCalculatedAttributeDefinitionInput, options: any): async.Operation<types.UpdateCalculatedAttributeDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCalculatedAttributeDefinition, input, options) as async.Operation<types.UpdateCalculatedAttributeDefinitionOutput>
+function C:updateCalculatedAttributeDefinition(input: types.UpdateCalculatedAttributeDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCalculatedAttributeDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCalculatedAttributeDefinition as schema.OperationSchema, input, options) as async.Operation<types.UpdateCalculatedAttributeDefinitionOutput>
 end
 
-function C:updateDomain(input: types.UpdateDomainInput, options: any): async.Operation<types.UpdateDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDomain, input, options) as async.Operation<types.UpdateDomainOutput>
+function C:updateDomain(input: types.UpdateDomainInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDomain as schema.OperationSchema, input, options) as async.Operation<types.UpdateDomainOutput>
 end
 
-function C:updateDomainLayout(input: types.UpdateDomainLayoutInput, options: any): async.Operation<types.UpdateDomainLayoutOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDomainLayout, input, options) as async.Operation<types.UpdateDomainLayoutOutput>
+function C:updateDomainLayout(input: types.UpdateDomainLayoutInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDomainLayoutOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDomainLayout as schema.OperationSchema, input, options) as async.Operation<types.UpdateDomainLayoutOutput>
 end
 
-function C:updateEventTrigger(input: types.UpdateEventTriggerInput, options: any): async.Operation<types.UpdateEventTriggerOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEventTrigger, input, options) as async.Operation<types.UpdateEventTriggerOutput>
+function C:updateEventTrigger(input: types.UpdateEventTriggerInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEventTriggerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEventTrigger as schema.OperationSchema, input, options) as async.Operation<types.UpdateEventTriggerOutput>
 end
 
-function C:updateProfile(input: types.UpdateProfileInput, options: any): async.Operation<types.UpdateProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProfile, input, options) as async.Operation<types.UpdateProfileOutput>
+function C:updateProfile(input: types.UpdateProfileInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProfile as schema.OperationSchema, input, options) as async.Operation<types.UpdateProfileOutput>
 end
 
-function C:updateRecommender(input: types.UpdateRecommenderInput, options: any): async.Operation<types.UpdateRecommenderOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRecommender, input, options) as async.Operation<types.UpdateRecommenderOutput>
+function C:updateRecommender(input: types.UpdateRecommenderInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRecommenderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRecommender as schema.OperationSchema, input, options) as async.Operation<types.UpdateRecommenderOutput>
 end
 
 return M

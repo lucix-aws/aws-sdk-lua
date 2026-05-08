@@ -8,46 +8,49 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("geoplaces.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("geoplaces.schemas")
 local traits = require("smithy.traits")
 local types = require("geoplaces.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    autocomplete: function(Client, types.AutocompleteInput, any): async.Operation<types.AutocompleteOutput>
-    geocode: function(Client, types.GeocodeInput, any): async.Operation<types.GeocodeOutput>
-    getPlace: function(Client, types.GetPlaceInput, any): async.Operation<types.GetPlaceOutput>
-    reverseGeocode: function(Client, types.ReverseGeocodeInput, any): async.Operation<types.ReverseGeocodeOutput>
-    searchNearby: function(Client, types.SearchNearbyInput, any): async.Operation<types.SearchNearbyOutput>
-    searchText: function(Client, types.SearchTextInput, any): async.Operation<types.SearchTextOutput>
-    suggest: function(Client, types.SuggestInput, any): async.Operation<types.SuggestOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    autocomplete: function(Client, types.AutocompleteInput, ? base_client.InvokeOptions): async.Operation<types.AutocompleteOutput>
+    geocode: function(Client, types.GeocodeInput, ? base_client.InvokeOptions): async.Operation<types.GeocodeOutput>
+    getPlace: function(Client, types.GetPlaceInput, ? base_client.InvokeOptions): async.Operation<types.GetPlaceOutput>
+    reverseGeocode: function(Client, types.ReverseGeocodeInput, ? base_client.InvokeOptions): async.Operation<types.ReverseGeocodeOutput>
+    searchNearby: function(Client, types.SearchNearbyInput, ? base_client.InvokeOptions): async.Operation<types.SearchNearbyOutput>
+    searchText: function(Client, types.SearchTextInput, ? base_client.InvokeOptions): async.Operation<types.SearchTextOutput>
+    suggest: function(Client, types.SuggestInput, ? base_client.InvokeOptions): async.Operation<types.SuggestOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "PlacesService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "geo-places", signing_region = c.region } }
                 else
@@ -66,32 +69,32 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:autocomplete(input: types.AutocompleteInput, options: any): async.Operation<types.AutocompleteOutput>
-    return self:invokeOperation(schemas.Service, schemas.Autocomplete, input, options) as async.Operation<types.AutocompleteOutput>
+function C:autocomplete(input: types.AutocompleteInput, options?: base_client.InvokeOptions): async.Operation<types.AutocompleteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Autocomplete as schema.OperationSchema, input, options) as async.Operation<types.AutocompleteOutput>
 end
 
-function C:geocode(input: types.GeocodeInput, options: any): async.Operation<types.GeocodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.Geocode, input, options) as async.Operation<types.GeocodeOutput>
+function C:geocode(input: types.GeocodeInput, options?: base_client.InvokeOptions): async.Operation<types.GeocodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Geocode as schema.OperationSchema, input, options) as async.Operation<types.GeocodeOutput>
 end
 
-function C:getPlace(input: types.GetPlaceInput, options: any): async.Operation<types.GetPlaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPlace, input, options) as async.Operation<types.GetPlaceOutput>
+function C:getPlace(input: types.GetPlaceInput, options?: base_client.InvokeOptions): async.Operation<types.GetPlaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPlace as schema.OperationSchema, input, options) as async.Operation<types.GetPlaceOutput>
 end
 
-function C:reverseGeocode(input: types.ReverseGeocodeInput, options: any): async.Operation<types.ReverseGeocodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.ReverseGeocode, input, options) as async.Operation<types.ReverseGeocodeOutput>
+function C:reverseGeocode(input: types.ReverseGeocodeInput, options?: base_client.InvokeOptions): async.Operation<types.ReverseGeocodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReverseGeocode as schema.OperationSchema, input, options) as async.Operation<types.ReverseGeocodeOutput>
 end
 
-function C:searchNearby(input: types.SearchNearbyInput, options: any): async.Operation<types.SearchNearbyOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchNearby, input, options) as async.Operation<types.SearchNearbyOutput>
+function C:searchNearby(input: types.SearchNearbyInput, options?: base_client.InvokeOptions): async.Operation<types.SearchNearbyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchNearby as schema.OperationSchema, input, options) as async.Operation<types.SearchNearbyOutput>
 end
 
-function C:searchText(input: types.SearchTextInput, options: any): async.Operation<types.SearchTextOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchText, input, options) as async.Operation<types.SearchTextOutput>
+function C:searchText(input: types.SearchTextInput, options?: base_client.InvokeOptions): async.Operation<types.SearchTextOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchText as schema.OperationSchema, input, options) as async.Operation<types.SearchTextOutput>
 end
 
-function C:suggest(input: types.SuggestInput, options: any): async.Operation<types.SuggestOutput>
-    return self:invokeOperation(schemas.Service, schemas.Suggest, input, options) as async.Operation<types.SuggestOutput>
+function C:suggest(input: types.SuggestInput, options?: base_client.InvokeOptions): async.Operation<types.SuggestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Suggest as schema.OperationSchema, input, options) as async.Operation<types.SuggestOutput>
 end
 
 return M

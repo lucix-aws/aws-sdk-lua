@@ -8,66 +8,69 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("ssmsap.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("ssmsap.schemas")
 local traits = require("smithy.traits")
 local types = require("ssmsap.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    deleteResourcePermission: function(Client, types.DeleteResourcePermissionInput, any): async.Operation<types.DeleteResourcePermissionOutput>
-    deregisterApplication: function(Client, types.DeregisterApplicationInput, any): async.Operation<types.DeregisterApplicationOutput>
-    getApplication: function(Client, types.GetApplicationInput, any): async.Operation<types.GetApplicationOutput>
-    getComponent: function(Client, types.GetComponentInput, any): async.Operation<types.GetComponentOutput>
-    getConfigurationCheckOperation: function(Client, types.GetConfigurationCheckOperationInput, any): async.Operation<types.GetConfigurationCheckOperationOutput>
-    getDatabase: function(Client, types.GetDatabaseInput, any): async.Operation<types.GetDatabaseOutput>
-    getOperation: function(Client, types.GetOperationInput, any): async.Operation<types.GetOperationOutput>
-    getResourcePermission: function(Client, types.GetResourcePermissionInput, any): async.Operation<types.GetResourcePermissionOutput>
-    listApplications: function(Client, types.ListApplicationsInput, any): async.Operation<types.ListApplicationsOutput>
-    listComponents: function(Client, types.ListComponentsInput, any): async.Operation<types.ListComponentsOutput>
-    listConfigurationCheckDefinitions: function(Client, types.ListConfigurationCheckDefinitionsInput, any): async.Operation<types.ListConfigurationCheckDefinitionsOutput>
-    listConfigurationCheckOperations: function(Client, types.ListConfigurationCheckOperationsInput, any): async.Operation<types.ListConfigurationCheckOperationsOutput>
-    listDatabases: function(Client, types.ListDatabasesInput, any): async.Operation<types.ListDatabasesOutput>
-    listOperationEvents: function(Client, types.ListOperationEventsInput, any): async.Operation<types.ListOperationEventsOutput>
-    listOperations: function(Client, types.ListOperationsInput, any): async.Operation<types.ListOperationsOutput>
-    listSubCheckResults: function(Client, types.ListSubCheckResultsInput, any): async.Operation<types.ListSubCheckResultsOutput>
-    listSubCheckRuleResults: function(Client, types.ListSubCheckRuleResultsInput, any): async.Operation<types.ListSubCheckRuleResultsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putResourcePermission: function(Client, types.PutResourcePermissionInput, any): async.Operation<types.PutResourcePermissionOutput>
-    registerApplication: function(Client, types.RegisterApplicationInput, any): async.Operation<types.RegisterApplicationOutput>
-    startApplication: function(Client, types.StartApplicationInput, any): async.Operation<types.StartApplicationOutput>
-    startApplicationRefresh: function(Client, types.StartApplicationRefreshInput, any): async.Operation<types.StartApplicationRefreshOutput>
-    startConfigurationChecks: function(Client, types.StartConfigurationChecksInput, any): async.Operation<types.StartConfigurationChecksOutput>
-    stopApplication: function(Client, types.StopApplicationInput, any): async.Operation<types.StopApplicationOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateApplicationSettings: function(Client, types.UpdateApplicationSettingsInput, any): async.Operation<types.UpdateApplicationSettingsOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    deleteResourcePermission: function(Client, types.DeleteResourcePermissionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePermissionOutput>
+    deregisterApplication: function(Client, types.DeregisterApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterApplicationOutput>
+    getApplication: function(Client, types.GetApplicationInput, ? base_client.InvokeOptions): async.Operation<types.GetApplicationOutput>
+    getComponent: function(Client, types.GetComponentInput, ? base_client.InvokeOptions): async.Operation<types.GetComponentOutput>
+    getConfigurationCheckOperation: function(Client, types.GetConfigurationCheckOperationInput, ? base_client.InvokeOptions): async.Operation<types.GetConfigurationCheckOperationOutput>
+    getDatabase: function(Client, types.GetDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.GetDatabaseOutput>
+    getOperation: function(Client, types.GetOperationInput, ? base_client.InvokeOptions): async.Operation<types.GetOperationOutput>
+    getResourcePermission: function(Client, types.GetResourcePermissionInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePermissionOutput>
+    listApplications: function(Client, types.ListApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    listComponents: function(Client, types.ListComponentsInput, ? base_client.InvokeOptions): async.Operation<types.ListComponentsOutput>
+    listConfigurationCheckDefinitions: function(Client, types.ListConfigurationCheckDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.ListConfigurationCheckDefinitionsOutput>
+    listConfigurationCheckOperations: function(Client, types.ListConfigurationCheckOperationsInput, ? base_client.InvokeOptions): async.Operation<types.ListConfigurationCheckOperationsOutput>
+    listDatabases: function(Client, types.ListDatabasesInput, ? base_client.InvokeOptions): async.Operation<types.ListDatabasesOutput>
+    listOperationEvents: function(Client, types.ListOperationEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListOperationEventsOutput>
+    listOperations: function(Client, types.ListOperationsInput, ? base_client.InvokeOptions): async.Operation<types.ListOperationsOutput>
+    listSubCheckResults: function(Client, types.ListSubCheckResultsInput, ? base_client.InvokeOptions): async.Operation<types.ListSubCheckResultsOutput>
+    listSubCheckRuleResults: function(Client, types.ListSubCheckRuleResultsInput, ? base_client.InvokeOptions): async.Operation<types.ListSubCheckRuleResultsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putResourcePermission: function(Client, types.PutResourcePermissionInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePermissionOutput>
+    registerApplication: function(Client, types.RegisterApplicationInput, ? base_client.InvokeOptions): async.Operation<types.RegisterApplicationOutput>
+    startApplication: function(Client, types.StartApplicationInput, ? base_client.InvokeOptions): async.Operation<types.StartApplicationOutput>
+    startApplicationRefresh: function(Client, types.StartApplicationRefreshInput, ? base_client.InvokeOptions): async.Operation<types.StartApplicationRefreshOutput>
+    startConfigurationChecks: function(Client, types.StartConfigurationChecksInput, ? base_client.InvokeOptions): async.Operation<types.StartConfigurationChecksOutput>
+    stopApplication: function(Client, types.StopApplicationInput, ? base_client.InvokeOptions): async.Operation<types.StopApplicationOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateApplicationSettings: function(Client, types.UpdateApplicationSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApplicationSettingsOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "SsmSap"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ssm-sap", signing_region = c.region } }
                 else
@@ -86,112 +89,112 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:deleteResourcePermission(input: types.DeleteResourcePermissionInput, options: any): async.Operation<types.DeleteResourcePermissionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePermission, input, options) as async.Operation<types.DeleteResourcePermissionOutput>
+function C:deleteResourcePermission(input: types.DeleteResourcePermissionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePermissionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePermission as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePermissionOutput>
 end
 
-function C:deregisterApplication(input: types.DeregisterApplicationInput, options: any): async.Operation<types.DeregisterApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterApplication, input, options) as async.Operation<types.DeregisterApplicationOutput>
+function C:deregisterApplication(input: types.DeregisterApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterApplication as schema.OperationSchema, input, options) as async.Operation<types.DeregisterApplicationOutput>
 end
 
-function C:getApplication(input: types.GetApplicationInput, options: any): async.Operation<types.GetApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetApplication, input, options) as async.Operation<types.GetApplicationOutput>
+function C:getApplication(input: types.GetApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.GetApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetApplication as schema.OperationSchema, input, options) as async.Operation<types.GetApplicationOutput>
 end
 
-function C:getComponent(input: types.GetComponentInput, options: any): async.Operation<types.GetComponentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetComponent, input, options) as async.Operation<types.GetComponentOutput>
+function C:getComponent(input: types.GetComponentInput, options?: base_client.InvokeOptions): async.Operation<types.GetComponentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetComponent as schema.OperationSchema, input, options) as async.Operation<types.GetComponentOutput>
 end
 
-function C:getConfigurationCheckOperation(input: types.GetConfigurationCheckOperationInput, options: any): async.Operation<types.GetConfigurationCheckOperationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConfigurationCheckOperation, input, options) as async.Operation<types.GetConfigurationCheckOperationOutput>
+function C:getConfigurationCheckOperation(input: types.GetConfigurationCheckOperationInput, options?: base_client.InvokeOptions): async.Operation<types.GetConfigurationCheckOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConfigurationCheckOperation as schema.OperationSchema, input, options) as async.Operation<types.GetConfigurationCheckOperationOutput>
 end
 
-function C:getDatabase(input: types.GetDatabaseInput, options: any): async.Operation<types.GetDatabaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDatabase, input, options) as async.Operation<types.GetDatabaseOutput>
+function C:getDatabase(input: types.GetDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.GetDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDatabase as schema.OperationSchema, input, options) as async.Operation<types.GetDatabaseOutput>
 end
 
-function C:getOperation(input: types.GetOperationInput, options: any): async.Operation<types.GetOperationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOperation, input, options) as async.Operation<types.GetOperationOutput>
+function C:getOperation(input: types.GetOperationInput, options?: base_client.InvokeOptions): async.Operation<types.GetOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOperation as schema.OperationSchema, input, options) as async.Operation<types.GetOperationOutput>
 end
 
-function C:getResourcePermission(input: types.GetResourcePermissionInput, options: any): async.Operation<types.GetResourcePermissionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourcePermission, input, options) as async.Operation<types.GetResourcePermissionOutput>
+function C:getResourcePermission(input: types.GetResourcePermissionInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcePermissionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePermission as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePermissionOutput>
 end
 
-function C:listApplications(input: types.ListApplicationsInput, options: any): async.Operation<types.ListApplicationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplications, input, options) as async.Operation<types.ListApplicationsOutput>
+function C:listApplications(input: types.ListApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplications as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationsOutput>
 end
 
-function C:listComponents(input: types.ListComponentsInput, options: any): async.Operation<types.ListComponentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListComponents, input, options) as async.Operation<types.ListComponentsOutput>
+function C:listComponents(input: types.ListComponentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListComponentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListComponents as schema.OperationSchema, input, options) as async.Operation<types.ListComponentsOutput>
 end
 
-function C:listConfigurationCheckDefinitions(input: types.ListConfigurationCheckDefinitionsInput, options: any): async.Operation<types.ListConfigurationCheckDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConfigurationCheckDefinitions, input, options) as async.Operation<types.ListConfigurationCheckDefinitionsOutput>
+function C:listConfigurationCheckDefinitions(input: types.ListConfigurationCheckDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConfigurationCheckDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConfigurationCheckDefinitions as schema.OperationSchema, input, options) as async.Operation<types.ListConfigurationCheckDefinitionsOutput>
 end
 
-function C:listConfigurationCheckOperations(input: types.ListConfigurationCheckOperationsInput, options: any): async.Operation<types.ListConfigurationCheckOperationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConfigurationCheckOperations, input, options) as async.Operation<types.ListConfigurationCheckOperationsOutput>
+function C:listConfigurationCheckOperations(input: types.ListConfigurationCheckOperationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConfigurationCheckOperationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConfigurationCheckOperations as schema.OperationSchema, input, options) as async.Operation<types.ListConfigurationCheckOperationsOutput>
 end
 
-function C:listDatabases(input: types.ListDatabasesInput, options: any): async.Operation<types.ListDatabasesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDatabases, input, options) as async.Operation<types.ListDatabasesOutput>
+function C:listDatabases(input: types.ListDatabasesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDatabasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDatabases as schema.OperationSchema, input, options) as async.Operation<types.ListDatabasesOutput>
 end
 
-function C:listOperationEvents(input: types.ListOperationEventsInput, options: any): async.Operation<types.ListOperationEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOperationEvents, input, options) as async.Operation<types.ListOperationEventsOutput>
+function C:listOperationEvents(input: types.ListOperationEventsInput, options?: base_client.InvokeOptions): async.Operation<types.ListOperationEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOperationEvents as schema.OperationSchema, input, options) as async.Operation<types.ListOperationEventsOutput>
 end
 
-function C:listOperations(input: types.ListOperationsInput, options: any): async.Operation<types.ListOperationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOperations, input, options) as async.Operation<types.ListOperationsOutput>
+function C:listOperations(input: types.ListOperationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListOperationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOperations as schema.OperationSchema, input, options) as async.Operation<types.ListOperationsOutput>
 end
 
-function C:listSubCheckResults(input: types.ListSubCheckResultsInput, options: any): async.Operation<types.ListSubCheckResultsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSubCheckResults, input, options) as async.Operation<types.ListSubCheckResultsOutput>
+function C:listSubCheckResults(input: types.ListSubCheckResultsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSubCheckResultsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSubCheckResults as schema.OperationSchema, input, options) as async.Operation<types.ListSubCheckResultsOutput>
 end
 
-function C:listSubCheckRuleResults(input: types.ListSubCheckRuleResultsInput, options: any): async.Operation<types.ListSubCheckRuleResultsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSubCheckRuleResults, input, options) as async.Operation<types.ListSubCheckRuleResultsOutput>
+function C:listSubCheckRuleResults(input: types.ListSubCheckRuleResultsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSubCheckRuleResultsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSubCheckRuleResults as schema.OperationSchema, input, options) as async.Operation<types.ListSubCheckRuleResultsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putResourcePermission(input: types.PutResourcePermissionInput, options: any): async.Operation<types.PutResourcePermissionOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutResourcePermission, input, options) as async.Operation<types.PutResourcePermissionOutput>
+function C:putResourcePermission(input: types.PutResourcePermissionInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourcePermissionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourcePermission as schema.OperationSchema, input, options) as async.Operation<types.PutResourcePermissionOutput>
 end
 
-function C:registerApplication(input: types.RegisterApplicationInput, options: any): async.Operation<types.RegisterApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterApplication, input, options) as async.Operation<types.RegisterApplicationOutput>
+function C:registerApplication(input: types.RegisterApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterApplication as schema.OperationSchema, input, options) as async.Operation<types.RegisterApplicationOutput>
 end
 
-function C:startApplication(input: types.StartApplicationInput, options: any): async.Operation<types.StartApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartApplication, input, options) as async.Operation<types.StartApplicationOutput>
+function C:startApplication(input: types.StartApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.StartApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartApplication as schema.OperationSchema, input, options) as async.Operation<types.StartApplicationOutput>
 end
 
-function C:startApplicationRefresh(input: types.StartApplicationRefreshInput, options: any): async.Operation<types.StartApplicationRefreshOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartApplicationRefresh, input, options) as async.Operation<types.StartApplicationRefreshOutput>
+function C:startApplicationRefresh(input: types.StartApplicationRefreshInput, options?: base_client.InvokeOptions): async.Operation<types.StartApplicationRefreshOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartApplicationRefresh as schema.OperationSchema, input, options) as async.Operation<types.StartApplicationRefreshOutput>
 end
 
-function C:startConfigurationChecks(input: types.StartConfigurationChecksInput, options: any): async.Operation<types.StartConfigurationChecksOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartConfigurationChecks, input, options) as async.Operation<types.StartConfigurationChecksOutput>
+function C:startConfigurationChecks(input: types.StartConfigurationChecksInput, options?: base_client.InvokeOptions): async.Operation<types.StartConfigurationChecksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartConfigurationChecks as schema.OperationSchema, input, options) as async.Operation<types.StartConfigurationChecksOutput>
 end
 
-function C:stopApplication(input: types.StopApplicationInput, options: any): async.Operation<types.StopApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopApplication, input, options) as async.Operation<types.StopApplicationOutput>
+function C:stopApplication(input: types.StopApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.StopApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopApplication as schema.OperationSchema, input, options) as async.Operation<types.StopApplicationOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateApplicationSettings(input: types.UpdateApplicationSettingsInput, options: any): async.Operation<types.UpdateApplicationSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateApplicationSettings, input, options) as async.Operation<types.UpdateApplicationSettingsOutput>
+function C:updateApplicationSettings(input: types.UpdateApplicationSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApplicationSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApplicationSettings as schema.OperationSchema, input, options) as async.Operation<types.UpdateApplicationSettingsOutput>
 end
 
 return M

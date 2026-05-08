@@ -8,107 +8,110 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("route53resolver.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("route53resolver.schemas")
 local traits = require("smithy.traits")
 local types = require("route53resolver.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateFirewallRuleGroup: function(Client, types.AssociateFirewallRuleGroupInput, any): async.Operation<types.AssociateFirewallRuleGroupOutput>
-    associateResolverEndpointIpAddress: function(Client, types.AssociateResolverEndpointIpAddressInput, any): async.Operation<types.AssociateResolverEndpointIpAddressOutput>
-    associateResolverQueryLogConfig: function(Client, types.AssociateResolverQueryLogConfigInput, any): async.Operation<types.AssociateResolverQueryLogConfigOutput>
-    associateResolverRule: function(Client, types.AssociateResolverRuleInput, any): async.Operation<types.AssociateResolverRuleOutput>
-    createFirewallDomainList: function(Client, types.CreateFirewallDomainListInput, any): async.Operation<types.CreateFirewallDomainListOutput>
-    createFirewallRule: function(Client, types.CreateFirewallRuleInput, any): async.Operation<types.CreateFirewallRuleOutput>
-    createFirewallRuleGroup: function(Client, types.CreateFirewallRuleGroupInput, any): async.Operation<types.CreateFirewallRuleGroupOutput>
-    createOutpostResolver: function(Client, types.CreateOutpostResolverInput, any): async.Operation<types.CreateOutpostResolverOutput>
-    createResolverEndpoint: function(Client, types.CreateResolverEndpointInput, any): async.Operation<types.CreateResolverEndpointOutput>
-    createResolverQueryLogConfig: function(Client, types.CreateResolverQueryLogConfigInput, any): async.Operation<types.CreateResolverQueryLogConfigOutput>
-    createResolverRule: function(Client, types.CreateResolverRuleInput, any): async.Operation<types.CreateResolverRuleOutput>
-    deleteFirewallDomainList: function(Client, types.DeleteFirewallDomainListInput, any): async.Operation<types.DeleteFirewallDomainListOutput>
-    deleteFirewallRule: function(Client, types.DeleteFirewallRuleInput, any): async.Operation<types.DeleteFirewallRuleOutput>
-    deleteFirewallRuleGroup: function(Client, types.DeleteFirewallRuleGroupInput, any): async.Operation<types.DeleteFirewallRuleGroupOutput>
-    deleteOutpostResolver: function(Client, types.DeleteOutpostResolverInput, any): async.Operation<types.DeleteOutpostResolverOutput>
-    deleteResolverEndpoint: function(Client, types.DeleteResolverEndpointInput, any): async.Operation<types.DeleteResolverEndpointOutput>
-    deleteResolverQueryLogConfig: function(Client, types.DeleteResolverQueryLogConfigInput, any): async.Operation<types.DeleteResolverQueryLogConfigOutput>
-    deleteResolverRule: function(Client, types.DeleteResolverRuleInput, any): async.Operation<types.DeleteResolverRuleOutput>
-    disassociateFirewallRuleGroup: function(Client, types.DisassociateFirewallRuleGroupInput, any): async.Operation<types.DisassociateFirewallRuleGroupOutput>
-    disassociateResolverEndpointIpAddress: function(Client, types.DisassociateResolverEndpointIpAddressInput, any): async.Operation<types.DisassociateResolverEndpointIpAddressOutput>
-    disassociateResolverQueryLogConfig: function(Client, types.DisassociateResolverQueryLogConfigInput, any): async.Operation<types.DisassociateResolverQueryLogConfigOutput>
-    disassociateResolverRule: function(Client, types.DisassociateResolverRuleInput, any): async.Operation<types.DisassociateResolverRuleOutput>
-    getFirewallConfig: function(Client, types.GetFirewallConfigInput, any): async.Operation<types.GetFirewallConfigOutput>
-    getFirewallDomainList: function(Client, types.GetFirewallDomainListInput, any): async.Operation<types.GetFirewallDomainListOutput>
-    getFirewallRuleGroup: function(Client, types.GetFirewallRuleGroupInput, any): async.Operation<types.GetFirewallRuleGroupOutput>
-    getFirewallRuleGroupAssociation: function(Client, types.GetFirewallRuleGroupAssociationInput, any): async.Operation<types.GetFirewallRuleGroupAssociationOutput>
-    getFirewallRuleGroupPolicy: function(Client, types.GetFirewallRuleGroupPolicyInput, any): async.Operation<types.GetFirewallRuleGroupPolicyOutput>
-    getOutpostResolver: function(Client, types.GetOutpostResolverInput, any): async.Operation<types.GetOutpostResolverOutput>
-    getResolverConfig: function(Client, types.GetResolverConfigInput, any): async.Operation<types.GetResolverConfigOutput>
-    getResolverDnssecConfig: function(Client, types.GetResolverDnssecConfigInput, any): async.Operation<types.GetResolverDnssecConfigOutput>
-    getResolverEndpoint: function(Client, types.GetResolverEndpointInput, any): async.Operation<types.GetResolverEndpointOutput>
-    getResolverQueryLogConfig: function(Client, types.GetResolverQueryLogConfigInput, any): async.Operation<types.GetResolverQueryLogConfigOutput>
-    getResolverQueryLogConfigAssociation: function(Client, types.GetResolverQueryLogConfigAssociationInput, any): async.Operation<types.GetResolverQueryLogConfigAssociationOutput>
-    getResolverQueryLogConfigPolicy: function(Client, types.GetResolverQueryLogConfigPolicyInput, any): async.Operation<types.GetResolverQueryLogConfigPolicyOutput>
-    getResolverRule: function(Client, types.GetResolverRuleInput, any): async.Operation<types.GetResolverRuleOutput>
-    getResolverRuleAssociation: function(Client, types.GetResolverRuleAssociationInput, any): async.Operation<types.GetResolverRuleAssociationOutput>
-    getResolverRulePolicy: function(Client, types.GetResolverRulePolicyInput, any): async.Operation<types.GetResolverRulePolicyOutput>
-    importFirewallDomains: function(Client, types.ImportFirewallDomainsInput, any): async.Operation<types.ImportFirewallDomainsOutput>
-    listFirewallConfigs: function(Client, types.ListFirewallConfigsInput, any): async.Operation<types.ListFirewallConfigsOutput>
-    listFirewallDomainLists: function(Client, types.ListFirewallDomainListsInput, any): async.Operation<types.ListFirewallDomainListsOutput>
-    listFirewallDomains: function(Client, types.ListFirewallDomainsInput, any): async.Operation<types.ListFirewallDomainsOutput>
-    listFirewallRuleGroupAssociations: function(Client, types.ListFirewallRuleGroupAssociationsInput, any): async.Operation<types.ListFirewallRuleGroupAssociationsOutput>
-    listFirewallRuleGroups: function(Client, types.ListFirewallRuleGroupsInput, any): async.Operation<types.ListFirewallRuleGroupsOutput>
-    listFirewallRules: function(Client, types.ListFirewallRulesInput, any): async.Operation<types.ListFirewallRulesOutput>
-    listOutpostResolvers: function(Client, types.ListOutpostResolversInput, any): async.Operation<types.ListOutpostResolversOutput>
-    listResolverConfigs: function(Client, types.ListResolverConfigsInput, any): async.Operation<types.ListResolverConfigsOutput>
-    listResolverDnssecConfigs: function(Client, types.ListResolverDnssecConfigsInput, any): async.Operation<types.ListResolverDnssecConfigsOutput>
-    listResolverEndpointIpAddresses: function(Client, types.ListResolverEndpointIpAddressesInput, any): async.Operation<types.ListResolverEndpointIpAddressesOutput>
-    listResolverEndpoints: function(Client, types.ListResolverEndpointsInput, any): async.Operation<types.ListResolverEndpointsOutput>
-    listResolverQueryLogConfigAssociations: function(Client, types.ListResolverQueryLogConfigAssociationsInput, any): async.Operation<types.ListResolverQueryLogConfigAssociationsOutput>
-    listResolverQueryLogConfigs: function(Client, types.ListResolverQueryLogConfigsInput, any): async.Operation<types.ListResolverQueryLogConfigsOutput>
-    listResolverRuleAssociations: function(Client, types.ListResolverRuleAssociationsInput, any): async.Operation<types.ListResolverRuleAssociationsOutput>
-    listResolverRules: function(Client, types.ListResolverRulesInput, any): async.Operation<types.ListResolverRulesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putFirewallRuleGroupPolicy: function(Client, types.PutFirewallRuleGroupPolicyInput, any): async.Operation<types.PutFirewallRuleGroupPolicyOutput>
-    putResolverQueryLogConfigPolicy: function(Client, types.PutResolverQueryLogConfigPolicyInput, any): async.Operation<types.PutResolverQueryLogConfigPolicyOutput>
-    putResolverRulePolicy: function(Client, types.PutResolverRulePolicyInput, any): async.Operation<types.PutResolverRulePolicyOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateFirewallConfig: function(Client, types.UpdateFirewallConfigInput, any): async.Operation<types.UpdateFirewallConfigOutput>
-    updateFirewallDomains: function(Client, types.UpdateFirewallDomainsInput, any): async.Operation<types.UpdateFirewallDomainsOutput>
-    updateFirewallRule: function(Client, types.UpdateFirewallRuleInput, any): async.Operation<types.UpdateFirewallRuleOutput>
-    updateFirewallRuleGroupAssociation: function(Client, types.UpdateFirewallRuleGroupAssociationInput, any): async.Operation<types.UpdateFirewallRuleGroupAssociationOutput>
-    updateOutpostResolver: function(Client, types.UpdateOutpostResolverInput, any): async.Operation<types.UpdateOutpostResolverOutput>
-    updateResolverConfig: function(Client, types.UpdateResolverConfigInput, any): async.Operation<types.UpdateResolverConfigOutput>
-    updateResolverDnssecConfig: function(Client, types.UpdateResolverDnssecConfigInput, any): async.Operation<types.UpdateResolverDnssecConfigOutput>
-    updateResolverEndpoint: function(Client, types.UpdateResolverEndpointInput, any): async.Operation<types.UpdateResolverEndpointOutput>
-    updateResolverRule: function(Client, types.UpdateResolverRuleInput, any): async.Operation<types.UpdateResolverRuleOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateFirewallRuleGroup: function(Client, types.AssociateFirewallRuleGroupInput, ? base_client.InvokeOptions): async.Operation<types.AssociateFirewallRuleGroupOutput>
+    associateResolverEndpointIpAddress: function(Client, types.AssociateResolverEndpointIpAddressInput, ? base_client.InvokeOptions): async.Operation<types.AssociateResolverEndpointIpAddressOutput>
+    associateResolverQueryLogConfig: function(Client, types.AssociateResolverQueryLogConfigInput, ? base_client.InvokeOptions): async.Operation<types.AssociateResolverQueryLogConfigOutput>
+    associateResolverRule: function(Client, types.AssociateResolverRuleInput, ? base_client.InvokeOptions): async.Operation<types.AssociateResolverRuleOutput>
+    createFirewallDomainList: function(Client, types.CreateFirewallDomainListInput, ? base_client.InvokeOptions): async.Operation<types.CreateFirewallDomainListOutput>
+    createFirewallRule: function(Client, types.CreateFirewallRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateFirewallRuleOutput>
+    createFirewallRuleGroup: function(Client, types.CreateFirewallRuleGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateFirewallRuleGroupOutput>
+    createOutpostResolver: function(Client, types.CreateOutpostResolverInput, ? base_client.InvokeOptions): async.Operation<types.CreateOutpostResolverOutput>
+    createResolverEndpoint: function(Client, types.CreateResolverEndpointInput, ? base_client.InvokeOptions): async.Operation<types.CreateResolverEndpointOutput>
+    createResolverQueryLogConfig: function(Client, types.CreateResolverQueryLogConfigInput, ? base_client.InvokeOptions): async.Operation<types.CreateResolverQueryLogConfigOutput>
+    createResolverRule: function(Client, types.CreateResolverRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateResolverRuleOutput>
+    deleteFirewallDomainList: function(Client, types.DeleteFirewallDomainListInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFirewallDomainListOutput>
+    deleteFirewallRule: function(Client, types.DeleteFirewallRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFirewallRuleOutput>
+    deleteFirewallRuleGroup: function(Client, types.DeleteFirewallRuleGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFirewallRuleGroupOutput>
+    deleteOutpostResolver: function(Client, types.DeleteOutpostResolverInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOutpostResolverOutput>
+    deleteResolverEndpoint: function(Client, types.DeleteResolverEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResolverEndpointOutput>
+    deleteResolverQueryLogConfig: function(Client, types.DeleteResolverQueryLogConfigInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResolverQueryLogConfigOutput>
+    deleteResolverRule: function(Client, types.DeleteResolverRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResolverRuleOutput>
+    disassociateFirewallRuleGroup: function(Client, types.DisassociateFirewallRuleGroupInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateFirewallRuleGroupOutput>
+    disassociateResolverEndpointIpAddress: function(Client, types.DisassociateResolverEndpointIpAddressInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateResolverEndpointIpAddressOutput>
+    disassociateResolverQueryLogConfig: function(Client, types.DisassociateResolverQueryLogConfigInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateResolverQueryLogConfigOutput>
+    disassociateResolverRule: function(Client, types.DisassociateResolverRuleInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateResolverRuleOutput>
+    getFirewallConfig: function(Client, types.GetFirewallConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetFirewallConfigOutput>
+    getFirewallDomainList: function(Client, types.GetFirewallDomainListInput, ? base_client.InvokeOptions): async.Operation<types.GetFirewallDomainListOutput>
+    getFirewallRuleGroup: function(Client, types.GetFirewallRuleGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetFirewallRuleGroupOutput>
+    getFirewallRuleGroupAssociation: function(Client, types.GetFirewallRuleGroupAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetFirewallRuleGroupAssociationOutput>
+    getFirewallRuleGroupPolicy: function(Client, types.GetFirewallRuleGroupPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetFirewallRuleGroupPolicyOutput>
+    getOutpostResolver: function(Client, types.GetOutpostResolverInput, ? base_client.InvokeOptions): async.Operation<types.GetOutpostResolverOutput>
+    getResolverConfig: function(Client, types.GetResolverConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetResolverConfigOutput>
+    getResolverDnssecConfig: function(Client, types.GetResolverDnssecConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetResolverDnssecConfigOutput>
+    getResolverEndpoint: function(Client, types.GetResolverEndpointInput, ? base_client.InvokeOptions): async.Operation<types.GetResolverEndpointOutput>
+    getResolverQueryLogConfig: function(Client, types.GetResolverQueryLogConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetResolverQueryLogConfigOutput>
+    getResolverQueryLogConfigAssociation: function(Client, types.GetResolverQueryLogConfigAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetResolverQueryLogConfigAssociationOutput>
+    getResolverQueryLogConfigPolicy: function(Client, types.GetResolverQueryLogConfigPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResolverQueryLogConfigPolicyOutput>
+    getResolverRule: function(Client, types.GetResolverRuleInput, ? base_client.InvokeOptions): async.Operation<types.GetResolverRuleOutput>
+    getResolverRuleAssociation: function(Client, types.GetResolverRuleAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetResolverRuleAssociationOutput>
+    getResolverRulePolicy: function(Client, types.GetResolverRulePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResolverRulePolicyOutput>
+    importFirewallDomains: function(Client, types.ImportFirewallDomainsInput, ? base_client.InvokeOptions): async.Operation<types.ImportFirewallDomainsOutput>
+    listFirewallConfigs: function(Client, types.ListFirewallConfigsInput, ? base_client.InvokeOptions): async.Operation<types.ListFirewallConfigsOutput>
+    listFirewallDomainLists: function(Client, types.ListFirewallDomainListsInput, ? base_client.InvokeOptions): async.Operation<types.ListFirewallDomainListsOutput>
+    listFirewallDomains: function(Client, types.ListFirewallDomainsInput, ? base_client.InvokeOptions): async.Operation<types.ListFirewallDomainsOutput>
+    listFirewallRuleGroupAssociations: function(Client, types.ListFirewallRuleGroupAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListFirewallRuleGroupAssociationsOutput>
+    listFirewallRuleGroups: function(Client, types.ListFirewallRuleGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListFirewallRuleGroupsOutput>
+    listFirewallRules: function(Client, types.ListFirewallRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListFirewallRulesOutput>
+    listOutpostResolvers: function(Client, types.ListOutpostResolversInput, ? base_client.InvokeOptions): async.Operation<types.ListOutpostResolversOutput>
+    listResolverConfigs: function(Client, types.ListResolverConfigsInput, ? base_client.InvokeOptions): async.Operation<types.ListResolverConfigsOutput>
+    listResolverDnssecConfigs: function(Client, types.ListResolverDnssecConfigsInput, ? base_client.InvokeOptions): async.Operation<types.ListResolverDnssecConfigsOutput>
+    listResolverEndpointIpAddresses: function(Client, types.ListResolverEndpointIpAddressesInput, ? base_client.InvokeOptions): async.Operation<types.ListResolverEndpointIpAddressesOutput>
+    listResolverEndpoints: function(Client, types.ListResolverEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.ListResolverEndpointsOutput>
+    listResolverQueryLogConfigAssociations: function(Client, types.ListResolverQueryLogConfigAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListResolverQueryLogConfigAssociationsOutput>
+    listResolverQueryLogConfigs: function(Client, types.ListResolverQueryLogConfigsInput, ? base_client.InvokeOptions): async.Operation<types.ListResolverQueryLogConfigsOutput>
+    listResolverRuleAssociations: function(Client, types.ListResolverRuleAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListResolverRuleAssociationsOutput>
+    listResolverRules: function(Client, types.ListResolverRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListResolverRulesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putFirewallRuleGroupPolicy: function(Client, types.PutFirewallRuleGroupPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutFirewallRuleGroupPolicyOutput>
+    putResolverQueryLogConfigPolicy: function(Client, types.PutResolverQueryLogConfigPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResolverQueryLogConfigPolicyOutput>
+    putResolverRulePolicy: function(Client, types.PutResolverRulePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResolverRulePolicyOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateFirewallConfig: function(Client, types.UpdateFirewallConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFirewallConfigOutput>
+    updateFirewallDomains: function(Client, types.UpdateFirewallDomainsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFirewallDomainsOutput>
+    updateFirewallRule: function(Client, types.UpdateFirewallRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFirewallRuleOutput>
+    updateFirewallRuleGroupAssociation: function(Client, types.UpdateFirewallRuleGroupAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFirewallRuleGroupAssociationOutput>
+    updateOutpostResolver: function(Client, types.UpdateOutpostResolverInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOutpostResolverOutput>
+    updateResolverConfig: function(Client, types.UpdateResolverConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResolverConfigOutput>
+    updateResolverDnssecConfig: function(Client, types.UpdateResolverDnssecConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResolverDnssecConfigOutput>
+    updateResolverEndpoint: function(Client, types.UpdateResolverEndpointInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResolverEndpointOutput>
+    updateResolverRule: function(Client, types.UpdateResolverRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResolverRuleOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "Route53Resolver"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "route53resolver", signing_region = c.region } }
                 else
@@ -127,276 +130,276 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateFirewallRuleGroup(input: types.AssociateFirewallRuleGroupInput, options: any): async.Operation<types.AssociateFirewallRuleGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateFirewallRuleGroup, input, options) as async.Operation<types.AssociateFirewallRuleGroupOutput>
+function C:associateFirewallRuleGroup(input: types.AssociateFirewallRuleGroupInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateFirewallRuleGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateFirewallRuleGroup as schema.OperationSchema, input, options) as async.Operation<types.AssociateFirewallRuleGroupOutput>
 end
 
-function C:associateResolverEndpointIpAddress(input: types.AssociateResolverEndpointIpAddressInput, options: any): async.Operation<types.AssociateResolverEndpointIpAddressOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateResolverEndpointIpAddress, input, options) as async.Operation<types.AssociateResolverEndpointIpAddressOutput>
+function C:associateResolverEndpointIpAddress(input: types.AssociateResolverEndpointIpAddressInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateResolverEndpointIpAddressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateResolverEndpointIpAddress as schema.OperationSchema, input, options) as async.Operation<types.AssociateResolverEndpointIpAddressOutput>
 end
 
-function C:associateResolverQueryLogConfig(input: types.AssociateResolverQueryLogConfigInput, options: any): async.Operation<types.AssociateResolverQueryLogConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateResolverQueryLogConfig, input, options) as async.Operation<types.AssociateResolverQueryLogConfigOutput>
+function C:associateResolverQueryLogConfig(input: types.AssociateResolverQueryLogConfigInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateResolverQueryLogConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateResolverQueryLogConfig as schema.OperationSchema, input, options) as async.Operation<types.AssociateResolverQueryLogConfigOutput>
 end
 
-function C:associateResolverRule(input: types.AssociateResolverRuleInput, options: any): async.Operation<types.AssociateResolverRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateResolverRule, input, options) as async.Operation<types.AssociateResolverRuleOutput>
+function C:associateResolverRule(input: types.AssociateResolverRuleInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateResolverRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateResolverRule as schema.OperationSchema, input, options) as async.Operation<types.AssociateResolverRuleOutput>
 end
 
-function C:createFirewallDomainList(input: types.CreateFirewallDomainListInput, options: any): async.Operation<types.CreateFirewallDomainListOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFirewallDomainList, input, options) as async.Operation<types.CreateFirewallDomainListOutput>
+function C:createFirewallDomainList(input: types.CreateFirewallDomainListInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFirewallDomainListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFirewallDomainList as schema.OperationSchema, input, options) as async.Operation<types.CreateFirewallDomainListOutput>
 end
 
-function C:createFirewallRule(input: types.CreateFirewallRuleInput, options: any): async.Operation<types.CreateFirewallRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFirewallRule, input, options) as async.Operation<types.CreateFirewallRuleOutput>
+function C:createFirewallRule(input: types.CreateFirewallRuleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFirewallRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFirewallRule as schema.OperationSchema, input, options) as async.Operation<types.CreateFirewallRuleOutput>
 end
 
-function C:createFirewallRuleGroup(input: types.CreateFirewallRuleGroupInput, options: any): async.Operation<types.CreateFirewallRuleGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFirewallRuleGroup, input, options) as async.Operation<types.CreateFirewallRuleGroupOutput>
+function C:createFirewallRuleGroup(input: types.CreateFirewallRuleGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFirewallRuleGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFirewallRuleGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateFirewallRuleGroupOutput>
 end
 
-function C:createOutpostResolver(input: types.CreateOutpostResolverInput, options: any): async.Operation<types.CreateOutpostResolverOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateOutpostResolver, input, options) as async.Operation<types.CreateOutpostResolverOutput>
+function C:createOutpostResolver(input: types.CreateOutpostResolverInput, options?: base_client.InvokeOptions): async.Operation<types.CreateOutpostResolverOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateOutpostResolver as schema.OperationSchema, input, options) as async.Operation<types.CreateOutpostResolverOutput>
 end
 
-function C:createResolverEndpoint(input: types.CreateResolverEndpointInput, options: any): async.Operation<types.CreateResolverEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateResolverEndpoint, input, options) as async.Operation<types.CreateResolverEndpointOutput>
+function C:createResolverEndpoint(input: types.CreateResolverEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.CreateResolverEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateResolverEndpoint as schema.OperationSchema, input, options) as async.Operation<types.CreateResolverEndpointOutput>
 end
 
-function C:createResolverQueryLogConfig(input: types.CreateResolverQueryLogConfigInput, options: any): async.Operation<types.CreateResolverQueryLogConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateResolverQueryLogConfig, input, options) as async.Operation<types.CreateResolverQueryLogConfigOutput>
+function C:createResolverQueryLogConfig(input: types.CreateResolverQueryLogConfigInput, options?: base_client.InvokeOptions): async.Operation<types.CreateResolverQueryLogConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateResolverQueryLogConfig as schema.OperationSchema, input, options) as async.Operation<types.CreateResolverQueryLogConfigOutput>
 end
 
-function C:createResolverRule(input: types.CreateResolverRuleInput, options: any): async.Operation<types.CreateResolverRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateResolverRule, input, options) as async.Operation<types.CreateResolverRuleOutput>
+function C:createResolverRule(input: types.CreateResolverRuleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateResolverRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateResolverRule as schema.OperationSchema, input, options) as async.Operation<types.CreateResolverRuleOutput>
 end
 
-function C:deleteFirewallDomainList(input: types.DeleteFirewallDomainListInput, options: any): async.Operation<types.DeleteFirewallDomainListOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFirewallDomainList, input, options) as async.Operation<types.DeleteFirewallDomainListOutput>
+function C:deleteFirewallDomainList(input: types.DeleteFirewallDomainListInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFirewallDomainListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFirewallDomainList as schema.OperationSchema, input, options) as async.Operation<types.DeleteFirewallDomainListOutput>
 end
 
-function C:deleteFirewallRule(input: types.DeleteFirewallRuleInput, options: any): async.Operation<types.DeleteFirewallRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFirewallRule, input, options) as async.Operation<types.DeleteFirewallRuleOutput>
+function C:deleteFirewallRule(input: types.DeleteFirewallRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFirewallRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFirewallRule as schema.OperationSchema, input, options) as async.Operation<types.DeleteFirewallRuleOutput>
 end
 
-function C:deleteFirewallRuleGroup(input: types.DeleteFirewallRuleGroupInput, options: any): async.Operation<types.DeleteFirewallRuleGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFirewallRuleGroup, input, options) as async.Operation<types.DeleteFirewallRuleGroupOutput>
+function C:deleteFirewallRuleGroup(input: types.DeleteFirewallRuleGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFirewallRuleGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFirewallRuleGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteFirewallRuleGroupOutput>
 end
 
-function C:deleteOutpostResolver(input: types.DeleteOutpostResolverInput, options: any): async.Operation<types.DeleteOutpostResolverOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteOutpostResolver, input, options) as async.Operation<types.DeleteOutpostResolverOutput>
+function C:deleteOutpostResolver(input: types.DeleteOutpostResolverInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteOutpostResolverOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteOutpostResolver as schema.OperationSchema, input, options) as async.Operation<types.DeleteOutpostResolverOutput>
 end
 
-function C:deleteResolverEndpoint(input: types.DeleteResolverEndpointInput, options: any): async.Operation<types.DeleteResolverEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResolverEndpoint, input, options) as async.Operation<types.DeleteResolverEndpointOutput>
+function C:deleteResolverEndpoint(input: types.DeleteResolverEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResolverEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResolverEndpoint as schema.OperationSchema, input, options) as async.Operation<types.DeleteResolverEndpointOutput>
 end
 
-function C:deleteResolverQueryLogConfig(input: types.DeleteResolverQueryLogConfigInput, options: any): async.Operation<types.DeleteResolverQueryLogConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResolverQueryLogConfig, input, options) as async.Operation<types.DeleteResolverQueryLogConfigOutput>
+function C:deleteResolverQueryLogConfig(input: types.DeleteResolverQueryLogConfigInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResolverQueryLogConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResolverQueryLogConfig as schema.OperationSchema, input, options) as async.Operation<types.DeleteResolverQueryLogConfigOutput>
 end
 
-function C:deleteResolverRule(input: types.DeleteResolverRuleInput, options: any): async.Operation<types.DeleteResolverRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResolverRule, input, options) as async.Operation<types.DeleteResolverRuleOutput>
+function C:deleteResolverRule(input: types.DeleteResolverRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResolverRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResolverRule as schema.OperationSchema, input, options) as async.Operation<types.DeleteResolverRuleOutput>
 end
 
-function C:disassociateFirewallRuleGroup(input: types.DisassociateFirewallRuleGroupInput, options: any): async.Operation<types.DisassociateFirewallRuleGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateFirewallRuleGroup, input, options) as async.Operation<types.DisassociateFirewallRuleGroupOutput>
+function C:disassociateFirewallRuleGroup(input: types.DisassociateFirewallRuleGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateFirewallRuleGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateFirewallRuleGroup as schema.OperationSchema, input, options) as async.Operation<types.DisassociateFirewallRuleGroupOutput>
 end
 
-function C:disassociateResolverEndpointIpAddress(input: types.DisassociateResolverEndpointIpAddressInput, options: any): async.Operation<types.DisassociateResolverEndpointIpAddressOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateResolverEndpointIpAddress, input, options) as async.Operation<types.DisassociateResolverEndpointIpAddressOutput>
+function C:disassociateResolverEndpointIpAddress(input: types.DisassociateResolverEndpointIpAddressInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateResolverEndpointIpAddressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateResolverEndpointIpAddress as schema.OperationSchema, input, options) as async.Operation<types.DisassociateResolverEndpointIpAddressOutput>
 end
 
-function C:disassociateResolverQueryLogConfig(input: types.DisassociateResolverQueryLogConfigInput, options: any): async.Operation<types.DisassociateResolverQueryLogConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateResolverQueryLogConfig, input, options) as async.Operation<types.DisassociateResolverQueryLogConfigOutput>
+function C:disassociateResolverQueryLogConfig(input: types.DisassociateResolverQueryLogConfigInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateResolverQueryLogConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateResolverQueryLogConfig as schema.OperationSchema, input, options) as async.Operation<types.DisassociateResolverQueryLogConfigOutput>
 end
 
-function C:disassociateResolverRule(input: types.DisassociateResolverRuleInput, options: any): async.Operation<types.DisassociateResolverRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateResolverRule, input, options) as async.Operation<types.DisassociateResolverRuleOutput>
+function C:disassociateResolverRule(input: types.DisassociateResolverRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateResolverRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateResolverRule as schema.OperationSchema, input, options) as async.Operation<types.DisassociateResolverRuleOutput>
 end
 
-function C:getFirewallConfig(input: types.GetFirewallConfigInput, options: any): async.Operation<types.GetFirewallConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFirewallConfig, input, options) as async.Operation<types.GetFirewallConfigOutput>
+function C:getFirewallConfig(input: types.GetFirewallConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetFirewallConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFirewallConfig as schema.OperationSchema, input, options) as async.Operation<types.GetFirewallConfigOutput>
 end
 
-function C:getFirewallDomainList(input: types.GetFirewallDomainListInput, options: any): async.Operation<types.GetFirewallDomainListOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFirewallDomainList, input, options) as async.Operation<types.GetFirewallDomainListOutput>
+function C:getFirewallDomainList(input: types.GetFirewallDomainListInput, options?: base_client.InvokeOptions): async.Operation<types.GetFirewallDomainListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFirewallDomainList as schema.OperationSchema, input, options) as async.Operation<types.GetFirewallDomainListOutput>
 end
 
-function C:getFirewallRuleGroup(input: types.GetFirewallRuleGroupInput, options: any): async.Operation<types.GetFirewallRuleGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFirewallRuleGroup, input, options) as async.Operation<types.GetFirewallRuleGroupOutput>
+function C:getFirewallRuleGroup(input: types.GetFirewallRuleGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetFirewallRuleGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFirewallRuleGroup as schema.OperationSchema, input, options) as async.Operation<types.GetFirewallRuleGroupOutput>
 end
 
-function C:getFirewallRuleGroupAssociation(input: types.GetFirewallRuleGroupAssociationInput, options: any): async.Operation<types.GetFirewallRuleGroupAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFirewallRuleGroupAssociation, input, options) as async.Operation<types.GetFirewallRuleGroupAssociationOutput>
+function C:getFirewallRuleGroupAssociation(input: types.GetFirewallRuleGroupAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetFirewallRuleGroupAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFirewallRuleGroupAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetFirewallRuleGroupAssociationOutput>
 end
 
-function C:getFirewallRuleGroupPolicy(input: types.GetFirewallRuleGroupPolicyInput, options: any): async.Operation<types.GetFirewallRuleGroupPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFirewallRuleGroupPolicy, input, options) as async.Operation<types.GetFirewallRuleGroupPolicyOutput>
+function C:getFirewallRuleGroupPolicy(input: types.GetFirewallRuleGroupPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetFirewallRuleGroupPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFirewallRuleGroupPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetFirewallRuleGroupPolicyOutput>
 end
 
-function C:getOutpostResolver(input: types.GetOutpostResolverInput, options: any): async.Operation<types.GetOutpostResolverOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOutpostResolver, input, options) as async.Operation<types.GetOutpostResolverOutput>
+function C:getOutpostResolver(input: types.GetOutpostResolverInput, options?: base_client.InvokeOptions): async.Operation<types.GetOutpostResolverOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOutpostResolver as schema.OperationSchema, input, options) as async.Operation<types.GetOutpostResolverOutput>
 end
 
-function C:getResolverConfig(input: types.GetResolverConfigInput, options: any): async.Operation<types.GetResolverConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResolverConfig, input, options) as async.Operation<types.GetResolverConfigOutput>
+function C:getResolverConfig(input: types.GetResolverConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetResolverConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResolverConfig as schema.OperationSchema, input, options) as async.Operation<types.GetResolverConfigOutput>
 end
 
-function C:getResolverDnssecConfig(input: types.GetResolverDnssecConfigInput, options: any): async.Operation<types.GetResolverDnssecConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResolverDnssecConfig, input, options) as async.Operation<types.GetResolverDnssecConfigOutput>
+function C:getResolverDnssecConfig(input: types.GetResolverDnssecConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetResolverDnssecConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResolverDnssecConfig as schema.OperationSchema, input, options) as async.Operation<types.GetResolverDnssecConfigOutput>
 end
 
-function C:getResolverEndpoint(input: types.GetResolverEndpointInput, options: any): async.Operation<types.GetResolverEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResolverEndpoint, input, options) as async.Operation<types.GetResolverEndpointOutput>
+function C:getResolverEndpoint(input: types.GetResolverEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.GetResolverEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResolverEndpoint as schema.OperationSchema, input, options) as async.Operation<types.GetResolverEndpointOutput>
 end
 
-function C:getResolverQueryLogConfig(input: types.GetResolverQueryLogConfigInput, options: any): async.Operation<types.GetResolverQueryLogConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResolverQueryLogConfig, input, options) as async.Operation<types.GetResolverQueryLogConfigOutput>
+function C:getResolverQueryLogConfig(input: types.GetResolverQueryLogConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetResolverQueryLogConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResolverQueryLogConfig as schema.OperationSchema, input, options) as async.Operation<types.GetResolverQueryLogConfigOutput>
 end
 
-function C:getResolverQueryLogConfigAssociation(input: types.GetResolverQueryLogConfigAssociationInput, options: any): async.Operation<types.GetResolverQueryLogConfigAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResolverQueryLogConfigAssociation, input, options) as async.Operation<types.GetResolverQueryLogConfigAssociationOutput>
+function C:getResolverQueryLogConfigAssociation(input: types.GetResolverQueryLogConfigAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetResolverQueryLogConfigAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResolverQueryLogConfigAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetResolverQueryLogConfigAssociationOutput>
 end
 
-function C:getResolverQueryLogConfigPolicy(input: types.GetResolverQueryLogConfigPolicyInput, options: any): async.Operation<types.GetResolverQueryLogConfigPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResolverQueryLogConfigPolicy, input, options) as async.Operation<types.GetResolverQueryLogConfigPolicyOutput>
+function C:getResolverQueryLogConfigPolicy(input: types.GetResolverQueryLogConfigPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetResolverQueryLogConfigPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResolverQueryLogConfigPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResolverQueryLogConfigPolicyOutput>
 end
 
-function C:getResolverRule(input: types.GetResolverRuleInput, options: any): async.Operation<types.GetResolverRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResolverRule, input, options) as async.Operation<types.GetResolverRuleOutput>
+function C:getResolverRule(input: types.GetResolverRuleInput, options?: base_client.InvokeOptions): async.Operation<types.GetResolverRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResolverRule as schema.OperationSchema, input, options) as async.Operation<types.GetResolverRuleOutput>
 end
 
-function C:getResolverRuleAssociation(input: types.GetResolverRuleAssociationInput, options: any): async.Operation<types.GetResolverRuleAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResolverRuleAssociation, input, options) as async.Operation<types.GetResolverRuleAssociationOutput>
+function C:getResolverRuleAssociation(input: types.GetResolverRuleAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetResolverRuleAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResolverRuleAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetResolverRuleAssociationOutput>
 end
 
-function C:getResolverRulePolicy(input: types.GetResolverRulePolicyInput, options: any): async.Operation<types.GetResolverRulePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResolverRulePolicy, input, options) as async.Operation<types.GetResolverRulePolicyOutput>
+function C:getResolverRulePolicy(input: types.GetResolverRulePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetResolverRulePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResolverRulePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResolverRulePolicyOutput>
 end
 
-function C:importFirewallDomains(input: types.ImportFirewallDomainsInput, options: any): async.Operation<types.ImportFirewallDomainsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportFirewallDomains, input, options) as async.Operation<types.ImportFirewallDomainsOutput>
+function C:importFirewallDomains(input: types.ImportFirewallDomainsInput, options?: base_client.InvokeOptions): async.Operation<types.ImportFirewallDomainsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportFirewallDomains as schema.OperationSchema, input, options) as async.Operation<types.ImportFirewallDomainsOutput>
 end
 
-function C:listFirewallConfigs(input: types.ListFirewallConfigsInput, options: any): async.Operation<types.ListFirewallConfigsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFirewallConfigs, input, options) as async.Operation<types.ListFirewallConfigsOutput>
+function C:listFirewallConfigs(input: types.ListFirewallConfigsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFirewallConfigsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFirewallConfigs as schema.OperationSchema, input, options) as async.Operation<types.ListFirewallConfigsOutput>
 end
 
-function C:listFirewallDomainLists(input: types.ListFirewallDomainListsInput, options: any): async.Operation<types.ListFirewallDomainListsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFirewallDomainLists, input, options) as async.Operation<types.ListFirewallDomainListsOutput>
+function C:listFirewallDomainLists(input: types.ListFirewallDomainListsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFirewallDomainListsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFirewallDomainLists as schema.OperationSchema, input, options) as async.Operation<types.ListFirewallDomainListsOutput>
 end
 
-function C:listFirewallDomains(input: types.ListFirewallDomainsInput, options: any): async.Operation<types.ListFirewallDomainsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFirewallDomains, input, options) as async.Operation<types.ListFirewallDomainsOutput>
+function C:listFirewallDomains(input: types.ListFirewallDomainsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFirewallDomainsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFirewallDomains as schema.OperationSchema, input, options) as async.Operation<types.ListFirewallDomainsOutput>
 end
 
-function C:listFirewallRuleGroupAssociations(input: types.ListFirewallRuleGroupAssociationsInput, options: any): async.Operation<types.ListFirewallRuleGroupAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFirewallRuleGroupAssociations, input, options) as async.Operation<types.ListFirewallRuleGroupAssociationsOutput>
+function C:listFirewallRuleGroupAssociations(input: types.ListFirewallRuleGroupAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFirewallRuleGroupAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFirewallRuleGroupAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListFirewallRuleGroupAssociationsOutput>
 end
 
-function C:listFirewallRuleGroups(input: types.ListFirewallRuleGroupsInput, options: any): async.Operation<types.ListFirewallRuleGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFirewallRuleGroups, input, options) as async.Operation<types.ListFirewallRuleGroupsOutput>
+function C:listFirewallRuleGroups(input: types.ListFirewallRuleGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFirewallRuleGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFirewallRuleGroups as schema.OperationSchema, input, options) as async.Operation<types.ListFirewallRuleGroupsOutput>
 end
 
-function C:listFirewallRules(input: types.ListFirewallRulesInput, options: any): async.Operation<types.ListFirewallRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFirewallRules, input, options) as async.Operation<types.ListFirewallRulesOutput>
+function C:listFirewallRules(input: types.ListFirewallRulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListFirewallRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFirewallRules as schema.OperationSchema, input, options) as async.Operation<types.ListFirewallRulesOutput>
 end
 
-function C:listOutpostResolvers(input: types.ListOutpostResolversInput, options: any): async.Operation<types.ListOutpostResolversOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOutpostResolvers, input, options) as async.Operation<types.ListOutpostResolversOutput>
+function C:listOutpostResolvers(input: types.ListOutpostResolversInput, options?: base_client.InvokeOptions): async.Operation<types.ListOutpostResolversOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOutpostResolvers as schema.OperationSchema, input, options) as async.Operation<types.ListOutpostResolversOutput>
 end
 
-function C:listResolverConfigs(input: types.ListResolverConfigsInput, options: any): async.Operation<types.ListResolverConfigsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResolverConfigs, input, options) as async.Operation<types.ListResolverConfigsOutput>
+function C:listResolverConfigs(input: types.ListResolverConfigsInput, options?: base_client.InvokeOptions): async.Operation<types.ListResolverConfigsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResolverConfigs as schema.OperationSchema, input, options) as async.Operation<types.ListResolverConfigsOutput>
 end
 
-function C:listResolverDnssecConfigs(input: types.ListResolverDnssecConfigsInput, options: any): async.Operation<types.ListResolverDnssecConfigsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResolverDnssecConfigs, input, options) as async.Operation<types.ListResolverDnssecConfigsOutput>
+function C:listResolverDnssecConfigs(input: types.ListResolverDnssecConfigsInput, options?: base_client.InvokeOptions): async.Operation<types.ListResolverDnssecConfigsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResolverDnssecConfigs as schema.OperationSchema, input, options) as async.Operation<types.ListResolverDnssecConfigsOutput>
 end
 
-function C:listResolverEndpointIpAddresses(input: types.ListResolverEndpointIpAddressesInput, options: any): async.Operation<types.ListResolverEndpointIpAddressesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResolverEndpointIpAddresses, input, options) as async.Operation<types.ListResolverEndpointIpAddressesOutput>
+function C:listResolverEndpointIpAddresses(input: types.ListResolverEndpointIpAddressesInput, options?: base_client.InvokeOptions): async.Operation<types.ListResolverEndpointIpAddressesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResolverEndpointIpAddresses as schema.OperationSchema, input, options) as async.Operation<types.ListResolverEndpointIpAddressesOutput>
 end
 
-function C:listResolverEndpoints(input: types.ListResolverEndpointsInput, options: any): async.Operation<types.ListResolverEndpointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResolverEndpoints, input, options) as async.Operation<types.ListResolverEndpointsOutput>
+function C:listResolverEndpoints(input: types.ListResolverEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.ListResolverEndpointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResolverEndpoints as schema.OperationSchema, input, options) as async.Operation<types.ListResolverEndpointsOutput>
 end
 
-function C:listResolverQueryLogConfigAssociations(input: types.ListResolverQueryLogConfigAssociationsInput, options: any): async.Operation<types.ListResolverQueryLogConfigAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResolverQueryLogConfigAssociations, input, options) as async.Operation<types.ListResolverQueryLogConfigAssociationsOutput>
+function C:listResolverQueryLogConfigAssociations(input: types.ListResolverQueryLogConfigAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListResolverQueryLogConfigAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResolverQueryLogConfigAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListResolverQueryLogConfigAssociationsOutput>
 end
 
-function C:listResolverQueryLogConfigs(input: types.ListResolverQueryLogConfigsInput, options: any): async.Operation<types.ListResolverQueryLogConfigsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResolverQueryLogConfigs, input, options) as async.Operation<types.ListResolverQueryLogConfigsOutput>
+function C:listResolverQueryLogConfigs(input: types.ListResolverQueryLogConfigsInput, options?: base_client.InvokeOptions): async.Operation<types.ListResolverQueryLogConfigsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResolverQueryLogConfigs as schema.OperationSchema, input, options) as async.Operation<types.ListResolverQueryLogConfigsOutput>
 end
 
-function C:listResolverRuleAssociations(input: types.ListResolverRuleAssociationsInput, options: any): async.Operation<types.ListResolverRuleAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResolverRuleAssociations, input, options) as async.Operation<types.ListResolverRuleAssociationsOutput>
+function C:listResolverRuleAssociations(input: types.ListResolverRuleAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListResolverRuleAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResolverRuleAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListResolverRuleAssociationsOutput>
 end
 
-function C:listResolverRules(input: types.ListResolverRulesInput, options: any): async.Operation<types.ListResolverRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResolverRules, input, options) as async.Operation<types.ListResolverRulesOutput>
+function C:listResolverRules(input: types.ListResolverRulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListResolverRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResolverRules as schema.OperationSchema, input, options) as async.Operation<types.ListResolverRulesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putFirewallRuleGroupPolicy(input: types.PutFirewallRuleGroupPolicyInput, options: any): async.Operation<types.PutFirewallRuleGroupPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutFirewallRuleGroupPolicy, input, options) as async.Operation<types.PutFirewallRuleGroupPolicyOutput>
+function C:putFirewallRuleGroupPolicy(input: types.PutFirewallRuleGroupPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutFirewallRuleGroupPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutFirewallRuleGroupPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutFirewallRuleGroupPolicyOutput>
 end
 
-function C:putResolverQueryLogConfigPolicy(input: types.PutResolverQueryLogConfigPolicyInput, options: any): async.Operation<types.PutResolverQueryLogConfigPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutResolverQueryLogConfigPolicy, input, options) as async.Operation<types.PutResolverQueryLogConfigPolicyOutput>
+function C:putResolverQueryLogConfigPolicy(input: types.PutResolverQueryLogConfigPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutResolverQueryLogConfigPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResolverQueryLogConfigPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutResolverQueryLogConfigPolicyOutput>
 end
 
-function C:putResolverRulePolicy(input: types.PutResolverRulePolicyInput, options: any): async.Operation<types.PutResolverRulePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutResolverRulePolicy, input, options) as async.Operation<types.PutResolverRulePolicyOutput>
+function C:putResolverRulePolicy(input: types.PutResolverRulePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutResolverRulePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResolverRulePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutResolverRulePolicyOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateFirewallConfig(input: types.UpdateFirewallConfigInput, options: any): async.Operation<types.UpdateFirewallConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFirewallConfig, input, options) as async.Operation<types.UpdateFirewallConfigOutput>
+function C:updateFirewallConfig(input: types.UpdateFirewallConfigInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFirewallConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFirewallConfig as schema.OperationSchema, input, options) as async.Operation<types.UpdateFirewallConfigOutput>
 end
 
-function C:updateFirewallDomains(input: types.UpdateFirewallDomainsInput, options: any): async.Operation<types.UpdateFirewallDomainsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFirewallDomains, input, options) as async.Operation<types.UpdateFirewallDomainsOutput>
+function C:updateFirewallDomains(input: types.UpdateFirewallDomainsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFirewallDomainsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFirewallDomains as schema.OperationSchema, input, options) as async.Operation<types.UpdateFirewallDomainsOutput>
 end
 
-function C:updateFirewallRule(input: types.UpdateFirewallRuleInput, options: any): async.Operation<types.UpdateFirewallRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFirewallRule, input, options) as async.Operation<types.UpdateFirewallRuleOutput>
+function C:updateFirewallRule(input: types.UpdateFirewallRuleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFirewallRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFirewallRule as schema.OperationSchema, input, options) as async.Operation<types.UpdateFirewallRuleOutput>
 end
 
-function C:updateFirewallRuleGroupAssociation(input: types.UpdateFirewallRuleGroupAssociationInput, options: any): async.Operation<types.UpdateFirewallRuleGroupAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFirewallRuleGroupAssociation, input, options) as async.Operation<types.UpdateFirewallRuleGroupAssociationOutput>
+function C:updateFirewallRuleGroupAssociation(input: types.UpdateFirewallRuleGroupAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFirewallRuleGroupAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFirewallRuleGroupAssociation as schema.OperationSchema, input, options) as async.Operation<types.UpdateFirewallRuleGroupAssociationOutput>
 end
 
-function C:updateOutpostResolver(input: types.UpdateOutpostResolverInput, options: any): async.Operation<types.UpdateOutpostResolverOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateOutpostResolver, input, options) as async.Operation<types.UpdateOutpostResolverOutput>
+function C:updateOutpostResolver(input: types.UpdateOutpostResolverInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateOutpostResolverOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateOutpostResolver as schema.OperationSchema, input, options) as async.Operation<types.UpdateOutpostResolverOutput>
 end
 
-function C:updateResolverConfig(input: types.UpdateResolverConfigInput, options: any): async.Operation<types.UpdateResolverConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateResolverConfig, input, options) as async.Operation<types.UpdateResolverConfigOutput>
+function C:updateResolverConfig(input: types.UpdateResolverConfigInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateResolverConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateResolverConfig as schema.OperationSchema, input, options) as async.Operation<types.UpdateResolverConfigOutput>
 end
 
-function C:updateResolverDnssecConfig(input: types.UpdateResolverDnssecConfigInput, options: any): async.Operation<types.UpdateResolverDnssecConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateResolverDnssecConfig, input, options) as async.Operation<types.UpdateResolverDnssecConfigOutput>
+function C:updateResolverDnssecConfig(input: types.UpdateResolverDnssecConfigInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateResolverDnssecConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateResolverDnssecConfig as schema.OperationSchema, input, options) as async.Operation<types.UpdateResolverDnssecConfigOutput>
 end
 
-function C:updateResolverEndpoint(input: types.UpdateResolverEndpointInput, options: any): async.Operation<types.UpdateResolverEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateResolverEndpoint, input, options) as async.Operation<types.UpdateResolverEndpointOutput>
+function C:updateResolverEndpoint(input: types.UpdateResolverEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateResolverEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateResolverEndpoint as schema.OperationSchema, input, options) as async.Operation<types.UpdateResolverEndpointOutput>
 end
 
-function C:updateResolverRule(input: types.UpdateResolverRuleInput, options: any): async.Operation<types.UpdateResolverRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateResolverRule, input, options) as async.Operation<types.UpdateResolverRuleOutput>
+function C:updateResolverRule(input: types.UpdateResolverRuleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateResolverRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateResolverRule as schema.OperationSchema, input, options) as async.Operation<types.UpdateResolverRuleOutput>
 end
 
 return M

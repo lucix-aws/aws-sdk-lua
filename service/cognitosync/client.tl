@@ -8,56 +8,59 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("cognitosync.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("cognitosync.schemas")
 local traits = require("smithy.traits")
 local types = require("cognitosync.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    bulkPublish: function(Client, types.BulkPublishInput, any): async.Operation<types.BulkPublishOutput>
-    deleteDataset: function(Client, types.DeleteDatasetInput, any): async.Operation<types.DeleteDatasetOutput>
-    describeDataset: function(Client, types.DescribeDatasetInput, any): async.Operation<types.DescribeDatasetOutput>
-    describeIdentityPoolUsage: function(Client, types.DescribeIdentityPoolUsageInput, any): async.Operation<types.DescribeIdentityPoolUsageOutput>
-    describeIdentityUsage: function(Client, types.DescribeIdentityUsageInput, any): async.Operation<types.DescribeIdentityUsageOutput>
-    getBulkPublishDetails: function(Client, types.GetBulkPublishDetailsInput, any): async.Operation<types.GetBulkPublishDetailsOutput>
-    getCognitoEvents: function(Client, types.GetCognitoEventsInput, any): async.Operation<types.GetCognitoEventsOutput>
-    getIdentityPoolConfiguration: function(Client, types.GetIdentityPoolConfigurationInput, any): async.Operation<types.GetIdentityPoolConfigurationOutput>
-    listDatasets: function(Client, types.ListDatasetsInput, any): async.Operation<types.ListDatasetsOutput>
-    listIdentityPoolUsage: function(Client, types.ListIdentityPoolUsageInput, any): async.Operation<types.ListIdentityPoolUsageOutput>
-    listRecords: function(Client, types.ListRecordsInput, any): async.Operation<types.ListRecordsOutput>
-    registerDevice: function(Client, types.RegisterDeviceInput, any): async.Operation<types.RegisterDeviceOutput>
-    setCognitoEvents: function(Client, types.SetCognitoEventsInput, any): async.Operation<types.SetCognitoEventsOutput>
-    setIdentityPoolConfiguration: function(Client, types.SetIdentityPoolConfigurationInput, any): async.Operation<types.SetIdentityPoolConfigurationOutput>
-    subscribeToDataset: function(Client, types.SubscribeToDatasetInput, any): async.Operation<types.SubscribeToDatasetOutput>
-    unsubscribeFromDataset: function(Client, types.UnsubscribeFromDatasetInput, any): async.Operation<types.UnsubscribeFromDatasetOutput>
-    updateRecords: function(Client, types.UpdateRecordsInput, any): async.Operation<types.UpdateRecordsOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    bulkPublish: function(Client, types.BulkPublishInput, ? base_client.InvokeOptions): async.Operation<types.BulkPublishOutput>
+    deleteDataset: function(Client, types.DeleteDatasetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDatasetOutput>
+    describeDataset: function(Client, types.DescribeDatasetInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDatasetOutput>
+    describeIdentityPoolUsage: function(Client, types.DescribeIdentityPoolUsageInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIdentityPoolUsageOutput>
+    describeIdentityUsage: function(Client, types.DescribeIdentityUsageInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIdentityUsageOutput>
+    getBulkPublishDetails: function(Client, types.GetBulkPublishDetailsInput, ? base_client.InvokeOptions): async.Operation<types.GetBulkPublishDetailsOutput>
+    getCognitoEvents: function(Client, types.GetCognitoEventsInput, ? base_client.InvokeOptions): async.Operation<types.GetCognitoEventsOutput>
+    getIdentityPoolConfiguration: function(Client, types.GetIdentityPoolConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetIdentityPoolConfigurationOutput>
+    listDatasets: function(Client, types.ListDatasetsInput, ? base_client.InvokeOptions): async.Operation<types.ListDatasetsOutput>
+    listIdentityPoolUsage: function(Client, types.ListIdentityPoolUsageInput, ? base_client.InvokeOptions): async.Operation<types.ListIdentityPoolUsageOutput>
+    listRecords: function(Client, types.ListRecordsInput, ? base_client.InvokeOptions): async.Operation<types.ListRecordsOutput>
+    registerDevice: function(Client, types.RegisterDeviceInput, ? base_client.InvokeOptions): async.Operation<types.RegisterDeviceOutput>
+    setCognitoEvents: function(Client, types.SetCognitoEventsInput, ? base_client.InvokeOptions): async.Operation<types.SetCognitoEventsOutput>
+    setIdentityPoolConfiguration: function(Client, types.SetIdentityPoolConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.SetIdentityPoolConfigurationOutput>
+    subscribeToDataset: function(Client, types.SubscribeToDatasetInput, ? base_client.InvokeOptions): async.Operation<types.SubscribeToDatasetOutput>
+    unsubscribeFromDataset: function(Client, types.UnsubscribeFromDatasetInput, ? base_client.InvokeOptions): async.Operation<types.UnsubscribeFromDatasetOutput>
+    updateRecords: function(Client, types.UpdateRecordsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRecordsOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSCognitoSyncService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "cognito-sync", signing_region = c.region } }
                 else
@@ -76,72 +79,72 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:bulkPublish(input: types.BulkPublishInput, options: any): async.Operation<types.BulkPublishOutput>
-    return self:invokeOperation(schemas.Service, schemas.BulkPublish, input, options) as async.Operation<types.BulkPublishOutput>
+function C:bulkPublish(input: types.BulkPublishInput, options?: base_client.InvokeOptions): async.Operation<types.BulkPublishOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BulkPublish as schema.OperationSchema, input, options) as async.Operation<types.BulkPublishOutput>
 end
 
-function C:deleteDataset(input: types.DeleteDatasetInput, options: any): async.Operation<types.DeleteDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDataset, input, options) as async.Operation<types.DeleteDatasetOutput>
+function C:deleteDataset(input: types.DeleteDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataset as schema.OperationSchema, input, options) as async.Operation<types.DeleteDatasetOutput>
 end
 
-function C:describeDataset(input: types.DescribeDatasetInput, options: any): async.Operation<types.DescribeDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDataset, input, options) as async.Operation<types.DescribeDatasetOutput>
+function C:describeDataset(input: types.DescribeDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDataset as schema.OperationSchema, input, options) as async.Operation<types.DescribeDatasetOutput>
 end
 
-function C:describeIdentityPoolUsage(input: types.DescribeIdentityPoolUsageInput, options: any): async.Operation<types.DescribeIdentityPoolUsageOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeIdentityPoolUsage, input, options) as async.Operation<types.DescribeIdentityPoolUsageOutput>
+function C:describeIdentityPoolUsage(input: types.DescribeIdentityPoolUsageInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIdentityPoolUsageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIdentityPoolUsage as schema.OperationSchema, input, options) as async.Operation<types.DescribeIdentityPoolUsageOutput>
 end
 
-function C:describeIdentityUsage(input: types.DescribeIdentityUsageInput, options: any): async.Operation<types.DescribeIdentityUsageOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeIdentityUsage, input, options) as async.Operation<types.DescribeIdentityUsageOutput>
+function C:describeIdentityUsage(input: types.DescribeIdentityUsageInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIdentityUsageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIdentityUsage as schema.OperationSchema, input, options) as async.Operation<types.DescribeIdentityUsageOutput>
 end
 
-function C:getBulkPublishDetails(input: types.GetBulkPublishDetailsInput, options: any): async.Operation<types.GetBulkPublishDetailsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBulkPublishDetails, input, options) as async.Operation<types.GetBulkPublishDetailsOutput>
+function C:getBulkPublishDetails(input: types.GetBulkPublishDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.GetBulkPublishDetailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBulkPublishDetails as schema.OperationSchema, input, options) as async.Operation<types.GetBulkPublishDetailsOutput>
 end
 
-function C:getCognitoEvents(input: types.GetCognitoEventsInput, options: any): async.Operation<types.GetCognitoEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCognitoEvents, input, options) as async.Operation<types.GetCognitoEventsOutput>
+function C:getCognitoEvents(input: types.GetCognitoEventsInput, options?: base_client.InvokeOptions): async.Operation<types.GetCognitoEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCognitoEvents as schema.OperationSchema, input, options) as async.Operation<types.GetCognitoEventsOutput>
 end
 
-function C:getIdentityPoolConfiguration(input: types.GetIdentityPoolConfigurationInput, options: any): async.Operation<types.GetIdentityPoolConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIdentityPoolConfiguration, input, options) as async.Operation<types.GetIdentityPoolConfigurationOutput>
+function C:getIdentityPoolConfiguration(input: types.GetIdentityPoolConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetIdentityPoolConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIdentityPoolConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetIdentityPoolConfigurationOutput>
 end
 
-function C:listDatasets(input: types.ListDatasetsInput, options: any): async.Operation<types.ListDatasetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDatasets, input, options) as async.Operation<types.ListDatasetsOutput>
+function C:listDatasets(input: types.ListDatasetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDatasetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDatasets as schema.OperationSchema, input, options) as async.Operation<types.ListDatasetsOutput>
 end
 
-function C:listIdentityPoolUsage(input: types.ListIdentityPoolUsageInput, options: any): async.Operation<types.ListIdentityPoolUsageOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIdentityPoolUsage, input, options) as async.Operation<types.ListIdentityPoolUsageOutput>
+function C:listIdentityPoolUsage(input: types.ListIdentityPoolUsageInput, options?: base_client.InvokeOptions): async.Operation<types.ListIdentityPoolUsageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIdentityPoolUsage as schema.OperationSchema, input, options) as async.Operation<types.ListIdentityPoolUsageOutput>
 end
 
-function C:listRecords(input: types.ListRecordsInput, options: any): async.Operation<types.ListRecordsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRecords, input, options) as async.Operation<types.ListRecordsOutput>
+function C:listRecords(input: types.ListRecordsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecordsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecords as schema.OperationSchema, input, options) as async.Operation<types.ListRecordsOutput>
 end
 
-function C:registerDevice(input: types.RegisterDeviceInput, options: any): async.Operation<types.RegisterDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterDevice, input, options) as async.Operation<types.RegisterDeviceOutput>
+function C:registerDevice(input: types.RegisterDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterDevice as schema.OperationSchema, input, options) as async.Operation<types.RegisterDeviceOutput>
 end
 
-function C:setCognitoEvents(input: types.SetCognitoEventsInput, options: any): async.Operation<types.SetCognitoEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetCognitoEvents, input, options) as async.Operation<types.SetCognitoEventsOutput>
+function C:setCognitoEvents(input: types.SetCognitoEventsInput, options?: base_client.InvokeOptions): async.Operation<types.SetCognitoEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetCognitoEvents as schema.OperationSchema, input, options) as async.Operation<types.SetCognitoEventsOutput>
 end
 
-function C:setIdentityPoolConfiguration(input: types.SetIdentityPoolConfigurationInput, options: any): async.Operation<types.SetIdentityPoolConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetIdentityPoolConfiguration, input, options) as async.Operation<types.SetIdentityPoolConfigurationOutput>
+function C:setIdentityPoolConfiguration(input: types.SetIdentityPoolConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.SetIdentityPoolConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetIdentityPoolConfiguration as schema.OperationSchema, input, options) as async.Operation<types.SetIdentityPoolConfigurationOutput>
 end
 
-function C:subscribeToDataset(input: types.SubscribeToDatasetInput, options: any): async.Operation<types.SubscribeToDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.SubscribeToDataset, input, options) as async.Operation<types.SubscribeToDatasetOutput>
+function C:subscribeToDataset(input: types.SubscribeToDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.SubscribeToDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SubscribeToDataset as schema.OperationSchema, input, options) as async.Operation<types.SubscribeToDatasetOutput>
 end
 
-function C:unsubscribeFromDataset(input: types.UnsubscribeFromDatasetInput, options: any): async.Operation<types.UnsubscribeFromDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UnsubscribeFromDataset, input, options) as async.Operation<types.UnsubscribeFromDatasetOutput>
+function C:unsubscribeFromDataset(input: types.UnsubscribeFromDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.UnsubscribeFromDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UnsubscribeFromDataset as schema.OperationSchema, input, options) as async.Operation<types.UnsubscribeFromDatasetOutput>
 end
 
-function C:updateRecords(input: types.UpdateRecordsInput, options: any): async.Operation<types.UpdateRecordsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRecords, input, options) as async.Operation<types.UpdateRecordsOutput>
+function C:updateRecords(input: types.UpdateRecordsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRecordsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRecords as schema.OperationSchema, input, options) as async.Operation<types.UpdateRecordsOutput>
 end
 
 return M

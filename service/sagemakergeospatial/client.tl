@@ -8,58 +8,61 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("sagemakergeospatial.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("sagemakergeospatial.schemas")
 local traits = require("smithy.traits")
 local types = require("sagemakergeospatial.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    deleteEarthObservationJob: function(Client, types.DeleteEarthObservationJobInput, any): async.Operation<types.DeleteEarthObservationJobOutput>
-    deleteVectorEnrichmentJob: function(Client, types.DeleteVectorEnrichmentJobInput, any): async.Operation<types.DeleteVectorEnrichmentJobOutput>
-    exportEarthObservationJob: function(Client, types.ExportEarthObservationJobInput, any): async.Operation<types.ExportEarthObservationJobOutput>
-    exportVectorEnrichmentJob: function(Client, types.ExportVectorEnrichmentJobInput, any): async.Operation<types.ExportVectorEnrichmentJobOutput>
-    getEarthObservationJob: function(Client, types.GetEarthObservationJobInput, any): async.Operation<types.GetEarthObservationJobOutput>
-    getRasterDataCollection: function(Client, types.GetRasterDataCollectionInput, any): async.Operation<types.GetRasterDataCollectionOutput>
-    getTile: function(Client, types.GetTileInput, any): async.Operation<types.GetTileOutput>
-    getVectorEnrichmentJob: function(Client, types.GetVectorEnrichmentJobInput, any): async.Operation<types.GetVectorEnrichmentJobOutput>
-    listEarthObservationJobs: function(Client, types.ListEarthObservationJobsInput, any): async.Operation<types.ListEarthObservationJobsOutput>
-    listRasterDataCollections: function(Client, types.ListRasterDataCollectionsInput, any): async.Operation<types.ListRasterDataCollectionsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listVectorEnrichmentJobs: function(Client, types.ListVectorEnrichmentJobsInput, any): async.Operation<types.ListVectorEnrichmentJobsOutput>
-    searchRasterDataCollection: function(Client, types.SearchRasterDataCollectionInput, any): async.Operation<types.SearchRasterDataCollectionOutput>
-    startEarthObservationJob: function(Client, types.StartEarthObservationJobInput, any): async.Operation<types.StartEarthObservationJobOutput>
-    startVectorEnrichmentJob: function(Client, types.StartVectorEnrichmentJobInput, any): async.Operation<types.StartVectorEnrichmentJobOutput>
-    stopEarthObservationJob: function(Client, types.StopEarthObservationJobInput, any): async.Operation<types.StopEarthObservationJobOutput>
-    stopVectorEnrichmentJob: function(Client, types.StopVectorEnrichmentJobInput, any): async.Operation<types.StopVectorEnrichmentJobOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    deleteEarthObservationJob: function(Client, types.DeleteEarthObservationJobInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEarthObservationJobOutput>
+    deleteVectorEnrichmentJob: function(Client, types.DeleteVectorEnrichmentJobInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVectorEnrichmentJobOutput>
+    exportEarthObservationJob: function(Client, types.ExportEarthObservationJobInput, ? base_client.InvokeOptions): async.Operation<types.ExportEarthObservationJobOutput>
+    exportVectorEnrichmentJob: function(Client, types.ExportVectorEnrichmentJobInput, ? base_client.InvokeOptions): async.Operation<types.ExportVectorEnrichmentJobOutput>
+    getEarthObservationJob: function(Client, types.GetEarthObservationJobInput, ? base_client.InvokeOptions): async.Operation<types.GetEarthObservationJobOutput>
+    getRasterDataCollection: function(Client, types.GetRasterDataCollectionInput, ? base_client.InvokeOptions): async.Operation<types.GetRasterDataCollectionOutput>
+    getTile: function(Client, types.GetTileInput, ? base_client.InvokeOptions): async.Operation<types.GetTileOutput>
+    getVectorEnrichmentJob: function(Client, types.GetVectorEnrichmentJobInput, ? base_client.InvokeOptions): async.Operation<types.GetVectorEnrichmentJobOutput>
+    listEarthObservationJobs: function(Client, types.ListEarthObservationJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListEarthObservationJobsOutput>
+    listRasterDataCollections: function(Client, types.ListRasterDataCollectionsInput, ? base_client.InvokeOptions): async.Operation<types.ListRasterDataCollectionsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listVectorEnrichmentJobs: function(Client, types.ListVectorEnrichmentJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListVectorEnrichmentJobsOutput>
+    searchRasterDataCollection: function(Client, types.SearchRasterDataCollectionInput, ? base_client.InvokeOptions): async.Operation<types.SearchRasterDataCollectionOutput>
+    startEarthObservationJob: function(Client, types.StartEarthObservationJobInput, ? base_client.InvokeOptions): async.Operation<types.StartEarthObservationJobOutput>
+    startVectorEnrichmentJob: function(Client, types.StartVectorEnrichmentJobInput, ? base_client.InvokeOptions): async.Operation<types.StartVectorEnrichmentJobOutput>
+    stopEarthObservationJob: function(Client, types.StopEarthObservationJobInput, ? base_client.InvokeOptions): async.Operation<types.StopEarthObservationJobOutput>
+    stopVectorEnrichmentJob: function(Client, types.StopVectorEnrichmentJobInput, ? base_client.InvokeOptions): async.Operation<types.StopVectorEnrichmentJobOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "SageMakerGeospatial"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "sagemaker-geospatial", signing_region = c.region } }
                 else
@@ -78,80 +81,80 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:deleteEarthObservationJob(input: types.DeleteEarthObservationJobInput, options: any): async.Operation<types.DeleteEarthObservationJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEarthObservationJob, input, options) as async.Operation<types.DeleteEarthObservationJobOutput>
+function C:deleteEarthObservationJob(input: types.DeleteEarthObservationJobInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEarthObservationJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEarthObservationJob as schema.OperationSchema, input, options) as async.Operation<types.DeleteEarthObservationJobOutput>
 end
 
-function C:deleteVectorEnrichmentJob(input: types.DeleteVectorEnrichmentJobInput, options: any): async.Operation<types.DeleteVectorEnrichmentJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVectorEnrichmentJob, input, options) as async.Operation<types.DeleteVectorEnrichmentJobOutput>
+function C:deleteVectorEnrichmentJob(input: types.DeleteVectorEnrichmentJobInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVectorEnrichmentJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVectorEnrichmentJob as schema.OperationSchema, input, options) as async.Operation<types.DeleteVectorEnrichmentJobOutput>
 end
 
-function C:exportEarthObservationJob(input: types.ExportEarthObservationJobInput, options: any): async.Operation<types.ExportEarthObservationJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExportEarthObservationJob, input, options) as async.Operation<types.ExportEarthObservationJobOutput>
+function C:exportEarthObservationJob(input: types.ExportEarthObservationJobInput, options?: base_client.InvokeOptions): async.Operation<types.ExportEarthObservationJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportEarthObservationJob as schema.OperationSchema, input, options) as async.Operation<types.ExportEarthObservationJobOutput>
 end
 
-function C:exportVectorEnrichmentJob(input: types.ExportVectorEnrichmentJobInput, options: any): async.Operation<types.ExportVectorEnrichmentJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExportVectorEnrichmentJob, input, options) as async.Operation<types.ExportVectorEnrichmentJobOutput>
+function C:exportVectorEnrichmentJob(input: types.ExportVectorEnrichmentJobInput, options?: base_client.InvokeOptions): async.Operation<types.ExportVectorEnrichmentJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportVectorEnrichmentJob as schema.OperationSchema, input, options) as async.Operation<types.ExportVectorEnrichmentJobOutput>
 end
 
-function C:getEarthObservationJob(input: types.GetEarthObservationJobInput, options: any): async.Operation<types.GetEarthObservationJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEarthObservationJob, input, options) as async.Operation<types.GetEarthObservationJobOutput>
+function C:getEarthObservationJob(input: types.GetEarthObservationJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetEarthObservationJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEarthObservationJob as schema.OperationSchema, input, options) as async.Operation<types.GetEarthObservationJobOutput>
 end
 
-function C:getRasterDataCollection(input: types.GetRasterDataCollectionInput, options: any): async.Operation<types.GetRasterDataCollectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRasterDataCollection, input, options) as async.Operation<types.GetRasterDataCollectionOutput>
+function C:getRasterDataCollection(input: types.GetRasterDataCollectionInput, options?: base_client.InvokeOptions): async.Operation<types.GetRasterDataCollectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRasterDataCollection as schema.OperationSchema, input, options) as async.Operation<types.GetRasterDataCollectionOutput>
 end
 
-function C:getTile(input: types.GetTileInput, options: any): async.Operation<types.GetTileOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTile, input, options) as async.Operation<types.GetTileOutput>
+function C:getTile(input: types.GetTileInput, options?: base_client.InvokeOptions): async.Operation<types.GetTileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTile as schema.OperationSchema, input, options) as async.Operation<types.GetTileOutput>
 end
 
-function C:getVectorEnrichmentJob(input: types.GetVectorEnrichmentJobInput, options: any): async.Operation<types.GetVectorEnrichmentJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetVectorEnrichmentJob, input, options) as async.Operation<types.GetVectorEnrichmentJobOutput>
+function C:getVectorEnrichmentJob(input: types.GetVectorEnrichmentJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetVectorEnrichmentJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVectorEnrichmentJob as schema.OperationSchema, input, options) as async.Operation<types.GetVectorEnrichmentJobOutput>
 end
 
-function C:listEarthObservationJobs(input: types.ListEarthObservationJobsInput, options: any): async.Operation<types.ListEarthObservationJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEarthObservationJobs, input, options) as async.Operation<types.ListEarthObservationJobsOutput>
+function C:listEarthObservationJobs(input: types.ListEarthObservationJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEarthObservationJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEarthObservationJobs as schema.OperationSchema, input, options) as async.Operation<types.ListEarthObservationJobsOutput>
 end
 
-function C:listRasterDataCollections(input: types.ListRasterDataCollectionsInput, options: any): async.Operation<types.ListRasterDataCollectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRasterDataCollections, input, options) as async.Operation<types.ListRasterDataCollectionsOutput>
+function C:listRasterDataCollections(input: types.ListRasterDataCollectionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRasterDataCollectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRasterDataCollections as schema.OperationSchema, input, options) as async.Operation<types.ListRasterDataCollectionsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listVectorEnrichmentJobs(input: types.ListVectorEnrichmentJobsInput, options: any): async.Operation<types.ListVectorEnrichmentJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVectorEnrichmentJobs, input, options) as async.Operation<types.ListVectorEnrichmentJobsOutput>
+function C:listVectorEnrichmentJobs(input: types.ListVectorEnrichmentJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListVectorEnrichmentJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVectorEnrichmentJobs as schema.OperationSchema, input, options) as async.Operation<types.ListVectorEnrichmentJobsOutput>
 end
 
-function C:searchRasterDataCollection(input: types.SearchRasterDataCollectionInput, options: any): async.Operation<types.SearchRasterDataCollectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchRasterDataCollection, input, options) as async.Operation<types.SearchRasterDataCollectionOutput>
+function C:searchRasterDataCollection(input: types.SearchRasterDataCollectionInput, options?: base_client.InvokeOptions): async.Operation<types.SearchRasterDataCollectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchRasterDataCollection as schema.OperationSchema, input, options) as async.Operation<types.SearchRasterDataCollectionOutput>
 end
 
-function C:startEarthObservationJob(input: types.StartEarthObservationJobInput, options: any): async.Operation<types.StartEarthObservationJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartEarthObservationJob, input, options) as async.Operation<types.StartEarthObservationJobOutput>
+function C:startEarthObservationJob(input: types.StartEarthObservationJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartEarthObservationJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartEarthObservationJob as schema.OperationSchema, input, options) as async.Operation<types.StartEarthObservationJobOutput>
 end
 
-function C:startVectorEnrichmentJob(input: types.StartVectorEnrichmentJobInput, options: any): async.Operation<types.StartVectorEnrichmentJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartVectorEnrichmentJob, input, options) as async.Operation<types.StartVectorEnrichmentJobOutput>
+function C:startVectorEnrichmentJob(input: types.StartVectorEnrichmentJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartVectorEnrichmentJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartVectorEnrichmentJob as schema.OperationSchema, input, options) as async.Operation<types.StartVectorEnrichmentJobOutput>
 end
 
-function C:stopEarthObservationJob(input: types.StopEarthObservationJobInput, options: any): async.Operation<types.StopEarthObservationJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopEarthObservationJob, input, options) as async.Operation<types.StopEarthObservationJobOutput>
+function C:stopEarthObservationJob(input: types.StopEarthObservationJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopEarthObservationJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopEarthObservationJob as schema.OperationSchema, input, options) as async.Operation<types.StopEarthObservationJobOutput>
 end
 
-function C:stopVectorEnrichmentJob(input: types.StopVectorEnrichmentJobInput, options: any): async.Operation<types.StopVectorEnrichmentJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopVectorEnrichmentJob, input, options) as async.Operation<types.StopVectorEnrichmentJobOutput>
+function C:stopVectorEnrichmentJob(input: types.StopVectorEnrichmentJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopVectorEnrichmentJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopVectorEnrichmentJob as schema.OperationSchema, input, options) as async.Operation<types.StopVectorEnrichmentJobOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
 return M

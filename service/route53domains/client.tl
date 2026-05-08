@@ -8,73 +8,76 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("route53domains.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("route53domains.schemas")
 local traits = require("smithy.traits")
 local types = require("route53domains.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    acceptDomainTransferFromAnotherAwsAccount: function(Client, types.AcceptDomainTransferFromAnotherAwsAccountInput, any): async.Operation<types.AcceptDomainTransferFromAnotherAwsAccountOutput>
-    associateDelegationSignerToDomain: function(Client, types.AssociateDelegationSignerToDomainInput, any): async.Operation<types.AssociateDelegationSignerToDomainOutput>
-    cancelDomainTransferToAnotherAwsAccount: function(Client, types.CancelDomainTransferToAnotherAwsAccountInput, any): async.Operation<types.CancelDomainTransferToAnotherAwsAccountOutput>
-    checkDomainAvailability: function(Client, types.CheckDomainAvailabilityInput, any): async.Operation<types.CheckDomainAvailabilityOutput>
-    checkDomainTransferability: function(Client, types.CheckDomainTransferabilityInput, any): async.Operation<types.CheckDomainTransferabilityOutput>
-    deleteDomain: function(Client, types.DeleteDomainInput, any): async.Operation<types.DeleteDomainOutput>
-    deleteTagsForDomain: function(Client, types.DeleteTagsForDomainInput, any): async.Operation<types.DeleteTagsForDomainOutput>
-    disableDomainAutoRenew: function(Client, types.DisableDomainAutoRenewInput, any): async.Operation<types.DisableDomainAutoRenewOutput>
-    disableDomainTransferLock: function(Client, types.DisableDomainTransferLockInput, any): async.Operation<types.DisableDomainTransferLockOutput>
-    disassociateDelegationSignerFromDomain: function(Client, types.DisassociateDelegationSignerFromDomainInput, any): async.Operation<types.DisassociateDelegationSignerFromDomainOutput>
-    enableDomainAutoRenew: function(Client, types.EnableDomainAutoRenewInput, any): async.Operation<types.EnableDomainAutoRenewOutput>
-    enableDomainTransferLock: function(Client, types.EnableDomainTransferLockInput, any): async.Operation<types.EnableDomainTransferLockOutput>
-    getContactReachabilityStatus: function(Client, types.GetContactReachabilityStatusInput, any): async.Operation<types.GetContactReachabilityStatusOutput>
-    getDomainDetail: function(Client, types.GetDomainDetailInput, any): async.Operation<types.GetDomainDetailOutput>
-    getDomainSuggestions: function(Client, types.GetDomainSuggestionsInput, any): async.Operation<types.GetDomainSuggestionsOutput>
-    getOperationDetail: function(Client, types.GetOperationDetailInput, any): async.Operation<types.GetOperationDetailOutput>
-    listDomains: function(Client, types.ListDomainsInput, any): async.Operation<types.ListDomainsOutput>
-    listOperations: function(Client, types.ListOperationsInput, any): async.Operation<types.ListOperationsOutput>
-    listPrices: function(Client, types.ListPricesInput, any): async.Operation<types.ListPricesOutput>
-    listTagsForDomain: function(Client, types.ListTagsForDomainInput, any): async.Operation<types.ListTagsForDomainOutput>
-    pushDomain: function(Client, types.PushDomainInput, any): async.Operation<types.PushDomainOutput>
-    registerDomain: function(Client, types.RegisterDomainInput, any): async.Operation<types.RegisterDomainOutput>
-    rejectDomainTransferFromAnotherAwsAccount: function(Client, types.RejectDomainTransferFromAnotherAwsAccountInput, any): async.Operation<types.RejectDomainTransferFromAnotherAwsAccountOutput>
-    renewDomain: function(Client, types.RenewDomainInput, any): async.Operation<types.RenewDomainOutput>
-    resendContactReachabilityEmail: function(Client, types.ResendContactReachabilityEmailInput, any): async.Operation<types.ResendContactReachabilityEmailOutput>
-    resendOperationAuthorization: function(Client, types.ResendOperationAuthorizationInput, any): async.Operation<types.ResendOperationAuthorizationOutput>
-    retrieveDomainAuthCode: function(Client, types.RetrieveDomainAuthCodeInput, any): async.Operation<types.RetrieveDomainAuthCodeOutput>
-    transferDomain: function(Client, types.TransferDomainInput, any): async.Operation<types.TransferDomainOutput>
-    transferDomainToAnotherAwsAccount: function(Client, types.TransferDomainToAnotherAwsAccountInput, any): async.Operation<types.TransferDomainToAnotherAwsAccountOutput>
-    updateDomainContact: function(Client, types.UpdateDomainContactInput, any): async.Operation<types.UpdateDomainContactOutput>
-    updateDomainContactPrivacy: function(Client, types.UpdateDomainContactPrivacyInput, any): async.Operation<types.UpdateDomainContactPrivacyOutput>
-    updateDomainNameservers: function(Client, types.UpdateDomainNameserversInput, any): async.Operation<types.UpdateDomainNameserversOutput>
-    updateTagsForDomain: function(Client, types.UpdateTagsForDomainInput, any): async.Operation<types.UpdateTagsForDomainOutput>
-    viewBilling: function(Client, types.ViewBillingInput, any): async.Operation<types.ViewBillingOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    acceptDomainTransferFromAnotherAwsAccount: function(Client, types.AcceptDomainTransferFromAnotherAwsAccountInput, ? base_client.InvokeOptions): async.Operation<types.AcceptDomainTransferFromAnotherAwsAccountOutput>
+    associateDelegationSignerToDomain: function(Client, types.AssociateDelegationSignerToDomainInput, ? base_client.InvokeOptions): async.Operation<types.AssociateDelegationSignerToDomainOutput>
+    cancelDomainTransferToAnotherAwsAccount: function(Client, types.CancelDomainTransferToAnotherAwsAccountInput, ? base_client.InvokeOptions): async.Operation<types.CancelDomainTransferToAnotherAwsAccountOutput>
+    checkDomainAvailability: function(Client, types.CheckDomainAvailabilityInput, ? base_client.InvokeOptions): async.Operation<types.CheckDomainAvailabilityOutput>
+    checkDomainTransferability: function(Client, types.CheckDomainTransferabilityInput, ? base_client.InvokeOptions): async.Operation<types.CheckDomainTransferabilityOutput>
+    deleteDomain: function(Client, types.DeleteDomainInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDomainOutput>
+    deleteTagsForDomain: function(Client, types.DeleteTagsForDomainInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTagsForDomainOutput>
+    disableDomainAutoRenew: function(Client, types.DisableDomainAutoRenewInput, ? base_client.InvokeOptions): async.Operation<types.DisableDomainAutoRenewOutput>
+    disableDomainTransferLock: function(Client, types.DisableDomainTransferLockInput, ? base_client.InvokeOptions): async.Operation<types.DisableDomainTransferLockOutput>
+    disassociateDelegationSignerFromDomain: function(Client, types.DisassociateDelegationSignerFromDomainInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateDelegationSignerFromDomainOutput>
+    enableDomainAutoRenew: function(Client, types.EnableDomainAutoRenewInput, ? base_client.InvokeOptions): async.Operation<types.EnableDomainAutoRenewOutput>
+    enableDomainTransferLock: function(Client, types.EnableDomainTransferLockInput, ? base_client.InvokeOptions): async.Operation<types.EnableDomainTransferLockOutput>
+    getContactReachabilityStatus: function(Client, types.GetContactReachabilityStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetContactReachabilityStatusOutput>
+    getDomainDetail: function(Client, types.GetDomainDetailInput, ? base_client.InvokeOptions): async.Operation<types.GetDomainDetailOutput>
+    getDomainSuggestions: function(Client, types.GetDomainSuggestionsInput, ? base_client.InvokeOptions): async.Operation<types.GetDomainSuggestionsOutput>
+    getOperationDetail: function(Client, types.GetOperationDetailInput, ? base_client.InvokeOptions): async.Operation<types.GetOperationDetailOutput>
+    listDomains: function(Client, types.ListDomainsInput, ? base_client.InvokeOptions): async.Operation<types.ListDomainsOutput>
+    listOperations: function(Client, types.ListOperationsInput, ? base_client.InvokeOptions): async.Operation<types.ListOperationsOutput>
+    listPrices: function(Client, types.ListPricesInput, ? base_client.InvokeOptions): async.Operation<types.ListPricesOutput>
+    listTagsForDomain: function(Client, types.ListTagsForDomainInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForDomainOutput>
+    pushDomain: function(Client, types.PushDomainInput, ? base_client.InvokeOptions): async.Operation<types.PushDomainOutput>
+    registerDomain: function(Client, types.RegisterDomainInput, ? base_client.InvokeOptions): async.Operation<types.RegisterDomainOutput>
+    rejectDomainTransferFromAnotherAwsAccount: function(Client, types.RejectDomainTransferFromAnotherAwsAccountInput, ? base_client.InvokeOptions): async.Operation<types.RejectDomainTransferFromAnotherAwsAccountOutput>
+    renewDomain: function(Client, types.RenewDomainInput, ? base_client.InvokeOptions): async.Operation<types.RenewDomainOutput>
+    resendContactReachabilityEmail: function(Client, types.ResendContactReachabilityEmailInput, ? base_client.InvokeOptions): async.Operation<types.ResendContactReachabilityEmailOutput>
+    resendOperationAuthorization: function(Client, types.ResendOperationAuthorizationInput, ? base_client.InvokeOptions): async.Operation<types.ResendOperationAuthorizationOutput>
+    retrieveDomainAuthCode: function(Client, types.RetrieveDomainAuthCodeInput, ? base_client.InvokeOptions): async.Operation<types.RetrieveDomainAuthCodeOutput>
+    transferDomain: function(Client, types.TransferDomainInput, ? base_client.InvokeOptions): async.Operation<types.TransferDomainOutput>
+    transferDomainToAnotherAwsAccount: function(Client, types.TransferDomainToAnotherAwsAccountInput, ? base_client.InvokeOptions): async.Operation<types.TransferDomainToAnotherAwsAccountOutput>
+    updateDomainContact: function(Client, types.UpdateDomainContactInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDomainContactOutput>
+    updateDomainContactPrivacy: function(Client, types.UpdateDomainContactPrivacyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDomainContactPrivacyOutput>
+    updateDomainNameservers: function(Client, types.UpdateDomainNameserversInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDomainNameserversOutput>
+    updateTagsForDomain: function(Client, types.UpdateTagsForDomainInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTagsForDomainOutput>
+    viewBilling: function(Client, types.ViewBillingInput, ? base_client.InvokeOptions): async.Operation<types.ViewBillingOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "Route53Domains_v20140515"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "route53domains", signing_region = c.region } }
                 else
@@ -93,140 +96,140 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:acceptDomainTransferFromAnotherAwsAccount(input: types.AcceptDomainTransferFromAnotherAwsAccountInput, options: any): async.Operation<types.AcceptDomainTransferFromAnotherAwsAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptDomainTransferFromAnotherAwsAccount, input, options) as async.Operation<types.AcceptDomainTransferFromAnotherAwsAccountOutput>
+function C:acceptDomainTransferFromAnotherAwsAccount(input: types.AcceptDomainTransferFromAnotherAwsAccountInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptDomainTransferFromAnotherAwsAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptDomainTransferFromAnotherAwsAccount as schema.OperationSchema, input, options) as async.Operation<types.AcceptDomainTransferFromAnotherAwsAccountOutput>
 end
 
-function C:associateDelegationSignerToDomain(input: types.AssociateDelegationSignerToDomainInput, options: any): async.Operation<types.AssociateDelegationSignerToDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateDelegationSignerToDomain, input, options) as async.Operation<types.AssociateDelegationSignerToDomainOutput>
+function C:associateDelegationSignerToDomain(input: types.AssociateDelegationSignerToDomainInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateDelegationSignerToDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateDelegationSignerToDomain as schema.OperationSchema, input, options) as async.Operation<types.AssociateDelegationSignerToDomainOutput>
 end
 
-function C:cancelDomainTransferToAnotherAwsAccount(input: types.CancelDomainTransferToAnotherAwsAccountInput, options: any): async.Operation<types.CancelDomainTransferToAnotherAwsAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelDomainTransferToAnotherAwsAccount, input, options) as async.Operation<types.CancelDomainTransferToAnotherAwsAccountOutput>
+function C:cancelDomainTransferToAnotherAwsAccount(input: types.CancelDomainTransferToAnotherAwsAccountInput, options?: base_client.InvokeOptions): async.Operation<types.CancelDomainTransferToAnotherAwsAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelDomainTransferToAnotherAwsAccount as schema.OperationSchema, input, options) as async.Operation<types.CancelDomainTransferToAnotherAwsAccountOutput>
 end
 
-function C:checkDomainAvailability(input: types.CheckDomainAvailabilityInput, options: any): async.Operation<types.CheckDomainAvailabilityOutput>
-    return self:invokeOperation(schemas.Service, schemas.CheckDomainAvailability, input, options) as async.Operation<types.CheckDomainAvailabilityOutput>
+function C:checkDomainAvailability(input: types.CheckDomainAvailabilityInput, options?: base_client.InvokeOptions): async.Operation<types.CheckDomainAvailabilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CheckDomainAvailability as schema.OperationSchema, input, options) as async.Operation<types.CheckDomainAvailabilityOutput>
 end
 
-function C:checkDomainTransferability(input: types.CheckDomainTransferabilityInput, options: any): async.Operation<types.CheckDomainTransferabilityOutput>
-    return self:invokeOperation(schemas.Service, schemas.CheckDomainTransferability, input, options) as async.Operation<types.CheckDomainTransferabilityOutput>
+function C:checkDomainTransferability(input: types.CheckDomainTransferabilityInput, options?: base_client.InvokeOptions): async.Operation<types.CheckDomainTransferabilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CheckDomainTransferability as schema.OperationSchema, input, options) as async.Operation<types.CheckDomainTransferabilityOutput>
 end
 
-function C:deleteDomain(input: types.DeleteDomainInput, options: any): async.Operation<types.DeleteDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDomain, input, options) as async.Operation<types.DeleteDomainOutput>
+function C:deleteDomain(input: types.DeleteDomainInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDomain as schema.OperationSchema, input, options) as async.Operation<types.DeleteDomainOutput>
 end
 
-function C:deleteTagsForDomain(input: types.DeleteTagsForDomainInput, options: any): async.Operation<types.DeleteTagsForDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTagsForDomain, input, options) as async.Operation<types.DeleteTagsForDomainOutput>
+function C:deleteTagsForDomain(input: types.DeleteTagsForDomainInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTagsForDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTagsForDomain as schema.OperationSchema, input, options) as async.Operation<types.DeleteTagsForDomainOutput>
 end
 
-function C:disableDomainAutoRenew(input: types.DisableDomainAutoRenewInput, options: any): async.Operation<types.DisableDomainAutoRenewOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableDomainAutoRenew, input, options) as async.Operation<types.DisableDomainAutoRenewOutput>
+function C:disableDomainAutoRenew(input: types.DisableDomainAutoRenewInput, options?: base_client.InvokeOptions): async.Operation<types.DisableDomainAutoRenewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableDomainAutoRenew as schema.OperationSchema, input, options) as async.Operation<types.DisableDomainAutoRenewOutput>
 end
 
-function C:disableDomainTransferLock(input: types.DisableDomainTransferLockInput, options: any): async.Operation<types.DisableDomainTransferLockOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableDomainTransferLock, input, options) as async.Operation<types.DisableDomainTransferLockOutput>
+function C:disableDomainTransferLock(input: types.DisableDomainTransferLockInput, options?: base_client.InvokeOptions): async.Operation<types.DisableDomainTransferLockOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableDomainTransferLock as schema.OperationSchema, input, options) as async.Operation<types.DisableDomainTransferLockOutput>
 end
 
-function C:disassociateDelegationSignerFromDomain(input: types.DisassociateDelegationSignerFromDomainInput, options: any): async.Operation<types.DisassociateDelegationSignerFromDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateDelegationSignerFromDomain, input, options) as async.Operation<types.DisassociateDelegationSignerFromDomainOutput>
+function C:disassociateDelegationSignerFromDomain(input: types.DisassociateDelegationSignerFromDomainInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateDelegationSignerFromDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateDelegationSignerFromDomain as schema.OperationSchema, input, options) as async.Operation<types.DisassociateDelegationSignerFromDomainOutput>
 end
 
-function C:enableDomainAutoRenew(input: types.EnableDomainAutoRenewInput, options: any): async.Operation<types.EnableDomainAutoRenewOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableDomainAutoRenew, input, options) as async.Operation<types.EnableDomainAutoRenewOutput>
+function C:enableDomainAutoRenew(input: types.EnableDomainAutoRenewInput, options?: base_client.InvokeOptions): async.Operation<types.EnableDomainAutoRenewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableDomainAutoRenew as schema.OperationSchema, input, options) as async.Operation<types.EnableDomainAutoRenewOutput>
 end
 
-function C:enableDomainTransferLock(input: types.EnableDomainTransferLockInput, options: any): async.Operation<types.EnableDomainTransferLockOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableDomainTransferLock, input, options) as async.Operation<types.EnableDomainTransferLockOutput>
+function C:enableDomainTransferLock(input: types.EnableDomainTransferLockInput, options?: base_client.InvokeOptions): async.Operation<types.EnableDomainTransferLockOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableDomainTransferLock as schema.OperationSchema, input, options) as async.Operation<types.EnableDomainTransferLockOutput>
 end
 
-function C:getContactReachabilityStatus(input: types.GetContactReachabilityStatusInput, options: any): async.Operation<types.GetContactReachabilityStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetContactReachabilityStatus, input, options) as async.Operation<types.GetContactReachabilityStatusOutput>
+function C:getContactReachabilityStatus(input: types.GetContactReachabilityStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetContactReachabilityStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetContactReachabilityStatus as schema.OperationSchema, input, options) as async.Operation<types.GetContactReachabilityStatusOutput>
 end
 
-function C:getDomainDetail(input: types.GetDomainDetailInput, options: any): async.Operation<types.GetDomainDetailOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDomainDetail, input, options) as async.Operation<types.GetDomainDetailOutput>
+function C:getDomainDetail(input: types.GetDomainDetailInput, options?: base_client.InvokeOptions): async.Operation<types.GetDomainDetailOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDomainDetail as schema.OperationSchema, input, options) as async.Operation<types.GetDomainDetailOutput>
 end
 
-function C:getDomainSuggestions(input: types.GetDomainSuggestionsInput, options: any): async.Operation<types.GetDomainSuggestionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDomainSuggestions, input, options) as async.Operation<types.GetDomainSuggestionsOutput>
+function C:getDomainSuggestions(input: types.GetDomainSuggestionsInput, options?: base_client.InvokeOptions): async.Operation<types.GetDomainSuggestionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDomainSuggestions as schema.OperationSchema, input, options) as async.Operation<types.GetDomainSuggestionsOutput>
 end
 
-function C:getOperationDetail(input: types.GetOperationDetailInput, options: any): async.Operation<types.GetOperationDetailOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOperationDetail, input, options) as async.Operation<types.GetOperationDetailOutput>
+function C:getOperationDetail(input: types.GetOperationDetailInput, options?: base_client.InvokeOptions): async.Operation<types.GetOperationDetailOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOperationDetail as schema.OperationSchema, input, options) as async.Operation<types.GetOperationDetailOutput>
 end
 
-function C:listDomains(input: types.ListDomainsInput, options: any): async.Operation<types.ListDomainsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDomains, input, options) as async.Operation<types.ListDomainsOutput>
+function C:listDomains(input: types.ListDomainsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDomainsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDomains as schema.OperationSchema, input, options) as async.Operation<types.ListDomainsOutput>
 end
 
-function C:listOperations(input: types.ListOperationsInput, options: any): async.Operation<types.ListOperationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOperations, input, options) as async.Operation<types.ListOperationsOutput>
+function C:listOperations(input: types.ListOperationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListOperationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOperations as schema.OperationSchema, input, options) as async.Operation<types.ListOperationsOutput>
 end
 
-function C:listPrices(input: types.ListPricesInput, options: any): async.Operation<types.ListPricesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPrices, input, options) as async.Operation<types.ListPricesOutput>
+function C:listPrices(input: types.ListPricesInput, options?: base_client.InvokeOptions): async.Operation<types.ListPricesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPrices as schema.OperationSchema, input, options) as async.Operation<types.ListPricesOutput>
 end
 
-function C:listTagsForDomain(input: types.ListTagsForDomainInput, options: any): async.Operation<types.ListTagsForDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForDomain, input, options) as async.Operation<types.ListTagsForDomainOutput>
+function C:listTagsForDomain(input: types.ListTagsForDomainInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForDomain as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForDomainOutput>
 end
 
-function C:pushDomain(input: types.PushDomainInput, options: any): async.Operation<types.PushDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.PushDomain, input, options) as async.Operation<types.PushDomainOutput>
+function C:pushDomain(input: types.PushDomainInput, options?: base_client.InvokeOptions): async.Operation<types.PushDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PushDomain as schema.OperationSchema, input, options) as async.Operation<types.PushDomainOutput>
 end
 
-function C:registerDomain(input: types.RegisterDomainInput, options: any): async.Operation<types.RegisterDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterDomain, input, options) as async.Operation<types.RegisterDomainOutput>
+function C:registerDomain(input: types.RegisterDomainInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterDomain as schema.OperationSchema, input, options) as async.Operation<types.RegisterDomainOutput>
 end
 
-function C:rejectDomainTransferFromAnotherAwsAccount(input: types.RejectDomainTransferFromAnotherAwsAccountInput, options: any): async.Operation<types.RejectDomainTransferFromAnotherAwsAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.RejectDomainTransferFromAnotherAwsAccount, input, options) as async.Operation<types.RejectDomainTransferFromAnotherAwsAccountOutput>
+function C:rejectDomainTransferFromAnotherAwsAccount(input: types.RejectDomainTransferFromAnotherAwsAccountInput, options?: base_client.InvokeOptions): async.Operation<types.RejectDomainTransferFromAnotherAwsAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RejectDomainTransferFromAnotherAwsAccount as schema.OperationSchema, input, options) as async.Operation<types.RejectDomainTransferFromAnotherAwsAccountOutput>
 end
 
-function C:renewDomain(input: types.RenewDomainInput, options: any): async.Operation<types.RenewDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.RenewDomain, input, options) as async.Operation<types.RenewDomainOutput>
+function C:renewDomain(input: types.RenewDomainInput, options?: base_client.InvokeOptions): async.Operation<types.RenewDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RenewDomain as schema.OperationSchema, input, options) as async.Operation<types.RenewDomainOutput>
 end
 
-function C:resendContactReachabilityEmail(input: types.ResendContactReachabilityEmailInput, options: any): async.Operation<types.ResendContactReachabilityEmailOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResendContactReachabilityEmail, input, options) as async.Operation<types.ResendContactReachabilityEmailOutput>
+function C:resendContactReachabilityEmail(input: types.ResendContactReachabilityEmailInput, options?: base_client.InvokeOptions): async.Operation<types.ResendContactReachabilityEmailOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResendContactReachabilityEmail as schema.OperationSchema, input, options) as async.Operation<types.ResendContactReachabilityEmailOutput>
 end
 
-function C:resendOperationAuthorization(input: types.ResendOperationAuthorizationInput, options: any): async.Operation<types.ResendOperationAuthorizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResendOperationAuthorization, input, options) as async.Operation<types.ResendOperationAuthorizationOutput>
+function C:resendOperationAuthorization(input: types.ResendOperationAuthorizationInput, options?: base_client.InvokeOptions): async.Operation<types.ResendOperationAuthorizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResendOperationAuthorization as schema.OperationSchema, input, options) as async.Operation<types.ResendOperationAuthorizationOutput>
 end
 
-function C:retrieveDomainAuthCode(input: types.RetrieveDomainAuthCodeInput, options: any): async.Operation<types.RetrieveDomainAuthCodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.RetrieveDomainAuthCode, input, options) as async.Operation<types.RetrieveDomainAuthCodeOutput>
+function C:retrieveDomainAuthCode(input: types.RetrieveDomainAuthCodeInput, options?: base_client.InvokeOptions): async.Operation<types.RetrieveDomainAuthCodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RetrieveDomainAuthCode as schema.OperationSchema, input, options) as async.Operation<types.RetrieveDomainAuthCodeOutput>
 end
 
-function C:transferDomain(input: types.TransferDomainInput, options: any): async.Operation<types.TransferDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.TransferDomain, input, options) as async.Operation<types.TransferDomainOutput>
+function C:transferDomain(input: types.TransferDomainInput, options?: base_client.InvokeOptions): async.Operation<types.TransferDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TransferDomain as schema.OperationSchema, input, options) as async.Operation<types.TransferDomainOutput>
 end
 
-function C:transferDomainToAnotherAwsAccount(input: types.TransferDomainToAnotherAwsAccountInput, options: any): async.Operation<types.TransferDomainToAnotherAwsAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.TransferDomainToAnotherAwsAccount, input, options) as async.Operation<types.TransferDomainToAnotherAwsAccountOutput>
+function C:transferDomainToAnotherAwsAccount(input: types.TransferDomainToAnotherAwsAccountInput, options?: base_client.InvokeOptions): async.Operation<types.TransferDomainToAnotherAwsAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TransferDomainToAnotherAwsAccount as schema.OperationSchema, input, options) as async.Operation<types.TransferDomainToAnotherAwsAccountOutput>
 end
 
-function C:updateDomainContact(input: types.UpdateDomainContactInput, options: any): async.Operation<types.UpdateDomainContactOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDomainContact, input, options) as async.Operation<types.UpdateDomainContactOutput>
+function C:updateDomainContact(input: types.UpdateDomainContactInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDomainContactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDomainContact as schema.OperationSchema, input, options) as async.Operation<types.UpdateDomainContactOutput>
 end
 
-function C:updateDomainContactPrivacy(input: types.UpdateDomainContactPrivacyInput, options: any): async.Operation<types.UpdateDomainContactPrivacyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDomainContactPrivacy, input, options) as async.Operation<types.UpdateDomainContactPrivacyOutput>
+function C:updateDomainContactPrivacy(input: types.UpdateDomainContactPrivacyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDomainContactPrivacyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDomainContactPrivacy as schema.OperationSchema, input, options) as async.Operation<types.UpdateDomainContactPrivacyOutput>
 end
 
-function C:updateDomainNameservers(input: types.UpdateDomainNameserversInput, options: any): async.Operation<types.UpdateDomainNameserversOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDomainNameservers, input, options) as async.Operation<types.UpdateDomainNameserversOutput>
+function C:updateDomainNameservers(input: types.UpdateDomainNameserversInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDomainNameserversOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDomainNameservers as schema.OperationSchema, input, options) as async.Operation<types.UpdateDomainNameserversOutput>
 end
 
-function C:updateTagsForDomain(input: types.UpdateTagsForDomainInput, options: any): async.Operation<types.UpdateTagsForDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTagsForDomain, input, options) as async.Operation<types.UpdateTagsForDomainOutput>
+function C:updateTagsForDomain(input: types.UpdateTagsForDomainInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTagsForDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTagsForDomain as schema.OperationSchema, input, options) as async.Operation<types.UpdateTagsForDomainOutput>
 end
 
-function C:viewBilling(input: types.ViewBillingInput, options: any): async.Operation<types.ViewBillingOutput>
-    return self:invokeOperation(schemas.Service, schemas.ViewBilling, input, options) as async.Operation<types.ViewBillingOutput>
+function C:viewBilling(input: types.ViewBillingInput, options?: base_client.InvokeOptions): async.Operation<types.ViewBillingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ViewBilling as schema.OperationSchema, input, options) as async.Operation<types.ViewBillingOutput>
 end
 
 return M

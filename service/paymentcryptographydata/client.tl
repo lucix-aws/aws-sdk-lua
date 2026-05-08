@@ -8,53 +8,56 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("paymentcryptographydata.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("paymentcryptographydata.schemas")
 local traits = require("smithy.traits")
 local types = require("paymentcryptographydata.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    decryptData: function(Client, types.DecryptDataInput, any): async.Operation<types.DecryptDataOutput>
-    encryptData: function(Client, types.EncryptDataInput, any): async.Operation<types.EncryptDataOutput>
-    generateAs2805KekValidation: function(Client, types.GenerateAs2805KekValidationInput, any): async.Operation<types.GenerateAs2805KekValidationOutput>
-    generateCardValidationData: function(Client, types.GenerateCardValidationDataInput, any): async.Operation<types.GenerateCardValidationDataOutput>
-    generateMac: function(Client, types.GenerateMacInput, any): async.Operation<types.GenerateMacOutput>
-    generateMacEmvPinChange: function(Client, types.GenerateMacEmvPinChangeInput, any): async.Operation<types.GenerateMacEmvPinChangeOutput>
-    generatePinData: function(Client, types.GeneratePinDataInput, any): async.Operation<types.GeneratePinDataOutput>
-    reEncryptData: function(Client, types.ReEncryptDataInput, any): async.Operation<types.ReEncryptDataOutput>
-    translateKeyMaterial: function(Client, types.TranslateKeyMaterialInput, any): async.Operation<types.TranslateKeyMaterialOutput>
-    translatePinData: function(Client, types.TranslatePinDataInput, any): async.Operation<types.TranslatePinDataOutput>
-    verifyAuthRequestCryptogram: function(Client, types.VerifyAuthRequestCryptogramInput, any): async.Operation<types.VerifyAuthRequestCryptogramOutput>
-    verifyCardValidationData: function(Client, types.VerifyCardValidationDataInput, any): async.Operation<types.VerifyCardValidationDataOutput>
-    verifyMac: function(Client, types.VerifyMacInput, any): async.Operation<types.VerifyMacOutput>
-    verifyPinData: function(Client, types.VerifyPinDataInput, any): async.Operation<types.VerifyPinDataOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    decryptData: function(Client, types.DecryptDataInput, ? base_client.InvokeOptions): async.Operation<types.DecryptDataOutput>
+    encryptData: function(Client, types.EncryptDataInput, ? base_client.InvokeOptions): async.Operation<types.EncryptDataOutput>
+    generateAs2805KekValidation: function(Client, types.GenerateAs2805KekValidationInput, ? base_client.InvokeOptions): async.Operation<types.GenerateAs2805KekValidationOutput>
+    generateCardValidationData: function(Client, types.GenerateCardValidationDataInput, ? base_client.InvokeOptions): async.Operation<types.GenerateCardValidationDataOutput>
+    generateMac: function(Client, types.GenerateMacInput, ? base_client.InvokeOptions): async.Operation<types.GenerateMacOutput>
+    generateMacEmvPinChange: function(Client, types.GenerateMacEmvPinChangeInput, ? base_client.InvokeOptions): async.Operation<types.GenerateMacEmvPinChangeOutput>
+    generatePinData: function(Client, types.GeneratePinDataInput, ? base_client.InvokeOptions): async.Operation<types.GeneratePinDataOutput>
+    reEncryptData: function(Client, types.ReEncryptDataInput, ? base_client.InvokeOptions): async.Operation<types.ReEncryptDataOutput>
+    translateKeyMaterial: function(Client, types.TranslateKeyMaterialInput, ? base_client.InvokeOptions): async.Operation<types.TranslateKeyMaterialOutput>
+    translatePinData: function(Client, types.TranslatePinDataInput, ? base_client.InvokeOptions): async.Operation<types.TranslatePinDataOutput>
+    verifyAuthRequestCryptogram: function(Client, types.VerifyAuthRequestCryptogramInput, ? base_client.InvokeOptions): async.Operation<types.VerifyAuthRequestCryptogramOutput>
+    verifyCardValidationData: function(Client, types.VerifyCardValidationDataInput, ? base_client.InvokeOptions): async.Operation<types.VerifyCardValidationDataOutput>
+    verifyMac: function(Client, types.VerifyMacInput, ? base_client.InvokeOptions): async.Operation<types.VerifyMacOutput>
+    verifyPinData: function(Client, types.VerifyPinDataInput, ? base_client.InvokeOptions): async.Operation<types.VerifyPinDataOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "PaymentCryptographyDataPlane"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "payment-cryptography", signing_region = c.region } }
                 else
@@ -73,60 +76,60 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:decryptData(input: types.DecryptDataInput, options: any): async.Operation<types.DecryptDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.DecryptData, input, options) as async.Operation<types.DecryptDataOutput>
+function C:decryptData(input: types.DecryptDataInput, options?: base_client.InvokeOptions): async.Operation<types.DecryptDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DecryptData as schema.OperationSchema, input, options) as async.Operation<types.DecryptDataOutput>
 end
 
-function C:encryptData(input: types.EncryptDataInput, options: any): async.Operation<types.EncryptDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.EncryptData, input, options) as async.Operation<types.EncryptDataOutput>
+function C:encryptData(input: types.EncryptDataInput, options?: base_client.InvokeOptions): async.Operation<types.EncryptDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EncryptData as schema.OperationSchema, input, options) as async.Operation<types.EncryptDataOutput>
 end
 
-function C:generateAs2805KekValidation(input: types.GenerateAs2805KekValidationInput, options: any): async.Operation<types.GenerateAs2805KekValidationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GenerateAs2805KekValidation, input, options) as async.Operation<types.GenerateAs2805KekValidationOutput>
+function C:generateAs2805KekValidation(input: types.GenerateAs2805KekValidationInput, options?: base_client.InvokeOptions): async.Operation<types.GenerateAs2805KekValidationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GenerateAs2805KekValidation as schema.OperationSchema, input, options) as async.Operation<types.GenerateAs2805KekValidationOutput>
 end
 
-function C:generateCardValidationData(input: types.GenerateCardValidationDataInput, options: any): async.Operation<types.GenerateCardValidationDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GenerateCardValidationData, input, options) as async.Operation<types.GenerateCardValidationDataOutput>
+function C:generateCardValidationData(input: types.GenerateCardValidationDataInput, options?: base_client.InvokeOptions): async.Operation<types.GenerateCardValidationDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GenerateCardValidationData as schema.OperationSchema, input, options) as async.Operation<types.GenerateCardValidationDataOutput>
 end
 
-function C:generateMac(input: types.GenerateMacInput, options: any): async.Operation<types.GenerateMacOutput>
-    return self:invokeOperation(schemas.Service, schemas.GenerateMac, input, options) as async.Operation<types.GenerateMacOutput>
+function C:generateMac(input: types.GenerateMacInput, options?: base_client.InvokeOptions): async.Operation<types.GenerateMacOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GenerateMac as schema.OperationSchema, input, options) as async.Operation<types.GenerateMacOutput>
 end
 
-function C:generateMacEmvPinChange(input: types.GenerateMacEmvPinChangeInput, options: any): async.Operation<types.GenerateMacEmvPinChangeOutput>
-    return self:invokeOperation(schemas.Service, schemas.GenerateMacEmvPinChange, input, options) as async.Operation<types.GenerateMacEmvPinChangeOutput>
+function C:generateMacEmvPinChange(input: types.GenerateMacEmvPinChangeInput, options?: base_client.InvokeOptions): async.Operation<types.GenerateMacEmvPinChangeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GenerateMacEmvPinChange as schema.OperationSchema, input, options) as async.Operation<types.GenerateMacEmvPinChangeOutput>
 end
 
-function C:generatePinData(input: types.GeneratePinDataInput, options: any): async.Operation<types.GeneratePinDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GeneratePinData, input, options) as async.Operation<types.GeneratePinDataOutput>
+function C:generatePinData(input: types.GeneratePinDataInput, options?: base_client.InvokeOptions): async.Operation<types.GeneratePinDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GeneratePinData as schema.OperationSchema, input, options) as async.Operation<types.GeneratePinDataOutput>
 end
 
-function C:reEncryptData(input: types.ReEncryptDataInput, options: any): async.Operation<types.ReEncryptDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.ReEncryptData, input, options) as async.Operation<types.ReEncryptDataOutput>
+function C:reEncryptData(input: types.ReEncryptDataInput, options?: base_client.InvokeOptions): async.Operation<types.ReEncryptDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReEncryptData as schema.OperationSchema, input, options) as async.Operation<types.ReEncryptDataOutput>
 end
 
-function C:translateKeyMaterial(input: types.TranslateKeyMaterialInput, options: any): async.Operation<types.TranslateKeyMaterialOutput>
-    return self:invokeOperation(schemas.Service, schemas.TranslateKeyMaterial, input, options) as async.Operation<types.TranslateKeyMaterialOutput>
+function C:translateKeyMaterial(input: types.TranslateKeyMaterialInput, options?: base_client.InvokeOptions): async.Operation<types.TranslateKeyMaterialOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TranslateKeyMaterial as schema.OperationSchema, input, options) as async.Operation<types.TranslateKeyMaterialOutput>
 end
 
-function C:translatePinData(input: types.TranslatePinDataInput, options: any): async.Operation<types.TranslatePinDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.TranslatePinData, input, options) as async.Operation<types.TranslatePinDataOutput>
+function C:translatePinData(input: types.TranslatePinDataInput, options?: base_client.InvokeOptions): async.Operation<types.TranslatePinDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TranslatePinData as schema.OperationSchema, input, options) as async.Operation<types.TranslatePinDataOutput>
 end
 
-function C:verifyAuthRequestCryptogram(input: types.VerifyAuthRequestCryptogramInput, options: any): async.Operation<types.VerifyAuthRequestCryptogramOutput>
-    return self:invokeOperation(schemas.Service, schemas.VerifyAuthRequestCryptogram, input, options) as async.Operation<types.VerifyAuthRequestCryptogramOutput>
+function C:verifyAuthRequestCryptogram(input: types.VerifyAuthRequestCryptogramInput, options?: base_client.InvokeOptions): async.Operation<types.VerifyAuthRequestCryptogramOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.VerifyAuthRequestCryptogram as schema.OperationSchema, input, options) as async.Operation<types.VerifyAuthRequestCryptogramOutput>
 end
 
-function C:verifyCardValidationData(input: types.VerifyCardValidationDataInput, options: any): async.Operation<types.VerifyCardValidationDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.VerifyCardValidationData, input, options) as async.Operation<types.VerifyCardValidationDataOutput>
+function C:verifyCardValidationData(input: types.VerifyCardValidationDataInput, options?: base_client.InvokeOptions): async.Operation<types.VerifyCardValidationDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.VerifyCardValidationData as schema.OperationSchema, input, options) as async.Operation<types.VerifyCardValidationDataOutput>
 end
 
-function C:verifyMac(input: types.VerifyMacInput, options: any): async.Operation<types.VerifyMacOutput>
-    return self:invokeOperation(schemas.Service, schemas.VerifyMac, input, options) as async.Operation<types.VerifyMacOutput>
+function C:verifyMac(input: types.VerifyMacInput, options?: base_client.InvokeOptions): async.Operation<types.VerifyMacOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.VerifyMac as schema.OperationSchema, input, options) as async.Operation<types.VerifyMacOutput>
 end
 
-function C:verifyPinData(input: types.VerifyPinDataInput, options: any): async.Operation<types.VerifyPinDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.VerifyPinData, input, options) as async.Operation<types.VerifyPinDataOutput>
+function C:verifyPinData(input: types.VerifyPinDataInput, options?: base_client.InvokeOptions): async.Operation<types.VerifyPinDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.VerifyPinData as schema.OperationSchema, input, options) as async.Operation<types.VerifyPinDataOutput>
 end
 
 return M

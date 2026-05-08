@@ -8,114 +8,117 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("rekognition.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("rekognition.schemas")
 local traits = require("smithy.traits")
 local types = require("rekognition.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateFaces: function(Client, types.AssociateFacesInput, any): async.Operation<types.AssociateFacesOutput>
-    compareFaces: function(Client, types.CompareFacesInput, any): async.Operation<types.CompareFacesOutput>
-    copyProjectVersion: function(Client, types.CopyProjectVersionInput, any): async.Operation<types.CopyProjectVersionOutput>
-    createCollection: function(Client, types.CreateCollectionInput, any): async.Operation<types.CreateCollectionOutput>
-    createDataset: function(Client, types.CreateDatasetInput, any): async.Operation<types.CreateDatasetOutput>
-    createFaceLivenessSession: function(Client, types.CreateFaceLivenessSessionInput, any): async.Operation<types.CreateFaceLivenessSessionOutput>
-    createProject: function(Client, types.CreateProjectInput, any): async.Operation<types.CreateProjectOutput>
-    createProjectVersion: function(Client, types.CreateProjectVersionInput, any): async.Operation<types.CreateProjectVersionOutput>
-    createStreamProcessor: function(Client, types.CreateStreamProcessorInput, any): async.Operation<types.CreateStreamProcessorOutput>
-    createUser: function(Client, types.CreateUserInput, any): async.Operation<types.CreateUserOutput>
-    deleteCollection: function(Client, types.DeleteCollectionInput, any): async.Operation<types.DeleteCollectionOutput>
-    deleteDataset: function(Client, types.DeleteDatasetInput, any): async.Operation<types.DeleteDatasetOutput>
-    deleteFaces: function(Client, types.DeleteFacesInput, any): async.Operation<types.DeleteFacesOutput>
-    deleteProject: function(Client, types.DeleteProjectInput, any): async.Operation<types.DeleteProjectOutput>
-    deleteProjectPolicy: function(Client, types.DeleteProjectPolicyInput, any): async.Operation<types.DeleteProjectPolicyOutput>
-    deleteProjectVersion: function(Client, types.DeleteProjectVersionInput, any): async.Operation<types.DeleteProjectVersionOutput>
-    deleteStreamProcessor: function(Client, types.DeleteStreamProcessorInput, any): async.Operation<types.DeleteStreamProcessorOutput>
-    deleteUser: function(Client, types.DeleteUserInput, any): async.Operation<types.DeleteUserOutput>
-    describeCollection: function(Client, types.DescribeCollectionInput, any): async.Operation<types.DescribeCollectionOutput>
-    describeDataset: function(Client, types.DescribeDatasetInput, any): async.Operation<types.DescribeDatasetOutput>
-    describeProjects: function(Client, types.DescribeProjectsInput, any): async.Operation<types.DescribeProjectsOutput>
-    describeProjectVersions: function(Client, types.DescribeProjectVersionsInput, any): async.Operation<types.DescribeProjectVersionsOutput>
-    describeStreamProcessor: function(Client, types.DescribeStreamProcessorInput, any): async.Operation<types.DescribeStreamProcessorOutput>
-    detectCustomLabels: function(Client, types.DetectCustomLabelsInput, any): async.Operation<types.DetectCustomLabelsOutput>
-    detectFaces: function(Client, types.DetectFacesInput, any): async.Operation<types.DetectFacesOutput>
-    detectLabels: function(Client, types.DetectLabelsInput, any): async.Operation<types.DetectLabelsOutput>
-    detectModerationLabels: function(Client, types.DetectModerationLabelsInput, any): async.Operation<types.DetectModerationLabelsOutput>
-    detectProtectiveEquipment: function(Client, types.DetectProtectiveEquipmentInput, any): async.Operation<types.DetectProtectiveEquipmentOutput>
-    detectText: function(Client, types.DetectTextInput, any): async.Operation<types.DetectTextOutput>
-    disassociateFaces: function(Client, types.DisassociateFacesInput, any): async.Operation<types.DisassociateFacesOutput>
-    distributeDatasetEntries: function(Client, types.DistributeDatasetEntriesInput, any): async.Operation<types.DistributeDatasetEntriesOutput>
-    getCelebrityInfo: function(Client, types.GetCelebrityInfoInput, any): async.Operation<types.GetCelebrityInfoOutput>
-    getCelebrityRecognition: function(Client, types.GetCelebrityRecognitionInput, any): async.Operation<types.GetCelebrityRecognitionOutput>
-    getContentModeration: function(Client, types.GetContentModerationInput, any): async.Operation<types.GetContentModerationOutput>
-    getFaceDetection: function(Client, types.GetFaceDetectionInput, any): async.Operation<types.GetFaceDetectionOutput>
-    getFaceLivenessSessionResults: function(Client, types.GetFaceLivenessSessionResultsInput, any): async.Operation<types.GetFaceLivenessSessionResultsOutput>
-    getFaceSearch: function(Client, types.GetFaceSearchInput, any): async.Operation<types.GetFaceSearchOutput>
-    getLabelDetection: function(Client, types.GetLabelDetectionInput, any): async.Operation<types.GetLabelDetectionOutput>
-    getMediaAnalysisJob: function(Client, types.GetMediaAnalysisJobInput, any): async.Operation<types.GetMediaAnalysisJobOutput>
-    getPersonTracking: function(Client, types.GetPersonTrackingInput, any): async.Operation<types.GetPersonTrackingOutput>
-    getSegmentDetection: function(Client, types.GetSegmentDetectionInput, any): async.Operation<types.GetSegmentDetectionOutput>
-    getTextDetection: function(Client, types.GetTextDetectionInput, any): async.Operation<types.GetTextDetectionOutput>
-    indexFaces: function(Client, types.IndexFacesInput, any): async.Operation<types.IndexFacesOutput>
-    listCollections: function(Client, types.ListCollectionsInput, any): async.Operation<types.ListCollectionsOutput>
-    listDatasetEntries: function(Client, types.ListDatasetEntriesInput, any): async.Operation<types.ListDatasetEntriesOutput>
-    listDatasetLabels: function(Client, types.ListDatasetLabelsInput, any): async.Operation<types.ListDatasetLabelsOutput>
-    listFaces: function(Client, types.ListFacesInput, any): async.Operation<types.ListFacesOutput>
-    listMediaAnalysisJobs: function(Client, types.ListMediaAnalysisJobsInput, any): async.Operation<types.ListMediaAnalysisJobsOutput>
-    listProjectPolicies: function(Client, types.ListProjectPoliciesInput, any): async.Operation<types.ListProjectPoliciesOutput>
-    listStreamProcessors: function(Client, types.ListStreamProcessorsInput, any): async.Operation<types.ListStreamProcessorsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listUsers: function(Client, types.ListUsersInput, any): async.Operation<types.ListUsersOutput>
-    putProjectPolicy: function(Client, types.PutProjectPolicyInput, any): async.Operation<types.PutProjectPolicyOutput>
-    recognizeCelebrities: function(Client, types.RecognizeCelebritiesInput, any): async.Operation<types.RecognizeCelebritiesOutput>
-    searchFaces: function(Client, types.SearchFacesInput, any): async.Operation<types.SearchFacesOutput>
-    searchFacesByImage: function(Client, types.SearchFacesByImageInput, any): async.Operation<types.SearchFacesByImageOutput>
-    searchUsers: function(Client, types.SearchUsersInput, any): async.Operation<types.SearchUsersOutput>
-    searchUsersByImage: function(Client, types.SearchUsersByImageInput, any): async.Operation<types.SearchUsersByImageOutput>
-    startCelebrityRecognition: function(Client, types.StartCelebrityRecognitionInput, any): async.Operation<types.StartCelebrityRecognitionOutput>
-    startContentModeration: function(Client, types.StartContentModerationInput, any): async.Operation<types.StartContentModerationOutput>
-    startFaceDetection: function(Client, types.StartFaceDetectionInput, any): async.Operation<types.StartFaceDetectionOutput>
-    startFaceSearch: function(Client, types.StartFaceSearchInput, any): async.Operation<types.StartFaceSearchOutput>
-    startLabelDetection: function(Client, types.StartLabelDetectionInput, any): async.Operation<types.StartLabelDetectionOutput>
-    startMediaAnalysisJob: function(Client, types.StartMediaAnalysisJobInput, any): async.Operation<types.StartMediaAnalysisJobOutput>
-    startPersonTracking: function(Client, types.StartPersonTrackingInput, any): async.Operation<types.StartPersonTrackingOutput>
-    startProjectVersion: function(Client, types.StartProjectVersionInput, any): async.Operation<types.StartProjectVersionOutput>
-    startSegmentDetection: function(Client, types.StartSegmentDetectionInput, any): async.Operation<types.StartSegmentDetectionOutput>
-    startStreamProcessor: function(Client, types.StartStreamProcessorInput, any): async.Operation<types.StartStreamProcessorOutput>
-    startTextDetection: function(Client, types.StartTextDetectionInput, any): async.Operation<types.StartTextDetectionOutput>
-    stopProjectVersion: function(Client, types.StopProjectVersionInput, any): async.Operation<types.StopProjectVersionOutput>
-    stopStreamProcessor: function(Client, types.StopStreamProcessorInput, any): async.Operation<types.StopStreamProcessorOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateDatasetEntries: function(Client, types.UpdateDatasetEntriesInput, any): async.Operation<types.UpdateDatasetEntriesOutput>
-    updateStreamProcessor: function(Client, types.UpdateStreamProcessorInput, any): async.Operation<types.UpdateStreamProcessorOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateFaces: function(Client, types.AssociateFacesInput, ? base_client.InvokeOptions): async.Operation<types.AssociateFacesOutput>
+    compareFaces: function(Client, types.CompareFacesInput, ? base_client.InvokeOptions): async.Operation<types.CompareFacesOutput>
+    copyProjectVersion: function(Client, types.CopyProjectVersionInput, ? base_client.InvokeOptions): async.Operation<types.CopyProjectVersionOutput>
+    createCollection: function(Client, types.CreateCollectionInput, ? base_client.InvokeOptions): async.Operation<types.CreateCollectionOutput>
+    createDataset: function(Client, types.CreateDatasetInput, ? base_client.InvokeOptions): async.Operation<types.CreateDatasetOutput>
+    createFaceLivenessSession: function(Client, types.CreateFaceLivenessSessionInput, ? base_client.InvokeOptions): async.Operation<types.CreateFaceLivenessSessionOutput>
+    createProject: function(Client, types.CreateProjectInput, ? base_client.InvokeOptions): async.Operation<types.CreateProjectOutput>
+    createProjectVersion: function(Client, types.CreateProjectVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateProjectVersionOutput>
+    createStreamProcessor: function(Client, types.CreateStreamProcessorInput, ? base_client.InvokeOptions): async.Operation<types.CreateStreamProcessorOutput>
+    createUser: function(Client, types.CreateUserInput, ? base_client.InvokeOptions): async.Operation<types.CreateUserOutput>
+    deleteCollection: function(Client, types.DeleteCollectionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCollectionOutput>
+    deleteDataset: function(Client, types.DeleteDatasetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDatasetOutput>
+    deleteFaces: function(Client, types.DeleteFacesInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFacesOutput>
+    deleteProject: function(Client, types.DeleteProjectInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProjectOutput>
+    deleteProjectPolicy: function(Client, types.DeleteProjectPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProjectPolicyOutput>
+    deleteProjectVersion: function(Client, types.DeleteProjectVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProjectVersionOutput>
+    deleteStreamProcessor: function(Client, types.DeleteStreamProcessorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteStreamProcessorOutput>
+    deleteUser: function(Client, types.DeleteUserInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUserOutput>
+    describeCollection: function(Client, types.DescribeCollectionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCollectionOutput>
+    describeDataset: function(Client, types.DescribeDatasetInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDatasetOutput>
+    describeProjects: function(Client, types.DescribeProjectsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeProjectsOutput>
+    describeProjectVersions: function(Client, types.DescribeProjectVersionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeProjectVersionsOutput>
+    describeStreamProcessor: function(Client, types.DescribeStreamProcessorInput, ? base_client.InvokeOptions): async.Operation<types.DescribeStreamProcessorOutput>
+    detectCustomLabels: function(Client, types.DetectCustomLabelsInput, ? base_client.InvokeOptions): async.Operation<types.DetectCustomLabelsOutput>
+    detectFaces: function(Client, types.DetectFacesInput, ? base_client.InvokeOptions): async.Operation<types.DetectFacesOutput>
+    detectLabels: function(Client, types.DetectLabelsInput, ? base_client.InvokeOptions): async.Operation<types.DetectLabelsOutput>
+    detectModerationLabels: function(Client, types.DetectModerationLabelsInput, ? base_client.InvokeOptions): async.Operation<types.DetectModerationLabelsOutput>
+    detectProtectiveEquipment: function(Client, types.DetectProtectiveEquipmentInput, ? base_client.InvokeOptions): async.Operation<types.DetectProtectiveEquipmentOutput>
+    detectText: function(Client, types.DetectTextInput, ? base_client.InvokeOptions): async.Operation<types.DetectTextOutput>
+    disassociateFaces: function(Client, types.DisassociateFacesInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateFacesOutput>
+    distributeDatasetEntries: function(Client, types.DistributeDatasetEntriesInput, ? base_client.InvokeOptions): async.Operation<types.DistributeDatasetEntriesOutput>
+    getCelebrityInfo: function(Client, types.GetCelebrityInfoInput, ? base_client.InvokeOptions): async.Operation<types.GetCelebrityInfoOutput>
+    getCelebrityRecognition: function(Client, types.GetCelebrityRecognitionInput, ? base_client.InvokeOptions): async.Operation<types.GetCelebrityRecognitionOutput>
+    getContentModeration: function(Client, types.GetContentModerationInput, ? base_client.InvokeOptions): async.Operation<types.GetContentModerationOutput>
+    getFaceDetection: function(Client, types.GetFaceDetectionInput, ? base_client.InvokeOptions): async.Operation<types.GetFaceDetectionOutput>
+    getFaceLivenessSessionResults: function(Client, types.GetFaceLivenessSessionResultsInput, ? base_client.InvokeOptions): async.Operation<types.GetFaceLivenessSessionResultsOutput>
+    getFaceSearch: function(Client, types.GetFaceSearchInput, ? base_client.InvokeOptions): async.Operation<types.GetFaceSearchOutput>
+    getLabelDetection: function(Client, types.GetLabelDetectionInput, ? base_client.InvokeOptions): async.Operation<types.GetLabelDetectionOutput>
+    getMediaAnalysisJob: function(Client, types.GetMediaAnalysisJobInput, ? base_client.InvokeOptions): async.Operation<types.GetMediaAnalysisJobOutput>
+    getPersonTracking: function(Client, types.GetPersonTrackingInput, ? base_client.InvokeOptions): async.Operation<types.GetPersonTrackingOutput>
+    getSegmentDetection: function(Client, types.GetSegmentDetectionInput, ? base_client.InvokeOptions): async.Operation<types.GetSegmentDetectionOutput>
+    getTextDetection: function(Client, types.GetTextDetectionInput, ? base_client.InvokeOptions): async.Operation<types.GetTextDetectionOutput>
+    indexFaces: function(Client, types.IndexFacesInput, ? base_client.InvokeOptions): async.Operation<types.IndexFacesOutput>
+    listCollections: function(Client, types.ListCollectionsInput, ? base_client.InvokeOptions): async.Operation<types.ListCollectionsOutput>
+    listDatasetEntries: function(Client, types.ListDatasetEntriesInput, ? base_client.InvokeOptions): async.Operation<types.ListDatasetEntriesOutput>
+    listDatasetLabels: function(Client, types.ListDatasetLabelsInput, ? base_client.InvokeOptions): async.Operation<types.ListDatasetLabelsOutput>
+    listFaces: function(Client, types.ListFacesInput, ? base_client.InvokeOptions): async.Operation<types.ListFacesOutput>
+    listMediaAnalysisJobs: function(Client, types.ListMediaAnalysisJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListMediaAnalysisJobsOutput>
+    listProjectPolicies: function(Client, types.ListProjectPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListProjectPoliciesOutput>
+    listStreamProcessors: function(Client, types.ListStreamProcessorsInput, ? base_client.InvokeOptions): async.Operation<types.ListStreamProcessorsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listUsers: function(Client, types.ListUsersInput, ? base_client.InvokeOptions): async.Operation<types.ListUsersOutput>
+    putProjectPolicy: function(Client, types.PutProjectPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutProjectPolicyOutput>
+    recognizeCelebrities: function(Client, types.RecognizeCelebritiesInput, ? base_client.InvokeOptions): async.Operation<types.RecognizeCelebritiesOutput>
+    searchFaces: function(Client, types.SearchFacesInput, ? base_client.InvokeOptions): async.Operation<types.SearchFacesOutput>
+    searchFacesByImage: function(Client, types.SearchFacesByImageInput, ? base_client.InvokeOptions): async.Operation<types.SearchFacesByImageOutput>
+    searchUsers: function(Client, types.SearchUsersInput, ? base_client.InvokeOptions): async.Operation<types.SearchUsersOutput>
+    searchUsersByImage: function(Client, types.SearchUsersByImageInput, ? base_client.InvokeOptions): async.Operation<types.SearchUsersByImageOutput>
+    startCelebrityRecognition: function(Client, types.StartCelebrityRecognitionInput, ? base_client.InvokeOptions): async.Operation<types.StartCelebrityRecognitionOutput>
+    startContentModeration: function(Client, types.StartContentModerationInput, ? base_client.InvokeOptions): async.Operation<types.StartContentModerationOutput>
+    startFaceDetection: function(Client, types.StartFaceDetectionInput, ? base_client.InvokeOptions): async.Operation<types.StartFaceDetectionOutput>
+    startFaceSearch: function(Client, types.StartFaceSearchInput, ? base_client.InvokeOptions): async.Operation<types.StartFaceSearchOutput>
+    startLabelDetection: function(Client, types.StartLabelDetectionInput, ? base_client.InvokeOptions): async.Operation<types.StartLabelDetectionOutput>
+    startMediaAnalysisJob: function(Client, types.StartMediaAnalysisJobInput, ? base_client.InvokeOptions): async.Operation<types.StartMediaAnalysisJobOutput>
+    startPersonTracking: function(Client, types.StartPersonTrackingInput, ? base_client.InvokeOptions): async.Operation<types.StartPersonTrackingOutput>
+    startProjectVersion: function(Client, types.StartProjectVersionInput, ? base_client.InvokeOptions): async.Operation<types.StartProjectVersionOutput>
+    startSegmentDetection: function(Client, types.StartSegmentDetectionInput, ? base_client.InvokeOptions): async.Operation<types.StartSegmentDetectionOutput>
+    startStreamProcessor: function(Client, types.StartStreamProcessorInput, ? base_client.InvokeOptions): async.Operation<types.StartStreamProcessorOutput>
+    startTextDetection: function(Client, types.StartTextDetectionInput, ? base_client.InvokeOptions): async.Operation<types.StartTextDetectionOutput>
+    stopProjectVersion: function(Client, types.StopProjectVersionInput, ? base_client.InvokeOptions): async.Operation<types.StopProjectVersionOutput>
+    stopStreamProcessor: function(Client, types.StopStreamProcessorInput, ? base_client.InvokeOptions): async.Operation<types.StopStreamProcessorOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateDatasetEntries: function(Client, types.UpdateDatasetEntriesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDatasetEntriesOutput>
+    updateStreamProcessor: function(Client, types.UpdateStreamProcessorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateStreamProcessorOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "RekognitionService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "rekognition", signing_region = c.region } }
                 else
@@ -134,304 +137,304 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateFaces(input: types.AssociateFacesInput, options: any): async.Operation<types.AssociateFacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateFaces, input, options) as async.Operation<types.AssociateFacesOutput>
+function C:associateFaces(input: types.AssociateFacesInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateFacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateFaces as schema.OperationSchema, input, options) as async.Operation<types.AssociateFacesOutput>
 end
 
-function C:compareFaces(input: types.CompareFacesInput, options: any): async.Operation<types.CompareFacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.CompareFaces, input, options) as async.Operation<types.CompareFacesOutput>
+function C:compareFaces(input: types.CompareFacesInput, options?: base_client.InvokeOptions): async.Operation<types.CompareFacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CompareFaces as schema.OperationSchema, input, options) as async.Operation<types.CompareFacesOutput>
 end
 
-function C:copyProjectVersion(input: types.CopyProjectVersionInput, options: any): async.Operation<types.CopyProjectVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CopyProjectVersion, input, options) as async.Operation<types.CopyProjectVersionOutput>
+function C:copyProjectVersion(input: types.CopyProjectVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CopyProjectVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CopyProjectVersion as schema.OperationSchema, input, options) as async.Operation<types.CopyProjectVersionOutput>
 end
 
-function C:createCollection(input: types.CreateCollectionInput, options: any): async.Operation<types.CreateCollectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCollection, input, options) as async.Operation<types.CreateCollectionOutput>
+function C:createCollection(input: types.CreateCollectionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCollectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCollection as schema.OperationSchema, input, options) as async.Operation<types.CreateCollectionOutput>
 end
 
-function C:createDataset(input: types.CreateDatasetInput, options: any): async.Operation<types.CreateDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataset, input, options) as async.Operation<types.CreateDatasetOutput>
+function C:createDataset(input: types.CreateDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataset as schema.OperationSchema, input, options) as async.Operation<types.CreateDatasetOutput>
 end
 
-function C:createFaceLivenessSession(input: types.CreateFaceLivenessSessionInput, options: any): async.Operation<types.CreateFaceLivenessSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFaceLivenessSession, input, options) as async.Operation<types.CreateFaceLivenessSessionOutput>
+function C:createFaceLivenessSession(input: types.CreateFaceLivenessSessionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFaceLivenessSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFaceLivenessSession as schema.OperationSchema, input, options) as async.Operation<types.CreateFaceLivenessSessionOutput>
 end
 
-function C:createProject(input: types.CreateProjectInput, options: any): async.Operation<types.CreateProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProject, input, options) as async.Operation<types.CreateProjectOutput>
+function C:createProject(input: types.CreateProjectInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProject as schema.OperationSchema, input, options) as async.Operation<types.CreateProjectOutput>
 end
 
-function C:createProjectVersion(input: types.CreateProjectVersionInput, options: any): async.Operation<types.CreateProjectVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProjectVersion, input, options) as async.Operation<types.CreateProjectVersionOutput>
+function C:createProjectVersion(input: types.CreateProjectVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProjectVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProjectVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateProjectVersionOutput>
 end
 
-function C:createStreamProcessor(input: types.CreateStreamProcessorInput, options: any): async.Operation<types.CreateStreamProcessorOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateStreamProcessor, input, options) as async.Operation<types.CreateStreamProcessorOutput>
+function C:createStreamProcessor(input: types.CreateStreamProcessorInput, options?: base_client.InvokeOptions): async.Operation<types.CreateStreamProcessorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateStreamProcessor as schema.OperationSchema, input, options) as async.Operation<types.CreateStreamProcessorOutput>
 end
 
-function C:createUser(input: types.CreateUserInput, options: any): async.Operation<types.CreateUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateUser, input, options) as async.Operation<types.CreateUserOutput>
+function C:createUser(input: types.CreateUserInput, options?: base_client.InvokeOptions): async.Operation<types.CreateUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateUser as schema.OperationSchema, input, options) as async.Operation<types.CreateUserOutput>
 end
 
-function C:deleteCollection(input: types.DeleteCollectionInput, options: any): async.Operation<types.DeleteCollectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCollection, input, options) as async.Operation<types.DeleteCollectionOutput>
+function C:deleteCollection(input: types.DeleteCollectionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCollectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCollection as schema.OperationSchema, input, options) as async.Operation<types.DeleteCollectionOutput>
 end
 
-function C:deleteDataset(input: types.DeleteDatasetInput, options: any): async.Operation<types.DeleteDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDataset, input, options) as async.Operation<types.DeleteDatasetOutput>
+function C:deleteDataset(input: types.DeleteDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataset as schema.OperationSchema, input, options) as async.Operation<types.DeleteDatasetOutput>
 end
 
-function C:deleteFaces(input: types.DeleteFacesInput, options: any): async.Operation<types.DeleteFacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFaces, input, options) as async.Operation<types.DeleteFacesOutput>
+function C:deleteFaces(input: types.DeleteFacesInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFaces as schema.OperationSchema, input, options) as async.Operation<types.DeleteFacesOutput>
 end
 
-function C:deleteProject(input: types.DeleteProjectInput, options: any): async.Operation<types.DeleteProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProject, input, options) as async.Operation<types.DeleteProjectOutput>
+function C:deleteProject(input: types.DeleteProjectInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProject as schema.OperationSchema, input, options) as async.Operation<types.DeleteProjectOutput>
 end
 
-function C:deleteProjectPolicy(input: types.DeleteProjectPolicyInput, options: any): async.Operation<types.DeleteProjectPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProjectPolicy, input, options) as async.Operation<types.DeleteProjectPolicyOutput>
+function C:deleteProjectPolicy(input: types.DeleteProjectPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProjectPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProjectPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteProjectPolicyOutput>
 end
 
-function C:deleteProjectVersion(input: types.DeleteProjectVersionInput, options: any): async.Operation<types.DeleteProjectVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProjectVersion, input, options) as async.Operation<types.DeleteProjectVersionOutput>
+function C:deleteProjectVersion(input: types.DeleteProjectVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProjectVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProjectVersion as schema.OperationSchema, input, options) as async.Operation<types.DeleteProjectVersionOutput>
 end
 
-function C:deleteStreamProcessor(input: types.DeleteStreamProcessorInput, options: any): async.Operation<types.DeleteStreamProcessorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteStreamProcessor, input, options) as async.Operation<types.DeleteStreamProcessorOutput>
+function C:deleteStreamProcessor(input: types.DeleteStreamProcessorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteStreamProcessorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteStreamProcessor as schema.OperationSchema, input, options) as async.Operation<types.DeleteStreamProcessorOutput>
 end
 
-function C:deleteUser(input: types.DeleteUserInput, options: any): async.Operation<types.DeleteUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteUser, input, options) as async.Operation<types.DeleteUserOutput>
+function C:deleteUser(input: types.DeleteUserInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteUser as schema.OperationSchema, input, options) as async.Operation<types.DeleteUserOutput>
 end
 
-function C:describeCollection(input: types.DescribeCollectionInput, options: any): async.Operation<types.DescribeCollectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCollection, input, options) as async.Operation<types.DescribeCollectionOutput>
+function C:describeCollection(input: types.DescribeCollectionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCollectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCollection as schema.OperationSchema, input, options) as async.Operation<types.DescribeCollectionOutput>
 end
 
-function C:describeDataset(input: types.DescribeDatasetInput, options: any): async.Operation<types.DescribeDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDataset, input, options) as async.Operation<types.DescribeDatasetOutput>
+function C:describeDataset(input: types.DescribeDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDataset as schema.OperationSchema, input, options) as async.Operation<types.DescribeDatasetOutput>
 end
 
-function C:describeProjects(input: types.DescribeProjectsInput, options: any): async.Operation<types.DescribeProjectsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeProjects, input, options) as async.Operation<types.DescribeProjectsOutput>
+function C:describeProjects(input: types.DescribeProjectsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeProjectsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeProjects as schema.OperationSchema, input, options) as async.Operation<types.DescribeProjectsOutput>
 end
 
-function C:describeProjectVersions(input: types.DescribeProjectVersionsInput, options: any): async.Operation<types.DescribeProjectVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeProjectVersions, input, options) as async.Operation<types.DescribeProjectVersionsOutput>
+function C:describeProjectVersions(input: types.DescribeProjectVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeProjectVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeProjectVersions as schema.OperationSchema, input, options) as async.Operation<types.DescribeProjectVersionsOutput>
 end
 
-function C:describeStreamProcessor(input: types.DescribeStreamProcessorInput, options: any): async.Operation<types.DescribeStreamProcessorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeStreamProcessor, input, options) as async.Operation<types.DescribeStreamProcessorOutput>
+function C:describeStreamProcessor(input: types.DescribeStreamProcessorInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeStreamProcessorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeStreamProcessor as schema.OperationSchema, input, options) as async.Operation<types.DescribeStreamProcessorOutput>
 end
 
-function C:detectCustomLabels(input: types.DetectCustomLabelsInput, options: any): async.Operation<types.DetectCustomLabelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetectCustomLabels, input, options) as async.Operation<types.DetectCustomLabelsOutput>
+function C:detectCustomLabels(input: types.DetectCustomLabelsInput, options?: base_client.InvokeOptions): async.Operation<types.DetectCustomLabelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetectCustomLabels as schema.OperationSchema, input, options) as async.Operation<types.DetectCustomLabelsOutput>
 end
 
-function C:detectFaces(input: types.DetectFacesInput, options: any): async.Operation<types.DetectFacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetectFaces, input, options) as async.Operation<types.DetectFacesOutput>
+function C:detectFaces(input: types.DetectFacesInput, options?: base_client.InvokeOptions): async.Operation<types.DetectFacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetectFaces as schema.OperationSchema, input, options) as async.Operation<types.DetectFacesOutput>
 end
 
-function C:detectLabels(input: types.DetectLabelsInput, options: any): async.Operation<types.DetectLabelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetectLabels, input, options) as async.Operation<types.DetectLabelsOutput>
+function C:detectLabels(input: types.DetectLabelsInput, options?: base_client.InvokeOptions): async.Operation<types.DetectLabelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetectLabels as schema.OperationSchema, input, options) as async.Operation<types.DetectLabelsOutput>
 end
 
-function C:detectModerationLabels(input: types.DetectModerationLabelsInput, options: any): async.Operation<types.DetectModerationLabelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetectModerationLabels, input, options) as async.Operation<types.DetectModerationLabelsOutput>
+function C:detectModerationLabels(input: types.DetectModerationLabelsInput, options?: base_client.InvokeOptions): async.Operation<types.DetectModerationLabelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetectModerationLabels as schema.OperationSchema, input, options) as async.Operation<types.DetectModerationLabelsOutput>
 end
 
-function C:detectProtectiveEquipment(input: types.DetectProtectiveEquipmentInput, options: any): async.Operation<types.DetectProtectiveEquipmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetectProtectiveEquipment, input, options) as async.Operation<types.DetectProtectiveEquipmentOutput>
+function C:detectProtectiveEquipment(input: types.DetectProtectiveEquipmentInput, options?: base_client.InvokeOptions): async.Operation<types.DetectProtectiveEquipmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetectProtectiveEquipment as schema.OperationSchema, input, options) as async.Operation<types.DetectProtectiveEquipmentOutput>
 end
 
-function C:detectText(input: types.DetectTextInput, options: any): async.Operation<types.DetectTextOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetectText, input, options) as async.Operation<types.DetectTextOutput>
+function C:detectText(input: types.DetectTextInput, options?: base_client.InvokeOptions): async.Operation<types.DetectTextOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetectText as schema.OperationSchema, input, options) as async.Operation<types.DetectTextOutput>
 end
 
-function C:disassociateFaces(input: types.DisassociateFacesInput, options: any): async.Operation<types.DisassociateFacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateFaces, input, options) as async.Operation<types.DisassociateFacesOutput>
+function C:disassociateFaces(input: types.DisassociateFacesInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateFacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateFaces as schema.OperationSchema, input, options) as async.Operation<types.DisassociateFacesOutput>
 end
 
-function C:distributeDatasetEntries(input: types.DistributeDatasetEntriesInput, options: any): async.Operation<types.DistributeDatasetEntriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DistributeDatasetEntries, input, options) as async.Operation<types.DistributeDatasetEntriesOutput>
+function C:distributeDatasetEntries(input: types.DistributeDatasetEntriesInput, options?: base_client.InvokeOptions): async.Operation<types.DistributeDatasetEntriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DistributeDatasetEntries as schema.OperationSchema, input, options) as async.Operation<types.DistributeDatasetEntriesOutput>
 end
 
-function C:getCelebrityInfo(input: types.GetCelebrityInfoInput, options: any): async.Operation<types.GetCelebrityInfoOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCelebrityInfo, input, options) as async.Operation<types.GetCelebrityInfoOutput>
+function C:getCelebrityInfo(input: types.GetCelebrityInfoInput, options?: base_client.InvokeOptions): async.Operation<types.GetCelebrityInfoOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCelebrityInfo as schema.OperationSchema, input, options) as async.Operation<types.GetCelebrityInfoOutput>
 end
 
-function C:getCelebrityRecognition(input: types.GetCelebrityRecognitionInput, options: any): async.Operation<types.GetCelebrityRecognitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCelebrityRecognition, input, options) as async.Operation<types.GetCelebrityRecognitionOutput>
+function C:getCelebrityRecognition(input: types.GetCelebrityRecognitionInput, options?: base_client.InvokeOptions): async.Operation<types.GetCelebrityRecognitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCelebrityRecognition as schema.OperationSchema, input, options) as async.Operation<types.GetCelebrityRecognitionOutput>
 end
 
-function C:getContentModeration(input: types.GetContentModerationInput, options: any): async.Operation<types.GetContentModerationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetContentModeration, input, options) as async.Operation<types.GetContentModerationOutput>
+function C:getContentModeration(input: types.GetContentModerationInput, options?: base_client.InvokeOptions): async.Operation<types.GetContentModerationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetContentModeration as schema.OperationSchema, input, options) as async.Operation<types.GetContentModerationOutput>
 end
 
-function C:getFaceDetection(input: types.GetFaceDetectionInput, options: any): async.Operation<types.GetFaceDetectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFaceDetection, input, options) as async.Operation<types.GetFaceDetectionOutput>
+function C:getFaceDetection(input: types.GetFaceDetectionInput, options?: base_client.InvokeOptions): async.Operation<types.GetFaceDetectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFaceDetection as schema.OperationSchema, input, options) as async.Operation<types.GetFaceDetectionOutput>
 end
 
-function C:getFaceLivenessSessionResults(input: types.GetFaceLivenessSessionResultsInput, options: any): async.Operation<types.GetFaceLivenessSessionResultsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFaceLivenessSessionResults, input, options) as async.Operation<types.GetFaceLivenessSessionResultsOutput>
+function C:getFaceLivenessSessionResults(input: types.GetFaceLivenessSessionResultsInput, options?: base_client.InvokeOptions): async.Operation<types.GetFaceLivenessSessionResultsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFaceLivenessSessionResults as schema.OperationSchema, input, options) as async.Operation<types.GetFaceLivenessSessionResultsOutput>
 end
 
-function C:getFaceSearch(input: types.GetFaceSearchInput, options: any): async.Operation<types.GetFaceSearchOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFaceSearch, input, options) as async.Operation<types.GetFaceSearchOutput>
+function C:getFaceSearch(input: types.GetFaceSearchInput, options?: base_client.InvokeOptions): async.Operation<types.GetFaceSearchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFaceSearch as schema.OperationSchema, input, options) as async.Operation<types.GetFaceSearchOutput>
 end
 
-function C:getLabelDetection(input: types.GetLabelDetectionInput, options: any): async.Operation<types.GetLabelDetectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLabelDetection, input, options) as async.Operation<types.GetLabelDetectionOutput>
+function C:getLabelDetection(input: types.GetLabelDetectionInput, options?: base_client.InvokeOptions): async.Operation<types.GetLabelDetectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLabelDetection as schema.OperationSchema, input, options) as async.Operation<types.GetLabelDetectionOutput>
 end
 
-function C:getMediaAnalysisJob(input: types.GetMediaAnalysisJobInput, options: any): async.Operation<types.GetMediaAnalysisJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMediaAnalysisJob, input, options) as async.Operation<types.GetMediaAnalysisJobOutput>
+function C:getMediaAnalysisJob(input: types.GetMediaAnalysisJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetMediaAnalysisJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMediaAnalysisJob as schema.OperationSchema, input, options) as async.Operation<types.GetMediaAnalysisJobOutput>
 end
 
-function C:getPersonTracking(input: types.GetPersonTrackingInput, options: any): async.Operation<types.GetPersonTrackingOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPersonTracking, input, options) as async.Operation<types.GetPersonTrackingOutput>
+function C:getPersonTracking(input: types.GetPersonTrackingInput, options?: base_client.InvokeOptions): async.Operation<types.GetPersonTrackingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPersonTracking as schema.OperationSchema, input, options) as async.Operation<types.GetPersonTrackingOutput>
 end
 
-function C:getSegmentDetection(input: types.GetSegmentDetectionInput, options: any): async.Operation<types.GetSegmentDetectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSegmentDetection, input, options) as async.Operation<types.GetSegmentDetectionOutput>
+function C:getSegmentDetection(input: types.GetSegmentDetectionInput, options?: base_client.InvokeOptions): async.Operation<types.GetSegmentDetectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSegmentDetection as schema.OperationSchema, input, options) as async.Operation<types.GetSegmentDetectionOutput>
 end
 
-function C:getTextDetection(input: types.GetTextDetectionInput, options: any): async.Operation<types.GetTextDetectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTextDetection, input, options) as async.Operation<types.GetTextDetectionOutput>
+function C:getTextDetection(input: types.GetTextDetectionInput, options?: base_client.InvokeOptions): async.Operation<types.GetTextDetectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTextDetection as schema.OperationSchema, input, options) as async.Operation<types.GetTextDetectionOutput>
 end
 
-function C:indexFaces(input: types.IndexFacesInput, options: any): async.Operation<types.IndexFacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.IndexFaces, input, options) as async.Operation<types.IndexFacesOutput>
+function C:indexFaces(input: types.IndexFacesInput, options?: base_client.InvokeOptions): async.Operation<types.IndexFacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.IndexFaces as schema.OperationSchema, input, options) as async.Operation<types.IndexFacesOutput>
 end
 
-function C:listCollections(input: types.ListCollectionsInput, options: any): async.Operation<types.ListCollectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCollections, input, options) as async.Operation<types.ListCollectionsOutput>
+function C:listCollections(input: types.ListCollectionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCollectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCollections as schema.OperationSchema, input, options) as async.Operation<types.ListCollectionsOutput>
 end
 
-function C:listDatasetEntries(input: types.ListDatasetEntriesInput, options: any): async.Operation<types.ListDatasetEntriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDatasetEntries, input, options) as async.Operation<types.ListDatasetEntriesOutput>
+function C:listDatasetEntries(input: types.ListDatasetEntriesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDatasetEntriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDatasetEntries as schema.OperationSchema, input, options) as async.Operation<types.ListDatasetEntriesOutput>
 end
 
-function C:listDatasetLabels(input: types.ListDatasetLabelsInput, options: any): async.Operation<types.ListDatasetLabelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDatasetLabels, input, options) as async.Operation<types.ListDatasetLabelsOutput>
+function C:listDatasetLabels(input: types.ListDatasetLabelsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDatasetLabelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDatasetLabels as schema.OperationSchema, input, options) as async.Operation<types.ListDatasetLabelsOutput>
 end
 
-function C:listFaces(input: types.ListFacesInput, options: any): async.Operation<types.ListFacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFaces, input, options) as async.Operation<types.ListFacesOutput>
+function C:listFaces(input: types.ListFacesInput, options?: base_client.InvokeOptions): async.Operation<types.ListFacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFaces as schema.OperationSchema, input, options) as async.Operation<types.ListFacesOutput>
 end
 
-function C:listMediaAnalysisJobs(input: types.ListMediaAnalysisJobsInput, options: any): async.Operation<types.ListMediaAnalysisJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMediaAnalysisJobs, input, options) as async.Operation<types.ListMediaAnalysisJobsOutput>
+function C:listMediaAnalysisJobs(input: types.ListMediaAnalysisJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMediaAnalysisJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMediaAnalysisJobs as schema.OperationSchema, input, options) as async.Operation<types.ListMediaAnalysisJobsOutput>
 end
 
-function C:listProjectPolicies(input: types.ListProjectPoliciesInput, options: any): async.Operation<types.ListProjectPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProjectPolicies, input, options) as async.Operation<types.ListProjectPoliciesOutput>
+function C:listProjectPolicies(input: types.ListProjectPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListProjectPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProjectPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListProjectPoliciesOutput>
 end
 
-function C:listStreamProcessors(input: types.ListStreamProcessorsInput, options: any): async.Operation<types.ListStreamProcessorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStreamProcessors, input, options) as async.Operation<types.ListStreamProcessorsOutput>
+function C:listStreamProcessors(input: types.ListStreamProcessorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListStreamProcessorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStreamProcessors as schema.OperationSchema, input, options) as async.Operation<types.ListStreamProcessorsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listUsers(input: types.ListUsersInput, options: any): async.Operation<types.ListUsersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListUsers, input, options) as async.Operation<types.ListUsersOutput>
+function C:listUsers(input: types.ListUsersInput, options?: base_client.InvokeOptions): async.Operation<types.ListUsersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUsers as schema.OperationSchema, input, options) as async.Operation<types.ListUsersOutput>
 end
 
-function C:putProjectPolicy(input: types.PutProjectPolicyInput, options: any): async.Operation<types.PutProjectPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutProjectPolicy, input, options) as async.Operation<types.PutProjectPolicyOutput>
+function C:putProjectPolicy(input: types.PutProjectPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutProjectPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutProjectPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutProjectPolicyOutput>
 end
 
-function C:recognizeCelebrities(input: types.RecognizeCelebritiesInput, options: any): async.Operation<types.RecognizeCelebritiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.RecognizeCelebrities, input, options) as async.Operation<types.RecognizeCelebritiesOutput>
+function C:recognizeCelebrities(input: types.RecognizeCelebritiesInput, options?: base_client.InvokeOptions): async.Operation<types.RecognizeCelebritiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RecognizeCelebrities as schema.OperationSchema, input, options) as async.Operation<types.RecognizeCelebritiesOutput>
 end
 
-function C:searchFaces(input: types.SearchFacesInput, options: any): async.Operation<types.SearchFacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchFaces, input, options) as async.Operation<types.SearchFacesOutput>
+function C:searchFaces(input: types.SearchFacesInput, options?: base_client.InvokeOptions): async.Operation<types.SearchFacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchFaces as schema.OperationSchema, input, options) as async.Operation<types.SearchFacesOutput>
 end
 
-function C:searchFacesByImage(input: types.SearchFacesByImageInput, options: any): async.Operation<types.SearchFacesByImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchFacesByImage, input, options) as async.Operation<types.SearchFacesByImageOutput>
+function C:searchFacesByImage(input: types.SearchFacesByImageInput, options?: base_client.InvokeOptions): async.Operation<types.SearchFacesByImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchFacesByImage as schema.OperationSchema, input, options) as async.Operation<types.SearchFacesByImageOutput>
 end
 
-function C:searchUsers(input: types.SearchUsersInput, options: any): async.Operation<types.SearchUsersOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchUsers, input, options) as async.Operation<types.SearchUsersOutput>
+function C:searchUsers(input: types.SearchUsersInput, options?: base_client.InvokeOptions): async.Operation<types.SearchUsersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchUsers as schema.OperationSchema, input, options) as async.Operation<types.SearchUsersOutput>
 end
 
-function C:searchUsersByImage(input: types.SearchUsersByImageInput, options: any): async.Operation<types.SearchUsersByImageOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchUsersByImage, input, options) as async.Operation<types.SearchUsersByImageOutput>
+function C:searchUsersByImage(input: types.SearchUsersByImageInput, options?: base_client.InvokeOptions): async.Operation<types.SearchUsersByImageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchUsersByImage as schema.OperationSchema, input, options) as async.Operation<types.SearchUsersByImageOutput>
 end
 
-function C:startCelebrityRecognition(input: types.StartCelebrityRecognitionInput, options: any): async.Operation<types.StartCelebrityRecognitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartCelebrityRecognition, input, options) as async.Operation<types.StartCelebrityRecognitionOutput>
+function C:startCelebrityRecognition(input: types.StartCelebrityRecognitionInput, options?: base_client.InvokeOptions): async.Operation<types.StartCelebrityRecognitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartCelebrityRecognition as schema.OperationSchema, input, options) as async.Operation<types.StartCelebrityRecognitionOutput>
 end
 
-function C:startContentModeration(input: types.StartContentModerationInput, options: any): async.Operation<types.StartContentModerationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartContentModeration, input, options) as async.Operation<types.StartContentModerationOutput>
+function C:startContentModeration(input: types.StartContentModerationInput, options?: base_client.InvokeOptions): async.Operation<types.StartContentModerationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartContentModeration as schema.OperationSchema, input, options) as async.Operation<types.StartContentModerationOutput>
 end
 
-function C:startFaceDetection(input: types.StartFaceDetectionInput, options: any): async.Operation<types.StartFaceDetectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartFaceDetection, input, options) as async.Operation<types.StartFaceDetectionOutput>
+function C:startFaceDetection(input: types.StartFaceDetectionInput, options?: base_client.InvokeOptions): async.Operation<types.StartFaceDetectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartFaceDetection as schema.OperationSchema, input, options) as async.Operation<types.StartFaceDetectionOutput>
 end
 
-function C:startFaceSearch(input: types.StartFaceSearchInput, options: any): async.Operation<types.StartFaceSearchOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartFaceSearch, input, options) as async.Operation<types.StartFaceSearchOutput>
+function C:startFaceSearch(input: types.StartFaceSearchInput, options?: base_client.InvokeOptions): async.Operation<types.StartFaceSearchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartFaceSearch as schema.OperationSchema, input, options) as async.Operation<types.StartFaceSearchOutput>
 end
 
-function C:startLabelDetection(input: types.StartLabelDetectionInput, options: any): async.Operation<types.StartLabelDetectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartLabelDetection, input, options) as async.Operation<types.StartLabelDetectionOutput>
+function C:startLabelDetection(input: types.StartLabelDetectionInput, options?: base_client.InvokeOptions): async.Operation<types.StartLabelDetectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartLabelDetection as schema.OperationSchema, input, options) as async.Operation<types.StartLabelDetectionOutput>
 end
 
-function C:startMediaAnalysisJob(input: types.StartMediaAnalysisJobInput, options: any): async.Operation<types.StartMediaAnalysisJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartMediaAnalysisJob, input, options) as async.Operation<types.StartMediaAnalysisJobOutput>
+function C:startMediaAnalysisJob(input: types.StartMediaAnalysisJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartMediaAnalysisJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartMediaAnalysisJob as schema.OperationSchema, input, options) as async.Operation<types.StartMediaAnalysisJobOutput>
 end
 
-function C:startPersonTracking(input: types.StartPersonTrackingInput, options: any): async.Operation<types.StartPersonTrackingOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartPersonTracking, input, options) as async.Operation<types.StartPersonTrackingOutput>
+function C:startPersonTracking(input: types.StartPersonTrackingInput, options?: base_client.InvokeOptions): async.Operation<types.StartPersonTrackingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartPersonTracking as schema.OperationSchema, input, options) as async.Operation<types.StartPersonTrackingOutput>
 end
 
-function C:startProjectVersion(input: types.StartProjectVersionInput, options: any): async.Operation<types.StartProjectVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartProjectVersion, input, options) as async.Operation<types.StartProjectVersionOutput>
+function C:startProjectVersion(input: types.StartProjectVersionInput, options?: base_client.InvokeOptions): async.Operation<types.StartProjectVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartProjectVersion as schema.OperationSchema, input, options) as async.Operation<types.StartProjectVersionOutput>
 end
 
-function C:startSegmentDetection(input: types.StartSegmentDetectionInput, options: any): async.Operation<types.StartSegmentDetectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartSegmentDetection, input, options) as async.Operation<types.StartSegmentDetectionOutput>
+function C:startSegmentDetection(input: types.StartSegmentDetectionInput, options?: base_client.InvokeOptions): async.Operation<types.StartSegmentDetectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartSegmentDetection as schema.OperationSchema, input, options) as async.Operation<types.StartSegmentDetectionOutput>
 end
 
-function C:startStreamProcessor(input: types.StartStreamProcessorInput, options: any): async.Operation<types.StartStreamProcessorOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartStreamProcessor, input, options) as async.Operation<types.StartStreamProcessorOutput>
+function C:startStreamProcessor(input: types.StartStreamProcessorInput, options?: base_client.InvokeOptions): async.Operation<types.StartStreamProcessorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartStreamProcessor as schema.OperationSchema, input, options) as async.Operation<types.StartStreamProcessorOutput>
 end
 
-function C:startTextDetection(input: types.StartTextDetectionInput, options: any): async.Operation<types.StartTextDetectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartTextDetection, input, options) as async.Operation<types.StartTextDetectionOutput>
+function C:startTextDetection(input: types.StartTextDetectionInput, options?: base_client.InvokeOptions): async.Operation<types.StartTextDetectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartTextDetection as schema.OperationSchema, input, options) as async.Operation<types.StartTextDetectionOutput>
 end
 
-function C:stopProjectVersion(input: types.StopProjectVersionInput, options: any): async.Operation<types.StopProjectVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopProjectVersion, input, options) as async.Operation<types.StopProjectVersionOutput>
+function C:stopProjectVersion(input: types.StopProjectVersionInput, options?: base_client.InvokeOptions): async.Operation<types.StopProjectVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopProjectVersion as schema.OperationSchema, input, options) as async.Operation<types.StopProjectVersionOutput>
 end
 
-function C:stopStreamProcessor(input: types.StopStreamProcessorInput, options: any): async.Operation<types.StopStreamProcessorOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopStreamProcessor, input, options) as async.Operation<types.StopStreamProcessorOutput>
+function C:stopStreamProcessor(input: types.StopStreamProcessorInput, options?: base_client.InvokeOptions): async.Operation<types.StopStreamProcessorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopStreamProcessor as schema.OperationSchema, input, options) as async.Operation<types.StopStreamProcessorOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateDatasetEntries(input: types.UpdateDatasetEntriesInput, options: any): async.Operation<types.UpdateDatasetEntriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDatasetEntries, input, options) as async.Operation<types.UpdateDatasetEntriesOutput>
+function C:updateDatasetEntries(input: types.UpdateDatasetEntriesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDatasetEntriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDatasetEntries as schema.OperationSchema, input, options) as async.Operation<types.UpdateDatasetEntriesOutput>
 end
 
-function C:updateStreamProcessor(input: types.UpdateStreamProcessorInput, options: any): async.Operation<types.UpdateStreamProcessorOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateStreamProcessor, input, options) as async.Operation<types.UpdateStreamProcessorOutput>
+function C:updateStreamProcessor(input: types.UpdateStreamProcessorInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateStreamProcessorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateStreamProcessor as schema.OperationSchema, input, options) as async.Operation<types.UpdateStreamProcessorOutput>
 end
 
 return M

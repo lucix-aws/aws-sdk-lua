@@ -8,61 +8,64 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("synthetics.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("synthetics.schemas")
 local traits = require("smithy.traits")
 local types = require("synthetics.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateResource: function(Client, types.AssociateResourceInput, any): async.Operation<types.AssociateResourceOutput>
-    createCanary: function(Client, types.CreateCanaryInput, any): async.Operation<types.CreateCanaryOutput>
-    createGroup: function(Client, types.CreateGroupInput, any): async.Operation<types.CreateGroupOutput>
-    deleteCanary: function(Client, types.DeleteCanaryInput, any): async.Operation<types.DeleteCanaryOutput>
-    deleteGroup: function(Client, types.DeleteGroupInput, any): async.Operation<types.DeleteGroupOutput>
-    describeCanaries: function(Client, types.DescribeCanariesInput, any): async.Operation<types.DescribeCanariesOutput>
-    describeCanariesLastRun: function(Client, types.DescribeCanariesLastRunInput, any): async.Operation<types.DescribeCanariesLastRunOutput>
-    describeRuntimeVersions: function(Client, types.DescribeRuntimeVersionsInput, any): async.Operation<types.DescribeRuntimeVersionsOutput>
-    disassociateResource: function(Client, types.DisassociateResourceInput, any): async.Operation<types.DisassociateResourceOutput>
-    getCanary: function(Client, types.GetCanaryInput, any): async.Operation<types.GetCanaryOutput>
-    getCanaryRuns: function(Client, types.GetCanaryRunsInput, any): async.Operation<types.GetCanaryRunsOutput>
-    getGroup: function(Client, types.GetGroupInput, any): async.Operation<types.GetGroupOutput>
-    listAssociatedGroups: function(Client, types.ListAssociatedGroupsInput, any): async.Operation<types.ListAssociatedGroupsOutput>
-    listGroupResources: function(Client, types.ListGroupResourcesInput, any): async.Operation<types.ListGroupResourcesOutput>
-    listGroups: function(Client, types.ListGroupsInput, any): async.Operation<types.ListGroupsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    startCanary: function(Client, types.StartCanaryInput, any): async.Operation<types.StartCanaryOutput>
-    startCanaryDryRun: function(Client, types.StartCanaryDryRunInput, any): async.Operation<types.StartCanaryDryRunOutput>
-    stopCanary: function(Client, types.StopCanaryInput, any): async.Operation<types.StopCanaryOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateCanary: function(Client, types.UpdateCanaryInput, any): async.Operation<types.UpdateCanaryOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateResource: function(Client, types.AssociateResourceInput, ? base_client.InvokeOptions): async.Operation<types.AssociateResourceOutput>
+    createCanary: function(Client, types.CreateCanaryInput, ? base_client.InvokeOptions): async.Operation<types.CreateCanaryOutput>
+    createGroup: function(Client, types.CreateGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateGroupOutput>
+    deleteCanary: function(Client, types.DeleteCanaryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCanaryOutput>
+    deleteGroup: function(Client, types.DeleteGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGroupOutput>
+    describeCanaries: function(Client, types.DescribeCanariesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCanariesOutput>
+    describeCanariesLastRun: function(Client, types.DescribeCanariesLastRunInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCanariesLastRunOutput>
+    describeRuntimeVersions: function(Client, types.DescribeRuntimeVersionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRuntimeVersionsOutput>
+    disassociateResource: function(Client, types.DisassociateResourceInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateResourceOutput>
+    getCanary: function(Client, types.GetCanaryInput, ? base_client.InvokeOptions): async.Operation<types.GetCanaryOutput>
+    getCanaryRuns: function(Client, types.GetCanaryRunsInput, ? base_client.InvokeOptions): async.Operation<types.GetCanaryRunsOutput>
+    getGroup: function(Client, types.GetGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetGroupOutput>
+    listAssociatedGroups: function(Client, types.ListAssociatedGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssociatedGroupsOutput>
+    listGroupResources: function(Client, types.ListGroupResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListGroupResourcesOutput>
+    listGroups: function(Client, types.ListGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListGroupsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    startCanary: function(Client, types.StartCanaryInput, ? base_client.InvokeOptions): async.Operation<types.StartCanaryOutput>
+    startCanaryDryRun: function(Client, types.StartCanaryDryRunInput, ? base_client.InvokeOptions): async.Operation<types.StartCanaryDryRunOutput>
+    stopCanary: function(Client, types.StopCanaryInput, ? base_client.InvokeOptions): async.Operation<types.StopCanaryOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateCanary: function(Client, types.UpdateCanaryInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCanaryOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "Synthetics"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "synthetics", signing_region = c.region } }
                 else
@@ -81,92 +84,92 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateResource(input: types.AssociateResourceInput, options: any): async.Operation<types.AssociateResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateResource, input, options) as async.Operation<types.AssociateResourceOutput>
+function C:associateResource(input: types.AssociateResourceInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateResource as schema.OperationSchema, input, options) as async.Operation<types.AssociateResourceOutput>
 end
 
-function C:createCanary(input: types.CreateCanaryInput, options: any): async.Operation<types.CreateCanaryOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCanary, input, options) as async.Operation<types.CreateCanaryOutput>
+function C:createCanary(input: types.CreateCanaryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCanaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCanary as schema.OperationSchema, input, options) as async.Operation<types.CreateCanaryOutput>
 end
 
-function C:createGroup(input: types.CreateGroupInput, options: any): async.Operation<types.CreateGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateGroup, input, options) as async.Operation<types.CreateGroupOutput>
+function C:createGroup(input: types.CreateGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateGroupOutput>
 end
 
-function C:deleteCanary(input: types.DeleteCanaryInput, options: any): async.Operation<types.DeleteCanaryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCanary, input, options) as async.Operation<types.DeleteCanaryOutput>
+function C:deleteCanary(input: types.DeleteCanaryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCanaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCanary as schema.OperationSchema, input, options) as async.Operation<types.DeleteCanaryOutput>
 end
 
-function C:deleteGroup(input: types.DeleteGroupInput, options: any): async.Operation<types.DeleteGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteGroup, input, options) as async.Operation<types.DeleteGroupOutput>
+function C:deleteGroup(input: types.DeleteGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteGroupOutput>
 end
 
-function C:describeCanaries(input: types.DescribeCanariesInput, options: any): async.Operation<types.DescribeCanariesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCanaries, input, options) as async.Operation<types.DescribeCanariesOutput>
+function C:describeCanaries(input: types.DescribeCanariesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCanariesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCanaries as schema.OperationSchema, input, options) as async.Operation<types.DescribeCanariesOutput>
 end
 
-function C:describeCanariesLastRun(input: types.DescribeCanariesLastRunInput, options: any): async.Operation<types.DescribeCanariesLastRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCanariesLastRun, input, options) as async.Operation<types.DescribeCanariesLastRunOutput>
+function C:describeCanariesLastRun(input: types.DescribeCanariesLastRunInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCanariesLastRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCanariesLastRun as schema.OperationSchema, input, options) as async.Operation<types.DescribeCanariesLastRunOutput>
 end
 
-function C:describeRuntimeVersions(input: types.DescribeRuntimeVersionsInput, options: any): async.Operation<types.DescribeRuntimeVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRuntimeVersions, input, options) as async.Operation<types.DescribeRuntimeVersionsOutput>
+function C:describeRuntimeVersions(input: types.DescribeRuntimeVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRuntimeVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRuntimeVersions as schema.OperationSchema, input, options) as async.Operation<types.DescribeRuntimeVersionsOutput>
 end
 
-function C:disassociateResource(input: types.DisassociateResourceInput, options: any): async.Operation<types.DisassociateResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateResource, input, options) as async.Operation<types.DisassociateResourceOutput>
+function C:disassociateResource(input: types.DisassociateResourceInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateResource as schema.OperationSchema, input, options) as async.Operation<types.DisassociateResourceOutput>
 end
 
-function C:getCanary(input: types.GetCanaryInput, options: any): async.Operation<types.GetCanaryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCanary, input, options) as async.Operation<types.GetCanaryOutput>
+function C:getCanary(input: types.GetCanaryInput, options?: base_client.InvokeOptions): async.Operation<types.GetCanaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCanary as schema.OperationSchema, input, options) as async.Operation<types.GetCanaryOutput>
 end
 
-function C:getCanaryRuns(input: types.GetCanaryRunsInput, options: any): async.Operation<types.GetCanaryRunsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCanaryRuns, input, options) as async.Operation<types.GetCanaryRunsOutput>
+function C:getCanaryRuns(input: types.GetCanaryRunsInput, options?: base_client.InvokeOptions): async.Operation<types.GetCanaryRunsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCanaryRuns as schema.OperationSchema, input, options) as async.Operation<types.GetCanaryRunsOutput>
 end
 
-function C:getGroup(input: types.GetGroupInput, options: any): async.Operation<types.GetGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetGroup, input, options) as async.Operation<types.GetGroupOutput>
+function C:getGroup(input: types.GetGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGroup as schema.OperationSchema, input, options) as async.Operation<types.GetGroupOutput>
 end
 
-function C:listAssociatedGroups(input: types.ListAssociatedGroupsInput, options: any): async.Operation<types.ListAssociatedGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssociatedGroups, input, options) as async.Operation<types.ListAssociatedGroupsOutput>
+function C:listAssociatedGroups(input: types.ListAssociatedGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssociatedGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssociatedGroups as schema.OperationSchema, input, options) as async.Operation<types.ListAssociatedGroupsOutput>
 end
 
-function C:listGroupResources(input: types.ListGroupResourcesInput, options: any): async.Operation<types.ListGroupResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGroupResources, input, options) as async.Operation<types.ListGroupResourcesOutput>
+function C:listGroupResources(input: types.ListGroupResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListGroupResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGroupResources as schema.OperationSchema, input, options) as async.Operation<types.ListGroupResourcesOutput>
 end
 
-function C:listGroups(input: types.ListGroupsInput, options: any): async.Operation<types.ListGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGroups, input, options) as async.Operation<types.ListGroupsOutput>
+function C:listGroups(input: types.ListGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGroups as schema.OperationSchema, input, options) as async.Operation<types.ListGroupsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:startCanary(input: types.StartCanaryInput, options: any): async.Operation<types.StartCanaryOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartCanary, input, options) as async.Operation<types.StartCanaryOutput>
+function C:startCanary(input: types.StartCanaryInput, options?: base_client.InvokeOptions): async.Operation<types.StartCanaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartCanary as schema.OperationSchema, input, options) as async.Operation<types.StartCanaryOutput>
 end
 
-function C:startCanaryDryRun(input: types.StartCanaryDryRunInput, options: any): async.Operation<types.StartCanaryDryRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartCanaryDryRun, input, options) as async.Operation<types.StartCanaryDryRunOutput>
+function C:startCanaryDryRun(input: types.StartCanaryDryRunInput, options?: base_client.InvokeOptions): async.Operation<types.StartCanaryDryRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartCanaryDryRun as schema.OperationSchema, input, options) as async.Operation<types.StartCanaryDryRunOutput>
 end
 
-function C:stopCanary(input: types.StopCanaryInput, options: any): async.Operation<types.StopCanaryOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopCanary, input, options) as async.Operation<types.StopCanaryOutput>
+function C:stopCanary(input: types.StopCanaryInput, options?: base_client.InvokeOptions): async.Operation<types.StopCanaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopCanary as schema.OperationSchema, input, options) as async.Operation<types.StopCanaryOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateCanary(input: types.UpdateCanaryInput, options: any): async.Operation<types.UpdateCanaryOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCanary, input, options) as async.Operation<types.UpdateCanaryOutput>
+function C:updateCanary(input: types.UpdateCanaryInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCanaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCanary as schema.OperationSchema, input, options) as async.Operation<types.UpdateCanaryOutput>
 end
 
 return M

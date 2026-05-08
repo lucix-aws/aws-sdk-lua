@@ -8,50 +8,53 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("redshiftdata.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("redshiftdata.schemas")
 local traits = require("smithy.traits")
 local types = require("redshiftdata.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchExecuteStatement: function(Client, types.BatchExecuteStatementInput, any): async.Operation<types.BatchExecuteStatementOutput>
-    cancelStatement: function(Client, types.CancelStatementInput, any): async.Operation<types.CancelStatementOutput>
-    describeStatement: function(Client, types.DescribeStatementInput, any): async.Operation<types.DescribeStatementOutput>
-    describeTable: function(Client, types.DescribeTableInput, any): async.Operation<types.DescribeTableOutput>
-    executeStatement: function(Client, types.ExecuteStatementInput, any): async.Operation<types.ExecuteStatementOutput>
-    getStatementResult: function(Client, types.GetStatementResultInput, any): async.Operation<types.GetStatementResultOutput>
-    getStatementResultV2: function(Client, types.GetStatementResultV2Input, any): async.Operation<types.GetStatementResultV2Output>
-    listDatabases: function(Client, types.ListDatabasesInput, any): async.Operation<types.ListDatabasesOutput>
-    listSchemas: function(Client, types.ListSchemasInput, any): async.Operation<types.ListSchemasOutput>
-    listStatements: function(Client, types.ListStatementsInput, any): async.Operation<types.ListStatementsOutput>
-    listTables: function(Client, types.ListTablesInput, any): async.Operation<types.ListTablesOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchExecuteStatement: function(Client, types.BatchExecuteStatementInput, ? base_client.InvokeOptions): async.Operation<types.BatchExecuteStatementOutput>
+    cancelStatement: function(Client, types.CancelStatementInput, ? base_client.InvokeOptions): async.Operation<types.CancelStatementOutput>
+    describeStatement: function(Client, types.DescribeStatementInput, ? base_client.InvokeOptions): async.Operation<types.DescribeStatementOutput>
+    describeTable: function(Client, types.DescribeTableInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTableOutput>
+    executeStatement: function(Client, types.ExecuteStatementInput, ? base_client.InvokeOptions): async.Operation<types.ExecuteStatementOutput>
+    getStatementResult: function(Client, types.GetStatementResultInput, ? base_client.InvokeOptions): async.Operation<types.GetStatementResultOutput>
+    getStatementResultV2: function(Client, types.GetStatementResultV2Input, ? base_client.InvokeOptions): async.Operation<types.GetStatementResultV2Output>
+    listDatabases: function(Client, types.ListDatabasesInput, ? base_client.InvokeOptions): async.Operation<types.ListDatabasesOutput>
+    listSchemas: function(Client, types.ListSchemasInput, ? base_client.InvokeOptions): async.Operation<types.ListSchemasOutput>
+    listStatements: function(Client, types.ListStatementsInput, ? base_client.InvokeOptions): async.Operation<types.ListStatementsOutput>
+    listTables: function(Client, types.ListTablesInput, ? base_client.InvokeOptions): async.Operation<types.ListTablesOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "RedshiftData"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "redshift-data", signing_region = c.region } }
                 else
@@ -70,48 +73,48 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchExecuteStatement(input: types.BatchExecuteStatementInput, options: any): async.Operation<types.BatchExecuteStatementOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchExecuteStatement, input, options) as async.Operation<types.BatchExecuteStatementOutput>
+function C:batchExecuteStatement(input: types.BatchExecuteStatementInput, options?: base_client.InvokeOptions): async.Operation<types.BatchExecuteStatementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchExecuteStatement as schema.OperationSchema, input, options) as async.Operation<types.BatchExecuteStatementOutput>
 end
 
-function C:cancelStatement(input: types.CancelStatementInput, options: any): async.Operation<types.CancelStatementOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelStatement, input, options) as async.Operation<types.CancelStatementOutput>
+function C:cancelStatement(input: types.CancelStatementInput, options?: base_client.InvokeOptions): async.Operation<types.CancelStatementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelStatement as schema.OperationSchema, input, options) as async.Operation<types.CancelStatementOutput>
 end
 
-function C:describeStatement(input: types.DescribeStatementInput, options: any): async.Operation<types.DescribeStatementOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeStatement, input, options) as async.Operation<types.DescribeStatementOutput>
+function C:describeStatement(input: types.DescribeStatementInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeStatementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeStatement as schema.OperationSchema, input, options) as async.Operation<types.DescribeStatementOutput>
 end
 
-function C:describeTable(input: types.DescribeTableInput, options: any): async.Operation<types.DescribeTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTable, input, options) as async.Operation<types.DescribeTableOutput>
+function C:describeTable(input: types.DescribeTableInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTable as schema.OperationSchema, input, options) as async.Operation<types.DescribeTableOutput>
 end
 
-function C:executeStatement(input: types.ExecuteStatementInput, options: any): async.Operation<types.ExecuteStatementOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExecuteStatement, input, options) as async.Operation<types.ExecuteStatementOutput>
+function C:executeStatement(input: types.ExecuteStatementInput, options?: base_client.InvokeOptions): async.Operation<types.ExecuteStatementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExecuteStatement as schema.OperationSchema, input, options) as async.Operation<types.ExecuteStatementOutput>
 end
 
-function C:getStatementResult(input: types.GetStatementResultInput, options: any): async.Operation<types.GetStatementResultOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetStatementResult, input, options) as async.Operation<types.GetStatementResultOutput>
+function C:getStatementResult(input: types.GetStatementResultInput, options?: base_client.InvokeOptions): async.Operation<types.GetStatementResultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetStatementResult as schema.OperationSchema, input, options) as async.Operation<types.GetStatementResultOutput>
 end
 
-function C:getStatementResultV2(input: types.GetStatementResultV2Input, options: any): async.Operation<types.GetStatementResultV2Output>
-    return self:invokeOperation(schemas.Service, schemas.GetStatementResultV2, input, options) as async.Operation<types.GetStatementResultV2Output>
+function C:getStatementResultV2(input: types.GetStatementResultV2Input, options?: base_client.InvokeOptions): async.Operation<types.GetStatementResultV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetStatementResultV2 as schema.OperationSchema, input, options) as async.Operation<types.GetStatementResultV2Output>
 end
 
-function C:listDatabases(input: types.ListDatabasesInput, options: any): async.Operation<types.ListDatabasesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDatabases, input, options) as async.Operation<types.ListDatabasesOutput>
+function C:listDatabases(input: types.ListDatabasesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDatabasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDatabases as schema.OperationSchema, input, options) as async.Operation<types.ListDatabasesOutput>
 end
 
-function C:listSchemas(input: types.ListSchemasInput, options: any): async.Operation<types.ListSchemasOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSchemas, input, options) as async.Operation<types.ListSchemasOutput>
+function C:listSchemas(input: types.ListSchemasInput, options?: base_client.InvokeOptions): async.Operation<types.ListSchemasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSchemas as schema.OperationSchema, input, options) as async.Operation<types.ListSchemasOutput>
 end
 
-function C:listStatements(input: types.ListStatementsInput, options: any): async.Operation<types.ListStatementsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStatements, input, options) as async.Operation<types.ListStatementsOutput>
+function C:listStatements(input: types.ListStatementsInput, options?: base_client.InvokeOptions): async.Operation<types.ListStatementsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStatements as schema.OperationSchema, input, options) as async.Operation<types.ListStatementsOutput>
 end
 
-function C:listTables(input: types.ListTablesInput, options: any): async.Operation<types.ListTablesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTables, input, options) as async.Operation<types.ListTablesOutput>
+function C:listTables(input: types.ListTablesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTablesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTables as schema.OperationSchema, input, options) as async.Operation<types.ListTablesOutput>
 end
 
 return M

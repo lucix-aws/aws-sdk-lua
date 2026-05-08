@@ -8,66 +8,69 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("codestarconnections.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("codestarconnections.schemas")
 local traits = require("smithy.traits")
 local types = require("codestarconnections.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createConnection: function(Client, types.CreateConnectionInput, any): async.Operation<types.CreateConnectionOutput>
-    createHost: function(Client, types.CreateHostInput, any): async.Operation<types.CreateHostOutput>
-    createRepositoryLink: function(Client, types.CreateRepositoryLinkInput, any): async.Operation<types.CreateRepositoryLinkOutput>
-    createSyncConfiguration: function(Client, types.CreateSyncConfigurationInput, any): async.Operation<types.CreateSyncConfigurationOutput>
-    deleteConnection: function(Client, types.DeleteConnectionInput, any): async.Operation<types.DeleteConnectionOutput>
-    deleteHost: function(Client, types.DeleteHostInput, any): async.Operation<types.DeleteHostOutput>
-    deleteRepositoryLink: function(Client, types.DeleteRepositoryLinkInput, any): async.Operation<types.DeleteRepositoryLinkOutput>
-    deleteSyncConfiguration: function(Client, types.DeleteSyncConfigurationInput, any): async.Operation<types.DeleteSyncConfigurationOutput>
-    getConnection: function(Client, types.GetConnectionInput, any): async.Operation<types.GetConnectionOutput>
-    getHost: function(Client, types.GetHostInput, any): async.Operation<types.GetHostOutput>
-    getRepositoryLink: function(Client, types.GetRepositoryLinkInput, any): async.Operation<types.GetRepositoryLinkOutput>
-    getRepositorySyncStatus: function(Client, types.GetRepositorySyncStatusInput, any): async.Operation<types.GetRepositorySyncStatusOutput>
-    getResourceSyncStatus: function(Client, types.GetResourceSyncStatusInput, any): async.Operation<types.GetResourceSyncStatusOutput>
-    getSyncBlockerSummary: function(Client, types.GetSyncBlockerSummaryInput, any): async.Operation<types.GetSyncBlockerSummaryOutput>
-    getSyncConfiguration: function(Client, types.GetSyncConfigurationInput, any): async.Operation<types.GetSyncConfigurationOutput>
-    listConnections: function(Client, types.ListConnectionsInput, any): async.Operation<types.ListConnectionsOutput>
-    listHosts: function(Client, types.ListHostsInput, any): async.Operation<types.ListHostsOutput>
-    listRepositoryLinks: function(Client, types.ListRepositoryLinksInput, any): async.Operation<types.ListRepositoryLinksOutput>
-    listRepositorySyncDefinitions: function(Client, types.ListRepositorySyncDefinitionsInput, any): async.Operation<types.ListRepositorySyncDefinitionsOutput>
-    listSyncConfigurations: function(Client, types.ListSyncConfigurationsInput, any): async.Operation<types.ListSyncConfigurationsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateHost: function(Client, types.UpdateHostInput, any): async.Operation<types.UpdateHostOutput>
-    updateRepositoryLink: function(Client, types.UpdateRepositoryLinkInput, any): async.Operation<types.UpdateRepositoryLinkOutput>
-    updateSyncBlocker: function(Client, types.UpdateSyncBlockerInput, any): async.Operation<types.UpdateSyncBlockerOutput>
-    updateSyncConfiguration: function(Client, types.UpdateSyncConfigurationInput, any): async.Operation<types.UpdateSyncConfigurationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createConnection: function(Client, types.CreateConnectionInput, ? base_client.InvokeOptions): async.Operation<types.CreateConnectionOutput>
+    createHost: function(Client, types.CreateHostInput, ? base_client.InvokeOptions): async.Operation<types.CreateHostOutput>
+    createRepositoryLink: function(Client, types.CreateRepositoryLinkInput, ? base_client.InvokeOptions): async.Operation<types.CreateRepositoryLinkOutput>
+    createSyncConfiguration: function(Client, types.CreateSyncConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateSyncConfigurationOutput>
+    deleteConnection: function(Client, types.DeleteConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConnectionOutput>
+    deleteHost: function(Client, types.DeleteHostInput, ? base_client.InvokeOptions): async.Operation<types.DeleteHostOutput>
+    deleteRepositoryLink: function(Client, types.DeleteRepositoryLinkInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRepositoryLinkOutput>
+    deleteSyncConfiguration: function(Client, types.DeleteSyncConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSyncConfigurationOutput>
+    getConnection: function(Client, types.GetConnectionInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectionOutput>
+    getHost: function(Client, types.GetHostInput, ? base_client.InvokeOptions): async.Operation<types.GetHostOutput>
+    getRepositoryLink: function(Client, types.GetRepositoryLinkInput, ? base_client.InvokeOptions): async.Operation<types.GetRepositoryLinkOutput>
+    getRepositorySyncStatus: function(Client, types.GetRepositorySyncStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetRepositorySyncStatusOutput>
+    getResourceSyncStatus: function(Client, types.GetResourceSyncStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetResourceSyncStatusOutput>
+    getSyncBlockerSummary: function(Client, types.GetSyncBlockerSummaryInput, ? base_client.InvokeOptions): async.Operation<types.GetSyncBlockerSummaryOutput>
+    getSyncConfiguration: function(Client, types.GetSyncConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetSyncConfigurationOutput>
+    listConnections: function(Client, types.ListConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectionsOutput>
+    listHosts: function(Client, types.ListHostsInput, ? base_client.InvokeOptions): async.Operation<types.ListHostsOutput>
+    listRepositoryLinks: function(Client, types.ListRepositoryLinksInput, ? base_client.InvokeOptions): async.Operation<types.ListRepositoryLinksOutput>
+    listRepositorySyncDefinitions: function(Client, types.ListRepositorySyncDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.ListRepositorySyncDefinitionsOutput>
+    listSyncConfigurations: function(Client, types.ListSyncConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListSyncConfigurationsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateHost: function(Client, types.UpdateHostInput, ? base_client.InvokeOptions): async.Operation<types.UpdateHostOutput>
+    updateRepositoryLink: function(Client, types.UpdateRepositoryLinkInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRepositoryLinkOutput>
+    updateSyncBlocker: function(Client, types.UpdateSyncBlockerInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSyncBlockerOutput>
+    updateSyncConfiguration: function(Client, types.UpdateSyncConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSyncConfigurationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "CodeStar_connections_20191201"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "codestar-connections", signing_region = c.region } }
                 else
@@ -86,112 +89,112 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createConnection(input: types.CreateConnectionInput, options: any): async.Operation<types.CreateConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConnection, input, options) as async.Operation<types.CreateConnectionOutput>
+function C:createConnection(input: types.CreateConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConnection as schema.OperationSchema, input, options) as async.Operation<types.CreateConnectionOutput>
 end
 
-function C:createHost(input: types.CreateHostInput, options: any): async.Operation<types.CreateHostOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateHost, input, options) as async.Operation<types.CreateHostOutput>
+function C:createHost(input: types.CreateHostInput, options?: base_client.InvokeOptions): async.Operation<types.CreateHostOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateHost as schema.OperationSchema, input, options) as async.Operation<types.CreateHostOutput>
 end
 
-function C:createRepositoryLink(input: types.CreateRepositoryLinkInput, options: any): async.Operation<types.CreateRepositoryLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRepositoryLink, input, options) as async.Operation<types.CreateRepositoryLinkOutput>
+function C:createRepositoryLink(input: types.CreateRepositoryLinkInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRepositoryLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRepositoryLink as schema.OperationSchema, input, options) as async.Operation<types.CreateRepositoryLinkOutput>
 end
 
-function C:createSyncConfiguration(input: types.CreateSyncConfigurationInput, options: any): async.Operation<types.CreateSyncConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSyncConfiguration, input, options) as async.Operation<types.CreateSyncConfigurationOutput>
+function C:createSyncConfiguration(input: types.CreateSyncConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSyncConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSyncConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateSyncConfigurationOutput>
 end
 
-function C:deleteConnection(input: types.DeleteConnectionInput, options: any): async.Operation<types.DeleteConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConnection, input, options) as async.Operation<types.DeleteConnectionOutput>
+function C:deleteConnection(input: types.DeleteConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConnection as schema.OperationSchema, input, options) as async.Operation<types.DeleteConnectionOutput>
 end
 
-function C:deleteHost(input: types.DeleteHostInput, options: any): async.Operation<types.DeleteHostOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteHost, input, options) as async.Operation<types.DeleteHostOutput>
+function C:deleteHost(input: types.DeleteHostInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteHostOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteHost as schema.OperationSchema, input, options) as async.Operation<types.DeleteHostOutput>
 end
 
-function C:deleteRepositoryLink(input: types.DeleteRepositoryLinkInput, options: any): async.Operation<types.DeleteRepositoryLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRepositoryLink, input, options) as async.Operation<types.DeleteRepositoryLinkOutput>
+function C:deleteRepositoryLink(input: types.DeleteRepositoryLinkInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRepositoryLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRepositoryLink as schema.OperationSchema, input, options) as async.Operation<types.DeleteRepositoryLinkOutput>
 end
 
-function C:deleteSyncConfiguration(input: types.DeleteSyncConfigurationInput, options: any): async.Operation<types.DeleteSyncConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSyncConfiguration, input, options) as async.Operation<types.DeleteSyncConfigurationOutput>
+function C:deleteSyncConfiguration(input: types.DeleteSyncConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSyncConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSyncConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteSyncConfigurationOutput>
 end
 
-function C:getConnection(input: types.GetConnectionInput, options: any): async.Operation<types.GetConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConnection, input, options) as async.Operation<types.GetConnectionOutput>
+function C:getConnection(input: types.GetConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.GetConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConnection as schema.OperationSchema, input, options) as async.Operation<types.GetConnectionOutput>
 end
 
-function C:getHost(input: types.GetHostInput, options: any): async.Operation<types.GetHostOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetHost, input, options) as async.Operation<types.GetHostOutput>
+function C:getHost(input: types.GetHostInput, options?: base_client.InvokeOptions): async.Operation<types.GetHostOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetHost as schema.OperationSchema, input, options) as async.Operation<types.GetHostOutput>
 end
 
-function C:getRepositoryLink(input: types.GetRepositoryLinkInput, options: any): async.Operation<types.GetRepositoryLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRepositoryLink, input, options) as async.Operation<types.GetRepositoryLinkOutput>
+function C:getRepositoryLink(input: types.GetRepositoryLinkInput, options?: base_client.InvokeOptions): async.Operation<types.GetRepositoryLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRepositoryLink as schema.OperationSchema, input, options) as async.Operation<types.GetRepositoryLinkOutput>
 end
 
-function C:getRepositorySyncStatus(input: types.GetRepositorySyncStatusInput, options: any): async.Operation<types.GetRepositorySyncStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRepositorySyncStatus, input, options) as async.Operation<types.GetRepositorySyncStatusOutput>
+function C:getRepositorySyncStatus(input: types.GetRepositorySyncStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetRepositorySyncStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRepositorySyncStatus as schema.OperationSchema, input, options) as async.Operation<types.GetRepositorySyncStatusOutput>
 end
 
-function C:getResourceSyncStatus(input: types.GetResourceSyncStatusInput, options: any): async.Operation<types.GetResourceSyncStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourceSyncStatus, input, options) as async.Operation<types.GetResourceSyncStatusOutput>
+function C:getResourceSyncStatus(input: types.GetResourceSyncStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourceSyncStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourceSyncStatus as schema.OperationSchema, input, options) as async.Operation<types.GetResourceSyncStatusOutput>
 end
 
-function C:getSyncBlockerSummary(input: types.GetSyncBlockerSummaryInput, options: any): async.Operation<types.GetSyncBlockerSummaryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSyncBlockerSummary, input, options) as async.Operation<types.GetSyncBlockerSummaryOutput>
+function C:getSyncBlockerSummary(input: types.GetSyncBlockerSummaryInput, options?: base_client.InvokeOptions): async.Operation<types.GetSyncBlockerSummaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSyncBlockerSummary as schema.OperationSchema, input, options) as async.Operation<types.GetSyncBlockerSummaryOutput>
 end
 
-function C:getSyncConfiguration(input: types.GetSyncConfigurationInput, options: any): async.Operation<types.GetSyncConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSyncConfiguration, input, options) as async.Operation<types.GetSyncConfigurationOutput>
+function C:getSyncConfiguration(input: types.GetSyncConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetSyncConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSyncConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetSyncConfigurationOutput>
 end
 
-function C:listConnections(input: types.ListConnectionsInput, options: any): async.Operation<types.ListConnectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConnections, input, options) as async.Operation<types.ListConnectionsOutput>
+function C:listConnections(input: types.ListConnectionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConnectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConnections as schema.OperationSchema, input, options) as async.Operation<types.ListConnectionsOutput>
 end
 
-function C:listHosts(input: types.ListHostsInput, options: any): async.Operation<types.ListHostsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListHosts, input, options) as async.Operation<types.ListHostsOutput>
+function C:listHosts(input: types.ListHostsInput, options?: base_client.InvokeOptions): async.Operation<types.ListHostsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListHosts as schema.OperationSchema, input, options) as async.Operation<types.ListHostsOutput>
 end
 
-function C:listRepositoryLinks(input: types.ListRepositoryLinksInput, options: any): async.Operation<types.ListRepositoryLinksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRepositoryLinks, input, options) as async.Operation<types.ListRepositoryLinksOutput>
+function C:listRepositoryLinks(input: types.ListRepositoryLinksInput, options?: base_client.InvokeOptions): async.Operation<types.ListRepositoryLinksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRepositoryLinks as schema.OperationSchema, input, options) as async.Operation<types.ListRepositoryLinksOutput>
 end
 
-function C:listRepositorySyncDefinitions(input: types.ListRepositorySyncDefinitionsInput, options: any): async.Operation<types.ListRepositorySyncDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRepositorySyncDefinitions, input, options) as async.Operation<types.ListRepositorySyncDefinitionsOutput>
+function C:listRepositorySyncDefinitions(input: types.ListRepositorySyncDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRepositorySyncDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRepositorySyncDefinitions as schema.OperationSchema, input, options) as async.Operation<types.ListRepositorySyncDefinitionsOutput>
 end
 
-function C:listSyncConfigurations(input: types.ListSyncConfigurationsInput, options: any): async.Operation<types.ListSyncConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSyncConfigurations, input, options) as async.Operation<types.ListSyncConfigurationsOutput>
+function C:listSyncConfigurations(input: types.ListSyncConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSyncConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSyncConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListSyncConfigurationsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateHost(input: types.UpdateHostInput, options: any): async.Operation<types.UpdateHostOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateHost, input, options) as async.Operation<types.UpdateHostOutput>
+function C:updateHost(input: types.UpdateHostInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateHostOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateHost as schema.OperationSchema, input, options) as async.Operation<types.UpdateHostOutput>
 end
 
-function C:updateRepositoryLink(input: types.UpdateRepositoryLinkInput, options: any): async.Operation<types.UpdateRepositoryLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRepositoryLink, input, options) as async.Operation<types.UpdateRepositoryLinkOutput>
+function C:updateRepositoryLink(input: types.UpdateRepositoryLinkInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRepositoryLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRepositoryLink as schema.OperationSchema, input, options) as async.Operation<types.UpdateRepositoryLinkOutput>
 end
 
-function C:updateSyncBlocker(input: types.UpdateSyncBlockerInput, options: any): async.Operation<types.UpdateSyncBlockerOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSyncBlocker, input, options) as async.Operation<types.UpdateSyncBlockerOutput>
+function C:updateSyncBlocker(input: types.UpdateSyncBlockerInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSyncBlockerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSyncBlocker as schema.OperationSchema, input, options) as async.Operation<types.UpdateSyncBlockerOutput>
 end
 
-function C:updateSyncConfiguration(input: types.UpdateSyncConfigurationInput, options: any): async.Operation<types.UpdateSyncConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSyncConfiguration, input, options) as async.Operation<types.UpdateSyncConfigurationOutput>
+function C:updateSyncConfiguration(input: types.UpdateSyncConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSyncConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSyncConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateSyncConfigurationOutput>
 end
 
 return M

@@ -8,55 +8,58 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("internetmonitor.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("internetmonitor.schemas")
 local traits = require("smithy.traits")
 local types = require("internetmonitor.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createMonitor: function(Client, types.CreateMonitorInput, any): async.Operation<types.CreateMonitorOutput>
-    deleteMonitor: function(Client, types.DeleteMonitorInput, any): async.Operation<types.DeleteMonitorOutput>
-    getHealthEvent: function(Client, types.GetHealthEventInput, any): async.Operation<types.GetHealthEventOutput>
-    getInternetEvent: function(Client, types.GetInternetEventInput, any): async.Operation<types.GetInternetEventOutput>
-    getMonitor: function(Client, types.GetMonitorInput, any): async.Operation<types.GetMonitorOutput>
-    getQueryResults: function(Client, types.GetQueryResultsInput, any): async.Operation<types.GetQueryResultsOutput>
-    getQueryStatus: function(Client, types.GetQueryStatusInput, any): async.Operation<types.GetQueryStatusOutput>
-    listHealthEvents: function(Client, types.ListHealthEventsInput, any): async.Operation<types.ListHealthEventsOutput>
-    listInternetEvents: function(Client, types.ListInternetEventsInput, any): async.Operation<types.ListInternetEventsOutput>
-    listMonitors: function(Client, types.ListMonitorsInput, any): async.Operation<types.ListMonitorsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    startQuery: function(Client, types.StartQueryInput, any): async.Operation<types.StartQueryOutput>
-    stopQuery: function(Client, types.StopQueryInput, any): async.Operation<types.StopQueryOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateMonitor: function(Client, types.UpdateMonitorInput, any): async.Operation<types.UpdateMonitorOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createMonitor: function(Client, types.CreateMonitorInput, ? base_client.InvokeOptions): async.Operation<types.CreateMonitorOutput>
+    deleteMonitor: function(Client, types.DeleteMonitorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMonitorOutput>
+    getHealthEvent: function(Client, types.GetHealthEventInput, ? base_client.InvokeOptions): async.Operation<types.GetHealthEventOutput>
+    getInternetEvent: function(Client, types.GetInternetEventInput, ? base_client.InvokeOptions): async.Operation<types.GetInternetEventOutput>
+    getMonitor: function(Client, types.GetMonitorInput, ? base_client.InvokeOptions): async.Operation<types.GetMonitorOutput>
+    getQueryResults: function(Client, types.GetQueryResultsInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryResultsOutput>
+    getQueryStatus: function(Client, types.GetQueryStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryStatusOutput>
+    listHealthEvents: function(Client, types.ListHealthEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListHealthEventsOutput>
+    listInternetEvents: function(Client, types.ListInternetEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListInternetEventsOutput>
+    listMonitors: function(Client, types.ListMonitorsInput, ? base_client.InvokeOptions): async.Operation<types.ListMonitorsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    startQuery: function(Client, types.StartQueryInput, ? base_client.InvokeOptions): async.Operation<types.StartQueryOutput>
+    stopQuery: function(Client, types.StopQueryInput, ? base_client.InvokeOptions): async.Operation<types.StopQueryOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateMonitor: function(Client, types.UpdateMonitorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMonitorOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "InternetMonitor20210603"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "internetmonitor", signing_region = c.region } }
                 else
@@ -75,68 +78,68 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createMonitor(input: types.CreateMonitorInput, options: any): async.Operation<types.CreateMonitorOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMonitor, input, options) as async.Operation<types.CreateMonitorOutput>
+function C:createMonitor(input: types.CreateMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMonitorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMonitor as schema.OperationSchema, input, options) as async.Operation<types.CreateMonitorOutput>
 end
 
-function C:deleteMonitor(input: types.DeleteMonitorInput, options: any): async.Operation<types.DeleteMonitorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMonitor, input, options) as async.Operation<types.DeleteMonitorOutput>
+function C:deleteMonitor(input: types.DeleteMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMonitorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMonitor as schema.OperationSchema, input, options) as async.Operation<types.DeleteMonitorOutput>
 end
 
-function C:getHealthEvent(input: types.GetHealthEventInput, options: any): async.Operation<types.GetHealthEventOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetHealthEvent, input, options) as async.Operation<types.GetHealthEventOutput>
+function C:getHealthEvent(input: types.GetHealthEventInput, options?: base_client.InvokeOptions): async.Operation<types.GetHealthEventOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetHealthEvent as schema.OperationSchema, input, options) as async.Operation<types.GetHealthEventOutput>
 end
 
-function C:getInternetEvent(input: types.GetInternetEventInput, options: any): async.Operation<types.GetInternetEventOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInternetEvent, input, options) as async.Operation<types.GetInternetEventOutput>
+function C:getInternetEvent(input: types.GetInternetEventInput, options?: base_client.InvokeOptions): async.Operation<types.GetInternetEventOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInternetEvent as schema.OperationSchema, input, options) as async.Operation<types.GetInternetEventOutput>
 end
 
-function C:getMonitor(input: types.GetMonitorInput, options: any): async.Operation<types.GetMonitorOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMonitor, input, options) as async.Operation<types.GetMonitorOutput>
+function C:getMonitor(input: types.GetMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.GetMonitorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMonitor as schema.OperationSchema, input, options) as async.Operation<types.GetMonitorOutput>
 end
 
-function C:getQueryResults(input: types.GetQueryResultsInput, options: any): async.Operation<types.GetQueryResultsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetQueryResults, input, options) as async.Operation<types.GetQueryResultsOutput>
+function C:getQueryResults(input: types.GetQueryResultsInput, options?: base_client.InvokeOptions): async.Operation<types.GetQueryResultsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQueryResults as schema.OperationSchema, input, options) as async.Operation<types.GetQueryResultsOutput>
 end
 
-function C:getQueryStatus(input: types.GetQueryStatusInput, options: any): async.Operation<types.GetQueryStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetQueryStatus, input, options) as async.Operation<types.GetQueryStatusOutput>
+function C:getQueryStatus(input: types.GetQueryStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetQueryStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQueryStatus as schema.OperationSchema, input, options) as async.Operation<types.GetQueryStatusOutput>
 end
 
-function C:listHealthEvents(input: types.ListHealthEventsInput, options: any): async.Operation<types.ListHealthEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListHealthEvents, input, options) as async.Operation<types.ListHealthEventsOutput>
+function C:listHealthEvents(input: types.ListHealthEventsInput, options?: base_client.InvokeOptions): async.Operation<types.ListHealthEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListHealthEvents as schema.OperationSchema, input, options) as async.Operation<types.ListHealthEventsOutput>
 end
 
-function C:listInternetEvents(input: types.ListInternetEventsInput, options: any): async.Operation<types.ListInternetEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInternetEvents, input, options) as async.Operation<types.ListInternetEventsOutput>
+function C:listInternetEvents(input: types.ListInternetEventsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInternetEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInternetEvents as schema.OperationSchema, input, options) as async.Operation<types.ListInternetEventsOutput>
 end
 
-function C:listMonitors(input: types.ListMonitorsInput, options: any): async.Operation<types.ListMonitorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMonitors, input, options) as async.Operation<types.ListMonitorsOutput>
+function C:listMonitors(input: types.ListMonitorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMonitorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMonitors as schema.OperationSchema, input, options) as async.Operation<types.ListMonitorsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:startQuery(input: types.StartQueryInput, options: any): async.Operation<types.StartQueryOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartQuery, input, options) as async.Operation<types.StartQueryOutput>
+function C:startQuery(input: types.StartQueryInput, options?: base_client.InvokeOptions): async.Operation<types.StartQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartQuery as schema.OperationSchema, input, options) as async.Operation<types.StartQueryOutput>
 end
 
-function C:stopQuery(input: types.StopQueryInput, options: any): async.Operation<types.StopQueryOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopQuery, input, options) as async.Operation<types.StopQueryOutput>
+function C:stopQuery(input: types.StopQueryInput, options?: base_client.InvokeOptions): async.Operation<types.StopQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopQuery as schema.OperationSchema, input, options) as async.Operation<types.StopQueryOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateMonitor(input: types.UpdateMonitorInput, options: any): async.Operation<types.UpdateMonitorOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateMonitor, input, options) as async.Operation<types.UpdateMonitorOutput>
+function C:updateMonitor(input: types.UpdateMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMonitorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMonitor as schema.OperationSchema, input, options) as async.Operation<types.UpdateMonitorOutput>
 end
 
 return M

@@ -7,7 +7,7 @@ local traits = require("smithy.traits")
 
 local _N = "com.amazonaws.mediaconnect"
 
-local M = {}
+local M: {string:any} = {}
 
 M.__listOfListedEntitlement = schema.new({ type = "list", list_member = M.ListedEntitlement })
 
@@ -13579,13 +13579,14 @@ M.UntagResourceInput = schema.new({
 M.UntagResourceOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
-for _, s in pairs(M) do
+for _, _s in pairs(M) do
+    local s = _s as {string:any}
     if type(s) == "table" and (s.type == "structure" or s.type == "union") then
-        local members = rawget(s, "_members")
+        local members = rawget(s, "_members") as {string:{string:any}}
         if members then
             for _, ms in pairs(members) do
-                if (ms.type == "structure" or ms.type == "union") and not rawget(ms, "_target") and ms.target_id then
-                    rawset(ms, "_target", M[ms.target_id.name])
+                if (ms.type == "structure" or ms.type == "union") and not rawget(ms as {string:any}, "_target") and ms.target_id then
+                    rawset(ms as {string:any}, "_target", M[(ms.target_id as {string:string}).name])
                 end
             end
         end

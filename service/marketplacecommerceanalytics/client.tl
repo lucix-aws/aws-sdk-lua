@@ -8,41 +8,44 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("marketplacecommerceanalytics.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("marketplacecommerceanalytics.schemas")
 local traits = require("smithy.traits")
 local types = require("marketplacecommerceanalytics.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    generateDataSet: function(Client, types.GenerateDataSetInput, any): async.Operation<types.GenerateDataSetOutput>
-    startSupportDataExport: function(Client, types.StartSupportDataExportInput, any): async.Operation<types.StartSupportDataExportOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    generateDataSet: function(Client, types.GenerateDataSetInput, ? base_client.InvokeOptions): async.Operation<types.GenerateDataSetOutput>
+    startSupportDataExport: function(Client, types.StartSupportDataExportInput, ? base_client.InvokeOptions): async.Operation<types.StartSupportDataExportOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "MarketplaceCommerceAnalytics20150701"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "marketplacecommerceanalytics", signing_region = c.region } }
                 else
@@ -61,12 +64,12 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:generateDataSet(input: types.GenerateDataSetInput, options: any): async.Operation<types.GenerateDataSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GenerateDataSet, input, options) as async.Operation<types.GenerateDataSetOutput>
+function C:generateDataSet(input: types.GenerateDataSetInput, options?: base_client.InvokeOptions): async.Operation<types.GenerateDataSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GenerateDataSet as schema.OperationSchema, input, options) as async.Operation<types.GenerateDataSetOutput>
 end
 
-function C:startSupportDataExport(input: types.StartSupportDataExportInput, options: any): async.Operation<types.StartSupportDataExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartSupportDataExport, input, options) as async.Operation<types.StartSupportDataExportOutput>
+function C:startSupportDataExport(input: types.StartSupportDataExportInput, options?: base_client.InvokeOptions): async.Operation<types.StartSupportDataExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartSupportDataExport as schema.OperationSchema, input, options) as async.Operation<types.StartSupportDataExportOutput>
 end
 
 return M

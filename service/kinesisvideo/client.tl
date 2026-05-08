@@ -8,71 +8,74 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("kinesisvideo.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("kinesisvideo.schemas")
 local traits = require("smithy.traits")
 local types = require("kinesisvideo.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createSignalingChannel: function(Client, types.CreateSignalingChannelInput, any): async.Operation<types.CreateSignalingChannelOutput>
-    createStream: function(Client, types.CreateStreamInput, any): async.Operation<types.CreateStreamOutput>
-    deleteEdgeConfiguration: function(Client, types.DeleteEdgeConfigurationInput, any): async.Operation<types.DeleteEdgeConfigurationOutput>
-    deleteSignalingChannel: function(Client, types.DeleteSignalingChannelInput, any): async.Operation<types.DeleteSignalingChannelOutput>
-    deleteStream: function(Client, types.DeleteStreamInput, any): async.Operation<types.DeleteStreamOutput>
-    describeEdgeConfiguration: function(Client, types.DescribeEdgeConfigurationInput, any): async.Operation<types.DescribeEdgeConfigurationOutput>
-    describeImageGenerationConfiguration: function(Client, types.DescribeImageGenerationConfigurationInput, any): async.Operation<types.DescribeImageGenerationConfigurationOutput>
-    describeMappedResourceConfiguration: function(Client, types.DescribeMappedResourceConfigurationInput, any): async.Operation<types.DescribeMappedResourceConfigurationOutput>
-    describeMediaStorageConfiguration: function(Client, types.DescribeMediaStorageConfigurationInput, any): async.Operation<types.DescribeMediaStorageConfigurationOutput>
-    describeNotificationConfiguration: function(Client, types.DescribeNotificationConfigurationInput, any): async.Operation<types.DescribeNotificationConfigurationOutput>
-    describeSignalingChannel: function(Client, types.DescribeSignalingChannelInput, any): async.Operation<types.DescribeSignalingChannelOutput>
-    describeStream: function(Client, types.DescribeStreamInput, any): async.Operation<types.DescribeStreamOutput>
-    describeStreamStorageConfiguration: function(Client, types.DescribeStreamStorageConfigurationInput, any): async.Operation<types.DescribeStreamStorageConfigurationOutput>
-    getDataEndpoint: function(Client, types.GetDataEndpointInput, any): async.Operation<types.GetDataEndpointOutput>
-    getSignalingChannelEndpoint: function(Client, types.GetSignalingChannelEndpointInput, any): async.Operation<types.GetSignalingChannelEndpointOutput>
-    listEdgeAgentConfigurations: function(Client, types.ListEdgeAgentConfigurationsInput, any): async.Operation<types.ListEdgeAgentConfigurationsOutput>
-    listSignalingChannels: function(Client, types.ListSignalingChannelsInput, any): async.Operation<types.ListSignalingChannelsOutput>
-    listStreams: function(Client, types.ListStreamsInput, any): async.Operation<types.ListStreamsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTagsForStream: function(Client, types.ListTagsForStreamInput, any): async.Operation<types.ListTagsForStreamOutput>
-    startEdgeConfigurationUpdate: function(Client, types.StartEdgeConfigurationUpdateInput, any): async.Operation<types.StartEdgeConfigurationUpdateOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    tagStream: function(Client, types.TagStreamInput, any): async.Operation<types.TagStreamOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    untagStream: function(Client, types.UntagStreamInput, any): async.Operation<types.UntagStreamOutput>
-    updateDataRetention: function(Client, types.UpdateDataRetentionInput, any): async.Operation<types.UpdateDataRetentionOutput>
-    updateImageGenerationConfiguration: function(Client, types.UpdateImageGenerationConfigurationInput, any): async.Operation<types.UpdateImageGenerationConfigurationOutput>
-    updateMediaStorageConfiguration: function(Client, types.UpdateMediaStorageConfigurationInput, any): async.Operation<types.UpdateMediaStorageConfigurationOutput>
-    updateNotificationConfiguration: function(Client, types.UpdateNotificationConfigurationInput, any): async.Operation<types.UpdateNotificationConfigurationOutput>
-    updateSignalingChannel: function(Client, types.UpdateSignalingChannelInput, any): async.Operation<types.UpdateSignalingChannelOutput>
-    updateStream: function(Client, types.UpdateStreamInput, any): async.Operation<types.UpdateStreamOutput>
-    updateStreamStorageConfiguration: function(Client, types.UpdateStreamStorageConfigurationInput, any): async.Operation<types.UpdateStreamStorageConfigurationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createSignalingChannel: function(Client, types.CreateSignalingChannelInput, ? base_client.InvokeOptions): async.Operation<types.CreateSignalingChannelOutput>
+    createStream: function(Client, types.CreateStreamInput, ? base_client.InvokeOptions): async.Operation<types.CreateStreamOutput>
+    deleteEdgeConfiguration: function(Client, types.DeleteEdgeConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEdgeConfigurationOutput>
+    deleteSignalingChannel: function(Client, types.DeleteSignalingChannelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSignalingChannelOutput>
+    deleteStream: function(Client, types.DeleteStreamInput, ? base_client.InvokeOptions): async.Operation<types.DeleteStreamOutput>
+    describeEdgeConfiguration: function(Client, types.DescribeEdgeConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEdgeConfigurationOutput>
+    describeImageGenerationConfiguration: function(Client, types.DescribeImageGenerationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeImageGenerationConfigurationOutput>
+    describeMappedResourceConfiguration: function(Client, types.DescribeMappedResourceConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMappedResourceConfigurationOutput>
+    describeMediaStorageConfiguration: function(Client, types.DescribeMediaStorageConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMediaStorageConfigurationOutput>
+    describeNotificationConfiguration: function(Client, types.DescribeNotificationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNotificationConfigurationOutput>
+    describeSignalingChannel: function(Client, types.DescribeSignalingChannelInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSignalingChannelOutput>
+    describeStream: function(Client, types.DescribeStreamInput, ? base_client.InvokeOptions): async.Operation<types.DescribeStreamOutput>
+    describeStreamStorageConfiguration: function(Client, types.DescribeStreamStorageConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeStreamStorageConfigurationOutput>
+    getDataEndpoint: function(Client, types.GetDataEndpointInput, ? base_client.InvokeOptions): async.Operation<types.GetDataEndpointOutput>
+    getSignalingChannelEndpoint: function(Client, types.GetSignalingChannelEndpointInput, ? base_client.InvokeOptions): async.Operation<types.GetSignalingChannelEndpointOutput>
+    listEdgeAgentConfigurations: function(Client, types.ListEdgeAgentConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListEdgeAgentConfigurationsOutput>
+    listSignalingChannels: function(Client, types.ListSignalingChannelsInput, ? base_client.InvokeOptions): async.Operation<types.ListSignalingChannelsOutput>
+    listStreams: function(Client, types.ListStreamsInput, ? base_client.InvokeOptions): async.Operation<types.ListStreamsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTagsForStream: function(Client, types.ListTagsForStreamInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForStreamOutput>
+    startEdgeConfigurationUpdate: function(Client, types.StartEdgeConfigurationUpdateInput, ? base_client.InvokeOptions): async.Operation<types.StartEdgeConfigurationUpdateOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    tagStream: function(Client, types.TagStreamInput, ? base_client.InvokeOptions): async.Operation<types.TagStreamOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    untagStream: function(Client, types.UntagStreamInput, ? base_client.InvokeOptions): async.Operation<types.UntagStreamOutput>
+    updateDataRetention: function(Client, types.UpdateDataRetentionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataRetentionOutput>
+    updateImageGenerationConfiguration: function(Client, types.UpdateImageGenerationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateImageGenerationConfigurationOutput>
+    updateMediaStorageConfiguration: function(Client, types.UpdateMediaStorageConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMediaStorageConfigurationOutput>
+    updateNotificationConfiguration: function(Client, types.UpdateNotificationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNotificationConfigurationOutput>
+    updateSignalingChannel: function(Client, types.UpdateSignalingChannelInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSignalingChannelOutput>
+    updateStream: function(Client, types.UpdateStreamInput, ? base_client.InvokeOptions): async.Operation<types.UpdateStreamOutput>
+    updateStreamStorageConfiguration: function(Client, types.UpdateStreamStorageConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateStreamStorageConfigurationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "KinesisVideo_20170930"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "kinesisvideo", signing_region = c.region } }
                 else
@@ -91,132 +94,132 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createSignalingChannel(input: types.CreateSignalingChannelInput, options: any): async.Operation<types.CreateSignalingChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSignalingChannel, input, options) as async.Operation<types.CreateSignalingChannelOutput>
+function C:createSignalingChannel(input: types.CreateSignalingChannelInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSignalingChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSignalingChannel as schema.OperationSchema, input, options) as async.Operation<types.CreateSignalingChannelOutput>
 end
 
-function C:createStream(input: types.CreateStreamInput, options: any): async.Operation<types.CreateStreamOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateStream, input, options) as async.Operation<types.CreateStreamOutput>
+function C:createStream(input: types.CreateStreamInput, options?: base_client.InvokeOptions): async.Operation<types.CreateStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateStream as schema.OperationSchema, input, options) as async.Operation<types.CreateStreamOutput>
 end
 
-function C:deleteEdgeConfiguration(input: types.DeleteEdgeConfigurationInput, options: any): async.Operation<types.DeleteEdgeConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEdgeConfiguration, input, options) as async.Operation<types.DeleteEdgeConfigurationOutput>
+function C:deleteEdgeConfiguration(input: types.DeleteEdgeConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEdgeConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEdgeConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteEdgeConfigurationOutput>
 end
 
-function C:deleteSignalingChannel(input: types.DeleteSignalingChannelInput, options: any): async.Operation<types.DeleteSignalingChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSignalingChannel, input, options) as async.Operation<types.DeleteSignalingChannelOutput>
+function C:deleteSignalingChannel(input: types.DeleteSignalingChannelInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSignalingChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSignalingChannel as schema.OperationSchema, input, options) as async.Operation<types.DeleteSignalingChannelOutput>
 end
 
-function C:deleteStream(input: types.DeleteStreamInput, options: any): async.Operation<types.DeleteStreamOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteStream, input, options) as async.Operation<types.DeleteStreamOutput>
+function C:deleteStream(input: types.DeleteStreamInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteStream as schema.OperationSchema, input, options) as async.Operation<types.DeleteStreamOutput>
 end
 
-function C:describeEdgeConfiguration(input: types.DescribeEdgeConfigurationInput, options: any): async.Operation<types.DescribeEdgeConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEdgeConfiguration, input, options) as async.Operation<types.DescribeEdgeConfigurationOutput>
+function C:describeEdgeConfiguration(input: types.DescribeEdgeConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEdgeConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEdgeConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeEdgeConfigurationOutput>
 end
 
-function C:describeImageGenerationConfiguration(input: types.DescribeImageGenerationConfigurationInput, options: any): async.Operation<types.DescribeImageGenerationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeImageGenerationConfiguration, input, options) as async.Operation<types.DescribeImageGenerationConfigurationOutput>
+function C:describeImageGenerationConfiguration(input: types.DescribeImageGenerationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeImageGenerationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeImageGenerationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeImageGenerationConfigurationOutput>
 end
 
-function C:describeMappedResourceConfiguration(input: types.DescribeMappedResourceConfigurationInput, options: any): async.Operation<types.DescribeMappedResourceConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeMappedResourceConfiguration, input, options) as async.Operation<types.DescribeMappedResourceConfigurationOutput>
+function C:describeMappedResourceConfiguration(input: types.DescribeMappedResourceConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMappedResourceConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMappedResourceConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeMappedResourceConfigurationOutput>
 end
 
-function C:describeMediaStorageConfiguration(input: types.DescribeMediaStorageConfigurationInput, options: any): async.Operation<types.DescribeMediaStorageConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeMediaStorageConfiguration, input, options) as async.Operation<types.DescribeMediaStorageConfigurationOutput>
+function C:describeMediaStorageConfiguration(input: types.DescribeMediaStorageConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMediaStorageConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMediaStorageConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeMediaStorageConfigurationOutput>
 end
 
-function C:describeNotificationConfiguration(input: types.DescribeNotificationConfigurationInput, options: any): async.Operation<types.DescribeNotificationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeNotificationConfiguration, input, options) as async.Operation<types.DescribeNotificationConfigurationOutput>
+function C:describeNotificationConfiguration(input: types.DescribeNotificationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeNotificationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeNotificationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeNotificationConfigurationOutput>
 end
 
-function C:describeSignalingChannel(input: types.DescribeSignalingChannelInput, options: any): async.Operation<types.DescribeSignalingChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSignalingChannel, input, options) as async.Operation<types.DescribeSignalingChannelOutput>
+function C:describeSignalingChannel(input: types.DescribeSignalingChannelInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSignalingChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSignalingChannel as schema.OperationSchema, input, options) as async.Operation<types.DescribeSignalingChannelOutput>
 end
 
-function C:describeStream(input: types.DescribeStreamInput, options: any): async.Operation<types.DescribeStreamOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeStream, input, options) as async.Operation<types.DescribeStreamOutput>
+function C:describeStream(input: types.DescribeStreamInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeStream as schema.OperationSchema, input, options) as async.Operation<types.DescribeStreamOutput>
 end
 
-function C:describeStreamStorageConfiguration(input: types.DescribeStreamStorageConfigurationInput, options: any): async.Operation<types.DescribeStreamStorageConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeStreamStorageConfiguration, input, options) as async.Operation<types.DescribeStreamStorageConfigurationOutput>
+function C:describeStreamStorageConfiguration(input: types.DescribeStreamStorageConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeStreamStorageConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeStreamStorageConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeStreamStorageConfigurationOutput>
 end
 
-function C:getDataEndpoint(input: types.GetDataEndpointInput, options: any): async.Operation<types.GetDataEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataEndpoint, input, options) as async.Operation<types.GetDataEndpointOutput>
+function C:getDataEndpoint(input: types.GetDataEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataEndpoint as schema.OperationSchema, input, options) as async.Operation<types.GetDataEndpointOutput>
 end
 
-function C:getSignalingChannelEndpoint(input: types.GetSignalingChannelEndpointInput, options: any): async.Operation<types.GetSignalingChannelEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSignalingChannelEndpoint, input, options) as async.Operation<types.GetSignalingChannelEndpointOutput>
+function C:getSignalingChannelEndpoint(input: types.GetSignalingChannelEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.GetSignalingChannelEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSignalingChannelEndpoint as schema.OperationSchema, input, options) as async.Operation<types.GetSignalingChannelEndpointOutput>
 end
 
-function C:listEdgeAgentConfigurations(input: types.ListEdgeAgentConfigurationsInput, options: any): async.Operation<types.ListEdgeAgentConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEdgeAgentConfigurations, input, options) as async.Operation<types.ListEdgeAgentConfigurationsOutput>
+function C:listEdgeAgentConfigurations(input: types.ListEdgeAgentConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEdgeAgentConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEdgeAgentConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListEdgeAgentConfigurationsOutput>
 end
 
-function C:listSignalingChannels(input: types.ListSignalingChannelsInput, options: any): async.Operation<types.ListSignalingChannelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSignalingChannels, input, options) as async.Operation<types.ListSignalingChannelsOutput>
+function C:listSignalingChannels(input: types.ListSignalingChannelsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSignalingChannelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSignalingChannels as schema.OperationSchema, input, options) as async.Operation<types.ListSignalingChannelsOutput>
 end
 
-function C:listStreams(input: types.ListStreamsInput, options: any): async.Operation<types.ListStreamsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStreams, input, options) as async.Operation<types.ListStreamsOutput>
+function C:listStreams(input: types.ListStreamsInput, options?: base_client.InvokeOptions): async.Operation<types.ListStreamsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStreams as schema.OperationSchema, input, options) as async.Operation<types.ListStreamsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTagsForStream(input: types.ListTagsForStreamInput, options: any): async.Operation<types.ListTagsForStreamOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForStream, input, options) as async.Operation<types.ListTagsForStreamOutput>
+function C:listTagsForStream(input: types.ListTagsForStreamInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForStream as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForStreamOutput>
 end
 
-function C:startEdgeConfigurationUpdate(input: types.StartEdgeConfigurationUpdateInput, options: any): async.Operation<types.StartEdgeConfigurationUpdateOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartEdgeConfigurationUpdate, input, options) as async.Operation<types.StartEdgeConfigurationUpdateOutput>
+function C:startEdgeConfigurationUpdate(input: types.StartEdgeConfigurationUpdateInput, options?: base_client.InvokeOptions): async.Operation<types.StartEdgeConfigurationUpdateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartEdgeConfigurationUpdate as schema.OperationSchema, input, options) as async.Operation<types.StartEdgeConfigurationUpdateOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:tagStream(input: types.TagStreamInput, options: any): async.Operation<types.TagStreamOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagStream, input, options) as async.Operation<types.TagStreamOutput>
+function C:tagStream(input: types.TagStreamInput, options?: base_client.InvokeOptions): async.Operation<types.TagStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagStream as schema.OperationSchema, input, options) as async.Operation<types.TagStreamOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:untagStream(input: types.UntagStreamInput, options: any): async.Operation<types.UntagStreamOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagStream, input, options) as async.Operation<types.UntagStreamOutput>
+function C:untagStream(input: types.UntagStreamInput, options?: base_client.InvokeOptions): async.Operation<types.UntagStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagStream as schema.OperationSchema, input, options) as async.Operation<types.UntagStreamOutput>
 end
 
-function C:updateDataRetention(input: types.UpdateDataRetentionInput, options: any): async.Operation<types.UpdateDataRetentionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDataRetention, input, options) as async.Operation<types.UpdateDataRetentionOutput>
+function C:updateDataRetention(input: types.UpdateDataRetentionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDataRetentionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDataRetention as schema.OperationSchema, input, options) as async.Operation<types.UpdateDataRetentionOutput>
 end
 
-function C:updateImageGenerationConfiguration(input: types.UpdateImageGenerationConfigurationInput, options: any): async.Operation<types.UpdateImageGenerationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateImageGenerationConfiguration, input, options) as async.Operation<types.UpdateImageGenerationConfigurationOutput>
+function C:updateImageGenerationConfiguration(input: types.UpdateImageGenerationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateImageGenerationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateImageGenerationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateImageGenerationConfigurationOutput>
 end
 
-function C:updateMediaStorageConfiguration(input: types.UpdateMediaStorageConfigurationInput, options: any): async.Operation<types.UpdateMediaStorageConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateMediaStorageConfiguration, input, options) as async.Operation<types.UpdateMediaStorageConfigurationOutput>
+function C:updateMediaStorageConfiguration(input: types.UpdateMediaStorageConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMediaStorageConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMediaStorageConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateMediaStorageConfigurationOutput>
 end
 
-function C:updateNotificationConfiguration(input: types.UpdateNotificationConfigurationInput, options: any): async.Operation<types.UpdateNotificationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateNotificationConfiguration, input, options) as async.Operation<types.UpdateNotificationConfigurationOutput>
+function C:updateNotificationConfiguration(input: types.UpdateNotificationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNotificationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNotificationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateNotificationConfigurationOutput>
 end
 
-function C:updateSignalingChannel(input: types.UpdateSignalingChannelInput, options: any): async.Operation<types.UpdateSignalingChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSignalingChannel, input, options) as async.Operation<types.UpdateSignalingChannelOutput>
+function C:updateSignalingChannel(input: types.UpdateSignalingChannelInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSignalingChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSignalingChannel as schema.OperationSchema, input, options) as async.Operation<types.UpdateSignalingChannelOutput>
 end
 
-function C:updateStream(input: types.UpdateStreamInput, options: any): async.Operation<types.UpdateStreamOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateStream, input, options) as async.Operation<types.UpdateStreamOutput>
+function C:updateStream(input: types.UpdateStreamInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateStream as schema.OperationSchema, input, options) as async.Operation<types.UpdateStreamOutput>
 end
 
-function C:updateStreamStorageConfiguration(input: types.UpdateStreamStorageConfigurationInput, options: any): async.Operation<types.UpdateStreamStorageConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateStreamStorageConfiguration, input, options) as async.Operation<types.UpdateStreamStorageConfigurationOutput>
+function C:updateStreamStorageConfiguration(input: types.UpdateStreamStorageConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateStreamStorageConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateStreamStorageConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateStreamStorageConfigurationOutput>
 end
 
 return M

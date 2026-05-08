@@ -8,83 +8,86 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("wickr.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("wickr.schemas")
 local traits = require("smithy.traits")
 local types = require("wickr.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchCreateUser: function(Client, types.BatchCreateUserInput, any): async.Operation<types.BatchCreateUserOutput>
-    batchDeleteUser: function(Client, types.BatchDeleteUserInput, any): async.Operation<types.BatchDeleteUserOutput>
-    batchLookupUserUname: function(Client, types.BatchLookupUserUnameInput, any): async.Operation<types.BatchLookupUserUnameOutput>
-    batchReinviteUser: function(Client, types.BatchReinviteUserInput, any): async.Operation<types.BatchReinviteUserOutput>
-    batchResetDevicesForUser: function(Client, types.BatchResetDevicesForUserInput, any): async.Operation<types.BatchResetDevicesForUserOutput>
-    batchToggleUserSuspendStatus: function(Client, types.BatchToggleUserSuspendStatusInput, any): async.Operation<types.BatchToggleUserSuspendStatusOutput>
-    createBot: function(Client, types.CreateBotInput, any): async.Operation<types.CreateBotOutput>
-    createDataRetentionBot: function(Client, types.CreateDataRetentionBotInput, any): async.Operation<types.CreateDataRetentionBotOutput>
-    createDataRetentionBotChallenge: function(Client, types.CreateDataRetentionBotChallengeInput, any): async.Operation<types.CreateDataRetentionBotChallengeOutput>
-    createNetwork: function(Client, types.CreateNetworkInput, any): async.Operation<types.CreateNetworkOutput>
-    createSecurityGroup: function(Client, types.CreateSecurityGroupInput, any): async.Operation<types.CreateSecurityGroupOutput>
-    deleteBot: function(Client, types.DeleteBotInput, any): async.Operation<types.DeleteBotOutput>
-    deleteDataRetentionBot: function(Client, types.DeleteDataRetentionBotInput, any): async.Operation<types.DeleteDataRetentionBotOutput>
-    deleteNetwork: function(Client, types.DeleteNetworkInput, any): async.Operation<types.DeleteNetworkOutput>
-    deleteSecurityGroup: function(Client, types.DeleteSecurityGroupInput, any): async.Operation<types.DeleteSecurityGroupOutput>
-    getBot: function(Client, types.GetBotInput, any): async.Operation<types.GetBotOutput>
-    getBotsCount: function(Client, types.GetBotsCountInput, any): async.Operation<types.GetBotsCountOutput>
-    getDataRetentionBot: function(Client, types.GetDataRetentionBotInput, any): async.Operation<types.GetDataRetentionBotOutput>
-    getGuestUserHistoryCount: function(Client, types.GetGuestUserHistoryCountInput, any): async.Operation<types.GetGuestUserHistoryCountOutput>
-    getNetwork: function(Client, types.GetNetworkInput, any): async.Operation<types.GetNetworkOutput>
-    getNetworkSettings: function(Client, types.GetNetworkSettingsInput, any): async.Operation<types.GetNetworkSettingsOutput>
-    getOidcInfo: function(Client, types.GetOidcInfoInput, any): async.Operation<types.GetOidcInfoOutput>
-    getOpentdfConfig: function(Client, types.GetOpentdfConfigInput, any): async.Operation<types.GetOpentdfConfigOutput>
-    getSecurityGroup: function(Client, types.GetSecurityGroupInput, any): async.Operation<types.GetSecurityGroupOutput>
-    getUser: function(Client, types.GetUserInput, any): async.Operation<types.GetUserOutput>
-    getUsersCount: function(Client, types.GetUsersCountInput, any): async.Operation<types.GetUsersCountOutput>
-    listBlockedGuestUsers: function(Client, types.ListBlockedGuestUsersInput, any): async.Operation<types.ListBlockedGuestUsersOutput>
-    listBots: function(Client, types.ListBotsInput, any): async.Operation<types.ListBotsOutput>
-    listDevicesForUser: function(Client, types.ListDevicesForUserInput, any): async.Operation<types.ListDevicesForUserOutput>
-    listGuestUsers: function(Client, types.ListGuestUsersInput, any): async.Operation<types.ListGuestUsersOutput>
-    listNetworks: function(Client, types.ListNetworksInput, any): async.Operation<types.ListNetworksOutput>
-    listSecurityGroups: function(Client, types.ListSecurityGroupsInput, any): async.Operation<types.ListSecurityGroupsOutput>
-    listSecurityGroupUsers: function(Client, types.ListSecurityGroupUsersInput, any): async.Operation<types.ListSecurityGroupUsersOutput>
-    listUsers: function(Client, types.ListUsersInput, any): async.Operation<types.ListUsersOutput>
-    registerOidcConfig: function(Client, types.RegisterOidcConfigInput, any): async.Operation<types.RegisterOidcConfigOutput>
-    registerOidcConfigTest: function(Client, types.RegisterOidcConfigTestInput, any): async.Operation<types.RegisterOidcConfigTestOutput>
-    registerOpentdfConfig: function(Client, types.RegisterOpentdfConfigInput, any): async.Operation<types.RegisterOpentdfConfigOutput>
-    updateBot: function(Client, types.UpdateBotInput, any): async.Operation<types.UpdateBotOutput>
-    updateDataRetention: function(Client, types.UpdateDataRetentionInput, any): async.Operation<types.UpdateDataRetentionOutput>
-    updateGuestUser: function(Client, types.UpdateGuestUserInput, any): async.Operation<types.UpdateGuestUserOutput>
-    updateNetwork: function(Client, types.UpdateNetworkInput, any): async.Operation<types.UpdateNetworkOutput>
-    updateNetworkSettings: function(Client, types.UpdateNetworkSettingsInput, any): async.Operation<types.UpdateNetworkSettingsOutput>
-    updateSecurityGroup: function(Client, types.UpdateSecurityGroupInput, any): async.Operation<types.UpdateSecurityGroupOutput>
-    updateUser: function(Client, types.UpdateUserInput, any): async.Operation<types.UpdateUserOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchCreateUser: function(Client, types.BatchCreateUserInput, ? base_client.InvokeOptions): async.Operation<types.BatchCreateUserOutput>
+    batchDeleteUser: function(Client, types.BatchDeleteUserInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteUserOutput>
+    batchLookupUserUname: function(Client, types.BatchLookupUserUnameInput, ? base_client.InvokeOptions): async.Operation<types.BatchLookupUserUnameOutput>
+    batchReinviteUser: function(Client, types.BatchReinviteUserInput, ? base_client.InvokeOptions): async.Operation<types.BatchReinviteUserOutput>
+    batchResetDevicesForUser: function(Client, types.BatchResetDevicesForUserInput, ? base_client.InvokeOptions): async.Operation<types.BatchResetDevicesForUserOutput>
+    batchToggleUserSuspendStatus: function(Client, types.BatchToggleUserSuspendStatusInput, ? base_client.InvokeOptions): async.Operation<types.BatchToggleUserSuspendStatusOutput>
+    createBot: function(Client, types.CreateBotInput, ? base_client.InvokeOptions): async.Operation<types.CreateBotOutput>
+    createDataRetentionBot: function(Client, types.CreateDataRetentionBotInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataRetentionBotOutput>
+    createDataRetentionBotChallenge: function(Client, types.CreateDataRetentionBotChallengeInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataRetentionBotChallengeOutput>
+    createNetwork: function(Client, types.CreateNetworkInput, ? base_client.InvokeOptions): async.Operation<types.CreateNetworkOutput>
+    createSecurityGroup: function(Client, types.CreateSecurityGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateSecurityGroupOutput>
+    deleteBot: function(Client, types.DeleteBotInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBotOutput>
+    deleteDataRetentionBot: function(Client, types.DeleteDataRetentionBotInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataRetentionBotOutput>
+    deleteNetwork: function(Client, types.DeleteNetworkInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNetworkOutput>
+    deleteSecurityGroup: function(Client, types.DeleteSecurityGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSecurityGroupOutput>
+    getBot: function(Client, types.GetBotInput, ? base_client.InvokeOptions): async.Operation<types.GetBotOutput>
+    getBotsCount: function(Client, types.GetBotsCountInput, ? base_client.InvokeOptions): async.Operation<types.GetBotsCountOutput>
+    getDataRetentionBot: function(Client, types.GetDataRetentionBotInput, ? base_client.InvokeOptions): async.Operation<types.GetDataRetentionBotOutput>
+    getGuestUserHistoryCount: function(Client, types.GetGuestUserHistoryCountInput, ? base_client.InvokeOptions): async.Operation<types.GetGuestUserHistoryCountOutput>
+    getNetwork: function(Client, types.GetNetworkInput, ? base_client.InvokeOptions): async.Operation<types.GetNetworkOutput>
+    getNetworkSettings: function(Client, types.GetNetworkSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetNetworkSettingsOutput>
+    getOidcInfo: function(Client, types.GetOidcInfoInput, ? base_client.InvokeOptions): async.Operation<types.GetOidcInfoOutput>
+    getOpentdfConfig: function(Client, types.GetOpentdfConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetOpentdfConfigOutput>
+    getSecurityGroup: function(Client, types.GetSecurityGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetSecurityGroupOutput>
+    getUser: function(Client, types.GetUserInput, ? base_client.InvokeOptions): async.Operation<types.GetUserOutput>
+    getUsersCount: function(Client, types.GetUsersCountInput, ? base_client.InvokeOptions): async.Operation<types.GetUsersCountOutput>
+    listBlockedGuestUsers: function(Client, types.ListBlockedGuestUsersInput, ? base_client.InvokeOptions): async.Operation<types.ListBlockedGuestUsersOutput>
+    listBots: function(Client, types.ListBotsInput, ? base_client.InvokeOptions): async.Operation<types.ListBotsOutput>
+    listDevicesForUser: function(Client, types.ListDevicesForUserInput, ? base_client.InvokeOptions): async.Operation<types.ListDevicesForUserOutput>
+    listGuestUsers: function(Client, types.ListGuestUsersInput, ? base_client.InvokeOptions): async.Operation<types.ListGuestUsersOutput>
+    listNetworks: function(Client, types.ListNetworksInput, ? base_client.InvokeOptions): async.Operation<types.ListNetworksOutput>
+    listSecurityGroups: function(Client, types.ListSecurityGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListSecurityGroupsOutput>
+    listSecurityGroupUsers: function(Client, types.ListSecurityGroupUsersInput, ? base_client.InvokeOptions): async.Operation<types.ListSecurityGroupUsersOutput>
+    listUsers: function(Client, types.ListUsersInput, ? base_client.InvokeOptions): async.Operation<types.ListUsersOutput>
+    registerOidcConfig: function(Client, types.RegisterOidcConfigInput, ? base_client.InvokeOptions): async.Operation<types.RegisterOidcConfigOutput>
+    registerOidcConfigTest: function(Client, types.RegisterOidcConfigTestInput, ? base_client.InvokeOptions): async.Operation<types.RegisterOidcConfigTestOutput>
+    registerOpentdfConfig: function(Client, types.RegisterOpentdfConfigInput, ? base_client.InvokeOptions): async.Operation<types.RegisterOpentdfConfigOutput>
+    updateBot: function(Client, types.UpdateBotInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBotOutput>
+    updateDataRetention: function(Client, types.UpdateDataRetentionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataRetentionOutput>
+    updateGuestUser: function(Client, types.UpdateGuestUserInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGuestUserOutput>
+    updateNetwork: function(Client, types.UpdateNetworkInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNetworkOutput>
+    updateNetworkSettings: function(Client, types.UpdateNetworkSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNetworkSettingsOutput>
+    updateSecurityGroup: function(Client, types.UpdateSecurityGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSecurityGroupOutput>
+    updateUser: function(Client, types.UpdateUserInput, ? base_client.InvokeOptions): async.Operation<types.UpdateUserOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "WickrAdminApi"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "wickr", signing_region = c.region } }
                 else
@@ -103,180 +106,180 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchCreateUser(input: types.BatchCreateUserInput, options: any): async.Operation<types.BatchCreateUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchCreateUser, input, options) as async.Operation<types.BatchCreateUserOutput>
+function C:batchCreateUser(input: types.BatchCreateUserInput, options?: base_client.InvokeOptions): async.Operation<types.BatchCreateUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchCreateUser as schema.OperationSchema, input, options) as async.Operation<types.BatchCreateUserOutput>
 end
 
-function C:batchDeleteUser(input: types.BatchDeleteUserInput, options: any): async.Operation<types.BatchDeleteUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDeleteUser, input, options) as async.Operation<types.BatchDeleteUserOutput>
+function C:batchDeleteUser(input: types.BatchDeleteUserInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteUser as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteUserOutput>
 end
 
-function C:batchLookupUserUname(input: types.BatchLookupUserUnameInput, options: any): async.Operation<types.BatchLookupUserUnameOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchLookupUserUname, input, options) as async.Operation<types.BatchLookupUserUnameOutput>
+function C:batchLookupUserUname(input: types.BatchLookupUserUnameInput, options?: base_client.InvokeOptions): async.Operation<types.BatchLookupUserUnameOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchLookupUserUname as schema.OperationSchema, input, options) as async.Operation<types.BatchLookupUserUnameOutput>
 end
 
-function C:batchReinviteUser(input: types.BatchReinviteUserInput, options: any): async.Operation<types.BatchReinviteUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchReinviteUser, input, options) as async.Operation<types.BatchReinviteUserOutput>
+function C:batchReinviteUser(input: types.BatchReinviteUserInput, options?: base_client.InvokeOptions): async.Operation<types.BatchReinviteUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchReinviteUser as schema.OperationSchema, input, options) as async.Operation<types.BatchReinviteUserOutput>
 end
 
-function C:batchResetDevicesForUser(input: types.BatchResetDevicesForUserInput, options: any): async.Operation<types.BatchResetDevicesForUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchResetDevicesForUser, input, options) as async.Operation<types.BatchResetDevicesForUserOutput>
+function C:batchResetDevicesForUser(input: types.BatchResetDevicesForUserInput, options?: base_client.InvokeOptions): async.Operation<types.BatchResetDevicesForUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchResetDevicesForUser as schema.OperationSchema, input, options) as async.Operation<types.BatchResetDevicesForUserOutput>
 end
 
-function C:batchToggleUserSuspendStatus(input: types.BatchToggleUserSuspendStatusInput, options: any): async.Operation<types.BatchToggleUserSuspendStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchToggleUserSuspendStatus, input, options) as async.Operation<types.BatchToggleUserSuspendStatusOutput>
+function C:batchToggleUserSuspendStatus(input: types.BatchToggleUserSuspendStatusInput, options?: base_client.InvokeOptions): async.Operation<types.BatchToggleUserSuspendStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchToggleUserSuspendStatus as schema.OperationSchema, input, options) as async.Operation<types.BatchToggleUserSuspendStatusOutput>
 end
 
-function C:createBot(input: types.CreateBotInput, options: any): async.Operation<types.CreateBotOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBot, input, options) as async.Operation<types.CreateBotOutput>
+function C:createBot(input: types.CreateBotInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBot as schema.OperationSchema, input, options) as async.Operation<types.CreateBotOutput>
 end
 
-function C:createDataRetentionBot(input: types.CreateDataRetentionBotInput, options: any): async.Operation<types.CreateDataRetentionBotOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataRetentionBot, input, options) as async.Operation<types.CreateDataRetentionBotOutput>
+function C:createDataRetentionBot(input: types.CreateDataRetentionBotInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataRetentionBotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataRetentionBot as schema.OperationSchema, input, options) as async.Operation<types.CreateDataRetentionBotOutput>
 end
 
-function C:createDataRetentionBotChallenge(input: types.CreateDataRetentionBotChallengeInput, options: any): async.Operation<types.CreateDataRetentionBotChallengeOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataRetentionBotChallenge, input, options) as async.Operation<types.CreateDataRetentionBotChallengeOutput>
+function C:createDataRetentionBotChallenge(input: types.CreateDataRetentionBotChallengeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataRetentionBotChallengeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataRetentionBotChallenge as schema.OperationSchema, input, options) as async.Operation<types.CreateDataRetentionBotChallengeOutput>
 end
 
-function C:createNetwork(input: types.CreateNetworkInput, options: any): async.Operation<types.CreateNetworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNetwork, input, options) as async.Operation<types.CreateNetworkOutput>
+function C:createNetwork(input: types.CreateNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNetworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNetwork as schema.OperationSchema, input, options) as async.Operation<types.CreateNetworkOutput>
 end
 
-function C:createSecurityGroup(input: types.CreateSecurityGroupInput, options: any): async.Operation<types.CreateSecurityGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSecurityGroup, input, options) as async.Operation<types.CreateSecurityGroupOutput>
+function C:createSecurityGroup(input: types.CreateSecurityGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSecurityGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSecurityGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateSecurityGroupOutput>
 end
 
-function C:deleteBot(input: types.DeleteBotInput, options: any): async.Operation<types.DeleteBotOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBot, input, options) as async.Operation<types.DeleteBotOutput>
+function C:deleteBot(input: types.DeleteBotInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBot as schema.OperationSchema, input, options) as async.Operation<types.DeleteBotOutput>
 end
 
-function C:deleteDataRetentionBot(input: types.DeleteDataRetentionBotInput, options: any): async.Operation<types.DeleteDataRetentionBotOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDataRetentionBot, input, options) as async.Operation<types.DeleteDataRetentionBotOutput>
+function C:deleteDataRetentionBot(input: types.DeleteDataRetentionBotInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDataRetentionBotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataRetentionBot as schema.OperationSchema, input, options) as async.Operation<types.DeleteDataRetentionBotOutput>
 end
 
-function C:deleteNetwork(input: types.DeleteNetworkInput, options: any): async.Operation<types.DeleteNetworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNetwork, input, options) as async.Operation<types.DeleteNetworkOutput>
+function C:deleteNetwork(input: types.DeleteNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNetworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNetwork as schema.OperationSchema, input, options) as async.Operation<types.DeleteNetworkOutput>
 end
 
-function C:deleteSecurityGroup(input: types.DeleteSecurityGroupInput, options: any): async.Operation<types.DeleteSecurityGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSecurityGroup, input, options) as async.Operation<types.DeleteSecurityGroupOutput>
+function C:deleteSecurityGroup(input: types.DeleteSecurityGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSecurityGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSecurityGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteSecurityGroupOutput>
 end
 
-function C:getBot(input: types.GetBotInput, options: any): async.Operation<types.GetBotOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBot, input, options) as async.Operation<types.GetBotOutput>
+function C:getBot(input: types.GetBotInput, options?: base_client.InvokeOptions): async.Operation<types.GetBotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBot as schema.OperationSchema, input, options) as async.Operation<types.GetBotOutput>
 end
 
-function C:getBotsCount(input: types.GetBotsCountInput, options: any): async.Operation<types.GetBotsCountOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBotsCount, input, options) as async.Operation<types.GetBotsCountOutput>
+function C:getBotsCount(input: types.GetBotsCountInput, options?: base_client.InvokeOptions): async.Operation<types.GetBotsCountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBotsCount as schema.OperationSchema, input, options) as async.Operation<types.GetBotsCountOutput>
 end
 
-function C:getDataRetentionBot(input: types.GetDataRetentionBotInput, options: any): async.Operation<types.GetDataRetentionBotOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataRetentionBot, input, options) as async.Operation<types.GetDataRetentionBotOutput>
+function C:getDataRetentionBot(input: types.GetDataRetentionBotInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataRetentionBotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataRetentionBot as schema.OperationSchema, input, options) as async.Operation<types.GetDataRetentionBotOutput>
 end
 
-function C:getGuestUserHistoryCount(input: types.GetGuestUserHistoryCountInput, options: any): async.Operation<types.GetGuestUserHistoryCountOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetGuestUserHistoryCount, input, options) as async.Operation<types.GetGuestUserHistoryCountOutput>
+function C:getGuestUserHistoryCount(input: types.GetGuestUserHistoryCountInput, options?: base_client.InvokeOptions): async.Operation<types.GetGuestUserHistoryCountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGuestUserHistoryCount as schema.OperationSchema, input, options) as async.Operation<types.GetGuestUserHistoryCountOutput>
 end
 
-function C:getNetwork(input: types.GetNetworkInput, options: any): async.Operation<types.GetNetworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNetwork, input, options) as async.Operation<types.GetNetworkOutput>
+function C:getNetwork(input: types.GetNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.GetNetworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNetwork as schema.OperationSchema, input, options) as async.Operation<types.GetNetworkOutput>
 end
 
-function C:getNetworkSettings(input: types.GetNetworkSettingsInput, options: any): async.Operation<types.GetNetworkSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNetworkSettings, input, options) as async.Operation<types.GetNetworkSettingsOutput>
+function C:getNetworkSettings(input: types.GetNetworkSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetNetworkSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNetworkSettings as schema.OperationSchema, input, options) as async.Operation<types.GetNetworkSettingsOutput>
 end
 
-function C:getOidcInfo(input: types.GetOidcInfoInput, options: any): async.Operation<types.GetOidcInfoOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOidcInfo, input, options) as async.Operation<types.GetOidcInfoOutput>
+function C:getOidcInfo(input: types.GetOidcInfoInput, options?: base_client.InvokeOptions): async.Operation<types.GetOidcInfoOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOidcInfo as schema.OperationSchema, input, options) as async.Operation<types.GetOidcInfoOutput>
 end
 
-function C:getOpentdfConfig(input: types.GetOpentdfConfigInput, options: any): async.Operation<types.GetOpentdfConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOpentdfConfig, input, options) as async.Operation<types.GetOpentdfConfigOutput>
+function C:getOpentdfConfig(input: types.GetOpentdfConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetOpentdfConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOpentdfConfig as schema.OperationSchema, input, options) as async.Operation<types.GetOpentdfConfigOutput>
 end
 
-function C:getSecurityGroup(input: types.GetSecurityGroupInput, options: any): async.Operation<types.GetSecurityGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSecurityGroup, input, options) as async.Operation<types.GetSecurityGroupOutput>
+function C:getSecurityGroup(input: types.GetSecurityGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetSecurityGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSecurityGroup as schema.OperationSchema, input, options) as async.Operation<types.GetSecurityGroupOutput>
 end
 
-function C:getUser(input: types.GetUserInput, options: any): async.Operation<types.GetUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetUser, input, options) as async.Operation<types.GetUserOutput>
+function C:getUser(input: types.GetUserInput, options?: base_client.InvokeOptions): async.Operation<types.GetUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetUser as schema.OperationSchema, input, options) as async.Operation<types.GetUserOutput>
 end
 
-function C:getUsersCount(input: types.GetUsersCountInput, options: any): async.Operation<types.GetUsersCountOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetUsersCount, input, options) as async.Operation<types.GetUsersCountOutput>
+function C:getUsersCount(input: types.GetUsersCountInput, options?: base_client.InvokeOptions): async.Operation<types.GetUsersCountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetUsersCount as schema.OperationSchema, input, options) as async.Operation<types.GetUsersCountOutput>
 end
 
-function C:listBlockedGuestUsers(input: types.ListBlockedGuestUsersInput, options: any): async.Operation<types.ListBlockedGuestUsersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBlockedGuestUsers, input, options) as async.Operation<types.ListBlockedGuestUsersOutput>
+function C:listBlockedGuestUsers(input: types.ListBlockedGuestUsersInput, options?: base_client.InvokeOptions): async.Operation<types.ListBlockedGuestUsersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBlockedGuestUsers as schema.OperationSchema, input, options) as async.Operation<types.ListBlockedGuestUsersOutput>
 end
 
-function C:listBots(input: types.ListBotsInput, options: any): async.Operation<types.ListBotsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBots, input, options) as async.Operation<types.ListBotsOutput>
+function C:listBots(input: types.ListBotsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBotsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBots as schema.OperationSchema, input, options) as async.Operation<types.ListBotsOutput>
 end
 
-function C:listDevicesForUser(input: types.ListDevicesForUserInput, options: any): async.Operation<types.ListDevicesForUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDevicesForUser, input, options) as async.Operation<types.ListDevicesForUserOutput>
+function C:listDevicesForUser(input: types.ListDevicesForUserInput, options?: base_client.InvokeOptions): async.Operation<types.ListDevicesForUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDevicesForUser as schema.OperationSchema, input, options) as async.Operation<types.ListDevicesForUserOutput>
 end
 
-function C:listGuestUsers(input: types.ListGuestUsersInput, options: any): async.Operation<types.ListGuestUsersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGuestUsers, input, options) as async.Operation<types.ListGuestUsersOutput>
+function C:listGuestUsers(input: types.ListGuestUsersInput, options?: base_client.InvokeOptions): async.Operation<types.ListGuestUsersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGuestUsers as schema.OperationSchema, input, options) as async.Operation<types.ListGuestUsersOutput>
 end
 
-function C:listNetworks(input: types.ListNetworksInput, options: any): async.Operation<types.ListNetworksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNetworks, input, options) as async.Operation<types.ListNetworksOutput>
+function C:listNetworks(input: types.ListNetworksInput, options?: base_client.InvokeOptions): async.Operation<types.ListNetworksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNetworks as schema.OperationSchema, input, options) as async.Operation<types.ListNetworksOutput>
 end
 
-function C:listSecurityGroups(input: types.ListSecurityGroupsInput, options: any): async.Operation<types.ListSecurityGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSecurityGroups, input, options) as async.Operation<types.ListSecurityGroupsOutput>
+function C:listSecurityGroups(input: types.ListSecurityGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSecurityGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSecurityGroups as schema.OperationSchema, input, options) as async.Operation<types.ListSecurityGroupsOutput>
 end
 
-function C:listSecurityGroupUsers(input: types.ListSecurityGroupUsersInput, options: any): async.Operation<types.ListSecurityGroupUsersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSecurityGroupUsers, input, options) as async.Operation<types.ListSecurityGroupUsersOutput>
+function C:listSecurityGroupUsers(input: types.ListSecurityGroupUsersInput, options?: base_client.InvokeOptions): async.Operation<types.ListSecurityGroupUsersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSecurityGroupUsers as schema.OperationSchema, input, options) as async.Operation<types.ListSecurityGroupUsersOutput>
 end
 
-function C:listUsers(input: types.ListUsersInput, options: any): async.Operation<types.ListUsersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListUsers, input, options) as async.Operation<types.ListUsersOutput>
+function C:listUsers(input: types.ListUsersInput, options?: base_client.InvokeOptions): async.Operation<types.ListUsersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUsers as schema.OperationSchema, input, options) as async.Operation<types.ListUsersOutput>
 end
 
-function C:registerOidcConfig(input: types.RegisterOidcConfigInput, options: any): async.Operation<types.RegisterOidcConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterOidcConfig, input, options) as async.Operation<types.RegisterOidcConfigOutput>
+function C:registerOidcConfig(input: types.RegisterOidcConfigInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterOidcConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterOidcConfig as schema.OperationSchema, input, options) as async.Operation<types.RegisterOidcConfigOutput>
 end
 
-function C:registerOidcConfigTest(input: types.RegisterOidcConfigTestInput, options: any): async.Operation<types.RegisterOidcConfigTestOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterOidcConfigTest, input, options) as async.Operation<types.RegisterOidcConfigTestOutput>
+function C:registerOidcConfigTest(input: types.RegisterOidcConfigTestInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterOidcConfigTestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterOidcConfigTest as schema.OperationSchema, input, options) as async.Operation<types.RegisterOidcConfigTestOutput>
 end
 
-function C:registerOpentdfConfig(input: types.RegisterOpentdfConfigInput, options: any): async.Operation<types.RegisterOpentdfConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterOpentdfConfig, input, options) as async.Operation<types.RegisterOpentdfConfigOutput>
+function C:registerOpentdfConfig(input: types.RegisterOpentdfConfigInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterOpentdfConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterOpentdfConfig as schema.OperationSchema, input, options) as async.Operation<types.RegisterOpentdfConfigOutput>
 end
 
-function C:updateBot(input: types.UpdateBotInput, options: any): async.Operation<types.UpdateBotOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateBot, input, options) as async.Operation<types.UpdateBotOutput>
+function C:updateBot(input: types.UpdateBotInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBot as schema.OperationSchema, input, options) as async.Operation<types.UpdateBotOutput>
 end
 
-function C:updateDataRetention(input: types.UpdateDataRetentionInput, options: any): async.Operation<types.UpdateDataRetentionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDataRetention, input, options) as async.Operation<types.UpdateDataRetentionOutput>
+function C:updateDataRetention(input: types.UpdateDataRetentionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDataRetentionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDataRetention as schema.OperationSchema, input, options) as async.Operation<types.UpdateDataRetentionOutput>
 end
 
-function C:updateGuestUser(input: types.UpdateGuestUserInput, options: any): async.Operation<types.UpdateGuestUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateGuestUser, input, options) as async.Operation<types.UpdateGuestUserOutput>
+function C:updateGuestUser(input: types.UpdateGuestUserInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGuestUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGuestUser as schema.OperationSchema, input, options) as async.Operation<types.UpdateGuestUserOutput>
 end
 
-function C:updateNetwork(input: types.UpdateNetworkInput, options: any): async.Operation<types.UpdateNetworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateNetwork, input, options) as async.Operation<types.UpdateNetworkOutput>
+function C:updateNetwork(input: types.UpdateNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNetworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNetwork as schema.OperationSchema, input, options) as async.Operation<types.UpdateNetworkOutput>
 end
 
-function C:updateNetworkSettings(input: types.UpdateNetworkSettingsInput, options: any): async.Operation<types.UpdateNetworkSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateNetworkSettings, input, options) as async.Operation<types.UpdateNetworkSettingsOutput>
+function C:updateNetworkSettings(input: types.UpdateNetworkSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNetworkSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNetworkSettings as schema.OperationSchema, input, options) as async.Operation<types.UpdateNetworkSettingsOutput>
 end
 
-function C:updateSecurityGroup(input: types.UpdateSecurityGroupInput, options: any): async.Operation<types.UpdateSecurityGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSecurityGroup, input, options) as async.Operation<types.UpdateSecurityGroupOutput>
+function C:updateSecurityGroup(input: types.UpdateSecurityGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSecurityGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSecurityGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateSecurityGroupOutput>
 end
 
-function C:updateUser(input: types.UpdateUserInput, options: any): async.Operation<types.UpdateUserOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateUser, input, options) as async.Operation<types.UpdateUserOutput>
+function C:updateUser(input: types.UpdateUserInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateUserOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateUser as schema.OperationSchema, input, options) as async.Operation<types.UpdateUserOutput>
 end
 
 return M

@@ -8,110 +8,113 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("route53.endpoint_rules")
 local restxml_protocol = require("smithy.protocol.restxml")
+local schema = require("smithy.schema")
 local schemas = require("route53.schemas")
 local traits = require("smithy.traits")
 local types = require("route53.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    activateKeySigningKey: function(Client, types.ActivateKeySigningKeyInput, any): async.Operation<types.ActivateKeySigningKeyOutput>
-    associateVPCWithHostedZone: function(Client, types.AssociateVPCWithHostedZoneInput, any): async.Operation<types.AssociateVPCWithHostedZoneOutput>
-    changeCidrCollection: function(Client, types.ChangeCidrCollectionInput, any): async.Operation<types.ChangeCidrCollectionOutput>
-    changeResourceRecordSets: function(Client, types.ChangeResourceRecordSetsInput, any): async.Operation<types.ChangeResourceRecordSetsOutput>
-    changeTagsForResource: function(Client, types.ChangeTagsForResourceInput, any): async.Operation<types.ChangeTagsForResourceOutput>
-    createCidrCollection: function(Client, types.CreateCidrCollectionInput, any): async.Operation<types.CreateCidrCollectionOutput>
-    createHealthCheck: function(Client, types.CreateHealthCheckInput, any): async.Operation<types.CreateHealthCheckOutput>
-    createHostedZone: function(Client, types.CreateHostedZoneInput, any): async.Operation<types.CreateHostedZoneOutput>
-    createKeySigningKey: function(Client, types.CreateKeySigningKeyInput, any): async.Operation<types.CreateKeySigningKeyOutput>
-    createQueryLoggingConfig: function(Client, types.CreateQueryLoggingConfigInput, any): async.Operation<types.CreateQueryLoggingConfigOutput>
-    createReusableDelegationSet: function(Client, types.CreateReusableDelegationSetInput, any): async.Operation<types.CreateReusableDelegationSetOutput>
-    createTrafficPolicy: function(Client, types.CreateTrafficPolicyInput, any): async.Operation<types.CreateTrafficPolicyOutput>
-    createTrafficPolicyInstance: function(Client, types.CreateTrafficPolicyInstanceInput, any): async.Operation<types.CreateTrafficPolicyInstanceOutput>
-    createTrafficPolicyVersion: function(Client, types.CreateTrafficPolicyVersionInput, any): async.Operation<types.CreateTrafficPolicyVersionOutput>
-    createVPCAssociationAuthorization: function(Client, types.CreateVPCAssociationAuthorizationInput, any): async.Operation<types.CreateVPCAssociationAuthorizationOutput>
-    deactivateKeySigningKey: function(Client, types.DeactivateKeySigningKeyInput, any): async.Operation<types.DeactivateKeySigningKeyOutput>
-    deleteCidrCollection: function(Client, types.DeleteCidrCollectionInput, any): async.Operation<types.DeleteCidrCollectionOutput>
-    deleteHealthCheck: function(Client, types.DeleteHealthCheckInput, any): async.Operation<types.DeleteHealthCheckOutput>
-    deleteHostedZone: function(Client, types.DeleteHostedZoneInput, any): async.Operation<types.DeleteHostedZoneOutput>
-    deleteKeySigningKey: function(Client, types.DeleteKeySigningKeyInput, any): async.Operation<types.DeleteKeySigningKeyOutput>
-    deleteQueryLoggingConfig: function(Client, types.DeleteQueryLoggingConfigInput, any): async.Operation<types.DeleteQueryLoggingConfigOutput>
-    deleteReusableDelegationSet: function(Client, types.DeleteReusableDelegationSetInput, any): async.Operation<types.DeleteReusableDelegationSetOutput>
-    deleteTrafficPolicy: function(Client, types.DeleteTrafficPolicyInput, any): async.Operation<types.DeleteTrafficPolicyOutput>
-    deleteTrafficPolicyInstance: function(Client, types.DeleteTrafficPolicyInstanceInput, any): async.Operation<types.DeleteTrafficPolicyInstanceOutput>
-    deleteVPCAssociationAuthorization: function(Client, types.DeleteVPCAssociationAuthorizationInput, any): async.Operation<types.DeleteVPCAssociationAuthorizationOutput>
-    disableHostedZoneDNSSEC: function(Client, types.DisableHostedZoneDNSSECInput, any): async.Operation<types.DisableHostedZoneDNSSECOutput>
-    disassociateVPCFromHostedZone: function(Client, types.DisassociateVPCFromHostedZoneInput, any): async.Operation<types.DisassociateVPCFromHostedZoneOutput>
-    enableHostedZoneDNSSEC: function(Client, types.EnableHostedZoneDNSSECInput, any): async.Operation<types.EnableHostedZoneDNSSECOutput>
-    getAccountLimit: function(Client, types.GetAccountLimitInput, any): async.Operation<types.GetAccountLimitOutput>
-    getChange: function(Client, types.GetChangeInput, any): async.Operation<types.GetChangeOutput>
-    getCheckerIpRanges: function(Client, types.GetCheckerIpRangesInput, any): async.Operation<types.GetCheckerIpRangesOutput>
-    getDNSSEC: function(Client, types.GetDNSSECInput, any): async.Operation<types.GetDNSSECOutput>
-    getGeoLocation: function(Client, types.GetGeoLocationInput, any): async.Operation<types.GetGeoLocationOutput>
-    getHealthCheck: function(Client, types.GetHealthCheckInput, any): async.Operation<types.GetHealthCheckOutput>
-    getHealthCheckCount: function(Client, types.GetHealthCheckCountInput, any): async.Operation<types.GetHealthCheckCountOutput>
-    getHealthCheckLastFailureReason: function(Client, types.GetHealthCheckLastFailureReasonInput, any): async.Operation<types.GetHealthCheckLastFailureReasonOutput>
-    getHealthCheckStatus: function(Client, types.GetHealthCheckStatusInput, any): async.Operation<types.GetHealthCheckStatusOutput>
-    getHostedZone: function(Client, types.GetHostedZoneInput, any): async.Operation<types.GetHostedZoneOutput>
-    getHostedZoneCount: function(Client, types.GetHostedZoneCountInput, any): async.Operation<types.GetHostedZoneCountOutput>
-    getHostedZoneLimit: function(Client, types.GetHostedZoneLimitInput, any): async.Operation<types.GetHostedZoneLimitOutput>
-    getQueryLoggingConfig: function(Client, types.GetQueryLoggingConfigInput, any): async.Operation<types.GetQueryLoggingConfigOutput>
-    getReusableDelegationSet: function(Client, types.GetReusableDelegationSetInput, any): async.Operation<types.GetReusableDelegationSetOutput>
-    getReusableDelegationSetLimit: function(Client, types.GetReusableDelegationSetLimitInput, any): async.Operation<types.GetReusableDelegationSetLimitOutput>
-    getTrafficPolicy: function(Client, types.GetTrafficPolicyInput, any): async.Operation<types.GetTrafficPolicyOutput>
-    getTrafficPolicyInstance: function(Client, types.GetTrafficPolicyInstanceInput, any): async.Operation<types.GetTrafficPolicyInstanceOutput>
-    getTrafficPolicyInstanceCount: function(Client, types.GetTrafficPolicyInstanceCountInput, any): async.Operation<types.GetTrafficPolicyInstanceCountOutput>
-    listCidrBlocks: function(Client, types.ListCidrBlocksInput, any): async.Operation<types.ListCidrBlocksOutput>
-    listCidrCollections: function(Client, types.ListCidrCollectionsInput, any): async.Operation<types.ListCidrCollectionsOutput>
-    listCidrLocations: function(Client, types.ListCidrLocationsInput, any): async.Operation<types.ListCidrLocationsOutput>
-    listGeoLocations: function(Client, types.ListGeoLocationsInput, any): async.Operation<types.ListGeoLocationsOutput>
-    listHealthChecks: function(Client, types.ListHealthChecksInput, any): async.Operation<types.ListHealthChecksOutput>
-    listHostedZones: function(Client, types.ListHostedZonesInput, any): async.Operation<types.ListHostedZonesOutput>
-    listHostedZonesByName: function(Client, types.ListHostedZonesByNameInput, any): async.Operation<types.ListHostedZonesByNameOutput>
-    listHostedZonesByVPC: function(Client, types.ListHostedZonesByVPCInput, any): async.Operation<types.ListHostedZonesByVPCOutput>
-    listQueryLoggingConfigs: function(Client, types.ListQueryLoggingConfigsInput, any): async.Operation<types.ListQueryLoggingConfigsOutput>
-    listResourceRecordSets: function(Client, types.ListResourceRecordSetsInput, any): async.Operation<types.ListResourceRecordSetsOutput>
-    listReusableDelegationSets: function(Client, types.ListReusableDelegationSetsInput, any): async.Operation<types.ListReusableDelegationSetsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTagsForResources: function(Client, types.ListTagsForResourcesInput, any): async.Operation<types.ListTagsForResourcesOutput>
-    listTrafficPolicies: function(Client, types.ListTrafficPoliciesInput, any): async.Operation<types.ListTrafficPoliciesOutput>
-    listTrafficPolicyInstances: function(Client, types.ListTrafficPolicyInstancesInput, any): async.Operation<types.ListTrafficPolicyInstancesOutput>
-    listTrafficPolicyInstancesByHostedZone: function(Client, types.ListTrafficPolicyInstancesByHostedZoneInput, any): async.Operation<types.ListTrafficPolicyInstancesByHostedZoneOutput>
-    listTrafficPolicyInstancesByPolicy: function(Client, types.ListTrafficPolicyInstancesByPolicyInput, any): async.Operation<types.ListTrafficPolicyInstancesByPolicyOutput>
-    listTrafficPolicyVersions: function(Client, types.ListTrafficPolicyVersionsInput, any): async.Operation<types.ListTrafficPolicyVersionsOutput>
-    listVPCAssociationAuthorizations: function(Client, types.ListVPCAssociationAuthorizationsInput, any): async.Operation<types.ListVPCAssociationAuthorizationsOutput>
-    testDNSAnswer: function(Client, types.TestDNSAnswerInput, any): async.Operation<types.TestDNSAnswerOutput>
-    updateHealthCheck: function(Client, types.UpdateHealthCheckInput, any): async.Operation<types.UpdateHealthCheckOutput>
-    updateHostedZoneComment: function(Client, types.UpdateHostedZoneCommentInput, any): async.Operation<types.UpdateHostedZoneCommentOutput>
-    updateHostedZoneFeatures: function(Client, types.UpdateHostedZoneFeaturesInput, any): async.Operation<types.UpdateHostedZoneFeaturesOutput>
-    updateTrafficPolicyComment: function(Client, types.UpdateTrafficPolicyCommentInput, any): async.Operation<types.UpdateTrafficPolicyCommentOutput>
-    updateTrafficPolicyInstance: function(Client, types.UpdateTrafficPolicyInstanceInput, any): async.Operation<types.UpdateTrafficPolicyInstanceOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    activateKeySigningKey: function(Client, types.ActivateKeySigningKeyInput, ? base_client.InvokeOptions): async.Operation<types.ActivateKeySigningKeyOutput>
+    associateVPCWithHostedZone: function(Client, types.AssociateVPCWithHostedZoneInput, ? base_client.InvokeOptions): async.Operation<types.AssociateVPCWithHostedZoneOutput>
+    changeCidrCollection: function(Client, types.ChangeCidrCollectionInput, ? base_client.InvokeOptions): async.Operation<types.ChangeCidrCollectionOutput>
+    changeResourceRecordSets: function(Client, types.ChangeResourceRecordSetsInput, ? base_client.InvokeOptions): async.Operation<types.ChangeResourceRecordSetsOutput>
+    changeTagsForResource: function(Client, types.ChangeTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ChangeTagsForResourceOutput>
+    createCidrCollection: function(Client, types.CreateCidrCollectionInput, ? base_client.InvokeOptions): async.Operation<types.CreateCidrCollectionOutput>
+    createHealthCheck: function(Client, types.CreateHealthCheckInput, ? base_client.InvokeOptions): async.Operation<types.CreateHealthCheckOutput>
+    createHostedZone: function(Client, types.CreateHostedZoneInput, ? base_client.InvokeOptions): async.Operation<types.CreateHostedZoneOutput>
+    createKeySigningKey: function(Client, types.CreateKeySigningKeyInput, ? base_client.InvokeOptions): async.Operation<types.CreateKeySigningKeyOutput>
+    createQueryLoggingConfig: function(Client, types.CreateQueryLoggingConfigInput, ? base_client.InvokeOptions): async.Operation<types.CreateQueryLoggingConfigOutput>
+    createReusableDelegationSet: function(Client, types.CreateReusableDelegationSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateReusableDelegationSetOutput>
+    createTrafficPolicy: function(Client, types.CreateTrafficPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateTrafficPolicyOutput>
+    createTrafficPolicyInstance: function(Client, types.CreateTrafficPolicyInstanceInput, ? base_client.InvokeOptions): async.Operation<types.CreateTrafficPolicyInstanceOutput>
+    createTrafficPolicyVersion: function(Client, types.CreateTrafficPolicyVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateTrafficPolicyVersionOutput>
+    createVPCAssociationAuthorization: function(Client, types.CreateVPCAssociationAuthorizationInput, ? base_client.InvokeOptions): async.Operation<types.CreateVPCAssociationAuthorizationOutput>
+    deactivateKeySigningKey: function(Client, types.DeactivateKeySigningKeyInput, ? base_client.InvokeOptions): async.Operation<types.DeactivateKeySigningKeyOutput>
+    deleteCidrCollection: function(Client, types.DeleteCidrCollectionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCidrCollectionOutput>
+    deleteHealthCheck: function(Client, types.DeleteHealthCheckInput, ? base_client.InvokeOptions): async.Operation<types.DeleteHealthCheckOutput>
+    deleteHostedZone: function(Client, types.DeleteHostedZoneInput, ? base_client.InvokeOptions): async.Operation<types.DeleteHostedZoneOutput>
+    deleteKeySigningKey: function(Client, types.DeleteKeySigningKeyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKeySigningKeyOutput>
+    deleteQueryLoggingConfig: function(Client, types.DeleteQueryLoggingConfigInput, ? base_client.InvokeOptions): async.Operation<types.DeleteQueryLoggingConfigOutput>
+    deleteReusableDelegationSet: function(Client, types.DeleteReusableDelegationSetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteReusableDelegationSetOutput>
+    deleteTrafficPolicy: function(Client, types.DeleteTrafficPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTrafficPolicyOutput>
+    deleteTrafficPolicyInstance: function(Client, types.DeleteTrafficPolicyInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTrafficPolicyInstanceOutput>
+    deleteVPCAssociationAuthorization: function(Client, types.DeleteVPCAssociationAuthorizationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVPCAssociationAuthorizationOutput>
+    disableHostedZoneDNSSEC: function(Client, types.DisableHostedZoneDNSSECInput, ? base_client.InvokeOptions): async.Operation<types.DisableHostedZoneDNSSECOutput>
+    disassociateVPCFromHostedZone: function(Client, types.DisassociateVPCFromHostedZoneInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateVPCFromHostedZoneOutput>
+    enableHostedZoneDNSSEC: function(Client, types.EnableHostedZoneDNSSECInput, ? base_client.InvokeOptions): async.Operation<types.EnableHostedZoneDNSSECOutput>
+    getAccountLimit: function(Client, types.GetAccountLimitInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountLimitOutput>
+    getChange: function(Client, types.GetChangeInput, ? base_client.InvokeOptions): async.Operation<types.GetChangeOutput>
+    getCheckerIpRanges: function(Client, types.GetCheckerIpRangesInput, ? base_client.InvokeOptions): async.Operation<types.GetCheckerIpRangesOutput>
+    getDNSSEC: function(Client, types.GetDNSSECInput, ? base_client.InvokeOptions): async.Operation<types.GetDNSSECOutput>
+    getGeoLocation: function(Client, types.GetGeoLocationInput, ? base_client.InvokeOptions): async.Operation<types.GetGeoLocationOutput>
+    getHealthCheck: function(Client, types.GetHealthCheckInput, ? base_client.InvokeOptions): async.Operation<types.GetHealthCheckOutput>
+    getHealthCheckCount: function(Client, types.GetHealthCheckCountInput, ? base_client.InvokeOptions): async.Operation<types.GetHealthCheckCountOutput>
+    getHealthCheckLastFailureReason: function(Client, types.GetHealthCheckLastFailureReasonInput, ? base_client.InvokeOptions): async.Operation<types.GetHealthCheckLastFailureReasonOutput>
+    getHealthCheckStatus: function(Client, types.GetHealthCheckStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetHealthCheckStatusOutput>
+    getHostedZone: function(Client, types.GetHostedZoneInput, ? base_client.InvokeOptions): async.Operation<types.GetHostedZoneOutput>
+    getHostedZoneCount: function(Client, types.GetHostedZoneCountInput, ? base_client.InvokeOptions): async.Operation<types.GetHostedZoneCountOutput>
+    getHostedZoneLimit: function(Client, types.GetHostedZoneLimitInput, ? base_client.InvokeOptions): async.Operation<types.GetHostedZoneLimitOutput>
+    getQueryLoggingConfig: function(Client, types.GetQueryLoggingConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryLoggingConfigOutput>
+    getReusableDelegationSet: function(Client, types.GetReusableDelegationSetInput, ? base_client.InvokeOptions): async.Operation<types.GetReusableDelegationSetOutput>
+    getReusableDelegationSetLimit: function(Client, types.GetReusableDelegationSetLimitInput, ? base_client.InvokeOptions): async.Operation<types.GetReusableDelegationSetLimitOutput>
+    getTrafficPolicy: function(Client, types.GetTrafficPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetTrafficPolicyOutput>
+    getTrafficPolicyInstance: function(Client, types.GetTrafficPolicyInstanceInput, ? base_client.InvokeOptions): async.Operation<types.GetTrafficPolicyInstanceOutput>
+    getTrafficPolicyInstanceCount: function(Client, types.GetTrafficPolicyInstanceCountInput, ? base_client.InvokeOptions): async.Operation<types.GetTrafficPolicyInstanceCountOutput>
+    listCidrBlocks: function(Client, types.ListCidrBlocksInput, ? base_client.InvokeOptions): async.Operation<types.ListCidrBlocksOutput>
+    listCidrCollections: function(Client, types.ListCidrCollectionsInput, ? base_client.InvokeOptions): async.Operation<types.ListCidrCollectionsOutput>
+    listCidrLocations: function(Client, types.ListCidrLocationsInput, ? base_client.InvokeOptions): async.Operation<types.ListCidrLocationsOutput>
+    listGeoLocations: function(Client, types.ListGeoLocationsInput, ? base_client.InvokeOptions): async.Operation<types.ListGeoLocationsOutput>
+    listHealthChecks: function(Client, types.ListHealthChecksInput, ? base_client.InvokeOptions): async.Operation<types.ListHealthChecksOutput>
+    listHostedZones: function(Client, types.ListHostedZonesInput, ? base_client.InvokeOptions): async.Operation<types.ListHostedZonesOutput>
+    listHostedZonesByName: function(Client, types.ListHostedZonesByNameInput, ? base_client.InvokeOptions): async.Operation<types.ListHostedZonesByNameOutput>
+    listHostedZonesByVPC: function(Client, types.ListHostedZonesByVPCInput, ? base_client.InvokeOptions): async.Operation<types.ListHostedZonesByVPCOutput>
+    listQueryLoggingConfigs: function(Client, types.ListQueryLoggingConfigsInput, ? base_client.InvokeOptions): async.Operation<types.ListQueryLoggingConfigsOutput>
+    listResourceRecordSets: function(Client, types.ListResourceRecordSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceRecordSetsOutput>
+    listReusableDelegationSets: function(Client, types.ListReusableDelegationSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListReusableDelegationSetsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTagsForResources: function(Client, types.ListTagsForResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourcesOutput>
+    listTrafficPolicies: function(Client, types.ListTrafficPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListTrafficPoliciesOutput>
+    listTrafficPolicyInstances: function(Client, types.ListTrafficPolicyInstancesInput, ? base_client.InvokeOptions): async.Operation<types.ListTrafficPolicyInstancesOutput>
+    listTrafficPolicyInstancesByHostedZone: function(Client, types.ListTrafficPolicyInstancesByHostedZoneInput, ? base_client.InvokeOptions): async.Operation<types.ListTrafficPolicyInstancesByHostedZoneOutput>
+    listTrafficPolicyInstancesByPolicy: function(Client, types.ListTrafficPolicyInstancesByPolicyInput, ? base_client.InvokeOptions): async.Operation<types.ListTrafficPolicyInstancesByPolicyOutput>
+    listTrafficPolicyVersions: function(Client, types.ListTrafficPolicyVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListTrafficPolicyVersionsOutput>
+    listVPCAssociationAuthorizations: function(Client, types.ListVPCAssociationAuthorizationsInput, ? base_client.InvokeOptions): async.Operation<types.ListVPCAssociationAuthorizationsOutput>
+    testDNSAnswer: function(Client, types.TestDNSAnswerInput, ? base_client.InvokeOptions): async.Operation<types.TestDNSAnswerOutput>
+    updateHealthCheck: function(Client, types.UpdateHealthCheckInput, ? base_client.InvokeOptions): async.Operation<types.UpdateHealthCheckOutput>
+    updateHostedZoneComment: function(Client, types.UpdateHostedZoneCommentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateHostedZoneCommentOutput>
+    updateHostedZoneFeatures: function(Client, types.UpdateHostedZoneFeaturesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateHostedZoneFeaturesOutput>
+    updateTrafficPolicyComment: function(Client, types.UpdateTrafficPolicyCommentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTrafficPolicyCommentOutput>
+    updateTrafficPolicyInstance: function(Client, types.UpdateTrafficPolicyInstanceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTrafficPolicyInstanceOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSDnsV20130401"
-    if not c.protocol then c.protocol = restxml_protocol.new() end
+    if not c.protocol then c.protocol = restxml_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "route53", signing_region = c.region } }
                 else
@@ -130,288 +133,288 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:activateKeySigningKey(input: types.ActivateKeySigningKeyInput, options: any): async.Operation<types.ActivateKeySigningKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.ActivateKeySigningKey, input, options) as async.Operation<types.ActivateKeySigningKeyOutput>
+function C:activateKeySigningKey(input: types.ActivateKeySigningKeyInput, options?: base_client.InvokeOptions): async.Operation<types.ActivateKeySigningKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ActivateKeySigningKey as schema.OperationSchema, input, options) as async.Operation<types.ActivateKeySigningKeyOutput>
 end
 
-function C:associateVPCWithHostedZone(input: types.AssociateVPCWithHostedZoneInput, options: any): async.Operation<types.AssociateVPCWithHostedZoneOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateVPCWithHostedZone, input, options) as async.Operation<types.AssociateVPCWithHostedZoneOutput>
+function C:associateVPCWithHostedZone(input: types.AssociateVPCWithHostedZoneInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateVPCWithHostedZoneOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateVPCWithHostedZone as schema.OperationSchema, input, options) as async.Operation<types.AssociateVPCWithHostedZoneOutput>
 end
 
-function C:changeCidrCollection(input: types.ChangeCidrCollectionInput, options: any): async.Operation<types.ChangeCidrCollectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ChangeCidrCollection, input, options) as async.Operation<types.ChangeCidrCollectionOutput>
+function C:changeCidrCollection(input: types.ChangeCidrCollectionInput, options?: base_client.InvokeOptions): async.Operation<types.ChangeCidrCollectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ChangeCidrCollection as schema.OperationSchema, input, options) as async.Operation<types.ChangeCidrCollectionOutput>
 end
 
-function C:changeResourceRecordSets(input: types.ChangeResourceRecordSetsInput, options: any): async.Operation<types.ChangeResourceRecordSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ChangeResourceRecordSets, input, options) as async.Operation<types.ChangeResourceRecordSetsOutput>
+function C:changeResourceRecordSets(input: types.ChangeResourceRecordSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ChangeResourceRecordSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ChangeResourceRecordSets as schema.OperationSchema, input, options) as async.Operation<types.ChangeResourceRecordSetsOutput>
 end
 
-function C:changeTagsForResource(input: types.ChangeTagsForResourceInput, options: any): async.Operation<types.ChangeTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ChangeTagsForResource, input, options) as async.Operation<types.ChangeTagsForResourceOutput>
+function C:changeTagsForResource(input: types.ChangeTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ChangeTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ChangeTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ChangeTagsForResourceOutput>
 end
 
-function C:createCidrCollection(input: types.CreateCidrCollectionInput, options: any): async.Operation<types.CreateCidrCollectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCidrCollection, input, options) as async.Operation<types.CreateCidrCollectionOutput>
+function C:createCidrCollection(input: types.CreateCidrCollectionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCidrCollectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCidrCollection as schema.OperationSchema, input, options) as async.Operation<types.CreateCidrCollectionOutput>
 end
 
-function C:createHealthCheck(input: types.CreateHealthCheckInput, options: any): async.Operation<types.CreateHealthCheckOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateHealthCheck, input, options) as async.Operation<types.CreateHealthCheckOutput>
+function C:createHealthCheck(input: types.CreateHealthCheckInput, options?: base_client.InvokeOptions): async.Operation<types.CreateHealthCheckOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateHealthCheck as schema.OperationSchema, input, options) as async.Operation<types.CreateHealthCheckOutput>
 end
 
-function C:createHostedZone(input: types.CreateHostedZoneInput, options: any): async.Operation<types.CreateHostedZoneOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateHostedZone, input, options) as async.Operation<types.CreateHostedZoneOutput>
+function C:createHostedZone(input: types.CreateHostedZoneInput, options?: base_client.InvokeOptions): async.Operation<types.CreateHostedZoneOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateHostedZone as schema.OperationSchema, input, options) as async.Operation<types.CreateHostedZoneOutput>
 end
 
-function C:createKeySigningKey(input: types.CreateKeySigningKeyInput, options: any): async.Operation<types.CreateKeySigningKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateKeySigningKey, input, options) as async.Operation<types.CreateKeySigningKeyOutput>
+function C:createKeySigningKey(input: types.CreateKeySigningKeyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateKeySigningKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateKeySigningKey as schema.OperationSchema, input, options) as async.Operation<types.CreateKeySigningKeyOutput>
 end
 
-function C:createQueryLoggingConfig(input: types.CreateQueryLoggingConfigInput, options: any): async.Operation<types.CreateQueryLoggingConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateQueryLoggingConfig, input, options) as async.Operation<types.CreateQueryLoggingConfigOutput>
+function C:createQueryLoggingConfig(input: types.CreateQueryLoggingConfigInput, options?: base_client.InvokeOptions): async.Operation<types.CreateQueryLoggingConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateQueryLoggingConfig as schema.OperationSchema, input, options) as async.Operation<types.CreateQueryLoggingConfigOutput>
 end
 
-function C:createReusableDelegationSet(input: types.CreateReusableDelegationSetInput, options: any): async.Operation<types.CreateReusableDelegationSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateReusableDelegationSet, input, options) as async.Operation<types.CreateReusableDelegationSetOutput>
+function C:createReusableDelegationSet(input: types.CreateReusableDelegationSetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateReusableDelegationSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateReusableDelegationSet as schema.OperationSchema, input, options) as async.Operation<types.CreateReusableDelegationSetOutput>
 end
 
-function C:createTrafficPolicy(input: types.CreateTrafficPolicyInput, options: any): async.Operation<types.CreateTrafficPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTrafficPolicy, input, options) as async.Operation<types.CreateTrafficPolicyOutput>
+function C:createTrafficPolicy(input: types.CreateTrafficPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTrafficPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTrafficPolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateTrafficPolicyOutput>
 end
 
-function C:createTrafficPolicyInstance(input: types.CreateTrafficPolicyInstanceInput, options: any): async.Operation<types.CreateTrafficPolicyInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTrafficPolicyInstance, input, options) as async.Operation<types.CreateTrafficPolicyInstanceOutput>
+function C:createTrafficPolicyInstance(input: types.CreateTrafficPolicyInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTrafficPolicyInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTrafficPolicyInstance as schema.OperationSchema, input, options) as async.Operation<types.CreateTrafficPolicyInstanceOutput>
 end
 
-function C:createTrafficPolicyVersion(input: types.CreateTrafficPolicyVersionInput, options: any): async.Operation<types.CreateTrafficPolicyVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTrafficPolicyVersion, input, options) as async.Operation<types.CreateTrafficPolicyVersionOutput>
+function C:createTrafficPolicyVersion(input: types.CreateTrafficPolicyVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTrafficPolicyVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTrafficPolicyVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateTrafficPolicyVersionOutput>
 end
 
-function C:createVPCAssociationAuthorization(input: types.CreateVPCAssociationAuthorizationInput, options: any): async.Operation<types.CreateVPCAssociationAuthorizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVPCAssociationAuthorization, input, options) as async.Operation<types.CreateVPCAssociationAuthorizationOutput>
+function C:createVPCAssociationAuthorization(input: types.CreateVPCAssociationAuthorizationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVPCAssociationAuthorizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVPCAssociationAuthorization as schema.OperationSchema, input, options) as async.Operation<types.CreateVPCAssociationAuthorizationOutput>
 end
 
-function C:deactivateKeySigningKey(input: types.DeactivateKeySigningKeyInput, options: any): async.Operation<types.DeactivateKeySigningKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeactivateKeySigningKey, input, options) as async.Operation<types.DeactivateKeySigningKeyOutput>
+function C:deactivateKeySigningKey(input: types.DeactivateKeySigningKeyInput, options?: base_client.InvokeOptions): async.Operation<types.DeactivateKeySigningKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeactivateKeySigningKey as schema.OperationSchema, input, options) as async.Operation<types.DeactivateKeySigningKeyOutput>
 end
 
-function C:deleteCidrCollection(input: types.DeleteCidrCollectionInput, options: any): async.Operation<types.DeleteCidrCollectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCidrCollection, input, options) as async.Operation<types.DeleteCidrCollectionOutput>
+function C:deleteCidrCollection(input: types.DeleteCidrCollectionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCidrCollectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCidrCollection as schema.OperationSchema, input, options) as async.Operation<types.DeleteCidrCollectionOutput>
 end
 
-function C:deleteHealthCheck(input: types.DeleteHealthCheckInput, options: any): async.Operation<types.DeleteHealthCheckOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteHealthCheck, input, options) as async.Operation<types.DeleteHealthCheckOutput>
+function C:deleteHealthCheck(input: types.DeleteHealthCheckInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteHealthCheckOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteHealthCheck as schema.OperationSchema, input, options) as async.Operation<types.DeleteHealthCheckOutput>
 end
 
-function C:deleteHostedZone(input: types.DeleteHostedZoneInput, options: any): async.Operation<types.DeleteHostedZoneOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteHostedZone, input, options) as async.Operation<types.DeleteHostedZoneOutput>
+function C:deleteHostedZone(input: types.DeleteHostedZoneInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteHostedZoneOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteHostedZone as schema.OperationSchema, input, options) as async.Operation<types.DeleteHostedZoneOutput>
 end
 
-function C:deleteKeySigningKey(input: types.DeleteKeySigningKeyInput, options: any): async.Operation<types.DeleteKeySigningKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteKeySigningKey, input, options) as async.Operation<types.DeleteKeySigningKeyOutput>
+function C:deleteKeySigningKey(input: types.DeleteKeySigningKeyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteKeySigningKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteKeySigningKey as schema.OperationSchema, input, options) as async.Operation<types.DeleteKeySigningKeyOutput>
 end
 
-function C:deleteQueryLoggingConfig(input: types.DeleteQueryLoggingConfigInput, options: any): async.Operation<types.DeleteQueryLoggingConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteQueryLoggingConfig, input, options) as async.Operation<types.DeleteQueryLoggingConfigOutput>
+function C:deleteQueryLoggingConfig(input: types.DeleteQueryLoggingConfigInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteQueryLoggingConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteQueryLoggingConfig as schema.OperationSchema, input, options) as async.Operation<types.DeleteQueryLoggingConfigOutput>
 end
 
-function C:deleteReusableDelegationSet(input: types.DeleteReusableDelegationSetInput, options: any): async.Operation<types.DeleteReusableDelegationSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteReusableDelegationSet, input, options) as async.Operation<types.DeleteReusableDelegationSetOutput>
+function C:deleteReusableDelegationSet(input: types.DeleteReusableDelegationSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteReusableDelegationSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteReusableDelegationSet as schema.OperationSchema, input, options) as async.Operation<types.DeleteReusableDelegationSetOutput>
 end
 
-function C:deleteTrafficPolicy(input: types.DeleteTrafficPolicyInput, options: any): async.Operation<types.DeleteTrafficPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTrafficPolicy, input, options) as async.Operation<types.DeleteTrafficPolicyOutput>
+function C:deleteTrafficPolicy(input: types.DeleteTrafficPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTrafficPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTrafficPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteTrafficPolicyOutput>
 end
 
-function C:deleteTrafficPolicyInstance(input: types.DeleteTrafficPolicyInstanceInput, options: any): async.Operation<types.DeleteTrafficPolicyInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTrafficPolicyInstance, input, options) as async.Operation<types.DeleteTrafficPolicyInstanceOutput>
+function C:deleteTrafficPolicyInstance(input: types.DeleteTrafficPolicyInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTrafficPolicyInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTrafficPolicyInstance as schema.OperationSchema, input, options) as async.Operation<types.DeleteTrafficPolicyInstanceOutput>
 end
 
-function C:deleteVPCAssociationAuthorization(input: types.DeleteVPCAssociationAuthorizationInput, options: any): async.Operation<types.DeleteVPCAssociationAuthorizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVPCAssociationAuthorization, input, options) as async.Operation<types.DeleteVPCAssociationAuthorizationOutput>
+function C:deleteVPCAssociationAuthorization(input: types.DeleteVPCAssociationAuthorizationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVPCAssociationAuthorizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVPCAssociationAuthorization as schema.OperationSchema, input, options) as async.Operation<types.DeleteVPCAssociationAuthorizationOutput>
 end
 
-function C:disableHostedZoneDNSSEC(input: types.DisableHostedZoneDNSSECInput, options: any): async.Operation<types.DisableHostedZoneDNSSECOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableHostedZoneDNSSEC, input, options) as async.Operation<types.DisableHostedZoneDNSSECOutput>
+function C:disableHostedZoneDNSSEC(input: types.DisableHostedZoneDNSSECInput, options?: base_client.InvokeOptions): async.Operation<types.DisableHostedZoneDNSSECOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableHostedZoneDNSSEC as schema.OperationSchema, input, options) as async.Operation<types.DisableHostedZoneDNSSECOutput>
 end
 
-function C:disassociateVPCFromHostedZone(input: types.DisassociateVPCFromHostedZoneInput, options: any): async.Operation<types.DisassociateVPCFromHostedZoneOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateVPCFromHostedZone, input, options) as async.Operation<types.DisassociateVPCFromHostedZoneOutput>
+function C:disassociateVPCFromHostedZone(input: types.DisassociateVPCFromHostedZoneInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateVPCFromHostedZoneOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateVPCFromHostedZone as schema.OperationSchema, input, options) as async.Operation<types.DisassociateVPCFromHostedZoneOutput>
 end
 
-function C:enableHostedZoneDNSSEC(input: types.EnableHostedZoneDNSSECInput, options: any): async.Operation<types.EnableHostedZoneDNSSECOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableHostedZoneDNSSEC, input, options) as async.Operation<types.EnableHostedZoneDNSSECOutput>
+function C:enableHostedZoneDNSSEC(input: types.EnableHostedZoneDNSSECInput, options?: base_client.InvokeOptions): async.Operation<types.EnableHostedZoneDNSSECOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableHostedZoneDNSSEC as schema.OperationSchema, input, options) as async.Operation<types.EnableHostedZoneDNSSECOutput>
 end
 
-function C:getAccountLimit(input: types.GetAccountLimitInput, options: any): async.Operation<types.GetAccountLimitOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccountLimit, input, options) as async.Operation<types.GetAccountLimitOutput>
+function C:getAccountLimit(input: types.GetAccountLimitInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccountLimitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccountLimit as schema.OperationSchema, input, options) as async.Operation<types.GetAccountLimitOutput>
 end
 
-function C:getChange(input: types.GetChangeInput, options: any): async.Operation<types.GetChangeOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetChange, input, options) as async.Operation<types.GetChangeOutput>
+function C:getChange(input: types.GetChangeInput, options?: base_client.InvokeOptions): async.Operation<types.GetChangeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetChange as schema.OperationSchema, input, options) as async.Operation<types.GetChangeOutput>
 end
 
-function C:getCheckerIpRanges(input: types.GetCheckerIpRangesInput, options: any): async.Operation<types.GetCheckerIpRangesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCheckerIpRanges, input, options) as async.Operation<types.GetCheckerIpRangesOutput>
+function C:getCheckerIpRanges(input: types.GetCheckerIpRangesInput, options?: base_client.InvokeOptions): async.Operation<types.GetCheckerIpRangesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCheckerIpRanges as schema.OperationSchema, input, options) as async.Operation<types.GetCheckerIpRangesOutput>
 end
 
-function C:getDNSSEC(input: types.GetDNSSECInput, options: any): async.Operation<types.GetDNSSECOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDNSSEC, input, options) as async.Operation<types.GetDNSSECOutput>
+function C:getDNSSEC(input: types.GetDNSSECInput, options?: base_client.InvokeOptions): async.Operation<types.GetDNSSECOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDNSSEC as schema.OperationSchema, input, options) as async.Operation<types.GetDNSSECOutput>
 end
 
-function C:getGeoLocation(input: types.GetGeoLocationInput, options: any): async.Operation<types.GetGeoLocationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetGeoLocation, input, options) as async.Operation<types.GetGeoLocationOutput>
+function C:getGeoLocation(input: types.GetGeoLocationInput, options?: base_client.InvokeOptions): async.Operation<types.GetGeoLocationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGeoLocation as schema.OperationSchema, input, options) as async.Operation<types.GetGeoLocationOutput>
 end
 
-function C:getHealthCheck(input: types.GetHealthCheckInput, options: any): async.Operation<types.GetHealthCheckOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetHealthCheck, input, options) as async.Operation<types.GetHealthCheckOutput>
+function C:getHealthCheck(input: types.GetHealthCheckInput, options?: base_client.InvokeOptions): async.Operation<types.GetHealthCheckOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetHealthCheck as schema.OperationSchema, input, options) as async.Operation<types.GetHealthCheckOutput>
 end
 
-function C:getHealthCheckCount(input: types.GetHealthCheckCountInput, options: any): async.Operation<types.GetHealthCheckCountOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetHealthCheckCount, input, options) as async.Operation<types.GetHealthCheckCountOutput>
+function C:getHealthCheckCount(input: types.GetHealthCheckCountInput, options?: base_client.InvokeOptions): async.Operation<types.GetHealthCheckCountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetHealthCheckCount as schema.OperationSchema, input, options) as async.Operation<types.GetHealthCheckCountOutput>
 end
 
-function C:getHealthCheckLastFailureReason(input: types.GetHealthCheckLastFailureReasonInput, options: any): async.Operation<types.GetHealthCheckLastFailureReasonOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetHealthCheckLastFailureReason, input, options) as async.Operation<types.GetHealthCheckLastFailureReasonOutput>
+function C:getHealthCheckLastFailureReason(input: types.GetHealthCheckLastFailureReasonInput, options?: base_client.InvokeOptions): async.Operation<types.GetHealthCheckLastFailureReasonOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetHealthCheckLastFailureReason as schema.OperationSchema, input, options) as async.Operation<types.GetHealthCheckLastFailureReasonOutput>
 end
 
-function C:getHealthCheckStatus(input: types.GetHealthCheckStatusInput, options: any): async.Operation<types.GetHealthCheckStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetHealthCheckStatus, input, options) as async.Operation<types.GetHealthCheckStatusOutput>
+function C:getHealthCheckStatus(input: types.GetHealthCheckStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetHealthCheckStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetHealthCheckStatus as schema.OperationSchema, input, options) as async.Operation<types.GetHealthCheckStatusOutput>
 end
 
-function C:getHostedZone(input: types.GetHostedZoneInput, options: any): async.Operation<types.GetHostedZoneOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetHostedZone, input, options) as async.Operation<types.GetHostedZoneOutput>
+function C:getHostedZone(input: types.GetHostedZoneInput, options?: base_client.InvokeOptions): async.Operation<types.GetHostedZoneOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetHostedZone as schema.OperationSchema, input, options) as async.Operation<types.GetHostedZoneOutput>
 end
 
-function C:getHostedZoneCount(input: types.GetHostedZoneCountInput, options: any): async.Operation<types.GetHostedZoneCountOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetHostedZoneCount, input, options) as async.Operation<types.GetHostedZoneCountOutput>
+function C:getHostedZoneCount(input: types.GetHostedZoneCountInput, options?: base_client.InvokeOptions): async.Operation<types.GetHostedZoneCountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetHostedZoneCount as schema.OperationSchema, input, options) as async.Operation<types.GetHostedZoneCountOutput>
 end
 
-function C:getHostedZoneLimit(input: types.GetHostedZoneLimitInput, options: any): async.Operation<types.GetHostedZoneLimitOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetHostedZoneLimit, input, options) as async.Operation<types.GetHostedZoneLimitOutput>
+function C:getHostedZoneLimit(input: types.GetHostedZoneLimitInput, options?: base_client.InvokeOptions): async.Operation<types.GetHostedZoneLimitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetHostedZoneLimit as schema.OperationSchema, input, options) as async.Operation<types.GetHostedZoneLimitOutput>
 end
 
-function C:getQueryLoggingConfig(input: types.GetQueryLoggingConfigInput, options: any): async.Operation<types.GetQueryLoggingConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetQueryLoggingConfig, input, options) as async.Operation<types.GetQueryLoggingConfigOutput>
+function C:getQueryLoggingConfig(input: types.GetQueryLoggingConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetQueryLoggingConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQueryLoggingConfig as schema.OperationSchema, input, options) as async.Operation<types.GetQueryLoggingConfigOutput>
 end
 
-function C:getReusableDelegationSet(input: types.GetReusableDelegationSetInput, options: any): async.Operation<types.GetReusableDelegationSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReusableDelegationSet, input, options) as async.Operation<types.GetReusableDelegationSetOutput>
+function C:getReusableDelegationSet(input: types.GetReusableDelegationSetInput, options?: base_client.InvokeOptions): async.Operation<types.GetReusableDelegationSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReusableDelegationSet as schema.OperationSchema, input, options) as async.Operation<types.GetReusableDelegationSetOutput>
 end
 
-function C:getReusableDelegationSetLimit(input: types.GetReusableDelegationSetLimitInput, options: any): async.Operation<types.GetReusableDelegationSetLimitOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReusableDelegationSetLimit, input, options) as async.Operation<types.GetReusableDelegationSetLimitOutput>
+function C:getReusableDelegationSetLimit(input: types.GetReusableDelegationSetLimitInput, options?: base_client.InvokeOptions): async.Operation<types.GetReusableDelegationSetLimitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReusableDelegationSetLimit as schema.OperationSchema, input, options) as async.Operation<types.GetReusableDelegationSetLimitOutput>
 end
 
-function C:getTrafficPolicy(input: types.GetTrafficPolicyInput, options: any): async.Operation<types.GetTrafficPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTrafficPolicy, input, options) as async.Operation<types.GetTrafficPolicyOutput>
+function C:getTrafficPolicy(input: types.GetTrafficPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetTrafficPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTrafficPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetTrafficPolicyOutput>
 end
 
-function C:getTrafficPolicyInstance(input: types.GetTrafficPolicyInstanceInput, options: any): async.Operation<types.GetTrafficPolicyInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTrafficPolicyInstance, input, options) as async.Operation<types.GetTrafficPolicyInstanceOutput>
+function C:getTrafficPolicyInstance(input: types.GetTrafficPolicyInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.GetTrafficPolicyInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTrafficPolicyInstance as schema.OperationSchema, input, options) as async.Operation<types.GetTrafficPolicyInstanceOutput>
 end
 
-function C:getTrafficPolicyInstanceCount(input: types.GetTrafficPolicyInstanceCountInput, options: any): async.Operation<types.GetTrafficPolicyInstanceCountOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTrafficPolicyInstanceCount, input, options) as async.Operation<types.GetTrafficPolicyInstanceCountOutput>
+function C:getTrafficPolicyInstanceCount(input: types.GetTrafficPolicyInstanceCountInput, options?: base_client.InvokeOptions): async.Operation<types.GetTrafficPolicyInstanceCountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTrafficPolicyInstanceCount as schema.OperationSchema, input, options) as async.Operation<types.GetTrafficPolicyInstanceCountOutput>
 end
 
-function C:listCidrBlocks(input: types.ListCidrBlocksInput, options: any): async.Operation<types.ListCidrBlocksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCidrBlocks, input, options) as async.Operation<types.ListCidrBlocksOutput>
+function C:listCidrBlocks(input: types.ListCidrBlocksInput, options?: base_client.InvokeOptions): async.Operation<types.ListCidrBlocksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCidrBlocks as schema.OperationSchema, input, options) as async.Operation<types.ListCidrBlocksOutput>
 end
 
-function C:listCidrCollections(input: types.ListCidrCollectionsInput, options: any): async.Operation<types.ListCidrCollectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCidrCollections, input, options) as async.Operation<types.ListCidrCollectionsOutput>
+function C:listCidrCollections(input: types.ListCidrCollectionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCidrCollectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCidrCollections as schema.OperationSchema, input, options) as async.Operation<types.ListCidrCollectionsOutput>
 end
 
-function C:listCidrLocations(input: types.ListCidrLocationsInput, options: any): async.Operation<types.ListCidrLocationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCidrLocations, input, options) as async.Operation<types.ListCidrLocationsOutput>
+function C:listCidrLocations(input: types.ListCidrLocationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCidrLocationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCidrLocations as schema.OperationSchema, input, options) as async.Operation<types.ListCidrLocationsOutput>
 end
 
-function C:listGeoLocations(input: types.ListGeoLocationsInput, options: any): async.Operation<types.ListGeoLocationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGeoLocations, input, options) as async.Operation<types.ListGeoLocationsOutput>
+function C:listGeoLocations(input: types.ListGeoLocationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListGeoLocationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGeoLocations as schema.OperationSchema, input, options) as async.Operation<types.ListGeoLocationsOutput>
 end
 
-function C:listHealthChecks(input: types.ListHealthChecksInput, options: any): async.Operation<types.ListHealthChecksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListHealthChecks, input, options) as async.Operation<types.ListHealthChecksOutput>
+function C:listHealthChecks(input: types.ListHealthChecksInput, options?: base_client.InvokeOptions): async.Operation<types.ListHealthChecksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListHealthChecks as schema.OperationSchema, input, options) as async.Operation<types.ListHealthChecksOutput>
 end
 
-function C:listHostedZones(input: types.ListHostedZonesInput, options: any): async.Operation<types.ListHostedZonesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListHostedZones, input, options) as async.Operation<types.ListHostedZonesOutput>
+function C:listHostedZones(input: types.ListHostedZonesInput, options?: base_client.InvokeOptions): async.Operation<types.ListHostedZonesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListHostedZones as schema.OperationSchema, input, options) as async.Operation<types.ListHostedZonesOutput>
 end
 
-function C:listHostedZonesByName(input: types.ListHostedZonesByNameInput, options: any): async.Operation<types.ListHostedZonesByNameOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListHostedZonesByName, input, options) as async.Operation<types.ListHostedZonesByNameOutput>
+function C:listHostedZonesByName(input: types.ListHostedZonesByNameInput, options?: base_client.InvokeOptions): async.Operation<types.ListHostedZonesByNameOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListHostedZonesByName as schema.OperationSchema, input, options) as async.Operation<types.ListHostedZonesByNameOutput>
 end
 
-function C:listHostedZonesByVPC(input: types.ListHostedZonesByVPCInput, options: any): async.Operation<types.ListHostedZonesByVPCOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListHostedZonesByVPC, input, options) as async.Operation<types.ListHostedZonesByVPCOutput>
+function C:listHostedZonesByVPC(input: types.ListHostedZonesByVPCInput, options?: base_client.InvokeOptions): async.Operation<types.ListHostedZonesByVPCOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListHostedZonesByVPC as schema.OperationSchema, input, options) as async.Operation<types.ListHostedZonesByVPCOutput>
 end
 
-function C:listQueryLoggingConfigs(input: types.ListQueryLoggingConfigsInput, options: any): async.Operation<types.ListQueryLoggingConfigsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListQueryLoggingConfigs, input, options) as async.Operation<types.ListQueryLoggingConfigsOutput>
+function C:listQueryLoggingConfigs(input: types.ListQueryLoggingConfigsInput, options?: base_client.InvokeOptions): async.Operation<types.ListQueryLoggingConfigsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListQueryLoggingConfigs as schema.OperationSchema, input, options) as async.Operation<types.ListQueryLoggingConfigsOutput>
 end
 
-function C:listResourceRecordSets(input: types.ListResourceRecordSetsInput, options: any): async.Operation<types.ListResourceRecordSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResourceRecordSets, input, options) as async.Operation<types.ListResourceRecordSetsOutput>
+function C:listResourceRecordSets(input: types.ListResourceRecordSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourceRecordSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourceRecordSets as schema.OperationSchema, input, options) as async.Operation<types.ListResourceRecordSetsOutput>
 end
 
-function C:listReusableDelegationSets(input: types.ListReusableDelegationSetsInput, options: any): async.Operation<types.ListReusableDelegationSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReusableDelegationSets, input, options) as async.Operation<types.ListReusableDelegationSetsOutput>
+function C:listReusableDelegationSets(input: types.ListReusableDelegationSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListReusableDelegationSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReusableDelegationSets as schema.OperationSchema, input, options) as async.Operation<types.ListReusableDelegationSetsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTagsForResources(input: types.ListTagsForResourcesInput, options: any): async.Operation<types.ListTagsForResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResources, input, options) as async.Operation<types.ListTagsForResourcesOutput>
+function C:listTagsForResources(input: types.ListTagsForResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResources as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourcesOutput>
 end
 
-function C:listTrafficPolicies(input: types.ListTrafficPoliciesInput, options: any): async.Operation<types.ListTrafficPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTrafficPolicies, input, options) as async.Operation<types.ListTrafficPoliciesOutput>
+function C:listTrafficPolicies(input: types.ListTrafficPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTrafficPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTrafficPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListTrafficPoliciesOutput>
 end
 
-function C:listTrafficPolicyInstances(input: types.ListTrafficPolicyInstancesInput, options: any): async.Operation<types.ListTrafficPolicyInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTrafficPolicyInstances, input, options) as async.Operation<types.ListTrafficPolicyInstancesOutput>
+function C:listTrafficPolicyInstances(input: types.ListTrafficPolicyInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTrafficPolicyInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTrafficPolicyInstances as schema.OperationSchema, input, options) as async.Operation<types.ListTrafficPolicyInstancesOutput>
 end
 
-function C:listTrafficPolicyInstancesByHostedZone(input: types.ListTrafficPolicyInstancesByHostedZoneInput, options: any): async.Operation<types.ListTrafficPolicyInstancesByHostedZoneOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTrafficPolicyInstancesByHostedZone, input, options) as async.Operation<types.ListTrafficPolicyInstancesByHostedZoneOutput>
+function C:listTrafficPolicyInstancesByHostedZone(input: types.ListTrafficPolicyInstancesByHostedZoneInput, options?: base_client.InvokeOptions): async.Operation<types.ListTrafficPolicyInstancesByHostedZoneOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTrafficPolicyInstancesByHostedZone as schema.OperationSchema, input, options) as async.Operation<types.ListTrafficPolicyInstancesByHostedZoneOutput>
 end
 
-function C:listTrafficPolicyInstancesByPolicy(input: types.ListTrafficPolicyInstancesByPolicyInput, options: any): async.Operation<types.ListTrafficPolicyInstancesByPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTrafficPolicyInstancesByPolicy, input, options) as async.Operation<types.ListTrafficPolicyInstancesByPolicyOutput>
+function C:listTrafficPolicyInstancesByPolicy(input: types.ListTrafficPolicyInstancesByPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.ListTrafficPolicyInstancesByPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTrafficPolicyInstancesByPolicy as schema.OperationSchema, input, options) as async.Operation<types.ListTrafficPolicyInstancesByPolicyOutput>
 end
 
-function C:listTrafficPolicyVersions(input: types.ListTrafficPolicyVersionsInput, options: any): async.Operation<types.ListTrafficPolicyVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTrafficPolicyVersions, input, options) as async.Operation<types.ListTrafficPolicyVersionsOutput>
+function C:listTrafficPolicyVersions(input: types.ListTrafficPolicyVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTrafficPolicyVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTrafficPolicyVersions as schema.OperationSchema, input, options) as async.Operation<types.ListTrafficPolicyVersionsOutput>
 end
 
-function C:listVPCAssociationAuthorizations(input: types.ListVPCAssociationAuthorizationsInput, options: any): async.Operation<types.ListVPCAssociationAuthorizationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVPCAssociationAuthorizations, input, options) as async.Operation<types.ListVPCAssociationAuthorizationsOutput>
+function C:listVPCAssociationAuthorizations(input: types.ListVPCAssociationAuthorizationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListVPCAssociationAuthorizationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVPCAssociationAuthorizations as schema.OperationSchema, input, options) as async.Operation<types.ListVPCAssociationAuthorizationsOutput>
 end
 
-function C:testDNSAnswer(input: types.TestDNSAnswerInput, options: any): async.Operation<types.TestDNSAnswerOutput>
-    return self:invokeOperation(schemas.Service, schemas.TestDNSAnswer, input, options) as async.Operation<types.TestDNSAnswerOutput>
+function C:testDNSAnswer(input: types.TestDNSAnswerInput, options?: base_client.InvokeOptions): async.Operation<types.TestDNSAnswerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TestDNSAnswer as schema.OperationSchema, input, options) as async.Operation<types.TestDNSAnswerOutput>
 end
 
-function C:updateHealthCheck(input: types.UpdateHealthCheckInput, options: any): async.Operation<types.UpdateHealthCheckOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateHealthCheck, input, options) as async.Operation<types.UpdateHealthCheckOutput>
+function C:updateHealthCheck(input: types.UpdateHealthCheckInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateHealthCheckOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateHealthCheck as schema.OperationSchema, input, options) as async.Operation<types.UpdateHealthCheckOutput>
 end
 
-function C:updateHostedZoneComment(input: types.UpdateHostedZoneCommentInput, options: any): async.Operation<types.UpdateHostedZoneCommentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateHostedZoneComment, input, options) as async.Operation<types.UpdateHostedZoneCommentOutput>
+function C:updateHostedZoneComment(input: types.UpdateHostedZoneCommentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateHostedZoneCommentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateHostedZoneComment as schema.OperationSchema, input, options) as async.Operation<types.UpdateHostedZoneCommentOutput>
 end
 
-function C:updateHostedZoneFeatures(input: types.UpdateHostedZoneFeaturesInput, options: any): async.Operation<types.UpdateHostedZoneFeaturesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateHostedZoneFeatures, input, options) as async.Operation<types.UpdateHostedZoneFeaturesOutput>
+function C:updateHostedZoneFeatures(input: types.UpdateHostedZoneFeaturesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateHostedZoneFeaturesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateHostedZoneFeatures as schema.OperationSchema, input, options) as async.Operation<types.UpdateHostedZoneFeaturesOutput>
 end
 
-function C:updateTrafficPolicyComment(input: types.UpdateTrafficPolicyCommentInput, options: any): async.Operation<types.UpdateTrafficPolicyCommentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTrafficPolicyComment, input, options) as async.Operation<types.UpdateTrafficPolicyCommentOutput>
+function C:updateTrafficPolicyComment(input: types.UpdateTrafficPolicyCommentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTrafficPolicyCommentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTrafficPolicyComment as schema.OperationSchema, input, options) as async.Operation<types.UpdateTrafficPolicyCommentOutput>
 end
 
-function C:updateTrafficPolicyInstance(input: types.UpdateTrafficPolicyInstanceInput, options: any): async.Operation<types.UpdateTrafficPolicyInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTrafficPolicyInstance, input, options) as async.Operation<types.UpdateTrafficPolicyInstanceOutput>
+function C:updateTrafficPolicyInstance(input: types.UpdateTrafficPolicyInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTrafficPolicyInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTrafficPolicyInstance as schema.OperationSchema, input, options) as async.Operation<types.UpdateTrafficPolicyInstanceOutput>
 end
 
 return M

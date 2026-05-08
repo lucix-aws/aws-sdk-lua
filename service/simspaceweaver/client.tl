@@ -8,55 +8,58 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("simspaceweaver.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("simspaceweaver.schemas")
 local traits = require("smithy.traits")
 local types = require("simspaceweaver.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createSnapshot: function(Client, types.CreateSnapshotInput, any): async.Operation<types.CreateSnapshotOutput>
-    deleteApp: function(Client, types.DeleteAppInput, any): async.Operation<types.DeleteAppOutput>
-    deleteSimulation: function(Client, types.DeleteSimulationInput, any): async.Operation<types.DeleteSimulationOutput>
-    describeApp: function(Client, types.DescribeAppInput, any): async.Operation<types.DescribeAppOutput>
-    describeSimulation: function(Client, types.DescribeSimulationInput, any): async.Operation<types.DescribeSimulationOutput>
-    listApps: function(Client, types.ListAppsInput, any): async.Operation<types.ListAppsOutput>
-    listSimulations: function(Client, types.ListSimulationsInput, any): async.Operation<types.ListSimulationsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    startApp: function(Client, types.StartAppInput, any): async.Operation<types.StartAppOutput>
-    startClock: function(Client, types.StartClockInput, any): async.Operation<types.StartClockOutput>
-    startSimulation: function(Client, types.StartSimulationInput, any): async.Operation<types.StartSimulationOutput>
-    stopApp: function(Client, types.StopAppInput, any): async.Operation<types.StopAppOutput>
-    stopClock: function(Client, types.StopClockInput, any): async.Operation<types.StopClockOutput>
-    stopSimulation: function(Client, types.StopSimulationInput, any): async.Operation<types.StopSimulationOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createSnapshot: function(Client, types.CreateSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.CreateSnapshotOutput>
+    deleteApp: function(Client, types.DeleteAppInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAppOutput>
+    deleteSimulation: function(Client, types.DeleteSimulationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSimulationOutput>
+    describeApp: function(Client, types.DescribeAppInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAppOutput>
+    describeSimulation: function(Client, types.DescribeSimulationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSimulationOutput>
+    listApps: function(Client, types.ListAppsInput, ? base_client.InvokeOptions): async.Operation<types.ListAppsOutput>
+    listSimulations: function(Client, types.ListSimulationsInput, ? base_client.InvokeOptions): async.Operation<types.ListSimulationsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    startApp: function(Client, types.StartAppInput, ? base_client.InvokeOptions): async.Operation<types.StartAppOutput>
+    startClock: function(Client, types.StartClockInput, ? base_client.InvokeOptions): async.Operation<types.StartClockOutput>
+    startSimulation: function(Client, types.StartSimulationInput, ? base_client.InvokeOptions): async.Operation<types.StartSimulationOutput>
+    stopApp: function(Client, types.StopAppInput, ? base_client.InvokeOptions): async.Operation<types.StopAppOutput>
+    stopClock: function(Client, types.StopClockInput, ? base_client.InvokeOptions): async.Operation<types.StopClockOutput>
+    stopSimulation: function(Client, types.StopSimulationInput, ? base_client.InvokeOptions): async.Operation<types.StopSimulationOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "SimSpaceWeaver"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "simspaceweaver", signing_region = c.region } }
                 else
@@ -75,68 +78,68 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createSnapshot(input: types.CreateSnapshotInput, options: any): async.Operation<types.CreateSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSnapshot, input, options) as async.Operation<types.CreateSnapshotOutput>
+function C:createSnapshot(input: types.CreateSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSnapshot as schema.OperationSchema, input, options) as async.Operation<types.CreateSnapshotOutput>
 end
 
-function C:deleteApp(input: types.DeleteAppInput, options: any): async.Operation<types.DeleteAppOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApp, input, options) as async.Operation<types.DeleteAppOutput>
+function C:deleteApp(input: types.DeleteAppInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAppOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApp as schema.OperationSchema, input, options) as async.Operation<types.DeleteAppOutput>
 end
 
-function C:deleteSimulation(input: types.DeleteSimulationInput, options: any): async.Operation<types.DeleteSimulationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSimulation, input, options) as async.Operation<types.DeleteSimulationOutput>
+function C:deleteSimulation(input: types.DeleteSimulationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSimulationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSimulation as schema.OperationSchema, input, options) as async.Operation<types.DeleteSimulationOutput>
 end
 
-function C:describeApp(input: types.DescribeAppInput, options: any): async.Operation<types.DescribeAppOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeApp, input, options) as async.Operation<types.DescribeAppOutput>
+function C:describeApp(input: types.DescribeAppInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAppOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeApp as schema.OperationSchema, input, options) as async.Operation<types.DescribeAppOutput>
 end
 
-function C:describeSimulation(input: types.DescribeSimulationInput, options: any): async.Operation<types.DescribeSimulationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSimulation, input, options) as async.Operation<types.DescribeSimulationOutput>
+function C:describeSimulation(input: types.DescribeSimulationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSimulationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSimulation as schema.OperationSchema, input, options) as async.Operation<types.DescribeSimulationOutput>
 end
 
-function C:listApps(input: types.ListAppsInput, options: any): async.Operation<types.ListAppsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApps, input, options) as async.Operation<types.ListAppsOutput>
+function C:listApps(input: types.ListAppsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAppsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApps as schema.OperationSchema, input, options) as async.Operation<types.ListAppsOutput>
 end
 
-function C:listSimulations(input: types.ListSimulationsInput, options: any): async.Operation<types.ListSimulationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSimulations, input, options) as async.Operation<types.ListSimulationsOutput>
+function C:listSimulations(input: types.ListSimulationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSimulationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSimulations as schema.OperationSchema, input, options) as async.Operation<types.ListSimulationsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:startApp(input: types.StartAppInput, options: any): async.Operation<types.StartAppOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartApp, input, options) as async.Operation<types.StartAppOutput>
+function C:startApp(input: types.StartAppInput, options?: base_client.InvokeOptions): async.Operation<types.StartAppOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartApp as schema.OperationSchema, input, options) as async.Operation<types.StartAppOutput>
 end
 
-function C:startClock(input: types.StartClockInput, options: any): async.Operation<types.StartClockOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartClock, input, options) as async.Operation<types.StartClockOutput>
+function C:startClock(input: types.StartClockInput, options?: base_client.InvokeOptions): async.Operation<types.StartClockOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartClock as schema.OperationSchema, input, options) as async.Operation<types.StartClockOutput>
 end
 
-function C:startSimulation(input: types.StartSimulationInput, options: any): async.Operation<types.StartSimulationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartSimulation, input, options) as async.Operation<types.StartSimulationOutput>
+function C:startSimulation(input: types.StartSimulationInput, options?: base_client.InvokeOptions): async.Operation<types.StartSimulationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartSimulation as schema.OperationSchema, input, options) as async.Operation<types.StartSimulationOutput>
 end
 
-function C:stopApp(input: types.StopAppInput, options: any): async.Operation<types.StopAppOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopApp, input, options) as async.Operation<types.StopAppOutput>
+function C:stopApp(input: types.StopAppInput, options?: base_client.InvokeOptions): async.Operation<types.StopAppOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopApp as schema.OperationSchema, input, options) as async.Operation<types.StopAppOutput>
 end
 
-function C:stopClock(input: types.StopClockInput, options: any): async.Operation<types.StopClockOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopClock, input, options) as async.Operation<types.StopClockOutput>
+function C:stopClock(input: types.StopClockInput, options?: base_client.InvokeOptions): async.Operation<types.StopClockOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopClock as schema.OperationSchema, input, options) as async.Operation<types.StopClockOutput>
 end
 
-function C:stopSimulation(input: types.StopSimulationInput, options: any): async.Operation<types.StopSimulationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopSimulation, input, options) as async.Operation<types.StopSimulationOutput>
+function C:stopSimulation(input: types.StopSimulationInput, options?: base_client.InvokeOptions): async.Operation<types.StopSimulationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopSimulation as schema.OperationSchema, input, options) as async.Operation<types.StopSimulationOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
 return M

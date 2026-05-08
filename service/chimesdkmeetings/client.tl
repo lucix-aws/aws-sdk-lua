@@ -8,55 +8,58 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("chimesdkmeetings.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("chimesdkmeetings.schemas")
 local traits = require("smithy.traits")
 local types = require("chimesdkmeetings.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchCreateAttendee: function(Client, types.BatchCreateAttendeeInput, any): async.Operation<types.BatchCreateAttendeeOutput>
-    batchUpdateAttendeeCapabilitiesExcept: function(Client, types.BatchUpdateAttendeeCapabilitiesExceptInput, any): async.Operation<types.BatchUpdateAttendeeCapabilitiesExceptOutput>
-    createAttendee: function(Client, types.CreateAttendeeInput, any): async.Operation<types.CreateAttendeeOutput>
-    createMeeting: function(Client, types.CreateMeetingInput, any): async.Operation<types.CreateMeetingOutput>
-    createMeetingWithAttendees: function(Client, types.CreateMeetingWithAttendeesInput, any): async.Operation<types.CreateMeetingWithAttendeesOutput>
-    deleteAttendee: function(Client, types.DeleteAttendeeInput, any): async.Operation<types.DeleteAttendeeOutput>
-    deleteMeeting: function(Client, types.DeleteMeetingInput, any): async.Operation<types.DeleteMeetingOutput>
-    getAttendee: function(Client, types.GetAttendeeInput, any): async.Operation<types.GetAttendeeOutput>
-    getMeeting: function(Client, types.GetMeetingInput, any): async.Operation<types.GetMeetingOutput>
-    listAttendees: function(Client, types.ListAttendeesInput, any): async.Operation<types.ListAttendeesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    startMeetingTranscription: function(Client, types.StartMeetingTranscriptionInput, any): async.Operation<types.StartMeetingTranscriptionOutput>
-    stopMeetingTranscription: function(Client, types.StopMeetingTranscriptionInput, any): async.Operation<types.StopMeetingTranscriptionOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAttendeeCapabilities: function(Client, types.UpdateAttendeeCapabilitiesInput, any): async.Operation<types.UpdateAttendeeCapabilitiesOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchCreateAttendee: function(Client, types.BatchCreateAttendeeInput, ? base_client.InvokeOptions): async.Operation<types.BatchCreateAttendeeOutput>
+    batchUpdateAttendeeCapabilitiesExcept: function(Client, types.BatchUpdateAttendeeCapabilitiesExceptInput, ? base_client.InvokeOptions): async.Operation<types.BatchUpdateAttendeeCapabilitiesExceptOutput>
+    createAttendee: function(Client, types.CreateAttendeeInput, ? base_client.InvokeOptions): async.Operation<types.CreateAttendeeOutput>
+    createMeeting: function(Client, types.CreateMeetingInput, ? base_client.InvokeOptions): async.Operation<types.CreateMeetingOutput>
+    createMeetingWithAttendees: function(Client, types.CreateMeetingWithAttendeesInput, ? base_client.InvokeOptions): async.Operation<types.CreateMeetingWithAttendeesOutput>
+    deleteAttendee: function(Client, types.DeleteAttendeeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAttendeeOutput>
+    deleteMeeting: function(Client, types.DeleteMeetingInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMeetingOutput>
+    getAttendee: function(Client, types.GetAttendeeInput, ? base_client.InvokeOptions): async.Operation<types.GetAttendeeOutput>
+    getMeeting: function(Client, types.GetMeetingInput, ? base_client.InvokeOptions): async.Operation<types.GetMeetingOutput>
+    listAttendees: function(Client, types.ListAttendeesInput, ? base_client.InvokeOptions): async.Operation<types.ListAttendeesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    startMeetingTranscription: function(Client, types.StartMeetingTranscriptionInput, ? base_client.InvokeOptions): async.Operation<types.StartMeetingTranscriptionOutput>
+    stopMeetingTranscription: function(Client, types.StopMeetingTranscriptionInput, ? base_client.InvokeOptions): async.Operation<types.StopMeetingTranscriptionOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAttendeeCapabilities: function(Client, types.UpdateAttendeeCapabilitiesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAttendeeCapabilitiesOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "ChimeMeetingsSDKService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "chime", signing_region = c.region } }
                 else
@@ -75,68 +78,68 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchCreateAttendee(input: types.BatchCreateAttendeeInput, options: any): async.Operation<types.BatchCreateAttendeeOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchCreateAttendee, input, options) as async.Operation<types.BatchCreateAttendeeOutput>
+function C:batchCreateAttendee(input: types.BatchCreateAttendeeInput, options?: base_client.InvokeOptions): async.Operation<types.BatchCreateAttendeeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchCreateAttendee as schema.OperationSchema, input, options) as async.Operation<types.BatchCreateAttendeeOutput>
 end
 
-function C:batchUpdateAttendeeCapabilitiesExcept(input: types.BatchUpdateAttendeeCapabilitiesExceptInput, options: any): async.Operation<types.BatchUpdateAttendeeCapabilitiesExceptOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchUpdateAttendeeCapabilitiesExcept, input, options) as async.Operation<types.BatchUpdateAttendeeCapabilitiesExceptOutput>
+function C:batchUpdateAttendeeCapabilitiesExcept(input: types.BatchUpdateAttendeeCapabilitiesExceptInput, options?: base_client.InvokeOptions): async.Operation<types.BatchUpdateAttendeeCapabilitiesExceptOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchUpdateAttendeeCapabilitiesExcept as schema.OperationSchema, input, options) as async.Operation<types.BatchUpdateAttendeeCapabilitiesExceptOutput>
 end
 
-function C:createAttendee(input: types.CreateAttendeeInput, options: any): async.Operation<types.CreateAttendeeOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAttendee, input, options) as async.Operation<types.CreateAttendeeOutput>
+function C:createAttendee(input: types.CreateAttendeeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAttendeeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAttendee as schema.OperationSchema, input, options) as async.Operation<types.CreateAttendeeOutput>
 end
 
-function C:createMeeting(input: types.CreateMeetingInput, options: any): async.Operation<types.CreateMeetingOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMeeting, input, options) as async.Operation<types.CreateMeetingOutput>
+function C:createMeeting(input: types.CreateMeetingInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMeetingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMeeting as schema.OperationSchema, input, options) as async.Operation<types.CreateMeetingOutput>
 end
 
-function C:createMeetingWithAttendees(input: types.CreateMeetingWithAttendeesInput, options: any): async.Operation<types.CreateMeetingWithAttendeesOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMeetingWithAttendees, input, options) as async.Operation<types.CreateMeetingWithAttendeesOutput>
+function C:createMeetingWithAttendees(input: types.CreateMeetingWithAttendeesInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMeetingWithAttendeesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMeetingWithAttendees as schema.OperationSchema, input, options) as async.Operation<types.CreateMeetingWithAttendeesOutput>
 end
 
-function C:deleteAttendee(input: types.DeleteAttendeeInput, options: any): async.Operation<types.DeleteAttendeeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAttendee, input, options) as async.Operation<types.DeleteAttendeeOutput>
+function C:deleteAttendee(input: types.DeleteAttendeeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAttendeeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAttendee as schema.OperationSchema, input, options) as async.Operation<types.DeleteAttendeeOutput>
 end
 
-function C:deleteMeeting(input: types.DeleteMeetingInput, options: any): async.Operation<types.DeleteMeetingOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMeeting, input, options) as async.Operation<types.DeleteMeetingOutput>
+function C:deleteMeeting(input: types.DeleteMeetingInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMeetingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMeeting as schema.OperationSchema, input, options) as async.Operation<types.DeleteMeetingOutput>
 end
 
-function C:getAttendee(input: types.GetAttendeeInput, options: any): async.Operation<types.GetAttendeeOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAttendee, input, options) as async.Operation<types.GetAttendeeOutput>
+function C:getAttendee(input: types.GetAttendeeInput, options?: base_client.InvokeOptions): async.Operation<types.GetAttendeeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAttendee as schema.OperationSchema, input, options) as async.Operation<types.GetAttendeeOutput>
 end
 
-function C:getMeeting(input: types.GetMeetingInput, options: any): async.Operation<types.GetMeetingOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMeeting, input, options) as async.Operation<types.GetMeetingOutput>
+function C:getMeeting(input: types.GetMeetingInput, options?: base_client.InvokeOptions): async.Operation<types.GetMeetingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMeeting as schema.OperationSchema, input, options) as async.Operation<types.GetMeetingOutput>
 end
 
-function C:listAttendees(input: types.ListAttendeesInput, options: any): async.Operation<types.ListAttendeesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAttendees, input, options) as async.Operation<types.ListAttendeesOutput>
+function C:listAttendees(input: types.ListAttendeesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAttendeesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAttendees as schema.OperationSchema, input, options) as async.Operation<types.ListAttendeesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:startMeetingTranscription(input: types.StartMeetingTranscriptionInput, options: any): async.Operation<types.StartMeetingTranscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartMeetingTranscription, input, options) as async.Operation<types.StartMeetingTranscriptionOutput>
+function C:startMeetingTranscription(input: types.StartMeetingTranscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.StartMeetingTranscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartMeetingTranscription as schema.OperationSchema, input, options) as async.Operation<types.StartMeetingTranscriptionOutput>
 end
 
-function C:stopMeetingTranscription(input: types.StopMeetingTranscriptionInput, options: any): async.Operation<types.StopMeetingTranscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopMeetingTranscription, input, options) as async.Operation<types.StopMeetingTranscriptionOutput>
+function C:stopMeetingTranscription(input: types.StopMeetingTranscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.StopMeetingTranscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopMeetingTranscription as schema.OperationSchema, input, options) as async.Operation<types.StopMeetingTranscriptionOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAttendeeCapabilities(input: types.UpdateAttendeeCapabilitiesInput, options: any): async.Operation<types.UpdateAttendeeCapabilitiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAttendeeCapabilities, input, options) as async.Operation<types.UpdateAttendeeCapabilitiesOutput>
+function C:updateAttendeeCapabilities(input: types.UpdateAttendeeCapabilitiesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAttendeeCapabilitiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAttendeeCapabilities as schema.OperationSchema, input, options) as async.Operation<types.UpdateAttendeeCapabilitiesOutput>
 end
 
 return M

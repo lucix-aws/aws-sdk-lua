@@ -8,76 +8,79 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("outposts.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("outposts.schemas")
 local traits = require("smithy.traits")
 local types = require("outposts.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    cancelCapacityTask: function(Client, types.CancelCapacityTaskInput, any): async.Operation<types.CancelCapacityTaskOutput>
-    cancelOrder: function(Client, types.CancelOrderInput, any): async.Operation<types.CancelOrderOutput>
-    createOrder: function(Client, types.CreateOrderInput, any): async.Operation<types.CreateOrderOutput>
-    createOutpost: function(Client, types.CreateOutpostInput, any): async.Operation<types.CreateOutpostOutput>
-    createRenewal: function(Client, types.CreateRenewalInput, any): async.Operation<types.CreateRenewalOutput>
-    createSite: function(Client, types.CreateSiteInput, any): async.Operation<types.CreateSiteOutput>
-    deleteOutpost: function(Client, types.DeleteOutpostInput, any): async.Operation<types.DeleteOutpostOutput>
-    deleteSite: function(Client, types.DeleteSiteInput, any): async.Operation<types.DeleteSiteOutput>
-    getCapacityTask: function(Client, types.GetCapacityTaskInput, any): async.Operation<types.GetCapacityTaskOutput>
-    getCatalogItem: function(Client, types.GetCatalogItemInput, any): async.Operation<types.GetCatalogItemOutput>
-    getConnection: function(Client, types.GetConnectionInput, any): async.Operation<types.GetConnectionOutput>
-    getOrder: function(Client, types.GetOrderInput, any): async.Operation<types.GetOrderOutput>
-    getOutpost: function(Client, types.GetOutpostInput, any): async.Operation<types.GetOutpostOutput>
-    getOutpostBillingInformation: function(Client, types.GetOutpostBillingInformationInput, any): async.Operation<types.GetOutpostBillingInformationOutput>
-    getOutpostInstanceTypes: function(Client, types.GetOutpostInstanceTypesInput, any): async.Operation<types.GetOutpostInstanceTypesOutput>
-    getOutpostSupportedInstanceTypes: function(Client, types.GetOutpostSupportedInstanceTypesInput, any): async.Operation<types.GetOutpostSupportedInstanceTypesOutput>
-    getRenewalPricing: function(Client, types.GetRenewalPricingInput, any): async.Operation<types.GetRenewalPricingOutput>
-    getSite: function(Client, types.GetSiteInput, any): async.Operation<types.GetSiteOutput>
-    getSiteAddress: function(Client, types.GetSiteAddressInput, any): async.Operation<types.GetSiteAddressOutput>
-    listAssetInstances: function(Client, types.ListAssetInstancesInput, any): async.Operation<types.ListAssetInstancesOutput>
-    listAssets: function(Client, types.ListAssetsInput, any): async.Operation<types.ListAssetsOutput>
-    listBlockingInstancesForCapacityTask: function(Client, types.ListBlockingInstancesForCapacityTaskInput, any): async.Operation<types.ListBlockingInstancesForCapacityTaskOutput>
-    listCapacityTasks: function(Client, types.ListCapacityTasksInput, any): async.Operation<types.ListCapacityTasksOutput>
-    listCatalogItems: function(Client, types.ListCatalogItemsInput, any): async.Operation<types.ListCatalogItemsOutput>
-    listOrders: function(Client, types.ListOrdersInput, any): async.Operation<types.ListOrdersOutput>
-    listOutposts: function(Client, types.ListOutpostsInput, any): async.Operation<types.ListOutpostsOutput>
-    listSites: function(Client, types.ListSitesInput, any): async.Operation<types.ListSitesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    startCapacityTask: function(Client, types.StartCapacityTaskInput, any): async.Operation<types.StartCapacityTaskOutput>
-    startConnection: function(Client, types.StartConnectionInput, any): async.Operation<types.StartConnectionOutput>
-    startOutpostDecommission: function(Client, types.StartOutpostDecommissionInput, any): async.Operation<types.StartOutpostDecommissionOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateOutpost: function(Client, types.UpdateOutpostInput, any): async.Operation<types.UpdateOutpostOutput>
-    updateSite: function(Client, types.UpdateSiteInput, any): async.Operation<types.UpdateSiteOutput>
-    updateSiteAddress: function(Client, types.UpdateSiteAddressInput, any): async.Operation<types.UpdateSiteAddressOutput>
-    updateSiteRackPhysicalProperties: function(Client, types.UpdateSiteRackPhysicalPropertiesInput, any): async.Operation<types.UpdateSiteRackPhysicalPropertiesOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    cancelCapacityTask: function(Client, types.CancelCapacityTaskInput, ? base_client.InvokeOptions): async.Operation<types.CancelCapacityTaskOutput>
+    cancelOrder: function(Client, types.CancelOrderInput, ? base_client.InvokeOptions): async.Operation<types.CancelOrderOutput>
+    createOrder: function(Client, types.CreateOrderInput, ? base_client.InvokeOptions): async.Operation<types.CreateOrderOutput>
+    createOutpost: function(Client, types.CreateOutpostInput, ? base_client.InvokeOptions): async.Operation<types.CreateOutpostOutput>
+    createRenewal: function(Client, types.CreateRenewalInput, ? base_client.InvokeOptions): async.Operation<types.CreateRenewalOutput>
+    createSite: function(Client, types.CreateSiteInput, ? base_client.InvokeOptions): async.Operation<types.CreateSiteOutput>
+    deleteOutpost: function(Client, types.DeleteOutpostInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOutpostOutput>
+    deleteSite: function(Client, types.DeleteSiteInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSiteOutput>
+    getCapacityTask: function(Client, types.GetCapacityTaskInput, ? base_client.InvokeOptions): async.Operation<types.GetCapacityTaskOutput>
+    getCatalogItem: function(Client, types.GetCatalogItemInput, ? base_client.InvokeOptions): async.Operation<types.GetCatalogItemOutput>
+    getConnection: function(Client, types.GetConnectionInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectionOutput>
+    getOrder: function(Client, types.GetOrderInput, ? base_client.InvokeOptions): async.Operation<types.GetOrderOutput>
+    getOutpost: function(Client, types.GetOutpostInput, ? base_client.InvokeOptions): async.Operation<types.GetOutpostOutput>
+    getOutpostBillingInformation: function(Client, types.GetOutpostBillingInformationInput, ? base_client.InvokeOptions): async.Operation<types.GetOutpostBillingInformationOutput>
+    getOutpostInstanceTypes: function(Client, types.GetOutpostInstanceTypesInput, ? base_client.InvokeOptions): async.Operation<types.GetOutpostInstanceTypesOutput>
+    getOutpostSupportedInstanceTypes: function(Client, types.GetOutpostSupportedInstanceTypesInput, ? base_client.InvokeOptions): async.Operation<types.GetOutpostSupportedInstanceTypesOutput>
+    getRenewalPricing: function(Client, types.GetRenewalPricingInput, ? base_client.InvokeOptions): async.Operation<types.GetRenewalPricingOutput>
+    getSite: function(Client, types.GetSiteInput, ? base_client.InvokeOptions): async.Operation<types.GetSiteOutput>
+    getSiteAddress: function(Client, types.GetSiteAddressInput, ? base_client.InvokeOptions): async.Operation<types.GetSiteAddressOutput>
+    listAssetInstances: function(Client, types.ListAssetInstancesInput, ? base_client.InvokeOptions): async.Operation<types.ListAssetInstancesOutput>
+    listAssets: function(Client, types.ListAssetsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssetsOutput>
+    listBlockingInstancesForCapacityTask: function(Client, types.ListBlockingInstancesForCapacityTaskInput, ? base_client.InvokeOptions): async.Operation<types.ListBlockingInstancesForCapacityTaskOutput>
+    listCapacityTasks: function(Client, types.ListCapacityTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListCapacityTasksOutput>
+    listCatalogItems: function(Client, types.ListCatalogItemsInput, ? base_client.InvokeOptions): async.Operation<types.ListCatalogItemsOutput>
+    listOrders: function(Client, types.ListOrdersInput, ? base_client.InvokeOptions): async.Operation<types.ListOrdersOutput>
+    listOutposts: function(Client, types.ListOutpostsInput, ? base_client.InvokeOptions): async.Operation<types.ListOutpostsOutput>
+    listSites: function(Client, types.ListSitesInput, ? base_client.InvokeOptions): async.Operation<types.ListSitesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    startCapacityTask: function(Client, types.StartCapacityTaskInput, ? base_client.InvokeOptions): async.Operation<types.StartCapacityTaskOutput>
+    startConnection: function(Client, types.StartConnectionInput, ? base_client.InvokeOptions): async.Operation<types.StartConnectionOutput>
+    startOutpostDecommission: function(Client, types.StartOutpostDecommissionInput, ? base_client.InvokeOptions): async.Operation<types.StartOutpostDecommissionOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateOutpost: function(Client, types.UpdateOutpostInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOutpostOutput>
+    updateSite: function(Client, types.UpdateSiteInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSiteOutput>
+    updateSiteAddress: function(Client, types.UpdateSiteAddressInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSiteAddressOutput>
+    updateSiteRackPhysicalProperties: function(Client, types.UpdateSiteRackPhysicalPropertiesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSiteRackPhysicalPropertiesOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "OutpostsOlafService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "outposts", signing_region = c.region } }
                 else
@@ -96,152 +99,152 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:cancelCapacityTask(input: types.CancelCapacityTaskInput, options: any): async.Operation<types.CancelCapacityTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelCapacityTask, input, options) as async.Operation<types.CancelCapacityTaskOutput>
+function C:cancelCapacityTask(input: types.CancelCapacityTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CancelCapacityTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelCapacityTask as schema.OperationSchema, input, options) as async.Operation<types.CancelCapacityTaskOutput>
 end
 
-function C:cancelOrder(input: types.CancelOrderInput, options: any): async.Operation<types.CancelOrderOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelOrder, input, options) as async.Operation<types.CancelOrderOutput>
+function C:cancelOrder(input: types.CancelOrderInput, options?: base_client.InvokeOptions): async.Operation<types.CancelOrderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelOrder as schema.OperationSchema, input, options) as async.Operation<types.CancelOrderOutput>
 end
 
-function C:createOrder(input: types.CreateOrderInput, options: any): async.Operation<types.CreateOrderOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateOrder, input, options) as async.Operation<types.CreateOrderOutput>
+function C:createOrder(input: types.CreateOrderInput, options?: base_client.InvokeOptions): async.Operation<types.CreateOrderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateOrder as schema.OperationSchema, input, options) as async.Operation<types.CreateOrderOutput>
 end
 
-function C:createOutpost(input: types.CreateOutpostInput, options: any): async.Operation<types.CreateOutpostOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateOutpost, input, options) as async.Operation<types.CreateOutpostOutput>
+function C:createOutpost(input: types.CreateOutpostInput, options?: base_client.InvokeOptions): async.Operation<types.CreateOutpostOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateOutpost as schema.OperationSchema, input, options) as async.Operation<types.CreateOutpostOutput>
 end
 
-function C:createRenewal(input: types.CreateRenewalInput, options: any): async.Operation<types.CreateRenewalOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRenewal, input, options) as async.Operation<types.CreateRenewalOutput>
+function C:createRenewal(input: types.CreateRenewalInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRenewalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRenewal as schema.OperationSchema, input, options) as async.Operation<types.CreateRenewalOutput>
 end
 
-function C:createSite(input: types.CreateSiteInput, options: any): async.Operation<types.CreateSiteOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSite, input, options) as async.Operation<types.CreateSiteOutput>
+function C:createSite(input: types.CreateSiteInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSiteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSite as schema.OperationSchema, input, options) as async.Operation<types.CreateSiteOutput>
 end
 
-function C:deleteOutpost(input: types.DeleteOutpostInput, options: any): async.Operation<types.DeleteOutpostOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteOutpost, input, options) as async.Operation<types.DeleteOutpostOutput>
+function C:deleteOutpost(input: types.DeleteOutpostInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteOutpostOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteOutpost as schema.OperationSchema, input, options) as async.Operation<types.DeleteOutpostOutput>
 end
 
-function C:deleteSite(input: types.DeleteSiteInput, options: any): async.Operation<types.DeleteSiteOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSite, input, options) as async.Operation<types.DeleteSiteOutput>
+function C:deleteSite(input: types.DeleteSiteInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSiteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSite as schema.OperationSchema, input, options) as async.Operation<types.DeleteSiteOutput>
 end
 
-function C:getCapacityTask(input: types.GetCapacityTaskInput, options: any): async.Operation<types.GetCapacityTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCapacityTask, input, options) as async.Operation<types.GetCapacityTaskOutput>
+function C:getCapacityTask(input: types.GetCapacityTaskInput, options?: base_client.InvokeOptions): async.Operation<types.GetCapacityTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCapacityTask as schema.OperationSchema, input, options) as async.Operation<types.GetCapacityTaskOutput>
 end
 
-function C:getCatalogItem(input: types.GetCatalogItemInput, options: any): async.Operation<types.GetCatalogItemOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCatalogItem, input, options) as async.Operation<types.GetCatalogItemOutput>
+function C:getCatalogItem(input: types.GetCatalogItemInput, options?: base_client.InvokeOptions): async.Operation<types.GetCatalogItemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCatalogItem as schema.OperationSchema, input, options) as async.Operation<types.GetCatalogItemOutput>
 end
 
-function C:getConnection(input: types.GetConnectionInput, options: any): async.Operation<types.GetConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConnection, input, options) as async.Operation<types.GetConnectionOutput>
+function C:getConnection(input: types.GetConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.GetConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConnection as schema.OperationSchema, input, options) as async.Operation<types.GetConnectionOutput>
 end
 
-function C:getOrder(input: types.GetOrderInput, options: any): async.Operation<types.GetOrderOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOrder, input, options) as async.Operation<types.GetOrderOutput>
+function C:getOrder(input: types.GetOrderInput, options?: base_client.InvokeOptions): async.Operation<types.GetOrderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOrder as schema.OperationSchema, input, options) as async.Operation<types.GetOrderOutput>
 end
 
-function C:getOutpost(input: types.GetOutpostInput, options: any): async.Operation<types.GetOutpostOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOutpost, input, options) as async.Operation<types.GetOutpostOutput>
+function C:getOutpost(input: types.GetOutpostInput, options?: base_client.InvokeOptions): async.Operation<types.GetOutpostOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOutpost as schema.OperationSchema, input, options) as async.Operation<types.GetOutpostOutput>
 end
 
-function C:getOutpostBillingInformation(input: types.GetOutpostBillingInformationInput, options: any): async.Operation<types.GetOutpostBillingInformationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOutpostBillingInformation, input, options) as async.Operation<types.GetOutpostBillingInformationOutput>
+function C:getOutpostBillingInformation(input: types.GetOutpostBillingInformationInput, options?: base_client.InvokeOptions): async.Operation<types.GetOutpostBillingInformationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOutpostBillingInformation as schema.OperationSchema, input, options) as async.Operation<types.GetOutpostBillingInformationOutput>
 end
 
-function C:getOutpostInstanceTypes(input: types.GetOutpostInstanceTypesInput, options: any): async.Operation<types.GetOutpostInstanceTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOutpostInstanceTypes, input, options) as async.Operation<types.GetOutpostInstanceTypesOutput>
+function C:getOutpostInstanceTypes(input: types.GetOutpostInstanceTypesInput, options?: base_client.InvokeOptions): async.Operation<types.GetOutpostInstanceTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOutpostInstanceTypes as schema.OperationSchema, input, options) as async.Operation<types.GetOutpostInstanceTypesOutput>
 end
 
-function C:getOutpostSupportedInstanceTypes(input: types.GetOutpostSupportedInstanceTypesInput, options: any): async.Operation<types.GetOutpostSupportedInstanceTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOutpostSupportedInstanceTypes, input, options) as async.Operation<types.GetOutpostSupportedInstanceTypesOutput>
+function C:getOutpostSupportedInstanceTypes(input: types.GetOutpostSupportedInstanceTypesInput, options?: base_client.InvokeOptions): async.Operation<types.GetOutpostSupportedInstanceTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOutpostSupportedInstanceTypes as schema.OperationSchema, input, options) as async.Operation<types.GetOutpostSupportedInstanceTypesOutput>
 end
 
-function C:getRenewalPricing(input: types.GetRenewalPricingInput, options: any): async.Operation<types.GetRenewalPricingOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRenewalPricing, input, options) as async.Operation<types.GetRenewalPricingOutput>
+function C:getRenewalPricing(input: types.GetRenewalPricingInput, options?: base_client.InvokeOptions): async.Operation<types.GetRenewalPricingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRenewalPricing as schema.OperationSchema, input, options) as async.Operation<types.GetRenewalPricingOutput>
 end
 
-function C:getSite(input: types.GetSiteInput, options: any): async.Operation<types.GetSiteOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSite, input, options) as async.Operation<types.GetSiteOutput>
+function C:getSite(input: types.GetSiteInput, options?: base_client.InvokeOptions): async.Operation<types.GetSiteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSite as schema.OperationSchema, input, options) as async.Operation<types.GetSiteOutput>
 end
 
-function C:getSiteAddress(input: types.GetSiteAddressInput, options: any): async.Operation<types.GetSiteAddressOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSiteAddress, input, options) as async.Operation<types.GetSiteAddressOutput>
+function C:getSiteAddress(input: types.GetSiteAddressInput, options?: base_client.InvokeOptions): async.Operation<types.GetSiteAddressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSiteAddress as schema.OperationSchema, input, options) as async.Operation<types.GetSiteAddressOutput>
 end
 
-function C:listAssetInstances(input: types.ListAssetInstancesInput, options: any): async.Operation<types.ListAssetInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssetInstances, input, options) as async.Operation<types.ListAssetInstancesOutput>
+function C:listAssetInstances(input: types.ListAssetInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssetInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssetInstances as schema.OperationSchema, input, options) as async.Operation<types.ListAssetInstancesOutput>
 end
 
-function C:listAssets(input: types.ListAssetsInput, options: any): async.Operation<types.ListAssetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssets, input, options) as async.Operation<types.ListAssetsOutput>
+function C:listAssets(input: types.ListAssetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssets as schema.OperationSchema, input, options) as async.Operation<types.ListAssetsOutput>
 end
 
-function C:listBlockingInstancesForCapacityTask(input: types.ListBlockingInstancesForCapacityTaskInput, options: any): async.Operation<types.ListBlockingInstancesForCapacityTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBlockingInstancesForCapacityTask, input, options) as async.Operation<types.ListBlockingInstancesForCapacityTaskOutput>
+function C:listBlockingInstancesForCapacityTask(input: types.ListBlockingInstancesForCapacityTaskInput, options?: base_client.InvokeOptions): async.Operation<types.ListBlockingInstancesForCapacityTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBlockingInstancesForCapacityTask as schema.OperationSchema, input, options) as async.Operation<types.ListBlockingInstancesForCapacityTaskOutput>
 end
 
-function C:listCapacityTasks(input: types.ListCapacityTasksInput, options: any): async.Operation<types.ListCapacityTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCapacityTasks, input, options) as async.Operation<types.ListCapacityTasksOutput>
+function C:listCapacityTasks(input: types.ListCapacityTasksInput, options?: base_client.InvokeOptions): async.Operation<types.ListCapacityTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCapacityTasks as schema.OperationSchema, input, options) as async.Operation<types.ListCapacityTasksOutput>
 end
 
-function C:listCatalogItems(input: types.ListCatalogItemsInput, options: any): async.Operation<types.ListCatalogItemsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCatalogItems, input, options) as async.Operation<types.ListCatalogItemsOutput>
+function C:listCatalogItems(input: types.ListCatalogItemsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCatalogItemsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCatalogItems as schema.OperationSchema, input, options) as async.Operation<types.ListCatalogItemsOutput>
 end
 
-function C:listOrders(input: types.ListOrdersInput, options: any): async.Operation<types.ListOrdersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOrders, input, options) as async.Operation<types.ListOrdersOutput>
+function C:listOrders(input: types.ListOrdersInput, options?: base_client.InvokeOptions): async.Operation<types.ListOrdersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOrders as schema.OperationSchema, input, options) as async.Operation<types.ListOrdersOutput>
 end
 
-function C:listOutposts(input: types.ListOutpostsInput, options: any): async.Operation<types.ListOutpostsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOutposts, input, options) as async.Operation<types.ListOutpostsOutput>
+function C:listOutposts(input: types.ListOutpostsInput, options?: base_client.InvokeOptions): async.Operation<types.ListOutpostsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOutposts as schema.OperationSchema, input, options) as async.Operation<types.ListOutpostsOutput>
 end
 
-function C:listSites(input: types.ListSitesInput, options: any): async.Operation<types.ListSitesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSites, input, options) as async.Operation<types.ListSitesOutput>
+function C:listSites(input: types.ListSitesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSitesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSites as schema.OperationSchema, input, options) as async.Operation<types.ListSitesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:startCapacityTask(input: types.StartCapacityTaskInput, options: any): async.Operation<types.StartCapacityTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartCapacityTask, input, options) as async.Operation<types.StartCapacityTaskOutput>
+function C:startCapacityTask(input: types.StartCapacityTaskInput, options?: base_client.InvokeOptions): async.Operation<types.StartCapacityTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartCapacityTask as schema.OperationSchema, input, options) as async.Operation<types.StartCapacityTaskOutput>
 end
 
-function C:startConnection(input: types.StartConnectionInput, options: any): async.Operation<types.StartConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartConnection, input, options) as async.Operation<types.StartConnectionOutput>
+function C:startConnection(input: types.StartConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.StartConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartConnection as schema.OperationSchema, input, options) as async.Operation<types.StartConnectionOutput>
 end
 
-function C:startOutpostDecommission(input: types.StartOutpostDecommissionInput, options: any): async.Operation<types.StartOutpostDecommissionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartOutpostDecommission, input, options) as async.Operation<types.StartOutpostDecommissionOutput>
+function C:startOutpostDecommission(input: types.StartOutpostDecommissionInput, options?: base_client.InvokeOptions): async.Operation<types.StartOutpostDecommissionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartOutpostDecommission as schema.OperationSchema, input, options) as async.Operation<types.StartOutpostDecommissionOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateOutpost(input: types.UpdateOutpostInput, options: any): async.Operation<types.UpdateOutpostOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateOutpost, input, options) as async.Operation<types.UpdateOutpostOutput>
+function C:updateOutpost(input: types.UpdateOutpostInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateOutpostOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateOutpost as schema.OperationSchema, input, options) as async.Operation<types.UpdateOutpostOutput>
 end
 
-function C:updateSite(input: types.UpdateSiteInput, options: any): async.Operation<types.UpdateSiteOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSite, input, options) as async.Operation<types.UpdateSiteOutput>
+function C:updateSite(input: types.UpdateSiteInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSiteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSite as schema.OperationSchema, input, options) as async.Operation<types.UpdateSiteOutput>
 end
 
-function C:updateSiteAddress(input: types.UpdateSiteAddressInput, options: any): async.Operation<types.UpdateSiteAddressOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSiteAddress, input, options) as async.Operation<types.UpdateSiteAddressOutput>
+function C:updateSiteAddress(input: types.UpdateSiteAddressInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSiteAddressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSiteAddress as schema.OperationSchema, input, options) as async.Operation<types.UpdateSiteAddressOutput>
 end
 
-function C:updateSiteRackPhysicalProperties(input: types.UpdateSiteRackPhysicalPropertiesInput, options: any): async.Operation<types.UpdateSiteRackPhysicalPropertiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSiteRackPhysicalProperties, input, options) as async.Operation<types.UpdateSiteRackPhysicalPropertiesOutput>
+function C:updateSiteRackPhysicalProperties(input: types.UpdateSiteRackPhysicalPropertiesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSiteRackPhysicalPropertiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSiteRackPhysicalProperties as schema.OperationSchema, input, options) as async.Operation<types.UpdateSiteRackPhysicalPropertiesOutput>
 end
 
 return M

@@ -8,111 +8,114 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("bedrockagent.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("bedrockagent.schemas")
 local traits = require("smithy.traits")
 local types = require("bedrockagent.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateAgentCollaborator: function(Client, types.AssociateAgentCollaboratorInput, any): async.Operation<types.AssociateAgentCollaboratorOutput>
-    associateAgentKnowledgeBase: function(Client, types.AssociateAgentKnowledgeBaseInput, any): async.Operation<types.AssociateAgentKnowledgeBaseOutput>
-    createAgent: function(Client, types.CreateAgentInput, any): async.Operation<types.CreateAgentOutput>
-    createAgentActionGroup: function(Client, types.CreateAgentActionGroupInput, any): async.Operation<types.CreateAgentActionGroupOutput>
-    createAgentAlias: function(Client, types.CreateAgentAliasInput, any): async.Operation<types.CreateAgentAliasOutput>
-    createDataSource: function(Client, types.CreateDataSourceInput, any): async.Operation<types.CreateDataSourceOutput>
-    createFlow: function(Client, types.CreateFlowInput, any): async.Operation<types.CreateFlowOutput>
-    createFlowAlias: function(Client, types.CreateFlowAliasInput, any): async.Operation<types.CreateFlowAliasOutput>
-    createFlowVersion: function(Client, types.CreateFlowVersionInput, any): async.Operation<types.CreateFlowVersionOutput>
-    createKnowledgeBase: function(Client, types.CreateKnowledgeBaseInput, any): async.Operation<types.CreateKnowledgeBaseOutput>
-    createPrompt: function(Client, types.CreatePromptInput, any): async.Operation<types.CreatePromptOutput>
-    createPromptVersion: function(Client, types.CreatePromptVersionInput, any): async.Operation<types.CreatePromptVersionOutput>
-    deleteAgent: function(Client, types.DeleteAgentInput, any): async.Operation<types.DeleteAgentOutput>
-    deleteAgentActionGroup: function(Client, types.DeleteAgentActionGroupInput, any): async.Operation<types.DeleteAgentActionGroupOutput>
-    deleteAgentAlias: function(Client, types.DeleteAgentAliasInput, any): async.Operation<types.DeleteAgentAliasOutput>
-    deleteAgentVersion: function(Client, types.DeleteAgentVersionInput, any): async.Operation<types.DeleteAgentVersionOutput>
-    deleteDataSource: function(Client, types.DeleteDataSourceInput, any): async.Operation<types.DeleteDataSourceOutput>
-    deleteFlow: function(Client, types.DeleteFlowInput, any): async.Operation<types.DeleteFlowOutput>
-    deleteFlowAlias: function(Client, types.DeleteFlowAliasInput, any): async.Operation<types.DeleteFlowAliasOutput>
-    deleteFlowVersion: function(Client, types.DeleteFlowVersionInput, any): async.Operation<types.DeleteFlowVersionOutput>
-    deleteKnowledgeBase: function(Client, types.DeleteKnowledgeBaseInput, any): async.Operation<types.DeleteKnowledgeBaseOutput>
-    deleteKnowledgeBaseDocuments: function(Client, types.DeleteKnowledgeBaseDocumentsInput, any): async.Operation<types.DeleteKnowledgeBaseDocumentsOutput>
-    deletePrompt: function(Client, types.DeletePromptInput, any): async.Operation<types.DeletePromptOutput>
-    disassociateAgentCollaborator: function(Client, types.DisassociateAgentCollaboratorInput, any): async.Operation<types.DisassociateAgentCollaboratorOutput>
-    disassociateAgentKnowledgeBase: function(Client, types.DisassociateAgentKnowledgeBaseInput, any): async.Operation<types.DisassociateAgentKnowledgeBaseOutput>
-    getAgent: function(Client, types.GetAgentInput, any): async.Operation<types.GetAgentOutput>
-    getAgentActionGroup: function(Client, types.GetAgentActionGroupInput, any): async.Operation<types.GetAgentActionGroupOutput>
-    getAgentAlias: function(Client, types.GetAgentAliasInput, any): async.Operation<types.GetAgentAliasOutput>
-    getAgentCollaborator: function(Client, types.GetAgentCollaboratorInput, any): async.Operation<types.GetAgentCollaboratorOutput>
-    getAgentKnowledgeBase: function(Client, types.GetAgentKnowledgeBaseInput, any): async.Operation<types.GetAgentKnowledgeBaseOutput>
-    getAgentVersion: function(Client, types.GetAgentVersionInput, any): async.Operation<types.GetAgentVersionOutput>
-    getDataSource: function(Client, types.GetDataSourceInput, any): async.Operation<types.GetDataSourceOutput>
-    getFlow: function(Client, types.GetFlowInput, any): async.Operation<types.GetFlowOutput>
-    getFlowAlias: function(Client, types.GetFlowAliasInput, any): async.Operation<types.GetFlowAliasOutput>
-    getFlowVersion: function(Client, types.GetFlowVersionInput, any): async.Operation<types.GetFlowVersionOutput>
-    getIngestionJob: function(Client, types.GetIngestionJobInput, any): async.Operation<types.GetIngestionJobOutput>
-    getKnowledgeBase: function(Client, types.GetKnowledgeBaseInput, any): async.Operation<types.GetKnowledgeBaseOutput>
-    getKnowledgeBaseDocuments: function(Client, types.GetKnowledgeBaseDocumentsInput, any): async.Operation<types.GetKnowledgeBaseDocumentsOutput>
-    getPrompt: function(Client, types.GetPromptInput, any): async.Operation<types.GetPromptOutput>
-    ingestKnowledgeBaseDocuments: function(Client, types.IngestKnowledgeBaseDocumentsInput, any): async.Operation<types.IngestKnowledgeBaseDocumentsOutput>
-    listAgentActionGroups: function(Client, types.ListAgentActionGroupsInput, any): async.Operation<types.ListAgentActionGroupsOutput>
-    listAgentAliases: function(Client, types.ListAgentAliasesInput, any): async.Operation<types.ListAgentAliasesOutput>
-    listAgentCollaborators: function(Client, types.ListAgentCollaboratorsInput, any): async.Operation<types.ListAgentCollaboratorsOutput>
-    listAgentKnowledgeBases: function(Client, types.ListAgentKnowledgeBasesInput, any): async.Operation<types.ListAgentKnowledgeBasesOutput>
-    listAgents: function(Client, types.ListAgentsInput, any): async.Operation<types.ListAgentsOutput>
-    listAgentVersions: function(Client, types.ListAgentVersionsInput, any): async.Operation<types.ListAgentVersionsOutput>
-    listDataSources: function(Client, types.ListDataSourcesInput, any): async.Operation<types.ListDataSourcesOutput>
-    listFlowAliases: function(Client, types.ListFlowAliasesInput, any): async.Operation<types.ListFlowAliasesOutput>
-    listFlows: function(Client, types.ListFlowsInput, any): async.Operation<types.ListFlowsOutput>
-    listFlowVersions: function(Client, types.ListFlowVersionsInput, any): async.Operation<types.ListFlowVersionsOutput>
-    listIngestionJobs: function(Client, types.ListIngestionJobsInput, any): async.Operation<types.ListIngestionJobsOutput>
-    listKnowledgeBaseDocuments: function(Client, types.ListKnowledgeBaseDocumentsInput, any): async.Operation<types.ListKnowledgeBaseDocumentsOutput>
-    listKnowledgeBases: function(Client, types.ListKnowledgeBasesInput, any): async.Operation<types.ListKnowledgeBasesOutput>
-    listPrompts: function(Client, types.ListPromptsInput, any): async.Operation<types.ListPromptsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    prepareAgent: function(Client, types.PrepareAgentInput, any): async.Operation<types.PrepareAgentOutput>
-    prepareFlow: function(Client, types.PrepareFlowInput, any): async.Operation<types.PrepareFlowOutput>
-    startIngestionJob: function(Client, types.StartIngestionJobInput, any): async.Operation<types.StartIngestionJobOutput>
-    stopIngestionJob: function(Client, types.StopIngestionJobInput, any): async.Operation<types.StopIngestionJobOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAgent: function(Client, types.UpdateAgentInput, any): async.Operation<types.UpdateAgentOutput>
-    updateAgentActionGroup: function(Client, types.UpdateAgentActionGroupInput, any): async.Operation<types.UpdateAgentActionGroupOutput>
-    updateAgentAlias: function(Client, types.UpdateAgentAliasInput, any): async.Operation<types.UpdateAgentAliasOutput>
-    updateAgentCollaborator: function(Client, types.UpdateAgentCollaboratorInput, any): async.Operation<types.UpdateAgentCollaboratorOutput>
-    updateAgentKnowledgeBase: function(Client, types.UpdateAgentKnowledgeBaseInput, any): async.Operation<types.UpdateAgentKnowledgeBaseOutput>
-    updateDataSource: function(Client, types.UpdateDataSourceInput, any): async.Operation<types.UpdateDataSourceOutput>
-    updateFlow: function(Client, types.UpdateFlowInput, any): async.Operation<types.UpdateFlowOutput>
-    updateFlowAlias: function(Client, types.UpdateFlowAliasInput, any): async.Operation<types.UpdateFlowAliasOutput>
-    updateKnowledgeBase: function(Client, types.UpdateKnowledgeBaseInput, any): async.Operation<types.UpdateKnowledgeBaseOutput>
-    updatePrompt: function(Client, types.UpdatePromptInput, any): async.Operation<types.UpdatePromptOutput>
-    validateFlowDefinition: function(Client, types.ValidateFlowDefinitionInput, any): async.Operation<types.ValidateFlowDefinitionOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateAgentCollaborator: function(Client, types.AssociateAgentCollaboratorInput, ? base_client.InvokeOptions): async.Operation<types.AssociateAgentCollaboratorOutput>
+    associateAgentKnowledgeBase: function(Client, types.AssociateAgentKnowledgeBaseInput, ? base_client.InvokeOptions): async.Operation<types.AssociateAgentKnowledgeBaseOutput>
+    createAgent: function(Client, types.CreateAgentInput, ? base_client.InvokeOptions): async.Operation<types.CreateAgentOutput>
+    createAgentActionGroup: function(Client, types.CreateAgentActionGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateAgentActionGroupOutput>
+    createAgentAlias: function(Client, types.CreateAgentAliasInput, ? base_client.InvokeOptions): async.Operation<types.CreateAgentAliasOutput>
+    createDataSource: function(Client, types.CreateDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataSourceOutput>
+    createFlow: function(Client, types.CreateFlowInput, ? base_client.InvokeOptions): async.Operation<types.CreateFlowOutput>
+    createFlowAlias: function(Client, types.CreateFlowAliasInput, ? base_client.InvokeOptions): async.Operation<types.CreateFlowAliasOutput>
+    createFlowVersion: function(Client, types.CreateFlowVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateFlowVersionOutput>
+    createKnowledgeBase: function(Client, types.CreateKnowledgeBaseInput, ? base_client.InvokeOptions): async.Operation<types.CreateKnowledgeBaseOutput>
+    createPrompt: function(Client, types.CreatePromptInput, ? base_client.InvokeOptions): async.Operation<types.CreatePromptOutput>
+    createPromptVersion: function(Client, types.CreatePromptVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreatePromptVersionOutput>
+    deleteAgent: function(Client, types.DeleteAgentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAgentOutput>
+    deleteAgentActionGroup: function(Client, types.DeleteAgentActionGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAgentActionGroupOutput>
+    deleteAgentAlias: function(Client, types.DeleteAgentAliasInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAgentAliasOutput>
+    deleteAgentVersion: function(Client, types.DeleteAgentVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAgentVersionOutput>
+    deleteDataSource: function(Client, types.DeleteDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataSourceOutput>
+    deleteFlow: function(Client, types.DeleteFlowInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFlowOutput>
+    deleteFlowAlias: function(Client, types.DeleteFlowAliasInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFlowAliasOutput>
+    deleteFlowVersion: function(Client, types.DeleteFlowVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFlowVersionOutput>
+    deleteKnowledgeBase: function(Client, types.DeleteKnowledgeBaseInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKnowledgeBaseOutput>
+    deleteKnowledgeBaseDocuments: function(Client, types.DeleteKnowledgeBaseDocumentsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKnowledgeBaseDocumentsOutput>
+    deletePrompt: function(Client, types.DeletePromptInput, ? base_client.InvokeOptions): async.Operation<types.DeletePromptOutput>
+    disassociateAgentCollaborator: function(Client, types.DisassociateAgentCollaboratorInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateAgentCollaboratorOutput>
+    disassociateAgentKnowledgeBase: function(Client, types.DisassociateAgentKnowledgeBaseInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateAgentKnowledgeBaseOutput>
+    getAgent: function(Client, types.GetAgentInput, ? base_client.InvokeOptions): async.Operation<types.GetAgentOutput>
+    getAgentActionGroup: function(Client, types.GetAgentActionGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetAgentActionGroupOutput>
+    getAgentAlias: function(Client, types.GetAgentAliasInput, ? base_client.InvokeOptions): async.Operation<types.GetAgentAliasOutput>
+    getAgentCollaborator: function(Client, types.GetAgentCollaboratorInput, ? base_client.InvokeOptions): async.Operation<types.GetAgentCollaboratorOutput>
+    getAgentKnowledgeBase: function(Client, types.GetAgentKnowledgeBaseInput, ? base_client.InvokeOptions): async.Operation<types.GetAgentKnowledgeBaseOutput>
+    getAgentVersion: function(Client, types.GetAgentVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetAgentVersionOutput>
+    getDataSource: function(Client, types.GetDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.GetDataSourceOutput>
+    getFlow: function(Client, types.GetFlowInput, ? base_client.InvokeOptions): async.Operation<types.GetFlowOutput>
+    getFlowAlias: function(Client, types.GetFlowAliasInput, ? base_client.InvokeOptions): async.Operation<types.GetFlowAliasOutput>
+    getFlowVersion: function(Client, types.GetFlowVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetFlowVersionOutput>
+    getIngestionJob: function(Client, types.GetIngestionJobInput, ? base_client.InvokeOptions): async.Operation<types.GetIngestionJobOutput>
+    getKnowledgeBase: function(Client, types.GetKnowledgeBaseInput, ? base_client.InvokeOptions): async.Operation<types.GetKnowledgeBaseOutput>
+    getKnowledgeBaseDocuments: function(Client, types.GetKnowledgeBaseDocumentsInput, ? base_client.InvokeOptions): async.Operation<types.GetKnowledgeBaseDocumentsOutput>
+    getPrompt: function(Client, types.GetPromptInput, ? base_client.InvokeOptions): async.Operation<types.GetPromptOutput>
+    ingestKnowledgeBaseDocuments: function(Client, types.IngestKnowledgeBaseDocumentsInput, ? base_client.InvokeOptions): async.Operation<types.IngestKnowledgeBaseDocumentsOutput>
+    listAgentActionGroups: function(Client, types.ListAgentActionGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentActionGroupsOutput>
+    listAgentAliases: function(Client, types.ListAgentAliasesInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentAliasesOutput>
+    listAgentCollaborators: function(Client, types.ListAgentCollaboratorsInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentCollaboratorsOutput>
+    listAgentKnowledgeBases: function(Client, types.ListAgentKnowledgeBasesInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentKnowledgeBasesOutput>
+    listAgents: function(Client, types.ListAgentsInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentsOutput>
+    listAgentVersions: function(Client, types.ListAgentVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentVersionsOutput>
+    listDataSources: function(Client, types.ListDataSourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListDataSourcesOutput>
+    listFlowAliases: function(Client, types.ListFlowAliasesInput, ? base_client.InvokeOptions): async.Operation<types.ListFlowAliasesOutput>
+    listFlows: function(Client, types.ListFlowsInput, ? base_client.InvokeOptions): async.Operation<types.ListFlowsOutput>
+    listFlowVersions: function(Client, types.ListFlowVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListFlowVersionsOutput>
+    listIngestionJobs: function(Client, types.ListIngestionJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListIngestionJobsOutput>
+    listKnowledgeBaseDocuments: function(Client, types.ListKnowledgeBaseDocumentsInput, ? base_client.InvokeOptions): async.Operation<types.ListKnowledgeBaseDocumentsOutput>
+    listKnowledgeBases: function(Client, types.ListKnowledgeBasesInput, ? base_client.InvokeOptions): async.Operation<types.ListKnowledgeBasesOutput>
+    listPrompts: function(Client, types.ListPromptsInput, ? base_client.InvokeOptions): async.Operation<types.ListPromptsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    prepareAgent: function(Client, types.PrepareAgentInput, ? base_client.InvokeOptions): async.Operation<types.PrepareAgentOutput>
+    prepareFlow: function(Client, types.PrepareFlowInput, ? base_client.InvokeOptions): async.Operation<types.PrepareFlowOutput>
+    startIngestionJob: function(Client, types.StartIngestionJobInput, ? base_client.InvokeOptions): async.Operation<types.StartIngestionJobOutput>
+    stopIngestionJob: function(Client, types.StopIngestionJobInput, ? base_client.InvokeOptions): async.Operation<types.StopIngestionJobOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAgent: function(Client, types.UpdateAgentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAgentOutput>
+    updateAgentActionGroup: function(Client, types.UpdateAgentActionGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAgentActionGroupOutput>
+    updateAgentAlias: function(Client, types.UpdateAgentAliasInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAgentAliasOutput>
+    updateAgentCollaborator: function(Client, types.UpdateAgentCollaboratorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAgentCollaboratorOutput>
+    updateAgentKnowledgeBase: function(Client, types.UpdateAgentKnowledgeBaseInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAgentKnowledgeBaseOutput>
+    updateDataSource: function(Client, types.UpdateDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataSourceOutput>
+    updateFlow: function(Client, types.UpdateFlowInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFlowOutput>
+    updateFlowAlias: function(Client, types.UpdateFlowAliasInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFlowAliasOutput>
+    updateKnowledgeBase: function(Client, types.UpdateKnowledgeBaseInput, ? base_client.InvokeOptions): async.Operation<types.UpdateKnowledgeBaseOutput>
+    updatePrompt: function(Client, types.UpdatePromptInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePromptOutput>
+    validateFlowDefinition: function(Client, types.ValidateFlowDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.ValidateFlowDefinitionOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonBedrockAgentBuildTimeLambda"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "bedrock", signing_region = c.region } }
                 else
@@ -131,292 +134,292 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateAgentCollaborator(input: types.AssociateAgentCollaboratorInput, options: any): async.Operation<types.AssociateAgentCollaboratorOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateAgentCollaborator, input, options) as async.Operation<types.AssociateAgentCollaboratorOutput>
+function C:associateAgentCollaborator(input: types.AssociateAgentCollaboratorInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateAgentCollaboratorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateAgentCollaborator as schema.OperationSchema, input, options) as async.Operation<types.AssociateAgentCollaboratorOutput>
 end
 
-function C:associateAgentKnowledgeBase(input: types.AssociateAgentKnowledgeBaseInput, options: any): async.Operation<types.AssociateAgentKnowledgeBaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateAgentKnowledgeBase, input, options) as async.Operation<types.AssociateAgentKnowledgeBaseOutput>
+function C:associateAgentKnowledgeBase(input: types.AssociateAgentKnowledgeBaseInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateAgentKnowledgeBaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateAgentKnowledgeBase as schema.OperationSchema, input, options) as async.Operation<types.AssociateAgentKnowledgeBaseOutput>
 end
 
-function C:createAgent(input: types.CreateAgentInput, options: any): async.Operation<types.CreateAgentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAgent, input, options) as async.Operation<types.CreateAgentOutput>
+function C:createAgent(input: types.CreateAgentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAgentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAgent as schema.OperationSchema, input, options) as async.Operation<types.CreateAgentOutput>
 end
 
-function C:createAgentActionGroup(input: types.CreateAgentActionGroupInput, options: any): async.Operation<types.CreateAgentActionGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAgentActionGroup, input, options) as async.Operation<types.CreateAgentActionGroupOutput>
+function C:createAgentActionGroup(input: types.CreateAgentActionGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAgentActionGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAgentActionGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateAgentActionGroupOutput>
 end
 
-function C:createAgentAlias(input: types.CreateAgentAliasInput, options: any): async.Operation<types.CreateAgentAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAgentAlias, input, options) as async.Operation<types.CreateAgentAliasOutput>
+function C:createAgentAlias(input: types.CreateAgentAliasInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAgentAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAgentAlias as schema.OperationSchema, input, options) as async.Operation<types.CreateAgentAliasOutput>
 end
 
-function C:createDataSource(input: types.CreateDataSourceInput, options: any): async.Operation<types.CreateDataSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataSource, input, options) as async.Operation<types.CreateDataSourceOutput>
+function C:createDataSource(input: types.CreateDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataSource as schema.OperationSchema, input, options) as async.Operation<types.CreateDataSourceOutput>
 end
 
-function C:createFlow(input: types.CreateFlowInput, options: any): async.Operation<types.CreateFlowOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFlow, input, options) as async.Operation<types.CreateFlowOutput>
+function C:createFlow(input: types.CreateFlowInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFlowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFlow as schema.OperationSchema, input, options) as async.Operation<types.CreateFlowOutput>
 end
 
-function C:createFlowAlias(input: types.CreateFlowAliasInput, options: any): async.Operation<types.CreateFlowAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFlowAlias, input, options) as async.Operation<types.CreateFlowAliasOutput>
+function C:createFlowAlias(input: types.CreateFlowAliasInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFlowAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFlowAlias as schema.OperationSchema, input, options) as async.Operation<types.CreateFlowAliasOutput>
 end
 
-function C:createFlowVersion(input: types.CreateFlowVersionInput, options: any): async.Operation<types.CreateFlowVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFlowVersion, input, options) as async.Operation<types.CreateFlowVersionOutput>
+function C:createFlowVersion(input: types.CreateFlowVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFlowVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFlowVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateFlowVersionOutput>
 end
 
-function C:createKnowledgeBase(input: types.CreateKnowledgeBaseInput, options: any): async.Operation<types.CreateKnowledgeBaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateKnowledgeBase, input, options) as async.Operation<types.CreateKnowledgeBaseOutput>
+function C:createKnowledgeBase(input: types.CreateKnowledgeBaseInput, options?: base_client.InvokeOptions): async.Operation<types.CreateKnowledgeBaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateKnowledgeBase as schema.OperationSchema, input, options) as async.Operation<types.CreateKnowledgeBaseOutput>
 end
 
-function C:createPrompt(input: types.CreatePromptInput, options: any): async.Operation<types.CreatePromptOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePrompt, input, options) as async.Operation<types.CreatePromptOutput>
+function C:createPrompt(input: types.CreatePromptInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePromptOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePrompt as schema.OperationSchema, input, options) as async.Operation<types.CreatePromptOutput>
 end
 
-function C:createPromptVersion(input: types.CreatePromptVersionInput, options: any): async.Operation<types.CreatePromptVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePromptVersion, input, options) as async.Operation<types.CreatePromptVersionOutput>
+function C:createPromptVersion(input: types.CreatePromptVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePromptVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePromptVersion as schema.OperationSchema, input, options) as async.Operation<types.CreatePromptVersionOutput>
 end
 
-function C:deleteAgent(input: types.DeleteAgentInput, options: any): async.Operation<types.DeleteAgentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAgent, input, options) as async.Operation<types.DeleteAgentOutput>
+function C:deleteAgent(input: types.DeleteAgentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAgentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAgent as schema.OperationSchema, input, options) as async.Operation<types.DeleteAgentOutput>
 end
 
-function C:deleteAgentActionGroup(input: types.DeleteAgentActionGroupInput, options: any): async.Operation<types.DeleteAgentActionGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAgentActionGroup, input, options) as async.Operation<types.DeleteAgentActionGroupOutput>
+function C:deleteAgentActionGroup(input: types.DeleteAgentActionGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAgentActionGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAgentActionGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteAgentActionGroupOutput>
 end
 
-function C:deleteAgentAlias(input: types.DeleteAgentAliasInput, options: any): async.Operation<types.DeleteAgentAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAgentAlias, input, options) as async.Operation<types.DeleteAgentAliasOutput>
+function C:deleteAgentAlias(input: types.DeleteAgentAliasInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAgentAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAgentAlias as schema.OperationSchema, input, options) as async.Operation<types.DeleteAgentAliasOutput>
 end
 
-function C:deleteAgentVersion(input: types.DeleteAgentVersionInput, options: any): async.Operation<types.DeleteAgentVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAgentVersion, input, options) as async.Operation<types.DeleteAgentVersionOutput>
+function C:deleteAgentVersion(input: types.DeleteAgentVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAgentVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAgentVersion as schema.OperationSchema, input, options) as async.Operation<types.DeleteAgentVersionOutput>
 end
 
-function C:deleteDataSource(input: types.DeleteDataSourceInput, options: any): async.Operation<types.DeleteDataSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDataSource, input, options) as async.Operation<types.DeleteDataSourceOutput>
+function C:deleteDataSource(input: types.DeleteDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDataSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataSource as schema.OperationSchema, input, options) as async.Operation<types.DeleteDataSourceOutput>
 end
 
-function C:deleteFlow(input: types.DeleteFlowInput, options: any): async.Operation<types.DeleteFlowOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFlow, input, options) as async.Operation<types.DeleteFlowOutput>
+function C:deleteFlow(input: types.DeleteFlowInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFlowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFlow as schema.OperationSchema, input, options) as async.Operation<types.DeleteFlowOutput>
 end
 
-function C:deleteFlowAlias(input: types.DeleteFlowAliasInput, options: any): async.Operation<types.DeleteFlowAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFlowAlias, input, options) as async.Operation<types.DeleteFlowAliasOutput>
+function C:deleteFlowAlias(input: types.DeleteFlowAliasInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFlowAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFlowAlias as schema.OperationSchema, input, options) as async.Operation<types.DeleteFlowAliasOutput>
 end
 
-function C:deleteFlowVersion(input: types.DeleteFlowVersionInput, options: any): async.Operation<types.DeleteFlowVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFlowVersion, input, options) as async.Operation<types.DeleteFlowVersionOutput>
+function C:deleteFlowVersion(input: types.DeleteFlowVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFlowVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFlowVersion as schema.OperationSchema, input, options) as async.Operation<types.DeleteFlowVersionOutput>
 end
 
-function C:deleteKnowledgeBase(input: types.DeleteKnowledgeBaseInput, options: any): async.Operation<types.DeleteKnowledgeBaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteKnowledgeBase, input, options) as async.Operation<types.DeleteKnowledgeBaseOutput>
+function C:deleteKnowledgeBase(input: types.DeleteKnowledgeBaseInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteKnowledgeBaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteKnowledgeBase as schema.OperationSchema, input, options) as async.Operation<types.DeleteKnowledgeBaseOutput>
 end
 
-function C:deleteKnowledgeBaseDocuments(input: types.DeleteKnowledgeBaseDocumentsInput, options: any): async.Operation<types.DeleteKnowledgeBaseDocumentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteKnowledgeBaseDocuments, input, options) as async.Operation<types.DeleteKnowledgeBaseDocumentsOutput>
+function C:deleteKnowledgeBaseDocuments(input: types.DeleteKnowledgeBaseDocumentsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteKnowledgeBaseDocumentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteKnowledgeBaseDocuments as schema.OperationSchema, input, options) as async.Operation<types.DeleteKnowledgeBaseDocumentsOutput>
 end
 
-function C:deletePrompt(input: types.DeletePromptInput, options: any): async.Operation<types.DeletePromptOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePrompt, input, options) as async.Operation<types.DeletePromptOutput>
+function C:deletePrompt(input: types.DeletePromptInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePromptOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePrompt as schema.OperationSchema, input, options) as async.Operation<types.DeletePromptOutput>
 end
 
-function C:disassociateAgentCollaborator(input: types.DisassociateAgentCollaboratorInput, options: any): async.Operation<types.DisassociateAgentCollaboratorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateAgentCollaborator, input, options) as async.Operation<types.DisassociateAgentCollaboratorOutput>
+function C:disassociateAgentCollaborator(input: types.DisassociateAgentCollaboratorInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateAgentCollaboratorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateAgentCollaborator as schema.OperationSchema, input, options) as async.Operation<types.DisassociateAgentCollaboratorOutput>
 end
 
-function C:disassociateAgentKnowledgeBase(input: types.DisassociateAgentKnowledgeBaseInput, options: any): async.Operation<types.DisassociateAgentKnowledgeBaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateAgentKnowledgeBase, input, options) as async.Operation<types.DisassociateAgentKnowledgeBaseOutput>
+function C:disassociateAgentKnowledgeBase(input: types.DisassociateAgentKnowledgeBaseInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateAgentKnowledgeBaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateAgentKnowledgeBase as schema.OperationSchema, input, options) as async.Operation<types.DisassociateAgentKnowledgeBaseOutput>
 end
 
-function C:getAgent(input: types.GetAgentInput, options: any): async.Operation<types.GetAgentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAgent, input, options) as async.Operation<types.GetAgentOutput>
+function C:getAgent(input: types.GetAgentInput, options?: base_client.InvokeOptions): async.Operation<types.GetAgentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAgent as schema.OperationSchema, input, options) as async.Operation<types.GetAgentOutput>
 end
 
-function C:getAgentActionGroup(input: types.GetAgentActionGroupInput, options: any): async.Operation<types.GetAgentActionGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAgentActionGroup, input, options) as async.Operation<types.GetAgentActionGroupOutput>
+function C:getAgentActionGroup(input: types.GetAgentActionGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetAgentActionGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAgentActionGroup as schema.OperationSchema, input, options) as async.Operation<types.GetAgentActionGroupOutput>
 end
 
-function C:getAgentAlias(input: types.GetAgentAliasInput, options: any): async.Operation<types.GetAgentAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAgentAlias, input, options) as async.Operation<types.GetAgentAliasOutput>
+function C:getAgentAlias(input: types.GetAgentAliasInput, options?: base_client.InvokeOptions): async.Operation<types.GetAgentAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAgentAlias as schema.OperationSchema, input, options) as async.Operation<types.GetAgentAliasOutput>
 end
 
-function C:getAgentCollaborator(input: types.GetAgentCollaboratorInput, options: any): async.Operation<types.GetAgentCollaboratorOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAgentCollaborator, input, options) as async.Operation<types.GetAgentCollaboratorOutput>
+function C:getAgentCollaborator(input: types.GetAgentCollaboratorInput, options?: base_client.InvokeOptions): async.Operation<types.GetAgentCollaboratorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAgentCollaborator as schema.OperationSchema, input, options) as async.Operation<types.GetAgentCollaboratorOutput>
 end
 
-function C:getAgentKnowledgeBase(input: types.GetAgentKnowledgeBaseInput, options: any): async.Operation<types.GetAgentKnowledgeBaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAgentKnowledgeBase, input, options) as async.Operation<types.GetAgentKnowledgeBaseOutput>
+function C:getAgentKnowledgeBase(input: types.GetAgentKnowledgeBaseInput, options?: base_client.InvokeOptions): async.Operation<types.GetAgentKnowledgeBaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAgentKnowledgeBase as schema.OperationSchema, input, options) as async.Operation<types.GetAgentKnowledgeBaseOutput>
 end
 
-function C:getAgentVersion(input: types.GetAgentVersionInput, options: any): async.Operation<types.GetAgentVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAgentVersion, input, options) as async.Operation<types.GetAgentVersionOutput>
+function C:getAgentVersion(input: types.GetAgentVersionInput, options?: base_client.InvokeOptions): async.Operation<types.GetAgentVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAgentVersion as schema.OperationSchema, input, options) as async.Operation<types.GetAgentVersionOutput>
 end
 
-function C:getDataSource(input: types.GetDataSourceInput, options: any): async.Operation<types.GetDataSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataSource, input, options) as async.Operation<types.GetDataSourceOutput>
+function C:getDataSource(input: types.GetDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataSource as schema.OperationSchema, input, options) as async.Operation<types.GetDataSourceOutput>
 end
 
-function C:getFlow(input: types.GetFlowInput, options: any): async.Operation<types.GetFlowOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFlow, input, options) as async.Operation<types.GetFlowOutput>
+function C:getFlow(input: types.GetFlowInput, options?: base_client.InvokeOptions): async.Operation<types.GetFlowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFlow as schema.OperationSchema, input, options) as async.Operation<types.GetFlowOutput>
 end
 
-function C:getFlowAlias(input: types.GetFlowAliasInput, options: any): async.Operation<types.GetFlowAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFlowAlias, input, options) as async.Operation<types.GetFlowAliasOutput>
+function C:getFlowAlias(input: types.GetFlowAliasInput, options?: base_client.InvokeOptions): async.Operation<types.GetFlowAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFlowAlias as schema.OperationSchema, input, options) as async.Operation<types.GetFlowAliasOutput>
 end
 
-function C:getFlowVersion(input: types.GetFlowVersionInput, options: any): async.Operation<types.GetFlowVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFlowVersion, input, options) as async.Operation<types.GetFlowVersionOutput>
+function C:getFlowVersion(input: types.GetFlowVersionInput, options?: base_client.InvokeOptions): async.Operation<types.GetFlowVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFlowVersion as schema.OperationSchema, input, options) as async.Operation<types.GetFlowVersionOutput>
 end
 
-function C:getIngestionJob(input: types.GetIngestionJobInput, options: any): async.Operation<types.GetIngestionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIngestionJob, input, options) as async.Operation<types.GetIngestionJobOutput>
+function C:getIngestionJob(input: types.GetIngestionJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetIngestionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIngestionJob as schema.OperationSchema, input, options) as async.Operation<types.GetIngestionJobOutput>
 end
 
-function C:getKnowledgeBase(input: types.GetKnowledgeBaseInput, options: any): async.Operation<types.GetKnowledgeBaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetKnowledgeBase, input, options) as async.Operation<types.GetKnowledgeBaseOutput>
+function C:getKnowledgeBase(input: types.GetKnowledgeBaseInput, options?: base_client.InvokeOptions): async.Operation<types.GetKnowledgeBaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetKnowledgeBase as schema.OperationSchema, input, options) as async.Operation<types.GetKnowledgeBaseOutput>
 end
 
-function C:getKnowledgeBaseDocuments(input: types.GetKnowledgeBaseDocumentsInput, options: any): async.Operation<types.GetKnowledgeBaseDocumentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetKnowledgeBaseDocuments, input, options) as async.Operation<types.GetKnowledgeBaseDocumentsOutput>
+function C:getKnowledgeBaseDocuments(input: types.GetKnowledgeBaseDocumentsInput, options?: base_client.InvokeOptions): async.Operation<types.GetKnowledgeBaseDocumentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetKnowledgeBaseDocuments as schema.OperationSchema, input, options) as async.Operation<types.GetKnowledgeBaseDocumentsOutput>
 end
 
-function C:getPrompt(input: types.GetPromptInput, options: any): async.Operation<types.GetPromptOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPrompt, input, options) as async.Operation<types.GetPromptOutput>
+function C:getPrompt(input: types.GetPromptInput, options?: base_client.InvokeOptions): async.Operation<types.GetPromptOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPrompt as schema.OperationSchema, input, options) as async.Operation<types.GetPromptOutput>
 end
 
-function C:ingestKnowledgeBaseDocuments(input: types.IngestKnowledgeBaseDocumentsInput, options: any): async.Operation<types.IngestKnowledgeBaseDocumentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.IngestKnowledgeBaseDocuments, input, options) as async.Operation<types.IngestKnowledgeBaseDocumentsOutput>
+function C:ingestKnowledgeBaseDocuments(input: types.IngestKnowledgeBaseDocumentsInput, options?: base_client.InvokeOptions): async.Operation<types.IngestKnowledgeBaseDocumentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.IngestKnowledgeBaseDocuments as schema.OperationSchema, input, options) as async.Operation<types.IngestKnowledgeBaseDocumentsOutput>
 end
 
-function C:listAgentActionGroups(input: types.ListAgentActionGroupsInput, options: any): async.Operation<types.ListAgentActionGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAgentActionGroups, input, options) as async.Operation<types.ListAgentActionGroupsOutput>
+function C:listAgentActionGroups(input: types.ListAgentActionGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAgentActionGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAgentActionGroups as schema.OperationSchema, input, options) as async.Operation<types.ListAgentActionGroupsOutput>
 end
 
-function C:listAgentAliases(input: types.ListAgentAliasesInput, options: any): async.Operation<types.ListAgentAliasesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAgentAliases, input, options) as async.Operation<types.ListAgentAliasesOutput>
+function C:listAgentAliases(input: types.ListAgentAliasesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAgentAliasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAgentAliases as schema.OperationSchema, input, options) as async.Operation<types.ListAgentAliasesOutput>
 end
 
-function C:listAgentCollaborators(input: types.ListAgentCollaboratorsInput, options: any): async.Operation<types.ListAgentCollaboratorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAgentCollaborators, input, options) as async.Operation<types.ListAgentCollaboratorsOutput>
+function C:listAgentCollaborators(input: types.ListAgentCollaboratorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAgentCollaboratorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAgentCollaborators as schema.OperationSchema, input, options) as async.Operation<types.ListAgentCollaboratorsOutput>
 end
 
-function C:listAgentKnowledgeBases(input: types.ListAgentKnowledgeBasesInput, options: any): async.Operation<types.ListAgentKnowledgeBasesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAgentKnowledgeBases, input, options) as async.Operation<types.ListAgentKnowledgeBasesOutput>
+function C:listAgentKnowledgeBases(input: types.ListAgentKnowledgeBasesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAgentKnowledgeBasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAgentKnowledgeBases as schema.OperationSchema, input, options) as async.Operation<types.ListAgentKnowledgeBasesOutput>
 end
 
-function C:listAgents(input: types.ListAgentsInput, options: any): async.Operation<types.ListAgentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAgents, input, options) as async.Operation<types.ListAgentsOutput>
+function C:listAgents(input: types.ListAgentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAgentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAgents as schema.OperationSchema, input, options) as async.Operation<types.ListAgentsOutput>
 end
 
-function C:listAgentVersions(input: types.ListAgentVersionsInput, options: any): async.Operation<types.ListAgentVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAgentVersions, input, options) as async.Operation<types.ListAgentVersionsOutput>
+function C:listAgentVersions(input: types.ListAgentVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAgentVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAgentVersions as schema.OperationSchema, input, options) as async.Operation<types.ListAgentVersionsOutput>
 end
 
-function C:listDataSources(input: types.ListDataSourcesInput, options: any): async.Operation<types.ListDataSourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDataSources, input, options) as async.Operation<types.ListDataSourcesOutput>
+function C:listDataSources(input: types.ListDataSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataSourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataSources as schema.OperationSchema, input, options) as async.Operation<types.ListDataSourcesOutput>
 end
 
-function C:listFlowAliases(input: types.ListFlowAliasesInput, options: any): async.Operation<types.ListFlowAliasesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFlowAliases, input, options) as async.Operation<types.ListFlowAliasesOutput>
+function C:listFlowAliases(input: types.ListFlowAliasesInput, options?: base_client.InvokeOptions): async.Operation<types.ListFlowAliasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFlowAliases as schema.OperationSchema, input, options) as async.Operation<types.ListFlowAliasesOutput>
 end
 
-function C:listFlows(input: types.ListFlowsInput, options: any): async.Operation<types.ListFlowsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFlows, input, options) as async.Operation<types.ListFlowsOutput>
+function C:listFlows(input: types.ListFlowsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFlowsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFlows as schema.OperationSchema, input, options) as async.Operation<types.ListFlowsOutput>
 end
 
-function C:listFlowVersions(input: types.ListFlowVersionsInput, options: any): async.Operation<types.ListFlowVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFlowVersions, input, options) as async.Operation<types.ListFlowVersionsOutput>
+function C:listFlowVersions(input: types.ListFlowVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFlowVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFlowVersions as schema.OperationSchema, input, options) as async.Operation<types.ListFlowVersionsOutput>
 end
 
-function C:listIngestionJobs(input: types.ListIngestionJobsInput, options: any): async.Operation<types.ListIngestionJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIngestionJobs, input, options) as async.Operation<types.ListIngestionJobsOutput>
+function C:listIngestionJobs(input: types.ListIngestionJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListIngestionJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIngestionJobs as schema.OperationSchema, input, options) as async.Operation<types.ListIngestionJobsOutput>
 end
 
-function C:listKnowledgeBaseDocuments(input: types.ListKnowledgeBaseDocumentsInput, options: any): async.Operation<types.ListKnowledgeBaseDocumentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListKnowledgeBaseDocuments, input, options) as async.Operation<types.ListKnowledgeBaseDocumentsOutput>
+function C:listKnowledgeBaseDocuments(input: types.ListKnowledgeBaseDocumentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListKnowledgeBaseDocumentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListKnowledgeBaseDocuments as schema.OperationSchema, input, options) as async.Operation<types.ListKnowledgeBaseDocumentsOutput>
 end
 
-function C:listKnowledgeBases(input: types.ListKnowledgeBasesInput, options: any): async.Operation<types.ListKnowledgeBasesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListKnowledgeBases, input, options) as async.Operation<types.ListKnowledgeBasesOutput>
+function C:listKnowledgeBases(input: types.ListKnowledgeBasesInput, options?: base_client.InvokeOptions): async.Operation<types.ListKnowledgeBasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListKnowledgeBases as schema.OperationSchema, input, options) as async.Operation<types.ListKnowledgeBasesOutput>
 end
 
-function C:listPrompts(input: types.ListPromptsInput, options: any): async.Operation<types.ListPromptsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPrompts, input, options) as async.Operation<types.ListPromptsOutput>
+function C:listPrompts(input: types.ListPromptsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPromptsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPrompts as schema.OperationSchema, input, options) as async.Operation<types.ListPromptsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:prepareAgent(input: types.PrepareAgentInput, options: any): async.Operation<types.PrepareAgentOutput>
-    return self:invokeOperation(schemas.Service, schemas.PrepareAgent, input, options) as async.Operation<types.PrepareAgentOutput>
+function C:prepareAgent(input: types.PrepareAgentInput, options?: base_client.InvokeOptions): async.Operation<types.PrepareAgentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PrepareAgent as schema.OperationSchema, input, options) as async.Operation<types.PrepareAgentOutput>
 end
 
-function C:prepareFlow(input: types.PrepareFlowInput, options: any): async.Operation<types.PrepareFlowOutput>
-    return self:invokeOperation(schemas.Service, schemas.PrepareFlow, input, options) as async.Operation<types.PrepareFlowOutput>
+function C:prepareFlow(input: types.PrepareFlowInput, options?: base_client.InvokeOptions): async.Operation<types.PrepareFlowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PrepareFlow as schema.OperationSchema, input, options) as async.Operation<types.PrepareFlowOutput>
 end
 
-function C:startIngestionJob(input: types.StartIngestionJobInput, options: any): async.Operation<types.StartIngestionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartIngestionJob, input, options) as async.Operation<types.StartIngestionJobOutput>
+function C:startIngestionJob(input: types.StartIngestionJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartIngestionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartIngestionJob as schema.OperationSchema, input, options) as async.Operation<types.StartIngestionJobOutput>
 end
 
-function C:stopIngestionJob(input: types.StopIngestionJobInput, options: any): async.Operation<types.StopIngestionJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopIngestionJob, input, options) as async.Operation<types.StopIngestionJobOutput>
+function C:stopIngestionJob(input: types.StopIngestionJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopIngestionJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopIngestionJob as schema.OperationSchema, input, options) as async.Operation<types.StopIngestionJobOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAgent(input: types.UpdateAgentInput, options: any): async.Operation<types.UpdateAgentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAgent, input, options) as async.Operation<types.UpdateAgentOutput>
+function C:updateAgent(input: types.UpdateAgentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAgentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAgent as schema.OperationSchema, input, options) as async.Operation<types.UpdateAgentOutput>
 end
 
-function C:updateAgentActionGroup(input: types.UpdateAgentActionGroupInput, options: any): async.Operation<types.UpdateAgentActionGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAgentActionGroup, input, options) as async.Operation<types.UpdateAgentActionGroupOutput>
+function C:updateAgentActionGroup(input: types.UpdateAgentActionGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAgentActionGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAgentActionGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateAgentActionGroupOutput>
 end
 
-function C:updateAgentAlias(input: types.UpdateAgentAliasInput, options: any): async.Operation<types.UpdateAgentAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAgentAlias, input, options) as async.Operation<types.UpdateAgentAliasOutput>
+function C:updateAgentAlias(input: types.UpdateAgentAliasInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAgentAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAgentAlias as schema.OperationSchema, input, options) as async.Operation<types.UpdateAgentAliasOutput>
 end
 
-function C:updateAgentCollaborator(input: types.UpdateAgentCollaboratorInput, options: any): async.Operation<types.UpdateAgentCollaboratorOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAgentCollaborator, input, options) as async.Operation<types.UpdateAgentCollaboratorOutput>
+function C:updateAgentCollaborator(input: types.UpdateAgentCollaboratorInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAgentCollaboratorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAgentCollaborator as schema.OperationSchema, input, options) as async.Operation<types.UpdateAgentCollaboratorOutput>
 end
 
-function C:updateAgentKnowledgeBase(input: types.UpdateAgentKnowledgeBaseInput, options: any): async.Operation<types.UpdateAgentKnowledgeBaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAgentKnowledgeBase, input, options) as async.Operation<types.UpdateAgentKnowledgeBaseOutput>
+function C:updateAgentKnowledgeBase(input: types.UpdateAgentKnowledgeBaseInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAgentKnowledgeBaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAgentKnowledgeBase as schema.OperationSchema, input, options) as async.Operation<types.UpdateAgentKnowledgeBaseOutput>
 end
 
-function C:updateDataSource(input: types.UpdateDataSourceInput, options: any): async.Operation<types.UpdateDataSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDataSource, input, options) as async.Operation<types.UpdateDataSourceOutput>
+function C:updateDataSource(input: types.UpdateDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDataSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDataSource as schema.OperationSchema, input, options) as async.Operation<types.UpdateDataSourceOutput>
 end
 
-function C:updateFlow(input: types.UpdateFlowInput, options: any): async.Operation<types.UpdateFlowOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFlow, input, options) as async.Operation<types.UpdateFlowOutput>
+function C:updateFlow(input: types.UpdateFlowInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFlowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFlow as schema.OperationSchema, input, options) as async.Operation<types.UpdateFlowOutput>
 end
 
-function C:updateFlowAlias(input: types.UpdateFlowAliasInput, options: any): async.Operation<types.UpdateFlowAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFlowAlias, input, options) as async.Operation<types.UpdateFlowAliasOutput>
+function C:updateFlowAlias(input: types.UpdateFlowAliasInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFlowAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFlowAlias as schema.OperationSchema, input, options) as async.Operation<types.UpdateFlowAliasOutput>
 end
 
-function C:updateKnowledgeBase(input: types.UpdateKnowledgeBaseInput, options: any): async.Operation<types.UpdateKnowledgeBaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateKnowledgeBase, input, options) as async.Operation<types.UpdateKnowledgeBaseOutput>
+function C:updateKnowledgeBase(input: types.UpdateKnowledgeBaseInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateKnowledgeBaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateKnowledgeBase as schema.OperationSchema, input, options) as async.Operation<types.UpdateKnowledgeBaseOutput>
 end
 
-function C:updatePrompt(input: types.UpdatePromptInput, options: any): async.Operation<types.UpdatePromptOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePrompt, input, options) as async.Operation<types.UpdatePromptOutput>
+function C:updatePrompt(input: types.UpdatePromptInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePromptOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePrompt as schema.OperationSchema, input, options) as async.Operation<types.UpdatePromptOutput>
 end
 
-function C:validateFlowDefinition(input: types.ValidateFlowDefinitionInput, options: any): async.Operation<types.ValidateFlowDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ValidateFlowDefinition, input, options) as async.Operation<types.ValidateFlowDefinitionOutput>
+function C:validateFlowDefinition(input: types.ValidateFlowDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.ValidateFlowDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ValidateFlowDefinition as schema.OperationSchema, input, options) as async.Operation<types.ValidateFlowDefinitionOutput>
 end
 
 return M

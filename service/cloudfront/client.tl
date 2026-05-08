@@ -8,206 +8,209 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("cloudfront.endpoint_rules")
 local restxml_protocol = require("smithy.protocol.restxml")
+local schema = require("smithy.schema")
 local schemas = require("cloudfront.schemas")
 local traits = require("smithy.traits")
 local types = require("cloudfront.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateAlias: function(Client, types.AssociateAliasInput, any): async.Operation<types.AssociateAliasOutput>
-    associateDistributionTenantWebACL: function(Client, types.AssociateDistributionTenantWebACLInput, any): async.Operation<types.AssociateDistributionTenantWebACLOutput>
-    associateDistributionWebACL: function(Client, types.AssociateDistributionWebACLInput, any): async.Operation<types.AssociateDistributionWebACLOutput>
-    copyDistribution: function(Client, types.CopyDistributionInput, any): async.Operation<types.CopyDistributionOutput>
-    createAnycastIpList: function(Client, types.CreateAnycastIpListInput, any): async.Operation<types.CreateAnycastIpListOutput>
-    createCachePolicy: function(Client, types.CreateCachePolicyInput, any): async.Operation<types.CreateCachePolicyOutput>
-    createCloudFrontOriginAccessIdentity: function(Client, types.CreateCloudFrontOriginAccessIdentityInput, any): async.Operation<types.CreateCloudFrontOriginAccessIdentityOutput>
-    createConnectionFunction: function(Client, types.CreateConnectionFunctionInput, any): async.Operation<types.CreateConnectionFunctionOutput>
-    createConnectionGroup: function(Client, types.CreateConnectionGroupInput, any): async.Operation<types.CreateConnectionGroupOutput>
-    createContinuousDeploymentPolicy: function(Client, types.CreateContinuousDeploymentPolicyInput, any): async.Operation<types.CreateContinuousDeploymentPolicyOutput>
-    createDistribution: function(Client, types.CreateDistributionInput, any): async.Operation<types.CreateDistributionOutput>
-    createDistributionTenant: function(Client, types.CreateDistributionTenantInput, any): async.Operation<types.CreateDistributionTenantOutput>
-    createDistributionWithTags: function(Client, types.CreateDistributionWithTagsInput, any): async.Operation<types.CreateDistributionWithTagsOutput>
-    createFieldLevelEncryptionConfig: function(Client, types.CreateFieldLevelEncryptionConfigInput, any): async.Operation<types.CreateFieldLevelEncryptionConfigOutput>
-    createFieldLevelEncryptionProfile: function(Client, types.CreateFieldLevelEncryptionProfileInput, any): async.Operation<types.CreateFieldLevelEncryptionProfileOutput>
-    createFunction: function(Client, types.CreateFunctionInput, any): async.Operation<types.CreateFunctionOutput>
-    createInvalidation: function(Client, types.CreateInvalidationInput, any): async.Operation<types.CreateInvalidationOutput>
-    createInvalidationForDistributionTenant: function(Client, types.CreateInvalidationForDistributionTenantInput, any): async.Operation<types.CreateInvalidationForDistributionTenantOutput>
-    createKeyGroup: function(Client, types.CreateKeyGroupInput, any): async.Operation<types.CreateKeyGroupOutput>
-    createKeyValueStore: function(Client, types.CreateKeyValueStoreInput, any): async.Operation<types.CreateKeyValueStoreOutput>
-    createMonitoringSubscription: function(Client, types.CreateMonitoringSubscriptionInput, any): async.Operation<types.CreateMonitoringSubscriptionOutput>
-    createOriginAccessControl: function(Client, types.CreateOriginAccessControlInput, any): async.Operation<types.CreateOriginAccessControlOutput>
-    createOriginRequestPolicy: function(Client, types.CreateOriginRequestPolicyInput, any): async.Operation<types.CreateOriginRequestPolicyOutput>
-    createPublicKey: function(Client, types.CreatePublicKeyInput, any): async.Operation<types.CreatePublicKeyOutput>
-    createRealtimeLogConfig: function(Client, types.CreateRealtimeLogConfigInput, any): async.Operation<types.CreateRealtimeLogConfigOutput>
-    createResponseHeadersPolicy: function(Client, types.CreateResponseHeadersPolicyInput, any): async.Operation<types.CreateResponseHeadersPolicyOutput>
-    createStreamingDistribution: function(Client, types.CreateStreamingDistributionInput, any): async.Operation<types.CreateStreamingDistributionOutput>
-    createStreamingDistributionWithTags: function(Client, types.CreateStreamingDistributionWithTagsInput, any): async.Operation<types.CreateStreamingDistributionWithTagsOutput>
-    createTrustStore: function(Client, types.CreateTrustStoreInput, any): async.Operation<types.CreateTrustStoreOutput>
-    createVpcOrigin: function(Client, types.CreateVpcOriginInput, any): async.Operation<types.CreateVpcOriginOutput>
-    deleteAnycastIpList: function(Client, types.DeleteAnycastIpListInput, any): async.Operation<types.DeleteAnycastIpListOutput>
-    deleteCachePolicy: function(Client, types.DeleteCachePolicyInput, any): async.Operation<types.DeleteCachePolicyOutput>
-    deleteCloudFrontOriginAccessIdentity: function(Client, types.DeleteCloudFrontOriginAccessIdentityInput, any): async.Operation<types.DeleteCloudFrontOriginAccessIdentityOutput>
-    deleteConnectionFunction: function(Client, types.DeleteConnectionFunctionInput, any): async.Operation<types.DeleteConnectionFunctionOutput>
-    deleteConnectionGroup: function(Client, types.DeleteConnectionGroupInput, any): async.Operation<types.DeleteConnectionGroupOutput>
-    deleteContinuousDeploymentPolicy: function(Client, types.DeleteContinuousDeploymentPolicyInput, any): async.Operation<types.DeleteContinuousDeploymentPolicyOutput>
-    deleteDistribution: function(Client, types.DeleteDistributionInput, any): async.Operation<types.DeleteDistributionOutput>
-    deleteDistributionTenant: function(Client, types.DeleteDistributionTenantInput, any): async.Operation<types.DeleteDistributionTenantOutput>
-    deleteFieldLevelEncryptionConfig: function(Client, types.DeleteFieldLevelEncryptionConfigInput, any): async.Operation<types.DeleteFieldLevelEncryptionConfigOutput>
-    deleteFieldLevelEncryptionProfile: function(Client, types.DeleteFieldLevelEncryptionProfileInput, any): async.Operation<types.DeleteFieldLevelEncryptionProfileOutput>
-    deleteFunction: function(Client, types.DeleteFunctionInput, any): async.Operation<types.DeleteFunctionOutput>
-    deleteKeyGroup: function(Client, types.DeleteKeyGroupInput, any): async.Operation<types.DeleteKeyGroupOutput>
-    deleteKeyValueStore: function(Client, types.DeleteKeyValueStoreInput, any): async.Operation<types.DeleteKeyValueStoreOutput>
-    deleteMonitoringSubscription: function(Client, types.DeleteMonitoringSubscriptionInput, any): async.Operation<types.DeleteMonitoringSubscriptionOutput>
-    deleteOriginAccessControl: function(Client, types.DeleteOriginAccessControlInput, any): async.Operation<types.DeleteOriginAccessControlOutput>
-    deleteOriginRequestPolicy: function(Client, types.DeleteOriginRequestPolicyInput, any): async.Operation<types.DeleteOriginRequestPolicyOutput>
-    deletePublicKey: function(Client, types.DeletePublicKeyInput, any): async.Operation<types.DeletePublicKeyOutput>
-    deleteRealtimeLogConfig: function(Client, types.DeleteRealtimeLogConfigInput, any): async.Operation<types.DeleteRealtimeLogConfigOutput>
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, any): async.Operation<types.DeleteResourcePolicyOutput>
-    deleteResponseHeadersPolicy: function(Client, types.DeleteResponseHeadersPolicyInput, any): async.Operation<types.DeleteResponseHeadersPolicyOutput>
-    deleteStreamingDistribution: function(Client, types.DeleteStreamingDistributionInput, any): async.Operation<types.DeleteStreamingDistributionOutput>
-    deleteTrustStore: function(Client, types.DeleteTrustStoreInput, any): async.Operation<types.DeleteTrustStoreOutput>
-    deleteVpcOrigin: function(Client, types.DeleteVpcOriginInput, any): async.Operation<types.DeleteVpcOriginOutput>
-    describeConnectionFunction: function(Client, types.DescribeConnectionFunctionInput, any): async.Operation<types.DescribeConnectionFunctionOutput>
-    describeFunction: function(Client, types.DescribeFunctionInput, any): async.Operation<types.DescribeFunctionOutput>
-    describeKeyValueStore: function(Client, types.DescribeKeyValueStoreInput, any): async.Operation<types.DescribeKeyValueStoreOutput>
-    disassociateDistributionTenantWebACL: function(Client, types.DisassociateDistributionTenantWebACLInput, any): async.Operation<types.DisassociateDistributionTenantWebACLOutput>
-    disassociateDistributionWebACL: function(Client, types.DisassociateDistributionWebACLInput, any): async.Operation<types.DisassociateDistributionWebACLOutput>
-    getAnycastIpList: function(Client, types.GetAnycastIpListInput, any): async.Operation<types.GetAnycastIpListOutput>
-    getCachePolicy: function(Client, types.GetCachePolicyInput, any): async.Operation<types.GetCachePolicyOutput>
-    getCachePolicyConfig: function(Client, types.GetCachePolicyConfigInput, any): async.Operation<types.GetCachePolicyConfigOutput>
-    getCloudFrontOriginAccessIdentity: function(Client, types.GetCloudFrontOriginAccessIdentityInput, any): async.Operation<types.GetCloudFrontOriginAccessIdentityOutput>
-    getCloudFrontOriginAccessIdentityConfig: function(Client, types.GetCloudFrontOriginAccessIdentityConfigInput, any): async.Operation<types.GetCloudFrontOriginAccessIdentityConfigOutput>
-    getConnectionFunction: function(Client, types.GetConnectionFunctionInput, any): async.Operation<types.GetConnectionFunctionOutput>
-    getConnectionGroup: function(Client, types.GetConnectionGroupInput, any): async.Operation<types.GetConnectionGroupOutput>
-    getConnectionGroupByRoutingEndpoint: function(Client, types.GetConnectionGroupByRoutingEndpointInput, any): async.Operation<types.GetConnectionGroupByRoutingEndpointOutput>
-    getContinuousDeploymentPolicy: function(Client, types.GetContinuousDeploymentPolicyInput, any): async.Operation<types.GetContinuousDeploymentPolicyOutput>
-    getContinuousDeploymentPolicyConfig: function(Client, types.GetContinuousDeploymentPolicyConfigInput, any): async.Operation<types.GetContinuousDeploymentPolicyConfigOutput>
-    getDistribution: function(Client, types.GetDistributionInput, any): async.Operation<types.GetDistributionOutput>
-    getDistributionConfig: function(Client, types.GetDistributionConfigInput, any): async.Operation<types.GetDistributionConfigOutput>
-    getDistributionTenant: function(Client, types.GetDistributionTenantInput, any): async.Operation<types.GetDistributionTenantOutput>
-    getDistributionTenantByDomain: function(Client, types.GetDistributionTenantByDomainInput, any): async.Operation<types.GetDistributionTenantByDomainOutput>
-    getFieldLevelEncryption: function(Client, types.GetFieldLevelEncryptionInput, any): async.Operation<types.GetFieldLevelEncryptionOutput>
-    getFieldLevelEncryptionConfig: function(Client, types.GetFieldLevelEncryptionConfigInput, any): async.Operation<types.GetFieldLevelEncryptionConfigOutput>
-    getFieldLevelEncryptionProfile: function(Client, types.GetFieldLevelEncryptionProfileInput, any): async.Operation<types.GetFieldLevelEncryptionProfileOutput>
-    getFieldLevelEncryptionProfileConfig: function(Client, types.GetFieldLevelEncryptionProfileConfigInput, any): async.Operation<types.GetFieldLevelEncryptionProfileConfigOutput>
-    getFunction: function(Client, types.GetFunctionInput, any): async.Operation<types.GetFunctionOutput>
-    getInvalidation: function(Client, types.GetInvalidationInput, any): async.Operation<types.GetInvalidationOutput>
-    getInvalidationForDistributionTenant: function(Client, types.GetInvalidationForDistributionTenantInput, any): async.Operation<types.GetInvalidationForDistributionTenantOutput>
-    getKeyGroup: function(Client, types.GetKeyGroupInput, any): async.Operation<types.GetKeyGroupOutput>
-    getKeyGroupConfig: function(Client, types.GetKeyGroupConfigInput, any): async.Operation<types.GetKeyGroupConfigOutput>
-    getManagedCertificateDetails: function(Client, types.GetManagedCertificateDetailsInput, any): async.Operation<types.GetManagedCertificateDetailsOutput>
-    getMonitoringSubscription: function(Client, types.GetMonitoringSubscriptionInput, any): async.Operation<types.GetMonitoringSubscriptionOutput>
-    getOriginAccessControl: function(Client, types.GetOriginAccessControlInput, any): async.Operation<types.GetOriginAccessControlOutput>
-    getOriginAccessControlConfig: function(Client, types.GetOriginAccessControlConfigInput, any): async.Operation<types.GetOriginAccessControlConfigOutput>
-    getOriginRequestPolicy: function(Client, types.GetOriginRequestPolicyInput, any): async.Operation<types.GetOriginRequestPolicyOutput>
-    getOriginRequestPolicyConfig: function(Client, types.GetOriginRequestPolicyConfigInput, any): async.Operation<types.GetOriginRequestPolicyConfigOutput>
-    getPublicKey: function(Client, types.GetPublicKeyInput, any): async.Operation<types.GetPublicKeyOutput>
-    getPublicKeyConfig: function(Client, types.GetPublicKeyConfigInput, any): async.Operation<types.GetPublicKeyConfigOutput>
-    getRealtimeLogConfig: function(Client, types.GetRealtimeLogConfigInput, any): async.Operation<types.GetRealtimeLogConfigOutput>
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput, any): async.Operation<types.GetResourcePolicyOutput>
-    getResponseHeadersPolicy: function(Client, types.GetResponseHeadersPolicyInput, any): async.Operation<types.GetResponseHeadersPolicyOutput>
-    getResponseHeadersPolicyConfig: function(Client, types.GetResponseHeadersPolicyConfigInput, any): async.Operation<types.GetResponseHeadersPolicyConfigOutput>
-    getStreamingDistribution: function(Client, types.GetStreamingDistributionInput, any): async.Operation<types.GetStreamingDistributionOutput>
-    getStreamingDistributionConfig: function(Client, types.GetStreamingDistributionConfigInput, any): async.Operation<types.GetStreamingDistributionConfigOutput>
-    getTrustStore: function(Client, types.GetTrustStoreInput, any): async.Operation<types.GetTrustStoreOutput>
-    getVpcOrigin: function(Client, types.GetVpcOriginInput, any): async.Operation<types.GetVpcOriginOutput>
-    listAnycastIpLists: function(Client, types.ListAnycastIpListsInput, any): async.Operation<types.ListAnycastIpListsOutput>
-    listCachePolicies: function(Client, types.ListCachePoliciesInput, any): async.Operation<types.ListCachePoliciesOutput>
-    listCloudFrontOriginAccessIdentities: function(Client, types.ListCloudFrontOriginAccessIdentitiesInput, any): async.Operation<types.ListCloudFrontOriginAccessIdentitiesOutput>
-    listConflictingAliases: function(Client, types.ListConflictingAliasesInput, any): async.Operation<types.ListConflictingAliasesOutput>
-    listConnectionFunctions: function(Client, types.ListConnectionFunctionsInput, any): async.Operation<types.ListConnectionFunctionsOutput>
-    listConnectionGroups: function(Client, types.ListConnectionGroupsInput, any): async.Operation<types.ListConnectionGroupsOutput>
-    listContinuousDeploymentPolicies: function(Client, types.ListContinuousDeploymentPoliciesInput, any): async.Operation<types.ListContinuousDeploymentPoliciesOutput>
-    listDistributions: function(Client, types.ListDistributionsInput, any): async.Operation<types.ListDistributionsOutput>
-    listDistributionsByAnycastIpListId: function(Client, types.ListDistributionsByAnycastIpListIdInput, any): async.Operation<types.ListDistributionsByAnycastIpListIdOutput>
-    listDistributionsByCachePolicyId: function(Client, types.ListDistributionsByCachePolicyIdInput, any): async.Operation<types.ListDistributionsByCachePolicyIdOutput>
-    listDistributionsByConnectionFunction: function(Client, types.ListDistributionsByConnectionFunctionInput, any): async.Operation<types.ListDistributionsByConnectionFunctionOutput>
-    listDistributionsByConnectionMode: function(Client, types.ListDistributionsByConnectionModeInput, any): async.Operation<types.ListDistributionsByConnectionModeOutput>
-    listDistributionsByKeyGroup: function(Client, types.ListDistributionsByKeyGroupInput, any): async.Operation<types.ListDistributionsByKeyGroupOutput>
-    listDistributionsByOriginRequestPolicyId: function(Client, types.ListDistributionsByOriginRequestPolicyIdInput, any): async.Operation<types.ListDistributionsByOriginRequestPolicyIdOutput>
-    listDistributionsByOwnedResource: function(Client, types.ListDistributionsByOwnedResourceInput, any): async.Operation<types.ListDistributionsByOwnedResourceOutput>
-    listDistributionsByRealtimeLogConfig: function(Client, types.ListDistributionsByRealtimeLogConfigInput, any): async.Operation<types.ListDistributionsByRealtimeLogConfigOutput>
-    listDistributionsByResponseHeadersPolicyId: function(Client, types.ListDistributionsByResponseHeadersPolicyIdInput, any): async.Operation<types.ListDistributionsByResponseHeadersPolicyIdOutput>
-    listDistributionsByTrustStore: function(Client, types.ListDistributionsByTrustStoreInput, any): async.Operation<types.ListDistributionsByTrustStoreOutput>
-    listDistributionsByVpcOriginId: function(Client, types.ListDistributionsByVpcOriginIdInput, any): async.Operation<types.ListDistributionsByVpcOriginIdOutput>
-    listDistributionsByWebACLId: function(Client, types.ListDistributionsByWebACLIdInput, any): async.Operation<types.ListDistributionsByWebACLIdOutput>
-    listDistributionTenants: function(Client, types.ListDistributionTenantsInput, any): async.Operation<types.ListDistributionTenantsOutput>
-    listDistributionTenantsByCustomization: function(Client, types.ListDistributionTenantsByCustomizationInput, any): async.Operation<types.ListDistributionTenantsByCustomizationOutput>
-    listDomainConflicts: function(Client, types.ListDomainConflictsInput, any): async.Operation<types.ListDomainConflictsOutput>
-    listFieldLevelEncryptionConfigs: function(Client, types.ListFieldLevelEncryptionConfigsInput, any): async.Operation<types.ListFieldLevelEncryptionConfigsOutput>
-    listFieldLevelEncryptionProfiles: function(Client, types.ListFieldLevelEncryptionProfilesInput, any): async.Operation<types.ListFieldLevelEncryptionProfilesOutput>
-    listFunctions: function(Client, types.ListFunctionsInput, any): async.Operation<types.ListFunctionsOutput>
-    listInvalidations: function(Client, types.ListInvalidationsInput, any): async.Operation<types.ListInvalidationsOutput>
-    listInvalidationsForDistributionTenant: function(Client, types.ListInvalidationsForDistributionTenantInput, any): async.Operation<types.ListInvalidationsForDistributionTenantOutput>
-    listKeyGroups: function(Client, types.ListKeyGroupsInput, any): async.Operation<types.ListKeyGroupsOutput>
-    listKeyValueStores: function(Client, types.ListKeyValueStoresInput, any): async.Operation<types.ListKeyValueStoresOutput>
-    listOriginAccessControls: function(Client, types.ListOriginAccessControlsInput, any): async.Operation<types.ListOriginAccessControlsOutput>
-    listOriginRequestPolicies: function(Client, types.ListOriginRequestPoliciesInput, any): async.Operation<types.ListOriginRequestPoliciesOutput>
-    listPublicKeys: function(Client, types.ListPublicKeysInput, any): async.Operation<types.ListPublicKeysOutput>
-    listRealtimeLogConfigs: function(Client, types.ListRealtimeLogConfigsInput, any): async.Operation<types.ListRealtimeLogConfigsOutput>
-    listResponseHeadersPolicies: function(Client, types.ListResponseHeadersPoliciesInput, any): async.Operation<types.ListResponseHeadersPoliciesOutput>
-    listStreamingDistributions: function(Client, types.ListStreamingDistributionsInput, any): async.Operation<types.ListStreamingDistributionsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTrustStores: function(Client, types.ListTrustStoresInput, any): async.Operation<types.ListTrustStoresOutput>
-    listVpcOrigins: function(Client, types.ListVpcOriginsInput, any): async.Operation<types.ListVpcOriginsOutput>
-    publishConnectionFunction: function(Client, types.PublishConnectionFunctionInput, any): async.Operation<types.PublishConnectionFunctionOutput>
-    publishFunction: function(Client, types.PublishFunctionInput, any): async.Operation<types.PublishFunctionOutput>
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput, any): async.Operation<types.PutResourcePolicyOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    testConnectionFunction: function(Client, types.TestConnectionFunctionInput, any): async.Operation<types.TestConnectionFunctionOutput>
-    testFunction: function(Client, types.TestFunctionInput, any): async.Operation<types.TestFunctionOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAnycastIpList: function(Client, types.UpdateAnycastIpListInput, any): async.Operation<types.UpdateAnycastIpListOutput>
-    updateCachePolicy: function(Client, types.UpdateCachePolicyInput, any): async.Operation<types.UpdateCachePolicyOutput>
-    updateCloudFrontOriginAccessIdentity: function(Client, types.UpdateCloudFrontOriginAccessIdentityInput, any): async.Operation<types.UpdateCloudFrontOriginAccessIdentityOutput>
-    updateConnectionFunction: function(Client, types.UpdateConnectionFunctionInput, any): async.Operation<types.UpdateConnectionFunctionOutput>
-    updateConnectionGroup: function(Client, types.UpdateConnectionGroupInput, any): async.Operation<types.UpdateConnectionGroupOutput>
-    updateContinuousDeploymentPolicy: function(Client, types.UpdateContinuousDeploymentPolicyInput, any): async.Operation<types.UpdateContinuousDeploymentPolicyOutput>
-    updateDistribution: function(Client, types.UpdateDistributionInput, any): async.Operation<types.UpdateDistributionOutput>
-    updateDistributionTenant: function(Client, types.UpdateDistributionTenantInput, any): async.Operation<types.UpdateDistributionTenantOutput>
-    updateDistributionWithStagingConfig: function(Client, types.UpdateDistributionWithStagingConfigInput, any): async.Operation<types.UpdateDistributionWithStagingConfigOutput>
-    updateDomainAssociation: function(Client, types.UpdateDomainAssociationInput, any): async.Operation<types.UpdateDomainAssociationOutput>
-    updateFieldLevelEncryptionConfig: function(Client, types.UpdateFieldLevelEncryptionConfigInput, any): async.Operation<types.UpdateFieldLevelEncryptionConfigOutput>
-    updateFieldLevelEncryptionProfile: function(Client, types.UpdateFieldLevelEncryptionProfileInput, any): async.Operation<types.UpdateFieldLevelEncryptionProfileOutput>
-    updateFunction: function(Client, types.UpdateFunctionInput, any): async.Operation<types.UpdateFunctionOutput>
-    updateKeyGroup: function(Client, types.UpdateKeyGroupInput, any): async.Operation<types.UpdateKeyGroupOutput>
-    updateKeyValueStore: function(Client, types.UpdateKeyValueStoreInput, any): async.Operation<types.UpdateKeyValueStoreOutput>
-    updateOriginAccessControl: function(Client, types.UpdateOriginAccessControlInput, any): async.Operation<types.UpdateOriginAccessControlOutput>
-    updateOriginRequestPolicy: function(Client, types.UpdateOriginRequestPolicyInput, any): async.Operation<types.UpdateOriginRequestPolicyOutput>
-    updatePublicKey: function(Client, types.UpdatePublicKeyInput, any): async.Operation<types.UpdatePublicKeyOutput>
-    updateRealtimeLogConfig: function(Client, types.UpdateRealtimeLogConfigInput, any): async.Operation<types.UpdateRealtimeLogConfigOutput>
-    updateResponseHeadersPolicy: function(Client, types.UpdateResponseHeadersPolicyInput, any): async.Operation<types.UpdateResponseHeadersPolicyOutput>
-    updateStreamingDistribution: function(Client, types.UpdateStreamingDistributionInput, any): async.Operation<types.UpdateStreamingDistributionOutput>
-    updateTrustStore: function(Client, types.UpdateTrustStoreInput, any): async.Operation<types.UpdateTrustStoreOutput>
-    updateVpcOrigin: function(Client, types.UpdateVpcOriginInput, any): async.Operation<types.UpdateVpcOriginOutput>
-    verifyDnsConfiguration: function(Client, types.VerifyDnsConfigurationInput, any): async.Operation<types.VerifyDnsConfigurationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateAlias: function(Client, types.AssociateAliasInput, ? base_client.InvokeOptions): async.Operation<types.AssociateAliasOutput>
+    associateDistributionTenantWebACL: function(Client, types.AssociateDistributionTenantWebACLInput, ? base_client.InvokeOptions): async.Operation<types.AssociateDistributionTenantWebACLOutput>
+    associateDistributionWebACL: function(Client, types.AssociateDistributionWebACLInput, ? base_client.InvokeOptions): async.Operation<types.AssociateDistributionWebACLOutput>
+    copyDistribution: function(Client, types.CopyDistributionInput, ? base_client.InvokeOptions): async.Operation<types.CopyDistributionOutput>
+    createAnycastIpList: function(Client, types.CreateAnycastIpListInput, ? base_client.InvokeOptions): async.Operation<types.CreateAnycastIpListOutput>
+    createCachePolicy: function(Client, types.CreateCachePolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateCachePolicyOutput>
+    createCloudFrontOriginAccessIdentity: function(Client, types.CreateCloudFrontOriginAccessIdentityInput, ? base_client.InvokeOptions): async.Operation<types.CreateCloudFrontOriginAccessIdentityOutput>
+    createConnectionFunction: function(Client, types.CreateConnectionFunctionInput, ? base_client.InvokeOptions): async.Operation<types.CreateConnectionFunctionOutput>
+    createConnectionGroup: function(Client, types.CreateConnectionGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateConnectionGroupOutput>
+    createContinuousDeploymentPolicy: function(Client, types.CreateContinuousDeploymentPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateContinuousDeploymentPolicyOutput>
+    createDistribution: function(Client, types.CreateDistributionInput, ? base_client.InvokeOptions): async.Operation<types.CreateDistributionOutput>
+    createDistributionTenant: function(Client, types.CreateDistributionTenantInput, ? base_client.InvokeOptions): async.Operation<types.CreateDistributionTenantOutput>
+    createDistributionWithTags: function(Client, types.CreateDistributionWithTagsInput, ? base_client.InvokeOptions): async.Operation<types.CreateDistributionWithTagsOutput>
+    createFieldLevelEncryptionConfig: function(Client, types.CreateFieldLevelEncryptionConfigInput, ? base_client.InvokeOptions): async.Operation<types.CreateFieldLevelEncryptionConfigOutput>
+    createFieldLevelEncryptionProfile: function(Client, types.CreateFieldLevelEncryptionProfileInput, ? base_client.InvokeOptions): async.Operation<types.CreateFieldLevelEncryptionProfileOutput>
+    createFunction: function(Client, types.CreateFunctionInput, ? base_client.InvokeOptions): async.Operation<types.CreateFunctionOutput>
+    createInvalidation: function(Client, types.CreateInvalidationInput, ? base_client.InvokeOptions): async.Operation<types.CreateInvalidationOutput>
+    createInvalidationForDistributionTenant: function(Client, types.CreateInvalidationForDistributionTenantInput, ? base_client.InvokeOptions): async.Operation<types.CreateInvalidationForDistributionTenantOutput>
+    createKeyGroup: function(Client, types.CreateKeyGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateKeyGroupOutput>
+    createKeyValueStore: function(Client, types.CreateKeyValueStoreInput, ? base_client.InvokeOptions): async.Operation<types.CreateKeyValueStoreOutput>
+    createMonitoringSubscription: function(Client, types.CreateMonitoringSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.CreateMonitoringSubscriptionOutput>
+    createOriginAccessControl: function(Client, types.CreateOriginAccessControlInput, ? base_client.InvokeOptions): async.Operation<types.CreateOriginAccessControlOutput>
+    createOriginRequestPolicy: function(Client, types.CreateOriginRequestPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateOriginRequestPolicyOutput>
+    createPublicKey: function(Client, types.CreatePublicKeyInput, ? base_client.InvokeOptions): async.Operation<types.CreatePublicKeyOutput>
+    createRealtimeLogConfig: function(Client, types.CreateRealtimeLogConfigInput, ? base_client.InvokeOptions): async.Operation<types.CreateRealtimeLogConfigOutput>
+    createResponseHeadersPolicy: function(Client, types.CreateResponseHeadersPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateResponseHeadersPolicyOutput>
+    createStreamingDistribution: function(Client, types.CreateStreamingDistributionInput, ? base_client.InvokeOptions): async.Operation<types.CreateStreamingDistributionOutput>
+    createStreamingDistributionWithTags: function(Client, types.CreateStreamingDistributionWithTagsInput, ? base_client.InvokeOptions): async.Operation<types.CreateStreamingDistributionWithTagsOutput>
+    createTrustStore: function(Client, types.CreateTrustStoreInput, ? base_client.InvokeOptions): async.Operation<types.CreateTrustStoreOutput>
+    createVpcOrigin: function(Client, types.CreateVpcOriginInput, ? base_client.InvokeOptions): async.Operation<types.CreateVpcOriginOutput>
+    deleteAnycastIpList: function(Client, types.DeleteAnycastIpListInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAnycastIpListOutput>
+    deleteCachePolicy: function(Client, types.DeleteCachePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCachePolicyOutput>
+    deleteCloudFrontOriginAccessIdentity: function(Client, types.DeleteCloudFrontOriginAccessIdentityInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCloudFrontOriginAccessIdentityOutput>
+    deleteConnectionFunction: function(Client, types.DeleteConnectionFunctionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConnectionFunctionOutput>
+    deleteConnectionGroup: function(Client, types.DeleteConnectionGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConnectionGroupOutput>
+    deleteContinuousDeploymentPolicy: function(Client, types.DeleteContinuousDeploymentPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteContinuousDeploymentPolicyOutput>
+    deleteDistribution: function(Client, types.DeleteDistributionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDistributionOutput>
+    deleteDistributionTenant: function(Client, types.DeleteDistributionTenantInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDistributionTenantOutput>
+    deleteFieldLevelEncryptionConfig: function(Client, types.DeleteFieldLevelEncryptionConfigInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFieldLevelEncryptionConfigOutput>
+    deleteFieldLevelEncryptionProfile: function(Client, types.DeleteFieldLevelEncryptionProfileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFieldLevelEncryptionProfileOutput>
+    deleteFunction: function(Client, types.DeleteFunctionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFunctionOutput>
+    deleteKeyGroup: function(Client, types.DeleteKeyGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKeyGroupOutput>
+    deleteKeyValueStore: function(Client, types.DeleteKeyValueStoreInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKeyValueStoreOutput>
+    deleteMonitoringSubscription: function(Client, types.DeleteMonitoringSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMonitoringSubscriptionOutput>
+    deleteOriginAccessControl: function(Client, types.DeleteOriginAccessControlInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOriginAccessControlOutput>
+    deleteOriginRequestPolicy: function(Client, types.DeleteOriginRequestPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOriginRequestPolicyOutput>
+    deletePublicKey: function(Client, types.DeletePublicKeyInput, ? base_client.InvokeOptions): async.Operation<types.DeletePublicKeyOutput>
+    deleteRealtimeLogConfig: function(Client, types.DeleteRealtimeLogConfigInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRealtimeLogConfigOutput>
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    deleteResponseHeadersPolicy: function(Client, types.DeleteResponseHeadersPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResponseHeadersPolicyOutput>
+    deleteStreamingDistribution: function(Client, types.DeleteStreamingDistributionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteStreamingDistributionOutput>
+    deleteTrustStore: function(Client, types.DeleteTrustStoreInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTrustStoreOutput>
+    deleteVpcOrigin: function(Client, types.DeleteVpcOriginInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVpcOriginOutput>
+    describeConnectionFunction: function(Client, types.DescribeConnectionFunctionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConnectionFunctionOutput>
+    describeFunction: function(Client, types.DescribeFunctionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFunctionOutput>
+    describeKeyValueStore: function(Client, types.DescribeKeyValueStoreInput, ? base_client.InvokeOptions): async.Operation<types.DescribeKeyValueStoreOutput>
+    disassociateDistributionTenantWebACL: function(Client, types.DisassociateDistributionTenantWebACLInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateDistributionTenantWebACLOutput>
+    disassociateDistributionWebACL: function(Client, types.DisassociateDistributionWebACLInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateDistributionWebACLOutput>
+    getAnycastIpList: function(Client, types.GetAnycastIpListInput, ? base_client.InvokeOptions): async.Operation<types.GetAnycastIpListOutput>
+    getCachePolicy: function(Client, types.GetCachePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetCachePolicyOutput>
+    getCachePolicyConfig: function(Client, types.GetCachePolicyConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetCachePolicyConfigOutput>
+    getCloudFrontOriginAccessIdentity: function(Client, types.GetCloudFrontOriginAccessIdentityInput, ? base_client.InvokeOptions): async.Operation<types.GetCloudFrontOriginAccessIdentityOutput>
+    getCloudFrontOriginAccessIdentityConfig: function(Client, types.GetCloudFrontOriginAccessIdentityConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetCloudFrontOriginAccessIdentityConfigOutput>
+    getConnectionFunction: function(Client, types.GetConnectionFunctionInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectionFunctionOutput>
+    getConnectionGroup: function(Client, types.GetConnectionGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectionGroupOutput>
+    getConnectionGroupByRoutingEndpoint: function(Client, types.GetConnectionGroupByRoutingEndpointInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectionGroupByRoutingEndpointOutput>
+    getContinuousDeploymentPolicy: function(Client, types.GetContinuousDeploymentPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetContinuousDeploymentPolicyOutput>
+    getContinuousDeploymentPolicyConfig: function(Client, types.GetContinuousDeploymentPolicyConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetContinuousDeploymentPolicyConfigOutput>
+    getDistribution: function(Client, types.GetDistributionInput, ? base_client.InvokeOptions): async.Operation<types.GetDistributionOutput>
+    getDistributionConfig: function(Client, types.GetDistributionConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetDistributionConfigOutput>
+    getDistributionTenant: function(Client, types.GetDistributionTenantInput, ? base_client.InvokeOptions): async.Operation<types.GetDistributionTenantOutput>
+    getDistributionTenantByDomain: function(Client, types.GetDistributionTenantByDomainInput, ? base_client.InvokeOptions): async.Operation<types.GetDistributionTenantByDomainOutput>
+    getFieldLevelEncryption: function(Client, types.GetFieldLevelEncryptionInput, ? base_client.InvokeOptions): async.Operation<types.GetFieldLevelEncryptionOutput>
+    getFieldLevelEncryptionConfig: function(Client, types.GetFieldLevelEncryptionConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetFieldLevelEncryptionConfigOutput>
+    getFieldLevelEncryptionProfile: function(Client, types.GetFieldLevelEncryptionProfileInput, ? base_client.InvokeOptions): async.Operation<types.GetFieldLevelEncryptionProfileOutput>
+    getFieldLevelEncryptionProfileConfig: function(Client, types.GetFieldLevelEncryptionProfileConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetFieldLevelEncryptionProfileConfigOutput>
+    getFunction: function(Client, types.GetFunctionInput, ? base_client.InvokeOptions): async.Operation<types.GetFunctionOutput>
+    getInvalidation: function(Client, types.GetInvalidationInput, ? base_client.InvokeOptions): async.Operation<types.GetInvalidationOutput>
+    getInvalidationForDistributionTenant: function(Client, types.GetInvalidationForDistributionTenantInput, ? base_client.InvokeOptions): async.Operation<types.GetInvalidationForDistributionTenantOutput>
+    getKeyGroup: function(Client, types.GetKeyGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetKeyGroupOutput>
+    getKeyGroupConfig: function(Client, types.GetKeyGroupConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetKeyGroupConfigOutput>
+    getManagedCertificateDetails: function(Client, types.GetManagedCertificateDetailsInput, ? base_client.InvokeOptions): async.Operation<types.GetManagedCertificateDetailsOutput>
+    getMonitoringSubscription: function(Client, types.GetMonitoringSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.GetMonitoringSubscriptionOutput>
+    getOriginAccessControl: function(Client, types.GetOriginAccessControlInput, ? base_client.InvokeOptions): async.Operation<types.GetOriginAccessControlOutput>
+    getOriginAccessControlConfig: function(Client, types.GetOriginAccessControlConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetOriginAccessControlConfigOutput>
+    getOriginRequestPolicy: function(Client, types.GetOriginRequestPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetOriginRequestPolicyOutput>
+    getOriginRequestPolicyConfig: function(Client, types.GetOriginRequestPolicyConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetOriginRequestPolicyConfigOutput>
+    getPublicKey: function(Client, types.GetPublicKeyInput, ? base_client.InvokeOptions): async.Operation<types.GetPublicKeyOutput>
+    getPublicKeyConfig: function(Client, types.GetPublicKeyConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetPublicKeyConfigOutput>
+    getRealtimeLogConfig: function(Client, types.GetRealtimeLogConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetRealtimeLogConfigOutput>
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    getResponseHeadersPolicy: function(Client, types.GetResponseHeadersPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResponseHeadersPolicyOutput>
+    getResponseHeadersPolicyConfig: function(Client, types.GetResponseHeadersPolicyConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetResponseHeadersPolicyConfigOutput>
+    getStreamingDistribution: function(Client, types.GetStreamingDistributionInput, ? base_client.InvokeOptions): async.Operation<types.GetStreamingDistributionOutput>
+    getStreamingDistributionConfig: function(Client, types.GetStreamingDistributionConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetStreamingDistributionConfigOutput>
+    getTrustStore: function(Client, types.GetTrustStoreInput, ? base_client.InvokeOptions): async.Operation<types.GetTrustStoreOutput>
+    getVpcOrigin: function(Client, types.GetVpcOriginInput, ? base_client.InvokeOptions): async.Operation<types.GetVpcOriginOutput>
+    listAnycastIpLists: function(Client, types.ListAnycastIpListsInput, ? base_client.InvokeOptions): async.Operation<types.ListAnycastIpListsOutput>
+    listCachePolicies: function(Client, types.ListCachePoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListCachePoliciesOutput>
+    listCloudFrontOriginAccessIdentities: function(Client, types.ListCloudFrontOriginAccessIdentitiesInput, ? base_client.InvokeOptions): async.Operation<types.ListCloudFrontOriginAccessIdentitiesOutput>
+    listConflictingAliases: function(Client, types.ListConflictingAliasesInput, ? base_client.InvokeOptions): async.Operation<types.ListConflictingAliasesOutput>
+    listConnectionFunctions: function(Client, types.ListConnectionFunctionsInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectionFunctionsOutput>
+    listConnectionGroups: function(Client, types.ListConnectionGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectionGroupsOutput>
+    listContinuousDeploymentPolicies: function(Client, types.ListContinuousDeploymentPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListContinuousDeploymentPoliciesOutput>
+    listDistributions: function(Client, types.ListDistributionsInput, ? base_client.InvokeOptions): async.Operation<types.ListDistributionsOutput>
+    listDistributionsByAnycastIpListId: function(Client, types.ListDistributionsByAnycastIpListIdInput, ? base_client.InvokeOptions): async.Operation<types.ListDistributionsByAnycastIpListIdOutput>
+    listDistributionsByCachePolicyId: function(Client, types.ListDistributionsByCachePolicyIdInput, ? base_client.InvokeOptions): async.Operation<types.ListDistributionsByCachePolicyIdOutput>
+    listDistributionsByConnectionFunction: function(Client, types.ListDistributionsByConnectionFunctionInput, ? base_client.InvokeOptions): async.Operation<types.ListDistributionsByConnectionFunctionOutput>
+    listDistributionsByConnectionMode: function(Client, types.ListDistributionsByConnectionModeInput, ? base_client.InvokeOptions): async.Operation<types.ListDistributionsByConnectionModeOutput>
+    listDistributionsByKeyGroup: function(Client, types.ListDistributionsByKeyGroupInput, ? base_client.InvokeOptions): async.Operation<types.ListDistributionsByKeyGroupOutput>
+    listDistributionsByOriginRequestPolicyId: function(Client, types.ListDistributionsByOriginRequestPolicyIdInput, ? base_client.InvokeOptions): async.Operation<types.ListDistributionsByOriginRequestPolicyIdOutput>
+    listDistributionsByOwnedResource: function(Client, types.ListDistributionsByOwnedResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListDistributionsByOwnedResourceOutput>
+    listDistributionsByRealtimeLogConfig: function(Client, types.ListDistributionsByRealtimeLogConfigInput, ? base_client.InvokeOptions): async.Operation<types.ListDistributionsByRealtimeLogConfigOutput>
+    listDistributionsByResponseHeadersPolicyId: function(Client, types.ListDistributionsByResponseHeadersPolicyIdInput, ? base_client.InvokeOptions): async.Operation<types.ListDistributionsByResponseHeadersPolicyIdOutput>
+    listDistributionsByTrustStore: function(Client, types.ListDistributionsByTrustStoreInput, ? base_client.InvokeOptions): async.Operation<types.ListDistributionsByTrustStoreOutput>
+    listDistributionsByVpcOriginId: function(Client, types.ListDistributionsByVpcOriginIdInput, ? base_client.InvokeOptions): async.Operation<types.ListDistributionsByVpcOriginIdOutput>
+    listDistributionsByWebACLId: function(Client, types.ListDistributionsByWebACLIdInput, ? base_client.InvokeOptions): async.Operation<types.ListDistributionsByWebACLIdOutput>
+    listDistributionTenants: function(Client, types.ListDistributionTenantsInput, ? base_client.InvokeOptions): async.Operation<types.ListDistributionTenantsOutput>
+    listDistributionTenantsByCustomization: function(Client, types.ListDistributionTenantsByCustomizationInput, ? base_client.InvokeOptions): async.Operation<types.ListDistributionTenantsByCustomizationOutput>
+    listDomainConflicts: function(Client, types.ListDomainConflictsInput, ? base_client.InvokeOptions): async.Operation<types.ListDomainConflictsOutput>
+    listFieldLevelEncryptionConfigs: function(Client, types.ListFieldLevelEncryptionConfigsInput, ? base_client.InvokeOptions): async.Operation<types.ListFieldLevelEncryptionConfigsOutput>
+    listFieldLevelEncryptionProfiles: function(Client, types.ListFieldLevelEncryptionProfilesInput, ? base_client.InvokeOptions): async.Operation<types.ListFieldLevelEncryptionProfilesOutput>
+    listFunctions: function(Client, types.ListFunctionsInput, ? base_client.InvokeOptions): async.Operation<types.ListFunctionsOutput>
+    listInvalidations: function(Client, types.ListInvalidationsInput, ? base_client.InvokeOptions): async.Operation<types.ListInvalidationsOutput>
+    listInvalidationsForDistributionTenant: function(Client, types.ListInvalidationsForDistributionTenantInput, ? base_client.InvokeOptions): async.Operation<types.ListInvalidationsForDistributionTenantOutput>
+    listKeyGroups: function(Client, types.ListKeyGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListKeyGroupsOutput>
+    listKeyValueStores: function(Client, types.ListKeyValueStoresInput, ? base_client.InvokeOptions): async.Operation<types.ListKeyValueStoresOutput>
+    listOriginAccessControls: function(Client, types.ListOriginAccessControlsInput, ? base_client.InvokeOptions): async.Operation<types.ListOriginAccessControlsOutput>
+    listOriginRequestPolicies: function(Client, types.ListOriginRequestPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListOriginRequestPoliciesOutput>
+    listPublicKeys: function(Client, types.ListPublicKeysInput, ? base_client.InvokeOptions): async.Operation<types.ListPublicKeysOutput>
+    listRealtimeLogConfigs: function(Client, types.ListRealtimeLogConfigsInput, ? base_client.InvokeOptions): async.Operation<types.ListRealtimeLogConfigsOutput>
+    listResponseHeadersPolicies: function(Client, types.ListResponseHeadersPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListResponseHeadersPoliciesOutput>
+    listStreamingDistributions: function(Client, types.ListStreamingDistributionsInput, ? base_client.InvokeOptions): async.Operation<types.ListStreamingDistributionsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTrustStores: function(Client, types.ListTrustStoresInput, ? base_client.InvokeOptions): async.Operation<types.ListTrustStoresOutput>
+    listVpcOrigins: function(Client, types.ListVpcOriginsInput, ? base_client.InvokeOptions): async.Operation<types.ListVpcOriginsOutput>
+    publishConnectionFunction: function(Client, types.PublishConnectionFunctionInput, ? base_client.InvokeOptions): async.Operation<types.PublishConnectionFunctionOutput>
+    publishFunction: function(Client, types.PublishFunctionInput, ? base_client.InvokeOptions): async.Operation<types.PublishFunctionOutput>
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    testConnectionFunction: function(Client, types.TestConnectionFunctionInput, ? base_client.InvokeOptions): async.Operation<types.TestConnectionFunctionOutput>
+    testFunction: function(Client, types.TestFunctionInput, ? base_client.InvokeOptions): async.Operation<types.TestFunctionOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAnycastIpList: function(Client, types.UpdateAnycastIpListInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAnycastIpListOutput>
+    updateCachePolicy: function(Client, types.UpdateCachePolicyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCachePolicyOutput>
+    updateCloudFrontOriginAccessIdentity: function(Client, types.UpdateCloudFrontOriginAccessIdentityInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCloudFrontOriginAccessIdentityOutput>
+    updateConnectionFunction: function(Client, types.UpdateConnectionFunctionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConnectionFunctionOutput>
+    updateConnectionGroup: function(Client, types.UpdateConnectionGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConnectionGroupOutput>
+    updateContinuousDeploymentPolicy: function(Client, types.UpdateContinuousDeploymentPolicyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContinuousDeploymentPolicyOutput>
+    updateDistribution: function(Client, types.UpdateDistributionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDistributionOutput>
+    updateDistributionTenant: function(Client, types.UpdateDistributionTenantInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDistributionTenantOutput>
+    updateDistributionWithStagingConfig: function(Client, types.UpdateDistributionWithStagingConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDistributionWithStagingConfigOutput>
+    updateDomainAssociation: function(Client, types.UpdateDomainAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDomainAssociationOutput>
+    updateFieldLevelEncryptionConfig: function(Client, types.UpdateFieldLevelEncryptionConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFieldLevelEncryptionConfigOutput>
+    updateFieldLevelEncryptionProfile: function(Client, types.UpdateFieldLevelEncryptionProfileInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFieldLevelEncryptionProfileOutput>
+    updateFunction: function(Client, types.UpdateFunctionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFunctionOutput>
+    updateKeyGroup: function(Client, types.UpdateKeyGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateKeyGroupOutput>
+    updateKeyValueStore: function(Client, types.UpdateKeyValueStoreInput, ? base_client.InvokeOptions): async.Operation<types.UpdateKeyValueStoreOutput>
+    updateOriginAccessControl: function(Client, types.UpdateOriginAccessControlInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOriginAccessControlOutput>
+    updateOriginRequestPolicy: function(Client, types.UpdateOriginRequestPolicyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOriginRequestPolicyOutput>
+    updatePublicKey: function(Client, types.UpdatePublicKeyInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePublicKeyOutput>
+    updateRealtimeLogConfig: function(Client, types.UpdateRealtimeLogConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRealtimeLogConfigOutput>
+    updateResponseHeadersPolicy: function(Client, types.UpdateResponseHeadersPolicyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResponseHeadersPolicyOutput>
+    updateStreamingDistribution: function(Client, types.UpdateStreamingDistributionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateStreamingDistributionOutput>
+    updateTrustStore: function(Client, types.UpdateTrustStoreInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTrustStoreOutput>
+    updateVpcOrigin: function(Client, types.UpdateVpcOriginInput, ? base_client.InvokeOptions): async.Operation<types.UpdateVpcOriginOutput>
+    verifyDnsConfiguration: function(Client, types.VerifyDnsConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.VerifyDnsConfigurationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "Cloudfront2020_05_31"
-    if not c.protocol then c.protocol = restxml_protocol.new() end
+    if not c.protocol then c.protocol = restxml_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "cloudfront", signing_region = c.region } }
                 else
@@ -226,672 +229,672 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateAlias(input: types.AssociateAliasInput, options: any): async.Operation<types.AssociateAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateAlias, input, options) as async.Operation<types.AssociateAliasOutput>
+function C:associateAlias(input: types.AssociateAliasInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateAlias as schema.OperationSchema, input, options) as async.Operation<types.AssociateAliasOutput>
 end
 
-function C:associateDistributionTenantWebACL(input: types.AssociateDistributionTenantWebACLInput, options: any): async.Operation<types.AssociateDistributionTenantWebACLOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateDistributionTenantWebACL, input, options) as async.Operation<types.AssociateDistributionTenantWebACLOutput>
+function C:associateDistributionTenantWebACL(input: types.AssociateDistributionTenantWebACLInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateDistributionTenantWebACLOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateDistributionTenantWebACL as schema.OperationSchema, input, options) as async.Operation<types.AssociateDistributionTenantWebACLOutput>
 end
 
-function C:associateDistributionWebACL(input: types.AssociateDistributionWebACLInput, options: any): async.Operation<types.AssociateDistributionWebACLOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateDistributionWebACL, input, options) as async.Operation<types.AssociateDistributionWebACLOutput>
+function C:associateDistributionWebACL(input: types.AssociateDistributionWebACLInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateDistributionWebACLOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateDistributionWebACL as schema.OperationSchema, input, options) as async.Operation<types.AssociateDistributionWebACLOutput>
 end
 
-function C:copyDistribution(input: types.CopyDistributionInput, options: any): async.Operation<types.CopyDistributionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CopyDistribution, input, options) as async.Operation<types.CopyDistributionOutput>
+function C:copyDistribution(input: types.CopyDistributionInput, options?: base_client.InvokeOptions): async.Operation<types.CopyDistributionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CopyDistribution as schema.OperationSchema, input, options) as async.Operation<types.CopyDistributionOutput>
 end
 
-function C:createAnycastIpList(input: types.CreateAnycastIpListInput, options: any): async.Operation<types.CreateAnycastIpListOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAnycastIpList, input, options) as async.Operation<types.CreateAnycastIpListOutput>
+function C:createAnycastIpList(input: types.CreateAnycastIpListInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAnycastIpListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAnycastIpList as schema.OperationSchema, input, options) as async.Operation<types.CreateAnycastIpListOutput>
 end
 
-function C:createCachePolicy(input: types.CreateCachePolicyInput, options: any): async.Operation<types.CreateCachePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCachePolicy, input, options) as async.Operation<types.CreateCachePolicyOutput>
+function C:createCachePolicy(input: types.CreateCachePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCachePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCachePolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateCachePolicyOutput>
 end
 
-function C:createCloudFrontOriginAccessIdentity(input: types.CreateCloudFrontOriginAccessIdentityInput, options: any): async.Operation<types.CreateCloudFrontOriginAccessIdentityOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCloudFrontOriginAccessIdentity, input, options) as async.Operation<types.CreateCloudFrontOriginAccessIdentityOutput>
+function C:createCloudFrontOriginAccessIdentity(input: types.CreateCloudFrontOriginAccessIdentityInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCloudFrontOriginAccessIdentityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCloudFrontOriginAccessIdentity as schema.OperationSchema, input, options) as async.Operation<types.CreateCloudFrontOriginAccessIdentityOutput>
 end
 
-function C:createConnectionFunction(input: types.CreateConnectionFunctionInput, options: any): async.Operation<types.CreateConnectionFunctionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConnectionFunction, input, options) as async.Operation<types.CreateConnectionFunctionOutput>
+function C:createConnectionFunction(input: types.CreateConnectionFunctionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConnectionFunctionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConnectionFunction as schema.OperationSchema, input, options) as async.Operation<types.CreateConnectionFunctionOutput>
 end
 
-function C:createConnectionGroup(input: types.CreateConnectionGroupInput, options: any): async.Operation<types.CreateConnectionGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConnectionGroup, input, options) as async.Operation<types.CreateConnectionGroupOutput>
+function C:createConnectionGroup(input: types.CreateConnectionGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConnectionGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConnectionGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateConnectionGroupOutput>
 end
 
-function C:createContinuousDeploymentPolicy(input: types.CreateContinuousDeploymentPolicyInput, options: any): async.Operation<types.CreateContinuousDeploymentPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateContinuousDeploymentPolicy, input, options) as async.Operation<types.CreateContinuousDeploymentPolicyOutput>
+function C:createContinuousDeploymentPolicy(input: types.CreateContinuousDeploymentPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateContinuousDeploymentPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateContinuousDeploymentPolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateContinuousDeploymentPolicyOutput>
 end
 
-function C:createDistribution(input: types.CreateDistributionInput, options: any): async.Operation<types.CreateDistributionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDistribution, input, options) as async.Operation<types.CreateDistributionOutput>
+function C:createDistribution(input: types.CreateDistributionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDistributionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDistribution as schema.OperationSchema, input, options) as async.Operation<types.CreateDistributionOutput>
 end
 
-function C:createDistributionTenant(input: types.CreateDistributionTenantInput, options: any): async.Operation<types.CreateDistributionTenantOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDistributionTenant, input, options) as async.Operation<types.CreateDistributionTenantOutput>
+function C:createDistributionTenant(input: types.CreateDistributionTenantInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDistributionTenantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDistributionTenant as schema.OperationSchema, input, options) as async.Operation<types.CreateDistributionTenantOutput>
 end
 
-function C:createDistributionWithTags(input: types.CreateDistributionWithTagsInput, options: any): async.Operation<types.CreateDistributionWithTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDistributionWithTags, input, options) as async.Operation<types.CreateDistributionWithTagsOutput>
+function C:createDistributionWithTags(input: types.CreateDistributionWithTagsInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDistributionWithTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDistributionWithTags as schema.OperationSchema, input, options) as async.Operation<types.CreateDistributionWithTagsOutput>
 end
 
-function C:createFieldLevelEncryptionConfig(input: types.CreateFieldLevelEncryptionConfigInput, options: any): async.Operation<types.CreateFieldLevelEncryptionConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFieldLevelEncryptionConfig, input, options) as async.Operation<types.CreateFieldLevelEncryptionConfigOutput>
+function C:createFieldLevelEncryptionConfig(input: types.CreateFieldLevelEncryptionConfigInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFieldLevelEncryptionConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFieldLevelEncryptionConfig as schema.OperationSchema, input, options) as async.Operation<types.CreateFieldLevelEncryptionConfigOutput>
 end
 
-function C:createFieldLevelEncryptionProfile(input: types.CreateFieldLevelEncryptionProfileInput, options: any): async.Operation<types.CreateFieldLevelEncryptionProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFieldLevelEncryptionProfile, input, options) as async.Operation<types.CreateFieldLevelEncryptionProfileOutput>
+function C:createFieldLevelEncryptionProfile(input: types.CreateFieldLevelEncryptionProfileInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFieldLevelEncryptionProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFieldLevelEncryptionProfile as schema.OperationSchema, input, options) as async.Operation<types.CreateFieldLevelEncryptionProfileOutput>
 end
 
-function C:createFunction(input: types.CreateFunctionInput, options: any): async.Operation<types.CreateFunctionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFunction, input, options) as async.Operation<types.CreateFunctionOutput>
+function C:createFunction(input: types.CreateFunctionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFunctionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFunction as schema.OperationSchema, input, options) as async.Operation<types.CreateFunctionOutput>
 end
 
-function C:createInvalidation(input: types.CreateInvalidationInput, options: any): async.Operation<types.CreateInvalidationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateInvalidation, input, options) as async.Operation<types.CreateInvalidationOutput>
+function C:createInvalidation(input: types.CreateInvalidationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInvalidationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInvalidation as schema.OperationSchema, input, options) as async.Operation<types.CreateInvalidationOutput>
 end
 
-function C:createInvalidationForDistributionTenant(input: types.CreateInvalidationForDistributionTenantInput, options: any): async.Operation<types.CreateInvalidationForDistributionTenantOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateInvalidationForDistributionTenant, input, options) as async.Operation<types.CreateInvalidationForDistributionTenantOutput>
+function C:createInvalidationForDistributionTenant(input: types.CreateInvalidationForDistributionTenantInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInvalidationForDistributionTenantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInvalidationForDistributionTenant as schema.OperationSchema, input, options) as async.Operation<types.CreateInvalidationForDistributionTenantOutput>
 end
 
-function C:createKeyGroup(input: types.CreateKeyGroupInput, options: any): async.Operation<types.CreateKeyGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateKeyGroup, input, options) as async.Operation<types.CreateKeyGroupOutput>
+function C:createKeyGroup(input: types.CreateKeyGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateKeyGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateKeyGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateKeyGroupOutput>
 end
 
-function C:createKeyValueStore(input: types.CreateKeyValueStoreInput, options: any): async.Operation<types.CreateKeyValueStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateKeyValueStore, input, options) as async.Operation<types.CreateKeyValueStoreOutput>
+function C:createKeyValueStore(input: types.CreateKeyValueStoreInput, options?: base_client.InvokeOptions): async.Operation<types.CreateKeyValueStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateKeyValueStore as schema.OperationSchema, input, options) as async.Operation<types.CreateKeyValueStoreOutput>
 end
 
-function C:createMonitoringSubscription(input: types.CreateMonitoringSubscriptionInput, options: any): async.Operation<types.CreateMonitoringSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMonitoringSubscription, input, options) as async.Operation<types.CreateMonitoringSubscriptionOutput>
+function C:createMonitoringSubscription(input: types.CreateMonitoringSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMonitoringSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMonitoringSubscription as schema.OperationSchema, input, options) as async.Operation<types.CreateMonitoringSubscriptionOutput>
 end
 
-function C:createOriginAccessControl(input: types.CreateOriginAccessControlInput, options: any): async.Operation<types.CreateOriginAccessControlOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateOriginAccessControl, input, options) as async.Operation<types.CreateOriginAccessControlOutput>
+function C:createOriginAccessControl(input: types.CreateOriginAccessControlInput, options?: base_client.InvokeOptions): async.Operation<types.CreateOriginAccessControlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateOriginAccessControl as schema.OperationSchema, input, options) as async.Operation<types.CreateOriginAccessControlOutput>
 end
 
-function C:createOriginRequestPolicy(input: types.CreateOriginRequestPolicyInput, options: any): async.Operation<types.CreateOriginRequestPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateOriginRequestPolicy, input, options) as async.Operation<types.CreateOriginRequestPolicyOutput>
+function C:createOriginRequestPolicy(input: types.CreateOriginRequestPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateOriginRequestPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateOriginRequestPolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateOriginRequestPolicyOutput>
 end
 
-function C:createPublicKey(input: types.CreatePublicKeyInput, options: any): async.Operation<types.CreatePublicKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePublicKey, input, options) as async.Operation<types.CreatePublicKeyOutput>
+function C:createPublicKey(input: types.CreatePublicKeyInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePublicKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePublicKey as schema.OperationSchema, input, options) as async.Operation<types.CreatePublicKeyOutput>
 end
 
-function C:createRealtimeLogConfig(input: types.CreateRealtimeLogConfigInput, options: any): async.Operation<types.CreateRealtimeLogConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRealtimeLogConfig, input, options) as async.Operation<types.CreateRealtimeLogConfigOutput>
+function C:createRealtimeLogConfig(input: types.CreateRealtimeLogConfigInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRealtimeLogConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRealtimeLogConfig as schema.OperationSchema, input, options) as async.Operation<types.CreateRealtimeLogConfigOutput>
 end
 
-function C:createResponseHeadersPolicy(input: types.CreateResponseHeadersPolicyInput, options: any): async.Operation<types.CreateResponseHeadersPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateResponseHeadersPolicy, input, options) as async.Operation<types.CreateResponseHeadersPolicyOutput>
+function C:createResponseHeadersPolicy(input: types.CreateResponseHeadersPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateResponseHeadersPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateResponseHeadersPolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateResponseHeadersPolicyOutput>
 end
 
-function C:createStreamingDistribution(input: types.CreateStreamingDistributionInput, options: any): async.Operation<types.CreateStreamingDistributionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateStreamingDistribution, input, options) as async.Operation<types.CreateStreamingDistributionOutput>
+function C:createStreamingDistribution(input: types.CreateStreamingDistributionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateStreamingDistributionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateStreamingDistribution as schema.OperationSchema, input, options) as async.Operation<types.CreateStreamingDistributionOutput>
 end
 
-function C:createStreamingDistributionWithTags(input: types.CreateStreamingDistributionWithTagsInput, options: any): async.Operation<types.CreateStreamingDistributionWithTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateStreamingDistributionWithTags, input, options) as async.Operation<types.CreateStreamingDistributionWithTagsOutput>
+function C:createStreamingDistributionWithTags(input: types.CreateStreamingDistributionWithTagsInput, options?: base_client.InvokeOptions): async.Operation<types.CreateStreamingDistributionWithTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateStreamingDistributionWithTags as schema.OperationSchema, input, options) as async.Operation<types.CreateStreamingDistributionWithTagsOutput>
 end
 
-function C:createTrustStore(input: types.CreateTrustStoreInput, options: any): async.Operation<types.CreateTrustStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTrustStore, input, options) as async.Operation<types.CreateTrustStoreOutput>
+function C:createTrustStore(input: types.CreateTrustStoreInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTrustStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTrustStore as schema.OperationSchema, input, options) as async.Operation<types.CreateTrustStoreOutput>
 end
 
-function C:createVpcOrigin(input: types.CreateVpcOriginInput, options: any): async.Operation<types.CreateVpcOriginOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVpcOrigin, input, options) as async.Operation<types.CreateVpcOriginOutput>
+function C:createVpcOrigin(input: types.CreateVpcOriginInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVpcOriginOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVpcOrigin as schema.OperationSchema, input, options) as async.Operation<types.CreateVpcOriginOutput>
 end
 
-function C:deleteAnycastIpList(input: types.DeleteAnycastIpListInput, options: any): async.Operation<types.DeleteAnycastIpListOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAnycastIpList, input, options) as async.Operation<types.DeleteAnycastIpListOutput>
+function C:deleteAnycastIpList(input: types.DeleteAnycastIpListInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAnycastIpListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAnycastIpList as schema.OperationSchema, input, options) as async.Operation<types.DeleteAnycastIpListOutput>
 end
 
-function C:deleteCachePolicy(input: types.DeleteCachePolicyInput, options: any): async.Operation<types.DeleteCachePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCachePolicy, input, options) as async.Operation<types.DeleteCachePolicyOutput>
+function C:deleteCachePolicy(input: types.DeleteCachePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCachePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCachePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteCachePolicyOutput>
 end
 
-function C:deleteCloudFrontOriginAccessIdentity(input: types.DeleteCloudFrontOriginAccessIdentityInput, options: any): async.Operation<types.DeleteCloudFrontOriginAccessIdentityOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCloudFrontOriginAccessIdentity, input, options) as async.Operation<types.DeleteCloudFrontOriginAccessIdentityOutput>
+function C:deleteCloudFrontOriginAccessIdentity(input: types.DeleteCloudFrontOriginAccessIdentityInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCloudFrontOriginAccessIdentityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCloudFrontOriginAccessIdentity as schema.OperationSchema, input, options) as async.Operation<types.DeleteCloudFrontOriginAccessIdentityOutput>
 end
 
-function C:deleteConnectionFunction(input: types.DeleteConnectionFunctionInput, options: any): async.Operation<types.DeleteConnectionFunctionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConnectionFunction, input, options) as async.Operation<types.DeleteConnectionFunctionOutput>
+function C:deleteConnectionFunction(input: types.DeleteConnectionFunctionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConnectionFunctionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConnectionFunction as schema.OperationSchema, input, options) as async.Operation<types.DeleteConnectionFunctionOutput>
 end
 
-function C:deleteConnectionGroup(input: types.DeleteConnectionGroupInput, options: any): async.Operation<types.DeleteConnectionGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConnectionGroup, input, options) as async.Operation<types.DeleteConnectionGroupOutput>
+function C:deleteConnectionGroup(input: types.DeleteConnectionGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConnectionGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConnectionGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteConnectionGroupOutput>
 end
 
-function C:deleteContinuousDeploymentPolicy(input: types.DeleteContinuousDeploymentPolicyInput, options: any): async.Operation<types.DeleteContinuousDeploymentPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteContinuousDeploymentPolicy, input, options) as async.Operation<types.DeleteContinuousDeploymentPolicyOutput>
+function C:deleteContinuousDeploymentPolicy(input: types.DeleteContinuousDeploymentPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteContinuousDeploymentPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteContinuousDeploymentPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteContinuousDeploymentPolicyOutput>
 end
 
-function C:deleteDistribution(input: types.DeleteDistributionInput, options: any): async.Operation<types.DeleteDistributionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDistribution, input, options) as async.Operation<types.DeleteDistributionOutput>
+function C:deleteDistribution(input: types.DeleteDistributionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDistributionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDistribution as schema.OperationSchema, input, options) as async.Operation<types.DeleteDistributionOutput>
 end
 
-function C:deleteDistributionTenant(input: types.DeleteDistributionTenantInput, options: any): async.Operation<types.DeleteDistributionTenantOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDistributionTenant, input, options) as async.Operation<types.DeleteDistributionTenantOutput>
+function C:deleteDistributionTenant(input: types.DeleteDistributionTenantInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDistributionTenantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDistributionTenant as schema.OperationSchema, input, options) as async.Operation<types.DeleteDistributionTenantOutput>
 end
 
-function C:deleteFieldLevelEncryptionConfig(input: types.DeleteFieldLevelEncryptionConfigInput, options: any): async.Operation<types.DeleteFieldLevelEncryptionConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFieldLevelEncryptionConfig, input, options) as async.Operation<types.DeleteFieldLevelEncryptionConfigOutput>
+function C:deleteFieldLevelEncryptionConfig(input: types.DeleteFieldLevelEncryptionConfigInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFieldLevelEncryptionConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFieldLevelEncryptionConfig as schema.OperationSchema, input, options) as async.Operation<types.DeleteFieldLevelEncryptionConfigOutput>
 end
 
-function C:deleteFieldLevelEncryptionProfile(input: types.DeleteFieldLevelEncryptionProfileInput, options: any): async.Operation<types.DeleteFieldLevelEncryptionProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFieldLevelEncryptionProfile, input, options) as async.Operation<types.DeleteFieldLevelEncryptionProfileOutput>
+function C:deleteFieldLevelEncryptionProfile(input: types.DeleteFieldLevelEncryptionProfileInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFieldLevelEncryptionProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFieldLevelEncryptionProfile as schema.OperationSchema, input, options) as async.Operation<types.DeleteFieldLevelEncryptionProfileOutput>
 end
 
-function C:deleteFunction(input: types.DeleteFunctionInput, options: any): async.Operation<types.DeleteFunctionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFunction, input, options) as async.Operation<types.DeleteFunctionOutput>
+function C:deleteFunction(input: types.DeleteFunctionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFunctionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFunction as schema.OperationSchema, input, options) as async.Operation<types.DeleteFunctionOutput>
 end
 
-function C:deleteKeyGroup(input: types.DeleteKeyGroupInput, options: any): async.Operation<types.DeleteKeyGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteKeyGroup, input, options) as async.Operation<types.DeleteKeyGroupOutput>
+function C:deleteKeyGroup(input: types.DeleteKeyGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteKeyGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteKeyGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteKeyGroupOutput>
 end
 
-function C:deleteKeyValueStore(input: types.DeleteKeyValueStoreInput, options: any): async.Operation<types.DeleteKeyValueStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteKeyValueStore, input, options) as async.Operation<types.DeleteKeyValueStoreOutput>
+function C:deleteKeyValueStore(input: types.DeleteKeyValueStoreInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteKeyValueStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteKeyValueStore as schema.OperationSchema, input, options) as async.Operation<types.DeleteKeyValueStoreOutput>
 end
 
-function C:deleteMonitoringSubscription(input: types.DeleteMonitoringSubscriptionInput, options: any): async.Operation<types.DeleteMonitoringSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMonitoringSubscription, input, options) as async.Operation<types.DeleteMonitoringSubscriptionOutput>
+function C:deleteMonitoringSubscription(input: types.DeleteMonitoringSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMonitoringSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMonitoringSubscription as schema.OperationSchema, input, options) as async.Operation<types.DeleteMonitoringSubscriptionOutput>
 end
 
-function C:deleteOriginAccessControl(input: types.DeleteOriginAccessControlInput, options: any): async.Operation<types.DeleteOriginAccessControlOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteOriginAccessControl, input, options) as async.Operation<types.DeleteOriginAccessControlOutput>
+function C:deleteOriginAccessControl(input: types.DeleteOriginAccessControlInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteOriginAccessControlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteOriginAccessControl as schema.OperationSchema, input, options) as async.Operation<types.DeleteOriginAccessControlOutput>
 end
 
-function C:deleteOriginRequestPolicy(input: types.DeleteOriginRequestPolicyInput, options: any): async.Operation<types.DeleteOriginRequestPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteOriginRequestPolicy, input, options) as async.Operation<types.DeleteOriginRequestPolicyOutput>
+function C:deleteOriginRequestPolicy(input: types.DeleteOriginRequestPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteOriginRequestPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteOriginRequestPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteOriginRequestPolicyOutput>
 end
 
-function C:deletePublicKey(input: types.DeletePublicKeyInput, options: any): async.Operation<types.DeletePublicKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePublicKey, input, options) as async.Operation<types.DeletePublicKeyOutput>
+function C:deletePublicKey(input: types.DeletePublicKeyInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePublicKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePublicKey as schema.OperationSchema, input, options) as async.Operation<types.DeletePublicKeyOutput>
 end
 
-function C:deleteRealtimeLogConfig(input: types.DeleteRealtimeLogConfigInput, options: any): async.Operation<types.DeleteRealtimeLogConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRealtimeLogConfig, input, options) as async.Operation<types.DeleteRealtimeLogConfigOutput>
+function C:deleteRealtimeLogConfig(input: types.DeleteRealtimeLogConfigInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRealtimeLogConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRealtimeLogConfig as schema.OperationSchema, input, options) as async.Operation<types.DeleteRealtimeLogConfigOutput>
 end
 
-function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options: any): async.Operation<types.DeleteResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicy, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
+function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
 end
 
-function C:deleteResponseHeadersPolicy(input: types.DeleteResponseHeadersPolicyInput, options: any): async.Operation<types.DeleteResponseHeadersPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResponseHeadersPolicy, input, options) as async.Operation<types.DeleteResponseHeadersPolicyOutput>
+function C:deleteResponseHeadersPolicy(input: types.DeleteResponseHeadersPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResponseHeadersPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResponseHeadersPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteResponseHeadersPolicyOutput>
 end
 
-function C:deleteStreamingDistribution(input: types.DeleteStreamingDistributionInput, options: any): async.Operation<types.DeleteStreamingDistributionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteStreamingDistribution, input, options) as async.Operation<types.DeleteStreamingDistributionOutput>
+function C:deleteStreamingDistribution(input: types.DeleteStreamingDistributionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteStreamingDistributionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteStreamingDistribution as schema.OperationSchema, input, options) as async.Operation<types.DeleteStreamingDistributionOutput>
 end
 
-function C:deleteTrustStore(input: types.DeleteTrustStoreInput, options: any): async.Operation<types.DeleteTrustStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTrustStore, input, options) as async.Operation<types.DeleteTrustStoreOutput>
+function C:deleteTrustStore(input: types.DeleteTrustStoreInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTrustStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTrustStore as schema.OperationSchema, input, options) as async.Operation<types.DeleteTrustStoreOutput>
 end
 
-function C:deleteVpcOrigin(input: types.DeleteVpcOriginInput, options: any): async.Operation<types.DeleteVpcOriginOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVpcOrigin, input, options) as async.Operation<types.DeleteVpcOriginOutput>
+function C:deleteVpcOrigin(input: types.DeleteVpcOriginInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVpcOriginOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVpcOrigin as schema.OperationSchema, input, options) as async.Operation<types.DeleteVpcOriginOutput>
 end
 
-function C:describeConnectionFunction(input: types.DescribeConnectionFunctionInput, options: any): async.Operation<types.DescribeConnectionFunctionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeConnectionFunction, input, options) as async.Operation<types.DescribeConnectionFunctionOutput>
+function C:describeConnectionFunction(input: types.DescribeConnectionFunctionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeConnectionFunctionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeConnectionFunction as schema.OperationSchema, input, options) as async.Operation<types.DescribeConnectionFunctionOutput>
 end
 
-function C:describeFunction(input: types.DescribeFunctionInput, options: any): async.Operation<types.DescribeFunctionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFunction, input, options) as async.Operation<types.DescribeFunctionOutput>
+function C:describeFunction(input: types.DescribeFunctionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFunctionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFunction as schema.OperationSchema, input, options) as async.Operation<types.DescribeFunctionOutput>
 end
 
-function C:describeKeyValueStore(input: types.DescribeKeyValueStoreInput, options: any): async.Operation<types.DescribeKeyValueStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeKeyValueStore, input, options) as async.Operation<types.DescribeKeyValueStoreOutput>
+function C:describeKeyValueStore(input: types.DescribeKeyValueStoreInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeKeyValueStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeKeyValueStore as schema.OperationSchema, input, options) as async.Operation<types.DescribeKeyValueStoreOutput>
 end
 
-function C:disassociateDistributionTenantWebACL(input: types.DisassociateDistributionTenantWebACLInput, options: any): async.Operation<types.DisassociateDistributionTenantWebACLOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateDistributionTenantWebACL, input, options) as async.Operation<types.DisassociateDistributionTenantWebACLOutput>
+function C:disassociateDistributionTenantWebACL(input: types.DisassociateDistributionTenantWebACLInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateDistributionTenantWebACLOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateDistributionTenantWebACL as schema.OperationSchema, input, options) as async.Operation<types.DisassociateDistributionTenantWebACLOutput>
 end
 
-function C:disassociateDistributionWebACL(input: types.DisassociateDistributionWebACLInput, options: any): async.Operation<types.DisassociateDistributionWebACLOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateDistributionWebACL, input, options) as async.Operation<types.DisassociateDistributionWebACLOutput>
+function C:disassociateDistributionWebACL(input: types.DisassociateDistributionWebACLInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateDistributionWebACLOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateDistributionWebACL as schema.OperationSchema, input, options) as async.Operation<types.DisassociateDistributionWebACLOutput>
 end
 
-function C:getAnycastIpList(input: types.GetAnycastIpListInput, options: any): async.Operation<types.GetAnycastIpListOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAnycastIpList, input, options) as async.Operation<types.GetAnycastIpListOutput>
+function C:getAnycastIpList(input: types.GetAnycastIpListInput, options?: base_client.InvokeOptions): async.Operation<types.GetAnycastIpListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAnycastIpList as schema.OperationSchema, input, options) as async.Operation<types.GetAnycastIpListOutput>
 end
 
-function C:getCachePolicy(input: types.GetCachePolicyInput, options: any): async.Operation<types.GetCachePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCachePolicy, input, options) as async.Operation<types.GetCachePolicyOutput>
+function C:getCachePolicy(input: types.GetCachePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetCachePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCachePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetCachePolicyOutput>
 end
 
-function C:getCachePolicyConfig(input: types.GetCachePolicyConfigInput, options: any): async.Operation<types.GetCachePolicyConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCachePolicyConfig, input, options) as async.Operation<types.GetCachePolicyConfigOutput>
+function C:getCachePolicyConfig(input: types.GetCachePolicyConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetCachePolicyConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCachePolicyConfig as schema.OperationSchema, input, options) as async.Operation<types.GetCachePolicyConfigOutput>
 end
 
-function C:getCloudFrontOriginAccessIdentity(input: types.GetCloudFrontOriginAccessIdentityInput, options: any): async.Operation<types.GetCloudFrontOriginAccessIdentityOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCloudFrontOriginAccessIdentity, input, options) as async.Operation<types.GetCloudFrontOriginAccessIdentityOutput>
+function C:getCloudFrontOriginAccessIdentity(input: types.GetCloudFrontOriginAccessIdentityInput, options?: base_client.InvokeOptions): async.Operation<types.GetCloudFrontOriginAccessIdentityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCloudFrontOriginAccessIdentity as schema.OperationSchema, input, options) as async.Operation<types.GetCloudFrontOriginAccessIdentityOutput>
 end
 
-function C:getCloudFrontOriginAccessIdentityConfig(input: types.GetCloudFrontOriginAccessIdentityConfigInput, options: any): async.Operation<types.GetCloudFrontOriginAccessIdentityConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCloudFrontOriginAccessIdentityConfig, input, options) as async.Operation<types.GetCloudFrontOriginAccessIdentityConfigOutput>
+function C:getCloudFrontOriginAccessIdentityConfig(input: types.GetCloudFrontOriginAccessIdentityConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetCloudFrontOriginAccessIdentityConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCloudFrontOriginAccessIdentityConfig as schema.OperationSchema, input, options) as async.Operation<types.GetCloudFrontOriginAccessIdentityConfigOutput>
 end
 
-function C:getConnectionFunction(input: types.GetConnectionFunctionInput, options: any): async.Operation<types.GetConnectionFunctionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConnectionFunction, input, options) as async.Operation<types.GetConnectionFunctionOutput>
+function C:getConnectionFunction(input: types.GetConnectionFunctionInput, options?: base_client.InvokeOptions): async.Operation<types.GetConnectionFunctionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConnectionFunction as schema.OperationSchema, input, options) as async.Operation<types.GetConnectionFunctionOutput>
 end
 
-function C:getConnectionGroup(input: types.GetConnectionGroupInput, options: any): async.Operation<types.GetConnectionGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConnectionGroup, input, options) as async.Operation<types.GetConnectionGroupOutput>
+function C:getConnectionGroup(input: types.GetConnectionGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetConnectionGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConnectionGroup as schema.OperationSchema, input, options) as async.Operation<types.GetConnectionGroupOutput>
 end
 
-function C:getConnectionGroupByRoutingEndpoint(input: types.GetConnectionGroupByRoutingEndpointInput, options: any): async.Operation<types.GetConnectionGroupByRoutingEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConnectionGroupByRoutingEndpoint, input, options) as async.Operation<types.GetConnectionGroupByRoutingEndpointOutput>
+function C:getConnectionGroupByRoutingEndpoint(input: types.GetConnectionGroupByRoutingEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.GetConnectionGroupByRoutingEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConnectionGroupByRoutingEndpoint as schema.OperationSchema, input, options) as async.Operation<types.GetConnectionGroupByRoutingEndpointOutput>
 end
 
-function C:getContinuousDeploymentPolicy(input: types.GetContinuousDeploymentPolicyInput, options: any): async.Operation<types.GetContinuousDeploymentPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetContinuousDeploymentPolicy, input, options) as async.Operation<types.GetContinuousDeploymentPolicyOutput>
+function C:getContinuousDeploymentPolicy(input: types.GetContinuousDeploymentPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetContinuousDeploymentPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetContinuousDeploymentPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetContinuousDeploymentPolicyOutput>
 end
 
-function C:getContinuousDeploymentPolicyConfig(input: types.GetContinuousDeploymentPolicyConfigInput, options: any): async.Operation<types.GetContinuousDeploymentPolicyConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetContinuousDeploymentPolicyConfig, input, options) as async.Operation<types.GetContinuousDeploymentPolicyConfigOutput>
+function C:getContinuousDeploymentPolicyConfig(input: types.GetContinuousDeploymentPolicyConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetContinuousDeploymentPolicyConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetContinuousDeploymentPolicyConfig as schema.OperationSchema, input, options) as async.Operation<types.GetContinuousDeploymentPolicyConfigOutput>
 end
 
-function C:getDistribution(input: types.GetDistributionInput, options: any): async.Operation<types.GetDistributionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDistribution, input, options) as async.Operation<types.GetDistributionOutput>
+function C:getDistribution(input: types.GetDistributionInput, options?: base_client.InvokeOptions): async.Operation<types.GetDistributionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDistribution as schema.OperationSchema, input, options) as async.Operation<types.GetDistributionOutput>
 end
 
-function C:getDistributionConfig(input: types.GetDistributionConfigInput, options: any): async.Operation<types.GetDistributionConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDistributionConfig, input, options) as async.Operation<types.GetDistributionConfigOutput>
+function C:getDistributionConfig(input: types.GetDistributionConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetDistributionConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDistributionConfig as schema.OperationSchema, input, options) as async.Operation<types.GetDistributionConfigOutput>
 end
 
-function C:getDistributionTenant(input: types.GetDistributionTenantInput, options: any): async.Operation<types.GetDistributionTenantOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDistributionTenant, input, options) as async.Operation<types.GetDistributionTenantOutput>
+function C:getDistributionTenant(input: types.GetDistributionTenantInput, options?: base_client.InvokeOptions): async.Operation<types.GetDistributionTenantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDistributionTenant as schema.OperationSchema, input, options) as async.Operation<types.GetDistributionTenantOutput>
 end
 
-function C:getDistributionTenantByDomain(input: types.GetDistributionTenantByDomainInput, options: any): async.Operation<types.GetDistributionTenantByDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDistributionTenantByDomain, input, options) as async.Operation<types.GetDistributionTenantByDomainOutput>
+function C:getDistributionTenantByDomain(input: types.GetDistributionTenantByDomainInput, options?: base_client.InvokeOptions): async.Operation<types.GetDistributionTenantByDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDistributionTenantByDomain as schema.OperationSchema, input, options) as async.Operation<types.GetDistributionTenantByDomainOutput>
 end
 
-function C:getFieldLevelEncryption(input: types.GetFieldLevelEncryptionInput, options: any): async.Operation<types.GetFieldLevelEncryptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFieldLevelEncryption, input, options) as async.Operation<types.GetFieldLevelEncryptionOutput>
+function C:getFieldLevelEncryption(input: types.GetFieldLevelEncryptionInput, options?: base_client.InvokeOptions): async.Operation<types.GetFieldLevelEncryptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFieldLevelEncryption as schema.OperationSchema, input, options) as async.Operation<types.GetFieldLevelEncryptionOutput>
 end
 
-function C:getFieldLevelEncryptionConfig(input: types.GetFieldLevelEncryptionConfigInput, options: any): async.Operation<types.GetFieldLevelEncryptionConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFieldLevelEncryptionConfig, input, options) as async.Operation<types.GetFieldLevelEncryptionConfigOutput>
+function C:getFieldLevelEncryptionConfig(input: types.GetFieldLevelEncryptionConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetFieldLevelEncryptionConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFieldLevelEncryptionConfig as schema.OperationSchema, input, options) as async.Operation<types.GetFieldLevelEncryptionConfigOutput>
 end
 
-function C:getFieldLevelEncryptionProfile(input: types.GetFieldLevelEncryptionProfileInput, options: any): async.Operation<types.GetFieldLevelEncryptionProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFieldLevelEncryptionProfile, input, options) as async.Operation<types.GetFieldLevelEncryptionProfileOutput>
+function C:getFieldLevelEncryptionProfile(input: types.GetFieldLevelEncryptionProfileInput, options?: base_client.InvokeOptions): async.Operation<types.GetFieldLevelEncryptionProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFieldLevelEncryptionProfile as schema.OperationSchema, input, options) as async.Operation<types.GetFieldLevelEncryptionProfileOutput>
 end
 
-function C:getFieldLevelEncryptionProfileConfig(input: types.GetFieldLevelEncryptionProfileConfigInput, options: any): async.Operation<types.GetFieldLevelEncryptionProfileConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFieldLevelEncryptionProfileConfig, input, options) as async.Operation<types.GetFieldLevelEncryptionProfileConfigOutput>
+function C:getFieldLevelEncryptionProfileConfig(input: types.GetFieldLevelEncryptionProfileConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetFieldLevelEncryptionProfileConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFieldLevelEncryptionProfileConfig as schema.OperationSchema, input, options) as async.Operation<types.GetFieldLevelEncryptionProfileConfigOutput>
 end
 
-function C:getFunction(input: types.GetFunctionInput, options: any): async.Operation<types.GetFunctionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFunction, input, options) as async.Operation<types.GetFunctionOutput>
+function C:getFunction(input: types.GetFunctionInput, options?: base_client.InvokeOptions): async.Operation<types.GetFunctionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFunction as schema.OperationSchema, input, options) as async.Operation<types.GetFunctionOutput>
 end
 
-function C:getInvalidation(input: types.GetInvalidationInput, options: any): async.Operation<types.GetInvalidationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInvalidation, input, options) as async.Operation<types.GetInvalidationOutput>
+function C:getInvalidation(input: types.GetInvalidationInput, options?: base_client.InvokeOptions): async.Operation<types.GetInvalidationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInvalidation as schema.OperationSchema, input, options) as async.Operation<types.GetInvalidationOutput>
 end
 
-function C:getInvalidationForDistributionTenant(input: types.GetInvalidationForDistributionTenantInput, options: any): async.Operation<types.GetInvalidationForDistributionTenantOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInvalidationForDistributionTenant, input, options) as async.Operation<types.GetInvalidationForDistributionTenantOutput>
+function C:getInvalidationForDistributionTenant(input: types.GetInvalidationForDistributionTenantInput, options?: base_client.InvokeOptions): async.Operation<types.GetInvalidationForDistributionTenantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInvalidationForDistributionTenant as schema.OperationSchema, input, options) as async.Operation<types.GetInvalidationForDistributionTenantOutput>
 end
 
-function C:getKeyGroup(input: types.GetKeyGroupInput, options: any): async.Operation<types.GetKeyGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetKeyGroup, input, options) as async.Operation<types.GetKeyGroupOutput>
+function C:getKeyGroup(input: types.GetKeyGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetKeyGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetKeyGroup as schema.OperationSchema, input, options) as async.Operation<types.GetKeyGroupOutput>
 end
 
-function C:getKeyGroupConfig(input: types.GetKeyGroupConfigInput, options: any): async.Operation<types.GetKeyGroupConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetKeyGroupConfig, input, options) as async.Operation<types.GetKeyGroupConfigOutput>
+function C:getKeyGroupConfig(input: types.GetKeyGroupConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetKeyGroupConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetKeyGroupConfig as schema.OperationSchema, input, options) as async.Operation<types.GetKeyGroupConfigOutput>
 end
 
-function C:getManagedCertificateDetails(input: types.GetManagedCertificateDetailsInput, options: any): async.Operation<types.GetManagedCertificateDetailsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetManagedCertificateDetails, input, options) as async.Operation<types.GetManagedCertificateDetailsOutput>
+function C:getManagedCertificateDetails(input: types.GetManagedCertificateDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.GetManagedCertificateDetailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetManagedCertificateDetails as schema.OperationSchema, input, options) as async.Operation<types.GetManagedCertificateDetailsOutput>
 end
 
-function C:getMonitoringSubscription(input: types.GetMonitoringSubscriptionInput, options: any): async.Operation<types.GetMonitoringSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMonitoringSubscription, input, options) as async.Operation<types.GetMonitoringSubscriptionOutput>
+function C:getMonitoringSubscription(input: types.GetMonitoringSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.GetMonitoringSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMonitoringSubscription as schema.OperationSchema, input, options) as async.Operation<types.GetMonitoringSubscriptionOutput>
 end
 
-function C:getOriginAccessControl(input: types.GetOriginAccessControlInput, options: any): async.Operation<types.GetOriginAccessControlOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOriginAccessControl, input, options) as async.Operation<types.GetOriginAccessControlOutput>
+function C:getOriginAccessControl(input: types.GetOriginAccessControlInput, options?: base_client.InvokeOptions): async.Operation<types.GetOriginAccessControlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOriginAccessControl as schema.OperationSchema, input, options) as async.Operation<types.GetOriginAccessControlOutput>
 end
 
-function C:getOriginAccessControlConfig(input: types.GetOriginAccessControlConfigInput, options: any): async.Operation<types.GetOriginAccessControlConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOriginAccessControlConfig, input, options) as async.Operation<types.GetOriginAccessControlConfigOutput>
+function C:getOriginAccessControlConfig(input: types.GetOriginAccessControlConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetOriginAccessControlConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOriginAccessControlConfig as schema.OperationSchema, input, options) as async.Operation<types.GetOriginAccessControlConfigOutput>
 end
 
-function C:getOriginRequestPolicy(input: types.GetOriginRequestPolicyInput, options: any): async.Operation<types.GetOriginRequestPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOriginRequestPolicy, input, options) as async.Operation<types.GetOriginRequestPolicyOutput>
+function C:getOriginRequestPolicy(input: types.GetOriginRequestPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetOriginRequestPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOriginRequestPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetOriginRequestPolicyOutput>
 end
 
-function C:getOriginRequestPolicyConfig(input: types.GetOriginRequestPolicyConfigInput, options: any): async.Operation<types.GetOriginRequestPolicyConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOriginRequestPolicyConfig, input, options) as async.Operation<types.GetOriginRequestPolicyConfigOutput>
+function C:getOriginRequestPolicyConfig(input: types.GetOriginRequestPolicyConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetOriginRequestPolicyConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOriginRequestPolicyConfig as schema.OperationSchema, input, options) as async.Operation<types.GetOriginRequestPolicyConfigOutput>
 end
 
-function C:getPublicKey(input: types.GetPublicKeyInput, options: any): async.Operation<types.GetPublicKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPublicKey, input, options) as async.Operation<types.GetPublicKeyOutput>
+function C:getPublicKey(input: types.GetPublicKeyInput, options?: base_client.InvokeOptions): async.Operation<types.GetPublicKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPublicKey as schema.OperationSchema, input, options) as async.Operation<types.GetPublicKeyOutput>
 end
 
-function C:getPublicKeyConfig(input: types.GetPublicKeyConfigInput, options: any): async.Operation<types.GetPublicKeyConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPublicKeyConfig, input, options) as async.Operation<types.GetPublicKeyConfigOutput>
+function C:getPublicKeyConfig(input: types.GetPublicKeyConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetPublicKeyConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPublicKeyConfig as schema.OperationSchema, input, options) as async.Operation<types.GetPublicKeyConfigOutput>
 end
 
-function C:getRealtimeLogConfig(input: types.GetRealtimeLogConfigInput, options: any): async.Operation<types.GetRealtimeLogConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRealtimeLogConfig, input, options) as async.Operation<types.GetRealtimeLogConfigOutput>
+function C:getRealtimeLogConfig(input: types.GetRealtimeLogConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetRealtimeLogConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRealtimeLogConfig as schema.OperationSchema, input, options) as async.Operation<types.GetRealtimeLogConfigOutput>
 end
 
-function C:getResourcePolicy(input: types.GetResourcePolicyInput, options: any): async.Operation<types.GetResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicy, input, options) as async.Operation<types.GetResourcePolicyOutput>
+function C:getResourcePolicy(input: types.GetResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePolicyOutput>
 end
 
-function C:getResponseHeadersPolicy(input: types.GetResponseHeadersPolicyInput, options: any): async.Operation<types.GetResponseHeadersPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResponseHeadersPolicy, input, options) as async.Operation<types.GetResponseHeadersPolicyOutput>
+function C:getResponseHeadersPolicy(input: types.GetResponseHeadersPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetResponseHeadersPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResponseHeadersPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResponseHeadersPolicyOutput>
 end
 
-function C:getResponseHeadersPolicyConfig(input: types.GetResponseHeadersPolicyConfigInput, options: any): async.Operation<types.GetResponseHeadersPolicyConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResponseHeadersPolicyConfig, input, options) as async.Operation<types.GetResponseHeadersPolicyConfigOutput>
+function C:getResponseHeadersPolicyConfig(input: types.GetResponseHeadersPolicyConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetResponseHeadersPolicyConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResponseHeadersPolicyConfig as schema.OperationSchema, input, options) as async.Operation<types.GetResponseHeadersPolicyConfigOutput>
 end
 
-function C:getStreamingDistribution(input: types.GetStreamingDistributionInput, options: any): async.Operation<types.GetStreamingDistributionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetStreamingDistribution, input, options) as async.Operation<types.GetStreamingDistributionOutput>
+function C:getStreamingDistribution(input: types.GetStreamingDistributionInput, options?: base_client.InvokeOptions): async.Operation<types.GetStreamingDistributionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetStreamingDistribution as schema.OperationSchema, input, options) as async.Operation<types.GetStreamingDistributionOutput>
 end
 
-function C:getStreamingDistributionConfig(input: types.GetStreamingDistributionConfigInput, options: any): async.Operation<types.GetStreamingDistributionConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetStreamingDistributionConfig, input, options) as async.Operation<types.GetStreamingDistributionConfigOutput>
+function C:getStreamingDistributionConfig(input: types.GetStreamingDistributionConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetStreamingDistributionConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetStreamingDistributionConfig as schema.OperationSchema, input, options) as async.Operation<types.GetStreamingDistributionConfigOutput>
 end
 
-function C:getTrustStore(input: types.GetTrustStoreInput, options: any): async.Operation<types.GetTrustStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTrustStore, input, options) as async.Operation<types.GetTrustStoreOutput>
+function C:getTrustStore(input: types.GetTrustStoreInput, options?: base_client.InvokeOptions): async.Operation<types.GetTrustStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTrustStore as schema.OperationSchema, input, options) as async.Operation<types.GetTrustStoreOutput>
 end
 
-function C:getVpcOrigin(input: types.GetVpcOriginInput, options: any): async.Operation<types.GetVpcOriginOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetVpcOrigin, input, options) as async.Operation<types.GetVpcOriginOutput>
+function C:getVpcOrigin(input: types.GetVpcOriginInput, options?: base_client.InvokeOptions): async.Operation<types.GetVpcOriginOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVpcOrigin as schema.OperationSchema, input, options) as async.Operation<types.GetVpcOriginOutput>
 end
 
-function C:listAnycastIpLists(input: types.ListAnycastIpListsInput, options: any): async.Operation<types.ListAnycastIpListsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAnycastIpLists, input, options) as async.Operation<types.ListAnycastIpListsOutput>
+function C:listAnycastIpLists(input: types.ListAnycastIpListsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAnycastIpListsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAnycastIpLists as schema.OperationSchema, input, options) as async.Operation<types.ListAnycastIpListsOutput>
 end
 
-function C:listCachePolicies(input: types.ListCachePoliciesInput, options: any): async.Operation<types.ListCachePoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCachePolicies, input, options) as async.Operation<types.ListCachePoliciesOutput>
+function C:listCachePolicies(input: types.ListCachePoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCachePoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCachePolicies as schema.OperationSchema, input, options) as async.Operation<types.ListCachePoliciesOutput>
 end
 
-function C:listCloudFrontOriginAccessIdentities(input: types.ListCloudFrontOriginAccessIdentitiesInput, options: any): async.Operation<types.ListCloudFrontOriginAccessIdentitiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCloudFrontOriginAccessIdentities, input, options) as async.Operation<types.ListCloudFrontOriginAccessIdentitiesOutput>
+function C:listCloudFrontOriginAccessIdentities(input: types.ListCloudFrontOriginAccessIdentitiesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCloudFrontOriginAccessIdentitiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCloudFrontOriginAccessIdentities as schema.OperationSchema, input, options) as async.Operation<types.ListCloudFrontOriginAccessIdentitiesOutput>
 end
 
-function C:listConflictingAliases(input: types.ListConflictingAliasesInput, options: any): async.Operation<types.ListConflictingAliasesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConflictingAliases, input, options) as async.Operation<types.ListConflictingAliasesOutput>
+function C:listConflictingAliases(input: types.ListConflictingAliasesInput, options?: base_client.InvokeOptions): async.Operation<types.ListConflictingAliasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConflictingAliases as schema.OperationSchema, input, options) as async.Operation<types.ListConflictingAliasesOutput>
 end
 
-function C:listConnectionFunctions(input: types.ListConnectionFunctionsInput, options: any): async.Operation<types.ListConnectionFunctionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConnectionFunctions, input, options) as async.Operation<types.ListConnectionFunctionsOutput>
+function C:listConnectionFunctions(input: types.ListConnectionFunctionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConnectionFunctionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConnectionFunctions as schema.OperationSchema, input, options) as async.Operation<types.ListConnectionFunctionsOutput>
 end
 
-function C:listConnectionGroups(input: types.ListConnectionGroupsInput, options: any): async.Operation<types.ListConnectionGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConnectionGroups, input, options) as async.Operation<types.ListConnectionGroupsOutput>
+function C:listConnectionGroups(input: types.ListConnectionGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConnectionGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConnectionGroups as schema.OperationSchema, input, options) as async.Operation<types.ListConnectionGroupsOutput>
 end
 
-function C:listContinuousDeploymentPolicies(input: types.ListContinuousDeploymentPoliciesInput, options: any): async.Operation<types.ListContinuousDeploymentPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListContinuousDeploymentPolicies, input, options) as async.Operation<types.ListContinuousDeploymentPoliciesOutput>
+function C:listContinuousDeploymentPolicies(input: types.ListContinuousDeploymentPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListContinuousDeploymentPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListContinuousDeploymentPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListContinuousDeploymentPoliciesOutput>
 end
 
-function C:listDistributions(input: types.ListDistributionsInput, options: any): async.Operation<types.ListDistributionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDistributions, input, options) as async.Operation<types.ListDistributionsOutput>
+function C:listDistributions(input: types.ListDistributionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDistributionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDistributions as schema.OperationSchema, input, options) as async.Operation<types.ListDistributionsOutput>
 end
 
-function C:listDistributionsByAnycastIpListId(input: types.ListDistributionsByAnycastIpListIdInput, options: any): async.Operation<types.ListDistributionsByAnycastIpListIdOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDistributionsByAnycastIpListId, input, options) as async.Operation<types.ListDistributionsByAnycastIpListIdOutput>
+function C:listDistributionsByAnycastIpListId(input: types.ListDistributionsByAnycastIpListIdInput, options?: base_client.InvokeOptions): async.Operation<types.ListDistributionsByAnycastIpListIdOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDistributionsByAnycastIpListId as schema.OperationSchema, input, options) as async.Operation<types.ListDistributionsByAnycastIpListIdOutput>
 end
 
-function C:listDistributionsByCachePolicyId(input: types.ListDistributionsByCachePolicyIdInput, options: any): async.Operation<types.ListDistributionsByCachePolicyIdOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDistributionsByCachePolicyId, input, options) as async.Operation<types.ListDistributionsByCachePolicyIdOutput>
+function C:listDistributionsByCachePolicyId(input: types.ListDistributionsByCachePolicyIdInput, options?: base_client.InvokeOptions): async.Operation<types.ListDistributionsByCachePolicyIdOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDistributionsByCachePolicyId as schema.OperationSchema, input, options) as async.Operation<types.ListDistributionsByCachePolicyIdOutput>
 end
 
-function C:listDistributionsByConnectionFunction(input: types.ListDistributionsByConnectionFunctionInput, options: any): async.Operation<types.ListDistributionsByConnectionFunctionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDistributionsByConnectionFunction, input, options) as async.Operation<types.ListDistributionsByConnectionFunctionOutput>
+function C:listDistributionsByConnectionFunction(input: types.ListDistributionsByConnectionFunctionInput, options?: base_client.InvokeOptions): async.Operation<types.ListDistributionsByConnectionFunctionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDistributionsByConnectionFunction as schema.OperationSchema, input, options) as async.Operation<types.ListDistributionsByConnectionFunctionOutput>
 end
 
-function C:listDistributionsByConnectionMode(input: types.ListDistributionsByConnectionModeInput, options: any): async.Operation<types.ListDistributionsByConnectionModeOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDistributionsByConnectionMode, input, options) as async.Operation<types.ListDistributionsByConnectionModeOutput>
+function C:listDistributionsByConnectionMode(input: types.ListDistributionsByConnectionModeInput, options?: base_client.InvokeOptions): async.Operation<types.ListDistributionsByConnectionModeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDistributionsByConnectionMode as schema.OperationSchema, input, options) as async.Operation<types.ListDistributionsByConnectionModeOutput>
 end
 
-function C:listDistributionsByKeyGroup(input: types.ListDistributionsByKeyGroupInput, options: any): async.Operation<types.ListDistributionsByKeyGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDistributionsByKeyGroup, input, options) as async.Operation<types.ListDistributionsByKeyGroupOutput>
+function C:listDistributionsByKeyGroup(input: types.ListDistributionsByKeyGroupInput, options?: base_client.InvokeOptions): async.Operation<types.ListDistributionsByKeyGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDistributionsByKeyGroup as schema.OperationSchema, input, options) as async.Operation<types.ListDistributionsByKeyGroupOutput>
 end
 
-function C:listDistributionsByOriginRequestPolicyId(input: types.ListDistributionsByOriginRequestPolicyIdInput, options: any): async.Operation<types.ListDistributionsByOriginRequestPolicyIdOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDistributionsByOriginRequestPolicyId, input, options) as async.Operation<types.ListDistributionsByOriginRequestPolicyIdOutput>
+function C:listDistributionsByOriginRequestPolicyId(input: types.ListDistributionsByOriginRequestPolicyIdInput, options?: base_client.InvokeOptions): async.Operation<types.ListDistributionsByOriginRequestPolicyIdOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDistributionsByOriginRequestPolicyId as schema.OperationSchema, input, options) as async.Operation<types.ListDistributionsByOriginRequestPolicyIdOutput>
 end
 
-function C:listDistributionsByOwnedResource(input: types.ListDistributionsByOwnedResourceInput, options: any): async.Operation<types.ListDistributionsByOwnedResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDistributionsByOwnedResource, input, options) as async.Operation<types.ListDistributionsByOwnedResourceOutput>
+function C:listDistributionsByOwnedResource(input: types.ListDistributionsByOwnedResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListDistributionsByOwnedResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDistributionsByOwnedResource as schema.OperationSchema, input, options) as async.Operation<types.ListDistributionsByOwnedResourceOutput>
 end
 
-function C:listDistributionsByRealtimeLogConfig(input: types.ListDistributionsByRealtimeLogConfigInput, options: any): async.Operation<types.ListDistributionsByRealtimeLogConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDistributionsByRealtimeLogConfig, input, options) as async.Operation<types.ListDistributionsByRealtimeLogConfigOutput>
+function C:listDistributionsByRealtimeLogConfig(input: types.ListDistributionsByRealtimeLogConfigInput, options?: base_client.InvokeOptions): async.Operation<types.ListDistributionsByRealtimeLogConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDistributionsByRealtimeLogConfig as schema.OperationSchema, input, options) as async.Operation<types.ListDistributionsByRealtimeLogConfigOutput>
 end
 
-function C:listDistributionsByResponseHeadersPolicyId(input: types.ListDistributionsByResponseHeadersPolicyIdInput, options: any): async.Operation<types.ListDistributionsByResponseHeadersPolicyIdOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDistributionsByResponseHeadersPolicyId, input, options) as async.Operation<types.ListDistributionsByResponseHeadersPolicyIdOutput>
+function C:listDistributionsByResponseHeadersPolicyId(input: types.ListDistributionsByResponseHeadersPolicyIdInput, options?: base_client.InvokeOptions): async.Operation<types.ListDistributionsByResponseHeadersPolicyIdOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDistributionsByResponseHeadersPolicyId as schema.OperationSchema, input, options) as async.Operation<types.ListDistributionsByResponseHeadersPolicyIdOutput>
 end
 
-function C:listDistributionsByTrustStore(input: types.ListDistributionsByTrustStoreInput, options: any): async.Operation<types.ListDistributionsByTrustStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDistributionsByTrustStore, input, options) as async.Operation<types.ListDistributionsByTrustStoreOutput>
+function C:listDistributionsByTrustStore(input: types.ListDistributionsByTrustStoreInput, options?: base_client.InvokeOptions): async.Operation<types.ListDistributionsByTrustStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDistributionsByTrustStore as schema.OperationSchema, input, options) as async.Operation<types.ListDistributionsByTrustStoreOutput>
 end
 
-function C:listDistributionsByVpcOriginId(input: types.ListDistributionsByVpcOriginIdInput, options: any): async.Operation<types.ListDistributionsByVpcOriginIdOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDistributionsByVpcOriginId, input, options) as async.Operation<types.ListDistributionsByVpcOriginIdOutput>
+function C:listDistributionsByVpcOriginId(input: types.ListDistributionsByVpcOriginIdInput, options?: base_client.InvokeOptions): async.Operation<types.ListDistributionsByVpcOriginIdOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDistributionsByVpcOriginId as schema.OperationSchema, input, options) as async.Operation<types.ListDistributionsByVpcOriginIdOutput>
 end
 
-function C:listDistributionsByWebACLId(input: types.ListDistributionsByWebACLIdInput, options: any): async.Operation<types.ListDistributionsByWebACLIdOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDistributionsByWebACLId, input, options) as async.Operation<types.ListDistributionsByWebACLIdOutput>
+function C:listDistributionsByWebACLId(input: types.ListDistributionsByWebACLIdInput, options?: base_client.InvokeOptions): async.Operation<types.ListDistributionsByWebACLIdOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDistributionsByWebACLId as schema.OperationSchema, input, options) as async.Operation<types.ListDistributionsByWebACLIdOutput>
 end
 
-function C:listDistributionTenants(input: types.ListDistributionTenantsInput, options: any): async.Operation<types.ListDistributionTenantsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDistributionTenants, input, options) as async.Operation<types.ListDistributionTenantsOutput>
+function C:listDistributionTenants(input: types.ListDistributionTenantsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDistributionTenantsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDistributionTenants as schema.OperationSchema, input, options) as async.Operation<types.ListDistributionTenantsOutput>
 end
 
-function C:listDistributionTenantsByCustomization(input: types.ListDistributionTenantsByCustomizationInput, options: any): async.Operation<types.ListDistributionTenantsByCustomizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDistributionTenantsByCustomization, input, options) as async.Operation<types.ListDistributionTenantsByCustomizationOutput>
+function C:listDistributionTenantsByCustomization(input: types.ListDistributionTenantsByCustomizationInput, options?: base_client.InvokeOptions): async.Operation<types.ListDistributionTenantsByCustomizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDistributionTenantsByCustomization as schema.OperationSchema, input, options) as async.Operation<types.ListDistributionTenantsByCustomizationOutput>
 end
 
-function C:listDomainConflicts(input: types.ListDomainConflictsInput, options: any): async.Operation<types.ListDomainConflictsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDomainConflicts, input, options) as async.Operation<types.ListDomainConflictsOutput>
+function C:listDomainConflicts(input: types.ListDomainConflictsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDomainConflictsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDomainConflicts as schema.OperationSchema, input, options) as async.Operation<types.ListDomainConflictsOutput>
 end
 
-function C:listFieldLevelEncryptionConfigs(input: types.ListFieldLevelEncryptionConfigsInput, options: any): async.Operation<types.ListFieldLevelEncryptionConfigsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFieldLevelEncryptionConfigs, input, options) as async.Operation<types.ListFieldLevelEncryptionConfigsOutput>
+function C:listFieldLevelEncryptionConfigs(input: types.ListFieldLevelEncryptionConfigsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFieldLevelEncryptionConfigsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFieldLevelEncryptionConfigs as schema.OperationSchema, input, options) as async.Operation<types.ListFieldLevelEncryptionConfigsOutput>
 end
 
-function C:listFieldLevelEncryptionProfiles(input: types.ListFieldLevelEncryptionProfilesInput, options: any): async.Operation<types.ListFieldLevelEncryptionProfilesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFieldLevelEncryptionProfiles, input, options) as async.Operation<types.ListFieldLevelEncryptionProfilesOutput>
+function C:listFieldLevelEncryptionProfiles(input: types.ListFieldLevelEncryptionProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.ListFieldLevelEncryptionProfilesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFieldLevelEncryptionProfiles as schema.OperationSchema, input, options) as async.Operation<types.ListFieldLevelEncryptionProfilesOutput>
 end
 
-function C:listFunctions(input: types.ListFunctionsInput, options: any): async.Operation<types.ListFunctionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFunctions, input, options) as async.Operation<types.ListFunctionsOutput>
+function C:listFunctions(input: types.ListFunctionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFunctionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFunctions as schema.OperationSchema, input, options) as async.Operation<types.ListFunctionsOutput>
 end
 
-function C:listInvalidations(input: types.ListInvalidationsInput, options: any): async.Operation<types.ListInvalidationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInvalidations, input, options) as async.Operation<types.ListInvalidationsOutput>
+function C:listInvalidations(input: types.ListInvalidationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInvalidationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInvalidations as schema.OperationSchema, input, options) as async.Operation<types.ListInvalidationsOutput>
 end
 
-function C:listInvalidationsForDistributionTenant(input: types.ListInvalidationsForDistributionTenantInput, options: any): async.Operation<types.ListInvalidationsForDistributionTenantOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInvalidationsForDistributionTenant, input, options) as async.Operation<types.ListInvalidationsForDistributionTenantOutput>
+function C:listInvalidationsForDistributionTenant(input: types.ListInvalidationsForDistributionTenantInput, options?: base_client.InvokeOptions): async.Operation<types.ListInvalidationsForDistributionTenantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInvalidationsForDistributionTenant as schema.OperationSchema, input, options) as async.Operation<types.ListInvalidationsForDistributionTenantOutput>
 end
 
-function C:listKeyGroups(input: types.ListKeyGroupsInput, options: any): async.Operation<types.ListKeyGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListKeyGroups, input, options) as async.Operation<types.ListKeyGroupsOutput>
+function C:listKeyGroups(input: types.ListKeyGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListKeyGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListKeyGroups as schema.OperationSchema, input, options) as async.Operation<types.ListKeyGroupsOutput>
 end
 
-function C:listKeyValueStores(input: types.ListKeyValueStoresInput, options: any): async.Operation<types.ListKeyValueStoresOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListKeyValueStores, input, options) as async.Operation<types.ListKeyValueStoresOutput>
+function C:listKeyValueStores(input: types.ListKeyValueStoresInput, options?: base_client.InvokeOptions): async.Operation<types.ListKeyValueStoresOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListKeyValueStores as schema.OperationSchema, input, options) as async.Operation<types.ListKeyValueStoresOutput>
 end
 
-function C:listOriginAccessControls(input: types.ListOriginAccessControlsInput, options: any): async.Operation<types.ListOriginAccessControlsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOriginAccessControls, input, options) as async.Operation<types.ListOriginAccessControlsOutput>
+function C:listOriginAccessControls(input: types.ListOriginAccessControlsInput, options?: base_client.InvokeOptions): async.Operation<types.ListOriginAccessControlsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOriginAccessControls as schema.OperationSchema, input, options) as async.Operation<types.ListOriginAccessControlsOutput>
 end
 
-function C:listOriginRequestPolicies(input: types.ListOriginRequestPoliciesInput, options: any): async.Operation<types.ListOriginRequestPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOriginRequestPolicies, input, options) as async.Operation<types.ListOriginRequestPoliciesOutput>
+function C:listOriginRequestPolicies(input: types.ListOriginRequestPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListOriginRequestPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOriginRequestPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListOriginRequestPoliciesOutput>
 end
 
-function C:listPublicKeys(input: types.ListPublicKeysInput, options: any): async.Operation<types.ListPublicKeysOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPublicKeys, input, options) as async.Operation<types.ListPublicKeysOutput>
+function C:listPublicKeys(input: types.ListPublicKeysInput, options?: base_client.InvokeOptions): async.Operation<types.ListPublicKeysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPublicKeys as schema.OperationSchema, input, options) as async.Operation<types.ListPublicKeysOutput>
 end
 
-function C:listRealtimeLogConfigs(input: types.ListRealtimeLogConfigsInput, options: any): async.Operation<types.ListRealtimeLogConfigsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRealtimeLogConfigs, input, options) as async.Operation<types.ListRealtimeLogConfigsOutput>
+function C:listRealtimeLogConfigs(input: types.ListRealtimeLogConfigsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRealtimeLogConfigsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRealtimeLogConfigs as schema.OperationSchema, input, options) as async.Operation<types.ListRealtimeLogConfigsOutput>
 end
 
-function C:listResponseHeadersPolicies(input: types.ListResponseHeadersPoliciesInput, options: any): async.Operation<types.ListResponseHeadersPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResponseHeadersPolicies, input, options) as async.Operation<types.ListResponseHeadersPoliciesOutput>
+function C:listResponseHeadersPolicies(input: types.ListResponseHeadersPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListResponseHeadersPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResponseHeadersPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListResponseHeadersPoliciesOutput>
 end
 
-function C:listStreamingDistributions(input: types.ListStreamingDistributionsInput, options: any): async.Operation<types.ListStreamingDistributionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStreamingDistributions, input, options) as async.Operation<types.ListStreamingDistributionsOutput>
+function C:listStreamingDistributions(input: types.ListStreamingDistributionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListStreamingDistributionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStreamingDistributions as schema.OperationSchema, input, options) as async.Operation<types.ListStreamingDistributionsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTrustStores(input: types.ListTrustStoresInput, options: any): async.Operation<types.ListTrustStoresOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTrustStores, input, options) as async.Operation<types.ListTrustStoresOutput>
+function C:listTrustStores(input: types.ListTrustStoresInput, options?: base_client.InvokeOptions): async.Operation<types.ListTrustStoresOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTrustStores as schema.OperationSchema, input, options) as async.Operation<types.ListTrustStoresOutput>
 end
 
-function C:listVpcOrigins(input: types.ListVpcOriginsInput, options: any): async.Operation<types.ListVpcOriginsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVpcOrigins, input, options) as async.Operation<types.ListVpcOriginsOutput>
+function C:listVpcOrigins(input: types.ListVpcOriginsInput, options?: base_client.InvokeOptions): async.Operation<types.ListVpcOriginsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVpcOrigins as schema.OperationSchema, input, options) as async.Operation<types.ListVpcOriginsOutput>
 end
 
-function C:publishConnectionFunction(input: types.PublishConnectionFunctionInput, options: any): async.Operation<types.PublishConnectionFunctionOutput>
-    return self:invokeOperation(schemas.Service, schemas.PublishConnectionFunction, input, options) as async.Operation<types.PublishConnectionFunctionOutput>
+function C:publishConnectionFunction(input: types.PublishConnectionFunctionInput, options?: base_client.InvokeOptions): async.Operation<types.PublishConnectionFunctionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PublishConnectionFunction as schema.OperationSchema, input, options) as async.Operation<types.PublishConnectionFunctionOutput>
 end
 
-function C:publishFunction(input: types.PublishFunctionInput, options: any): async.Operation<types.PublishFunctionOutput>
-    return self:invokeOperation(schemas.Service, schemas.PublishFunction, input, options) as async.Operation<types.PublishFunctionOutput>
+function C:publishFunction(input: types.PublishFunctionInput, options?: base_client.InvokeOptions): async.Operation<types.PublishFunctionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PublishFunction as schema.OperationSchema, input, options) as async.Operation<types.PublishFunctionOutput>
 end
 
-function C:putResourcePolicy(input: types.PutResourcePolicyInput, options: any): async.Operation<types.PutResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutResourcePolicy, input, options) as async.Operation<types.PutResourcePolicyOutput>
+function C:putResourcePolicy(input: types.PutResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutResourcePolicyOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:testConnectionFunction(input: types.TestConnectionFunctionInput, options: any): async.Operation<types.TestConnectionFunctionOutput>
-    return self:invokeOperation(schemas.Service, schemas.TestConnectionFunction, input, options) as async.Operation<types.TestConnectionFunctionOutput>
+function C:testConnectionFunction(input: types.TestConnectionFunctionInput, options?: base_client.InvokeOptions): async.Operation<types.TestConnectionFunctionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TestConnectionFunction as schema.OperationSchema, input, options) as async.Operation<types.TestConnectionFunctionOutput>
 end
 
-function C:testFunction(input: types.TestFunctionInput, options: any): async.Operation<types.TestFunctionOutput>
-    return self:invokeOperation(schemas.Service, schemas.TestFunction, input, options) as async.Operation<types.TestFunctionOutput>
+function C:testFunction(input: types.TestFunctionInput, options?: base_client.InvokeOptions): async.Operation<types.TestFunctionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TestFunction as schema.OperationSchema, input, options) as async.Operation<types.TestFunctionOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAnycastIpList(input: types.UpdateAnycastIpListInput, options: any): async.Operation<types.UpdateAnycastIpListOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAnycastIpList, input, options) as async.Operation<types.UpdateAnycastIpListOutput>
+function C:updateAnycastIpList(input: types.UpdateAnycastIpListInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAnycastIpListOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAnycastIpList as schema.OperationSchema, input, options) as async.Operation<types.UpdateAnycastIpListOutput>
 end
 
-function C:updateCachePolicy(input: types.UpdateCachePolicyInput, options: any): async.Operation<types.UpdateCachePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCachePolicy, input, options) as async.Operation<types.UpdateCachePolicyOutput>
+function C:updateCachePolicy(input: types.UpdateCachePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCachePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCachePolicy as schema.OperationSchema, input, options) as async.Operation<types.UpdateCachePolicyOutput>
 end
 
-function C:updateCloudFrontOriginAccessIdentity(input: types.UpdateCloudFrontOriginAccessIdentityInput, options: any): async.Operation<types.UpdateCloudFrontOriginAccessIdentityOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCloudFrontOriginAccessIdentity, input, options) as async.Operation<types.UpdateCloudFrontOriginAccessIdentityOutput>
+function C:updateCloudFrontOriginAccessIdentity(input: types.UpdateCloudFrontOriginAccessIdentityInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCloudFrontOriginAccessIdentityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCloudFrontOriginAccessIdentity as schema.OperationSchema, input, options) as async.Operation<types.UpdateCloudFrontOriginAccessIdentityOutput>
 end
 
-function C:updateConnectionFunction(input: types.UpdateConnectionFunctionInput, options: any): async.Operation<types.UpdateConnectionFunctionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConnectionFunction, input, options) as async.Operation<types.UpdateConnectionFunctionOutput>
+function C:updateConnectionFunction(input: types.UpdateConnectionFunctionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConnectionFunctionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConnectionFunction as schema.OperationSchema, input, options) as async.Operation<types.UpdateConnectionFunctionOutput>
 end
 
-function C:updateConnectionGroup(input: types.UpdateConnectionGroupInput, options: any): async.Operation<types.UpdateConnectionGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConnectionGroup, input, options) as async.Operation<types.UpdateConnectionGroupOutput>
+function C:updateConnectionGroup(input: types.UpdateConnectionGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConnectionGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConnectionGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateConnectionGroupOutput>
 end
 
-function C:updateContinuousDeploymentPolicy(input: types.UpdateContinuousDeploymentPolicyInput, options: any): async.Operation<types.UpdateContinuousDeploymentPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateContinuousDeploymentPolicy, input, options) as async.Operation<types.UpdateContinuousDeploymentPolicyOutput>
+function C:updateContinuousDeploymentPolicy(input: types.UpdateContinuousDeploymentPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateContinuousDeploymentPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateContinuousDeploymentPolicy as schema.OperationSchema, input, options) as async.Operation<types.UpdateContinuousDeploymentPolicyOutput>
 end
 
-function C:updateDistribution(input: types.UpdateDistributionInput, options: any): async.Operation<types.UpdateDistributionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDistribution, input, options) as async.Operation<types.UpdateDistributionOutput>
+function C:updateDistribution(input: types.UpdateDistributionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDistributionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDistribution as schema.OperationSchema, input, options) as async.Operation<types.UpdateDistributionOutput>
 end
 
-function C:updateDistributionTenant(input: types.UpdateDistributionTenantInput, options: any): async.Operation<types.UpdateDistributionTenantOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDistributionTenant, input, options) as async.Operation<types.UpdateDistributionTenantOutput>
+function C:updateDistributionTenant(input: types.UpdateDistributionTenantInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDistributionTenantOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDistributionTenant as schema.OperationSchema, input, options) as async.Operation<types.UpdateDistributionTenantOutput>
 end
 
-function C:updateDistributionWithStagingConfig(input: types.UpdateDistributionWithStagingConfigInput, options: any): async.Operation<types.UpdateDistributionWithStagingConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDistributionWithStagingConfig, input, options) as async.Operation<types.UpdateDistributionWithStagingConfigOutput>
+function C:updateDistributionWithStagingConfig(input: types.UpdateDistributionWithStagingConfigInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDistributionWithStagingConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDistributionWithStagingConfig as schema.OperationSchema, input, options) as async.Operation<types.UpdateDistributionWithStagingConfigOutput>
 end
 
-function C:updateDomainAssociation(input: types.UpdateDomainAssociationInput, options: any): async.Operation<types.UpdateDomainAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDomainAssociation, input, options) as async.Operation<types.UpdateDomainAssociationOutput>
+function C:updateDomainAssociation(input: types.UpdateDomainAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDomainAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDomainAssociation as schema.OperationSchema, input, options) as async.Operation<types.UpdateDomainAssociationOutput>
 end
 
-function C:updateFieldLevelEncryptionConfig(input: types.UpdateFieldLevelEncryptionConfigInput, options: any): async.Operation<types.UpdateFieldLevelEncryptionConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFieldLevelEncryptionConfig, input, options) as async.Operation<types.UpdateFieldLevelEncryptionConfigOutput>
+function C:updateFieldLevelEncryptionConfig(input: types.UpdateFieldLevelEncryptionConfigInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFieldLevelEncryptionConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFieldLevelEncryptionConfig as schema.OperationSchema, input, options) as async.Operation<types.UpdateFieldLevelEncryptionConfigOutput>
 end
 
-function C:updateFieldLevelEncryptionProfile(input: types.UpdateFieldLevelEncryptionProfileInput, options: any): async.Operation<types.UpdateFieldLevelEncryptionProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFieldLevelEncryptionProfile, input, options) as async.Operation<types.UpdateFieldLevelEncryptionProfileOutput>
+function C:updateFieldLevelEncryptionProfile(input: types.UpdateFieldLevelEncryptionProfileInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFieldLevelEncryptionProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFieldLevelEncryptionProfile as schema.OperationSchema, input, options) as async.Operation<types.UpdateFieldLevelEncryptionProfileOutput>
 end
 
-function C:updateFunction(input: types.UpdateFunctionInput, options: any): async.Operation<types.UpdateFunctionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFunction, input, options) as async.Operation<types.UpdateFunctionOutput>
+function C:updateFunction(input: types.UpdateFunctionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFunctionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFunction as schema.OperationSchema, input, options) as async.Operation<types.UpdateFunctionOutput>
 end
 
-function C:updateKeyGroup(input: types.UpdateKeyGroupInput, options: any): async.Operation<types.UpdateKeyGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateKeyGroup, input, options) as async.Operation<types.UpdateKeyGroupOutput>
+function C:updateKeyGroup(input: types.UpdateKeyGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateKeyGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateKeyGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateKeyGroupOutput>
 end
 
-function C:updateKeyValueStore(input: types.UpdateKeyValueStoreInput, options: any): async.Operation<types.UpdateKeyValueStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateKeyValueStore, input, options) as async.Operation<types.UpdateKeyValueStoreOutput>
+function C:updateKeyValueStore(input: types.UpdateKeyValueStoreInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateKeyValueStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateKeyValueStore as schema.OperationSchema, input, options) as async.Operation<types.UpdateKeyValueStoreOutput>
 end
 
-function C:updateOriginAccessControl(input: types.UpdateOriginAccessControlInput, options: any): async.Operation<types.UpdateOriginAccessControlOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateOriginAccessControl, input, options) as async.Operation<types.UpdateOriginAccessControlOutput>
+function C:updateOriginAccessControl(input: types.UpdateOriginAccessControlInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateOriginAccessControlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateOriginAccessControl as schema.OperationSchema, input, options) as async.Operation<types.UpdateOriginAccessControlOutput>
 end
 
-function C:updateOriginRequestPolicy(input: types.UpdateOriginRequestPolicyInput, options: any): async.Operation<types.UpdateOriginRequestPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateOriginRequestPolicy, input, options) as async.Operation<types.UpdateOriginRequestPolicyOutput>
+function C:updateOriginRequestPolicy(input: types.UpdateOriginRequestPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateOriginRequestPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateOriginRequestPolicy as schema.OperationSchema, input, options) as async.Operation<types.UpdateOriginRequestPolicyOutput>
 end
 
-function C:updatePublicKey(input: types.UpdatePublicKeyInput, options: any): async.Operation<types.UpdatePublicKeyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePublicKey, input, options) as async.Operation<types.UpdatePublicKeyOutput>
+function C:updatePublicKey(input: types.UpdatePublicKeyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePublicKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePublicKey as schema.OperationSchema, input, options) as async.Operation<types.UpdatePublicKeyOutput>
 end
 
-function C:updateRealtimeLogConfig(input: types.UpdateRealtimeLogConfigInput, options: any): async.Operation<types.UpdateRealtimeLogConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRealtimeLogConfig, input, options) as async.Operation<types.UpdateRealtimeLogConfigOutput>
+function C:updateRealtimeLogConfig(input: types.UpdateRealtimeLogConfigInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRealtimeLogConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRealtimeLogConfig as schema.OperationSchema, input, options) as async.Operation<types.UpdateRealtimeLogConfigOutput>
 end
 
-function C:updateResponseHeadersPolicy(input: types.UpdateResponseHeadersPolicyInput, options: any): async.Operation<types.UpdateResponseHeadersPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateResponseHeadersPolicy, input, options) as async.Operation<types.UpdateResponseHeadersPolicyOutput>
+function C:updateResponseHeadersPolicy(input: types.UpdateResponseHeadersPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateResponseHeadersPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateResponseHeadersPolicy as schema.OperationSchema, input, options) as async.Operation<types.UpdateResponseHeadersPolicyOutput>
 end
 
-function C:updateStreamingDistribution(input: types.UpdateStreamingDistributionInput, options: any): async.Operation<types.UpdateStreamingDistributionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateStreamingDistribution, input, options) as async.Operation<types.UpdateStreamingDistributionOutput>
+function C:updateStreamingDistribution(input: types.UpdateStreamingDistributionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateStreamingDistributionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateStreamingDistribution as schema.OperationSchema, input, options) as async.Operation<types.UpdateStreamingDistributionOutput>
 end
 
-function C:updateTrustStore(input: types.UpdateTrustStoreInput, options: any): async.Operation<types.UpdateTrustStoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTrustStore, input, options) as async.Operation<types.UpdateTrustStoreOutput>
+function C:updateTrustStore(input: types.UpdateTrustStoreInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTrustStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTrustStore as schema.OperationSchema, input, options) as async.Operation<types.UpdateTrustStoreOutput>
 end
 
-function C:updateVpcOrigin(input: types.UpdateVpcOriginInput, options: any): async.Operation<types.UpdateVpcOriginOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateVpcOrigin, input, options) as async.Operation<types.UpdateVpcOriginOutput>
+function C:updateVpcOrigin(input: types.UpdateVpcOriginInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateVpcOriginOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateVpcOrigin as schema.OperationSchema, input, options) as async.Operation<types.UpdateVpcOriginOutput>
 end
 
-function C:verifyDnsConfiguration(input: types.VerifyDnsConfigurationInput, options: any): async.Operation<types.VerifyDnsConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.VerifyDnsConfiguration, input, options) as async.Operation<types.VerifyDnsConfigurationOutput>
+function C:verifyDnsConfiguration(input: types.VerifyDnsConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.VerifyDnsConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.VerifyDnsConfiguration as schema.OperationSchema, input, options) as async.Operation<types.VerifyDnsConfigurationOutput>
 end
 
 return M

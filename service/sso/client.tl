@@ -8,43 +8,46 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("sso.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("sso.schemas")
 local traits = require("smithy.traits")
 local types = require("sso.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    getRoleCredentials: function(Client, types.GetRoleCredentialsInput, any): async.Operation<types.GetRoleCredentialsOutput>
-    listAccountRoles: function(Client, types.ListAccountRolesInput, any): async.Operation<types.ListAccountRolesOutput>
-    listAccounts: function(Client, types.ListAccountsInput, any): async.Operation<types.ListAccountsOutput>
-    logout: function(Client, types.LogoutInput, any): async.Operation<types.LogoutOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    getRoleCredentials: function(Client, types.GetRoleCredentialsInput, ? base_client.InvokeOptions): async.Operation<types.GetRoleCredentialsOutput>
+    listAccountRoles: function(Client, types.ListAccountRolesInput, ? base_client.InvokeOptions): async.Operation<types.ListAccountRolesOutput>
+    listAccounts: function(Client, types.ListAccountsInput, ? base_client.InvokeOptions): async.Operation<types.ListAccountsOutput>
+    logout: function(Client, types.LogoutInput, ? base_client.InvokeOptions): async.Operation<types.LogoutOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "SWBPortalService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "awsssoportal", signing_region = c.region } }
                 else
@@ -63,20 +66,20 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:getRoleCredentials(input: types.GetRoleCredentialsInput, options: any): async.Operation<types.GetRoleCredentialsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRoleCredentials, input, options) as async.Operation<types.GetRoleCredentialsOutput>
+function C:getRoleCredentials(input: types.GetRoleCredentialsInput, options?: base_client.InvokeOptions): async.Operation<types.GetRoleCredentialsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRoleCredentials as schema.OperationSchema, input, options) as async.Operation<types.GetRoleCredentialsOutput>
 end
 
-function C:listAccountRoles(input: types.ListAccountRolesInput, options: any): async.Operation<types.ListAccountRolesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccountRoles, input, options) as async.Operation<types.ListAccountRolesOutput>
+function C:listAccountRoles(input: types.ListAccountRolesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccountRolesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccountRoles as schema.OperationSchema, input, options) as async.Operation<types.ListAccountRolesOutput>
 end
 
-function C:listAccounts(input: types.ListAccountsInput, options: any): async.Operation<types.ListAccountsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccounts, input, options) as async.Operation<types.ListAccountsOutput>
+function C:listAccounts(input: types.ListAccountsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccountsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccounts as schema.OperationSchema, input, options) as async.Operation<types.ListAccountsOutput>
 end
 
-function C:logout(input: types.LogoutInput, options: any): async.Operation<types.LogoutOutput>
-    return self:invokeOperation(schemas.Service, schemas.Logout, input, options) as async.Operation<types.LogoutOutput>
+function C:logout(input: types.LogoutInput, options?: base_client.InvokeOptions): async.Operation<types.LogoutOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Logout as schema.OperationSchema, input, options) as async.Operation<types.LogoutOutput>
 end
 
 return M

@@ -8,72 +8,75 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("tnb.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("tnb.schemas")
 local traits = require("smithy.traits")
 local types = require("tnb.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    cancelSolNetworkOperation: function(Client, types.CancelSolNetworkOperationInput, any): async.Operation<types.CancelSolNetworkOperationOutput>
-    createSolFunctionPackage: function(Client, types.CreateSolFunctionPackageInput, any): async.Operation<types.CreateSolFunctionPackageOutput>
-    createSolNetworkInstance: function(Client, types.CreateSolNetworkInstanceInput, any): async.Operation<types.CreateSolNetworkInstanceOutput>
-    createSolNetworkPackage: function(Client, types.CreateSolNetworkPackageInput, any): async.Operation<types.CreateSolNetworkPackageOutput>
-    deleteSolFunctionPackage: function(Client, types.DeleteSolFunctionPackageInput, any): async.Operation<types.DeleteSolFunctionPackageOutput>
-    deleteSolNetworkInstance: function(Client, types.DeleteSolNetworkInstanceInput, any): async.Operation<types.DeleteSolNetworkInstanceOutput>
-    deleteSolNetworkPackage: function(Client, types.DeleteSolNetworkPackageInput, any): async.Operation<types.DeleteSolNetworkPackageOutput>
-    getSolFunctionInstance: function(Client, types.GetSolFunctionInstanceInput, any): async.Operation<types.GetSolFunctionInstanceOutput>
-    getSolFunctionPackage: function(Client, types.GetSolFunctionPackageInput, any): async.Operation<types.GetSolFunctionPackageOutput>
-    getSolFunctionPackageContent: function(Client, types.GetSolFunctionPackageContentInput, any): async.Operation<types.GetSolFunctionPackageContentOutput>
-    getSolFunctionPackageDescriptor: function(Client, types.GetSolFunctionPackageDescriptorInput, any): async.Operation<types.GetSolFunctionPackageDescriptorOutput>
-    getSolNetworkInstance: function(Client, types.GetSolNetworkInstanceInput, any): async.Operation<types.GetSolNetworkInstanceOutput>
-    getSolNetworkOperation: function(Client, types.GetSolNetworkOperationInput, any): async.Operation<types.GetSolNetworkOperationOutput>
-    getSolNetworkPackage: function(Client, types.GetSolNetworkPackageInput, any): async.Operation<types.GetSolNetworkPackageOutput>
-    getSolNetworkPackageContent: function(Client, types.GetSolNetworkPackageContentInput, any): async.Operation<types.GetSolNetworkPackageContentOutput>
-    getSolNetworkPackageDescriptor: function(Client, types.GetSolNetworkPackageDescriptorInput, any): async.Operation<types.GetSolNetworkPackageDescriptorOutput>
-    instantiateSolNetworkInstance: function(Client, types.InstantiateSolNetworkInstanceInput, any): async.Operation<types.InstantiateSolNetworkInstanceOutput>
-    listSolFunctionInstances: function(Client, types.ListSolFunctionInstancesInput, any): async.Operation<types.ListSolFunctionInstancesOutput>
-    listSolFunctionPackages: function(Client, types.ListSolFunctionPackagesInput, any): async.Operation<types.ListSolFunctionPackagesOutput>
-    listSolNetworkInstances: function(Client, types.ListSolNetworkInstancesInput, any): async.Operation<types.ListSolNetworkInstancesOutput>
-    listSolNetworkOperations: function(Client, types.ListSolNetworkOperationsInput, any): async.Operation<types.ListSolNetworkOperationsOutput>
-    listSolNetworkPackages: function(Client, types.ListSolNetworkPackagesInput, any): async.Operation<types.ListSolNetworkPackagesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putSolFunctionPackageContent: function(Client, types.PutSolFunctionPackageContentInput, any): async.Operation<types.PutSolFunctionPackageContentOutput>
-    putSolNetworkPackageContent: function(Client, types.PutSolNetworkPackageContentInput, any): async.Operation<types.PutSolNetworkPackageContentOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    terminateSolNetworkInstance: function(Client, types.TerminateSolNetworkInstanceInput, any): async.Operation<types.TerminateSolNetworkInstanceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateSolFunctionPackage: function(Client, types.UpdateSolFunctionPackageInput, any): async.Operation<types.UpdateSolFunctionPackageOutput>
-    updateSolNetworkInstance: function(Client, types.UpdateSolNetworkInstanceInput, any): async.Operation<types.UpdateSolNetworkInstanceOutput>
-    updateSolNetworkPackage: function(Client, types.UpdateSolNetworkPackageInput, any): async.Operation<types.UpdateSolNetworkPackageOutput>
-    validateSolFunctionPackageContent: function(Client, types.ValidateSolFunctionPackageContentInput, any): async.Operation<types.ValidateSolFunctionPackageContentOutput>
-    validateSolNetworkPackageContent: function(Client, types.ValidateSolNetworkPackageContentInput, any): async.Operation<types.ValidateSolNetworkPackageContentOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    cancelSolNetworkOperation: function(Client, types.CancelSolNetworkOperationInput, ? base_client.InvokeOptions): async.Operation<types.CancelSolNetworkOperationOutput>
+    createSolFunctionPackage: function(Client, types.CreateSolFunctionPackageInput, ? base_client.InvokeOptions): async.Operation<types.CreateSolFunctionPackageOutput>
+    createSolNetworkInstance: function(Client, types.CreateSolNetworkInstanceInput, ? base_client.InvokeOptions): async.Operation<types.CreateSolNetworkInstanceOutput>
+    createSolNetworkPackage: function(Client, types.CreateSolNetworkPackageInput, ? base_client.InvokeOptions): async.Operation<types.CreateSolNetworkPackageOutput>
+    deleteSolFunctionPackage: function(Client, types.DeleteSolFunctionPackageInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSolFunctionPackageOutput>
+    deleteSolNetworkInstance: function(Client, types.DeleteSolNetworkInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSolNetworkInstanceOutput>
+    deleteSolNetworkPackage: function(Client, types.DeleteSolNetworkPackageInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSolNetworkPackageOutput>
+    getSolFunctionInstance: function(Client, types.GetSolFunctionInstanceInput, ? base_client.InvokeOptions): async.Operation<types.GetSolFunctionInstanceOutput>
+    getSolFunctionPackage: function(Client, types.GetSolFunctionPackageInput, ? base_client.InvokeOptions): async.Operation<types.GetSolFunctionPackageOutput>
+    getSolFunctionPackageContent: function(Client, types.GetSolFunctionPackageContentInput, ? base_client.InvokeOptions): async.Operation<types.GetSolFunctionPackageContentOutput>
+    getSolFunctionPackageDescriptor: function(Client, types.GetSolFunctionPackageDescriptorInput, ? base_client.InvokeOptions): async.Operation<types.GetSolFunctionPackageDescriptorOutput>
+    getSolNetworkInstance: function(Client, types.GetSolNetworkInstanceInput, ? base_client.InvokeOptions): async.Operation<types.GetSolNetworkInstanceOutput>
+    getSolNetworkOperation: function(Client, types.GetSolNetworkOperationInput, ? base_client.InvokeOptions): async.Operation<types.GetSolNetworkOperationOutput>
+    getSolNetworkPackage: function(Client, types.GetSolNetworkPackageInput, ? base_client.InvokeOptions): async.Operation<types.GetSolNetworkPackageOutput>
+    getSolNetworkPackageContent: function(Client, types.GetSolNetworkPackageContentInput, ? base_client.InvokeOptions): async.Operation<types.GetSolNetworkPackageContentOutput>
+    getSolNetworkPackageDescriptor: function(Client, types.GetSolNetworkPackageDescriptorInput, ? base_client.InvokeOptions): async.Operation<types.GetSolNetworkPackageDescriptorOutput>
+    instantiateSolNetworkInstance: function(Client, types.InstantiateSolNetworkInstanceInput, ? base_client.InvokeOptions): async.Operation<types.InstantiateSolNetworkInstanceOutput>
+    listSolFunctionInstances: function(Client, types.ListSolFunctionInstancesInput, ? base_client.InvokeOptions): async.Operation<types.ListSolFunctionInstancesOutput>
+    listSolFunctionPackages: function(Client, types.ListSolFunctionPackagesInput, ? base_client.InvokeOptions): async.Operation<types.ListSolFunctionPackagesOutput>
+    listSolNetworkInstances: function(Client, types.ListSolNetworkInstancesInput, ? base_client.InvokeOptions): async.Operation<types.ListSolNetworkInstancesOutput>
+    listSolNetworkOperations: function(Client, types.ListSolNetworkOperationsInput, ? base_client.InvokeOptions): async.Operation<types.ListSolNetworkOperationsOutput>
+    listSolNetworkPackages: function(Client, types.ListSolNetworkPackagesInput, ? base_client.InvokeOptions): async.Operation<types.ListSolNetworkPackagesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putSolFunctionPackageContent: function(Client, types.PutSolFunctionPackageContentInput, ? base_client.InvokeOptions): async.Operation<types.PutSolFunctionPackageContentOutput>
+    putSolNetworkPackageContent: function(Client, types.PutSolNetworkPackageContentInput, ? base_client.InvokeOptions): async.Operation<types.PutSolNetworkPackageContentOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    terminateSolNetworkInstance: function(Client, types.TerminateSolNetworkInstanceInput, ? base_client.InvokeOptions): async.Operation<types.TerminateSolNetworkInstanceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateSolFunctionPackage: function(Client, types.UpdateSolFunctionPackageInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSolFunctionPackageOutput>
+    updateSolNetworkInstance: function(Client, types.UpdateSolNetworkInstanceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSolNetworkInstanceOutput>
+    updateSolNetworkPackage: function(Client, types.UpdateSolNetworkPackageInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSolNetworkPackageOutput>
+    validateSolFunctionPackageContent: function(Client, types.ValidateSolFunctionPackageContentInput, ? base_client.InvokeOptions): async.Operation<types.ValidateSolFunctionPackageContentOutput>
+    validateSolNetworkPackageContent: function(Client, types.ValidateSolNetworkPackageContentInput, ? base_client.InvokeOptions): async.Operation<types.ValidateSolNetworkPackageContentOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "TNB"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "tnb", signing_region = c.region } }
                 else
@@ -92,136 +95,136 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:cancelSolNetworkOperation(input: types.CancelSolNetworkOperationInput, options: any): async.Operation<types.CancelSolNetworkOperationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelSolNetworkOperation, input, options) as async.Operation<types.CancelSolNetworkOperationOutput>
+function C:cancelSolNetworkOperation(input: types.CancelSolNetworkOperationInput, options?: base_client.InvokeOptions): async.Operation<types.CancelSolNetworkOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelSolNetworkOperation as schema.OperationSchema, input, options) as async.Operation<types.CancelSolNetworkOperationOutput>
 end
 
-function C:createSolFunctionPackage(input: types.CreateSolFunctionPackageInput, options: any): async.Operation<types.CreateSolFunctionPackageOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSolFunctionPackage, input, options) as async.Operation<types.CreateSolFunctionPackageOutput>
+function C:createSolFunctionPackage(input: types.CreateSolFunctionPackageInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSolFunctionPackageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSolFunctionPackage as schema.OperationSchema, input, options) as async.Operation<types.CreateSolFunctionPackageOutput>
 end
 
-function C:createSolNetworkInstance(input: types.CreateSolNetworkInstanceInput, options: any): async.Operation<types.CreateSolNetworkInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSolNetworkInstance, input, options) as async.Operation<types.CreateSolNetworkInstanceOutput>
+function C:createSolNetworkInstance(input: types.CreateSolNetworkInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSolNetworkInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSolNetworkInstance as schema.OperationSchema, input, options) as async.Operation<types.CreateSolNetworkInstanceOutput>
 end
 
-function C:createSolNetworkPackage(input: types.CreateSolNetworkPackageInput, options: any): async.Operation<types.CreateSolNetworkPackageOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSolNetworkPackage, input, options) as async.Operation<types.CreateSolNetworkPackageOutput>
+function C:createSolNetworkPackage(input: types.CreateSolNetworkPackageInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSolNetworkPackageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSolNetworkPackage as schema.OperationSchema, input, options) as async.Operation<types.CreateSolNetworkPackageOutput>
 end
 
-function C:deleteSolFunctionPackage(input: types.DeleteSolFunctionPackageInput, options: any): async.Operation<types.DeleteSolFunctionPackageOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSolFunctionPackage, input, options) as async.Operation<types.DeleteSolFunctionPackageOutput>
+function C:deleteSolFunctionPackage(input: types.DeleteSolFunctionPackageInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSolFunctionPackageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSolFunctionPackage as schema.OperationSchema, input, options) as async.Operation<types.DeleteSolFunctionPackageOutput>
 end
 
-function C:deleteSolNetworkInstance(input: types.DeleteSolNetworkInstanceInput, options: any): async.Operation<types.DeleteSolNetworkInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSolNetworkInstance, input, options) as async.Operation<types.DeleteSolNetworkInstanceOutput>
+function C:deleteSolNetworkInstance(input: types.DeleteSolNetworkInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSolNetworkInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSolNetworkInstance as schema.OperationSchema, input, options) as async.Operation<types.DeleteSolNetworkInstanceOutput>
 end
 
-function C:deleteSolNetworkPackage(input: types.DeleteSolNetworkPackageInput, options: any): async.Operation<types.DeleteSolNetworkPackageOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSolNetworkPackage, input, options) as async.Operation<types.DeleteSolNetworkPackageOutput>
+function C:deleteSolNetworkPackage(input: types.DeleteSolNetworkPackageInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSolNetworkPackageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSolNetworkPackage as schema.OperationSchema, input, options) as async.Operation<types.DeleteSolNetworkPackageOutput>
 end
 
-function C:getSolFunctionInstance(input: types.GetSolFunctionInstanceInput, options: any): async.Operation<types.GetSolFunctionInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSolFunctionInstance, input, options) as async.Operation<types.GetSolFunctionInstanceOutput>
+function C:getSolFunctionInstance(input: types.GetSolFunctionInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.GetSolFunctionInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSolFunctionInstance as schema.OperationSchema, input, options) as async.Operation<types.GetSolFunctionInstanceOutput>
 end
 
-function C:getSolFunctionPackage(input: types.GetSolFunctionPackageInput, options: any): async.Operation<types.GetSolFunctionPackageOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSolFunctionPackage, input, options) as async.Operation<types.GetSolFunctionPackageOutput>
+function C:getSolFunctionPackage(input: types.GetSolFunctionPackageInput, options?: base_client.InvokeOptions): async.Operation<types.GetSolFunctionPackageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSolFunctionPackage as schema.OperationSchema, input, options) as async.Operation<types.GetSolFunctionPackageOutput>
 end
 
-function C:getSolFunctionPackageContent(input: types.GetSolFunctionPackageContentInput, options: any): async.Operation<types.GetSolFunctionPackageContentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSolFunctionPackageContent, input, options) as async.Operation<types.GetSolFunctionPackageContentOutput>
+function C:getSolFunctionPackageContent(input: types.GetSolFunctionPackageContentInput, options?: base_client.InvokeOptions): async.Operation<types.GetSolFunctionPackageContentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSolFunctionPackageContent as schema.OperationSchema, input, options) as async.Operation<types.GetSolFunctionPackageContentOutput>
 end
 
-function C:getSolFunctionPackageDescriptor(input: types.GetSolFunctionPackageDescriptorInput, options: any): async.Operation<types.GetSolFunctionPackageDescriptorOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSolFunctionPackageDescriptor, input, options) as async.Operation<types.GetSolFunctionPackageDescriptorOutput>
+function C:getSolFunctionPackageDescriptor(input: types.GetSolFunctionPackageDescriptorInput, options?: base_client.InvokeOptions): async.Operation<types.GetSolFunctionPackageDescriptorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSolFunctionPackageDescriptor as schema.OperationSchema, input, options) as async.Operation<types.GetSolFunctionPackageDescriptorOutput>
 end
 
-function C:getSolNetworkInstance(input: types.GetSolNetworkInstanceInput, options: any): async.Operation<types.GetSolNetworkInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSolNetworkInstance, input, options) as async.Operation<types.GetSolNetworkInstanceOutput>
+function C:getSolNetworkInstance(input: types.GetSolNetworkInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.GetSolNetworkInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSolNetworkInstance as schema.OperationSchema, input, options) as async.Operation<types.GetSolNetworkInstanceOutput>
 end
 
-function C:getSolNetworkOperation(input: types.GetSolNetworkOperationInput, options: any): async.Operation<types.GetSolNetworkOperationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSolNetworkOperation, input, options) as async.Operation<types.GetSolNetworkOperationOutput>
+function C:getSolNetworkOperation(input: types.GetSolNetworkOperationInput, options?: base_client.InvokeOptions): async.Operation<types.GetSolNetworkOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSolNetworkOperation as schema.OperationSchema, input, options) as async.Operation<types.GetSolNetworkOperationOutput>
 end
 
-function C:getSolNetworkPackage(input: types.GetSolNetworkPackageInput, options: any): async.Operation<types.GetSolNetworkPackageOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSolNetworkPackage, input, options) as async.Operation<types.GetSolNetworkPackageOutput>
+function C:getSolNetworkPackage(input: types.GetSolNetworkPackageInput, options?: base_client.InvokeOptions): async.Operation<types.GetSolNetworkPackageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSolNetworkPackage as schema.OperationSchema, input, options) as async.Operation<types.GetSolNetworkPackageOutput>
 end
 
-function C:getSolNetworkPackageContent(input: types.GetSolNetworkPackageContentInput, options: any): async.Operation<types.GetSolNetworkPackageContentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSolNetworkPackageContent, input, options) as async.Operation<types.GetSolNetworkPackageContentOutput>
+function C:getSolNetworkPackageContent(input: types.GetSolNetworkPackageContentInput, options?: base_client.InvokeOptions): async.Operation<types.GetSolNetworkPackageContentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSolNetworkPackageContent as schema.OperationSchema, input, options) as async.Operation<types.GetSolNetworkPackageContentOutput>
 end
 
-function C:getSolNetworkPackageDescriptor(input: types.GetSolNetworkPackageDescriptorInput, options: any): async.Operation<types.GetSolNetworkPackageDescriptorOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSolNetworkPackageDescriptor, input, options) as async.Operation<types.GetSolNetworkPackageDescriptorOutput>
+function C:getSolNetworkPackageDescriptor(input: types.GetSolNetworkPackageDescriptorInput, options?: base_client.InvokeOptions): async.Operation<types.GetSolNetworkPackageDescriptorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSolNetworkPackageDescriptor as schema.OperationSchema, input, options) as async.Operation<types.GetSolNetworkPackageDescriptorOutput>
 end
 
-function C:instantiateSolNetworkInstance(input: types.InstantiateSolNetworkInstanceInput, options: any): async.Operation<types.InstantiateSolNetworkInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.InstantiateSolNetworkInstance, input, options) as async.Operation<types.InstantiateSolNetworkInstanceOutput>
+function C:instantiateSolNetworkInstance(input: types.InstantiateSolNetworkInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.InstantiateSolNetworkInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InstantiateSolNetworkInstance as schema.OperationSchema, input, options) as async.Operation<types.InstantiateSolNetworkInstanceOutput>
 end
 
-function C:listSolFunctionInstances(input: types.ListSolFunctionInstancesInput, options: any): async.Operation<types.ListSolFunctionInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSolFunctionInstances, input, options) as async.Operation<types.ListSolFunctionInstancesOutput>
+function C:listSolFunctionInstances(input: types.ListSolFunctionInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSolFunctionInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSolFunctionInstances as schema.OperationSchema, input, options) as async.Operation<types.ListSolFunctionInstancesOutput>
 end
 
-function C:listSolFunctionPackages(input: types.ListSolFunctionPackagesInput, options: any): async.Operation<types.ListSolFunctionPackagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSolFunctionPackages, input, options) as async.Operation<types.ListSolFunctionPackagesOutput>
+function C:listSolFunctionPackages(input: types.ListSolFunctionPackagesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSolFunctionPackagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSolFunctionPackages as schema.OperationSchema, input, options) as async.Operation<types.ListSolFunctionPackagesOutput>
 end
 
-function C:listSolNetworkInstances(input: types.ListSolNetworkInstancesInput, options: any): async.Operation<types.ListSolNetworkInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSolNetworkInstances, input, options) as async.Operation<types.ListSolNetworkInstancesOutput>
+function C:listSolNetworkInstances(input: types.ListSolNetworkInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSolNetworkInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSolNetworkInstances as schema.OperationSchema, input, options) as async.Operation<types.ListSolNetworkInstancesOutput>
 end
 
-function C:listSolNetworkOperations(input: types.ListSolNetworkOperationsInput, options: any): async.Operation<types.ListSolNetworkOperationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSolNetworkOperations, input, options) as async.Operation<types.ListSolNetworkOperationsOutput>
+function C:listSolNetworkOperations(input: types.ListSolNetworkOperationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSolNetworkOperationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSolNetworkOperations as schema.OperationSchema, input, options) as async.Operation<types.ListSolNetworkOperationsOutput>
 end
 
-function C:listSolNetworkPackages(input: types.ListSolNetworkPackagesInput, options: any): async.Operation<types.ListSolNetworkPackagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSolNetworkPackages, input, options) as async.Operation<types.ListSolNetworkPackagesOutput>
+function C:listSolNetworkPackages(input: types.ListSolNetworkPackagesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSolNetworkPackagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSolNetworkPackages as schema.OperationSchema, input, options) as async.Operation<types.ListSolNetworkPackagesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putSolFunctionPackageContent(input: types.PutSolFunctionPackageContentInput, options: any): async.Operation<types.PutSolFunctionPackageContentOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutSolFunctionPackageContent, input, options) as async.Operation<types.PutSolFunctionPackageContentOutput>
+function C:putSolFunctionPackageContent(input: types.PutSolFunctionPackageContentInput, options?: base_client.InvokeOptions): async.Operation<types.PutSolFunctionPackageContentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutSolFunctionPackageContent as schema.OperationSchema, input, options) as async.Operation<types.PutSolFunctionPackageContentOutput>
 end
 
-function C:putSolNetworkPackageContent(input: types.PutSolNetworkPackageContentInput, options: any): async.Operation<types.PutSolNetworkPackageContentOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutSolNetworkPackageContent, input, options) as async.Operation<types.PutSolNetworkPackageContentOutput>
+function C:putSolNetworkPackageContent(input: types.PutSolNetworkPackageContentInput, options?: base_client.InvokeOptions): async.Operation<types.PutSolNetworkPackageContentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutSolNetworkPackageContent as schema.OperationSchema, input, options) as async.Operation<types.PutSolNetworkPackageContentOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:terminateSolNetworkInstance(input: types.TerminateSolNetworkInstanceInput, options: any): async.Operation<types.TerminateSolNetworkInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TerminateSolNetworkInstance, input, options) as async.Operation<types.TerminateSolNetworkInstanceOutput>
+function C:terminateSolNetworkInstance(input: types.TerminateSolNetworkInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.TerminateSolNetworkInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TerminateSolNetworkInstance as schema.OperationSchema, input, options) as async.Operation<types.TerminateSolNetworkInstanceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateSolFunctionPackage(input: types.UpdateSolFunctionPackageInput, options: any): async.Operation<types.UpdateSolFunctionPackageOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSolFunctionPackage, input, options) as async.Operation<types.UpdateSolFunctionPackageOutput>
+function C:updateSolFunctionPackage(input: types.UpdateSolFunctionPackageInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSolFunctionPackageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSolFunctionPackage as schema.OperationSchema, input, options) as async.Operation<types.UpdateSolFunctionPackageOutput>
 end
 
-function C:updateSolNetworkInstance(input: types.UpdateSolNetworkInstanceInput, options: any): async.Operation<types.UpdateSolNetworkInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSolNetworkInstance, input, options) as async.Operation<types.UpdateSolNetworkInstanceOutput>
+function C:updateSolNetworkInstance(input: types.UpdateSolNetworkInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSolNetworkInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSolNetworkInstance as schema.OperationSchema, input, options) as async.Operation<types.UpdateSolNetworkInstanceOutput>
 end
 
-function C:updateSolNetworkPackage(input: types.UpdateSolNetworkPackageInput, options: any): async.Operation<types.UpdateSolNetworkPackageOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSolNetworkPackage, input, options) as async.Operation<types.UpdateSolNetworkPackageOutput>
+function C:updateSolNetworkPackage(input: types.UpdateSolNetworkPackageInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSolNetworkPackageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSolNetworkPackage as schema.OperationSchema, input, options) as async.Operation<types.UpdateSolNetworkPackageOutput>
 end
 
-function C:validateSolFunctionPackageContent(input: types.ValidateSolFunctionPackageContentInput, options: any): async.Operation<types.ValidateSolFunctionPackageContentOutput>
-    return self:invokeOperation(schemas.Service, schemas.ValidateSolFunctionPackageContent, input, options) as async.Operation<types.ValidateSolFunctionPackageContentOutput>
+function C:validateSolFunctionPackageContent(input: types.ValidateSolFunctionPackageContentInput, options?: base_client.InvokeOptions): async.Operation<types.ValidateSolFunctionPackageContentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ValidateSolFunctionPackageContent as schema.OperationSchema, input, options) as async.Operation<types.ValidateSolFunctionPackageContentOutput>
 end
 
-function C:validateSolNetworkPackageContent(input: types.ValidateSolNetworkPackageContentInput, options: any): async.Operation<types.ValidateSolNetworkPackageContentOutput>
-    return self:invokeOperation(schemas.Service, schemas.ValidateSolNetworkPackageContent, input, options) as async.Operation<types.ValidateSolNetworkPackageContentOutput>
+function C:validateSolNetworkPackageContent(input: types.ValidateSolNetworkPackageContentInput, options?: base_client.InvokeOptions): async.Operation<types.ValidateSolNetworkPackageContentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ValidateSolNetworkPackageContent as schema.OperationSchema, input, options) as async.Operation<types.ValidateSolNetworkPackageContentOutput>
 end
 
 return M

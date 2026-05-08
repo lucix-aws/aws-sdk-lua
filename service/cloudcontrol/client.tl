@@ -8,47 +8,50 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("cloudcontrol.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("cloudcontrol.schemas")
 local traits = require("smithy.traits")
 local types = require("cloudcontrol.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    cancelResourceRequest: function(Client, types.CancelResourceRequestInput, any): async.Operation<types.CancelResourceRequestOutput>
-    createResource: function(Client, types.CreateResourceInput, any): async.Operation<types.CreateResourceOutput>
-    deleteResource: function(Client, types.DeleteResourceInput, any): async.Operation<types.DeleteResourceOutput>
-    getResource: function(Client, types.GetResourceInput, any): async.Operation<types.GetResourceOutput>
-    getResourceRequestStatus: function(Client, types.GetResourceRequestStatusInput, any): async.Operation<types.GetResourceRequestStatusOutput>
-    listResourceRequests: function(Client, types.ListResourceRequestsInput, any): async.Operation<types.ListResourceRequestsOutput>
-    listResources: function(Client, types.ListResourcesInput, any): async.Operation<types.ListResourcesOutput>
-    updateResource: function(Client, types.UpdateResourceInput, any): async.Operation<types.UpdateResourceOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    cancelResourceRequest: function(Client, types.CancelResourceRequestInput, ? base_client.InvokeOptions): async.Operation<types.CancelResourceRequestOutput>
+    createResource: function(Client, types.CreateResourceInput, ? base_client.InvokeOptions): async.Operation<types.CreateResourceOutput>
+    deleteResource: function(Client, types.DeleteResourceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourceOutput>
+    getResource: function(Client, types.GetResourceInput, ? base_client.InvokeOptions): async.Operation<types.GetResourceOutput>
+    getResourceRequestStatus: function(Client, types.GetResourceRequestStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetResourceRequestStatusOutput>
+    listResourceRequests: function(Client, types.ListResourceRequestsInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceRequestsOutput>
+    listResources: function(Client, types.ListResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListResourcesOutput>
+    updateResource: function(Client, types.UpdateResourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResourceOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "CloudApiService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "cloudcontrolapi", signing_region = c.region } }
                 else
@@ -67,36 +70,36 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:cancelResourceRequest(input: types.CancelResourceRequestInput, options: any): async.Operation<types.CancelResourceRequestOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelResourceRequest, input, options) as async.Operation<types.CancelResourceRequestOutput>
+function C:cancelResourceRequest(input: types.CancelResourceRequestInput, options?: base_client.InvokeOptions): async.Operation<types.CancelResourceRequestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelResourceRequest as schema.OperationSchema, input, options) as async.Operation<types.CancelResourceRequestOutput>
 end
 
-function C:createResource(input: types.CreateResourceInput, options: any): async.Operation<types.CreateResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateResource, input, options) as async.Operation<types.CreateResourceOutput>
+function C:createResource(input: types.CreateResourceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateResource as schema.OperationSchema, input, options) as async.Operation<types.CreateResourceOutput>
 end
 
-function C:deleteResource(input: types.DeleteResourceInput, options: any): async.Operation<types.DeleteResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResource, input, options) as async.Operation<types.DeleteResourceOutput>
+function C:deleteResource(input: types.DeleteResourceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResource as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourceOutput>
 end
 
-function C:getResource(input: types.GetResourceInput, options: any): async.Operation<types.GetResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResource, input, options) as async.Operation<types.GetResourceOutput>
+function C:getResource(input: types.GetResourceInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResource as schema.OperationSchema, input, options) as async.Operation<types.GetResourceOutput>
 end
 
-function C:getResourceRequestStatus(input: types.GetResourceRequestStatusInput, options: any): async.Operation<types.GetResourceRequestStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourceRequestStatus, input, options) as async.Operation<types.GetResourceRequestStatusOutput>
+function C:getResourceRequestStatus(input: types.GetResourceRequestStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourceRequestStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourceRequestStatus as schema.OperationSchema, input, options) as async.Operation<types.GetResourceRequestStatusOutput>
 end
 
-function C:listResourceRequests(input: types.ListResourceRequestsInput, options: any): async.Operation<types.ListResourceRequestsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResourceRequests, input, options) as async.Operation<types.ListResourceRequestsOutput>
+function C:listResourceRequests(input: types.ListResourceRequestsInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourceRequestsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourceRequests as schema.OperationSchema, input, options) as async.Operation<types.ListResourceRequestsOutput>
 end
 
-function C:listResources(input: types.ListResourcesInput, options: any): async.Operation<types.ListResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListResources, input, options) as async.Operation<types.ListResourcesOutput>
+function C:listResources(input: types.ListResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResources as schema.OperationSchema, input, options) as async.Operation<types.ListResourcesOutput>
 end
 
-function C:updateResource(input: types.UpdateResourceInput, options: any): async.Operation<types.UpdateResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateResource, input, options) as async.Operation<types.UpdateResourceOutput>
+function C:updateResource(input: types.UpdateResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateResource as schema.OperationSchema, input, options) as async.Operation<types.UpdateResourceOutput>
 end
 
 return M

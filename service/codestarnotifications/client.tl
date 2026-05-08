@@ -8,52 +8,55 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("codestarnotifications.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("codestarnotifications.schemas")
 local traits = require("smithy.traits")
 local types = require("codestarnotifications.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createNotificationRule: function(Client, types.CreateNotificationRuleInput, any): async.Operation<types.CreateNotificationRuleOutput>
-    deleteNotificationRule: function(Client, types.DeleteNotificationRuleInput, any): async.Operation<types.DeleteNotificationRuleOutput>
-    deleteTarget: function(Client, types.DeleteTargetInput, any): async.Operation<types.DeleteTargetOutput>
-    describeNotificationRule: function(Client, types.DescribeNotificationRuleInput, any): async.Operation<types.DescribeNotificationRuleOutput>
-    listEventTypes: function(Client, types.ListEventTypesInput, any): async.Operation<types.ListEventTypesOutput>
-    listNotificationRules: function(Client, types.ListNotificationRulesInput, any): async.Operation<types.ListNotificationRulesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTargets: function(Client, types.ListTargetsInput, any): async.Operation<types.ListTargetsOutput>
-    subscribe: function(Client, types.SubscribeInput, any): async.Operation<types.SubscribeOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    unsubscribe: function(Client, types.UnsubscribeInput, any): async.Operation<types.UnsubscribeOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateNotificationRule: function(Client, types.UpdateNotificationRuleInput, any): async.Operation<types.UpdateNotificationRuleOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createNotificationRule: function(Client, types.CreateNotificationRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateNotificationRuleOutput>
+    deleteNotificationRule: function(Client, types.DeleteNotificationRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNotificationRuleOutput>
+    deleteTarget: function(Client, types.DeleteTargetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTargetOutput>
+    describeNotificationRule: function(Client, types.DescribeNotificationRuleInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNotificationRuleOutput>
+    listEventTypes: function(Client, types.ListEventTypesInput, ? base_client.InvokeOptions): async.Operation<types.ListEventTypesOutput>
+    listNotificationRules: function(Client, types.ListNotificationRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListNotificationRulesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTargets: function(Client, types.ListTargetsInput, ? base_client.InvokeOptions): async.Operation<types.ListTargetsOutput>
+    subscribe: function(Client, types.SubscribeInput, ? base_client.InvokeOptions): async.Operation<types.SubscribeOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    unsubscribe: function(Client, types.UnsubscribeInput, ? base_client.InvokeOptions): async.Operation<types.UnsubscribeOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateNotificationRule: function(Client, types.UpdateNotificationRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNotificationRuleOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "CodeStarNotifications_20191015"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "codestar-notifications", signing_region = c.region } }
                 else
@@ -72,56 +75,56 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createNotificationRule(input: types.CreateNotificationRuleInput, options: any): async.Operation<types.CreateNotificationRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNotificationRule, input, options) as async.Operation<types.CreateNotificationRuleOutput>
+function C:createNotificationRule(input: types.CreateNotificationRuleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNotificationRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNotificationRule as schema.OperationSchema, input, options) as async.Operation<types.CreateNotificationRuleOutput>
 end
 
-function C:deleteNotificationRule(input: types.DeleteNotificationRuleInput, options: any): async.Operation<types.DeleteNotificationRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNotificationRule, input, options) as async.Operation<types.DeleteNotificationRuleOutput>
+function C:deleteNotificationRule(input: types.DeleteNotificationRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNotificationRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNotificationRule as schema.OperationSchema, input, options) as async.Operation<types.DeleteNotificationRuleOutput>
 end
 
-function C:deleteTarget(input: types.DeleteTargetInput, options: any): async.Operation<types.DeleteTargetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTarget, input, options) as async.Operation<types.DeleteTargetOutput>
+function C:deleteTarget(input: types.DeleteTargetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTargetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTarget as schema.OperationSchema, input, options) as async.Operation<types.DeleteTargetOutput>
 end
 
-function C:describeNotificationRule(input: types.DescribeNotificationRuleInput, options: any): async.Operation<types.DescribeNotificationRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeNotificationRule, input, options) as async.Operation<types.DescribeNotificationRuleOutput>
+function C:describeNotificationRule(input: types.DescribeNotificationRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeNotificationRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeNotificationRule as schema.OperationSchema, input, options) as async.Operation<types.DescribeNotificationRuleOutput>
 end
 
-function C:listEventTypes(input: types.ListEventTypesInput, options: any): async.Operation<types.ListEventTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEventTypes, input, options) as async.Operation<types.ListEventTypesOutput>
+function C:listEventTypes(input: types.ListEventTypesInput, options?: base_client.InvokeOptions): async.Operation<types.ListEventTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEventTypes as schema.OperationSchema, input, options) as async.Operation<types.ListEventTypesOutput>
 end
 
-function C:listNotificationRules(input: types.ListNotificationRulesInput, options: any): async.Operation<types.ListNotificationRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNotificationRules, input, options) as async.Operation<types.ListNotificationRulesOutput>
+function C:listNotificationRules(input: types.ListNotificationRulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListNotificationRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNotificationRules as schema.OperationSchema, input, options) as async.Operation<types.ListNotificationRulesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTargets(input: types.ListTargetsInput, options: any): async.Operation<types.ListTargetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTargets, input, options) as async.Operation<types.ListTargetsOutput>
+function C:listTargets(input: types.ListTargetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTargetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTargets as schema.OperationSchema, input, options) as async.Operation<types.ListTargetsOutput>
 end
 
-function C:subscribe(input: types.SubscribeInput, options: any): async.Operation<types.SubscribeOutput>
-    return self:invokeOperation(schemas.Service, schemas.Subscribe, input, options) as async.Operation<types.SubscribeOutput>
+function C:subscribe(input: types.SubscribeInput, options?: base_client.InvokeOptions): async.Operation<types.SubscribeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Subscribe as schema.OperationSchema, input, options) as async.Operation<types.SubscribeOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:unsubscribe(input: types.UnsubscribeInput, options: any): async.Operation<types.UnsubscribeOutput>
-    return self:invokeOperation(schemas.Service, schemas.Unsubscribe, input, options) as async.Operation<types.UnsubscribeOutput>
+function C:unsubscribe(input: types.UnsubscribeInput, options?: base_client.InvokeOptions): async.Operation<types.UnsubscribeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Unsubscribe as schema.OperationSchema, input, options) as async.Operation<types.UnsubscribeOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateNotificationRule(input: types.UpdateNotificationRuleInput, options: any): async.Operation<types.UpdateNotificationRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateNotificationRule, input, options) as async.Operation<types.UpdateNotificationRuleOutput>
+function C:updateNotificationRule(input: types.UpdateNotificationRuleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNotificationRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNotificationRule as schema.OperationSchema, input, options) as async.Operation<types.UpdateNotificationRuleOutput>
 end
 
 return M

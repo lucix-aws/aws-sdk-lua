@@ -8,53 +8,56 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("serverlessapplicationrepository.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("serverlessapplicationrepository.schemas")
 local traits = require("smithy.traits")
 local types = require("serverlessapplicationrepository.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createApplication: function(Client, types.CreateApplicationInput, any): async.Operation<types.CreateApplicationOutput>
-    createApplicationVersion: function(Client, types.CreateApplicationVersionInput, any): async.Operation<types.CreateApplicationVersionOutput>
-    createCloudFormationChangeSet: function(Client, types.CreateCloudFormationChangeSetInput, any): async.Operation<types.CreateCloudFormationChangeSetOutput>
-    createCloudFormationTemplate: function(Client, types.CreateCloudFormationTemplateInput, any): async.Operation<types.CreateCloudFormationTemplateOutput>
-    deleteApplication: function(Client, types.DeleteApplicationInput, any): async.Operation<types.DeleteApplicationOutput>
-    getApplication: function(Client, types.GetApplicationInput, any): async.Operation<types.GetApplicationOutput>
-    getApplicationPolicy: function(Client, types.GetApplicationPolicyInput, any): async.Operation<types.GetApplicationPolicyOutput>
-    getCloudFormationTemplate: function(Client, types.GetCloudFormationTemplateInput, any): async.Operation<types.GetCloudFormationTemplateOutput>
-    listApplicationDependencies: function(Client, types.ListApplicationDependenciesInput, any): async.Operation<types.ListApplicationDependenciesOutput>
-    listApplications: function(Client, types.ListApplicationsInput, any): async.Operation<types.ListApplicationsOutput>
-    listApplicationVersions: function(Client, types.ListApplicationVersionsInput, any): async.Operation<types.ListApplicationVersionsOutput>
-    putApplicationPolicy: function(Client, types.PutApplicationPolicyInput, any): async.Operation<types.PutApplicationPolicyOutput>
-    unshareApplication: function(Client, types.UnshareApplicationInput, any): async.Operation<types.UnshareApplicationOutput>
-    updateApplication: function(Client, types.UpdateApplicationInput, any): async.Operation<types.UpdateApplicationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createApplication: function(Client, types.CreateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    createApplicationVersion: function(Client, types.CreateApplicationVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationVersionOutput>
+    createCloudFormationChangeSet: function(Client, types.CreateCloudFormationChangeSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateCloudFormationChangeSetOutput>
+    createCloudFormationTemplate: function(Client, types.CreateCloudFormationTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateCloudFormationTemplateOutput>
+    deleteApplication: function(Client, types.DeleteApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
+    getApplication: function(Client, types.GetApplicationInput, ? base_client.InvokeOptions): async.Operation<types.GetApplicationOutput>
+    getApplicationPolicy: function(Client, types.GetApplicationPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetApplicationPolicyOutput>
+    getCloudFormationTemplate: function(Client, types.GetCloudFormationTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetCloudFormationTemplateOutput>
+    listApplicationDependencies: function(Client, types.ListApplicationDependenciesInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationDependenciesOutput>
+    listApplications: function(Client, types.ListApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    listApplicationVersions: function(Client, types.ListApplicationVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationVersionsOutput>
+    putApplicationPolicy: function(Client, types.PutApplicationPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutApplicationPolicyOutput>
+    unshareApplication: function(Client, types.UnshareApplicationInput, ? base_client.InvokeOptions): async.Operation<types.UnshareApplicationOutput>
+    updateApplication: function(Client, types.UpdateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "ServerlessApplicationRepository"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "serverlessrepo", signing_region = c.region } }
                 else
@@ -73,60 +76,60 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createApplication(input: types.CreateApplicationInput, options: any): async.Operation<types.CreateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateApplication, input, options) as async.Operation<types.CreateApplicationOutput>
+function C:createApplication(input: types.CreateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApplication as schema.OperationSchema, input, options) as async.Operation<types.CreateApplicationOutput>
 end
 
-function C:createApplicationVersion(input: types.CreateApplicationVersionInput, options: any): async.Operation<types.CreateApplicationVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateApplicationVersion, input, options) as async.Operation<types.CreateApplicationVersionOutput>
+function C:createApplicationVersion(input: types.CreateApplicationVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApplicationVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApplicationVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateApplicationVersionOutput>
 end
 
-function C:createCloudFormationChangeSet(input: types.CreateCloudFormationChangeSetInput, options: any): async.Operation<types.CreateCloudFormationChangeSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCloudFormationChangeSet, input, options) as async.Operation<types.CreateCloudFormationChangeSetOutput>
+function C:createCloudFormationChangeSet(input: types.CreateCloudFormationChangeSetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCloudFormationChangeSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCloudFormationChangeSet as schema.OperationSchema, input, options) as async.Operation<types.CreateCloudFormationChangeSetOutput>
 end
 
-function C:createCloudFormationTemplate(input: types.CreateCloudFormationTemplateInput, options: any): async.Operation<types.CreateCloudFormationTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCloudFormationTemplate, input, options) as async.Operation<types.CreateCloudFormationTemplateOutput>
+function C:createCloudFormationTemplate(input: types.CreateCloudFormationTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCloudFormationTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCloudFormationTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateCloudFormationTemplateOutput>
 end
 
-function C:deleteApplication(input: types.DeleteApplicationInput, options: any): async.Operation<types.DeleteApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApplication, input, options) as async.Operation<types.DeleteApplicationOutput>
+function C:deleteApplication(input: types.DeleteApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplication as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationOutput>
 end
 
-function C:getApplication(input: types.GetApplicationInput, options: any): async.Operation<types.GetApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetApplication, input, options) as async.Operation<types.GetApplicationOutput>
+function C:getApplication(input: types.GetApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.GetApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetApplication as schema.OperationSchema, input, options) as async.Operation<types.GetApplicationOutput>
 end
 
-function C:getApplicationPolicy(input: types.GetApplicationPolicyInput, options: any): async.Operation<types.GetApplicationPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetApplicationPolicy, input, options) as async.Operation<types.GetApplicationPolicyOutput>
+function C:getApplicationPolicy(input: types.GetApplicationPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetApplicationPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetApplicationPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetApplicationPolicyOutput>
 end
 
-function C:getCloudFormationTemplate(input: types.GetCloudFormationTemplateInput, options: any): async.Operation<types.GetCloudFormationTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCloudFormationTemplate, input, options) as async.Operation<types.GetCloudFormationTemplateOutput>
+function C:getCloudFormationTemplate(input: types.GetCloudFormationTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetCloudFormationTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCloudFormationTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetCloudFormationTemplateOutput>
 end
 
-function C:listApplicationDependencies(input: types.ListApplicationDependenciesInput, options: any): async.Operation<types.ListApplicationDependenciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplicationDependencies, input, options) as async.Operation<types.ListApplicationDependenciesOutput>
+function C:listApplicationDependencies(input: types.ListApplicationDependenciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationDependenciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplicationDependencies as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationDependenciesOutput>
 end
 
-function C:listApplications(input: types.ListApplicationsInput, options: any): async.Operation<types.ListApplicationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplications, input, options) as async.Operation<types.ListApplicationsOutput>
+function C:listApplications(input: types.ListApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplications as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationsOutput>
 end
 
-function C:listApplicationVersions(input: types.ListApplicationVersionsInput, options: any): async.Operation<types.ListApplicationVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplicationVersions, input, options) as async.Operation<types.ListApplicationVersionsOutput>
+function C:listApplicationVersions(input: types.ListApplicationVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplicationVersions as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationVersionsOutput>
 end
 
-function C:putApplicationPolicy(input: types.PutApplicationPolicyInput, options: any): async.Operation<types.PutApplicationPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutApplicationPolicy, input, options) as async.Operation<types.PutApplicationPolicyOutput>
+function C:putApplicationPolicy(input: types.PutApplicationPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutApplicationPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutApplicationPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutApplicationPolicyOutput>
 end
 
-function C:unshareApplication(input: types.UnshareApplicationInput, options: any): async.Operation<types.UnshareApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UnshareApplication, input, options) as async.Operation<types.UnshareApplicationOutput>
+function C:unshareApplication(input: types.UnshareApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.UnshareApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UnshareApplication as schema.OperationSchema, input, options) as async.Operation<types.UnshareApplicationOutput>
 end
 
-function C:updateApplication(input: types.UpdateApplicationInput, options: any): async.Operation<types.UpdateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateApplication, input, options) as async.Operation<types.UpdateApplicationOutput>
+function C:updateApplication(input: types.UpdateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApplication as schema.OperationSchema, input, options) as async.Operation<types.UpdateApplicationOutput>
 end
 
 return M

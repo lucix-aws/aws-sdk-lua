@@ -8,73 +8,76 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("panorama.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("panorama.schemas")
 local traits = require("smithy.traits")
 local types = require("panorama.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createApplicationInstance: function(Client, types.CreateApplicationInstanceInput, any): async.Operation<types.CreateApplicationInstanceOutput>
-    createJobForDevices: function(Client, types.CreateJobForDevicesInput, any): async.Operation<types.CreateJobForDevicesOutput>
-    createNodeFromTemplateJob: function(Client, types.CreateNodeFromTemplateJobInput, any): async.Operation<types.CreateNodeFromTemplateJobOutput>
-    createPackage: function(Client, types.CreatePackageInput, any): async.Operation<types.CreatePackageOutput>
-    createPackageImportJob: function(Client, types.CreatePackageImportJobInput, any): async.Operation<types.CreatePackageImportJobOutput>
-    deleteDevice: function(Client, types.DeleteDeviceInput, any): async.Operation<types.DeleteDeviceOutput>
-    deletePackage: function(Client, types.DeletePackageInput, any): async.Operation<types.DeletePackageOutput>
-    deregisterPackageVersion: function(Client, types.DeregisterPackageVersionInput, any): async.Operation<types.DeregisterPackageVersionOutput>
-    describeApplicationInstance: function(Client, types.DescribeApplicationInstanceInput, any): async.Operation<types.DescribeApplicationInstanceOutput>
-    describeApplicationInstanceDetails: function(Client, types.DescribeApplicationInstanceDetailsInput, any): async.Operation<types.DescribeApplicationInstanceDetailsOutput>
-    describeDevice: function(Client, types.DescribeDeviceInput, any): async.Operation<types.DescribeDeviceOutput>
-    describeDeviceJob: function(Client, types.DescribeDeviceJobInput, any): async.Operation<types.DescribeDeviceJobOutput>
-    describeNode: function(Client, types.DescribeNodeInput, any): async.Operation<types.DescribeNodeOutput>
-    describeNodeFromTemplateJob: function(Client, types.DescribeNodeFromTemplateJobInput, any): async.Operation<types.DescribeNodeFromTemplateJobOutput>
-    describePackage: function(Client, types.DescribePackageInput, any): async.Operation<types.DescribePackageOutput>
-    describePackageImportJob: function(Client, types.DescribePackageImportJobInput, any): async.Operation<types.DescribePackageImportJobOutput>
-    describePackageVersion: function(Client, types.DescribePackageVersionInput, any): async.Operation<types.DescribePackageVersionOutput>
-    listApplicationInstanceDependencies: function(Client, types.ListApplicationInstanceDependenciesInput, any): async.Operation<types.ListApplicationInstanceDependenciesOutput>
-    listApplicationInstanceNodeInstances: function(Client, types.ListApplicationInstanceNodeInstancesInput, any): async.Operation<types.ListApplicationInstanceNodeInstancesOutput>
-    listApplicationInstances: function(Client, types.ListApplicationInstancesInput, any): async.Operation<types.ListApplicationInstancesOutput>
-    listDevices: function(Client, types.ListDevicesInput, any): async.Operation<types.ListDevicesOutput>
-    listDevicesJobs: function(Client, types.ListDevicesJobsInput, any): async.Operation<types.ListDevicesJobsOutput>
-    listNodeFromTemplateJobs: function(Client, types.ListNodeFromTemplateJobsInput, any): async.Operation<types.ListNodeFromTemplateJobsOutput>
-    listNodes: function(Client, types.ListNodesInput, any): async.Operation<types.ListNodesOutput>
-    listPackageImportJobs: function(Client, types.ListPackageImportJobsInput, any): async.Operation<types.ListPackageImportJobsOutput>
-    listPackages: function(Client, types.ListPackagesInput, any): async.Operation<types.ListPackagesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    provisionDevice: function(Client, types.ProvisionDeviceInput, any): async.Operation<types.ProvisionDeviceOutput>
-    registerPackageVersion: function(Client, types.RegisterPackageVersionInput, any): async.Operation<types.RegisterPackageVersionOutput>
-    removeApplicationInstance: function(Client, types.RemoveApplicationInstanceInput, any): async.Operation<types.RemoveApplicationInstanceOutput>
-    signalApplicationInstanceNodeInstances: function(Client, types.SignalApplicationInstanceNodeInstancesInput, any): async.Operation<types.SignalApplicationInstanceNodeInstancesOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateDeviceMetadata: function(Client, types.UpdateDeviceMetadataInput, any): async.Operation<types.UpdateDeviceMetadataOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createApplicationInstance: function(Client, types.CreateApplicationInstanceInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationInstanceOutput>
+    createJobForDevices: function(Client, types.CreateJobForDevicesInput, ? base_client.InvokeOptions): async.Operation<types.CreateJobForDevicesOutput>
+    createNodeFromTemplateJob: function(Client, types.CreateNodeFromTemplateJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateNodeFromTemplateJobOutput>
+    createPackage: function(Client, types.CreatePackageInput, ? base_client.InvokeOptions): async.Operation<types.CreatePackageOutput>
+    createPackageImportJob: function(Client, types.CreatePackageImportJobInput, ? base_client.InvokeOptions): async.Operation<types.CreatePackageImportJobOutput>
+    deleteDevice: function(Client, types.DeleteDeviceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDeviceOutput>
+    deletePackage: function(Client, types.DeletePackageInput, ? base_client.InvokeOptions): async.Operation<types.DeletePackageOutput>
+    deregisterPackageVersion: function(Client, types.DeregisterPackageVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterPackageVersionOutput>
+    describeApplicationInstance: function(Client, types.DescribeApplicationInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeApplicationInstanceOutput>
+    describeApplicationInstanceDetails: function(Client, types.DescribeApplicationInstanceDetailsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeApplicationInstanceDetailsOutput>
+    describeDevice: function(Client, types.DescribeDeviceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDeviceOutput>
+    describeDeviceJob: function(Client, types.DescribeDeviceJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDeviceJobOutput>
+    describeNode: function(Client, types.DescribeNodeInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNodeOutput>
+    describeNodeFromTemplateJob: function(Client, types.DescribeNodeFromTemplateJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNodeFromTemplateJobOutput>
+    describePackage: function(Client, types.DescribePackageInput, ? base_client.InvokeOptions): async.Operation<types.DescribePackageOutput>
+    describePackageImportJob: function(Client, types.DescribePackageImportJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribePackageImportJobOutput>
+    describePackageVersion: function(Client, types.DescribePackageVersionInput, ? base_client.InvokeOptions): async.Operation<types.DescribePackageVersionOutput>
+    listApplicationInstanceDependencies: function(Client, types.ListApplicationInstanceDependenciesInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationInstanceDependenciesOutput>
+    listApplicationInstanceNodeInstances: function(Client, types.ListApplicationInstanceNodeInstancesInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationInstanceNodeInstancesOutput>
+    listApplicationInstances: function(Client, types.ListApplicationInstancesInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationInstancesOutput>
+    listDevices: function(Client, types.ListDevicesInput, ? base_client.InvokeOptions): async.Operation<types.ListDevicesOutput>
+    listDevicesJobs: function(Client, types.ListDevicesJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListDevicesJobsOutput>
+    listNodeFromTemplateJobs: function(Client, types.ListNodeFromTemplateJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListNodeFromTemplateJobsOutput>
+    listNodes: function(Client, types.ListNodesInput, ? base_client.InvokeOptions): async.Operation<types.ListNodesOutput>
+    listPackageImportJobs: function(Client, types.ListPackageImportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListPackageImportJobsOutput>
+    listPackages: function(Client, types.ListPackagesInput, ? base_client.InvokeOptions): async.Operation<types.ListPackagesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    provisionDevice: function(Client, types.ProvisionDeviceInput, ? base_client.InvokeOptions): async.Operation<types.ProvisionDeviceOutput>
+    registerPackageVersion: function(Client, types.RegisterPackageVersionInput, ? base_client.InvokeOptions): async.Operation<types.RegisterPackageVersionOutput>
+    removeApplicationInstance: function(Client, types.RemoveApplicationInstanceInput, ? base_client.InvokeOptions): async.Operation<types.RemoveApplicationInstanceOutput>
+    signalApplicationInstanceNodeInstances: function(Client, types.SignalApplicationInstanceNodeInstancesInput, ? base_client.InvokeOptions): async.Operation<types.SignalApplicationInstanceNodeInstancesOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateDeviceMetadata: function(Client, types.UpdateDeviceMetadataInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDeviceMetadataOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "OmniCloudServiceLambda"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "panorama", signing_region = c.region } }
                 else
@@ -93,140 +96,140 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createApplicationInstance(input: types.CreateApplicationInstanceInput, options: any): async.Operation<types.CreateApplicationInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateApplicationInstance, input, options) as async.Operation<types.CreateApplicationInstanceOutput>
+function C:createApplicationInstance(input: types.CreateApplicationInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApplicationInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApplicationInstance as schema.OperationSchema, input, options) as async.Operation<types.CreateApplicationInstanceOutput>
 end
 
-function C:createJobForDevices(input: types.CreateJobForDevicesInput, options: any): async.Operation<types.CreateJobForDevicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateJobForDevices, input, options) as async.Operation<types.CreateJobForDevicesOutput>
+function C:createJobForDevices(input: types.CreateJobForDevicesInput, options?: base_client.InvokeOptions): async.Operation<types.CreateJobForDevicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateJobForDevices as schema.OperationSchema, input, options) as async.Operation<types.CreateJobForDevicesOutput>
 end
 
-function C:createNodeFromTemplateJob(input: types.CreateNodeFromTemplateJobInput, options: any): async.Operation<types.CreateNodeFromTemplateJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNodeFromTemplateJob, input, options) as async.Operation<types.CreateNodeFromTemplateJobOutput>
+function C:createNodeFromTemplateJob(input: types.CreateNodeFromTemplateJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNodeFromTemplateJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNodeFromTemplateJob as schema.OperationSchema, input, options) as async.Operation<types.CreateNodeFromTemplateJobOutput>
 end
 
-function C:createPackage(input: types.CreatePackageInput, options: any): async.Operation<types.CreatePackageOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePackage, input, options) as async.Operation<types.CreatePackageOutput>
+function C:createPackage(input: types.CreatePackageInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePackageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePackage as schema.OperationSchema, input, options) as async.Operation<types.CreatePackageOutput>
 end
 
-function C:createPackageImportJob(input: types.CreatePackageImportJobInput, options: any): async.Operation<types.CreatePackageImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePackageImportJob, input, options) as async.Operation<types.CreatePackageImportJobOutput>
+function C:createPackageImportJob(input: types.CreatePackageImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePackageImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePackageImportJob as schema.OperationSchema, input, options) as async.Operation<types.CreatePackageImportJobOutput>
 end
 
-function C:deleteDevice(input: types.DeleteDeviceInput, options: any): async.Operation<types.DeleteDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDevice, input, options) as async.Operation<types.DeleteDeviceOutput>
+function C:deleteDevice(input: types.DeleteDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDevice as schema.OperationSchema, input, options) as async.Operation<types.DeleteDeviceOutput>
 end
 
-function C:deletePackage(input: types.DeletePackageInput, options: any): async.Operation<types.DeletePackageOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePackage, input, options) as async.Operation<types.DeletePackageOutput>
+function C:deletePackage(input: types.DeletePackageInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePackageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePackage as schema.OperationSchema, input, options) as async.Operation<types.DeletePackageOutput>
 end
 
-function C:deregisterPackageVersion(input: types.DeregisterPackageVersionInput, options: any): async.Operation<types.DeregisterPackageVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterPackageVersion, input, options) as async.Operation<types.DeregisterPackageVersionOutput>
+function C:deregisterPackageVersion(input: types.DeregisterPackageVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterPackageVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterPackageVersion as schema.OperationSchema, input, options) as async.Operation<types.DeregisterPackageVersionOutput>
 end
 
-function C:describeApplicationInstance(input: types.DescribeApplicationInstanceInput, options: any): async.Operation<types.DescribeApplicationInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeApplicationInstance, input, options) as async.Operation<types.DescribeApplicationInstanceOutput>
+function C:describeApplicationInstance(input: types.DescribeApplicationInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeApplicationInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeApplicationInstance as schema.OperationSchema, input, options) as async.Operation<types.DescribeApplicationInstanceOutput>
 end
 
-function C:describeApplicationInstanceDetails(input: types.DescribeApplicationInstanceDetailsInput, options: any): async.Operation<types.DescribeApplicationInstanceDetailsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeApplicationInstanceDetails, input, options) as async.Operation<types.DescribeApplicationInstanceDetailsOutput>
+function C:describeApplicationInstanceDetails(input: types.DescribeApplicationInstanceDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeApplicationInstanceDetailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeApplicationInstanceDetails as schema.OperationSchema, input, options) as async.Operation<types.DescribeApplicationInstanceDetailsOutput>
 end
 
-function C:describeDevice(input: types.DescribeDeviceInput, options: any): async.Operation<types.DescribeDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDevice, input, options) as async.Operation<types.DescribeDeviceOutput>
+function C:describeDevice(input: types.DescribeDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDevice as schema.OperationSchema, input, options) as async.Operation<types.DescribeDeviceOutput>
 end
 
-function C:describeDeviceJob(input: types.DescribeDeviceJobInput, options: any): async.Operation<types.DescribeDeviceJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDeviceJob, input, options) as async.Operation<types.DescribeDeviceJobOutput>
+function C:describeDeviceJob(input: types.DescribeDeviceJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDeviceJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDeviceJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeDeviceJobOutput>
 end
 
-function C:describeNode(input: types.DescribeNodeInput, options: any): async.Operation<types.DescribeNodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeNode, input, options) as async.Operation<types.DescribeNodeOutput>
+function C:describeNode(input: types.DescribeNodeInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeNodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeNode as schema.OperationSchema, input, options) as async.Operation<types.DescribeNodeOutput>
 end
 
-function C:describeNodeFromTemplateJob(input: types.DescribeNodeFromTemplateJobInput, options: any): async.Operation<types.DescribeNodeFromTemplateJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeNodeFromTemplateJob, input, options) as async.Operation<types.DescribeNodeFromTemplateJobOutput>
+function C:describeNodeFromTemplateJob(input: types.DescribeNodeFromTemplateJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeNodeFromTemplateJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeNodeFromTemplateJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeNodeFromTemplateJobOutput>
 end
 
-function C:describePackage(input: types.DescribePackageInput, options: any): async.Operation<types.DescribePackageOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePackage, input, options) as async.Operation<types.DescribePackageOutput>
+function C:describePackage(input: types.DescribePackageInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePackageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePackage as schema.OperationSchema, input, options) as async.Operation<types.DescribePackageOutput>
 end
 
-function C:describePackageImportJob(input: types.DescribePackageImportJobInput, options: any): async.Operation<types.DescribePackageImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePackageImportJob, input, options) as async.Operation<types.DescribePackageImportJobOutput>
+function C:describePackageImportJob(input: types.DescribePackageImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePackageImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePackageImportJob as schema.OperationSchema, input, options) as async.Operation<types.DescribePackageImportJobOutput>
 end
 
-function C:describePackageVersion(input: types.DescribePackageVersionInput, options: any): async.Operation<types.DescribePackageVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePackageVersion, input, options) as async.Operation<types.DescribePackageVersionOutput>
+function C:describePackageVersion(input: types.DescribePackageVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePackageVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePackageVersion as schema.OperationSchema, input, options) as async.Operation<types.DescribePackageVersionOutput>
 end
 
-function C:listApplicationInstanceDependencies(input: types.ListApplicationInstanceDependenciesInput, options: any): async.Operation<types.ListApplicationInstanceDependenciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplicationInstanceDependencies, input, options) as async.Operation<types.ListApplicationInstanceDependenciesOutput>
+function C:listApplicationInstanceDependencies(input: types.ListApplicationInstanceDependenciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationInstanceDependenciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplicationInstanceDependencies as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationInstanceDependenciesOutput>
 end
 
-function C:listApplicationInstanceNodeInstances(input: types.ListApplicationInstanceNodeInstancesInput, options: any): async.Operation<types.ListApplicationInstanceNodeInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplicationInstanceNodeInstances, input, options) as async.Operation<types.ListApplicationInstanceNodeInstancesOutput>
+function C:listApplicationInstanceNodeInstances(input: types.ListApplicationInstanceNodeInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationInstanceNodeInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplicationInstanceNodeInstances as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationInstanceNodeInstancesOutput>
 end
 
-function C:listApplicationInstances(input: types.ListApplicationInstancesInput, options: any): async.Operation<types.ListApplicationInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplicationInstances, input, options) as async.Operation<types.ListApplicationInstancesOutput>
+function C:listApplicationInstances(input: types.ListApplicationInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplicationInstances as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationInstancesOutput>
 end
 
-function C:listDevices(input: types.ListDevicesInput, options: any): async.Operation<types.ListDevicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDevices, input, options) as async.Operation<types.ListDevicesOutput>
+function C:listDevices(input: types.ListDevicesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDevicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDevices as schema.OperationSchema, input, options) as async.Operation<types.ListDevicesOutput>
 end
 
-function C:listDevicesJobs(input: types.ListDevicesJobsInput, options: any): async.Operation<types.ListDevicesJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDevicesJobs, input, options) as async.Operation<types.ListDevicesJobsOutput>
+function C:listDevicesJobs(input: types.ListDevicesJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDevicesJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDevicesJobs as schema.OperationSchema, input, options) as async.Operation<types.ListDevicesJobsOutput>
 end
 
-function C:listNodeFromTemplateJobs(input: types.ListNodeFromTemplateJobsInput, options: any): async.Operation<types.ListNodeFromTemplateJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNodeFromTemplateJobs, input, options) as async.Operation<types.ListNodeFromTemplateJobsOutput>
+function C:listNodeFromTemplateJobs(input: types.ListNodeFromTemplateJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListNodeFromTemplateJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNodeFromTemplateJobs as schema.OperationSchema, input, options) as async.Operation<types.ListNodeFromTemplateJobsOutput>
 end
 
-function C:listNodes(input: types.ListNodesInput, options: any): async.Operation<types.ListNodesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNodes, input, options) as async.Operation<types.ListNodesOutput>
+function C:listNodes(input: types.ListNodesInput, options?: base_client.InvokeOptions): async.Operation<types.ListNodesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNodes as schema.OperationSchema, input, options) as async.Operation<types.ListNodesOutput>
 end
 
-function C:listPackageImportJobs(input: types.ListPackageImportJobsInput, options: any): async.Operation<types.ListPackageImportJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPackageImportJobs, input, options) as async.Operation<types.ListPackageImportJobsOutput>
+function C:listPackageImportJobs(input: types.ListPackageImportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPackageImportJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPackageImportJobs as schema.OperationSchema, input, options) as async.Operation<types.ListPackageImportJobsOutput>
 end
 
-function C:listPackages(input: types.ListPackagesInput, options: any): async.Operation<types.ListPackagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPackages, input, options) as async.Operation<types.ListPackagesOutput>
+function C:listPackages(input: types.ListPackagesInput, options?: base_client.InvokeOptions): async.Operation<types.ListPackagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPackages as schema.OperationSchema, input, options) as async.Operation<types.ListPackagesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:provisionDevice(input: types.ProvisionDeviceInput, options: any): async.Operation<types.ProvisionDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ProvisionDevice, input, options) as async.Operation<types.ProvisionDeviceOutput>
+function C:provisionDevice(input: types.ProvisionDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.ProvisionDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ProvisionDevice as schema.OperationSchema, input, options) as async.Operation<types.ProvisionDeviceOutput>
 end
 
-function C:registerPackageVersion(input: types.RegisterPackageVersionInput, options: any): async.Operation<types.RegisterPackageVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterPackageVersion, input, options) as async.Operation<types.RegisterPackageVersionOutput>
+function C:registerPackageVersion(input: types.RegisterPackageVersionInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterPackageVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterPackageVersion as schema.OperationSchema, input, options) as async.Operation<types.RegisterPackageVersionOutput>
 end
 
-function C:removeApplicationInstance(input: types.RemoveApplicationInstanceInput, options: any): async.Operation<types.RemoveApplicationInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveApplicationInstance, input, options) as async.Operation<types.RemoveApplicationInstanceOutput>
+function C:removeApplicationInstance(input: types.RemoveApplicationInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveApplicationInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveApplicationInstance as schema.OperationSchema, input, options) as async.Operation<types.RemoveApplicationInstanceOutput>
 end
 
-function C:signalApplicationInstanceNodeInstances(input: types.SignalApplicationInstanceNodeInstancesInput, options: any): async.Operation<types.SignalApplicationInstanceNodeInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.SignalApplicationInstanceNodeInstances, input, options) as async.Operation<types.SignalApplicationInstanceNodeInstancesOutput>
+function C:signalApplicationInstanceNodeInstances(input: types.SignalApplicationInstanceNodeInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.SignalApplicationInstanceNodeInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SignalApplicationInstanceNodeInstances as schema.OperationSchema, input, options) as async.Operation<types.SignalApplicationInstanceNodeInstancesOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateDeviceMetadata(input: types.UpdateDeviceMetadataInput, options: any): async.Operation<types.UpdateDeviceMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDeviceMetadata, input, options) as async.Operation<types.UpdateDeviceMetadataOutput>
+function C:updateDeviceMetadata(input: types.UpdateDeviceMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDeviceMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDeviceMetadata as schema.OperationSchema, input, options) as async.Operation<types.UpdateDeviceMetadataOutput>
 end
 
 return M

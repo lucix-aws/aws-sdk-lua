@@ -8,72 +8,75 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("glacier.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("glacier.schemas")
 local traits = require("smithy.traits")
 local types = require("glacier.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    abortMultipartUpload: function(Client, types.AbortMultipartUploadInput, any): async.Operation<types.AbortMultipartUploadOutput>
-    abortVaultLock: function(Client, types.AbortVaultLockInput, any): async.Operation<types.AbortVaultLockOutput>
-    addTagsToVault: function(Client, types.AddTagsToVaultInput, any): async.Operation<types.AddTagsToVaultOutput>
-    completeMultipartUpload: function(Client, types.CompleteMultipartUploadInput, any): async.Operation<types.CompleteMultipartUploadOutput>
-    completeVaultLock: function(Client, types.CompleteVaultLockInput, any): async.Operation<types.CompleteVaultLockOutput>
-    createVault: function(Client, types.CreateVaultInput, any): async.Operation<types.CreateVaultOutput>
-    deleteArchive: function(Client, types.DeleteArchiveInput, any): async.Operation<types.DeleteArchiveOutput>
-    deleteVault: function(Client, types.DeleteVaultInput, any): async.Operation<types.DeleteVaultOutput>
-    deleteVaultAccessPolicy: function(Client, types.DeleteVaultAccessPolicyInput, any): async.Operation<types.DeleteVaultAccessPolicyOutput>
-    deleteVaultNotifications: function(Client, types.DeleteVaultNotificationsInput, any): async.Operation<types.DeleteVaultNotificationsOutput>
-    describeJob: function(Client, types.DescribeJobInput, any): async.Operation<types.DescribeJobOutput>
-    describeVault: function(Client, types.DescribeVaultInput, any): async.Operation<types.DescribeVaultOperationOutput>
-    getDataRetrievalPolicy: function(Client, types.GetDataRetrievalPolicyInput, any): async.Operation<types.GetDataRetrievalPolicyOutput>
-    getJobOutput: function(Client, types.GetJobOutputInput, any): async.Operation<types.GetJobOutputOutput>
-    getVaultAccessPolicy: function(Client, types.GetVaultAccessPolicyInput, any): async.Operation<types.GetVaultAccessPolicyOutput>
-    getVaultLock: function(Client, types.GetVaultLockInput, any): async.Operation<types.GetVaultLockOutput>
-    getVaultNotifications: function(Client, types.GetVaultNotificationsInput, any): async.Operation<types.GetVaultNotificationsOutput>
-    initiateJob: function(Client, types.InitiateJobInput, any): async.Operation<types.InitiateJobOutput>
-    initiateMultipartUpload: function(Client, types.InitiateMultipartUploadInput, any): async.Operation<types.InitiateMultipartUploadOutput>
-    initiateVaultLock: function(Client, types.InitiateVaultLockInput, any): async.Operation<types.InitiateVaultLockOutput>
-    listJobs: function(Client, types.ListJobsInput, any): async.Operation<types.ListJobsOutput>
-    listMultipartUploads: function(Client, types.ListMultipartUploadsInput, any): async.Operation<types.ListMultipartUploadsOutput>
-    listParts: function(Client, types.ListPartsInput, any): async.Operation<types.ListPartsOutput>
-    listProvisionedCapacity: function(Client, types.ListProvisionedCapacityInput, any): async.Operation<types.ListProvisionedCapacityOutput>
-    listTagsForVault: function(Client, types.ListTagsForVaultInput, any): async.Operation<types.ListTagsForVaultOutput>
-    listVaults: function(Client, types.ListVaultsInput, any): async.Operation<types.ListVaultsOutput>
-    purchaseProvisionedCapacity: function(Client, types.PurchaseProvisionedCapacityInput, any): async.Operation<types.PurchaseProvisionedCapacityOutput>
-    removeTagsFromVault: function(Client, types.RemoveTagsFromVaultInput, any): async.Operation<types.RemoveTagsFromVaultOutput>
-    setDataRetrievalPolicy: function(Client, types.SetDataRetrievalPolicyInput, any): async.Operation<types.SetDataRetrievalPolicyOutput>
-    setVaultAccessPolicy: function(Client, types.SetVaultAccessPolicyInput, any): async.Operation<types.SetVaultAccessPolicyOutput>
-    setVaultNotifications: function(Client, types.SetVaultNotificationsInput, any): async.Operation<types.SetVaultNotificationsOutput>
-    uploadArchive: function(Client, types.UploadArchiveInput, any): async.Operation<types.UploadArchiveOutput>
-    uploadMultipartPart: function(Client, types.UploadMultipartPartInput, any): async.Operation<types.UploadMultipartPartOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    abortMultipartUpload: function(Client, types.AbortMultipartUploadInput, ? base_client.InvokeOptions): async.Operation<types.AbortMultipartUploadOutput>
+    abortVaultLock: function(Client, types.AbortVaultLockInput, ? base_client.InvokeOptions): async.Operation<types.AbortVaultLockOutput>
+    addTagsToVault: function(Client, types.AddTagsToVaultInput, ? base_client.InvokeOptions): async.Operation<types.AddTagsToVaultOutput>
+    completeMultipartUpload: function(Client, types.CompleteMultipartUploadInput, ? base_client.InvokeOptions): async.Operation<types.CompleteMultipartUploadOutput>
+    completeVaultLock: function(Client, types.CompleteVaultLockInput, ? base_client.InvokeOptions): async.Operation<types.CompleteVaultLockOutput>
+    createVault: function(Client, types.CreateVaultInput, ? base_client.InvokeOptions): async.Operation<types.CreateVaultOutput>
+    deleteArchive: function(Client, types.DeleteArchiveInput, ? base_client.InvokeOptions): async.Operation<types.DeleteArchiveOutput>
+    deleteVault: function(Client, types.DeleteVaultInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVaultOutput>
+    deleteVaultAccessPolicy: function(Client, types.DeleteVaultAccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVaultAccessPolicyOutput>
+    deleteVaultNotifications: function(Client, types.DeleteVaultNotificationsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVaultNotificationsOutput>
+    describeJob: function(Client, types.DescribeJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeJobOutput>
+    describeVault: function(Client, types.DescribeVaultInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVaultOperationOutput>
+    getDataRetrievalPolicy: function(Client, types.GetDataRetrievalPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetDataRetrievalPolicyOutput>
+    getJobOutput: function(Client, types.GetJobOutputInput, ? base_client.InvokeOptions): async.Operation<types.GetJobOutputOutput>
+    getVaultAccessPolicy: function(Client, types.GetVaultAccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetVaultAccessPolicyOutput>
+    getVaultLock: function(Client, types.GetVaultLockInput, ? base_client.InvokeOptions): async.Operation<types.GetVaultLockOutput>
+    getVaultNotifications: function(Client, types.GetVaultNotificationsInput, ? base_client.InvokeOptions): async.Operation<types.GetVaultNotificationsOutput>
+    initiateJob: function(Client, types.InitiateJobInput, ? base_client.InvokeOptions): async.Operation<types.InitiateJobOutput>
+    initiateMultipartUpload: function(Client, types.InitiateMultipartUploadInput, ? base_client.InvokeOptions): async.Operation<types.InitiateMultipartUploadOutput>
+    initiateVaultLock: function(Client, types.InitiateVaultLockInput, ? base_client.InvokeOptions): async.Operation<types.InitiateVaultLockOutput>
+    listJobs: function(Client, types.ListJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListJobsOutput>
+    listMultipartUploads: function(Client, types.ListMultipartUploadsInput, ? base_client.InvokeOptions): async.Operation<types.ListMultipartUploadsOutput>
+    listParts: function(Client, types.ListPartsInput, ? base_client.InvokeOptions): async.Operation<types.ListPartsOutput>
+    listProvisionedCapacity: function(Client, types.ListProvisionedCapacityInput, ? base_client.InvokeOptions): async.Operation<types.ListProvisionedCapacityOutput>
+    listTagsForVault: function(Client, types.ListTagsForVaultInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForVaultOutput>
+    listVaults: function(Client, types.ListVaultsInput, ? base_client.InvokeOptions): async.Operation<types.ListVaultsOutput>
+    purchaseProvisionedCapacity: function(Client, types.PurchaseProvisionedCapacityInput, ? base_client.InvokeOptions): async.Operation<types.PurchaseProvisionedCapacityOutput>
+    removeTagsFromVault: function(Client, types.RemoveTagsFromVaultInput, ? base_client.InvokeOptions): async.Operation<types.RemoveTagsFromVaultOutput>
+    setDataRetrievalPolicy: function(Client, types.SetDataRetrievalPolicyInput, ? base_client.InvokeOptions): async.Operation<types.SetDataRetrievalPolicyOutput>
+    setVaultAccessPolicy: function(Client, types.SetVaultAccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.SetVaultAccessPolicyOutput>
+    setVaultNotifications: function(Client, types.SetVaultNotificationsInput, ? base_client.InvokeOptions): async.Operation<types.SetVaultNotificationsOutput>
+    uploadArchive: function(Client, types.UploadArchiveInput, ? base_client.InvokeOptions): async.Operation<types.UploadArchiveOutput>
+    uploadMultipartPart: function(Client, types.UploadMultipartPartInput, ? base_client.InvokeOptions): async.Operation<types.UploadMultipartPartOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "Glacier"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "glacier", signing_region = c.region } }
                 else
@@ -92,136 +95,136 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:abortMultipartUpload(input: types.AbortMultipartUploadInput, options: any): async.Operation<types.AbortMultipartUploadOutput>
-    return self:invokeOperation(schemas.Service, schemas.AbortMultipartUpload, input, options) as async.Operation<types.AbortMultipartUploadOutput>
+function C:abortMultipartUpload(input: types.AbortMultipartUploadInput, options?: base_client.InvokeOptions): async.Operation<types.AbortMultipartUploadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AbortMultipartUpload as schema.OperationSchema, input, options) as async.Operation<types.AbortMultipartUploadOutput>
 end
 
-function C:abortVaultLock(input: types.AbortVaultLockInput, options: any): async.Operation<types.AbortVaultLockOutput>
-    return self:invokeOperation(schemas.Service, schemas.AbortVaultLock, input, options) as async.Operation<types.AbortVaultLockOutput>
+function C:abortVaultLock(input: types.AbortVaultLockInput, options?: base_client.InvokeOptions): async.Operation<types.AbortVaultLockOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AbortVaultLock as schema.OperationSchema, input, options) as async.Operation<types.AbortVaultLockOutput>
 end
 
-function C:addTagsToVault(input: types.AddTagsToVaultInput, options: any): async.Operation<types.AddTagsToVaultOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddTagsToVault, input, options) as async.Operation<types.AddTagsToVaultOutput>
+function C:addTagsToVault(input: types.AddTagsToVaultInput, options?: base_client.InvokeOptions): async.Operation<types.AddTagsToVaultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddTagsToVault as schema.OperationSchema, input, options) as async.Operation<types.AddTagsToVaultOutput>
 end
 
-function C:completeMultipartUpload(input: types.CompleteMultipartUploadInput, options: any): async.Operation<types.CompleteMultipartUploadOutput>
-    return self:invokeOperation(schemas.Service, schemas.CompleteMultipartUpload, input, options) as async.Operation<types.CompleteMultipartUploadOutput>
+function C:completeMultipartUpload(input: types.CompleteMultipartUploadInput, options?: base_client.InvokeOptions): async.Operation<types.CompleteMultipartUploadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CompleteMultipartUpload as schema.OperationSchema, input, options) as async.Operation<types.CompleteMultipartUploadOutput>
 end
 
-function C:completeVaultLock(input: types.CompleteVaultLockInput, options: any): async.Operation<types.CompleteVaultLockOutput>
-    return self:invokeOperation(schemas.Service, schemas.CompleteVaultLock, input, options) as async.Operation<types.CompleteVaultLockOutput>
+function C:completeVaultLock(input: types.CompleteVaultLockInput, options?: base_client.InvokeOptions): async.Operation<types.CompleteVaultLockOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CompleteVaultLock as schema.OperationSchema, input, options) as async.Operation<types.CompleteVaultLockOutput>
 end
 
-function C:createVault(input: types.CreateVaultInput, options: any): async.Operation<types.CreateVaultOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVault, input, options) as async.Operation<types.CreateVaultOutput>
+function C:createVault(input: types.CreateVaultInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVaultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVault as schema.OperationSchema, input, options) as async.Operation<types.CreateVaultOutput>
 end
 
-function C:deleteArchive(input: types.DeleteArchiveInput, options: any): async.Operation<types.DeleteArchiveOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteArchive, input, options) as async.Operation<types.DeleteArchiveOutput>
+function C:deleteArchive(input: types.DeleteArchiveInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteArchiveOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteArchive as schema.OperationSchema, input, options) as async.Operation<types.DeleteArchiveOutput>
 end
 
-function C:deleteVault(input: types.DeleteVaultInput, options: any): async.Operation<types.DeleteVaultOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVault, input, options) as async.Operation<types.DeleteVaultOutput>
+function C:deleteVault(input: types.DeleteVaultInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVaultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVault as schema.OperationSchema, input, options) as async.Operation<types.DeleteVaultOutput>
 end
 
-function C:deleteVaultAccessPolicy(input: types.DeleteVaultAccessPolicyInput, options: any): async.Operation<types.DeleteVaultAccessPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVaultAccessPolicy, input, options) as async.Operation<types.DeleteVaultAccessPolicyOutput>
+function C:deleteVaultAccessPolicy(input: types.DeleteVaultAccessPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVaultAccessPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVaultAccessPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteVaultAccessPolicyOutput>
 end
 
-function C:deleteVaultNotifications(input: types.DeleteVaultNotificationsInput, options: any): async.Operation<types.DeleteVaultNotificationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVaultNotifications, input, options) as async.Operation<types.DeleteVaultNotificationsOutput>
+function C:deleteVaultNotifications(input: types.DeleteVaultNotificationsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVaultNotificationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVaultNotifications as schema.OperationSchema, input, options) as async.Operation<types.DeleteVaultNotificationsOutput>
 end
 
-function C:describeJob(input: types.DescribeJobInput, options: any): async.Operation<types.DescribeJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeJob, input, options) as async.Operation<types.DescribeJobOutput>
+function C:describeJob(input: types.DescribeJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeJobOutput>
 end
 
-function C:describeVault(input: types.DescribeVaultInput, options: any): async.Operation<types.DescribeVaultOperationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVault, input, options) as async.Operation<types.DescribeVaultOperationOutput>
+function C:describeVault(input: types.DescribeVaultInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVaultOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVault as schema.OperationSchema, input, options) as async.Operation<types.DescribeVaultOperationOutput>
 end
 
-function C:getDataRetrievalPolicy(input: types.GetDataRetrievalPolicyInput, options: any): async.Operation<types.GetDataRetrievalPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataRetrievalPolicy, input, options) as async.Operation<types.GetDataRetrievalPolicyOutput>
+function C:getDataRetrievalPolicy(input: types.GetDataRetrievalPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataRetrievalPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataRetrievalPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetDataRetrievalPolicyOutput>
 end
 
-function C:getJobOutput(input: types.GetJobOutputInput, options: any): async.Operation<types.GetJobOutputOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetJobOutput, input, options) as async.Operation<types.GetJobOutputOutput>
+function C:getJobOutput(input: types.GetJobOutputInput, options?: base_client.InvokeOptions): async.Operation<types.GetJobOutputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetJobOutput as schema.OperationSchema, input, options) as async.Operation<types.GetJobOutputOutput>
 end
 
-function C:getVaultAccessPolicy(input: types.GetVaultAccessPolicyInput, options: any): async.Operation<types.GetVaultAccessPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetVaultAccessPolicy, input, options) as async.Operation<types.GetVaultAccessPolicyOutput>
+function C:getVaultAccessPolicy(input: types.GetVaultAccessPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetVaultAccessPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVaultAccessPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetVaultAccessPolicyOutput>
 end
 
-function C:getVaultLock(input: types.GetVaultLockInput, options: any): async.Operation<types.GetVaultLockOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetVaultLock, input, options) as async.Operation<types.GetVaultLockOutput>
+function C:getVaultLock(input: types.GetVaultLockInput, options?: base_client.InvokeOptions): async.Operation<types.GetVaultLockOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVaultLock as schema.OperationSchema, input, options) as async.Operation<types.GetVaultLockOutput>
 end
 
-function C:getVaultNotifications(input: types.GetVaultNotificationsInput, options: any): async.Operation<types.GetVaultNotificationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetVaultNotifications, input, options) as async.Operation<types.GetVaultNotificationsOutput>
+function C:getVaultNotifications(input: types.GetVaultNotificationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetVaultNotificationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVaultNotifications as schema.OperationSchema, input, options) as async.Operation<types.GetVaultNotificationsOutput>
 end
 
-function C:initiateJob(input: types.InitiateJobInput, options: any): async.Operation<types.InitiateJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.InitiateJob, input, options) as async.Operation<types.InitiateJobOutput>
+function C:initiateJob(input: types.InitiateJobInput, options?: base_client.InvokeOptions): async.Operation<types.InitiateJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InitiateJob as schema.OperationSchema, input, options) as async.Operation<types.InitiateJobOutput>
 end
 
-function C:initiateMultipartUpload(input: types.InitiateMultipartUploadInput, options: any): async.Operation<types.InitiateMultipartUploadOutput>
-    return self:invokeOperation(schemas.Service, schemas.InitiateMultipartUpload, input, options) as async.Operation<types.InitiateMultipartUploadOutput>
+function C:initiateMultipartUpload(input: types.InitiateMultipartUploadInput, options?: base_client.InvokeOptions): async.Operation<types.InitiateMultipartUploadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InitiateMultipartUpload as schema.OperationSchema, input, options) as async.Operation<types.InitiateMultipartUploadOutput>
 end
 
-function C:initiateVaultLock(input: types.InitiateVaultLockInput, options: any): async.Operation<types.InitiateVaultLockOutput>
-    return self:invokeOperation(schemas.Service, schemas.InitiateVaultLock, input, options) as async.Operation<types.InitiateVaultLockOutput>
+function C:initiateVaultLock(input: types.InitiateVaultLockInput, options?: base_client.InvokeOptions): async.Operation<types.InitiateVaultLockOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InitiateVaultLock as schema.OperationSchema, input, options) as async.Operation<types.InitiateVaultLockOutput>
 end
 
-function C:listJobs(input: types.ListJobsInput, options: any): async.Operation<types.ListJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListJobs, input, options) as async.Operation<types.ListJobsOutput>
+function C:listJobs(input: types.ListJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListJobs as schema.OperationSchema, input, options) as async.Operation<types.ListJobsOutput>
 end
 
-function C:listMultipartUploads(input: types.ListMultipartUploadsInput, options: any): async.Operation<types.ListMultipartUploadsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMultipartUploads, input, options) as async.Operation<types.ListMultipartUploadsOutput>
+function C:listMultipartUploads(input: types.ListMultipartUploadsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMultipartUploadsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMultipartUploads as schema.OperationSchema, input, options) as async.Operation<types.ListMultipartUploadsOutput>
 end
 
-function C:listParts(input: types.ListPartsInput, options: any): async.Operation<types.ListPartsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListParts, input, options) as async.Operation<types.ListPartsOutput>
+function C:listParts(input: types.ListPartsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPartsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListParts as schema.OperationSchema, input, options) as async.Operation<types.ListPartsOutput>
 end
 
-function C:listProvisionedCapacity(input: types.ListProvisionedCapacityInput, options: any): async.Operation<types.ListProvisionedCapacityOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProvisionedCapacity, input, options) as async.Operation<types.ListProvisionedCapacityOutput>
+function C:listProvisionedCapacity(input: types.ListProvisionedCapacityInput, options?: base_client.InvokeOptions): async.Operation<types.ListProvisionedCapacityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProvisionedCapacity as schema.OperationSchema, input, options) as async.Operation<types.ListProvisionedCapacityOutput>
 end
 
-function C:listTagsForVault(input: types.ListTagsForVaultInput, options: any): async.Operation<types.ListTagsForVaultOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForVault, input, options) as async.Operation<types.ListTagsForVaultOutput>
+function C:listTagsForVault(input: types.ListTagsForVaultInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForVaultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForVault as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForVaultOutput>
 end
 
-function C:listVaults(input: types.ListVaultsInput, options: any): async.Operation<types.ListVaultsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVaults, input, options) as async.Operation<types.ListVaultsOutput>
+function C:listVaults(input: types.ListVaultsInput, options?: base_client.InvokeOptions): async.Operation<types.ListVaultsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVaults as schema.OperationSchema, input, options) as async.Operation<types.ListVaultsOutput>
 end
 
-function C:purchaseProvisionedCapacity(input: types.PurchaseProvisionedCapacityInput, options: any): async.Operation<types.PurchaseProvisionedCapacityOutput>
-    return self:invokeOperation(schemas.Service, schemas.PurchaseProvisionedCapacity, input, options) as async.Operation<types.PurchaseProvisionedCapacityOutput>
+function C:purchaseProvisionedCapacity(input: types.PurchaseProvisionedCapacityInput, options?: base_client.InvokeOptions): async.Operation<types.PurchaseProvisionedCapacityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PurchaseProvisionedCapacity as schema.OperationSchema, input, options) as async.Operation<types.PurchaseProvisionedCapacityOutput>
 end
 
-function C:removeTagsFromVault(input: types.RemoveTagsFromVaultInput, options: any): async.Operation<types.RemoveTagsFromVaultOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveTagsFromVault, input, options) as async.Operation<types.RemoveTagsFromVaultOutput>
+function C:removeTagsFromVault(input: types.RemoveTagsFromVaultInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveTagsFromVaultOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveTagsFromVault as schema.OperationSchema, input, options) as async.Operation<types.RemoveTagsFromVaultOutput>
 end
 
-function C:setDataRetrievalPolicy(input: types.SetDataRetrievalPolicyInput, options: any): async.Operation<types.SetDataRetrievalPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetDataRetrievalPolicy, input, options) as async.Operation<types.SetDataRetrievalPolicyOutput>
+function C:setDataRetrievalPolicy(input: types.SetDataRetrievalPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.SetDataRetrievalPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetDataRetrievalPolicy as schema.OperationSchema, input, options) as async.Operation<types.SetDataRetrievalPolicyOutput>
 end
 
-function C:setVaultAccessPolicy(input: types.SetVaultAccessPolicyInput, options: any): async.Operation<types.SetVaultAccessPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetVaultAccessPolicy, input, options) as async.Operation<types.SetVaultAccessPolicyOutput>
+function C:setVaultAccessPolicy(input: types.SetVaultAccessPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.SetVaultAccessPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetVaultAccessPolicy as schema.OperationSchema, input, options) as async.Operation<types.SetVaultAccessPolicyOutput>
 end
 
-function C:setVaultNotifications(input: types.SetVaultNotificationsInput, options: any): async.Operation<types.SetVaultNotificationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetVaultNotifications, input, options) as async.Operation<types.SetVaultNotificationsOutput>
+function C:setVaultNotifications(input: types.SetVaultNotificationsInput, options?: base_client.InvokeOptions): async.Operation<types.SetVaultNotificationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetVaultNotifications as schema.OperationSchema, input, options) as async.Operation<types.SetVaultNotificationsOutput>
 end
 
-function C:uploadArchive(input: types.UploadArchiveInput, options: any): async.Operation<types.UploadArchiveOutput>
-    return self:invokeOperation(schemas.Service, schemas.UploadArchive, input, options) as async.Operation<types.UploadArchiveOutput>
+function C:uploadArchive(input: types.UploadArchiveInput, options?: base_client.InvokeOptions): async.Operation<types.UploadArchiveOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UploadArchive as schema.OperationSchema, input, options) as async.Operation<types.UploadArchiveOutput>
 end
 
-function C:uploadMultipartPart(input: types.UploadMultipartPartInput, options: any): async.Operation<types.UploadMultipartPartOutput>
-    return self:invokeOperation(schemas.Service, schemas.UploadMultipartPart, input, options) as async.Operation<types.UploadMultipartPartOutput>
+function C:uploadMultipartPart(input: types.UploadMultipartPartInput, options?: base_client.InvokeOptions): async.Operation<types.UploadMultipartPartOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UploadMultipartPart as schema.OperationSchema, input, options) as async.Operation<types.UploadMultipartPartOutput>
 end
 
 return M

@@ -8,53 +8,56 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("iotdeviceadvisor.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("iotdeviceadvisor.schemas")
 local traits = require("smithy.traits")
 local types = require("iotdeviceadvisor.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createSuiteDefinition: function(Client, types.CreateSuiteDefinitionInput, any): async.Operation<types.CreateSuiteDefinitionOutput>
-    deleteSuiteDefinition: function(Client, types.DeleteSuiteDefinitionInput, any): async.Operation<types.DeleteSuiteDefinitionOutput>
-    getEndpoint: function(Client, types.GetEndpointInput, any): async.Operation<types.GetEndpointOutput>
-    getSuiteDefinition: function(Client, types.GetSuiteDefinitionInput, any): async.Operation<types.GetSuiteDefinitionOutput>
-    getSuiteRun: function(Client, types.GetSuiteRunInput, any): async.Operation<types.GetSuiteRunOutput>
-    getSuiteRunReport: function(Client, types.GetSuiteRunReportInput, any): async.Operation<types.GetSuiteRunReportOutput>
-    listSuiteDefinitions: function(Client, types.ListSuiteDefinitionsInput, any): async.Operation<types.ListSuiteDefinitionsOutput>
-    listSuiteRuns: function(Client, types.ListSuiteRunsInput, any): async.Operation<types.ListSuiteRunsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    startSuiteRun: function(Client, types.StartSuiteRunInput, any): async.Operation<types.StartSuiteRunOutput>
-    stopSuiteRun: function(Client, types.StopSuiteRunInput, any): async.Operation<types.StopSuiteRunOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateSuiteDefinition: function(Client, types.UpdateSuiteDefinitionInput, any): async.Operation<types.UpdateSuiteDefinitionOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createSuiteDefinition: function(Client, types.CreateSuiteDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.CreateSuiteDefinitionOutput>
+    deleteSuiteDefinition: function(Client, types.DeleteSuiteDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSuiteDefinitionOutput>
+    getEndpoint: function(Client, types.GetEndpointInput, ? base_client.InvokeOptions): async.Operation<types.GetEndpointOutput>
+    getSuiteDefinition: function(Client, types.GetSuiteDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.GetSuiteDefinitionOutput>
+    getSuiteRun: function(Client, types.GetSuiteRunInput, ? base_client.InvokeOptions): async.Operation<types.GetSuiteRunOutput>
+    getSuiteRunReport: function(Client, types.GetSuiteRunReportInput, ? base_client.InvokeOptions): async.Operation<types.GetSuiteRunReportOutput>
+    listSuiteDefinitions: function(Client, types.ListSuiteDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.ListSuiteDefinitionsOutput>
+    listSuiteRuns: function(Client, types.ListSuiteRunsInput, ? base_client.InvokeOptions): async.Operation<types.ListSuiteRunsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    startSuiteRun: function(Client, types.StartSuiteRunInput, ? base_client.InvokeOptions): async.Operation<types.StartSuiteRunOutput>
+    stopSuiteRun: function(Client, types.StopSuiteRunInput, ? base_client.InvokeOptions): async.Operation<types.StopSuiteRunOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateSuiteDefinition: function(Client, types.UpdateSuiteDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSuiteDefinitionOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "IotSenateService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "iotdeviceadvisor", signing_region = c.region } }
                 else
@@ -73,60 +76,60 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createSuiteDefinition(input: types.CreateSuiteDefinitionInput, options: any): async.Operation<types.CreateSuiteDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSuiteDefinition, input, options) as async.Operation<types.CreateSuiteDefinitionOutput>
+function C:createSuiteDefinition(input: types.CreateSuiteDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSuiteDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSuiteDefinition as schema.OperationSchema, input, options) as async.Operation<types.CreateSuiteDefinitionOutput>
 end
 
-function C:deleteSuiteDefinition(input: types.DeleteSuiteDefinitionInput, options: any): async.Operation<types.DeleteSuiteDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSuiteDefinition, input, options) as async.Operation<types.DeleteSuiteDefinitionOutput>
+function C:deleteSuiteDefinition(input: types.DeleteSuiteDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSuiteDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSuiteDefinition as schema.OperationSchema, input, options) as async.Operation<types.DeleteSuiteDefinitionOutput>
 end
 
-function C:getEndpoint(input: types.GetEndpointInput, options: any): async.Operation<types.GetEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEndpoint, input, options) as async.Operation<types.GetEndpointOutput>
+function C:getEndpoint(input: types.GetEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.GetEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEndpoint as schema.OperationSchema, input, options) as async.Operation<types.GetEndpointOutput>
 end
 
-function C:getSuiteDefinition(input: types.GetSuiteDefinitionInput, options: any): async.Operation<types.GetSuiteDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSuiteDefinition, input, options) as async.Operation<types.GetSuiteDefinitionOutput>
+function C:getSuiteDefinition(input: types.GetSuiteDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.GetSuiteDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSuiteDefinition as schema.OperationSchema, input, options) as async.Operation<types.GetSuiteDefinitionOutput>
 end
 
-function C:getSuiteRun(input: types.GetSuiteRunInput, options: any): async.Operation<types.GetSuiteRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSuiteRun, input, options) as async.Operation<types.GetSuiteRunOutput>
+function C:getSuiteRun(input: types.GetSuiteRunInput, options?: base_client.InvokeOptions): async.Operation<types.GetSuiteRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSuiteRun as schema.OperationSchema, input, options) as async.Operation<types.GetSuiteRunOutput>
 end
 
-function C:getSuiteRunReport(input: types.GetSuiteRunReportInput, options: any): async.Operation<types.GetSuiteRunReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSuiteRunReport, input, options) as async.Operation<types.GetSuiteRunReportOutput>
+function C:getSuiteRunReport(input: types.GetSuiteRunReportInput, options?: base_client.InvokeOptions): async.Operation<types.GetSuiteRunReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSuiteRunReport as schema.OperationSchema, input, options) as async.Operation<types.GetSuiteRunReportOutput>
 end
 
-function C:listSuiteDefinitions(input: types.ListSuiteDefinitionsInput, options: any): async.Operation<types.ListSuiteDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSuiteDefinitions, input, options) as async.Operation<types.ListSuiteDefinitionsOutput>
+function C:listSuiteDefinitions(input: types.ListSuiteDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSuiteDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSuiteDefinitions as schema.OperationSchema, input, options) as async.Operation<types.ListSuiteDefinitionsOutput>
 end
 
-function C:listSuiteRuns(input: types.ListSuiteRunsInput, options: any): async.Operation<types.ListSuiteRunsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSuiteRuns, input, options) as async.Operation<types.ListSuiteRunsOutput>
+function C:listSuiteRuns(input: types.ListSuiteRunsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSuiteRunsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSuiteRuns as schema.OperationSchema, input, options) as async.Operation<types.ListSuiteRunsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:startSuiteRun(input: types.StartSuiteRunInput, options: any): async.Operation<types.StartSuiteRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartSuiteRun, input, options) as async.Operation<types.StartSuiteRunOutput>
+function C:startSuiteRun(input: types.StartSuiteRunInput, options?: base_client.InvokeOptions): async.Operation<types.StartSuiteRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartSuiteRun as schema.OperationSchema, input, options) as async.Operation<types.StartSuiteRunOutput>
 end
 
-function C:stopSuiteRun(input: types.StopSuiteRunInput, options: any): async.Operation<types.StopSuiteRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopSuiteRun, input, options) as async.Operation<types.StopSuiteRunOutput>
+function C:stopSuiteRun(input: types.StopSuiteRunInput, options?: base_client.InvokeOptions): async.Operation<types.StopSuiteRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopSuiteRun as schema.OperationSchema, input, options) as async.Operation<types.StopSuiteRunOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateSuiteDefinition(input: types.UpdateSuiteDefinitionInput, options: any): async.Operation<types.UpdateSuiteDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSuiteDefinition, input, options) as async.Operation<types.UpdateSuiteDefinitionOutput>
+function C:updateSuiteDefinition(input: types.UpdateSuiteDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSuiteDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSuiteDefinition as schema.OperationSchema, input, options) as async.Operation<types.UpdateSuiteDefinitionOutput>
 end
 
 return M

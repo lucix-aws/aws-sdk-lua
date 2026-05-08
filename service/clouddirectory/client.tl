@@ -8,105 +8,108 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("clouddirectory.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("clouddirectory.schemas")
 local traits = require("smithy.traits")
 local types = require("clouddirectory.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    addFacetToObject: function(Client, types.AddFacetToObjectInput, any): async.Operation<types.AddFacetToObjectOutput>
-    applySchema: function(Client, types.ApplySchemaInput, any): async.Operation<types.ApplySchemaOutput>
-    attachObject: function(Client, types.AttachObjectInput, any): async.Operation<types.AttachObjectOutput>
-    attachPolicy: function(Client, types.AttachPolicyInput, any): async.Operation<types.AttachPolicyOutput>
-    attachToIndex: function(Client, types.AttachToIndexInput, any): async.Operation<types.AttachToIndexOutput>
-    attachTypedLink: function(Client, types.AttachTypedLinkInput, any): async.Operation<types.AttachTypedLinkOutput>
-    batchRead: function(Client, types.BatchReadInput, any): async.Operation<types.BatchReadOutput>
-    batchWrite: function(Client, types.BatchWriteInput, any): async.Operation<types.BatchWriteOutput>
-    createDirectory: function(Client, types.CreateDirectoryInput, any): async.Operation<types.CreateDirectoryOutput>
-    createFacet: function(Client, types.CreateFacetInput, any): async.Operation<types.CreateFacetOutput>
-    createIndex: function(Client, types.CreateIndexInput, any): async.Operation<types.CreateIndexOutput>
-    createObject: function(Client, types.CreateObjectInput, any): async.Operation<types.CreateObjectOutput>
-    createSchema: function(Client, types.CreateSchemaInput, any): async.Operation<types.CreateSchemaOutput>
-    createTypedLinkFacet: function(Client, types.CreateTypedLinkFacetInput, any): async.Operation<types.CreateTypedLinkFacetOutput>
-    deleteDirectory: function(Client, types.DeleteDirectoryInput, any): async.Operation<types.DeleteDirectoryOutput>
-    deleteFacet: function(Client, types.DeleteFacetInput, any): async.Operation<types.DeleteFacetOutput>
-    deleteObject: function(Client, types.DeleteObjectInput, any): async.Operation<types.DeleteObjectOutput>
-    deleteSchema: function(Client, types.DeleteSchemaInput, any): async.Operation<types.DeleteSchemaOutput>
-    deleteTypedLinkFacet: function(Client, types.DeleteTypedLinkFacetInput, any): async.Operation<types.DeleteTypedLinkFacetOutput>
-    detachFromIndex: function(Client, types.DetachFromIndexInput, any): async.Operation<types.DetachFromIndexOutput>
-    detachObject: function(Client, types.DetachObjectInput, any): async.Operation<types.DetachObjectOutput>
-    detachPolicy: function(Client, types.DetachPolicyInput, any): async.Operation<types.DetachPolicyOutput>
-    detachTypedLink: function(Client, types.DetachTypedLinkInput, any): async.Operation<types.DetachTypedLinkOutput>
-    disableDirectory: function(Client, types.DisableDirectoryInput, any): async.Operation<types.DisableDirectoryOutput>
-    enableDirectory: function(Client, types.EnableDirectoryInput, any): async.Operation<types.EnableDirectoryOutput>
-    getAppliedSchemaVersion: function(Client, types.GetAppliedSchemaVersionInput, any): async.Operation<types.GetAppliedSchemaVersionOutput>
-    getDirectory: function(Client, types.GetDirectoryInput, any): async.Operation<types.GetDirectoryOutput>
-    getFacet: function(Client, types.GetFacetInput, any): async.Operation<types.GetFacetOutput>
-    getLinkAttributes: function(Client, types.GetLinkAttributesInput, any): async.Operation<types.GetLinkAttributesOutput>
-    getObjectAttributes: function(Client, types.GetObjectAttributesInput, any): async.Operation<types.GetObjectAttributesOutput>
-    getObjectInformation: function(Client, types.GetObjectInformationInput, any): async.Operation<types.GetObjectInformationOutput>
-    getSchemaAsJson: function(Client, types.GetSchemaAsJsonInput, any): async.Operation<types.GetSchemaAsJsonOutput>
-    getTypedLinkFacetInformation: function(Client, types.GetTypedLinkFacetInformationInput, any): async.Operation<types.GetTypedLinkFacetInformationOutput>
-    listAppliedSchemaArns: function(Client, types.ListAppliedSchemaArnsInput, any): async.Operation<types.ListAppliedSchemaArnsOutput>
-    listAttachedIndices: function(Client, types.ListAttachedIndicesInput, any): async.Operation<types.ListAttachedIndicesOutput>
-    listDevelopmentSchemaArns: function(Client, types.ListDevelopmentSchemaArnsInput, any): async.Operation<types.ListDevelopmentSchemaArnsOutput>
-    listDirectories: function(Client, types.ListDirectoriesInput, any): async.Operation<types.ListDirectoriesOutput>
-    listFacetAttributes: function(Client, types.ListFacetAttributesInput, any): async.Operation<types.ListFacetAttributesOutput>
-    listFacetNames: function(Client, types.ListFacetNamesInput, any): async.Operation<types.ListFacetNamesOutput>
-    listIncomingTypedLinks: function(Client, types.ListIncomingTypedLinksInput, any): async.Operation<types.ListIncomingTypedLinksOutput>
-    listIndex: function(Client, types.ListIndexInput, any): async.Operation<types.ListIndexOutput>
-    listManagedSchemaArns: function(Client, types.ListManagedSchemaArnsInput, any): async.Operation<types.ListManagedSchemaArnsOutput>
-    listObjectAttributes: function(Client, types.ListObjectAttributesInput, any): async.Operation<types.ListObjectAttributesOutput>
-    listObjectChildren: function(Client, types.ListObjectChildrenInput, any): async.Operation<types.ListObjectChildrenOutput>
-    listObjectParentPaths: function(Client, types.ListObjectParentPathsInput, any): async.Operation<types.ListObjectParentPathsOutput>
-    listObjectParents: function(Client, types.ListObjectParentsInput, any): async.Operation<types.ListObjectParentsOutput>
-    listObjectPolicies: function(Client, types.ListObjectPoliciesInput, any): async.Operation<types.ListObjectPoliciesOutput>
-    listOutgoingTypedLinks: function(Client, types.ListOutgoingTypedLinksInput, any): async.Operation<types.ListOutgoingTypedLinksOutput>
-    listPolicyAttachments: function(Client, types.ListPolicyAttachmentsInput, any): async.Operation<types.ListPolicyAttachmentsOutput>
-    listPublishedSchemaArns: function(Client, types.ListPublishedSchemaArnsInput, any): async.Operation<types.ListPublishedSchemaArnsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTypedLinkFacetAttributes: function(Client, types.ListTypedLinkFacetAttributesInput, any): async.Operation<types.ListTypedLinkFacetAttributesOutput>
-    listTypedLinkFacetNames: function(Client, types.ListTypedLinkFacetNamesInput, any): async.Operation<types.ListTypedLinkFacetNamesOutput>
-    lookupPolicy: function(Client, types.LookupPolicyInput, any): async.Operation<types.LookupPolicyOutput>
-    publishSchema: function(Client, types.PublishSchemaInput, any): async.Operation<types.PublishSchemaOutput>
-    putSchemaFromJson: function(Client, types.PutSchemaFromJsonInput, any): async.Operation<types.PutSchemaFromJsonOutput>
-    removeFacetFromObject: function(Client, types.RemoveFacetFromObjectInput, any): async.Operation<types.RemoveFacetFromObjectOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateFacet: function(Client, types.UpdateFacetInput, any): async.Operation<types.UpdateFacetOutput>
-    updateLinkAttributes: function(Client, types.UpdateLinkAttributesInput, any): async.Operation<types.UpdateLinkAttributesOutput>
-    updateObjectAttributes: function(Client, types.UpdateObjectAttributesInput, any): async.Operation<types.UpdateObjectAttributesOutput>
-    updateSchema: function(Client, types.UpdateSchemaInput, any): async.Operation<types.UpdateSchemaOutput>
-    updateTypedLinkFacet: function(Client, types.UpdateTypedLinkFacetInput, any): async.Operation<types.UpdateTypedLinkFacetOutput>
-    upgradeAppliedSchema: function(Client, types.UpgradeAppliedSchemaInput, any): async.Operation<types.UpgradeAppliedSchemaOutput>
-    upgradePublishedSchema: function(Client, types.UpgradePublishedSchemaInput, any): async.Operation<types.UpgradePublishedSchemaOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    addFacetToObject: function(Client, types.AddFacetToObjectInput, ? base_client.InvokeOptions): async.Operation<types.AddFacetToObjectOutput>
+    applySchema: function(Client, types.ApplySchemaInput, ? base_client.InvokeOptions): async.Operation<types.ApplySchemaOutput>
+    attachObject: function(Client, types.AttachObjectInput, ? base_client.InvokeOptions): async.Operation<types.AttachObjectOutput>
+    attachPolicy: function(Client, types.AttachPolicyInput, ? base_client.InvokeOptions): async.Operation<types.AttachPolicyOutput>
+    attachToIndex: function(Client, types.AttachToIndexInput, ? base_client.InvokeOptions): async.Operation<types.AttachToIndexOutput>
+    attachTypedLink: function(Client, types.AttachTypedLinkInput, ? base_client.InvokeOptions): async.Operation<types.AttachTypedLinkOutput>
+    batchRead: function(Client, types.BatchReadInput, ? base_client.InvokeOptions): async.Operation<types.BatchReadOutput>
+    batchWrite: function(Client, types.BatchWriteInput, ? base_client.InvokeOptions): async.Operation<types.BatchWriteOutput>
+    createDirectory: function(Client, types.CreateDirectoryInput, ? base_client.InvokeOptions): async.Operation<types.CreateDirectoryOutput>
+    createFacet: function(Client, types.CreateFacetInput, ? base_client.InvokeOptions): async.Operation<types.CreateFacetOutput>
+    createIndex: function(Client, types.CreateIndexInput, ? base_client.InvokeOptions): async.Operation<types.CreateIndexOutput>
+    createObject: function(Client, types.CreateObjectInput, ? base_client.InvokeOptions): async.Operation<types.CreateObjectOutput>
+    createSchema: function(Client, types.CreateSchemaInput, ? base_client.InvokeOptions): async.Operation<types.CreateSchemaOutput>
+    createTypedLinkFacet: function(Client, types.CreateTypedLinkFacetInput, ? base_client.InvokeOptions): async.Operation<types.CreateTypedLinkFacetOutput>
+    deleteDirectory: function(Client, types.DeleteDirectoryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDirectoryOutput>
+    deleteFacet: function(Client, types.DeleteFacetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFacetOutput>
+    deleteObject: function(Client, types.DeleteObjectInput, ? base_client.InvokeOptions): async.Operation<types.DeleteObjectOutput>
+    deleteSchema: function(Client, types.DeleteSchemaInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSchemaOutput>
+    deleteTypedLinkFacet: function(Client, types.DeleteTypedLinkFacetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTypedLinkFacetOutput>
+    detachFromIndex: function(Client, types.DetachFromIndexInput, ? base_client.InvokeOptions): async.Operation<types.DetachFromIndexOutput>
+    detachObject: function(Client, types.DetachObjectInput, ? base_client.InvokeOptions): async.Operation<types.DetachObjectOutput>
+    detachPolicy: function(Client, types.DetachPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DetachPolicyOutput>
+    detachTypedLink: function(Client, types.DetachTypedLinkInput, ? base_client.InvokeOptions): async.Operation<types.DetachTypedLinkOutput>
+    disableDirectory: function(Client, types.DisableDirectoryInput, ? base_client.InvokeOptions): async.Operation<types.DisableDirectoryOutput>
+    enableDirectory: function(Client, types.EnableDirectoryInput, ? base_client.InvokeOptions): async.Operation<types.EnableDirectoryOutput>
+    getAppliedSchemaVersion: function(Client, types.GetAppliedSchemaVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetAppliedSchemaVersionOutput>
+    getDirectory: function(Client, types.GetDirectoryInput, ? base_client.InvokeOptions): async.Operation<types.GetDirectoryOutput>
+    getFacet: function(Client, types.GetFacetInput, ? base_client.InvokeOptions): async.Operation<types.GetFacetOutput>
+    getLinkAttributes: function(Client, types.GetLinkAttributesInput, ? base_client.InvokeOptions): async.Operation<types.GetLinkAttributesOutput>
+    getObjectAttributes: function(Client, types.GetObjectAttributesInput, ? base_client.InvokeOptions): async.Operation<types.GetObjectAttributesOutput>
+    getObjectInformation: function(Client, types.GetObjectInformationInput, ? base_client.InvokeOptions): async.Operation<types.GetObjectInformationOutput>
+    getSchemaAsJson: function(Client, types.GetSchemaAsJsonInput, ? base_client.InvokeOptions): async.Operation<types.GetSchemaAsJsonOutput>
+    getTypedLinkFacetInformation: function(Client, types.GetTypedLinkFacetInformationInput, ? base_client.InvokeOptions): async.Operation<types.GetTypedLinkFacetInformationOutput>
+    listAppliedSchemaArns: function(Client, types.ListAppliedSchemaArnsInput, ? base_client.InvokeOptions): async.Operation<types.ListAppliedSchemaArnsOutput>
+    listAttachedIndices: function(Client, types.ListAttachedIndicesInput, ? base_client.InvokeOptions): async.Operation<types.ListAttachedIndicesOutput>
+    listDevelopmentSchemaArns: function(Client, types.ListDevelopmentSchemaArnsInput, ? base_client.InvokeOptions): async.Operation<types.ListDevelopmentSchemaArnsOutput>
+    listDirectories: function(Client, types.ListDirectoriesInput, ? base_client.InvokeOptions): async.Operation<types.ListDirectoriesOutput>
+    listFacetAttributes: function(Client, types.ListFacetAttributesInput, ? base_client.InvokeOptions): async.Operation<types.ListFacetAttributesOutput>
+    listFacetNames: function(Client, types.ListFacetNamesInput, ? base_client.InvokeOptions): async.Operation<types.ListFacetNamesOutput>
+    listIncomingTypedLinks: function(Client, types.ListIncomingTypedLinksInput, ? base_client.InvokeOptions): async.Operation<types.ListIncomingTypedLinksOutput>
+    listIndex: function(Client, types.ListIndexInput, ? base_client.InvokeOptions): async.Operation<types.ListIndexOutput>
+    listManagedSchemaArns: function(Client, types.ListManagedSchemaArnsInput, ? base_client.InvokeOptions): async.Operation<types.ListManagedSchemaArnsOutput>
+    listObjectAttributes: function(Client, types.ListObjectAttributesInput, ? base_client.InvokeOptions): async.Operation<types.ListObjectAttributesOutput>
+    listObjectChildren: function(Client, types.ListObjectChildrenInput, ? base_client.InvokeOptions): async.Operation<types.ListObjectChildrenOutput>
+    listObjectParentPaths: function(Client, types.ListObjectParentPathsInput, ? base_client.InvokeOptions): async.Operation<types.ListObjectParentPathsOutput>
+    listObjectParents: function(Client, types.ListObjectParentsInput, ? base_client.InvokeOptions): async.Operation<types.ListObjectParentsOutput>
+    listObjectPolicies: function(Client, types.ListObjectPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListObjectPoliciesOutput>
+    listOutgoingTypedLinks: function(Client, types.ListOutgoingTypedLinksInput, ? base_client.InvokeOptions): async.Operation<types.ListOutgoingTypedLinksOutput>
+    listPolicyAttachments: function(Client, types.ListPolicyAttachmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListPolicyAttachmentsOutput>
+    listPublishedSchemaArns: function(Client, types.ListPublishedSchemaArnsInput, ? base_client.InvokeOptions): async.Operation<types.ListPublishedSchemaArnsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTypedLinkFacetAttributes: function(Client, types.ListTypedLinkFacetAttributesInput, ? base_client.InvokeOptions): async.Operation<types.ListTypedLinkFacetAttributesOutput>
+    listTypedLinkFacetNames: function(Client, types.ListTypedLinkFacetNamesInput, ? base_client.InvokeOptions): async.Operation<types.ListTypedLinkFacetNamesOutput>
+    lookupPolicy: function(Client, types.LookupPolicyInput, ? base_client.InvokeOptions): async.Operation<types.LookupPolicyOutput>
+    publishSchema: function(Client, types.PublishSchemaInput, ? base_client.InvokeOptions): async.Operation<types.PublishSchemaOutput>
+    putSchemaFromJson: function(Client, types.PutSchemaFromJsonInput, ? base_client.InvokeOptions): async.Operation<types.PutSchemaFromJsonOutput>
+    removeFacetFromObject: function(Client, types.RemoveFacetFromObjectInput, ? base_client.InvokeOptions): async.Operation<types.RemoveFacetFromObjectOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateFacet: function(Client, types.UpdateFacetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFacetOutput>
+    updateLinkAttributes: function(Client, types.UpdateLinkAttributesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLinkAttributesOutput>
+    updateObjectAttributes: function(Client, types.UpdateObjectAttributesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateObjectAttributesOutput>
+    updateSchema: function(Client, types.UpdateSchemaInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSchemaOutput>
+    updateTypedLinkFacet: function(Client, types.UpdateTypedLinkFacetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTypedLinkFacetOutput>
+    upgradeAppliedSchema: function(Client, types.UpgradeAppliedSchemaInput, ? base_client.InvokeOptions): async.Operation<types.UpgradeAppliedSchemaOutput>
+    upgradePublishedSchema: function(Client, types.UpgradePublishedSchemaInput, ? base_client.InvokeOptions): async.Operation<types.UpgradePublishedSchemaOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonCloudDirectory_20170111"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "clouddirectory", signing_region = c.region } }
                 else
@@ -125,268 +128,268 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:addFacetToObject(input: types.AddFacetToObjectInput, options: any): async.Operation<types.AddFacetToObjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddFacetToObject, input, options) as async.Operation<types.AddFacetToObjectOutput>
+function C:addFacetToObject(input: types.AddFacetToObjectInput, options?: base_client.InvokeOptions): async.Operation<types.AddFacetToObjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddFacetToObject as schema.OperationSchema, input, options) as async.Operation<types.AddFacetToObjectOutput>
 end
 
-function C:applySchema(input: types.ApplySchemaInput, options: any): async.Operation<types.ApplySchemaOutput>
-    return self:invokeOperation(schemas.Service, schemas.ApplySchema, input, options) as async.Operation<types.ApplySchemaOutput>
+function C:applySchema(input: types.ApplySchemaInput, options?: base_client.InvokeOptions): async.Operation<types.ApplySchemaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ApplySchema as schema.OperationSchema, input, options) as async.Operation<types.ApplySchemaOutput>
 end
 
-function C:attachObject(input: types.AttachObjectInput, options: any): async.Operation<types.AttachObjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachObject, input, options) as async.Operation<types.AttachObjectOutput>
+function C:attachObject(input: types.AttachObjectInput, options?: base_client.InvokeOptions): async.Operation<types.AttachObjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachObject as schema.OperationSchema, input, options) as async.Operation<types.AttachObjectOutput>
 end
 
-function C:attachPolicy(input: types.AttachPolicyInput, options: any): async.Operation<types.AttachPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachPolicy, input, options) as async.Operation<types.AttachPolicyOutput>
+function C:attachPolicy(input: types.AttachPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.AttachPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachPolicy as schema.OperationSchema, input, options) as async.Operation<types.AttachPolicyOutput>
 end
 
-function C:attachToIndex(input: types.AttachToIndexInput, options: any): async.Operation<types.AttachToIndexOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachToIndex, input, options) as async.Operation<types.AttachToIndexOutput>
+function C:attachToIndex(input: types.AttachToIndexInput, options?: base_client.InvokeOptions): async.Operation<types.AttachToIndexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachToIndex as schema.OperationSchema, input, options) as async.Operation<types.AttachToIndexOutput>
 end
 
-function C:attachTypedLink(input: types.AttachTypedLinkInput, options: any): async.Operation<types.AttachTypedLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachTypedLink, input, options) as async.Operation<types.AttachTypedLinkOutput>
+function C:attachTypedLink(input: types.AttachTypedLinkInput, options?: base_client.InvokeOptions): async.Operation<types.AttachTypedLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachTypedLink as schema.OperationSchema, input, options) as async.Operation<types.AttachTypedLinkOutput>
 end
 
-function C:batchRead(input: types.BatchReadInput, options: any): async.Operation<types.BatchReadOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchRead, input, options) as async.Operation<types.BatchReadOutput>
+function C:batchRead(input: types.BatchReadInput, options?: base_client.InvokeOptions): async.Operation<types.BatchReadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchRead as schema.OperationSchema, input, options) as async.Operation<types.BatchReadOutput>
 end
 
-function C:batchWrite(input: types.BatchWriteInput, options: any): async.Operation<types.BatchWriteOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchWrite, input, options) as async.Operation<types.BatchWriteOutput>
+function C:batchWrite(input: types.BatchWriteInput, options?: base_client.InvokeOptions): async.Operation<types.BatchWriteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchWrite as schema.OperationSchema, input, options) as async.Operation<types.BatchWriteOutput>
 end
 
-function C:createDirectory(input: types.CreateDirectoryInput, options: any): async.Operation<types.CreateDirectoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDirectory, input, options) as async.Operation<types.CreateDirectoryOutput>
+function C:createDirectory(input: types.CreateDirectoryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDirectoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDirectory as schema.OperationSchema, input, options) as async.Operation<types.CreateDirectoryOutput>
 end
 
-function C:createFacet(input: types.CreateFacetInput, options: any): async.Operation<types.CreateFacetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFacet, input, options) as async.Operation<types.CreateFacetOutput>
+function C:createFacet(input: types.CreateFacetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFacetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFacet as schema.OperationSchema, input, options) as async.Operation<types.CreateFacetOutput>
 end
 
-function C:createIndex(input: types.CreateIndexInput, options: any): async.Operation<types.CreateIndexOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIndex, input, options) as async.Operation<types.CreateIndexOutput>
+function C:createIndex(input: types.CreateIndexInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIndexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIndex as schema.OperationSchema, input, options) as async.Operation<types.CreateIndexOutput>
 end
 
-function C:createObject(input: types.CreateObjectInput, options: any): async.Operation<types.CreateObjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateObject, input, options) as async.Operation<types.CreateObjectOutput>
+function C:createObject(input: types.CreateObjectInput, options?: base_client.InvokeOptions): async.Operation<types.CreateObjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateObject as schema.OperationSchema, input, options) as async.Operation<types.CreateObjectOutput>
 end
 
-function C:createSchema(input: types.CreateSchemaInput, options: any): async.Operation<types.CreateSchemaOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSchema, input, options) as async.Operation<types.CreateSchemaOutput>
+function C:createSchema(input: types.CreateSchemaInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSchemaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSchema as schema.OperationSchema, input, options) as async.Operation<types.CreateSchemaOutput>
 end
 
-function C:createTypedLinkFacet(input: types.CreateTypedLinkFacetInput, options: any): async.Operation<types.CreateTypedLinkFacetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTypedLinkFacet, input, options) as async.Operation<types.CreateTypedLinkFacetOutput>
+function C:createTypedLinkFacet(input: types.CreateTypedLinkFacetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTypedLinkFacetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTypedLinkFacet as schema.OperationSchema, input, options) as async.Operation<types.CreateTypedLinkFacetOutput>
 end
 
-function C:deleteDirectory(input: types.DeleteDirectoryInput, options: any): async.Operation<types.DeleteDirectoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDirectory, input, options) as async.Operation<types.DeleteDirectoryOutput>
+function C:deleteDirectory(input: types.DeleteDirectoryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDirectoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDirectory as schema.OperationSchema, input, options) as async.Operation<types.DeleteDirectoryOutput>
 end
 
-function C:deleteFacet(input: types.DeleteFacetInput, options: any): async.Operation<types.DeleteFacetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFacet, input, options) as async.Operation<types.DeleteFacetOutput>
+function C:deleteFacet(input: types.DeleteFacetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFacetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFacet as schema.OperationSchema, input, options) as async.Operation<types.DeleteFacetOutput>
 end
 
-function C:deleteObject(input: types.DeleteObjectInput, options: any): async.Operation<types.DeleteObjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteObject, input, options) as async.Operation<types.DeleteObjectOutput>
+function C:deleteObject(input: types.DeleteObjectInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteObjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteObject as schema.OperationSchema, input, options) as async.Operation<types.DeleteObjectOutput>
 end
 
-function C:deleteSchema(input: types.DeleteSchemaInput, options: any): async.Operation<types.DeleteSchemaOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSchema, input, options) as async.Operation<types.DeleteSchemaOutput>
+function C:deleteSchema(input: types.DeleteSchemaInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSchemaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSchema as schema.OperationSchema, input, options) as async.Operation<types.DeleteSchemaOutput>
 end
 
-function C:deleteTypedLinkFacet(input: types.DeleteTypedLinkFacetInput, options: any): async.Operation<types.DeleteTypedLinkFacetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTypedLinkFacet, input, options) as async.Operation<types.DeleteTypedLinkFacetOutput>
+function C:deleteTypedLinkFacet(input: types.DeleteTypedLinkFacetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTypedLinkFacetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTypedLinkFacet as schema.OperationSchema, input, options) as async.Operation<types.DeleteTypedLinkFacetOutput>
 end
 
-function C:detachFromIndex(input: types.DetachFromIndexInput, options: any): async.Operation<types.DetachFromIndexOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetachFromIndex, input, options) as async.Operation<types.DetachFromIndexOutput>
+function C:detachFromIndex(input: types.DetachFromIndexInput, options?: base_client.InvokeOptions): async.Operation<types.DetachFromIndexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachFromIndex as schema.OperationSchema, input, options) as async.Operation<types.DetachFromIndexOutput>
 end
 
-function C:detachObject(input: types.DetachObjectInput, options: any): async.Operation<types.DetachObjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetachObject, input, options) as async.Operation<types.DetachObjectOutput>
+function C:detachObject(input: types.DetachObjectInput, options?: base_client.InvokeOptions): async.Operation<types.DetachObjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachObject as schema.OperationSchema, input, options) as async.Operation<types.DetachObjectOutput>
 end
 
-function C:detachPolicy(input: types.DetachPolicyInput, options: any): async.Operation<types.DetachPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetachPolicy, input, options) as async.Operation<types.DetachPolicyOutput>
+function C:detachPolicy(input: types.DetachPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DetachPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachPolicy as schema.OperationSchema, input, options) as async.Operation<types.DetachPolicyOutput>
 end
 
-function C:detachTypedLink(input: types.DetachTypedLinkInput, options: any): async.Operation<types.DetachTypedLinkOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetachTypedLink, input, options) as async.Operation<types.DetachTypedLinkOutput>
+function C:detachTypedLink(input: types.DetachTypedLinkInput, options?: base_client.InvokeOptions): async.Operation<types.DetachTypedLinkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachTypedLink as schema.OperationSchema, input, options) as async.Operation<types.DetachTypedLinkOutput>
 end
 
-function C:disableDirectory(input: types.DisableDirectoryInput, options: any): async.Operation<types.DisableDirectoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableDirectory, input, options) as async.Operation<types.DisableDirectoryOutput>
+function C:disableDirectory(input: types.DisableDirectoryInput, options?: base_client.InvokeOptions): async.Operation<types.DisableDirectoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableDirectory as schema.OperationSchema, input, options) as async.Operation<types.DisableDirectoryOutput>
 end
 
-function C:enableDirectory(input: types.EnableDirectoryInput, options: any): async.Operation<types.EnableDirectoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableDirectory, input, options) as async.Operation<types.EnableDirectoryOutput>
+function C:enableDirectory(input: types.EnableDirectoryInput, options?: base_client.InvokeOptions): async.Operation<types.EnableDirectoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableDirectory as schema.OperationSchema, input, options) as async.Operation<types.EnableDirectoryOutput>
 end
 
-function C:getAppliedSchemaVersion(input: types.GetAppliedSchemaVersionInput, options: any): async.Operation<types.GetAppliedSchemaVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAppliedSchemaVersion, input, options) as async.Operation<types.GetAppliedSchemaVersionOutput>
+function C:getAppliedSchemaVersion(input: types.GetAppliedSchemaVersionInput, options?: base_client.InvokeOptions): async.Operation<types.GetAppliedSchemaVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAppliedSchemaVersion as schema.OperationSchema, input, options) as async.Operation<types.GetAppliedSchemaVersionOutput>
 end
 
-function C:getDirectory(input: types.GetDirectoryInput, options: any): async.Operation<types.GetDirectoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDirectory, input, options) as async.Operation<types.GetDirectoryOutput>
+function C:getDirectory(input: types.GetDirectoryInput, options?: base_client.InvokeOptions): async.Operation<types.GetDirectoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDirectory as schema.OperationSchema, input, options) as async.Operation<types.GetDirectoryOutput>
 end
 
-function C:getFacet(input: types.GetFacetInput, options: any): async.Operation<types.GetFacetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFacet, input, options) as async.Operation<types.GetFacetOutput>
+function C:getFacet(input: types.GetFacetInput, options?: base_client.InvokeOptions): async.Operation<types.GetFacetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFacet as schema.OperationSchema, input, options) as async.Operation<types.GetFacetOutput>
 end
 
-function C:getLinkAttributes(input: types.GetLinkAttributesInput, options: any): async.Operation<types.GetLinkAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLinkAttributes, input, options) as async.Operation<types.GetLinkAttributesOutput>
+function C:getLinkAttributes(input: types.GetLinkAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.GetLinkAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLinkAttributes as schema.OperationSchema, input, options) as async.Operation<types.GetLinkAttributesOutput>
 end
 
-function C:getObjectAttributes(input: types.GetObjectAttributesInput, options: any): async.Operation<types.GetObjectAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetObjectAttributes, input, options) as async.Operation<types.GetObjectAttributesOutput>
+function C:getObjectAttributes(input: types.GetObjectAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.GetObjectAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetObjectAttributes as schema.OperationSchema, input, options) as async.Operation<types.GetObjectAttributesOutput>
 end
 
-function C:getObjectInformation(input: types.GetObjectInformationInput, options: any): async.Operation<types.GetObjectInformationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetObjectInformation, input, options) as async.Operation<types.GetObjectInformationOutput>
+function C:getObjectInformation(input: types.GetObjectInformationInput, options?: base_client.InvokeOptions): async.Operation<types.GetObjectInformationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetObjectInformation as schema.OperationSchema, input, options) as async.Operation<types.GetObjectInformationOutput>
 end
 
-function C:getSchemaAsJson(input: types.GetSchemaAsJsonInput, options: any): async.Operation<types.GetSchemaAsJsonOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSchemaAsJson, input, options) as async.Operation<types.GetSchemaAsJsonOutput>
+function C:getSchemaAsJson(input: types.GetSchemaAsJsonInput, options?: base_client.InvokeOptions): async.Operation<types.GetSchemaAsJsonOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSchemaAsJson as schema.OperationSchema, input, options) as async.Operation<types.GetSchemaAsJsonOutput>
 end
 
-function C:getTypedLinkFacetInformation(input: types.GetTypedLinkFacetInformationInput, options: any): async.Operation<types.GetTypedLinkFacetInformationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTypedLinkFacetInformation, input, options) as async.Operation<types.GetTypedLinkFacetInformationOutput>
+function C:getTypedLinkFacetInformation(input: types.GetTypedLinkFacetInformationInput, options?: base_client.InvokeOptions): async.Operation<types.GetTypedLinkFacetInformationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTypedLinkFacetInformation as schema.OperationSchema, input, options) as async.Operation<types.GetTypedLinkFacetInformationOutput>
 end
 
-function C:listAppliedSchemaArns(input: types.ListAppliedSchemaArnsInput, options: any): async.Operation<types.ListAppliedSchemaArnsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAppliedSchemaArns, input, options) as async.Operation<types.ListAppliedSchemaArnsOutput>
+function C:listAppliedSchemaArns(input: types.ListAppliedSchemaArnsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAppliedSchemaArnsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAppliedSchemaArns as schema.OperationSchema, input, options) as async.Operation<types.ListAppliedSchemaArnsOutput>
 end
 
-function C:listAttachedIndices(input: types.ListAttachedIndicesInput, options: any): async.Operation<types.ListAttachedIndicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAttachedIndices, input, options) as async.Operation<types.ListAttachedIndicesOutput>
+function C:listAttachedIndices(input: types.ListAttachedIndicesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAttachedIndicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAttachedIndices as schema.OperationSchema, input, options) as async.Operation<types.ListAttachedIndicesOutput>
 end
 
-function C:listDevelopmentSchemaArns(input: types.ListDevelopmentSchemaArnsInput, options: any): async.Operation<types.ListDevelopmentSchemaArnsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDevelopmentSchemaArns, input, options) as async.Operation<types.ListDevelopmentSchemaArnsOutput>
+function C:listDevelopmentSchemaArns(input: types.ListDevelopmentSchemaArnsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDevelopmentSchemaArnsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDevelopmentSchemaArns as schema.OperationSchema, input, options) as async.Operation<types.ListDevelopmentSchemaArnsOutput>
 end
 
-function C:listDirectories(input: types.ListDirectoriesInput, options: any): async.Operation<types.ListDirectoriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDirectories, input, options) as async.Operation<types.ListDirectoriesOutput>
+function C:listDirectories(input: types.ListDirectoriesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDirectoriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDirectories as schema.OperationSchema, input, options) as async.Operation<types.ListDirectoriesOutput>
 end
 
-function C:listFacetAttributes(input: types.ListFacetAttributesInput, options: any): async.Operation<types.ListFacetAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFacetAttributes, input, options) as async.Operation<types.ListFacetAttributesOutput>
+function C:listFacetAttributes(input: types.ListFacetAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.ListFacetAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFacetAttributes as schema.OperationSchema, input, options) as async.Operation<types.ListFacetAttributesOutput>
 end
 
-function C:listFacetNames(input: types.ListFacetNamesInput, options: any): async.Operation<types.ListFacetNamesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFacetNames, input, options) as async.Operation<types.ListFacetNamesOutput>
+function C:listFacetNames(input: types.ListFacetNamesInput, options?: base_client.InvokeOptions): async.Operation<types.ListFacetNamesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFacetNames as schema.OperationSchema, input, options) as async.Operation<types.ListFacetNamesOutput>
 end
 
-function C:listIncomingTypedLinks(input: types.ListIncomingTypedLinksInput, options: any): async.Operation<types.ListIncomingTypedLinksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIncomingTypedLinks, input, options) as async.Operation<types.ListIncomingTypedLinksOutput>
+function C:listIncomingTypedLinks(input: types.ListIncomingTypedLinksInput, options?: base_client.InvokeOptions): async.Operation<types.ListIncomingTypedLinksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIncomingTypedLinks as schema.OperationSchema, input, options) as async.Operation<types.ListIncomingTypedLinksOutput>
 end
 
-function C:listIndex(input: types.ListIndexInput, options: any): async.Operation<types.ListIndexOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIndex, input, options) as async.Operation<types.ListIndexOutput>
+function C:listIndex(input: types.ListIndexInput, options?: base_client.InvokeOptions): async.Operation<types.ListIndexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIndex as schema.OperationSchema, input, options) as async.Operation<types.ListIndexOutput>
 end
 
-function C:listManagedSchemaArns(input: types.ListManagedSchemaArnsInput, options: any): async.Operation<types.ListManagedSchemaArnsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListManagedSchemaArns, input, options) as async.Operation<types.ListManagedSchemaArnsOutput>
+function C:listManagedSchemaArns(input: types.ListManagedSchemaArnsInput, options?: base_client.InvokeOptions): async.Operation<types.ListManagedSchemaArnsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListManagedSchemaArns as schema.OperationSchema, input, options) as async.Operation<types.ListManagedSchemaArnsOutput>
 end
 
-function C:listObjectAttributes(input: types.ListObjectAttributesInput, options: any): async.Operation<types.ListObjectAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListObjectAttributes, input, options) as async.Operation<types.ListObjectAttributesOutput>
+function C:listObjectAttributes(input: types.ListObjectAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.ListObjectAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListObjectAttributes as schema.OperationSchema, input, options) as async.Operation<types.ListObjectAttributesOutput>
 end
 
-function C:listObjectChildren(input: types.ListObjectChildrenInput, options: any): async.Operation<types.ListObjectChildrenOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListObjectChildren, input, options) as async.Operation<types.ListObjectChildrenOutput>
+function C:listObjectChildren(input: types.ListObjectChildrenInput, options?: base_client.InvokeOptions): async.Operation<types.ListObjectChildrenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListObjectChildren as schema.OperationSchema, input, options) as async.Operation<types.ListObjectChildrenOutput>
 end
 
-function C:listObjectParentPaths(input: types.ListObjectParentPathsInput, options: any): async.Operation<types.ListObjectParentPathsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListObjectParentPaths, input, options) as async.Operation<types.ListObjectParentPathsOutput>
+function C:listObjectParentPaths(input: types.ListObjectParentPathsInput, options?: base_client.InvokeOptions): async.Operation<types.ListObjectParentPathsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListObjectParentPaths as schema.OperationSchema, input, options) as async.Operation<types.ListObjectParentPathsOutput>
 end
 
-function C:listObjectParents(input: types.ListObjectParentsInput, options: any): async.Operation<types.ListObjectParentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListObjectParents, input, options) as async.Operation<types.ListObjectParentsOutput>
+function C:listObjectParents(input: types.ListObjectParentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListObjectParentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListObjectParents as schema.OperationSchema, input, options) as async.Operation<types.ListObjectParentsOutput>
 end
 
-function C:listObjectPolicies(input: types.ListObjectPoliciesInput, options: any): async.Operation<types.ListObjectPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListObjectPolicies, input, options) as async.Operation<types.ListObjectPoliciesOutput>
+function C:listObjectPolicies(input: types.ListObjectPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListObjectPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListObjectPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListObjectPoliciesOutput>
 end
 
-function C:listOutgoingTypedLinks(input: types.ListOutgoingTypedLinksInput, options: any): async.Operation<types.ListOutgoingTypedLinksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOutgoingTypedLinks, input, options) as async.Operation<types.ListOutgoingTypedLinksOutput>
+function C:listOutgoingTypedLinks(input: types.ListOutgoingTypedLinksInput, options?: base_client.InvokeOptions): async.Operation<types.ListOutgoingTypedLinksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOutgoingTypedLinks as schema.OperationSchema, input, options) as async.Operation<types.ListOutgoingTypedLinksOutput>
 end
 
-function C:listPolicyAttachments(input: types.ListPolicyAttachmentsInput, options: any): async.Operation<types.ListPolicyAttachmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPolicyAttachments, input, options) as async.Operation<types.ListPolicyAttachmentsOutput>
+function C:listPolicyAttachments(input: types.ListPolicyAttachmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPolicyAttachmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPolicyAttachments as schema.OperationSchema, input, options) as async.Operation<types.ListPolicyAttachmentsOutput>
 end
 
-function C:listPublishedSchemaArns(input: types.ListPublishedSchemaArnsInput, options: any): async.Operation<types.ListPublishedSchemaArnsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPublishedSchemaArns, input, options) as async.Operation<types.ListPublishedSchemaArnsOutput>
+function C:listPublishedSchemaArns(input: types.ListPublishedSchemaArnsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPublishedSchemaArnsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPublishedSchemaArns as schema.OperationSchema, input, options) as async.Operation<types.ListPublishedSchemaArnsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTypedLinkFacetAttributes(input: types.ListTypedLinkFacetAttributesInput, options: any): async.Operation<types.ListTypedLinkFacetAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTypedLinkFacetAttributes, input, options) as async.Operation<types.ListTypedLinkFacetAttributesOutput>
+function C:listTypedLinkFacetAttributes(input: types.ListTypedLinkFacetAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTypedLinkFacetAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTypedLinkFacetAttributes as schema.OperationSchema, input, options) as async.Operation<types.ListTypedLinkFacetAttributesOutput>
 end
 
-function C:listTypedLinkFacetNames(input: types.ListTypedLinkFacetNamesInput, options: any): async.Operation<types.ListTypedLinkFacetNamesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTypedLinkFacetNames, input, options) as async.Operation<types.ListTypedLinkFacetNamesOutput>
+function C:listTypedLinkFacetNames(input: types.ListTypedLinkFacetNamesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTypedLinkFacetNamesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTypedLinkFacetNames as schema.OperationSchema, input, options) as async.Operation<types.ListTypedLinkFacetNamesOutput>
 end
 
-function C:lookupPolicy(input: types.LookupPolicyInput, options: any): async.Operation<types.LookupPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.LookupPolicy, input, options) as async.Operation<types.LookupPolicyOutput>
+function C:lookupPolicy(input: types.LookupPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.LookupPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.LookupPolicy as schema.OperationSchema, input, options) as async.Operation<types.LookupPolicyOutput>
 end
 
-function C:publishSchema(input: types.PublishSchemaInput, options: any): async.Operation<types.PublishSchemaOutput>
-    return self:invokeOperation(schemas.Service, schemas.PublishSchema, input, options) as async.Operation<types.PublishSchemaOutput>
+function C:publishSchema(input: types.PublishSchemaInput, options?: base_client.InvokeOptions): async.Operation<types.PublishSchemaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PublishSchema as schema.OperationSchema, input, options) as async.Operation<types.PublishSchemaOutput>
 end
 
-function C:putSchemaFromJson(input: types.PutSchemaFromJsonInput, options: any): async.Operation<types.PutSchemaFromJsonOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutSchemaFromJson, input, options) as async.Operation<types.PutSchemaFromJsonOutput>
+function C:putSchemaFromJson(input: types.PutSchemaFromJsonInput, options?: base_client.InvokeOptions): async.Operation<types.PutSchemaFromJsonOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutSchemaFromJson as schema.OperationSchema, input, options) as async.Operation<types.PutSchemaFromJsonOutput>
 end
 
-function C:removeFacetFromObject(input: types.RemoveFacetFromObjectInput, options: any): async.Operation<types.RemoveFacetFromObjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveFacetFromObject, input, options) as async.Operation<types.RemoveFacetFromObjectOutput>
+function C:removeFacetFromObject(input: types.RemoveFacetFromObjectInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveFacetFromObjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveFacetFromObject as schema.OperationSchema, input, options) as async.Operation<types.RemoveFacetFromObjectOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateFacet(input: types.UpdateFacetInput, options: any): async.Operation<types.UpdateFacetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFacet, input, options) as async.Operation<types.UpdateFacetOutput>
+function C:updateFacet(input: types.UpdateFacetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFacetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFacet as schema.OperationSchema, input, options) as async.Operation<types.UpdateFacetOutput>
 end
 
-function C:updateLinkAttributes(input: types.UpdateLinkAttributesInput, options: any): async.Operation<types.UpdateLinkAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLinkAttributes, input, options) as async.Operation<types.UpdateLinkAttributesOutput>
+function C:updateLinkAttributes(input: types.UpdateLinkAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLinkAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLinkAttributes as schema.OperationSchema, input, options) as async.Operation<types.UpdateLinkAttributesOutput>
 end
 
-function C:updateObjectAttributes(input: types.UpdateObjectAttributesInput, options: any): async.Operation<types.UpdateObjectAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateObjectAttributes, input, options) as async.Operation<types.UpdateObjectAttributesOutput>
+function C:updateObjectAttributes(input: types.UpdateObjectAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateObjectAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateObjectAttributes as schema.OperationSchema, input, options) as async.Operation<types.UpdateObjectAttributesOutput>
 end
 
-function C:updateSchema(input: types.UpdateSchemaInput, options: any): async.Operation<types.UpdateSchemaOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSchema, input, options) as async.Operation<types.UpdateSchemaOutput>
+function C:updateSchema(input: types.UpdateSchemaInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSchemaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSchema as schema.OperationSchema, input, options) as async.Operation<types.UpdateSchemaOutput>
 end
 
-function C:updateTypedLinkFacet(input: types.UpdateTypedLinkFacetInput, options: any): async.Operation<types.UpdateTypedLinkFacetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTypedLinkFacet, input, options) as async.Operation<types.UpdateTypedLinkFacetOutput>
+function C:updateTypedLinkFacet(input: types.UpdateTypedLinkFacetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTypedLinkFacetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTypedLinkFacet as schema.OperationSchema, input, options) as async.Operation<types.UpdateTypedLinkFacetOutput>
 end
 
-function C:upgradeAppliedSchema(input: types.UpgradeAppliedSchemaInput, options: any): async.Operation<types.UpgradeAppliedSchemaOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpgradeAppliedSchema, input, options) as async.Operation<types.UpgradeAppliedSchemaOutput>
+function C:upgradeAppliedSchema(input: types.UpgradeAppliedSchemaInput, options?: base_client.InvokeOptions): async.Operation<types.UpgradeAppliedSchemaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpgradeAppliedSchema as schema.OperationSchema, input, options) as async.Operation<types.UpgradeAppliedSchemaOutput>
 end
 
-function C:upgradePublishedSchema(input: types.UpgradePublishedSchemaInput, options: any): async.Operation<types.UpgradePublishedSchemaOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpgradePublishedSchema, input, options) as async.Operation<types.UpgradePublishedSchemaOutput>
+function C:upgradePublishedSchema(input: types.UpgradePublishedSchemaInput, options?: base_client.InvokeOptions): async.Operation<types.UpgradePublishedSchemaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpgradePublishedSchema as schema.OperationSchema, input, options) as async.Operation<types.UpgradePublishedSchemaOutput>
 end
 
 return M

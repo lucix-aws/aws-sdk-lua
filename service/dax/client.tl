@@ -8,60 +8,63 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("dax.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("dax.schemas")
 local traits = require("smithy.traits")
 local types = require("dax.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createCluster: function(Client, types.CreateClusterInput, any): async.Operation<types.CreateClusterOutput>
-    createParameterGroup: function(Client, types.CreateParameterGroupInput, any): async.Operation<types.CreateParameterGroupOutput>
-    createSubnetGroup: function(Client, types.CreateSubnetGroupInput, any): async.Operation<types.CreateSubnetGroupOutput>
-    decreaseReplicationFactor: function(Client, types.DecreaseReplicationFactorInput, any): async.Operation<types.DecreaseReplicationFactorOutput>
-    deleteCluster: function(Client, types.DeleteClusterInput, any): async.Operation<types.DeleteClusterOutput>
-    deleteParameterGroup: function(Client, types.DeleteParameterGroupInput, any): async.Operation<types.DeleteParameterGroupOutput>
-    deleteSubnetGroup: function(Client, types.DeleteSubnetGroupInput, any): async.Operation<types.DeleteSubnetGroupOutput>
-    describeClusters: function(Client, types.DescribeClustersInput, any): async.Operation<types.DescribeClustersOutput>
-    describeDefaultParameters: function(Client, types.DescribeDefaultParametersInput, any): async.Operation<types.DescribeDefaultParametersOutput>
-    describeEvents: function(Client, types.DescribeEventsInput, any): async.Operation<types.DescribeEventsOutput>
-    describeParameterGroups: function(Client, types.DescribeParameterGroupsInput, any): async.Operation<types.DescribeParameterGroupsOutput>
-    describeParameters: function(Client, types.DescribeParametersInput, any): async.Operation<types.DescribeParametersOutput>
-    describeSubnetGroups: function(Client, types.DescribeSubnetGroupsInput, any): async.Operation<types.DescribeSubnetGroupsOutput>
-    increaseReplicationFactor: function(Client, types.IncreaseReplicationFactorInput, any): async.Operation<types.IncreaseReplicationFactorOutput>
-    listTags: function(Client, types.ListTagsInput, any): async.Operation<types.ListTagsOutput>
-    rebootNode: function(Client, types.RebootNodeInput, any): async.Operation<types.RebootNodeOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateCluster: function(Client, types.UpdateClusterInput, any): async.Operation<types.UpdateClusterOutput>
-    updateParameterGroup: function(Client, types.UpdateParameterGroupInput, any): async.Operation<types.UpdateParameterGroupOutput>
-    updateSubnetGroup: function(Client, types.UpdateSubnetGroupInput, any): async.Operation<types.UpdateSubnetGroupOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createCluster: function(Client, types.CreateClusterInput, ? base_client.InvokeOptions): async.Operation<types.CreateClusterOutput>
+    createParameterGroup: function(Client, types.CreateParameterGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateParameterGroupOutput>
+    createSubnetGroup: function(Client, types.CreateSubnetGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateSubnetGroupOutput>
+    decreaseReplicationFactor: function(Client, types.DecreaseReplicationFactorInput, ? base_client.InvokeOptions): async.Operation<types.DecreaseReplicationFactorOutput>
+    deleteCluster: function(Client, types.DeleteClusterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteClusterOutput>
+    deleteParameterGroup: function(Client, types.DeleteParameterGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteParameterGroupOutput>
+    deleteSubnetGroup: function(Client, types.DeleteSubnetGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSubnetGroupOutput>
+    describeClusters: function(Client, types.DescribeClustersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClustersOutput>
+    describeDefaultParameters: function(Client, types.DescribeDefaultParametersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDefaultParametersOutput>
+    describeEvents: function(Client, types.DescribeEventsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEventsOutput>
+    describeParameterGroups: function(Client, types.DescribeParameterGroupsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeParameterGroupsOutput>
+    describeParameters: function(Client, types.DescribeParametersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeParametersOutput>
+    describeSubnetGroups: function(Client, types.DescribeSubnetGroupsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSubnetGroupsOutput>
+    increaseReplicationFactor: function(Client, types.IncreaseReplicationFactorInput, ? base_client.InvokeOptions): async.Operation<types.IncreaseReplicationFactorOutput>
+    listTags: function(Client, types.ListTagsInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsOutput>
+    rebootNode: function(Client, types.RebootNodeInput, ? base_client.InvokeOptions): async.Operation<types.RebootNodeOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateCluster: function(Client, types.UpdateClusterInput, ? base_client.InvokeOptions): async.Operation<types.UpdateClusterOutput>
+    updateParameterGroup: function(Client, types.UpdateParameterGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateParameterGroupOutput>
+    updateSubnetGroup: function(Client, types.UpdateSubnetGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSubnetGroupOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonDAXV3"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "dax", signing_region = c.region } }
                 else
@@ -80,88 +83,88 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createCluster(input: types.CreateClusterInput, options: any): async.Operation<types.CreateClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCluster, input, options) as async.Operation<types.CreateClusterOutput>
+function C:createCluster(input: types.CreateClusterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCluster as schema.OperationSchema, input, options) as async.Operation<types.CreateClusterOutput>
 end
 
-function C:createParameterGroup(input: types.CreateParameterGroupInput, options: any): async.Operation<types.CreateParameterGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateParameterGroup, input, options) as async.Operation<types.CreateParameterGroupOutput>
+function C:createParameterGroup(input: types.CreateParameterGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateParameterGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateParameterGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateParameterGroupOutput>
 end
 
-function C:createSubnetGroup(input: types.CreateSubnetGroupInput, options: any): async.Operation<types.CreateSubnetGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSubnetGroup, input, options) as async.Operation<types.CreateSubnetGroupOutput>
+function C:createSubnetGroup(input: types.CreateSubnetGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSubnetGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSubnetGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateSubnetGroupOutput>
 end
 
-function C:decreaseReplicationFactor(input: types.DecreaseReplicationFactorInput, options: any): async.Operation<types.DecreaseReplicationFactorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DecreaseReplicationFactor, input, options) as async.Operation<types.DecreaseReplicationFactorOutput>
+function C:decreaseReplicationFactor(input: types.DecreaseReplicationFactorInput, options?: base_client.InvokeOptions): async.Operation<types.DecreaseReplicationFactorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DecreaseReplicationFactor as schema.OperationSchema, input, options) as async.Operation<types.DecreaseReplicationFactorOutput>
 end
 
-function C:deleteCluster(input: types.DeleteClusterInput, options: any): async.Operation<types.DeleteClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCluster, input, options) as async.Operation<types.DeleteClusterOutput>
+function C:deleteCluster(input: types.DeleteClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCluster as schema.OperationSchema, input, options) as async.Operation<types.DeleteClusterOutput>
 end
 
-function C:deleteParameterGroup(input: types.DeleteParameterGroupInput, options: any): async.Operation<types.DeleteParameterGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteParameterGroup, input, options) as async.Operation<types.DeleteParameterGroupOutput>
+function C:deleteParameterGroup(input: types.DeleteParameterGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteParameterGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteParameterGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteParameterGroupOutput>
 end
 
-function C:deleteSubnetGroup(input: types.DeleteSubnetGroupInput, options: any): async.Operation<types.DeleteSubnetGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSubnetGroup, input, options) as async.Operation<types.DeleteSubnetGroupOutput>
+function C:deleteSubnetGroup(input: types.DeleteSubnetGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSubnetGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSubnetGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteSubnetGroupOutput>
 end
 
-function C:describeClusters(input: types.DescribeClustersInput, options: any): async.Operation<types.DescribeClustersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeClusters, input, options) as async.Operation<types.DescribeClustersOutput>
+function C:describeClusters(input: types.DescribeClustersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeClustersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeClusters as schema.OperationSchema, input, options) as async.Operation<types.DescribeClustersOutput>
 end
 
-function C:describeDefaultParameters(input: types.DescribeDefaultParametersInput, options: any): async.Operation<types.DescribeDefaultParametersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDefaultParameters, input, options) as async.Operation<types.DescribeDefaultParametersOutput>
+function C:describeDefaultParameters(input: types.DescribeDefaultParametersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDefaultParametersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDefaultParameters as schema.OperationSchema, input, options) as async.Operation<types.DescribeDefaultParametersOutput>
 end
 
-function C:describeEvents(input: types.DescribeEventsInput, options: any): async.Operation<types.DescribeEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEvents, input, options) as async.Operation<types.DescribeEventsOutput>
+function C:describeEvents(input: types.DescribeEventsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEvents as schema.OperationSchema, input, options) as async.Operation<types.DescribeEventsOutput>
 end
 
-function C:describeParameterGroups(input: types.DescribeParameterGroupsInput, options: any): async.Operation<types.DescribeParameterGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeParameterGroups, input, options) as async.Operation<types.DescribeParameterGroupsOutput>
+function C:describeParameterGroups(input: types.DescribeParameterGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeParameterGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeParameterGroups as schema.OperationSchema, input, options) as async.Operation<types.DescribeParameterGroupsOutput>
 end
 
-function C:describeParameters(input: types.DescribeParametersInput, options: any): async.Operation<types.DescribeParametersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeParameters, input, options) as async.Operation<types.DescribeParametersOutput>
+function C:describeParameters(input: types.DescribeParametersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeParametersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeParameters as schema.OperationSchema, input, options) as async.Operation<types.DescribeParametersOutput>
 end
 
-function C:describeSubnetGroups(input: types.DescribeSubnetGroupsInput, options: any): async.Operation<types.DescribeSubnetGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSubnetGroups, input, options) as async.Operation<types.DescribeSubnetGroupsOutput>
+function C:describeSubnetGroups(input: types.DescribeSubnetGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSubnetGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSubnetGroups as schema.OperationSchema, input, options) as async.Operation<types.DescribeSubnetGroupsOutput>
 end
 
-function C:increaseReplicationFactor(input: types.IncreaseReplicationFactorInput, options: any): async.Operation<types.IncreaseReplicationFactorOutput>
-    return self:invokeOperation(schemas.Service, schemas.IncreaseReplicationFactor, input, options) as async.Operation<types.IncreaseReplicationFactorOutput>
+function C:increaseReplicationFactor(input: types.IncreaseReplicationFactorInput, options?: base_client.InvokeOptions): async.Operation<types.IncreaseReplicationFactorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.IncreaseReplicationFactor as schema.OperationSchema, input, options) as async.Operation<types.IncreaseReplicationFactorOutput>
 end
 
-function C:listTags(input: types.ListTagsInput, options: any): async.Operation<types.ListTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTags, input, options) as async.Operation<types.ListTagsOutput>
+function C:listTags(input: types.ListTagsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTags as schema.OperationSchema, input, options) as async.Operation<types.ListTagsOutput>
 end
 
-function C:rebootNode(input: types.RebootNodeInput, options: any): async.Operation<types.RebootNodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.RebootNode, input, options) as async.Operation<types.RebootNodeOutput>
+function C:rebootNode(input: types.RebootNodeInput, options?: base_client.InvokeOptions): async.Operation<types.RebootNodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RebootNode as schema.OperationSchema, input, options) as async.Operation<types.RebootNodeOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateCluster(input: types.UpdateClusterInput, options: any): async.Operation<types.UpdateClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCluster, input, options) as async.Operation<types.UpdateClusterOutput>
+function C:updateCluster(input: types.UpdateClusterInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCluster as schema.OperationSchema, input, options) as async.Operation<types.UpdateClusterOutput>
 end
 
-function C:updateParameterGroup(input: types.UpdateParameterGroupInput, options: any): async.Operation<types.UpdateParameterGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateParameterGroup, input, options) as async.Operation<types.UpdateParameterGroupOutput>
+function C:updateParameterGroup(input: types.UpdateParameterGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateParameterGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateParameterGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateParameterGroupOutput>
 end
 
-function C:updateSubnetGroup(input: types.UpdateSubnetGroupInput, options: any): async.Operation<types.UpdateSubnetGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSubnetGroup, input, options) as async.Operation<types.UpdateSubnetGroupOutput>
+function C:updateSubnetGroup(input: types.UpdateSubnetGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSubnetGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSubnetGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateSubnetGroupOutput>
 end
 
 return M

@@ -8,44 +8,47 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("georoutes.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("georoutes.schemas")
 local traits = require("smithy.traits")
 local types = require("georoutes.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    calculateIsolines: function(Client, types.CalculateIsolinesInput, any): async.Operation<types.CalculateIsolinesOutput>
-    calculateRouteMatrix: function(Client, types.CalculateRouteMatrixInput, any): async.Operation<types.CalculateRouteMatrixOutput>
-    calculateRoutes: function(Client, types.CalculateRoutesInput, any): async.Operation<types.CalculateRoutesOutput>
-    optimizeWaypoints: function(Client, types.OptimizeWaypointsInput, any): async.Operation<types.OptimizeWaypointsOutput>
-    snapToRoads: function(Client, types.SnapToRoadsInput, any): async.Operation<types.SnapToRoadsOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    calculateIsolines: function(Client, types.CalculateIsolinesInput, ? base_client.InvokeOptions): async.Operation<types.CalculateIsolinesOutput>
+    calculateRouteMatrix: function(Client, types.CalculateRouteMatrixInput, ? base_client.InvokeOptions): async.Operation<types.CalculateRouteMatrixOutput>
+    calculateRoutes: function(Client, types.CalculateRoutesInput, ? base_client.InvokeOptions): async.Operation<types.CalculateRoutesOutput>
+    optimizeWaypoints: function(Client, types.OptimizeWaypointsInput, ? base_client.InvokeOptions): async.Operation<types.OptimizeWaypointsOutput>
+    snapToRoads: function(Client, types.SnapToRoadsInput, ? base_client.InvokeOptions): async.Operation<types.SnapToRoadsOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "RoutesService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "geo-routes", signing_region = c.region } }
                 else
@@ -64,24 +67,24 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:calculateIsolines(input: types.CalculateIsolinesInput, options: any): async.Operation<types.CalculateIsolinesOutput>
-    return self:invokeOperation(schemas.Service, schemas.CalculateIsolines, input, options) as async.Operation<types.CalculateIsolinesOutput>
+function C:calculateIsolines(input: types.CalculateIsolinesInput, options?: base_client.InvokeOptions): async.Operation<types.CalculateIsolinesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CalculateIsolines as schema.OperationSchema, input, options) as async.Operation<types.CalculateIsolinesOutput>
 end
 
-function C:calculateRouteMatrix(input: types.CalculateRouteMatrixInput, options: any): async.Operation<types.CalculateRouteMatrixOutput>
-    return self:invokeOperation(schemas.Service, schemas.CalculateRouteMatrix, input, options) as async.Operation<types.CalculateRouteMatrixOutput>
+function C:calculateRouteMatrix(input: types.CalculateRouteMatrixInput, options?: base_client.InvokeOptions): async.Operation<types.CalculateRouteMatrixOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CalculateRouteMatrix as schema.OperationSchema, input, options) as async.Operation<types.CalculateRouteMatrixOutput>
 end
 
-function C:calculateRoutes(input: types.CalculateRoutesInput, options: any): async.Operation<types.CalculateRoutesOutput>
-    return self:invokeOperation(schemas.Service, schemas.CalculateRoutes, input, options) as async.Operation<types.CalculateRoutesOutput>
+function C:calculateRoutes(input: types.CalculateRoutesInput, options?: base_client.InvokeOptions): async.Operation<types.CalculateRoutesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CalculateRoutes as schema.OperationSchema, input, options) as async.Operation<types.CalculateRoutesOutput>
 end
 
-function C:optimizeWaypoints(input: types.OptimizeWaypointsInput, options: any): async.Operation<types.OptimizeWaypointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.OptimizeWaypoints, input, options) as async.Operation<types.OptimizeWaypointsOutput>
+function C:optimizeWaypoints(input: types.OptimizeWaypointsInput, options?: base_client.InvokeOptions): async.Operation<types.OptimizeWaypointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.OptimizeWaypoints as schema.OperationSchema, input, options) as async.Operation<types.OptimizeWaypointsOutput>
 end
 
-function C:snapToRoads(input: types.SnapToRoadsInput, options: any): async.Operation<types.SnapToRoadsOutput>
-    return self:invokeOperation(schemas.Service, schemas.SnapToRoads, input, options) as async.Operation<types.SnapToRoadsOutput>
+function C:snapToRoads(input: types.SnapToRoadsInput, options?: base_client.InvokeOptions): async.Operation<types.SnapToRoadsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SnapToRoads as schema.OperationSchema, input, options) as async.Operation<types.SnapToRoadsOutput>
 end
 
 return M

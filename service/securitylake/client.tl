@@ -8,70 +8,73 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("securitylake.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("securitylake.schemas")
 local traits = require("smithy.traits")
 local types = require("securitylake.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createAwsLogSource: function(Client, types.CreateAwsLogSourceInput, any): async.Operation<types.CreateAwsLogSourceOutput>
-    createCustomLogSource: function(Client, types.CreateCustomLogSourceInput, any): async.Operation<types.CreateCustomLogSourceOutput>
-    createDataLake: function(Client, types.CreateDataLakeInput, any): async.Operation<types.CreateDataLakeOutput>
-    createDataLakeExceptionSubscription: function(Client, types.CreateDataLakeExceptionSubscriptionInput, any): async.Operation<types.CreateDataLakeExceptionSubscriptionOutput>
-    createDataLakeOrganizationConfiguration: function(Client, types.CreateDataLakeOrganizationConfigurationInput, any): async.Operation<types.CreateDataLakeOrganizationConfigurationOutput>
-    createSubscriber: function(Client, types.CreateSubscriberInput, any): async.Operation<types.CreateSubscriberOutput>
-    createSubscriberNotification: function(Client, types.CreateSubscriberNotificationInput, any): async.Operation<types.CreateSubscriberNotificationOutput>
-    deleteAwsLogSource: function(Client, types.DeleteAwsLogSourceInput, any): async.Operation<types.DeleteAwsLogSourceOutput>
-    deleteCustomLogSource: function(Client, types.DeleteCustomLogSourceInput, any): async.Operation<types.DeleteCustomLogSourceOutput>
-    deleteDataLake: function(Client, types.DeleteDataLakeInput, any): async.Operation<types.DeleteDataLakeOutput>
-    deleteDataLakeExceptionSubscription: function(Client, types.DeleteDataLakeExceptionSubscriptionInput, any): async.Operation<types.DeleteDataLakeExceptionSubscriptionOutput>
-    deleteDataLakeOrganizationConfiguration: function(Client, types.DeleteDataLakeOrganizationConfigurationInput, any): async.Operation<types.DeleteDataLakeOrganizationConfigurationOutput>
-    deleteSubscriber: function(Client, types.DeleteSubscriberInput, any): async.Operation<types.DeleteSubscriberOutput>
-    deleteSubscriberNotification: function(Client, types.DeleteSubscriberNotificationInput, any): async.Operation<types.DeleteSubscriberNotificationOutput>
-    deregisterDataLakeDelegatedAdministrator: function(Client, types.DeregisterDataLakeDelegatedAdministratorInput, any): async.Operation<types.DeregisterDataLakeDelegatedAdministratorOutput>
-    getDataLakeExceptionSubscription: function(Client, types.GetDataLakeExceptionSubscriptionInput, any): async.Operation<types.GetDataLakeExceptionSubscriptionOutput>
-    getDataLakeOrganizationConfiguration: function(Client, types.GetDataLakeOrganizationConfigurationInput, any): async.Operation<types.GetDataLakeOrganizationConfigurationOutput>
-    getDataLakeSources: function(Client, types.GetDataLakeSourcesInput, any): async.Operation<types.GetDataLakeSourcesOutput>
-    getSubscriber: function(Client, types.GetSubscriberInput, any): async.Operation<types.GetSubscriberOutput>
-    listDataLakeExceptions: function(Client, types.ListDataLakeExceptionsInput, any): async.Operation<types.ListDataLakeExceptionsOutput>
-    listDataLakes: function(Client, types.ListDataLakesInput, any): async.Operation<types.ListDataLakesOutput>
-    listLogSources: function(Client, types.ListLogSourcesInput, any): async.Operation<types.ListLogSourcesOutput>
-    listSubscribers: function(Client, types.ListSubscribersInput, any): async.Operation<types.ListSubscribersOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    registerDataLakeDelegatedAdministrator: function(Client, types.RegisterDataLakeDelegatedAdministratorInput, any): async.Operation<types.RegisterDataLakeDelegatedAdministratorOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateDataLake: function(Client, types.UpdateDataLakeInput, any): async.Operation<types.UpdateDataLakeOutput>
-    updateDataLakeExceptionSubscription: function(Client, types.UpdateDataLakeExceptionSubscriptionInput, any): async.Operation<types.UpdateDataLakeExceptionSubscriptionOutput>
-    updateSubscriber: function(Client, types.UpdateSubscriberInput, any): async.Operation<types.UpdateSubscriberOutput>
-    updateSubscriberNotification: function(Client, types.UpdateSubscriberNotificationInput, any): async.Operation<types.UpdateSubscriberNotificationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createAwsLogSource: function(Client, types.CreateAwsLogSourceInput, ? base_client.InvokeOptions): async.Operation<types.CreateAwsLogSourceOutput>
+    createCustomLogSource: function(Client, types.CreateCustomLogSourceInput, ? base_client.InvokeOptions): async.Operation<types.CreateCustomLogSourceOutput>
+    createDataLake: function(Client, types.CreateDataLakeInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataLakeOutput>
+    createDataLakeExceptionSubscription: function(Client, types.CreateDataLakeExceptionSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataLakeExceptionSubscriptionOutput>
+    createDataLakeOrganizationConfiguration: function(Client, types.CreateDataLakeOrganizationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataLakeOrganizationConfigurationOutput>
+    createSubscriber: function(Client, types.CreateSubscriberInput, ? base_client.InvokeOptions): async.Operation<types.CreateSubscriberOutput>
+    createSubscriberNotification: function(Client, types.CreateSubscriberNotificationInput, ? base_client.InvokeOptions): async.Operation<types.CreateSubscriberNotificationOutput>
+    deleteAwsLogSource: function(Client, types.DeleteAwsLogSourceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAwsLogSourceOutput>
+    deleteCustomLogSource: function(Client, types.DeleteCustomLogSourceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCustomLogSourceOutput>
+    deleteDataLake: function(Client, types.DeleteDataLakeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataLakeOutput>
+    deleteDataLakeExceptionSubscription: function(Client, types.DeleteDataLakeExceptionSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataLakeExceptionSubscriptionOutput>
+    deleteDataLakeOrganizationConfiguration: function(Client, types.DeleteDataLakeOrganizationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataLakeOrganizationConfigurationOutput>
+    deleteSubscriber: function(Client, types.DeleteSubscriberInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSubscriberOutput>
+    deleteSubscriberNotification: function(Client, types.DeleteSubscriberNotificationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSubscriberNotificationOutput>
+    deregisterDataLakeDelegatedAdministrator: function(Client, types.DeregisterDataLakeDelegatedAdministratorInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterDataLakeDelegatedAdministratorOutput>
+    getDataLakeExceptionSubscription: function(Client, types.GetDataLakeExceptionSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.GetDataLakeExceptionSubscriptionOutput>
+    getDataLakeOrganizationConfiguration: function(Client, types.GetDataLakeOrganizationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetDataLakeOrganizationConfigurationOutput>
+    getDataLakeSources: function(Client, types.GetDataLakeSourcesInput, ? base_client.InvokeOptions): async.Operation<types.GetDataLakeSourcesOutput>
+    getSubscriber: function(Client, types.GetSubscriberInput, ? base_client.InvokeOptions): async.Operation<types.GetSubscriberOutput>
+    listDataLakeExceptions: function(Client, types.ListDataLakeExceptionsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataLakeExceptionsOutput>
+    listDataLakes: function(Client, types.ListDataLakesInput, ? base_client.InvokeOptions): async.Operation<types.ListDataLakesOutput>
+    listLogSources: function(Client, types.ListLogSourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListLogSourcesOutput>
+    listSubscribers: function(Client, types.ListSubscribersInput, ? base_client.InvokeOptions): async.Operation<types.ListSubscribersOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    registerDataLakeDelegatedAdministrator: function(Client, types.RegisterDataLakeDelegatedAdministratorInput, ? base_client.InvokeOptions): async.Operation<types.RegisterDataLakeDelegatedAdministratorOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateDataLake: function(Client, types.UpdateDataLakeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataLakeOutput>
+    updateDataLakeExceptionSubscription: function(Client, types.UpdateDataLakeExceptionSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataLakeExceptionSubscriptionOutput>
+    updateSubscriber: function(Client, types.UpdateSubscriberInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSubscriberOutput>
+    updateSubscriberNotification: function(Client, types.UpdateSubscriberNotificationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSubscriberNotificationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "SecurityLake"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "securitylake", signing_region = c.region } }
                 else
@@ -90,128 +93,128 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createAwsLogSource(input: types.CreateAwsLogSourceInput, options: any): async.Operation<types.CreateAwsLogSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAwsLogSource, input, options) as async.Operation<types.CreateAwsLogSourceOutput>
+function C:createAwsLogSource(input: types.CreateAwsLogSourceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAwsLogSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAwsLogSource as schema.OperationSchema, input, options) as async.Operation<types.CreateAwsLogSourceOutput>
 end
 
-function C:createCustomLogSource(input: types.CreateCustomLogSourceInput, options: any): async.Operation<types.CreateCustomLogSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCustomLogSource, input, options) as async.Operation<types.CreateCustomLogSourceOutput>
+function C:createCustomLogSource(input: types.CreateCustomLogSourceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCustomLogSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCustomLogSource as schema.OperationSchema, input, options) as async.Operation<types.CreateCustomLogSourceOutput>
 end
 
-function C:createDataLake(input: types.CreateDataLakeInput, options: any): async.Operation<types.CreateDataLakeOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataLake, input, options) as async.Operation<types.CreateDataLakeOutput>
+function C:createDataLake(input: types.CreateDataLakeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataLakeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataLake as schema.OperationSchema, input, options) as async.Operation<types.CreateDataLakeOutput>
 end
 
-function C:createDataLakeExceptionSubscription(input: types.CreateDataLakeExceptionSubscriptionInput, options: any): async.Operation<types.CreateDataLakeExceptionSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataLakeExceptionSubscription, input, options) as async.Operation<types.CreateDataLakeExceptionSubscriptionOutput>
+function C:createDataLakeExceptionSubscription(input: types.CreateDataLakeExceptionSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataLakeExceptionSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataLakeExceptionSubscription as schema.OperationSchema, input, options) as async.Operation<types.CreateDataLakeExceptionSubscriptionOutput>
 end
 
-function C:createDataLakeOrganizationConfiguration(input: types.CreateDataLakeOrganizationConfigurationInput, options: any): async.Operation<types.CreateDataLakeOrganizationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataLakeOrganizationConfiguration, input, options) as async.Operation<types.CreateDataLakeOrganizationConfigurationOutput>
+function C:createDataLakeOrganizationConfiguration(input: types.CreateDataLakeOrganizationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataLakeOrganizationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataLakeOrganizationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateDataLakeOrganizationConfigurationOutput>
 end
 
-function C:createSubscriber(input: types.CreateSubscriberInput, options: any): async.Operation<types.CreateSubscriberOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSubscriber, input, options) as async.Operation<types.CreateSubscriberOutput>
+function C:createSubscriber(input: types.CreateSubscriberInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSubscriberOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSubscriber as schema.OperationSchema, input, options) as async.Operation<types.CreateSubscriberOutput>
 end
 
-function C:createSubscriberNotification(input: types.CreateSubscriberNotificationInput, options: any): async.Operation<types.CreateSubscriberNotificationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSubscriberNotification, input, options) as async.Operation<types.CreateSubscriberNotificationOutput>
+function C:createSubscriberNotification(input: types.CreateSubscriberNotificationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSubscriberNotificationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSubscriberNotification as schema.OperationSchema, input, options) as async.Operation<types.CreateSubscriberNotificationOutput>
 end
 
-function C:deleteAwsLogSource(input: types.DeleteAwsLogSourceInput, options: any): async.Operation<types.DeleteAwsLogSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAwsLogSource, input, options) as async.Operation<types.DeleteAwsLogSourceOutput>
+function C:deleteAwsLogSource(input: types.DeleteAwsLogSourceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAwsLogSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAwsLogSource as schema.OperationSchema, input, options) as async.Operation<types.DeleteAwsLogSourceOutput>
 end
 
-function C:deleteCustomLogSource(input: types.DeleteCustomLogSourceInput, options: any): async.Operation<types.DeleteCustomLogSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCustomLogSource, input, options) as async.Operation<types.DeleteCustomLogSourceOutput>
+function C:deleteCustomLogSource(input: types.DeleteCustomLogSourceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCustomLogSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCustomLogSource as schema.OperationSchema, input, options) as async.Operation<types.DeleteCustomLogSourceOutput>
 end
 
-function C:deleteDataLake(input: types.DeleteDataLakeInput, options: any): async.Operation<types.DeleteDataLakeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDataLake, input, options) as async.Operation<types.DeleteDataLakeOutput>
+function C:deleteDataLake(input: types.DeleteDataLakeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDataLakeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataLake as schema.OperationSchema, input, options) as async.Operation<types.DeleteDataLakeOutput>
 end
 
-function C:deleteDataLakeExceptionSubscription(input: types.DeleteDataLakeExceptionSubscriptionInput, options: any): async.Operation<types.DeleteDataLakeExceptionSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDataLakeExceptionSubscription, input, options) as async.Operation<types.DeleteDataLakeExceptionSubscriptionOutput>
+function C:deleteDataLakeExceptionSubscription(input: types.DeleteDataLakeExceptionSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDataLakeExceptionSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataLakeExceptionSubscription as schema.OperationSchema, input, options) as async.Operation<types.DeleteDataLakeExceptionSubscriptionOutput>
 end
 
-function C:deleteDataLakeOrganizationConfiguration(input: types.DeleteDataLakeOrganizationConfigurationInput, options: any): async.Operation<types.DeleteDataLakeOrganizationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDataLakeOrganizationConfiguration, input, options) as async.Operation<types.DeleteDataLakeOrganizationConfigurationOutput>
+function C:deleteDataLakeOrganizationConfiguration(input: types.DeleteDataLakeOrganizationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDataLakeOrganizationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataLakeOrganizationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteDataLakeOrganizationConfigurationOutput>
 end
 
-function C:deleteSubscriber(input: types.DeleteSubscriberInput, options: any): async.Operation<types.DeleteSubscriberOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSubscriber, input, options) as async.Operation<types.DeleteSubscriberOutput>
+function C:deleteSubscriber(input: types.DeleteSubscriberInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSubscriberOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSubscriber as schema.OperationSchema, input, options) as async.Operation<types.DeleteSubscriberOutput>
 end
 
-function C:deleteSubscriberNotification(input: types.DeleteSubscriberNotificationInput, options: any): async.Operation<types.DeleteSubscriberNotificationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSubscriberNotification, input, options) as async.Operation<types.DeleteSubscriberNotificationOutput>
+function C:deleteSubscriberNotification(input: types.DeleteSubscriberNotificationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSubscriberNotificationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSubscriberNotification as schema.OperationSchema, input, options) as async.Operation<types.DeleteSubscriberNotificationOutput>
 end
 
-function C:deregisterDataLakeDelegatedAdministrator(input: types.DeregisterDataLakeDelegatedAdministratorInput, options: any): async.Operation<types.DeregisterDataLakeDelegatedAdministratorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterDataLakeDelegatedAdministrator, input, options) as async.Operation<types.DeregisterDataLakeDelegatedAdministratorOutput>
+function C:deregisterDataLakeDelegatedAdministrator(input: types.DeregisterDataLakeDelegatedAdministratorInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterDataLakeDelegatedAdministratorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterDataLakeDelegatedAdministrator as schema.OperationSchema, input, options) as async.Operation<types.DeregisterDataLakeDelegatedAdministratorOutput>
 end
 
-function C:getDataLakeExceptionSubscription(input: types.GetDataLakeExceptionSubscriptionInput, options: any): async.Operation<types.GetDataLakeExceptionSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataLakeExceptionSubscription, input, options) as async.Operation<types.GetDataLakeExceptionSubscriptionOutput>
+function C:getDataLakeExceptionSubscription(input: types.GetDataLakeExceptionSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataLakeExceptionSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataLakeExceptionSubscription as schema.OperationSchema, input, options) as async.Operation<types.GetDataLakeExceptionSubscriptionOutput>
 end
 
-function C:getDataLakeOrganizationConfiguration(input: types.GetDataLakeOrganizationConfigurationInput, options: any): async.Operation<types.GetDataLakeOrganizationConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataLakeOrganizationConfiguration, input, options) as async.Operation<types.GetDataLakeOrganizationConfigurationOutput>
+function C:getDataLakeOrganizationConfiguration(input: types.GetDataLakeOrganizationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataLakeOrganizationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataLakeOrganizationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetDataLakeOrganizationConfigurationOutput>
 end
 
-function C:getDataLakeSources(input: types.GetDataLakeSourcesInput, options: any): async.Operation<types.GetDataLakeSourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataLakeSources, input, options) as async.Operation<types.GetDataLakeSourcesOutput>
+function C:getDataLakeSources(input: types.GetDataLakeSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataLakeSourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataLakeSources as schema.OperationSchema, input, options) as async.Operation<types.GetDataLakeSourcesOutput>
 end
 
-function C:getSubscriber(input: types.GetSubscriberInput, options: any): async.Operation<types.GetSubscriberOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSubscriber, input, options) as async.Operation<types.GetSubscriberOutput>
+function C:getSubscriber(input: types.GetSubscriberInput, options?: base_client.InvokeOptions): async.Operation<types.GetSubscriberOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSubscriber as schema.OperationSchema, input, options) as async.Operation<types.GetSubscriberOutput>
 end
 
-function C:listDataLakeExceptions(input: types.ListDataLakeExceptionsInput, options: any): async.Operation<types.ListDataLakeExceptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDataLakeExceptions, input, options) as async.Operation<types.ListDataLakeExceptionsOutput>
+function C:listDataLakeExceptions(input: types.ListDataLakeExceptionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataLakeExceptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataLakeExceptions as schema.OperationSchema, input, options) as async.Operation<types.ListDataLakeExceptionsOutput>
 end
 
-function C:listDataLakes(input: types.ListDataLakesInput, options: any): async.Operation<types.ListDataLakesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDataLakes, input, options) as async.Operation<types.ListDataLakesOutput>
+function C:listDataLakes(input: types.ListDataLakesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataLakesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataLakes as schema.OperationSchema, input, options) as async.Operation<types.ListDataLakesOutput>
 end
 
-function C:listLogSources(input: types.ListLogSourcesInput, options: any): async.Operation<types.ListLogSourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLogSources, input, options) as async.Operation<types.ListLogSourcesOutput>
+function C:listLogSources(input: types.ListLogSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListLogSourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLogSources as schema.OperationSchema, input, options) as async.Operation<types.ListLogSourcesOutput>
 end
 
-function C:listSubscribers(input: types.ListSubscribersInput, options: any): async.Operation<types.ListSubscribersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSubscribers, input, options) as async.Operation<types.ListSubscribersOutput>
+function C:listSubscribers(input: types.ListSubscribersInput, options?: base_client.InvokeOptions): async.Operation<types.ListSubscribersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSubscribers as schema.OperationSchema, input, options) as async.Operation<types.ListSubscribersOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:registerDataLakeDelegatedAdministrator(input: types.RegisterDataLakeDelegatedAdministratorInput, options: any): async.Operation<types.RegisterDataLakeDelegatedAdministratorOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterDataLakeDelegatedAdministrator, input, options) as async.Operation<types.RegisterDataLakeDelegatedAdministratorOutput>
+function C:registerDataLakeDelegatedAdministrator(input: types.RegisterDataLakeDelegatedAdministratorInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterDataLakeDelegatedAdministratorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterDataLakeDelegatedAdministrator as schema.OperationSchema, input, options) as async.Operation<types.RegisterDataLakeDelegatedAdministratorOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateDataLake(input: types.UpdateDataLakeInput, options: any): async.Operation<types.UpdateDataLakeOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDataLake, input, options) as async.Operation<types.UpdateDataLakeOutput>
+function C:updateDataLake(input: types.UpdateDataLakeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDataLakeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDataLake as schema.OperationSchema, input, options) as async.Operation<types.UpdateDataLakeOutput>
 end
 
-function C:updateDataLakeExceptionSubscription(input: types.UpdateDataLakeExceptionSubscriptionInput, options: any): async.Operation<types.UpdateDataLakeExceptionSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDataLakeExceptionSubscription, input, options) as async.Operation<types.UpdateDataLakeExceptionSubscriptionOutput>
+function C:updateDataLakeExceptionSubscription(input: types.UpdateDataLakeExceptionSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDataLakeExceptionSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDataLakeExceptionSubscription as schema.OperationSchema, input, options) as async.Operation<types.UpdateDataLakeExceptionSubscriptionOutput>
 end
 
-function C:updateSubscriber(input: types.UpdateSubscriberInput, options: any): async.Operation<types.UpdateSubscriberOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSubscriber, input, options) as async.Operation<types.UpdateSubscriberOutput>
+function C:updateSubscriber(input: types.UpdateSubscriberInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSubscriberOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSubscriber as schema.OperationSchema, input, options) as async.Operation<types.UpdateSubscriberOutput>
 end
 
-function C:updateSubscriberNotification(input: types.UpdateSubscriberNotificationInput, options: any): async.Operation<types.UpdateSubscriberNotificationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSubscriberNotification, input, options) as async.Operation<types.UpdateSubscriberNotificationOutput>
+function C:updateSubscriberNotification(input: types.UpdateSubscriberNotificationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSubscriberNotificationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSubscriberNotification as schema.OperationSchema, input, options) as async.Operation<types.UpdateSubscriberNotificationOutput>
 end
 
 return M

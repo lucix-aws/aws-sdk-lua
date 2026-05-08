@@ -8,54 +8,57 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("account.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("account.schemas")
 local traits = require("smithy.traits")
 local types = require("account.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    acceptPrimaryEmailUpdate: function(Client, types.AcceptPrimaryEmailUpdateInput, any): async.Operation<types.AcceptPrimaryEmailUpdateOutput>
-    deleteAlternateContact: function(Client, types.DeleteAlternateContactInput, any): async.Operation<types.DeleteAlternateContactOutput>
-    disableRegion: function(Client, types.DisableRegionInput, any): async.Operation<types.DisableRegionOutput>
-    enableRegion: function(Client, types.EnableRegionInput, any): async.Operation<types.EnableRegionOutput>
-    getAccountInformation: function(Client, types.GetAccountInformationInput, any): async.Operation<types.GetAccountInformationOutput>
-    getAlternateContact: function(Client, types.GetAlternateContactInput, any): async.Operation<types.GetAlternateContactOutput>
-    getContactInformation: function(Client, types.GetContactInformationInput, any): async.Operation<types.GetContactInformationOutput>
-    getGovCloudAccountInformation: function(Client, types.GetGovCloudAccountInformationInput, any): async.Operation<types.GetGovCloudAccountInformationOutput>
-    getPrimaryEmail: function(Client, types.GetPrimaryEmailInput, any): async.Operation<types.GetPrimaryEmailOutput>
-    getRegionOptStatus: function(Client, types.GetRegionOptStatusInput, any): async.Operation<types.GetRegionOptStatusOutput>
-    listRegions: function(Client, types.ListRegionsInput, any): async.Operation<types.ListRegionsOutput>
-    putAccountName: function(Client, types.PutAccountNameInput, any): async.Operation<types.PutAccountNameOutput>
-    putAlternateContact: function(Client, types.PutAlternateContactInput, any): async.Operation<types.PutAlternateContactOutput>
-    putContactInformation: function(Client, types.PutContactInformationInput, any): async.Operation<types.PutContactInformationOutput>
-    startPrimaryEmailUpdate: function(Client, types.StartPrimaryEmailUpdateInput, any): async.Operation<types.StartPrimaryEmailUpdateOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    acceptPrimaryEmailUpdate: function(Client, types.AcceptPrimaryEmailUpdateInput, ? base_client.InvokeOptions): async.Operation<types.AcceptPrimaryEmailUpdateOutput>
+    deleteAlternateContact: function(Client, types.DeleteAlternateContactInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAlternateContactOutput>
+    disableRegion: function(Client, types.DisableRegionInput, ? base_client.InvokeOptions): async.Operation<types.DisableRegionOutput>
+    enableRegion: function(Client, types.EnableRegionInput, ? base_client.InvokeOptions): async.Operation<types.EnableRegionOutput>
+    getAccountInformation: function(Client, types.GetAccountInformationInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountInformationOutput>
+    getAlternateContact: function(Client, types.GetAlternateContactInput, ? base_client.InvokeOptions): async.Operation<types.GetAlternateContactOutput>
+    getContactInformation: function(Client, types.GetContactInformationInput, ? base_client.InvokeOptions): async.Operation<types.GetContactInformationOutput>
+    getGovCloudAccountInformation: function(Client, types.GetGovCloudAccountInformationInput, ? base_client.InvokeOptions): async.Operation<types.GetGovCloudAccountInformationOutput>
+    getPrimaryEmail: function(Client, types.GetPrimaryEmailInput, ? base_client.InvokeOptions): async.Operation<types.GetPrimaryEmailOutput>
+    getRegionOptStatus: function(Client, types.GetRegionOptStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetRegionOptStatusOutput>
+    listRegions: function(Client, types.ListRegionsInput, ? base_client.InvokeOptions): async.Operation<types.ListRegionsOutput>
+    putAccountName: function(Client, types.PutAccountNameInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountNameOutput>
+    putAlternateContact: function(Client, types.PutAlternateContactInput, ? base_client.InvokeOptions): async.Operation<types.PutAlternateContactOutput>
+    putContactInformation: function(Client, types.PutContactInformationInput, ? base_client.InvokeOptions): async.Operation<types.PutContactInformationOutput>
+    startPrimaryEmailUpdate: function(Client, types.StartPrimaryEmailUpdateInput, ? base_client.InvokeOptions): async.Operation<types.StartPrimaryEmailUpdateOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "Account"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "account", signing_region = c.region } }
                 else
@@ -74,64 +77,64 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:acceptPrimaryEmailUpdate(input: types.AcceptPrimaryEmailUpdateInput, options: any): async.Operation<types.AcceptPrimaryEmailUpdateOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptPrimaryEmailUpdate, input, options) as async.Operation<types.AcceptPrimaryEmailUpdateOutput>
+function C:acceptPrimaryEmailUpdate(input: types.AcceptPrimaryEmailUpdateInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptPrimaryEmailUpdateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptPrimaryEmailUpdate as schema.OperationSchema, input, options) as async.Operation<types.AcceptPrimaryEmailUpdateOutput>
 end
 
-function C:deleteAlternateContact(input: types.DeleteAlternateContactInput, options: any): async.Operation<types.DeleteAlternateContactOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAlternateContact, input, options) as async.Operation<types.DeleteAlternateContactOutput>
+function C:deleteAlternateContact(input: types.DeleteAlternateContactInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAlternateContactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAlternateContact as schema.OperationSchema, input, options) as async.Operation<types.DeleteAlternateContactOutput>
 end
 
-function C:disableRegion(input: types.DisableRegionInput, options: any): async.Operation<types.DisableRegionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableRegion, input, options) as async.Operation<types.DisableRegionOutput>
+function C:disableRegion(input: types.DisableRegionInput, options?: base_client.InvokeOptions): async.Operation<types.DisableRegionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableRegion as schema.OperationSchema, input, options) as async.Operation<types.DisableRegionOutput>
 end
 
-function C:enableRegion(input: types.EnableRegionInput, options: any): async.Operation<types.EnableRegionOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableRegion, input, options) as async.Operation<types.EnableRegionOutput>
+function C:enableRegion(input: types.EnableRegionInput, options?: base_client.InvokeOptions): async.Operation<types.EnableRegionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableRegion as schema.OperationSchema, input, options) as async.Operation<types.EnableRegionOutput>
 end
 
-function C:getAccountInformation(input: types.GetAccountInformationInput, options: any): async.Operation<types.GetAccountInformationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccountInformation, input, options) as async.Operation<types.GetAccountInformationOutput>
+function C:getAccountInformation(input: types.GetAccountInformationInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccountInformationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccountInformation as schema.OperationSchema, input, options) as async.Operation<types.GetAccountInformationOutput>
 end
 
-function C:getAlternateContact(input: types.GetAlternateContactInput, options: any): async.Operation<types.GetAlternateContactOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAlternateContact, input, options) as async.Operation<types.GetAlternateContactOutput>
+function C:getAlternateContact(input: types.GetAlternateContactInput, options?: base_client.InvokeOptions): async.Operation<types.GetAlternateContactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAlternateContact as schema.OperationSchema, input, options) as async.Operation<types.GetAlternateContactOutput>
 end
 
-function C:getContactInformation(input: types.GetContactInformationInput, options: any): async.Operation<types.GetContactInformationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetContactInformation, input, options) as async.Operation<types.GetContactInformationOutput>
+function C:getContactInformation(input: types.GetContactInformationInput, options?: base_client.InvokeOptions): async.Operation<types.GetContactInformationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetContactInformation as schema.OperationSchema, input, options) as async.Operation<types.GetContactInformationOutput>
 end
 
-function C:getGovCloudAccountInformation(input: types.GetGovCloudAccountInformationInput, options: any): async.Operation<types.GetGovCloudAccountInformationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetGovCloudAccountInformation, input, options) as async.Operation<types.GetGovCloudAccountInformationOutput>
+function C:getGovCloudAccountInformation(input: types.GetGovCloudAccountInformationInput, options?: base_client.InvokeOptions): async.Operation<types.GetGovCloudAccountInformationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGovCloudAccountInformation as schema.OperationSchema, input, options) as async.Operation<types.GetGovCloudAccountInformationOutput>
 end
 
-function C:getPrimaryEmail(input: types.GetPrimaryEmailInput, options: any): async.Operation<types.GetPrimaryEmailOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPrimaryEmail, input, options) as async.Operation<types.GetPrimaryEmailOutput>
+function C:getPrimaryEmail(input: types.GetPrimaryEmailInput, options?: base_client.InvokeOptions): async.Operation<types.GetPrimaryEmailOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPrimaryEmail as schema.OperationSchema, input, options) as async.Operation<types.GetPrimaryEmailOutput>
 end
 
-function C:getRegionOptStatus(input: types.GetRegionOptStatusInput, options: any): async.Operation<types.GetRegionOptStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRegionOptStatus, input, options) as async.Operation<types.GetRegionOptStatusOutput>
+function C:getRegionOptStatus(input: types.GetRegionOptStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetRegionOptStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRegionOptStatus as schema.OperationSchema, input, options) as async.Operation<types.GetRegionOptStatusOutput>
 end
 
-function C:listRegions(input: types.ListRegionsInput, options: any): async.Operation<types.ListRegionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRegions, input, options) as async.Operation<types.ListRegionsOutput>
+function C:listRegions(input: types.ListRegionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRegionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRegions as schema.OperationSchema, input, options) as async.Operation<types.ListRegionsOutput>
 end
 
-function C:putAccountName(input: types.PutAccountNameInput, options: any): async.Operation<types.PutAccountNameOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAccountName, input, options) as async.Operation<types.PutAccountNameOutput>
+function C:putAccountName(input: types.PutAccountNameInput, options?: base_client.InvokeOptions): async.Operation<types.PutAccountNameOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAccountName as schema.OperationSchema, input, options) as async.Operation<types.PutAccountNameOutput>
 end
 
-function C:putAlternateContact(input: types.PutAlternateContactInput, options: any): async.Operation<types.PutAlternateContactOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAlternateContact, input, options) as async.Operation<types.PutAlternateContactOutput>
+function C:putAlternateContact(input: types.PutAlternateContactInput, options?: base_client.InvokeOptions): async.Operation<types.PutAlternateContactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAlternateContact as schema.OperationSchema, input, options) as async.Operation<types.PutAlternateContactOutput>
 end
 
-function C:putContactInformation(input: types.PutContactInformationInput, options: any): async.Operation<types.PutContactInformationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutContactInformation, input, options) as async.Operation<types.PutContactInformationOutput>
+function C:putContactInformation(input: types.PutContactInformationInput, options?: base_client.InvokeOptions): async.Operation<types.PutContactInformationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutContactInformation as schema.OperationSchema, input, options) as async.Operation<types.PutContactInformationOutput>
 end
 
-function C:startPrimaryEmailUpdate(input: types.StartPrimaryEmailUpdateInput, options: any): async.Operation<types.StartPrimaryEmailUpdateOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartPrimaryEmailUpdate, input, options) as async.Operation<types.StartPrimaryEmailUpdateOutput>
+function C:startPrimaryEmailUpdate(input: types.StartPrimaryEmailUpdateInput, options?: base_client.InvokeOptions): async.Operation<types.StartPrimaryEmailUpdateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartPrimaryEmailUpdate as schema.OperationSchema, input, options) as async.Operation<types.StartPrimaryEmailUpdateOutput>
 end
 
 return M

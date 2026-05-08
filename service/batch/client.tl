@@ -8,84 +8,87 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("batch.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("batch.schemas")
 local traits = require("smithy.traits")
 local types = require("batch.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    cancelJob: function(Client, types.CancelJobInput, any): async.Operation<types.CancelJobOutput>
-    createComputeEnvironment: function(Client, types.CreateComputeEnvironmentInput, any): async.Operation<types.CreateComputeEnvironmentOutput>
-    createConsumableResource: function(Client, types.CreateConsumableResourceInput, any): async.Operation<types.CreateConsumableResourceOutput>
-    createJobQueue: function(Client, types.CreateJobQueueInput, any): async.Operation<types.CreateJobQueueOutput>
-    createQuotaShare: function(Client, types.CreateQuotaShareInput, any): async.Operation<types.CreateQuotaShareOutput>
-    createSchedulingPolicy: function(Client, types.CreateSchedulingPolicyInput, any): async.Operation<types.CreateSchedulingPolicyOutput>
-    createServiceEnvironment: function(Client, types.CreateServiceEnvironmentInput, any): async.Operation<types.CreateServiceEnvironmentOutput>
-    deleteComputeEnvironment: function(Client, types.DeleteComputeEnvironmentInput, any): async.Operation<types.DeleteComputeEnvironmentOutput>
-    deleteConsumableResource: function(Client, types.DeleteConsumableResourceInput, any): async.Operation<types.DeleteConsumableResourceOutput>
-    deleteJobQueue: function(Client, types.DeleteJobQueueInput, any): async.Operation<types.DeleteJobQueueOutput>
-    deleteQuotaShare: function(Client, types.DeleteQuotaShareInput, any): async.Operation<types.DeleteQuotaShareOutput>
-    deleteSchedulingPolicy: function(Client, types.DeleteSchedulingPolicyInput, any): async.Operation<types.DeleteSchedulingPolicyOutput>
-    deleteServiceEnvironment: function(Client, types.DeleteServiceEnvironmentInput, any): async.Operation<types.DeleteServiceEnvironmentOutput>
-    deregisterJobDefinition: function(Client, types.DeregisterJobDefinitionInput, any): async.Operation<types.DeregisterJobDefinitionOutput>
-    describeComputeEnvironments: function(Client, types.DescribeComputeEnvironmentsInput, any): async.Operation<types.DescribeComputeEnvironmentsOutput>
-    describeConsumableResource: function(Client, types.DescribeConsumableResourceInput, any): async.Operation<types.DescribeConsumableResourceOutput>
-    describeJobDefinitions: function(Client, types.DescribeJobDefinitionsInput, any): async.Operation<types.DescribeJobDefinitionsOutput>
-    describeJobQueues: function(Client, types.DescribeJobQueuesInput, any): async.Operation<types.DescribeJobQueuesOutput>
-    describeJobs: function(Client, types.DescribeJobsInput, any): async.Operation<types.DescribeJobsOutput>
-    describeQuotaShare: function(Client, types.DescribeQuotaShareInput, any): async.Operation<types.DescribeQuotaShareOutput>
-    describeSchedulingPolicies: function(Client, types.DescribeSchedulingPoliciesInput, any): async.Operation<types.DescribeSchedulingPoliciesOutput>
-    describeServiceEnvironments: function(Client, types.DescribeServiceEnvironmentsInput, any): async.Operation<types.DescribeServiceEnvironmentsOutput>
-    describeServiceJob: function(Client, types.DescribeServiceJobInput, any): async.Operation<types.DescribeServiceJobOutput>
-    getJobQueueSnapshot: function(Client, types.GetJobQueueSnapshotInput, any): async.Operation<types.GetJobQueueSnapshotOutput>
-    listConsumableResources: function(Client, types.ListConsumableResourcesInput, any): async.Operation<types.ListConsumableResourcesOutput>
-    listJobs: function(Client, types.ListJobsInput, any): async.Operation<types.ListJobsOutput>
-    listJobsByConsumableResource: function(Client, types.ListJobsByConsumableResourceInput, any): async.Operation<types.ListJobsByConsumableResourceOutput>
-    listQuotaShares: function(Client, types.ListQuotaSharesInput, any): async.Operation<types.ListQuotaSharesOutput>
-    listSchedulingPolicies: function(Client, types.ListSchedulingPoliciesInput, any): async.Operation<types.ListSchedulingPoliciesOutput>
-    listServiceJobs: function(Client, types.ListServiceJobsInput, any): async.Operation<types.ListServiceJobsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    registerJobDefinition: function(Client, types.RegisterJobDefinitionInput, any): async.Operation<types.RegisterJobDefinitionOutput>
-    submitJob: function(Client, types.SubmitJobInput, any): async.Operation<types.SubmitJobOutput>
-    submitServiceJob: function(Client, types.SubmitServiceJobInput, any): async.Operation<types.SubmitServiceJobOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    terminateJob: function(Client, types.TerminateJobInput, any): async.Operation<types.TerminateJobOutput>
-    terminateServiceJob: function(Client, types.TerminateServiceJobInput, any): async.Operation<types.TerminateServiceJobOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateComputeEnvironment: function(Client, types.UpdateComputeEnvironmentInput, any): async.Operation<types.UpdateComputeEnvironmentOutput>
-    updateConsumableResource: function(Client, types.UpdateConsumableResourceInput, any): async.Operation<types.UpdateConsumableResourceOutput>
-    updateJobQueue: function(Client, types.UpdateJobQueueInput, any): async.Operation<types.UpdateJobQueueOutput>
-    updateQuotaShare: function(Client, types.UpdateQuotaShareInput, any): async.Operation<types.UpdateQuotaShareOutput>
-    updateSchedulingPolicy: function(Client, types.UpdateSchedulingPolicyInput, any): async.Operation<types.UpdateSchedulingPolicyOutput>
-    updateServiceEnvironment: function(Client, types.UpdateServiceEnvironmentInput, any): async.Operation<types.UpdateServiceEnvironmentOutput>
-    updateServiceJob: function(Client, types.UpdateServiceJobInput, any): async.Operation<types.UpdateServiceJobOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    cancelJob: function(Client, types.CancelJobInput, ? base_client.InvokeOptions): async.Operation<types.CancelJobOutput>
+    createComputeEnvironment: function(Client, types.CreateComputeEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateComputeEnvironmentOutput>
+    createConsumableResource: function(Client, types.CreateConsumableResourceInput, ? base_client.InvokeOptions): async.Operation<types.CreateConsumableResourceOutput>
+    createJobQueue: function(Client, types.CreateJobQueueInput, ? base_client.InvokeOptions): async.Operation<types.CreateJobQueueOutput>
+    createQuotaShare: function(Client, types.CreateQuotaShareInput, ? base_client.InvokeOptions): async.Operation<types.CreateQuotaShareOutput>
+    createSchedulingPolicy: function(Client, types.CreateSchedulingPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateSchedulingPolicyOutput>
+    createServiceEnvironment: function(Client, types.CreateServiceEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateServiceEnvironmentOutput>
+    deleteComputeEnvironment: function(Client, types.DeleteComputeEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteComputeEnvironmentOutput>
+    deleteConsumableResource: function(Client, types.DeleteConsumableResourceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConsumableResourceOutput>
+    deleteJobQueue: function(Client, types.DeleteJobQueueInput, ? base_client.InvokeOptions): async.Operation<types.DeleteJobQueueOutput>
+    deleteQuotaShare: function(Client, types.DeleteQuotaShareInput, ? base_client.InvokeOptions): async.Operation<types.DeleteQuotaShareOutput>
+    deleteSchedulingPolicy: function(Client, types.DeleteSchedulingPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSchedulingPolicyOutput>
+    deleteServiceEnvironment: function(Client, types.DeleteServiceEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteServiceEnvironmentOutput>
+    deregisterJobDefinition: function(Client, types.DeregisterJobDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterJobDefinitionOutput>
+    describeComputeEnvironments: function(Client, types.DescribeComputeEnvironmentsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeComputeEnvironmentsOutput>
+    describeConsumableResource: function(Client, types.DescribeConsumableResourceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConsumableResourceOutput>
+    describeJobDefinitions: function(Client, types.DescribeJobDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeJobDefinitionsOutput>
+    describeJobQueues: function(Client, types.DescribeJobQueuesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeJobQueuesOutput>
+    describeJobs: function(Client, types.DescribeJobsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeJobsOutput>
+    describeQuotaShare: function(Client, types.DescribeQuotaShareInput, ? base_client.InvokeOptions): async.Operation<types.DescribeQuotaShareOutput>
+    describeSchedulingPolicies: function(Client, types.DescribeSchedulingPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSchedulingPoliciesOutput>
+    describeServiceEnvironments: function(Client, types.DescribeServiceEnvironmentsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeServiceEnvironmentsOutput>
+    describeServiceJob: function(Client, types.DescribeServiceJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeServiceJobOutput>
+    getJobQueueSnapshot: function(Client, types.GetJobQueueSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.GetJobQueueSnapshotOutput>
+    listConsumableResources: function(Client, types.ListConsumableResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListConsumableResourcesOutput>
+    listJobs: function(Client, types.ListJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListJobsOutput>
+    listJobsByConsumableResource: function(Client, types.ListJobsByConsumableResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListJobsByConsumableResourceOutput>
+    listQuotaShares: function(Client, types.ListQuotaSharesInput, ? base_client.InvokeOptions): async.Operation<types.ListQuotaSharesOutput>
+    listSchedulingPolicies: function(Client, types.ListSchedulingPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListSchedulingPoliciesOutput>
+    listServiceJobs: function(Client, types.ListServiceJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListServiceJobsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    registerJobDefinition: function(Client, types.RegisterJobDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.RegisterJobDefinitionOutput>
+    submitJob: function(Client, types.SubmitJobInput, ? base_client.InvokeOptions): async.Operation<types.SubmitJobOutput>
+    submitServiceJob: function(Client, types.SubmitServiceJobInput, ? base_client.InvokeOptions): async.Operation<types.SubmitServiceJobOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    terminateJob: function(Client, types.TerminateJobInput, ? base_client.InvokeOptions): async.Operation<types.TerminateJobOutput>
+    terminateServiceJob: function(Client, types.TerminateServiceJobInput, ? base_client.InvokeOptions): async.Operation<types.TerminateServiceJobOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateComputeEnvironment: function(Client, types.UpdateComputeEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateComputeEnvironmentOutput>
+    updateConsumableResource: function(Client, types.UpdateConsumableResourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConsumableResourceOutput>
+    updateJobQueue: function(Client, types.UpdateJobQueueInput, ? base_client.InvokeOptions): async.Operation<types.UpdateJobQueueOutput>
+    updateQuotaShare: function(Client, types.UpdateQuotaShareInput, ? base_client.InvokeOptions): async.Operation<types.UpdateQuotaShareOutput>
+    updateSchedulingPolicy: function(Client, types.UpdateSchedulingPolicyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSchedulingPolicyOutput>
+    updateServiceEnvironment: function(Client, types.UpdateServiceEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServiceEnvironmentOutput>
+    updateServiceJob: function(Client, types.UpdateServiceJobInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServiceJobOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSBatchV20160810"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "batch", signing_region = c.region } }
                 else
@@ -104,184 +107,184 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:cancelJob(input: types.CancelJobInput, options: any): async.Operation<types.CancelJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelJob, input, options) as async.Operation<types.CancelJobOutput>
+function C:cancelJob(input: types.CancelJobInput, options?: base_client.InvokeOptions): async.Operation<types.CancelJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelJob as schema.OperationSchema, input, options) as async.Operation<types.CancelJobOutput>
 end
 
-function C:createComputeEnvironment(input: types.CreateComputeEnvironmentInput, options: any): async.Operation<types.CreateComputeEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateComputeEnvironment, input, options) as async.Operation<types.CreateComputeEnvironmentOutput>
+function C:createComputeEnvironment(input: types.CreateComputeEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateComputeEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateComputeEnvironment as schema.OperationSchema, input, options) as async.Operation<types.CreateComputeEnvironmentOutput>
 end
 
-function C:createConsumableResource(input: types.CreateConsumableResourceInput, options: any): async.Operation<types.CreateConsumableResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConsumableResource, input, options) as async.Operation<types.CreateConsumableResourceOutput>
+function C:createConsumableResource(input: types.CreateConsumableResourceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConsumableResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConsumableResource as schema.OperationSchema, input, options) as async.Operation<types.CreateConsumableResourceOutput>
 end
 
-function C:createJobQueue(input: types.CreateJobQueueInput, options: any): async.Operation<types.CreateJobQueueOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateJobQueue, input, options) as async.Operation<types.CreateJobQueueOutput>
+function C:createJobQueue(input: types.CreateJobQueueInput, options?: base_client.InvokeOptions): async.Operation<types.CreateJobQueueOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateJobQueue as schema.OperationSchema, input, options) as async.Operation<types.CreateJobQueueOutput>
 end
 
-function C:createQuotaShare(input: types.CreateQuotaShareInput, options: any): async.Operation<types.CreateQuotaShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateQuotaShare, input, options) as async.Operation<types.CreateQuotaShareOutput>
+function C:createQuotaShare(input: types.CreateQuotaShareInput, options?: base_client.InvokeOptions): async.Operation<types.CreateQuotaShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateQuotaShare as schema.OperationSchema, input, options) as async.Operation<types.CreateQuotaShareOutput>
 end
 
-function C:createSchedulingPolicy(input: types.CreateSchedulingPolicyInput, options: any): async.Operation<types.CreateSchedulingPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSchedulingPolicy, input, options) as async.Operation<types.CreateSchedulingPolicyOutput>
+function C:createSchedulingPolicy(input: types.CreateSchedulingPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSchedulingPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSchedulingPolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateSchedulingPolicyOutput>
 end
 
-function C:createServiceEnvironment(input: types.CreateServiceEnvironmentInput, options: any): async.Operation<types.CreateServiceEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateServiceEnvironment, input, options) as async.Operation<types.CreateServiceEnvironmentOutput>
+function C:createServiceEnvironment(input: types.CreateServiceEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateServiceEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateServiceEnvironment as schema.OperationSchema, input, options) as async.Operation<types.CreateServiceEnvironmentOutput>
 end
 
-function C:deleteComputeEnvironment(input: types.DeleteComputeEnvironmentInput, options: any): async.Operation<types.DeleteComputeEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteComputeEnvironment, input, options) as async.Operation<types.DeleteComputeEnvironmentOutput>
+function C:deleteComputeEnvironment(input: types.DeleteComputeEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteComputeEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteComputeEnvironment as schema.OperationSchema, input, options) as async.Operation<types.DeleteComputeEnvironmentOutput>
 end
 
-function C:deleteConsumableResource(input: types.DeleteConsumableResourceInput, options: any): async.Operation<types.DeleteConsumableResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConsumableResource, input, options) as async.Operation<types.DeleteConsumableResourceOutput>
+function C:deleteConsumableResource(input: types.DeleteConsumableResourceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConsumableResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConsumableResource as schema.OperationSchema, input, options) as async.Operation<types.DeleteConsumableResourceOutput>
 end
 
-function C:deleteJobQueue(input: types.DeleteJobQueueInput, options: any): async.Operation<types.DeleteJobQueueOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteJobQueue, input, options) as async.Operation<types.DeleteJobQueueOutput>
+function C:deleteJobQueue(input: types.DeleteJobQueueInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteJobQueueOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteJobQueue as schema.OperationSchema, input, options) as async.Operation<types.DeleteJobQueueOutput>
 end
 
-function C:deleteQuotaShare(input: types.DeleteQuotaShareInput, options: any): async.Operation<types.DeleteQuotaShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteQuotaShare, input, options) as async.Operation<types.DeleteQuotaShareOutput>
+function C:deleteQuotaShare(input: types.DeleteQuotaShareInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteQuotaShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteQuotaShare as schema.OperationSchema, input, options) as async.Operation<types.DeleteQuotaShareOutput>
 end
 
-function C:deleteSchedulingPolicy(input: types.DeleteSchedulingPolicyInput, options: any): async.Operation<types.DeleteSchedulingPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSchedulingPolicy, input, options) as async.Operation<types.DeleteSchedulingPolicyOutput>
+function C:deleteSchedulingPolicy(input: types.DeleteSchedulingPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSchedulingPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSchedulingPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteSchedulingPolicyOutput>
 end
 
-function C:deleteServiceEnvironment(input: types.DeleteServiceEnvironmentInput, options: any): async.Operation<types.DeleteServiceEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteServiceEnvironment, input, options) as async.Operation<types.DeleteServiceEnvironmentOutput>
+function C:deleteServiceEnvironment(input: types.DeleteServiceEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteServiceEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteServiceEnvironment as schema.OperationSchema, input, options) as async.Operation<types.DeleteServiceEnvironmentOutput>
 end
 
-function C:deregisterJobDefinition(input: types.DeregisterJobDefinitionInput, options: any): async.Operation<types.DeregisterJobDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterJobDefinition, input, options) as async.Operation<types.DeregisterJobDefinitionOutput>
+function C:deregisterJobDefinition(input: types.DeregisterJobDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterJobDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterJobDefinition as schema.OperationSchema, input, options) as async.Operation<types.DeregisterJobDefinitionOutput>
 end
 
-function C:describeComputeEnvironments(input: types.DescribeComputeEnvironmentsInput, options: any): async.Operation<types.DescribeComputeEnvironmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeComputeEnvironments, input, options) as async.Operation<types.DescribeComputeEnvironmentsOutput>
+function C:describeComputeEnvironments(input: types.DescribeComputeEnvironmentsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeComputeEnvironmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeComputeEnvironments as schema.OperationSchema, input, options) as async.Operation<types.DescribeComputeEnvironmentsOutput>
 end
 
-function C:describeConsumableResource(input: types.DescribeConsumableResourceInput, options: any): async.Operation<types.DescribeConsumableResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeConsumableResource, input, options) as async.Operation<types.DescribeConsumableResourceOutput>
+function C:describeConsumableResource(input: types.DescribeConsumableResourceInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeConsumableResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeConsumableResource as schema.OperationSchema, input, options) as async.Operation<types.DescribeConsumableResourceOutput>
 end
 
-function C:describeJobDefinitions(input: types.DescribeJobDefinitionsInput, options: any): async.Operation<types.DescribeJobDefinitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeJobDefinitions, input, options) as async.Operation<types.DescribeJobDefinitionsOutput>
+function C:describeJobDefinitions(input: types.DescribeJobDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeJobDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeJobDefinitions as schema.OperationSchema, input, options) as async.Operation<types.DescribeJobDefinitionsOutput>
 end
 
-function C:describeJobQueues(input: types.DescribeJobQueuesInput, options: any): async.Operation<types.DescribeJobQueuesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeJobQueues, input, options) as async.Operation<types.DescribeJobQueuesOutput>
+function C:describeJobQueues(input: types.DescribeJobQueuesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeJobQueuesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeJobQueues as schema.OperationSchema, input, options) as async.Operation<types.DescribeJobQueuesOutput>
 end
 
-function C:describeJobs(input: types.DescribeJobsInput, options: any): async.Operation<types.DescribeJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeJobs, input, options) as async.Operation<types.DescribeJobsOutput>
+function C:describeJobs(input: types.DescribeJobsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeJobs as schema.OperationSchema, input, options) as async.Operation<types.DescribeJobsOutput>
 end
 
-function C:describeQuotaShare(input: types.DescribeQuotaShareInput, options: any): async.Operation<types.DescribeQuotaShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeQuotaShare, input, options) as async.Operation<types.DescribeQuotaShareOutput>
+function C:describeQuotaShare(input: types.DescribeQuotaShareInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeQuotaShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeQuotaShare as schema.OperationSchema, input, options) as async.Operation<types.DescribeQuotaShareOutput>
 end
 
-function C:describeSchedulingPolicies(input: types.DescribeSchedulingPoliciesInput, options: any): async.Operation<types.DescribeSchedulingPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSchedulingPolicies, input, options) as async.Operation<types.DescribeSchedulingPoliciesOutput>
+function C:describeSchedulingPolicies(input: types.DescribeSchedulingPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSchedulingPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSchedulingPolicies as schema.OperationSchema, input, options) as async.Operation<types.DescribeSchedulingPoliciesOutput>
 end
 
-function C:describeServiceEnvironments(input: types.DescribeServiceEnvironmentsInput, options: any): async.Operation<types.DescribeServiceEnvironmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeServiceEnvironments, input, options) as async.Operation<types.DescribeServiceEnvironmentsOutput>
+function C:describeServiceEnvironments(input: types.DescribeServiceEnvironmentsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeServiceEnvironmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeServiceEnvironments as schema.OperationSchema, input, options) as async.Operation<types.DescribeServiceEnvironmentsOutput>
 end
 
-function C:describeServiceJob(input: types.DescribeServiceJobInput, options: any): async.Operation<types.DescribeServiceJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeServiceJob, input, options) as async.Operation<types.DescribeServiceJobOutput>
+function C:describeServiceJob(input: types.DescribeServiceJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeServiceJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeServiceJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeServiceJobOutput>
 end
 
-function C:getJobQueueSnapshot(input: types.GetJobQueueSnapshotInput, options: any): async.Operation<types.GetJobQueueSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetJobQueueSnapshot, input, options) as async.Operation<types.GetJobQueueSnapshotOutput>
+function C:getJobQueueSnapshot(input: types.GetJobQueueSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.GetJobQueueSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetJobQueueSnapshot as schema.OperationSchema, input, options) as async.Operation<types.GetJobQueueSnapshotOutput>
 end
 
-function C:listConsumableResources(input: types.ListConsumableResourcesInput, options: any): async.Operation<types.ListConsumableResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConsumableResources, input, options) as async.Operation<types.ListConsumableResourcesOutput>
+function C:listConsumableResources(input: types.ListConsumableResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListConsumableResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConsumableResources as schema.OperationSchema, input, options) as async.Operation<types.ListConsumableResourcesOutput>
 end
 
-function C:listJobs(input: types.ListJobsInput, options: any): async.Operation<types.ListJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListJobs, input, options) as async.Operation<types.ListJobsOutput>
+function C:listJobs(input: types.ListJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListJobs as schema.OperationSchema, input, options) as async.Operation<types.ListJobsOutput>
 end
 
-function C:listJobsByConsumableResource(input: types.ListJobsByConsumableResourceInput, options: any): async.Operation<types.ListJobsByConsumableResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListJobsByConsumableResource, input, options) as async.Operation<types.ListJobsByConsumableResourceOutput>
+function C:listJobsByConsumableResource(input: types.ListJobsByConsumableResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListJobsByConsumableResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListJobsByConsumableResource as schema.OperationSchema, input, options) as async.Operation<types.ListJobsByConsumableResourceOutput>
 end
 
-function C:listQuotaShares(input: types.ListQuotaSharesInput, options: any): async.Operation<types.ListQuotaSharesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListQuotaShares, input, options) as async.Operation<types.ListQuotaSharesOutput>
+function C:listQuotaShares(input: types.ListQuotaSharesInput, options?: base_client.InvokeOptions): async.Operation<types.ListQuotaSharesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListQuotaShares as schema.OperationSchema, input, options) as async.Operation<types.ListQuotaSharesOutput>
 end
 
-function C:listSchedulingPolicies(input: types.ListSchedulingPoliciesInput, options: any): async.Operation<types.ListSchedulingPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSchedulingPolicies, input, options) as async.Operation<types.ListSchedulingPoliciesOutput>
+function C:listSchedulingPolicies(input: types.ListSchedulingPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSchedulingPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSchedulingPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListSchedulingPoliciesOutput>
 end
 
-function C:listServiceJobs(input: types.ListServiceJobsInput, options: any): async.Operation<types.ListServiceJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServiceJobs, input, options) as async.Operation<types.ListServiceJobsOutput>
+function C:listServiceJobs(input: types.ListServiceJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListServiceJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServiceJobs as schema.OperationSchema, input, options) as async.Operation<types.ListServiceJobsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:registerJobDefinition(input: types.RegisterJobDefinitionInput, options: any): async.Operation<types.RegisterJobDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterJobDefinition, input, options) as async.Operation<types.RegisterJobDefinitionOutput>
+function C:registerJobDefinition(input: types.RegisterJobDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterJobDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterJobDefinition as schema.OperationSchema, input, options) as async.Operation<types.RegisterJobDefinitionOutput>
 end
 
-function C:submitJob(input: types.SubmitJobInput, options: any): async.Operation<types.SubmitJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.SubmitJob, input, options) as async.Operation<types.SubmitJobOutput>
+function C:submitJob(input: types.SubmitJobInput, options?: base_client.InvokeOptions): async.Operation<types.SubmitJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SubmitJob as schema.OperationSchema, input, options) as async.Operation<types.SubmitJobOutput>
 end
 
-function C:submitServiceJob(input: types.SubmitServiceJobInput, options: any): async.Operation<types.SubmitServiceJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.SubmitServiceJob, input, options) as async.Operation<types.SubmitServiceJobOutput>
+function C:submitServiceJob(input: types.SubmitServiceJobInput, options?: base_client.InvokeOptions): async.Operation<types.SubmitServiceJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SubmitServiceJob as schema.OperationSchema, input, options) as async.Operation<types.SubmitServiceJobOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:terminateJob(input: types.TerminateJobInput, options: any): async.Operation<types.TerminateJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.TerminateJob, input, options) as async.Operation<types.TerminateJobOutput>
+function C:terminateJob(input: types.TerminateJobInput, options?: base_client.InvokeOptions): async.Operation<types.TerminateJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TerminateJob as schema.OperationSchema, input, options) as async.Operation<types.TerminateJobOutput>
 end
 
-function C:terminateServiceJob(input: types.TerminateServiceJobInput, options: any): async.Operation<types.TerminateServiceJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.TerminateServiceJob, input, options) as async.Operation<types.TerminateServiceJobOutput>
+function C:terminateServiceJob(input: types.TerminateServiceJobInput, options?: base_client.InvokeOptions): async.Operation<types.TerminateServiceJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TerminateServiceJob as schema.OperationSchema, input, options) as async.Operation<types.TerminateServiceJobOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateComputeEnvironment(input: types.UpdateComputeEnvironmentInput, options: any): async.Operation<types.UpdateComputeEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateComputeEnvironment, input, options) as async.Operation<types.UpdateComputeEnvironmentOutput>
+function C:updateComputeEnvironment(input: types.UpdateComputeEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateComputeEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateComputeEnvironment as schema.OperationSchema, input, options) as async.Operation<types.UpdateComputeEnvironmentOutput>
 end
 
-function C:updateConsumableResource(input: types.UpdateConsumableResourceInput, options: any): async.Operation<types.UpdateConsumableResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConsumableResource, input, options) as async.Operation<types.UpdateConsumableResourceOutput>
+function C:updateConsumableResource(input: types.UpdateConsumableResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConsumableResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConsumableResource as schema.OperationSchema, input, options) as async.Operation<types.UpdateConsumableResourceOutput>
 end
 
-function C:updateJobQueue(input: types.UpdateJobQueueInput, options: any): async.Operation<types.UpdateJobQueueOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateJobQueue, input, options) as async.Operation<types.UpdateJobQueueOutput>
+function C:updateJobQueue(input: types.UpdateJobQueueInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateJobQueueOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateJobQueue as schema.OperationSchema, input, options) as async.Operation<types.UpdateJobQueueOutput>
 end
 
-function C:updateQuotaShare(input: types.UpdateQuotaShareInput, options: any): async.Operation<types.UpdateQuotaShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateQuotaShare, input, options) as async.Operation<types.UpdateQuotaShareOutput>
+function C:updateQuotaShare(input: types.UpdateQuotaShareInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateQuotaShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateQuotaShare as schema.OperationSchema, input, options) as async.Operation<types.UpdateQuotaShareOutput>
 end
 
-function C:updateSchedulingPolicy(input: types.UpdateSchedulingPolicyInput, options: any): async.Operation<types.UpdateSchedulingPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSchedulingPolicy, input, options) as async.Operation<types.UpdateSchedulingPolicyOutput>
+function C:updateSchedulingPolicy(input: types.UpdateSchedulingPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSchedulingPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSchedulingPolicy as schema.OperationSchema, input, options) as async.Operation<types.UpdateSchedulingPolicyOutput>
 end
 
-function C:updateServiceEnvironment(input: types.UpdateServiceEnvironmentInput, options: any): async.Operation<types.UpdateServiceEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateServiceEnvironment, input, options) as async.Operation<types.UpdateServiceEnvironmentOutput>
+function C:updateServiceEnvironment(input: types.UpdateServiceEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateServiceEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateServiceEnvironment as schema.OperationSchema, input, options) as async.Operation<types.UpdateServiceEnvironmentOutput>
 end
 
-function C:updateServiceJob(input: types.UpdateServiceJobInput, options: any): async.Operation<types.UpdateServiceJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateServiceJob, input, options) as async.Operation<types.UpdateServiceJobOutput>
+function C:updateServiceJob(input: types.UpdateServiceJobInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateServiceJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateServiceJob as schema.OperationSchema, input, options) as async.Operation<types.UpdateServiceJobOutput>
 end
 
 return M

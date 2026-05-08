@@ -8,63 +8,66 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("gameliftstreams.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("gameliftstreams.schemas")
 local traits = require("smithy.traits")
 local types = require("gameliftstreams.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    addStreamGroupLocations: function(Client, types.AddStreamGroupLocationsInput, any): async.Operation<types.AddStreamGroupLocationsOutput>
-    associateApplications: function(Client, types.AssociateApplicationsInput, any): async.Operation<types.AssociateApplicationsOutput>
-    createApplication: function(Client, types.CreateApplicationInput, any): async.Operation<types.CreateApplicationOutput>
-    createStreamGroup: function(Client, types.CreateStreamGroupInput, any): async.Operation<types.CreateStreamGroupOutput>
-    createStreamSessionConnection: function(Client, types.CreateStreamSessionConnectionInput, any): async.Operation<types.CreateStreamSessionConnectionOutput>
-    deleteApplication: function(Client, types.DeleteApplicationInput, any): async.Operation<types.DeleteApplicationOutput>
-    deleteStreamGroup: function(Client, types.DeleteStreamGroupInput, any): async.Operation<types.DeleteStreamGroupOutput>
-    disassociateApplications: function(Client, types.DisassociateApplicationsInput, any): async.Operation<types.DisassociateApplicationsOutput>
-    exportStreamSessionFiles: function(Client, types.ExportStreamSessionFilesInput, any): async.Operation<types.ExportStreamSessionFilesOutput>
-    getApplication: function(Client, types.GetApplicationInput, any): async.Operation<types.GetApplicationOutput>
-    getStreamGroup: function(Client, types.GetStreamGroupInput, any): async.Operation<types.GetStreamGroupOutput>
-    getStreamSession: function(Client, types.GetStreamSessionInput, any): async.Operation<types.GetStreamSessionOutput>
-    listApplications: function(Client, types.ListApplicationsInput, any): async.Operation<types.ListApplicationsOutput>
-    listStreamGroups: function(Client, types.ListStreamGroupsInput, any): async.Operation<types.ListStreamGroupsOutput>
-    listStreamSessions: function(Client, types.ListStreamSessionsInput, any): async.Operation<types.ListStreamSessionsOutput>
-    listStreamSessionsByAccount: function(Client, types.ListStreamSessionsByAccountInput, any): async.Operation<types.ListStreamSessionsByAccountOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    removeStreamGroupLocations: function(Client, types.RemoveStreamGroupLocationsInput, any): async.Operation<types.RemoveStreamGroupLocationsOutput>
-    startStreamSession: function(Client, types.StartStreamSessionInput, any): async.Operation<types.StartStreamSessionOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    terminateStreamSession: function(Client, types.TerminateStreamSessionInput, any): async.Operation<types.TerminateStreamSessionOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateApplication: function(Client, types.UpdateApplicationInput, any): async.Operation<types.UpdateApplicationOutput>
-    updateStreamGroup: function(Client, types.UpdateStreamGroupInput, any): async.Operation<types.UpdateStreamGroupOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    addStreamGroupLocations: function(Client, types.AddStreamGroupLocationsInput, ? base_client.InvokeOptions): async.Operation<types.AddStreamGroupLocationsOutput>
+    associateApplications: function(Client, types.AssociateApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.AssociateApplicationsOutput>
+    createApplication: function(Client, types.CreateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    createStreamGroup: function(Client, types.CreateStreamGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateStreamGroupOutput>
+    createStreamSessionConnection: function(Client, types.CreateStreamSessionConnectionInput, ? base_client.InvokeOptions): async.Operation<types.CreateStreamSessionConnectionOutput>
+    deleteApplication: function(Client, types.DeleteApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
+    deleteStreamGroup: function(Client, types.DeleteStreamGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteStreamGroupOutput>
+    disassociateApplications: function(Client, types.DisassociateApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateApplicationsOutput>
+    exportStreamSessionFiles: function(Client, types.ExportStreamSessionFilesInput, ? base_client.InvokeOptions): async.Operation<types.ExportStreamSessionFilesOutput>
+    getApplication: function(Client, types.GetApplicationInput, ? base_client.InvokeOptions): async.Operation<types.GetApplicationOutput>
+    getStreamGroup: function(Client, types.GetStreamGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetStreamGroupOutput>
+    getStreamSession: function(Client, types.GetStreamSessionInput, ? base_client.InvokeOptions): async.Operation<types.GetStreamSessionOutput>
+    listApplications: function(Client, types.ListApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    listStreamGroups: function(Client, types.ListStreamGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListStreamGroupsOutput>
+    listStreamSessions: function(Client, types.ListStreamSessionsInput, ? base_client.InvokeOptions): async.Operation<types.ListStreamSessionsOutput>
+    listStreamSessionsByAccount: function(Client, types.ListStreamSessionsByAccountInput, ? base_client.InvokeOptions): async.Operation<types.ListStreamSessionsByAccountOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    removeStreamGroupLocations: function(Client, types.RemoveStreamGroupLocationsInput, ? base_client.InvokeOptions): async.Operation<types.RemoveStreamGroupLocationsOutput>
+    startStreamSession: function(Client, types.StartStreamSessionInput, ? base_client.InvokeOptions): async.Operation<types.StartStreamSessionOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    terminateStreamSession: function(Client, types.TerminateStreamSessionInput, ? base_client.InvokeOptions): async.Operation<types.TerminateStreamSessionOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateApplication: function(Client, types.UpdateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
+    updateStreamGroup: function(Client, types.UpdateStreamGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateStreamGroupOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "GameLiftStreams"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "gameliftstreams", signing_region = c.region } }
                 else
@@ -83,100 +86,100 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:addStreamGroupLocations(input: types.AddStreamGroupLocationsInput, options: any): async.Operation<types.AddStreamGroupLocationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddStreamGroupLocations, input, options) as async.Operation<types.AddStreamGroupLocationsOutput>
+function C:addStreamGroupLocations(input: types.AddStreamGroupLocationsInput, options?: base_client.InvokeOptions): async.Operation<types.AddStreamGroupLocationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddStreamGroupLocations as schema.OperationSchema, input, options) as async.Operation<types.AddStreamGroupLocationsOutput>
 end
 
-function C:associateApplications(input: types.AssociateApplicationsInput, options: any): async.Operation<types.AssociateApplicationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateApplications, input, options) as async.Operation<types.AssociateApplicationsOutput>
+function C:associateApplications(input: types.AssociateApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateApplicationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateApplications as schema.OperationSchema, input, options) as async.Operation<types.AssociateApplicationsOutput>
 end
 
-function C:createApplication(input: types.CreateApplicationInput, options: any): async.Operation<types.CreateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateApplication, input, options) as async.Operation<types.CreateApplicationOutput>
+function C:createApplication(input: types.CreateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApplication as schema.OperationSchema, input, options) as async.Operation<types.CreateApplicationOutput>
 end
 
-function C:createStreamGroup(input: types.CreateStreamGroupInput, options: any): async.Operation<types.CreateStreamGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateStreamGroup, input, options) as async.Operation<types.CreateStreamGroupOutput>
+function C:createStreamGroup(input: types.CreateStreamGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateStreamGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateStreamGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateStreamGroupOutput>
 end
 
-function C:createStreamSessionConnection(input: types.CreateStreamSessionConnectionInput, options: any): async.Operation<types.CreateStreamSessionConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateStreamSessionConnection, input, options) as async.Operation<types.CreateStreamSessionConnectionOutput>
+function C:createStreamSessionConnection(input: types.CreateStreamSessionConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateStreamSessionConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateStreamSessionConnection as schema.OperationSchema, input, options) as async.Operation<types.CreateStreamSessionConnectionOutput>
 end
 
-function C:deleteApplication(input: types.DeleteApplicationInput, options: any): async.Operation<types.DeleteApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApplication, input, options) as async.Operation<types.DeleteApplicationOutput>
+function C:deleteApplication(input: types.DeleteApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplication as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationOutput>
 end
 
-function C:deleteStreamGroup(input: types.DeleteStreamGroupInput, options: any): async.Operation<types.DeleteStreamGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteStreamGroup, input, options) as async.Operation<types.DeleteStreamGroupOutput>
+function C:deleteStreamGroup(input: types.DeleteStreamGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteStreamGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteStreamGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteStreamGroupOutput>
 end
 
-function C:disassociateApplications(input: types.DisassociateApplicationsInput, options: any): async.Operation<types.DisassociateApplicationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateApplications, input, options) as async.Operation<types.DisassociateApplicationsOutput>
+function C:disassociateApplications(input: types.DisassociateApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateApplicationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateApplications as schema.OperationSchema, input, options) as async.Operation<types.DisassociateApplicationsOutput>
 end
 
-function C:exportStreamSessionFiles(input: types.ExportStreamSessionFilesInput, options: any): async.Operation<types.ExportStreamSessionFilesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExportStreamSessionFiles, input, options) as async.Operation<types.ExportStreamSessionFilesOutput>
+function C:exportStreamSessionFiles(input: types.ExportStreamSessionFilesInput, options?: base_client.InvokeOptions): async.Operation<types.ExportStreamSessionFilesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportStreamSessionFiles as schema.OperationSchema, input, options) as async.Operation<types.ExportStreamSessionFilesOutput>
 end
 
-function C:getApplication(input: types.GetApplicationInput, options: any): async.Operation<types.GetApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetApplication, input, options) as async.Operation<types.GetApplicationOutput>
+function C:getApplication(input: types.GetApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.GetApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetApplication as schema.OperationSchema, input, options) as async.Operation<types.GetApplicationOutput>
 end
 
-function C:getStreamGroup(input: types.GetStreamGroupInput, options: any): async.Operation<types.GetStreamGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetStreamGroup, input, options) as async.Operation<types.GetStreamGroupOutput>
+function C:getStreamGroup(input: types.GetStreamGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetStreamGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetStreamGroup as schema.OperationSchema, input, options) as async.Operation<types.GetStreamGroupOutput>
 end
 
-function C:getStreamSession(input: types.GetStreamSessionInput, options: any): async.Operation<types.GetStreamSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetStreamSession, input, options) as async.Operation<types.GetStreamSessionOutput>
+function C:getStreamSession(input: types.GetStreamSessionInput, options?: base_client.InvokeOptions): async.Operation<types.GetStreamSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetStreamSession as schema.OperationSchema, input, options) as async.Operation<types.GetStreamSessionOutput>
 end
 
-function C:listApplications(input: types.ListApplicationsInput, options: any): async.Operation<types.ListApplicationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplications, input, options) as async.Operation<types.ListApplicationsOutput>
+function C:listApplications(input: types.ListApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplications as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationsOutput>
 end
 
-function C:listStreamGroups(input: types.ListStreamGroupsInput, options: any): async.Operation<types.ListStreamGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStreamGroups, input, options) as async.Operation<types.ListStreamGroupsOutput>
+function C:listStreamGroups(input: types.ListStreamGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListStreamGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStreamGroups as schema.OperationSchema, input, options) as async.Operation<types.ListStreamGroupsOutput>
 end
 
-function C:listStreamSessions(input: types.ListStreamSessionsInput, options: any): async.Operation<types.ListStreamSessionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStreamSessions, input, options) as async.Operation<types.ListStreamSessionsOutput>
+function C:listStreamSessions(input: types.ListStreamSessionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListStreamSessionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStreamSessions as schema.OperationSchema, input, options) as async.Operation<types.ListStreamSessionsOutput>
 end
 
-function C:listStreamSessionsByAccount(input: types.ListStreamSessionsByAccountInput, options: any): async.Operation<types.ListStreamSessionsByAccountOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListStreamSessionsByAccount, input, options) as async.Operation<types.ListStreamSessionsByAccountOutput>
+function C:listStreamSessionsByAccount(input: types.ListStreamSessionsByAccountInput, options?: base_client.InvokeOptions): async.Operation<types.ListStreamSessionsByAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStreamSessionsByAccount as schema.OperationSchema, input, options) as async.Operation<types.ListStreamSessionsByAccountOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:removeStreamGroupLocations(input: types.RemoveStreamGroupLocationsInput, options: any): async.Operation<types.RemoveStreamGroupLocationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveStreamGroupLocations, input, options) as async.Operation<types.RemoveStreamGroupLocationsOutput>
+function C:removeStreamGroupLocations(input: types.RemoveStreamGroupLocationsInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveStreamGroupLocationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveStreamGroupLocations as schema.OperationSchema, input, options) as async.Operation<types.RemoveStreamGroupLocationsOutput>
 end
 
-function C:startStreamSession(input: types.StartStreamSessionInput, options: any): async.Operation<types.StartStreamSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartStreamSession, input, options) as async.Operation<types.StartStreamSessionOutput>
+function C:startStreamSession(input: types.StartStreamSessionInput, options?: base_client.InvokeOptions): async.Operation<types.StartStreamSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartStreamSession as schema.OperationSchema, input, options) as async.Operation<types.StartStreamSessionOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:terminateStreamSession(input: types.TerminateStreamSessionInput, options: any): async.Operation<types.TerminateStreamSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.TerminateStreamSession, input, options) as async.Operation<types.TerminateStreamSessionOutput>
+function C:terminateStreamSession(input: types.TerminateStreamSessionInput, options?: base_client.InvokeOptions): async.Operation<types.TerminateStreamSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TerminateStreamSession as schema.OperationSchema, input, options) as async.Operation<types.TerminateStreamSessionOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateApplication(input: types.UpdateApplicationInput, options: any): async.Operation<types.UpdateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateApplication, input, options) as async.Operation<types.UpdateApplicationOutput>
+function C:updateApplication(input: types.UpdateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApplication as schema.OperationSchema, input, options) as async.Operation<types.UpdateApplicationOutput>
 end
 
-function C:updateStreamGroup(input: types.UpdateStreamGroupInput, options: any): async.Operation<types.UpdateStreamGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateStreamGroup, input, options) as async.Operation<types.UpdateStreamGroupOutput>
+function C:updateStreamGroup(input: types.UpdateStreamGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateStreamGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateStreamGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateStreamGroupOutput>
 end
 
 return M

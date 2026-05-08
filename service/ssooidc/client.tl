@@ -8,43 +8,46 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("ssooidc.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("ssooidc.schemas")
 local traits = require("smithy.traits")
 local types = require("ssooidc.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createToken: function(Client, types.CreateTokenInput, any): async.Operation<types.CreateTokenOutput>
-    createTokenWithIAM: function(Client, types.CreateTokenWithIAMInput, any): async.Operation<types.CreateTokenWithIAMOutput>
-    registerClient: function(Client, types.RegisterClientInput, any): async.Operation<types.RegisterClientOutput>
-    startDeviceAuthorization: function(Client, types.StartDeviceAuthorizationInput, any): async.Operation<types.StartDeviceAuthorizationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createToken: function(Client, types.CreateTokenInput, ? base_client.InvokeOptions): async.Operation<types.CreateTokenOutput>
+    createTokenWithIAM: function(Client, types.CreateTokenWithIAMInput, ? base_client.InvokeOptions): async.Operation<types.CreateTokenWithIAMOutput>
+    registerClient: function(Client, types.RegisterClientInput, ? base_client.InvokeOptions): async.Operation<types.RegisterClientOutput>
+    startDeviceAuthorization: function(Client, types.StartDeviceAuthorizationInput, ? base_client.InvokeOptions): async.Operation<types.StartDeviceAuthorizationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSSSOOIDCService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "sso-oauth", signing_region = c.region } }
                 else
@@ -63,20 +66,20 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createToken(input: types.CreateTokenInput, options: any): async.Operation<types.CreateTokenOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateToken, input, options) as async.Operation<types.CreateTokenOutput>
+function C:createToken(input: types.CreateTokenInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateToken as schema.OperationSchema, input, options) as async.Operation<types.CreateTokenOutput>
 end
 
-function C:createTokenWithIAM(input: types.CreateTokenWithIAMInput, options: any): async.Operation<types.CreateTokenWithIAMOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTokenWithIAM, input, options) as async.Operation<types.CreateTokenWithIAMOutput>
+function C:createTokenWithIAM(input: types.CreateTokenWithIAMInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTokenWithIAMOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTokenWithIAM as schema.OperationSchema, input, options) as async.Operation<types.CreateTokenWithIAMOutput>
 end
 
-function C:registerClient(input: types.RegisterClientInput, options: any): async.Operation<types.RegisterClientOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterClient, input, options) as async.Operation<types.RegisterClientOutput>
+function C:registerClient(input: types.RegisterClientInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterClientOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterClient as schema.OperationSchema, input, options) as async.Operation<types.RegisterClientOutput>
 end
 
-function C:startDeviceAuthorization(input: types.StartDeviceAuthorizationInput, options: any): async.Operation<types.StartDeviceAuthorizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartDeviceAuthorization, input, options) as async.Operation<types.StartDeviceAuthorizationOutput>
+function C:startDeviceAuthorization(input: types.StartDeviceAuthorizationInput, options?: base_client.InvokeOptions): async.Operation<types.StartDeviceAuthorizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDeviceAuthorization as schema.OperationSchema, input, options) as async.Operation<types.StartDeviceAuthorizationOutput>
 end
 
 return M

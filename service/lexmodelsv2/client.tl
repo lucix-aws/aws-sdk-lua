@@ -8,146 +8,149 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("lexmodelsv2.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("lexmodelsv2.schemas")
 local traits = require("smithy.traits")
 local types = require("lexmodelsv2.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchCreateCustomVocabularyItem: function(Client, types.BatchCreateCustomVocabularyItemInput, any): async.Operation<types.BatchCreateCustomVocabularyItemOutput>
-    batchDeleteCustomVocabularyItem: function(Client, types.BatchDeleteCustomVocabularyItemInput, any): async.Operation<types.BatchDeleteCustomVocabularyItemOutput>
-    batchUpdateCustomVocabularyItem: function(Client, types.BatchUpdateCustomVocabularyItemInput, any): async.Operation<types.BatchUpdateCustomVocabularyItemOutput>
-    buildBotLocale: function(Client, types.BuildBotLocaleInput, any): async.Operation<types.BuildBotLocaleOutput>
-    createBot: function(Client, types.CreateBotInput, any): async.Operation<types.CreateBotOutput>
-    createBotAlias: function(Client, types.CreateBotAliasInput, any): async.Operation<types.CreateBotAliasOutput>
-    createBotLocale: function(Client, types.CreateBotLocaleInput, any): async.Operation<types.CreateBotLocaleOutput>
-    createBotReplica: function(Client, types.CreateBotReplicaInput, any): async.Operation<types.CreateBotReplicaOutput>
-    createBotVersion: function(Client, types.CreateBotVersionInput, any): async.Operation<types.CreateBotVersionOutput>
-    createExport: function(Client, types.CreateExportInput, any): async.Operation<types.CreateExportOutput>
-    createIntent: function(Client, types.CreateIntentInput, any): async.Operation<types.CreateIntentOutput>
-    createResourcePolicy: function(Client, types.CreateResourcePolicyInput, any): async.Operation<types.CreateResourcePolicyOutput>
-    createResourcePolicyStatement: function(Client, types.CreateResourcePolicyStatementInput, any): async.Operation<types.CreateResourcePolicyStatementOutput>
-    createSlot: function(Client, types.CreateSlotInput, any): async.Operation<types.CreateSlotOutput>
-    createSlotType: function(Client, types.CreateSlotTypeInput, any): async.Operation<types.CreateSlotTypeOutput>
-    createTestSetDiscrepancyReport: function(Client, types.CreateTestSetDiscrepancyReportInput, any): async.Operation<types.CreateTestSetDiscrepancyReportOutput>
-    createUploadUrl: function(Client, types.CreateUploadUrlInput, any): async.Operation<types.CreateUploadUrlOutput>
-    deleteBot: function(Client, types.DeleteBotInput, any): async.Operation<types.DeleteBotOutput>
-    deleteBotAlias: function(Client, types.DeleteBotAliasInput, any): async.Operation<types.DeleteBotAliasOutput>
-    deleteBotAnalyzerRecommendation: function(Client, types.DeleteBotAnalyzerRecommendationInput, any): async.Operation<types.DeleteBotAnalyzerRecommendationOutput>
-    deleteBotLocale: function(Client, types.DeleteBotLocaleInput, any): async.Operation<types.DeleteBotLocaleOutput>
-    deleteBotReplica: function(Client, types.DeleteBotReplicaInput, any): async.Operation<types.DeleteBotReplicaOutput>
-    deleteBotVersion: function(Client, types.DeleteBotVersionInput, any): async.Operation<types.DeleteBotVersionOutput>
-    deleteCustomVocabulary: function(Client, types.DeleteCustomVocabularyInput, any): async.Operation<types.DeleteCustomVocabularyOutput>
-    deleteExport: function(Client, types.DeleteExportInput, any): async.Operation<types.DeleteExportOutput>
-    deleteImport: function(Client, types.DeleteImportInput, any): async.Operation<types.DeleteImportOutput>
-    deleteIntent: function(Client, types.DeleteIntentInput, any): async.Operation<types.DeleteIntentOutput>
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, any): async.Operation<types.DeleteResourcePolicyOutput>
-    deleteResourcePolicyStatement: function(Client, types.DeleteResourcePolicyStatementInput, any): async.Operation<types.DeleteResourcePolicyStatementOutput>
-    deleteSlot: function(Client, types.DeleteSlotInput, any): async.Operation<types.DeleteSlotOutput>
-    deleteSlotType: function(Client, types.DeleteSlotTypeInput, any): async.Operation<types.DeleteSlotTypeOutput>
-    deleteTestSet: function(Client, types.DeleteTestSetInput, any): async.Operation<types.DeleteTestSetOutput>
-    deleteUtterances: function(Client, types.DeleteUtterancesInput, any): async.Operation<types.DeleteUtterancesOutput>
-    describeBot: function(Client, types.DescribeBotInput, any): async.Operation<types.DescribeBotOutput>
-    describeBotAlias: function(Client, types.DescribeBotAliasInput, any): async.Operation<types.DescribeBotAliasOutput>
-    describeBotAnalyzerRecommendation: function(Client, types.DescribeBotAnalyzerRecommendationInput, any): async.Operation<types.DescribeBotAnalyzerRecommendationOutput>
-    describeBotLocale: function(Client, types.DescribeBotLocaleInput, any): async.Operation<types.DescribeBotLocaleOutput>
-    describeBotRecommendation: function(Client, types.DescribeBotRecommendationInput, any): async.Operation<types.DescribeBotRecommendationOutput>
-    describeBotReplica: function(Client, types.DescribeBotReplicaInput, any): async.Operation<types.DescribeBotReplicaOutput>
-    describeBotResourceGeneration: function(Client, types.DescribeBotResourceGenerationInput, any): async.Operation<types.DescribeBotResourceGenerationOutput>
-    describeBotVersion: function(Client, types.DescribeBotVersionInput, any): async.Operation<types.DescribeBotVersionOutput>
-    describeCustomVocabularyMetadata: function(Client, types.DescribeCustomVocabularyMetadataInput, any): async.Operation<types.DescribeCustomVocabularyMetadataOutput>
-    describeExport: function(Client, types.DescribeExportInput, any): async.Operation<types.DescribeExportOutput>
-    describeImport: function(Client, types.DescribeImportInput, any): async.Operation<types.DescribeImportOutput>
-    describeIntent: function(Client, types.DescribeIntentInput, any): async.Operation<types.DescribeIntentOutput>
-    describeResourcePolicy: function(Client, types.DescribeResourcePolicyInput, any): async.Operation<types.DescribeResourcePolicyOutput>
-    describeSlot: function(Client, types.DescribeSlotInput, any): async.Operation<types.DescribeSlotOutput>
-    describeSlotType: function(Client, types.DescribeSlotTypeInput, any): async.Operation<types.DescribeSlotTypeOutput>
-    describeTestExecution: function(Client, types.DescribeTestExecutionInput, any): async.Operation<types.DescribeTestExecutionOutput>
-    describeTestSet: function(Client, types.DescribeTestSetInput, any): async.Operation<types.DescribeTestSetOutput>
-    describeTestSetDiscrepancyReport: function(Client, types.DescribeTestSetDiscrepancyReportInput, any): async.Operation<types.DescribeTestSetDiscrepancyReportOutput>
-    describeTestSetGeneration: function(Client, types.DescribeTestSetGenerationInput, any): async.Operation<types.DescribeTestSetGenerationOutput>
-    generateBotElement: function(Client, types.GenerateBotElementInput, any): async.Operation<types.GenerateBotElementOutput>
-    getTestExecutionArtifactsUrl: function(Client, types.GetTestExecutionArtifactsUrlInput, any): async.Operation<types.GetTestExecutionArtifactsUrlOutput>
-    listAggregatedUtterances: function(Client, types.ListAggregatedUtterancesInput, any): async.Operation<types.ListAggregatedUtterancesOutput>
-    listBotAliases: function(Client, types.ListBotAliasesInput, any): async.Operation<types.ListBotAliasesOutput>
-    listBotAliasReplicas: function(Client, types.ListBotAliasReplicasInput, any): async.Operation<types.ListBotAliasReplicasOutput>
-    listBotAnalyzerHistory: function(Client, types.ListBotAnalyzerHistoryInput, any): async.Operation<types.ListBotAnalyzerHistoryOutput>
-    listBotLocales: function(Client, types.ListBotLocalesInput, any): async.Operation<types.ListBotLocalesOutput>
-    listBotRecommendations: function(Client, types.ListBotRecommendationsInput, any): async.Operation<types.ListBotRecommendationsOutput>
-    listBotReplicas: function(Client, types.ListBotReplicasInput, any): async.Operation<types.ListBotReplicasOutput>
-    listBotResourceGenerations: function(Client, types.ListBotResourceGenerationsInput, any): async.Operation<types.ListBotResourceGenerationsOutput>
-    listBots: function(Client, types.ListBotsInput, any): async.Operation<types.ListBotsOutput>
-    listBotVersionReplicas: function(Client, types.ListBotVersionReplicasInput, any): async.Operation<types.ListBotVersionReplicasOutput>
-    listBotVersions: function(Client, types.ListBotVersionsInput, any): async.Operation<types.ListBotVersionsOutput>
-    listBuiltInIntents: function(Client, types.ListBuiltInIntentsInput, any): async.Operation<types.ListBuiltInIntentsOutput>
-    listBuiltInSlotTypes: function(Client, types.ListBuiltInSlotTypesInput, any): async.Operation<types.ListBuiltInSlotTypesOutput>
-    listCustomVocabularyItems: function(Client, types.ListCustomVocabularyItemsInput, any): async.Operation<types.ListCustomVocabularyItemsOutput>
-    listExports: function(Client, types.ListExportsInput, any): async.Operation<types.ListExportsOutput>
-    listImports: function(Client, types.ListImportsInput, any): async.Operation<types.ListImportsOutput>
-    listIntentMetrics: function(Client, types.ListIntentMetricsInput, any): async.Operation<types.ListIntentMetricsOutput>
-    listIntentPaths: function(Client, types.ListIntentPathsInput, any): async.Operation<types.ListIntentPathsOutput>
-    listIntents: function(Client, types.ListIntentsInput, any): async.Operation<types.ListIntentsOutput>
-    listIntentStageMetrics: function(Client, types.ListIntentStageMetricsInput, any): async.Operation<types.ListIntentStageMetricsOutput>
-    listRecommendedIntents: function(Client, types.ListRecommendedIntentsInput, any): async.Operation<types.ListRecommendedIntentsOutput>
-    listSessionAnalyticsData: function(Client, types.ListSessionAnalyticsDataInput, any): async.Operation<types.ListSessionAnalyticsDataOutput>
-    listSessionMetrics: function(Client, types.ListSessionMetricsInput, any): async.Operation<types.ListSessionMetricsOutput>
-    listSlots: function(Client, types.ListSlotsInput, any): async.Operation<types.ListSlotsOutput>
-    listSlotTypes: function(Client, types.ListSlotTypesInput, any): async.Operation<types.ListSlotTypesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTestExecutionResultItems: function(Client, types.ListTestExecutionResultItemsInput, any): async.Operation<types.ListTestExecutionResultItemsOutput>
-    listTestExecutions: function(Client, types.ListTestExecutionsInput, any): async.Operation<types.ListTestExecutionsOutput>
-    listTestSetRecords: function(Client, types.ListTestSetRecordsInput, any): async.Operation<types.ListTestSetRecordsOutput>
-    listTestSets: function(Client, types.ListTestSetsInput, any): async.Operation<types.ListTestSetsOutput>
-    listUtteranceAnalyticsData: function(Client, types.ListUtteranceAnalyticsDataInput, any): async.Operation<types.ListUtteranceAnalyticsDataOutput>
-    listUtteranceMetrics: function(Client, types.ListUtteranceMetricsInput, any): async.Operation<types.ListUtteranceMetricsOutput>
-    searchAssociatedTranscripts: function(Client, types.SearchAssociatedTranscriptsInput, any): async.Operation<types.SearchAssociatedTranscriptsOutput>
-    startBotAnalyzer: function(Client, types.StartBotAnalyzerInput, any): async.Operation<types.StartBotAnalyzerOutput>
-    startBotRecommendation: function(Client, types.StartBotRecommendationInput, any): async.Operation<types.StartBotRecommendationOutput>
-    startBotResourceGeneration: function(Client, types.StartBotResourceGenerationInput, any): async.Operation<types.StartBotResourceGenerationOutput>
-    startImport: function(Client, types.StartImportInput, any): async.Operation<types.StartImportOutput>
-    startTestExecution: function(Client, types.StartTestExecutionInput, any): async.Operation<types.StartTestExecutionOutput>
-    startTestSetGeneration: function(Client, types.StartTestSetGenerationInput, any): async.Operation<types.StartTestSetGenerationOutput>
-    stopBotAnalyzer: function(Client, types.StopBotAnalyzerInput, any): async.Operation<types.StopBotAnalyzerOutput>
-    stopBotRecommendation: function(Client, types.StopBotRecommendationInput, any): async.Operation<types.StopBotRecommendationOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateBot: function(Client, types.UpdateBotInput, any): async.Operation<types.UpdateBotOutput>
-    updateBotAlias: function(Client, types.UpdateBotAliasInput, any): async.Operation<types.UpdateBotAliasOutput>
-    updateBotLocale: function(Client, types.UpdateBotLocaleInput, any): async.Operation<types.UpdateBotLocaleOutput>
-    updateBotRecommendation: function(Client, types.UpdateBotRecommendationInput, any): async.Operation<types.UpdateBotRecommendationOutput>
-    updateExport: function(Client, types.UpdateExportInput, any): async.Operation<types.UpdateExportOutput>
-    updateIntent: function(Client, types.UpdateIntentInput, any): async.Operation<types.UpdateIntentOutput>
-    updateResourcePolicy: function(Client, types.UpdateResourcePolicyInput, any): async.Operation<types.UpdateResourcePolicyOutput>
-    updateSlot: function(Client, types.UpdateSlotInput, any): async.Operation<types.UpdateSlotOutput>
-    updateSlotType: function(Client, types.UpdateSlotTypeInput, any): async.Operation<types.UpdateSlotTypeOutput>
-    updateTestSet: function(Client, types.UpdateTestSetInput, any): async.Operation<types.UpdateTestSetOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchCreateCustomVocabularyItem: function(Client, types.BatchCreateCustomVocabularyItemInput, ? base_client.InvokeOptions): async.Operation<types.BatchCreateCustomVocabularyItemOutput>
+    batchDeleteCustomVocabularyItem: function(Client, types.BatchDeleteCustomVocabularyItemInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteCustomVocabularyItemOutput>
+    batchUpdateCustomVocabularyItem: function(Client, types.BatchUpdateCustomVocabularyItemInput, ? base_client.InvokeOptions): async.Operation<types.BatchUpdateCustomVocabularyItemOutput>
+    buildBotLocale: function(Client, types.BuildBotLocaleInput, ? base_client.InvokeOptions): async.Operation<types.BuildBotLocaleOutput>
+    createBot: function(Client, types.CreateBotInput, ? base_client.InvokeOptions): async.Operation<types.CreateBotOutput>
+    createBotAlias: function(Client, types.CreateBotAliasInput, ? base_client.InvokeOptions): async.Operation<types.CreateBotAliasOutput>
+    createBotLocale: function(Client, types.CreateBotLocaleInput, ? base_client.InvokeOptions): async.Operation<types.CreateBotLocaleOutput>
+    createBotReplica: function(Client, types.CreateBotReplicaInput, ? base_client.InvokeOptions): async.Operation<types.CreateBotReplicaOutput>
+    createBotVersion: function(Client, types.CreateBotVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateBotVersionOutput>
+    createExport: function(Client, types.CreateExportInput, ? base_client.InvokeOptions): async.Operation<types.CreateExportOutput>
+    createIntent: function(Client, types.CreateIntentInput, ? base_client.InvokeOptions): async.Operation<types.CreateIntentOutput>
+    createResourcePolicy: function(Client, types.CreateResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateResourcePolicyOutput>
+    createResourcePolicyStatement: function(Client, types.CreateResourcePolicyStatementInput, ? base_client.InvokeOptions): async.Operation<types.CreateResourcePolicyStatementOutput>
+    createSlot: function(Client, types.CreateSlotInput, ? base_client.InvokeOptions): async.Operation<types.CreateSlotOutput>
+    createSlotType: function(Client, types.CreateSlotTypeInput, ? base_client.InvokeOptions): async.Operation<types.CreateSlotTypeOutput>
+    createTestSetDiscrepancyReport: function(Client, types.CreateTestSetDiscrepancyReportInput, ? base_client.InvokeOptions): async.Operation<types.CreateTestSetDiscrepancyReportOutput>
+    createUploadUrl: function(Client, types.CreateUploadUrlInput, ? base_client.InvokeOptions): async.Operation<types.CreateUploadUrlOutput>
+    deleteBot: function(Client, types.DeleteBotInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBotOutput>
+    deleteBotAlias: function(Client, types.DeleteBotAliasInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBotAliasOutput>
+    deleteBotAnalyzerRecommendation: function(Client, types.DeleteBotAnalyzerRecommendationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBotAnalyzerRecommendationOutput>
+    deleteBotLocale: function(Client, types.DeleteBotLocaleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBotLocaleOutput>
+    deleteBotReplica: function(Client, types.DeleteBotReplicaInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBotReplicaOutput>
+    deleteBotVersion: function(Client, types.DeleteBotVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBotVersionOutput>
+    deleteCustomVocabulary: function(Client, types.DeleteCustomVocabularyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCustomVocabularyOutput>
+    deleteExport: function(Client, types.DeleteExportInput, ? base_client.InvokeOptions): async.Operation<types.DeleteExportOutput>
+    deleteImport: function(Client, types.DeleteImportInput, ? base_client.InvokeOptions): async.Operation<types.DeleteImportOutput>
+    deleteIntent: function(Client, types.DeleteIntentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIntentOutput>
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    deleteResourcePolicyStatement: function(Client, types.DeleteResourcePolicyStatementInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyStatementOutput>
+    deleteSlot: function(Client, types.DeleteSlotInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSlotOutput>
+    deleteSlotType: function(Client, types.DeleteSlotTypeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSlotTypeOutput>
+    deleteTestSet: function(Client, types.DeleteTestSetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTestSetOutput>
+    deleteUtterances: function(Client, types.DeleteUtterancesInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUtterancesOutput>
+    describeBot: function(Client, types.DescribeBotInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBotOutput>
+    describeBotAlias: function(Client, types.DescribeBotAliasInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBotAliasOutput>
+    describeBotAnalyzerRecommendation: function(Client, types.DescribeBotAnalyzerRecommendationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBotAnalyzerRecommendationOutput>
+    describeBotLocale: function(Client, types.DescribeBotLocaleInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBotLocaleOutput>
+    describeBotRecommendation: function(Client, types.DescribeBotRecommendationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBotRecommendationOutput>
+    describeBotReplica: function(Client, types.DescribeBotReplicaInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBotReplicaOutput>
+    describeBotResourceGeneration: function(Client, types.DescribeBotResourceGenerationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBotResourceGenerationOutput>
+    describeBotVersion: function(Client, types.DescribeBotVersionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBotVersionOutput>
+    describeCustomVocabularyMetadata: function(Client, types.DescribeCustomVocabularyMetadataInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCustomVocabularyMetadataOutput>
+    describeExport: function(Client, types.DescribeExportInput, ? base_client.InvokeOptions): async.Operation<types.DescribeExportOutput>
+    describeImport: function(Client, types.DescribeImportInput, ? base_client.InvokeOptions): async.Operation<types.DescribeImportOutput>
+    describeIntent: function(Client, types.DescribeIntentInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIntentOutput>
+    describeResourcePolicy: function(Client, types.DescribeResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DescribeResourcePolicyOutput>
+    describeSlot: function(Client, types.DescribeSlotInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSlotOutput>
+    describeSlotType: function(Client, types.DescribeSlotTypeInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSlotTypeOutput>
+    describeTestExecution: function(Client, types.DescribeTestExecutionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTestExecutionOutput>
+    describeTestSet: function(Client, types.DescribeTestSetInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTestSetOutput>
+    describeTestSetDiscrepancyReport: function(Client, types.DescribeTestSetDiscrepancyReportInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTestSetDiscrepancyReportOutput>
+    describeTestSetGeneration: function(Client, types.DescribeTestSetGenerationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTestSetGenerationOutput>
+    generateBotElement: function(Client, types.GenerateBotElementInput, ? base_client.InvokeOptions): async.Operation<types.GenerateBotElementOutput>
+    getTestExecutionArtifactsUrl: function(Client, types.GetTestExecutionArtifactsUrlInput, ? base_client.InvokeOptions): async.Operation<types.GetTestExecutionArtifactsUrlOutput>
+    listAggregatedUtterances: function(Client, types.ListAggregatedUtterancesInput, ? base_client.InvokeOptions): async.Operation<types.ListAggregatedUtterancesOutput>
+    listBotAliases: function(Client, types.ListBotAliasesInput, ? base_client.InvokeOptions): async.Operation<types.ListBotAliasesOutput>
+    listBotAliasReplicas: function(Client, types.ListBotAliasReplicasInput, ? base_client.InvokeOptions): async.Operation<types.ListBotAliasReplicasOutput>
+    listBotAnalyzerHistory: function(Client, types.ListBotAnalyzerHistoryInput, ? base_client.InvokeOptions): async.Operation<types.ListBotAnalyzerHistoryOutput>
+    listBotLocales: function(Client, types.ListBotLocalesInput, ? base_client.InvokeOptions): async.Operation<types.ListBotLocalesOutput>
+    listBotRecommendations: function(Client, types.ListBotRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.ListBotRecommendationsOutput>
+    listBotReplicas: function(Client, types.ListBotReplicasInput, ? base_client.InvokeOptions): async.Operation<types.ListBotReplicasOutput>
+    listBotResourceGenerations: function(Client, types.ListBotResourceGenerationsInput, ? base_client.InvokeOptions): async.Operation<types.ListBotResourceGenerationsOutput>
+    listBots: function(Client, types.ListBotsInput, ? base_client.InvokeOptions): async.Operation<types.ListBotsOutput>
+    listBotVersionReplicas: function(Client, types.ListBotVersionReplicasInput, ? base_client.InvokeOptions): async.Operation<types.ListBotVersionReplicasOutput>
+    listBotVersions: function(Client, types.ListBotVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListBotVersionsOutput>
+    listBuiltInIntents: function(Client, types.ListBuiltInIntentsInput, ? base_client.InvokeOptions): async.Operation<types.ListBuiltInIntentsOutput>
+    listBuiltInSlotTypes: function(Client, types.ListBuiltInSlotTypesInput, ? base_client.InvokeOptions): async.Operation<types.ListBuiltInSlotTypesOutput>
+    listCustomVocabularyItems: function(Client, types.ListCustomVocabularyItemsInput, ? base_client.InvokeOptions): async.Operation<types.ListCustomVocabularyItemsOutput>
+    listExports: function(Client, types.ListExportsInput, ? base_client.InvokeOptions): async.Operation<types.ListExportsOutput>
+    listImports: function(Client, types.ListImportsInput, ? base_client.InvokeOptions): async.Operation<types.ListImportsOutput>
+    listIntentMetrics: function(Client, types.ListIntentMetricsInput, ? base_client.InvokeOptions): async.Operation<types.ListIntentMetricsOutput>
+    listIntentPaths: function(Client, types.ListIntentPathsInput, ? base_client.InvokeOptions): async.Operation<types.ListIntentPathsOutput>
+    listIntents: function(Client, types.ListIntentsInput, ? base_client.InvokeOptions): async.Operation<types.ListIntentsOutput>
+    listIntentStageMetrics: function(Client, types.ListIntentStageMetricsInput, ? base_client.InvokeOptions): async.Operation<types.ListIntentStageMetricsOutput>
+    listRecommendedIntents: function(Client, types.ListRecommendedIntentsInput, ? base_client.InvokeOptions): async.Operation<types.ListRecommendedIntentsOutput>
+    listSessionAnalyticsData: function(Client, types.ListSessionAnalyticsDataInput, ? base_client.InvokeOptions): async.Operation<types.ListSessionAnalyticsDataOutput>
+    listSessionMetrics: function(Client, types.ListSessionMetricsInput, ? base_client.InvokeOptions): async.Operation<types.ListSessionMetricsOutput>
+    listSlots: function(Client, types.ListSlotsInput, ? base_client.InvokeOptions): async.Operation<types.ListSlotsOutput>
+    listSlotTypes: function(Client, types.ListSlotTypesInput, ? base_client.InvokeOptions): async.Operation<types.ListSlotTypesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTestExecutionResultItems: function(Client, types.ListTestExecutionResultItemsInput, ? base_client.InvokeOptions): async.Operation<types.ListTestExecutionResultItemsOutput>
+    listTestExecutions: function(Client, types.ListTestExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListTestExecutionsOutput>
+    listTestSetRecords: function(Client, types.ListTestSetRecordsInput, ? base_client.InvokeOptions): async.Operation<types.ListTestSetRecordsOutput>
+    listTestSets: function(Client, types.ListTestSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListTestSetsOutput>
+    listUtteranceAnalyticsData: function(Client, types.ListUtteranceAnalyticsDataInput, ? base_client.InvokeOptions): async.Operation<types.ListUtteranceAnalyticsDataOutput>
+    listUtteranceMetrics: function(Client, types.ListUtteranceMetricsInput, ? base_client.InvokeOptions): async.Operation<types.ListUtteranceMetricsOutput>
+    searchAssociatedTranscripts: function(Client, types.SearchAssociatedTranscriptsInput, ? base_client.InvokeOptions): async.Operation<types.SearchAssociatedTranscriptsOutput>
+    startBotAnalyzer: function(Client, types.StartBotAnalyzerInput, ? base_client.InvokeOptions): async.Operation<types.StartBotAnalyzerOutput>
+    startBotRecommendation: function(Client, types.StartBotRecommendationInput, ? base_client.InvokeOptions): async.Operation<types.StartBotRecommendationOutput>
+    startBotResourceGeneration: function(Client, types.StartBotResourceGenerationInput, ? base_client.InvokeOptions): async.Operation<types.StartBotResourceGenerationOutput>
+    startImport: function(Client, types.StartImportInput, ? base_client.InvokeOptions): async.Operation<types.StartImportOutput>
+    startTestExecution: function(Client, types.StartTestExecutionInput, ? base_client.InvokeOptions): async.Operation<types.StartTestExecutionOutput>
+    startTestSetGeneration: function(Client, types.StartTestSetGenerationInput, ? base_client.InvokeOptions): async.Operation<types.StartTestSetGenerationOutput>
+    stopBotAnalyzer: function(Client, types.StopBotAnalyzerInput, ? base_client.InvokeOptions): async.Operation<types.StopBotAnalyzerOutput>
+    stopBotRecommendation: function(Client, types.StopBotRecommendationInput, ? base_client.InvokeOptions): async.Operation<types.StopBotRecommendationOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateBot: function(Client, types.UpdateBotInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBotOutput>
+    updateBotAlias: function(Client, types.UpdateBotAliasInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBotAliasOutput>
+    updateBotLocale: function(Client, types.UpdateBotLocaleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBotLocaleOutput>
+    updateBotRecommendation: function(Client, types.UpdateBotRecommendationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBotRecommendationOutput>
+    updateExport: function(Client, types.UpdateExportInput, ? base_client.InvokeOptions): async.Operation<types.UpdateExportOutput>
+    updateIntent: function(Client, types.UpdateIntentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIntentOutput>
+    updateResourcePolicy: function(Client, types.UpdateResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResourcePolicyOutput>
+    updateSlot: function(Client, types.UpdateSlotInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSlotOutput>
+    updateSlotType: function(Client, types.UpdateSlotTypeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSlotTypeOutput>
+    updateTestSet: function(Client, types.UpdateTestSetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTestSetOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "LexModelBuildingServiceV2"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "lex", signing_region = c.region } }
                 else
@@ -166,432 +169,432 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchCreateCustomVocabularyItem(input: types.BatchCreateCustomVocabularyItemInput, options: any): async.Operation<types.BatchCreateCustomVocabularyItemOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchCreateCustomVocabularyItem, input, options) as async.Operation<types.BatchCreateCustomVocabularyItemOutput>
+function C:batchCreateCustomVocabularyItem(input: types.BatchCreateCustomVocabularyItemInput, options?: base_client.InvokeOptions): async.Operation<types.BatchCreateCustomVocabularyItemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchCreateCustomVocabularyItem as schema.OperationSchema, input, options) as async.Operation<types.BatchCreateCustomVocabularyItemOutput>
 end
 
-function C:batchDeleteCustomVocabularyItem(input: types.BatchDeleteCustomVocabularyItemInput, options: any): async.Operation<types.BatchDeleteCustomVocabularyItemOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDeleteCustomVocabularyItem, input, options) as async.Operation<types.BatchDeleteCustomVocabularyItemOutput>
+function C:batchDeleteCustomVocabularyItem(input: types.BatchDeleteCustomVocabularyItemInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteCustomVocabularyItemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteCustomVocabularyItem as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteCustomVocabularyItemOutput>
 end
 
-function C:batchUpdateCustomVocabularyItem(input: types.BatchUpdateCustomVocabularyItemInput, options: any): async.Operation<types.BatchUpdateCustomVocabularyItemOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchUpdateCustomVocabularyItem, input, options) as async.Operation<types.BatchUpdateCustomVocabularyItemOutput>
+function C:batchUpdateCustomVocabularyItem(input: types.BatchUpdateCustomVocabularyItemInput, options?: base_client.InvokeOptions): async.Operation<types.BatchUpdateCustomVocabularyItemOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchUpdateCustomVocabularyItem as schema.OperationSchema, input, options) as async.Operation<types.BatchUpdateCustomVocabularyItemOutput>
 end
 
-function C:buildBotLocale(input: types.BuildBotLocaleInput, options: any): async.Operation<types.BuildBotLocaleOutput>
-    return self:invokeOperation(schemas.Service, schemas.BuildBotLocale, input, options) as async.Operation<types.BuildBotLocaleOutput>
+function C:buildBotLocale(input: types.BuildBotLocaleInput, options?: base_client.InvokeOptions): async.Operation<types.BuildBotLocaleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BuildBotLocale as schema.OperationSchema, input, options) as async.Operation<types.BuildBotLocaleOutput>
 end
 
-function C:createBot(input: types.CreateBotInput, options: any): async.Operation<types.CreateBotOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBot, input, options) as async.Operation<types.CreateBotOutput>
+function C:createBot(input: types.CreateBotInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBot as schema.OperationSchema, input, options) as async.Operation<types.CreateBotOutput>
 end
 
-function C:createBotAlias(input: types.CreateBotAliasInput, options: any): async.Operation<types.CreateBotAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBotAlias, input, options) as async.Operation<types.CreateBotAliasOutput>
+function C:createBotAlias(input: types.CreateBotAliasInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBotAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBotAlias as schema.OperationSchema, input, options) as async.Operation<types.CreateBotAliasOutput>
 end
 
-function C:createBotLocale(input: types.CreateBotLocaleInput, options: any): async.Operation<types.CreateBotLocaleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBotLocale, input, options) as async.Operation<types.CreateBotLocaleOutput>
+function C:createBotLocale(input: types.CreateBotLocaleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBotLocaleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBotLocale as schema.OperationSchema, input, options) as async.Operation<types.CreateBotLocaleOutput>
 end
 
-function C:createBotReplica(input: types.CreateBotReplicaInput, options: any): async.Operation<types.CreateBotReplicaOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBotReplica, input, options) as async.Operation<types.CreateBotReplicaOutput>
+function C:createBotReplica(input: types.CreateBotReplicaInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBotReplicaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBotReplica as schema.OperationSchema, input, options) as async.Operation<types.CreateBotReplicaOutput>
 end
 
-function C:createBotVersion(input: types.CreateBotVersionInput, options: any): async.Operation<types.CreateBotVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBotVersion, input, options) as async.Operation<types.CreateBotVersionOutput>
+function C:createBotVersion(input: types.CreateBotVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBotVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBotVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateBotVersionOutput>
 end
 
-function C:createExport(input: types.CreateExportInput, options: any): async.Operation<types.CreateExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateExport, input, options) as async.Operation<types.CreateExportOutput>
+function C:createExport(input: types.CreateExportInput, options?: base_client.InvokeOptions): async.Operation<types.CreateExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateExport as schema.OperationSchema, input, options) as async.Operation<types.CreateExportOutput>
 end
 
-function C:createIntent(input: types.CreateIntentInput, options: any): async.Operation<types.CreateIntentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIntent, input, options) as async.Operation<types.CreateIntentOutput>
+function C:createIntent(input: types.CreateIntentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIntentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIntent as schema.OperationSchema, input, options) as async.Operation<types.CreateIntentOutput>
 end
 
-function C:createResourcePolicy(input: types.CreateResourcePolicyInput, options: any): async.Operation<types.CreateResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateResourcePolicy, input, options) as async.Operation<types.CreateResourcePolicyOutput>
+function C:createResourcePolicy(input: types.CreateResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateResourcePolicyOutput>
 end
 
-function C:createResourcePolicyStatement(input: types.CreateResourcePolicyStatementInput, options: any): async.Operation<types.CreateResourcePolicyStatementOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateResourcePolicyStatement, input, options) as async.Operation<types.CreateResourcePolicyStatementOutput>
+function C:createResourcePolicyStatement(input: types.CreateResourcePolicyStatementInput, options?: base_client.InvokeOptions): async.Operation<types.CreateResourcePolicyStatementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateResourcePolicyStatement as schema.OperationSchema, input, options) as async.Operation<types.CreateResourcePolicyStatementOutput>
 end
 
-function C:createSlot(input: types.CreateSlotInput, options: any): async.Operation<types.CreateSlotOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSlot, input, options) as async.Operation<types.CreateSlotOutput>
+function C:createSlot(input: types.CreateSlotInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSlotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSlot as schema.OperationSchema, input, options) as async.Operation<types.CreateSlotOutput>
 end
 
-function C:createSlotType(input: types.CreateSlotTypeInput, options: any): async.Operation<types.CreateSlotTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSlotType, input, options) as async.Operation<types.CreateSlotTypeOutput>
+function C:createSlotType(input: types.CreateSlotTypeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSlotTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSlotType as schema.OperationSchema, input, options) as async.Operation<types.CreateSlotTypeOutput>
 end
 
-function C:createTestSetDiscrepancyReport(input: types.CreateTestSetDiscrepancyReportInput, options: any): async.Operation<types.CreateTestSetDiscrepancyReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTestSetDiscrepancyReport, input, options) as async.Operation<types.CreateTestSetDiscrepancyReportOutput>
+function C:createTestSetDiscrepancyReport(input: types.CreateTestSetDiscrepancyReportInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTestSetDiscrepancyReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTestSetDiscrepancyReport as schema.OperationSchema, input, options) as async.Operation<types.CreateTestSetDiscrepancyReportOutput>
 end
 
-function C:createUploadUrl(input: types.CreateUploadUrlInput, options: any): async.Operation<types.CreateUploadUrlOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateUploadUrl, input, options) as async.Operation<types.CreateUploadUrlOutput>
+function C:createUploadUrl(input: types.CreateUploadUrlInput, options?: base_client.InvokeOptions): async.Operation<types.CreateUploadUrlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateUploadUrl as schema.OperationSchema, input, options) as async.Operation<types.CreateUploadUrlOutput>
 end
 
-function C:deleteBot(input: types.DeleteBotInput, options: any): async.Operation<types.DeleteBotOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBot, input, options) as async.Operation<types.DeleteBotOutput>
+function C:deleteBot(input: types.DeleteBotInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBot as schema.OperationSchema, input, options) as async.Operation<types.DeleteBotOutput>
 end
 
-function C:deleteBotAlias(input: types.DeleteBotAliasInput, options: any): async.Operation<types.DeleteBotAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBotAlias, input, options) as async.Operation<types.DeleteBotAliasOutput>
+function C:deleteBotAlias(input: types.DeleteBotAliasInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBotAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBotAlias as schema.OperationSchema, input, options) as async.Operation<types.DeleteBotAliasOutput>
 end
 
-function C:deleteBotAnalyzerRecommendation(input: types.DeleteBotAnalyzerRecommendationInput, options: any): async.Operation<types.DeleteBotAnalyzerRecommendationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBotAnalyzerRecommendation, input, options) as async.Operation<types.DeleteBotAnalyzerRecommendationOutput>
+function C:deleteBotAnalyzerRecommendation(input: types.DeleteBotAnalyzerRecommendationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBotAnalyzerRecommendationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBotAnalyzerRecommendation as schema.OperationSchema, input, options) as async.Operation<types.DeleteBotAnalyzerRecommendationOutput>
 end
 
-function C:deleteBotLocale(input: types.DeleteBotLocaleInput, options: any): async.Operation<types.DeleteBotLocaleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBotLocale, input, options) as async.Operation<types.DeleteBotLocaleOutput>
+function C:deleteBotLocale(input: types.DeleteBotLocaleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBotLocaleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBotLocale as schema.OperationSchema, input, options) as async.Operation<types.DeleteBotLocaleOutput>
 end
 
-function C:deleteBotReplica(input: types.DeleteBotReplicaInput, options: any): async.Operation<types.DeleteBotReplicaOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBotReplica, input, options) as async.Operation<types.DeleteBotReplicaOutput>
+function C:deleteBotReplica(input: types.DeleteBotReplicaInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBotReplicaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBotReplica as schema.OperationSchema, input, options) as async.Operation<types.DeleteBotReplicaOutput>
 end
 
-function C:deleteBotVersion(input: types.DeleteBotVersionInput, options: any): async.Operation<types.DeleteBotVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBotVersion, input, options) as async.Operation<types.DeleteBotVersionOutput>
+function C:deleteBotVersion(input: types.DeleteBotVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBotVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBotVersion as schema.OperationSchema, input, options) as async.Operation<types.DeleteBotVersionOutput>
 end
 
-function C:deleteCustomVocabulary(input: types.DeleteCustomVocabularyInput, options: any): async.Operation<types.DeleteCustomVocabularyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCustomVocabulary, input, options) as async.Operation<types.DeleteCustomVocabularyOutput>
+function C:deleteCustomVocabulary(input: types.DeleteCustomVocabularyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCustomVocabularyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCustomVocabulary as schema.OperationSchema, input, options) as async.Operation<types.DeleteCustomVocabularyOutput>
 end
 
-function C:deleteExport(input: types.DeleteExportInput, options: any): async.Operation<types.DeleteExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteExport, input, options) as async.Operation<types.DeleteExportOutput>
+function C:deleteExport(input: types.DeleteExportInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteExport as schema.OperationSchema, input, options) as async.Operation<types.DeleteExportOutput>
 end
 
-function C:deleteImport(input: types.DeleteImportInput, options: any): async.Operation<types.DeleteImportOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteImport, input, options) as async.Operation<types.DeleteImportOutput>
+function C:deleteImport(input: types.DeleteImportInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteImportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteImport as schema.OperationSchema, input, options) as async.Operation<types.DeleteImportOutput>
 end
 
-function C:deleteIntent(input: types.DeleteIntentInput, options: any): async.Operation<types.DeleteIntentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIntent, input, options) as async.Operation<types.DeleteIntentOutput>
+function C:deleteIntent(input: types.DeleteIntentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIntentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIntent as schema.OperationSchema, input, options) as async.Operation<types.DeleteIntentOutput>
 end
 
-function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options: any): async.Operation<types.DeleteResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicy, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
+function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
 end
 
-function C:deleteResourcePolicyStatement(input: types.DeleteResourcePolicyStatementInput, options: any): async.Operation<types.DeleteResourcePolicyStatementOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicyStatement, input, options) as async.Operation<types.DeleteResourcePolicyStatementOutput>
+function C:deleteResourcePolicyStatement(input: types.DeleteResourcePolicyStatementInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyStatementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePolicyStatement as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePolicyStatementOutput>
 end
 
-function C:deleteSlot(input: types.DeleteSlotInput, options: any): async.Operation<types.DeleteSlotOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSlot, input, options) as async.Operation<types.DeleteSlotOutput>
+function C:deleteSlot(input: types.DeleteSlotInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSlotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSlot as schema.OperationSchema, input, options) as async.Operation<types.DeleteSlotOutput>
 end
 
-function C:deleteSlotType(input: types.DeleteSlotTypeInput, options: any): async.Operation<types.DeleteSlotTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSlotType, input, options) as async.Operation<types.DeleteSlotTypeOutput>
+function C:deleteSlotType(input: types.DeleteSlotTypeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSlotTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSlotType as schema.OperationSchema, input, options) as async.Operation<types.DeleteSlotTypeOutput>
 end
 
-function C:deleteTestSet(input: types.DeleteTestSetInput, options: any): async.Operation<types.DeleteTestSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTestSet, input, options) as async.Operation<types.DeleteTestSetOutput>
+function C:deleteTestSet(input: types.DeleteTestSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTestSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTestSet as schema.OperationSchema, input, options) as async.Operation<types.DeleteTestSetOutput>
 end
 
-function C:deleteUtterances(input: types.DeleteUtterancesInput, options: any): async.Operation<types.DeleteUtterancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteUtterances, input, options) as async.Operation<types.DeleteUtterancesOutput>
+function C:deleteUtterances(input: types.DeleteUtterancesInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteUtterancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteUtterances as schema.OperationSchema, input, options) as async.Operation<types.DeleteUtterancesOutput>
 end
 
-function C:describeBot(input: types.DescribeBotInput, options: any): async.Operation<types.DescribeBotOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeBot, input, options) as async.Operation<types.DescribeBotOutput>
+function C:describeBot(input: types.DescribeBotInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeBot as schema.OperationSchema, input, options) as async.Operation<types.DescribeBotOutput>
 end
 
-function C:describeBotAlias(input: types.DescribeBotAliasInput, options: any): async.Operation<types.DescribeBotAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeBotAlias, input, options) as async.Operation<types.DescribeBotAliasOutput>
+function C:describeBotAlias(input: types.DescribeBotAliasInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBotAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeBotAlias as schema.OperationSchema, input, options) as async.Operation<types.DescribeBotAliasOutput>
 end
 
-function C:describeBotAnalyzerRecommendation(input: types.DescribeBotAnalyzerRecommendationInput, options: any): async.Operation<types.DescribeBotAnalyzerRecommendationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeBotAnalyzerRecommendation, input, options) as async.Operation<types.DescribeBotAnalyzerRecommendationOutput>
+function C:describeBotAnalyzerRecommendation(input: types.DescribeBotAnalyzerRecommendationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBotAnalyzerRecommendationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeBotAnalyzerRecommendation as schema.OperationSchema, input, options) as async.Operation<types.DescribeBotAnalyzerRecommendationOutput>
 end
 
-function C:describeBotLocale(input: types.DescribeBotLocaleInput, options: any): async.Operation<types.DescribeBotLocaleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeBotLocale, input, options) as async.Operation<types.DescribeBotLocaleOutput>
+function C:describeBotLocale(input: types.DescribeBotLocaleInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBotLocaleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeBotLocale as schema.OperationSchema, input, options) as async.Operation<types.DescribeBotLocaleOutput>
 end
 
-function C:describeBotRecommendation(input: types.DescribeBotRecommendationInput, options: any): async.Operation<types.DescribeBotRecommendationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeBotRecommendation, input, options) as async.Operation<types.DescribeBotRecommendationOutput>
+function C:describeBotRecommendation(input: types.DescribeBotRecommendationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBotRecommendationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeBotRecommendation as schema.OperationSchema, input, options) as async.Operation<types.DescribeBotRecommendationOutput>
 end
 
-function C:describeBotReplica(input: types.DescribeBotReplicaInput, options: any): async.Operation<types.DescribeBotReplicaOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeBotReplica, input, options) as async.Operation<types.DescribeBotReplicaOutput>
+function C:describeBotReplica(input: types.DescribeBotReplicaInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBotReplicaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeBotReplica as schema.OperationSchema, input, options) as async.Operation<types.DescribeBotReplicaOutput>
 end
 
-function C:describeBotResourceGeneration(input: types.DescribeBotResourceGenerationInput, options: any): async.Operation<types.DescribeBotResourceGenerationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeBotResourceGeneration, input, options) as async.Operation<types.DescribeBotResourceGenerationOutput>
+function C:describeBotResourceGeneration(input: types.DescribeBotResourceGenerationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBotResourceGenerationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeBotResourceGeneration as schema.OperationSchema, input, options) as async.Operation<types.DescribeBotResourceGenerationOutput>
 end
 
-function C:describeBotVersion(input: types.DescribeBotVersionInput, options: any): async.Operation<types.DescribeBotVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeBotVersion, input, options) as async.Operation<types.DescribeBotVersionOutput>
+function C:describeBotVersion(input: types.DescribeBotVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBotVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeBotVersion as schema.OperationSchema, input, options) as async.Operation<types.DescribeBotVersionOutput>
 end
 
-function C:describeCustomVocabularyMetadata(input: types.DescribeCustomVocabularyMetadataInput, options: any): async.Operation<types.DescribeCustomVocabularyMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCustomVocabularyMetadata, input, options) as async.Operation<types.DescribeCustomVocabularyMetadataOutput>
+function C:describeCustomVocabularyMetadata(input: types.DescribeCustomVocabularyMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCustomVocabularyMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCustomVocabularyMetadata as schema.OperationSchema, input, options) as async.Operation<types.DescribeCustomVocabularyMetadataOutput>
 end
 
-function C:describeExport(input: types.DescribeExportInput, options: any): async.Operation<types.DescribeExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeExport, input, options) as async.Operation<types.DescribeExportOutput>
+function C:describeExport(input: types.DescribeExportInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeExport as schema.OperationSchema, input, options) as async.Operation<types.DescribeExportOutput>
 end
 
-function C:describeImport(input: types.DescribeImportInput, options: any): async.Operation<types.DescribeImportOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeImport, input, options) as async.Operation<types.DescribeImportOutput>
+function C:describeImport(input: types.DescribeImportInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeImportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeImport as schema.OperationSchema, input, options) as async.Operation<types.DescribeImportOutput>
 end
 
-function C:describeIntent(input: types.DescribeIntentInput, options: any): async.Operation<types.DescribeIntentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeIntent, input, options) as async.Operation<types.DescribeIntentOutput>
+function C:describeIntent(input: types.DescribeIntentInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIntentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIntent as schema.OperationSchema, input, options) as async.Operation<types.DescribeIntentOutput>
 end
 
-function C:describeResourcePolicy(input: types.DescribeResourcePolicyInput, options: any): async.Operation<types.DescribeResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeResourcePolicy, input, options) as async.Operation<types.DescribeResourcePolicyOutput>
+function C:describeResourcePolicy(input: types.DescribeResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DescribeResourcePolicyOutput>
 end
 
-function C:describeSlot(input: types.DescribeSlotInput, options: any): async.Operation<types.DescribeSlotOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSlot, input, options) as async.Operation<types.DescribeSlotOutput>
+function C:describeSlot(input: types.DescribeSlotInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSlotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSlot as schema.OperationSchema, input, options) as async.Operation<types.DescribeSlotOutput>
 end
 
-function C:describeSlotType(input: types.DescribeSlotTypeInput, options: any): async.Operation<types.DescribeSlotTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSlotType, input, options) as async.Operation<types.DescribeSlotTypeOutput>
+function C:describeSlotType(input: types.DescribeSlotTypeInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSlotTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSlotType as schema.OperationSchema, input, options) as async.Operation<types.DescribeSlotTypeOutput>
 end
 
-function C:describeTestExecution(input: types.DescribeTestExecutionInput, options: any): async.Operation<types.DescribeTestExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTestExecution, input, options) as async.Operation<types.DescribeTestExecutionOutput>
+function C:describeTestExecution(input: types.DescribeTestExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTestExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTestExecution as schema.OperationSchema, input, options) as async.Operation<types.DescribeTestExecutionOutput>
 end
 
-function C:describeTestSet(input: types.DescribeTestSetInput, options: any): async.Operation<types.DescribeTestSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTestSet, input, options) as async.Operation<types.DescribeTestSetOutput>
+function C:describeTestSet(input: types.DescribeTestSetInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTestSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTestSet as schema.OperationSchema, input, options) as async.Operation<types.DescribeTestSetOutput>
 end
 
-function C:describeTestSetDiscrepancyReport(input: types.DescribeTestSetDiscrepancyReportInput, options: any): async.Operation<types.DescribeTestSetDiscrepancyReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTestSetDiscrepancyReport, input, options) as async.Operation<types.DescribeTestSetDiscrepancyReportOutput>
+function C:describeTestSetDiscrepancyReport(input: types.DescribeTestSetDiscrepancyReportInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTestSetDiscrepancyReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTestSetDiscrepancyReport as schema.OperationSchema, input, options) as async.Operation<types.DescribeTestSetDiscrepancyReportOutput>
 end
 
-function C:describeTestSetGeneration(input: types.DescribeTestSetGenerationInput, options: any): async.Operation<types.DescribeTestSetGenerationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTestSetGeneration, input, options) as async.Operation<types.DescribeTestSetGenerationOutput>
+function C:describeTestSetGeneration(input: types.DescribeTestSetGenerationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTestSetGenerationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTestSetGeneration as schema.OperationSchema, input, options) as async.Operation<types.DescribeTestSetGenerationOutput>
 end
 
-function C:generateBotElement(input: types.GenerateBotElementInput, options: any): async.Operation<types.GenerateBotElementOutput>
-    return self:invokeOperation(schemas.Service, schemas.GenerateBotElement, input, options) as async.Operation<types.GenerateBotElementOutput>
+function C:generateBotElement(input: types.GenerateBotElementInput, options?: base_client.InvokeOptions): async.Operation<types.GenerateBotElementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GenerateBotElement as schema.OperationSchema, input, options) as async.Operation<types.GenerateBotElementOutput>
 end
 
-function C:getTestExecutionArtifactsUrl(input: types.GetTestExecutionArtifactsUrlInput, options: any): async.Operation<types.GetTestExecutionArtifactsUrlOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTestExecutionArtifactsUrl, input, options) as async.Operation<types.GetTestExecutionArtifactsUrlOutput>
+function C:getTestExecutionArtifactsUrl(input: types.GetTestExecutionArtifactsUrlInput, options?: base_client.InvokeOptions): async.Operation<types.GetTestExecutionArtifactsUrlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTestExecutionArtifactsUrl as schema.OperationSchema, input, options) as async.Operation<types.GetTestExecutionArtifactsUrlOutput>
 end
 
-function C:listAggregatedUtterances(input: types.ListAggregatedUtterancesInput, options: any): async.Operation<types.ListAggregatedUtterancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAggregatedUtterances, input, options) as async.Operation<types.ListAggregatedUtterancesOutput>
+function C:listAggregatedUtterances(input: types.ListAggregatedUtterancesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAggregatedUtterancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAggregatedUtterances as schema.OperationSchema, input, options) as async.Operation<types.ListAggregatedUtterancesOutput>
 end
 
-function C:listBotAliases(input: types.ListBotAliasesInput, options: any): async.Operation<types.ListBotAliasesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBotAliases, input, options) as async.Operation<types.ListBotAliasesOutput>
+function C:listBotAliases(input: types.ListBotAliasesInput, options?: base_client.InvokeOptions): async.Operation<types.ListBotAliasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBotAliases as schema.OperationSchema, input, options) as async.Operation<types.ListBotAliasesOutput>
 end
 
-function C:listBotAliasReplicas(input: types.ListBotAliasReplicasInput, options: any): async.Operation<types.ListBotAliasReplicasOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBotAliasReplicas, input, options) as async.Operation<types.ListBotAliasReplicasOutput>
+function C:listBotAliasReplicas(input: types.ListBotAliasReplicasInput, options?: base_client.InvokeOptions): async.Operation<types.ListBotAliasReplicasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBotAliasReplicas as schema.OperationSchema, input, options) as async.Operation<types.ListBotAliasReplicasOutput>
 end
 
-function C:listBotAnalyzerHistory(input: types.ListBotAnalyzerHistoryInput, options: any): async.Operation<types.ListBotAnalyzerHistoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBotAnalyzerHistory, input, options) as async.Operation<types.ListBotAnalyzerHistoryOutput>
+function C:listBotAnalyzerHistory(input: types.ListBotAnalyzerHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.ListBotAnalyzerHistoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBotAnalyzerHistory as schema.OperationSchema, input, options) as async.Operation<types.ListBotAnalyzerHistoryOutput>
 end
 
-function C:listBotLocales(input: types.ListBotLocalesInput, options: any): async.Operation<types.ListBotLocalesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBotLocales, input, options) as async.Operation<types.ListBotLocalesOutput>
+function C:listBotLocales(input: types.ListBotLocalesInput, options?: base_client.InvokeOptions): async.Operation<types.ListBotLocalesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBotLocales as schema.OperationSchema, input, options) as async.Operation<types.ListBotLocalesOutput>
 end
 
-function C:listBotRecommendations(input: types.ListBotRecommendationsInput, options: any): async.Operation<types.ListBotRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBotRecommendations, input, options) as async.Operation<types.ListBotRecommendationsOutput>
+function C:listBotRecommendations(input: types.ListBotRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBotRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBotRecommendations as schema.OperationSchema, input, options) as async.Operation<types.ListBotRecommendationsOutput>
 end
 
-function C:listBotReplicas(input: types.ListBotReplicasInput, options: any): async.Operation<types.ListBotReplicasOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBotReplicas, input, options) as async.Operation<types.ListBotReplicasOutput>
+function C:listBotReplicas(input: types.ListBotReplicasInput, options?: base_client.InvokeOptions): async.Operation<types.ListBotReplicasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBotReplicas as schema.OperationSchema, input, options) as async.Operation<types.ListBotReplicasOutput>
 end
 
-function C:listBotResourceGenerations(input: types.ListBotResourceGenerationsInput, options: any): async.Operation<types.ListBotResourceGenerationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBotResourceGenerations, input, options) as async.Operation<types.ListBotResourceGenerationsOutput>
+function C:listBotResourceGenerations(input: types.ListBotResourceGenerationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBotResourceGenerationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBotResourceGenerations as schema.OperationSchema, input, options) as async.Operation<types.ListBotResourceGenerationsOutput>
 end
 
-function C:listBots(input: types.ListBotsInput, options: any): async.Operation<types.ListBotsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBots, input, options) as async.Operation<types.ListBotsOutput>
+function C:listBots(input: types.ListBotsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBotsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBots as schema.OperationSchema, input, options) as async.Operation<types.ListBotsOutput>
 end
 
-function C:listBotVersionReplicas(input: types.ListBotVersionReplicasInput, options: any): async.Operation<types.ListBotVersionReplicasOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBotVersionReplicas, input, options) as async.Operation<types.ListBotVersionReplicasOutput>
+function C:listBotVersionReplicas(input: types.ListBotVersionReplicasInput, options?: base_client.InvokeOptions): async.Operation<types.ListBotVersionReplicasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBotVersionReplicas as schema.OperationSchema, input, options) as async.Operation<types.ListBotVersionReplicasOutput>
 end
 
-function C:listBotVersions(input: types.ListBotVersionsInput, options: any): async.Operation<types.ListBotVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBotVersions, input, options) as async.Operation<types.ListBotVersionsOutput>
+function C:listBotVersions(input: types.ListBotVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBotVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBotVersions as schema.OperationSchema, input, options) as async.Operation<types.ListBotVersionsOutput>
 end
 
-function C:listBuiltInIntents(input: types.ListBuiltInIntentsInput, options: any): async.Operation<types.ListBuiltInIntentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBuiltInIntents, input, options) as async.Operation<types.ListBuiltInIntentsOutput>
+function C:listBuiltInIntents(input: types.ListBuiltInIntentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBuiltInIntentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBuiltInIntents as schema.OperationSchema, input, options) as async.Operation<types.ListBuiltInIntentsOutput>
 end
 
-function C:listBuiltInSlotTypes(input: types.ListBuiltInSlotTypesInput, options: any): async.Operation<types.ListBuiltInSlotTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBuiltInSlotTypes, input, options) as async.Operation<types.ListBuiltInSlotTypesOutput>
+function C:listBuiltInSlotTypes(input: types.ListBuiltInSlotTypesInput, options?: base_client.InvokeOptions): async.Operation<types.ListBuiltInSlotTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBuiltInSlotTypes as schema.OperationSchema, input, options) as async.Operation<types.ListBuiltInSlotTypesOutput>
 end
 
-function C:listCustomVocabularyItems(input: types.ListCustomVocabularyItemsInput, options: any): async.Operation<types.ListCustomVocabularyItemsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCustomVocabularyItems, input, options) as async.Operation<types.ListCustomVocabularyItemsOutput>
+function C:listCustomVocabularyItems(input: types.ListCustomVocabularyItemsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCustomVocabularyItemsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCustomVocabularyItems as schema.OperationSchema, input, options) as async.Operation<types.ListCustomVocabularyItemsOutput>
 end
 
-function C:listExports(input: types.ListExportsInput, options: any): async.Operation<types.ListExportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListExports, input, options) as async.Operation<types.ListExportsOutput>
+function C:listExports(input: types.ListExportsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExports as schema.OperationSchema, input, options) as async.Operation<types.ListExportsOutput>
 end
 
-function C:listImports(input: types.ListImportsInput, options: any): async.Operation<types.ListImportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListImports, input, options) as async.Operation<types.ListImportsOutput>
+function C:listImports(input: types.ListImportsInput, options?: base_client.InvokeOptions): async.Operation<types.ListImportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListImports as schema.OperationSchema, input, options) as async.Operation<types.ListImportsOutput>
 end
 
-function C:listIntentMetrics(input: types.ListIntentMetricsInput, options: any): async.Operation<types.ListIntentMetricsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIntentMetrics, input, options) as async.Operation<types.ListIntentMetricsOutput>
+function C:listIntentMetrics(input: types.ListIntentMetricsInput, options?: base_client.InvokeOptions): async.Operation<types.ListIntentMetricsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIntentMetrics as schema.OperationSchema, input, options) as async.Operation<types.ListIntentMetricsOutput>
 end
 
-function C:listIntentPaths(input: types.ListIntentPathsInput, options: any): async.Operation<types.ListIntentPathsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIntentPaths, input, options) as async.Operation<types.ListIntentPathsOutput>
+function C:listIntentPaths(input: types.ListIntentPathsInput, options?: base_client.InvokeOptions): async.Operation<types.ListIntentPathsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIntentPaths as schema.OperationSchema, input, options) as async.Operation<types.ListIntentPathsOutput>
 end
 
-function C:listIntents(input: types.ListIntentsInput, options: any): async.Operation<types.ListIntentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIntents, input, options) as async.Operation<types.ListIntentsOutput>
+function C:listIntents(input: types.ListIntentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListIntentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIntents as schema.OperationSchema, input, options) as async.Operation<types.ListIntentsOutput>
 end
 
-function C:listIntentStageMetrics(input: types.ListIntentStageMetricsInput, options: any): async.Operation<types.ListIntentStageMetricsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIntentStageMetrics, input, options) as async.Operation<types.ListIntentStageMetricsOutput>
+function C:listIntentStageMetrics(input: types.ListIntentStageMetricsInput, options?: base_client.InvokeOptions): async.Operation<types.ListIntentStageMetricsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIntentStageMetrics as schema.OperationSchema, input, options) as async.Operation<types.ListIntentStageMetricsOutput>
 end
 
-function C:listRecommendedIntents(input: types.ListRecommendedIntentsInput, options: any): async.Operation<types.ListRecommendedIntentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRecommendedIntents, input, options) as async.Operation<types.ListRecommendedIntentsOutput>
+function C:listRecommendedIntents(input: types.ListRecommendedIntentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecommendedIntentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecommendedIntents as schema.OperationSchema, input, options) as async.Operation<types.ListRecommendedIntentsOutput>
 end
 
-function C:listSessionAnalyticsData(input: types.ListSessionAnalyticsDataInput, options: any): async.Operation<types.ListSessionAnalyticsDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSessionAnalyticsData, input, options) as async.Operation<types.ListSessionAnalyticsDataOutput>
+function C:listSessionAnalyticsData(input: types.ListSessionAnalyticsDataInput, options?: base_client.InvokeOptions): async.Operation<types.ListSessionAnalyticsDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSessionAnalyticsData as schema.OperationSchema, input, options) as async.Operation<types.ListSessionAnalyticsDataOutput>
 end
 
-function C:listSessionMetrics(input: types.ListSessionMetricsInput, options: any): async.Operation<types.ListSessionMetricsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSessionMetrics, input, options) as async.Operation<types.ListSessionMetricsOutput>
+function C:listSessionMetrics(input: types.ListSessionMetricsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSessionMetricsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSessionMetrics as schema.OperationSchema, input, options) as async.Operation<types.ListSessionMetricsOutput>
 end
 
-function C:listSlots(input: types.ListSlotsInput, options: any): async.Operation<types.ListSlotsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSlots, input, options) as async.Operation<types.ListSlotsOutput>
+function C:listSlots(input: types.ListSlotsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSlotsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSlots as schema.OperationSchema, input, options) as async.Operation<types.ListSlotsOutput>
 end
 
-function C:listSlotTypes(input: types.ListSlotTypesInput, options: any): async.Operation<types.ListSlotTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSlotTypes, input, options) as async.Operation<types.ListSlotTypesOutput>
+function C:listSlotTypes(input: types.ListSlotTypesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSlotTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSlotTypes as schema.OperationSchema, input, options) as async.Operation<types.ListSlotTypesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTestExecutionResultItems(input: types.ListTestExecutionResultItemsInput, options: any): async.Operation<types.ListTestExecutionResultItemsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTestExecutionResultItems, input, options) as async.Operation<types.ListTestExecutionResultItemsOutput>
+function C:listTestExecutionResultItems(input: types.ListTestExecutionResultItemsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTestExecutionResultItemsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTestExecutionResultItems as schema.OperationSchema, input, options) as async.Operation<types.ListTestExecutionResultItemsOutput>
 end
 
-function C:listTestExecutions(input: types.ListTestExecutionsInput, options: any): async.Operation<types.ListTestExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTestExecutions, input, options) as async.Operation<types.ListTestExecutionsOutput>
+function C:listTestExecutions(input: types.ListTestExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTestExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTestExecutions as schema.OperationSchema, input, options) as async.Operation<types.ListTestExecutionsOutput>
 end
 
-function C:listTestSetRecords(input: types.ListTestSetRecordsInput, options: any): async.Operation<types.ListTestSetRecordsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTestSetRecords, input, options) as async.Operation<types.ListTestSetRecordsOutput>
+function C:listTestSetRecords(input: types.ListTestSetRecordsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTestSetRecordsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTestSetRecords as schema.OperationSchema, input, options) as async.Operation<types.ListTestSetRecordsOutput>
 end
 
-function C:listTestSets(input: types.ListTestSetsInput, options: any): async.Operation<types.ListTestSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTestSets, input, options) as async.Operation<types.ListTestSetsOutput>
+function C:listTestSets(input: types.ListTestSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTestSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTestSets as schema.OperationSchema, input, options) as async.Operation<types.ListTestSetsOutput>
 end
 
-function C:listUtteranceAnalyticsData(input: types.ListUtteranceAnalyticsDataInput, options: any): async.Operation<types.ListUtteranceAnalyticsDataOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListUtteranceAnalyticsData, input, options) as async.Operation<types.ListUtteranceAnalyticsDataOutput>
+function C:listUtteranceAnalyticsData(input: types.ListUtteranceAnalyticsDataInput, options?: base_client.InvokeOptions): async.Operation<types.ListUtteranceAnalyticsDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUtteranceAnalyticsData as schema.OperationSchema, input, options) as async.Operation<types.ListUtteranceAnalyticsDataOutput>
 end
 
-function C:listUtteranceMetrics(input: types.ListUtteranceMetricsInput, options: any): async.Operation<types.ListUtteranceMetricsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListUtteranceMetrics, input, options) as async.Operation<types.ListUtteranceMetricsOutput>
+function C:listUtteranceMetrics(input: types.ListUtteranceMetricsInput, options?: base_client.InvokeOptions): async.Operation<types.ListUtteranceMetricsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUtteranceMetrics as schema.OperationSchema, input, options) as async.Operation<types.ListUtteranceMetricsOutput>
 end
 
-function C:searchAssociatedTranscripts(input: types.SearchAssociatedTranscriptsInput, options: any): async.Operation<types.SearchAssociatedTranscriptsOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchAssociatedTranscripts, input, options) as async.Operation<types.SearchAssociatedTranscriptsOutput>
+function C:searchAssociatedTranscripts(input: types.SearchAssociatedTranscriptsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchAssociatedTranscriptsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchAssociatedTranscripts as schema.OperationSchema, input, options) as async.Operation<types.SearchAssociatedTranscriptsOutput>
 end
 
-function C:startBotAnalyzer(input: types.StartBotAnalyzerInput, options: any): async.Operation<types.StartBotAnalyzerOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartBotAnalyzer, input, options) as async.Operation<types.StartBotAnalyzerOutput>
+function C:startBotAnalyzer(input: types.StartBotAnalyzerInput, options?: base_client.InvokeOptions): async.Operation<types.StartBotAnalyzerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartBotAnalyzer as schema.OperationSchema, input, options) as async.Operation<types.StartBotAnalyzerOutput>
 end
 
-function C:startBotRecommendation(input: types.StartBotRecommendationInput, options: any): async.Operation<types.StartBotRecommendationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartBotRecommendation, input, options) as async.Operation<types.StartBotRecommendationOutput>
+function C:startBotRecommendation(input: types.StartBotRecommendationInput, options?: base_client.InvokeOptions): async.Operation<types.StartBotRecommendationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartBotRecommendation as schema.OperationSchema, input, options) as async.Operation<types.StartBotRecommendationOutput>
 end
 
-function C:startBotResourceGeneration(input: types.StartBotResourceGenerationInput, options: any): async.Operation<types.StartBotResourceGenerationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartBotResourceGeneration, input, options) as async.Operation<types.StartBotResourceGenerationOutput>
+function C:startBotResourceGeneration(input: types.StartBotResourceGenerationInput, options?: base_client.InvokeOptions): async.Operation<types.StartBotResourceGenerationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartBotResourceGeneration as schema.OperationSchema, input, options) as async.Operation<types.StartBotResourceGenerationOutput>
 end
 
-function C:startImport(input: types.StartImportInput, options: any): async.Operation<types.StartImportOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartImport, input, options) as async.Operation<types.StartImportOutput>
+function C:startImport(input: types.StartImportInput, options?: base_client.InvokeOptions): async.Operation<types.StartImportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartImport as schema.OperationSchema, input, options) as async.Operation<types.StartImportOutput>
 end
 
-function C:startTestExecution(input: types.StartTestExecutionInput, options: any): async.Operation<types.StartTestExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartTestExecution, input, options) as async.Operation<types.StartTestExecutionOutput>
+function C:startTestExecution(input: types.StartTestExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.StartTestExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartTestExecution as schema.OperationSchema, input, options) as async.Operation<types.StartTestExecutionOutput>
 end
 
-function C:startTestSetGeneration(input: types.StartTestSetGenerationInput, options: any): async.Operation<types.StartTestSetGenerationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartTestSetGeneration, input, options) as async.Operation<types.StartTestSetGenerationOutput>
+function C:startTestSetGeneration(input: types.StartTestSetGenerationInput, options?: base_client.InvokeOptions): async.Operation<types.StartTestSetGenerationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartTestSetGeneration as schema.OperationSchema, input, options) as async.Operation<types.StartTestSetGenerationOutput>
 end
 
-function C:stopBotAnalyzer(input: types.StopBotAnalyzerInput, options: any): async.Operation<types.StopBotAnalyzerOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopBotAnalyzer, input, options) as async.Operation<types.StopBotAnalyzerOutput>
+function C:stopBotAnalyzer(input: types.StopBotAnalyzerInput, options?: base_client.InvokeOptions): async.Operation<types.StopBotAnalyzerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopBotAnalyzer as schema.OperationSchema, input, options) as async.Operation<types.StopBotAnalyzerOutput>
 end
 
-function C:stopBotRecommendation(input: types.StopBotRecommendationInput, options: any): async.Operation<types.StopBotRecommendationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopBotRecommendation, input, options) as async.Operation<types.StopBotRecommendationOutput>
+function C:stopBotRecommendation(input: types.StopBotRecommendationInput, options?: base_client.InvokeOptions): async.Operation<types.StopBotRecommendationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopBotRecommendation as schema.OperationSchema, input, options) as async.Operation<types.StopBotRecommendationOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateBot(input: types.UpdateBotInput, options: any): async.Operation<types.UpdateBotOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateBot, input, options) as async.Operation<types.UpdateBotOutput>
+function C:updateBot(input: types.UpdateBotInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBot as schema.OperationSchema, input, options) as async.Operation<types.UpdateBotOutput>
 end
 
-function C:updateBotAlias(input: types.UpdateBotAliasInput, options: any): async.Operation<types.UpdateBotAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateBotAlias, input, options) as async.Operation<types.UpdateBotAliasOutput>
+function C:updateBotAlias(input: types.UpdateBotAliasInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBotAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBotAlias as schema.OperationSchema, input, options) as async.Operation<types.UpdateBotAliasOutput>
 end
 
-function C:updateBotLocale(input: types.UpdateBotLocaleInput, options: any): async.Operation<types.UpdateBotLocaleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateBotLocale, input, options) as async.Operation<types.UpdateBotLocaleOutput>
+function C:updateBotLocale(input: types.UpdateBotLocaleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBotLocaleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBotLocale as schema.OperationSchema, input, options) as async.Operation<types.UpdateBotLocaleOutput>
 end
 
-function C:updateBotRecommendation(input: types.UpdateBotRecommendationInput, options: any): async.Operation<types.UpdateBotRecommendationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateBotRecommendation, input, options) as async.Operation<types.UpdateBotRecommendationOutput>
+function C:updateBotRecommendation(input: types.UpdateBotRecommendationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBotRecommendationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBotRecommendation as schema.OperationSchema, input, options) as async.Operation<types.UpdateBotRecommendationOutput>
 end
 
-function C:updateExport(input: types.UpdateExportInput, options: any): async.Operation<types.UpdateExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateExport, input, options) as async.Operation<types.UpdateExportOutput>
+function C:updateExport(input: types.UpdateExportInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateExport as schema.OperationSchema, input, options) as async.Operation<types.UpdateExportOutput>
 end
 
-function C:updateIntent(input: types.UpdateIntentInput, options: any): async.Operation<types.UpdateIntentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateIntent, input, options) as async.Operation<types.UpdateIntentOutput>
+function C:updateIntent(input: types.UpdateIntentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIntentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIntent as schema.OperationSchema, input, options) as async.Operation<types.UpdateIntentOutput>
 end
 
-function C:updateResourcePolicy(input: types.UpdateResourcePolicyInput, options: any): async.Operation<types.UpdateResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateResourcePolicy, input, options) as async.Operation<types.UpdateResourcePolicyOutput>
+function C:updateResourcePolicy(input: types.UpdateResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.UpdateResourcePolicyOutput>
 end
 
-function C:updateSlot(input: types.UpdateSlotInput, options: any): async.Operation<types.UpdateSlotOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSlot, input, options) as async.Operation<types.UpdateSlotOutput>
+function C:updateSlot(input: types.UpdateSlotInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSlotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSlot as schema.OperationSchema, input, options) as async.Operation<types.UpdateSlotOutput>
 end
 
-function C:updateSlotType(input: types.UpdateSlotTypeInput, options: any): async.Operation<types.UpdateSlotTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSlotType, input, options) as async.Operation<types.UpdateSlotTypeOutput>
+function C:updateSlotType(input: types.UpdateSlotTypeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSlotTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSlotType as schema.OperationSchema, input, options) as async.Operation<types.UpdateSlotTypeOutput>
 end
 
-function C:updateTestSet(input: types.UpdateTestSetInput, options: any): async.Operation<types.UpdateTestSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTestSet, input, options) as async.Operation<types.UpdateTestSetOutput>
+function C:updateTestSet(input: types.UpdateTestSetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTestSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTestSet as schema.OperationSchema, input, options) as async.Operation<types.UpdateTestSetOutput>
 end
 
 return M

@@ -8,83 +8,86 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("devopsagent.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("devopsagent.schemas")
 local traits = require("smithy.traits")
 local types = require("devopsagent.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateService: function(Client, types.AssociateServiceInput, any): async.Operation<types.AssociateServiceOutput>
-    createAgentSpace: function(Client, types.CreateAgentSpaceInput, any): async.Operation<types.CreateAgentSpaceOutput>
-    createBacklogTask: function(Client, types.CreateBacklogTaskInput, any): async.Operation<types.CreateBacklogTaskOutput>
-    createChat: function(Client, types.CreateChatInput, any): async.Operation<types.CreateChatOutput>
-    createPrivateConnection: function(Client, types.CreatePrivateConnectionInput, any): async.Operation<types.CreatePrivateConnectionOutput>
-    deleteAgentSpace: function(Client, types.DeleteAgentSpaceInput, any): async.Operation<types.DeleteAgentSpaceOutput>
-    deletePrivateConnection: function(Client, types.DeletePrivateConnectionInput, any): async.Operation<types.DeletePrivateConnectionOutput>
-    deregisterService: function(Client, types.DeregisterServiceInput, any): async.Operation<types.DeregisterServiceOutput>
-    describePrivateConnection: function(Client, types.DescribePrivateConnectionInput, any): async.Operation<types.DescribePrivateConnectionOutput>
-    disableOperatorApp: function(Client, types.DisableOperatorAppInput, any): async.Operation<types.DisableOperatorAppOutput>
-    disassociateService: function(Client, types.DisassociateServiceInput, any): async.Operation<types.DisassociateServiceOutput>
-    enableOperatorApp: function(Client, types.EnableOperatorAppInput, any): async.Operation<types.EnableOperatorAppOutput>
-    getAccountUsage: function(Client, types.GetAccountUsageInput, any): async.Operation<types.GetAccountUsageOutput>
-    getAgentSpace: function(Client, types.GetAgentSpaceInput, any): async.Operation<types.GetAgentSpaceOutput>
-    getAssociation: function(Client, types.GetAssociationInput, any): async.Operation<types.GetAssociationOutput>
-    getBacklogTask: function(Client, types.GetBacklogTaskInput, any): async.Operation<types.GetBacklogTaskOutput>
-    getOperatorApp: function(Client, types.GetOperatorAppInput, any): async.Operation<types.GetOperatorAppOutput>
-    getRecommendation: function(Client, types.GetRecommendationInput, any): async.Operation<types.GetRecommendationOutput>
-    getService: function(Client, types.GetServiceInput, any): async.Operation<types.GetServiceOutput>
-    listAgentSpaces: function(Client, types.ListAgentSpacesInput, any): async.Operation<types.ListAgentSpacesOutput>
-    listAssociations: function(Client, types.ListAssociationsInput, any): async.Operation<types.ListAssociationsOutput>
-    listBacklogTasks: function(Client, types.ListBacklogTasksInput, any): async.Operation<types.ListBacklogTasksOutput>
-    listChats: function(Client, types.ListChatsInput, any): async.Operation<types.ListChatsOutput>
-    listExecutions: function(Client, types.ListExecutionsInput, any): async.Operation<types.ListExecutionsOutput>
-    listGoals: function(Client, types.ListGoalsInput, any): async.Operation<types.ListGoalsOutput>
-    listJournalRecords: function(Client, types.ListJournalRecordsInput, any): async.Operation<types.ListJournalRecordsOutput>
-    listPendingMessages: function(Client, types.ListPendingMessagesInput, any): async.Operation<types.ListPendingMessagesOutput>
-    listPrivateConnections: function(Client, types.ListPrivateConnectionsInput, any): async.Operation<types.ListPrivateConnectionsOutput>
-    listRecommendations: function(Client, types.ListRecommendationsInput, any): async.Operation<types.ListRecommendationsOutput>
-    listServices: function(Client, types.ListServicesInput, any): async.Operation<types.ListServicesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listWebhooks: function(Client, types.ListWebhooksInput, any): async.Operation<types.ListWebhooksOutput>
-    registerService: function(Client, types.RegisterServiceInput, any): async.Operation<types.RegisterServiceOutput>
-    sendMessage: function(Client, types.SendMessageInput, any): async.Operation<types.SendMessageOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAgentSpace: function(Client, types.UpdateAgentSpaceInput, any): async.Operation<types.UpdateAgentSpaceOutput>
-    updateAssociation: function(Client, types.UpdateAssociationInput, any): async.Operation<types.UpdateAssociationOutput>
-    updateBacklogTask: function(Client, types.UpdateBacklogTaskInput, any): async.Operation<types.UpdateBacklogTaskOutput>
-    updateGoal: function(Client, types.UpdateGoalInput, any): async.Operation<types.UpdateGoalOutput>
-    updateOperatorAppIdpConfig: function(Client, types.UpdateOperatorAppIdpConfigInput, any): async.Operation<types.UpdateOperatorAppIdpConfigOutput>
-    updatePrivateConnectionCertificate: function(Client, types.UpdatePrivateConnectionCertificateInput, any): async.Operation<types.UpdatePrivateConnectionCertificateOutput>
-    updateRecommendation: function(Client, types.UpdateRecommendationInput, any): async.Operation<types.UpdateRecommendationOutput>
-    validateAwsAssociations: function(Client, types.ValidateAwsAssociationsInput, any): async.Operation<types.ValidateAwsAssociationsOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateService: function(Client, types.AssociateServiceInput, ? base_client.InvokeOptions): async.Operation<types.AssociateServiceOutput>
+    createAgentSpace: function(Client, types.CreateAgentSpaceInput, ? base_client.InvokeOptions): async.Operation<types.CreateAgentSpaceOutput>
+    createBacklogTask: function(Client, types.CreateBacklogTaskInput, ? base_client.InvokeOptions): async.Operation<types.CreateBacklogTaskOutput>
+    createChat: function(Client, types.CreateChatInput, ? base_client.InvokeOptions): async.Operation<types.CreateChatOutput>
+    createPrivateConnection: function(Client, types.CreatePrivateConnectionInput, ? base_client.InvokeOptions): async.Operation<types.CreatePrivateConnectionOutput>
+    deleteAgentSpace: function(Client, types.DeleteAgentSpaceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAgentSpaceOutput>
+    deletePrivateConnection: function(Client, types.DeletePrivateConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DeletePrivateConnectionOutput>
+    deregisterService: function(Client, types.DeregisterServiceInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterServiceOutput>
+    describePrivateConnection: function(Client, types.DescribePrivateConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DescribePrivateConnectionOutput>
+    disableOperatorApp: function(Client, types.DisableOperatorAppInput, ? base_client.InvokeOptions): async.Operation<types.DisableOperatorAppOutput>
+    disassociateService: function(Client, types.DisassociateServiceInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateServiceOutput>
+    enableOperatorApp: function(Client, types.EnableOperatorAppInput, ? base_client.InvokeOptions): async.Operation<types.EnableOperatorAppOutput>
+    getAccountUsage: function(Client, types.GetAccountUsageInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountUsageOutput>
+    getAgentSpace: function(Client, types.GetAgentSpaceInput, ? base_client.InvokeOptions): async.Operation<types.GetAgentSpaceOutput>
+    getAssociation: function(Client, types.GetAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetAssociationOutput>
+    getBacklogTask: function(Client, types.GetBacklogTaskInput, ? base_client.InvokeOptions): async.Operation<types.GetBacklogTaskOutput>
+    getOperatorApp: function(Client, types.GetOperatorAppInput, ? base_client.InvokeOptions): async.Operation<types.GetOperatorAppOutput>
+    getRecommendation: function(Client, types.GetRecommendationInput, ? base_client.InvokeOptions): async.Operation<types.GetRecommendationOutput>
+    getService: function(Client, types.GetServiceInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceOutput>
+    listAgentSpaces: function(Client, types.ListAgentSpacesInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentSpacesOutput>
+    listAssociations: function(Client, types.ListAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssociationsOutput>
+    listBacklogTasks: function(Client, types.ListBacklogTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListBacklogTasksOutput>
+    listChats: function(Client, types.ListChatsInput, ? base_client.InvokeOptions): async.Operation<types.ListChatsOutput>
+    listExecutions: function(Client, types.ListExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListExecutionsOutput>
+    listGoals: function(Client, types.ListGoalsInput, ? base_client.InvokeOptions): async.Operation<types.ListGoalsOutput>
+    listJournalRecords: function(Client, types.ListJournalRecordsInput, ? base_client.InvokeOptions): async.Operation<types.ListJournalRecordsOutput>
+    listPendingMessages: function(Client, types.ListPendingMessagesInput, ? base_client.InvokeOptions): async.Operation<types.ListPendingMessagesOutput>
+    listPrivateConnections: function(Client, types.ListPrivateConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.ListPrivateConnectionsOutput>
+    listRecommendations: function(Client, types.ListRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.ListRecommendationsOutput>
+    listServices: function(Client, types.ListServicesInput, ? base_client.InvokeOptions): async.Operation<types.ListServicesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listWebhooks: function(Client, types.ListWebhooksInput, ? base_client.InvokeOptions): async.Operation<types.ListWebhooksOutput>
+    registerService: function(Client, types.RegisterServiceInput, ? base_client.InvokeOptions): async.Operation<types.RegisterServiceOutput>
+    sendMessage: function(Client, types.SendMessageInput, ? base_client.InvokeOptions): async.Operation<types.SendMessageOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAgentSpace: function(Client, types.UpdateAgentSpaceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAgentSpaceOutput>
+    updateAssociation: function(Client, types.UpdateAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAssociationOutput>
+    updateBacklogTask: function(Client, types.UpdateBacklogTaskInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBacklogTaskOutput>
+    updateGoal: function(Client, types.UpdateGoalInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGoalOutput>
+    updateOperatorAppIdpConfig: function(Client, types.UpdateOperatorAppIdpConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOperatorAppIdpConfigOutput>
+    updatePrivateConnectionCertificate: function(Client, types.UpdatePrivateConnectionCertificateInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePrivateConnectionCertificateOutput>
+    updateRecommendation: function(Client, types.UpdateRecommendationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRecommendationOutput>
+    validateAwsAssociations: function(Client, types.ValidateAwsAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ValidateAwsAssociationsOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "DevOpsAgent"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "aidevops", signing_region = c.region } }
                 else
@@ -103,180 +106,180 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateService(input: types.AssociateServiceInput, options: any): async.Operation<types.AssociateServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateService, input, options) as async.Operation<types.AssociateServiceOutput>
+function C:associateService(input: types.AssociateServiceInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateService as schema.OperationSchema, input, options) as async.Operation<types.AssociateServiceOutput>
 end
 
-function C:createAgentSpace(input: types.CreateAgentSpaceInput, options: any): async.Operation<types.CreateAgentSpaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAgentSpace, input, options) as async.Operation<types.CreateAgentSpaceOutput>
+function C:createAgentSpace(input: types.CreateAgentSpaceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAgentSpaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAgentSpace as schema.OperationSchema, input, options) as async.Operation<types.CreateAgentSpaceOutput>
 end
 
-function C:createBacklogTask(input: types.CreateBacklogTaskInput, options: any): async.Operation<types.CreateBacklogTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBacklogTask, input, options) as async.Operation<types.CreateBacklogTaskOutput>
+function C:createBacklogTask(input: types.CreateBacklogTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBacklogTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBacklogTask as schema.OperationSchema, input, options) as async.Operation<types.CreateBacklogTaskOutput>
 end
 
-function C:createChat(input: types.CreateChatInput, options: any): async.Operation<types.CreateChatOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateChat, input, options) as async.Operation<types.CreateChatOutput>
+function C:createChat(input: types.CreateChatInput, options?: base_client.InvokeOptions): async.Operation<types.CreateChatOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateChat as schema.OperationSchema, input, options) as async.Operation<types.CreateChatOutput>
 end
 
-function C:createPrivateConnection(input: types.CreatePrivateConnectionInput, options: any): async.Operation<types.CreatePrivateConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePrivateConnection, input, options) as async.Operation<types.CreatePrivateConnectionOutput>
+function C:createPrivateConnection(input: types.CreatePrivateConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePrivateConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePrivateConnection as schema.OperationSchema, input, options) as async.Operation<types.CreatePrivateConnectionOutput>
 end
 
-function C:deleteAgentSpace(input: types.DeleteAgentSpaceInput, options: any): async.Operation<types.DeleteAgentSpaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAgentSpace, input, options) as async.Operation<types.DeleteAgentSpaceOutput>
+function C:deleteAgentSpace(input: types.DeleteAgentSpaceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAgentSpaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAgentSpace as schema.OperationSchema, input, options) as async.Operation<types.DeleteAgentSpaceOutput>
 end
 
-function C:deletePrivateConnection(input: types.DeletePrivateConnectionInput, options: any): async.Operation<types.DeletePrivateConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePrivateConnection, input, options) as async.Operation<types.DeletePrivateConnectionOutput>
+function C:deletePrivateConnection(input: types.DeletePrivateConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePrivateConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePrivateConnection as schema.OperationSchema, input, options) as async.Operation<types.DeletePrivateConnectionOutput>
 end
 
-function C:deregisterService(input: types.DeregisterServiceInput, options: any): async.Operation<types.DeregisterServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterService, input, options) as async.Operation<types.DeregisterServiceOutput>
+function C:deregisterService(input: types.DeregisterServiceInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterService as schema.OperationSchema, input, options) as async.Operation<types.DeregisterServiceOutput>
 end
 
-function C:describePrivateConnection(input: types.DescribePrivateConnectionInput, options: any): async.Operation<types.DescribePrivateConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribePrivateConnection, input, options) as async.Operation<types.DescribePrivateConnectionOutput>
+function C:describePrivateConnection(input: types.DescribePrivateConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePrivateConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePrivateConnection as schema.OperationSchema, input, options) as async.Operation<types.DescribePrivateConnectionOutput>
 end
 
-function C:disableOperatorApp(input: types.DisableOperatorAppInput, options: any): async.Operation<types.DisableOperatorAppOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableOperatorApp, input, options) as async.Operation<types.DisableOperatorAppOutput>
+function C:disableOperatorApp(input: types.DisableOperatorAppInput, options?: base_client.InvokeOptions): async.Operation<types.DisableOperatorAppOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableOperatorApp as schema.OperationSchema, input, options) as async.Operation<types.DisableOperatorAppOutput>
 end
 
-function C:disassociateService(input: types.DisassociateServiceInput, options: any): async.Operation<types.DisassociateServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateService, input, options) as async.Operation<types.DisassociateServiceOutput>
+function C:disassociateService(input: types.DisassociateServiceInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateService as schema.OperationSchema, input, options) as async.Operation<types.DisassociateServiceOutput>
 end
 
-function C:enableOperatorApp(input: types.EnableOperatorAppInput, options: any): async.Operation<types.EnableOperatorAppOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableOperatorApp, input, options) as async.Operation<types.EnableOperatorAppOutput>
+function C:enableOperatorApp(input: types.EnableOperatorAppInput, options?: base_client.InvokeOptions): async.Operation<types.EnableOperatorAppOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableOperatorApp as schema.OperationSchema, input, options) as async.Operation<types.EnableOperatorAppOutput>
 end
 
-function C:getAccountUsage(input: types.GetAccountUsageInput, options: any): async.Operation<types.GetAccountUsageOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccountUsage, input, options) as async.Operation<types.GetAccountUsageOutput>
+function C:getAccountUsage(input: types.GetAccountUsageInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccountUsageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccountUsage as schema.OperationSchema, input, options) as async.Operation<types.GetAccountUsageOutput>
 end
 
-function C:getAgentSpace(input: types.GetAgentSpaceInput, options: any): async.Operation<types.GetAgentSpaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAgentSpace, input, options) as async.Operation<types.GetAgentSpaceOutput>
+function C:getAgentSpace(input: types.GetAgentSpaceInput, options?: base_client.InvokeOptions): async.Operation<types.GetAgentSpaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAgentSpace as schema.OperationSchema, input, options) as async.Operation<types.GetAgentSpaceOutput>
 end
 
-function C:getAssociation(input: types.GetAssociationInput, options: any): async.Operation<types.GetAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAssociation, input, options) as async.Operation<types.GetAssociationOutput>
+function C:getAssociation(input: types.GetAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetAssociationOutput>
 end
 
-function C:getBacklogTask(input: types.GetBacklogTaskInput, options: any): async.Operation<types.GetBacklogTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBacklogTask, input, options) as async.Operation<types.GetBacklogTaskOutput>
+function C:getBacklogTask(input: types.GetBacklogTaskInput, options?: base_client.InvokeOptions): async.Operation<types.GetBacklogTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBacklogTask as schema.OperationSchema, input, options) as async.Operation<types.GetBacklogTaskOutput>
 end
 
-function C:getOperatorApp(input: types.GetOperatorAppInput, options: any): async.Operation<types.GetOperatorAppOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetOperatorApp, input, options) as async.Operation<types.GetOperatorAppOutput>
+function C:getOperatorApp(input: types.GetOperatorAppInput, options?: base_client.InvokeOptions): async.Operation<types.GetOperatorAppOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOperatorApp as schema.OperationSchema, input, options) as async.Operation<types.GetOperatorAppOutput>
 end
 
-function C:getRecommendation(input: types.GetRecommendationInput, options: any): async.Operation<types.GetRecommendationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetRecommendation, input, options) as async.Operation<types.GetRecommendationOutput>
+function C:getRecommendation(input: types.GetRecommendationInput, options?: base_client.InvokeOptions): async.Operation<types.GetRecommendationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRecommendation as schema.OperationSchema, input, options) as async.Operation<types.GetRecommendationOutput>
 end
 
-function C:getService(input: types.GetServiceInput, options: any): async.Operation<types.GetServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetService, input, options) as async.Operation<types.GetServiceOutput>
+function C:getService(input: types.GetServiceInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetService as schema.OperationSchema, input, options) as async.Operation<types.GetServiceOutput>
 end
 
-function C:listAgentSpaces(input: types.ListAgentSpacesInput, options: any): async.Operation<types.ListAgentSpacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAgentSpaces, input, options) as async.Operation<types.ListAgentSpacesOutput>
+function C:listAgentSpaces(input: types.ListAgentSpacesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAgentSpacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAgentSpaces as schema.OperationSchema, input, options) as async.Operation<types.ListAgentSpacesOutput>
 end
 
-function C:listAssociations(input: types.ListAssociationsInput, options: any): async.Operation<types.ListAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssociations, input, options) as async.Operation<types.ListAssociationsOutput>
+function C:listAssociations(input: types.ListAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListAssociationsOutput>
 end
 
-function C:listBacklogTasks(input: types.ListBacklogTasksInput, options: any): async.Operation<types.ListBacklogTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBacklogTasks, input, options) as async.Operation<types.ListBacklogTasksOutput>
+function C:listBacklogTasks(input: types.ListBacklogTasksInput, options?: base_client.InvokeOptions): async.Operation<types.ListBacklogTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBacklogTasks as schema.OperationSchema, input, options) as async.Operation<types.ListBacklogTasksOutput>
 end
 
-function C:listChats(input: types.ListChatsInput, options: any): async.Operation<types.ListChatsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListChats, input, options) as async.Operation<types.ListChatsOutput>
+function C:listChats(input: types.ListChatsInput, options?: base_client.InvokeOptions): async.Operation<types.ListChatsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListChats as schema.OperationSchema, input, options) as async.Operation<types.ListChatsOutput>
 end
 
-function C:listExecutions(input: types.ListExecutionsInput, options: any): async.Operation<types.ListExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListExecutions, input, options) as async.Operation<types.ListExecutionsOutput>
+function C:listExecutions(input: types.ListExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExecutions as schema.OperationSchema, input, options) as async.Operation<types.ListExecutionsOutput>
 end
 
-function C:listGoals(input: types.ListGoalsInput, options: any): async.Operation<types.ListGoalsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGoals, input, options) as async.Operation<types.ListGoalsOutput>
+function C:listGoals(input: types.ListGoalsInput, options?: base_client.InvokeOptions): async.Operation<types.ListGoalsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGoals as schema.OperationSchema, input, options) as async.Operation<types.ListGoalsOutput>
 end
 
-function C:listJournalRecords(input: types.ListJournalRecordsInput, options: any): async.Operation<types.ListJournalRecordsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListJournalRecords, input, options) as async.Operation<types.ListJournalRecordsOutput>
+function C:listJournalRecords(input: types.ListJournalRecordsInput, options?: base_client.InvokeOptions): async.Operation<types.ListJournalRecordsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListJournalRecords as schema.OperationSchema, input, options) as async.Operation<types.ListJournalRecordsOutput>
 end
 
-function C:listPendingMessages(input: types.ListPendingMessagesInput, options: any): async.Operation<types.ListPendingMessagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPendingMessages, input, options) as async.Operation<types.ListPendingMessagesOutput>
+function C:listPendingMessages(input: types.ListPendingMessagesInput, options?: base_client.InvokeOptions): async.Operation<types.ListPendingMessagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPendingMessages as schema.OperationSchema, input, options) as async.Operation<types.ListPendingMessagesOutput>
 end
 
-function C:listPrivateConnections(input: types.ListPrivateConnectionsInput, options: any): async.Operation<types.ListPrivateConnectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPrivateConnections, input, options) as async.Operation<types.ListPrivateConnectionsOutput>
+function C:listPrivateConnections(input: types.ListPrivateConnectionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPrivateConnectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPrivateConnections as schema.OperationSchema, input, options) as async.Operation<types.ListPrivateConnectionsOutput>
 end
 
-function C:listRecommendations(input: types.ListRecommendationsInput, options: any): async.Operation<types.ListRecommendationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRecommendations, input, options) as async.Operation<types.ListRecommendationsOutput>
+function C:listRecommendations(input: types.ListRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecommendations as schema.OperationSchema, input, options) as async.Operation<types.ListRecommendationsOutput>
 end
 
-function C:listServices(input: types.ListServicesInput, options: any): async.Operation<types.ListServicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServices, input, options) as async.Operation<types.ListServicesOutput>
+function C:listServices(input: types.ListServicesInput, options?: base_client.InvokeOptions): async.Operation<types.ListServicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServices as schema.OperationSchema, input, options) as async.Operation<types.ListServicesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listWebhooks(input: types.ListWebhooksInput, options: any): async.Operation<types.ListWebhooksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWebhooks, input, options) as async.Operation<types.ListWebhooksOutput>
+function C:listWebhooks(input: types.ListWebhooksInput, options?: base_client.InvokeOptions): async.Operation<types.ListWebhooksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWebhooks as schema.OperationSchema, input, options) as async.Operation<types.ListWebhooksOutput>
 end
 
-function C:registerService(input: types.RegisterServiceInput, options: any): async.Operation<types.RegisterServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterService, input, options) as async.Operation<types.RegisterServiceOutput>
+function C:registerService(input: types.RegisterServiceInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterService as schema.OperationSchema, input, options) as async.Operation<types.RegisterServiceOutput>
 end
 
-function C:sendMessage(input: types.SendMessageInput, options: any): async.Operation<types.SendMessageOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendMessage, input, options) as async.Operation<types.SendMessageOutput>
+function C:sendMessage(input: types.SendMessageInput, options?: base_client.InvokeOptions): async.Operation<types.SendMessageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendMessage as schema.OperationSchema, input, options) as async.Operation<types.SendMessageOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAgentSpace(input: types.UpdateAgentSpaceInput, options: any): async.Operation<types.UpdateAgentSpaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAgentSpace, input, options) as async.Operation<types.UpdateAgentSpaceOutput>
+function C:updateAgentSpace(input: types.UpdateAgentSpaceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAgentSpaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAgentSpace as schema.OperationSchema, input, options) as async.Operation<types.UpdateAgentSpaceOutput>
 end
 
-function C:updateAssociation(input: types.UpdateAssociationInput, options: any): async.Operation<types.UpdateAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAssociation, input, options) as async.Operation<types.UpdateAssociationOutput>
+function C:updateAssociation(input: types.UpdateAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAssociation as schema.OperationSchema, input, options) as async.Operation<types.UpdateAssociationOutput>
 end
 
-function C:updateBacklogTask(input: types.UpdateBacklogTaskInput, options: any): async.Operation<types.UpdateBacklogTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateBacklogTask, input, options) as async.Operation<types.UpdateBacklogTaskOutput>
+function C:updateBacklogTask(input: types.UpdateBacklogTaskInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBacklogTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBacklogTask as schema.OperationSchema, input, options) as async.Operation<types.UpdateBacklogTaskOutput>
 end
 
-function C:updateGoal(input: types.UpdateGoalInput, options: any): async.Operation<types.UpdateGoalOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateGoal, input, options) as async.Operation<types.UpdateGoalOutput>
+function C:updateGoal(input: types.UpdateGoalInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGoalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGoal as schema.OperationSchema, input, options) as async.Operation<types.UpdateGoalOutput>
 end
 
-function C:updateOperatorAppIdpConfig(input: types.UpdateOperatorAppIdpConfigInput, options: any): async.Operation<types.UpdateOperatorAppIdpConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateOperatorAppIdpConfig, input, options) as async.Operation<types.UpdateOperatorAppIdpConfigOutput>
+function C:updateOperatorAppIdpConfig(input: types.UpdateOperatorAppIdpConfigInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateOperatorAppIdpConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateOperatorAppIdpConfig as schema.OperationSchema, input, options) as async.Operation<types.UpdateOperatorAppIdpConfigOutput>
 end
 
-function C:updatePrivateConnectionCertificate(input: types.UpdatePrivateConnectionCertificateInput, options: any): async.Operation<types.UpdatePrivateConnectionCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePrivateConnectionCertificate, input, options) as async.Operation<types.UpdatePrivateConnectionCertificateOutput>
+function C:updatePrivateConnectionCertificate(input: types.UpdatePrivateConnectionCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePrivateConnectionCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePrivateConnectionCertificate as schema.OperationSchema, input, options) as async.Operation<types.UpdatePrivateConnectionCertificateOutput>
 end
 
-function C:updateRecommendation(input: types.UpdateRecommendationInput, options: any): async.Operation<types.UpdateRecommendationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRecommendation, input, options) as async.Operation<types.UpdateRecommendationOutput>
+function C:updateRecommendation(input: types.UpdateRecommendationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRecommendationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRecommendation as schema.OperationSchema, input, options) as async.Operation<types.UpdateRecommendationOutput>
 end
 
-function C:validateAwsAssociations(input: types.ValidateAwsAssociationsInput, options: any): async.Operation<types.ValidateAwsAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ValidateAwsAssociations, input, options) as async.Operation<types.ValidateAwsAssociationsOutput>
+function C:validateAwsAssociations(input: types.ValidateAwsAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ValidateAwsAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ValidateAwsAssociations as schema.OperationSchema, input, options) as async.Operation<types.ValidateAwsAssociationsOutput>
 end
 
 return M

@@ -8,48 +8,51 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("managedblockchainquery.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("managedblockchainquery.schemas")
 local traits = require("smithy.traits")
 local types = require("managedblockchainquery.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchGetTokenBalance: function(Client, types.BatchGetTokenBalanceInput, any): async.Operation<types.BatchGetTokenBalanceOutput>
-    getAssetContract: function(Client, types.GetAssetContractInput, any): async.Operation<types.GetAssetContractOutput>
-    getTokenBalance: function(Client, types.GetTokenBalanceInput, any): async.Operation<types.GetTokenBalanceOutput>
-    getTransaction: function(Client, types.GetTransactionInput, any): async.Operation<types.GetTransactionOutput>
-    listAssetContracts: function(Client, types.ListAssetContractsInput, any): async.Operation<types.ListAssetContractsOutput>
-    listFilteredTransactionEvents: function(Client, types.ListFilteredTransactionEventsInput, any): async.Operation<types.ListFilteredTransactionEventsOutput>
-    listTokenBalances: function(Client, types.ListTokenBalancesInput, any): async.Operation<types.ListTokenBalancesOutput>
-    listTransactionEvents: function(Client, types.ListTransactionEventsInput, any): async.Operation<types.ListTransactionEventsOutput>
-    listTransactions: function(Client, types.ListTransactionsInput, any): async.Operation<types.ListTransactionsOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchGetTokenBalance: function(Client, types.BatchGetTokenBalanceInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetTokenBalanceOutput>
+    getAssetContract: function(Client, types.GetAssetContractInput, ? base_client.InvokeOptions): async.Operation<types.GetAssetContractOutput>
+    getTokenBalance: function(Client, types.GetTokenBalanceInput, ? base_client.InvokeOptions): async.Operation<types.GetTokenBalanceOutput>
+    getTransaction: function(Client, types.GetTransactionInput, ? base_client.InvokeOptions): async.Operation<types.GetTransactionOutput>
+    listAssetContracts: function(Client, types.ListAssetContractsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssetContractsOutput>
+    listFilteredTransactionEvents: function(Client, types.ListFilteredTransactionEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListFilteredTransactionEventsOutput>
+    listTokenBalances: function(Client, types.ListTokenBalancesInput, ? base_client.InvokeOptions): async.Operation<types.ListTokenBalancesOutput>
+    listTransactionEvents: function(Client, types.ListTransactionEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListTransactionEventsOutput>
+    listTransactions: function(Client, types.ListTransactionsInput, ? base_client.InvokeOptions): async.Operation<types.ListTransactionsOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "TietonChainQueryService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "managedblockchain-query", signing_region = c.region } }
                 else
@@ -68,40 +71,40 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchGetTokenBalance(input: types.BatchGetTokenBalanceInput, options: any): async.Operation<types.BatchGetTokenBalanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetTokenBalance, input, options) as async.Operation<types.BatchGetTokenBalanceOutput>
+function C:batchGetTokenBalance(input: types.BatchGetTokenBalanceInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetTokenBalanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetTokenBalance as schema.OperationSchema, input, options) as async.Operation<types.BatchGetTokenBalanceOutput>
 end
 
-function C:getAssetContract(input: types.GetAssetContractInput, options: any): async.Operation<types.GetAssetContractOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAssetContract, input, options) as async.Operation<types.GetAssetContractOutput>
+function C:getAssetContract(input: types.GetAssetContractInput, options?: base_client.InvokeOptions): async.Operation<types.GetAssetContractOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAssetContract as schema.OperationSchema, input, options) as async.Operation<types.GetAssetContractOutput>
 end
 
-function C:getTokenBalance(input: types.GetTokenBalanceInput, options: any): async.Operation<types.GetTokenBalanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTokenBalance, input, options) as async.Operation<types.GetTokenBalanceOutput>
+function C:getTokenBalance(input: types.GetTokenBalanceInput, options?: base_client.InvokeOptions): async.Operation<types.GetTokenBalanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTokenBalance as schema.OperationSchema, input, options) as async.Operation<types.GetTokenBalanceOutput>
 end
 
-function C:getTransaction(input: types.GetTransactionInput, options: any): async.Operation<types.GetTransactionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTransaction, input, options) as async.Operation<types.GetTransactionOutput>
+function C:getTransaction(input: types.GetTransactionInput, options?: base_client.InvokeOptions): async.Operation<types.GetTransactionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTransaction as schema.OperationSchema, input, options) as async.Operation<types.GetTransactionOutput>
 end
 
-function C:listAssetContracts(input: types.ListAssetContractsInput, options: any): async.Operation<types.ListAssetContractsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssetContracts, input, options) as async.Operation<types.ListAssetContractsOutput>
+function C:listAssetContracts(input: types.ListAssetContractsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssetContractsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssetContracts as schema.OperationSchema, input, options) as async.Operation<types.ListAssetContractsOutput>
 end
 
-function C:listFilteredTransactionEvents(input: types.ListFilteredTransactionEventsInput, options: any): async.Operation<types.ListFilteredTransactionEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFilteredTransactionEvents, input, options) as async.Operation<types.ListFilteredTransactionEventsOutput>
+function C:listFilteredTransactionEvents(input: types.ListFilteredTransactionEventsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFilteredTransactionEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFilteredTransactionEvents as schema.OperationSchema, input, options) as async.Operation<types.ListFilteredTransactionEventsOutput>
 end
 
-function C:listTokenBalances(input: types.ListTokenBalancesInput, options: any): async.Operation<types.ListTokenBalancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTokenBalances, input, options) as async.Operation<types.ListTokenBalancesOutput>
+function C:listTokenBalances(input: types.ListTokenBalancesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTokenBalancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTokenBalances as schema.OperationSchema, input, options) as async.Operation<types.ListTokenBalancesOutput>
 end
 
-function C:listTransactionEvents(input: types.ListTransactionEventsInput, options: any): async.Operation<types.ListTransactionEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTransactionEvents, input, options) as async.Operation<types.ListTransactionEventsOutput>
+function C:listTransactionEvents(input: types.ListTransactionEventsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTransactionEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTransactionEvents as schema.OperationSchema, input, options) as async.Operation<types.ListTransactionEventsOutput>
 end
 
-function C:listTransactions(input: types.ListTransactionsInput, options: any): async.Operation<types.ListTransactionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTransactions, input, options) as async.Operation<types.ListTransactionsOutput>
+function C:listTransactions(input: types.ListTransactionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTransactionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTransactions as schema.OperationSchema, input, options) as async.Operation<types.ListTransactionsOutput>
 end
 
 return M

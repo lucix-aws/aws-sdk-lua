@@ -8,66 +8,69 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("managedblockchain.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("managedblockchain.schemas")
 local traits = require("smithy.traits")
 local types = require("managedblockchain.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createAccessor: function(Client, types.CreateAccessorInput, any): async.Operation<types.CreateAccessorOutput>
-    createMember: function(Client, types.CreateMemberInput, any): async.Operation<types.CreateMemberOutput>
-    createNetwork: function(Client, types.CreateNetworkInput, any): async.Operation<types.CreateNetworkOutput>
-    createNode: function(Client, types.CreateNodeInput, any): async.Operation<types.CreateNodeOutput>
-    createProposal: function(Client, types.CreateProposalInput, any): async.Operation<types.CreateProposalOutput>
-    deleteAccessor: function(Client, types.DeleteAccessorInput, any): async.Operation<types.DeleteAccessorOutput>
-    deleteMember: function(Client, types.DeleteMemberInput, any): async.Operation<types.DeleteMemberOutput>
-    deleteNode: function(Client, types.DeleteNodeInput, any): async.Operation<types.DeleteNodeOutput>
-    getAccessor: function(Client, types.GetAccessorInput, any): async.Operation<types.GetAccessorOutput>
-    getMember: function(Client, types.GetMemberInput, any): async.Operation<types.GetMemberOutput>
-    getNetwork: function(Client, types.GetNetworkInput, any): async.Operation<types.GetNetworkOutput>
-    getNode: function(Client, types.GetNodeInput, any): async.Operation<types.GetNodeOutput>
-    getProposal: function(Client, types.GetProposalInput, any): async.Operation<types.GetProposalOutput>
-    listAccessors: function(Client, types.ListAccessorsInput, any): async.Operation<types.ListAccessorsOutput>
-    listInvitations: function(Client, types.ListInvitationsInput, any): async.Operation<types.ListInvitationsOutput>
-    listMembers: function(Client, types.ListMembersInput, any): async.Operation<types.ListMembersOutput>
-    listNetworks: function(Client, types.ListNetworksInput, any): async.Operation<types.ListNetworksOutput>
-    listNodes: function(Client, types.ListNodesInput, any): async.Operation<types.ListNodesOutput>
-    listProposals: function(Client, types.ListProposalsInput, any): async.Operation<types.ListProposalsOutput>
-    listProposalVotes: function(Client, types.ListProposalVotesInput, any): async.Operation<types.ListProposalVotesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    rejectInvitation: function(Client, types.RejectInvitationInput, any): async.Operation<types.RejectInvitationOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateMember: function(Client, types.UpdateMemberInput, any): async.Operation<types.UpdateMemberOutput>
-    updateNode: function(Client, types.UpdateNodeInput, any): async.Operation<types.UpdateNodeOutput>
-    voteOnProposal: function(Client, types.VoteOnProposalInput, any): async.Operation<types.VoteOnProposalOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createAccessor: function(Client, types.CreateAccessorInput, ? base_client.InvokeOptions): async.Operation<types.CreateAccessorOutput>
+    createMember: function(Client, types.CreateMemberInput, ? base_client.InvokeOptions): async.Operation<types.CreateMemberOutput>
+    createNetwork: function(Client, types.CreateNetworkInput, ? base_client.InvokeOptions): async.Operation<types.CreateNetworkOutput>
+    createNode: function(Client, types.CreateNodeInput, ? base_client.InvokeOptions): async.Operation<types.CreateNodeOutput>
+    createProposal: function(Client, types.CreateProposalInput, ? base_client.InvokeOptions): async.Operation<types.CreateProposalOutput>
+    deleteAccessor: function(Client, types.DeleteAccessorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccessorOutput>
+    deleteMember: function(Client, types.DeleteMemberInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMemberOutput>
+    deleteNode: function(Client, types.DeleteNodeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNodeOutput>
+    getAccessor: function(Client, types.GetAccessorInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessorOutput>
+    getMember: function(Client, types.GetMemberInput, ? base_client.InvokeOptions): async.Operation<types.GetMemberOutput>
+    getNetwork: function(Client, types.GetNetworkInput, ? base_client.InvokeOptions): async.Operation<types.GetNetworkOutput>
+    getNode: function(Client, types.GetNodeInput, ? base_client.InvokeOptions): async.Operation<types.GetNodeOutput>
+    getProposal: function(Client, types.GetProposalInput, ? base_client.InvokeOptions): async.Operation<types.GetProposalOutput>
+    listAccessors: function(Client, types.ListAccessorsInput, ? base_client.InvokeOptions): async.Operation<types.ListAccessorsOutput>
+    listInvitations: function(Client, types.ListInvitationsInput, ? base_client.InvokeOptions): async.Operation<types.ListInvitationsOutput>
+    listMembers: function(Client, types.ListMembersInput, ? base_client.InvokeOptions): async.Operation<types.ListMembersOutput>
+    listNetworks: function(Client, types.ListNetworksInput, ? base_client.InvokeOptions): async.Operation<types.ListNetworksOutput>
+    listNodes: function(Client, types.ListNodesInput, ? base_client.InvokeOptions): async.Operation<types.ListNodesOutput>
+    listProposals: function(Client, types.ListProposalsInput, ? base_client.InvokeOptions): async.Operation<types.ListProposalsOutput>
+    listProposalVotes: function(Client, types.ListProposalVotesInput, ? base_client.InvokeOptions): async.Operation<types.ListProposalVotesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    rejectInvitation: function(Client, types.RejectInvitationInput, ? base_client.InvokeOptions): async.Operation<types.RejectInvitationOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateMember: function(Client, types.UpdateMemberInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMemberOutput>
+    updateNode: function(Client, types.UpdateNodeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNodeOutput>
+    voteOnProposal: function(Client, types.VoteOnProposalInput, ? base_client.InvokeOptions): async.Operation<types.VoteOnProposalOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "TaigaWebService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "managedblockchain", signing_region = c.region } }
                 else
@@ -86,112 +89,112 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createAccessor(input: types.CreateAccessorInput, options: any): async.Operation<types.CreateAccessorOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAccessor, input, options) as async.Operation<types.CreateAccessorOutput>
+function C:createAccessor(input: types.CreateAccessorInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAccessorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAccessor as schema.OperationSchema, input, options) as async.Operation<types.CreateAccessorOutput>
 end
 
-function C:createMember(input: types.CreateMemberInput, options: any): async.Operation<types.CreateMemberOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMember, input, options) as async.Operation<types.CreateMemberOutput>
+function C:createMember(input: types.CreateMemberInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMemberOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMember as schema.OperationSchema, input, options) as async.Operation<types.CreateMemberOutput>
 end
 
-function C:createNetwork(input: types.CreateNetworkInput, options: any): async.Operation<types.CreateNetworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNetwork, input, options) as async.Operation<types.CreateNetworkOutput>
+function C:createNetwork(input: types.CreateNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNetworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNetwork as schema.OperationSchema, input, options) as async.Operation<types.CreateNetworkOutput>
 end
 
-function C:createNode(input: types.CreateNodeInput, options: any): async.Operation<types.CreateNodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNode, input, options) as async.Operation<types.CreateNodeOutput>
+function C:createNode(input: types.CreateNodeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNode as schema.OperationSchema, input, options) as async.Operation<types.CreateNodeOutput>
 end
 
-function C:createProposal(input: types.CreateProposalInput, options: any): async.Operation<types.CreateProposalOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProposal, input, options) as async.Operation<types.CreateProposalOutput>
+function C:createProposal(input: types.CreateProposalInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProposalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProposal as schema.OperationSchema, input, options) as async.Operation<types.CreateProposalOutput>
 end
 
-function C:deleteAccessor(input: types.DeleteAccessorInput, options: any): async.Operation<types.DeleteAccessorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAccessor, input, options) as async.Operation<types.DeleteAccessorOutput>
+function C:deleteAccessor(input: types.DeleteAccessorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAccessorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAccessor as schema.OperationSchema, input, options) as async.Operation<types.DeleteAccessorOutput>
 end
 
-function C:deleteMember(input: types.DeleteMemberInput, options: any): async.Operation<types.DeleteMemberOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMember, input, options) as async.Operation<types.DeleteMemberOutput>
+function C:deleteMember(input: types.DeleteMemberInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMemberOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMember as schema.OperationSchema, input, options) as async.Operation<types.DeleteMemberOutput>
 end
 
-function C:deleteNode(input: types.DeleteNodeInput, options: any): async.Operation<types.DeleteNodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNode, input, options) as async.Operation<types.DeleteNodeOutput>
+function C:deleteNode(input: types.DeleteNodeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNode as schema.OperationSchema, input, options) as async.Operation<types.DeleteNodeOutput>
 end
 
-function C:getAccessor(input: types.GetAccessorInput, options: any): async.Operation<types.GetAccessorOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccessor, input, options) as async.Operation<types.GetAccessorOutput>
+function C:getAccessor(input: types.GetAccessorInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccessorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccessor as schema.OperationSchema, input, options) as async.Operation<types.GetAccessorOutput>
 end
 
-function C:getMember(input: types.GetMemberInput, options: any): async.Operation<types.GetMemberOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMember, input, options) as async.Operation<types.GetMemberOutput>
+function C:getMember(input: types.GetMemberInput, options?: base_client.InvokeOptions): async.Operation<types.GetMemberOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMember as schema.OperationSchema, input, options) as async.Operation<types.GetMemberOutput>
 end
 
-function C:getNetwork(input: types.GetNetworkInput, options: any): async.Operation<types.GetNetworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNetwork, input, options) as async.Operation<types.GetNetworkOutput>
+function C:getNetwork(input: types.GetNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.GetNetworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNetwork as schema.OperationSchema, input, options) as async.Operation<types.GetNetworkOutput>
 end
 
-function C:getNode(input: types.GetNodeInput, options: any): async.Operation<types.GetNodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetNode, input, options) as async.Operation<types.GetNodeOutput>
+function C:getNode(input: types.GetNodeInput, options?: base_client.InvokeOptions): async.Operation<types.GetNodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNode as schema.OperationSchema, input, options) as async.Operation<types.GetNodeOutput>
 end
 
-function C:getProposal(input: types.GetProposalInput, options: any): async.Operation<types.GetProposalOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetProposal, input, options) as async.Operation<types.GetProposalOutput>
+function C:getProposal(input: types.GetProposalInput, options?: base_client.InvokeOptions): async.Operation<types.GetProposalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProposal as schema.OperationSchema, input, options) as async.Operation<types.GetProposalOutput>
 end
 
-function C:listAccessors(input: types.ListAccessorsInput, options: any): async.Operation<types.ListAccessorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccessors, input, options) as async.Operation<types.ListAccessorsOutput>
+function C:listAccessors(input: types.ListAccessorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccessorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccessors as schema.OperationSchema, input, options) as async.Operation<types.ListAccessorsOutput>
 end
 
-function C:listInvitations(input: types.ListInvitationsInput, options: any): async.Operation<types.ListInvitationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInvitations, input, options) as async.Operation<types.ListInvitationsOutput>
+function C:listInvitations(input: types.ListInvitationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInvitationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInvitations as schema.OperationSchema, input, options) as async.Operation<types.ListInvitationsOutput>
 end
 
-function C:listMembers(input: types.ListMembersInput, options: any): async.Operation<types.ListMembersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMembers, input, options) as async.Operation<types.ListMembersOutput>
+function C:listMembers(input: types.ListMembersInput, options?: base_client.InvokeOptions): async.Operation<types.ListMembersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMembers as schema.OperationSchema, input, options) as async.Operation<types.ListMembersOutput>
 end
 
-function C:listNetworks(input: types.ListNetworksInput, options: any): async.Operation<types.ListNetworksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNetworks, input, options) as async.Operation<types.ListNetworksOutput>
+function C:listNetworks(input: types.ListNetworksInput, options?: base_client.InvokeOptions): async.Operation<types.ListNetworksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNetworks as schema.OperationSchema, input, options) as async.Operation<types.ListNetworksOutput>
 end
 
-function C:listNodes(input: types.ListNodesInput, options: any): async.Operation<types.ListNodesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNodes, input, options) as async.Operation<types.ListNodesOutput>
+function C:listNodes(input: types.ListNodesInput, options?: base_client.InvokeOptions): async.Operation<types.ListNodesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNodes as schema.OperationSchema, input, options) as async.Operation<types.ListNodesOutput>
 end
 
-function C:listProposals(input: types.ListProposalsInput, options: any): async.Operation<types.ListProposalsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProposals, input, options) as async.Operation<types.ListProposalsOutput>
+function C:listProposals(input: types.ListProposalsInput, options?: base_client.InvokeOptions): async.Operation<types.ListProposalsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProposals as schema.OperationSchema, input, options) as async.Operation<types.ListProposalsOutput>
 end
 
-function C:listProposalVotes(input: types.ListProposalVotesInput, options: any): async.Operation<types.ListProposalVotesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProposalVotes, input, options) as async.Operation<types.ListProposalVotesOutput>
+function C:listProposalVotes(input: types.ListProposalVotesInput, options?: base_client.InvokeOptions): async.Operation<types.ListProposalVotesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProposalVotes as schema.OperationSchema, input, options) as async.Operation<types.ListProposalVotesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:rejectInvitation(input: types.RejectInvitationInput, options: any): async.Operation<types.RejectInvitationOutput>
-    return self:invokeOperation(schemas.Service, schemas.RejectInvitation, input, options) as async.Operation<types.RejectInvitationOutput>
+function C:rejectInvitation(input: types.RejectInvitationInput, options?: base_client.InvokeOptions): async.Operation<types.RejectInvitationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RejectInvitation as schema.OperationSchema, input, options) as async.Operation<types.RejectInvitationOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateMember(input: types.UpdateMemberInput, options: any): async.Operation<types.UpdateMemberOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateMember, input, options) as async.Operation<types.UpdateMemberOutput>
+function C:updateMember(input: types.UpdateMemberInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMemberOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMember as schema.OperationSchema, input, options) as async.Operation<types.UpdateMemberOutput>
 end
 
-function C:updateNode(input: types.UpdateNodeInput, options: any): async.Operation<types.UpdateNodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateNode, input, options) as async.Operation<types.UpdateNodeOutput>
+function C:updateNode(input: types.UpdateNodeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNode as schema.OperationSchema, input, options) as async.Operation<types.UpdateNodeOutput>
 end
 
-function C:voteOnProposal(input: types.VoteOnProposalInput, options: any): async.Operation<types.VoteOnProposalOutput>
-    return self:invokeOperation(schemas.Service, schemas.VoteOnProposal, input, options) as async.Operation<types.VoteOnProposalOutput>
+function C:voteOnProposal(input: types.VoteOnProposalInput, options?: base_client.InvokeOptions): async.Operation<types.VoteOnProposalOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.VoteOnProposal as schema.OperationSchema, input, options) as async.Operation<types.VoteOnProposalOutput>
 end
 
 return M

@@ -8,162 +8,165 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("medialive.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("medialive.schemas")
 local traits = require("smithy.traits")
 local types = require("medialive.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    acceptInputDeviceTransfer: function(Client, types.AcceptInputDeviceTransferInput, any): async.Operation<types.AcceptInputDeviceTransferOutput>
-    batchDelete: function(Client, types.BatchDeleteInput, any): async.Operation<types.BatchDeleteOutput>
-    batchStart: function(Client, types.BatchStartInput, any): async.Operation<types.BatchStartOutput>
-    batchStop: function(Client, types.BatchStopInput, any): async.Operation<types.BatchStopOutput>
-    batchUpdateSchedule: function(Client, types.BatchUpdateScheduleInput, any): async.Operation<types.BatchUpdateScheduleOutput>
-    cancelInputDeviceTransfer: function(Client, types.CancelInputDeviceTransferInput, any): async.Operation<types.CancelInputDeviceTransferOutput>
-    claimDevice: function(Client, types.ClaimDeviceInput, any): async.Operation<types.ClaimDeviceOutput>
-    createChannel: function(Client, types.CreateChannelInput, any): async.Operation<types.CreateChannelOutput>
-    createChannelPlacementGroup: function(Client, types.CreateChannelPlacementGroupInput, any): async.Operation<types.CreateChannelPlacementGroupOutput>
-    createCloudWatchAlarmTemplate: function(Client, types.CreateCloudWatchAlarmTemplateInput, any): async.Operation<types.CreateCloudWatchAlarmTemplateOutput>
-    createCloudWatchAlarmTemplateGroup: function(Client, types.CreateCloudWatchAlarmTemplateGroupInput, any): async.Operation<types.CreateCloudWatchAlarmTemplateGroupOutput>
-    createCluster: function(Client, types.CreateClusterInput, any): async.Operation<types.CreateClusterOutput>
-    createEventBridgeRuleTemplate: function(Client, types.CreateEventBridgeRuleTemplateInput, any): async.Operation<types.CreateEventBridgeRuleTemplateOutput>
-    createEventBridgeRuleTemplateGroup: function(Client, types.CreateEventBridgeRuleTemplateGroupInput, any): async.Operation<types.CreateEventBridgeRuleTemplateGroupOutput>
-    createInput: function(Client, types.CreateInputInput, any): async.Operation<types.CreateInputOutput>
-    createInputSecurityGroup: function(Client, types.CreateInputSecurityGroupInput, any): async.Operation<types.CreateInputSecurityGroupOutput>
-    createMultiplex: function(Client, types.CreateMultiplexInput, any): async.Operation<types.CreateMultiplexOutput>
-    createMultiplexProgram: function(Client, types.CreateMultiplexProgramInput, any): async.Operation<types.CreateMultiplexProgramOutput>
-    createNetwork: function(Client, types.CreateNetworkInput, any): async.Operation<types.CreateNetworkOutput>
-    createNode: function(Client, types.CreateNodeInput, any): async.Operation<types.CreateNodeOutput>
-    createNodeRegistrationScript: function(Client, types.CreateNodeRegistrationScriptInput, any): async.Operation<types.CreateNodeRegistrationScriptOutput>
-    createPartnerInput: function(Client, types.CreatePartnerInputInput, any): async.Operation<types.CreatePartnerInputOutput>
-    createSdiSource: function(Client, types.CreateSdiSourceInput, any): async.Operation<types.CreateSdiSourceOutput>
-    createSignalMap: function(Client, types.CreateSignalMapInput, any): async.Operation<types.CreateSignalMapOutput>
-    createTags: function(Client, types.CreateTagsInput, any): async.Operation<types.CreateTagsOutput>
-    deleteChannel: function(Client, types.DeleteChannelInput, any): async.Operation<types.DeleteChannelOutput>
-    deleteChannelPlacementGroup: function(Client, types.DeleteChannelPlacementGroupInput, any): async.Operation<types.DeleteChannelPlacementGroupOutput>
-    deleteCloudWatchAlarmTemplate: function(Client, types.DeleteCloudWatchAlarmTemplateInput, any): async.Operation<types.DeleteCloudWatchAlarmTemplateOutput>
-    deleteCloudWatchAlarmTemplateGroup: function(Client, types.DeleteCloudWatchAlarmTemplateGroupInput, any): async.Operation<types.DeleteCloudWatchAlarmTemplateGroupOutput>
-    deleteCluster: function(Client, types.DeleteClusterInput, any): async.Operation<types.DeleteClusterOutput>
-    deleteEventBridgeRuleTemplate: function(Client, types.DeleteEventBridgeRuleTemplateInput, any): async.Operation<types.DeleteEventBridgeRuleTemplateOutput>
-    deleteEventBridgeRuleTemplateGroup: function(Client, types.DeleteEventBridgeRuleTemplateGroupInput, any): async.Operation<types.DeleteEventBridgeRuleTemplateGroupOutput>
-    deleteInput: function(Client, types.DeleteInputInput, any): async.Operation<types.DeleteInputOutput>
-    deleteInputSecurityGroup: function(Client, types.DeleteInputSecurityGroupInput, any): async.Operation<types.DeleteInputSecurityGroupOutput>
-    deleteMultiplex: function(Client, types.DeleteMultiplexInput, any): async.Operation<types.DeleteMultiplexOutput>
-    deleteMultiplexProgram: function(Client, types.DeleteMultiplexProgramInput, any): async.Operation<types.DeleteMultiplexProgramOutput>
-    deleteNetwork: function(Client, types.DeleteNetworkInput, any): async.Operation<types.DeleteNetworkOutput>
-    deleteNode: function(Client, types.DeleteNodeInput, any): async.Operation<types.DeleteNodeOutput>
-    deleteReservation: function(Client, types.DeleteReservationInput, any): async.Operation<types.DeleteReservationOutput>
-    deleteSchedule: function(Client, types.DeleteScheduleInput, any): async.Operation<types.DeleteScheduleOutput>
-    deleteSdiSource: function(Client, types.DeleteSdiSourceInput, any): async.Operation<types.DeleteSdiSourceOutput>
-    deleteSignalMap: function(Client, types.DeleteSignalMapInput, any): async.Operation<types.DeleteSignalMapOutput>
-    deleteTags: function(Client, types.DeleteTagsInput, any): async.Operation<types.DeleteTagsOutput>
-    describeAccountConfiguration: function(Client, types.DescribeAccountConfigurationInput, any): async.Operation<types.DescribeAccountConfigurationOutput>
-    describeChannel: function(Client, types.DescribeChannelInput, any): async.Operation<types.DescribeChannelOutput>
-    describeChannelPlacementGroup: function(Client, types.DescribeChannelPlacementGroupInput, any): async.Operation<types.DescribeChannelPlacementGroupOutput>
-    describeCluster: function(Client, types.DescribeClusterInput, any): async.Operation<types.DescribeClusterOutput>
-    describeInput: function(Client, types.DescribeInputInput, any): async.Operation<types.DescribeInputOutput>
-    describeInputDevice: function(Client, types.DescribeInputDeviceInput, any): async.Operation<types.DescribeInputDeviceOutput>
-    describeInputDeviceThumbnail: function(Client, types.DescribeInputDeviceThumbnailInput, any): async.Operation<types.DescribeInputDeviceThumbnailOutput>
-    describeInputSecurityGroup: function(Client, types.DescribeInputSecurityGroupInput, any): async.Operation<types.DescribeInputSecurityGroupOutput>
-    describeMultiplex: function(Client, types.DescribeMultiplexInput, any): async.Operation<types.DescribeMultiplexOutput>
-    describeMultiplexProgram: function(Client, types.DescribeMultiplexProgramInput, any): async.Operation<types.DescribeMultiplexProgramOutput>
-    describeNetwork: function(Client, types.DescribeNetworkInput, any): async.Operation<types.DescribeNetworkOutput>
-    describeNode: function(Client, types.DescribeNodeInput, any): async.Operation<types.DescribeNodeOutput>
-    describeOffering: function(Client, types.DescribeOfferingInput, any): async.Operation<types.DescribeOfferingOutput>
-    describeReservation: function(Client, types.DescribeReservationInput, any): async.Operation<types.DescribeReservationOutput>
-    describeSchedule: function(Client, types.DescribeScheduleInput, any): async.Operation<types.DescribeScheduleOutput>
-    describeSdiSource: function(Client, types.DescribeSdiSourceInput, any): async.Operation<types.DescribeSdiSourceOutput>
-    describeThumbnails: function(Client, types.DescribeThumbnailsInput, any): async.Operation<types.DescribeThumbnailsOutput>
-    getCloudWatchAlarmTemplate: function(Client, types.GetCloudWatchAlarmTemplateInput, any): async.Operation<types.GetCloudWatchAlarmTemplateOutput>
-    getCloudWatchAlarmTemplateGroup: function(Client, types.GetCloudWatchAlarmTemplateGroupInput, any): async.Operation<types.GetCloudWatchAlarmTemplateGroupOutput>
-    getEventBridgeRuleTemplate: function(Client, types.GetEventBridgeRuleTemplateInput, any): async.Operation<types.GetEventBridgeRuleTemplateOutput>
-    getEventBridgeRuleTemplateGroup: function(Client, types.GetEventBridgeRuleTemplateGroupInput, any): async.Operation<types.GetEventBridgeRuleTemplateGroupOutput>
-    getSignalMap: function(Client, types.GetSignalMapInput, any): async.Operation<types.GetSignalMapOutput>
-    listAlerts: function(Client, types.ListAlertsInput, any): async.Operation<types.ListAlertsOutput>
-    listChannelPlacementGroups: function(Client, types.ListChannelPlacementGroupsInput, any): async.Operation<types.ListChannelPlacementGroupsOutput>
-    listChannels: function(Client, types.ListChannelsInput, any): async.Operation<types.ListChannelsOutput>
-    listCloudWatchAlarmTemplateGroups: function(Client, types.ListCloudWatchAlarmTemplateGroupsInput, any): async.Operation<types.ListCloudWatchAlarmTemplateGroupsOutput>
-    listCloudWatchAlarmTemplates: function(Client, types.ListCloudWatchAlarmTemplatesInput, any): async.Operation<types.ListCloudWatchAlarmTemplatesOutput>
-    listClusterAlerts: function(Client, types.ListClusterAlertsInput, any): async.Operation<types.ListClusterAlertsOutput>
-    listClusters: function(Client, types.ListClustersInput, any): async.Operation<types.ListClustersOutput>
-    listEventBridgeRuleTemplateGroups: function(Client, types.ListEventBridgeRuleTemplateGroupsInput, any): async.Operation<types.ListEventBridgeRuleTemplateGroupsOutput>
-    listEventBridgeRuleTemplates: function(Client, types.ListEventBridgeRuleTemplatesInput, any): async.Operation<types.ListEventBridgeRuleTemplatesOutput>
-    listInputDevices: function(Client, types.ListInputDevicesInput, any): async.Operation<types.ListInputDevicesOutput>
-    listInputDeviceTransfers: function(Client, types.ListInputDeviceTransfersInput, any): async.Operation<types.ListInputDeviceTransfersOutput>
-    listInputs: function(Client, types.ListInputsInput, any): async.Operation<types.ListInputsOutput>
-    listInputSecurityGroups: function(Client, types.ListInputSecurityGroupsInput, any): async.Operation<types.ListInputSecurityGroupsOutput>
-    listMultiplexAlerts: function(Client, types.ListMultiplexAlertsInput, any): async.Operation<types.ListMultiplexAlertsOutput>
-    listMultiplexes: function(Client, types.ListMultiplexesInput, any): async.Operation<types.ListMultiplexesOutput>
-    listMultiplexPrograms: function(Client, types.ListMultiplexProgramsInput, any): async.Operation<types.ListMultiplexProgramsOutput>
-    listNetworks: function(Client, types.ListNetworksInput, any): async.Operation<types.ListNetworksOutput>
-    listNodes: function(Client, types.ListNodesInput, any): async.Operation<types.ListNodesOutput>
-    listOfferings: function(Client, types.ListOfferingsInput, any): async.Operation<types.ListOfferingsOutput>
-    listReservations: function(Client, types.ListReservationsInput, any): async.Operation<types.ListReservationsOutput>
-    listSdiSources: function(Client, types.ListSdiSourcesInput, any): async.Operation<types.ListSdiSourcesOutput>
-    listSignalMaps: function(Client, types.ListSignalMapsInput, any): async.Operation<types.ListSignalMapsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listVersions: function(Client, types.ListVersionsInput, any): async.Operation<types.ListVersionsOutput>
-    purchaseOffering: function(Client, types.PurchaseOfferingInput, any): async.Operation<types.PurchaseOfferingOutput>
-    rebootInputDevice: function(Client, types.RebootInputDeviceInput, any): async.Operation<types.RebootInputDeviceOutput>
-    rejectInputDeviceTransfer: function(Client, types.RejectInputDeviceTransferInput, any): async.Operation<types.RejectInputDeviceTransferOutput>
-    restartChannelPipelines: function(Client, types.RestartChannelPipelinesInput, any): async.Operation<types.RestartChannelPipelinesOutput>
-    startChannel: function(Client, types.StartChannelInput, any): async.Operation<types.StartChannelOutput>
-    startDeleteMonitorDeployment: function(Client, types.StartDeleteMonitorDeploymentInput, any): async.Operation<types.StartDeleteMonitorDeploymentOutput>
-    startInputDevice: function(Client, types.StartInputDeviceInput, any): async.Operation<types.StartInputDeviceOutput>
-    startInputDeviceMaintenanceWindow: function(Client, types.StartInputDeviceMaintenanceWindowInput, any): async.Operation<types.StartInputDeviceMaintenanceWindowOutput>
-    startMonitorDeployment: function(Client, types.StartMonitorDeploymentInput, any): async.Operation<types.StartMonitorDeploymentOutput>
-    startMultiplex: function(Client, types.StartMultiplexInput, any): async.Operation<types.StartMultiplexOutput>
-    startUpdateSignalMap: function(Client, types.StartUpdateSignalMapInput, any): async.Operation<types.StartUpdateSignalMapOutput>
-    stopChannel: function(Client, types.StopChannelInput, any): async.Operation<types.StopChannelOutput>
-    stopInputDevice: function(Client, types.StopInputDeviceInput, any): async.Operation<types.StopInputDeviceOutput>
-    stopMultiplex: function(Client, types.StopMultiplexInput, any): async.Operation<types.StopMultiplexOutput>
-    transferInputDevice: function(Client, types.TransferInputDeviceInput, any): async.Operation<types.TransferInputDeviceOutput>
-    updateAccountConfiguration: function(Client, types.UpdateAccountConfigurationInput, any): async.Operation<types.UpdateAccountConfigurationOutput>
-    updateChannel: function(Client, types.UpdateChannelInput, any): async.Operation<types.UpdateChannelOutput>
-    updateChannelClass: function(Client, types.UpdateChannelClassInput, any): async.Operation<types.UpdateChannelClassOutput>
-    updateChannelPlacementGroup: function(Client, types.UpdateChannelPlacementGroupInput, any): async.Operation<types.UpdateChannelPlacementGroupOutput>
-    updateCloudWatchAlarmTemplate: function(Client, types.UpdateCloudWatchAlarmTemplateInput, any): async.Operation<types.UpdateCloudWatchAlarmTemplateOutput>
-    updateCloudWatchAlarmTemplateGroup: function(Client, types.UpdateCloudWatchAlarmTemplateGroupInput, any): async.Operation<types.UpdateCloudWatchAlarmTemplateGroupOutput>
-    updateCluster: function(Client, types.UpdateClusterInput, any): async.Operation<types.UpdateClusterOutput>
-    updateEventBridgeRuleTemplate: function(Client, types.UpdateEventBridgeRuleTemplateInput, any): async.Operation<types.UpdateEventBridgeRuleTemplateOutput>
-    updateEventBridgeRuleTemplateGroup: function(Client, types.UpdateEventBridgeRuleTemplateGroupInput, any): async.Operation<types.UpdateEventBridgeRuleTemplateGroupOutput>
-    updateInput: function(Client, types.UpdateInputInput, any): async.Operation<types.UpdateInputOutput>
-    updateInputDevice: function(Client, types.UpdateInputDeviceInput, any): async.Operation<types.UpdateInputDeviceOutput>
-    updateInputSecurityGroup: function(Client, types.UpdateInputSecurityGroupInput, any): async.Operation<types.UpdateInputSecurityGroupOutput>
-    updateMultiplex: function(Client, types.UpdateMultiplexInput, any): async.Operation<types.UpdateMultiplexOutput>
-    updateMultiplexProgram: function(Client, types.UpdateMultiplexProgramInput, any): async.Operation<types.UpdateMultiplexProgramOutput>
-    updateNetwork: function(Client, types.UpdateNetworkInput, any): async.Operation<types.UpdateNetworkOutput>
-    updateNode: function(Client, types.UpdateNodeInput, any): async.Operation<types.UpdateNodeOutput>
-    updateNodeState: function(Client, types.UpdateNodeStateInput, any): async.Operation<types.UpdateNodeStateOutput>
-    updateReservation: function(Client, types.UpdateReservationInput, any): async.Operation<types.UpdateReservationOutput>
-    updateSdiSource: function(Client, types.UpdateSdiSourceInput, any): async.Operation<types.UpdateSdiSourceOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    acceptInputDeviceTransfer: function(Client, types.AcceptInputDeviceTransferInput, ? base_client.InvokeOptions): async.Operation<types.AcceptInputDeviceTransferOutput>
+    batchDelete: function(Client, types.BatchDeleteInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteOutput>
+    batchStart: function(Client, types.BatchStartInput, ? base_client.InvokeOptions): async.Operation<types.BatchStartOutput>
+    batchStop: function(Client, types.BatchStopInput, ? base_client.InvokeOptions): async.Operation<types.BatchStopOutput>
+    batchUpdateSchedule: function(Client, types.BatchUpdateScheduleInput, ? base_client.InvokeOptions): async.Operation<types.BatchUpdateScheduleOutput>
+    cancelInputDeviceTransfer: function(Client, types.CancelInputDeviceTransferInput, ? base_client.InvokeOptions): async.Operation<types.CancelInputDeviceTransferOutput>
+    claimDevice: function(Client, types.ClaimDeviceInput, ? base_client.InvokeOptions): async.Operation<types.ClaimDeviceOutput>
+    createChannel: function(Client, types.CreateChannelInput, ? base_client.InvokeOptions): async.Operation<types.CreateChannelOutput>
+    createChannelPlacementGroup: function(Client, types.CreateChannelPlacementGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateChannelPlacementGroupOutput>
+    createCloudWatchAlarmTemplate: function(Client, types.CreateCloudWatchAlarmTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateCloudWatchAlarmTemplateOutput>
+    createCloudWatchAlarmTemplateGroup: function(Client, types.CreateCloudWatchAlarmTemplateGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateCloudWatchAlarmTemplateGroupOutput>
+    createCluster: function(Client, types.CreateClusterInput, ? base_client.InvokeOptions): async.Operation<types.CreateClusterOutput>
+    createEventBridgeRuleTemplate: function(Client, types.CreateEventBridgeRuleTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateEventBridgeRuleTemplateOutput>
+    createEventBridgeRuleTemplateGroup: function(Client, types.CreateEventBridgeRuleTemplateGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateEventBridgeRuleTemplateGroupOutput>
+    createInput: function(Client, types.CreateInputInput, ? base_client.InvokeOptions): async.Operation<types.CreateInputOutput>
+    createInputSecurityGroup: function(Client, types.CreateInputSecurityGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateInputSecurityGroupOutput>
+    createMultiplex: function(Client, types.CreateMultiplexInput, ? base_client.InvokeOptions): async.Operation<types.CreateMultiplexOutput>
+    createMultiplexProgram: function(Client, types.CreateMultiplexProgramInput, ? base_client.InvokeOptions): async.Operation<types.CreateMultiplexProgramOutput>
+    createNetwork: function(Client, types.CreateNetworkInput, ? base_client.InvokeOptions): async.Operation<types.CreateNetworkOutput>
+    createNode: function(Client, types.CreateNodeInput, ? base_client.InvokeOptions): async.Operation<types.CreateNodeOutput>
+    createNodeRegistrationScript: function(Client, types.CreateNodeRegistrationScriptInput, ? base_client.InvokeOptions): async.Operation<types.CreateNodeRegistrationScriptOutput>
+    createPartnerInput: function(Client, types.CreatePartnerInputInput, ? base_client.InvokeOptions): async.Operation<types.CreatePartnerInputOutput>
+    createSdiSource: function(Client, types.CreateSdiSourceInput, ? base_client.InvokeOptions): async.Operation<types.CreateSdiSourceOutput>
+    createSignalMap: function(Client, types.CreateSignalMapInput, ? base_client.InvokeOptions): async.Operation<types.CreateSignalMapOutput>
+    createTags: function(Client, types.CreateTagsInput, ? base_client.InvokeOptions): async.Operation<types.CreateTagsOutput>
+    deleteChannel: function(Client, types.DeleteChannelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteChannelOutput>
+    deleteChannelPlacementGroup: function(Client, types.DeleteChannelPlacementGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteChannelPlacementGroupOutput>
+    deleteCloudWatchAlarmTemplate: function(Client, types.DeleteCloudWatchAlarmTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCloudWatchAlarmTemplateOutput>
+    deleteCloudWatchAlarmTemplateGroup: function(Client, types.DeleteCloudWatchAlarmTemplateGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCloudWatchAlarmTemplateGroupOutput>
+    deleteCluster: function(Client, types.DeleteClusterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteClusterOutput>
+    deleteEventBridgeRuleTemplate: function(Client, types.DeleteEventBridgeRuleTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEventBridgeRuleTemplateOutput>
+    deleteEventBridgeRuleTemplateGroup: function(Client, types.DeleteEventBridgeRuleTemplateGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEventBridgeRuleTemplateGroupOutput>
+    deleteInput: function(Client, types.DeleteInputInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInputOutput>
+    deleteInputSecurityGroup: function(Client, types.DeleteInputSecurityGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInputSecurityGroupOutput>
+    deleteMultiplex: function(Client, types.DeleteMultiplexInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMultiplexOutput>
+    deleteMultiplexProgram: function(Client, types.DeleteMultiplexProgramInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMultiplexProgramOutput>
+    deleteNetwork: function(Client, types.DeleteNetworkInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNetworkOutput>
+    deleteNode: function(Client, types.DeleteNodeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNodeOutput>
+    deleteReservation: function(Client, types.DeleteReservationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteReservationOutput>
+    deleteSchedule: function(Client, types.DeleteScheduleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteScheduleOutput>
+    deleteSdiSource: function(Client, types.DeleteSdiSourceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSdiSourceOutput>
+    deleteSignalMap: function(Client, types.DeleteSignalMapInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSignalMapOutput>
+    deleteTags: function(Client, types.DeleteTagsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTagsOutput>
+    describeAccountConfiguration: function(Client, types.DescribeAccountConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAccountConfigurationOutput>
+    describeChannel: function(Client, types.DescribeChannelInput, ? base_client.InvokeOptions): async.Operation<types.DescribeChannelOutput>
+    describeChannelPlacementGroup: function(Client, types.DescribeChannelPlacementGroupInput, ? base_client.InvokeOptions): async.Operation<types.DescribeChannelPlacementGroupOutput>
+    describeCluster: function(Client, types.DescribeClusterInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClusterOutput>
+    describeInput: function(Client, types.DescribeInputInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInputOutput>
+    describeInputDevice: function(Client, types.DescribeInputDeviceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInputDeviceOutput>
+    describeInputDeviceThumbnail: function(Client, types.DescribeInputDeviceThumbnailInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInputDeviceThumbnailOutput>
+    describeInputSecurityGroup: function(Client, types.DescribeInputSecurityGroupInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInputSecurityGroupOutput>
+    describeMultiplex: function(Client, types.DescribeMultiplexInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMultiplexOutput>
+    describeMultiplexProgram: function(Client, types.DescribeMultiplexProgramInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMultiplexProgramOutput>
+    describeNetwork: function(Client, types.DescribeNetworkInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNetworkOutput>
+    describeNode: function(Client, types.DescribeNodeInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNodeOutput>
+    describeOffering: function(Client, types.DescribeOfferingInput, ? base_client.InvokeOptions): async.Operation<types.DescribeOfferingOutput>
+    describeReservation: function(Client, types.DescribeReservationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeReservationOutput>
+    describeSchedule: function(Client, types.DescribeScheduleInput, ? base_client.InvokeOptions): async.Operation<types.DescribeScheduleOutput>
+    describeSdiSource: function(Client, types.DescribeSdiSourceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSdiSourceOutput>
+    describeThumbnails: function(Client, types.DescribeThumbnailsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeThumbnailsOutput>
+    getCloudWatchAlarmTemplate: function(Client, types.GetCloudWatchAlarmTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetCloudWatchAlarmTemplateOutput>
+    getCloudWatchAlarmTemplateGroup: function(Client, types.GetCloudWatchAlarmTemplateGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetCloudWatchAlarmTemplateGroupOutput>
+    getEventBridgeRuleTemplate: function(Client, types.GetEventBridgeRuleTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetEventBridgeRuleTemplateOutput>
+    getEventBridgeRuleTemplateGroup: function(Client, types.GetEventBridgeRuleTemplateGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetEventBridgeRuleTemplateGroupOutput>
+    getSignalMap: function(Client, types.GetSignalMapInput, ? base_client.InvokeOptions): async.Operation<types.GetSignalMapOutput>
+    listAlerts: function(Client, types.ListAlertsInput, ? base_client.InvokeOptions): async.Operation<types.ListAlertsOutput>
+    listChannelPlacementGroups: function(Client, types.ListChannelPlacementGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListChannelPlacementGroupsOutput>
+    listChannels: function(Client, types.ListChannelsInput, ? base_client.InvokeOptions): async.Operation<types.ListChannelsOutput>
+    listCloudWatchAlarmTemplateGroups: function(Client, types.ListCloudWatchAlarmTemplateGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListCloudWatchAlarmTemplateGroupsOutput>
+    listCloudWatchAlarmTemplates: function(Client, types.ListCloudWatchAlarmTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListCloudWatchAlarmTemplatesOutput>
+    listClusterAlerts: function(Client, types.ListClusterAlertsInput, ? base_client.InvokeOptions): async.Operation<types.ListClusterAlertsOutput>
+    listClusters: function(Client, types.ListClustersInput, ? base_client.InvokeOptions): async.Operation<types.ListClustersOutput>
+    listEventBridgeRuleTemplateGroups: function(Client, types.ListEventBridgeRuleTemplateGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListEventBridgeRuleTemplateGroupsOutput>
+    listEventBridgeRuleTemplates: function(Client, types.ListEventBridgeRuleTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListEventBridgeRuleTemplatesOutput>
+    listInputDevices: function(Client, types.ListInputDevicesInput, ? base_client.InvokeOptions): async.Operation<types.ListInputDevicesOutput>
+    listInputDeviceTransfers: function(Client, types.ListInputDeviceTransfersInput, ? base_client.InvokeOptions): async.Operation<types.ListInputDeviceTransfersOutput>
+    listInputs: function(Client, types.ListInputsInput, ? base_client.InvokeOptions): async.Operation<types.ListInputsOutput>
+    listInputSecurityGroups: function(Client, types.ListInputSecurityGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListInputSecurityGroupsOutput>
+    listMultiplexAlerts: function(Client, types.ListMultiplexAlertsInput, ? base_client.InvokeOptions): async.Operation<types.ListMultiplexAlertsOutput>
+    listMultiplexes: function(Client, types.ListMultiplexesInput, ? base_client.InvokeOptions): async.Operation<types.ListMultiplexesOutput>
+    listMultiplexPrograms: function(Client, types.ListMultiplexProgramsInput, ? base_client.InvokeOptions): async.Operation<types.ListMultiplexProgramsOutput>
+    listNetworks: function(Client, types.ListNetworksInput, ? base_client.InvokeOptions): async.Operation<types.ListNetworksOutput>
+    listNodes: function(Client, types.ListNodesInput, ? base_client.InvokeOptions): async.Operation<types.ListNodesOutput>
+    listOfferings: function(Client, types.ListOfferingsInput, ? base_client.InvokeOptions): async.Operation<types.ListOfferingsOutput>
+    listReservations: function(Client, types.ListReservationsInput, ? base_client.InvokeOptions): async.Operation<types.ListReservationsOutput>
+    listSdiSources: function(Client, types.ListSdiSourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListSdiSourcesOutput>
+    listSignalMaps: function(Client, types.ListSignalMapsInput, ? base_client.InvokeOptions): async.Operation<types.ListSignalMapsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listVersions: function(Client, types.ListVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListVersionsOutput>
+    purchaseOffering: function(Client, types.PurchaseOfferingInput, ? base_client.InvokeOptions): async.Operation<types.PurchaseOfferingOutput>
+    rebootInputDevice: function(Client, types.RebootInputDeviceInput, ? base_client.InvokeOptions): async.Operation<types.RebootInputDeviceOutput>
+    rejectInputDeviceTransfer: function(Client, types.RejectInputDeviceTransferInput, ? base_client.InvokeOptions): async.Operation<types.RejectInputDeviceTransferOutput>
+    restartChannelPipelines: function(Client, types.RestartChannelPipelinesInput, ? base_client.InvokeOptions): async.Operation<types.RestartChannelPipelinesOutput>
+    startChannel: function(Client, types.StartChannelInput, ? base_client.InvokeOptions): async.Operation<types.StartChannelOutput>
+    startDeleteMonitorDeployment: function(Client, types.StartDeleteMonitorDeploymentInput, ? base_client.InvokeOptions): async.Operation<types.StartDeleteMonitorDeploymentOutput>
+    startInputDevice: function(Client, types.StartInputDeviceInput, ? base_client.InvokeOptions): async.Operation<types.StartInputDeviceOutput>
+    startInputDeviceMaintenanceWindow: function(Client, types.StartInputDeviceMaintenanceWindowInput, ? base_client.InvokeOptions): async.Operation<types.StartInputDeviceMaintenanceWindowOutput>
+    startMonitorDeployment: function(Client, types.StartMonitorDeploymentInput, ? base_client.InvokeOptions): async.Operation<types.StartMonitorDeploymentOutput>
+    startMultiplex: function(Client, types.StartMultiplexInput, ? base_client.InvokeOptions): async.Operation<types.StartMultiplexOutput>
+    startUpdateSignalMap: function(Client, types.StartUpdateSignalMapInput, ? base_client.InvokeOptions): async.Operation<types.StartUpdateSignalMapOutput>
+    stopChannel: function(Client, types.StopChannelInput, ? base_client.InvokeOptions): async.Operation<types.StopChannelOutput>
+    stopInputDevice: function(Client, types.StopInputDeviceInput, ? base_client.InvokeOptions): async.Operation<types.StopInputDeviceOutput>
+    stopMultiplex: function(Client, types.StopMultiplexInput, ? base_client.InvokeOptions): async.Operation<types.StopMultiplexOutput>
+    transferInputDevice: function(Client, types.TransferInputDeviceInput, ? base_client.InvokeOptions): async.Operation<types.TransferInputDeviceOutput>
+    updateAccountConfiguration: function(Client, types.UpdateAccountConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAccountConfigurationOutput>
+    updateChannel: function(Client, types.UpdateChannelInput, ? base_client.InvokeOptions): async.Operation<types.UpdateChannelOutput>
+    updateChannelClass: function(Client, types.UpdateChannelClassInput, ? base_client.InvokeOptions): async.Operation<types.UpdateChannelClassOutput>
+    updateChannelPlacementGroup: function(Client, types.UpdateChannelPlacementGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateChannelPlacementGroupOutput>
+    updateCloudWatchAlarmTemplate: function(Client, types.UpdateCloudWatchAlarmTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCloudWatchAlarmTemplateOutput>
+    updateCloudWatchAlarmTemplateGroup: function(Client, types.UpdateCloudWatchAlarmTemplateGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCloudWatchAlarmTemplateGroupOutput>
+    updateCluster: function(Client, types.UpdateClusterInput, ? base_client.InvokeOptions): async.Operation<types.UpdateClusterOutput>
+    updateEventBridgeRuleTemplate: function(Client, types.UpdateEventBridgeRuleTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEventBridgeRuleTemplateOutput>
+    updateEventBridgeRuleTemplateGroup: function(Client, types.UpdateEventBridgeRuleTemplateGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEventBridgeRuleTemplateGroupOutput>
+    updateInput: function(Client, types.UpdateInputInput, ? base_client.InvokeOptions): async.Operation<types.UpdateInputOutput>
+    updateInputDevice: function(Client, types.UpdateInputDeviceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateInputDeviceOutput>
+    updateInputSecurityGroup: function(Client, types.UpdateInputSecurityGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateInputSecurityGroupOutput>
+    updateMultiplex: function(Client, types.UpdateMultiplexInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMultiplexOutput>
+    updateMultiplexProgram: function(Client, types.UpdateMultiplexProgramInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMultiplexProgramOutput>
+    updateNetwork: function(Client, types.UpdateNetworkInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNetworkOutput>
+    updateNode: function(Client, types.UpdateNodeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNodeOutput>
+    updateNodeState: function(Client, types.UpdateNodeStateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNodeStateOutput>
+    updateReservation: function(Client, types.UpdateReservationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateReservationOutput>
+    updateSdiSource: function(Client, types.UpdateSdiSourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSdiSourceOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "MediaLive"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "medialive", signing_region = c.region } }
                 else
@@ -182,496 +185,496 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:acceptInputDeviceTransfer(input: types.AcceptInputDeviceTransferInput, options: any): async.Operation<types.AcceptInputDeviceTransferOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptInputDeviceTransfer, input, options) as async.Operation<types.AcceptInputDeviceTransferOutput>
+function C:acceptInputDeviceTransfer(input: types.AcceptInputDeviceTransferInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptInputDeviceTransferOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptInputDeviceTransfer as schema.OperationSchema, input, options) as async.Operation<types.AcceptInputDeviceTransferOutput>
 end
 
-function C:batchDelete(input: types.BatchDeleteInput, options: any): async.Operation<types.BatchDeleteOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDelete, input, options) as async.Operation<types.BatchDeleteOutput>
+function C:batchDelete(input: types.BatchDeleteInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDelete as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteOutput>
 end
 
-function C:batchStart(input: types.BatchStartInput, options: any): async.Operation<types.BatchStartOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchStart, input, options) as async.Operation<types.BatchStartOutput>
+function C:batchStart(input: types.BatchStartInput, options?: base_client.InvokeOptions): async.Operation<types.BatchStartOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchStart as schema.OperationSchema, input, options) as async.Operation<types.BatchStartOutput>
 end
 
-function C:batchStop(input: types.BatchStopInput, options: any): async.Operation<types.BatchStopOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchStop, input, options) as async.Operation<types.BatchStopOutput>
+function C:batchStop(input: types.BatchStopInput, options?: base_client.InvokeOptions): async.Operation<types.BatchStopOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchStop as schema.OperationSchema, input, options) as async.Operation<types.BatchStopOutput>
 end
 
-function C:batchUpdateSchedule(input: types.BatchUpdateScheduleInput, options: any): async.Operation<types.BatchUpdateScheduleOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchUpdateSchedule, input, options) as async.Operation<types.BatchUpdateScheduleOutput>
+function C:batchUpdateSchedule(input: types.BatchUpdateScheduleInput, options?: base_client.InvokeOptions): async.Operation<types.BatchUpdateScheduleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchUpdateSchedule as schema.OperationSchema, input, options) as async.Operation<types.BatchUpdateScheduleOutput>
 end
 
-function C:cancelInputDeviceTransfer(input: types.CancelInputDeviceTransferInput, options: any): async.Operation<types.CancelInputDeviceTransferOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelInputDeviceTransfer, input, options) as async.Operation<types.CancelInputDeviceTransferOutput>
+function C:cancelInputDeviceTransfer(input: types.CancelInputDeviceTransferInput, options?: base_client.InvokeOptions): async.Operation<types.CancelInputDeviceTransferOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelInputDeviceTransfer as schema.OperationSchema, input, options) as async.Operation<types.CancelInputDeviceTransferOutput>
 end
 
-function C:claimDevice(input: types.ClaimDeviceInput, options: any): async.Operation<types.ClaimDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ClaimDevice, input, options) as async.Operation<types.ClaimDeviceOutput>
+function C:claimDevice(input: types.ClaimDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.ClaimDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ClaimDevice as schema.OperationSchema, input, options) as async.Operation<types.ClaimDeviceOutput>
 end
 
-function C:createChannel(input: types.CreateChannelInput, options: any): async.Operation<types.CreateChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateChannel, input, options) as async.Operation<types.CreateChannelOutput>
+function C:createChannel(input: types.CreateChannelInput, options?: base_client.InvokeOptions): async.Operation<types.CreateChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateChannel as schema.OperationSchema, input, options) as async.Operation<types.CreateChannelOutput>
 end
 
-function C:createChannelPlacementGroup(input: types.CreateChannelPlacementGroupInput, options: any): async.Operation<types.CreateChannelPlacementGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateChannelPlacementGroup, input, options) as async.Operation<types.CreateChannelPlacementGroupOutput>
+function C:createChannelPlacementGroup(input: types.CreateChannelPlacementGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateChannelPlacementGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateChannelPlacementGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateChannelPlacementGroupOutput>
 end
 
-function C:createCloudWatchAlarmTemplate(input: types.CreateCloudWatchAlarmTemplateInput, options: any): async.Operation<types.CreateCloudWatchAlarmTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCloudWatchAlarmTemplate, input, options) as async.Operation<types.CreateCloudWatchAlarmTemplateOutput>
+function C:createCloudWatchAlarmTemplate(input: types.CreateCloudWatchAlarmTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCloudWatchAlarmTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCloudWatchAlarmTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateCloudWatchAlarmTemplateOutput>
 end
 
-function C:createCloudWatchAlarmTemplateGroup(input: types.CreateCloudWatchAlarmTemplateGroupInput, options: any): async.Operation<types.CreateCloudWatchAlarmTemplateGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCloudWatchAlarmTemplateGroup, input, options) as async.Operation<types.CreateCloudWatchAlarmTemplateGroupOutput>
+function C:createCloudWatchAlarmTemplateGroup(input: types.CreateCloudWatchAlarmTemplateGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCloudWatchAlarmTemplateGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCloudWatchAlarmTemplateGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateCloudWatchAlarmTemplateGroupOutput>
 end
 
-function C:createCluster(input: types.CreateClusterInput, options: any): async.Operation<types.CreateClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCluster, input, options) as async.Operation<types.CreateClusterOutput>
+function C:createCluster(input: types.CreateClusterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCluster as schema.OperationSchema, input, options) as async.Operation<types.CreateClusterOutput>
 end
 
-function C:createEventBridgeRuleTemplate(input: types.CreateEventBridgeRuleTemplateInput, options: any): async.Operation<types.CreateEventBridgeRuleTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEventBridgeRuleTemplate, input, options) as async.Operation<types.CreateEventBridgeRuleTemplateOutput>
+function C:createEventBridgeRuleTemplate(input: types.CreateEventBridgeRuleTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEventBridgeRuleTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEventBridgeRuleTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateEventBridgeRuleTemplateOutput>
 end
 
-function C:createEventBridgeRuleTemplateGroup(input: types.CreateEventBridgeRuleTemplateGroupInput, options: any): async.Operation<types.CreateEventBridgeRuleTemplateGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEventBridgeRuleTemplateGroup, input, options) as async.Operation<types.CreateEventBridgeRuleTemplateGroupOutput>
+function C:createEventBridgeRuleTemplateGroup(input: types.CreateEventBridgeRuleTemplateGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEventBridgeRuleTemplateGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEventBridgeRuleTemplateGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateEventBridgeRuleTemplateGroupOutput>
 end
 
-function C:createInput(input: types.CreateInputInput, options: any): async.Operation<types.CreateInputOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateInput, input, options) as async.Operation<types.CreateInputOutput>
+function C:createInput(input: types.CreateInputInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInput as schema.OperationSchema, input, options) as async.Operation<types.CreateInputOutput>
 end
 
-function C:createInputSecurityGroup(input: types.CreateInputSecurityGroupInput, options: any): async.Operation<types.CreateInputSecurityGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateInputSecurityGroup, input, options) as async.Operation<types.CreateInputSecurityGroupOutput>
+function C:createInputSecurityGroup(input: types.CreateInputSecurityGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInputSecurityGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInputSecurityGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateInputSecurityGroupOutput>
 end
 
-function C:createMultiplex(input: types.CreateMultiplexInput, options: any): async.Operation<types.CreateMultiplexOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMultiplex, input, options) as async.Operation<types.CreateMultiplexOutput>
+function C:createMultiplex(input: types.CreateMultiplexInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMultiplexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMultiplex as schema.OperationSchema, input, options) as async.Operation<types.CreateMultiplexOutput>
 end
 
-function C:createMultiplexProgram(input: types.CreateMultiplexProgramInput, options: any): async.Operation<types.CreateMultiplexProgramOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMultiplexProgram, input, options) as async.Operation<types.CreateMultiplexProgramOutput>
+function C:createMultiplexProgram(input: types.CreateMultiplexProgramInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMultiplexProgramOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMultiplexProgram as schema.OperationSchema, input, options) as async.Operation<types.CreateMultiplexProgramOutput>
 end
 
-function C:createNetwork(input: types.CreateNetworkInput, options: any): async.Operation<types.CreateNetworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNetwork, input, options) as async.Operation<types.CreateNetworkOutput>
+function C:createNetwork(input: types.CreateNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNetworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNetwork as schema.OperationSchema, input, options) as async.Operation<types.CreateNetworkOutput>
 end
 
-function C:createNode(input: types.CreateNodeInput, options: any): async.Operation<types.CreateNodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNode, input, options) as async.Operation<types.CreateNodeOutput>
+function C:createNode(input: types.CreateNodeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNode as schema.OperationSchema, input, options) as async.Operation<types.CreateNodeOutput>
 end
 
-function C:createNodeRegistrationScript(input: types.CreateNodeRegistrationScriptInput, options: any): async.Operation<types.CreateNodeRegistrationScriptOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateNodeRegistrationScript, input, options) as async.Operation<types.CreateNodeRegistrationScriptOutput>
+function C:createNodeRegistrationScript(input: types.CreateNodeRegistrationScriptInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNodeRegistrationScriptOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNodeRegistrationScript as schema.OperationSchema, input, options) as async.Operation<types.CreateNodeRegistrationScriptOutput>
 end
 
-function C:createPartnerInput(input: types.CreatePartnerInputInput, options: any): async.Operation<types.CreatePartnerInputOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePartnerInput, input, options) as async.Operation<types.CreatePartnerInputOutput>
+function C:createPartnerInput(input: types.CreatePartnerInputInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePartnerInputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePartnerInput as schema.OperationSchema, input, options) as async.Operation<types.CreatePartnerInputOutput>
 end
 
-function C:createSdiSource(input: types.CreateSdiSourceInput, options: any): async.Operation<types.CreateSdiSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSdiSource, input, options) as async.Operation<types.CreateSdiSourceOutput>
+function C:createSdiSource(input: types.CreateSdiSourceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSdiSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSdiSource as schema.OperationSchema, input, options) as async.Operation<types.CreateSdiSourceOutput>
 end
 
-function C:createSignalMap(input: types.CreateSignalMapInput, options: any): async.Operation<types.CreateSignalMapOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSignalMap, input, options) as async.Operation<types.CreateSignalMapOutput>
+function C:createSignalMap(input: types.CreateSignalMapInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSignalMapOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSignalMap as schema.OperationSchema, input, options) as async.Operation<types.CreateSignalMapOutput>
 end
 
-function C:createTags(input: types.CreateTagsInput, options: any): async.Operation<types.CreateTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTags, input, options) as async.Operation<types.CreateTagsOutput>
+function C:createTags(input: types.CreateTagsInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTags as schema.OperationSchema, input, options) as async.Operation<types.CreateTagsOutput>
 end
 
-function C:deleteChannel(input: types.DeleteChannelInput, options: any): async.Operation<types.DeleteChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteChannel, input, options) as async.Operation<types.DeleteChannelOutput>
+function C:deleteChannel(input: types.DeleteChannelInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteChannel as schema.OperationSchema, input, options) as async.Operation<types.DeleteChannelOutput>
 end
 
-function C:deleteChannelPlacementGroup(input: types.DeleteChannelPlacementGroupInput, options: any): async.Operation<types.DeleteChannelPlacementGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteChannelPlacementGroup, input, options) as async.Operation<types.DeleteChannelPlacementGroupOutput>
+function C:deleteChannelPlacementGroup(input: types.DeleteChannelPlacementGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteChannelPlacementGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteChannelPlacementGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteChannelPlacementGroupOutput>
 end
 
-function C:deleteCloudWatchAlarmTemplate(input: types.DeleteCloudWatchAlarmTemplateInput, options: any): async.Operation<types.DeleteCloudWatchAlarmTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCloudWatchAlarmTemplate, input, options) as async.Operation<types.DeleteCloudWatchAlarmTemplateOutput>
+function C:deleteCloudWatchAlarmTemplate(input: types.DeleteCloudWatchAlarmTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCloudWatchAlarmTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCloudWatchAlarmTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteCloudWatchAlarmTemplateOutput>
 end
 
-function C:deleteCloudWatchAlarmTemplateGroup(input: types.DeleteCloudWatchAlarmTemplateGroupInput, options: any): async.Operation<types.DeleteCloudWatchAlarmTemplateGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCloudWatchAlarmTemplateGroup, input, options) as async.Operation<types.DeleteCloudWatchAlarmTemplateGroupOutput>
+function C:deleteCloudWatchAlarmTemplateGroup(input: types.DeleteCloudWatchAlarmTemplateGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCloudWatchAlarmTemplateGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCloudWatchAlarmTemplateGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteCloudWatchAlarmTemplateGroupOutput>
 end
 
-function C:deleteCluster(input: types.DeleteClusterInput, options: any): async.Operation<types.DeleteClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCluster, input, options) as async.Operation<types.DeleteClusterOutput>
+function C:deleteCluster(input: types.DeleteClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCluster as schema.OperationSchema, input, options) as async.Operation<types.DeleteClusterOutput>
 end
 
-function C:deleteEventBridgeRuleTemplate(input: types.DeleteEventBridgeRuleTemplateInput, options: any): async.Operation<types.DeleteEventBridgeRuleTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEventBridgeRuleTemplate, input, options) as async.Operation<types.DeleteEventBridgeRuleTemplateOutput>
+function C:deleteEventBridgeRuleTemplate(input: types.DeleteEventBridgeRuleTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEventBridgeRuleTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEventBridgeRuleTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteEventBridgeRuleTemplateOutput>
 end
 
-function C:deleteEventBridgeRuleTemplateGroup(input: types.DeleteEventBridgeRuleTemplateGroupInput, options: any): async.Operation<types.DeleteEventBridgeRuleTemplateGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEventBridgeRuleTemplateGroup, input, options) as async.Operation<types.DeleteEventBridgeRuleTemplateGroupOutput>
+function C:deleteEventBridgeRuleTemplateGroup(input: types.DeleteEventBridgeRuleTemplateGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEventBridgeRuleTemplateGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEventBridgeRuleTemplateGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteEventBridgeRuleTemplateGroupOutput>
 end
 
-function C:deleteInput(input: types.DeleteInputInput, options: any): async.Operation<types.DeleteInputOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteInput, input, options) as async.Operation<types.DeleteInputOutput>
+function C:deleteInput(input: types.DeleteInputInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteInputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInput as schema.OperationSchema, input, options) as async.Operation<types.DeleteInputOutput>
 end
 
-function C:deleteInputSecurityGroup(input: types.DeleteInputSecurityGroupInput, options: any): async.Operation<types.DeleteInputSecurityGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteInputSecurityGroup, input, options) as async.Operation<types.DeleteInputSecurityGroupOutput>
+function C:deleteInputSecurityGroup(input: types.DeleteInputSecurityGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteInputSecurityGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInputSecurityGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteInputSecurityGroupOutput>
 end
 
-function C:deleteMultiplex(input: types.DeleteMultiplexInput, options: any): async.Operation<types.DeleteMultiplexOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMultiplex, input, options) as async.Operation<types.DeleteMultiplexOutput>
+function C:deleteMultiplex(input: types.DeleteMultiplexInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMultiplexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMultiplex as schema.OperationSchema, input, options) as async.Operation<types.DeleteMultiplexOutput>
 end
 
-function C:deleteMultiplexProgram(input: types.DeleteMultiplexProgramInput, options: any): async.Operation<types.DeleteMultiplexProgramOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMultiplexProgram, input, options) as async.Operation<types.DeleteMultiplexProgramOutput>
+function C:deleteMultiplexProgram(input: types.DeleteMultiplexProgramInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMultiplexProgramOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMultiplexProgram as schema.OperationSchema, input, options) as async.Operation<types.DeleteMultiplexProgramOutput>
 end
 
-function C:deleteNetwork(input: types.DeleteNetworkInput, options: any): async.Operation<types.DeleteNetworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNetwork, input, options) as async.Operation<types.DeleteNetworkOutput>
+function C:deleteNetwork(input: types.DeleteNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNetworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNetwork as schema.OperationSchema, input, options) as async.Operation<types.DeleteNetworkOutput>
 end
 
-function C:deleteNode(input: types.DeleteNodeInput, options: any): async.Operation<types.DeleteNodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNode, input, options) as async.Operation<types.DeleteNodeOutput>
+function C:deleteNode(input: types.DeleteNodeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNode as schema.OperationSchema, input, options) as async.Operation<types.DeleteNodeOutput>
 end
 
-function C:deleteReservation(input: types.DeleteReservationInput, options: any): async.Operation<types.DeleteReservationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteReservation, input, options) as async.Operation<types.DeleteReservationOutput>
+function C:deleteReservation(input: types.DeleteReservationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteReservationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteReservation as schema.OperationSchema, input, options) as async.Operation<types.DeleteReservationOutput>
 end
 
-function C:deleteSchedule(input: types.DeleteScheduleInput, options: any): async.Operation<types.DeleteScheduleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSchedule, input, options) as async.Operation<types.DeleteScheduleOutput>
+function C:deleteSchedule(input: types.DeleteScheduleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteScheduleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSchedule as schema.OperationSchema, input, options) as async.Operation<types.DeleteScheduleOutput>
 end
 
-function C:deleteSdiSource(input: types.DeleteSdiSourceInput, options: any): async.Operation<types.DeleteSdiSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSdiSource, input, options) as async.Operation<types.DeleteSdiSourceOutput>
+function C:deleteSdiSource(input: types.DeleteSdiSourceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSdiSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSdiSource as schema.OperationSchema, input, options) as async.Operation<types.DeleteSdiSourceOutput>
 end
 
-function C:deleteSignalMap(input: types.DeleteSignalMapInput, options: any): async.Operation<types.DeleteSignalMapOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSignalMap, input, options) as async.Operation<types.DeleteSignalMapOutput>
+function C:deleteSignalMap(input: types.DeleteSignalMapInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSignalMapOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSignalMap as schema.OperationSchema, input, options) as async.Operation<types.DeleteSignalMapOutput>
 end
 
-function C:deleteTags(input: types.DeleteTagsInput, options: any): async.Operation<types.DeleteTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTags, input, options) as async.Operation<types.DeleteTagsOutput>
+function C:deleteTags(input: types.DeleteTagsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTags as schema.OperationSchema, input, options) as async.Operation<types.DeleteTagsOutput>
 end
 
-function C:describeAccountConfiguration(input: types.DescribeAccountConfigurationInput, options: any): async.Operation<types.DescribeAccountConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAccountConfiguration, input, options) as async.Operation<types.DescribeAccountConfigurationOutput>
+function C:describeAccountConfiguration(input: types.DescribeAccountConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAccountConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAccountConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeAccountConfigurationOutput>
 end
 
-function C:describeChannel(input: types.DescribeChannelInput, options: any): async.Operation<types.DescribeChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeChannel, input, options) as async.Operation<types.DescribeChannelOutput>
+function C:describeChannel(input: types.DescribeChannelInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeChannel as schema.OperationSchema, input, options) as async.Operation<types.DescribeChannelOutput>
 end
 
-function C:describeChannelPlacementGroup(input: types.DescribeChannelPlacementGroupInput, options: any): async.Operation<types.DescribeChannelPlacementGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeChannelPlacementGroup, input, options) as async.Operation<types.DescribeChannelPlacementGroupOutput>
+function C:describeChannelPlacementGroup(input: types.DescribeChannelPlacementGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeChannelPlacementGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeChannelPlacementGroup as schema.OperationSchema, input, options) as async.Operation<types.DescribeChannelPlacementGroupOutput>
 end
 
-function C:describeCluster(input: types.DescribeClusterInput, options: any): async.Operation<types.DescribeClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCluster, input, options) as async.Operation<types.DescribeClusterOutput>
+function C:describeCluster(input: types.DescribeClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCluster as schema.OperationSchema, input, options) as async.Operation<types.DescribeClusterOutput>
 end
 
-function C:describeInput(input: types.DescribeInputInput, options: any): async.Operation<types.DescribeInputOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInput, input, options) as async.Operation<types.DescribeInputOutput>
+function C:describeInput(input: types.DescribeInputInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInput as schema.OperationSchema, input, options) as async.Operation<types.DescribeInputOutput>
 end
 
-function C:describeInputDevice(input: types.DescribeInputDeviceInput, options: any): async.Operation<types.DescribeInputDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInputDevice, input, options) as async.Operation<types.DescribeInputDeviceOutput>
+function C:describeInputDevice(input: types.DescribeInputDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInputDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInputDevice as schema.OperationSchema, input, options) as async.Operation<types.DescribeInputDeviceOutput>
 end
 
-function C:describeInputDeviceThumbnail(input: types.DescribeInputDeviceThumbnailInput, options: any): async.Operation<types.DescribeInputDeviceThumbnailOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInputDeviceThumbnail, input, options) as async.Operation<types.DescribeInputDeviceThumbnailOutput>
+function C:describeInputDeviceThumbnail(input: types.DescribeInputDeviceThumbnailInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInputDeviceThumbnailOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInputDeviceThumbnail as schema.OperationSchema, input, options) as async.Operation<types.DescribeInputDeviceThumbnailOutput>
 end
 
-function C:describeInputSecurityGroup(input: types.DescribeInputSecurityGroupInput, options: any): async.Operation<types.DescribeInputSecurityGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInputSecurityGroup, input, options) as async.Operation<types.DescribeInputSecurityGroupOutput>
+function C:describeInputSecurityGroup(input: types.DescribeInputSecurityGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInputSecurityGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInputSecurityGroup as schema.OperationSchema, input, options) as async.Operation<types.DescribeInputSecurityGroupOutput>
 end
 
-function C:describeMultiplex(input: types.DescribeMultiplexInput, options: any): async.Operation<types.DescribeMultiplexOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeMultiplex, input, options) as async.Operation<types.DescribeMultiplexOutput>
+function C:describeMultiplex(input: types.DescribeMultiplexInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMultiplexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMultiplex as schema.OperationSchema, input, options) as async.Operation<types.DescribeMultiplexOutput>
 end
 
-function C:describeMultiplexProgram(input: types.DescribeMultiplexProgramInput, options: any): async.Operation<types.DescribeMultiplexProgramOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeMultiplexProgram, input, options) as async.Operation<types.DescribeMultiplexProgramOutput>
+function C:describeMultiplexProgram(input: types.DescribeMultiplexProgramInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMultiplexProgramOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMultiplexProgram as schema.OperationSchema, input, options) as async.Operation<types.DescribeMultiplexProgramOutput>
 end
 
-function C:describeNetwork(input: types.DescribeNetworkInput, options: any): async.Operation<types.DescribeNetworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeNetwork, input, options) as async.Operation<types.DescribeNetworkOutput>
+function C:describeNetwork(input: types.DescribeNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeNetworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeNetwork as schema.OperationSchema, input, options) as async.Operation<types.DescribeNetworkOutput>
 end
 
-function C:describeNode(input: types.DescribeNodeInput, options: any): async.Operation<types.DescribeNodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeNode, input, options) as async.Operation<types.DescribeNodeOutput>
+function C:describeNode(input: types.DescribeNodeInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeNodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeNode as schema.OperationSchema, input, options) as async.Operation<types.DescribeNodeOutput>
 end
 
-function C:describeOffering(input: types.DescribeOfferingInput, options: any): async.Operation<types.DescribeOfferingOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeOffering, input, options) as async.Operation<types.DescribeOfferingOutput>
+function C:describeOffering(input: types.DescribeOfferingInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeOfferingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeOffering as schema.OperationSchema, input, options) as async.Operation<types.DescribeOfferingOutput>
 end
 
-function C:describeReservation(input: types.DescribeReservationInput, options: any): async.Operation<types.DescribeReservationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeReservation, input, options) as async.Operation<types.DescribeReservationOutput>
+function C:describeReservation(input: types.DescribeReservationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeReservationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeReservation as schema.OperationSchema, input, options) as async.Operation<types.DescribeReservationOutput>
 end
 
-function C:describeSchedule(input: types.DescribeScheduleInput, options: any): async.Operation<types.DescribeScheduleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSchedule, input, options) as async.Operation<types.DescribeScheduleOutput>
+function C:describeSchedule(input: types.DescribeScheduleInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeScheduleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSchedule as schema.OperationSchema, input, options) as async.Operation<types.DescribeScheduleOutput>
 end
 
-function C:describeSdiSource(input: types.DescribeSdiSourceInput, options: any): async.Operation<types.DescribeSdiSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSdiSource, input, options) as async.Operation<types.DescribeSdiSourceOutput>
+function C:describeSdiSource(input: types.DescribeSdiSourceInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSdiSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSdiSource as schema.OperationSchema, input, options) as async.Operation<types.DescribeSdiSourceOutput>
 end
 
-function C:describeThumbnails(input: types.DescribeThumbnailsInput, options: any): async.Operation<types.DescribeThumbnailsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeThumbnails, input, options) as async.Operation<types.DescribeThumbnailsOutput>
+function C:describeThumbnails(input: types.DescribeThumbnailsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeThumbnailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeThumbnails as schema.OperationSchema, input, options) as async.Operation<types.DescribeThumbnailsOutput>
 end
 
-function C:getCloudWatchAlarmTemplate(input: types.GetCloudWatchAlarmTemplateInput, options: any): async.Operation<types.GetCloudWatchAlarmTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCloudWatchAlarmTemplate, input, options) as async.Operation<types.GetCloudWatchAlarmTemplateOutput>
+function C:getCloudWatchAlarmTemplate(input: types.GetCloudWatchAlarmTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetCloudWatchAlarmTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCloudWatchAlarmTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetCloudWatchAlarmTemplateOutput>
 end
 
-function C:getCloudWatchAlarmTemplateGroup(input: types.GetCloudWatchAlarmTemplateGroupInput, options: any): async.Operation<types.GetCloudWatchAlarmTemplateGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCloudWatchAlarmTemplateGroup, input, options) as async.Operation<types.GetCloudWatchAlarmTemplateGroupOutput>
+function C:getCloudWatchAlarmTemplateGroup(input: types.GetCloudWatchAlarmTemplateGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetCloudWatchAlarmTemplateGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCloudWatchAlarmTemplateGroup as schema.OperationSchema, input, options) as async.Operation<types.GetCloudWatchAlarmTemplateGroupOutput>
 end
 
-function C:getEventBridgeRuleTemplate(input: types.GetEventBridgeRuleTemplateInput, options: any): async.Operation<types.GetEventBridgeRuleTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEventBridgeRuleTemplate, input, options) as async.Operation<types.GetEventBridgeRuleTemplateOutput>
+function C:getEventBridgeRuleTemplate(input: types.GetEventBridgeRuleTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetEventBridgeRuleTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEventBridgeRuleTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetEventBridgeRuleTemplateOutput>
 end
 
-function C:getEventBridgeRuleTemplateGroup(input: types.GetEventBridgeRuleTemplateGroupInput, options: any): async.Operation<types.GetEventBridgeRuleTemplateGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEventBridgeRuleTemplateGroup, input, options) as async.Operation<types.GetEventBridgeRuleTemplateGroupOutput>
+function C:getEventBridgeRuleTemplateGroup(input: types.GetEventBridgeRuleTemplateGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetEventBridgeRuleTemplateGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEventBridgeRuleTemplateGroup as schema.OperationSchema, input, options) as async.Operation<types.GetEventBridgeRuleTemplateGroupOutput>
 end
 
-function C:getSignalMap(input: types.GetSignalMapInput, options: any): async.Operation<types.GetSignalMapOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSignalMap, input, options) as async.Operation<types.GetSignalMapOutput>
+function C:getSignalMap(input: types.GetSignalMapInput, options?: base_client.InvokeOptions): async.Operation<types.GetSignalMapOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSignalMap as schema.OperationSchema, input, options) as async.Operation<types.GetSignalMapOutput>
 end
 
-function C:listAlerts(input: types.ListAlertsInput, options: any): async.Operation<types.ListAlertsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAlerts, input, options) as async.Operation<types.ListAlertsOutput>
+function C:listAlerts(input: types.ListAlertsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAlertsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAlerts as schema.OperationSchema, input, options) as async.Operation<types.ListAlertsOutput>
 end
 
-function C:listChannelPlacementGroups(input: types.ListChannelPlacementGroupsInput, options: any): async.Operation<types.ListChannelPlacementGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListChannelPlacementGroups, input, options) as async.Operation<types.ListChannelPlacementGroupsOutput>
+function C:listChannelPlacementGroups(input: types.ListChannelPlacementGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListChannelPlacementGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListChannelPlacementGroups as schema.OperationSchema, input, options) as async.Operation<types.ListChannelPlacementGroupsOutput>
 end
 
-function C:listChannels(input: types.ListChannelsInput, options: any): async.Operation<types.ListChannelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListChannels, input, options) as async.Operation<types.ListChannelsOutput>
+function C:listChannels(input: types.ListChannelsInput, options?: base_client.InvokeOptions): async.Operation<types.ListChannelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListChannels as schema.OperationSchema, input, options) as async.Operation<types.ListChannelsOutput>
 end
 
-function C:listCloudWatchAlarmTemplateGroups(input: types.ListCloudWatchAlarmTemplateGroupsInput, options: any): async.Operation<types.ListCloudWatchAlarmTemplateGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCloudWatchAlarmTemplateGroups, input, options) as async.Operation<types.ListCloudWatchAlarmTemplateGroupsOutput>
+function C:listCloudWatchAlarmTemplateGroups(input: types.ListCloudWatchAlarmTemplateGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCloudWatchAlarmTemplateGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCloudWatchAlarmTemplateGroups as schema.OperationSchema, input, options) as async.Operation<types.ListCloudWatchAlarmTemplateGroupsOutput>
 end
 
-function C:listCloudWatchAlarmTemplates(input: types.ListCloudWatchAlarmTemplatesInput, options: any): async.Operation<types.ListCloudWatchAlarmTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCloudWatchAlarmTemplates, input, options) as async.Operation<types.ListCloudWatchAlarmTemplatesOutput>
+function C:listCloudWatchAlarmTemplates(input: types.ListCloudWatchAlarmTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCloudWatchAlarmTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCloudWatchAlarmTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListCloudWatchAlarmTemplatesOutput>
 end
 
-function C:listClusterAlerts(input: types.ListClusterAlertsInput, options: any): async.Operation<types.ListClusterAlertsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListClusterAlerts, input, options) as async.Operation<types.ListClusterAlertsOutput>
+function C:listClusterAlerts(input: types.ListClusterAlertsInput, options?: base_client.InvokeOptions): async.Operation<types.ListClusterAlertsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListClusterAlerts as schema.OperationSchema, input, options) as async.Operation<types.ListClusterAlertsOutput>
 end
 
-function C:listClusters(input: types.ListClustersInput, options: any): async.Operation<types.ListClustersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListClusters, input, options) as async.Operation<types.ListClustersOutput>
+function C:listClusters(input: types.ListClustersInput, options?: base_client.InvokeOptions): async.Operation<types.ListClustersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListClusters as schema.OperationSchema, input, options) as async.Operation<types.ListClustersOutput>
 end
 
-function C:listEventBridgeRuleTemplateGroups(input: types.ListEventBridgeRuleTemplateGroupsInput, options: any): async.Operation<types.ListEventBridgeRuleTemplateGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEventBridgeRuleTemplateGroups, input, options) as async.Operation<types.ListEventBridgeRuleTemplateGroupsOutput>
+function C:listEventBridgeRuleTemplateGroups(input: types.ListEventBridgeRuleTemplateGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEventBridgeRuleTemplateGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEventBridgeRuleTemplateGroups as schema.OperationSchema, input, options) as async.Operation<types.ListEventBridgeRuleTemplateGroupsOutput>
 end
 
-function C:listEventBridgeRuleTemplates(input: types.ListEventBridgeRuleTemplatesInput, options: any): async.Operation<types.ListEventBridgeRuleTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEventBridgeRuleTemplates, input, options) as async.Operation<types.ListEventBridgeRuleTemplatesOutput>
+function C:listEventBridgeRuleTemplates(input: types.ListEventBridgeRuleTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListEventBridgeRuleTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEventBridgeRuleTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListEventBridgeRuleTemplatesOutput>
 end
 
-function C:listInputDevices(input: types.ListInputDevicesInput, options: any): async.Operation<types.ListInputDevicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInputDevices, input, options) as async.Operation<types.ListInputDevicesOutput>
+function C:listInputDevices(input: types.ListInputDevicesInput, options?: base_client.InvokeOptions): async.Operation<types.ListInputDevicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInputDevices as schema.OperationSchema, input, options) as async.Operation<types.ListInputDevicesOutput>
 end
 
-function C:listInputDeviceTransfers(input: types.ListInputDeviceTransfersInput, options: any): async.Operation<types.ListInputDeviceTransfersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInputDeviceTransfers, input, options) as async.Operation<types.ListInputDeviceTransfersOutput>
+function C:listInputDeviceTransfers(input: types.ListInputDeviceTransfersInput, options?: base_client.InvokeOptions): async.Operation<types.ListInputDeviceTransfersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInputDeviceTransfers as schema.OperationSchema, input, options) as async.Operation<types.ListInputDeviceTransfersOutput>
 end
 
-function C:listInputs(input: types.ListInputsInput, options: any): async.Operation<types.ListInputsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInputs, input, options) as async.Operation<types.ListInputsOutput>
+function C:listInputs(input: types.ListInputsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInputsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInputs as schema.OperationSchema, input, options) as async.Operation<types.ListInputsOutput>
 end
 
-function C:listInputSecurityGroups(input: types.ListInputSecurityGroupsInput, options: any): async.Operation<types.ListInputSecurityGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInputSecurityGroups, input, options) as async.Operation<types.ListInputSecurityGroupsOutput>
+function C:listInputSecurityGroups(input: types.ListInputSecurityGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInputSecurityGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInputSecurityGroups as schema.OperationSchema, input, options) as async.Operation<types.ListInputSecurityGroupsOutput>
 end
 
-function C:listMultiplexAlerts(input: types.ListMultiplexAlertsInput, options: any): async.Operation<types.ListMultiplexAlertsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMultiplexAlerts, input, options) as async.Operation<types.ListMultiplexAlertsOutput>
+function C:listMultiplexAlerts(input: types.ListMultiplexAlertsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMultiplexAlertsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMultiplexAlerts as schema.OperationSchema, input, options) as async.Operation<types.ListMultiplexAlertsOutput>
 end
 
-function C:listMultiplexes(input: types.ListMultiplexesInput, options: any): async.Operation<types.ListMultiplexesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMultiplexes, input, options) as async.Operation<types.ListMultiplexesOutput>
+function C:listMultiplexes(input: types.ListMultiplexesInput, options?: base_client.InvokeOptions): async.Operation<types.ListMultiplexesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMultiplexes as schema.OperationSchema, input, options) as async.Operation<types.ListMultiplexesOutput>
 end
 
-function C:listMultiplexPrograms(input: types.ListMultiplexProgramsInput, options: any): async.Operation<types.ListMultiplexProgramsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMultiplexPrograms, input, options) as async.Operation<types.ListMultiplexProgramsOutput>
+function C:listMultiplexPrograms(input: types.ListMultiplexProgramsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMultiplexProgramsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMultiplexPrograms as schema.OperationSchema, input, options) as async.Operation<types.ListMultiplexProgramsOutput>
 end
 
-function C:listNetworks(input: types.ListNetworksInput, options: any): async.Operation<types.ListNetworksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNetworks, input, options) as async.Operation<types.ListNetworksOutput>
+function C:listNetworks(input: types.ListNetworksInput, options?: base_client.InvokeOptions): async.Operation<types.ListNetworksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNetworks as schema.OperationSchema, input, options) as async.Operation<types.ListNetworksOutput>
 end
 
-function C:listNodes(input: types.ListNodesInput, options: any): async.Operation<types.ListNodesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNodes, input, options) as async.Operation<types.ListNodesOutput>
+function C:listNodes(input: types.ListNodesInput, options?: base_client.InvokeOptions): async.Operation<types.ListNodesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNodes as schema.OperationSchema, input, options) as async.Operation<types.ListNodesOutput>
 end
 
-function C:listOfferings(input: types.ListOfferingsInput, options: any): async.Operation<types.ListOfferingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOfferings, input, options) as async.Operation<types.ListOfferingsOutput>
+function C:listOfferings(input: types.ListOfferingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListOfferingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOfferings as schema.OperationSchema, input, options) as async.Operation<types.ListOfferingsOutput>
 end
 
-function C:listReservations(input: types.ListReservationsInput, options: any): async.Operation<types.ListReservationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReservations, input, options) as async.Operation<types.ListReservationsOutput>
+function C:listReservations(input: types.ListReservationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListReservationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReservations as schema.OperationSchema, input, options) as async.Operation<types.ListReservationsOutput>
 end
 
-function C:listSdiSources(input: types.ListSdiSourcesInput, options: any): async.Operation<types.ListSdiSourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSdiSources, input, options) as async.Operation<types.ListSdiSourcesOutput>
+function C:listSdiSources(input: types.ListSdiSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSdiSourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSdiSources as schema.OperationSchema, input, options) as async.Operation<types.ListSdiSourcesOutput>
 end
 
-function C:listSignalMaps(input: types.ListSignalMapsInput, options: any): async.Operation<types.ListSignalMapsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSignalMaps, input, options) as async.Operation<types.ListSignalMapsOutput>
+function C:listSignalMaps(input: types.ListSignalMapsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSignalMapsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSignalMaps as schema.OperationSchema, input, options) as async.Operation<types.ListSignalMapsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listVersions(input: types.ListVersionsInput, options: any): async.Operation<types.ListVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVersions, input, options) as async.Operation<types.ListVersionsOutput>
+function C:listVersions(input: types.ListVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVersions as schema.OperationSchema, input, options) as async.Operation<types.ListVersionsOutput>
 end
 
-function C:purchaseOffering(input: types.PurchaseOfferingInput, options: any): async.Operation<types.PurchaseOfferingOutput>
-    return self:invokeOperation(schemas.Service, schemas.PurchaseOffering, input, options) as async.Operation<types.PurchaseOfferingOutput>
+function C:purchaseOffering(input: types.PurchaseOfferingInput, options?: base_client.InvokeOptions): async.Operation<types.PurchaseOfferingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PurchaseOffering as schema.OperationSchema, input, options) as async.Operation<types.PurchaseOfferingOutput>
 end
 
-function C:rebootInputDevice(input: types.RebootInputDeviceInput, options: any): async.Operation<types.RebootInputDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.RebootInputDevice, input, options) as async.Operation<types.RebootInputDeviceOutput>
+function C:rebootInputDevice(input: types.RebootInputDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.RebootInputDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RebootInputDevice as schema.OperationSchema, input, options) as async.Operation<types.RebootInputDeviceOutput>
 end
 
-function C:rejectInputDeviceTransfer(input: types.RejectInputDeviceTransferInput, options: any): async.Operation<types.RejectInputDeviceTransferOutput>
-    return self:invokeOperation(schemas.Service, schemas.RejectInputDeviceTransfer, input, options) as async.Operation<types.RejectInputDeviceTransferOutput>
+function C:rejectInputDeviceTransfer(input: types.RejectInputDeviceTransferInput, options?: base_client.InvokeOptions): async.Operation<types.RejectInputDeviceTransferOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RejectInputDeviceTransfer as schema.OperationSchema, input, options) as async.Operation<types.RejectInputDeviceTransferOutput>
 end
 
-function C:restartChannelPipelines(input: types.RestartChannelPipelinesInput, options: any): async.Operation<types.RestartChannelPipelinesOutput>
-    return self:invokeOperation(schemas.Service, schemas.RestartChannelPipelines, input, options) as async.Operation<types.RestartChannelPipelinesOutput>
+function C:restartChannelPipelines(input: types.RestartChannelPipelinesInput, options?: base_client.InvokeOptions): async.Operation<types.RestartChannelPipelinesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestartChannelPipelines as schema.OperationSchema, input, options) as async.Operation<types.RestartChannelPipelinesOutput>
 end
 
-function C:startChannel(input: types.StartChannelInput, options: any): async.Operation<types.StartChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartChannel, input, options) as async.Operation<types.StartChannelOutput>
+function C:startChannel(input: types.StartChannelInput, options?: base_client.InvokeOptions): async.Operation<types.StartChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartChannel as schema.OperationSchema, input, options) as async.Operation<types.StartChannelOutput>
 end
 
-function C:startDeleteMonitorDeployment(input: types.StartDeleteMonitorDeploymentInput, options: any): async.Operation<types.StartDeleteMonitorDeploymentOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartDeleteMonitorDeployment, input, options) as async.Operation<types.StartDeleteMonitorDeploymentOutput>
+function C:startDeleteMonitorDeployment(input: types.StartDeleteMonitorDeploymentInput, options?: base_client.InvokeOptions): async.Operation<types.StartDeleteMonitorDeploymentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDeleteMonitorDeployment as schema.OperationSchema, input, options) as async.Operation<types.StartDeleteMonitorDeploymentOutput>
 end
 
-function C:startInputDevice(input: types.StartInputDeviceInput, options: any): async.Operation<types.StartInputDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartInputDevice, input, options) as async.Operation<types.StartInputDeviceOutput>
+function C:startInputDevice(input: types.StartInputDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.StartInputDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartInputDevice as schema.OperationSchema, input, options) as async.Operation<types.StartInputDeviceOutput>
 end
 
-function C:startInputDeviceMaintenanceWindow(input: types.StartInputDeviceMaintenanceWindowInput, options: any): async.Operation<types.StartInputDeviceMaintenanceWindowOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartInputDeviceMaintenanceWindow, input, options) as async.Operation<types.StartInputDeviceMaintenanceWindowOutput>
+function C:startInputDeviceMaintenanceWindow(input: types.StartInputDeviceMaintenanceWindowInput, options?: base_client.InvokeOptions): async.Operation<types.StartInputDeviceMaintenanceWindowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartInputDeviceMaintenanceWindow as schema.OperationSchema, input, options) as async.Operation<types.StartInputDeviceMaintenanceWindowOutput>
 end
 
-function C:startMonitorDeployment(input: types.StartMonitorDeploymentInput, options: any): async.Operation<types.StartMonitorDeploymentOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartMonitorDeployment, input, options) as async.Operation<types.StartMonitorDeploymentOutput>
+function C:startMonitorDeployment(input: types.StartMonitorDeploymentInput, options?: base_client.InvokeOptions): async.Operation<types.StartMonitorDeploymentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartMonitorDeployment as schema.OperationSchema, input, options) as async.Operation<types.StartMonitorDeploymentOutput>
 end
 
-function C:startMultiplex(input: types.StartMultiplexInput, options: any): async.Operation<types.StartMultiplexOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartMultiplex, input, options) as async.Operation<types.StartMultiplexOutput>
+function C:startMultiplex(input: types.StartMultiplexInput, options?: base_client.InvokeOptions): async.Operation<types.StartMultiplexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartMultiplex as schema.OperationSchema, input, options) as async.Operation<types.StartMultiplexOutput>
 end
 
-function C:startUpdateSignalMap(input: types.StartUpdateSignalMapInput, options: any): async.Operation<types.StartUpdateSignalMapOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartUpdateSignalMap, input, options) as async.Operation<types.StartUpdateSignalMapOutput>
+function C:startUpdateSignalMap(input: types.StartUpdateSignalMapInput, options?: base_client.InvokeOptions): async.Operation<types.StartUpdateSignalMapOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartUpdateSignalMap as schema.OperationSchema, input, options) as async.Operation<types.StartUpdateSignalMapOutput>
 end
 
-function C:stopChannel(input: types.StopChannelInput, options: any): async.Operation<types.StopChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopChannel, input, options) as async.Operation<types.StopChannelOutput>
+function C:stopChannel(input: types.StopChannelInput, options?: base_client.InvokeOptions): async.Operation<types.StopChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopChannel as schema.OperationSchema, input, options) as async.Operation<types.StopChannelOutput>
 end
 
-function C:stopInputDevice(input: types.StopInputDeviceInput, options: any): async.Operation<types.StopInputDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopInputDevice, input, options) as async.Operation<types.StopInputDeviceOutput>
+function C:stopInputDevice(input: types.StopInputDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.StopInputDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopInputDevice as schema.OperationSchema, input, options) as async.Operation<types.StopInputDeviceOutput>
 end
 
-function C:stopMultiplex(input: types.StopMultiplexInput, options: any): async.Operation<types.StopMultiplexOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopMultiplex, input, options) as async.Operation<types.StopMultiplexOutput>
+function C:stopMultiplex(input: types.StopMultiplexInput, options?: base_client.InvokeOptions): async.Operation<types.StopMultiplexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopMultiplex as schema.OperationSchema, input, options) as async.Operation<types.StopMultiplexOutput>
 end
 
-function C:transferInputDevice(input: types.TransferInputDeviceInput, options: any): async.Operation<types.TransferInputDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TransferInputDevice, input, options) as async.Operation<types.TransferInputDeviceOutput>
+function C:transferInputDevice(input: types.TransferInputDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.TransferInputDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TransferInputDevice as schema.OperationSchema, input, options) as async.Operation<types.TransferInputDeviceOutput>
 end
 
-function C:updateAccountConfiguration(input: types.UpdateAccountConfigurationInput, options: any): async.Operation<types.UpdateAccountConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAccountConfiguration, input, options) as async.Operation<types.UpdateAccountConfigurationOutput>
+function C:updateAccountConfiguration(input: types.UpdateAccountConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAccountConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAccountConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateAccountConfigurationOutput>
 end
 
-function C:updateChannel(input: types.UpdateChannelInput, options: any): async.Operation<types.UpdateChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateChannel, input, options) as async.Operation<types.UpdateChannelOutput>
+function C:updateChannel(input: types.UpdateChannelInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateChannel as schema.OperationSchema, input, options) as async.Operation<types.UpdateChannelOutput>
 end
 
-function C:updateChannelClass(input: types.UpdateChannelClassInput, options: any): async.Operation<types.UpdateChannelClassOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateChannelClass, input, options) as async.Operation<types.UpdateChannelClassOutput>
+function C:updateChannelClass(input: types.UpdateChannelClassInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateChannelClassOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateChannelClass as schema.OperationSchema, input, options) as async.Operation<types.UpdateChannelClassOutput>
 end
 
-function C:updateChannelPlacementGroup(input: types.UpdateChannelPlacementGroupInput, options: any): async.Operation<types.UpdateChannelPlacementGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateChannelPlacementGroup, input, options) as async.Operation<types.UpdateChannelPlacementGroupOutput>
+function C:updateChannelPlacementGroup(input: types.UpdateChannelPlacementGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateChannelPlacementGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateChannelPlacementGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateChannelPlacementGroupOutput>
 end
 
-function C:updateCloudWatchAlarmTemplate(input: types.UpdateCloudWatchAlarmTemplateInput, options: any): async.Operation<types.UpdateCloudWatchAlarmTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCloudWatchAlarmTemplate, input, options) as async.Operation<types.UpdateCloudWatchAlarmTemplateOutput>
+function C:updateCloudWatchAlarmTemplate(input: types.UpdateCloudWatchAlarmTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCloudWatchAlarmTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCloudWatchAlarmTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateCloudWatchAlarmTemplateOutput>
 end
 
-function C:updateCloudWatchAlarmTemplateGroup(input: types.UpdateCloudWatchAlarmTemplateGroupInput, options: any): async.Operation<types.UpdateCloudWatchAlarmTemplateGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCloudWatchAlarmTemplateGroup, input, options) as async.Operation<types.UpdateCloudWatchAlarmTemplateGroupOutput>
+function C:updateCloudWatchAlarmTemplateGroup(input: types.UpdateCloudWatchAlarmTemplateGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCloudWatchAlarmTemplateGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCloudWatchAlarmTemplateGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateCloudWatchAlarmTemplateGroupOutput>
 end
 
-function C:updateCluster(input: types.UpdateClusterInput, options: any): async.Operation<types.UpdateClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCluster, input, options) as async.Operation<types.UpdateClusterOutput>
+function C:updateCluster(input: types.UpdateClusterInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCluster as schema.OperationSchema, input, options) as async.Operation<types.UpdateClusterOutput>
 end
 
-function C:updateEventBridgeRuleTemplate(input: types.UpdateEventBridgeRuleTemplateInput, options: any): async.Operation<types.UpdateEventBridgeRuleTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEventBridgeRuleTemplate, input, options) as async.Operation<types.UpdateEventBridgeRuleTemplateOutput>
+function C:updateEventBridgeRuleTemplate(input: types.UpdateEventBridgeRuleTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEventBridgeRuleTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEventBridgeRuleTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateEventBridgeRuleTemplateOutput>
 end
 
-function C:updateEventBridgeRuleTemplateGroup(input: types.UpdateEventBridgeRuleTemplateGroupInput, options: any): async.Operation<types.UpdateEventBridgeRuleTemplateGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEventBridgeRuleTemplateGroup, input, options) as async.Operation<types.UpdateEventBridgeRuleTemplateGroupOutput>
+function C:updateEventBridgeRuleTemplateGroup(input: types.UpdateEventBridgeRuleTemplateGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEventBridgeRuleTemplateGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEventBridgeRuleTemplateGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateEventBridgeRuleTemplateGroupOutput>
 end
 
-function C:updateInput(input: types.UpdateInputInput, options: any): async.Operation<types.UpdateInputOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateInput, input, options) as async.Operation<types.UpdateInputOutput>
+function C:updateInput(input: types.UpdateInputInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateInputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateInput as schema.OperationSchema, input, options) as async.Operation<types.UpdateInputOutput>
 end
 
-function C:updateInputDevice(input: types.UpdateInputDeviceInput, options: any): async.Operation<types.UpdateInputDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateInputDevice, input, options) as async.Operation<types.UpdateInputDeviceOutput>
+function C:updateInputDevice(input: types.UpdateInputDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateInputDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateInputDevice as schema.OperationSchema, input, options) as async.Operation<types.UpdateInputDeviceOutput>
 end
 
-function C:updateInputSecurityGroup(input: types.UpdateInputSecurityGroupInput, options: any): async.Operation<types.UpdateInputSecurityGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateInputSecurityGroup, input, options) as async.Operation<types.UpdateInputSecurityGroupOutput>
+function C:updateInputSecurityGroup(input: types.UpdateInputSecurityGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateInputSecurityGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateInputSecurityGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateInputSecurityGroupOutput>
 end
 
-function C:updateMultiplex(input: types.UpdateMultiplexInput, options: any): async.Operation<types.UpdateMultiplexOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateMultiplex, input, options) as async.Operation<types.UpdateMultiplexOutput>
+function C:updateMultiplex(input: types.UpdateMultiplexInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMultiplexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMultiplex as schema.OperationSchema, input, options) as async.Operation<types.UpdateMultiplexOutput>
 end
 
-function C:updateMultiplexProgram(input: types.UpdateMultiplexProgramInput, options: any): async.Operation<types.UpdateMultiplexProgramOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateMultiplexProgram, input, options) as async.Operation<types.UpdateMultiplexProgramOutput>
+function C:updateMultiplexProgram(input: types.UpdateMultiplexProgramInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMultiplexProgramOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMultiplexProgram as schema.OperationSchema, input, options) as async.Operation<types.UpdateMultiplexProgramOutput>
 end
 
-function C:updateNetwork(input: types.UpdateNetworkInput, options: any): async.Operation<types.UpdateNetworkOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateNetwork, input, options) as async.Operation<types.UpdateNetworkOutput>
+function C:updateNetwork(input: types.UpdateNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNetworkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNetwork as schema.OperationSchema, input, options) as async.Operation<types.UpdateNetworkOutput>
 end
 
-function C:updateNode(input: types.UpdateNodeInput, options: any): async.Operation<types.UpdateNodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateNode, input, options) as async.Operation<types.UpdateNodeOutput>
+function C:updateNode(input: types.UpdateNodeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNode as schema.OperationSchema, input, options) as async.Operation<types.UpdateNodeOutput>
 end
 
-function C:updateNodeState(input: types.UpdateNodeStateInput, options: any): async.Operation<types.UpdateNodeStateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateNodeState, input, options) as async.Operation<types.UpdateNodeStateOutput>
+function C:updateNodeState(input: types.UpdateNodeStateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNodeStateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNodeState as schema.OperationSchema, input, options) as async.Operation<types.UpdateNodeStateOutput>
 end
 
-function C:updateReservation(input: types.UpdateReservationInput, options: any): async.Operation<types.UpdateReservationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateReservation, input, options) as async.Operation<types.UpdateReservationOutput>
+function C:updateReservation(input: types.UpdateReservationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateReservationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateReservation as schema.OperationSchema, input, options) as async.Operation<types.UpdateReservationOutput>
 end
 
-function C:updateSdiSource(input: types.UpdateSdiSourceInput, options: any): async.Operation<types.UpdateSdiSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSdiSource, input, options) as async.Operation<types.UpdateSdiSourceOutput>
+function C:updateSdiSource(input: types.UpdateSdiSourceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSdiSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSdiSource as schema.OperationSchema, input, options) as async.Operation<types.UpdateSdiSourceOutput>
 end
 
 return M

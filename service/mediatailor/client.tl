@@ -8,87 +8,90 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("mediatailor.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("mediatailor.schemas")
 local traits = require("smithy.traits")
 local types = require("mediatailor.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    configureLogsForChannel: function(Client, types.ConfigureLogsForChannelInput, any): async.Operation<types.ConfigureLogsForChannelOutput>
-    configureLogsForPlaybackConfiguration: function(Client, types.ConfigureLogsForPlaybackConfigurationInput, any): async.Operation<types.ConfigureLogsForPlaybackConfigurationOutput>
-    createChannel: function(Client, types.CreateChannelInput, any): async.Operation<types.CreateChannelOutput>
-    createLiveSource: function(Client, types.CreateLiveSourceInput, any): async.Operation<types.CreateLiveSourceOutput>
-    createPrefetchSchedule: function(Client, types.CreatePrefetchScheduleInput, any): async.Operation<types.CreatePrefetchScheduleOutput>
-    createProgram: function(Client, types.CreateProgramInput, any): async.Operation<types.CreateProgramOutput>
-    createSourceLocation: function(Client, types.CreateSourceLocationInput, any): async.Operation<types.CreateSourceLocationOutput>
-    createVodSource: function(Client, types.CreateVodSourceInput, any): async.Operation<types.CreateVodSourceOutput>
-    deleteChannel: function(Client, types.DeleteChannelInput, any): async.Operation<types.DeleteChannelOutput>
-    deleteChannelPolicy: function(Client, types.DeleteChannelPolicyInput, any): async.Operation<types.DeleteChannelPolicyOutput>
-    deleteFunction: function(Client, types.DeleteFunctionInput, any): async.Operation<types.DeleteFunctionOutput>
-    deleteLiveSource: function(Client, types.DeleteLiveSourceInput, any): async.Operation<types.DeleteLiveSourceOutput>
-    deletePlaybackConfiguration: function(Client, types.DeletePlaybackConfigurationInput, any): async.Operation<types.DeletePlaybackConfigurationOutput>
-    deletePrefetchSchedule: function(Client, types.DeletePrefetchScheduleInput, any): async.Operation<types.DeletePrefetchScheduleOutput>
-    deleteProgram: function(Client, types.DeleteProgramInput, any): async.Operation<types.DeleteProgramOutput>
-    deleteSourceLocation: function(Client, types.DeleteSourceLocationInput, any): async.Operation<types.DeleteSourceLocationOutput>
-    deleteVodSource: function(Client, types.DeleteVodSourceInput, any): async.Operation<types.DeleteVodSourceOutput>
-    describeChannel: function(Client, types.DescribeChannelInput, any): async.Operation<types.DescribeChannelOutput>
-    describeLiveSource: function(Client, types.DescribeLiveSourceInput, any): async.Operation<types.DescribeLiveSourceOutput>
-    describeProgram: function(Client, types.DescribeProgramInput, any): async.Operation<types.DescribeProgramOutput>
-    describeSourceLocation: function(Client, types.DescribeSourceLocationInput, any): async.Operation<types.DescribeSourceLocationOutput>
-    describeVodSource: function(Client, types.DescribeVodSourceInput, any): async.Operation<types.DescribeVodSourceOutput>
-    getChannelPolicy: function(Client, types.GetChannelPolicyInput, any): async.Operation<types.GetChannelPolicyOutput>
-    getChannelSchedule: function(Client, types.GetChannelScheduleInput, any): async.Operation<types.GetChannelScheduleOutput>
-    getFunction: function(Client, types.GetFunctionInput, any): async.Operation<types.GetFunctionOutput>
-    getPlaybackConfiguration: function(Client, types.GetPlaybackConfigurationInput, any): async.Operation<types.GetPlaybackConfigurationOutput>
-    getPrefetchSchedule: function(Client, types.GetPrefetchScheduleInput, any): async.Operation<types.GetPrefetchScheduleOutput>
-    listAlerts: function(Client, types.ListAlertsInput, any): async.Operation<types.ListAlertsOutput>
-    listChannels: function(Client, types.ListChannelsInput, any): async.Operation<types.ListChannelsOutput>
-    listFunctions: function(Client, types.ListFunctionsInput, any): async.Operation<types.ListFunctionsOutput>
-    listLiveSources: function(Client, types.ListLiveSourcesInput, any): async.Operation<types.ListLiveSourcesOutput>
-    listPlaybackConfigurations: function(Client, types.ListPlaybackConfigurationsInput, any): async.Operation<types.ListPlaybackConfigurationsOutput>
-    listPrefetchSchedules: function(Client, types.ListPrefetchSchedulesInput, any): async.Operation<types.ListPrefetchSchedulesOutput>
-    listSourceLocations: function(Client, types.ListSourceLocationsInput, any): async.Operation<types.ListSourceLocationsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listVodSources: function(Client, types.ListVodSourcesInput, any): async.Operation<types.ListVodSourcesOutput>
-    putChannelPolicy: function(Client, types.PutChannelPolicyInput, any): async.Operation<types.PutChannelPolicyOutput>
-    putFunction: function(Client, types.PutFunctionInput, any): async.Operation<types.PutFunctionOutput>
-    putPlaybackConfiguration: function(Client, types.PutPlaybackConfigurationInput, any): async.Operation<types.PutPlaybackConfigurationOutput>
-    startChannel: function(Client, types.StartChannelInput, any): async.Operation<types.StartChannelOutput>
-    stopChannel: function(Client, types.StopChannelInput, any): async.Operation<types.StopChannelOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateChannel: function(Client, types.UpdateChannelInput, any): async.Operation<types.UpdateChannelOutput>
-    updateLiveSource: function(Client, types.UpdateLiveSourceInput, any): async.Operation<types.UpdateLiveSourceOutput>
-    updateProgram: function(Client, types.UpdateProgramInput, any): async.Operation<types.UpdateProgramOutput>
-    updateSourceLocation: function(Client, types.UpdateSourceLocationInput, any): async.Operation<types.UpdateSourceLocationOutput>
-    updateVodSource: function(Client, types.UpdateVodSourceInput, any): async.Operation<types.UpdateVodSourceOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    configureLogsForChannel: function(Client, types.ConfigureLogsForChannelInput, ? base_client.InvokeOptions): async.Operation<types.ConfigureLogsForChannelOutput>
+    configureLogsForPlaybackConfiguration: function(Client, types.ConfigureLogsForPlaybackConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.ConfigureLogsForPlaybackConfigurationOutput>
+    createChannel: function(Client, types.CreateChannelInput, ? base_client.InvokeOptions): async.Operation<types.CreateChannelOutput>
+    createLiveSource: function(Client, types.CreateLiveSourceInput, ? base_client.InvokeOptions): async.Operation<types.CreateLiveSourceOutput>
+    createPrefetchSchedule: function(Client, types.CreatePrefetchScheduleInput, ? base_client.InvokeOptions): async.Operation<types.CreatePrefetchScheduleOutput>
+    createProgram: function(Client, types.CreateProgramInput, ? base_client.InvokeOptions): async.Operation<types.CreateProgramOutput>
+    createSourceLocation: function(Client, types.CreateSourceLocationInput, ? base_client.InvokeOptions): async.Operation<types.CreateSourceLocationOutput>
+    createVodSource: function(Client, types.CreateVodSourceInput, ? base_client.InvokeOptions): async.Operation<types.CreateVodSourceOutput>
+    deleteChannel: function(Client, types.DeleteChannelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteChannelOutput>
+    deleteChannelPolicy: function(Client, types.DeleteChannelPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteChannelPolicyOutput>
+    deleteFunction: function(Client, types.DeleteFunctionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFunctionOutput>
+    deleteLiveSource: function(Client, types.DeleteLiveSourceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLiveSourceOutput>
+    deletePlaybackConfiguration: function(Client, types.DeletePlaybackConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeletePlaybackConfigurationOutput>
+    deletePrefetchSchedule: function(Client, types.DeletePrefetchScheduleInput, ? base_client.InvokeOptions): async.Operation<types.DeletePrefetchScheduleOutput>
+    deleteProgram: function(Client, types.DeleteProgramInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProgramOutput>
+    deleteSourceLocation: function(Client, types.DeleteSourceLocationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSourceLocationOutput>
+    deleteVodSource: function(Client, types.DeleteVodSourceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVodSourceOutput>
+    describeChannel: function(Client, types.DescribeChannelInput, ? base_client.InvokeOptions): async.Operation<types.DescribeChannelOutput>
+    describeLiveSource: function(Client, types.DescribeLiveSourceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLiveSourceOutput>
+    describeProgram: function(Client, types.DescribeProgramInput, ? base_client.InvokeOptions): async.Operation<types.DescribeProgramOutput>
+    describeSourceLocation: function(Client, types.DescribeSourceLocationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSourceLocationOutput>
+    describeVodSource: function(Client, types.DescribeVodSourceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVodSourceOutput>
+    getChannelPolicy: function(Client, types.GetChannelPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetChannelPolicyOutput>
+    getChannelSchedule: function(Client, types.GetChannelScheduleInput, ? base_client.InvokeOptions): async.Operation<types.GetChannelScheduleOutput>
+    getFunction: function(Client, types.GetFunctionInput, ? base_client.InvokeOptions): async.Operation<types.GetFunctionOutput>
+    getPlaybackConfiguration: function(Client, types.GetPlaybackConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetPlaybackConfigurationOutput>
+    getPrefetchSchedule: function(Client, types.GetPrefetchScheduleInput, ? base_client.InvokeOptions): async.Operation<types.GetPrefetchScheduleOutput>
+    listAlerts: function(Client, types.ListAlertsInput, ? base_client.InvokeOptions): async.Operation<types.ListAlertsOutput>
+    listChannels: function(Client, types.ListChannelsInput, ? base_client.InvokeOptions): async.Operation<types.ListChannelsOutput>
+    listFunctions: function(Client, types.ListFunctionsInput, ? base_client.InvokeOptions): async.Operation<types.ListFunctionsOutput>
+    listLiveSources: function(Client, types.ListLiveSourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListLiveSourcesOutput>
+    listPlaybackConfigurations: function(Client, types.ListPlaybackConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListPlaybackConfigurationsOutput>
+    listPrefetchSchedules: function(Client, types.ListPrefetchSchedulesInput, ? base_client.InvokeOptions): async.Operation<types.ListPrefetchSchedulesOutput>
+    listSourceLocations: function(Client, types.ListSourceLocationsInput, ? base_client.InvokeOptions): async.Operation<types.ListSourceLocationsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listVodSources: function(Client, types.ListVodSourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListVodSourcesOutput>
+    putChannelPolicy: function(Client, types.PutChannelPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutChannelPolicyOutput>
+    putFunction: function(Client, types.PutFunctionInput, ? base_client.InvokeOptions): async.Operation<types.PutFunctionOutput>
+    putPlaybackConfiguration: function(Client, types.PutPlaybackConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutPlaybackConfigurationOutput>
+    startChannel: function(Client, types.StartChannelInput, ? base_client.InvokeOptions): async.Operation<types.StartChannelOutput>
+    stopChannel: function(Client, types.StopChannelInput, ? base_client.InvokeOptions): async.Operation<types.StopChannelOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateChannel: function(Client, types.UpdateChannelInput, ? base_client.InvokeOptions): async.Operation<types.UpdateChannelOutput>
+    updateLiveSource: function(Client, types.UpdateLiveSourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLiveSourceOutput>
+    updateProgram: function(Client, types.UpdateProgramInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProgramOutput>
+    updateSourceLocation: function(Client, types.UpdateSourceLocationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSourceLocationOutput>
+    updateVodSource: function(Client, types.UpdateVodSourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateVodSourceOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "MediaTailor"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "mediatailor", signing_region = c.region } }
                 else
@@ -107,196 +110,196 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:configureLogsForChannel(input: types.ConfigureLogsForChannelInput, options: any): async.Operation<types.ConfigureLogsForChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.ConfigureLogsForChannel, input, options) as async.Operation<types.ConfigureLogsForChannelOutput>
+function C:configureLogsForChannel(input: types.ConfigureLogsForChannelInput, options?: base_client.InvokeOptions): async.Operation<types.ConfigureLogsForChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ConfigureLogsForChannel as schema.OperationSchema, input, options) as async.Operation<types.ConfigureLogsForChannelOutput>
 end
 
-function C:configureLogsForPlaybackConfiguration(input: types.ConfigureLogsForPlaybackConfigurationInput, options: any): async.Operation<types.ConfigureLogsForPlaybackConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ConfigureLogsForPlaybackConfiguration, input, options) as async.Operation<types.ConfigureLogsForPlaybackConfigurationOutput>
+function C:configureLogsForPlaybackConfiguration(input: types.ConfigureLogsForPlaybackConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.ConfigureLogsForPlaybackConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ConfigureLogsForPlaybackConfiguration as schema.OperationSchema, input, options) as async.Operation<types.ConfigureLogsForPlaybackConfigurationOutput>
 end
 
-function C:createChannel(input: types.CreateChannelInput, options: any): async.Operation<types.CreateChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateChannel, input, options) as async.Operation<types.CreateChannelOutput>
+function C:createChannel(input: types.CreateChannelInput, options?: base_client.InvokeOptions): async.Operation<types.CreateChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateChannel as schema.OperationSchema, input, options) as async.Operation<types.CreateChannelOutput>
 end
 
-function C:createLiveSource(input: types.CreateLiveSourceInput, options: any): async.Operation<types.CreateLiveSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLiveSource, input, options) as async.Operation<types.CreateLiveSourceOutput>
+function C:createLiveSource(input: types.CreateLiveSourceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLiveSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLiveSource as schema.OperationSchema, input, options) as async.Operation<types.CreateLiveSourceOutput>
 end
 
-function C:createPrefetchSchedule(input: types.CreatePrefetchScheduleInput, options: any): async.Operation<types.CreatePrefetchScheduleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePrefetchSchedule, input, options) as async.Operation<types.CreatePrefetchScheduleOutput>
+function C:createPrefetchSchedule(input: types.CreatePrefetchScheduleInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePrefetchScheduleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePrefetchSchedule as schema.OperationSchema, input, options) as async.Operation<types.CreatePrefetchScheduleOutput>
 end
 
-function C:createProgram(input: types.CreateProgramInput, options: any): async.Operation<types.CreateProgramOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProgram, input, options) as async.Operation<types.CreateProgramOutput>
+function C:createProgram(input: types.CreateProgramInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProgramOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProgram as schema.OperationSchema, input, options) as async.Operation<types.CreateProgramOutput>
 end
 
-function C:createSourceLocation(input: types.CreateSourceLocationInput, options: any): async.Operation<types.CreateSourceLocationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSourceLocation, input, options) as async.Operation<types.CreateSourceLocationOutput>
+function C:createSourceLocation(input: types.CreateSourceLocationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSourceLocationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSourceLocation as schema.OperationSchema, input, options) as async.Operation<types.CreateSourceLocationOutput>
 end
 
-function C:createVodSource(input: types.CreateVodSourceInput, options: any): async.Operation<types.CreateVodSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVodSource, input, options) as async.Operation<types.CreateVodSourceOutput>
+function C:createVodSource(input: types.CreateVodSourceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVodSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVodSource as schema.OperationSchema, input, options) as async.Operation<types.CreateVodSourceOutput>
 end
 
-function C:deleteChannel(input: types.DeleteChannelInput, options: any): async.Operation<types.DeleteChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteChannel, input, options) as async.Operation<types.DeleteChannelOutput>
+function C:deleteChannel(input: types.DeleteChannelInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteChannel as schema.OperationSchema, input, options) as async.Operation<types.DeleteChannelOutput>
 end
 
-function C:deleteChannelPolicy(input: types.DeleteChannelPolicyInput, options: any): async.Operation<types.DeleteChannelPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteChannelPolicy, input, options) as async.Operation<types.DeleteChannelPolicyOutput>
+function C:deleteChannelPolicy(input: types.DeleteChannelPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteChannelPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteChannelPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteChannelPolicyOutput>
 end
 
-function C:deleteFunction(input: types.DeleteFunctionInput, options: any): async.Operation<types.DeleteFunctionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFunction, input, options) as async.Operation<types.DeleteFunctionOutput>
+function C:deleteFunction(input: types.DeleteFunctionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFunctionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFunction as schema.OperationSchema, input, options) as async.Operation<types.DeleteFunctionOutput>
 end
 
-function C:deleteLiveSource(input: types.DeleteLiveSourceInput, options: any): async.Operation<types.DeleteLiveSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLiveSource, input, options) as async.Operation<types.DeleteLiveSourceOutput>
+function C:deleteLiveSource(input: types.DeleteLiveSourceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLiveSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLiveSource as schema.OperationSchema, input, options) as async.Operation<types.DeleteLiveSourceOutput>
 end
 
-function C:deletePlaybackConfiguration(input: types.DeletePlaybackConfigurationInput, options: any): async.Operation<types.DeletePlaybackConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePlaybackConfiguration, input, options) as async.Operation<types.DeletePlaybackConfigurationOutput>
+function C:deletePlaybackConfiguration(input: types.DeletePlaybackConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePlaybackConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePlaybackConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeletePlaybackConfigurationOutput>
 end
 
-function C:deletePrefetchSchedule(input: types.DeletePrefetchScheduleInput, options: any): async.Operation<types.DeletePrefetchScheduleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePrefetchSchedule, input, options) as async.Operation<types.DeletePrefetchScheduleOutput>
+function C:deletePrefetchSchedule(input: types.DeletePrefetchScheduleInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePrefetchScheduleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePrefetchSchedule as schema.OperationSchema, input, options) as async.Operation<types.DeletePrefetchScheduleOutput>
 end
 
-function C:deleteProgram(input: types.DeleteProgramInput, options: any): async.Operation<types.DeleteProgramOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProgram, input, options) as async.Operation<types.DeleteProgramOutput>
+function C:deleteProgram(input: types.DeleteProgramInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProgramOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProgram as schema.OperationSchema, input, options) as async.Operation<types.DeleteProgramOutput>
 end
 
-function C:deleteSourceLocation(input: types.DeleteSourceLocationInput, options: any): async.Operation<types.DeleteSourceLocationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSourceLocation, input, options) as async.Operation<types.DeleteSourceLocationOutput>
+function C:deleteSourceLocation(input: types.DeleteSourceLocationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSourceLocationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSourceLocation as schema.OperationSchema, input, options) as async.Operation<types.DeleteSourceLocationOutput>
 end
 
-function C:deleteVodSource(input: types.DeleteVodSourceInput, options: any): async.Operation<types.DeleteVodSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVodSource, input, options) as async.Operation<types.DeleteVodSourceOutput>
+function C:deleteVodSource(input: types.DeleteVodSourceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVodSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVodSource as schema.OperationSchema, input, options) as async.Operation<types.DeleteVodSourceOutput>
 end
 
-function C:describeChannel(input: types.DescribeChannelInput, options: any): async.Operation<types.DescribeChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeChannel, input, options) as async.Operation<types.DescribeChannelOutput>
+function C:describeChannel(input: types.DescribeChannelInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeChannel as schema.OperationSchema, input, options) as async.Operation<types.DescribeChannelOutput>
 end
 
-function C:describeLiveSource(input: types.DescribeLiveSourceInput, options: any): async.Operation<types.DescribeLiveSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLiveSource, input, options) as async.Operation<types.DescribeLiveSourceOutput>
+function C:describeLiveSource(input: types.DescribeLiveSourceInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLiveSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLiveSource as schema.OperationSchema, input, options) as async.Operation<types.DescribeLiveSourceOutput>
 end
 
-function C:describeProgram(input: types.DescribeProgramInput, options: any): async.Operation<types.DescribeProgramOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeProgram, input, options) as async.Operation<types.DescribeProgramOutput>
+function C:describeProgram(input: types.DescribeProgramInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeProgramOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeProgram as schema.OperationSchema, input, options) as async.Operation<types.DescribeProgramOutput>
 end
 
-function C:describeSourceLocation(input: types.DescribeSourceLocationInput, options: any): async.Operation<types.DescribeSourceLocationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSourceLocation, input, options) as async.Operation<types.DescribeSourceLocationOutput>
+function C:describeSourceLocation(input: types.DescribeSourceLocationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSourceLocationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSourceLocation as schema.OperationSchema, input, options) as async.Operation<types.DescribeSourceLocationOutput>
 end
 
-function C:describeVodSource(input: types.DescribeVodSourceInput, options: any): async.Operation<types.DescribeVodSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVodSource, input, options) as async.Operation<types.DescribeVodSourceOutput>
+function C:describeVodSource(input: types.DescribeVodSourceInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVodSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVodSource as schema.OperationSchema, input, options) as async.Operation<types.DescribeVodSourceOutput>
 end
 
-function C:getChannelPolicy(input: types.GetChannelPolicyInput, options: any): async.Operation<types.GetChannelPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetChannelPolicy, input, options) as async.Operation<types.GetChannelPolicyOutput>
+function C:getChannelPolicy(input: types.GetChannelPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetChannelPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetChannelPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetChannelPolicyOutput>
 end
 
-function C:getChannelSchedule(input: types.GetChannelScheduleInput, options: any): async.Operation<types.GetChannelScheduleOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetChannelSchedule, input, options) as async.Operation<types.GetChannelScheduleOutput>
+function C:getChannelSchedule(input: types.GetChannelScheduleInput, options?: base_client.InvokeOptions): async.Operation<types.GetChannelScheduleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetChannelSchedule as schema.OperationSchema, input, options) as async.Operation<types.GetChannelScheduleOutput>
 end
 
-function C:getFunction(input: types.GetFunctionInput, options: any): async.Operation<types.GetFunctionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetFunction, input, options) as async.Operation<types.GetFunctionOutput>
+function C:getFunction(input: types.GetFunctionInput, options?: base_client.InvokeOptions): async.Operation<types.GetFunctionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFunction as schema.OperationSchema, input, options) as async.Operation<types.GetFunctionOutput>
 end
 
-function C:getPlaybackConfiguration(input: types.GetPlaybackConfigurationInput, options: any): async.Operation<types.GetPlaybackConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPlaybackConfiguration, input, options) as async.Operation<types.GetPlaybackConfigurationOutput>
+function C:getPlaybackConfiguration(input: types.GetPlaybackConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetPlaybackConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPlaybackConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetPlaybackConfigurationOutput>
 end
 
-function C:getPrefetchSchedule(input: types.GetPrefetchScheduleInput, options: any): async.Operation<types.GetPrefetchScheduleOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPrefetchSchedule, input, options) as async.Operation<types.GetPrefetchScheduleOutput>
+function C:getPrefetchSchedule(input: types.GetPrefetchScheduleInput, options?: base_client.InvokeOptions): async.Operation<types.GetPrefetchScheduleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPrefetchSchedule as schema.OperationSchema, input, options) as async.Operation<types.GetPrefetchScheduleOutput>
 end
 
-function C:listAlerts(input: types.ListAlertsInput, options: any): async.Operation<types.ListAlertsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAlerts, input, options) as async.Operation<types.ListAlertsOutput>
+function C:listAlerts(input: types.ListAlertsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAlertsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAlerts as schema.OperationSchema, input, options) as async.Operation<types.ListAlertsOutput>
 end
 
-function C:listChannels(input: types.ListChannelsInput, options: any): async.Operation<types.ListChannelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListChannels, input, options) as async.Operation<types.ListChannelsOutput>
+function C:listChannels(input: types.ListChannelsInput, options?: base_client.InvokeOptions): async.Operation<types.ListChannelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListChannels as schema.OperationSchema, input, options) as async.Operation<types.ListChannelsOutput>
 end
 
-function C:listFunctions(input: types.ListFunctionsInput, options: any): async.Operation<types.ListFunctionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFunctions, input, options) as async.Operation<types.ListFunctionsOutput>
+function C:listFunctions(input: types.ListFunctionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFunctionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFunctions as schema.OperationSchema, input, options) as async.Operation<types.ListFunctionsOutput>
 end
 
-function C:listLiveSources(input: types.ListLiveSourcesInput, options: any): async.Operation<types.ListLiveSourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLiveSources, input, options) as async.Operation<types.ListLiveSourcesOutput>
+function C:listLiveSources(input: types.ListLiveSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListLiveSourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLiveSources as schema.OperationSchema, input, options) as async.Operation<types.ListLiveSourcesOutput>
 end
 
-function C:listPlaybackConfigurations(input: types.ListPlaybackConfigurationsInput, options: any): async.Operation<types.ListPlaybackConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPlaybackConfigurations, input, options) as async.Operation<types.ListPlaybackConfigurationsOutput>
+function C:listPlaybackConfigurations(input: types.ListPlaybackConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPlaybackConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPlaybackConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListPlaybackConfigurationsOutput>
 end
 
-function C:listPrefetchSchedules(input: types.ListPrefetchSchedulesInput, options: any): async.Operation<types.ListPrefetchSchedulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPrefetchSchedules, input, options) as async.Operation<types.ListPrefetchSchedulesOutput>
+function C:listPrefetchSchedules(input: types.ListPrefetchSchedulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListPrefetchSchedulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPrefetchSchedules as schema.OperationSchema, input, options) as async.Operation<types.ListPrefetchSchedulesOutput>
 end
 
-function C:listSourceLocations(input: types.ListSourceLocationsInput, options: any): async.Operation<types.ListSourceLocationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSourceLocations, input, options) as async.Operation<types.ListSourceLocationsOutput>
+function C:listSourceLocations(input: types.ListSourceLocationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSourceLocationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSourceLocations as schema.OperationSchema, input, options) as async.Operation<types.ListSourceLocationsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listVodSources(input: types.ListVodSourcesInput, options: any): async.Operation<types.ListVodSourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVodSources, input, options) as async.Operation<types.ListVodSourcesOutput>
+function C:listVodSources(input: types.ListVodSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListVodSourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVodSources as schema.OperationSchema, input, options) as async.Operation<types.ListVodSourcesOutput>
 end
 
-function C:putChannelPolicy(input: types.PutChannelPolicyInput, options: any): async.Operation<types.PutChannelPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutChannelPolicy, input, options) as async.Operation<types.PutChannelPolicyOutput>
+function C:putChannelPolicy(input: types.PutChannelPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutChannelPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutChannelPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutChannelPolicyOutput>
 end
 
-function C:putFunction(input: types.PutFunctionInput, options: any): async.Operation<types.PutFunctionOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutFunction, input, options) as async.Operation<types.PutFunctionOutput>
+function C:putFunction(input: types.PutFunctionInput, options?: base_client.InvokeOptions): async.Operation<types.PutFunctionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutFunction as schema.OperationSchema, input, options) as async.Operation<types.PutFunctionOutput>
 end
 
-function C:putPlaybackConfiguration(input: types.PutPlaybackConfigurationInput, options: any): async.Operation<types.PutPlaybackConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutPlaybackConfiguration, input, options) as async.Operation<types.PutPlaybackConfigurationOutput>
+function C:putPlaybackConfiguration(input: types.PutPlaybackConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutPlaybackConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutPlaybackConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutPlaybackConfigurationOutput>
 end
 
-function C:startChannel(input: types.StartChannelInput, options: any): async.Operation<types.StartChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartChannel, input, options) as async.Operation<types.StartChannelOutput>
+function C:startChannel(input: types.StartChannelInput, options?: base_client.InvokeOptions): async.Operation<types.StartChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartChannel as schema.OperationSchema, input, options) as async.Operation<types.StartChannelOutput>
 end
 
-function C:stopChannel(input: types.StopChannelInput, options: any): async.Operation<types.StopChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopChannel, input, options) as async.Operation<types.StopChannelOutput>
+function C:stopChannel(input: types.StopChannelInput, options?: base_client.InvokeOptions): async.Operation<types.StopChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopChannel as schema.OperationSchema, input, options) as async.Operation<types.StopChannelOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateChannel(input: types.UpdateChannelInput, options: any): async.Operation<types.UpdateChannelOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateChannel, input, options) as async.Operation<types.UpdateChannelOutput>
+function C:updateChannel(input: types.UpdateChannelInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateChannel as schema.OperationSchema, input, options) as async.Operation<types.UpdateChannelOutput>
 end
 
-function C:updateLiveSource(input: types.UpdateLiveSourceInput, options: any): async.Operation<types.UpdateLiveSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLiveSource, input, options) as async.Operation<types.UpdateLiveSourceOutput>
+function C:updateLiveSource(input: types.UpdateLiveSourceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLiveSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLiveSource as schema.OperationSchema, input, options) as async.Operation<types.UpdateLiveSourceOutput>
 end
 
-function C:updateProgram(input: types.UpdateProgramInput, options: any): async.Operation<types.UpdateProgramOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProgram, input, options) as async.Operation<types.UpdateProgramOutput>
+function C:updateProgram(input: types.UpdateProgramInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProgramOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProgram as schema.OperationSchema, input, options) as async.Operation<types.UpdateProgramOutput>
 end
 
-function C:updateSourceLocation(input: types.UpdateSourceLocationInput, options: any): async.Operation<types.UpdateSourceLocationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSourceLocation, input, options) as async.Operation<types.UpdateSourceLocationOutput>
+function C:updateSourceLocation(input: types.UpdateSourceLocationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSourceLocationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSourceLocation as schema.OperationSchema, input, options) as async.Operation<types.UpdateSourceLocationOutput>
 end
 
-function C:updateVodSource(input: types.UpdateVodSourceInput, options: any): async.Operation<types.UpdateVodSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateVodSource, input, options) as async.Operation<types.UpdateVodSourceOutput>
+function C:updateVodSource(input: types.UpdateVodSourceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateVodSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateVodSource as schema.OperationSchema, input, options) as async.Operation<types.UpdateVodSourceOutput>
 end
 
 return M

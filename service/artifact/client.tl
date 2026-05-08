@@ -8,47 +8,50 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("artifact.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("artifact.schemas")
 local traits = require("smithy.traits")
 local types = require("artifact.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    getAccountSettings: function(Client, types.GetAccountSettingsInput, any): async.Operation<types.GetAccountSettingsOutput>
-    getReport: function(Client, types.GetReportInput, any): async.Operation<types.GetReportOutput>
-    getReportMetadata: function(Client, types.GetReportMetadataInput, any): async.Operation<types.GetReportMetadataOutput>
-    getTermForReport: function(Client, types.GetTermForReportInput, any): async.Operation<types.GetTermForReportOutput>
-    listCustomerAgreements: function(Client, types.ListCustomerAgreementsInput, any): async.Operation<types.ListCustomerAgreementsOutput>
-    listReports: function(Client, types.ListReportsInput, any): async.Operation<types.ListReportsOutput>
-    listReportVersions: function(Client, types.ListReportVersionsInput, any): async.Operation<types.ListReportVersionsOutput>
-    putAccountSettings: function(Client, types.PutAccountSettingsInput, any): async.Operation<types.PutAccountSettingsOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    getAccountSettings: function(Client, types.GetAccountSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountSettingsOutput>
+    getReport: function(Client, types.GetReportInput, ? base_client.InvokeOptions): async.Operation<types.GetReportOutput>
+    getReportMetadata: function(Client, types.GetReportMetadataInput, ? base_client.InvokeOptions): async.Operation<types.GetReportMetadataOutput>
+    getTermForReport: function(Client, types.GetTermForReportInput, ? base_client.InvokeOptions): async.Operation<types.GetTermForReportOutput>
+    listCustomerAgreements: function(Client, types.ListCustomerAgreementsInput, ? base_client.InvokeOptions): async.Operation<types.ListCustomerAgreementsOutput>
+    listReports: function(Client, types.ListReportsInput, ? base_client.InvokeOptions): async.Operation<types.ListReportsOutput>
+    listReportVersions: function(Client, types.ListReportVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListReportVersionsOutput>
+    putAccountSettings: function(Client, types.PutAccountSettingsInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountSettingsOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "Artifact"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "artifact", signing_region = c.region } }
                 else
@@ -67,36 +70,36 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:getAccountSettings(input: types.GetAccountSettingsInput, options: any): async.Operation<types.GetAccountSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccountSettings, input, options) as async.Operation<types.GetAccountSettingsOutput>
+function C:getAccountSettings(input: types.GetAccountSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccountSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccountSettings as schema.OperationSchema, input, options) as async.Operation<types.GetAccountSettingsOutput>
 end
 
-function C:getReport(input: types.GetReportInput, options: any): async.Operation<types.GetReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReport, input, options) as async.Operation<types.GetReportOutput>
+function C:getReport(input: types.GetReportInput, options?: base_client.InvokeOptions): async.Operation<types.GetReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReport as schema.OperationSchema, input, options) as async.Operation<types.GetReportOutput>
 end
 
-function C:getReportMetadata(input: types.GetReportMetadataInput, options: any): async.Operation<types.GetReportMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReportMetadata, input, options) as async.Operation<types.GetReportMetadataOutput>
+function C:getReportMetadata(input: types.GetReportMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.GetReportMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReportMetadata as schema.OperationSchema, input, options) as async.Operation<types.GetReportMetadataOutput>
 end
 
-function C:getTermForReport(input: types.GetTermForReportInput, options: any): async.Operation<types.GetTermForReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTermForReport, input, options) as async.Operation<types.GetTermForReportOutput>
+function C:getTermForReport(input: types.GetTermForReportInput, options?: base_client.InvokeOptions): async.Operation<types.GetTermForReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTermForReport as schema.OperationSchema, input, options) as async.Operation<types.GetTermForReportOutput>
 end
 
-function C:listCustomerAgreements(input: types.ListCustomerAgreementsInput, options: any): async.Operation<types.ListCustomerAgreementsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCustomerAgreements, input, options) as async.Operation<types.ListCustomerAgreementsOutput>
+function C:listCustomerAgreements(input: types.ListCustomerAgreementsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCustomerAgreementsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCustomerAgreements as schema.OperationSchema, input, options) as async.Operation<types.ListCustomerAgreementsOutput>
 end
 
-function C:listReports(input: types.ListReportsInput, options: any): async.Operation<types.ListReportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReports, input, options) as async.Operation<types.ListReportsOutput>
+function C:listReports(input: types.ListReportsInput, options?: base_client.InvokeOptions): async.Operation<types.ListReportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReports as schema.OperationSchema, input, options) as async.Operation<types.ListReportsOutput>
 end
 
-function C:listReportVersions(input: types.ListReportVersionsInput, options: any): async.Operation<types.ListReportVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReportVersions, input, options) as async.Operation<types.ListReportVersionsOutput>
+function C:listReportVersions(input: types.ListReportVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListReportVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReportVersions as schema.OperationSchema, input, options) as async.Operation<types.ListReportVersionsOutput>
 end
 
-function C:putAccountSettings(input: types.PutAccountSettingsInput, options: any): async.Operation<types.PutAccountSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAccountSettings, input, options) as async.Operation<types.PutAccountSettingsOutput>
+function C:putAccountSettings(input: types.PutAccountSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.PutAccountSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAccountSettings as schema.OperationSchema, input, options) as async.Operation<types.PutAccountSettingsOutput>
 end
 
 return M

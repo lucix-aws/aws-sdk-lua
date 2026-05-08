@@ -8,111 +8,114 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("wellarchitected.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("wellarchitected.schemas")
 local traits = require("smithy.traits")
 local types = require("wellarchitected.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateLenses: function(Client, types.AssociateLensesInput, any): async.Operation<types.AssociateLensesOutput>
-    associateProfiles: function(Client, types.AssociateProfilesInput, any): async.Operation<types.AssociateProfilesOutput>
-    createLensShare: function(Client, types.CreateLensShareInput, any): async.Operation<types.CreateLensShareOutput>
-    createLensVersion: function(Client, types.CreateLensVersionInput, any): async.Operation<types.CreateLensVersionOutput>
-    createMilestone: function(Client, types.CreateMilestoneInput, any): async.Operation<types.CreateMilestoneOutput>
-    createProfile: function(Client, types.CreateProfileInput, any): async.Operation<types.CreateProfileOutput>
-    createProfileShare: function(Client, types.CreateProfileShareInput, any): async.Operation<types.CreateProfileShareOutput>
-    createReviewTemplate: function(Client, types.CreateReviewTemplateInput, any): async.Operation<types.CreateReviewTemplateOutput>
-    createTemplateShare: function(Client, types.CreateTemplateShareInput, any): async.Operation<types.CreateTemplateShareOutput>
-    createWorkload: function(Client, types.CreateWorkloadInput, any): async.Operation<types.CreateWorkloadOutput>
-    createWorkloadShare: function(Client, types.CreateWorkloadShareInput, any): async.Operation<types.CreateWorkloadShareOutput>
-    deleteLens: function(Client, types.DeleteLensInput, any): async.Operation<types.DeleteLensOutput>
-    deleteLensShare: function(Client, types.DeleteLensShareInput, any): async.Operation<types.DeleteLensShareOutput>
-    deleteProfile: function(Client, types.DeleteProfileInput, any): async.Operation<types.DeleteProfileOutput>
-    deleteProfileShare: function(Client, types.DeleteProfileShareInput, any): async.Operation<types.DeleteProfileShareOutput>
-    deleteReviewTemplate: function(Client, types.DeleteReviewTemplateInput, any): async.Operation<types.DeleteReviewTemplateOutput>
-    deleteTemplateShare: function(Client, types.DeleteTemplateShareInput, any): async.Operation<types.DeleteTemplateShareOutput>
-    deleteWorkload: function(Client, types.DeleteWorkloadInput, any): async.Operation<types.DeleteWorkloadOutput>
-    deleteWorkloadShare: function(Client, types.DeleteWorkloadShareInput, any): async.Operation<types.DeleteWorkloadShareOutput>
-    disassociateLenses: function(Client, types.DisassociateLensesInput, any): async.Operation<types.DisassociateLensesOutput>
-    disassociateProfiles: function(Client, types.DisassociateProfilesInput, any): async.Operation<types.DisassociateProfilesOutput>
-    exportLens: function(Client, types.ExportLensInput, any): async.Operation<types.ExportLensOutput>
-    getAnswer: function(Client, types.GetAnswerInput, any): async.Operation<types.GetAnswerOutput>
-    getConsolidatedReport: function(Client, types.GetConsolidatedReportInput, any): async.Operation<types.GetConsolidatedReportOutput>
-    getGlobalSettings: function(Client, types.GetGlobalSettingsInput, any): async.Operation<types.GetGlobalSettingsOutput>
-    getLens: function(Client, types.GetLensInput, any): async.Operation<types.GetLensOutput>
-    getLensReview: function(Client, types.GetLensReviewInput, any): async.Operation<types.GetLensReviewOutput>
-    getLensReviewReport: function(Client, types.GetLensReviewReportInput, any): async.Operation<types.GetLensReviewReportOutput>
-    getLensVersionDifference: function(Client, types.GetLensVersionDifferenceInput, any): async.Operation<types.GetLensVersionDifferenceOutput>
-    getMilestone: function(Client, types.GetMilestoneInput, any): async.Operation<types.GetMilestoneOutput>
-    getProfile: function(Client, types.GetProfileInput, any): async.Operation<types.GetProfileOutput>
-    getProfileTemplate: function(Client, types.GetProfileTemplateInput, any): async.Operation<types.GetProfileTemplateOutput>
-    getReviewTemplate: function(Client, types.GetReviewTemplateInput, any): async.Operation<types.GetReviewTemplateOutput>
-    getReviewTemplateAnswer: function(Client, types.GetReviewTemplateAnswerInput, any): async.Operation<types.GetReviewTemplateAnswerOutput>
-    getReviewTemplateLensReview: function(Client, types.GetReviewTemplateLensReviewInput, any): async.Operation<types.GetReviewTemplateLensReviewOutput>
-    getWorkload: function(Client, types.GetWorkloadInput, any): async.Operation<types.GetWorkloadOutput>
-    importLens: function(Client, types.ImportLensInput, any): async.Operation<types.ImportLensOutput>
-    listAnswers: function(Client, types.ListAnswersInput, any): async.Operation<types.ListAnswersOutput>
-    listCheckDetails: function(Client, types.ListCheckDetailsInput, any): async.Operation<types.ListCheckDetailsOutput>
-    listCheckSummaries: function(Client, types.ListCheckSummariesInput, any): async.Operation<types.ListCheckSummariesOutput>
-    listLenses: function(Client, types.ListLensesInput, any): async.Operation<types.ListLensesOutput>
-    listLensReviewImprovements: function(Client, types.ListLensReviewImprovementsInput, any): async.Operation<types.ListLensReviewImprovementsOutput>
-    listLensReviews: function(Client, types.ListLensReviewsInput, any): async.Operation<types.ListLensReviewsOutput>
-    listLensShares: function(Client, types.ListLensSharesInput, any): async.Operation<types.ListLensSharesOutput>
-    listMilestones: function(Client, types.ListMilestonesInput, any): async.Operation<types.ListMilestonesOutput>
-    listNotifications: function(Client, types.ListNotificationsInput, any): async.Operation<types.ListNotificationsOutput>
-    listProfileNotifications: function(Client, types.ListProfileNotificationsInput, any): async.Operation<types.ListProfileNotificationsOutput>
-    listProfiles: function(Client, types.ListProfilesInput, any): async.Operation<types.ListProfilesOutput>
-    listProfileShares: function(Client, types.ListProfileSharesInput, any): async.Operation<types.ListProfileSharesOutput>
-    listReviewTemplateAnswers: function(Client, types.ListReviewTemplateAnswersInput, any): async.Operation<types.ListReviewTemplateAnswersOutput>
-    listReviewTemplates: function(Client, types.ListReviewTemplatesInput, any): async.Operation<types.ListReviewTemplatesOutput>
-    listShareInvitations: function(Client, types.ListShareInvitationsInput, any): async.Operation<types.ListShareInvitationsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTemplateShares: function(Client, types.ListTemplateSharesInput, any): async.Operation<types.ListTemplateSharesOutput>
-    listWorkloads: function(Client, types.ListWorkloadsInput, any): async.Operation<types.ListWorkloadsOutput>
-    listWorkloadShares: function(Client, types.ListWorkloadSharesInput, any): async.Operation<types.ListWorkloadSharesOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAnswer: function(Client, types.UpdateAnswerInput, any): async.Operation<types.UpdateAnswerOutput>
-    updateGlobalSettings: function(Client, types.UpdateGlobalSettingsInput, any): async.Operation<types.UpdateGlobalSettingsOutput>
-    updateIntegration: function(Client, types.UpdateIntegrationInput, any): async.Operation<types.UpdateIntegrationOutput>
-    updateLensReview: function(Client, types.UpdateLensReviewInput, any): async.Operation<types.UpdateLensReviewOutput>
-    updateProfile: function(Client, types.UpdateProfileInput, any): async.Operation<types.UpdateProfileOutput>
-    updateReviewTemplate: function(Client, types.UpdateReviewTemplateInput, any): async.Operation<types.UpdateReviewTemplateOutput>
-    updateReviewTemplateAnswer: function(Client, types.UpdateReviewTemplateAnswerInput, any): async.Operation<types.UpdateReviewTemplateAnswerOutput>
-    updateReviewTemplateLensReview: function(Client, types.UpdateReviewTemplateLensReviewInput, any): async.Operation<types.UpdateReviewTemplateLensReviewOutput>
-    updateShareInvitation: function(Client, types.UpdateShareInvitationInput, any): async.Operation<types.UpdateShareInvitationOutput>
-    updateWorkload: function(Client, types.UpdateWorkloadInput, any): async.Operation<types.UpdateWorkloadOutput>
-    updateWorkloadShare: function(Client, types.UpdateWorkloadShareInput, any): async.Operation<types.UpdateWorkloadShareOutput>
-    upgradeLensReview: function(Client, types.UpgradeLensReviewInput, any): async.Operation<types.UpgradeLensReviewOutput>
-    upgradeProfileVersion: function(Client, types.UpgradeProfileVersionInput, any): async.Operation<types.UpgradeProfileVersionOutput>
-    upgradeReviewTemplateLensReview: function(Client, types.UpgradeReviewTemplateLensReviewInput, any): async.Operation<types.UpgradeReviewTemplateLensReviewOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateLenses: function(Client, types.AssociateLensesInput, ? base_client.InvokeOptions): async.Operation<types.AssociateLensesOutput>
+    associateProfiles: function(Client, types.AssociateProfilesInput, ? base_client.InvokeOptions): async.Operation<types.AssociateProfilesOutput>
+    createLensShare: function(Client, types.CreateLensShareInput, ? base_client.InvokeOptions): async.Operation<types.CreateLensShareOutput>
+    createLensVersion: function(Client, types.CreateLensVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateLensVersionOutput>
+    createMilestone: function(Client, types.CreateMilestoneInput, ? base_client.InvokeOptions): async.Operation<types.CreateMilestoneOutput>
+    createProfile: function(Client, types.CreateProfileInput, ? base_client.InvokeOptions): async.Operation<types.CreateProfileOutput>
+    createProfileShare: function(Client, types.CreateProfileShareInput, ? base_client.InvokeOptions): async.Operation<types.CreateProfileShareOutput>
+    createReviewTemplate: function(Client, types.CreateReviewTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateReviewTemplateOutput>
+    createTemplateShare: function(Client, types.CreateTemplateShareInput, ? base_client.InvokeOptions): async.Operation<types.CreateTemplateShareOutput>
+    createWorkload: function(Client, types.CreateWorkloadInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkloadOutput>
+    createWorkloadShare: function(Client, types.CreateWorkloadShareInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkloadShareOutput>
+    deleteLens: function(Client, types.DeleteLensInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLensOutput>
+    deleteLensShare: function(Client, types.DeleteLensShareInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLensShareOutput>
+    deleteProfile: function(Client, types.DeleteProfileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProfileOutput>
+    deleteProfileShare: function(Client, types.DeleteProfileShareInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProfileShareOutput>
+    deleteReviewTemplate: function(Client, types.DeleteReviewTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteReviewTemplateOutput>
+    deleteTemplateShare: function(Client, types.DeleteTemplateShareInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTemplateShareOutput>
+    deleteWorkload: function(Client, types.DeleteWorkloadInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWorkloadOutput>
+    deleteWorkloadShare: function(Client, types.DeleteWorkloadShareInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWorkloadShareOutput>
+    disassociateLenses: function(Client, types.DisassociateLensesInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateLensesOutput>
+    disassociateProfiles: function(Client, types.DisassociateProfilesInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateProfilesOutput>
+    exportLens: function(Client, types.ExportLensInput, ? base_client.InvokeOptions): async.Operation<types.ExportLensOutput>
+    getAnswer: function(Client, types.GetAnswerInput, ? base_client.InvokeOptions): async.Operation<types.GetAnswerOutput>
+    getConsolidatedReport: function(Client, types.GetConsolidatedReportInput, ? base_client.InvokeOptions): async.Operation<types.GetConsolidatedReportOutput>
+    getGlobalSettings: function(Client, types.GetGlobalSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetGlobalSettingsOutput>
+    getLens: function(Client, types.GetLensInput, ? base_client.InvokeOptions): async.Operation<types.GetLensOutput>
+    getLensReview: function(Client, types.GetLensReviewInput, ? base_client.InvokeOptions): async.Operation<types.GetLensReviewOutput>
+    getLensReviewReport: function(Client, types.GetLensReviewReportInput, ? base_client.InvokeOptions): async.Operation<types.GetLensReviewReportOutput>
+    getLensVersionDifference: function(Client, types.GetLensVersionDifferenceInput, ? base_client.InvokeOptions): async.Operation<types.GetLensVersionDifferenceOutput>
+    getMilestone: function(Client, types.GetMilestoneInput, ? base_client.InvokeOptions): async.Operation<types.GetMilestoneOutput>
+    getProfile: function(Client, types.GetProfileInput, ? base_client.InvokeOptions): async.Operation<types.GetProfileOutput>
+    getProfileTemplate: function(Client, types.GetProfileTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetProfileTemplateOutput>
+    getReviewTemplate: function(Client, types.GetReviewTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetReviewTemplateOutput>
+    getReviewTemplateAnswer: function(Client, types.GetReviewTemplateAnswerInput, ? base_client.InvokeOptions): async.Operation<types.GetReviewTemplateAnswerOutput>
+    getReviewTemplateLensReview: function(Client, types.GetReviewTemplateLensReviewInput, ? base_client.InvokeOptions): async.Operation<types.GetReviewTemplateLensReviewOutput>
+    getWorkload: function(Client, types.GetWorkloadInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkloadOutput>
+    importLens: function(Client, types.ImportLensInput, ? base_client.InvokeOptions): async.Operation<types.ImportLensOutput>
+    listAnswers: function(Client, types.ListAnswersInput, ? base_client.InvokeOptions): async.Operation<types.ListAnswersOutput>
+    listCheckDetails: function(Client, types.ListCheckDetailsInput, ? base_client.InvokeOptions): async.Operation<types.ListCheckDetailsOutput>
+    listCheckSummaries: function(Client, types.ListCheckSummariesInput, ? base_client.InvokeOptions): async.Operation<types.ListCheckSummariesOutput>
+    listLenses: function(Client, types.ListLensesInput, ? base_client.InvokeOptions): async.Operation<types.ListLensesOutput>
+    listLensReviewImprovements: function(Client, types.ListLensReviewImprovementsInput, ? base_client.InvokeOptions): async.Operation<types.ListLensReviewImprovementsOutput>
+    listLensReviews: function(Client, types.ListLensReviewsInput, ? base_client.InvokeOptions): async.Operation<types.ListLensReviewsOutput>
+    listLensShares: function(Client, types.ListLensSharesInput, ? base_client.InvokeOptions): async.Operation<types.ListLensSharesOutput>
+    listMilestones: function(Client, types.ListMilestonesInput, ? base_client.InvokeOptions): async.Operation<types.ListMilestonesOutput>
+    listNotifications: function(Client, types.ListNotificationsInput, ? base_client.InvokeOptions): async.Operation<types.ListNotificationsOutput>
+    listProfileNotifications: function(Client, types.ListProfileNotificationsInput, ? base_client.InvokeOptions): async.Operation<types.ListProfileNotificationsOutput>
+    listProfiles: function(Client, types.ListProfilesInput, ? base_client.InvokeOptions): async.Operation<types.ListProfilesOutput>
+    listProfileShares: function(Client, types.ListProfileSharesInput, ? base_client.InvokeOptions): async.Operation<types.ListProfileSharesOutput>
+    listReviewTemplateAnswers: function(Client, types.ListReviewTemplateAnswersInput, ? base_client.InvokeOptions): async.Operation<types.ListReviewTemplateAnswersOutput>
+    listReviewTemplates: function(Client, types.ListReviewTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListReviewTemplatesOutput>
+    listShareInvitations: function(Client, types.ListShareInvitationsInput, ? base_client.InvokeOptions): async.Operation<types.ListShareInvitationsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTemplateShares: function(Client, types.ListTemplateSharesInput, ? base_client.InvokeOptions): async.Operation<types.ListTemplateSharesOutput>
+    listWorkloads: function(Client, types.ListWorkloadsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkloadsOutput>
+    listWorkloadShares: function(Client, types.ListWorkloadSharesInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkloadSharesOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAnswer: function(Client, types.UpdateAnswerInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAnswerOutput>
+    updateGlobalSettings: function(Client, types.UpdateGlobalSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGlobalSettingsOutput>
+    updateIntegration: function(Client, types.UpdateIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIntegrationOutput>
+    updateLensReview: function(Client, types.UpdateLensReviewInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLensReviewOutput>
+    updateProfile: function(Client, types.UpdateProfileInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProfileOutput>
+    updateReviewTemplate: function(Client, types.UpdateReviewTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateReviewTemplateOutput>
+    updateReviewTemplateAnswer: function(Client, types.UpdateReviewTemplateAnswerInput, ? base_client.InvokeOptions): async.Operation<types.UpdateReviewTemplateAnswerOutput>
+    updateReviewTemplateLensReview: function(Client, types.UpdateReviewTemplateLensReviewInput, ? base_client.InvokeOptions): async.Operation<types.UpdateReviewTemplateLensReviewOutput>
+    updateShareInvitation: function(Client, types.UpdateShareInvitationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateShareInvitationOutput>
+    updateWorkload: function(Client, types.UpdateWorkloadInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWorkloadOutput>
+    updateWorkloadShare: function(Client, types.UpdateWorkloadShareInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWorkloadShareOutput>
+    upgradeLensReview: function(Client, types.UpgradeLensReviewInput, ? base_client.InvokeOptions): async.Operation<types.UpgradeLensReviewOutput>
+    upgradeProfileVersion: function(Client, types.UpgradeProfileVersionInput, ? base_client.InvokeOptions): async.Operation<types.UpgradeProfileVersionOutput>
+    upgradeReviewTemplateLensReview: function(Client, types.UpgradeReviewTemplateLensReviewInput, ? base_client.InvokeOptions): async.Operation<types.UpgradeReviewTemplateLensReviewOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "WellArchitectedApiServiceLambda"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "wellarchitected", signing_region = c.region } }
                 else
@@ -131,292 +134,292 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateLenses(input: types.AssociateLensesInput, options: any): async.Operation<types.AssociateLensesOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateLenses, input, options) as async.Operation<types.AssociateLensesOutput>
+function C:associateLenses(input: types.AssociateLensesInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateLensesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateLenses as schema.OperationSchema, input, options) as async.Operation<types.AssociateLensesOutput>
 end
 
-function C:associateProfiles(input: types.AssociateProfilesInput, options: any): async.Operation<types.AssociateProfilesOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateProfiles, input, options) as async.Operation<types.AssociateProfilesOutput>
+function C:associateProfiles(input: types.AssociateProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateProfilesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateProfiles as schema.OperationSchema, input, options) as async.Operation<types.AssociateProfilesOutput>
 end
 
-function C:createLensShare(input: types.CreateLensShareInput, options: any): async.Operation<types.CreateLensShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLensShare, input, options) as async.Operation<types.CreateLensShareOutput>
+function C:createLensShare(input: types.CreateLensShareInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLensShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLensShare as schema.OperationSchema, input, options) as async.Operation<types.CreateLensShareOutput>
 end
 
-function C:createLensVersion(input: types.CreateLensVersionInput, options: any): async.Operation<types.CreateLensVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLensVersion, input, options) as async.Operation<types.CreateLensVersionOutput>
+function C:createLensVersion(input: types.CreateLensVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLensVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLensVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateLensVersionOutput>
 end
 
-function C:createMilestone(input: types.CreateMilestoneInput, options: any): async.Operation<types.CreateMilestoneOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMilestone, input, options) as async.Operation<types.CreateMilestoneOutput>
+function C:createMilestone(input: types.CreateMilestoneInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMilestoneOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMilestone as schema.OperationSchema, input, options) as async.Operation<types.CreateMilestoneOutput>
 end
 
-function C:createProfile(input: types.CreateProfileInput, options: any): async.Operation<types.CreateProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProfile, input, options) as async.Operation<types.CreateProfileOutput>
+function C:createProfile(input: types.CreateProfileInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProfile as schema.OperationSchema, input, options) as async.Operation<types.CreateProfileOutput>
 end
 
-function C:createProfileShare(input: types.CreateProfileShareInput, options: any): async.Operation<types.CreateProfileShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProfileShare, input, options) as async.Operation<types.CreateProfileShareOutput>
+function C:createProfileShare(input: types.CreateProfileShareInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProfileShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProfileShare as schema.OperationSchema, input, options) as async.Operation<types.CreateProfileShareOutput>
 end
 
-function C:createReviewTemplate(input: types.CreateReviewTemplateInput, options: any): async.Operation<types.CreateReviewTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateReviewTemplate, input, options) as async.Operation<types.CreateReviewTemplateOutput>
+function C:createReviewTemplate(input: types.CreateReviewTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateReviewTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateReviewTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateReviewTemplateOutput>
 end
 
-function C:createTemplateShare(input: types.CreateTemplateShareInput, options: any): async.Operation<types.CreateTemplateShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTemplateShare, input, options) as async.Operation<types.CreateTemplateShareOutput>
+function C:createTemplateShare(input: types.CreateTemplateShareInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTemplateShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTemplateShare as schema.OperationSchema, input, options) as async.Operation<types.CreateTemplateShareOutput>
 end
 
-function C:createWorkload(input: types.CreateWorkloadInput, options: any): async.Operation<types.CreateWorkloadOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWorkload, input, options) as async.Operation<types.CreateWorkloadOutput>
+function C:createWorkload(input: types.CreateWorkloadInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWorkloadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWorkload as schema.OperationSchema, input, options) as async.Operation<types.CreateWorkloadOutput>
 end
 
-function C:createWorkloadShare(input: types.CreateWorkloadShareInput, options: any): async.Operation<types.CreateWorkloadShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWorkloadShare, input, options) as async.Operation<types.CreateWorkloadShareOutput>
+function C:createWorkloadShare(input: types.CreateWorkloadShareInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWorkloadShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWorkloadShare as schema.OperationSchema, input, options) as async.Operation<types.CreateWorkloadShareOutput>
 end
 
-function C:deleteLens(input: types.DeleteLensInput, options: any): async.Operation<types.DeleteLensOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLens, input, options) as async.Operation<types.DeleteLensOutput>
+function C:deleteLens(input: types.DeleteLensInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLensOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLens as schema.OperationSchema, input, options) as async.Operation<types.DeleteLensOutput>
 end
 
-function C:deleteLensShare(input: types.DeleteLensShareInput, options: any): async.Operation<types.DeleteLensShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLensShare, input, options) as async.Operation<types.DeleteLensShareOutput>
+function C:deleteLensShare(input: types.DeleteLensShareInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLensShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLensShare as schema.OperationSchema, input, options) as async.Operation<types.DeleteLensShareOutput>
 end
 
-function C:deleteProfile(input: types.DeleteProfileInput, options: any): async.Operation<types.DeleteProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProfile, input, options) as async.Operation<types.DeleteProfileOutput>
+function C:deleteProfile(input: types.DeleteProfileInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProfile as schema.OperationSchema, input, options) as async.Operation<types.DeleteProfileOutput>
 end
 
-function C:deleteProfileShare(input: types.DeleteProfileShareInput, options: any): async.Operation<types.DeleteProfileShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProfileShare, input, options) as async.Operation<types.DeleteProfileShareOutput>
+function C:deleteProfileShare(input: types.DeleteProfileShareInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProfileShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProfileShare as schema.OperationSchema, input, options) as async.Operation<types.DeleteProfileShareOutput>
 end
 
-function C:deleteReviewTemplate(input: types.DeleteReviewTemplateInput, options: any): async.Operation<types.DeleteReviewTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteReviewTemplate, input, options) as async.Operation<types.DeleteReviewTemplateOutput>
+function C:deleteReviewTemplate(input: types.DeleteReviewTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteReviewTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteReviewTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteReviewTemplateOutput>
 end
 
-function C:deleteTemplateShare(input: types.DeleteTemplateShareInput, options: any): async.Operation<types.DeleteTemplateShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTemplateShare, input, options) as async.Operation<types.DeleteTemplateShareOutput>
+function C:deleteTemplateShare(input: types.DeleteTemplateShareInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTemplateShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTemplateShare as schema.OperationSchema, input, options) as async.Operation<types.DeleteTemplateShareOutput>
 end
 
-function C:deleteWorkload(input: types.DeleteWorkloadInput, options: any): async.Operation<types.DeleteWorkloadOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWorkload, input, options) as async.Operation<types.DeleteWorkloadOutput>
+function C:deleteWorkload(input: types.DeleteWorkloadInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWorkloadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWorkload as schema.OperationSchema, input, options) as async.Operation<types.DeleteWorkloadOutput>
 end
 
-function C:deleteWorkloadShare(input: types.DeleteWorkloadShareInput, options: any): async.Operation<types.DeleteWorkloadShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWorkloadShare, input, options) as async.Operation<types.DeleteWorkloadShareOutput>
+function C:deleteWorkloadShare(input: types.DeleteWorkloadShareInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWorkloadShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWorkloadShare as schema.OperationSchema, input, options) as async.Operation<types.DeleteWorkloadShareOutput>
 end
 
-function C:disassociateLenses(input: types.DisassociateLensesInput, options: any): async.Operation<types.DisassociateLensesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateLenses, input, options) as async.Operation<types.DisassociateLensesOutput>
+function C:disassociateLenses(input: types.DisassociateLensesInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateLensesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateLenses as schema.OperationSchema, input, options) as async.Operation<types.DisassociateLensesOutput>
 end
 
-function C:disassociateProfiles(input: types.DisassociateProfilesInput, options: any): async.Operation<types.DisassociateProfilesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateProfiles, input, options) as async.Operation<types.DisassociateProfilesOutput>
+function C:disassociateProfiles(input: types.DisassociateProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateProfilesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateProfiles as schema.OperationSchema, input, options) as async.Operation<types.DisassociateProfilesOutput>
 end
 
-function C:exportLens(input: types.ExportLensInput, options: any): async.Operation<types.ExportLensOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExportLens, input, options) as async.Operation<types.ExportLensOutput>
+function C:exportLens(input: types.ExportLensInput, options?: base_client.InvokeOptions): async.Operation<types.ExportLensOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportLens as schema.OperationSchema, input, options) as async.Operation<types.ExportLensOutput>
 end
 
-function C:getAnswer(input: types.GetAnswerInput, options: any): async.Operation<types.GetAnswerOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAnswer, input, options) as async.Operation<types.GetAnswerOutput>
+function C:getAnswer(input: types.GetAnswerInput, options?: base_client.InvokeOptions): async.Operation<types.GetAnswerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAnswer as schema.OperationSchema, input, options) as async.Operation<types.GetAnswerOutput>
 end
 
-function C:getConsolidatedReport(input: types.GetConsolidatedReportInput, options: any): async.Operation<types.GetConsolidatedReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConsolidatedReport, input, options) as async.Operation<types.GetConsolidatedReportOutput>
+function C:getConsolidatedReport(input: types.GetConsolidatedReportInput, options?: base_client.InvokeOptions): async.Operation<types.GetConsolidatedReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConsolidatedReport as schema.OperationSchema, input, options) as async.Operation<types.GetConsolidatedReportOutput>
 end
 
-function C:getGlobalSettings(input: types.GetGlobalSettingsInput, options: any): async.Operation<types.GetGlobalSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetGlobalSettings, input, options) as async.Operation<types.GetGlobalSettingsOutput>
+function C:getGlobalSettings(input: types.GetGlobalSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetGlobalSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGlobalSettings as schema.OperationSchema, input, options) as async.Operation<types.GetGlobalSettingsOutput>
 end
 
-function C:getLens(input: types.GetLensInput, options: any): async.Operation<types.GetLensOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLens, input, options) as async.Operation<types.GetLensOutput>
+function C:getLens(input: types.GetLensInput, options?: base_client.InvokeOptions): async.Operation<types.GetLensOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLens as schema.OperationSchema, input, options) as async.Operation<types.GetLensOutput>
 end
 
-function C:getLensReview(input: types.GetLensReviewInput, options: any): async.Operation<types.GetLensReviewOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLensReview, input, options) as async.Operation<types.GetLensReviewOutput>
+function C:getLensReview(input: types.GetLensReviewInput, options?: base_client.InvokeOptions): async.Operation<types.GetLensReviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLensReview as schema.OperationSchema, input, options) as async.Operation<types.GetLensReviewOutput>
 end
 
-function C:getLensReviewReport(input: types.GetLensReviewReportInput, options: any): async.Operation<types.GetLensReviewReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLensReviewReport, input, options) as async.Operation<types.GetLensReviewReportOutput>
+function C:getLensReviewReport(input: types.GetLensReviewReportInput, options?: base_client.InvokeOptions): async.Operation<types.GetLensReviewReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLensReviewReport as schema.OperationSchema, input, options) as async.Operation<types.GetLensReviewReportOutput>
 end
 
-function C:getLensVersionDifference(input: types.GetLensVersionDifferenceInput, options: any): async.Operation<types.GetLensVersionDifferenceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetLensVersionDifference, input, options) as async.Operation<types.GetLensVersionDifferenceOutput>
+function C:getLensVersionDifference(input: types.GetLensVersionDifferenceInput, options?: base_client.InvokeOptions): async.Operation<types.GetLensVersionDifferenceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLensVersionDifference as schema.OperationSchema, input, options) as async.Operation<types.GetLensVersionDifferenceOutput>
 end
 
-function C:getMilestone(input: types.GetMilestoneInput, options: any): async.Operation<types.GetMilestoneOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMilestone, input, options) as async.Operation<types.GetMilestoneOutput>
+function C:getMilestone(input: types.GetMilestoneInput, options?: base_client.InvokeOptions): async.Operation<types.GetMilestoneOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMilestone as schema.OperationSchema, input, options) as async.Operation<types.GetMilestoneOutput>
 end
 
-function C:getProfile(input: types.GetProfileInput, options: any): async.Operation<types.GetProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetProfile, input, options) as async.Operation<types.GetProfileOutput>
+function C:getProfile(input: types.GetProfileInput, options?: base_client.InvokeOptions): async.Operation<types.GetProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProfile as schema.OperationSchema, input, options) as async.Operation<types.GetProfileOutput>
 end
 
-function C:getProfileTemplate(input: types.GetProfileTemplateInput, options: any): async.Operation<types.GetProfileTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetProfileTemplate, input, options) as async.Operation<types.GetProfileTemplateOutput>
+function C:getProfileTemplate(input: types.GetProfileTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetProfileTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProfileTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetProfileTemplateOutput>
 end
 
-function C:getReviewTemplate(input: types.GetReviewTemplateInput, options: any): async.Operation<types.GetReviewTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReviewTemplate, input, options) as async.Operation<types.GetReviewTemplateOutput>
+function C:getReviewTemplate(input: types.GetReviewTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetReviewTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReviewTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetReviewTemplateOutput>
 end
 
-function C:getReviewTemplateAnswer(input: types.GetReviewTemplateAnswerInput, options: any): async.Operation<types.GetReviewTemplateAnswerOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReviewTemplateAnswer, input, options) as async.Operation<types.GetReviewTemplateAnswerOutput>
+function C:getReviewTemplateAnswer(input: types.GetReviewTemplateAnswerInput, options?: base_client.InvokeOptions): async.Operation<types.GetReviewTemplateAnswerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReviewTemplateAnswer as schema.OperationSchema, input, options) as async.Operation<types.GetReviewTemplateAnswerOutput>
 end
 
-function C:getReviewTemplateLensReview(input: types.GetReviewTemplateLensReviewInput, options: any): async.Operation<types.GetReviewTemplateLensReviewOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReviewTemplateLensReview, input, options) as async.Operation<types.GetReviewTemplateLensReviewOutput>
+function C:getReviewTemplateLensReview(input: types.GetReviewTemplateLensReviewInput, options?: base_client.InvokeOptions): async.Operation<types.GetReviewTemplateLensReviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReviewTemplateLensReview as schema.OperationSchema, input, options) as async.Operation<types.GetReviewTemplateLensReviewOutput>
 end
 
-function C:getWorkload(input: types.GetWorkloadInput, options: any): async.Operation<types.GetWorkloadOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWorkload, input, options) as async.Operation<types.GetWorkloadOutput>
+function C:getWorkload(input: types.GetWorkloadInput, options?: base_client.InvokeOptions): async.Operation<types.GetWorkloadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWorkload as schema.OperationSchema, input, options) as async.Operation<types.GetWorkloadOutput>
 end
 
-function C:importLens(input: types.ImportLensInput, options: any): async.Operation<types.ImportLensOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportLens, input, options) as async.Operation<types.ImportLensOutput>
+function C:importLens(input: types.ImportLensInput, options?: base_client.InvokeOptions): async.Operation<types.ImportLensOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportLens as schema.OperationSchema, input, options) as async.Operation<types.ImportLensOutput>
 end
 
-function C:listAnswers(input: types.ListAnswersInput, options: any): async.Operation<types.ListAnswersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAnswers, input, options) as async.Operation<types.ListAnswersOutput>
+function C:listAnswers(input: types.ListAnswersInput, options?: base_client.InvokeOptions): async.Operation<types.ListAnswersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAnswers as schema.OperationSchema, input, options) as async.Operation<types.ListAnswersOutput>
 end
 
-function C:listCheckDetails(input: types.ListCheckDetailsInput, options: any): async.Operation<types.ListCheckDetailsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCheckDetails, input, options) as async.Operation<types.ListCheckDetailsOutput>
+function C:listCheckDetails(input: types.ListCheckDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCheckDetailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCheckDetails as schema.OperationSchema, input, options) as async.Operation<types.ListCheckDetailsOutput>
 end
 
-function C:listCheckSummaries(input: types.ListCheckSummariesInput, options: any): async.Operation<types.ListCheckSummariesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCheckSummaries, input, options) as async.Operation<types.ListCheckSummariesOutput>
+function C:listCheckSummaries(input: types.ListCheckSummariesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCheckSummariesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCheckSummaries as schema.OperationSchema, input, options) as async.Operation<types.ListCheckSummariesOutput>
 end
 
-function C:listLenses(input: types.ListLensesInput, options: any): async.Operation<types.ListLensesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLenses, input, options) as async.Operation<types.ListLensesOutput>
+function C:listLenses(input: types.ListLensesInput, options?: base_client.InvokeOptions): async.Operation<types.ListLensesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLenses as schema.OperationSchema, input, options) as async.Operation<types.ListLensesOutput>
 end
 
-function C:listLensReviewImprovements(input: types.ListLensReviewImprovementsInput, options: any): async.Operation<types.ListLensReviewImprovementsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLensReviewImprovements, input, options) as async.Operation<types.ListLensReviewImprovementsOutput>
+function C:listLensReviewImprovements(input: types.ListLensReviewImprovementsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLensReviewImprovementsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLensReviewImprovements as schema.OperationSchema, input, options) as async.Operation<types.ListLensReviewImprovementsOutput>
 end
 
-function C:listLensReviews(input: types.ListLensReviewsInput, options: any): async.Operation<types.ListLensReviewsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLensReviews, input, options) as async.Operation<types.ListLensReviewsOutput>
+function C:listLensReviews(input: types.ListLensReviewsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLensReviewsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLensReviews as schema.OperationSchema, input, options) as async.Operation<types.ListLensReviewsOutput>
 end
 
-function C:listLensShares(input: types.ListLensSharesInput, options: any): async.Operation<types.ListLensSharesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLensShares, input, options) as async.Operation<types.ListLensSharesOutput>
+function C:listLensShares(input: types.ListLensSharesInput, options?: base_client.InvokeOptions): async.Operation<types.ListLensSharesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLensShares as schema.OperationSchema, input, options) as async.Operation<types.ListLensSharesOutput>
 end
 
-function C:listMilestones(input: types.ListMilestonesInput, options: any): async.Operation<types.ListMilestonesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMilestones, input, options) as async.Operation<types.ListMilestonesOutput>
+function C:listMilestones(input: types.ListMilestonesInput, options?: base_client.InvokeOptions): async.Operation<types.ListMilestonesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMilestones as schema.OperationSchema, input, options) as async.Operation<types.ListMilestonesOutput>
 end
 
-function C:listNotifications(input: types.ListNotificationsInput, options: any): async.Operation<types.ListNotificationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNotifications, input, options) as async.Operation<types.ListNotificationsOutput>
+function C:listNotifications(input: types.ListNotificationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListNotificationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNotifications as schema.OperationSchema, input, options) as async.Operation<types.ListNotificationsOutput>
 end
 
-function C:listProfileNotifications(input: types.ListProfileNotificationsInput, options: any): async.Operation<types.ListProfileNotificationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProfileNotifications, input, options) as async.Operation<types.ListProfileNotificationsOutput>
+function C:listProfileNotifications(input: types.ListProfileNotificationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListProfileNotificationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProfileNotifications as schema.OperationSchema, input, options) as async.Operation<types.ListProfileNotificationsOutput>
 end
 
-function C:listProfiles(input: types.ListProfilesInput, options: any): async.Operation<types.ListProfilesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProfiles, input, options) as async.Operation<types.ListProfilesOutput>
+function C:listProfiles(input: types.ListProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.ListProfilesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProfiles as schema.OperationSchema, input, options) as async.Operation<types.ListProfilesOutput>
 end
 
-function C:listProfileShares(input: types.ListProfileSharesInput, options: any): async.Operation<types.ListProfileSharesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProfileShares, input, options) as async.Operation<types.ListProfileSharesOutput>
+function C:listProfileShares(input: types.ListProfileSharesInput, options?: base_client.InvokeOptions): async.Operation<types.ListProfileSharesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProfileShares as schema.OperationSchema, input, options) as async.Operation<types.ListProfileSharesOutput>
 end
 
-function C:listReviewTemplateAnswers(input: types.ListReviewTemplateAnswersInput, options: any): async.Operation<types.ListReviewTemplateAnswersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReviewTemplateAnswers, input, options) as async.Operation<types.ListReviewTemplateAnswersOutput>
+function C:listReviewTemplateAnswers(input: types.ListReviewTemplateAnswersInput, options?: base_client.InvokeOptions): async.Operation<types.ListReviewTemplateAnswersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReviewTemplateAnswers as schema.OperationSchema, input, options) as async.Operation<types.ListReviewTemplateAnswersOutput>
 end
 
-function C:listReviewTemplates(input: types.ListReviewTemplatesInput, options: any): async.Operation<types.ListReviewTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReviewTemplates, input, options) as async.Operation<types.ListReviewTemplatesOutput>
+function C:listReviewTemplates(input: types.ListReviewTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListReviewTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReviewTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListReviewTemplatesOutput>
 end
 
-function C:listShareInvitations(input: types.ListShareInvitationsInput, options: any): async.Operation<types.ListShareInvitationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListShareInvitations, input, options) as async.Operation<types.ListShareInvitationsOutput>
+function C:listShareInvitations(input: types.ListShareInvitationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListShareInvitationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListShareInvitations as schema.OperationSchema, input, options) as async.Operation<types.ListShareInvitationsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTemplateShares(input: types.ListTemplateSharesInput, options: any): async.Operation<types.ListTemplateSharesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTemplateShares, input, options) as async.Operation<types.ListTemplateSharesOutput>
+function C:listTemplateShares(input: types.ListTemplateSharesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTemplateSharesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTemplateShares as schema.OperationSchema, input, options) as async.Operation<types.ListTemplateSharesOutput>
 end
 
-function C:listWorkloads(input: types.ListWorkloadsInput, options: any): async.Operation<types.ListWorkloadsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWorkloads, input, options) as async.Operation<types.ListWorkloadsOutput>
+function C:listWorkloads(input: types.ListWorkloadsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkloadsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkloads as schema.OperationSchema, input, options) as async.Operation<types.ListWorkloadsOutput>
 end
 
-function C:listWorkloadShares(input: types.ListWorkloadSharesInput, options: any): async.Operation<types.ListWorkloadSharesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWorkloadShares, input, options) as async.Operation<types.ListWorkloadSharesOutput>
+function C:listWorkloadShares(input: types.ListWorkloadSharesInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkloadSharesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkloadShares as schema.OperationSchema, input, options) as async.Operation<types.ListWorkloadSharesOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAnswer(input: types.UpdateAnswerInput, options: any): async.Operation<types.UpdateAnswerOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAnswer, input, options) as async.Operation<types.UpdateAnswerOutput>
+function C:updateAnswer(input: types.UpdateAnswerInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAnswerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAnswer as schema.OperationSchema, input, options) as async.Operation<types.UpdateAnswerOutput>
 end
 
-function C:updateGlobalSettings(input: types.UpdateGlobalSettingsInput, options: any): async.Operation<types.UpdateGlobalSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateGlobalSettings, input, options) as async.Operation<types.UpdateGlobalSettingsOutput>
+function C:updateGlobalSettings(input: types.UpdateGlobalSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGlobalSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGlobalSettings as schema.OperationSchema, input, options) as async.Operation<types.UpdateGlobalSettingsOutput>
 end
 
-function C:updateIntegration(input: types.UpdateIntegrationInput, options: any): async.Operation<types.UpdateIntegrationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateIntegration, input, options) as async.Operation<types.UpdateIntegrationOutput>
+function C:updateIntegration(input: types.UpdateIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIntegrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIntegration as schema.OperationSchema, input, options) as async.Operation<types.UpdateIntegrationOutput>
 end
 
-function C:updateLensReview(input: types.UpdateLensReviewInput, options: any): async.Operation<types.UpdateLensReviewOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLensReview, input, options) as async.Operation<types.UpdateLensReviewOutput>
+function C:updateLensReview(input: types.UpdateLensReviewInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLensReviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLensReview as schema.OperationSchema, input, options) as async.Operation<types.UpdateLensReviewOutput>
 end
 
-function C:updateProfile(input: types.UpdateProfileInput, options: any): async.Operation<types.UpdateProfileOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProfile, input, options) as async.Operation<types.UpdateProfileOutput>
+function C:updateProfile(input: types.UpdateProfileInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProfile as schema.OperationSchema, input, options) as async.Operation<types.UpdateProfileOutput>
 end
 
-function C:updateReviewTemplate(input: types.UpdateReviewTemplateInput, options: any): async.Operation<types.UpdateReviewTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateReviewTemplate, input, options) as async.Operation<types.UpdateReviewTemplateOutput>
+function C:updateReviewTemplate(input: types.UpdateReviewTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateReviewTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateReviewTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateReviewTemplateOutput>
 end
 
-function C:updateReviewTemplateAnswer(input: types.UpdateReviewTemplateAnswerInput, options: any): async.Operation<types.UpdateReviewTemplateAnswerOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateReviewTemplateAnswer, input, options) as async.Operation<types.UpdateReviewTemplateAnswerOutput>
+function C:updateReviewTemplateAnswer(input: types.UpdateReviewTemplateAnswerInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateReviewTemplateAnswerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateReviewTemplateAnswer as schema.OperationSchema, input, options) as async.Operation<types.UpdateReviewTemplateAnswerOutput>
 end
 
-function C:updateReviewTemplateLensReview(input: types.UpdateReviewTemplateLensReviewInput, options: any): async.Operation<types.UpdateReviewTemplateLensReviewOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateReviewTemplateLensReview, input, options) as async.Operation<types.UpdateReviewTemplateLensReviewOutput>
+function C:updateReviewTemplateLensReview(input: types.UpdateReviewTemplateLensReviewInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateReviewTemplateLensReviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateReviewTemplateLensReview as schema.OperationSchema, input, options) as async.Operation<types.UpdateReviewTemplateLensReviewOutput>
 end
 
-function C:updateShareInvitation(input: types.UpdateShareInvitationInput, options: any): async.Operation<types.UpdateShareInvitationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateShareInvitation, input, options) as async.Operation<types.UpdateShareInvitationOutput>
+function C:updateShareInvitation(input: types.UpdateShareInvitationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateShareInvitationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateShareInvitation as schema.OperationSchema, input, options) as async.Operation<types.UpdateShareInvitationOutput>
 end
 
-function C:updateWorkload(input: types.UpdateWorkloadInput, options: any): async.Operation<types.UpdateWorkloadOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateWorkload, input, options) as async.Operation<types.UpdateWorkloadOutput>
+function C:updateWorkload(input: types.UpdateWorkloadInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWorkloadOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWorkload as schema.OperationSchema, input, options) as async.Operation<types.UpdateWorkloadOutput>
 end
 
-function C:updateWorkloadShare(input: types.UpdateWorkloadShareInput, options: any): async.Operation<types.UpdateWorkloadShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateWorkloadShare, input, options) as async.Operation<types.UpdateWorkloadShareOutput>
+function C:updateWorkloadShare(input: types.UpdateWorkloadShareInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWorkloadShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWorkloadShare as schema.OperationSchema, input, options) as async.Operation<types.UpdateWorkloadShareOutput>
 end
 
-function C:upgradeLensReview(input: types.UpgradeLensReviewInput, options: any): async.Operation<types.UpgradeLensReviewOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpgradeLensReview, input, options) as async.Operation<types.UpgradeLensReviewOutput>
+function C:upgradeLensReview(input: types.UpgradeLensReviewInput, options?: base_client.InvokeOptions): async.Operation<types.UpgradeLensReviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpgradeLensReview as schema.OperationSchema, input, options) as async.Operation<types.UpgradeLensReviewOutput>
 end
 
-function C:upgradeProfileVersion(input: types.UpgradeProfileVersionInput, options: any): async.Operation<types.UpgradeProfileVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpgradeProfileVersion, input, options) as async.Operation<types.UpgradeProfileVersionOutput>
+function C:upgradeProfileVersion(input: types.UpgradeProfileVersionInput, options?: base_client.InvokeOptions): async.Operation<types.UpgradeProfileVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpgradeProfileVersion as schema.OperationSchema, input, options) as async.Operation<types.UpgradeProfileVersionOutput>
 end
 
-function C:upgradeReviewTemplateLensReview(input: types.UpgradeReviewTemplateLensReviewInput, options: any): async.Operation<types.UpgradeReviewTemplateLensReviewOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpgradeReviewTemplateLensReview, input, options) as async.Operation<types.UpgradeReviewTemplateLensReviewOutput>
+function C:upgradeReviewTemplateLensReview(input: types.UpgradeReviewTemplateLensReviewInput, options?: base_client.InvokeOptions): async.Operation<types.UpgradeReviewTemplateLensReviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpgradeReviewTemplateLensReview as schema.OperationSchema, input, options) as async.Operation<types.UpgradeReviewTemplateLensReviewOutput>
 end
 
 return M

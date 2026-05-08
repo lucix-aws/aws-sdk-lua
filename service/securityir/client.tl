@@ -8,63 +8,66 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("securityir.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("securityir.schemas")
 local traits = require("smithy.traits")
 local types = require("securityir.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchGetMemberAccountDetails: function(Client, types.BatchGetMemberAccountDetailsInput, any): async.Operation<types.BatchGetMemberAccountDetailsOutput>
-    cancelMembership: function(Client, types.CancelMembershipInput, any): async.Operation<types.CancelMembershipOutput>
-    closeCase: function(Client, types.CloseCaseInput, any): async.Operation<types.CloseCaseOutput>
-    createCase: function(Client, types.CreateCaseInput, any): async.Operation<types.CreateCaseOutput>
-    createCaseComment: function(Client, types.CreateCaseCommentInput, any): async.Operation<types.CreateCaseCommentOutput>
-    createMembership: function(Client, types.CreateMembershipInput, any): async.Operation<types.CreateMembershipOutput>
-    getCase: function(Client, types.GetCaseInput, any): async.Operation<types.GetCaseOutput>
-    getCaseAttachmentDownloadUrl: function(Client, types.GetCaseAttachmentDownloadUrlInput, any): async.Operation<types.GetCaseAttachmentDownloadUrlOutput>
-    getCaseAttachmentUploadUrl: function(Client, types.GetCaseAttachmentUploadUrlInput, any): async.Operation<types.GetCaseAttachmentUploadUrlOutput>
-    getMembership: function(Client, types.GetMembershipInput, any): async.Operation<types.GetMembershipOutput>
-    listCaseEdits: function(Client, types.ListCaseEditsInput, any): async.Operation<types.ListCaseEditsOutput>
-    listCases: function(Client, types.ListCasesInput, any): async.Operation<types.ListCasesOutput>
-    listComments: function(Client, types.ListCommentsInput, any): async.Operation<types.ListCommentsOutput>
-    listInvestigations: function(Client, types.ListInvestigationsInput, any): async.Operation<types.ListInvestigationsOutput>
-    listMemberships: function(Client, types.ListMembershipsInput, any): async.Operation<types.ListMembershipsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    sendFeedback: function(Client, types.SendFeedbackInput, any): async.Operation<types.SendFeedbackOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateCase: function(Client, types.UpdateCaseInput, any): async.Operation<types.UpdateCaseOutput>
-    updateCaseComment: function(Client, types.UpdateCaseCommentInput, any): async.Operation<types.UpdateCaseCommentOutput>
-    updateCaseStatus: function(Client, types.UpdateCaseStatusInput, any): async.Operation<types.UpdateCaseStatusOutput>
-    updateMembership: function(Client, types.UpdateMembershipInput, any): async.Operation<types.UpdateMembershipOutput>
-    updateResolverType: function(Client, types.UpdateResolverTypeInput, any): async.Operation<types.UpdateResolverTypeOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchGetMemberAccountDetails: function(Client, types.BatchGetMemberAccountDetailsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetMemberAccountDetailsOutput>
+    cancelMembership: function(Client, types.CancelMembershipInput, ? base_client.InvokeOptions): async.Operation<types.CancelMembershipOutput>
+    closeCase: function(Client, types.CloseCaseInput, ? base_client.InvokeOptions): async.Operation<types.CloseCaseOutput>
+    createCase: function(Client, types.CreateCaseInput, ? base_client.InvokeOptions): async.Operation<types.CreateCaseOutput>
+    createCaseComment: function(Client, types.CreateCaseCommentInput, ? base_client.InvokeOptions): async.Operation<types.CreateCaseCommentOutput>
+    createMembership: function(Client, types.CreateMembershipInput, ? base_client.InvokeOptions): async.Operation<types.CreateMembershipOutput>
+    getCase: function(Client, types.GetCaseInput, ? base_client.InvokeOptions): async.Operation<types.GetCaseOutput>
+    getCaseAttachmentDownloadUrl: function(Client, types.GetCaseAttachmentDownloadUrlInput, ? base_client.InvokeOptions): async.Operation<types.GetCaseAttachmentDownloadUrlOutput>
+    getCaseAttachmentUploadUrl: function(Client, types.GetCaseAttachmentUploadUrlInput, ? base_client.InvokeOptions): async.Operation<types.GetCaseAttachmentUploadUrlOutput>
+    getMembership: function(Client, types.GetMembershipInput, ? base_client.InvokeOptions): async.Operation<types.GetMembershipOutput>
+    listCaseEdits: function(Client, types.ListCaseEditsInput, ? base_client.InvokeOptions): async.Operation<types.ListCaseEditsOutput>
+    listCases: function(Client, types.ListCasesInput, ? base_client.InvokeOptions): async.Operation<types.ListCasesOutput>
+    listComments: function(Client, types.ListCommentsInput, ? base_client.InvokeOptions): async.Operation<types.ListCommentsOutput>
+    listInvestigations: function(Client, types.ListInvestigationsInput, ? base_client.InvokeOptions): async.Operation<types.ListInvestigationsOutput>
+    listMemberships: function(Client, types.ListMembershipsInput, ? base_client.InvokeOptions): async.Operation<types.ListMembershipsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    sendFeedback: function(Client, types.SendFeedbackInput, ? base_client.InvokeOptions): async.Operation<types.SendFeedbackOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateCase: function(Client, types.UpdateCaseInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCaseOutput>
+    updateCaseComment: function(Client, types.UpdateCaseCommentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCaseCommentOutput>
+    updateCaseStatus: function(Client, types.UpdateCaseStatusInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCaseStatusOutput>
+    updateMembership: function(Client, types.UpdateMembershipInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMembershipOutput>
+    updateResolverType: function(Client, types.UpdateResolverTypeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResolverTypeOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "SecurityIncidentResponse"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "security-ir", signing_region = c.region } }
                 else
@@ -83,100 +86,100 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchGetMemberAccountDetails(input: types.BatchGetMemberAccountDetailsInput, options: any): async.Operation<types.BatchGetMemberAccountDetailsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetMemberAccountDetails, input, options) as async.Operation<types.BatchGetMemberAccountDetailsOutput>
+function C:batchGetMemberAccountDetails(input: types.BatchGetMemberAccountDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetMemberAccountDetailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetMemberAccountDetails as schema.OperationSchema, input, options) as async.Operation<types.BatchGetMemberAccountDetailsOutput>
 end
 
-function C:cancelMembership(input: types.CancelMembershipInput, options: any): async.Operation<types.CancelMembershipOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelMembership, input, options) as async.Operation<types.CancelMembershipOutput>
+function C:cancelMembership(input: types.CancelMembershipInput, options?: base_client.InvokeOptions): async.Operation<types.CancelMembershipOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelMembership as schema.OperationSchema, input, options) as async.Operation<types.CancelMembershipOutput>
 end
 
-function C:closeCase(input: types.CloseCaseInput, options: any): async.Operation<types.CloseCaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.CloseCase, input, options) as async.Operation<types.CloseCaseOutput>
+function C:closeCase(input: types.CloseCaseInput, options?: base_client.InvokeOptions): async.Operation<types.CloseCaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CloseCase as schema.OperationSchema, input, options) as async.Operation<types.CloseCaseOutput>
 end
 
-function C:createCase(input: types.CreateCaseInput, options: any): async.Operation<types.CreateCaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCase, input, options) as async.Operation<types.CreateCaseOutput>
+function C:createCase(input: types.CreateCaseInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCase as schema.OperationSchema, input, options) as async.Operation<types.CreateCaseOutput>
 end
 
-function C:createCaseComment(input: types.CreateCaseCommentInput, options: any): async.Operation<types.CreateCaseCommentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCaseComment, input, options) as async.Operation<types.CreateCaseCommentOutput>
+function C:createCaseComment(input: types.CreateCaseCommentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCaseCommentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCaseComment as schema.OperationSchema, input, options) as async.Operation<types.CreateCaseCommentOutput>
 end
 
-function C:createMembership(input: types.CreateMembershipInput, options: any): async.Operation<types.CreateMembershipOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMembership, input, options) as async.Operation<types.CreateMembershipOutput>
+function C:createMembership(input: types.CreateMembershipInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMembershipOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMembership as schema.OperationSchema, input, options) as async.Operation<types.CreateMembershipOutput>
 end
 
-function C:getCase(input: types.GetCaseInput, options: any): async.Operation<types.GetCaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCase, input, options) as async.Operation<types.GetCaseOutput>
+function C:getCase(input: types.GetCaseInput, options?: base_client.InvokeOptions): async.Operation<types.GetCaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCase as schema.OperationSchema, input, options) as async.Operation<types.GetCaseOutput>
 end
 
-function C:getCaseAttachmentDownloadUrl(input: types.GetCaseAttachmentDownloadUrlInput, options: any): async.Operation<types.GetCaseAttachmentDownloadUrlOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCaseAttachmentDownloadUrl, input, options) as async.Operation<types.GetCaseAttachmentDownloadUrlOutput>
+function C:getCaseAttachmentDownloadUrl(input: types.GetCaseAttachmentDownloadUrlInput, options?: base_client.InvokeOptions): async.Operation<types.GetCaseAttachmentDownloadUrlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCaseAttachmentDownloadUrl as schema.OperationSchema, input, options) as async.Operation<types.GetCaseAttachmentDownloadUrlOutput>
 end
 
-function C:getCaseAttachmentUploadUrl(input: types.GetCaseAttachmentUploadUrlInput, options: any): async.Operation<types.GetCaseAttachmentUploadUrlOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCaseAttachmentUploadUrl, input, options) as async.Operation<types.GetCaseAttachmentUploadUrlOutput>
+function C:getCaseAttachmentUploadUrl(input: types.GetCaseAttachmentUploadUrlInput, options?: base_client.InvokeOptions): async.Operation<types.GetCaseAttachmentUploadUrlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCaseAttachmentUploadUrl as schema.OperationSchema, input, options) as async.Operation<types.GetCaseAttachmentUploadUrlOutput>
 end
 
-function C:getMembership(input: types.GetMembershipInput, options: any): async.Operation<types.GetMembershipOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMembership, input, options) as async.Operation<types.GetMembershipOutput>
+function C:getMembership(input: types.GetMembershipInput, options?: base_client.InvokeOptions): async.Operation<types.GetMembershipOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMembership as schema.OperationSchema, input, options) as async.Operation<types.GetMembershipOutput>
 end
 
-function C:listCaseEdits(input: types.ListCaseEditsInput, options: any): async.Operation<types.ListCaseEditsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCaseEdits, input, options) as async.Operation<types.ListCaseEditsOutput>
+function C:listCaseEdits(input: types.ListCaseEditsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCaseEditsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCaseEdits as schema.OperationSchema, input, options) as async.Operation<types.ListCaseEditsOutput>
 end
 
-function C:listCases(input: types.ListCasesInput, options: any): async.Operation<types.ListCasesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCases, input, options) as async.Operation<types.ListCasesOutput>
+function C:listCases(input: types.ListCasesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCases as schema.OperationSchema, input, options) as async.Operation<types.ListCasesOutput>
 end
 
-function C:listComments(input: types.ListCommentsInput, options: any): async.Operation<types.ListCommentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListComments, input, options) as async.Operation<types.ListCommentsOutput>
+function C:listComments(input: types.ListCommentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCommentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListComments as schema.OperationSchema, input, options) as async.Operation<types.ListCommentsOutput>
 end
 
-function C:listInvestigations(input: types.ListInvestigationsInput, options: any): async.Operation<types.ListInvestigationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInvestigations, input, options) as async.Operation<types.ListInvestigationsOutput>
+function C:listInvestigations(input: types.ListInvestigationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInvestigationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInvestigations as schema.OperationSchema, input, options) as async.Operation<types.ListInvestigationsOutput>
 end
 
-function C:listMemberships(input: types.ListMembershipsInput, options: any): async.Operation<types.ListMembershipsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMemberships, input, options) as async.Operation<types.ListMembershipsOutput>
+function C:listMemberships(input: types.ListMembershipsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMembershipsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMemberships as schema.OperationSchema, input, options) as async.Operation<types.ListMembershipsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:sendFeedback(input: types.SendFeedbackInput, options: any): async.Operation<types.SendFeedbackOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendFeedback, input, options) as async.Operation<types.SendFeedbackOutput>
+function C:sendFeedback(input: types.SendFeedbackInput, options?: base_client.InvokeOptions): async.Operation<types.SendFeedbackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendFeedback as schema.OperationSchema, input, options) as async.Operation<types.SendFeedbackOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateCase(input: types.UpdateCaseInput, options: any): async.Operation<types.UpdateCaseOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCase, input, options) as async.Operation<types.UpdateCaseOutput>
+function C:updateCase(input: types.UpdateCaseInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCase as schema.OperationSchema, input, options) as async.Operation<types.UpdateCaseOutput>
 end
 
-function C:updateCaseComment(input: types.UpdateCaseCommentInput, options: any): async.Operation<types.UpdateCaseCommentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCaseComment, input, options) as async.Operation<types.UpdateCaseCommentOutput>
+function C:updateCaseComment(input: types.UpdateCaseCommentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCaseCommentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCaseComment as schema.OperationSchema, input, options) as async.Operation<types.UpdateCaseCommentOutput>
 end
 
-function C:updateCaseStatus(input: types.UpdateCaseStatusInput, options: any): async.Operation<types.UpdateCaseStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCaseStatus, input, options) as async.Operation<types.UpdateCaseStatusOutput>
+function C:updateCaseStatus(input: types.UpdateCaseStatusInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCaseStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCaseStatus as schema.OperationSchema, input, options) as async.Operation<types.UpdateCaseStatusOutput>
 end
 
-function C:updateMembership(input: types.UpdateMembershipInput, options: any): async.Operation<types.UpdateMembershipOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateMembership, input, options) as async.Operation<types.UpdateMembershipOutput>
+function C:updateMembership(input: types.UpdateMembershipInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMembershipOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMembership as schema.OperationSchema, input, options) as async.Operation<types.UpdateMembershipOutput>
 end
 
-function C:updateResolverType(input: types.UpdateResolverTypeInput, options: any): async.Operation<types.UpdateResolverTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateResolverType, input, options) as async.Operation<types.UpdateResolverTypeOutput>
+function C:updateResolverType(input: types.UpdateResolverTypeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateResolverTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateResolverType as schema.OperationSchema, input, options) as async.Operation<types.UpdateResolverTypeOutput>
 end
 
 return M

@@ -8,53 +8,56 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("ssmquicksetup.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("ssmquicksetup.schemas")
 local traits = require("smithy.traits")
 local types = require("ssmquicksetup.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createConfigurationManager: function(Client, types.CreateConfigurationManagerInput, any): async.Operation<types.CreateConfigurationManagerOutput>
-    deleteConfigurationManager: function(Client, types.DeleteConfigurationManagerInput, any): async.Operation<types.DeleteConfigurationManagerOutput>
-    getConfiguration: function(Client, types.GetConfigurationInput, any): async.Operation<types.GetConfigurationOutput>
-    getConfigurationManager: function(Client, types.GetConfigurationManagerInput, any): async.Operation<types.GetConfigurationManagerOutput>
-    getServiceSettings: function(Client, types.GetServiceSettingsInput, any): async.Operation<types.GetServiceSettingsOutput>
-    listConfigurationManagers: function(Client, types.ListConfigurationManagersInput, any): async.Operation<types.ListConfigurationManagersOutput>
-    listConfigurations: function(Client, types.ListConfigurationsInput, any): async.Operation<types.ListConfigurationsOutput>
-    listQuickSetupTypes: function(Client, types.ListQuickSetupTypesInput, any): async.Operation<types.ListQuickSetupTypesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateConfigurationDefinition: function(Client, types.UpdateConfigurationDefinitionInput, any): async.Operation<types.UpdateConfigurationDefinitionOutput>
-    updateConfigurationManager: function(Client, types.UpdateConfigurationManagerInput, any): async.Operation<types.UpdateConfigurationManagerOutput>
-    updateServiceSettings: function(Client, types.UpdateServiceSettingsInput, any): async.Operation<types.UpdateServiceSettingsOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createConfigurationManager: function(Client, types.CreateConfigurationManagerInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfigurationManagerOutput>
+    deleteConfigurationManager: function(Client, types.DeleteConfigurationManagerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfigurationManagerOutput>
+    getConfiguration: function(Client, types.GetConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetConfigurationOutput>
+    getConfigurationManager: function(Client, types.GetConfigurationManagerInput, ? base_client.InvokeOptions): async.Operation<types.GetConfigurationManagerOutput>
+    getServiceSettings: function(Client, types.GetServiceSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceSettingsOutput>
+    listConfigurationManagers: function(Client, types.ListConfigurationManagersInput, ? base_client.InvokeOptions): async.Operation<types.ListConfigurationManagersOutput>
+    listConfigurations: function(Client, types.ListConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListConfigurationsOutput>
+    listQuickSetupTypes: function(Client, types.ListQuickSetupTypesInput, ? base_client.InvokeOptions): async.Operation<types.ListQuickSetupTypesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateConfigurationDefinition: function(Client, types.UpdateConfigurationDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfigurationDefinitionOutput>
+    updateConfigurationManager: function(Client, types.UpdateConfigurationManagerInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfigurationManagerOutput>
+    updateServiceSettings: function(Client, types.UpdateServiceSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServiceSettingsOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "QuickSetup"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ssm-quicksetup", signing_region = c.region } }
                 else
@@ -73,60 +76,60 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createConfigurationManager(input: types.CreateConfigurationManagerInput, options: any): async.Operation<types.CreateConfigurationManagerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConfigurationManager, input, options) as async.Operation<types.CreateConfigurationManagerOutput>
+function C:createConfigurationManager(input: types.CreateConfigurationManagerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConfigurationManagerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConfigurationManager as schema.OperationSchema, input, options) as async.Operation<types.CreateConfigurationManagerOutput>
 end
 
-function C:deleteConfigurationManager(input: types.DeleteConfigurationManagerInput, options: any): async.Operation<types.DeleteConfigurationManagerOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConfigurationManager, input, options) as async.Operation<types.DeleteConfigurationManagerOutput>
+function C:deleteConfigurationManager(input: types.DeleteConfigurationManagerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConfigurationManagerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConfigurationManager as schema.OperationSchema, input, options) as async.Operation<types.DeleteConfigurationManagerOutput>
 end
 
-function C:getConfiguration(input: types.GetConfigurationInput, options: any): async.Operation<types.GetConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConfiguration, input, options) as async.Operation<types.GetConfigurationOutput>
+function C:getConfiguration(input: types.GetConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetConfigurationOutput>
 end
 
-function C:getConfigurationManager(input: types.GetConfigurationManagerInput, options: any): async.Operation<types.GetConfigurationManagerOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConfigurationManager, input, options) as async.Operation<types.GetConfigurationManagerOutput>
+function C:getConfigurationManager(input: types.GetConfigurationManagerInput, options?: base_client.InvokeOptions): async.Operation<types.GetConfigurationManagerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConfigurationManager as schema.OperationSchema, input, options) as async.Operation<types.GetConfigurationManagerOutput>
 end
 
-function C:getServiceSettings(input: types.GetServiceSettingsInput, options: any): async.Operation<types.GetServiceSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetServiceSettings, input, options) as async.Operation<types.GetServiceSettingsOutput>
+function C:getServiceSettings(input: types.GetServiceSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetServiceSettings as schema.OperationSchema, input, options) as async.Operation<types.GetServiceSettingsOutput>
 end
 
-function C:listConfigurationManagers(input: types.ListConfigurationManagersInput, options: any): async.Operation<types.ListConfigurationManagersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConfigurationManagers, input, options) as async.Operation<types.ListConfigurationManagersOutput>
+function C:listConfigurationManagers(input: types.ListConfigurationManagersInput, options?: base_client.InvokeOptions): async.Operation<types.ListConfigurationManagersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConfigurationManagers as schema.OperationSchema, input, options) as async.Operation<types.ListConfigurationManagersOutput>
 end
 
-function C:listConfigurations(input: types.ListConfigurationsInput, options: any): async.Operation<types.ListConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConfigurations, input, options) as async.Operation<types.ListConfigurationsOutput>
+function C:listConfigurations(input: types.ListConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListConfigurationsOutput>
 end
 
-function C:listQuickSetupTypes(input: types.ListQuickSetupTypesInput, options: any): async.Operation<types.ListQuickSetupTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListQuickSetupTypes, input, options) as async.Operation<types.ListQuickSetupTypesOutput>
+function C:listQuickSetupTypes(input: types.ListQuickSetupTypesInput, options?: base_client.InvokeOptions): async.Operation<types.ListQuickSetupTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListQuickSetupTypes as schema.OperationSchema, input, options) as async.Operation<types.ListQuickSetupTypesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateConfigurationDefinition(input: types.UpdateConfigurationDefinitionInput, options: any): async.Operation<types.UpdateConfigurationDefinitionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConfigurationDefinition, input, options) as async.Operation<types.UpdateConfigurationDefinitionOutput>
+function C:updateConfigurationDefinition(input: types.UpdateConfigurationDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConfigurationDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConfigurationDefinition as schema.OperationSchema, input, options) as async.Operation<types.UpdateConfigurationDefinitionOutput>
 end
 
-function C:updateConfigurationManager(input: types.UpdateConfigurationManagerInput, options: any): async.Operation<types.UpdateConfigurationManagerOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConfigurationManager, input, options) as async.Operation<types.UpdateConfigurationManagerOutput>
+function C:updateConfigurationManager(input: types.UpdateConfigurationManagerInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConfigurationManagerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConfigurationManager as schema.OperationSchema, input, options) as async.Operation<types.UpdateConfigurationManagerOutput>
 end
 
-function C:updateServiceSettings(input: types.UpdateServiceSettingsInput, options: any): async.Operation<types.UpdateServiceSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateServiceSettings, input, options) as async.Operation<types.UpdateServiceSettingsOutput>
+function C:updateServiceSettings(input: types.UpdateServiceSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateServiceSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateServiceSettings as schema.OperationSchema, input, options) as async.Operation<types.UpdateServiceSettingsOutput>
 end
 
 return M

@@ -8,52 +8,55 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("pi.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("pi.schemas")
 local traits = require("smithy.traits")
 local types = require("pi.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createPerformanceAnalysisReport: function(Client, types.CreatePerformanceAnalysisReportInput, any): async.Operation<types.CreatePerformanceAnalysisReportOutput>
-    deletePerformanceAnalysisReport: function(Client, types.DeletePerformanceAnalysisReportInput, any): async.Operation<types.DeletePerformanceAnalysisReportOutput>
-    describeDimensionKeys: function(Client, types.DescribeDimensionKeysInput, any): async.Operation<types.DescribeDimensionKeysOutput>
-    getDimensionKeyDetails: function(Client, types.GetDimensionKeyDetailsInput, any): async.Operation<types.GetDimensionKeyDetailsOutput>
-    getPerformanceAnalysisReport: function(Client, types.GetPerformanceAnalysisReportInput, any): async.Operation<types.GetPerformanceAnalysisReportOutput>
-    getResourceMetadata: function(Client, types.GetResourceMetadataInput, any): async.Operation<types.GetResourceMetadataOutput>
-    getResourceMetrics: function(Client, types.GetResourceMetricsInput, any): async.Operation<types.GetResourceMetricsOutput>
-    listAvailableResourceDimensions: function(Client, types.ListAvailableResourceDimensionsInput, any): async.Operation<types.ListAvailableResourceDimensionsOutput>
-    listAvailableResourceMetrics: function(Client, types.ListAvailableResourceMetricsInput, any): async.Operation<types.ListAvailableResourceMetricsOutput>
-    listPerformanceAnalysisReports: function(Client, types.ListPerformanceAnalysisReportsInput, any): async.Operation<types.ListPerformanceAnalysisReportsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createPerformanceAnalysisReport: function(Client, types.CreatePerformanceAnalysisReportInput, ? base_client.InvokeOptions): async.Operation<types.CreatePerformanceAnalysisReportOutput>
+    deletePerformanceAnalysisReport: function(Client, types.DeletePerformanceAnalysisReportInput, ? base_client.InvokeOptions): async.Operation<types.DeletePerformanceAnalysisReportOutput>
+    describeDimensionKeys: function(Client, types.DescribeDimensionKeysInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDimensionKeysOutput>
+    getDimensionKeyDetails: function(Client, types.GetDimensionKeyDetailsInput, ? base_client.InvokeOptions): async.Operation<types.GetDimensionKeyDetailsOutput>
+    getPerformanceAnalysisReport: function(Client, types.GetPerformanceAnalysisReportInput, ? base_client.InvokeOptions): async.Operation<types.GetPerformanceAnalysisReportOutput>
+    getResourceMetadata: function(Client, types.GetResourceMetadataInput, ? base_client.InvokeOptions): async.Operation<types.GetResourceMetadataOutput>
+    getResourceMetrics: function(Client, types.GetResourceMetricsInput, ? base_client.InvokeOptions): async.Operation<types.GetResourceMetricsOutput>
+    listAvailableResourceDimensions: function(Client, types.ListAvailableResourceDimensionsInput, ? base_client.InvokeOptions): async.Operation<types.ListAvailableResourceDimensionsOutput>
+    listAvailableResourceMetrics: function(Client, types.ListAvailableResourceMetricsInput, ? base_client.InvokeOptions): async.Operation<types.ListAvailableResourceMetricsOutput>
+    listPerformanceAnalysisReports: function(Client, types.ListPerformanceAnalysisReportsInput, ? base_client.InvokeOptions): async.Operation<types.ListPerformanceAnalysisReportsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "PerformanceInsightsv20180227"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "pi", signing_region = c.region } }
                 else
@@ -72,56 +75,56 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createPerformanceAnalysisReport(input: types.CreatePerformanceAnalysisReportInput, options: any): async.Operation<types.CreatePerformanceAnalysisReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePerformanceAnalysisReport, input, options) as async.Operation<types.CreatePerformanceAnalysisReportOutput>
+function C:createPerformanceAnalysisReport(input: types.CreatePerformanceAnalysisReportInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePerformanceAnalysisReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePerformanceAnalysisReport as schema.OperationSchema, input, options) as async.Operation<types.CreatePerformanceAnalysisReportOutput>
 end
 
-function C:deletePerformanceAnalysisReport(input: types.DeletePerformanceAnalysisReportInput, options: any): async.Operation<types.DeletePerformanceAnalysisReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePerformanceAnalysisReport, input, options) as async.Operation<types.DeletePerformanceAnalysisReportOutput>
+function C:deletePerformanceAnalysisReport(input: types.DeletePerformanceAnalysisReportInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePerformanceAnalysisReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePerformanceAnalysisReport as schema.OperationSchema, input, options) as async.Operation<types.DeletePerformanceAnalysisReportOutput>
 end
 
-function C:describeDimensionKeys(input: types.DescribeDimensionKeysInput, options: any): async.Operation<types.DescribeDimensionKeysOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDimensionKeys, input, options) as async.Operation<types.DescribeDimensionKeysOutput>
+function C:describeDimensionKeys(input: types.DescribeDimensionKeysInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDimensionKeysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDimensionKeys as schema.OperationSchema, input, options) as async.Operation<types.DescribeDimensionKeysOutput>
 end
 
-function C:getDimensionKeyDetails(input: types.GetDimensionKeyDetailsInput, options: any): async.Operation<types.GetDimensionKeyDetailsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDimensionKeyDetails, input, options) as async.Operation<types.GetDimensionKeyDetailsOutput>
+function C:getDimensionKeyDetails(input: types.GetDimensionKeyDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.GetDimensionKeyDetailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDimensionKeyDetails as schema.OperationSchema, input, options) as async.Operation<types.GetDimensionKeyDetailsOutput>
 end
 
-function C:getPerformanceAnalysisReport(input: types.GetPerformanceAnalysisReportInput, options: any): async.Operation<types.GetPerformanceAnalysisReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPerformanceAnalysisReport, input, options) as async.Operation<types.GetPerformanceAnalysisReportOutput>
+function C:getPerformanceAnalysisReport(input: types.GetPerformanceAnalysisReportInput, options?: base_client.InvokeOptions): async.Operation<types.GetPerformanceAnalysisReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPerformanceAnalysisReport as schema.OperationSchema, input, options) as async.Operation<types.GetPerformanceAnalysisReportOutput>
 end
 
-function C:getResourceMetadata(input: types.GetResourceMetadataInput, options: any): async.Operation<types.GetResourceMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourceMetadata, input, options) as async.Operation<types.GetResourceMetadataOutput>
+function C:getResourceMetadata(input: types.GetResourceMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourceMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourceMetadata as schema.OperationSchema, input, options) as async.Operation<types.GetResourceMetadataOutput>
 end
 
-function C:getResourceMetrics(input: types.GetResourceMetricsInput, options: any): async.Operation<types.GetResourceMetricsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourceMetrics, input, options) as async.Operation<types.GetResourceMetricsOutput>
+function C:getResourceMetrics(input: types.GetResourceMetricsInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourceMetricsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourceMetrics as schema.OperationSchema, input, options) as async.Operation<types.GetResourceMetricsOutput>
 end
 
-function C:listAvailableResourceDimensions(input: types.ListAvailableResourceDimensionsInput, options: any): async.Operation<types.ListAvailableResourceDimensionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAvailableResourceDimensions, input, options) as async.Operation<types.ListAvailableResourceDimensionsOutput>
+function C:listAvailableResourceDimensions(input: types.ListAvailableResourceDimensionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAvailableResourceDimensionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAvailableResourceDimensions as schema.OperationSchema, input, options) as async.Operation<types.ListAvailableResourceDimensionsOutput>
 end
 
-function C:listAvailableResourceMetrics(input: types.ListAvailableResourceMetricsInput, options: any): async.Operation<types.ListAvailableResourceMetricsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAvailableResourceMetrics, input, options) as async.Operation<types.ListAvailableResourceMetricsOutput>
+function C:listAvailableResourceMetrics(input: types.ListAvailableResourceMetricsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAvailableResourceMetricsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAvailableResourceMetrics as schema.OperationSchema, input, options) as async.Operation<types.ListAvailableResourceMetricsOutput>
 end
 
-function C:listPerformanceAnalysisReports(input: types.ListPerformanceAnalysisReportsInput, options: any): async.Operation<types.ListPerformanceAnalysisReportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPerformanceAnalysisReports, input, options) as async.Operation<types.ListPerformanceAnalysisReportsOutput>
+function C:listPerformanceAnalysisReports(input: types.ListPerformanceAnalysisReportsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPerformanceAnalysisReportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPerformanceAnalysisReports as schema.OperationSchema, input, options) as async.Operation<types.ListPerformanceAnalysisReportsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
 return M

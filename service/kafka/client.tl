@@ -8,98 +8,101 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("kafka.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("kafka.schemas")
 local traits = require("smithy.traits")
 local types = require("kafka.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchAssociateScramSecret: function(Client, types.BatchAssociateScramSecretInput, any): async.Operation<types.BatchAssociateScramSecretOutput>
-    batchDisassociateScramSecret: function(Client, types.BatchDisassociateScramSecretInput, any): async.Operation<types.BatchDisassociateScramSecretOutput>
-    createCluster: function(Client, types.CreateClusterInput, any): async.Operation<types.CreateClusterOutput>
-    createClusterV2: function(Client, types.CreateClusterV2Input, any): async.Operation<types.CreateClusterV2Output>
-    createConfiguration: function(Client, types.CreateConfigurationInput, any): async.Operation<types.CreateConfigurationOutput>
-    createReplicator: function(Client, types.CreateReplicatorInput, any): async.Operation<types.CreateReplicatorOutput>
-    createTopic: function(Client, types.CreateTopicInput, any): async.Operation<types.CreateTopicOutput>
-    createVpcConnection: function(Client, types.CreateVpcConnectionInput, any): async.Operation<types.CreateVpcConnectionOutput>
-    deleteCluster: function(Client, types.DeleteClusterInput, any): async.Operation<types.DeleteClusterOutput>
-    deleteClusterPolicy: function(Client, types.DeleteClusterPolicyInput, any): async.Operation<types.DeleteClusterPolicyOutput>
-    deleteConfiguration: function(Client, types.DeleteConfigurationInput, any): async.Operation<types.DeleteConfigurationOutput>
-    deleteReplicator: function(Client, types.DeleteReplicatorInput, any): async.Operation<types.DeleteReplicatorOutput>
-    deleteTopic: function(Client, types.DeleteTopicInput, any): async.Operation<types.DeleteTopicOutput>
-    deleteVpcConnection: function(Client, types.DeleteVpcConnectionInput, any): async.Operation<types.DeleteVpcConnectionOutput>
-    describeCluster: function(Client, types.DescribeClusterInput, any): async.Operation<types.DescribeClusterOutput>
-    describeClusterOperation: function(Client, types.DescribeClusterOperationInput, any): async.Operation<types.DescribeClusterOperationOutput>
-    describeClusterOperationV2: function(Client, types.DescribeClusterOperationV2Input, any): async.Operation<types.DescribeClusterOperationV2Output>
-    describeClusterV2: function(Client, types.DescribeClusterV2Input, any): async.Operation<types.DescribeClusterV2Output>
-    describeConfiguration: function(Client, types.DescribeConfigurationInput, any): async.Operation<types.DescribeConfigurationOutput>
-    describeConfigurationRevision: function(Client, types.DescribeConfigurationRevisionInput, any): async.Operation<types.DescribeConfigurationRevisionOutput>
-    describeReplicator: function(Client, types.DescribeReplicatorInput, any): async.Operation<types.DescribeReplicatorOutput>
-    describeTopic: function(Client, types.DescribeTopicInput, any): async.Operation<types.DescribeTopicOutput>
-    describeTopicPartitions: function(Client, types.DescribeTopicPartitionsInput, any): async.Operation<types.DescribeTopicPartitionsOutput>
-    describeVpcConnection: function(Client, types.DescribeVpcConnectionInput, any): async.Operation<types.DescribeVpcConnectionOutput>
-    getBootstrapBrokers: function(Client, types.GetBootstrapBrokersInput, any): async.Operation<types.GetBootstrapBrokersOutput>
-    getClusterPolicy: function(Client, types.GetClusterPolicyInput, any): async.Operation<types.GetClusterPolicyOutput>
-    getCompatibleKafkaVersions: function(Client, types.GetCompatibleKafkaVersionsInput, any): async.Operation<types.GetCompatibleKafkaVersionsOutput>
-    listClientVpcConnections: function(Client, types.ListClientVpcConnectionsInput, any): async.Operation<types.ListClientVpcConnectionsOutput>
-    listClusterOperations: function(Client, types.ListClusterOperationsInput, any): async.Operation<types.ListClusterOperationsOutput>
-    listClusterOperationsV2: function(Client, types.ListClusterOperationsV2Input, any): async.Operation<types.ListClusterOperationsV2Output>
-    listClusters: function(Client, types.ListClustersInput, any): async.Operation<types.ListClustersOutput>
-    listClustersV2: function(Client, types.ListClustersV2Input, any): async.Operation<types.ListClustersV2Output>
-    listConfigurationRevisions: function(Client, types.ListConfigurationRevisionsInput, any): async.Operation<types.ListConfigurationRevisionsOutput>
-    listConfigurations: function(Client, types.ListConfigurationsInput, any): async.Operation<types.ListConfigurationsOutput>
-    listKafkaVersions: function(Client, types.ListKafkaVersionsInput, any): async.Operation<types.ListKafkaVersionsOutput>
-    listNodes: function(Client, types.ListNodesInput, any): async.Operation<types.ListNodesOutput>
-    listReplicators: function(Client, types.ListReplicatorsInput, any): async.Operation<types.ListReplicatorsOutput>
-    listScramSecrets: function(Client, types.ListScramSecretsInput, any): async.Operation<types.ListScramSecretsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTopics: function(Client, types.ListTopicsInput, any): async.Operation<types.ListTopicsOutput>
-    listVpcConnections: function(Client, types.ListVpcConnectionsInput, any): async.Operation<types.ListVpcConnectionsOutput>
-    putClusterPolicy: function(Client, types.PutClusterPolicyInput, any): async.Operation<types.PutClusterPolicyOutput>
-    rebootBroker: function(Client, types.RebootBrokerInput, any): async.Operation<types.RebootBrokerOutput>
-    rejectClientVpcConnection: function(Client, types.RejectClientVpcConnectionInput, any): async.Operation<types.RejectClientVpcConnectionOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateBrokerCount: function(Client, types.UpdateBrokerCountInput, any): async.Operation<types.UpdateBrokerCountOutput>
-    updateBrokerStorage: function(Client, types.UpdateBrokerStorageInput, any): async.Operation<types.UpdateBrokerStorageOutput>
-    updateBrokerType: function(Client, types.UpdateBrokerTypeInput, any): async.Operation<types.UpdateBrokerTypeOutput>
-    updateClusterConfiguration: function(Client, types.UpdateClusterConfigurationInput, any): async.Operation<types.UpdateClusterConfigurationOutput>
-    updateClusterKafkaVersion: function(Client, types.UpdateClusterKafkaVersionInput, any): async.Operation<types.UpdateClusterKafkaVersionOutput>
-    updateConfiguration: function(Client, types.UpdateConfigurationInput, any): async.Operation<types.UpdateConfigurationOutput>
-    updateConnectivity: function(Client, types.UpdateConnectivityInput, any): async.Operation<types.UpdateConnectivityOutput>
-    updateMonitoring: function(Client, types.UpdateMonitoringInput, any): async.Operation<types.UpdateMonitoringOutput>
-    updateRebalancing: function(Client, types.UpdateRebalancingInput, any): async.Operation<types.UpdateRebalancingOutput>
-    updateReplicationInfo: function(Client, types.UpdateReplicationInfoInput, any): async.Operation<types.UpdateReplicationInfoOutput>
-    updateSecurity: function(Client, types.UpdateSecurityInput, any): async.Operation<types.UpdateSecurityOutput>
-    updateStorage: function(Client, types.UpdateStorageInput, any): async.Operation<types.UpdateStorageOutput>
-    updateTopic: function(Client, types.UpdateTopicInput, any): async.Operation<types.UpdateTopicOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchAssociateScramSecret: function(Client, types.BatchAssociateScramSecretInput, ? base_client.InvokeOptions): async.Operation<types.BatchAssociateScramSecretOutput>
+    batchDisassociateScramSecret: function(Client, types.BatchDisassociateScramSecretInput, ? base_client.InvokeOptions): async.Operation<types.BatchDisassociateScramSecretOutput>
+    createCluster: function(Client, types.CreateClusterInput, ? base_client.InvokeOptions): async.Operation<types.CreateClusterOutput>
+    createClusterV2: function(Client, types.CreateClusterV2Input, ? base_client.InvokeOptions): async.Operation<types.CreateClusterV2Output>
+    createConfiguration: function(Client, types.CreateConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfigurationOutput>
+    createReplicator: function(Client, types.CreateReplicatorInput, ? base_client.InvokeOptions): async.Operation<types.CreateReplicatorOutput>
+    createTopic: function(Client, types.CreateTopicInput, ? base_client.InvokeOptions): async.Operation<types.CreateTopicOutput>
+    createVpcConnection: function(Client, types.CreateVpcConnectionInput, ? base_client.InvokeOptions): async.Operation<types.CreateVpcConnectionOutput>
+    deleteCluster: function(Client, types.DeleteClusterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteClusterOutput>
+    deleteClusterPolicy: function(Client, types.DeleteClusterPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteClusterPolicyOutput>
+    deleteConfiguration: function(Client, types.DeleteConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfigurationOutput>
+    deleteReplicator: function(Client, types.DeleteReplicatorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteReplicatorOutput>
+    deleteTopic: function(Client, types.DeleteTopicInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTopicOutput>
+    deleteVpcConnection: function(Client, types.DeleteVpcConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVpcConnectionOutput>
+    describeCluster: function(Client, types.DescribeClusterInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClusterOutput>
+    describeClusterOperation: function(Client, types.DescribeClusterOperationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClusterOperationOutput>
+    describeClusterOperationV2: function(Client, types.DescribeClusterOperationV2Input, ? base_client.InvokeOptions): async.Operation<types.DescribeClusterOperationV2Output>
+    describeClusterV2: function(Client, types.DescribeClusterV2Input, ? base_client.InvokeOptions): async.Operation<types.DescribeClusterV2Output>
+    describeConfiguration: function(Client, types.DescribeConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConfigurationOutput>
+    describeConfigurationRevision: function(Client, types.DescribeConfigurationRevisionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConfigurationRevisionOutput>
+    describeReplicator: function(Client, types.DescribeReplicatorInput, ? base_client.InvokeOptions): async.Operation<types.DescribeReplicatorOutput>
+    describeTopic: function(Client, types.DescribeTopicInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTopicOutput>
+    describeTopicPartitions: function(Client, types.DescribeTopicPartitionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTopicPartitionsOutput>
+    describeVpcConnection: function(Client, types.DescribeVpcConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVpcConnectionOutput>
+    getBootstrapBrokers: function(Client, types.GetBootstrapBrokersInput, ? base_client.InvokeOptions): async.Operation<types.GetBootstrapBrokersOutput>
+    getClusterPolicy: function(Client, types.GetClusterPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetClusterPolicyOutput>
+    getCompatibleKafkaVersions: function(Client, types.GetCompatibleKafkaVersionsInput, ? base_client.InvokeOptions): async.Operation<types.GetCompatibleKafkaVersionsOutput>
+    listClientVpcConnections: function(Client, types.ListClientVpcConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.ListClientVpcConnectionsOutput>
+    listClusterOperations: function(Client, types.ListClusterOperationsInput, ? base_client.InvokeOptions): async.Operation<types.ListClusterOperationsOutput>
+    listClusterOperationsV2: function(Client, types.ListClusterOperationsV2Input, ? base_client.InvokeOptions): async.Operation<types.ListClusterOperationsV2Output>
+    listClusters: function(Client, types.ListClustersInput, ? base_client.InvokeOptions): async.Operation<types.ListClustersOutput>
+    listClustersV2: function(Client, types.ListClustersV2Input, ? base_client.InvokeOptions): async.Operation<types.ListClustersV2Output>
+    listConfigurationRevisions: function(Client, types.ListConfigurationRevisionsInput, ? base_client.InvokeOptions): async.Operation<types.ListConfigurationRevisionsOutput>
+    listConfigurations: function(Client, types.ListConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListConfigurationsOutput>
+    listKafkaVersions: function(Client, types.ListKafkaVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListKafkaVersionsOutput>
+    listNodes: function(Client, types.ListNodesInput, ? base_client.InvokeOptions): async.Operation<types.ListNodesOutput>
+    listReplicators: function(Client, types.ListReplicatorsInput, ? base_client.InvokeOptions): async.Operation<types.ListReplicatorsOutput>
+    listScramSecrets: function(Client, types.ListScramSecretsInput, ? base_client.InvokeOptions): async.Operation<types.ListScramSecretsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTopics: function(Client, types.ListTopicsInput, ? base_client.InvokeOptions): async.Operation<types.ListTopicsOutput>
+    listVpcConnections: function(Client, types.ListVpcConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.ListVpcConnectionsOutput>
+    putClusterPolicy: function(Client, types.PutClusterPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutClusterPolicyOutput>
+    rebootBroker: function(Client, types.RebootBrokerInput, ? base_client.InvokeOptions): async.Operation<types.RebootBrokerOutput>
+    rejectClientVpcConnection: function(Client, types.RejectClientVpcConnectionInput, ? base_client.InvokeOptions): async.Operation<types.RejectClientVpcConnectionOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateBrokerCount: function(Client, types.UpdateBrokerCountInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBrokerCountOutput>
+    updateBrokerStorage: function(Client, types.UpdateBrokerStorageInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBrokerStorageOutput>
+    updateBrokerType: function(Client, types.UpdateBrokerTypeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBrokerTypeOutput>
+    updateClusterConfiguration: function(Client, types.UpdateClusterConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateClusterConfigurationOutput>
+    updateClusterKafkaVersion: function(Client, types.UpdateClusterKafkaVersionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateClusterKafkaVersionOutput>
+    updateConfiguration: function(Client, types.UpdateConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfigurationOutput>
+    updateConnectivity: function(Client, types.UpdateConnectivityInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConnectivityOutput>
+    updateMonitoring: function(Client, types.UpdateMonitoringInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMonitoringOutput>
+    updateRebalancing: function(Client, types.UpdateRebalancingInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRebalancingOutput>
+    updateReplicationInfo: function(Client, types.UpdateReplicationInfoInput, ? base_client.InvokeOptions): async.Operation<types.UpdateReplicationInfoOutput>
+    updateSecurity: function(Client, types.UpdateSecurityInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSecurityOutput>
+    updateStorage: function(Client, types.UpdateStorageInput, ? base_client.InvokeOptions): async.Operation<types.UpdateStorageOutput>
+    updateTopic: function(Client, types.UpdateTopicInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTopicOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "Kafka"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "kafka", signing_region = c.region } }
                 else
@@ -118,240 +121,240 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchAssociateScramSecret(input: types.BatchAssociateScramSecretInput, options: any): async.Operation<types.BatchAssociateScramSecretOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchAssociateScramSecret, input, options) as async.Operation<types.BatchAssociateScramSecretOutput>
+function C:batchAssociateScramSecret(input: types.BatchAssociateScramSecretInput, options?: base_client.InvokeOptions): async.Operation<types.BatchAssociateScramSecretOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchAssociateScramSecret as schema.OperationSchema, input, options) as async.Operation<types.BatchAssociateScramSecretOutput>
 end
 
-function C:batchDisassociateScramSecret(input: types.BatchDisassociateScramSecretInput, options: any): async.Operation<types.BatchDisassociateScramSecretOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDisassociateScramSecret, input, options) as async.Operation<types.BatchDisassociateScramSecretOutput>
+function C:batchDisassociateScramSecret(input: types.BatchDisassociateScramSecretInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDisassociateScramSecretOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDisassociateScramSecret as schema.OperationSchema, input, options) as async.Operation<types.BatchDisassociateScramSecretOutput>
 end
 
-function C:createCluster(input: types.CreateClusterInput, options: any): async.Operation<types.CreateClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCluster, input, options) as async.Operation<types.CreateClusterOutput>
+function C:createCluster(input: types.CreateClusterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCluster as schema.OperationSchema, input, options) as async.Operation<types.CreateClusterOutput>
 end
 
-function C:createClusterV2(input: types.CreateClusterV2Input, options: any): async.Operation<types.CreateClusterV2Output>
-    return self:invokeOperation(schemas.Service, schemas.CreateClusterV2, input, options) as async.Operation<types.CreateClusterV2Output>
+function C:createClusterV2(input: types.CreateClusterV2Input, options?: base_client.InvokeOptions): async.Operation<types.CreateClusterV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateClusterV2 as schema.OperationSchema, input, options) as async.Operation<types.CreateClusterV2Output>
 end
 
-function C:createConfiguration(input: types.CreateConfigurationInput, options: any): async.Operation<types.CreateConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConfiguration, input, options) as async.Operation<types.CreateConfigurationOutput>
+function C:createConfiguration(input: types.CreateConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateConfigurationOutput>
 end
 
-function C:createReplicator(input: types.CreateReplicatorInput, options: any): async.Operation<types.CreateReplicatorOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateReplicator, input, options) as async.Operation<types.CreateReplicatorOutput>
+function C:createReplicator(input: types.CreateReplicatorInput, options?: base_client.InvokeOptions): async.Operation<types.CreateReplicatorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateReplicator as schema.OperationSchema, input, options) as async.Operation<types.CreateReplicatorOutput>
 end
 
-function C:createTopic(input: types.CreateTopicInput, options: any): async.Operation<types.CreateTopicOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTopic, input, options) as async.Operation<types.CreateTopicOutput>
+function C:createTopic(input: types.CreateTopicInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTopicOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTopic as schema.OperationSchema, input, options) as async.Operation<types.CreateTopicOutput>
 end
 
-function C:createVpcConnection(input: types.CreateVpcConnectionInput, options: any): async.Operation<types.CreateVpcConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVpcConnection, input, options) as async.Operation<types.CreateVpcConnectionOutput>
+function C:createVpcConnection(input: types.CreateVpcConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVpcConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVpcConnection as schema.OperationSchema, input, options) as async.Operation<types.CreateVpcConnectionOutput>
 end
 
-function C:deleteCluster(input: types.DeleteClusterInput, options: any): async.Operation<types.DeleteClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCluster, input, options) as async.Operation<types.DeleteClusterOutput>
+function C:deleteCluster(input: types.DeleteClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCluster as schema.OperationSchema, input, options) as async.Operation<types.DeleteClusterOutput>
 end
 
-function C:deleteClusterPolicy(input: types.DeleteClusterPolicyInput, options: any): async.Operation<types.DeleteClusterPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteClusterPolicy, input, options) as async.Operation<types.DeleteClusterPolicyOutput>
+function C:deleteClusterPolicy(input: types.DeleteClusterPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteClusterPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteClusterPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteClusterPolicyOutput>
 end
 
-function C:deleteConfiguration(input: types.DeleteConfigurationInput, options: any): async.Operation<types.DeleteConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConfiguration, input, options) as async.Operation<types.DeleteConfigurationOutput>
+function C:deleteConfiguration(input: types.DeleteConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteConfigurationOutput>
 end
 
-function C:deleteReplicator(input: types.DeleteReplicatorInput, options: any): async.Operation<types.DeleteReplicatorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteReplicator, input, options) as async.Operation<types.DeleteReplicatorOutput>
+function C:deleteReplicator(input: types.DeleteReplicatorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteReplicatorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteReplicator as schema.OperationSchema, input, options) as async.Operation<types.DeleteReplicatorOutput>
 end
 
-function C:deleteTopic(input: types.DeleteTopicInput, options: any): async.Operation<types.DeleteTopicOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTopic, input, options) as async.Operation<types.DeleteTopicOutput>
+function C:deleteTopic(input: types.DeleteTopicInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTopicOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTopic as schema.OperationSchema, input, options) as async.Operation<types.DeleteTopicOutput>
 end
 
-function C:deleteVpcConnection(input: types.DeleteVpcConnectionInput, options: any): async.Operation<types.DeleteVpcConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVpcConnection, input, options) as async.Operation<types.DeleteVpcConnectionOutput>
+function C:deleteVpcConnection(input: types.DeleteVpcConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVpcConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVpcConnection as schema.OperationSchema, input, options) as async.Operation<types.DeleteVpcConnectionOutput>
 end
 
-function C:describeCluster(input: types.DescribeClusterInput, options: any): async.Operation<types.DescribeClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCluster, input, options) as async.Operation<types.DescribeClusterOutput>
+function C:describeCluster(input: types.DescribeClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCluster as schema.OperationSchema, input, options) as async.Operation<types.DescribeClusterOutput>
 end
 
-function C:describeClusterOperation(input: types.DescribeClusterOperationInput, options: any): async.Operation<types.DescribeClusterOperationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeClusterOperation, input, options) as async.Operation<types.DescribeClusterOperationOutput>
+function C:describeClusterOperation(input: types.DescribeClusterOperationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeClusterOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeClusterOperation as schema.OperationSchema, input, options) as async.Operation<types.DescribeClusterOperationOutput>
 end
 
-function C:describeClusterOperationV2(input: types.DescribeClusterOperationV2Input, options: any): async.Operation<types.DescribeClusterOperationV2Output>
-    return self:invokeOperation(schemas.Service, schemas.DescribeClusterOperationV2, input, options) as async.Operation<types.DescribeClusterOperationV2Output>
+function C:describeClusterOperationV2(input: types.DescribeClusterOperationV2Input, options?: base_client.InvokeOptions): async.Operation<types.DescribeClusterOperationV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeClusterOperationV2 as schema.OperationSchema, input, options) as async.Operation<types.DescribeClusterOperationV2Output>
 end
 
-function C:describeClusterV2(input: types.DescribeClusterV2Input, options: any): async.Operation<types.DescribeClusterV2Output>
-    return self:invokeOperation(schemas.Service, schemas.DescribeClusterV2, input, options) as async.Operation<types.DescribeClusterV2Output>
+function C:describeClusterV2(input: types.DescribeClusterV2Input, options?: base_client.InvokeOptions): async.Operation<types.DescribeClusterV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeClusterV2 as schema.OperationSchema, input, options) as async.Operation<types.DescribeClusterV2Output>
 end
 
-function C:describeConfiguration(input: types.DescribeConfigurationInput, options: any): async.Operation<types.DescribeConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeConfiguration, input, options) as async.Operation<types.DescribeConfigurationOutput>
+function C:describeConfiguration(input: types.DescribeConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeConfigurationOutput>
 end
 
-function C:describeConfigurationRevision(input: types.DescribeConfigurationRevisionInput, options: any): async.Operation<types.DescribeConfigurationRevisionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeConfigurationRevision, input, options) as async.Operation<types.DescribeConfigurationRevisionOutput>
+function C:describeConfigurationRevision(input: types.DescribeConfigurationRevisionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeConfigurationRevisionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeConfigurationRevision as schema.OperationSchema, input, options) as async.Operation<types.DescribeConfigurationRevisionOutput>
 end
 
-function C:describeReplicator(input: types.DescribeReplicatorInput, options: any): async.Operation<types.DescribeReplicatorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeReplicator, input, options) as async.Operation<types.DescribeReplicatorOutput>
+function C:describeReplicator(input: types.DescribeReplicatorInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeReplicatorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeReplicator as schema.OperationSchema, input, options) as async.Operation<types.DescribeReplicatorOutput>
 end
 
-function C:describeTopic(input: types.DescribeTopicInput, options: any): async.Operation<types.DescribeTopicOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTopic, input, options) as async.Operation<types.DescribeTopicOutput>
+function C:describeTopic(input: types.DescribeTopicInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTopicOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTopic as schema.OperationSchema, input, options) as async.Operation<types.DescribeTopicOutput>
 end
 
-function C:describeTopicPartitions(input: types.DescribeTopicPartitionsInput, options: any): async.Operation<types.DescribeTopicPartitionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTopicPartitions, input, options) as async.Operation<types.DescribeTopicPartitionsOutput>
+function C:describeTopicPartitions(input: types.DescribeTopicPartitionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTopicPartitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTopicPartitions as schema.OperationSchema, input, options) as async.Operation<types.DescribeTopicPartitionsOutput>
 end
 
-function C:describeVpcConnection(input: types.DescribeVpcConnectionInput, options: any): async.Operation<types.DescribeVpcConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVpcConnection, input, options) as async.Operation<types.DescribeVpcConnectionOutput>
+function C:describeVpcConnection(input: types.DescribeVpcConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVpcConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVpcConnection as schema.OperationSchema, input, options) as async.Operation<types.DescribeVpcConnectionOutput>
 end
 
-function C:getBootstrapBrokers(input: types.GetBootstrapBrokersInput, options: any): async.Operation<types.GetBootstrapBrokersOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBootstrapBrokers, input, options) as async.Operation<types.GetBootstrapBrokersOutput>
+function C:getBootstrapBrokers(input: types.GetBootstrapBrokersInput, options?: base_client.InvokeOptions): async.Operation<types.GetBootstrapBrokersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBootstrapBrokers as schema.OperationSchema, input, options) as async.Operation<types.GetBootstrapBrokersOutput>
 end
 
-function C:getClusterPolicy(input: types.GetClusterPolicyInput, options: any): async.Operation<types.GetClusterPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetClusterPolicy, input, options) as async.Operation<types.GetClusterPolicyOutput>
+function C:getClusterPolicy(input: types.GetClusterPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetClusterPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetClusterPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetClusterPolicyOutput>
 end
 
-function C:getCompatibleKafkaVersions(input: types.GetCompatibleKafkaVersionsInput, options: any): async.Operation<types.GetCompatibleKafkaVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCompatibleKafkaVersions, input, options) as async.Operation<types.GetCompatibleKafkaVersionsOutput>
+function C:getCompatibleKafkaVersions(input: types.GetCompatibleKafkaVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.GetCompatibleKafkaVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCompatibleKafkaVersions as schema.OperationSchema, input, options) as async.Operation<types.GetCompatibleKafkaVersionsOutput>
 end
 
-function C:listClientVpcConnections(input: types.ListClientVpcConnectionsInput, options: any): async.Operation<types.ListClientVpcConnectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListClientVpcConnections, input, options) as async.Operation<types.ListClientVpcConnectionsOutput>
+function C:listClientVpcConnections(input: types.ListClientVpcConnectionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListClientVpcConnectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListClientVpcConnections as schema.OperationSchema, input, options) as async.Operation<types.ListClientVpcConnectionsOutput>
 end
 
-function C:listClusterOperations(input: types.ListClusterOperationsInput, options: any): async.Operation<types.ListClusterOperationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListClusterOperations, input, options) as async.Operation<types.ListClusterOperationsOutput>
+function C:listClusterOperations(input: types.ListClusterOperationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListClusterOperationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListClusterOperations as schema.OperationSchema, input, options) as async.Operation<types.ListClusterOperationsOutput>
 end
 
-function C:listClusterOperationsV2(input: types.ListClusterOperationsV2Input, options: any): async.Operation<types.ListClusterOperationsV2Output>
-    return self:invokeOperation(schemas.Service, schemas.ListClusterOperationsV2, input, options) as async.Operation<types.ListClusterOperationsV2Output>
+function C:listClusterOperationsV2(input: types.ListClusterOperationsV2Input, options?: base_client.InvokeOptions): async.Operation<types.ListClusterOperationsV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListClusterOperationsV2 as schema.OperationSchema, input, options) as async.Operation<types.ListClusterOperationsV2Output>
 end
 
-function C:listClusters(input: types.ListClustersInput, options: any): async.Operation<types.ListClustersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListClusters, input, options) as async.Operation<types.ListClustersOutput>
+function C:listClusters(input: types.ListClustersInput, options?: base_client.InvokeOptions): async.Operation<types.ListClustersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListClusters as schema.OperationSchema, input, options) as async.Operation<types.ListClustersOutput>
 end
 
-function C:listClustersV2(input: types.ListClustersV2Input, options: any): async.Operation<types.ListClustersV2Output>
-    return self:invokeOperation(schemas.Service, schemas.ListClustersV2, input, options) as async.Operation<types.ListClustersV2Output>
+function C:listClustersV2(input: types.ListClustersV2Input, options?: base_client.InvokeOptions): async.Operation<types.ListClustersV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListClustersV2 as schema.OperationSchema, input, options) as async.Operation<types.ListClustersV2Output>
 end
 
-function C:listConfigurationRevisions(input: types.ListConfigurationRevisionsInput, options: any): async.Operation<types.ListConfigurationRevisionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConfigurationRevisions, input, options) as async.Operation<types.ListConfigurationRevisionsOutput>
+function C:listConfigurationRevisions(input: types.ListConfigurationRevisionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConfigurationRevisionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConfigurationRevisions as schema.OperationSchema, input, options) as async.Operation<types.ListConfigurationRevisionsOutput>
 end
 
-function C:listConfigurations(input: types.ListConfigurationsInput, options: any): async.Operation<types.ListConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConfigurations, input, options) as async.Operation<types.ListConfigurationsOutput>
+function C:listConfigurations(input: types.ListConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListConfigurationsOutput>
 end
 
-function C:listKafkaVersions(input: types.ListKafkaVersionsInput, options: any): async.Operation<types.ListKafkaVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListKafkaVersions, input, options) as async.Operation<types.ListKafkaVersionsOutput>
+function C:listKafkaVersions(input: types.ListKafkaVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListKafkaVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListKafkaVersions as schema.OperationSchema, input, options) as async.Operation<types.ListKafkaVersionsOutput>
 end
 
-function C:listNodes(input: types.ListNodesInput, options: any): async.Operation<types.ListNodesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListNodes, input, options) as async.Operation<types.ListNodesOutput>
+function C:listNodes(input: types.ListNodesInput, options?: base_client.InvokeOptions): async.Operation<types.ListNodesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNodes as schema.OperationSchema, input, options) as async.Operation<types.ListNodesOutput>
 end
 
-function C:listReplicators(input: types.ListReplicatorsInput, options: any): async.Operation<types.ListReplicatorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReplicators, input, options) as async.Operation<types.ListReplicatorsOutput>
+function C:listReplicators(input: types.ListReplicatorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListReplicatorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReplicators as schema.OperationSchema, input, options) as async.Operation<types.ListReplicatorsOutput>
 end
 
-function C:listScramSecrets(input: types.ListScramSecretsInput, options: any): async.Operation<types.ListScramSecretsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListScramSecrets, input, options) as async.Operation<types.ListScramSecretsOutput>
+function C:listScramSecrets(input: types.ListScramSecretsInput, options?: base_client.InvokeOptions): async.Operation<types.ListScramSecretsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListScramSecrets as schema.OperationSchema, input, options) as async.Operation<types.ListScramSecretsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTopics(input: types.ListTopicsInput, options: any): async.Operation<types.ListTopicsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTopics, input, options) as async.Operation<types.ListTopicsOutput>
+function C:listTopics(input: types.ListTopicsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTopicsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTopics as schema.OperationSchema, input, options) as async.Operation<types.ListTopicsOutput>
 end
 
-function C:listVpcConnections(input: types.ListVpcConnectionsInput, options: any): async.Operation<types.ListVpcConnectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVpcConnections, input, options) as async.Operation<types.ListVpcConnectionsOutput>
+function C:listVpcConnections(input: types.ListVpcConnectionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListVpcConnectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVpcConnections as schema.OperationSchema, input, options) as async.Operation<types.ListVpcConnectionsOutput>
 end
 
-function C:putClusterPolicy(input: types.PutClusterPolicyInput, options: any): async.Operation<types.PutClusterPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutClusterPolicy, input, options) as async.Operation<types.PutClusterPolicyOutput>
+function C:putClusterPolicy(input: types.PutClusterPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutClusterPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutClusterPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutClusterPolicyOutput>
 end
 
-function C:rebootBroker(input: types.RebootBrokerInput, options: any): async.Operation<types.RebootBrokerOutput>
-    return self:invokeOperation(schemas.Service, schemas.RebootBroker, input, options) as async.Operation<types.RebootBrokerOutput>
+function C:rebootBroker(input: types.RebootBrokerInput, options?: base_client.InvokeOptions): async.Operation<types.RebootBrokerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RebootBroker as schema.OperationSchema, input, options) as async.Operation<types.RebootBrokerOutput>
 end
 
-function C:rejectClientVpcConnection(input: types.RejectClientVpcConnectionInput, options: any): async.Operation<types.RejectClientVpcConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.RejectClientVpcConnection, input, options) as async.Operation<types.RejectClientVpcConnectionOutput>
+function C:rejectClientVpcConnection(input: types.RejectClientVpcConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.RejectClientVpcConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RejectClientVpcConnection as schema.OperationSchema, input, options) as async.Operation<types.RejectClientVpcConnectionOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateBrokerCount(input: types.UpdateBrokerCountInput, options: any): async.Operation<types.UpdateBrokerCountOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateBrokerCount, input, options) as async.Operation<types.UpdateBrokerCountOutput>
+function C:updateBrokerCount(input: types.UpdateBrokerCountInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBrokerCountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBrokerCount as schema.OperationSchema, input, options) as async.Operation<types.UpdateBrokerCountOutput>
 end
 
-function C:updateBrokerStorage(input: types.UpdateBrokerStorageInput, options: any): async.Operation<types.UpdateBrokerStorageOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateBrokerStorage, input, options) as async.Operation<types.UpdateBrokerStorageOutput>
+function C:updateBrokerStorage(input: types.UpdateBrokerStorageInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBrokerStorageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBrokerStorage as schema.OperationSchema, input, options) as async.Operation<types.UpdateBrokerStorageOutput>
 end
 
-function C:updateBrokerType(input: types.UpdateBrokerTypeInput, options: any): async.Operation<types.UpdateBrokerTypeOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateBrokerType, input, options) as async.Operation<types.UpdateBrokerTypeOutput>
+function C:updateBrokerType(input: types.UpdateBrokerTypeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBrokerTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBrokerType as schema.OperationSchema, input, options) as async.Operation<types.UpdateBrokerTypeOutput>
 end
 
-function C:updateClusterConfiguration(input: types.UpdateClusterConfigurationInput, options: any): async.Operation<types.UpdateClusterConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateClusterConfiguration, input, options) as async.Operation<types.UpdateClusterConfigurationOutput>
+function C:updateClusterConfiguration(input: types.UpdateClusterConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateClusterConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateClusterConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateClusterConfigurationOutput>
 end
 
-function C:updateClusterKafkaVersion(input: types.UpdateClusterKafkaVersionInput, options: any): async.Operation<types.UpdateClusterKafkaVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateClusterKafkaVersion, input, options) as async.Operation<types.UpdateClusterKafkaVersionOutput>
+function C:updateClusterKafkaVersion(input: types.UpdateClusterKafkaVersionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateClusterKafkaVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateClusterKafkaVersion as schema.OperationSchema, input, options) as async.Operation<types.UpdateClusterKafkaVersionOutput>
 end
 
-function C:updateConfiguration(input: types.UpdateConfigurationInput, options: any): async.Operation<types.UpdateConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConfiguration, input, options) as async.Operation<types.UpdateConfigurationOutput>
+function C:updateConfiguration(input: types.UpdateConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateConfigurationOutput>
 end
 
-function C:updateConnectivity(input: types.UpdateConnectivityInput, options: any): async.Operation<types.UpdateConnectivityOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConnectivity, input, options) as async.Operation<types.UpdateConnectivityOutput>
+function C:updateConnectivity(input: types.UpdateConnectivityInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConnectivityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConnectivity as schema.OperationSchema, input, options) as async.Operation<types.UpdateConnectivityOutput>
 end
 
-function C:updateMonitoring(input: types.UpdateMonitoringInput, options: any): async.Operation<types.UpdateMonitoringOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateMonitoring, input, options) as async.Operation<types.UpdateMonitoringOutput>
+function C:updateMonitoring(input: types.UpdateMonitoringInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMonitoringOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMonitoring as schema.OperationSchema, input, options) as async.Operation<types.UpdateMonitoringOutput>
 end
 
-function C:updateRebalancing(input: types.UpdateRebalancingInput, options: any): async.Operation<types.UpdateRebalancingOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRebalancing, input, options) as async.Operation<types.UpdateRebalancingOutput>
+function C:updateRebalancing(input: types.UpdateRebalancingInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRebalancingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRebalancing as schema.OperationSchema, input, options) as async.Operation<types.UpdateRebalancingOutput>
 end
 
-function C:updateReplicationInfo(input: types.UpdateReplicationInfoInput, options: any): async.Operation<types.UpdateReplicationInfoOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateReplicationInfo, input, options) as async.Operation<types.UpdateReplicationInfoOutput>
+function C:updateReplicationInfo(input: types.UpdateReplicationInfoInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateReplicationInfoOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateReplicationInfo as schema.OperationSchema, input, options) as async.Operation<types.UpdateReplicationInfoOutput>
 end
 
-function C:updateSecurity(input: types.UpdateSecurityInput, options: any): async.Operation<types.UpdateSecurityOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSecurity, input, options) as async.Operation<types.UpdateSecurityOutput>
+function C:updateSecurity(input: types.UpdateSecurityInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSecurityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSecurity as schema.OperationSchema, input, options) as async.Operation<types.UpdateSecurityOutput>
 end
 
-function C:updateStorage(input: types.UpdateStorageInput, options: any): async.Operation<types.UpdateStorageOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateStorage, input, options) as async.Operation<types.UpdateStorageOutput>
+function C:updateStorage(input: types.UpdateStorageInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateStorageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateStorage as schema.OperationSchema, input, options) as async.Operation<types.UpdateStorageOutput>
 end
 
-function C:updateTopic(input: types.UpdateTopicInput, options: any): async.Operation<types.UpdateTopicOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTopic, input, options) as async.Operation<types.UpdateTopicOutput>
+function C:updateTopic(input: types.UpdateTopicInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTopicOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTopic as schema.OperationSchema, input, options) as async.Operation<types.UpdateTopicOutput>
 end
 
 return M

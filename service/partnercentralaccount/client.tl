@@ -8,68 +8,71 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("partnercentralaccount.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("partnercentralaccount.schemas")
 local traits = require("smithy.traits")
 local types = require("partnercentralaccount.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    acceptConnectionInvitation: function(Client, types.AcceptConnectionInvitationInput, any): async.Operation<types.AcceptConnectionInvitationOutput>
-    associateAwsTrainingCertificationEmailDomain: function(Client, types.AssociateAwsTrainingCertificationEmailDomainInput, any): async.Operation<types.AssociateAwsTrainingCertificationEmailDomainOutput>
-    cancelConnection: function(Client, types.CancelConnectionInput, any): async.Operation<types.CancelConnectionOutput>
-    cancelConnectionInvitation: function(Client, types.CancelConnectionInvitationInput, any): async.Operation<types.CancelConnectionInvitationOutput>
-    cancelProfileUpdateTask: function(Client, types.CancelProfileUpdateTaskInput, any): async.Operation<types.CancelProfileUpdateTaskOutput>
-    createConnectionInvitation: function(Client, types.CreateConnectionInvitationInput, any): async.Operation<types.CreateConnectionInvitationOutput>
-    createPartner: function(Client, types.CreatePartnerInput, any): async.Operation<types.CreatePartnerOutput>
-    disassociateAwsTrainingCertificationEmailDomain: function(Client, types.DisassociateAwsTrainingCertificationEmailDomainInput, any): async.Operation<types.DisassociateAwsTrainingCertificationEmailDomainOutput>
-    getAllianceLeadContact: function(Client, types.GetAllianceLeadContactInput, any): async.Operation<types.GetAllianceLeadContactOutput>
-    getConnection: function(Client, types.GetConnectionInput, any): async.Operation<types.GetConnectionOutput>
-    getConnectionInvitation: function(Client, types.GetConnectionInvitationInput, any): async.Operation<types.GetConnectionInvitationOutput>
-    getConnectionPreferences: function(Client, types.GetConnectionPreferencesInput, any): async.Operation<types.GetConnectionPreferencesOutput>
-    getPartner: function(Client, types.GetPartnerInput, any): async.Operation<types.GetPartnerOutput>
-    getProfileUpdateTask: function(Client, types.GetProfileUpdateTaskInput, any): async.Operation<types.GetProfileUpdateTaskOutput>
-    getProfileVisibility: function(Client, types.GetProfileVisibilityInput, any): async.Operation<types.GetProfileVisibilityOutput>
-    getVerification: function(Client, types.GetVerificationInput, any): async.Operation<types.GetVerificationOutput>
-    listConnectionInvitations: function(Client, types.ListConnectionInvitationsInput, any): async.Operation<types.ListConnectionInvitationsOutput>
-    listConnections: function(Client, types.ListConnectionsInput, any): async.Operation<types.ListConnectionsOutput>
-    listPartners: function(Client, types.ListPartnersInput, any): async.Operation<types.ListPartnersOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putAllianceLeadContact: function(Client, types.PutAllianceLeadContactInput, any): async.Operation<types.PutAllianceLeadContactOutput>
-    putProfileVisibility: function(Client, types.PutProfileVisibilityInput, any): async.Operation<types.PutProfileVisibilityOutput>
-    rejectConnectionInvitation: function(Client, types.RejectConnectionInvitationInput, any): async.Operation<types.RejectConnectionInvitationOutput>
-    sendEmailVerificationCode: function(Client, types.SendEmailVerificationCodeInput, any): async.Operation<types.SendEmailVerificationCodeOutput>
-    startProfileUpdateTask: function(Client, types.StartProfileUpdateTaskInput, any): async.Operation<types.StartProfileUpdateTaskOutput>
-    startVerification: function(Client, types.StartVerificationInput, any): async.Operation<types.StartVerificationOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateConnectionPreferences: function(Client, types.UpdateConnectionPreferencesInput, any): async.Operation<types.UpdateConnectionPreferencesOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    acceptConnectionInvitation: function(Client, types.AcceptConnectionInvitationInput, ? base_client.InvokeOptions): async.Operation<types.AcceptConnectionInvitationOutput>
+    associateAwsTrainingCertificationEmailDomain: function(Client, types.AssociateAwsTrainingCertificationEmailDomainInput, ? base_client.InvokeOptions): async.Operation<types.AssociateAwsTrainingCertificationEmailDomainOutput>
+    cancelConnection: function(Client, types.CancelConnectionInput, ? base_client.InvokeOptions): async.Operation<types.CancelConnectionOutput>
+    cancelConnectionInvitation: function(Client, types.CancelConnectionInvitationInput, ? base_client.InvokeOptions): async.Operation<types.CancelConnectionInvitationOutput>
+    cancelProfileUpdateTask: function(Client, types.CancelProfileUpdateTaskInput, ? base_client.InvokeOptions): async.Operation<types.CancelProfileUpdateTaskOutput>
+    createConnectionInvitation: function(Client, types.CreateConnectionInvitationInput, ? base_client.InvokeOptions): async.Operation<types.CreateConnectionInvitationOutput>
+    createPartner: function(Client, types.CreatePartnerInput, ? base_client.InvokeOptions): async.Operation<types.CreatePartnerOutput>
+    disassociateAwsTrainingCertificationEmailDomain: function(Client, types.DisassociateAwsTrainingCertificationEmailDomainInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateAwsTrainingCertificationEmailDomainOutput>
+    getAllianceLeadContact: function(Client, types.GetAllianceLeadContactInput, ? base_client.InvokeOptions): async.Operation<types.GetAllianceLeadContactOutput>
+    getConnection: function(Client, types.GetConnectionInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectionOutput>
+    getConnectionInvitation: function(Client, types.GetConnectionInvitationInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectionInvitationOutput>
+    getConnectionPreferences: function(Client, types.GetConnectionPreferencesInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectionPreferencesOutput>
+    getPartner: function(Client, types.GetPartnerInput, ? base_client.InvokeOptions): async.Operation<types.GetPartnerOutput>
+    getProfileUpdateTask: function(Client, types.GetProfileUpdateTaskInput, ? base_client.InvokeOptions): async.Operation<types.GetProfileUpdateTaskOutput>
+    getProfileVisibility: function(Client, types.GetProfileVisibilityInput, ? base_client.InvokeOptions): async.Operation<types.GetProfileVisibilityOutput>
+    getVerification: function(Client, types.GetVerificationInput, ? base_client.InvokeOptions): async.Operation<types.GetVerificationOutput>
+    listConnectionInvitations: function(Client, types.ListConnectionInvitationsInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectionInvitationsOutput>
+    listConnections: function(Client, types.ListConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectionsOutput>
+    listPartners: function(Client, types.ListPartnersInput, ? base_client.InvokeOptions): async.Operation<types.ListPartnersOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putAllianceLeadContact: function(Client, types.PutAllianceLeadContactInput, ? base_client.InvokeOptions): async.Operation<types.PutAllianceLeadContactOutput>
+    putProfileVisibility: function(Client, types.PutProfileVisibilityInput, ? base_client.InvokeOptions): async.Operation<types.PutProfileVisibilityOutput>
+    rejectConnectionInvitation: function(Client, types.RejectConnectionInvitationInput, ? base_client.InvokeOptions): async.Operation<types.RejectConnectionInvitationOutput>
+    sendEmailVerificationCode: function(Client, types.SendEmailVerificationCodeInput, ? base_client.InvokeOptions): async.Operation<types.SendEmailVerificationCodeOutput>
+    startProfileUpdateTask: function(Client, types.StartProfileUpdateTaskInput, ? base_client.InvokeOptions): async.Operation<types.StartProfileUpdateTaskOutput>
+    startVerification: function(Client, types.StartVerificationInput, ? base_client.InvokeOptions): async.Operation<types.StartVerificationOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateConnectionPreferences: function(Client, types.UpdateConnectionPreferencesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConnectionPreferencesOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "PartnerCentralAccount"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "partnercentral-account", signing_region = c.region } }
                 else
@@ -88,120 +91,120 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:acceptConnectionInvitation(input: types.AcceptConnectionInvitationInput, options: any): async.Operation<types.AcceptConnectionInvitationOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptConnectionInvitation, input, options) as async.Operation<types.AcceptConnectionInvitationOutput>
+function C:acceptConnectionInvitation(input: types.AcceptConnectionInvitationInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptConnectionInvitationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptConnectionInvitation as schema.OperationSchema, input, options) as async.Operation<types.AcceptConnectionInvitationOutput>
 end
 
-function C:associateAwsTrainingCertificationEmailDomain(input: types.AssociateAwsTrainingCertificationEmailDomainInput, options: any): async.Operation<types.AssociateAwsTrainingCertificationEmailDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateAwsTrainingCertificationEmailDomain, input, options) as async.Operation<types.AssociateAwsTrainingCertificationEmailDomainOutput>
+function C:associateAwsTrainingCertificationEmailDomain(input: types.AssociateAwsTrainingCertificationEmailDomainInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateAwsTrainingCertificationEmailDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateAwsTrainingCertificationEmailDomain as schema.OperationSchema, input, options) as async.Operation<types.AssociateAwsTrainingCertificationEmailDomainOutput>
 end
 
-function C:cancelConnection(input: types.CancelConnectionInput, options: any): async.Operation<types.CancelConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelConnection, input, options) as async.Operation<types.CancelConnectionOutput>
+function C:cancelConnection(input: types.CancelConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.CancelConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelConnection as schema.OperationSchema, input, options) as async.Operation<types.CancelConnectionOutput>
 end
 
-function C:cancelConnectionInvitation(input: types.CancelConnectionInvitationInput, options: any): async.Operation<types.CancelConnectionInvitationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelConnectionInvitation, input, options) as async.Operation<types.CancelConnectionInvitationOutput>
+function C:cancelConnectionInvitation(input: types.CancelConnectionInvitationInput, options?: base_client.InvokeOptions): async.Operation<types.CancelConnectionInvitationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelConnectionInvitation as schema.OperationSchema, input, options) as async.Operation<types.CancelConnectionInvitationOutput>
 end
 
-function C:cancelProfileUpdateTask(input: types.CancelProfileUpdateTaskInput, options: any): async.Operation<types.CancelProfileUpdateTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelProfileUpdateTask, input, options) as async.Operation<types.CancelProfileUpdateTaskOutput>
+function C:cancelProfileUpdateTask(input: types.CancelProfileUpdateTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CancelProfileUpdateTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelProfileUpdateTask as schema.OperationSchema, input, options) as async.Operation<types.CancelProfileUpdateTaskOutput>
 end
 
-function C:createConnectionInvitation(input: types.CreateConnectionInvitationInput, options: any): async.Operation<types.CreateConnectionInvitationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConnectionInvitation, input, options) as async.Operation<types.CreateConnectionInvitationOutput>
+function C:createConnectionInvitation(input: types.CreateConnectionInvitationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConnectionInvitationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConnectionInvitation as schema.OperationSchema, input, options) as async.Operation<types.CreateConnectionInvitationOutput>
 end
 
-function C:createPartner(input: types.CreatePartnerInput, options: any): async.Operation<types.CreatePartnerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePartner, input, options) as async.Operation<types.CreatePartnerOutput>
+function C:createPartner(input: types.CreatePartnerInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePartnerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePartner as schema.OperationSchema, input, options) as async.Operation<types.CreatePartnerOutput>
 end
 
-function C:disassociateAwsTrainingCertificationEmailDomain(input: types.DisassociateAwsTrainingCertificationEmailDomainInput, options: any): async.Operation<types.DisassociateAwsTrainingCertificationEmailDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateAwsTrainingCertificationEmailDomain, input, options) as async.Operation<types.DisassociateAwsTrainingCertificationEmailDomainOutput>
+function C:disassociateAwsTrainingCertificationEmailDomain(input: types.DisassociateAwsTrainingCertificationEmailDomainInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateAwsTrainingCertificationEmailDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateAwsTrainingCertificationEmailDomain as schema.OperationSchema, input, options) as async.Operation<types.DisassociateAwsTrainingCertificationEmailDomainOutput>
 end
 
-function C:getAllianceLeadContact(input: types.GetAllianceLeadContactInput, options: any): async.Operation<types.GetAllianceLeadContactOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAllianceLeadContact, input, options) as async.Operation<types.GetAllianceLeadContactOutput>
+function C:getAllianceLeadContact(input: types.GetAllianceLeadContactInput, options?: base_client.InvokeOptions): async.Operation<types.GetAllianceLeadContactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAllianceLeadContact as schema.OperationSchema, input, options) as async.Operation<types.GetAllianceLeadContactOutput>
 end
 
-function C:getConnection(input: types.GetConnectionInput, options: any): async.Operation<types.GetConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConnection, input, options) as async.Operation<types.GetConnectionOutput>
+function C:getConnection(input: types.GetConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.GetConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConnection as schema.OperationSchema, input, options) as async.Operation<types.GetConnectionOutput>
 end
 
-function C:getConnectionInvitation(input: types.GetConnectionInvitationInput, options: any): async.Operation<types.GetConnectionInvitationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConnectionInvitation, input, options) as async.Operation<types.GetConnectionInvitationOutput>
+function C:getConnectionInvitation(input: types.GetConnectionInvitationInput, options?: base_client.InvokeOptions): async.Operation<types.GetConnectionInvitationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConnectionInvitation as schema.OperationSchema, input, options) as async.Operation<types.GetConnectionInvitationOutput>
 end
 
-function C:getConnectionPreferences(input: types.GetConnectionPreferencesInput, options: any): async.Operation<types.GetConnectionPreferencesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConnectionPreferences, input, options) as async.Operation<types.GetConnectionPreferencesOutput>
+function C:getConnectionPreferences(input: types.GetConnectionPreferencesInput, options?: base_client.InvokeOptions): async.Operation<types.GetConnectionPreferencesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConnectionPreferences as schema.OperationSchema, input, options) as async.Operation<types.GetConnectionPreferencesOutput>
 end
 
-function C:getPartner(input: types.GetPartnerInput, options: any): async.Operation<types.GetPartnerOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPartner, input, options) as async.Operation<types.GetPartnerOutput>
+function C:getPartner(input: types.GetPartnerInput, options?: base_client.InvokeOptions): async.Operation<types.GetPartnerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPartner as schema.OperationSchema, input, options) as async.Operation<types.GetPartnerOutput>
 end
 
-function C:getProfileUpdateTask(input: types.GetProfileUpdateTaskInput, options: any): async.Operation<types.GetProfileUpdateTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetProfileUpdateTask, input, options) as async.Operation<types.GetProfileUpdateTaskOutput>
+function C:getProfileUpdateTask(input: types.GetProfileUpdateTaskInput, options?: base_client.InvokeOptions): async.Operation<types.GetProfileUpdateTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProfileUpdateTask as schema.OperationSchema, input, options) as async.Operation<types.GetProfileUpdateTaskOutput>
 end
 
-function C:getProfileVisibility(input: types.GetProfileVisibilityInput, options: any): async.Operation<types.GetProfileVisibilityOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetProfileVisibility, input, options) as async.Operation<types.GetProfileVisibilityOutput>
+function C:getProfileVisibility(input: types.GetProfileVisibilityInput, options?: base_client.InvokeOptions): async.Operation<types.GetProfileVisibilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProfileVisibility as schema.OperationSchema, input, options) as async.Operation<types.GetProfileVisibilityOutput>
 end
 
-function C:getVerification(input: types.GetVerificationInput, options: any): async.Operation<types.GetVerificationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetVerification, input, options) as async.Operation<types.GetVerificationOutput>
+function C:getVerification(input: types.GetVerificationInput, options?: base_client.InvokeOptions): async.Operation<types.GetVerificationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVerification as schema.OperationSchema, input, options) as async.Operation<types.GetVerificationOutput>
 end
 
-function C:listConnectionInvitations(input: types.ListConnectionInvitationsInput, options: any): async.Operation<types.ListConnectionInvitationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConnectionInvitations, input, options) as async.Operation<types.ListConnectionInvitationsOutput>
+function C:listConnectionInvitations(input: types.ListConnectionInvitationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConnectionInvitationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConnectionInvitations as schema.OperationSchema, input, options) as async.Operation<types.ListConnectionInvitationsOutput>
 end
 
-function C:listConnections(input: types.ListConnectionsInput, options: any): async.Operation<types.ListConnectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConnections, input, options) as async.Operation<types.ListConnectionsOutput>
+function C:listConnections(input: types.ListConnectionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConnectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConnections as schema.OperationSchema, input, options) as async.Operation<types.ListConnectionsOutput>
 end
 
-function C:listPartners(input: types.ListPartnersInput, options: any): async.Operation<types.ListPartnersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPartners, input, options) as async.Operation<types.ListPartnersOutput>
+function C:listPartners(input: types.ListPartnersInput, options?: base_client.InvokeOptions): async.Operation<types.ListPartnersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPartners as schema.OperationSchema, input, options) as async.Operation<types.ListPartnersOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putAllianceLeadContact(input: types.PutAllianceLeadContactInput, options: any): async.Operation<types.PutAllianceLeadContactOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutAllianceLeadContact, input, options) as async.Operation<types.PutAllianceLeadContactOutput>
+function C:putAllianceLeadContact(input: types.PutAllianceLeadContactInput, options?: base_client.InvokeOptions): async.Operation<types.PutAllianceLeadContactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAllianceLeadContact as schema.OperationSchema, input, options) as async.Operation<types.PutAllianceLeadContactOutput>
 end
 
-function C:putProfileVisibility(input: types.PutProfileVisibilityInput, options: any): async.Operation<types.PutProfileVisibilityOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutProfileVisibility, input, options) as async.Operation<types.PutProfileVisibilityOutput>
+function C:putProfileVisibility(input: types.PutProfileVisibilityInput, options?: base_client.InvokeOptions): async.Operation<types.PutProfileVisibilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutProfileVisibility as schema.OperationSchema, input, options) as async.Operation<types.PutProfileVisibilityOutput>
 end
 
-function C:rejectConnectionInvitation(input: types.RejectConnectionInvitationInput, options: any): async.Operation<types.RejectConnectionInvitationOutput>
-    return self:invokeOperation(schemas.Service, schemas.RejectConnectionInvitation, input, options) as async.Operation<types.RejectConnectionInvitationOutput>
+function C:rejectConnectionInvitation(input: types.RejectConnectionInvitationInput, options?: base_client.InvokeOptions): async.Operation<types.RejectConnectionInvitationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RejectConnectionInvitation as schema.OperationSchema, input, options) as async.Operation<types.RejectConnectionInvitationOutput>
 end
 
-function C:sendEmailVerificationCode(input: types.SendEmailVerificationCodeInput, options: any): async.Operation<types.SendEmailVerificationCodeOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendEmailVerificationCode, input, options) as async.Operation<types.SendEmailVerificationCodeOutput>
+function C:sendEmailVerificationCode(input: types.SendEmailVerificationCodeInput, options?: base_client.InvokeOptions): async.Operation<types.SendEmailVerificationCodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendEmailVerificationCode as schema.OperationSchema, input, options) as async.Operation<types.SendEmailVerificationCodeOutput>
 end
 
-function C:startProfileUpdateTask(input: types.StartProfileUpdateTaskInput, options: any): async.Operation<types.StartProfileUpdateTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartProfileUpdateTask, input, options) as async.Operation<types.StartProfileUpdateTaskOutput>
+function C:startProfileUpdateTask(input: types.StartProfileUpdateTaskInput, options?: base_client.InvokeOptions): async.Operation<types.StartProfileUpdateTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartProfileUpdateTask as schema.OperationSchema, input, options) as async.Operation<types.StartProfileUpdateTaskOutput>
 end
 
-function C:startVerification(input: types.StartVerificationInput, options: any): async.Operation<types.StartVerificationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartVerification, input, options) as async.Operation<types.StartVerificationOutput>
+function C:startVerification(input: types.StartVerificationInput, options?: base_client.InvokeOptions): async.Operation<types.StartVerificationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartVerification as schema.OperationSchema, input, options) as async.Operation<types.StartVerificationOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateConnectionPreferences(input: types.UpdateConnectionPreferencesInput, options: any): async.Operation<types.UpdateConnectionPreferencesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConnectionPreferences, input, options) as async.Operation<types.UpdateConnectionPreferencesOutput>
+function C:updateConnectionPreferences(input: types.UpdateConnectionPreferencesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConnectionPreferencesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConnectionPreferences as schema.OperationSchema, input, options) as async.Operation<types.UpdateConnectionPreferencesOutput>
 end
 
 return M

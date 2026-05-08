@@ -8,77 +8,80 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("entityresolution.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("entityresolution.schemas")
 local traits = require("smithy.traits")
 local types = require("entityresolution.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    addPolicyStatement: function(Client, types.AddPolicyStatementInput, any): async.Operation<types.AddPolicyStatementOutput>
-    batchDeleteUniqueId: function(Client, types.BatchDeleteUniqueIdInput, any): async.Operation<types.BatchDeleteUniqueIdOutput>
-    createIdMappingWorkflow: function(Client, types.CreateIdMappingWorkflowInput, any): async.Operation<types.CreateIdMappingWorkflowOutput>
-    createIdNamespace: function(Client, types.CreateIdNamespaceInput, any): async.Operation<types.CreateIdNamespaceOutput>
-    createMatchingWorkflow: function(Client, types.CreateMatchingWorkflowInput, any): async.Operation<types.CreateMatchingWorkflowOutput>
-    createSchemaMapping: function(Client, types.CreateSchemaMappingInput, any): async.Operation<types.CreateSchemaMappingOutput>
-    deleteIdMappingWorkflow: function(Client, types.DeleteIdMappingWorkflowInput, any): async.Operation<types.DeleteIdMappingWorkflowOutput>
-    deleteIdNamespace: function(Client, types.DeleteIdNamespaceInput, any): async.Operation<types.DeleteIdNamespaceOutput>
-    deleteMatchingWorkflow: function(Client, types.DeleteMatchingWorkflowInput, any): async.Operation<types.DeleteMatchingWorkflowOutput>
-    deletePolicyStatement: function(Client, types.DeletePolicyStatementInput, any): async.Operation<types.DeletePolicyStatementOutput>
-    deleteSchemaMapping: function(Client, types.DeleteSchemaMappingInput, any): async.Operation<types.DeleteSchemaMappingOutput>
-    generateMatchId: function(Client, types.GenerateMatchIdInput, any): async.Operation<types.GenerateMatchIdOutput>
-    getIdMappingJob: function(Client, types.GetIdMappingJobInput, any): async.Operation<types.GetIdMappingJobOutput>
-    getIdMappingWorkflow: function(Client, types.GetIdMappingWorkflowInput, any): async.Operation<types.GetIdMappingWorkflowOutput>
-    getIdNamespace: function(Client, types.GetIdNamespaceInput, any): async.Operation<types.GetIdNamespaceOutput>
-    getMatchId: function(Client, types.GetMatchIdInput, any): async.Operation<types.GetMatchIdOutput>
-    getMatchingJob: function(Client, types.GetMatchingJobInput, any): async.Operation<types.GetMatchingJobOutput>
-    getMatchingWorkflow: function(Client, types.GetMatchingWorkflowInput, any): async.Operation<types.GetMatchingWorkflowOutput>
-    getPolicy: function(Client, types.GetPolicyInput, any): async.Operation<types.GetPolicyOutput>
-    getProviderService: function(Client, types.GetProviderServiceInput, any): async.Operation<types.GetProviderServiceOutput>
-    getSchemaMapping: function(Client, types.GetSchemaMappingInput, any): async.Operation<types.GetSchemaMappingOutput>
-    listIdMappingJobs: function(Client, types.ListIdMappingJobsInput, any): async.Operation<types.ListIdMappingJobsOutput>
-    listIdMappingWorkflows: function(Client, types.ListIdMappingWorkflowsInput, any): async.Operation<types.ListIdMappingWorkflowsOutput>
-    listIdNamespaces: function(Client, types.ListIdNamespacesInput, any): async.Operation<types.ListIdNamespacesOutput>
-    listMatchingJobs: function(Client, types.ListMatchingJobsInput, any): async.Operation<types.ListMatchingJobsOutput>
-    listMatchingWorkflows: function(Client, types.ListMatchingWorkflowsInput, any): async.Operation<types.ListMatchingWorkflowsOutput>
-    listProviderServices: function(Client, types.ListProviderServicesInput, any): async.Operation<types.ListProviderServicesOutput>
-    listSchemaMappings: function(Client, types.ListSchemaMappingsInput, any): async.Operation<types.ListSchemaMappingsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putPolicy: function(Client, types.PutPolicyInput, any): async.Operation<types.PutPolicyOutput>
-    startIdMappingJob: function(Client, types.StartIdMappingJobInput, any): async.Operation<types.StartIdMappingJobOutput>
-    startMatchingJob: function(Client, types.StartMatchingJobInput, any): async.Operation<types.StartMatchingJobOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateIdMappingWorkflow: function(Client, types.UpdateIdMappingWorkflowInput, any): async.Operation<types.UpdateIdMappingWorkflowOutput>
-    updateIdNamespace: function(Client, types.UpdateIdNamespaceInput, any): async.Operation<types.UpdateIdNamespaceOutput>
-    updateMatchingWorkflow: function(Client, types.UpdateMatchingWorkflowInput, any): async.Operation<types.UpdateMatchingWorkflowOutput>
-    updateSchemaMapping: function(Client, types.UpdateSchemaMappingInput, any): async.Operation<types.UpdateSchemaMappingOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    addPolicyStatement: function(Client, types.AddPolicyStatementInput, ? base_client.InvokeOptions): async.Operation<types.AddPolicyStatementOutput>
+    batchDeleteUniqueId: function(Client, types.BatchDeleteUniqueIdInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteUniqueIdOutput>
+    createIdMappingWorkflow: function(Client, types.CreateIdMappingWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.CreateIdMappingWorkflowOutput>
+    createIdNamespace: function(Client, types.CreateIdNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.CreateIdNamespaceOutput>
+    createMatchingWorkflow: function(Client, types.CreateMatchingWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.CreateMatchingWorkflowOutput>
+    createSchemaMapping: function(Client, types.CreateSchemaMappingInput, ? base_client.InvokeOptions): async.Operation<types.CreateSchemaMappingOutput>
+    deleteIdMappingWorkflow: function(Client, types.DeleteIdMappingWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIdMappingWorkflowOutput>
+    deleteIdNamespace: function(Client, types.DeleteIdNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIdNamespaceOutput>
+    deleteMatchingWorkflow: function(Client, types.DeleteMatchingWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMatchingWorkflowOutput>
+    deletePolicyStatement: function(Client, types.DeletePolicyStatementInput, ? base_client.InvokeOptions): async.Operation<types.DeletePolicyStatementOutput>
+    deleteSchemaMapping: function(Client, types.DeleteSchemaMappingInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSchemaMappingOutput>
+    generateMatchId: function(Client, types.GenerateMatchIdInput, ? base_client.InvokeOptions): async.Operation<types.GenerateMatchIdOutput>
+    getIdMappingJob: function(Client, types.GetIdMappingJobInput, ? base_client.InvokeOptions): async.Operation<types.GetIdMappingJobOutput>
+    getIdMappingWorkflow: function(Client, types.GetIdMappingWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.GetIdMappingWorkflowOutput>
+    getIdNamespace: function(Client, types.GetIdNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.GetIdNamespaceOutput>
+    getMatchId: function(Client, types.GetMatchIdInput, ? base_client.InvokeOptions): async.Operation<types.GetMatchIdOutput>
+    getMatchingJob: function(Client, types.GetMatchingJobInput, ? base_client.InvokeOptions): async.Operation<types.GetMatchingJobOutput>
+    getMatchingWorkflow: function(Client, types.GetMatchingWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.GetMatchingWorkflowOutput>
+    getPolicy: function(Client, types.GetPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetPolicyOutput>
+    getProviderService: function(Client, types.GetProviderServiceInput, ? base_client.InvokeOptions): async.Operation<types.GetProviderServiceOutput>
+    getSchemaMapping: function(Client, types.GetSchemaMappingInput, ? base_client.InvokeOptions): async.Operation<types.GetSchemaMappingOutput>
+    listIdMappingJobs: function(Client, types.ListIdMappingJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListIdMappingJobsOutput>
+    listIdMappingWorkflows: function(Client, types.ListIdMappingWorkflowsInput, ? base_client.InvokeOptions): async.Operation<types.ListIdMappingWorkflowsOutput>
+    listIdNamespaces: function(Client, types.ListIdNamespacesInput, ? base_client.InvokeOptions): async.Operation<types.ListIdNamespacesOutput>
+    listMatchingJobs: function(Client, types.ListMatchingJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListMatchingJobsOutput>
+    listMatchingWorkflows: function(Client, types.ListMatchingWorkflowsInput, ? base_client.InvokeOptions): async.Operation<types.ListMatchingWorkflowsOutput>
+    listProviderServices: function(Client, types.ListProviderServicesInput, ? base_client.InvokeOptions): async.Operation<types.ListProviderServicesOutput>
+    listSchemaMappings: function(Client, types.ListSchemaMappingsInput, ? base_client.InvokeOptions): async.Operation<types.ListSchemaMappingsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putPolicy: function(Client, types.PutPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutPolicyOutput>
+    startIdMappingJob: function(Client, types.StartIdMappingJobInput, ? base_client.InvokeOptions): async.Operation<types.StartIdMappingJobOutput>
+    startMatchingJob: function(Client, types.StartMatchingJobInput, ? base_client.InvokeOptions): async.Operation<types.StartMatchingJobOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateIdMappingWorkflow: function(Client, types.UpdateIdMappingWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIdMappingWorkflowOutput>
+    updateIdNamespace: function(Client, types.UpdateIdNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIdNamespaceOutput>
+    updateMatchingWorkflow: function(Client, types.UpdateMatchingWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMatchingWorkflowOutput>
+    updateSchemaMapping: function(Client, types.UpdateSchemaMappingInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSchemaMappingOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSVeniceService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "entityresolution", signing_region = c.region } }
                 else
@@ -97,156 +100,156 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:addPolicyStatement(input: types.AddPolicyStatementInput, options: any): async.Operation<types.AddPolicyStatementOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddPolicyStatement, input, options) as async.Operation<types.AddPolicyStatementOutput>
+function C:addPolicyStatement(input: types.AddPolicyStatementInput, options?: base_client.InvokeOptions): async.Operation<types.AddPolicyStatementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddPolicyStatement as schema.OperationSchema, input, options) as async.Operation<types.AddPolicyStatementOutput>
 end
 
-function C:batchDeleteUniqueId(input: types.BatchDeleteUniqueIdInput, options: any): async.Operation<types.BatchDeleteUniqueIdOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDeleteUniqueId, input, options) as async.Operation<types.BatchDeleteUniqueIdOutput>
+function C:batchDeleteUniqueId(input: types.BatchDeleteUniqueIdInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteUniqueIdOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteUniqueId as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteUniqueIdOutput>
 end
 
-function C:createIdMappingWorkflow(input: types.CreateIdMappingWorkflowInput, options: any): async.Operation<types.CreateIdMappingWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIdMappingWorkflow, input, options) as async.Operation<types.CreateIdMappingWorkflowOutput>
+function C:createIdMappingWorkflow(input: types.CreateIdMappingWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIdMappingWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIdMappingWorkflow as schema.OperationSchema, input, options) as async.Operation<types.CreateIdMappingWorkflowOutput>
 end
 
-function C:createIdNamespace(input: types.CreateIdNamespaceInput, options: any): async.Operation<types.CreateIdNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIdNamespace, input, options) as async.Operation<types.CreateIdNamespaceOutput>
+function C:createIdNamespace(input: types.CreateIdNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIdNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIdNamespace as schema.OperationSchema, input, options) as async.Operation<types.CreateIdNamespaceOutput>
 end
 
-function C:createMatchingWorkflow(input: types.CreateMatchingWorkflowInput, options: any): async.Operation<types.CreateMatchingWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMatchingWorkflow, input, options) as async.Operation<types.CreateMatchingWorkflowOutput>
+function C:createMatchingWorkflow(input: types.CreateMatchingWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMatchingWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMatchingWorkflow as schema.OperationSchema, input, options) as async.Operation<types.CreateMatchingWorkflowOutput>
 end
 
-function C:createSchemaMapping(input: types.CreateSchemaMappingInput, options: any): async.Operation<types.CreateSchemaMappingOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSchemaMapping, input, options) as async.Operation<types.CreateSchemaMappingOutput>
+function C:createSchemaMapping(input: types.CreateSchemaMappingInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSchemaMappingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSchemaMapping as schema.OperationSchema, input, options) as async.Operation<types.CreateSchemaMappingOutput>
 end
 
-function C:deleteIdMappingWorkflow(input: types.DeleteIdMappingWorkflowInput, options: any): async.Operation<types.DeleteIdMappingWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIdMappingWorkflow, input, options) as async.Operation<types.DeleteIdMappingWorkflowOutput>
+function C:deleteIdMappingWorkflow(input: types.DeleteIdMappingWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIdMappingWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIdMappingWorkflow as schema.OperationSchema, input, options) as async.Operation<types.DeleteIdMappingWorkflowOutput>
 end
 
-function C:deleteIdNamespace(input: types.DeleteIdNamespaceInput, options: any): async.Operation<types.DeleteIdNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIdNamespace, input, options) as async.Operation<types.DeleteIdNamespaceOutput>
+function C:deleteIdNamespace(input: types.DeleteIdNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIdNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIdNamespace as schema.OperationSchema, input, options) as async.Operation<types.DeleteIdNamespaceOutput>
 end
 
-function C:deleteMatchingWorkflow(input: types.DeleteMatchingWorkflowInput, options: any): async.Operation<types.DeleteMatchingWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMatchingWorkflow, input, options) as async.Operation<types.DeleteMatchingWorkflowOutput>
+function C:deleteMatchingWorkflow(input: types.DeleteMatchingWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMatchingWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMatchingWorkflow as schema.OperationSchema, input, options) as async.Operation<types.DeleteMatchingWorkflowOutput>
 end
 
-function C:deletePolicyStatement(input: types.DeletePolicyStatementInput, options: any): async.Operation<types.DeletePolicyStatementOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePolicyStatement, input, options) as async.Operation<types.DeletePolicyStatementOutput>
+function C:deletePolicyStatement(input: types.DeletePolicyStatementInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePolicyStatementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePolicyStatement as schema.OperationSchema, input, options) as async.Operation<types.DeletePolicyStatementOutput>
 end
 
-function C:deleteSchemaMapping(input: types.DeleteSchemaMappingInput, options: any): async.Operation<types.DeleteSchemaMappingOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSchemaMapping, input, options) as async.Operation<types.DeleteSchemaMappingOutput>
+function C:deleteSchemaMapping(input: types.DeleteSchemaMappingInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSchemaMappingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSchemaMapping as schema.OperationSchema, input, options) as async.Operation<types.DeleteSchemaMappingOutput>
 end
 
-function C:generateMatchId(input: types.GenerateMatchIdInput, options: any): async.Operation<types.GenerateMatchIdOutput>
-    return self:invokeOperation(schemas.Service, schemas.GenerateMatchId, input, options) as async.Operation<types.GenerateMatchIdOutput>
+function C:generateMatchId(input: types.GenerateMatchIdInput, options?: base_client.InvokeOptions): async.Operation<types.GenerateMatchIdOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GenerateMatchId as schema.OperationSchema, input, options) as async.Operation<types.GenerateMatchIdOutput>
 end
 
-function C:getIdMappingJob(input: types.GetIdMappingJobInput, options: any): async.Operation<types.GetIdMappingJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIdMappingJob, input, options) as async.Operation<types.GetIdMappingJobOutput>
+function C:getIdMappingJob(input: types.GetIdMappingJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetIdMappingJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIdMappingJob as schema.OperationSchema, input, options) as async.Operation<types.GetIdMappingJobOutput>
 end
 
-function C:getIdMappingWorkflow(input: types.GetIdMappingWorkflowInput, options: any): async.Operation<types.GetIdMappingWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIdMappingWorkflow, input, options) as async.Operation<types.GetIdMappingWorkflowOutput>
+function C:getIdMappingWorkflow(input: types.GetIdMappingWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.GetIdMappingWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIdMappingWorkflow as schema.OperationSchema, input, options) as async.Operation<types.GetIdMappingWorkflowOutput>
 end
 
-function C:getIdNamespace(input: types.GetIdNamespaceInput, options: any): async.Operation<types.GetIdNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIdNamespace, input, options) as async.Operation<types.GetIdNamespaceOutput>
+function C:getIdNamespace(input: types.GetIdNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.GetIdNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIdNamespace as schema.OperationSchema, input, options) as async.Operation<types.GetIdNamespaceOutput>
 end
 
-function C:getMatchId(input: types.GetMatchIdInput, options: any): async.Operation<types.GetMatchIdOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMatchId, input, options) as async.Operation<types.GetMatchIdOutput>
+function C:getMatchId(input: types.GetMatchIdInput, options?: base_client.InvokeOptions): async.Operation<types.GetMatchIdOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMatchId as schema.OperationSchema, input, options) as async.Operation<types.GetMatchIdOutput>
 end
 
-function C:getMatchingJob(input: types.GetMatchingJobInput, options: any): async.Operation<types.GetMatchingJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMatchingJob, input, options) as async.Operation<types.GetMatchingJobOutput>
+function C:getMatchingJob(input: types.GetMatchingJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetMatchingJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMatchingJob as schema.OperationSchema, input, options) as async.Operation<types.GetMatchingJobOutput>
 end
 
-function C:getMatchingWorkflow(input: types.GetMatchingWorkflowInput, options: any): async.Operation<types.GetMatchingWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMatchingWorkflow, input, options) as async.Operation<types.GetMatchingWorkflowOutput>
+function C:getMatchingWorkflow(input: types.GetMatchingWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.GetMatchingWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMatchingWorkflow as schema.OperationSchema, input, options) as async.Operation<types.GetMatchingWorkflowOutput>
 end
 
-function C:getPolicy(input: types.GetPolicyInput, options: any): async.Operation<types.GetPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPolicy, input, options) as async.Operation<types.GetPolicyOutput>
+function C:getPolicy(input: types.GetPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetPolicyOutput>
 end
 
-function C:getProviderService(input: types.GetProviderServiceInput, options: any): async.Operation<types.GetProviderServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetProviderService, input, options) as async.Operation<types.GetProviderServiceOutput>
+function C:getProviderService(input: types.GetProviderServiceInput, options?: base_client.InvokeOptions): async.Operation<types.GetProviderServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProviderService as schema.OperationSchema, input, options) as async.Operation<types.GetProviderServiceOutput>
 end
 
-function C:getSchemaMapping(input: types.GetSchemaMappingInput, options: any): async.Operation<types.GetSchemaMappingOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSchemaMapping, input, options) as async.Operation<types.GetSchemaMappingOutput>
+function C:getSchemaMapping(input: types.GetSchemaMappingInput, options?: base_client.InvokeOptions): async.Operation<types.GetSchemaMappingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSchemaMapping as schema.OperationSchema, input, options) as async.Operation<types.GetSchemaMappingOutput>
 end
 
-function C:listIdMappingJobs(input: types.ListIdMappingJobsInput, options: any): async.Operation<types.ListIdMappingJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIdMappingJobs, input, options) as async.Operation<types.ListIdMappingJobsOutput>
+function C:listIdMappingJobs(input: types.ListIdMappingJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListIdMappingJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIdMappingJobs as schema.OperationSchema, input, options) as async.Operation<types.ListIdMappingJobsOutput>
 end
 
-function C:listIdMappingWorkflows(input: types.ListIdMappingWorkflowsInput, options: any): async.Operation<types.ListIdMappingWorkflowsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIdMappingWorkflows, input, options) as async.Operation<types.ListIdMappingWorkflowsOutput>
+function C:listIdMappingWorkflows(input: types.ListIdMappingWorkflowsInput, options?: base_client.InvokeOptions): async.Operation<types.ListIdMappingWorkflowsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIdMappingWorkflows as schema.OperationSchema, input, options) as async.Operation<types.ListIdMappingWorkflowsOutput>
 end
 
-function C:listIdNamespaces(input: types.ListIdNamespacesInput, options: any): async.Operation<types.ListIdNamespacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIdNamespaces, input, options) as async.Operation<types.ListIdNamespacesOutput>
+function C:listIdNamespaces(input: types.ListIdNamespacesInput, options?: base_client.InvokeOptions): async.Operation<types.ListIdNamespacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIdNamespaces as schema.OperationSchema, input, options) as async.Operation<types.ListIdNamespacesOutput>
 end
 
-function C:listMatchingJobs(input: types.ListMatchingJobsInput, options: any): async.Operation<types.ListMatchingJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMatchingJobs, input, options) as async.Operation<types.ListMatchingJobsOutput>
+function C:listMatchingJobs(input: types.ListMatchingJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMatchingJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMatchingJobs as schema.OperationSchema, input, options) as async.Operation<types.ListMatchingJobsOutput>
 end
 
-function C:listMatchingWorkflows(input: types.ListMatchingWorkflowsInput, options: any): async.Operation<types.ListMatchingWorkflowsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMatchingWorkflows, input, options) as async.Operation<types.ListMatchingWorkflowsOutput>
+function C:listMatchingWorkflows(input: types.ListMatchingWorkflowsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMatchingWorkflowsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMatchingWorkflows as schema.OperationSchema, input, options) as async.Operation<types.ListMatchingWorkflowsOutput>
 end
 
-function C:listProviderServices(input: types.ListProviderServicesInput, options: any): async.Operation<types.ListProviderServicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProviderServices, input, options) as async.Operation<types.ListProviderServicesOutput>
+function C:listProviderServices(input: types.ListProviderServicesInput, options?: base_client.InvokeOptions): async.Operation<types.ListProviderServicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProviderServices as schema.OperationSchema, input, options) as async.Operation<types.ListProviderServicesOutput>
 end
 
-function C:listSchemaMappings(input: types.ListSchemaMappingsInput, options: any): async.Operation<types.ListSchemaMappingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSchemaMappings, input, options) as async.Operation<types.ListSchemaMappingsOutput>
+function C:listSchemaMappings(input: types.ListSchemaMappingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSchemaMappingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSchemaMappings as schema.OperationSchema, input, options) as async.Operation<types.ListSchemaMappingsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putPolicy(input: types.PutPolicyInput, options: any): async.Operation<types.PutPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutPolicy, input, options) as async.Operation<types.PutPolicyOutput>
+function C:putPolicy(input: types.PutPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutPolicyOutput>
 end
 
-function C:startIdMappingJob(input: types.StartIdMappingJobInput, options: any): async.Operation<types.StartIdMappingJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartIdMappingJob, input, options) as async.Operation<types.StartIdMappingJobOutput>
+function C:startIdMappingJob(input: types.StartIdMappingJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartIdMappingJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartIdMappingJob as schema.OperationSchema, input, options) as async.Operation<types.StartIdMappingJobOutput>
 end
 
-function C:startMatchingJob(input: types.StartMatchingJobInput, options: any): async.Operation<types.StartMatchingJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartMatchingJob, input, options) as async.Operation<types.StartMatchingJobOutput>
+function C:startMatchingJob(input: types.StartMatchingJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartMatchingJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartMatchingJob as schema.OperationSchema, input, options) as async.Operation<types.StartMatchingJobOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateIdMappingWorkflow(input: types.UpdateIdMappingWorkflowInput, options: any): async.Operation<types.UpdateIdMappingWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateIdMappingWorkflow, input, options) as async.Operation<types.UpdateIdMappingWorkflowOutput>
+function C:updateIdMappingWorkflow(input: types.UpdateIdMappingWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIdMappingWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIdMappingWorkflow as schema.OperationSchema, input, options) as async.Operation<types.UpdateIdMappingWorkflowOutput>
 end
 
-function C:updateIdNamespace(input: types.UpdateIdNamespaceInput, options: any): async.Operation<types.UpdateIdNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateIdNamespace, input, options) as async.Operation<types.UpdateIdNamespaceOutput>
+function C:updateIdNamespace(input: types.UpdateIdNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIdNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIdNamespace as schema.OperationSchema, input, options) as async.Operation<types.UpdateIdNamespaceOutput>
 end
 
-function C:updateMatchingWorkflow(input: types.UpdateMatchingWorkflowInput, options: any): async.Operation<types.UpdateMatchingWorkflowOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateMatchingWorkflow, input, options) as async.Operation<types.UpdateMatchingWorkflowOutput>
+function C:updateMatchingWorkflow(input: types.UpdateMatchingWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMatchingWorkflowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMatchingWorkflow as schema.OperationSchema, input, options) as async.Operation<types.UpdateMatchingWorkflowOutput>
 end
 
-function C:updateSchemaMapping(input: types.UpdateSchemaMappingInput, options: any): async.Operation<types.UpdateSchemaMappingOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSchemaMapping, input, options) as async.Operation<types.UpdateSchemaMappingOutput>
+function C:updateSchemaMapping(input: types.UpdateSchemaMappingInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSchemaMappingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSchemaMapping as schema.OperationSchema, input, options) as async.Operation<types.UpdateSchemaMappingOutput>
 end
 
 return M

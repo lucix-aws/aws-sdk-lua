@@ -8,65 +8,68 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("iotevents.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("iotevents.schemas")
 local traits = require("smithy.traits")
 local types = require("iotevents.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createAlarmModel: function(Client, types.CreateAlarmModelInput, any): async.Operation<types.CreateAlarmModelOutput>
-    createDetectorModel: function(Client, types.CreateDetectorModelInput, any): async.Operation<types.CreateDetectorModelOutput>
-    createInput: function(Client, types.CreateInputInput, any): async.Operation<types.CreateInputOutput>
-    deleteAlarmModel: function(Client, types.DeleteAlarmModelInput, any): async.Operation<types.DeleteAlarmModelOutput>
-    deleteDetectorModel: function(Client, types.DeleteDetectorModelInput, any): async.Operation<types.DeleteDetectorModelOutput>
-    deleteInput: function(Client, types.DeleteInputInput, any): async.Operation<types.DeleteInputOutput>
-    describeAlarmModel: function(Client, types.DescribeAlarmModelInput, any): async.Operation<types.DescribeAlarmModelOutput>
-    describeDetectorModel: function(Client, types.DescribeDetectorModelInput, any): async.Operation<types.DescribeDetectorModelOutput>
-    describeDetectorModelAnalysis: function(Client, types.DescribeDetectorModelAnalysisInput, any): async.Operation<types.DescribeDetectorModelAnalysisOutput>
-    describeInput: function(Client, types.DescribeInputInput, any): async.Operation<types.DescribeInputOutput>
-    describeLoggingOptions: function(Client, types.DescribeLoggingOptionsInput, any): async.Operation<types.DescribeLoggingOptionsOutput>
-    getDetectorModelAnalysisResults: function(Client, types.GetDetectorModelAnalysisResultsInput, any): async.Operation<types.GetDetectorModelAnalysisResultsOutput>
-    listAlarmModels: function(Client, types.ListAlarmModelsInput, any): async.Operation<types.ListAlarmModelsOutput>
-    listAlarmModelVersions: function(Client, types.ListAlarmModelVersionsInput, any): async.Operation<types.ListAlarmModelVersionsOutput>
-    listDetectorModels: function(Client, types.ListDetectorModelsInput, any): async.Operation<types.ListDetectorModelsOutput>
-    listDetectorModelVersions: function(Client, types.ListDetectorModelVersionsInput, any): async.Operation<types.ListDetectorModelVersionsOutput>
-    listInputRoutings: function(Client, types.ListInputRoutingsInput, any): async.Operation<types.ListInputRoutingsOutput>
-    listInputs: function(Client, types.ListInputsInput, any): async.Operation<types.ListInputsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    putLoggingOptions: function(Client, types.PutLoggingOptionsInput, any): async.Operation<types.PutLoggingOptionsOutput>
-    startDetectorModelAnalysis: function(Client, types.StartDetectorModelAnalysisInput, any): async.Operation<types.StartDetectorModelAnalysisOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAlarmModel: function(Client, types.UpdateAlarmModelInput, any): async.Operation<types.UpdateAlarmModelOutput>
-    updateDetectorModel: function(Client, types.UpdateDetectorModelInput, any): async.Operation<types.UpdateDetectorModelOutput>
-    updateInput: function(Client, types.UpdateInputInput, any): async.Operation<types.UpdateInputOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createAlarmModel: function(Client, types.CreateAlarmModelInput, ? base_client.InvokeOptions): async.Operation<types.CreateAlarmModelOutput>
+    createDetectorModel: function(Client, types.CreateDetectorModelInput, ? base_client.InvokeOptions): async.Operation<types.CreateDetectorModelOutput>
+    createInput: function(Client, types.CreateInputInput, ? base_client.InvokeOptions): async.Operation<types.CreateInputOutput>
+    deleteAlarmModel: function(Client, types.DeleteAlarmModelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAlarmModelOutput>
+    deleteDetectorModel: function(Client, types.DeleteDetectorModelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDetectorModelOutput>
+    deleteInput: function(Client, types.DeleteInputInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInputOutput>
+    describeAlarmModel: function(Client, types.DescribeAlarmModelInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAlarmModelOutput>
+    describeDetectorModel: function(Client, types.DescribeDetectorModelInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDetectorModelOutput>
+    describeDetectorModelAnalysis: function(Client, types.DescribeDetectorModelAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDetectorModelAnalysisOutput>
+    describeInput: function(Client, types.DescribeInputInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInputOutput>
+    describeLoggingOptions: function(Client, types.DescribeLoggingOptionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLoggingOptionsOutput>
+    getDetectorModelAnalysisResults: function(Client, types.GetDetectorModelAnalysisResultsInput, ? base_client.InvokeOptions): async.Operation<types.GetDetectorModelAnalysisResultsOutput>
+    listAlarmModels: function(Client, types.ListAlarmModelsInput, ? base_client.InvokeOptions): async.Operation<types.ListAlarmModelsOutput>
+    listAlarmModelVersions: function(Client, types.ListAlarmModelVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListAlarmModelVersionsOutput>
+    listDetectorModels: function(Client, types.ListDetectorModelsInput, ? base_client.InvokeOptions): async.Operation<types.ListDetectorModelsOutput>
+    listDetectorModelVersions: function(Client, types.ListDetectorModelVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListDetectorModelVersionsOutput>
+    listInputRoutings: function(Client, types.ListInputRoutingsInput, ? base_client.InvokeOptions): async.Operation<types.ListInputRoutingsOutput>
+    listInputs: function(Client, types.ListInputsInput, ? base_client.InvokeOptions): async.Operation<types.ListInputsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putLoggingOptions: function(Client, types.PutLoggingOptionsInput, ? base_client.InvokeOptions): async.Operation<types.PutLoggingOptionsOutput>
+    startDetectorModelAnalysis: function(Client, types.StartDetectorModelAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.StartDetectorModelAnalysisOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAlarmModel: function(Client, types.UpdateAlarmModelInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAlarmModelOutput>
+    updateDetectorModel: function(Client, types.UpdateDetectorModelInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDetectorModelOutput>
+    updateInput: function(Client, types.UpdateInputInput, ? base_client.InvokeOptions): async.Operation<types.UpdateInputOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "IotColumboService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "iotevents", signing_region = c.region } }
                 else
@@ -85,108 +88,108 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createAlarmModel(input: types.CreateAlarmModelInput, options: any): async.Operation<types.CreateAlarmModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAlarmModel, input, options) as async.Operation<types.CreateAlarmModelOutput>
+function C:createAlarmModel(input: types.CreateAlarmModelInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAlarmModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAlarmModel as schema.OperationSchema, input, options) as async.Operation<types.CreateAlarmModelOutput>
 end
 
-function C:createDetectorModel(input: types.CreateDetectorModelInput, options: any): async.Operation<types.CreateDetectorModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDetectorModel, input, options) as async.Operation<types.CreateDetectorModelOutput>
+function C:createDetectorModel(input: types.CreateDetectorModelInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDetectorModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDetectorModel as schema.OperationSchema, input, options) as async.Operation<types.CreateDetectorModelOutput>
 end
 
-function C:createInput(input: types.CreateInputInput, options: any): async.Operation<types.CreateInputOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateInput, input, options) as async.Operation<types.CreateInputOutput>
+function C:createInput(input: types.CreateInputInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInput as schema.OperationSchema, input, options) as async.Operation<types.CreateInputOutput>
 end
 
-function C:deleteAlarmModel(input: types.DeleteAlarmModelInput, options: any): async.Operation<types.DeleteAlarmModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAlarmModel, input, options) as async.Operation<types.DeleteAlarmModelOutput>
+function C:deleteAlarmModel(input: types.DeleteAlarmModelInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAlarmModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAlarmModel as schema.OperationSchema, input, options) as async.Operation<types.DeleteAlarmModelOutput>
 end
 
-function C:deleteDetectorModel(input: types.DeleteDetectorModelInput, options: any): async.Operation<types.DeleteDetectorModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDetectorModel, input, options) as async.Operation<types.DeleteDetectorModelOutput>
+function C:deleteDetectorModel(input: types.DeleteDetectorModelInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDetectorModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDetectorModel as schema.OperationSchema, input, options) as async.Operation<types.DeleteDetectorModelOutput>
 end
 
-function C:deleteInput(input: types.DeleteInputInput, options: any): async.Operation<types.DeleteInputOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteInput, input, options) as async.Operation<types.DeleteInputOutput>
+function C:deleteInput(input: types.DeleteInputInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteInputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInput as schema.OperationSchema, input, options) as async.Operation<types.DeleteInputOutput>
 end
 
-function C:describeAlarmModel(input: types.DescribeAlarmModelInput, options: any): async.Operation<types.DescribeAlarmModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAlarmModel, input, options) as async.Operation<types.DescribeAlarmModelOutput>
+function C:describeAlarmModel(input: types.DescribeAlarmModelInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAlarmModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAlarmModel as schema.OperationSchema, input, options) as async.Operation<types.DescribeAlarmModelOutput>
 end
 
-function C:describeDetectorModel(input: types.DescribeDetectorModelInput, options: any): async.Operation<types.DescribeDetectorModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDetectorModel, input, options) as async.Operation<types.DescribeDetectorModelOutput>
+function C:describeDetectorModel(input: types.DescribeDetectorModelInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDetectorModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDetectorModel as schema.OperationSchema, input, options) as async.Operation<types.DescribeDetectorModelOutput>
 end
 
-function C:describeDetectorModelAnalysis(input: types.DescribeDetectorModelAnalysisInput, options: any): async.Operation<types.DescribeDetectorModelAnalysisOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDetectorModelAnalysis, input, options) as async.Operation<types.DescribeDetectorModelAnalysisOutput>
+function C:describeDetectorModelAnalysis(input: types.DescribeDetectorModelAnalysisInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDetectorModelAnalysisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDetectorModelAnalysis as schema.OperationSchema, input, options) as async.Operation<types.DescribeDetectorModelAnalysisOutput>
 end
 
-function C:describeInput(input: types.DescribeInputInput, options: any): async.Operation<types.DescribeInputOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeInput, input, options) as async.Operation<types.DescribeInputOutput>
+function C:describeInput(input: types.DescribeInputInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInput as schema.OperationSchema, input, options) as async.Operation<types.DescribeInputOutput>
 end
 
-function C:describeLoggingOptions(input: types.DescribeLoggingOptionsInput, options: any): async.Operation<types.DescribeLoggingOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLoggingOptions, input, options) as async.Operation<types.DescribeLoggingOptionsOutput>
+function C:describeLoggingOptions(input: types.DescribeLoggingOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLoggingOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLoggingOptions as schema.OperationSchema, input, options) as async.Operation<types.DescribeLoggingOptionsOutput>
 end
 
-function C:getDetectorModelAnalysisResults(input: types.GetDetectorModelAnalysisResultsInput, options: any): async.Operation<types.GetDetectorModelAnalysisResultsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDetectorModelAnalysisResults, input, options) as async.Operation<types.GetDetectorModelAnalysisResultsOutput>
+function C:getDetectorModelAnalysisResults(input: types.GetDetectorModelAnalysisResultsInput, options?: base_client.InvokeOptions): async.Operation<types.GetDetectorModelAnalysisResultsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDetectorModelAnalysisResults as schema.OperationSchema, input, options) as async.Operation<types.GetDetectorModelAnalysisResultsOutput>
 end
 
-function C:listAlarmModels(input: types.ListAlarmModelsInput, options: any): async.Operation<types.ListAlarmModelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAlarmModels, input, options) as async.Operation<types.ListAlarmModelsOutput>
+function C:listAlarmModels(input: types.ListAlarmModelsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAlarmModelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAlarmModels as schema.OperationSchema, input, options) as async.Operation<types.ListAlarmModelsOutput>
 end
 
-function C:listAlarmModelVersions(input: types.ListAlarmModelVersionsInput, options: any): async.Operation<types.ListAlarmModelVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAlarmModelVersions, input, options) as async.Operation<types.ListAlarmModelVersionsOutput>
+function C:listAlarmModelVersions(input: types.ListAlarmModelVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAlarmModelVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAlarmModelVersions as schema.OperationSchema, input, options) as async.Operation<types.ListAlarmModelVersionsOutput>
 end
 
-function C:listDetectorModels(input: types.ListDetectorModelsInput, options: any): async.Operation<types.ListDetectorModelsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDetectorModels, input, options) as async.Operation<types.ListDetectorModelsOutput>
+function C:listDetectorModels(input: types.ListDetectorModelsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDetectorModelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDetectorModels as schema.OperationSchema, input, options) as async.Operation<types.ListDetectorModelsOutput>
 end
 
-function C:listDetectorModelVersions(input: types.ListDetectorModelVersionsInput, options: any): async.Operation<types.ListDetectorModelVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDetectorModelVersions, input, options) as async.Operation<types.ListDetectorModelVersionsOutput>
+function C:listDetectorModelVersions(input: types.ListDetectorModelVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDetectorModelVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDetectorModelVersions as schema.OperationSchema, input, options) as async.Operation<types.ListDetectorModelVersionsOutput>
 end
 
-function C:listInputRoutings(input: types.ListInputRoutingsInput, options: any): async.Operation<types.ListInputRoutingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInputRoutings, input, options) as async.Operation<types.ListInputRoutingsOutput>
+function C:listInputRoutings(input: types.ListInputRoutingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInputRoutingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInputRoutings as schema.OperationSchema, input, options) as async.Operation<types.ListInputRoutingsOutput>
 end
 
-function C:listInputs(input: types.ListInputsInput, options: any): async.Operation<types.ListInputsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInputs, input, options) as async.Operation<types.ListInputsOutput>
+function C:listInputs(input: types.ListInputsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInputsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInputs as schema.OperationSchema, input, options) as async.Operation<types.ListInputsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:putLoggingOptions(input: types.PutLoggingOptionsInput, options: any): async.Operation<types.PutLoggingOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutLoggingOptions, input, options) as async.Operation<types.PutLoggingOptionsOutput>
+function C:putLoggingOptions(input: types.PutLoggingOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.PutLoggingOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutLoggingOptions as schema.OperationSchema, input, options) as async.Operation<types.PutLoggingOptionsOutput>
 end
 
-function C:startDetectorModelAnalysis(input: types.StartDetectorModelAnalysisInput, options: any): async.Operation<types.StartDetectorModelAnalysisOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartDetectorModelAnalysis, input, options) as async.Operation<types.StartDetectorModelAnalysisOutput>
+function C:startDetectorModelAnalysis(input: types.StartDetectorModelAnalysisInput, options?: base_client.InvokeOptions): async.Operation<types.StartDetectorModelAnalysisOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDetectorModelAnalysis as schema.OperationSchema, input, options) as async.Operation<types.StartDetectorModelAnalysisOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAlarmModel(input: types.UpdateAlarmModelInput, options: any): async.Operation<types.UpdateAlarmModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAlarmModel, input, options) as async.Operation<types.UpdateAlarmModelOutput>
+function C:updateAlarmModel(input: types.UpdateAlarmModelInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAlarmModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAlarmModel as schema.OperationSchema, input, options) as async.Operation<types.UpdateAlarmModelOutput>
 end
 
-function C:updateDetectorModel(input: types.UpdateDetectorModelInput, options: any): async.Operation<types.UpdateDetectorModelOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDetectorModel, input, options) as async.Operation<types.UpdateDetectorModelOutput>
+function C:updateDetectorModel(input: types.UpdateDetectorModelInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDetectorModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDetectorModel as schema.OperationSchema, input, options) as async.Operation<types.UpdateDetectorModelOutput>
 end
 
-function C:updateInput(input: types.UpdateInputInput, options: any): async.Operation<types.UpdateInputOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateInput, input, options) as async.Operation<types.UpdateInputOutput>
+function C:updateInput(input: types.UpdateInputInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateInputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateInput as schema.OperationSchema, input, options) as async.Operation<types.UpdateInputOutput>
 end
 
 return M

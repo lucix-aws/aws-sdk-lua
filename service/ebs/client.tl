@@ -8,45 +8,48 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("ebs.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("ebs.schemas")
 local traits = require("smithy.traits")
 local types = require("ebs.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    completeSnapshot: function(Client, types.CompleteSnapshotInput, any): async.Operation<types.CompleteSnapshotOutput>
-    getSnapshotBlock: function(Client, types.GetSnapshotBlockInput, any): async.Operation<types.GetSnapshotBlockOutput>
-    listChangedBlocks: function(Client, types.ListChangedBlocksInput, any): async.Operation<types.ListChangedBlocksOutput>
-    listSnapshotBlocks: function(Client, types.ListSnapshotBlocksInput, any): async.Operation<types.ListSnapshotBlocksOutput>
-    putSnapshotBlock: function(Client, types.PutSnapshotBlockInput, any): async.Operation<types.PutSnapshotBlockOutput>
-    startSnapshot: function(Client, types.StartSnapshotInput, any): async.Operation<types.StartSnapshotOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    completeSnapshot: function(Client, types.CompleteSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.CompleteSnapshotOutput>
+    getSnapshotBlock: function(Client, types.GetSnapshotBlockInput, ? base_client.InvokeOptions): async.Operation<types.GetSnapshotBlockOutput>
+    listChangedBlocks: function(Client, types.ListChangedBlocksInput, ? base_client.InvokeOptions): async.Operation<types.ListChangedBlocksOutput>
+    listSnapshotBlocks: function(Client, types.ListSnapshotBlocksInput, ? base_client.InvokeOptions): async.Operation<types.ListSnapshotBlocksOutput>
+    putSnapshotBlock: function(Client, types.PutSnapshotBlockInput, ? base_client.InvokeOptions): async.Operation<types.PutSnapshotBlockOutput>
+    startSnapshot: function(Client, types.StartSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.StartSnapshotOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "Ebs"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ebs", signing_region = c.region } }
                 else
@@ -65,28 +68,28 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:completeSnapshot(input: types.CompleteSnapshotInput, options: any): async.Operation<types.CompleteSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.CompleteSnapshot, input, options) as async.Operation<types.CompleteSnapshotOutput>
+function C:completeSnapshot(input: types.CompleteSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.CompleteSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CompleteSnapshot as schema.OperationSchema, input, options) as async.Operation<types.CompleteSnapshotOutput>
 end
 
-function C:getSnapshotBlock(input: types.GetSnapshotBlockInput, options: any): async.Operation<types.GetSnapshotBlockOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSnapshotBlock, input, options) as async.Operation<types.GetSnapshotBlockOutput>
+function C:getSnapshotBlock(input: types.GetSnapshotBlockInput, options?: base_client.InvokeOptions): async.Operation<types.GetSnapshotBlockOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSnapshotBlock as schema.OperationSchema, input, options) as async.Operation<types.GetSnapshotBlockOutput>
 end
 
-function C:listChangedBlocks(input: types.ListChangedBlocksInput, options: any): async.Operation<types.ListChangedBlocksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListChangedBlocks, input, options) as async.Operation<types.ListChangedBlocksOutput>
+function C:listChangedBlocks(input: types.ListChangedBlocksInput, options?: base_client.InvokeOptions): async.Operation<types.ListChangedBlocksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListChangedBlocks as schema.OperationSchema, input, options) as async.Operation<types.ListChangedBlocksOutput>
 end
 
-function C:listSnapshotBlocks(input: types.ListSnapshotBlocksInput, options: any): async.Operation<types.ListSnapshotBlocksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSnapshotBlocks, input, options) as async.Operation<types.ListSnapshotBlocksOutput>
+function C:listSnapshotBlocks(input: types.ListSnapshotBlocksInput, options?: base_client.InvokeOptions): async.Operation<types.ListSnapshotBlocksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSnapshotBlocks as schema.OperationSchema, input, options) as async.Operation<types.ListSnapshotBlocksOutput>
 end
 
-function C:putSnapshotBlock(input: types.PutSnapshotBlockInput, options: any): async.Operation<types.PutSnapshotBlockOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutSnapshotBlock, input, options) as async.Operation<types.PutSnapshotBlockOutput>
+function C:putSnapshotBlock(input: types.PutSnapshotBlockInput, options?: base_client.InvokeOptions): async.Operation<types.PutSnapshotBlockOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutSnapshotBlock as schema.OperationSchema, input, options) as async.Operation<types.PutSnapshotBlockOutput>
 end
 
-function C:startSnapshot(input: types.StartSnapshotInput, options: any): async.Operation<types.StartSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartSnapshot, input, options) as async.Operation<types.StartSnapshotOutput>
+function C:startSnapshot(input: types.StartSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.StartSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartSnapshot as schema.OperationSchema, input, options) as async.Operation<types.StartSnapshotOutput>
 end
 
 return M

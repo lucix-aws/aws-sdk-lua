@@ -8,65 +8,68 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("cloudsearch.endpoint_rules")
 local query_protocol = require("smithy.protocol.awsquery")
+local schema = require("smithy.schema")
 local schemas = require("cloudsearch.schemas")
 local traits = require("smithy.traits")
 local types = require("cloudsearch.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    buildSuggesters: function(Client, types.BuildSuggestersInput, any): async.Operation<types.BuildSuggestersOutput>
-    createDomain: function(Client, types.CreateDomainInput, any): async.Operation<types.CreateDomainOutput>
-    defineAnalysisScheme: function(Client, types.DefineAnalysisSchemeInput, any): async.Operation<types.DefineAnalysisSchemeOutput>
-    defineExpression: function(Client, types.DefineExpressionInput, any): async.Operation<types.DefineExpressionOutput>
-    defineIndexField: function(Client, types.DefineIndexFieldInput, any): async.Operation<types.DefineIndexFieldOutput>
-    defineSuggester: function(Client, types.DefineSuggesterInput, any): async.Operation<types.DefineSuggesterOutput>
-    deleteAnalysisScheme: function(Client, types.DeleteAnalysisSchemeInput, any): async.Operation<types.DeleteAnalysisSchemeOutput>
-    deleteDomain: function(Client, types.DeleteDomainInput, any): async.Operation<types.DeleteDomainOutput>
-    deleteExpression: function(Client, types.DeleteExpressionInput, any): async.Operation<types.DeleteExpressionOutput>
-    deleteIndexField: function(Client, types.DeleteIndexFieldInput, any): async.Operation<types.DeleteIndexFieldOutput>
-    deleteSuggester: function(Client, types.DeleteSuggesterInput, any): async.Operation<types.DeleteSuggesterOutput>
-    describeAnalysisSchemes: function(Client, types.DescribeAnalysisSchemesInput, any): async.Operation<types.DescribeAnalysisSchemesOutput>
-    describeAvailabilityOptions: function(Client, types.DescribeAvailabilityOptionsInput, any): async.Operation<types.DescribeAvailabilityOptionsOutput>
-    describeDomainEndpointOptions: function(Client, types.DescribeDomainEndpointOptionsInput, any): async.Operation<types.DescribeDomainEndpointOptionsOutput>
-    describeDomains: function(Client, types.DescribeDomainsInput, any): async.Operation<types.DescribeDomainsOutput>
-    describeExpressions: function(Client, types.DescribeExpressionsInput, any): async.Operation<types.DescribeExpressionsOutput>
-    describeIndexFields: function(Client, types.DescribeIndexFieldsInput, any): async.Operation<types.DescribeIndexFieldsOutput>
-    describeScalingParameters: function(Client, types.DescribeScalingParametersInput, any): async.Operation<types.DescribeScalingParametersOutput>
-    describeServiceAccessPolicies: function(Client, types.DescribeServiceAccessPoliciesInput, any): async.Operation<types.DescribeServiceAccessPoliciesOutput>
-    describeSuggesters: function(Client, types.DescribeSuggestersInput, any): async.Operation<types.DescribeSuggestersOutput>
-    indexDocuments: function(Client, types.IndexDocumentsInput, any): async.Operation<types.IndexDocumentsOutput>
-    listDomainNames: function(Client, types.ListDomainNamesInput, any): async.Operation<types.ListDomainNamesOutput>
-    updateAvailabilityOptions: function(Client, types.UpdateAvailabilityOptionsInput, any): async.Operation<types.UpdateAvailabilityOptionsOutput>
-    updateDomainEndpointOptions: function(Client, types.UpdateDomainEndpointOptionsInput, any): async.Operation<types.UpdateDomainEndpointOptionsOutput>
-    updateScalingParameters: function(Client, types.UpdateScalingParametersInput, any): async.Operation<types.UpdateScalingParametersOutput>
-    updateServiceAccessPolicies: function(Client, types.UpdateServiceAccessPoliciesInput, any): async.Operation<types.UpdateServiceAccessPoliciesOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    buildSuggesters: function(Client, types.BuildSuggestersInput, ? base_client.InvokeOptions): async.Operation<types.BuildSuggestersOutput>
+    createDomain: function(Client, types.CreateDomainInput, ? base_client.InvokeOptions): async.Operation<types.CreateDomainOutput>
+    defineAnalysisScheme: function(Client, types.DefineAnalysisSchemeInput, ? base_client.InvokeOptions): async.Operation<types.DefineAnalysisSchemeOutput>
+    defineExpression: function(Client, types.DefineExpressionInput, ? base_client.InvokeOptions): async.Operation<types.DefineExpressionOutput>
+    defineIndexField: function(Client, types.DefineIndexFieldInput, ? base_client.InvokeOptions): async.Operation<types.DefineIndexFieldOutput>
+    defineSuggester: function(Client, types.DefineSuggesterInput, ? base_client.InvokeOptions): async.Operation<types.DefineSuggesterOutput>
+    deleteAnalysisScheme: function(Client, types.DeleteAnalysisSchemeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAnalysisSchemeOutput>
+    deleteDomain: function(Client, types.DeleteDomainInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDomainOutput>
+    deleteExpression: function(Client, types.DeleteExpressionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteExpressionOutput>
+    deleteIndexField: function(Client, types.DeleteIndexFieldInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIndexFieldOutput>
+    deleteSuggester: function(Client, types.DeleteSuggesterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSuggesterOutput>
+    describeAnalysisSchemes: function(Client, types.DescribeAnalysisSchemesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAnalysisSchemesOutput>
+    describeAvailabilityOptions: function(Client, types.DescribeAvailabilityOptionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAvailabilityOptionsOutput>
+    describeDomainEndpointOptions: function(Client, types.DescribeDomainEndpointOptionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDomainEndpointOptionsOutput>
+    describeDomains: function(Client, types.DescribeDomainsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDomainsOutput>
+    describeExpressions: function(Client, types.DescribeExpressionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeExpressionsOutput>
+    describeIndexFields: function(Client, types.DescribeIndexFieldsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIndexFieldsOutput>
+    describeScalingParameters: function(Client, types.DescribeScalingParametersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeScalingParametersOutput>
+    describeServiceAccessPolicies: function(Client, types.DescribeServiceAccessPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeServiceAccessPoliciesOutput>
+    describeSuggesters: function(Client, types.DescribeSuggestersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSuggestersOutput>
+    indexDocuments: function(Client, types.IndexDocumentsInput, ? base_client.InvokeOptions): async.Operation<types.IndexDocumentsOutput>
+    listDomainNames: function(Client, types.ListDomainNamesInput, ? base_client.InvokeOptions): async.Operation<types.ListDomainNamesOutput>
+    updateAvailabilityOptions: function(Client, types.UpdateAvailabilityOptionsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAvailabilityOptionsOutput>
+    updateDomainEndpointOptions: function(Client, types.UpdateDomainEndpointOptionsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDomainEndpointOptionsOutput>
+    updateScalingParameters: function(Client, types.UpdateScalingParametersInput, ? base_client.InvokeOptions): async.Operation<types.UpdateScalingParametersOutput>
+    updateServiceAccessPolicies: function(Client, types.UpdateServiceAccessPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServiceAccessPoliciesOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "A9SearchCloudConfigService2013"
-    if not c.protocol then c.protocol = query_protocol.new("awsQuery") end
+    if not c.protocol then c.protocol = query_protocol.new("awsQuery") as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "cloudsearch", signing_region = c.region } }
                 else
@@ -85,108 +88,108 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:buildSuggesters(input: types.BuildSuggestersInput, options: any): async.Operation<types.BuildSuggestersOutput>
-    return self:invokeOperation(schemas.Service, schemas.BuildSuggesters, input, options) as async.Operation<types.BuildSuggestersOutput>
+function C:buildSuggesters(input: types.BuildSuggestersInput, options?: base_client.InvokeOptions): async.Operation<types.BuildSuggestersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BuildSuggesters as schema.OperationSchema, input, options) as async.Operation<types.BuildSuggestersOutput>
 end
 
-function C:createDomain(input: types.CreateDomainInput, options: any): async.Operation<types.CreateDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDomain, input, options) as async.Operation<types.CreateDomainOutput>
+function C:createDomain(input: types.CreateDomainInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDomain as schema.OperationSchema, input, options) as async.Operation<types.CreateDomainOutput>
 end
 
-function C:defineAnalysisScheme(input: types.DefineAnalysisSchemeInput, options: any): async.Operation<types.DefineAnalysisSchemeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DefineAnalysisScheme, input, options) as async.Operation<types.DefineAnalysisSchemeOutput>
+function C:defineAnalysisScheme(input: types.DefineAnalysisSchemeInput, options?: base_client.InvokeOptions): async.Operation<types.DefineAnalysisSchemeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DefineAnalysisScheme as schema.OperationSchema, input, options) as async.Operation<types.DefineAnalysisSchemeOutput>
 end
 
-function C:defineExpression(input: types.DefineExpressionInput, options: any): async.Operation<types.DefineExpressionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DefineExpression, input, options) as async.Operation<types.DefineExpressionOutput>
+function C:defineExpression(input: types.DefineExpressionInput, options?: base_client.InvokeOptions): async.Operation<types.DefineExpressionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DefineExpression as schema.OperationSchema, input, options) as async.Operation<types.DefineExpressionOutput>
 end
 
-function C:defineIndexField(input: types.DefineIndexFieldInput, options: any): async.Operation<types.DefineIndexFieldOutput>
-    return self:invokeOperation(schemas.Service, schemas.DefineIndexField, input, options) as async.Operation<types.DefineIndexFieldOutput>
+function C:defineIndexField(input: types.DefineIndexFieldInput, options?: base_client.InvokeOptions): async.Operation<types.DefineIndexFieldOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DefineIndexField as schema.OperationSchema, input, options) as async.Operation<types.DefineIndexFieldOutput>
 end
 
-function C:defineSuggester(input: types.DefineSuggesterInput, options: any): async.Operation<types.DefineSuggesterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DefineSuggester, input, options) as async.Operation<types.DefineSuggesterOutput>
+function C:defineSuggester(input: types.DefineSuggesterInput, options?: base_client.InvokeOptions): async.Operation<types.DefineSuggesterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DefineSuggester as schema.OperationSchema, input, options) as async.Operation<types.DefineSuggesterOutput>
 end
 
-function C:deleteAnalysisScheme(input: types.DeleteAnalysisSchemeInput, options: any): async.Operation<types.DeleteAnalysisSchemeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAnalysisScheme, input, options) as async.Operation<types.DeleteAnalysisSchemeOutput>
+function C:deleteAnalysisScheme(input: types.DeleteAnalysisSchemeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAnalysisSchemeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAnalysisScheme as schema.OperationSchema, input, options) as async.Operation<types.DeleteAnalysisSchemeOutput>
 end
 
-function C:deleteDomain(input: types.DeleteDomainInput, options: any): async.Operation<types.DeleteDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDomain, input, options) as async.Operation<types.DeleteDomainOutput>
+function C:deleteDomain(input: types.DeleteDomainInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDomain as schema.OperationSchema, input, options) as async.Operation<types.DeleteDomainOutput>
 end
 
-function C:deleteExpression(input: types.DeleteExpressionInput, options: any): async.Operation<types.DeleteExpressionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteExpression, input, options) as async.Operation<types.DeleteExpressionOutput>
+function C:deleteExpression(input: types.DeleteExpressionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteExpressionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteExpression as schema.OperationSchema, input, options) as async.Operation<types.DeleteExpressionOutput>
 end
 
-function C:deleteIndexField(input: types.DeleteIndexFieldInput, options: any): async.Operation<types.DeleteIndexFieldOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIndexField, input, options) as async.Operation<types.DeleteIndexFieldOutput>
+function C:deleteIndexField(input: types.DeleteIndexFieldInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIndexFieldOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIndexField as schema.OperationSchema, input, options) as async.Operation<types.DeleteIndexFieldOutput>
 end
 
-function C:deleteSuggester(input: types.DeleteSuggesterInput, options: any): async.Operation<types.DeleteSuggesterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSuggester, input, options) as async.Operation<types.DeleteSuggesterOutput>
+function C:deleteSuggester(input: types.DeleteSuggesterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSuggesterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSuggester as schema.OperationSchema, input, options) as async.Operation<types.DeleteSuggesterOutput>
 end
 
-function C:describeAnalysisSchemes(input: types.DescribeAnalysisSchemesInput, options: any): async.Operation<types.DescribeAnalysisSchemesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAnalysisSchemes, input, options) as async.Operation<types.DescribeAnalysisSchemesOutput>
+function C:describeAnalysisSchemes(input: types.DescribeAnalysisSchemesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAnalysisSchemesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAnalysisSchemes as schema.OperationSchema, input, options) as async.Operation<types.DescribeAnalysisSchemesOutput>
 end
 
-function C:describeAvailabilityOptions(input: types.DescribeAvailabilityOptionsInput, options: any): async.Operation<types.DescribeAvailabilityOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAvailabilityOptions, input, options) as async.Operation<types.DescribeAvailabilityOptionsOutput>
+function C:describeAvailabilityOptions(input: types.DescribeAvailabilityOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAvailabilityOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAvailabilityOptions as schema.OperationSchema, input, options) as async.Operation<types.DescribeAvailabilityOptionsOutput>
 end
 
-function C:describeDomainEndpointOptions(input: types.DescribeDomainEndpointOptionsInput, options: any): async.Operation<types.DescribeDomainEndpointOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDomainEndpointOptions, input, options) as async.Operation<types.DescribeDomainEndpointOptionsOutput>
+function C:describeDomainEndpointOptions(input: types.DescribeDomainEndpointOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDomainEndpointOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDomainEndpointOptions as schema.OperationSchema, input, options) as async.Operation<types.DescribeDomainEndpointOptionsOutput>
 end
 
-function C:describeDomains(input: types.DescribeDomainsInput, options: any): async.Operation<types.DescribeDomainsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDomains, input, options) as async.Operation<types.DescribeDomainsOutput>
+function C:describeDomains(input: types.DescribeDomainsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDomainsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDomains as schema.OperationSchema, input, options) as async.Operation<types.DescribeDomainsOutput>
 end
 
-function C:describeExpressions(input: types.DescribeExpressionsInput, options: any): async.Operation<types.DescribeExpressionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeExpressions, input, options) as async.Operation<types.DescribeExpressionsOutput>
+function C:describeExpressions(input: types.DescribeExpressionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeExpressionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeExpressions as schema.OperationSchema, input, options) as async.Operation<types.DescribeExpressionsOutput>
 end
 
-function C:describeIndexFields(input: types.DescribeIndexFieldsInput, options: any): async.Operation<types.DescribeIndexFieldsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeIndexFields, input, options) as async.Operation<types.DescribeIndexFieldsOutput>
+function C:describeIndexFields(input: types.DescribeIndexFieldsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIndexFieldsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIndexFields as schema.OperationSchema, input, options) as async.Operation<types.DescribeIndexFieldsOutput>
 end
 
-function C:describeScalingParameters(input: types.DescribeScalingParametersInput, options: any): async.Operation<types.DescribeScalingParametersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeScalingParameters, input, options) as async.Operation<types.DescribeScalingParametersOutput>
+function C:describeScalingParameters(input: types.DescribeScalingParametersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeScalingParametersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeScalingParameters as schema.OperationSchema, input, options) as async.Operation<types.DescribeScalingParametersOutput>
 end
 
-function C:describeServiceAccessPolicies(input: types.DescribeServiceAccessPoliciesInput, options: any): async.Operation<types.DescribeServiceAccessPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeServiceAccessPolicies, input, options) as async.Operation<types.DescribeServiceAccessPoliciesOutput>
+function C:describeServiceAccessPolicies(input: types.DescribeServiceAccessPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeServiceAccessPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeServiceAccessPolicies as schema.OperationSchema, input, options) as async.Operation<types.DescribeServiceAccessPoliciesOutput>
 end
 
-function C:describeSuggesters(input: types.DescribeSuggestersInput, options: any): async.Operation<types.DescribeSuggestersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSuggesters, input, options) as async.Operation<types.DescribeSuggestersOutput>
+function C:describeSuggesters(input: types.DescribeSuggestersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSuggestersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSuggesters as schema.OperationSchema, input, options) as async.Operation<types.DescribeSuggestersOutput>
 end
 
-function C:indexDocuments(input: types.IndexDocumentsInput, options: any): async.Operation<types.IndexDocumentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.IndexDocuments, input, options) as async.Operation<types.IndexDocumentsOutput>
+function C:indexDocuments(input: types.IndexDocumentsInput, options?: base_client.InvokeOptions): async.Operation<types.IndexDocumentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.IndexDocuments as schema.OperationSchema, input, options) as async.Operation<types.IndexDocumentsOutput>
 end
 
-function C:listDomainNames(input: types.ListDomainNamesInput, options: any): async.Operation<types.ListDomainNamesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDomainNames, input, options) as async.Operation<types.ListDomainNamesOutput>
+function C:listDomainNames(input: types.ListDomainNamesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDomainNamesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDomainNames as schema.OperationSchema, input, options) as async.Operation<types.ListDomainNamesOutput>
 end
 
-function C:updateAvailabilityOptions(input: types.UpdateAvailabilityOptionsInput, options: any): async.Operation<types.UpdateAvailabilityOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAvailabilityOptions, input, options) as async.Operation<types.UpdateAvailabilityOptionsOutput>
+function C:updateAvailabilityOptions(input: types.UpdateAvailabilityOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAvailabilityOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAvailabilityOptions as schema.OperationSchema, input, options) as async.Operation<types.UpdateAvailabilityOptionsOutput>
 end
 
-function C:updateDomainEndpointOptions(input: types.UpdateDomainEndpointOptionsInput, options: any): async.Operation<types.UpdateDomainEndpointOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDomainEndpointOptions, input, options) as async.Operation<types.UpdateDomainEndpointOptionsOutput>
+function C:updateDomainEndpointOptions(input: types.UpdateDomainEndpointOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDomainEndpointOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDomainEndpointOptions as schema.OperationSchema, input, options) as async.Operation<types.UpdateDomainEndpointOptionsOutput>
 end
 
-function C:updateScalingParameters(input: types.UpdateScalingParametersInput, options: any): async.Operation<types.UpdateScalingParametersOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateScalingParameters, input, options) as async.Operation<types.UpdateScalingParametersOutput>
+function C:updateScalingParameters(input: types.UpdateScalingParametersInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateScalingParametersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateScalingParameters as schema.OperationSchema, input, options) as async.Operation<types.UpdateScalingParametersOutput>
 end
 
-function C:updateServiceAccessPolicies(input: types.UpdateServiceAccessPoliciesInput, options: any): async.Operation<types.UpdateServiceAccessPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateServiceAccessPolicies, input, options) as async.Operation<types.UpdateServiceAccessPoliciesOutput>
+function C:updateServiceAccessPolicies(input: types.UpdateServiceAccessPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateServiceAccessPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateServiceAccessPolicies as schema.OperationSchema, input, options) as async.Operation<types.UpdateServiceAccessPoliciesOutput>
 end
 
 return M

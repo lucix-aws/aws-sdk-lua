@@ -8,55 +8,58 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("workspacesthinclient.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("workspacesthinclient.schemas")
 local traits = require("smithy.traits")
 local types = require("workspacesthinclient.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createEnvironment: function(Client, types.CreateEnvironmentInput, any): async.Operation<types.CreateEnvironmentOutput>
-    deleteDevice: function(Client, types.DeleteDeviceInput, any): async.Operation<types.DeleteDeviceOutput>
-    deleteEnvironment: function(Client, types.DeleteEnvironmentInput, any): async.Operation<types.DeleteEnvironmentOutput>
-    deregisterDevice: function(Client, types.DeregisterDeviceInput, any): async.Operation<types.DeregisterDeviceOutput>
-    getDevice: function(Client, types.GetDeviceInput, any): async.Operation<types.GetDeviceOutput>
-    getEnvironment: function(Client, types.GetEnvironmentInput, any): async.Operation<types.GetEnvironmentOutput>
-    getSoftwareSet: function(Client, types.GetSoftwareSetInput, any): async.Operation<types.GetSoftwareSetOutput>
-    listDevices: function(Client, types.ListDevicesInput, any): async.Operation<types.ListDevicesOutput>
-    listEnvironments: function(Client, types.ListEnvironmentsInput, any): async.Operation<types.ListEnvironmentsOutput>
-    listSoftwareSets: function(Client, types.ListSoftwareSetsInput, any): async.Operation<types.ListSoftwareSetsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateDevice: function(Client, types.UpdateDeviceInput, any): async.Operation<types.UpdateDeviceOutput>
-    updateEnvironment: function(Client, types.UpdateEnvironmentInput, any): async.Operation<types.UpdateEnvironmentOutput>
-    updateSoftwareSet: function(Client, types.UpdateSoftwareSetInput, any): async.Operation<types.UpdateSoftwareSetOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createEnvironment: function(Client, types.CreateEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateEnvironmentOutput>
+    deleteDevice: function(Client, types.DeleteDeviceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDeviceOutput>
+    deleteEnvironment: function(Client, types.DeleteEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentOutput>
+    deregisterDevice: function(Client, types.DeregisterDeviceInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterDeviceOutput>
+    getDevice: function(Client, types.GetDeviceInput, ? base_client.InvokeOptions): async.Operation<types.GetDeviceOutput>
+    getEnvironment: function(Client, types.GetEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.GetEnvironmentOutput>
+    getSoftwareSet: function(Client, types.GetSoftwareSetInput, ? base_client.InvokeOptions): async.Operation<types.GetSoftwareSetOutput>
+    listDevices: function(Client, types.ListDevicesInput, ? base_client.InvokeOptions): async.Operation<types.ListDevicesOutput>
+    listEnvironments: function(Client, types.ListEnvironmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListEnvironmentsOutput>
+    listSoftwareSets: function(Client, types.ListSoftwareSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListSoftwareSetsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateDevice: function(Client, types.UpdateDeviceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDeviceOutput>
+    updateEnvironment: function(Client, types.UpdateEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEnvironmentOutput>
+    updateSoftwareSet: function(Client, types.UpdateSoftwareSetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSoftwareSetOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "ThinClient"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "thinclient", signing_region = c.region } }
                 else
@@ -75,68 +78,68 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createEnvironment(input: types.CreateEnvironmentInput, options: any): async.Operation<types.CreateEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateEnvironment, input, options) as async.Operation<types.CreateEnvironmentOutput>
+function C:createEnvironment(input: types.CreateEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEnvironment as schema.OperationSchema, input, options) as async.Operation<types.CreateEnvironmentOutput>
 end
 
-function C:deleteDevice(input: types.DeleteDeviceInput, options: any): async.Operation<types.DeleteDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDevice, input, options) as async.Operation<types.DeleteDeviceOutput>
+function C:deleteDevice(input: types.DeleteDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDevice as schema.OperationSchema, input, options) as async.Operation<types.DeleteDeviceOutput>
 end
 
-function C:deleteEnvironment(input: types.DeleteEnvironmentInput, options: any): async.Operation<types.DeleteEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteEnvironment, input, options) as async.Operation<types.DeleteEnvironmentOutput>
+function C:deleteEnvironment(input: types.DeleteEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEnvironment as schema.OperationSchema, input, options) as async.Operation<types.DeleteEnvironmentOutput>
 end
 
-function C:deregisterDevice(input: types.DeregisterDeviceInput, options: any): async.Operation<types.DeregisterDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterDevice, input, options) as async.Operation<types.DeregisterDeviceOutput>
+function C:deregisterDevice(input: types.DeregisterDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterDevice as schema.OperationSchema, input, options) as async.Operation<types.DeregisterDeviceOutput>
 end
 
-function C:getDevice(input: types.GetDeviceInput, options: any): async.Operation<types.GetDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDevice, input, options) as async.Operation<types.GetDeviceOutput>
+function C:getDevice(input: types.GetDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.GetDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDevice as schema.OperationSchema, input, options) as async.Operation<types.GetDeviceOutput>
 end
 
-function C:getEnvironment(input: types.GetEnvironmentInput, options: any): async.Operation<types.GetEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetEnvironment, input, options) as async.Operation<types.GetEnvironmentOutput>
+function C:getEnvironment(input: types.GetEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.GetEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEnvironment as schema.OperationSchema, input, options) as async.Operation<types.GetEnvironmentOutput>
 end
 
-function C:getSoftwareSet(input: types.GetSoftwareSetInput, options: any): async.Operation<types.GetSoftwareSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSoftwareSet, input, options) as async.Operation<types.GetSoftwareSetOutput>
+function C:getSoftwareSet(input: types.GetSoftwareSetInput, options?: base_client.InvokeOptions): async.Operation<types.GetSoftwareSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSoftwareSet as schema.OperationSchema, input, options) as async.Operation<types.GetSoftwareSetOutput>
 end
 
-function C:listDevices(input: types.ListDevicesInput, options: any): async.Operation<types.ListDevicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDevices, input, options) as async.Operation<types.ListDevicesOutput>
+function C:listDevices(input: types.ListDevicesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDevicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDevices as schema.OperationSchema, input, options) as async.Operation<types.ListDevicesOutput>
 end
 
-function C:listEnvironments(input: types.ListEnvironmentsInput, options: any): async.Operation<types.ListEnvironmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListEnvironments, input, options) as async.Operation<types.ListEnvironmentsOutput>
+function C:listEnvironments(input: types.ListEnvironmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEnvironmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEnvironments as schema.OperationSchema, input, options) as async.Operation<types.ListEnvironmentsOutput>
 end
 
-function C:listSoftwareSets(input: types.ListSoftwareSetsInput, options: any): async.Operation<types.ListSoftwareSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSoftwareSets, input, options) as async.Operation<types.ListSoftwareSetsOutput>
+function C:listSoftwareSets(input: types.ListSoftwareSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSoftwareSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSoftwareSets as schema.OperationSchema, input, options) as async.Operation<types.ListSoftwareSetsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateDevice(input: types.UpdateDeviceInput, options: any): async.Operation<types.UpdateDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDevice, input, options) as async.Operation<types.UpdateDeviceOutput>
+function C:updateDevice(input: types.UpdateDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDevice as schema.OperationSchema, input, options) as async.Operation<types.UpdateDeviceOutput>
 end
 
-function C:updateEnvironment(input: types.UpdateEnvironmentInput, options: any): async.Operation<types.UpdateEnvironmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateEnvironment, input, options) as async.Operation<types.UpdateEnvironmentOutput>
+function C:updateEnvironment(input: types.UpdateEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEnvironmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEnvironment as schema.OperationSchema, input, options) as async.Operation<types.UpdateEnvironmentOutput>
 end
 
-function C:updateSoftwareSet(input: types.UpdateSoftwareSetInput, options: any): async.Operation<types.UpdateSoftwareSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSoftwareSet, input, options) as async.Operation<types.UpdateSoftwareSetOutput>
+function C:updateSoftwareSet(input: types.UpdateSoftwareSetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSoftwareSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSoftwareSet as schema.OperationSchema, input, options) as async.Operation<types.UpdateSoftwareSetOutput>
 end
 
 return M

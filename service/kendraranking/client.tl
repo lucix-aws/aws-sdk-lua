@@ -8,48 +8,51 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("kendraranking.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("kendraranking.schemas")
 local traits = require("smithy.traits")
 local types = require("kendraranking.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createRescoreExecutionPlan: function(Client, types.CreateRescoreExecutionPlanInput, any): async.Operation<types.CreateRescoreExecutionPlanOutput>
-    deleteRescoreExecutionPlan: function(Client, types.DeleteRescoreExecutionPlanInput, any): async.Operation<types.DeleteRescoreExecutionPlanOutput>
-    describeRescoreExecutionPlan: function(Client, types.DescribeRescoreExecutionPlanInput, any): async.Operation<types.DescribeRescoreExecutionPlanOutput>
-    listRescoreExecutionPlans: function(Client, types.ListRescoreExecutionPlansInput, any): async.Operation<types.ListRescoreExecutionPlansOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    rescore: function(Client, types.RescoreInput, any): async.Operation<types.RescoreOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateRescoreExecutionPlan: function(Client, types.UpdateRescoreExecutionPlanInput, any): async.Operation<types.UpdateRescoreExecutionPlanOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createRescoreExecutionPlan: function(Client, types.CreateRescoreExecutionPlanInput, ? base_client.InvokeOptions): async.Operation<types.CreateRescoreExecutionPlanOutput>
+    deleteRescoreExecutionPlan: function(Client, types.DeleteRescoreExecutionPlanInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRescoreExecutionPlanOutput>
+    describeRescoreExecutionPlan: function(Client, types.DescribeRescoreExecutionPlanInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRescoreExecutionPlanOutput>
+    listRescoreExecutionPlans: function(Client, types.ListRescoreExecutionPlansInput, ? base_client.InvokeOptions): async.Operation<types.ListRescoreExecutionPlansOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    rescore: function(Client, types.RescoreInput, ? base_client.InvokeOptions): async.Operation<types.RescoreOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateRescoreExecutionPlan: function(Client, types.UpdateRescoreExecutionPlanInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRescoreExecutionPlanOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSKendraRerankingFrontendService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "kendra-ranking", signing_region = c.region } }
                 else
@@ -68,40 +71,40 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createRescoreExecutionPlan(input: types.CreateRescoreExecutionPlanInput, options: any): async.Operation<types.CreateRescoreExecutionPlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRescoreExecutionPlan, input, options) as async.Operation<types.CreateRescoreExecutionPlanOutput>
+function C:createRescoreExecutionPlan(input: types.CreateRescoreExecutionPlanInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRescoreExecutionPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRescoreExecutionPlan as schema.OperationSchema, input, options) as async.Operation<types.CreateRescoreExecutionPlanOutput>
 end
 
-function C:deleteRescoreExecutionPlan(input: types.DeleteRescoreExecutionPlanInput, options: any): async.Operation<types.DeleteRescoreExecutionPlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRescoreExecutionPlan, input, options) as async.Operation<types.DeleteRescoreExecutionPlanOutput>
+function C:deleteRescoreExecutionPlan(input: types.DeleteRescoreExecutionPlanInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRescoreExecutionPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRescoreExecutionPlan as schema.OperationSchema, input, options) as async.Operation<types.DeleteRescoreExecutionPlanOutput>
 end
 
-function C:describeRescoreExecutionPlan(input: types.DescribeRescoreExecutionPlanInput, options: any): async.Operation<types.DescribeRescoreExecutionPlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRescoreExecutionPlan, input, options) as async.Operation<types.DescribeRescoreExecutionPlanOutput>
+function C:describeRescoreExecutionPlan(input: types.DescribeRescoreExecutionPlanInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRescoreExecutionPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRescoreExecutionPlan as schema.OperationSchema, input, options) as async.Operation<types.DescribeRescoreExecutionPlanOutput>
 end
 
-function C:listRescoreExecutionPlans(input: types.ListRescoreExecutionPlansInput, options: any): async.Operation<types.ListRescoreExecutionPlansOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRescoreExecutionPlans, input, options) as async.Operation<types.ListRescoreExecutionPlansOutput>
+function C:listRescoreExecutionPlans(input: types.ListRescoreExecutionPlansInput, options?: base_client.InvokeOptions): async.Operation<types.ListRescoreExecutionPlansOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRescoreExecutionPlans as schema.OperationSchema, input, options) as async.Operation<types.ListRescoreExecutionPlansOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:rescore(input: types.RescoreInput, options: any): async.Operation<types.RescoreOutput>
-    return self:invokeOperation(schemas.Service, schemas.Rescore, input, options) as async.Operation<types.RescoreOutput>
+function C:rescore(input: types.RescoreInput, options?: base_client.InvokeOptions): async.Operation<types.RescoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Rescore as schema.OperationSchema, input, options) as async.Operation<types.RescoreOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateRescoreExecutionPlan(input: types.UpdateRescoreExecutionPlanInput, options: any): async.Operation<types.UpdateRescoreExecutionPlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRescoreExecutionPlan, input, options) as async.Operation<types.UpdateRescoreExecutionPlanOutput>
+function C:updateRescoreExecutionPlan(input: types.UpdateRescoreExecutionPlanInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRescoreExecutionPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRescoreExecutionPlan as schema.OperationSchema, input, options) as async.Operation<types.UpdateRescoreExecutionPlanOutput>
 end
 
 return M

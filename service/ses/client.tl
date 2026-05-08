@@ -8,110 +8,113 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("ses.endpoint_rules")
 local query_protocol = require("smithy.protocol.awsquery")
+local schema = require("smithy.schema")
 local schemas = require("ses.schemas")
 local traits = require("smithy.traits")
 local types = require("ses.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    cloneReceiptRuleSet: function(Client, types.CloneReceiptRuleSetInput, any): async.Operation<types.CloneReceiptRuleSetOutput>
-    createConfigurationSet: function(Client, types.CreateConfigurationSetInput, any): async.Operation<types.CreateConfigurationSetOutput>
-    createConfigurationSetEventDestination: function(Client, types.CreateConfigurationSetEventDestinationInput, any): async.Operation<types.CreateConfigurationSetEventDestinationOutput>
-    createConfigurationSetTrackingOptions: function(Client, types.CreateConfigurationSetTrackingOptionsInput, any): async.Operation<types.CreateConfigurationSetTrackingOptionsOutput>
-    createCustomVerificationEmailTemplate: function(Client, types.CreateCustomVerificationEmailTemplateInput, any): async.Operation<types.CreateCustomVerificationEmailTemplateOutput>
-    createReceiptFilter: function(Client, types.CreateReceiptFilterInput, any): async.Operation<types.CreateReceiptFilterOutput>
-    createReceiptRule: function(Client, types.CreateReceiptRuleInput, any): async.Operation<types.CreateReceiptRuleOutput>
-    createReceiptRuleSet: function(Client, types.CreateReceiptRuleSetInput, any): async.Operation<types.CreateReceiptRuleSetOutput>
-    createTemplate: function(Client, types.CreateTemplateInput, any): async.Operation<types.CreateTemplateOutput>
-    deleteConfigurationSet: function(Client, types.DeleteConfigurationSetInput, any): async.Operation<types.DeleteConfigurationSetOutput>
-    deleteConfigurationSetEventDestination: function(Client, types.DeleteConfigurationSetEventDestinationInput, any): async.Operation<types.DeleteConfigurationSetEventDestinationOutput>
-    deleteConfigurationSetTrackingOptions: function(Client, types.DeleteConfigurationSetTrackingOptionsInput, any): async.Operation<types.DeleteConfigurationSetTrackingOptionsOutput>
-    deleteCustomVerificationEmailTemplate: function(Client, types.DeleteCustomVerificationEmailTemplateInput, any): async.Operation<types.DeleteCustomVerificationEmailTemplateOutput>
-    deleteIdentity: function(Client, types.DeleteIdentityInput, any): async.Operation<types.DeleteIdentityOutput>
-    deleteIdentityPolicy: function(Client, types.DeleteIdentityPolicyInput, any): async.Operation<types.DeleteIdentityPolicyOutput>
-    deleteReceiptFilter: function(Client, types.DeleteReceiptFilterInput, any): async.Operation<types.DeleteReceiptFilterOutput>
-    deleteReceiptRule: function(Client, types.DeleteReceiptRuleInput, any): async.Operation<types.DeleteReceiptRuleOutput>
-    deleteReceiptRuleSet: function(Client, types.DeleteReceiptRuleSetInput, any): async.Operation<types.DeleteReceiptRuleSetOutput>
-    deleteTemplate: function(Client, types.DeleteTemplateInput, any): async.Operation<types.DeleteTemplateOutput>
-    deleteVerifiedEmailAddress: function(Client, types.DeleteVerifiedEmailAddressInput, any): async.Operation<types.DeleteVerifiedEmailAddressOutput>
-    describeActiveReceiptRuleSet: function(Client, types.DescribeActiveReceiptRuleSetInput, any): async.Operation<types.DescribeActiveReceiptRuleSetOutput>
-    describeConfigurationSet: function(Client, types.DescribeConfigurationSetInput, any): async.Operation<types.DescribeConfigurationSetOutput>
-    describeReceiptRule: function(Client, types.DescribeReceiptRuleInput, any): async.Operation<types.DescribeReceiptRuleOutput>
-    describeReceiptRuleSet: function(Client, types.DescribeReceiptRuleSetInput, any): async.Operation<types.DescribeReceiptRuleSetOutput>
-    getAccountSendingEnabled: function(Client, types.GetAccountSendingEnabledInput, any): async.Operation<types.GetAccountSendingEnabledOutput>
-    getCustomVerificationEmailTemplate: function(Client, types.GetCustomVerificationEmailTemplateInput, any): async.Operation<types.GetCustomVerificationEmailTemplateOutput>
-    getIdentityDkimAttributes: function(Client, types.GetIdentityDkimAttributesInput, any): async.Operation<types.GetIdentityDkimAttributesOutput>
-    getIdentityMailFromDomainAttributes: function(Client, types.GetIdentityMailFromDomainAttributesInput, any): async.Operation<types.GetIdentityMailFromDomainAttributesOutput>
-    getIdentityNotificationAttributes: function(Client, types.GetIdentityNotificationAttributesInput, any): async.Operation<types.GetIdentityNotificationAttributesOutput>
-    getIdentityPolicies: function(Client, types.GetIdentityPoliciesInput, any): async.Operation<types.GetIdentityPoliciesOutput>
-    getIdentityVerificationAttributes: function(Client, types.GetIdentityVerificationAttributesInput, any): async.Operation<types.GetIdentityVerificationAttributesOutput>
-    getSendQuota: function(Client, types.GetSendQuotaInput, any): async.Operation<types.GetSendQuotaOutput>
-    getSendStatistics: function(Client, types.GetSendStatisticsInput, any): async.Operation<types.GetSendStatisticsOutput>
-    getTemplate: function(Client, types.GetTemplateInput, any): async.Operation<types.GetTemplateOutput>
-    listConfigurationSets: function(Client, types.ListConfigurationSetsInput, any): async.Operation<types.ListConfigurationSetsOutput>
-    listCustomVerificationEmailTemplates: function(Client, types.ListCustomVerificationEmailTemplatesInput, any): async.Operation<types.ListCustomVerificationEmailTemplatesOutput>
-    listIdentities: function(Client, types.ListIdentitiesInput, any): async.Operation<types.ListIdentitiesOutput>
-    listIdentityPolicies: function(Client, types.ListIdentityPoliciesInput, any): async.Operation<types.ListIdentityPoliciesOutput>
-    listReceiptFilters: function(Client, types.ListReceiptFiltersInput, any): async.Operation<types.ListReceiptFiltersOutput>
-    listReceiptRuleSets: function(Client, types.ListReceiptRuleSetsInput, any): async.Operation<types.ListReceiptRuleSetsOutput>
-    listTemplates: function(Client, types.ListTemplatesInput, any): async.Operation<types.ListTemplatesOutput>
-    listVerifiedEmailAddresses: function(Client, types.ListVerifiedEmailAddressesInput, any): async.Operation<types.ListVerifiedEmailAddressesOutput>
-    putConfigurationSetDeliveryOptions: function(Client, types.PutConfigurationSetDeliveryOptionsInput, any): async.Operation<types.PutConfigurationSetDeliveryOptionsOutput>
-    putIdentityPolicy: function(Client, types.PutIdentityPolicyInput, any): async.Operation<types.PutIdentityPolicyOutput>
-    reorderReceiptRuleSet: function(Client, types.ReorderReceiptRuleSetInput, any): async.Operation<types.ReorderReceiptRuleSetOutput>
-    sendBounce: function(Client, types.SendBounceInput, any): async.Operation<types.SendBounceOutput>
-    sendBulkTemplatedEmail: function(Client, types.SendBulkTemplatedEmailInput, any): async.Operation<types.SendBulkTemplatedEmailOutput>
-    sendCustomVerificationEmail: function(Client, types.SendCustomVerificationEmailInput, any): async.Operation<types.SendCustomVerificationEmailOutput>
-    sendEmail: function(Client, types.SendEmailInput, any): async.Operation<types.SendEmailOutput>
-    sendRawEmail: function(Client, types.SendRawEmailInput, any): async.Operation<types.SendRawEmailOutput>
-    sendTemplatedEmail: function(Client, types.SendTemplatedEmailInput, any): async.Operation<types.SendTemplatedEmailOutput>
-    setActiveReceiptRuleSet: function(Client, types.SetActiveReceiptRuleSetInput, any): async.Operation<types.SetActiveReceiptRuleSetOutput>
-    setIdentityDkimEnabled: function(Client, types.SetIdentityDkimEnabledInput, any): async.Operation<types.SetIdentityDkimEnabledOutput>
-    setIdentityFeedbackForwardingEnabled: function(Client, types.SetIdentityFeedbackForwardingEnabledInput, any): async.Operation<types.SetIdentityFeedbackForwardingEnabledOutput>
-    setIdentityHeadersInNotificationsEnabled: function(Client, types.SetIdentityHeadersInNotificationsEnabledInput, any): async.Operation<types.SetIdentityHeadersInNotificationsEnabledOutput>
-    setIdentityMailFromDomain: function(Client, types.SetIdentityMailFromDomainInput, any): async.Operation<types.SetIdentityMailFromDomainOutput>
-    setIdentityNotificationTopic: function(Client, types.SetIdentityNotificationTopicInput, any): async.Operation<types.SetIdentityNotificationTopicOutput>
-    setReceiptRulePosition: function(Client, types.SetReceiptRulePositionInput, any): async.Operation<types.SetReceiptRulePositionOutput>
-    testRenderTemplate: function(Client, types.TestRenderTemplateInput, any): async.Operation<types.TestRenderTemplateOutput>
-    updateAccountSendingEnabled: function(Client, types.UpdateAccountSendingEnabledInput, any): async.Operation<types.UpdateAccountSendingEnabledOutput>
-    updateConfigurationSetEventDestination: function(Client, types.UpdateConfigurationSetEventDestinationInput, any): async.Operation<types.UpdateConfigurationSetEventDestinationOutput>
-    updateConfigurationSetReputationMetricsEnabled: function(Client, types.UpdateConfigurationSetReputationMetricsEnabledInput, any): async.Operation<types.UpdateConfigurationSetReputationMetricsEnabledOutput>
-    updateConfigurationSetSendingEnabled: function(Client, types.UpdateConfigurationSetSendingEnabledInput, any): async.Operation<types.UpdateConfigurationSetSendingEnabledOutput>
-    updateConfigurationSetTrackingOptions: function(Client, types.UpdateConfigurationSetTrackingOptionsInput, any): async.Operation<types.UpdateConfigurationSetTrackingOptionsOutput>
-    updateCustomVerificationEmailTemplate: function(Client, types.UpdateCustomVerificationEmailTemplateInput, any): async.Operation<types.UpdateCustomVerificationEmailTemplateOutput>
-    updateReceiptRule: function(Client, types.UpdateReceiptRuleInput, any): async.Operation<types.UpdateReceiptRuleOutput>
-    updateTemplate: function(Client, types.UpdateTemplateInput, any): async.Operation<types.UpdateTemplateOutput>
-    verifyDomainDkim: function(Client, types.VerifyDomainDkimInput, any): async.Operation<types.VerifyDomainDkimOutput>
-    verifyDomainIdentity: function(Client, types.VerifyDomainIdentityInput, any): async.Operation<types.VerifyDomainIdentityOutput>
-    verifyEmailAddress: function(Client, types.VerifyEmailAddressInput, any): async.Operation<types.VerifyEmailAddressOutput>
-    verifyEmailIdentity: function(Client, types.VerifyEmailIdentityInput, any): async.Operation<types.VerifyEmailIdentityOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    cloneReceiptRuleSet: function(Client, types.CloneReceiptRuleSetInput, ? base_client.InvokeOptions): async.Operation<types.CloneReceiptRuleSetOutput>
+    createConfigurationSet: function(Client, types.CreateConfigurationSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfigurationSetOutput>
+    createConfigurationSetEventDestination: function(Client, types.CreateConfigurationSetEventDestinationInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfigurationSetEventDestinationOutput>
+    createConfigurationSetTrackingOptions: function(Client, types.CreateConfigurationSetTrackingOptionsInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfigurationSetTrackingOptionsOutput>
+    createCustomVerificationEmailTemplate: function(Client, types.CreateCustomVerificationEmailTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateCustomVerificationEmailTemplateOutput>
+    createReceiptFilter: function(Client, types.CreateReceiptFilterInput, ? base_client.InvokeOptions): async.Operation<types.CreateReceiptFilterOutput>
+    createReceiptRule: function(Client, types.CreateReceiptRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateReceiptRuleOutput>
+    createReceiptRuleSet: function(Client, types.CreateReceiptRuleSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateReceiptRuleSetOutput>
+    createTemplate: function(Client, types.CreateTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateTemplateOutput>
+    deleteConfigurationSet: function(Client, types.DeleteConfigurationSetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfigurationSetOutput>
+    deleteConfigurationSetEventDestination: function(Client, types.DeleteConfigurationSetEventDestinationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfigurationSetEventDestinationOutput>
+    deleteConfigurationSetTrackingOptions: function(Client, types.DeleteConfigurationSetTrackingOptionsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfigurationSetTrackingOptionsOutput>
+    deleteCustomVerificationEmailTemplate: function(Client, types.DeleteCustomVerificationEmailTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCustomVerificationEmailTemplateOutput>
+    deleteIdentity: function(Client, types.DeleteIdentityInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIdentityOutput>
+    deleteIdentityPolicy: function(Client, types.DeleteIdentityPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIdentityPolicyOutput>
+    deleteReceiptFilter: function(Client, types.DeleteReceiptFilterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteReceiptFilterOutput>
+    deleteReceiptRule: function(Client, types.DeleteReceiptRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteReceiptRuleOutput>
+    deleteReceiptRuleSet: function(Client, types.DeleteReceiptRuleSetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteReceiptRuleSetOutput>
+    deleteTemplate: function(Client, types.DeleteTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTemplateOutput>
+    deleteVerifiedEmailAddress: function(Client, types.DeleteVerifiedEmailAddressInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVerifiedEmailAddressOutput>
+    describeActiveReceiptRuleSet: function(Client, types.DescribeActiveReceiptRuleSetInput, ? base_client.InvokeOptions): async.Operation<types.DescribeActiveReceiptRuleSetOutput>
+    describeConfigurationSet: function(Client, types.DescribeConfigurationSetInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConfigurationSetOutput>
+    describeReceiptRule: function(Client, types.DescribeReceiptRuleInput, ? base_client.InvokeOptions): async.Operation<types.DescribeReceiptRuleOutput>
+    describeReceiptRuleSet: function(Client, types.DescribeReceiptRuleSetInput, ? base_client.InvokeOptions): async.Operation<types.DescribeReceiptRuleSetOutput>
+    getAccountSendingEnabled: function(Client, types.GetAccountSendingEnabledInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountSendingEnabledOutput>
+    getCustomVerificationEmailTemplate: function(Client, types.GetCustomVerificationEmailTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetCustomVerificationEmailTemplateOutput>
+    getIdentityDkimAttributes: function(Client, types.GetIdentityDkimAttributesInput, ? base_client.InvokeOptions): async.Operation<types.GetIdentityDkimAttributesOutput>
+    getIdentityMailFromDomainAttributes: function(Client, types.GetIdentityMailFromDomainAttributesInput, ? base_client.InvokeOptions): async.Operation<types.GetIdentityMailFromDomainAttributesOutput>
+    getIdentityNotificationAttributes: function(Client, types.GetIdentityNotificationAttributesInput, ? base_client.InvokeOptions): async.Operation<types.GetIdentityNotificationAttributesOutput>
+    getIdentityPolicies: function(Client, types.GetIdentityPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.GetIdentityPoliciesOutput>
+    getIdentityVerificationAttributes: function(Client, types.GetIdentityVerificationAttributesInput, ? base_client.InvokeOptions): async.Operation<types.GetIdentityVerificationAttributesOutput>
+    getSendQuota: function(Client, types.GetSendQuotaInput, ? base_client.InvokeOptions): async.Operation<types.GetSendQuotaOutput>
+    getSendStatistics: function(Client, types.GetSendStatisticsInput, ? base_client.InvokeOptions): async.Operation<types.GetSendStatisticsOutput>
+    getTemplate: function(Client, types.GetTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetTemplateOutput>
+    listConfigurationSets: function(Client, types.ListConfigurationSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListConfigurationSetsOutput>
+    listCustomVerificationEmailTemplates: function(Client, types.ListCustomVerificationEmailTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListCustomVerificationEmailTemplatesOutput>
+    listIdentities: function(Client, types.ListIdentitiesInput, ? base_client.InvokeOptions): async.Operation<types.ListIdentitiesOutput>
+    listIdentityPolicies: function(Client, types.ListIdentityPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListIdentityPoliciesOutput>
+    listReceiptFilters: function(Client, types.ListReceiptFiltersInput, ? base_client.InvokeOptions): async.Operation<types.ListReceiptFiltersOutput>
+    listReceiptRuleSets: function(Client, types.ListReceiptRuleSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListReceiptRuleSetsOutput>
+    listTemplates: function(Client, types.ListTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListTemplatesOutput>
+    listVerifiedEmailAddresses: function(Client, types.ListVerifiedEmailAddressesInput, ? base_client.InvokeOptions): async.Operation<types.ListVerifiedEmailAddressesOutput>
+    putConfigurationSetDeliveryOptions: function(Client, types.PutConfigurationSetDeliveryOptionsInput, ? base_client.InvokeOptions): async.Operation<types.PutConfigurationSetDeliveryOptionsOutput>
+    putIdentityPolicy: function(Client, types.PutIdentityPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutIdentityPolicyOutput>
+    reorderReceiptRuleSet: function(Client, types.ReorderReceiptRuleSetInput, ? base_client.InvokeOptions): async.Operation<types.ReorderReceiptRuleSetOutput>
+    sendBounce: function(Client, types.SendBounceInput, ? base_client.InvokeOptions): async.Operation<types.SendBounceOutput>
+    sendBulkTemplatedEmail: function(Client, types.SendBulkTemplatedEmailInput, ? base_client.InvokeOptions): async.Operation<types.SendBulkTemplatedEmailOutput>
+    sendCustomVerificationEmail: function(Client, types.SendCustomVerificationEmailInput, ? base_client.InvokeOptions): async.Operation<types.SendCustomVerificationEmailOutput>
+    sendEmail: function(Client, types.SendEmailInput, ? base_client.InvokeOptions): async.Operation<types.SendEmailOutput>
+    sendRawEmail: function(Client, types.SendRawEmailInput, ? base_client.InvokeOptions): async.Operation<types.SendRawEmailOutput>
+    sendTemplatedEmail: function(Client, types.SendTemplatedEmailInput, ? base_client.InvokeOptions): async.Operation<types.SendTemplatedEmailOutput>
+    setActiveReceiptRuleSet: function(Client, types.SetActiveReceiptRuleSetInput, ? base_client.InvokeOptions): async.Operation<types.SetActiveReceiptRuleSetOutput>
+    setIdentityDkimEnabled: function(Client, types.SetIdentityDkimEnabledInput, ? base_client.InvokeOptions): async.Operation<types.SetIdentityDkimEnabledOutput>
+    setIdentityFeedbackForwardingEnabled: function(Client, types.SetIdentityFeedbackForwardingEnabledInput, ? base_client.InvokeOptions): async.Operation<types.SetIdentityFeedbackForwardingEnabledOutput>
+    setIdentityHeadersInNotificationsEnabled: function(Client, types.SetIdentityHeadersInNotificationsEnabledInput, ? base_client.InvokeOptions): async.Operation<types.SetIdentityHeadersInNotificationsEnabledOutput>
+    setIdentityMailFromDomain: function(Client, types.SetIdentityMailFromDomainInput, ? base_client.InvokeOptions): async.Operation<types.SetIdentityMailFromDomainOutput>
+    setIdentityNotificationTopic: function(Client, types.SetIdentityNotificationTopicInput, ? base_client.InvokeOptions): async.Operation<types.SetIdentityNotificationTopicOutput>
+    setReceiptRulePosition: function(Client, types.SetReceiptRulePositionInput, ? base_client.InvokeOptions): async.Operation<types.SetReceiptRulePositionOutput>
+    testRenderTemplate: function(Client, types.TestRenderTemplateInput, ? base_client.InvokeOptions): async.Operation<types.TestRenderTemplateOutput>
+    updateAccountSendingEnabled: function(Client, types.UpdateAccountSendingEnabledInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAccountSendingEnabledOutput>
+    updateConfigurationSetEventDestination: function(Client, types.UpdateConfigurationSetEventDestinationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfigurationSetEventDestinationOutput>
+    updateConfigurationSetReputationMetricsEnabled: function(Client, types.UpdateConfigurationSetReputationMetricsEnabledInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfigurationSetReputationMetricsEnabledOutput>
+    updateConfigurationSetSendingEnabled: function(Client, types.UpdateConfigurationSetSendingEnabledInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfigurationSetSendingEnabledOutput>
+    updateConfigurationSetTrackingOptions: function(Client, types.UpdateConfigurationSetTrackingOptionsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfigurationSetTrackingOptionsOutput>
+    updateCustomVerificationEmailTemplate: function(Client, types.UpdateCustomVerificationEmailTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCustomVerificationEmailTemplateOutput>
+    updateReceiptRule: function(Client, types.UpdateReceiptRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateReceiptRuleOutput>
+    updateTemplate: function(Client, types.UpdateTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTemplateOutput>
+    verifyDomainDkim: function(Client, types.VerifyDomainDkimInput, ? base_client.InvokeOptions): async.Operation<types.VerifyDomainDkimOutput>
+    verifyDomainIdentity: function(Client, types.VerifyDomainIdentityInput, ? base_client.InvokeOptions): async.Operation<types.VerifyDomainIdentityOutput>
+    verifyEmailAddress: function(Client, types.VerifyEmailAddressInput, ? base_client.InvokeOptions): async.Operation<types.VerifyEmailAddressOutput>
+    verifyEmailIdentity: function(Client, types.VerifyEmailIdentityInput, ? base_client.InvokeOptions): async.Operation<types.VerifyEmailIdentityOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "SimpleEmailService"
-    if not c.protocol then c.protocol = query_protocol.new("awsQuery") end
+    if not c.protocol then c.protocol = query_protocol.new("awsQuery") as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ses", signing_region = c.region } }
                 else
@@ -130,288 +133,288 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:cloneReceiptRuleSet(input: types.CloneReceiptRuleSetInput, options: any): async.Operation<types.CloneReceiptRuleSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CloneReceiptRuleSet, input, options) as async.Operation<types.CloneReceiptRuleSetOutput>
+function C:cloneReceiptRuleSet(input: types.CloneReceiptRuleSetInput, options?: base_client.InvokeOptions): async.Operation<types.CloneReceiptRuleSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CloneReceiptRuleSet as schema.OperationSchema, input, options) as async.Operation<types.CloneReceiptRuleSetOutput>
 end
 
-function C:createConfigurationSet(input: types.CreateConfigurationSetInput, options: any): async.Operation<types.CreateConfigurationSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConfigurationSet, input, options) as async.Operation<types.CreateConfigurationSetOutput>
+function C:createConfigurationSet(input: types.CreateConfigurationSetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConfigurationSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConfigurationSet as schema.OperationSchema, input, options) as async.Operation<types.CreateConfigurationSetOutput>
 end
 
-function C:createConfigurationSetEventDestination(input: types.CreateConfigurationSetEventDestinationInput, options: any): async.Operation<types.CreateConfigurationSetEventDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConfigurationSetEventDestination, input, options) as async.Operation<types.CreateConfigurationSetEventDestinationOutput>
+function C:createConfigurationSetEventDestination(input: types.CreateConfigurationSetEventDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConfigurationSetEventDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConfigurationSetEventDestination as schema.OperationSchema, input, options) as async.Operation<types.CreateConfigurationSetEventDestinationOutput>
 end
 
-function C:createConfigurationSetTrackingOptions(input: types.CreateConfigurationSetTrackingOptionsInput, options: any): async.Operation<types.CreateConfigurationSetTrackingOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConfigurationSetTrackingOptions, input, options) as async.Operation<types.CreateConfigurationSetTrackingOptionsOutput>
+function C:createConfigurationSetTrackingOptions(input: types.CreateConfigurationSetTrackingOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConfigurationSetTrackingOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConfigurationSetTrackingOptions as schema.OperationSchema, input, options) as async.Operation<types.CreateConfigurationSetTrackingOptionsOutput>
 end
 
-function C:createCustomVerificationEmailTemplate(input: types.CreateCustomVerificationEmailTemplateInput, options: any): async.Operation<types.CreateCustomVerificationEmailTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCustomVerificationEmailTemplate, input, options) as async.Operation<types.CreateCustomVerificationEmailTemplateOutput>
+function C:createCustomVerificationEmailTemplate(input: types.CreateCustomVerificationEmailTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCustomVerificationEmailTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCustomVerificationEmailTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateCustomVerificationEmailTemplateOutput>
 end
 
-function C:createReceiptFilter(input: types.CreateReceiptFilterInput, options: any): async.Operation<types.CreateReceiptFilterOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateReceiptFilter, input, options) as async.Operation<types.CreateReceiptFilterOutput>
+function C:createReceiptFilter(input: types.CreateReceiptFilterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateReceiptFilterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateReceiptFilter as schema.OperationSchema, input, options) as async.Operation<types.CreateReceiptFilterOutput>
 end
 
-function C:createReceiptRule(input: types.CreateReceiptRuleInput, options: any): async.Operation<types.CreateReceiptRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateReceiptRule, input, options) as async.Operation<types.CreateReceiptRuleOutput>
+function C:createReceiptRule(input: types.CreateReceiptRuleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateReceiptRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateReceiptRule as schema.OperationSchema, input, options) as async.Operation<types.CreateReceiptRuleOutput>
 end
 
-function C:createReceiptRuleSet(input: types.CreateReceiptRuleSetInput, options: any): async.Operation<types.CreateReceiptRuleSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateReceiptRuleSet, input, options) as async.Operation<types.CreateReceiptRuleSetOutput>
+function C:createReceiptRuleSet(input: types.CreateReceiptRuleSetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateReceiptRuleSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateReceiptRuleSet as schema.OperationSchema, input, options) as async.Operation<types.CreateReceiptRuleSetOutput>
 end
 
-function C:createTemplate(input: types.CreateTemplateInput, options: any): async.Operation<types.CreateTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTemplate, input, options) as async.Operation<types.CreateTemplateOutput>
+function C:createTemplate(input: types.CreateTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateTemplateOutput>
 end
 
-function C:deleteConfigurationSet(input: types.DeleteConfigurationSetInput, options: any): async.Operation<types.DeleteConfigurationSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConfigurationSet, input, options) as async.Operation<types.DeleteConfigurationSetOutput>
+function C:deleteConfigurationSet(input: types.DeleteConfigurationSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConfigurationSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConfigurationSet as schema.OperationSchema, input, options) as async.Operation<types.DeleteConfigurationSetOutput>
 end
 
-function C:deleteConfigurationSetEventDestination(input: types.DeleteConfigurationSetEventDestinationInput, options: any): async.Operation<types.DeleteConfigurationSetEventDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConfigurationSetEventDestination, input, options) as async.Operation<types.DeleteConfigurationSetEventDestinationOutput>
+function C:deleteConfigurationSetEventDestination(input: types.DeleteConfigurationSetEventDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConfigurationSetEventDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConfigurationSetEventDestination as schema.OperationSchema, input, options) as async.Operation<types.DeleteConfigurationSetEventDestinationOutput>
 end
 
-function C:deleteConfigurationSetTrackingOptions(input: types.DeleteConfigurationSetTrackingOptionsInput, options: any): async.Operation<types.DeleteConfigurationSetTrackingOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConfigurationSetTrackingOptions, input, options) as async.Operation<types.DeleteConfigurationSetTrackingOptionsOutput>
+function C:deleteConfigurationSetTrackingOptions(input: types.DeleteConfigurationSetTrackingOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConfigurationSetTrackingOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConfigurationSetTrackingOptions as schema.OperationSchema, input, options) as async.Operation<types.DeleteConfigurationSetTrackingOptionsOutput>
 end
 
-function C:deleteCustomVerificationEmailTemplate(input: types.DeleteCustomVerificationEmailTemplateInput, options: any): async.Operation<types.DeleteCustomVerificationEmailTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCustomVerificationEmailTemplate, input, options) as async.Operation<types.DeleteCustomVerificationEmailTemplateOutput>
+function C:deleteCustomVerificationEmailTemplate(input: types.DeleteCustomVerificationEmailTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCustomVerificationEmailTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCustomVerificationEmailTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteCustomVerificationEmailTemplateOutput>
 end
 
-function C:deleteIdentity(input: types.DeleteIdentityInput, options: any): async.Operation<types.DeleteIdentityOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIdentity, input, options) as async.Operation<types.DeleteIdentityOutput>
+function C:deleteIdentity(input: types.DeleteIdentityInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIdentityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIdentity as schema.OperationSchema, input, options) as async.Operation<types.DeleteIdentityOutput>
 end
 
-function C:deleteIdentityPolicy(input: types.DeleteIdentityPolicyInput, options: any): async.Operation<types.DeleteIdentityPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIdentityPolicy, input, options) as async.Operation<types.DeleteIdentityPolicyOutput>
+function C:deleteIdentityPolicy(input: types.DeleteIdentityPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIdentityPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIdentityPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteIdentityPolicyOutput>
 end
 
-function C:deleteReceiptFilter(input: types.DeleteReceiptFilterInput, options: any): async.Operation<types.DeleteReceiptFilterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteReceiptFilter, input, options) as async.Operation<types.DeleteReceiptFilterOutput>
+function C:deleteReceiptFilter(input: types.DeleteReceiptFilterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteReceiptFilterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteReceiptFilter as schema.OperationSchema, input, options) as async.Operation<types.DeleteReceiptFilterOutput>
 end
 
-function C:deleteReceiptRule(input: types.DeleteReceiptRuleInput, options: any): async.Operation<types.DeleteReceiptRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteReceiptRule, input, options) as async.Operation<types.DeleteReceiptRuleOutput>
+function C:deleteReceiptRule(input: types.DeleteReceiptRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteReceiptRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteReceiptRule as schema.OperationSchema, input, options) as async.Operation<types.DeleteReceiptRuleOutput>
 end
 
-function C:deleteReceiptRuleSet(input: types.DeleteReceiptRuleSetInput, options: any): async.Operation<types.DeleteReceiptRuleSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteReceiptRuleSet, input, options) as async.Operation<types.DeleteReceiptRuleSetOutput>
+function C:deleteReceiptRuleSet(input: types.DeleteReceiptRuleSetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteReceiptRuleSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteReceiptRuleSet as schema.OperationSchema, input, options) as async.Operation<types.DeleteReceiptRuleSetOutput>
 end
 
-function C:deleteTemplate(input: types.DeleteTemplateInput, options: any): async.Operation<types.DeleteTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTemplate, input, options) as async.Operation<types.DeleteTemplateOutput>
+function C:deleteTemplate(input: types.DeleteTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteTemplateOutput>
 end
 
-function C:deleteVerifiedEmailAddress(input: types.DeleteVerifiedEmailAddressInput, options: any): async.Operation<types.DeleteVerifiedEmailAddressOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVerifiedEmailAddress, input, options) as async.Operation<types.DeleteVerifiedEmailAddressOutput>
+function C:deleteVerifiedEmailAddress(input: types.DeleteVerifiedEmailAddressInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVerifiedEmailAddressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVerifiedEmailAddress as schema.OperationSchema, input, options) as async.Operation<types.DeleteVerifiedEmailAddressOutput>
 end
 
-function C:describeActiveReceiptRuleSet(input: types.DescribeActiveReceiptRuleSetInput, options: any): async.Operation<types.DescribeActiveReceiptRuleSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeActiveReceiptRuleSet, input, options) as async.Operation<types.DescribeActiveReceiptRuleSetOutput>
+function C:describeActiveReceiptRuleSet(input: types.DescribeActiveReceiptRuleSetInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeActiveReceiptRuleSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeActiveReceiptRuleSet as schema.OperationSchema, input, options) as async.Operation<types.DescribeActiveReceiptRuleSetOutput>
 end
 
-function C:describeConfigurationSet(input: types.DescribeConfigurationSetInput, options: any): async.Operation<types.DescribeConfigurationSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeConfigurationSet, input, options) as async.Operation<types.DescribeConfigurationSetOutput>
+function C:describeConfigurationSet(input: types.DescribeConfigurationSetInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeConfigurationSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeConfigurationSet as schema.OperationSchema, input, options) as async.Operation<types.DescribeConfigurationSetOutput>
 end
 
-function C:describeReceiptRule(input: types.DescribeReceiptRuleInput, options: any): async.Operation<types.DescribeReceiptRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeReceiptRule, input, options) as async.Operation<types.DescribeReceiptRuleOutput>
+function C:describeReceiptRule(input: types.DescribeReceiptRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeReceiptRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeReceiptRule as schema.OperationSchema, input, options) as async.Operation<types.DescribeReceiptRuleOutput>
 end
 
-function C:describeReceiptRuleSet(input: types.DescribeReceiptRuleSetInput, options: any): async.Operation<types.DescribeReceiptRuleSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeReceiptRuleSet, input, options) as async.Operation<types.DescribeReceiptRuleSetOutput>
+function C:describeReceiptRuleSet(input: types.DescribeReceiptRuleSetInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeReceiptRuleSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeReceiptRuleSet as schema.OperationSchema, input, options) as async.Operation<types.DescribeReceiptRuleSetOutput>
 end
 
-function C:getAccountSendingEnabled(input: types.GetAccountSendingEnabledInput, options: any): async.Operation<types.GetAccountSendingEnabledOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccountSendingEnabled, input, options) as async.Operation<types.GetAccountSendingEnabledOutput>
+function C:getAccountSendingEnabled(input: types.GetAccountSendingEnabledInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccountSendingEnabledOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccountSendingEnabled as schema.OperationSchema, input, options) as async.Operation<types.GetAccountSendingEnabledOutput>
 end
 
-function C:getCustomVerificationEmailTemplate(input: types.GetCustomVerificationEmailTemplateInput, options: any): async.Operation<types.GetCustomVerificationEmailTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCustomVerificationEmailTemplate, input, options) as async.Operation<types.GetCustomVerificationEmailTemplateOutput>
+function C:getCustomVerificationEmailTemplate(input: types.GetCustomVerificationEmailTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetCustomVerificationEmailTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCustomVerificationEmailTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetCustomVerificationEmailTemplateOutput>
 end
 
-function C:getIdentityDkimAttributes(input: types.GetIdentityDkimAttributesInput, options: any): async.Operation<types.GetIdentityDkimAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIdentityDkimAttributes, input, options) as async.Operation<types.GetIdentityDkimAttributesOutput>
+function C:getIdentityDkimAttributes(input: types.GetIdentityDkimAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.GetIdentityDkimAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIdentityDkimAttributes as schema.OperationSchema, input, options) as async.Operation<types.GetIdentityDkimAttributesOutput>
 end
 
-function C:getIdentityMailFromDomainAttributes(input: types.GetIdentityMailFromDomainAttributesInput, options: any): async.Operation<types.GetIdentityMailFromDomainAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIdentityMailFromDomainAttributes, input, options) as async.Operation<types.GetIdentityMailFromDomainAttributesOutput>
+function C:getIdentityMailFromDomainAttributes(input: types.GetIdentityMailFromDomainAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.GetIdentityMailFromDomainAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIdentityMailFromDomainAttributes as schema.OperationSchema, input, options) as async.Operation<types.GetIdentityMailFromDomainAttributesOutput>
 end
 
-function C:getIdentityNotificationAttributes(input: types.GetIdentityNotificationAttributesInput, options: any): async.Operation<types.GetIdentityNotificationAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIdentityNotificationAttributes, input, options) as async.Operation<types.GetIdentityNotificationAttributesOutput>
+function C:getIdentityNotificationAttributes(input: types.GetIdentityNotificationAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.GetIdentityNotificationAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIdentityNotificationAttributes as schema.OperationSchema, input, options) as async.Operation<types.GetIdentityNotificationAttributesOutput>
 end
 
-function C:getIdentityPolicies(input: types.GetIdentityPoliciesInput, options: any): async.Operation<types.GetIdentityPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIdentityPolicies, input, options) as async.Operation<types.GetIdentityPoliciesOutput>
+function C:getIdentityPolicies(input: types.GetIdentityPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.GetIdentityPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIdentityPolicies as schema.OperationSchema, input, options) as async.Operation<types.GetIdentityPoliciesOutput>
 end
 
-function C:getIdentityVerificationAttributes(input: types.GetIdentityVerificationAttributesInput, options: any): async.Operation<types.GetIdentityVerificationAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIdentityVerificationAttributes, input, options) as async.Operation<types.GetIdentityVerificationAttributesOutput>
+function C:getIdentityVerificationAttributes(input: types.GetIdentityVerificationAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.GetIdentityVerificationAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIdentityVerificationAttributes as schema.OperationSchema, input, options) as async.Operation<types.GetIdentityVerificationAttributesOutput>
 end
 
-function C:getSendQuota(input: types.GetSendQuotaInput, options: any): async.Operation<types.GetSendQuotaOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSendQuota, input, options) as async.Operation<types.GetSendQuotaOutput>
+function C:getSendQuota(input: types.GetSendQuotaInput, options?: base_client.InvokeOptions): async.Operation<types.GetSendQuotaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSendQuota as schema.OperationSchema, input, options) as async.Operation<types.GetSendQuotaOutput>
 end
 
-function C:getSendStatistics(input: types.GetSendStatisticsInput, options: any): async.Operation<types.GetSendStatisticsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSendStatistics, input, options) as async.Operation<types.GetSendStatisticsOutput>
+function C:getSendStatistics(input: types.GetSendStatisticsInput, options?: base_client.InvokeOptions): async.Operation<types.GetSendStatisticsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSendStatistics as schema.OperationSchema, input, options) as async.Operation<types.GetSendStatisticsOutput>
 end
 
-function C:getTemplate(input: types.GetTemplateInput, options: any): async.Operation<types.GetTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetTemplate, input, options) as async.Operation<types.GetTemplateOutput>
+function C:getTemplate(input: types.GetTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetTemplateOutput>
 end
 
-function C:listConfigurationSets(input: types.ListConfigurationSetsInput, options: any): async.Operation<types.ListConfigurationSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConfigurationSets, input, options) as async.Operation<types.ListConfigurationSetsOutput>
+function C:listConfigurationSets(input: types.ListConfigurationSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConfigurationSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConfigurationSets as schema.OperationSchema, input, options) as async.Operation<types.ListConfigurationSetsOutput>
 end
 
-function C:listCustomVerificationEmailTemplates(input: types.ListCustomVerificationEmailTemplatesInput, options: any): async.Operation<types.ListCustomVerificationEmailTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCustomVerificationEmailTemplates, input, options) as async.Operation<types.ListCustomVerificationEmailTemplatesOutput>
+function C:listCustomVerificationEmailTemplates(input: types.ListCustomVerificationEmailTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCustomVerificationEmailTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCustomVerificationEmailTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListCustomVerificationEmailTemplatesOutput>
 end
 
-function C:listIdentities(input: types.ListIdentitiesInput, options: any): async.Operation<types.ListIdentitiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIdentities, input, options) as async.Operation<types.ListIdentitiesOutput>
+function C:listIdentities(input: types.ListIdentitiesInput, options?: base_client.InvokeOptions): async.Operation<types.ListIdentitiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIdentities as schema.OperationSchema, input, options) as async.Operation<types.ListIdentitiesOutput>
 end
 
-function C:listIdentityPolicies(input: types.ListIdentityPoliciesInput, options: any): async.Operation<types.ListIdentityPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIdentityPolicies, input, options) as async.Operation<types.ListIdentityPoliciesOutput>
+function C:listIdentityPolicies(input: types.ListIdentityPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListIdentityPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIdentityPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListIdentityPoliciesOutput>
 end
 
-function C:listReceiptFilters(input: types.ListReceiptFiltersInput, options: any): async.Operation<types.ListReceiptFiltersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReceiptFilters, input, options) as async.Operation<types.ListReceiptFiltersOutput>
+function C:listReceiptFilters(input: types.ListReceiptFiltersInput, options?: base_client.InvokeOptions): async.Operation<types.ListReceiptFiltersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReceiptFilters as schema.OperationSchema, input, options) as async.Operation<types.ListReceiptFiltersOutput>
 end
 
-function C:listReceiptRuleSets(input: types.ListReceiptRuleSetsInput, options: any): async.Operation<types.ListReceiptRuleSetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReceiptRuleSets, input, options) as async.Operation<types.ListReceiptRuleSetsOutput>
+function C:listReceiptRuleSets(input: types.ListReceiptRuleSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListReceiptRuleSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReceiptRuleSets as schema.OperationSchema, input, options) as async.Operation<types.ListReceiptRuleSetsOutput>
 end
 
-function C:listTemplates(input: types.ListTemplatesInput, options: any): async.Operation<types.ListTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTemplates, input, options) as async.Operation<types.ListTemplatesOutput>
+function C:listTemplates(input: types.ListTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListTemplatesOutput>
 end
 
-function C:listVerifiedEmailAddresses(input: types.ListVerifiedEmailAddressesInput, options: any): async.Operation<types.ListVerifiedEmailAddressesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVerifiedEmailAddresses, input, options) as async.Operation<types.ListVerifiedEmailAddressesOutput>
+function C:listVerifiedEmailAddresses(input: types.ListVerifiedEmailAddressesInput, options?: base_client.InvokeOptions): async.Operation<types.ListVerifiedEmailAddressesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVerifiedEmailAddresses as schema.OperationSchema, input, options) as async.Operation<types.ListVerifiedEmailAddressesOutput>
 end
 
-function C:putConfigurationSetDeliveryOptions(input: types.PutConfigurationSetDeliveryOptionsInput, options: any): async.Operation<types.PutConfigurationSetDeliveryOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutConfigurationSetDeliveryOptions, input, options) as async.Operation<types.PutConfigurationSetDeliveryOptionsOutput>
+function C:putConfigurationSetDeliveryOptions(input: types.PutConfigurationSetDeliveryOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.PutConfigurationSetDeliveryOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutConfigurationSetDeliveryOptions as schema.OperationSchema, input, options) as async.Operation<types.PutConfigurationSetDeliveryOptionsOutput>
 end
 
-function C:putIdentityPolicy(input: types.PutIdentityPolicyInput, options: any): async.Operation<types.PutIdentityPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutIdentityPolicy, input, options) as async.Operation<types.PutIdentityPolicyOutput>
+function C:putIdentityPolicy(input: types.PutIdentityPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutIdentityPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutIdentityPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutIdentityPolicyOutput>
 end
 
-function C:reorderReceiptRuleSet(input: types.ReorderReceiptRuleSetInput, options: any): async.Operation<types.ReorderReceiptRuleSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.ReorderReceiptRuleSet, input, options) as async.Operation<types.ReorderReceiptRuleSetOutput>
+function C:reorderReceiptRuleSet(input: types.ReorderReceiptRuleSetInput, options?: base_client.InvokeOptions): async.Operation<types.ReorderReceiptRuleSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReorderReceiptRuleSet as schema.OperationSchema, input, options) as async.Operation<types.ReorderReceiptRuleSetOutput>
 end
 
-function C:sendBounce(input: types.SendBounceInput, options: any): async.Operation<types.SendBounceOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendBounce, input, options) as async.Operation<types.SendBounceOutput>
+function C:sendBounce(input: types.SendBounceInput, options?: base_client.InvokeOptions): async.Operation<types.SendBounceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendBounce as schema.OperationSchema, input, options) as async.Operation<types.SendBounceOutput>
 end
 
-function C:sendBulkTemplatedEmail(input: types.SendBulkTemplatedEmailInput, options: any): async.Operation<types.SendBulkTemplatedEmailOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendBulkTemplatedEmail, input, options) as async.Operation<types.SendBulkTemplatedEmailOutput>
+function C:sendBulkTemplatedEmail(input: types.SendBulkTemplatedEmailInput, options?: base_client.InvokeOptions): async.Operation<types.SendBulkTemplatedEmailOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendBulkTemplatedEmail as schema.OperationSchema, input, options) as async.Operation<types.SendBulkTemplatedEmailOutput>
 end
 
-function C:sendCustomVerificationEmail(input: types.SendCustomVerificationEmailInput, options: any): async.Operation<types.SendCustomVerificationEmailOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendCustomVerificationEmail, input, options) as async.Operation<types.SendCustomVerificationEmailOutput>
+function C:sendCustomVerificationEmail(input: types.SendCustomVerificationEmailInput, options?: base_client.InvokeOptions): async.Operation<types.SendCustomVerificationEmailOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendCustomVerificationEmail as schema.OperationSchema, input, options) as async.Operation<types.SendCustomVerificationEmailOutput>
 end
 
-function C:sendEmail(input: types.SendEmailInput, options: any): async.Operation<types.SendEmailOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendEmail, input, options) as async.Operation<types.SendEmailOutput>
+function C:sendEmail(input: types.SendEmailInput, options?: base_client.InvokeOptions): async.Operation<types.SendEmailOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendEmail as schema.OperationSchema, input, options) as async.Operation<types.SendEmailOutput>
 end
 
-function C:sendRawEmail(input: types.SendRawEmailInput, options: any): async.Operation<types.SendRawEmailOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendRawEmail, input, options) as async.Operation<types.SendRawEmailOutput>
+function C:sendRawEmail(input: types.SendRawEmailInput, options?: base_client.InvokeOptions): async.Operation<types.SendRawEmailOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendRawEmail as schema.OperationSchema, input, options) as async.Operation<types.SendRawEmailOutput>
 end
 
-function C:sendTemplatedEmail(input: types.SendTemplatedEmailInput, options: any): async.Operation<types.SendTemplatedEmailOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendTemplatedEmail, input, options) as async.Operation<types.SendTemplatedEmailOutput>
+function C:sendTemplatedEmail(input: types.SendTemplatedEmailInput, options?: base_client.InvokeOptions): async.Operation<types.SendTemplatedEmailOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendTemplatedEmail as schema.OperationSchema, input, options) as async.Operation<types.SendTemplatedEmailOutput>
 end
 
-function C:setActiveReceiptRuleSet(input: types.SetActiveReceiptRuleSetInput, options: any): async.Operation<types.SetActiveReceiptRuleSetOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetActiveReceiptRuleSet, input, options) as async.Operation<types.SetActiveReceiptRuleSetOutput>
+function C:setActiveReceiptRuleSet(input: types.SetActiveReceiptRuleSetInput, options?: base_client.InvokeOptions): async.Operation<types.SetActiveReceiptRuleSetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetActiveReceiptRuleSet as schema.OperationSchema, input, options) as async.Operation<types.SetActiveReceiptRuleSetOutput>
 end
 
-function C:setIdentityDkimEnabled(input: types.SetIdentityDkimEnabledInput, options: any): async.Operation<types.SetIdentityDkimEnabledOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetIdentityDkimEnabled, input, options) as async.Operation<types.SetIdentityDkimEnabledOutput>
+function C:setIdentityDkimEnabled(input: types.SetIdentityDkimEnabledInput, options?: base_client.InvokeOptions): async.Operation<types.SetIdentityDkimEnabledOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetIdentityDkimEnabled as schema.OperationSchema, input, options) as async.Operation<types.SetIdentityDkimEnabledOutput>
 end
 
-function C:setIdentityFeedbackForwardingEnabled(input: types.SetIdentityFeedbackForwardingEnabledInput, options: any): async.Operation<types.SetIdentityFeedbackForwardingEnabledOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetIdentityFeedbackForwardingEnabled, input, options) as async.Operation<types.SetIdentityFeedbackForwardingEnabledOutput>
+function C:setIdentityFeedbackForwardingEnabled(input: types.SetIdentityFeedbackForwardingEnabledInput, options?: base_client.InvokeOptions): async.Operation<types.SetIdentityFeedbackForwardingEnabledOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetIdentityFeedbackForwardingEnabled as schema.OperationSchema, input, options) as async.Operation<types.SetIdentityFeedbackForwardingEnabledOutput>
 end
 
-function C:setIdentityHeadersInNotificationsEnabled(input: types.SetIdentityHeadersInNotificationsEnabledInput, options: any): async.Operation<types.SetIdentityHeadersInNotificationsEnabledOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetIdentityHeadersInNotificationsEnabled, input, options) as async.Operation<types.SetIdentityHeadersInNotificationsEnabledOutput>
+function C:setIdentityHeadersInNotificationsEnabled(input: types.SetIdentityHeadersInNotificationsEnabledInput, options?: base_client.InvokeOptions): async.Operation<types.SetIdentityHeadersInNotificationsEnabledOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetIdentityHeadersInNotificationsEnabled as schema.OperationSchema, input, options) as async.Operation<types.SetIdentityHeadersInNotificationsEnabledOutput>
 end
 
-function C:setIdentityMailFromDomain(input: types.SetIdentityMailFromDomainInput, options: any): async.Operation<types.SetIdentityMailFromDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetIdentityMailFromDomain, input, options) as async.Operation<types.SetIdentityMailFromDomainOutput>
+function C:setIdentityMailFromDomain(input: types.SetIdentityMailFromDomainInput, options?: base_client.InvokeOptions): async.Operation<types.SetIdentityMailFromDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetIdentityMailFromDomain as schema.OperationSchema, input, options) as async.Operation<types.SetIdentityMailFromDomainOutput>
 end
 
-function C:setIdentityNotificationTopic(input: types.SetIdentityNotificationTopicInput, options: any): async.Operation<types.SetIdentityNotificationTopicOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetIdentityNotificationTopic, input, options) as async.Operation<types.SetIdentityNotificationTopicOutput>
+function C:setIdentityNotificationTopic(input: types.SetIdentityNotificationTopicInput, options?: base_client.InvokeOptions): async.Operation<types.SetIdentityNotificationTopicOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetIdentityNotificationTopic as schema.OperationSchema, input, options) as async.Operation<types.SetIdentityNotificationTopicOutput>
 end
 
-function C:setReceiptRulePosition(input: types.SetReceiptRulePositionInput, options: any): async.Operation<types.SetReceiptRulePositionOutput>
-    return self:invokeOperation(schemas.Service, schemas.SetReceiptRulePosition, input, options) as async.Operation<types.SetReceiptRulePositionOutput>
+function C:setReceiptRulePosition(input: types.SetReceiptRulePositionInput, options?: base_client.InvokeOptions): async.Operation<types.SetReceiptRulePositionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetReceiptRulePosition as schema.OperationSchema, input, options) as async.Operation<types.SetReceiptRulePositionOutput>
 end
 
-function C:testRenderTemplate(input: types.TestRenderTemplateInput, options: any): async.Operation<types.TestRenderTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.TestRenderTemplate, input, options) as async.Operation<types.TestRenderTemplateOutput>
+function C:testRenderTemplate(input: types.TestRenderTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.TestRenderTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TestRenderTemplate as schema.OperationSchema, input, options) as async.Operation<types.TestRenderTemplateOutput>
 end
 
-function C:updateAccountSendingEnabled(input: types.UpdateAccountSendingEnabledInput, options: any): async.Operation<types.UpdateAccountSendingEnabledOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAccountSendingEnabled, input, options) as async.Operation<types.UpdateAccountSendingEnabledOutput>
+function C:updateAccountSendingEnabled(input: types.UpdateAccountSendingEnabledInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAccountSendingEnabledOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAccountSendingEnabled as schema.OperationSchema, input, options) as async.Operation<types.UpdateAccountSendingEnabledOutput>
 end
 
-function C:updateConfigurationSetEventDestination(input: types.UpdateConfigurationSetEventDestinationInput, options: any): async.Operation<types.UpdateConfigurationSetEventDestinationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConfigurationSetEventDestination, input, options) as async.Operation<types.UpdateConfigurationSetEventDestinationOutput>
+function C:updateConfigurationSetEventDestination(input: types.UpdateConfigurationSetEventDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConfigurationSetEventDestinationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConfigurationSetEventDestination as schema.OperationSchema, input, options) as async.Operation<types.UpdateConfigurationSetEventDestinationOutput>
 end
 
-function C:updateConfigurationSetReputationMetricsEnabled(input: types.UpdateConfigurationSetReputationMetricsEnabledInput, options: any): async.Operation<types.UpdateConfigurationSetReputationMetricsEnabledOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConfigurationSetReputationMetricsEnabled, input, options) as async.Operation<types.UpdateConfigurationSetReputationMetricsEnabledOutput>
+function C:updateConfigurationSetReputationMetricsEnabled(input: types.UpdateConfigurationSetReputationMetricsEnabledInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConfigurationSetReputationMetricsEnabledOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConfigurationSetReputationMetricsEnabled as schema.OperationSchema, input, options) as async.Operation<types.UpdateConfigurationSetReputationMetricsEnabledOutput>
 end
 
-function C:updateConfigurationSetSendingEnabled(input: types.UpdateConfigurationSetSendingEnabledInput, options: any): async.Operation<types.UpdateConfigurationSetSendingEnabledOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConfigurationSetSendingEnabled, input, options) as async.Operation<types.UpdateConfigurationSetSendingEnabledOutput>
+function C:updateConfigurationSetSendingEnabled(input: types.UpdateConfigurationSetSendingEnabledInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConfigurationSetSendingEnabledOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConfigurationSetSendingEnabled as schema.OperationSchema, input, options) as async.Operation<types.UpdateConfigurationSetSendingEnabledOutput>
 end
 
-function C:updateConfigurationSetTrackingOptions(input: types.UpdateConfigurationSetTrackingOptionsInput, options: any): async.Operation<types.UpdateConfigurationSetTrackingOptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConfigurationSetTrackingOptions, input, options) as async.Operation<types.UpdateConfigurationSetTrackingOptionsOutput>
+function C:updateConfigurationSetTrackingOptions(input: types.UpdateConfigurationSetTrackingOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConfigurationSetTrackingOptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConfigurationSetTrackingOptions as schema.OperationSchema, input, options) as async.Operation<types.UpdateConfigurationSetTrackingOptionsOutput>
 end
 
-function C:updateCustomVerificationEmailTemplate(input: types.UpdateCustomVerificationEmailTemplateInput, options: any): async.Operation<types.UpdateCustomVerificationEmailTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCustomVerificationEmailTemplate, input, options) as async.Operation<types.UpdateCustomVerificationEmailTemplateOutput>
+function C:updateCustomVerificationEmailTemplate(input: types.UpdateCustomVerificationEmailTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCustomVerificationEmailTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCustomVerificationEmailTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateCustomVerificationEmailTemplateOutput>
 end
 
-function C:updateReceiptRule(input: types.UpdateReceiptRuleInput, options: any): async.Operation<types.UpdateReceiptRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateReceiptRule, input, options) as async.Operation<types.UpdateReceiptRuleOutput>
+function C:updateReceiptRule(input: types.UpdateReceiptRuleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateReceiptRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateReceiptRule as schema.OperationSchema, input, options) as async.Operation<types.UpdateReceiptRuleOutput>
 end
 
-function C:updateTemplate(input: types.UpdateTemplateInput, options: any): async.Operation<types.UpdateTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTemplate, input, options) as async.Operation<types.UpdateTemplateOutput>
+function C:updateTemplate(input: types.UpdateTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateTemplateOutput>
 end
 
-function C:verifyDomainDkim(input: types.VerifyDomainDkimInput, options: any): async.Operation<types.VerifyDomainDkimOutput>
-    return self:invokeOperation(schemas.Service, schemas.VerifyDomainDkim, input, options) as async.Operation<types.VerifyDomainDkimOutput>
+function C:verifyDomainDkim(input: types.VerifyDomainDkimInput, options?: base_client.InvokeOptions): async.Operation<types.VerifyDomainDkimOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.VerifyDomainDkim as schema.OperationSchema, input, options) as async.Operation<types.VerifyDomainDkimOutput>
 end
 
-function C:verifyDomainIdentity(input: types.VerifyDomainIdentityInput, options: any): async.Operation<types.VerifyDomainIdentityOutput>
-    return self:invokeOperation(schemas.Service, schemas.VerifyDomainIdentity, input, options) as async.Operation<types.VerifyDomainIdentityOutput>
+function C:verifyDomainIdentity(input: types.VerifyDomainIdentityInput, options?: base_client.InvokeOptions): async.Operation<types.VerifyDomainIdentityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.VerifyDomainIdentity as schema.OperationSchema, input, options) as async.Operation<types.VerifyDomainIdentityOutput>
 end
 
-function C:verifyEmailAddress(input: types.VerifyEmailAddressInput, options: any): async.Operation<types.VerifyEmailAddressOutput>
-    return self:invokeOperation(schemas.Service, schemas.VerifyEmailAddress, input, options) as async.Operation<types.VerifyEmailAddressOutput>
+function C:verifyEmailAddress(input: types.VerifyEmailAddressInput, options?: base_client.InvokeOptions): async.Operation<types.VerifyEmailAddressOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.VerifyEmailAddress as schema.OperationSchema, input, options) as async.Operation<types.VerifyEmailAddressOutput>
 end
 
-function C:verifyEmailIdentity(input: types.VerifyEmailIdentityInput, options: any): async.Operation<types.VerifyEmailIdentityOutput>
-    return self:invokeOperation(schemas.Service, schemas.VerifyEmailIdentity, input, options) as async.Operation<types.VerifyEmailIdentityOutput>
+function C:verifyEmailIdentity(input: types.VerifyEmailIdentityInput, options?: base_client.InvokeOptions): async.Operation<types.VerifyEmailIdentityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.VerifyEmailIdentity as schema.OperationSchema, input, options) as async.Operation<types.VerifyEmailIdentityOutput>
 end
 
 return M

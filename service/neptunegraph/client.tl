@@ -8,73 +8,76 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("neptunegraph.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("neptunegraph.schemas")
 local traits = require("smithy.traits")
 local types = require("neptunegraph.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    cancelExportTask: function(Client, types.CancelExportTaskInput, any): async.Operation<types.CancelExportTaskOutput>
-    cancelImportTask: function(Client, types.CancelImportTaskInput, any): async.Operation<types.CancelImportTaskOutput>
-    cancelQuery: function(Client, types.CancelQueryInput, any): async.Operation<types.CancelQueryOutput>
-    createGraph: function(Client, types.CreateGraphInput, any): async.Operation<types.CreateGraphOutput>
-    createGraphSnapshot: function(Client, types.CreateGraphSnapshotInput, any): async.Operation<types.CreateGraphSnapshotOutput>
-    createGraphUsingImportTask: function(Client, types.CreateGraphUsingImportTaskInput, any): async.Operation<types.CreateGraphUsingImportTaskOutput>
-    createPrivateGraphEndpoint: function(Client, types.CreatePrivateGraphEndpointInput, any): async.Operation<types.CreatePrivateGraphEndpointOutput>
-    deleteGraph: function(Client, types.DeleteGraphInput, any): async.Operation<types.DeleteGraphOutput>
-    deleteGraphSnapshot: function(Client, types.DeleteGraphSnapshotInput, any): async.Operation<types.DeleteGraphSnapshotOutput>
-    deletePrivateGraphEndpoint: function(Client, types.DeletePrivateGraphEndpointInput, any): async.Operation<types.DeletePrivateGraphEndpointOutput>
-    executeQuery: function(Client, types.ExecuteQueryInput, any): async.Operation<types.ExecuteQueryOutput>
-    getExportTask: function(Client, types.GetExportTaskInput, any): async.Operation<types.GetExportTaskOutput>
-    getGraph: function(Client, types.GetGraphInput, any): async.Operation<types.GetGraphOutput>
-    getGraphSnapshot: function(Client, types.GetGraphSnapshotInput, any): async.Operation<types.GetGraphSnapshotOutput>
-    getGraphSummary: function(Client, types.GetGraphSummaryInput, any): async.Operation<types.GetGraphSummaryOutput>
-    getImportTask: function(Client, types.GetImportTaskInput, any): async.Operation<types.GetImportTaskOutput>
-    getPrivateGraphEndpoint: function(Client, types.GetPrivateGraphEndpointInput, any): async.Operation<types.GetPrivateGraphEndpointOutput>
-    getQuery: function(Client, types.GetQueryInput, any): async.Operation<types.GetQueryOutput>
-    listExportTasks: function(Client, types.ListExportTasksInput, any): async.Operation<types.ListExportTasksOutput>
-    listGraphs: function(Client, types.ListGraphsInput, any): async.Operation<types.ListGraphsOutput>
-    listGraphSnapshots: function(Client, types.ListGraphSnapshotsInput, any): async.Operation<types.ListGraphSnapshotsOutput>
-    listImportTasks: function(Client, types.ListImportTasksInput, any): async.Operation<types.ListImportTasksOutput>
-    listPrivateGraphEndpoints: function(Client, types.ListPrivateGraphEndpointsInput, any): async.Operation<types.ListPrivateGraphEndpointsOutput>
-    listQueries: function(Client, types.ListQueriesInput, any): async.Operation<types.ListQueriesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    resetGraph: function(Client, types.ResetGraphInput, any): async.Operation<types.ResetGraphOutput>
-    restoreGraphFromSnapshot: function(Client, types.RestoreGraphFromSnapshotInput, any): async.Operation<types.RestoreGraphFromSnapshotOutput>
-    startExportTask: function(Client, types.StartExportTaskInput, any): async.Operation<types.StartExportTaskOutput>
-    startGraph: function(Client, types.StartGraphInput, any): async.Operation<types.StartGraphOutput>
-    startImportTask: function(Client, types.StartImportTaskInput, any): async.Operation<types.StartImportTaskOutput>
-    stopGraph: function(Client, types.StopGraphInput, any): async.Operation<types.StopGraphOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateGraph: function(Client, types.UpdateGraphInput, any): async.Operation<types.UpdateGraphOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    cancelExportTask: function(Client, types.CancelExportTaskInput, ? base_client.InvokeOptions): async.Operation<types.CancelExportTaskOutput>
+    cancelImportTask: function(Client, types.CancelImportTaskInput, ? base_client.InvokeOptions): async.Operation<types.CancelImportTaskOutput>
+    cancelQuery: function(Client, types.CancelQueryInput, ? base_client.InvokeOptions): async.Operation<types.CancelQueryOutput>
+    createGraph: function(Client, types.CreateGraphInput, ? base_client.InvokeOptions): async.Operation<types.CreateGraphOutput>
+    createGraphSnapshot: function(Client, types.CreateGraphSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.CreateGraphSnapshotOutput>
+    createGraphUsingImportTask: function(Client, types.CreateGraphUsingImportTaskInput, ? base_client.InvokeOptions): async.Operation<types.CreateGraphUsingImportTaskOutput>
+    createPrivateGraphEndpoint: function(Client, types.CreatePrivateGraphEndpointInput, ? base_client.InvokeOptions): async.Operation<types.CreatePrivateGraphEndpointOutput>
+    deleteGraph: function(Client, types.DeleteGraphInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGraphOutput>
+    deleteGraphSnapshot: function(Client, types.DeleteGraphSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGraphSnapshotOutput>
+    deletePrivateGraphEndpoint: function(Client, types.DeletePrivateGraphEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DeletePrivateGraphEndpointOutput>
+    executeQuery: function(Client, types.ExecuteQueryInput, ? base_client.InvokeOptions): async.Operation<types.ExecuteQueryOutput>
+    getExportTask: function(Client, types.GetExportTaskInput, ? base_client.InvokeOptions): async.Operation<types.GetExportTaskOutput>
+    getGraph: function(Client, types.GetGraphInput, ? base_client.InvokeOptions): async.Operation<types.GetGraphOutput>
+    getGraphSnapshot: function(Client, types.GetGraphSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.GetGraphSnapshotOutput>
+    getGraphSummary: function(Client, types.GetGraphSummaryInput, ? base_client.InvokeOptions): async.Operation<types.GetGraphSummaryOutput>
+    getImportTask: function(Client, types.GetImportTaskInput, ? base_client.InvokeOptions): async.Operation<types.GetImportTaskOutput>
+    getPrivateGraphEndpoint: function(Client, types.GetPrivateGraphEndpointInput, ? base_client.InvokeOptions): async.Operation<types.GetPrivateGraphEndpointOutput>
+    getQuery: function(Client, types.GetQueryInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryOutput>
+    listExportTasks: function(Client, types.ListExportTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListExportTasksOutput>
+    listGraphs: function(Client, types.ListGraphsInput, ? base_client.InvokeOptions): async.Operation<types.ListGraphsOutput>
+    listGraphSnapshots: function(Client, types.ListGraphSnapshotsInput, ? base_client.InvokeOptions): async.Operation<types.ListGraphSnapshotsOutput>
+    listImportTasks: function(Client, types.ListImportTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListImportTasksOutput>
+    listPrivateGraphEndpoints: function(Client, types.ListPrivateGraphEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.ListPrivateGraphEndpointsOutput>
+    listQueries: function(Client, types.ListQueriesInput, ? base_client.InvokeOptions): async.Operation<types.ListQueriesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    resetGraph: function(Client, types.ResetGraphInput, ? base_client.InvokeOptions): async.Operation<types.ResetGraphOutput>
+    restoreGraphFromSnapshot: function(Client, types.RestoreGraphFromSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.RestoreGraphFromSnapshotOutput>
+    startExportTask: function(Client, types.StartExportTaskInput, ? base_client.InvokeOptions): async.Operation<types.StartExportTaskOutput>
+    startGraph: function(Client, types.StartGraphInput, ? base_client.InvokeOptions): async.Operation<types.StartGraphOutput>
+    startImportTask: function(Client, types.StartImportTaskInput, ? base_client.InvokeOptions): async.Operation<types.StartImportTaskOutput>
+    stopGraph: function(Client, types.StopGraphInput, ? base_client.InvokeOptions): async.Operation<types.StopGraphOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateGraph: function(Client, types.UpdateGraphInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGraphOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AmazonNeptuneGraph"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "neptune-graph", signing_region = c.region } }
                 else
@@ -93,140 +96,140 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:cancelExportTask(input: types.CancelExportTaskInput, options: any): async.Operation<types.CancelExportTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelExportTask, input, options) as async.Operation<types.CancelExportTaskOutput>
+function C:cancelExportTask(input: types.CancelExportTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CancelExportTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelExportTask as schema.OperationSchema, input, options) as async.Operation<types.CancelExportTaskOutput>
 end
 
-function C:cancelImportTask(input: types.CancelImportTaskInput, options: any): async.Operation<types.CancelImportTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelImportTask, input, options) as async.Operation<types.CancelImportTaskOutput>
+function C:cancelImportTask(input: types.CancelImportTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CancelImportTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelImportTask as schema.OperationSchema, input, options) as async.Operation<types.CancelImportTaskOutput>
 end
 
-function C:cancelQuery(input: types.CancelQueryInput, options: any): async.Operation<types.CancelQueryOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelQuery, input, options) as async.Operation<types.CancelQueryOutput>
+function C:cancelQuery(input: types.CancelQueryInput, options?: base_client.InvokeOptions): async.Operation<types.CancelQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelQuery as schema.OperationSchema, input, options) as async.Operation<types.CancelQueryOutput>
 end
 
-function C:createGraph(input: types.CreateGraphInput, options: any): async.Operation<types.CreateGraphOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateGraph, input, options) as async.Operation<types.CreateGraphOutput>
+function C:createGraph(input: types.CreateGraphInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGraphOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGraph as schema.OperationSchema, input, options) as async.Operation<types.CreateGraphOutput>
 end
 
-function C:createGraphSnapshot(input: types.CreateGraphSnapshotInput, options: any): async.Operation<types.CreateGraphSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateGraphSnapshot, input, options) as async.Operation<types.CreateGraphSnapshotOutput>
+function C:createGraphSnapshot(input: types.CreateGraphSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGraphSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGraphSnapshot as schema.OperationSchema, input, options) as async.Operation<types.CreateGraphSnapshotOutput>
 end
 
-function C:createGraphUsingImportTask(input: types.CreateGraphUsingImportTaskInput, options: any): async.Operation<types.CreateGraphUsingImportTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateGraphUsingImportTask, input, options) as async.Operation<types.CreateGraphUsingImportTaskOutput>
+function C:createGraphUsingImportTask(input: types.CreateGraphUsingImportTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGraphUsingImportTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGraphUsingImportTask as schema.OperationSchema, input, options) as async.Operation<types.CreateGraphUsingImportTaskOutput>
 end
 
-function C:createPrivateGraphEndpoint(input: types.CreatePrivateGraphEndpointInput, options: any): async.Operation<types.CreatePrivateGraphEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePrivateGraphEndpoint, input, options) as async.Operation<types.CreatePrivateGraphEndpointOutput>
+function C:createPrivateGraphEndpoint(input: types.CreatePrivateGraphEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePrivateGraphEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePrivateGraphEndpoint as schema.OperationSchema, input, options) as async.Operation<types.CreatePrivateGraphEndpointOutput>
 end
 
-function C:deleteGraph(input: types.DeleteGraphInput, options: any): async.Operation<types.DeleteGraphOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteGraph, input, options) as async.Operation<types.DeleteGraphOutput>
+function C:deleteGraph(input: types.DeleteGraphInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGraphOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGraph as schema.OperationSchema, input, options) as async.Operation<types.DeleteGraphOutput>
 end
 
-function C:deleteGraphSnapshot(input: types.DeleteGraphSnapshotInput, options: any): async.Operation<types.DeleteGraphSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteGraphSnapshot, input, options) as async.Operation<types.DeleteGraphSnapshotOutput>
+function C:deleteGraphSnapshot(input: types.DeleteGraphSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGraphSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGraphSnapshot as schema.OperationSchema, input, options) as async.Operation<types.DeleteGraphSnapshotOutput>
 end
 
-function C:deletePrivateGraphEndpoint(input: types.DeletePrivateGraphEndpointInput, options: any): async.Operation<types.DeletePrivateGraphEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePrivateGraphEndpoint, input, options) as async.Operation<types.DeletePrivateGraphEndpointOutput>
+function C:deletePrivateGraphEndpoint(input: types.DeletePrivateGraphEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePrivateGraphEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePrivateGraphEndpoint as schema.OperationSchema, input, options) as async.Operation<types.DeletePrivateGraphEndpointOutput>
 end
 
-function C:executeQuery(input: types.ExecuteQueryInput, options: any): async.Operation<types.ExecuteQueryOutput>
-    return self:invokeOperation(schemas.Service, schemas.ExecuteQuery, input, options) as async.Operation<types.ExecuteQueryOutput>
+function C:executeQuery(input: types.ExecuteQueryInput, options?: base_client.InvokeOptions): async.Operation<types.ExecuteQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExecuteQuery as schema.OperationSchema, input, options) as async.Operation<types.ExecuteQueryOutput>
 end
 
-function C:getExportTask(input: types.GetExportTaskInput, options: any): async.Operation<types.GetExportTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetExportTask, input, options) as async.Operation<types.GetExportTaskOutput>
+function C:getExportTask(input: types.GetExportTaskInput, options?: base_client.InvokeOptions): async.Operation<types.GetExportTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetExportTask as schema.OperationSchema, input, options) as async.Operation<types.GetExportTaskOutput>
 end
 
-function C:getGraph(input: types.GetGraphInput, options: any): async.Operation<types.GetGraphOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetGraph, input, options) as async.Operation<types.GetGraphOutput>
+function C:getGraph(input: types.GetGraphInput, options?: base_client.InvokeOptions): async.Operation<types.GetGraphOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGraph as schema.OperationSchema, input, options) as async.Operation<types.GetGraphOutput>
 end
 
-function C:getGraphSnapshot(input: types.GetGraphSnapshotInput, options: any): async.Operation<types.GetGraphSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetGraphSnapshot, input, options) as async.Operation<types.GetGraphSnapshotOutput>
+function C:getGraphSnapshot(input: types.GetGraphSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.GetGraphSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGraphSnapshot as schema.OperationSchema, input, options) as async.Operation<types.GetGraphSnapshotOutput>
 end
 
-function C:getGraphSummary(input: types.GetGraphSummaryInput, options: any): async.Operation<types.GetGraphSummaryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetGraphSummary, input, options) as async.Operation<types.GetGraphSummaryOutput>
+function C:getGraphSummary(input: types.GetGraphSummaryInput, options?: base_client.InvokeOptions): async.Operation<types.GetGraphSummaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGraphSummary as schema.OperationSchema, input, options) as async.Operation<types.GetGraphSummaryOutput>
 end
 
-function C:getImportTask(input: types.GetImportTaskInput, options: any): async.Operation<types.GetImportTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetImportTask, input, options) as async.Operation<types.GetImportTaskOutput>
+function C:getImportTask(input: types.GetImportTaskInput, options?: base_client.InvokeOptions): async.Operation<types.GetImportTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetImportTask as schema.OperationSchema, input, options) as async.Operation<types.GetImportTaskOutput>
 end
 
-function C:getPrivateGraphEndpoint(input: types.GetPrivateGraphEndpointInput, options: any): async.Operation<types.GetPrivateGraphEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPrivateGraphEndpoint, input, options) as async.Operation<types.GetPrivateGraphEndpointOutput>
+function C:getPrivateGraphEndpoint(input: types.GetPrivateGraphEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.GetPrivateGraphEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPrivateGraphEndpoint as schema.OperationSchema, input, options) as async.Operation<types.GetPrivateGraphEndpointOutput>
 end
 
-function C:getQuery(input: types.GetQueryInput, options: any): async.Operation<types.GetQueryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetQuery, input, options) as async.Operation<types.GetQueryOutput>
+function C:getQuery(input: types.GetQueryInput, options?: base_client.InvokeOptions): async.Operation<types.GetQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQuery as schema.OperationSchema, input, options) as async.Operation<types.GetQueryOutput>
 end
 
-function C:listExportTasks(input: types.ListExportTasksInput, options: any): async.Operation<types.ListExportTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListExportTasks, input, options) as async.Operation<types.ListExportTasksOutput>
+function C:listExportTasks(input: types.ListExportTasksInput, options?: base_client.InvokeOptions): async.Operation<types.ListExportTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExportTasks as schema.OperationSchema, input, options) as async.Operation<types.ListExportTasksOutput>
 end
 
-function C:listGraphs(input: types.ListGraphsInput, options: any): async.Operation<types.ListGraphsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGraphs, input, options) as async.Operation<types.ListGraphsOutput>
+function C:listGraphs(input: types.ListGraphsInput, options?: base_client.InvokeOptions): async.Operation<types.ListGraphsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGraphs as schema.OperationSchema, input, options) as async.Operation<types.ListGraphsOutput>
 end
 
-function C:listGraphSnapshots(input: types.ListGraphSnapshotsInput, options: any): async.Operation<types.ListGraphSnapshotsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListGraphSnapshots, input, options) as async.Operation<types.ListGraphSnapshotsOutput>
+function C:listGraphSnapshots(input: types.ListGraphSnapshotsInput, options?: base_client.InvokeOptions): async.Operation<types.ListGraphSnapshotsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGraphSnapshots as schema.OperationSchema, input, options) as async.Operation<types.ListGraphSnapshotsOutput>
 end
 
-function C:listImportTasks(input: types.ListImportTasksInput, options: any): async.Operation<types.ListImportTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListImportTasks, input, options) as async.Operation<types.ListImportTasksOutput>
+function C:listImportTasks(input: types.ListImportTasksInput, options?: base_client.InvokeOptions): async.Operation<types.ListImportTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListImportTasks as schema.OperationSchema, input, options) as async.Operation<types.ListImportTasksOutput>
 end
 
-function C:listPrivateGraphEndpoints(input: types.ListPrivateGraphEndpointsInput, options: any): async.Operation<types.ListPrivateGraphEndpointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPrivateGraphEndpoints, input, options) as async.Operation<types.ListPrivateGraphEndpointsOutput>
+function C:listPrivateGraphEndpoints(input: types.ListPrivateGraphEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPrivateGraphEndpointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPrivateGraphEndpoints as schema.OperationSchema, input, options) as async.Operation<types.ListPrivateGraphEndpointsOutput>
 end
 
-function C:listQueries(input: types.ListQueriesInput, options: any): async.Operation<types.ListQueriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListQueries, input, options) as async.Operation<types.ListQueriesOutput>
+function C:listQueries(input: types.ListQueriesInput, options?: base_client.InvokeOptions): async.Operation<types.ListQueriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListQueries as schema.OperationSchema, input, options) as async.Operation<types.ListQueriesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:resetGraph(input: types.ResetGraphInput, options: any): async.Operation<types.ResetGraphOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResetGraph, input, options) as async.Operation<types.ResetGraphOutput>
+function C:resetGraph(input: types.ResetGraphInput, options?: base_client.InvokeOptions): async.Operation<types.ResetGraphOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResetGraph as schema.OperationSchema, input, options) as async.Operation<types.ResetGraphOutput>
 end
 
-function C:restoreGraphFromSnapshot(input: types.RestoreGraphFromSnapshotInput, options: any): async.Operation<types.RestoreGraphFromSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.RestoreGraphFromSnapshot, input, options) as async.Operation<types.RestoreGraphFromSnapshotOutput>
+function C:restoreGraphFromSnapshot(input: types.RestoreGraphFromSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.RestoreGraphFromSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestoreGraphFromSnapshot as schema.OperationSchema, input, options) as async.Operation<types.RestoreGraphFromSnapshotOutput>
 end
 
-function C:startExportTask(input: types.StartExportTaskInput, options: any): async.Operation<types.StartExportTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartExportTask, input, options) as async.Operation<types.StartExportTaskOutput>
+function C:startExportTask(input: types.StartExportTaskInput, options?: base_client.InvokeOptions): async.Operation<types.StartExportTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartExportTask as schema.OperationSchema, input, options) as async.Operation<types.StartExportTaskOutput>
 end
 
-function C:startGraph(input: types.StartGraphInput, options: any): async.Operation<types.StartGraphOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartGraph, input, options) as async.Operation<types.StartGraphOutput>
+function C:startGraph(input: types.StartGraphInput, options?: base_client.InvokeOptions): async.Operation<types.StartGraphOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartGraph as schema.OperationSchema, input, options) as async.Operation<types.StartGraphOutput>
 end
 
-function C:startImportTask(input: types.StartImportTaskInput, options: any): async.Operation<types.StartImportTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartImportTask, input, options) as async.Operation<types.StartImportTaskOutput>
+function C:startImportTask(input: types.StartImportTaskInput, options?: base_client.InvokeOptions): async.Operation<types.StartImportTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartImportTask as schema.OperationSchema, input, options) as async.Operation<types.StartImportTaskOutput>
 end
 
-function C:stopGraph(input: types.StopGraphInput, options: any): async.Operation<types.StopGraphOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopGraph, input, options) as async.Operation<types.StopGraphOutput>
+function C:stopGraph(input: types.StopGraphInput, options?: base_client.InvokeOptions): async.Operation<types.StopGraphOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopGraph as schema.OperationSchema, input, options) as async.Operation<types.StopGraphOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateGraph(input: types.UpdateGraphInput, options: any): async.Operation<types.UpdateGraphOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateGraph, input, options) as async.Operation<types.UpdateGraphOutput>
+function C:updateGraph(input: types.UpdateGraphInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGraphOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGraph as schema.OperationSchema, input, options) as async.Operation<types.UpdateGraphOutput>
 end
 
 return M

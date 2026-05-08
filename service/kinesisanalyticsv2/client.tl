@@ -8,72 +8,75 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("kinesisanalyticsv2.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("kinesisanalyticsv2.schemas")
 local traits = require("smithy.traits")
 local types = require("kinesisanalyticsv2.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    addApplicationCloudWatchLoggingOption: function(Client, types.AddApplicationCloudWatchLoggingOptionInput, any): async.Operation<types.AddApplicationCloudWatchLoggingOptionOutput>
-    addApplicationInput: function(Client, types.AddApplicationInputInput, any): async.Operation<types.AddApplicationInputOutput>
-    addApplicationInputProcessingConfiguration: function(Client, types.AddApplicationInputProcessingConfigurationInput, any): async.Operation<types.AddApplicationInputProcessingConfigurationOutput>
-    addApplicationOutput: function(Client, types.AddApplicationOutputInput, any): async.Operation<types.AddApplicationOutputOutput>
-    addApplicationReferenceDataSource: function(Client, types.AddApplicationReferenceDataSourceInput, any): async.Operation<types.AddApplicationReferenceDataSourceOutput>
-    addApplicationVpcConfiguration: function(Client, types.AddApplicationVpcConfigurationInput, any): async.Operation<types.AddApplicationVpcConfigurationOutput>
-    createApplication: function(Client, types.CreateApplicationInput, any): async.Operation<types.CreateApplicationOutput>
-    createApplicationPresignedUrl: function(Client, types.CreateApplicationPresignedUrlInput, any): async.Operation<types.CreateApplicationPresignedUrlOutput>
-    createApplicationSnapshot: function(Client, types.CreateApplicationSnapshotInput, any): async.Operation<types.CreateApplicationSnapshotOutput>
-    deleteApplication: function(Client, types.DeleteApplicationInput, any): async.Operation<types.DeleteApplicationOperationOutput>
-    deleteApplicationCloudWatchLoggingOption: function(Client, types.DeleteApplicationCloudWatchLoggingOptionInput, any): async.Operation<types.DeleteApplicationCloudWatchLoggingOptionOutput>
-    deleteApplicationInputProcessingConfiguration: function(Client, types.DeleteApplicationInputProcessingConfigurationInput, any): async.Operation<types.DeleteApplicationInputProcessingConfigurationOutput>
-    deleteApplicationOutput: function(Client, types.DeleteApplicationOutputInput, any): async.Operation<types.DeleteApplicationOutputOutput>
-    deleteApplicationReferenceDataSource: function(Client, types.DeleteApplicationReferenceDataSourceInput, any): async.Operation<types.DeleteApplicationReferenceDataSourceOutput>
-    deleteApplicationSnapshot: function(Client, types.DeleteApplicationSnapshotInput, any): async.Operation<types.DeleteApplicationSnapshotOutput>
-    deleteApplicationVpcConfiguration: function(Client, types.DeleteApplicationVpcConfigurationInput, any): async.Operation<types.DeleteApplicationVpcConfigurationOutput>
-    describeApplication: function(Client, types.DescribeApplicationInput, any): async.Operation<types.DescribeApplicationOutput>
-    describeApplicationOperation: function(Client, types.DescribeApplicationOperationInput, any): async.Operation<types.DescribeApplicationOperationOutput>
-    describeApplicationSnapshot: function(Client, types.DescribeApplicationSnapshotInput, any): async.Operation<types.DescribeApplicationSnapshotOutput>
-    describeApplicationVersion: function(Client, types.DescribeApplicationVersionInput, any): async.Operation<types.DescribeApplicationVersionOutput>
-    discoverInputSchema: function(Client, types.DiscoverInputSchemaInput, any): async.Operation<types.DiscoverInputSchemaOutput>
-    listApplicationOperations: function(Client, types.ListApplicationOperationsInput, any): async.Operation<types.ListApplicationOperationsOutput>
-    listApplications: function(Client, types.ListApplicationsInput, any): async.Operation<types.ListApplicationsOutput>
-    listApplicationSnapshots: function(Client, types.ListApplicationSnapshotsInput, any): async.Operation<types.ListApplicationSnapshotsOutput>
-    listApplicationVersions: function(Client, types.ListApplicationVersionsInput, any): async.Operation<types.ListApplicationVersionsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    rollbackApplication: function(Client, types.RollbackApplicationInput, any): async.Operation<types.RollbackApplicationOutput>
-    startApplication: function(Client, types.StartApplicationInput, any): async.Operation<types.StartApplicationOutput>
-    stopApplication: function(Client, types.StopApplicationInput, any): async.Operation<types.StopApplicationOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateApplication: function(Client, types.UpdateApplicationInput, any): async.Operation<types.UpdateApplicationOutput>
-    updateApplicationMaintenanceConfiguration: function(Client, types.UpdateApplicationMaintenanceConfigurationInput, any): async.Operation<types.UpdateApplicationMaintenanceConfigurationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    addApplicationCloudWatchLoggingOption: function(Client, types.AddApplicationCloudWatchLoggingOptionInput, ? base_client.InvokeOptions): async.Operation<types.AddApplicationCloudWatchLoggingOptionOutput>
+    addApplicationInput: function(Client, types.AddApplicationInputInput, ? base_client.InvokeOptions): async.Operation<types.AddApplicationInputOutput>
+    addApplicationInputProcessingConfiguration: function(Client, types.AddApplicationInputProcessingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.AddApplicationInputProcessingConfigurationOutput>
+    addApplicationOutput: function(Client, types.AddApplicationOutputInput, ? base_client.InvokeOptions): async.Operation<types.AddApplicationOutputOutput>
+    addApplicationReferenceDataSource: function(Client, types.AddApplicationReferenceDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.AddApplicationReferenceDataSourceOutput>
+    addApplicationVpcConfiguration: function(Client, types.AddApplicationVpcConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.AddApplicationVpcConfigurationOutput>
+    createApplication: function(Client, types.CreateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    createApplicationPresignedUrl: function(Client, types.CreateApplicationPresignedUrlInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationPresignedUrlOutput>
+    createApplicationSnapshot: function(Client, types.CreateApplicationSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationSnapshotOutput>
+    deleteApplication: function(Client, types.DeleteApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationOperationOutput>
+    deleteApplicationCloudWatchLoggingOption: function(Client, types.DeleteApplicationCloudWatchLoggingOptionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationCloudWatchLoggingOptionOutput>
+    deleteApplicationInputProcessingConfiguration: function(Client, types.DeleteApplicationInputProcessingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationInputProcessingConfigurationOutput>
+    deleteApplicationOutput: function(Client, types.DeleteApplicationOutputInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutputOutput>
+    deleteApplicationReferenceDataSource: function(Client, types.DeleteApplicationReferenceDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationReferenceDataSourceOutput>
+    deleteApplicationSnapshot: function(Client, types.DeleteApplicationSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationSnapshotOutput>
+    deleteApplicationVpcConfiguration: function(Client, types.DeleteApplicationVpcConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationVpcConfigurationOutput>
+    describeApplication: function(Client, types.DescribeApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeApplicationOutput>
+    describeApplicationOperation: function(Client, types.DescribeApplicationOperationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeApplicationOperationOutput>
+    describeApplicationSnapshot: function(Client, types.DescribeApplicationSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.DescribeApplicationSnapshotOutput>
+    describeApplicationVersion: function(Client, types.DescribeApplicationVersionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeApplicationVersionOutput>
+    discoverInputSchema: function(Client, types.DiscoverInputSchemaInput, ? base_client.InvokeOptions): async.Operation<types.DiscoverInputSchemaOutput>
+    listApplicationOperations: function(Client, types.ListApplicationOperationsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationOperationsOutput>
+    listApplications: function(Client, types.ListApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    listApplicationSnapshots: function(Client, types.ListApplicationSnapshotsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationSnapshotsOutput>
+    listApplicationVersions: function(Client, types.ListApplicationVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationVersionsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    rollbackApplication: function(Client, types.RollbackApplicationInput, ? base_client.InvokeOptions): async.Operation<types.RollbackApplicationOutput>
+    startApplication: function(Client, types.StartApplicationInput, ? base_client.InvokeOptions): async.Operation<types.StartApplicationOutput>
+    stopApplication: function(Client, types.StopApplicationInput, ? base_client.InvokeOptions): async.Operation<types.StopApplicationOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateApplication: function(Client, types.UpdateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
+    updateApplicationMaintenanceConfiguration: function(Client, types.UpdateApplicationMaintenanceConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApplicationMaintenanceConfigurationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "KinesisAnalytics_20180523"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "kinesisanalytics", signing_region = c.region } }
                 else
@@ -92,136 +95,136 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:addApplicationCloudWatchLoggingOption(input: types.AddApplicationCloudWatchLoggingOptionInput, options: any): async.Operation<types.AddApplicationCloudWatchLoggingOptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddApplicationCloudWatchLoggingOption, input, options) as async.Operation<types.AddApplicationCloudWatchLoggingOptionOutput>
+function C:addApplicationCloudWatchLoggingOption(input: types.AddApplicationCloudWatchLoggingOptionInput, options?: base_client.InvokeOptions): async.Operation<types.AddApplicationCloudWatchLoggingOptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddApplicationCloudWatchLoggingOption as schema.OperationSchema, input, options) as async.Operation<types.AddApplicationCloudWatchLoggingOptionOutput>
 end
 
-function C:addApplicationInput(input: types.AddApplicationInputInput, options: any): async.Operation<types.AddApplicationInputOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddApplicationInput, input, options) as async.Operation<types.AddApplicationInputOutput>
+function C:addApplicationInput(input: types.AddApplicationInputInput, options?: base_client.InvokeOptions): async.Operation<types.AddApplicationInputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddApplicationInput as schema.OperationSchema, input, options) as async.Operation<types.AddApplicationInputOutput>
 end
 
-function C:addApplicationInputProcessingConfiguration(input: types.AddApplicationInputProcessingConfigurationInput, options: any): async.Operation<types.AddApplicationInputProcessingConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddApplicationInputProcessingConfiguration, input, options) as async.Operation<types.AddApplicationInputProcessingConfigurationOutput>
+function C:addApplicationInputProcessingConfiguration(input: types.AddApplicationInputProcessingConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.AddApplicationInputProcessingConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddApplicationInputProcessingConfiguration as schema.OperationSchema, input, options) as async.Operation<types.AddApplicationInputProcessingConfigurationOutput>
 end
 
-function C:addApplicationOutput(input: types.AddApplicationOutputInput, options: any): async.Operation<types.AddApplicationOutputOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddApplicationOutput, input, options) as async.Operation<types.AddApplicationOutputOutput>
+function C:addApplicationOutput(input: types.AddApplicationOutputInput, options?: base_client.InvokeOptions): async.Operation<types.AddApplicationOutputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddApplicationOutput as schema.OperationSchema, input, options) as async.Operation<types.AddApplicationOutputOutput>
 end
 
-function C:addApplicationReferenceDataSource(input: types.AddApplicationReferenceDataSourceInput, options: any): async.Operation<types.AddApplicationReferenceDataSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddApplicationReferenceDataSource, input, options) as async.Operation<types.AddApplicationReferenceDataSourceOutput>
+function C:addApplicationReferenceDataSource(input: types.AddApplicationReferenceDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.AddApplicationReferenceDataSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddApplicationReferenceDataSource as schema.OperationSchema, input, options) as async.Operation<types.AddApplicationReferenceDataSourceOutput>
 end
 
-function C:addApplicationVpcConfiguration(input: types.AddApplicationVpcConfigurationInput, options: any): async.Operation<types.AddApplicationVpcConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddApplicationVpcConfiguration, input, options) as async.Operation<types.AddApplicationVpcConfigurationOutput>
+function C:addApplicationVpcConfiguration(input: types.AddApplicationVpcConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.AddApplicationVpcConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddApplicationVpcConfiguration as schema.OperationSchema, input, options) as async.Operation<types.AddApplicationVpcConfigurationOutput>
 end
 
-function C:createApplication(input: types.CreateApplicationInput, options: any): async.Operation<types.CreateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateApplication, input, options) as async.Operation<types.CreateApplicationOutput>
+function C:createApplication(input: types.CreateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApplication as schema.OperationSchema, input, options) as async.Operation<types.CreateApplicationOutput>
 end
 
-function C:createApplicationPresignedUrl(input: types.CreateApplicationPresignedUrlInput, options: any): async.Operation<types.CreateApplicationPresignedUrlOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateApplicationPresignedUrl, input, options) as async.Operation<types.CreateApplicationPresignedUrlOutput>
+function C:createApplicationPresignedUrl(input: types.CreateApplicationPresignedUrlInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApplicationPresignedUrlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApplicationPresignedUrl as schema.OperationSchema, input, options) as async.Operation<types.CreateApplicationPresignedUrlOutput>
 end
 
-function C:createApplicationSnapshot(input: types.CreateApplicationSnapshotInput, options: any): async.Operation<types.CreateApplicationSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateApplicationSnapshot, input, options) as async.Operation<types.CreateApplicationSnapshotOutput>
+function C:createApplicationSnapshot(input: types.CreateApplicationSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApplicationSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApplicationSnapshot as schema.OperationSchema, input, options) as async.Operation<types.CreateApplicationSnapshotOutput>
 end
 
-function C:deleteApplication(input: types.DeleteApplicationInput, options: any): async.Operation<types.DeleteApplicationOperationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApplication, input, options) as async.Operation<types.DeleteApplicationOperationOutput>
+function C:deleteApplication(input: types.DeleteApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplication as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationOperationOutput>
 end
 
-function C:deleteApplicationCloudWatchLoggingOption(input: types.DeleteApplicationCloudWatchLoggingOptionInput, options: any): async.Operation<types.DeleteApplicationCloudWatchLoggingOptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApplicationCloudWatchLoggingOption, input, options) as async.Operation<types.DeleteApplicationCloudWatchLoggingOptionOutput>
+function C:deleteApplicationCloudWatchLoggingOption(input: types.DeleteApplicationCloudWatchLoggingOptionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationCloudWatchLoggingOptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplicationCloudWatchLoggingOption as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationCloudWatchLoggingOptionOutput>
 end
 
-function C:deleteApplicationInputProcessingConfiguration(input: types.DeleteApplicationInputProcessingConfigurationInput, options: any): async.Operation<types.DeleteApplicationInputProcessingConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApplicationInputProcessingConfiguration, input, options) as async.Operation<types.DeleteApplicationInputProcessingConfigurationOutput>
+function C:deleteApplicationInputProcessingConfiguration(input: types.DeleteApplicationInputProcessingConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationInputProcessingConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplicationInputProcessingConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationInputProcessingConfigurationOutput>
 end
 
-function C:deleteApplicationOutput(input: types.DeleteApplicationOutputInput, options: any): async.Operation<types.DeleteApplicationOutputOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApplicationOutput, input, options) as async.Operation<types.DeleteApplicationOutputOutput>
+function C:deleteApplicationOutput(input: types.DeleteApplicationOutputInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutputOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplicationOutput as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationOutputOutput>
 end
 
-function C:deleteApplicationReferenceDataSource(input: types.DeleteApplicationReferenceDataSourceInput, options: any): async.Operation<types.DeleteApplicationReferenceDataSourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApplicationReferenceDataSource, input, options) as async.Operation<types.DeleteApplicationReferenceDataSourceOutput>
+function C:deleteApplicationReferenceDataSource(input: types.DeleteApplicationReferenceDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationReferenceDataSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplicationReferenceDataSource as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationReferenceDataSourceOutput>
 end
 
-function C:deleteApplicationSnapshot(input: types.DeleteApplicationSnapshotInput, options: any): async.Operation<types.DeleteApplicationSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApplicationSnapshot, input, options) as async.Operation<types.DeleteApplicationSnapshotOutput>
+function C:deleteApplicationSnapshot(input: types.DeleteApplicationSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplicationSnapshot as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationSnapshotOutput>
 end
 
-function C:deleteApplicationVpcConfiguration(input: types.DeleteApplicationVpcConfigurationInput, options: any): async.Operation<types.DeleteApplicationVpcConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApplicationVpcConfiguration, input, options) as async.Operation<types.DeleteApplicationVpcConfigurationOutput>
+function C:deleteApplicationVpcConfiguration(input: types.DeleteApplicationVpcConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationVpcConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplicationVpcConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationVpcConfigurationOutput>
 end
 
-function C:describeApplication(input: types.DescribeApplicationInput, options: any): async.Operation<types.DescribeApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeApplication, input, options) as async.Operation<types.DescribeApplicationOutput>
+function C:describeApplication(input: types.DescribeApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeApplication as schema.OperationSchema, input, options) as async.Operation<types.DescribeApplicationOutput>
 end
 
-function C:describeApplicationOperation(input: types.DescribeApplicationOperationInput, options: any): async.Operation<types.DescribeApplicationOperationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeApplicationOperation, input, options) as async.Operation<types.DescribeApplicationOperationOutput>
+function C:describeApplicationOperation(input: types.DescribeApplicationOperationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeApplicationOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeApplicationOperation as schema.OperationSchema, input, options) as async.Operation<types.DescribeApplicationOperationOutput>
 end
 
-function C:describeApplicationSnapshot(input: types.DescribeApplicationSnapshotInput, options: any): async.Operation<types.DescribeApplicationSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeApplicationSnapshot, input, options) as async.Operation<types.DescribeApplicationSnapshotOutput>
+function C:describeApplicationSnapshot(input: types.DescribeApplicationSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeApplicationSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeApplicationSnapshot as schema.OperationSchema, input, options) as async.Operation<types.DescribeApplicationSnapshotOutput>
 end
 
-function C:describeApplicationVersion(input: types.DescribeApplicationVersionInput, options: any): async.Operation<types.DescribeApplicationVersionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeApplicationVersion, input, options) as async.Operation<types.DescribeApplicationVersionOutput>
+function C:describeApplicationVersion(input: types.DescribeApplicationVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeApplicationVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeApplicationVersion as schema.OperationSchema, input, options) as async.Operation<types.DescribeApplicationVersionOutput>
 end
 
-function C:discoverInputSchema(input: types.DiscoverInputSchemaInput, options: any): async.Operation<types.DiscoverInputSchemaOutput>
-    return self:invokeOperation(schemas.Service, schemas.DiscoverInputSchema, input, options) as async.Operation<types.DiscoverInputSchemaOutput>
+function C:discoverInputSchema(input: types.DiscoverInputSchemaInput, options?: base_client.InvokeOptions): async.Operation<types.DiscoverInputSchemaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DiscoverInputSchema as schema.OperationSchema, input, options) as async.Operation<types.DiscoverInputSchemaOutput>
 end
 
-function C:listApplicationOperations(input: types.ListApplicationOperationsInput, options: any): async.Operation<types.ListApplicationOperationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplicationOperations, input, options) as async.Operation<types.ListApplicationOperationsOutput>
+function C:listApplicationOperations(input: types.ListApplicationOperationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationOperationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplicationOperations as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationOperationsOutput>
 end
 
-function C:listApplications(input: types.ListApplicationsInput, options: any): async.Operation<types.ListApplicationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplications, input, options) as async.Operation<types.ListApplicationsOutput>
+function C:listApplications(input: types.ListApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplications as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationsOutput>
 end
 
-function C:listApplicationSnapshots(input: types.ListApplicationSnapshotsInput, options: any): async.Operation<types.ListApplicationSnapshotsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplicationSnapshots, input, options) as async.Operation<types.ListApplicationSnapshotsOutput>
+function C:listApplicationSnapshots(input: types.ListApplicationSnapshotsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationSnapshotsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplicationSnapshots as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationSnapshotsOutput>
 end
 
-function C:listApplicationVersions(input: types.ListApplicationVersionsInput, options: any): async.Operation<types.ListApplicationVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplicationVersions, input, options) as async.Operation<types.ListApplicationVersionsOutput>
+function C:listApplicationVersions(input: types.ListApplicationVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplicationVersions as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationVersionsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:rollbackApplication(input: types.RollbackApplicationInput, options: any): async.Operation<types.RollbackApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.RollbackApplication, input, options) as async.Operation<types.RollbackApplicationOutput>
+function C:rollbackApplication(input: types.RollbackApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.RollbackApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RollbackApplication as schema.OperationSchema, input, options) as async.Operation<types.RollbackApplicationOutput>
 end
 
-function C:startApplication(input: types.StartApplicationInput, options: any): async.Operation<types.StartApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartApplication, input, options) as async.Operation<types.StartApplicationOutput>
+function C:startApplication(input: types.StartApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.StartApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartApplication as schema.OperationSchema, input, options) as async.Operation<types.StartApplicationOutput>
 end
 
-function C:stopApplication(input: types.StopApplicationInput, options: any): async.Operation<types.StopApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopApplication, input, options) as async.Operation<types.StopApplicationOutput>
+function C:stopApplication(input: types.StopApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.StopApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopApplication as schema.OperationSchema, input, options) as async.Operation<types.StopApplicationOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateApplication(input: types.UpdateApplicationInput, options: any): async.Operation<types.UpdateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateApplication, input, options) as async.Operation<types.UpdateApplicationOutput>
+function C:updateApplication(input: types.UpdateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApplication as schema.OperationSchema, input, options) as async.Operation<types.UpdateApplicationOutput>
 end
 
-function C:updateApplicationMaintenanceConfiguration(input: types.UpdateApplicationMaintenanceConfigurationInput, options: any): async.Operation<types.UpdateApplicationMaintenanceConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateApplicationMaintenanceConfiguration, input, options) as async.Operation<types.UpdateApplicationMaintenanceConfigurationOutput>
+function C:updateApplicationMaintenanceConfiguration(input: types.UpdateApplicationMaintenanceConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApplicationMaintenanceConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApplicationMaintenanceConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateApplicationMaintenanceConfigurationOutput>
 end
 
 return M

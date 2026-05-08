@@ -8,73 +8,76 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("mediaconvert.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("mediaconvert.schemas")
 local traits = require("smithy.traits")
 local types = require("mediaconvert.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateCertificate: function(Client, types.AssociateCertificateInput, any): async.Operation<types.AssociateCertificateOutput>
-    cancelJob: function(Client, types.CancelJobInput, any): async.Operation<types.CancelJobOutput>
-    createJob: function(Client, types.CreateJobInput, any): async.Operation<types.CreateJobOutput>
-    createJobTemplate: function(Client, types.CreateJobTemplateInput, any): async.Operation<types.CreateJobTemplateOutput>
-    createPreset: function(Client, types.CreatePresetInput, any): async.Operation<types.CreatePresetOutput>
-    createQueue: function(Client, types.CreateQueueInput, any): async.Operation<types.CreateQueueOutput>
-    createResourceShare: function(Client, types.CreateResourceShareInput, any): async.Operation<types.CreateResourceShareOutput>
-    deleteJobTemplate: function(Client, types.DeleteJobTemplateInput, any): async.Operation<types.DeleteJobTemplateOutput>
-    deletePolicy: function(Client, types.DeletePolicyInput, any): async.Operation<types.DeletePolicyOutput>
-    deletePreset: function(Client, types.DeletePresetInput, any): async.Operation<types.DeletePresetOutput>
-    deleteQueue: function(Client, types.DeleteQueueInput, any): async.Operation<types.DeleteQueueOutput>
-    describeEndpoints: function(Client, types.DescribeEndpointsInput, any): async.Operation<types.DescribeEndpointsOutput>
-    disassociateCertificate: function(Client, types.DisassociateCertificateInput, any): async.Operation<types.DisassociateCertificateOutput>
-    getJob: function(Client, types.GetJobInput, any): async.Operation<types.GetJobOutput>
-    getJobsQueryResults: function(Client, types.GetJobsQueryResultsInput, any): async.Operation<types.GetJobsQueryResultsOutput>
-    getJobTemplate: function(Client, types.GetJobTemplateInput, any): async.Operation<types.GetJobTemplateOutput>
-    getPolicy: function(Client, types.GetPolicyInput, any): async.Operation<types.GetPolicyOutput>
-    getPreset: function(Client, types.GetPresetInput, any): async.Operation<types.GetPresetOutput>
-    getQueue: function(Client, types.GetQueueInput, any): async.Operation<types.GetQueueOutput>
-    listJobs: function(Client, types.ListJobsInput, any): async.Operation<types.ListJobsOutput>
-    listJobTemplates: function(Client, types.ListJobTemplatesInput, any): async.Operation<types.ListJobTemplatesOutput>
-    listPresets: function(Client, types.ListPresetsInput, any): async.Operation<types.ListPresetsOutput>
-    listQueues: function(Client, types.ListQueuesInput, any): async.Operation<types.ListQueuesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listVersions: function(Client, types.ListVersionsInput, any): async.Operation<types.ListVersionsOutput>
-    probe: function(Client, types.ProbeInput, any): async.Operation<types.ProbeOutput>
-    putPolicy: function(Client, types.PutPolicyInput, any): async.Operation<types.PutPolicyOutput>
-    searchJobs: function(Client, types.SearchJobsInput, any): async.Operation<types.SearchJobsOutput>
-    startJobsQuery: function(Client, types.StartJobsQueryInput, any): async.Operation<types.StartJobsQueryOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateJobTemplate: function(Client, types.UpdateJobTemplateInput, any): async.Operation<types.UpdateJobTemplateOutput>
-    updatePreset: function(Client, types.UpdatePresetInput, any): async.Operation<types.UpdatePresetOutput>
-    updateQueue: function(Client, types.UpdateQueueInput, any): async.Operation<types.UpdateQueueOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateCertificate: function(Client, types.AssociateCertificateInput, ? base_client.InvokeOptions): async.Operation<types.AssociateCertificateOutput>
+    cancelJob: function(Client, types.CancelJobInput, ? base_client.InvokeOptions): async.Operation<types.CancelJobOutput>
+    createJob: function(Client, types.CreateJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateJobOutput>
+    createJobTemplate: function(Client, types.CreateJobTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateJobTemplateOutput>
+    createPreset: function(Client, types.CreatePresetInput, ? base_client.InvokeOptions): async.Operation<types.CreatePresetOutput>
+    createQueue: function(Client, types.CreateQueueInput, ? base_client.InvokeOptions): async.Operation<types.CreateQueueOutput>
+    createResourceShare: function(Client, types.CreateResourceShareInput, ? base_client.InvokeOptions): async.Operation<types.CreateResourceShareOutput>
+    deleteJobTemplate: function(Client, types.DeleteJobTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteJobTemplateOutput>
+    deletePolicy: function(Client, types.DeletePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeletePolicyOutput>
+    deletePreset: function(Client, types.DeletePresetInput, ? base_client.InvokeOptions): async.Operation<types.DeletePresetOutput>
+    deleteQueue: function(Client, types.DeleteQueueInput, ? base_client.InvokeOptions): async.Operation<types.DeleteQueueOutput>
+    describeEndpoints: function(Client, types.DescribeEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEndpointsOutput>
+    disassociateCertificate: function(Client, types.DisassociateCertificateInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateCertificateOutput>
+    getJob: function(Client, types.GetJobInput, ? base_client.InvokeOptions): async.Operation<types.GetJobOutput>
+    getJobsQueryResults: function(Client, types.GetJobsQueryResultsInput, ? base_client.InvokeOptions): async.Operation<types.GetJobsQueryResultsOutput>
+    getJobTemplate: function(Client, types.GetJobTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetJobTemplateOutput>
+    getPolicy: function(Client, types.GetPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetPolicyOutput>
+    getPreset: function(Client, types.GetPresetInput, ? base_client.InvokeOptions): async.Operation<types.GetPresetOutput>
+    getQueue: function(Client, types.GetQueueInput, ? base_client.InvokeOptions): async.Operation<types.GetQueueOutput>
+    listJobs: function(Client, types.ListJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListJobsOutput>
+    listJobTemplates: function(Client, types.ListJobTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListJobTemplatesOutput>
+    listPresets: function(Client, types.ListPresetsInput, ? base_client.InvokeOptions): async.Operation<types.ListPresetsOutput>
+    listQueues: function(Client, types.ListQueuesInput, ? base_client.InvokeOptions): async.Operation<types.ListQueuesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listVersions: function(Client, types.ListVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListVersionsOutput>
+    probe: function(Client, types.ProbeInput, ? base_client.InvokeOptions): async.Operation<types.ProbeOutput>
+    putPolicy: function(Client, types.PutPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutPolicyOutput>
+    searchJobs: function(Client, types.SearchJobsInput, ? base_client.InvokeOptions): async.Operation<types.SearchJobsOutput>
+    startJobsQuery: function(Client, types.StartJobsQueryInput, ? base_client.InvokeOptions): async.Operation<types.StartJobsQueryOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateJobTemplate: function(Client, types.UpdateJobTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateJobTemplateOutput>
+    updatePreset: function(Client, types.UpdatePresetInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePresetOutput>
+    updateQueue: function(Client, types.UpdateQueueInput, ? base_client.InvokeOptions): async.Operation<types.UpdateQueueOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "MediaConvert"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "mediaconvert", signing_region = c.region } }
                 else
@@ -93,140 +96,140 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateCertificate(input: types.AssociateCertificateInput, options: any): async.Operation<types.AssociateCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateCertificate, input, options) as async.Operation<types.AssociateCertificateOutput>
+function C:associateCertificate(input: types.AssociateCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateCertificate as schema.OperationSchema, input, options) as async.Operation<types.AssociateCertificateOutput>
 end
 
-function C:cancelJob(input: types.CancelJobInput, options: any): async.Operation<types.CancelJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelJob, input, options) as async.Operation<types.CancelJobOutput>
+function C:cancelJob(input: types.CancelJobInput, options?: base_client.InvokeOptions): async.Operation<types.CancelJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelJob as schema.OperationSchema, input, options) as async.Operation<types.CancelJobOutput>
 end
 
-function C:createJob(input: types.CreateJobInput, options: any): async.Operation<types.CreateJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateJob, input, options) as async.Operation<types.CreateJobOutput>
+function C:createJob(input: types.CreateJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateJob as schema.OperationSchema, input, options) as async.Operation<types.CreateJobOutput>
 end
 
-function C:createJobTemplate(input: types.CreateJobTemplateInput, options: any): async.Operation<types.CreateJobTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateJobTemplate, input, options) as async.Operation<types.CreateJobTemplateOutput>
+function C:createJobTemplate(input: types.CreateJobTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateJobTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateJobTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateJobTemplateOutput>
 end
 
-function C:createPreset(input: types.CreatePresetInput, options: any): async.Operation<types.CreatePresetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePreset, input, options) as async.Operation<types.CreatePresetOutput>
+function C:createPreset(input: types.CreatePresetInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePresetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePreset as schema.OperationSchema, input, options) as async.Operation<types.CreatePresetOutput>
 end
 
-function C:createQueue(input: types.CreateQueueInput, options: any): async.Operation<types.CreateQueueOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateQueue, input, options) as async.Operation<types.CreateQueueOutput>
+function C:createQueue(input: types.CreateQueueInput, options?: base_client.InvokeOptions): async.Operation<types.CreateQueueOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateQueue as schema.OperationSchema, input, options) as async.Operation<types.CreateQueueOutput>
 end
 
-function C:createResourceShare(input: types.CreateResourceShareInput, options: any): async.Operation<types.CreateResourceShareOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateResourceShare, input, options) as async.Operation<types.CreateResourceShareOutput>
+function C:createResourceShare(input: types.CreateResourceShareInput, options?: base_client.InvokeOptions): async.Operation<types.CreateResourceShareOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateResourceShare as schema.OperationSchema, input, options) as async.Operation<types.CreateResourceShareOutput>
 end
 
-function C:deleteJobTemplate(input: types.DeleteJobTemplateInput, options: any): async.Operation<types.DeleteJobTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteJobTemplate, input, options) as async.Operation<types.DeleteJobTemplateOutput>
+function C:deleteJobTemplate(input: types.DeleteJobTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteJobTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteJobTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteJobTemplateOutput>
 end
 
-function C:deletePolicy(input: types.DeletePolicyInput, options: any): async.Operation<types.DeletePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePolicy, input, options) as async.Operation<types.DeletePolicyOutput>
+function C:deletePolicy(input: types.DeletePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeletePolicyOutput>
 end
 
-function C:deletePreset(input: types.DeletePresetInput, options: any): async.Operation<types.DeletePresetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePreset, input, options) as async.Operation<types.DeletePresetOutput>
+function C:deletePreset(input: types.DeletePresetInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePresetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePreset as schema.OperationSchema, input, options) as async.Operation<types.DeletePresetOutput>
 end
 
-function C:deleteQueue(input: types.DeleteQueueInput, options: any): async.Operation<types.DeleteQueueOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteQueue, input, options) as async.Operation<types.DeleteQueueOutput>
+function C:deleteQueue(input: types.DeleteQueueInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteQueueOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteQueue as schema.OperationSchema, input, options) as async.Operation<types.DeleteQueueOutput>
 end
 
-function C:describeEndpoints(input: types.DescribeEndpointsInput, options: any): async.Operation<types.DescribeEndpointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEndpoints, input, options) as async.Operation<types.DescribeEndpointsOutput>
+function C:describeEndpoints(input: types.DescribeEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEndpointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEndpoints as schema.OperationSchema, input, options) as async.Operation<types.DescribeEndpointsOutput>
 end
 
-function C:disassociateCertificate(input: types.DisassociateCertificateInput, options: any): async.Operation<types.DisassociateCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateCertificate, input, options) as async.Operation<types.DisassociateCertificateOutput>
+function C:disassociateCertificate(input: types.DisassociateCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateCertificate as schema.OperationSchema, input, options) as async.Operation<types.DisassociateCertificateOutput>
 end
 
-function C:getJob(input: types.GetJobInput, options: any): async.Operation<types.GetJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetJob, input, options) as async.Operation<types.GetJobOutput>
+function C:getJob(input: types.GetJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetJob as schema.OperationSchema, input, options) as async.Operation<types.GetJobOutput>
 end
 
-function C:getJobsQueryResults(input: types.GetJobsQueryResultsInput, options: any): async.Operation<types.GetJobsQueryResultsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetJobsQueryResults, input, options) as async.Operation<types.GetJobsQueryResultsOutput>
+function C:getJobsQueryResults(input: types.GetJobsQueryResultsInput, options?: base_client.InvokeOptions): async.Operation<types.GetJobsQueryResultsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetJobsQueryResults as schema.OperationSchema, input, options) as async.Operation<types.GetJobsQueryResultsOutput>
 end
 
-function C:getJobTemplate(input: types.GetJobTemplateInput, options: any): async.Operation<types.GetJobTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetJobTemplate, input, options) as async.Operation<types.GetJobTemplateOutput>
+function C:getJobTemplate(input: types.GetJobTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetJobTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetJobTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetJobTemplateOutput>
 end
 
-function C:getPolicy(input: types.GetPolicyInput, options: any): async.Operation<types.GetPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPolicy, input, options) as async.Operation<types.GetPolicyOutput>
+function C:getPolicy(input: types.GetPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetPolicyOutput>
 end
 
-function C:getPreset(input: types.GetPresetInput, options: any): async.Operation<types.GetPresetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPreset, input, options) as async.Operation<types.GetPresetOutput>
+function C:getPreset(input: types.GetPresetInput, options?: base_client.InvokeOptions): async.Operation<types.GetPresetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPreset as schema.OperationSchema, input, options) as async.Operation<types.GetPresetOutput>
 end
 
-function C:getQueue(input: types.GetQueueInput, options: any): async.Operation<types.GetQueueOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetQueue, input, options) as async.Operation<types.GetQueueOutput>
+function C:getQueue(input: types.GetQueueInput, options?: base_client.InvokeOptions): async.Operation<types.GetQueueOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQueue as schema.OperationSchema, input, options) as async.Operation<types.GetQueueOutput>
 end
 
-function C:listJobs(input: types.ListJobsInput, options: any): async.Operation<types.ListJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListJobs, input, options) as async.Operation<types.ListJobsOutput>
+function C:listJobs(input: types.ListJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListJobs as schema.OperationSchema, input, options) as async.Operation<types.ListJobsOutput>
 end
 
-function C:listJobTemplates(input: types.ListJobTemplatesInput, options: any): async.Operation<types.ListJobTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListJobTemplates, input, options) as async.Operation<types.ListJobTemplatesOutput>
+function C:listJobTemplates(input: types.ListJobTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListJobTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListJobTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListJobTemplatesOutput>
 end
 
-function C:listPresets(input: types.ListPresetsInput, options: any): async.Operation<types.ListPresetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPresets, input, options) as async.Operation<types.ListPresetsOutput>
+function C:listPresets(input: types.ListPresetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPresetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPresets as schema.OperationSchema, input, options) as async.Operation<types.ListPresetsOutput>
 end
 
-function C:listQueues(input: types.ListQueuesInput, options: any): async.Operation<types.ListQueuesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListQueues, input, options) as async.Operation<types.ListQueuesOutput>
+function C:listQueues(input: types.ListQueuesInput, options?: base_client.InvokeOptions): async.Operation<types.ListQueuesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListQueues as schema.OperationSchema, input, options) as async.Operation<types.ListQueuesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listVersions(input: types.ListVersionsInput, options: any): async.Operation<types.ListVersionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVersions, input, options) as async.Operation<types.ListVersionsOutput>
+function C:listVersions(input: types.ListVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVersions as schema.OperationSchema, input, options) as async.Operation<types.ListVersionsOutput>
 end
 
-function C:probe(input: types.ProbeInput, options: any): async.Operation<types.ProbeOutput>
-    return self:invokeOperation(schemas.Service, schemas.Probe, input, options) as async.Operation<types.ProbeOutput>
+function C:probe(input: types.ProbeInput, options?: base_client.InvokeOptions): async.Operation<types.ProbeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Probe as schema.OperationSchema, input, options) as async.Operation<types.ProbeOutput>
 end
 
-function C:putPolicy(input: types.PutPolicyInput, options: any): async.Operation<types.PutPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutPolicy, input, options) as async.Operation<types.PutPolicyOutput>
+function C:putPolicy(input: types.PutPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutPolicyOutput>
 end
 
-function C:searchJobs(input: types.SearchJobsInput, options: any): async.Operation<types.SearchJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.SearchJobs, input, options) as async.Operation<types.SearchJobsOutput>
+function C:searchJobs(input: types.SearchJobsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchJobs as schema.OperationSchema, input, options) as async.Operation<types.SearchJobsOutput>
 end
 
-function C:startJobsQuery(input: types.StartJobsQueryInput, options: any): async.Operation<types.StartJobsQueryOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartJobsQuery, input, options) as async.Operation<types.StartJobsQueryOutput>
+function C:startJobsQuery(input: types.StartJobsQueryInput, options?: base_client.InvokeOptions): async.Operation<types.StartJobsQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartJobsQuery as schema.OperationSchema, input, options) as async.Operation<types.StartJobsQueryOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateJobTemplate(input: types.UpdateJobTemplateInput, options: any): async.Operation<types.UpdateJobTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateJobTemplate, input, options) as async.Operation<types.UpdateJobTemplateOutput>
+function C:updateJobTemplate(input: types.UpdateJobTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateJobTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateJobTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateJobTemplateOutput>
 end
 
-function C:updatePreset(input: types.UpdatePresetInput, options: any): async.Operation<types.UpdatePresetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePreset, input, options) as async.Operation<types.UpdatePresetOutput>
+function C:updatePreset(input: types.UpdatePresetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePresetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePreset as schema.OperationSchema, input, options) as async.Operation<types.UpdatePresetOutput>
 end
 
-function C:updateQueue(input: types.UpdateQueueInput, options: any): async.Operation<types.UpdateQueueOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateQueue, input, options) as async.Operation<types.UpdateQueueOutput>
+function C:updateQueue(input: types.UpdateQueueInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateQueueOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateQueue as schema.OperationSchema, input, options) as async.Operation<types.UpdateQueueOutput>
 end
 
 return M

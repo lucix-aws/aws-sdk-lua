@@ -8,98 +8,101 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("codebuild.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("codebuild.schemas")
 local traits = require("smithy.traits")
 local types = require("codebuild.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchDeleteBuilds: function(Client, types.BatchDeleteBuildsInput, any): async.Operation<types.BatchDeleteBuildsOutput>
-    batchGetBuildBatches: function(Client, types.BatchGetBuildBatchesInput, any): async.Operation<types.BatchGetBuildBatchesOutput>
-    batchGetBuilds: function(Client, types.BatchGetBuildsInput, any): async.Operation<types.BatchGetBuildsOutput>
-    batchGetCommandExecutions: function(Client, types.BatchGetCommandExecutionsInput, any): async.Operation<types.BatchGetCommandExecutionsOutput>
-    batchGetFleets: function(Client, types.BatchGetFleetsInput, any): async.Operation<types.BatchGetFleetsOutput>
-    batchGetProjects: function(Client, types.BatchGetProjectsInput, any): async.Operation<types.BatchGetProjectsOutput>
-    batchGetReportGroups: function(Client, types.BatchGetReportGroupsInput, any): async.Operation<types.BatchGetReportGroupsOutput>
-    batchGetReports: function(Client, types.BatchGetReportsInput, any): async.Operation<types.BatchGetReportsOutput>
-    batchGetSandboxes: function(Client, types.BatchGetSandboxesInput, any): async.Operation<types.BatchGetSandboxesOutput>
-    createFleet: function(Client, types.CreateFleetInput, any): async.Operation<types.CreateFleetOutput>
-    createProject: function(Client, types.CreateProjectInput, any): async.Operation<types.CreateProjectOutput>
-    createReportGroup: function(Client, types.CreateReportGroupInput, any): async.Operation<types.CreateReportGroupOutput>
-    createWebhook: function(Client, types.CreateWebhookInput, any): async.Operation<types.CreateWebhookOutput>
-    deleteBuildBatch: function(Client, types.DeleteBuildBatchInput, any): async.Operation<types.DeleteBuildBatchOutput>
-    deleteFleet: function(Client, types.DeleteFleetInput, any): async.Operation<types.DeleteFleetOutput>
-    deleteProject: function(Client, types.DeleteProjectInput, any): async.Operation<types.DeleteProjectOutput>
-    deleteReport: function(Client, types.DeleteReportInput, any): async.Operation<types.DeleteReportOutput>
-    deleteReportGroup: function(Client, types.DeleteReportGroupInput, any): async.Operation<types.DeleteReportGroupOutput>
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, any): async.Operation<types.DeleteResourcePolicyOutput>
-    deleteSourceCredentials: function(Client, types.DeleteSourceCredentialsInput, any): async.Operation<types.DeleteSourceCredentialsOutput>
-    deleteWebhook: function(Client, types.DeleteWebhookInput, any): async.Operation<types.DeleteWebhookOutput>
-    describeCodeCoverages: function(Client, types.DescribeCodeCoveragesInput, any): async.Operation<types.DescribeCodeCoveragesOutput>
-    describeTestCases: function(Client, types.DescribeTestCasesInput, any): async.Operation<types.DescribeTestCasesOutput>
-    getReportGroupTrend: function(Client, types.GetReportGroupTrendInput, any): async.Operation<types.GetReportGroupTrendOutput>
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput, any): async.Operation<types.GetResourcePolicyOutput>
-    importSourceCredentials: function(Client, types.ImportSourceCredentialsInput, any): async.Operation<types.ImportSourceCredentialsOutput>
-    invalidateProjectCache: function(Client, types.InvalidateProjectCacheInput, any): async.Operation<types.InvalidateProjectCacheOutput>
-    listBuildBatches: function(Client, types.ListBuildBatchesInput, any): async.Operation<types.ListBuildBatchesOutput>
-    listBuildBatchesForProject: function(Client, types.ListBuildBatchesForProjectInput, any): async.Operation<types.ListBuildBatchesForProjectOutput>
-    listBuilds: function(Client, types.ListBuildsInput, any): async.Operation<types.ListBuildsOutput>
-    listBuildsForProject: function(Client, types.ListBuildsForProjectInput, any): async.Operation<types.ListBuildsForProjectOutput>
-    listCommandExecutionsForSandbox: function(Client, types.ListCommandExecutionsForSandboxInput, any): async.Operation<types.ListCommandExecutionsForSandboxOutput>
-    listCuratedEnvironmentImages: function(Client, types.ListCuratedEnvironmentImagesInput, any): async.Operation<types.ListCuratedEnvironmentImagesOutput>
-    listFleets: function(Client, types.ListFleetsInput, any): async.Operation<types.ListFleetsOutput>
-    listProjects: function(Client, types.ListProjectsInput, any): async.Operation<types.ListProjectsOutput>
-    listReportGroups: function(Client, types.ListReportGroupsInput, any): async.Operation<types.ListReportGroupsOutput>
-    listReports: function(Client, types.ListReportsInput, any): async.Operation<types.ListReportsOutput>
-    listReportsForReportGroup: function(Client, types.ListReportsForReportGroupInput, any): async.Operation<types.ListReportsForReportGroupOutput>
-    listSandboxes: function(Client, types.ListSandboxesInput, any): async.Operation<types.ListSandboxesOutput>
-    listSandboxesForProject: function(Client, types.ListSandboxesForProjectInput, any): async.Operation<types.ListSandboxesForProjectOutput>
-    listSharedProjects: function(Client, types.ListSharedProjectsInput, any): async.Operation<types.ListSharedProjectsOutput>
-    listSharedReportGroups: function(Client, types.ListSharedReportGroupsInput, any): async.Operation<types.ListSharedReportGroupsOutput>
-    listSourceCredentials: function(Client, types.ListSourceCredentialsInput, any): async.Operation<types.ListSourceCredentialsOutput>
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput, any): async.Operation<types.PutResourcePolicyOutput>
-    retryBuild: function(Client, types.RetryBuildInput, any): async.Operation<types.RetryBuildOutput>
-    retryBuildBatch: function(Client, types.RetryBuildBatchInput, any): async.Operation<types.RetryBuildBatchOutput>
-    startBuild: function(Client, types.StartBuildInput, any): async.Operation<types.StartBuildOutput>
-    startBuildBatch: function(Client, types.StartBuildBatchInput, any): async.Operation<types.StartBuildBatchOutput>
-    startCommandExecution: function(Client, types.StartCommandExecutionInput, any): async.Operation<types.StartCommandExecutionOutput>
-    startSandbox: function(Client, types.StartSandboxInput, any): async.Operation<types.StartSandboxOutput>
-    startSandboxConnection: function(Client, types.StartSandboxConnectionInput, any): async.Operation<types.StartSandboxConnectionOutput>
-    stopBuild: function(Client, types.StopBuildInput, any): async.Operation<types.StopBuildOutput>
-    stopBuildBatch: function(Client, types.StopBuildBatchInput, any): async.Operation<types.StopBuildBatchOutput>
-    stopSandbox: function(Client, types.StopSandboxInput, any): async.Operation<types.StopSandboxOutput>
-    updateFleet: function(Client, types.UpdateFleetInput, any): async.Operation<types.UpdateFleetOutput>
-    updateProject: function(Client, types.UpdateProjectInput, any): async.Operation<types.UpdateProjectOutput>
-    updateProjectVisibility: function(Client, types.UpdateProjectVisibilityInput, any): async.Operation<types.UpdateProjectVisibilityOutput>
-    updateReportGroup: function(Client, types.UpdateReportGroupInput, any): async.Operation<types.UpdateReportGroupOutput>
-    updateWebhook: function(Client, types.UpdateWebhookInput, any): async.Operation<types.UpdateWebhookOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchDeleteBuilds: function(Client, types.BatchDeleteBuildsInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteBuildsOutput>
+    batchGetBuildBatches: function(Client, types.BatchGetBuildBatchesInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetBuildBatchesOutput>
+    batchGetBuilds: function(Client, types.BatchGetBuildsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetBuildsOutput>
+    batchGetCommandExecutions: function(Client, types.BatchGetCommandExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetCommandExecutionsOutput>
+    batchGetFleets: function(Client, types.BatchGetFleetsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetFleetsOutput>
+    batchGetProjects: function(Client, types.BatchGetProjectsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetProjectsOutput>
+    batchGetReportGroups: function(Client, types.BatchGetReportGroupsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetReportGroupsOutput>
+    batchGetReports: function(Client, types.BatchGetReportsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetReportsOutput>
+    batchGetSandboxes: function(Client, types.BatchGetSandboxesInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetSandboxesOutput>
+    createFleet: function(Client, types.CreateFleetInput, ? base_client.InvokeOptions): async.Operation<types.CreateFleetOutput>
+    createProject: function(Client, types.CreateProjectInput, ? base_client.InvokeOptions): async.Operation<types.CreateProjectOutput>
+    createReportGroup: function(Client, types.CreateReportGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateReportGroupOutput>
+    createWebhook: function(Client, types.CreateWebhookInput, ? base_client.InvokeOptions): async.Operation<types.CreateWebhookOutput>
+    deleteBuildBatch: function(Client, types.DeleteBuildBatchInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBuildBatchOutput>
+    deleteFleet: function(Client, types.DeleteFleetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFleetOutput>
+    deleteProject: function(Client, types.DeleteProjectInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProjectOutput>
+    deleteReport: function(Client, types.DeleteReportInput, ? base_client.InvokeOptions): async.Operation<types.DeleteReportOutput>
+    deleteReportGroup: function(Client, types.DeleteReportGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteReportGroupOutput>
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    deleteSourceCredentials: function(Client, types.DeleteSourceCredentialsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSourceCredentialsOutput>
+    deleteWebhook: function(Client, types.DeleteWebhookInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWebhookOutput>
+    describeCodeCoverages: function(Client, types.DescribeCodeCoveragesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCodeCoveragesOutput>
+    describeTestCases: function(Client, types.DescribeTestCasesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTestCasesOutput>
+    getReportGroupTrend: function(Client, types.GetReportGroupTrendInput, ? base_client.InvokeOptions): async.Operation<types.GetReportGroupTrendOutput>
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    importSourceCredentials: function(Client, types.ImportSourceCredentialsInput, ? base_client.InvokeOptions): async.Operation<types.ImportSourceCredentialsOutput>
+    invalidateProjectCache: function(Client, types.InvalidateProjectCacheInput, ? base_client.InvokeOptions): async.Operation<types.InvalidateProjectCacheOutput>
+    listBuildBatches: function(Client, types.ListBuildBatchesInput, ? base_client.InvokeOptions): async.Operation<types.ListBuildBatchesOutput>
+    listBuildBatchesForProject: function(Client, types.ListBuildBatchesForProjectInput, ? base_client.InvokeOptions): async.Operation<types.ListBuildBatchesForProjectOutput>
+    listBuilds: function(Client, types.ListBuildsInput, ? base_client.InvokeOptions): async.Operation<types.ListBuildsOutput>
+    listBuildsForProject: function(Client, types.ListBuildsForProjectInput, ? base_client.InvokeOptions): async.Operation<types.ListBuildsForProjectOutput>
+    listCommandExecutionsForSandbox: function(Client, types.ListCommandExecutionsForSandboxInput, ? base_client.InvokeOptions): async.Operation<types.ListCommandExecutionsForSandboxOutput>
+    listCuratedEnvironmentImages: function(Client, types.ListCuratedEnvironmentImagesInput, ? base_client.InvokeOptions): async.Operation<types.ListCuratedEnvironmentImagesOutput>
+    listFleets: function(Client, types.ListFleetsInput, ? base_client.InvokeOptions): async.Operation<types.ListFleetsOutput>
+    listProjects: function(Client, types.ListProjectsInput, ? base_client.InvokeOptions): async.Operation<types.ListProjectsOutput>
+    listReportGroups: function(Client, types.ListReportGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListReportGroupsOutput>
+    listReports: function(Client, types.ListReportsInput, ? base_client.InvokeOptions): async.Operation<types.ListReportsOutput>
+    listReportsForReportGroup: function(Client, types.ListReportsForReportGroupInput, ? base_client.InvokeOptions): async.Operation<types.ListReportsForReportGroupOutput>
+    listSandboxes: function(Client, types.ListSandboxesInput, ? base_client.InvokeOptions): async.Operation<types.ListSandboxesOutput>
+    listSandboxesForProject: function(Client, types.ListSandboxesForProjectInput, ? base_client.InvokeOptions): async.Operation<types.ListSandboxesForProjectOutput>
+    listSharedProjects: function(Client, types.ListSharedProjectsInput, ? base_client.InvokeOptions): async.Operation<types.ListSharedProjectsOutput>
+    listSharedReportGroups: function(Client, types.ListSharedReportGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListSharedReportGroupsOutput>
+    listSourceCredentials: function(Client, types.ListSourceCredentialsInput, ? base_client.InvokeOptions): async.Operation<types.ListSourceCredentialsOutput>
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    retryBuild: function(Client, types.RetryBuildInput, ? base_client.InvokeOptions): async.Operation<types.RetryBuildOutput>
+    retryBuildBatch: function(Client, types.RetryBuildBatchInput, ? base_client.InvokeOptions): async.Operation<types.RetryBuildBatchOutput>
+    startBuild: function(Client, types.StartBuildInput, ? base_client.InvokeOptions): async.Operation<types.StartBuildOutput>
+    startBuildBatch: function(Client, types.StartBuildBatchInput, ? base_client.InvokeOptions): async.Operation<types.StartBuildBatchOutput>
+    startCommandExecution: function(Client, types.StartCommandExecutionInput, ? base_client.InvokeOptions): async.Operation<types.StartCommandExecutionOutput>
+    startSandbox: function(Client, types.StartSandboxInput, ? base_client.InvokeOptions): async.Operation<types.StartSandboxOutput>
+    startSandboxConnection: function(Client, types.StartSandboxConnectionInput, ? base_client.InvokeOptions): async.Operation<types.StartSandboxConnectionOutput>
+    stopBuild: function(Client, types.StopBuildInput, ? base_client.InvokeOptions): async.Operation<types.StopBuildOutput>
+    stopBuildBatch: function(Client, types.StopBuildBatchInput, ? base_client.InvokeOptions): async.Operation<types.StopBuildBatchOutput>
+    stopSandbox: function(Client, types.StopSandboxInput, ? base_client.InvokeOptions): async.Operation<types.StopSandboxOutput>
+    updateFleet: function(Client, types.UpdateFleetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFleetOutput>
+    updateProject: function(Client, types.UpdateProjectInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProjectOutput>
+    updateProjectVisibility: function(Client, types.UpdateProjectVisibilityInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProjectVisibilityOutput>
+    updateReportGroup: function(Client, types.UpdateReportGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateReportGroupOutput>
+    updateWebhook: function(Client, types.UpdateWebhookInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWebhookOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "CodeBuild_20161006"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "codebuild", signing_region = c.region } }
                 else
@@ -118,240 +121,240 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchDeleteBuilds(input: types.BatchDeleteBuildsInput, options: any): async.Operation<types.BatchDeleteBuildsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchDeleteBuilds, input, options) as async.Operation<types.BatchDeleteBuildsOutput>
+function C:batchDeleteBuilds(input: types.BatchDeleteBuildsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteBuildsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteBuilds as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteBuildsOutput>
 end
 
-function C:batchGetBuildBatches(input: types.BatchGetBuildBatchesInput, options: any): async.Operation<types.BatchGetBuildBatchesOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetBuildBatches, input, options) as async.Operation<types.BatchGetBuildBatchesOutput>
+function C:batchGetBuildBatches(input: types.BatchGetBuildBatchesInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetBuildBatchesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetBuildBatches as schema.OperationSchema, input, options) as async.Operation<types.BatchGetBuildBatchesOutput>
 end
 
-function C:batchGetBuilds(input: types.BatchGetBuildsInput, options: any): async.Operation<types.BatchGetBuildsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetBuilds, input, options) as async.Operation<types.BatchGetBuildsOutput>
+function C:batchGetBuilds(input: types.BatchGetBuildsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetBuildsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetBuilds as schema.OperationSchema, input, options) as async.Operation<types.BatchGetBuildsOutput>
 end
 
-function C:batchGetCommandExecutions(input: types.BatchGetCommandExecutionsInput, options: any): async.Operation<types.BatchGetCommandExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetCommandExecutions, input, options) as async.Operation<types.BatchGetCommandExecutionsOutput>
+function C:batchGetCommandExecutions(input: types.BatchGetCommandExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetCommandExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetCommandExecutions as schema.OperationSchema, input, options) as async.Operation<types.BatchGetCommandExecutionsOutput>
 end
 
-function C:batchGetFleets(input: types.BatchGetFleetsInput, options: any): async.Operation<types.BatchGetFleetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetFleets, input, options) as async.Operation<types.BatchGetFleetsOutput>
+function C:batchGetFleets(input: types.BatchGetFleetsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetFleetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetFleets as schema.OperationSchema, input, options) as async.Operation<types.BatchGetFleetsOutput>
 end
 
-function C:batchGetProjects(input: types.BatchGetProjectsInput, options: any): async.Operation<types.BatchGetProjectsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetProjects, input, options) as async.Operation<types.BatchGetProjectsOutput>
+function C:batchGetProjects(input: types.BatchGetProjectsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetProjectsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetProjects as schema.OperationSchema, input, options) as async.Operation<types.BatchGetProjectsOutput>
 end
 
-function C:batchGetReportGroups(input: types.BatchGetReportGroupsInput, options: any): async.Operation<types.BatchGetReportGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetReportGroups, input, options) as async.Operation<types.BatchGetReportGroupsOutput>
+function C:batchGetReportGroups(input: types.BatchGetReportGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetReportGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetReportGroups as schema.OperationSchema, input, options) as async.Operation<types.BatchGetReportGroupsOutput>
 end
 
-function C:batchGetReports(input: types.BatchGetReportsInput, options: any): async.Operation<types.BatchGetReportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetReports, input, options) as async.Operation<types.BatchGetReportsOutput>
+function C:batchGetReports(input: types.BatchGetReportsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetReportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetReports as schema.OperationSchema, input, options) as async.Operation<types.BatchGetReportsOutput>
 end
 
-function C:batchGetSandboxes(input: types.BatchGetSandboxesInput, options: any): async.Operation<types.BatchGetSandboxesOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetSandboxes, input, options) as async.Operation<types.BatchGetSandboxesOutput>
+function C:batchGetSandboxes(input: types.BatchGetSandboxesInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetSandboxesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetSandboxes as schema.OperationSchema, input, options) as async.Operation<types.BatchGetSandboxesOutput>
 end
 
-function C:createFleet(input: types.CreateFleetInput, options: any): async.Operation<types.CreateFleetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFleet, input, options) as async.Operation<types.CreateFleetOutput>
+function C:createFleet(input: types.CreateFleetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFleetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFleet as schema.OperationSchema, input, options) as async.Operation<types.CreateFleetOutput>
 end
 
-function C:createProject(input: types.CreateProjectInput, options: any): async.Operation<types.CreateProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProject, input, options) as async.Operation<types.CreateProjectOutput>
+function C:createProject(input: types.CreateProjectInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProject as schema.OperationSchema, input, options) as async.Operation<types.CreateProjectOutput>
 end
 
-function C:createReportGroup(input: types.CreateReportGroupInput, options: any): async.Operation<types.CreateReportGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateReportGroup, input, options) as async.Operation<types.CreateReportGroupOutput>
+function C:createReportGroup(input: types.CreateReportGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateReportGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateReportGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateReportGroupOutput>
 end
 
-function C:createWebhook(input: types.CreateWebhookInput, options: any): async.Operation<types.CreateWebhookOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWebhook, input, options) as async.Operation<types.CreateWebhookOutput>
+function C:createWebhook(input: types.CreateWebhookInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWebhookOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWebhook as schema.OperationSchema, input, options) as async.Operation<types.CreateWebhookOutput>
 end
 
-function C:deleteBuildBatch(input: types.DeleteBuildBatchInput, options: any): async.Operation<types.DeleteBuildBatchOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBuildBatch, input, options) as async.Operation<types.DeleteBuildBatchOutput>
+function C:deleteBuildBatch(input: types.DeleteBuildBatchInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBuildBatchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBuildBatch as schema.OperationSchema, input, options) as async.Operation<types.DeleteBuildBatchOutput>
 end
 
-function C:deleteFleet(input: types.DeleteFleetInput, options: any): async.Operation<types.DeleteFleetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFleet, input, options) as async.Operation<types.DeleteFleetOutput>
+function C:deleteFleet(input: types.DeleteFleetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFleetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFleet as schema.OperationSchema, input, options) as async.Operation<types.DeleteFleetOutput>
 end
 
-function C:deleteProject(input: types.DeleteProjectInput, options: any): async.Operation<types.DeleteProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProject, input, options) as async.Operation<types.DeleteProjectOutput>
+function C:deleteProject(input: types.DeleteProjectInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProject as schema.OperationSchema, input, options) as async.Operation<types.DeleteProjectOutput>
 end
 
-function C:deleteReport(input: types.DeleteReportInput, options: any): async.Operation<types.DeleteReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteReport, input, options) as async.Operation<types.DeleteReportOutput>
+function C:deleteReport(input: types.DeleteReportInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteReport as schema.OperationSchema, input, options) as async.Operation<types.DeleteReportOutput>
 end
 
-function C:deleteReportGroup(input: types.DeleteReportGroupInput, options: any): async.Operation<types.DeleteReportGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteReportGroup, input, options) as async.Operation<types.DeleteReportGroupOutput>
+function C:deleteReportGroup(input: types.DeleteReportGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteReportGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteReportGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteReportGroupOutput>
 end
 
-function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options: any): async.Operation<types.DeleteResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicy, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
+function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
 end
 
-function C:deleteSourceCredentials(input: types.DeleteSourceCredentialsInput, options: any): async.Operation<types.DeleteSourceCredentialsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSourceCredentials, input, options) as async.Operation<types.DeleteSourceCredentialsOutput>
+function C:deleteSourceCredentials(input: types.DeleteSourceCredentialsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSourceCredentialsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSourceCredentials as schema.OperationSchema, input, options) as async.Operation<types.DeleteSourceCredentialsOutput>
 end
 
-function C:deleteWebhook(input: types.DeleteWebhookInput, options: any): async.Operation<types.DeleteWebhookOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWebhook, input, options) as async.Operation<types.DeleteWebhookOutput>
+function C:deleteWebhook(input: types.DeleteWebhookInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWebhookOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWebhook as schema.OperationSchema, input, options) as async.Operation<types.DeleteWebhookOutput>
 end
 
-function C:describeCodeCoverages(input: types.DescribeCodeCoveragesInput, options: any): async.Operation<types.DescribeCodeCoveragesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCodeCoverages, input, options) as async.Operation<types.DescribeCodeCoveragesOutput>
+function C:describeCodeCoverages(input: types.DescribeCodeCoveragesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCodeCoveragesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCodeCoverages as schema.OperationSchema, input, options) as async.Operation<types.DescribeCodeCoveragesOutput>
 end
 
-function C:describeTestCases(input: types.DescribeTestCasesInput, options: any): async.Operation<types.DescribeTestCasesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTestCases, input, options) as async.Operation<types.DescribeTestCasesOutput>
+function C:describeTestCases(input: types.DescribeTestCasesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTestCasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTestCases as schema.OperationSchema, input, options) as async.Operation<types.DescribeTestCasesOutput>
 end
 
-function C:getReportGroupTrend(input: types.GetReportGroupTrendInput, options: any): async.Operation<types.GetReportGroupTrendOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetReportGroupTrend, input, options) as async.Operation<types.GetReportGroupTrendOutput>
+function C:getReportGroupTrend(input: types.GetReportGroupTrendInput, options?: base_client.InvokeOptions): async.Operation<types.GetReportGroupTrendOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetReportGroupTrend as schema.OperationSchema, input, options) as async.Operation<types.GetReportGroupTrendOutput>
 end
 
-function C:getResourcePolicy(input: types.GetResourcePolicyInput, options: any): async.Operation<types.GetResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicy, input, options) as async.Operation<types.GetResourcePolicyOutput>
+function C:getResourcePolicy(input: types.GetResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePolicyOutput>
 end
 
-function C:importSourceCredentials(input: types.ImportSourceCredentialsInput, options: any): async.Operation<types.ImportSourceCredentialsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ImportSourceCredentials, input, options) as async.Operation<types.ImportSourceCredentialsOutput>
+function C:importSourceCredentials(input: types.ImportSourceCredentialsInput, options?: base_client.InvokeOptions): async.Operation<types.ImportSourceCredentialsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportSourceCredentials as schema.OperationSchema, input, options) as async.Operation<types.ImportSourceCredentialsOutput>
 end
 
-function C:invalidateProjectCache(input: types.InvalidateProjectCacheInput, options: any): async.Operation<types.InvalidateProjectCacheOutput>
-    return self:invokeOperation(schemas.Service, schemas.InvalidateProjectCache, input, options) as async.Operation<types.InvalidateProjectCacheOutput>
+function C:invalidateProjectCache(input: types.InvalidateProjectCacheInput, options?: base_client.InvokeOptions): async.Operation<types.InvalidateProjectCacheOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InvalidateProjectCache as schema.OperationSchema, input, options) as async.Operation<types.InvalidateProjectCacheOutput>
 end
 
-function C:listBuildBatches(input: types.ListBuildBatchesInput, options: any): async.Operation<types.ListBuildBatchesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBuildBatches, input, options) as async.Operation<types.ListBuildBatchesOutput>
+function C:listBuildBatches(input: types.ListBuildBatchesInput, options?: base_client.InvokeOptions): async.Operation<types.ListBuildBatchesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBuildBatches as schema.OperationSchema, input, options) as async.Operation<types.ListBuildBatchesOutput>
 end
 
-function C:listBuildBatchesForProject(input: types.ListBuildBatchesForProjectInput, options: any): async.Operation<types.ListBuildBatchesForProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBuildBatchesForProject, input, options) as async.Operation<types.ListBuildBatchesForProjectOutput>
+function C:listBuildBatchesForProject(input: types.ListBuildBatchesForProjectInput, options?: base_client.InvokeOptions): async.Operation<types.ListBuildBatchesForProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBuildBatchesForProject as schema.OperationSchema, input, options) as async.Operation<types.ListBuildBatchesForProjectOutput>
 end
 
-function C:listBuilds(input: types.ListBuildsInput, options: any): async.Operation<types.ListBuildsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBuilds, input, options) as async.Operation<types.ListBuildsOutput>
+function C:listBuilds(input: types.ListBuildsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBuildsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBuilds as schema.OperationSchema, input, options) as async.Operation<types.ListBuildsOutput>
 end
 
-function C:listBuildsForProject(input: types.ListBuildsForProjectInput, options: any): async.Operation<types.ListBuildsForProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListBuildsForProject, input, options) as async.Operation<types.ListBuildsForProjectOutput>
+function C:listBuildsForProject(input: types.ListBuildsForProjectInput, options?: base_client.InvokeOptions): async.Operation<types.ListBuildsForProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBuildsForProject as schema.OperationSchema, input, options) as async.Operation<types.ListBuildsForProjectOutput>
 end
 
-function C:listCommandExecutionsForSandbox(input: types.ListCommandExecutionsForSandboxInput, options: any): async.Operation<types.ListCommandExecutionsForSandboxOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCommandExecutionsForSandbox, input, options) as async.Operation<types.ListCommandExecutionsForSandboxOutput>
+function C:listCommandExecutionsForSandbox(input: types.ListCommandExecutionsForSandboxInput, options?: base_client.InvokeOptions): async.Operation<types.ListCommandExecutionsForSandboxOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCommandExecutionsForSandbox as schema.OperationSchema, input, options) as async.Operation<types.ListCommandExecutionsForSandboxOutput>
 end
 
-function C:listCuratedEnvironmentImages(input: types.ListCuratedEnvironmentImagesInput, options: any): async.Operation<types.ListCuratedEnvironmentImagesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCuratedEnvironmentImages, input, options) as async.Operation<types.ListCuratedEnvironmentImagesOutput>
+function C:listCuratedEnvironmentImages(input: types.ListCuratedEnvironmentImagesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCuratedEnvironmentImagesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCuratedEnvironmentImages as schema.OperationSchema, input, options) as async.Operation<types.ListCuratedEnvironmentImagesOutput>
 end
 
-function C:listFleets(input: types.ListFleetsInput, options: any): async.Operation<types.ListFleetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFleets, input, options) as async.Operation<types.ListFleetsOutput>
+function C:listFleets(input: types.ListFleetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFleetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFleets as schema.OperationSchema, input, options) as async.Operation<types.ListFleetsOutput>
 end
 
-function C:listProjects(input: types.ListProjectsInput, options: any): async.Operation<types.ListProjectsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProjects, input, options) as async.Operation<types.ListProjectsOutput>
+function C:listProjects(input: types.ListProjectsInput, options?: base_client.InvokeOptions): async.Operation<types.ListProjectsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProjects as schema.OperationSchema, input, options) as async.Operation<types.ListProjectsOutput>
 end
 
-function C:listReportGroups(input: types.ListReportGroupsInput, options: any): async.Operation<types.ListReportGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReportGroups, input, options) as async.Operation<types.ListReportGroupsOutput>
+function C:listReportGroups(input: types.ListReportGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListReportGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReportGroups as schema.OperationSchema, input, options) as async.Operation<types.ListReportGroupsOutput>
 end
 
-function C:listReports(input: types.ListReportsInput, options: any): async.Operation<types.ListReportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReports, input, options) as async.Operation<types.ListReportsOutput>
+function C:listReports(input: types.ListReportsInput, options?: base_client.InvokeOptions): async.Operation<types.ListReportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReports as schema.OperationSchema, input, options) as async.Operation<types.ListReportsOutput>
 end
 
-function C:listReportsForReportGroup(input: types.ListReportsForReportGroupInput, options: any): async.Operation<types.ListReportsForReportGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListReportsForReportGroup, input, options) as async.Operation<types.ListReportsForReportGroupOutput>
+function C:listReportsForReportGroup(input: types.ListReportsForReportGroupInput, options?: base_client.InvokeOptions): async.Operation<types.ListReportsForReportGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReportsForReportGroup as schema.OperationSchema, input, options) as async.Operation<types.ListReportsForReportGroupOutput>
 end
 
-function C:listSandboxes(input: types.ListSandboxesInput, options: any): async.Operation<types.ListSandboxesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSandboxes, input, options) as async.Operation<types.ListSandboxesOutput>
+function C:listSandboxes(input: types.ListSandboxesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSandboxesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSandboxes as schema.OperationSchema, input, options) as async.Operation<types.ListSandboxesOutput>
 end
 
-function C:listSandboxesForProject(input: types.ListSandboxesForProjectInput, options: any): async.Operation<types.ListSandboxesForProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSandboxesForProject, input, options) as async.Operation<types.ListSandboxesForProjectOutput>
+function C:listSandboxesForProject(input: types.ListSandboxesForProjectInput, options?: base_client.InvokeOptions): async.Operation<types.ListSandboxesForProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSandboxesForProject as schema.OperationSchema, input, options) as async.Operation<types.ListSandboxesForProjectOutput>
 end
 
-function C:listSharedProjects(input: types.ListSharedProjectsInput, options: any): async.Operation<types.ListSharedProjectsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSharedProjects, input, options) as async.Operation<types.ListSharedProjectsOutput>
+function C:listSharedProjects(input: types.ListSharedProjectsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSharedProjectsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSharedProjects as schema.OperationSchema, input, options) as async.Operation<types.ListSharedProjectsOutput>
 end
 
-function C:listSharedReportGroups(input: types.ListSharedReportGroupsInput, options: any): async.Operation<types.ListSharedReportGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSharedReportGroups, input, options) as async.Operation<types.ListSharedReportGroupsOutput>
+function C:listSharedReportGroups(input: types.ListSharedReportGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSharedReportGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSharedReportGroups as schema.OperationSchema, input, options) as async.Operation<types.ListSharedReportGroupsOutput>
 end
 
-function C:listSourceCredentials(input: types.ListSourceCredentialsInput, options: any): async.Operation<types.ListSourceCredentialsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSourceCredentials, input, options) as async.Operation<types.ListSourceCredentialsOutput>
+function C:listSourceCredentials(input: types.ListSourceCredentialsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSourceCredentialsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSourceCredentials as schema.OperationSchema, input, options) as async.Operation<types.ListSourceCredentialsOutput>
 end
 
-function C:putResourcePolicy(input: types.PutResourcePolicyInput, options: any): async.Operation<types.PutResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutResourcePolicy, input, options) as async.Operation<types.PutResourcePolicyOutput>
+function C:putResourcePolicy(input: types.PutResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutResourcePolicyOutput>
 end
 
-function C:retryBuild(input: types.RetryBuildInput, options: any): async.Operation<types.RetryBuildOutput>
-    return self:invokeOperation(schemas.Service, schemas.RetryBuild, input, options) as async.Operation<types.RetryBuildOutput>
+function C:retryBuild(input: types.RetryBuildInput, options?: base_client.InvokeOptions): async.Operation<types.RetryBuildOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RetryBuild as schema.OperationSchema, input, options) as async.Operation<types.RetryBuildOutput>
 end
 
-function C:retryBuildBatch(input: types.RetryBuildBatchInput, options: any): async.Operation<types.RetryBuildBatchOutput>
-    return self:invokeOperation(schemas.Service, schemas.RetryBuildBatch, input, options) as async.Operation<types.RetryBuildBatchOutput>
+function C:retryBuildBatch(input: types.RetryBuildBatchInput, options?: base_client.InvokeOptions): async.Operation<types.RetryBuildBatchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RetryBuildBatch as schema.OperationSchema, input, options) as async.Operation<types.RetryBuildBatchOutput>
 end
 
-function C:startBuild(input: types.StartBuildInput, options: any): async.Operation<types.StartBuildOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartBuild, input, options) as async.Operation<types.StartBuildOutput>
+function C:startBuild(input: types.StartBuildInput, options?: base_client.InvokeOptions): async.Operation<types.StartBuildOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartBuild as schema.OperationSchema, input, options) as async.Operation<types.StartBuildOutput>
 end
 
-function C:startBuildBatch(input: types.StartBuildBatchInput, options: any): async.Operation<types.StartBuildBatchOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartBuildBatch, input, options) as async.Operation<types.StartBuildBatchOutput>
+function C:startBuildBatch(input: types.StartBuildBatchInput, options?: base_client.InvokeOptions): async.Operation<types.StartBuildBatchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartBuildBatch as schema.OperationSchema, input, options) as async.Operation<types.StartBuildBatchOutput>
 end
 
-function C:startCommandExecution(input: types.StartCommandExecutionInput, options: any): async.Operation<types.StartCommandExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartCommandExecution, input, options) as async.Operation<types.StartCommandExecutionOutput>
+function C:startCommandExecution(input: types.StartCommandExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.StartCommandExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartCommandExecution as schema.OperationSchema, input, options) as async.Operation<types.StartCommandExecutionOutput>
 end
 
-function C:startSandbox(input: types.StartSandboxInput, options: any): async.Operation<types.StartSandboxOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartSandbox, input, options) as async.Operation<types.StartSandboxOutput>
+function C:startSandbox(input: types.StartSandboxInput, options?: base_client.InvokeOptions): async.Operation<types.StartSandboxOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartSandbox as schema.OperationSchema, input, options) as async.Operation<types.StartSandboxOutput>
 end
 
-function C:startSandboxConnection(input: types.StartSandboxConnectionInput, options: any): async.Operation<types.StartSandboxConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartSandboxConnection, input, options) as async.Operation<types.StartSandboxConnectionOutput>
+function C:startSandboxConnection(input: types.StartSandboxConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.StartSandboxConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartSandboxConnection as schema.OperationSchema, input, options) as async.Operation<types.StartSandboxConnectionOutput>
 end
 
-function C:stopBuild(input: types.StopBuildInput, options: any): async.Operation<types.StopBuildOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopBuild, input, options) as async.Operation<types.StopBuildOutput>
+function C:stopBuild(input: types.StopBuildInput, options?: base_client.InvokeOptions): async.Operation<types.StopBuildOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopBuild as schema.OperationSchema, input, options) as async.Operation<types.StopBuildOutput>
 end
 
-function C:stopBuildBatch(input: types.StopBuildBatchInput, options: any): async.Operation<types.StopBuildBatchOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopBuildBatch, input, options) as async.Operation<types.StopBuildBatchOutput>
+function C:stopBuildBatch(input: types.StopBuildBatchInput, options?: base_client.InvokeOptions): async.Operation<types.StopBuildBatchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopBuildBatch as schema.OperationSchema, input, options) as async.Operation<types.StopBuildBatchOutput>
 end
 
-function C:stopSandbox(input: types.StopSandboxInput, options: any): async.Operation<types.StopSandboxOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopSandbox, input, options) as async.Operation<types.StopSandboxOutput>
+function C:stopSandbox(input: types.StopSandboxInput, options?: base_client.InvokeOptions): async.Operation<types.StopSandboxOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopSandbox as schema.OperationSchema, input, options) as async.Operation<types.StopSandboxOutput>
 end
 
-function C:updateFleet(input: types.UpdateFleetInput, options: any): async.Operation<types.UpdateFleetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFleet, input, options) as async.Operation<types.UpdateFleetOutput>
+function C:updateFleet(input: types.UpdateFleetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFleetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFleet as schema.OperationSchema, input, options) as async.Operation<types.UpdateFleetOutput>
 end
 
-function C:updateProject(input: types.UpdateProjectInput, options: any): async.Operation<types.UpdateProjectOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProject, input, options) as async.Operation<types.UpdateProjectOutput>
+function C:updateProject(input: types.UpdateProjectInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProject as schema.OperationSchema, input, options) as async.Operation<types.UpdateProjectOutput>
 end
 
-function C:updateProjectVisibility(input: types.UpdateProjectVisibilityInput, options: any): async.Operation<types.UpdateProjectVisibilityOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProjectVisibility, input, options) as async.Operation<types.UpdateProjectVisibilityOutput>
+function C:updateProjectVisibility(input: types.UpdateProjectVisibilityInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProjectVisibilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProjectVisibility as schema.OperationSchema, input, options) as async.Operation<types.UpdateProjectVisibilityOutput>
 end
 
-function C:updateReportGroup(input: types.UpdateReportGroupInput, options: any): async.Operation<types.UpdateReportGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateReportGroup, input, options) as async.Operation<types.UpdateReportGroupOutput>
+function C:updateReportGroup(input: types.UpdateReportGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateReportGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateReportGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateReportGroupOutput>
 end
 
-function C:updateWebhook(input: types.UpdateWebhookInput, options: any): async.Operation<types.UpdateWebhookOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateWebhook, input, options) as async.Operation<types.UpdateWebhookOutput>
+function C:updateWebhook(input: types.UpdateWebhookInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWebhookOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWebhook as schema.OperationSchema, input, options) as async.Operation<types.UpdateWebhookOutput>
 end
 
 return M

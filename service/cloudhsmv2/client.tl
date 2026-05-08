@@ -8,57 +8,60 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("cloudhsmv2.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("cloudhsmv2.schemas")
 local traits = require("smithy.traits")
 local types = require("cloudhsmv2.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    copyBackupToRegion: function(Client, types.CopyBackupToRegionInput, any): async.Operation<types.CopyBackupToRegionOutput>
-    createCluster: function(Client, types.CreateClusterInput, any): async.Operation<types.CreateClusterOutput>
-    createHsm: function(Client, types.CreateHsmInput, any): async.Operation<types.CreateHsmOutput>
-    deleteBackup: function(Client, types.DeleteBackupInput, any): async.Operation<types.DeleteBackupOutput>
-    deleteCluster: function(Client, types.DeleteClusterInput, any): async.Operation<types.DeleteClusterOutput>
-    deleteHsm: function(Client, types.DeleteHsmInput, any): async.Operation<types.DeleteHsmOutput>
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, any): async.Operation<types.DeleteResourcePolicyOutput>
-    describeBackups: function(Client, types.DescribeBackupsInput, any): async.Operation<types.DescribeBackupsOutput>
-    describeClusters: function(Client, types.DescribeClustersInput, any): async.Operation<types.DescribeClustersOutput>
-    getResourcePolicy: function(Client, types.GetResourcePolicyInput, any): async.Operation<types.GetResourcePolicyOutput>
-    initializeCluster: function(Client, types.InitializeClusterInput, any): async.Operation<types.InitializeClusterOutput>
-    listTags: function(Client, types.ListTagsInput, any): async.Operation<types.ListTagsOutput>
-    modifyBackupAttributes: function(Client, types.ModifyBackupAttributesInput, any): async.Operation<types.ModifyBackupAttributesOutput>
-    modifyCluster: function(Client, types.ModifyClusterInput, any): async.Operation<types.ModifyClusterOutput>
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput, any): async.Operation<types.PutResourcePolicyOutput>
-    restoreBackup: function(Client, types.RestoreBackupInput, any): async.Operation<types.RestoreBackupOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    copyBackupToRegion: function(Client, types.CopyBackupToRegionInput, ? base_client.InvokeOptions): async.Operation<types.CopyBackupToRegionOutput>
+    createCluster: function(Client, types.CreateClusterInput, ? base_client.InvokeOptions): async.Operation<types.CreateClusterOutput>
+    createHsm: function(Client, types.CreateHsmInput, ? base_client.InvokeOptions): async.Operation<types.CreateHsmOutput>
+    deleteBackup: function(Client, types.DeleteBackupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBackupOutput>
+    deleteCluster: function(Client, types.DeleteClusterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteClusterOutput>
+    deleteHsm: function(Client, types.DeleteHsmInput, ? base_client.InvokeOptions): async.Operation<types.DeleteHsmOutput>
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    describeBackups: function(Client, types.DescribeBackupsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBackupsOutput>
+    describeClusters: function(Client, types.DescribeClustersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClustersOutput>
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    initializeCluster: function(Client, types.InitializeClusterInput, ? base_client.InvokeOptions): async.Operation<types.InitializeClusterOutput>
+    listTags: function(Client, types.ListTagsInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsOutput>
+    modifyBackupAttributes: function(Client, types.ModifyBackupAttributesInput, ? base_client.InvokeOptions): async.Operation<types.ModifyBackupAttributesOutput>
+    modifyCluster: function(Client, types.ModifyClusterInput, ? base_client.InvokeOptions): async.Operation<types.ModifyClusterOutput>
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    restoreBackup: function(Client, types.RestoreBackupInput, ? base_client.InvokeOptions): async.Operation<types.RestoreBackupOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "BaldrApiService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "cloudhsm", signing_region = c.region } }
                 else
@@ -77,76 +80,76 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:copyBackupToRegion(input: types.CopyBackupToRegionInput, options: any): async.Operation<types.CopyBackupToRegionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CopyBackupToRegion, input, options) as async.Operation<types.CopyBackupToRegionOutput>
+function C:copyBackupToRegion(input: types.CopyBackupToRegionInput, options?: base_client.InvokeOptions): async.Operation<types.CopyBackupToRegionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CopyBackupToRegion as schema.OperationSchema, input, options) as async.Operation<types.CopyBackupToRegionOutput>
 end
 
-function C:createCluster(input: types.CreateClusterInput, options: any): async.Operation<types.CreateClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCluster, input, options) as async.Operation<types.CreateClusterOutput>
+function C:createCluster(input: types.CreateClusterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCluster as schema.OperationSchema, input, options) as async.Operation<types.CreateClusterOutput>
 end
 
-function C:createHsm(input: types.CreateHsmInput, options: any): async.Operation<types.CreateHsmOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateHsm, input, options) as async.Operation<types.CreateHsmOutput>
+function C:createHsm(input: types.CreateHsmInput, options?: base_client.InvokeOptions): async.Operation<types.CreateHsmOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateHsm as schema.OperationSchema, input, options) as async.Operation<types.CreateHsmOutput>
 end
 
-function C:deleteBackup(input: types.DeleteBackupInput, options: any): async.Operation<types.DeleteBackupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteBackup, input, options) as async.Operation<types.DeleteBackupOutput>
+function C:deleteBackup(input: types.DeleteBackupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBackupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBackup as schema.OperationSchema, input, options) as async.Operation<types.DeleteBackupOutput>
 end
 
-function C:deleteCluster(input: types.DeleteClusterInput, options: any): async.Operation<types.DeleteClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCluster, input, options) as async.Operation<types.DeleteClusterOutput>
+function C:deleteCluster(input: types.DeleteClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCluster as schema.OperationSchema, input, options) as async.Operation<types.DeleteClusterOutput>
 end
 
-function C:deleteHsm(input: types.DeleteHsmInput, options: any): async.Operation<types.DeleteHsmOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteHsm, input, options) as async.Operation<types.DeleteHsmOutput>
+function C:deleteHsm(input: types.DeleteHsmInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteHsmOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteHsm as schema.OperationSchema, input, options) as async.Operation<types.DeleteHsmOutput>
 end
 
-function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options: any): async.Operation<types.DeleteResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicy, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
+function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
 end
 
-function C:describeBackups(input: types.DescribeBackupsInput, options: any): async.Operation<types.DescribeBackupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeBackups, input, options) as async.Operation<types.DescribeBackupsOutput>
+function C:describeBackups(input: types.DescribeBackupsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBackupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeBackups as schema.OperationSchema, input, options) as async.Operation<types.DescribeBackupsOutput>
 end
 
-function C:describeClusters(input: types.DescribeClustersInput, options: any): async.Operation<types.DescribeClustersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeClusters, input, options) as async.Operation<types.DescribeClustersOutput>
+function C:describeClusters(input: types.DescribeClustersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeClustersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeClusters as schema.OperationSchema, input, options) as async.Operation<types.DescribeClustersOutput>
 end
 
-function C:getResourcePolicy(input: types.GetResourcePolicyInput, options: any): async.Operation<types.GetResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourcePolicy, input, options) as async.Operation<types.GetResourcePolicyOutput>
+function C:getResourcePolicy(input: types.GetResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePolicyOutput>
 end
 
-function C:initializeCluster(input: types.InitializeClusterInput, options: any): async.Operation<types.InitializeClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.InitializeCluster, input, options) as async.Operation<types.InitializeClusterOutput>
+function C:initializeCluster(input: types.InitializeClusterInput, options?: base_client.InvokeOptions): async.Operation<types.InitializeClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InitializeCluster as schema.OperationSchema, input, options) as async.Operation<types.InitializeClusterOutput>
 end
 
-function C:listTags(input: types.ListTagsInput, options: any): async.Operation<types.ListTagsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTags, input, options) as async.Operation<types.ListTagsOutput>
+function C:listTags(input: types.ListTagsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTags as schema.OperationSchema, input, options) as async.Operation<types.ListTagsOutput>
 end
 
-function C:modifyBackupAttributes(input: types.ModifyBackupAttributesInput, options: any): async.Operation<types.ModifyBackupAttributesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyBackupAttributes, input, options) as async.Operation<types.ModifyBackupAttributesOutput>
+function C:modifyBackupAttributes(input: types.ModifyBackupAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyBackupAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyBackupAttributes as schema.OperationSchema, input, options) as async.Operation<types.ModifyBackupAttributesOutput>
 end
 
-function C:modifyCluster(input: types.ModifyClusterInput, options: any): async.Operation<types.ModifyClusterOutput>
-    return self:invokeOperation(schemas.Service, schemas.ModifyCluster, input, options) as async.Operation<types.ModifyClusterOutput>
+function C:modifyCluster(input: types.ModifyClusterInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyCluster as schema.OperationSchema, input, options) as async.Operation<types.ModifyClusterOutput>
 end
 
-function C:putResourcePolicy(input: types.PutResourcePolicyInput, options: any): async.Operation<types.PutResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutResourcePolicy, input, options) as async.Operation<types.PutResourcePolicyOutput>
+function C:putResourcePolicy(input: types.PutResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutResourcePolicyOutput>
 end
 
-function C:restoreBackup(input: types.RestoreBackupInput, options: any): async.Operation<types.RestoreBackupOutput>
-    return self:invokeOperation(schemas.Service, schemas.RestoreBackup, input, options) as async.Operation<types.RestoreBackupOutput>
+function C:restoreBackup(input: types.RestoreBackupInput, options?: base_client.InvokeOptions): async.Operation<types.RestoreBackupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestoreBackup as schema.OperationSchema, input, options) as async.Operation<types.RestoreBackupOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
 return M

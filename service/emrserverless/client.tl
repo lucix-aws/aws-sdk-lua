@@ -8,61 +8,64 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("emrserverless.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("emrserverless.schemas")
 local traits = require("smithy.traits")
 local types = require("emrserverless.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    cancelJobRun: function(Client, types.CancelJobRunInput, any): async.Operation<types.CancelJobRunOutput>
-    createApplication: function(Client, types.CreateApplicationInput, any): async.Operation<types.CreateApplicationOutput>
-    deleteApplication: function(Client, types.DeleteApplicationInput, any): async.Operation<types.DeleteApplicationOutput>
-    getApplication: function(Client, types.GetApplicationInput, any): async.Operation<types.GetApplicationOutput>
-    getDashboardForJobRun: function(Client, types.GetDashboardForJobRunInput, any): async.Operation<types.GetDashboardForJobRunOutput>
-    getJobRun: function(Client, types.GetJobRunInput, any): async.Operation<types.GetJobRunOutput>
-    getResourceDashboard: function(Client, types.GetResourceDashboardInput, any): async.Operation<types.GetResourceDashboardOutput>
-    getSession: function(Client, types.GetSessionInput, any): async.Operation<types.GetSessionOutput>
-    getSessionEndpoint: function(Client, types.GetSessionEndpointInput, any): async.Operation<types.GetSessionEndpointOutput>
-    listApplications: function(Client, types.ListApplicationsInput, any): async.Operation<types.ListApplicationsOutput>
-    listJobRunAttempts: function(Client, types.ListJobRunAttemptsInput, any): async.Operation<types.ListJobRunAttemptsOutput>
-    listJobRuns: function(Client, types.ListJobRunsInput, any): async.Operation<types.ListJobRunsOutput>
-    listSessions: function(Client, types.ListSessionsInput, any): async.Operation<types.ListSessionsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    startApplication: function(Client, types.StartApplicationInput, any): async.Operation<types.StartApplicationOutput>
-    startJobRun: function(Client, types.StartJobRunInput, any): async.Operation<types.StartJobRunOutput>
-    startSession: function(Client, types.StartSessionInput, any): async.Operation<types.StartSessionOutput>
-    stopApplication: function(Client, types.StopApplicationInput, any): async.Operation<types.StopApplicationOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    terminateSession: function(Client, types.TerminateSessionInput, any): async.Operation<types.TerminateSessionOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateApplication: function(Client, types.UpdateApplicationInput, any): async.Operation<types.UpdateApplicationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    cancelJobRun: function(Client, types.CancelJobRunInput, ? base_client.InvokeOptions): async.Operation<types.CancelJobRunOutput>
+    createApplication: function(Client, types.CreateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    deleteApplication: function(Client, types.DeleteApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
+    getApplication: function(Client, types.GetApplicationInput, ? base_client.InvokeOptions): async.Operation<types.GetApplicationOutput>
+    getDashboardForJobRun: function(Client, types.GetDashboardForJobRunInput, ? base_client.InvokeOptions): async.Operation<types.GetDashboardForJobRunOutput>
+    getJobRun: function(Client, types.GetJobRunInput, ? base_client.InvokeOptions): async.Operation<types.GetJobRunOutput>
+    getResourceDashboard: function(Client, types.GetResourceDashboardInput, ? base_client.InvokeOptions): async.Operation<types.GetResourceDashboardOutput>
+    getSession: function(Client, types.GetSessionInput, ? base_client.InvokeOptions): async.Operation<types.GetSessionOutput>
+    getSessionEndpoint: function(Client, types.GetSessionEndpointInput, ? base_client.InvokeOptions): async.Operation<types.GetSessionEndpointOutput>
+    listApplications: function(Client, types.ListApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    listJobRunAttempts: function(Client, types.ListJobRunAttemptsInput, ? base_client.InvokeOptions): async.Operation<types.ListJobRunAttemptsOutput>
+    listJobRuns: function(Client, types.ListJobRunsInput, ? base_client.InvokeOptions): async.Operation<types.ListJobRunsOutput>
+    listSessions: function(Client, types.ListSessionsInput, ? base_client.InvokeOptions): async.Operation<types.ListSessionsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    startApplication: function(Client, types.StartApplicationInput, ? base_client.InvokeOptions): async.Operation<types.StartApplicationOutput>
+    startJobRun: function(Client, types.StartJobRunInput, ? base_client.InvokeOptions): async.Operation<types.StartJobRunOutput>
+    startSession: function(Client, types.StartSessionInput, ? base_client.InvokeOptions): async.Operation<types.StartSessionOutput>
+    stopApplication: function(Client, types.StopApplicationInput, ? base_client.InvokeOptions): async.Operation<types.StopApplicationOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    terminateSession: function(Client, types.TerminateSessionInput, ? base_client.InvokeOptions): async.Operation<types.TerminateSessionOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateApplication: function(Client, types.UpdateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AwsToledoWebService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "emr-serverless", signing_region = c.region } }
                 else
@@ -81,92 +84,92 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:cancelJobRun(input: types.CancelJobRunInput, options: any): async.Operation<types.CancelJobRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelJobRun, input, options) as async.Operation<types.CancelJobRunOutput>
+function C:cancelJobRun(input: types.CancelJobRunInput, options?: base_client.InvokeOptions): async.Operation<types.CancelJobRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelJobRun as schema.OperationSchema, input, options) as async.Operation<types.CancelJobRunOutput>
 end
 
-function C:createApplication(input: types.CreateApplicationInput, options: any): async.Operation<types.CreateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateApplication, input, options) as async.Operation<types.CreateApplicationOutput>
+function C:createApplication(input: types.CreateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApplication as schema.OperationSchema, input, options) as async.Operation<types.CreateApplicationOutput>
 end
 
-function C:deleteApplication(input: types.DeleteApplicationInput, options: any): async.Operation<types.DeleteApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteApplication, input, options) as async.Operation<types.DeleteApplicationOutput>
+function C:deleteApplication(input: types.DeleteApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplication as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationOutput>
 end
 
-function C:getApplication(input: types.GetApplicationInput, options: any): async.Operation<types.GetApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetApplication, input, options) as async.Operation<types.GetApplicationOutput>
+function C:getApplication(input: types.GetApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.GetApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetApplication as schema.OperationSchema, input, options) as async.Operation<types.GetApplicationOutput>
 end
 
-function C:getDashboardForJobRun(input: types.GetDashboardForJobRunInput, options: any): async.Operation<types.GetDashboardForJobRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDashboardForJobRun, input, options) as async.Operation<types.GetDashboardForJobRunOutput>
+function C:getDashboardForJobRun(input: types.GetDashboardForJobRunInput, options?: base_client.InvokeOptions): async.Operation<types.GetDashboardForJobRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDashboardForJobRun as schema.OperationSchema, input, options) as async.Operation<types.GetDashboardForJobRunOutput>
 end
 
-function C:getJobRun(input: types.GetJobRunInput, options: any): async.Operation<types.GetJobRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetJobRun, input, options) as async.Operation<types.GetJobRunOutput>
+function C:getJobRun(input: types.GetJobRunInput, options?: base_client.InvokeOptions): async.Operation<types.GetJobRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetJobRun as schema.OperationSchema, input, options) as async.Operation<types.GetJobRunOutput>
 end
 
-function C:getResourceDashboard(input: types.GetResourceDashboardInput, options: any): async.Operation<types.GetResourceDashboardOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetResourceDashboard, input, options) as async.Operation<types.GetResourceDashboardOutput>
+function C:getResourceDashboard(input: types.GetResourceDashboardInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourceDashboardOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourceDashboard as schema.OperationSchema, input, options) as async.Operation<types.GetResourceDashboardOutput>
 end
 
-function C:getSession(input: types.GetSessionInput, options: any): async.Operation<types.GetSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSession, input, options) as async.Operation<types.GetSessionOutput>
+function C:getSession(input: types.GetSessionInput, options?: base_client.InvokeOptions): async.Operation<types.GetSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSession as schema.OperationSchema, input, options) as async.Operation<types.GetSessionOutput>
 end
 
-function C:getSessionEndpoint(input: types.GetSessionEndpointInput, options: any): async.Operation<types.GetSessionEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSessionEndpoint, input, options) as async.Operation<types.GetSessionEndpointOutput>
+function C:getSessionEndpoint(input: types.GetSessionEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.GetSessionEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSessionEndpoint as schema.OperationSchema, input, options) as async.Operation<types.GetSessionEndpointOutput>
 end
 
-function C:listApplications(input: types.ListApplicationsInput, options: any): async.Operation<types.ListApplicationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListApplications, input, options) as async.Operation<types.ListApplicationsOutput>
+function C:listApplications(input: types.ListApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplications as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationsOutput>
 end
 
-function C:listJobRunAttempts(input: types.ListJobRunAttemptsInput, options: any): async.Operation<types.ListJobRunAttemptsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListJobRunAttempts, input, options) as async.Operation<types.ListJobRunAttemptsOutput>
+function C:listJobRunAttempts(input: types.ListJobRunAttemptsInput, options?: base_client.InvokeOptions): async.Operation<types.ListJobRunAttemptsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListJobRunAttempts as schema.OperationSchema, input, options) as async.Operation<types.ListJobRunAttemptsOutput>
 end
 
-function C:listJobRuns(input: types.ListJobRunsInput, options: any): async.Operation<types.ListJobRunsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListJobRuns, input, options) as async.Operation<types.ListJobRunsOutput>
+function C:listJobRuns(input: types.ListJobRunsInput, options?: base_client.InvokeOptions): async.Operation<types.ListJobRunsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListJobRuns as schema.OperationSchema, input, options) as async.Operation<types.ListJobRunsOutput>
 end
 
-function C:listSessions(input: types.ListSessionsInput, options: any): async.Operation<types.ListSessionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSessions, input, options) as async.Operation<types.ListSessionsOutput>
+function C:listSessions(input: types.ListSessionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSessionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSessions as schema.OperationSchema, input, options) as async.Operation<types.ListSessionsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:startApplication(input: types.StartApplicationInput, options: any): async.Operation<types.StartApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartApplication, input, options) as async.Operation<types.StartApplicationOutput>
+function C:startApplication(input: types.StartApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.StartApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartApplication as schema.OperationSchema, input, options) as async.Operation<types.StartApplicationOutput>
 end
 
-function C:startJobRun(input: types.StartJobRunInput, options: any): async.Operation<types.StartJobRunOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartJobRun, input, options) as async.Operation<types.StartJobRunOutput>
+function C:startJobRun(input: types.StartJobRunInput, options?: base_client.InvokeOptions): async.Operation<types.StartJobRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartJobRun as schema.OperationSchema, input, options) as async.Operation<types.StartJobRunOutput>
 end
 
-function C:startSession(input: types.StartSessionInput, options: any): async.Operation<types.StartSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartSession, input, options) as async.Operation<types.StartSessionOutput>
+function C:startSession(input: types.StartSessionInput, options?: base_client.InvokeOptions): async.Operation<types.StartSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartSession as schema.OperationSchema, input, options) as async.Operation<types.StartSessionOutput>
 end
 
-function C:stopApplication(input: types.StopApplicationInput, options: any): async.Operation<types.StopApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopApplication, input, options) as async.Operation<types.StopApplicationOutput>
+function C:stopApplication(input: types.StopApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.StopApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopApplication as schema.OperationSchema, input, options) as async.Operation<types.StopApplicationOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:terminateSession(input: types.TerminateSessionInput, options: any): async.Operation<types.TerminateSessionOutput>
-    return self:invokeOperation(schemas.Service, schemas.TerminateSession, input, options) as async.Operation<types.TerminateSessionOutput>
+function C:terminateSession(input: types.TerminateSessionInput, options?: base_client.InvokeOptions): async.Operation<types.TerminateSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TerminateSession as schema.OperationSchema, input, options) as async.Operation<types.TerminateSessionOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateApplication(input: types.UpdateApplicationInput, options: any): async.Operation<types.UpdateApplicationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateApplication, input, options) as async.Operation<types.UpdateApplicationOutput>
+function C:updateApplication(input: types.UpdateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApplication as schema.OperationSchema, input, options) as async.Operation<types.UpdateApplicationOutput>
 end
 
 return M

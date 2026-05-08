@@ -8,58 +8,61 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("s3vectors.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("s3vectors.schemas")
 local traits = require("smithy.traits")
 local types = require("s3vectors.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createIndex: function(Client, types.CreateIndexInput, any): async.Operation<types.CreateIndexOutput>
-    createVectorBucket: function(Client, types.CreateVectorBucketInput, any): async.Operation<types.CreateVectorBucketOutput>
-    deleteIndex: function(Client, types.DeleteIndexInput, any): async.Operation<types.DeleteIndexOutput>
-    deleteVectorBucket: function(Client, types.DeleteVectorBucketInput, any): async.Operation<types.DeleteVectorBucketOutput>
-    deleteVectorBucketPolicy: function(Client, types.DeleteVectorBucketPolicyInput, any): async.Operation<types.DeleteVectorBucketPolicyOutput>
-    deleteVectors: function(Client, types.DeleteVectorsInput, any): async.Operation<types.DeleteVectorsOutput>
-    getIndex: function(Client, types.GetIndexInput, any): async.Operation<types.GetIndexOutput>
-    getVectorBucket: function(Client, types.GetVectorBucketInput, any): async.Operation<types.GetVectorBucketOutput>
-    getVectorBucketPolicy: function(Client, types.GetVectorBucketPolicyInput, any): async.Operation<types.GetVectorBucketPolicyOutput>
-    getVectors: function(Client, types.GetVectorsInput, any): async.Operation<types.GetVectorsOutput>
-    listIndexes: function(Client, types.ListIndexesInput, any): async.Operation<types.ListIndexesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listVectorBuckets: function(Client, types.ListVectorBucketsInput, any): async.Operation<types.ListVectorBucketsOutput>
-    listVectors: function(Client, types.ListVectorsInput, any): async.Operation<types.ListVectorsOutput>
-    putVectorBucketPolicy: function(Client, types.PutVectorBucketPolicyInput, any): async.Operation<types.PutVectorBucketPolicyOutput>
-    putVectors: function(Client, types.PutVectorsInput, any): async.Operation<types.PutVectorsOutput>
-    queryVectors: function(Client, types.QueryVectorsInput, any): async.Operation<types.QueryVectorsOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createIndex: function(Client, types.CreateIndexInput, ? base_client.InvokeOptions): async.Operation<types.CreateIndexOutput>
+    createVectorBucket: function(Client, types.CreateVectorBucketInput, ? base_client.InvokeOptions): async.Operation<types.CreateVectorBucketOutput>
+    deleteIndex: function(Client, types.DeleteIndexInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIndexOutput>
+    deleteVectorBucket: function(Client, types.DeleteVectorBucketInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVectorBucketOutput>
+    deleteVectorBucketPolicy: function(Client, types.DeleteVectorBucketPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVectorBucketPolicyOutput>
+    deleteVectors: function(Client, types.DeleteVectorsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVectorsOutput>
+    getIndex: function(Client, types.GetIndexInput, ? base_client.InvokeOptions): async.Operation<types.GetIndexOutput>
+    getVectorBucket: function(Client, types.GetVectorBucketInput, ? base_client.InvokeOptions): async.Operation<types.GetVectorBucketOutput>
+    getVectorBucketPolicy: function(Client, types.GetVectorBucketPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetVectorBucketPolicyOutput>
+    getVectors: function(Client, types.GetVectorsInput, ? base_client.InvokeOptions): async.Operation<types.GetVectorsOutput>
+    listIndexes: function(Client, types.ListIndexesInput, ? base_client.InvokeOptions): async.Operation<types.ListIndexesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listVectorBuckets: function(Client, types.ListVectorBucketsInput, ? base_client.InvokeOptions): async.Operation<types.ListVectorBucketsOutput>
+    listVectors: function(Client, types.ListVectorsInput, ? base_client.InvokeOptions): async.Operation<types.ListVectorsOutput>
+    putVectorBucketPolicy: function(Client, types.PutVectorBucketPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutVectorBucketPolicyOutput>
+    putVectors: function(Client, types.PutVectorsInput, ? base_client.InvokeOptions): async.Operation<types.PutVectorsOutput>
+    queryVectors: function(Client, types.QueryVectorsInput, ? base_client.InvokeOptions): async.Operation<types.QueryVectorsOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "S3Vectors"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "s3vectors", signing_region = c.region } }
                 else
@@ -78,80 +81,80 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createIndex(input: types.CreateIndexInput, options: any): async.Operation<types.CreateIndexOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIndex, input, options) as async.Operation<types.CreateIndexOutput>
+function C:createIndex(input: types.CreateIndexInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIndexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIndex as schema.OperationSchema, input, options) as async.Operation<types.CreateIndexOutput>
 end
 
-function C:createVectorBucket(input: types.CreateVectorBucketInput, options: any): async.Operation<types.CreateVectorBucketOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVectorBucket, input, options) as async.Operation<types.CreateVectorBucketOutput>
+function C:createVectorBucket(input: types.CreateVectorBucketInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVectorBucketOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVectorBucket as schema.OperationSchema, input, options) as async.Operation<types.CreateVectorBucketOutput>
 end
 
-function C:deleteIndex(input: types.DeleteIndexInput, options: any): async.Operation<types.DeleteIndexOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIndex, input, options) as async.Operation<types.DeleteIndexOutput>
+function C:deleteIndex(input: types.DeleteIndexInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIndexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIndex as schema.OperationSchema, input, options) as async.Operation<types.DeleteIndexOutput>
 end
 
-function C:deleteVectorBucket(input: types.DeleteVectorBucketInput, options: any): async.Operation<types.DeleteVectorBucketOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVectorBucket, input, options) as async.Operation<types.DeleteVectorBucketOutput>
+function C:deleteVectorBucket(input: types.DeleteVectorBucketInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVectorBucketOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVectorBucket as schema.OperationSchema, input, options) as async.Operation<types.DeleteVectorBucketOutput>
 end
 
-function C:deleteVectorBucketPolicy(input: types.DeleteVectorBucketPolicyInput, options: any): async.Operation<types.DeleteVectorBucketPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVectorBucketPolicy, input, options) as async.Operation<types.DeleteVectorBucketPolicyOutput>
+function C:deleteVectorBucketPolicy(input: types.DeleteVectorBucketPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVectorBucketPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVectorBucketPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteVectorBucketPolicyOutput>
 end
 
-function C:deleteVectors(input: types.DeleteVectorsInput, options: any): async.Operation<types.DeleteVectorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVectors, input, options) as async.Operation<types.DeleteVectorsOutput>
+function C:deleteVectors(input: types.DeleteVectorsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVectorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVectors as schema.OperationSchema, input, options) as async.Operation<types.DeleteVectorsOutput>
 end
 
-function C:getIndex(input: types.GetIndexInput, options: any): async.Operation<types.GetIndexOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIndex, input, options) as async.Operation<types.GetIndexOutput>
+function C:getIndex(input: types.GetIndexInput, options?: base_client.InvokeOptions): async.Operation<types.GetIndexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIndex as schema.OperationSchema, input, options) as async.Operation<types.GetIndexOutput>
 end
 
-function C:getVectorBucket(input: types.GetVectorBucketInput, options: any): async.Operation<types.GetVectorBucketOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetVectorBucket, input, options) as async.Operation<types.GetVectorBucketOutput>
+function C:getVectorBucket(input: types.GetVectorBucketInput, options?: base_client.InvokeOptions): async.Operation<types.GetVectorBucketOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVectorBucket as schema.OperationSchema, input, options) as async.Operation<types.GetVectorBucketOutput>
 end
 
-function C:getVectorBucketPolicy(input: types.GetVectorBucketPolicyInput, options: any): async.Operation<types.GetVectorBucketPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetVectorBucketPolicy, input, options) as async.Operation<types.GetVectorBucketPolicyOutput>
+function C:getVectorBucketPolicy(input: types.GetVectorBucketPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetVectorBucketPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVectorBucketPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetVectorBucketPolicyOutput>
 end
 
-function C:getVectors(input: types.GetVectorsInput, options: any): async.Operation<types.GetVectorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetVectors, input, options) as async.Operation<types.GetVectorsOutput>
+function C:getVectors(input: types.GetVectorsInput, options?: base_client.InvokeOptions): async.Operation<types.GetVectorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVectors as schema.OperationSchema, input, options) as async.Operation<types.GetVectorsOutput>
 end
 
-function C:listIndexes(input: types.ListIndexesInput, options: any): async.Operation<types.ListIndexesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIndexes, input, options) as async.Operation<types.ListIndexesOutput>
+function C:listIndexes(input: types.ListIndexesInput, options?: base_client.InvokeOptions): async.Operation<types.ListIndexesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIndexes as schema.OperationSchema, input, options) as async.Operation<types.ListIndexesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listVectorBuckets(input: types.ListVectorBucketsInput, options: any): async.Operation<types.ListVectorBucketsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVectorBuckets, input, options) as async.Operation<types.ListVectorBucketsOutput>
+function C:listVectorBuckets(input: types.ListVectorBucketsInput, options?: base_client.InvokeOptions): async.Operation<types.ListVectorBucketsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVectorBuckets as schema.OperationSchema, input, options) as async.Operation<types.ListVectorBucketsOutput>
 end
 
-function C:listVectors(input: types.ListVectorsInput, options: any): async.Operation<types.ListVectorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVectors, input, options) as async.Operation<types.ListVectorsOutput>
+function C:listVectors(input: types.ListVectorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListVectorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVectors as schema.OperationSchema, input, options) as async.Operation<types.ListVectorsOutput>
 end
 
-function C:putVectorBucketPolicy(input: types.PutVectorBucketPolicyInput, options: any): async.Operation<types.PutVectorBucketPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutVectorBucketPolicy, input, options) as async.Operation<types.PutVectorBucketPolicyOutput>
+function C:putVectorBucketPolicy(input: types.PutVectorBucketPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutVectorBucketPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutVectorBucketPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutVectorBucketPolicyOutput>
 end
 
-function C:putVectors(input: types.PutVectorsInput, options: any): async.Operation<types.PutVectorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutVectors, input, options) as async.Operation<types.PutVectorsOutput>
+function C:putVectors(input: types.PutVectorsInput, options?: base_client.InvokeOptions): async.Operation<types.PutVectorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutVectors as schema.OperationSchema, input, options) as async.Operation<types.PutVectorsOutput>
 end
 
-function C:queryVectors(input: types.QueryVectorsInput, options: any): async.Operation<types.QueryVectorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.QueryVectors, input, options) as async.Operation<types.QueryVectorsOutput>
+function C:queryVectors(input: types.QueryVectorsInput, options?: base_client.InvokeOptions): async.Operation<types.QueryVectorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.QueryVectors as schema.OperationSchema, input, options) as async.Operation<types.QueryVectorsOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
 return M

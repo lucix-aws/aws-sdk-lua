@@ -8,69 +8,72 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("supplychain.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("supplychain.schemas")
 local traits = require("smithy.traits")
 local types = require("supplychain.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    createBillOfMaterialsImportJob: function(Client, types.CreateBillOfMaterialsImportJobInput, any): async.Operation<types.CreateBillOfMaterialsImportJobOutput>
-    createDataIntegrationFlow: function(Client, types.CreateDataIntegrationFlowInput, any): async.Operation<types.CreateDataIntegrationFlowOutput>
-    createDataLakeDataset: function(Client, types.CreateDataLakeDatasetInput, any): async.Operation<types.CreateDataLakeDatasetOutput>
-    createDataLakeNamespace: function(Client, types.CreateDataLakeNamespaceInput, any): async.Operation<types.CreateDataLakeNamespaceOutput>
-    createInstance: function(Client, types.CreateInstanceInput, any): async.Operation<types.CreateInstanceOutput>
-    deleteDataIntegrationFlow: function(Client, types.DeleteDataIntegrationFlowInput, any): async.Operation<types.DeleteDataIntegrationFlowOutput>
-    deleteDataLakeDataset: function(Client, types.DeleteDataLakeDatasetInput, any): async.Operation<types.DeleteDataLakeDatasetOutput>
-    deleteDataLakeNamespace: function(Client, types.DeleteDataLakeNamespaceInput, any): async.Operation<types.DeleteDataLakeNamespaceOutput>
-    deleteInstance: function(Client, types.DeleteInstanceInput, any): async.Operation<types.DeleteInstanceOutput>
-    getBillOfMaterialsImportJob: function(Client, types.GetBillOfMaterialsImportJobInput, any): async.Operation<types.GetBillOfMaterialsImportJobOutput>
-    getDataIntegrationEvent: function(Client, types.GetDataIntegrationEventInput, any): async.Operation<types.GetDataIntegrationEventOutput>
-    getDataIntegrationFlow: function(Client, types.GetDataIntegrationFlowInput, any): async.Operation<types.GetDataIntegrationFlowOutput>
-    getDataIntegrationFlowExecution: function(Client, types.GetDataIntegrationFlowExecutionInput, any): async.Operation<types.GetDataIntegrationFlowExecutionOutput>
-    getDataLakeDataset: function(Client, types.GetDataLakeDatasetInput, any): async.Operation<types.GetDataLakeDatasetOutput>
-    getDataLakeNamespace: function(Client, types.GetDataLakeNamespaceInput, any): async.Operation<types.GetDataLakeNamespaceOutput>
-    getInstance: function(Client, types.GetInstanceInput, any): async.Operation<types.GetInstanceOutput>
-    listDataIntegrationEvents: function(Client, types.ListDataIntegrationEventsInput, any): async.Operation<types.ListDataIntegrationEventsOutput>
-    listDataIntegrationFlowExecutions: function(Client, types.ListDataIntegrationFlowExecutionsInput, any): async.Operation<types.ListDataIntegrationFlowExecutionsOutput>
-    listDataIntegrationFlows: function(Client, types.ListDataIntegrationFlowsInput, any): async.Operation<types.ListDataIntegrationFlowsOutput>
-    listDataLakeDatasets: function(Client, types.ListDataLakeDatasetsInput, any): async.Operation<types.ListDataLakeDatasetsOutput>
-    listDataLakeNamespaces: function(Client, types.ListDataLakeNamespacesInput, any): async.Operation<types.ListDataLakeNamespacesOutput>
-    listInstances: function(Client, types.ListInstancesInput, any): async.Operation<types.ListInstancesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    sendDataIntegrationEvent: function(Client, types.SendDataIntegrationEventInput, any): async.Operation<types.SendDataIntegrationEventOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateDataIntegrationFlow: function(Client, types.UpdateDataIntegrationFlowInput, any): async.Operation<types.UpdateDataIntegrationFlowOutput>
-    updateDataLakeDataset: function(Client, types.UpdateDataLakeDatasetInput, any): async.Operation<types.UpdateDataLakeDatasetOutput>
-    updateDataLakeNamespace: function(Client, types.UpdateDataLakeNamespaceInput, any): async.Operation<types.UpdateDataLakeNamespaceOutput>
-    updateInstance: function(Client, types.UpdateInstanceInput, any): async.Operation<types.UpdateInstanceOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createBillOfMaterialsImportJob: function(Client, types.CreateBillOfMaterialsImportJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateBillOfMaterialsImportJobOutput>
+    createDataIntegrationFlow: function(Client, types.CreateDataIntegrationFlowInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataIntegrationFlowOutput>
+    createDataLakeDataset: function(Client, types.CreateDataLakeDatasetInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataLakeDatasetOutput>
+    createDataLakeNamespace: function(Client, types.CreateDataLakeNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataLakeNamespaceOutput>
+    createInstance: function(Client, types.CreateInstanceInput, ? base_client.InvokeOptions): async.Operation<types.CreateInstanceOutput>
+    deleteDataIntegrationFlow: function(Client, types.DeleteDataIntegrationFlowInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataIntegrationFlowOutput>
+    deleteDataLakeDataset: function(Client, types.DeleteDataLakeDatasetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataLakeDatasetOutput>
+    deleteDataLakeNamespace: function(Client, types.DeleteDataLakeNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataLakeNamespaceOutput>
+    deleteInstance: function(Client, types.DeleteInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInstanceOutput>
+    getBillOfMaterialsImportJob: function(Client, types.GetBillOfMaterialsImportJobInput, ? base_client.InvokeOptions): async.Operation<types.GetBillOfMaterialsImportJobOutput>
+    getDataIntegrationEvent: function(Client, types.GetDataIntegrationEventInput, ? base_client.InvokeOptions): async.Operation<types.GetDataIntegrationEventOutput>
+    getDataIntegrationFlow: function(Client, types.GetDataIntegrationFlowInput, ? base_client.InvokeOptions): async.Operation<types.GetDataIntegrationFlowOutput>
+    getDataIntegrationFlowExecution: function(Client, types.GetDataIntegrationFlowExecutionInput, ? base_client.InvokeOptions): async.Operation<types.GetDataIntegrationFlowExecutionOutput>
+    getDataLakeDataset: function(Client, types.GetDataLakeDatasetInput, ? base_client.InvokeOptions): async.Operation<types.GetDataLakeDatasetOutput>
+    getDataLakeNamespace: function(Client, types.GetDataLakeNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.GetDataLakeNamespaceOutput>
+    getInstance: function(Client, types.GetInstanceInput, ? base_client.InvokeOptions): async.Operation<types.GetInstanceOutput>
+    listDataIntegrationEvents: function(Client, types.ListDataIntegrationEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataIntegrationEventsOutput>
+    listDataIntegrationFlowExecutions: function(Client, types.ListDataIntegrationFlowExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataIntegrationFlowExecutionsOutput>
+    listDataIntegrationFlows: function(Client, types.ListDataIntegrationFlowsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataIntegrationFlowsOutput>
+    listDataLakeDatasets: function(Client, types.ListDataLakeDatasetsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataLakeDatasetsOutput>
+    listDataLakeNamespaces: function(Client, types.ListDataLakeNamespacesInput, ? base_client.InvokeOptions): async.Operation<types.ListDataLakeNamespacesOutput>
+    listInstances: function(Client, types.ListInstancesInput, ? base_client.InvokeOptions): async.Operation<types.ListInstancesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    sendDataIntegrationEvent: function(Client, types.SendDataIntegrationEventInput, ? base_client.InvokeOptions): async.Operation<types.SendDataIntegrationEventOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateDataIntegrationFlow: function(Client, types.UpdateDataIntegrationFlowInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataIntegrationFlowOutput>
+    updateDataLakeDataset: function(Client, types.UpdateDataLakeDatasetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataLakeDatasetOutput>
+    updateDataLakeNamespace: function(Client, types.UpdateDataLakeNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataLakeNamespaceOutput>
+    updateInstance: function(Client, types.UpdateInstanceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateInstanceOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "GalaxyPublicAPIGateway"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "scn", signing_region = c.region } }
                 else
@@ -89,124 +92,124 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:createBillOfMaterialsImportJob(input: types.CreateBillOfMaterialsImportJobInput, options: any): async.Operation<types.CreateBillOfMaterialsImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateBillOfMaterialsImportJob, input, options) as async.Operation<types.CreateBillOfMaterialsImportJobOutput>
+function C:createBillOfMaterialsImportJob(input: types.CreateBillOfMaterialsImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBillOfMaterialsImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBillOfMaterialsImportJob as schema.OperationSchema, input, options) as async.Operation<types.CreateBillOfMaterialsImportJobOutput>
 end
 
-function C:createDataIntegrationFlow(input: types.CreateDataIntegrationFlowInput, options: any): async.Operation<types.CreateDataIntegrationFlowOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataIntegrationFlow, input, options) as async.Operation<types.CreateDataIntegrationFlowOutput>
+function C:createDataIntegrationFlow(input: types.CreateDataIntegrationFlowInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataIntegrationFlowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataIntegrationFlow as schema.OperationSchema, input, options) as async.Operation<types.CreateDataIntegrationFlowOutput>
 end
 
-function C:createDataLakeDataset(input: types.CreateDataLakeDatasetInput, options: any): async.Operation<types.CreateDataLakeDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataLakeDataset, input, options) as async.Operation<types.CreateDataLakeDatasetOutput>
+function C:createDataLakeDataset(input: types.CreateDataLakeDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataLakeDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataLakeDataset as schema.OperationSchema, input, options) as async.Operation<types.CreateDataLakeDatasetOutput>
 end
 
-function C:createDataLakeNamespace(input: types.CreateDataLakeNamespaceInput, options: any): async.Operation<types.CreateDataLakeNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDataLakeNamespace, input, options) as async.Operation<types.CreateDataLakeNamespaceOutput>
+function C:createDataLakeNamespace(input: types.CreateDataLakeNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataLakeNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataLakeNamespace as schema.OperationSchema, input, options) as async.Operation<types.CreateDataLakeNamespaceOutput>
 end
 
-function C:createInstance(input: types.CreateInstanceInput, options: any): async.Operation<types.CreateInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateInstance, input, options) as async.Operation<types.CreateInstanceOutput>
+function C:createInstance(input: types.CreateInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInstance as schema.OperationSchema, input, options) as async.Operation<types.CreateInstanceOutput>
 end
 
-function C:deleteDataIntegrationFlow(input: types.DeleteDataIntegrationFlowInput, options: any): async.Operation<types.DeleteDataIntegrationFlowOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDataIntegrationFlow, input, options) as async.Operation<types.DeleteDataIntegrationFlowOutput>
+function C:deleteDataIntegrationFlow(input: types.DeleteDataIntegrationFlowInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDataIntegrationFlowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataIntegrationFlow as schema.OperationSchema, input, options) as async.Operation<types.DeleteDataIntegrationFlowOutput>
 end
 
-function C:deleteDataLakeDataset(input: types.DeleteDataLakeDatasetInput, options: any): async.Operation<types.DeleteDataLakeDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDataLakeDataset, input, options) as async.Operation<types.DeleteDataLakeDatasetOutput>
+function C:deleteDataLakeDataset(input: types.DeleteDataLakeDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDataLakeDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataLakeDataset as schema.OperationSchema, input, options) as async.Operation<types.DeleteDataLakeDatasetOutput>
 end
 
-function C:deleteDataLakeNamespace(input: types.DeleteDataLakeNamespaceInput, options: any): async.Operation<types.DeleteDataLakeNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDataLakeNamespace, input, options) as async.Operation<types.DeleteDataLakeNamespaceOutput>
+function C:deleteDataLakeNamespace(input: types.DeleteDataLakeNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDataLakeNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataLakeNamespace as schema.OperationSchema, input, options) as async.Operation<types.DeleteDataLakeNamespaceOutput>
 end
 
-function C:deleteInstance(input: types.DeleteInstanceInput, options: any): async.Operation<types.DeleteInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteInstance, input, options) as async.Operation<types.DeleteInstanceOutput>
+function C:deleteInstance(input: types.DeleteInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInstance as schema.OperationSchema, input, options) as async.Operation<types.DeleteInstanceOutput>
 end
 
-function C:getBillOfMaterialsImportJob(input: types.GetBillOfMaterialsImportJobInput, options: any): async.Operation<types.GetBillOfMaterialsImportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetBillOfMaterialsImportJob, input, options) as async.Operation<types.GetBillOfMaterialsImportJobOutput>
+function C:getBillOfMaterialsImportJob(input: types.GetBillOfMaterialsImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetBillOfMaterialsImportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBillOfMaterialsImportJob as schema.OperationSchema, input, options) as async.Operation<types.GetBillOfMaterialsImportJobOutput>
 end
 
-function C:getDataIntegrationEvent(input: types.GetDataIntegrationEventInput, options: any): async.Operation<types.GetDataIntegrationEventOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataIntegrationEvent, input, options) as async.Operation<types.GetDataIntegrationEventOutput>
+function C:getDataIntegrationEvent(input: types.GetDataIntegrationEventInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataIntegrationEventOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataIntegrationEvent as schema.OperationSchema, input, options) as async.Operation<types.GetDataIntegrationEventOutput>
 end
 
-function C:getDataIntegrationFlow(input: types.GetDataIntegrationFlowInput, options: any): async.Operation<types.GetDataIntegrationFlowOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataIntegrationFlow, input, options) as async.Operation<types.GetDataIntegrationFlowOutput>
+function C:getDataIntegrationFlow(input: types.GetDataIntegrationFlowInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataIntegrationFlowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataIntegrationFlow as schema.OperationSchema, input, options) as async.Operation<types.GetDataIntegrationFlowOutput>
 end
 
-function C:getDataIntegrationFlowExecution(input: types.GetDataIntegrationFlowExecutionInput, options: any): async.Operation<types.GetDataIntegrationFlowExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataIntegrationFlowExecution, input, options) as async.Operation<types.GetDataIntegrationFlowExecutionOutput>
+function C:getDataIntegrationFlowExecution(input: types.GetDataIntegrationFlowExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataIntegrationFlowExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataIntegrationFlowExecution as schema.OperationSchema, input, options) as async.Operation<types.GetDataIntegrationFlowExecutionOutput>
 end
 
-function C:getDataLakeDataset(input: types.GetDataLakeDatasetInput, options: any): async.Operation<types.GetDataLakeDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataLakeDataset, input, options) as async.Operation<types.GetDataLakeDatasetOutput>
+function C:getDataLakeDataset(input: types.GetDataLakeDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataLakeDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataLakeDataset as schema.OperationSchema, input, options) as async.Operation<types.GetDataLakeDatasetOutput>
 end
 
-function C:getDataLakeNamespace(input: types.GetDataLakeNamespaceInput, options: any): async.Operation<types.GetDataLakeNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDataLakeNamespace, input, options) as async.Operation<types.GetDataLakeNamespaceOutput>
+function C:getDataLakeNamespace(input: types.GetDataLakeNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataLakeNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataLakeNamespace as schema.OperationSchema, input, options) as async.Operation<types.GetDataLakeNamespaceOutput>
 end
 
-function C:getInstance(input: types.GetInstanceInput, options: any): async.Operation<types.GetInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetInstance, input, options) as async.Operation<types.GetInstanceOutput>
+function C:getInstance(input: types.GetInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.GetInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInstance as schema.OperationSchema, input, options) as async.Operation<types.GetInstanceOutput>
 end
 
-function C:listDataIntegrationEvents(input: types.ListDataIntegrationEventsInput, options: any): async.Operation<types.ListDataIntegrationEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDataIntegrationEvents, input, options) as async.Operation<types.ListDataIntegrationEventsOutput>
+function C:listDataIntegrationEvents(input: types.ListDataIntegrationEventsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataIntegrationEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataIntegrationEvents as schema.OperationSchema, input, options) as async.Operation<types.ListDataIntegrationEventsOutput>
 end
 
-function C:listDataIntegrationFlowExecutions(input: types.ListDataIntegrationFlowExecutionsInput, options: any): async.Operation<types.ListDataIntegrationFlowExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDataIntegrationFlowExecutions, input, options) as async.Operation<types.ListDataIntegrationFlowExecutionsOutput>
+function C:listDataIntegrationFlowExecutions(input: types.ListDataIntegrationFlowExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataIntegrationFlowExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataIntegrationFlowExecutions as schema.OperationSchema, input, options) as async.Operation<types.ListDataIntegrationFlowExecutionsOutput>
 end
 
-function C:listDataIntegrationFlows(input: types.ListDataIntegrationFlowsInput, options: any): async.Operation<types.ListDataIntegrationFlowsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDataIntegrationFlows, input, options) as async.Operation<types.ListDataIntegrationFlowsOutput>
+function C:listDataIntegrationFlows(input: types.ListDataIntegrationFlowsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataIntegrationFlowsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataIntegrationFlows as schema.OperationSchema, input, options) as async.Operation<types.ListDataIntegrationFlowsOutput>
 end
 
-function C:listDataLakeDatasets(input: types.ListDataLakeDatasetsInput, options: any): async.Operation<types.ListDataLakeDatasetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDataLakeDatasets, input, options) as async.Operation<types.ListDataLakeDatasetsOutput>
+function C:listDataLakeDatasets(input: types.ListDataLakeDatasetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataLakeDatasetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataLakeDatasets as schema.OperationSchema, input, options) as async.Operation<types.ListDataLakeDatasetsOutput>
 end
 
-function C:listDataLakeNamespaces(input: types.ListDataLakeNamespacesInput, options: any): async.Operation<types.ListDataLakeNamespacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDataLakeNamespaces, input, options) as async.Operation<types.ListDataLakeNamespacesOutput>
+function C:listDataLakeNamespaces(input: types.ListDataLakeNamespacesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataLakeNamespacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataLakeNamespaces as schema.OperationSchema, input, options) as async.Operation<types.ListDataLakeNamespacesOutput>
 end
 
-function C:listInstances(input: types.ListInstancesInput, options: any): async.Operation<types.ListInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInstances, input, options) as async.Operation<types.ListInstancesOutput>
+function C:listInstances(input: types.ListInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.ListInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInstances as schema.OperationSchema, input, options) as async.Operation<types.ListInstancesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:sendDataIntegrationEvent(input: types.SendDataIntegrationEventInput, options: any): async.Operation<types.SendDataIntegrationEventOutput>
-    return self:invokeOperation(schemas.Service, schemas.SendDataIntegrationEvent, input, options) as async.Operation<types.SendDataIntegrationEventOutput>
+function C:sendDataIntegrationEvent(input: types.SendDataIntegrationEventInput, options?: base_client.InvokeOptions): async.Operation<types.SendDataIntegrationEventOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendDataIntegrationEvent as schema.OperationSchema, input, options) as async.Operation<types.SendDataIntegrationEventOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateDataIntegrationFlow(input: types.UpdateDataIntegrationFlowInput, options: any): async.Operation<types.UpdateDataIntegrationFlowOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDataIntegrationFlow, input, options) as async.Operation<types.UpdateDataIntegrationFlowOutput>
+function C:updateDataIntegrationFlow(input: types.UpdateDataIntegrationFlowInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDataIntegrationFlowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDataIntegrationFlow as schema.OperationSchema, input, options) as async.Operation<types.UpdateDataIntegrationFlowOutput>
 end
 
-function C:updateDataLakeDataset(input: types.UpdateDataLakeDatasetInput, options: any): async.Operation<types.UpdateDataLakeDatasetOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDataLakeDataset, input, options) as async.Operation<types.UpdateDataLakeDatasetOutput>
+function C:updateDataLakeDataset(input: types.UpdateDataLakeDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDataLakeDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDataLakeDataset as schema.OperationSchema, input, options) as async.Operation<types.UpdateDataLakeDatasetOutput>
 end
 
-function C:updateDataLakeNamespace(input: types.UpdateDataLakeNamespaceInput, options: any): async.Operation<types.UpdateDataLakeNamespaceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDataLakeNamespace, input, options) as async.Operation<types.UpdateDataLakeNamespaceOutput>
+function C:updateDataLakeNamespace(input: types.UpdateDataLakeNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDataLakeNamespaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDataLakeNamespace as schema.OperationSchema, input, options) as async.Operation<types.UpdateDataLakeNamespaceOutput>
 end
 
-function C:updateInstance(input: types.UpdateInstanceInput, options: any): async.Operation<types.UpdateInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateInstance, input, options) as async.Operation<types.UpdateInstanceOutput>
+function C:updateInstance(input: types.UpdateInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateInstance as schema.OperationSchema, input, options) as async.Operation<types.UpdateInstanceOutput>
 end
 
 return M

@@ -8,51 +8,54 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("backupsearch.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("backupsearch.schemas")
 local traits = require("smithy.traits")
 local types = require("backupsearch.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    getSearchJob: function(Client, types.GetSearchJobInput, any): async.Operation<types.GetSearchJobOutput>
-    getSearchResultExportJob: function(Client, types.GetSearchResultExportJobInput, any): async.Operation<types.GetSearchResultExportJobOutput>
-    listSearchJobBackups: function(Client, types.ListSearchJobBackupsInput, any): async.Operation<types.ListSearchJobBackupsOutput>
-    listSearchJobResults: function(Client, types.ListSearchJobResultsInput, any): async.Operation<types.ListSearchJobResultsOutput>
-    listSearchJobs: function(Client, types.ListSearchJobsInput, any): async.Operation<types.ListSearchJobsOutput>
-    listSearchResultExportJobs: function(Client, types.ListSearchResultExportJobsInput, any): async.Operation<types.ListSearchResultExportJobsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    startSearchJob: function(Client, types.StartSearchJobInput, any): async.Operation<types.StartSearchJobOutput>
-    startSearchResultExportJob: function(Client, types.StartSearchResultExportJobInput, any): async.Operation<types.StartSearchResultExportJobOutput>
-    stopSearchJob: function(Client, types.StopSearchJobInput, any): async.Operation<types.StopSearchJobOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    getSearchJob: function(Client, types.GetSearchJobInput, ? base_client.InvokeOptions): async.Operation<types.GetSearchJobOutput>
+    getSearchResultExportJob: function(Client, types.GetSearchResultExportJobInput, ? base_client.InvokeOptions): async.Operation<types.GetSearchResultExportJobOutput>
+    listSearchJobBackups: function(Client, types.ListSearchJobBackupsInput, ? base_client.InvokeOptions): async.Operation<types.ListSearchJobBackupsOutput>
+    listSearchJobResults: function(Client, types.ListSearchJobResultsInput, ? base_client.InvokeOptions): async.Operation<types.ListSearchJobResultsOutput>
+    listSearchJobs: function(Client, types.ListSearchJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListSearchJobsOutput>
+    listSearchResultExportJobs: function(Client, types.ListSearchResultExportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListSearchResultExportJobsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    startSearchJob: function(Client, types.StartSearchJobInput, ? base_client.InvokeOptions): async.Operation<types.StartSearchJobOutput>
+    startSearchResultExportJob: function(Client, types.StartSearchResultExportJobInput, ? base_client.InvokeOptions): async.Operation<types.StartSearchResultExportJobOutput>
+    stopSearchJob: function(Client, types.StopSearchJobInput, ? base_client.InvokeOptions): async.Operation<types.StopSearchJobOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "CryoBackupSearchService"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "backup-search", signing_region = c.region } }
                 else
@@ -71,52 +74,52 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:getSearchJob(input: types.GetSearchJobInput, options: any): async.Operation<types.GetSearchJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSearchJob, input, options) as async.Operation<types.GetSearchJobOutput>
+function C:getSearchJob(input: types.GetSearchJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetSearchJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSearchJob as schema.OperationSchema, input, options) as async.Operation<types.GetSearchJobOutput>
 end
 
-function C:getSearchResultExportJob(input: types.GetSearchResultExportJobInput, options: any): async.Operation<types.GetSearchResultExportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSearchResultExportJob, input, options) as async.Operation<types.GetSearchResultExportJobOutput>
+function C:getSearchResultExportJob(input: types.GetSearchResultExportJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetSearchResultExportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSearchResultExportJob as schema.OperationSchema, input, options) as async.Operation<types.GetSearchResultExportJobOutput>
 end
 
-function C:listSearchJobBackups(input: types.ListSearchJobBackupsInput, options: any): async.Operation<types.ListSearchJobBackupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSearchJobBackups, input, options) as async.Operation<types.ListSearchJobBackupsOutput>
+function C:listSearchJobBackups(input: types.ListSearchJobBackupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSearchJobBackupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSearchJobBackups as schema.OperationSchema, input, options) as async.Operation<types.ListSearchJobBackupsOutput>
 end
 
-function C:listSearchJobResults(input: types.ListSearchJobResultsInput, options: any): async.Operation<types.ListSearchJobResultsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSearchJobResults, input, options) as async.Operation<types.ListSearchJobResultsOutput>
+function C:listSearchJobResults(input: types.ListSearchJobResultsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSearchJobResultsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSearchJobResults as schema.OperationSchema, input, options) as async.Operation<types.ListSearchJobResultsOutput>
 end
 
-function C:listSearchJobs(input: types.ListSearchJobsInput, options: any): async.Operation<types.ListSearchJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSearchJobs, input, options) as async.Operation<types.ListSearchJobsOutput>
+function C:listSearchJobs(input: types.ListSearchJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSearchJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSearchJobs as schema.OperationSchema, input, options) as async.Operation<types.ListSearchJobsOutput>
 end
 
-function C:listSearchResultExportJobs(input: types.ListSearchResultExportJobsInput, options: any): async.Operation<types.ListSearchResultExportJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSearchResultExportJobs, input, options) as async.Operation<types.ListSearchResultExportJobsOutput>
+function C:listSearchResultExportJobs(input: types.ListSearchResultExportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSearchResultExportJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSearchResultExportJobs as schema.OperationSchema, input, options) as async.Operation<types.ListSearchResultExportJobsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:startSearchJob(input: types.StartSearchJobInput, options: any): async.Operation<types.StartSearchJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartSearchJob, input, options) as async.Operation<types.StartSearchJobOutput>
+function C:startSearchJob(input: types.StartSearchJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartSearchJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartSearchJob as schema.OperationSchema, input, options) as async.Operation<types.StartSearchJobOutput>
 end
 
-function C:startSearchResultExportJob(input: types.StartSearchResultExportJobInput, options: any): async.Operation<types.StartSearchResultExportJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartSearchResultExportJob, input, options) as async.Operation<types.StartSearchResultExportJobOutput>
+function C:startSearchResultExportJob(input: types.StartSearchResultExportJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartSearchResultExportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartSearchResultExportJob as schema.OperationSchema, input, options) as async.Operation<types.StartSearchResultExportJobOutput>
 end
 
-function C:stopSearchJob(input: types.StopSearchJobInput, options: any): async.Operation<types.StopSearchJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StopSearchJob, input, options) as async.Operation<types.StopSearchJobOutput>
+function C:stopSearchJob(input: types.StopSearchJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopSearchJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopSearchJob as schema.OperationSchema, input, options) as async.Operation<types.StopSearchJobOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
 return M

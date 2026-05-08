@@ -8,85 +8,88 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("opensearchserverless.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("opensearchserverless.schemas")
 local traits = require("smithy.traits")
 local types = require("opensearchserverless.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchGetCollection: function(Client, types.BatchGetCollectionInput, any): async.Operation<types.BatchGetCollectionOutput>
-    batchGetCollectionGroup: function(Client, types.BatchGetCollectionGroupInput, any): async.Operation<types.BatchGetCollectionGroupOutput>
-    batchGetEffectiveLifecyclePolicy: function(Client, types.BatchGetEffectiveLifecyclePolicyInput, any): async.Operation<types.BatchGetEffectiveLifecyclePolicyOutput>
-    batchGetLifecyclePolicy: function(Client, types.BatchGetLifecyclePolicyInput, any): async.Operation<types.BatchGetLifecyclePolicyOutput>
-    batchGetVpcEndpoint: function(Client, types.BatchGetVpcEndpointInput, any): async.Operation<types.BatchGetVpcEndpointOutput>
-    createAccessPolicy: function(Client, types.CreateAccessPolicyInput, any): async.Operation<types.CreateAccessPolicyOutput>
-    createCollection: function(Client, types.CreateCollectionInput, any): async.Operation<types.CreateCollectionOutput>
-    createCollectionGroup: function(Client, types.CreateCollectionGroupInput, any): async.Operation<types.CreateCollectionGroupOutput>
-    createIndex: function(Client, types.CreateIndexInput, any): async.Operation<types.CreateIndexOutput>
-    createLifecyclePolicy: function(Client, types.CreateLifecyclePolicyInput, any): async.Operation<types.CreateLifecyclePolicyOutput>
-    createSecurityConfig: function(Client, types.CreateSecurityConfigInput, any): async.Operation<types.CreateSecurityConfigOutput>
-    createSecurityPolicy: function(Client, types.CreateSecurityPolicyInput, any): async.Operation<types.CreateSecurityPolicyOutput>
-    createVpcEndpoint: function(Client, types.CreateVpcEndpointInput, any): async.Operation<types.CreateVpcEndpointOutput>
-    deleteAccessPolicy: function(Client, types.DeleteAccessPolicyInput, any): async.Operation<types.DeleteAccessPolicyOutput>
-    deleteCollection: function(Client, types.DeleteCollectionInput, any): async.Operation<types.DeleteCollectionOutput>
-    deleteCollectionGroup: function(Client, types.DeleteCollectionGroupInput, any): async.Operation<types.DeleteCollectionGroupOutput>
-    deleteIndex: function(Client, types.DeleteIndexInput, any): async.Operation<types.DeleteIndexOutput>
-    deleteLifecyclePolicy: function(Client, types.DeleteLifecyclePolicyInput, any): async.Operation<types.DeleteLifecyclePolicyOutput>
-    deleteSecurityConfig: function(Client, types.DeleteSecurityConfigInput, any): async.Operation<types.DeleteSecurityConfigOutput>
-    deleteSecurityPolicy: function(Client, types.DeleteSecurityPolicyInput, any): async.Operation<types.DeleteSecurityPolicyOutput>
-    deleteVpcEndpoint: function(Client, types.DeleteVpcEndpointInput, any): async.Operation<types.DeleteVpcEndpointOutput>
-    getAccessPolicy: function(Client, types.GetAccessPolicyInput, any): async.Operation<types.GetAccessPolicyOutput>
-    getAccountSettings: function(Client, types.GetAccountSettingsInput, any): async.Operation<types.GetAccountSettingsOutput>
-    getIndex: function(Client, types.GetIndexInput, any): async.Operation<types.GetIndexOutput>
-    getPoliciesStats: function(Client, types.GetPoliciesStatsInput, any): async.Operation<types.GetPoliciesStatsOutput>
-    getSecurityConfig: function(Client, types.GetSecurityConfigInput, any): async.Operation<types.GetSecurityConfigOutput>
-    getSecurityPolicy: function(Client, types.GetSecurityPolicyInput, any): async.Operation<types.GetSecurityPolicyOutput>
-    listAccessPolicies: function(Client, types.ListAccessPoliciesInput, any): async.Operation<types.ListAccessPoliciesOutput>
-    listCollectionGroups: function(Client, types.ListCollectionGroupsInput, any): async.Operation<types.ListCollectionGroupsOutput>
-    listCollections: function(Client, types.ListCollectionsInput, any): async.Operation<types.ListCollectionsOutput>
-    listLifecyclePolicies: function(Client, types.ListLifecyclePoliciesInput, any): async.Operation<types.ListLifecyclePoliciesOutput>
-    listSecurityConfigs: function(Client, types.ListSecurityConfigsInput, any): async.Operation<types.ListSecurityConfigsOutput>
-    listSecurityPolicies: function(Client, types.ListSecurityPoliciesInput, any): async.Operation<types.ListSecurityPoliciesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listVpcEndpoints: function(Client, types.ListVpcEndpointsInput, any): async.Operation<types.ListVpcEndpointsOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAccessPolicy: function(Client, types.UpdateAccessPolicyInput, any): async.Operation<types.UpdateAccessPolicyOutput>
-    updateAccountSettings: function(Client, types.UpdateAccountSettingsInput, any): async.Operation<types.UpdateAccountSettingsOutput>
-    updateCollection: function(Client, types.UpdateCollectionInput, any): async.Operation<types.UpdateCollectionOutput>
-    updateCollectionGroup: function(Client, types.UpdateCollectionGroupInput, any): async.Operation<types.UpdateCollectionGroupOutput>
-    updateIndex: function(Client, types.UpdateIndexInput, any): async.Operation<types.UpdateIndexOutput>
-    updateLifecyclePolicy: function(Client, types.UpdateLifecyclePolicyInput, any): async.Operation<types.UpdateLifecyclePolicyOutput>
-    updateSecurityConfig: function(Client, types.UpdateSecurityConfigInput, any): async.Operation<types.UpdateSecurityConfigOutput>
-    updateSecurityPolicy: function(Client, types.UpdateSecurityPolicyInput, any): async.Operation<types.UpdateSecurityPolicyOutput>
-    updateVpcEndpoint: function(Client, types.UpdateVpcEndpointInput, any): async.Operation<types.UpdateVpcEndpointOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchGetCollection: function(Client, types.BatchGetCollectionInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetCollectionOutput>
+    batchGetCollectionGroup: function(Client, types.BatchGetCollectionGroupInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetCollectionGroupOutput>
+    batchGetEffectiveLifecyclePolicy: function(Client, types.BatchGetEffectiveLifecyclePolicyInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetEffectiveLifecyclePolicyOutput>
+    batchGetLifecyclePolicy: function(Client, types.BatchGetLifecyclePolicyInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetLifecyclePolicyOutput>
+    batchGetVpcEndpoint: function(Client, types.BatchGetVpcEndpointInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetVpcEndpointOutput>
+    createAccessPolicy: function(Client, types.CreateAccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateAccessPolicyOutput>
+    createCollection: function(Client, types.CreateCollectionInput, ? base_client.InvokeOptions): async.Operation<types.CreateCollectionOutput>
+    createCollectionGroup: function(Client, types.CreateCollectionGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateCollectionGroupOutput>
+    createIndex: function(Client, types.CreateIndexInput, ? base_client.InvokeOptions): async.Operation<types.CreateIndexOutput>
+    createLifecyclePolicy: function(Client, types.CreateLifecyclePolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateLifecyclePolicyOutput>
+    createSecurityConfig: function(Client, types.CreateSecurityConfigInput, ? base_client.InvokeOptions): async.Operation<types.CreateSecurityConfigOutput>
+    createSecurityPolicy: function(Client, types.CreateSecurityPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateSecurityPolicyOutput>
+    createVpcEndpoint: function(Client, types.CreateVpcEndpointInput, ? base_client.InvokeOptions): async.Operation<types.CreateVpcEndpointOutput>
+    deleteAccessPolicy: function(Client, types.DeleteAccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccessPolicyOutput>
+    deleteCollection: function(Client, types.DeleteCollectionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCollectionOutput>
+    deleteCollectionGroup: function(Client, types.DeleteCollectionGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCollectionGroupOutput>
+    deleteIndex: function(Client, types.DeleteIndexInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIndexOutput>
+    deleteLifecyclePolicy: function(Client, types.DeleteLifecyclePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLifecyclePolicyOutput>
+    deleteSecurityConfig: function(Client, types.DeleteSecurityConfigInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSecurityConfigOutput>
+    deleteSecurityPolicy: function(Client, types.DeleteSecurityPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSecurityPolicyOutput>
+    deleteVpcEndpoint: function(Client, types.DeleteVpcEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVpcEndpointOutput>
+    getAccessPolicy: function(Client, types.GetAccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessPolicyOutput>
+    getAccountSettings: function(Client, types.GetAccountSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountSettingsOutput>
+    getIndex: function(Client, types.GetIndexInput, ? base_client.InvokeOptions): async.Operation<types.GetIndexOutput>
+    getPoliciesStats: function(Client, types.GetPoliciesStatsInput, ? base_client.InvokeOptions): async.Operation<types.GetPoliciesStatsOutput>
+    getSecurityConfig: function(Client, types.GetSecurityConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetSecurityConfigOutput>
+    getSecurityPolicy: function(Client, types.GetSecurityPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetSecurityPolicyOutput>
+    listAccessPolicies: function(Client, types.ListAccessPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListAccessPoliciesOutput>
+    listCollectionGroups: function(Client, types.ListCollectionGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListCollectionGroupsOutput>
+    listCollections: function(Client, types.ListCollectionsInput, ? base_client.InvokeOptions): async.Operation<types.ListCollectionsOutput>
+    listLifecyclePolicies: function(Client, types.ListLifecyclePoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListLifecyclePoliciesOutput>
+    listSecurityConfigs: function(Client, types.ListSecurityConfigsInput, ? base_client.InvokeOptions): async.Operation<types.ListSecurityConfigsOutput>
+    listSecurityPolicies: function(Client, types.ListSecurityPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListSecurityPoliciesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listVpcEndpoints: function(Client, types.ListVpcEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.ListVpcEndpointsOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAccessPolicy: function(Client, types.UpdateAccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAccessPolicyOutput>
+    updateAccountSettings: function(Client, types.UpdateAccountSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAccountSettingsOutput>
+    updateCollection: function(Client, types.UpdateCollectionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCollectionOutput>
+    updateCollectionGroup: function(Client, types.UpdateCollectionGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCollectionGroupOutput>
+    updateIndex: function(Client, types.UpdateIndexInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIndexOutput>
+    updateLifecyclePolicy: function(Client, types.UpdateLifecyclePolicyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLifecyclePolicyOutput>
+    updateSecurityConfig: function(Client, types.UpdateSecurityConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSecurityConfigOutput>
+    updateSecurityPolicy: function(Client, types.UpdateSecurityPolicyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSecurityPolicyOutput>
+    updateVpcEndpoint: function(Client, types.UpdateVpcEndpointInput, ? base_client.InvokeOptions): async.Operation<types.UpdateVpcEndpointOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "OpenSearchServerless"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "aoss", signing_region = c.region } }
                 else
@@ -105,188 +108,188 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchGetCollection(input: types.BatchGetCollectionInput, options: any): async.Operation<types.BatchGetCollectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetCollection, input, options) as async.Operation<types.BatchGetCollectionOutput>
+function C:batchGetCollection(input: types.BatchGetCollectionInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetCollectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetCollection as schema.OperationSchema, input, options) as async.Operation<types.BatchGetCollectionOutput>
 end
 
-function C:batchGetCollectionGroup(input: types.BatchGetCollectionGroupInput, options: any): async.Operation<types.BatchGetCollectionGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetCollectionGroup, input, options) as async.Operation<types.BatchGetCollectionGroupOutput>
+function C:batchGetCollectionGroup(input: types.BatchGetCollectionGroupInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetCollectionGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetCollectionGroup as schema.OperationSchema, input, options) as async.Operation<types.BatchGetCollectionGroupOutput>
 end
 
-function C:batchGetEffectiveLifecyclePolicy(input: types.BatchGetEffectiveLifecyclePolicyInput, options: any): async.Operation<types.BatchGetEffectiveLifecyclePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetEffectiveLifecyclePolicy, input, options) as async.Operation<types.BatchGetEffectiveLifecyclePolicyOutput>
+function C:batchGetEffectiveLifecyclePolicy(input: types.BatchGetEffectiveLifecyclePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetEffectiveLifecyclePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetEffectiveLifecyclePolicy as schema.OperationSchema, input, options) as async.Operation<types.BatchGetEffectiveLifecyclePolicyOutput>
 end
 
-function C:batchGetLifecyclePolicy(input: types.BatchGetLifecyclePolicyInput, options: any): async.Operation<types.BatchGetLifecyclePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetLifecyclePolicy, input, options) as async.Operation<types.BatchGetLifecyclePolicyOutput>
+function C:batchGetLifecyclePolicy(input: types.BatchGetLifecyclePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetLifecyclePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetLifecyclePolicy as schema.OperationSchema, input, options) as async.Operation<types.BatchGetLifecyclePolicyOutput>
 end
 
-function C:batchGetVpcEndpoint(input: types.BatchGetVpcEndpointInput, options: any): async.Operation<types.BatchGetVpcEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetVpcEndpoint, input, options) as async.Operation<types.BatchGetVpcEndpointOutput>
+function C:batchGetVpcEndpoint(input: types.BatchGetVpcEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetVpcEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetVpcEndpoint as schema.OperationSchema, input, options) as async.Operation<types.BatchGetVpcEndpointOutput>
 end
 
-function C:createAccessPolicy(input: types.CreateAccessPolicyInput, options: any): async.Operation<types.CreateAccessPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAccessPolicy, input, options) as async.Operation<types.CreateAccessPolicyOutput>
+function C:createAccessPolicy(input: types.CreateAccessPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAccessPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAccessPolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateAccessPolicyOutput>
 end
 
-function C:createCollection(input: types.CreateCollectionInput, options: any): async.Operation<types.CreateCollectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCollection, input, options) as async.Operation<types.CreateCollectionOutput>
+function C:createCollection(input: types.CreateCollectionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCollectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCollection as schema.OperationSchema, input, options) as async.Operation<types.CreateCollectionOutput>
 end
 
-function C:createCollectionGroup(input: types.CreateCollectionGroupInput, options: any): async.Operation<types.CreateCollectionGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCollectionGroup, input, options) as async.Operation<types.CreateCollectionGroupOutput>
+function C:createCollectionGroup(input: types.CreateCollectionGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCollectionGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCollectionGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateCollectionGroupOutput>
 end
 
-function C:createIndex(input: types.CreateIndexInput, options: any): async.Operation<types.CreateIndexOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIndex, input, options) as async.Operation<types.CreateIndexOutput>
+function C:createIndex(input: types.CreateIndexInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIndexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIndex as schema.OperationSchema, input, options) as async.Operation<types.CreateIndexOutput>
 end
 
-function C:createLifecyclePolicy(input: types.CreateLifecyclePolicyInput, options: any): async.Operation<types.CreateLifecyclePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLifecyclePolicy, input, options) as async.Operation<types.CreateLifecyclePolicyOutput>
+function C:createLifecyclePolicy(input: types.CreateLifecyclePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLifecyclePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLifecyclePolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateLifecyclePolicyOutput>
 end
 
-function C:createSecurityConfig(input: types.CreateSecurityConfigInput, options: any): async.Operation<types.CreateSecurityConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSecurityConfig, input, options) as async.Operation<types.CreateSecurityConfigOutput>
+function C:createSecurityConfig(input: types.CreateSecurityConfigInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSecurityConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSecurityConfig as schema.OperationSchema, input, options) as async.Operation<types.CreateSecurityConfigOutput>
 end
 
-function C:createSecurityPolicy(input: types.CreateSecurityPolicyInput, options: any): async.Operation<types.CreateSecurityPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSecurityPolicy, input, options) as async.Operation<types.CreateSecurityPolicyOutput>
+function C:createSecurityPolicy(input: types.CreateSecurityPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSecurityPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSecurityPolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateSecurityPolicyOutput>
 end
 
-function C:createVpcEndpoint(input: types.CreateVpcEndpointInput, options: any): async.Operation<types.CreateVpcEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVpcEndpoint, input, options) as async.Operation<types.CreateVpcEndpointOutput>
+function C:createVpcEndpoint(input: types.CreateVpcEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVpcEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVpcEndpoint as schema.OperationSchema, input, options) as async.Operation<types.CreateVpcEndpointOutput>
 end
 
-function C:deleteAccessPolicy(input: types.DeleteAccessPolicyInput, options: any): async.Operation<types.DeleteAccessPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAccessPolicy, input, options) as async.Operation<types.DeleteAccessPolicyOutput>
+function C:deleteAccessPolicy(input: types.DeleteAccessPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAccessPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAccessPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteAccessPolicyOutput>
 end
 
-function C:deleteCollection(input: types.DeleteCollectionInput, options: any): async.Operation<types.DeleteCollectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCollection, input, options) as async.Operation<types.DeleteCollectionOutput>
+function C:deleteCollection(input: types.DeleteCollectionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCollectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCollection as schema.OperationSchema, input, options) as async.Operation<types.DeleteCollectionOutput>
 end
 
-function C:deleteCollectionGroup(input: types.DeleteCollectionGroupInput, options: any): async.Operation<types.DeleteCollectionGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCollectionGroup, input, options) as async.Operation<types.DeleteCollectionGroupOutput>
+function C:deleteCollectionGroup(input: types.DeleteCollectionGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCollectionGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCollectionGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteCollectionGroupOutput>
 end
 
-function C:deleteIndex(input: types.DeleteIndexInput, options: any): async.Operation<types.DeleteIndexOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIndex, input, options) as async.Operation<types.DeleteIndexOutput>
+function C:deleteIndex(input: types.DeleteIndexInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIndexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIndex as schema.OperationSchema, input, options) as async.Operation<types.DeleteIndexOutput>
 end
 
-function C:deleteLifecyclePolicy(input: types.DeleteLifecyclePolicyInput, options: any): async.Operation<types.DeleteLifecyclePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLifecyclePolicy, input, options) as async.Operation<types.DeleteLifecyclePolicyOutput>
+function C:deleteLifecyclePolicy(input: types.DeleteLifecyclePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLifecyclePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLifecyclePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteLifecyclePolicyOutput>
 end
 
-function C:deleteSecurityConfig(input: types.DeleteSecurityConfigInput, options: any): async.Operation<types.DeleteSecurityConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSecurityConfig, input, options) as async.Operation<types.DeleteSecurityConfigOutput>
+function C:deleteSecurityConfig(input: types.DeleteSecurityConfigInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSecurityConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSecurityConfig as schema.OperationSchema, input, options) as async.Operation<types.DeleteSecurityConfigOutput>
 end
 
-function C:deleteSecurityPolicy(input: types.DeleteSecurityPolicyInput, options: any): async.Operation<types.DeleteSecurityPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSecurityPolicy, input, options) as async.Operation<types.DeleteSecurityPolicyOutput>
+function C:deleteSecurityPolicy(input: types.DeleteSecurityPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSecurityPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSecurityPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteSecurityPolicyOutput>
 end
 
-function C:deleteVpcEndpoint(input: types.DeleteVpcEndpointInput, options: any): async.Operation<types.DeleteVpcEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVpcEndpoint, input, options) as async.Operation<types.DeleteVpcEndpointOutput>
+function C:deleteVpcEndpoint(input: types.DeleteVpcEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVpcEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVpcEndpoint as schema.OperationSchema, input, options) as async.Operation<types.DeleteVpcEndpointOutput>
 end
 
-function C:getAccessPolicy(input: types.GetAccessPolicyInput, options: any): async.Operation<types.GetAccessPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccessPolicy, input, options) as async.Operation<types.GetAccessPolicyOutput>
+function C:getAccessPolicy(input: types.GetAccessPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccessPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccessPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetAccessPolicyOutput>
 end
 
-function C:getAccountSettings(input: types.GetAccountSettingsInput, options: any): async.Operation<types.GetAccountSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccountSettings, input, options) as async.Operation<types.GetAccountSettingsOutput>
+function C:getAccountSettings(input: types.GetAccountSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccountSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccountSettings as schema.OperationSchema, input, options) as async.Operation<types.GetAccountSettingsOutput>
 end
 
-function C:getIndex(input: types.GetIndexInput, options: any): async.Operation<types.GetIndexOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIndex, input, options) as async.Operation<types.GetIndexOutput>
+function C:getIndex(input: types.GetIndexInput, options?: base_client.InvokeOptions): async.Operation<types.GetIndexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIndex as schema.OperationSchema, input, options) as async.Operation<types.GetIndexOutput>
 end
 
-function C:getPoliciesStats(input: types.GetPoliciesStatsInput, options: any): async.Operation<types.GetPoliciesStatsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPoliciesStats, input, options) as async.Operation<types.GetPoliciesStatsOutput>
+function C:getPoliciesStats(input: types.GetPoliciesStatsInput, options?: base_client.InvokeOptions): async.Operation<types.GetPoliciesStatsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPoliciesStats as schema.OperationSchema, input, options) as async.Operation<types.GetPoliciesStatsOutput>
 end
 
-function C:getSecurityConfig(input: types.GetSecurityConfigInput, options: any): async.Operation<types.GetSecurityConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSecurityConfig, input, options) as async.Operation<types.GetSecurityConfigOutput>
+function C:getSecurityConfig(input: types.GetSecurityConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetSecurityConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSecurityConfig as schema.OperationSchema, input, options) as async.Operation<types.GetSecurityConfigOutput>
 end
 
-function C:getSecurityPolicy(input: types.GetSecurityPolicyInput, options: any): async.Operation<types.GetSecurityPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSecurityPolicy, input, options) as async.Operation<types.GetSecurityPolicyOutput>
+function C:getSecurityPolicy(input: types.GetSecurityPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetSecurityPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSecurityPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetSecurityPolicyOutput>
 end
 
-function C:listAccessPolicies(input: types.ListAccessPoliciesInput, options: any): async.Operation<types.ListAccessPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAccessPolicies, input, options) as async.Operation<types.ListAccessPoliciesOutput>
+function C:listAccessPolicies(input: types.ListAccessPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAccessPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAccessPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListAccessPoliciesOutput>
 end
 
-function C:listCollectionGroups(input: types.ListCollectionGroupsInput, options: any): async.Operation<types.ListCollectionGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCollectionGroups, input, options) as async.Operation<types.ListCollectionGroupsOutput>
+function C:listCollectionGroups(input: types.ListCollectionGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCollectionGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCollectionGroups as schema.OperationSchema, input, options) as async.Operation<types.ListCollectionGroupsOutput>
 end
 
-function C:listCollections(input: types.ListCollectionsInput, options: any): async.Operation<types.ListCollectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCollections, input, options) as async.Operation<types.ListCollectionsOutput>
+function C:listCollections(input: types.ListCollectionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCollectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCollections as schema.OperationSchema, input, options) as async.Operation<types.ListCollectionsOutput>
 end
 
-function C:listLifecyclePolicies(input: types.ListLifecyclePoliciesInput, options: any): async.Operation<types.ListLifecyclePoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLifecyclePolicies, input, options) as async.Operation<types.ListLifecyclePoliciesOutput>
+function C:listLifecyclePolicies(input: types.ListLifecyclePoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListLifecyclePoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLifecyclePolicies as schema.OperationSchema, input, options) as async.Operation<types.ListLifecyclePoliciesOutput>
 end
 
-function C:listSecurityConfigs(input: types.ListSecurityConfigsInput, options: any): async.Operation<types.ListSecurityConfigsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSecurityConfigs, input, options) as async.Operation<types.ListSecurityConfigsOutput>
+function C:listSecurityConfigs(input: types.ListSecurityConfigsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSecurityConfigsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSecurityConfigs as schema.OperationSchema, input, options) as async.Operation<types.ListSecurityConfigsOutput>
 end
 
-function C:listSecurityPolicies(input: types.ListSecurityPoliciesInput, options: any): async.Operation<types.ListSecurityPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSecurityPolicies, input, options) as async.Operation<types.ListSecurityPoliciesOutput>
+function C:listSecurityPolicies(input: types.ListSecurityPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSecurityPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSecurityPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListSecurityPoliciesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listVpcEndpoints(input: types.ListVpcEndpointsInput, options: any): async.Operation<types.ListVpcEndpointsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVpcEndpoints, input, options) as async.Operation<types.ListVpcEndpointsOutput>
+function C:listVpcEndpoints(input: types.ListVpcEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.ListVpcEndpointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVpcEndpoints as schema.OperationSchema, input, options) as async.Operation<types.ListVpcEndpointsOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAccessPolicy(input: types.UpdateAccessPolicyInput, options: any): async.Operation<types.UpdateAccessPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAccessPolicy, input, options) as async.Operation<types.UpdateAccessPolicyOutput>
+function C:updateAccessPolicy(input: types.UpdateAccessPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAccessPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAccessPolicy as schema.OperationSchema, input, options) as async.Operation<types.UpdateAccessPolicyOutput>
 end
 
-function C:updateAccountSettings(input: types.UpdateAccountSettingsInput, options: any): async.Operation<types.UpdateAccountSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAccountSettings, input, options) as async.Operation<types.UpdateAccountSettingsOutput>
+function C:updateAccountSettings(input: types.UpdateAccountSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAccountSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAccountSettings as schema.OperationSchema, input, options) as async.Operation<types.UpdateAccountSettingsOutput>
 end
 
-function C:updateCollection(input: types.UpdateCollectionInput, options: any): async.Operation<types.UpdateCollectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCollection, input, options) as async.Operation<types.UpdateCollectionOutput>
+function C:updateCollection(input: types.UpdateCollectionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCollectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCollection as schema.OperationSchema, input, options) as async.Operation<types.UpdateCollectionOutput>
 end
 
-function C:updateCollectionGroup(input: types.UpdateCollectionGroupInput, options: any): async.Operation<types.UpdateCollectionGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCollectionGroup, input, options) as async.Operation<types.UpdateCollectionGroupOutput>
+function C:updateCollectionGroup(input: types.UpdateCollectionGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCollectionGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCollectionGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateCollectionGroupOutput>
 end
 
-function C:updateIndex(input: types.UpdateIndexInput, options: any): async.Operation<types.UpdateIndexOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateIndex, input, options) as async.Operation<types.UpdateIndexOutput>
+function C:updateIndex(input: types.UpdateIndexInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIndexOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIndex as schema.OperationSchema, input, options) as async.Operation<types.UpdateIndexOutput>
 end
 
-function C:updateLifecyclePolicy(input: types.UpdateLifecyclePolicyInput, options: any): async.Operation<types.UpdateLifecyclePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLifecyclePolicy, input, options) as async.Operation<types.UpdateLifecyclePolicyOutput>
+function C:updateLifecyclePolicy(input: types.UpdateLifecyclePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLifecyclePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLifecyclePolicy as schema.OperationSchema, input, options) as async.Operation<types.UpdateLifecyclePolicyOutput>
 end
 
-function C:updateSecurityConfig(input: types.UpdateSecurityConfigInput, options: any): async.Operation<types.UpdateSecurityConfigOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSecurityConfig, input, options) as async.Operation<types.UpdateSecurityConfigOutput>
+function C:updateSecurityConfig(input: types.UpdateSecurityConfigInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSecurityConfigOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSecurityConfig as schema.OperationSchema, input, options) as async.Operation<types.UpdateSecurityConfigOutput>
 end
 
-function C:updateSecurityPolicy(input: types.UpdateSecurityPolicyInput, options: any): async.Operation<types.UpdateSecurityPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSecurityPolicy, input, options) as async.Operation<types.UpdateSecurityPolicyOutput>
+function C:updateSecurityPolicy(input: types.UpdateSecurityPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSecurityPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSecurityPolicy as schema.OperationSchema, input, options) as async.Operation<types.UpdateSecurityPolicyOutput>
 end
 
-function C:updateVpcEndpoint(input: types.UpdateVpcEndpointInput, options: any): async.Operation<types.UpdateVpcEndpointOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateVpcEndpoint, input, options) as async.Operation<types.UpdateVpcEndpointOutput>
+function C:updateVpcEndpoint(input: types.UpdateVpcEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateVpcEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateVpcEndpoint as schema.OperationSchema, input, options) as async.Operation<types.UpdateVpcEndpointOutput>
 end
 
 return M

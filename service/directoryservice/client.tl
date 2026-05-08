@@ -8,119 +8,122 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("directoryservice.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("directoryservice.schemas")
 local traits = require("smithy.traits")
 local types = require("directoryservice.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    acceptSharedDirectory: function(Client, types.AcceptSharedDirectoryInput, any): async.Operation<types.AcceptSharedDirectoryOutput>
-    addIpRoutes: function(Client, types.AddIpRoutesInput, any): async.Operation<types.AddIpRoutesOutput>
-    addRegion: function(Client, types.AddRegionInput, any): async.Operation<types.AddRegionOutput>
-    addTagsToResource: function(Client, types.AddTagsToResourceInput, any): async.Operation<types.AddTagsToResourceOutput>
-    cancelSchemaExtension: function(Client, types.CancelSchemaExtensionInput, any): async.Operation<types.CancelSchemaExtensionOutput>
-    connectDirectory: function(Client, types.ConnectDirectoryInput, any): async.Operation<types.ConnectDirectoryOutput>
-    createAlias: function(Client, types.CreateAliasInput, any): async.Operation<types.CreateAliasOutput>
-    createComputer: function(Client, types.CreateComputerInput, any): async.Operation<types.CreateComputerOutput>
-    createConditionalForwarder: function(Client, types.CreateConditionalForwarderInput, any): async.Operation<types.CreateConditionalForwarderOutput>
-    createDirectory: function(Client, types.CreateDirectoryInput, any): async.Operation<types.CreateDirectoryOutput>
-    createHybridAD: function(Client, types.CreateHybridADInput, any): async.Operation<types.CreateHybridADOutput>
-    createLogSubscription: function(Client, types.CreateLogSubscriptionInput, any): async.Operation<types.CreateLogSubscriptionOutput>
-    createMicrosoftAD: function(Client, types.CreateMicrosoftADInput, any): async.Operation<types.CreateMicrosoftADOutput>
-    createSnapshot: function(Client, types.CreateSnapshotInput, any): async.Operation<types.CreateSnapshotOutput>
-    createTrust: function(Client, types.CreateTrustInput, any): async.Operation<types.CreateTrustOutput>
-    deleteADAssessment: function(Client, types.DeleteADAssessmentInput, any): async.Operation<types.DeleteADAssessmentOutput>
-    deleteConditionalForwarder: function(Client, types.DeleteConditionalForwarderInput, any): async.Operation<types.DeleteConditionalForwarderOutput>
-    deleteDirectory: function(Client, types.DeleteDirectoryInput, any): async.Operation<types.DeleteDirectoryOutput>
-    deleteLogSubscription: function(Client, types.DeleteLogSubscriptionInput, any): async.Operation<types.DeleteLogSubscriptionOutput>
-    deleteSnapshot: function(Client, types.DeleteSnapshotInput, any): async.Operation<types.DeleteSnapshotOutput>
-    deleteTrust: function(Client, types.DeleteTrustInput, any): async.Operation<types.DeleteTrustOutput>
-    deregisterCertificate: function(Client, types.DeregisterCertificateInput, any): async.Operation<types.DeregisterCertificateOutput>
-    deregisterEventTopic: function(Client, types.DeregisterEventTopicInput, any): async.Operation<types.DeregisterEventTopicOutput>
-    describeADAssessment: function(Client, types.DescribeADAssessmentInput, any): async.Operation<types.DescribeADAssessmentOutput>
-    describeCAEnrollmentPolicy: function(Client, types.DescribeCAEnrollmentPolicyInput, any): async.Operation<types.DescribeCAEnrollmentPolicyOutput>
-    describeCertificate: function(Client, types.DescribeCertificateInput, any): async.Operation<types.DescribeCertificateOutput>
-    describeClientAuthenticationSettings: function(Client, types.DescribeClientAuthenticationSettingsInput, any): async.Operation<types.DescribeClientAuthenticationSettingsOutput>
-    describeConditionalForwarders: function(Client, types.DescribeConditionalForwardersInput, any): async.Operation<types.DescribeConditionalForwardersOutput>
-    describeDirectories: function(Client, types.DescribeDirectoriesInput, any): async.Operation<types.DescribeDirectoriesOutput>
-    describeDirectoryDataAccess: function(Client, types.DescribeDirectoryDataAccessInput, any): async.Operation<types.DescribeDirectoryDataAccessOutput>
-    describeDomainControllers: function(Client, types.DescribeDomainControllersInput, any): async.Operation<types.DescribeDomainControllersOutput>
-    describeEventTopics: function(Client, types.DescribeEventTopicsInput, any): async.Operation<types.DescribeEventTopicsOutput>
-    describeHybridADUpdate: function(Client, types.DescribeHybridADUpdateInput, any): async.Operation<types.DescribeHybridADUpdateOutput>
-    describeLDAPSSettings: function(Client, types.DescribeLDAPSSettingsInput, any): async.Operation<types.DescribeLDAPSSettingsOutput>
-    describeRegions: function(Client, types.DescribeRegionsInput, any): async.Operation<types.DescribeRegionsOutput>
-    describeSettings: function(Client, types.DescribeSettingsInput, any): async.Operation<types.DescribeSettingsOutput>
-    describeSharedDirectories: function(Client, types.DescribeSharedDirectoriesInput, any): async.Operation<types.DescribeSharedDirectoriesOutput>
-    describeSnapshots: function(Client, types.DescribeSnapshotsInput, any): async.Operation<types.DescribeSnapshotsOutput>
-    describeTrusts: function(Client, types.DescribeTrustsInput, any): async.Operation<types.DescribeTrustsOutput>
-    describeUpdateDirectory: function(Client, types.DescribeUpdateDirectoryInput, any): async.Operation<types.DescribeUpdateDirectoryOutput>
-    disableCAEnrollmentPolicy: function(Client, types.DisableCAEnrollmentPolicyInput, any): async.Operation<types.DisableCAEnrollmentPolicyOutput>
-    disableClientAuthentication: function(Client, types.DisableClientAuthenticationInput, any): async.Operation<types.DisableClientAuthenticationOutput>
-    disableDirectoryDataAccess: function(Client, types.DisableDirectoryDataAccessInput, any): async.Operation<types.DisableDirectoryDataAccessOutput>
-    disableLDAPS: function(Client, types.DisableLDAPSInput, any): async.Operation<types.DisableLDAPSOutput>
-    disableRadius: function(Client, types.DisableRadiusInput, any): async.Operation<types.DisableRadiusOutput>
-    disableSso: function(Client, types.DisableSsoInput, any): async.Operation<types.DisableSsoOutput>
-    enableCAEnrollmentPolicy: function(Client, types.EnableCAEnrollmentPolicyInput, any): async.Operation<types.EnableCAEnrollmentPolicyOutput>
-    enableClientAuthentication: function(Client, types.EnableClientAuthenticationInput, any): async.Operation<types.EnableClientAuthenticationOutput>
-    enableDirectoryDataAccess: function(Client, types.EnableDirectoryDataAccessInput, any): async.Operation<types.EnableDirectoryDataAccessOutput>
-    enableLDAPS: function(Client, types.EnableLDAPSInput, any): async.Operation<types.EnableLDAPSOutput>
-    enableRadius: function(Client, types.EnableRadiusInput, any): async.Operation<types.EnableRadiusOutput>
-    enableSso: function(Client, types.EnableSsoInput, any): async.Operation<types.EnableSsoOutput>
-    getDirectoryLimits: function(Client, types.GetDirectoryLimitsInput, any): async.Operation<types.GetDirectoryLimitsOutput>
-    getSnapshotLimits: function(Client, types.GetSnapshotLimitsInput, any): async.Operation<types.GetSnapshotLimitsOutput>
-    listADAssessments: function(Client, types.ListADAssessmentsInput, any): async.Operation<types.ListADAssessmentsOutput>
-    listCertificates: function(Client, types.ListCertificatesInput, any): async.Operation<types.ListCertificatesOutput>
-    listIpRoutes: function(Client, types.ListIpRoutesInput, any): async.Operation<types.ListIpRoutesOutput>
-    listLogSubscriptions: function(Client, types.ListLogSubscriptionsInput, any): async.Operation<types.ListLogSubscriptionsOutput>
-    listSchemaExtensions: function(Client, types.ListSchemaExtensionsInput, any): async.Operation<types.ListSchemaExtensionsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    registerCertificate: function(Client, types.RegisterCertificateInput, any): async.Operation<types.RegisterCertificateOutput>
-    registerEventTopic: function(Client, types.RegisterEventTopicInput, any): async.Operation<types.RegisterEventTopicOutput>
-    rejectSharedDirectory: function(Client, types.RejectSharedDirectoryInput, any): async.Operation<types.RejectSharedDirectoryOutput>
-    removeIpRoutes: function(Client, types.RemoveIpRoutesInput, any): async.Operation<types.RemoveIpRoutesOutput>
-    removeRegion: function(Client, types.RemoveRegionInput, any): async.Operation<types.RemoveRegionOutput>
-    removeTagsFromResource: function(Client, types.RemoveTagsFromResourceInput, any): async.Operation<types.RemoveTagsFromResourceOutput>
-    resetUserPassword: function(Client, types.ResetUserPasswordInput, any): async.Operation<types.ResetUserPasswordOutput>
-    restoreFromSnapshot: function(Client, types.RestoreFromSnapshotInput, any): async.Operation<types.RestoreFromSnapshotOutput>
-    shareDirectory: function(Client, types.ShareDirectoryInput, any): async.Operation<types.ShareDirectoryOutput>
-    startADAssessment: function(Client, types.StartADAssessmentInput, any): async.Operation<types.StartADAssessmentOutput>
-    startSchemaExtension: function(Client, types.StartSchemaExtensionInput, any): async.Operation<types.StartSchemaExtensionOutput>
-    unshareDirectory: function(Client, types.UnshareDirectoryInput, any): async.Operation<types.UnshareDirectoryOutput>
-    updateConditionalForwarder: function(Client, types.UpdateConditionalForwarderInput, any): async.Operation<types.UpdateConditionalForwarderOutput>
-    updateDirectorySetup: function(Client, types.UpdateDirectorySetupInput, any): async.Operation<types.UpdateDirectorySetupOutput>
-    updateHybridAD: function(Client, types.UpdateHybridADInput, any): async.Operation<types.UpdateHybridADOutput>
-    updateNumberOfDomainControllers: function(Client, types.UpdateNumberOfDomainControllersInput, any): async.Operation<types.UpdateNumberOfDomainControllersOutput>
-    updateRadius: function(Client, types.UpdateRadiusInput, any): async.Operation<types.UpdateRadiusOutput>
-    updateSettings: function(Client, types.UpdateSettingsInput, any): async.Operation<types.UpdateSettingsOutput>
-    updateTrust: function(Client, types.UpdateTrustInput, any): async.Operation<types.UpdateTrustOutput>
-    verifyTrust: function(Client, types.VerifyTrustInput, any): async.Operation<types.VerifyTrustOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    acceptSharedDirectory: function(Client, types.AcceptSharedDirectoryInput, ? base_client.InvokeOptions): async.Operation<types.AcceptSharedDirectoryOutput>
+    addIpRoutes: function(Client, types.AddIpRoutesInput, ? base_client.InvokeOptions): async.Operation<types.AddIpRoutesOutput>
+    addRegion: function(Client, types.AddRegionInput, ? base_client.InvokeOptions): async.Operation<types.AddRegionOutput>
+    addTagsToResource: function(Client, types.AddTagsToResourceInput, ? base_client.InvokeOptions): async.Operation<types.AddTagsToResourceOutput>
+    cancelSchemaExtension: function(Client, types.CancelSchemaExtensionInput, ? base_client.InvokeOptions): async.Operation<types.CancelSchemaExtensionOutput>
+    connectDirectory: function(Client, types.ConnectDirectoryInput, ? base_client.InvokeOptions): async.Operation<types.ConnectDirectoryOutput>
+    createAlias: function(Client, types.CreateAliasInput, ? base_client.InvokeOptions): async.Operation<types.CreateAliasOutput>
+    createComputer: function(Client, types.CreateComputerInput, ? base_client.InvokeOptions): async.Operation<types.CreateComputerOutput>
+    createConditionalForwarder: function(Client, types.CreateConditionalForwarderInput, ? base_client.InvokeOptions): async.Operation<types.CreateConditionalForwarderOutput>
+    createDirectory: function(Client, types.CreateDirectoryInput, ? base_client.InvokeOptions): async.Operation<types.CreateDirectoryOutput>
+    createHybridAD: function(Client, types.CreateHybridADInput, ? base_client.InvokeOptions): async.Operation<types.CreateHybridADOutput>
+    createLogSubscription: function(Client, types.CreateLogSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.CreateLogSubscriptionOutput>
+    createMicrosoftAD: function(Client, types.CreateMicrosoftADInput, ? base_client.InvokeOptions): async.Operation<types.CreateMicrosoftADOutput>
+    createSnapshot: function(Client, types.CreateSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.CreateSnapshotOutput>
+    createTrust: function(Client, types.CreateTrustInput, ? base_client.InvokeOptions): async.Operation<types.CreateTrustOutput>
+    deleteADAssessment: function(Client, types.DeleteADAssessmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteADAssessmentOutput>
+    deleteConditionalForwarder: function(Client, types.DeleteConditionalForwarderInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConditionalForwarderOutput>
+    deleteDirectory: function(Client, types.DeleteDirectoryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDirectoryOutput>
+    deleteLogSubscription: function(Client, types.DeleteLogSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLogSubscriptionOutput>
+    deleteSnapshot: function(Client, types.DeleteSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSnapshotOutput>
+    deleteTrust: function(Client, types.DeleteTrustInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTrustOutput>
+    deregisterCertificate: function(Client, types.DeregisterCertificateInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterCertificateOutput>
+    deregisterEventTopic: function(Client, types.DeregisterEventTopicInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterEventTopicOutput>
+    describeADAssessment: function(Client, types.DescribeADAssessmentInput, ? base_client.InvokeOptions): async.Operation<types.DescribeADAssessmentOutput>
+    describeCAEnrollmentPolicy: function(Client, types.DescribeCAEnrollmentPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCAEnrollmentPolicyOutput>
+    describeCertificate: function(Client, types.DescribeCertificateInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCertificateOutput>
+    describeClientAuthenticationSettings: function(Client, types.DescribeClientAuthenticationSettingsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClientAuthenticationSettingsOutput>
+    describeConditionalForwarders: function(Client, types.DescribeConditionalForwardersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConditionalForwardersOutput>
+    describeDirectories: function(Client, types.DescribeDirectoriesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDirectoriesOutput>
+    describeDirectoryDataAccess: function(Client, types.DescribeDirectoryDataAccessInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDirectoryDataAccessOutput>
+    describeDomainControllers: function(Client, types.DescribeDomainControllersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDomainControllersOutput>
+    describeEventTopics: function(Client, types.DescribeEventTopicsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEventTopicsOutput>
+    describeHybridADUpdate: function(Client, types.DescribeHybridADUpdateInput, ? base_client.InvokeOptions): async.Operation<types.DescribeHybridADUpdateOutput>
+    describeLDAPSSettings: function(Client, types.DescribeLDAPSSettingsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLDAPSSettingsOutput>
+    describeRegions: function(Client, types.DescribeRegionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRegionsOutput>
+    describeSettings: function(Client, types.DescribeSettingsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSettingsOutput>
+    describeSharedDirectories: function(Client, types.DescribeSharedDirectoriesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSharedDirectoriesOutput>
+    describeSnapshots: function(Client, types.DescribeSnapshotsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSnapshotsOutput>
+    describeTrusts: function(Client, types.DescribeTrustsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTrustsOutput>
+    describeUpdateDirectory: function(Client, types.DescribeUpdateDirectoryInput, ? base_client.InvokeOptions): async.Operation<types.DescribeUpdateDirectoryOutput>
+    disableCAEnrollmentPolicy: function(Client, types.DisableCAEnrollmentPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DisableCAEnrollmentPolicyOutput>
+    disableClientAuthentication: function(Client, types.DisableClientAuthenticationInput, ? base_client.InvokeOptions): async.Operation<types.DisableClientAuthenticationOutput>
+    disableDirectoryDataAccess: function(Client, types.DisableDirectoryDataAccessInput, ? base_client.InvokeOptions): async.Operation<types.DisableDirectoryDataAccessOutput>
+    disableLDAPS: function(Client, types.DisableLDAPSInput, ? base_client.InvokeOptions): async.Operation<types.DisableLDAPSOutput>
+    disableRadius: function(Client, types.DisableRadiusInput, ? base_client.InvokeOptions): async.Operation<types.DisableRadiusOutput>
+    disableSso: function(Client, types.DisableSsoInput, ? base_client.InvokeOptions): async.Operation<types.DisableSsoOutput>
+    enableCAEnrollmentPolicy: function(Client, types.EnableCAEnrollmentPolicyInput, ? base_client.InvokeOptions): async.Operation<types.EnableCAEnrollmentPolicyOutput>
+    enableClientAuthentication: function(Client, types.EnableClientAuthenticationInput, ? base_client.InvokeOptions): async.Operation<types.EnableClientAuthenticationOutput>
+    enableDirectoryDataAccess: function(Client, types.EnableDirectoryDataAccessInput, ? base_client.InvokeOptions): async.Operation<types.EnableDirectoryDataAccessOutput>
+    enableLDAPS: function(Client, types.EnableLDAPSInput, ? base_client.InvokeOptions): async.Operation<types.EnableLDAPSOutput>
+    enableRadius: function(Client, types.EnableRadiusInput, ? base_client.InvokeOptions): async.Operation<types.EnableRadiusOutput>
+    enableSso: function(Client, types.EnableSsoInput, ? base_client.InvokeOptions): async.Operation<types.EnableSsoOutput>
+    getDirectoryLimits: function(Client, types.GetDirectoryLimitsInput, ? base_client.InvokeOptions): async.Operation<types.GetDirectoryLimitsOutput>
+    getSnapshotLimits: function(Client, types.GetSnapshotLimitsInput, ? base_client.InvokeOptions): async.Operation<types.GetSnapshotLimitsOutput>
+    listADAssessments: function(Client, types.ListADAssessmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListADAssessmentsOutput>
+    listCertificates: function(Client, types.ListCertificatesInput, ? base_client.InvokeOptions): async.Operation<types.ListCertificatesOutput>
+    listIpRoutes: function(Client, types.ListIpRoutesInput, ? base_client.InvokeOptions): async.Operation<types.ListIpRoutesOutput>
+    listLogSubscriptions: function(Client, types.ListLogSubscriptionsInput, ? base_client.InvokeOptions): async.Operation<types.ListLogSubscriptionsOutput>
+    listSchemaExtensions: function(Client, types.ListSchemaExtensionsInput, ? base_client.InvokeOptions): async.Operation<types.ListSchemaExtensionsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    registerCertificate: function(Client, types.RegisterCertificateInput, ? base_client.InvokeOptions): async.Operation<types.RegisterCertificateOutput>
+    registerEventTopic: function(Client, types.RegisterEventTopicInput, ? base_client.InvokeOptions): async.Operation<types.RegisterEventTopicOutput>
+    rejectSharedDirectory: function(Client, types.RejectSharedDirectoryInput, ? base_client.InvokeOptions): async.Operation<types.RejectSharedDirectoryOutput>
+    removeIpRoutes: function(Client, types.RemoveIpRoutesInput, ? base_client.InvokeOptions): async.Operation<types.RemoveIpRoutesOutput>
+    removeRegion: function(Client, types.RemoveRegionInput, ? base_client.InvokeOptions): async.Operation<types.RemoveRegionOutput>
+    removeTagsFromResource: function(Client, types.RemoveTagsFromResourceInput, ? base_client.InvokeOptions): async.Operation<types.RemoveTagsFromResourceOutput>
+    resetUserPassword: function(Client, types.ResetUserPasswordInput, ? base_client.InvokeOptions): async.Operation<types.ResetUserPasswordOutput>
+    restoreFromSnapshot: function(Client, types.RestoreFromSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.RestoreFromSnapshotOutput>
+    shareDirectory: function(Client, types.ShareDirectoryInput, ? base_client.InvokeOptions): async.Operation<types.ShareDirectoryOutput>
+    startADAssessment: function(Client, types.StartADAssessmentInput, ? base_client.InvokeOptions): async.Operation<types.StartADAssessmentOutput>
+    startSchemaExtension: function(Client, types.StartSchemaExtensionInput, ? base_client.InvokeOptions): async.Operation<types.StartSchemaExtensionOutput>
+    unshareDirectory: function(Client, types.UnshareDirectoryInput, ? base_client.InvokeOptions): async.Operation<types.UnshareDirectoryOutput>
+    updateConditionalForwarder: function(Client, types.UpdateConditionalForwarderInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConditionalForwarderOutput>
+    updateDirectorySetup: function(Client, types.UpdateDirectorySetupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDirectorySetupOutput>
+    updateHybridAD: function(Client, types.UpdateHybridADInput, ? base_client.InvokeOptions): async.Operation<types.UpdateHybridADOutput>
+    updateNumberOfDomainControllers: function(Client, types.UpdateNumberOfDomainControllersInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNumberOfDomainControllersOutput>
+    updateRadius: function(Client, types.UpdateRadiusInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRadiusOutput>
+    updateSettings: function(Client, types.UpdateSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSettingsOutput>
+    updateTrust: function(Client, types.UpdateTrustInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTrustOutput>
+    verifyTrust: function(Client, types.VerifyTrustInput, ? base_client.InvokeOptions): async.Operation<types.VerifyTrustOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "DirectoryService_20150416"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.1", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "ds", signing_region = c.region } }
                 else
@@ -139,324 +142,324 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:acceptSharedDirectory(input: types.AcceptSharedDirectoryInput, options: any): async.Operation<types.AcceptSharedDirectoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptSharedDirectory, input, options) as async.Operation<types.AcceptSharedDirectoryOutput>
+function C:acceptSharedDirectory(input: types.AcceptSharedDirectoryInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptSharedDirectoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptSharedDirectory as schema.OperationSchema, input, options) as async.Operation<types.AcceptSharedDirectoryOutput>
 end
 
-function C:addIpRoutes(input: types.AddIpRoutesInput, options: any): async.Operation<types.AddIpRoutesOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddIpRoutes, input, options) as async.Operation<types.AddIpRoutesOutput>
+function C:addIpRoutes(input: types.AddIpRoutesInput, options?: base_client.InvokeOptions): async.Operation<types.AddIpRoutesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddIpRoutes as schema.OperationSchema, input, options) as async.Operation<types.AddIpRoutesOutput>
 end
 
-function C:addRegion(input: types.AddRegionInput, options: any): async.Operation<types.AddRegionOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddRegion, input, options) as async.Operation<types.AddRegionOutput>
+function C:addRegion(input: types.AddRegionInput, options?: base_client.InvokeOptions): async.Operation<types.AddRegionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddRegion as schema.OperationSchema, input, options) as async.Operation<types.AddRegionOutput>
 end
 
-function C:addTagsToResource(input: types.AddTagsToResourceInput, options: any): async.Operation<types.AddTagsToResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.AddTagsToResource, input, options) as async.Operation<types.AddTagsToResourceOutput>
+function C:addTagsToResource(input: types.AddTagsToResourceInput, options?: base_client.InvokeOptions): async.Operation<types.AddTagsToResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddTagsToResource as schema.OperationSchema, input, options) as async.Operation<types.AddTagsToResourceOutput>
 end
 
-function C:cancelSchemaExtension(input: types.CancelSchemaExtensionInput, options: any): async.Operation<types.CancelSchemaExtensionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelSchemaExtension, input, options) as async.Operation<types.CancelSchemaExtensionOutput>
+function C:cancelSchemaExtension(input: types.CancelSchemaExtensionInput, options?: base_client.InvokeOptions): async.Operation<types.CancelSchemaExtensionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelSchemaExtension as schema.OperationSchema, input, options) as async.Operation<types.CancelSchemaExtensionOutput>
 end
 
-function C:connectDirectory(input: types.ConnectDirectoryInput, options: any): async.Operation<types.ConnectDirectoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.ConnectDirectory, input, options) as async.Operation<types.ConnectDirectoryOutput>
+function C:connectDirectory(input: types.ConnectDirectoryInput, options?: base_client.InvokeOptions): async.Operation<types.ConnectDirectoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ConnectDirectory as schema.OperationSchema, input, options) as async.Operation<types.ConnectDirectoryOutput>
 end
 
-function C:createAlias(input: types.CreateAliasInput, options: any): async.Operation<types.CreateAliasOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAlias, input, options) as async.Operation<types.CreateAliasOutput>
+function C:createAlias(input: types.CreateAliasInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAlias as schema.OperationSchema, input, options) as async.Operation<types.CreateAliasOutput>
 end
 
-function C:createComputer(input: types.CreateComputerInput, options: any): async.Operation<types.CreateComputerOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateComputer, input, options) as async.Operation<types.CreateComputerOutput>
+function C:createComputer(input: types.CreateComputerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateComputerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateComputer as schema.OperationSchema, input, options) as async.Operation<types.CreateComputerOutput>
 end
 
-function C:createConditionalForwarder(input: types.CreateConditionalForwarderInput, options: any): async.Operation<types.CreateConditionalForwarderOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConditionalForwarder, input, options) as async.Operation<types.CreateConditionalForwarderOutput>
+function C:createConditionalForwarder(input: types.CreateConditionalForwarderInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConditionalForwarderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConditionalForwarder as schema.OperationSchema, input, options) as async.Operation<types.CreateConditionalForwarderOutput>
 end
 
-function C:createDirectory(input: types.CreateDirectoryInput, options: any): async.Operation<types.CreateDirectoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateDirectory, input, options) as async.Operation<types.CreateDirectoryOutput>
+function C:createDirectory(input: types.CreateDirectoryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDirectoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDirectory as schema.OperationSchema, input, options) as async.Operation<types.CreateDirectoryOutput>
 end
 
-function C:createHybridAD(input: types.CreateHybridADInput, options: any): async.Operation<types.CreateHybridADOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateHybridAD, input, options) as async.Operation<types.CreateHybridADOutput>
+function C:createHybridAD(input: types.CreateHybridADInput, options?: base_client.InvokeOptions): async.Operation<types.CreateHybridADOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateHybridAD as schema.OperationSchema, input, options) as async.Operation<types.CreateHybridADOutput>
 end
 
-function C:createLogSubscription(input: types.CreateLogSubscriptionInput, options: any): async.Operation<types.CreateLogSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateLogSubscription, input, options) as async.Operation<types.CreateLogSubscriptionOutput>
+function C:createLogSubscription(input: types.CreateLogSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLogSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLogSubscription as schema.OperationSchema, input, options) as async.Operation<types.CreateLogSubscriptionOutput>
 end
 
-function C:createMicrosoftAD(input: types.CreateMicrosoftADInput, options: any): async.Operation<types.CreateMicrosoftADOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMicrosoftAD, input, options) as async.Operation<types.CreateMicrosoftADOutput>
+function C:createMicrosoftAD(input: types.CreateMicrosoftADInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMicrosoftADOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMicrosoftAD as schema.OperationSchema, input, options) as async.Operation<types.CreateMicrosoftADOutput>
 end
 
-function C:createSnapshot(input: types.CreateSnapshotInput, options: any): async.Operation<types.CreateSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSnapshot, input, options) as async.Operation<types.CreateSnapshotOutput>
+function C:createSnapshot(input: types.CreateSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSnapshot as schema.OperationSchema, input, options) as async.Operation<types.CreateSnapshotOutput>
 end
 
-function C:createTrust(input: types.CreateTrustInput, options: any): async.Operation<types.CreateTrustOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTrust, input, options) as async.Operation<types.CreateTrustOutput>
+function C:createTrust(input: types.CreateTrustInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTrustOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTrust as schema.OperationSchema, input, options) as async.Operation<types.CreateTrustOutput>
 end
 
-function C:deleteADAssessment(input: types.DeleteADAssessmentInput, options: any): async.Operation<types.DeleteADAssessmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteADAssessment, input, options) as async.Operation<types.DeleteADAssessmentOutput>
+function C:deleteADAssessment(input: types.DeleteADAssessmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteADAssessmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteADAssessment as schema.OperationSchema, input, options) as async.Operation<types.DeleteADAssessmentOutput>
 end
 
-function C:deleteConditionalForwarder(input: types.DeleteConditionalForwarderInput, options: any): async.Operation<types.DeleteConditionalForwarderOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConditionalForwarder, input, options) as async.Operation<types.DeleteConditionalForwarderOutput>
+function C:deleteConditionalForwarder(input: types.DeleteConditionalForwarderInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConditionalForwarderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConditionalForwarder as schema.OperationSchema, input, options) as async.Operation<types.DeleteConditionalForwarderOutput>
 end
 
-function C:deleteDirectory(input: types.DeleteDirectoryInput, options: any): async.Operation<types.DeleteDirectoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteDirectory, input, options) as async.Operation<types.DeleteDirectoryOutput>
+function C:deleteDirectory(input: types.DeleteDirectoryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDirectoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDirectory as schema.OperationSchema, input, options) as async.Operation<types.DeleteDirectoryOutput>
 end
 
-function C:deleteLogSubscription(input: types.DeleteLogSubscriptionInput, options: any): async.Operation<types.DeleteLogSubscriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteLogSubscription, input, options) as async.Operation<types.DeleteLogSubscriptionOutput>
+function C:deleteLogSubscription(input: types.DeleteLogSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLogSubscriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLogSubscription as schema.OperationSchema, input, options) as async.Operation<types.DeleteLogSubscriptionOutput>
 end
 
-function C:deleteSnapshot(input: types.DeleteSnapshotInput, options: any): async.Operation<types.DeleteSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSnapshot, input, options) as async.Operation<types.DeleteSnapshotOutput>
+function C:deleteSnapshot(input: types.DeleteSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSnapshot as schema.OperationSchema, input, options) as async.Operation<types.DeleteSnapshotOutput>
 end
 
-function C:deleteTrust(input: types.DeleteTrustInput, options: any): async.Operation<types.DeleteTrustOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTrust, input, options) as async.Operation<types.DeleteTrustOutput>
+function C:deleteTrust(input: types.DeleteTrustInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTrustOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTrust as schema.OperationSchema, input, options) as async.Operation<types.DeleteTrustOutput>
 end
 
-function C:deregisterCertificate(input: types.DeregisterCertificateInput, options: any): async.Operation<types.DeregisterCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterCertificate, input, options) as async.Operation<types.DeregisterCertificateOutput>
+function C:deregisterCertificate(input: types.DeregisterCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterCertificate as schema.OperationSchema, input, options) as async.Operation<types.DeregisterCertificateOutput>
 end
 
-function C:deregisterEventTopic(input: types.DeregisterEventTopicInput, options: any): async.Operation<types.DeregisterEventTopicOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeregisterEventTopic, input, options) as async.Operation<types.DeregisterEventTopicOutput>
+function C:deregisterEventTopic(input: types.DeregisterEventTopicInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterEventTopicOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterEventTopic as schema.OperationSchema, input, options) as async.Operation<types.DeregisterEventTopicOutput>
 end
 
-function C:describeADAssessment(input: types.DescribeADAssessmentInput, options: any): async.Operation<types.DescribeADAssessmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeADAssessment, input, options) as async.Operation<types.DescribeADAssessmentOutput>
+function C:describeADAssessment(input: types.DescribeADAssessmentInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeADAssessmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeADAssessment as schema.OperationSchema, input, options) as async.Operation<types.DescribeADAssessmentOutput>
 end
 
-function C:describeCAEnrollmentPolicy(input: types.DescribeCAEnrollmentPolicyInput, options: any): async.Operation<types.DescribeCAEnrollmentPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCAEnrollmentPolicy, input, options) as async.Operation<types.DescribeCAEnrollmentPolicyOutput>
+function C:describeCAEnrollmentPolicy(input: types.DescribeCAEnrollmentPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCAEnrollmentPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCAEnrollmentPolicy as schema.OperationSchema, input, options) as async.Operation<types.DescribeCAEnrollmentPolicyOutput>
 end
 
-function C:describeCertificate(input: types.DescribeCertificateInput, options: any): async.Operation<types.DescribeCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCertificate, input, options) as async.Operation<types.DescribeCertificateOutput>
+function C:describeCertificate(input: types.DescribeCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCertificate as schema.OperationSchema, input, options) as async.Operation<types.DescribeCertificateOutput>
 end
 
-function C:describeClientAuthenticationSettings(input: types.DescribeClientAuthenticationSettingsInput, options: any): async.Operation<types.DescribeClientAuthenticationSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeClientAuthenticationSettings, input, options) as async.Operation<types.DescribeClientAuthenticationSettingsOutput>
+function C:describeClientAuthenticationSettings(input: types.DescribeClientAuthenticationSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeClientAuthenticationSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeClientAuthenticationSettings as schema.OperationSchema, input, options) as async.Operation<types.DescribeClientAuthenticationSettingsOutput>
 end
 
-function C:describeConditionalForwarders(input: types.DescribeConditionalForwardersInput, options: any): async.Operation<types.DescribeConditionalForwardersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeConditionalForwarders, input, options) as async.Operation<types.DescribeConditionalForwardersOutput>
+function C:describeConditionalForwarders(input: types.DescribeConditionalForwardersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeConditionalForwardersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeConditionalForwarders as schema.OperationSchema, input, options) as async.Operation<types.DescribeConditionalForwardersOutput>
 end
 
-function C:describeDirectories(input: types.DescribeDirectoriesInput, options: any): async.Operation<types.DescribeDirectoriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDirectories, input, options) as async.Operation<types.DescribeDirectoriesOutput>
+function C:describeDirectories(input: types.DescribeDirectoriesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDirectoriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDirectories as schema.OperationSchema, input, options) as async.Operation<types.DescribeDirectoriesOutput>
 end
 
-function C:describeDirectoryDataAccess(input: types.DescribeDirectoryDataAccessInput, options: any): async.Operation<types.DescribeDirectoryDataAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDirectoryDataAccess, input, options) as async.Operation<types.DescribeDirectoryDataAccessOutput>
+function C:describeDirectoryDataAccess(input: types.DescribeDirectoryDataAccessInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDirectoryDataAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDirectoryDataAccess as schema.OperationSchema, input, options) as async.Operation<types.DescribeDirectoryDataAccessOutput>
 end
 
-function C:describeDomainControllers(input: types.DescribeDomainControllersInput, options: any): async.Operation<types.DescribeDomainControllersOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDomainControllers, input, options) as async.Operation<types.DescribeDomainControllersOutput>
+function C:describeDomainControllers(input: types.DescribeDomainControllersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDomainControllersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDomainControllers as schema.OperationSchema, input, options) as async.Operation<types.DescribeDomainControllersOutput>
 end
 
-function C:describeEventTopics(input: types.DescribeEventTopicsInput, options: any): async.Operation<types.DescribeEventTopicsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeEventTopics, input, options) as async.Operation<types.DescribeEventTopicsOutput>
+function C:describeEventTopics(input: types.DescribeEventTopicsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEventTopicsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEventTopics as schema.OperationSchema, input, options) as async.Operation<types.DescribeEventTopicsOutput>
 end
 
-function C:describeHybridADUpdate(input: types.DescribeHybridADUpdateInput, options: any): async.Operation<types.DescribeHybridADUpdateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeHybridADUpdate, input, options) as async.Operation<types.DescribeHybridADUpdateOutput>
+function C:describeHybridADUpdate(input: types.DescribeHybridADUpdateInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeHybridADUpdateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeHybridADUpdate as schema.OperationSchema, input, options) as async.Operation<types.DescribeHybridADUpdateOutput>
 end
 
-function C:describeLDAPSSettings(input: types.DescribeLDAPSSettingsInput, options: any): async.Operation<types.DescribeLDAPSSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLDAPSSettings, input, options) as async.Operation<types.DescribeLDAPSSettingsOutput>
+function C:describeLDAPSSettings(input: types.DescribeLDAPSSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLDAPSSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLDAPSSettings as schema.OperationSchema, input, options) as async.Operation<types.DescribeLDAPSSettingsOutput>
 end
 
-function C:describeRegions(input: types.DescribeRegionsInput, options: any): async.Operation<types.DescribeRegionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRegions, input, options) as async.Operation<types.DescribeRegionsOutput>
+function C:describeRegions(input: types.DescribeRegionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRegionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRegions as schema.OperationSchema, input, options) as async.Operation<types.DescribeRegionsOutput>
 end
 
-function C:describeSettings(input: types.DescribeSettingsInput, options: any): async.Operation<types.DescribeSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSettings, input, options) as async.Operation<types.DescribeSettingsOutput>
+function C:describeSettings(input: types.DescribeSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSettings as schema.OperationSchema, input, options) as async.Operation<types.DescribeSettingsOutput>
 end
 
-function C:describeSharedDirectories(input: types.DescribeSharedDirectoriesInput, options: any): async.Operation<types.DescribeSharedDirectoriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSharedDirectories, input, options) as async.Operation<types.DescribeSharedDirectoriesOutput>
+function C:describeSharedDirectories(input: types.DescribeSharedDirectoriesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSharedDirectoriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSharedDirectories as schema.OperationSchema, input, options) as async.Operation<types.DescribeSharedDirectoriesOutput>
 end
 
-function C:describeSnapshots(input: types.DescribeSnapshotsInput, options: any): async.Operation<types.DescribeSnapshotsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSnapshots, input, options) as async.Operation<types.DescribeSnapshotsOutput>
+function C:describeSnapshots(input: types.DescribeSnapshotsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSnapshotsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSnapshots as schema.OperationSchema, input, options) as async.Operation<types.DescribeSnapshotsOutput>
 end
 
-function C:describeTrusts(input: types.DescribeTrustsInput, options: any): async.Operation<types.DescribeTrustsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTrusts, input, options) as async.Operation<types.DescribeTrustsOutput>
+function C:describeTrusts(input: types.DescribeTrustsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTrustsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTrusts as schema.OperationSchema, input, options) as async.Operation<types.DescribeTrustsOutput>
 end
 
-function C:describeUpdateDirectory(input: types.DescribeUpdateDirectoryInput, options: any): async.Operation<types.DescribeUpdateDirectoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeUpdateDirectory, input, options) as async.Operation<types.DescribeUpdateDirectoryOutput>
+function C:describeUpdateDirectory(input: types.DescribeUpdateDirectoryInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeUpdateDirectoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeUpdateDirectory as schema.OperationSchema, input, options) as async.Operation<types.DescribeUpdateDirectoryOutput>
 end
 
-function C:disableCAEnrollmentPolicy(input: types.DisableCAEnrollmentPolicyInput, options: any): async.Operation<types.DisableCAEnrollmentPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableCAEnrollmentPolicy, input, options) as async.Operation<types.DisableCAEnrollmentPolicyOutput>
+function C:disableCAEnrollmentPolicy(input: types.DisableCAEnrollmentPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DisableCAEnrollmentPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableCAEnrollmentPolicy as schema.OperationSchema, input, options) as async.Operation<types.DisableCAEnrollmentPolicyOutput>
 end
 
-function C:disableClientAuthentication(input: types.DisableClientAuthenticationInput, options: any): async.Operation<types.DisableClientAuthenticationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableClientAuthentication, input, options) as async.Operation<types.DisableClientAuthenticationOutput>
+function C:disableClientAuthentication(input: types.DisableClientAuthenticationInput, options?: base_client.InvokeOptions): async.Operation<types.DisableClientAuthenticationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableClientAuthentication as schema.OperationSchema, input, options) as async.Operation<types.DisableClientAuthenticationOutput>
 end
 
-function C:disableDirectoryDataAccess(input: types.DisableDirectoryDataAccessInput, options: any): async.Operation<types.DisableDirectoryDataAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableDirectoryDataAccess, input, options) as async.Operation<types.DisableDirectoryDataAccessOutput>
+function C:disableDirectoryDataAccess(input: types.DisableDirectoryDataAccessInput, options?: base_client.InvokeOptions): async.Operation<types.DisableDirectoryDataAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableDirectoryDataAccess as schema.OperationSchema, input, options) as async.Operation<types.DisableDirectoryDataAccessOutput>
 end
 
-function C:disableLDAPS(input: types.DisableLDAPSInput, options: any): async.Operation<types.DisableLDAPSOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableLDAPS, input, options) as async.Operation<types.DisableLDAPSOutput>
+function C:disableLDAPS(input: types.DisableLDAPSInput, options?: base_client.InvokeOptions): async.Operation<types.DisableLDAPSOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableLDAPS as schema.OperationSchema, input, options) as async.Operation<types.DisableLDAPSOutput>
 end
 
-function C:disableRadius(input: types.DisableRadiusInput, options: any): async.Operation<types.DisableRadiusOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableRadius, input, options) as async.Operation<types.DisableRadiusOutput>
+function C:disableRadius(input: types.DisableRadiusInput, options?: base_client.InvokeOptions): async.Operation<types.DisableRadiusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableRadius as schema.OperationSchema, input, options) as async.Operation<types.DisableRadiusOutput>
 end
 
-function C:disableSso(input: types.DisableSsoInput, options: any): async.Operation<types.DisableSsoOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisableSso, input, options) as async.Operation<types.DisableSsoOutput>
+function C:disableSso(input: types.DisableSsoInput, options?: base_client.InvokeOptions): async.Operation<types.DisableSsoOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableSso as schema.OperationSchema, input, options) as async.Operation<types.DisableSsoOutput>
 end
 
-function C:enableCAEnrollmentPolicy(input: types.EnableCAEnrollmentPolicyInput, options: any): async.Operation<types.EnableCAEnrollmentPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableCAEnrollmentPolicy, input, options) as async.Operation<types.EnableCAEnrollmentPolicyOutput>
+function C:enableCAEnrollmentPolicy(input: types.EnableCAEnrollmentPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.EnableCAEnrollmentPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableCAEnrollmentPolicy as schema.OperationSchema, input, options) as async.Operation<types.EnableCAEnrollmentPolicyOutput>
 end
 
-function C:enableClientAuthentication(input: types.EnableClientAuthenticationInput, options: any): async.Operation<types.EnableClientAuthenticationOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableClientAuthentication, input, options) as async.Operation<types.EnableClientAuthenticationOutput>
+function C:enableClientAuthentication(input: types.EnableClientAuthenticationInput, options?: base_client.InvokeOptions): async.Operation<types.EnableClientAuthenticationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableClientAuthentication as schema.OperationSchema, input, options) as async.Operation<types.EnableClientAuthenticationOutput>
 end
 
-function C:enableDirectoryDataAccess(input: types.EnableDirectoryDataAccessInput, options: any): async.Operation<types.EnableDirectoryDataAccessOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableDirectoryDataAccess, input, options) as async.Operation<types.EnableDirectoryDataAccessOutput>
+function C:enableDirectoryDataAccess(input: types.EnableDirectoryDataAccessInput, options?: base_client.InvokeOptions): async.Operation<types.EnableDirectoryDataAccessOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableDirectoryDataAccess as schema.OperationSchema, input, options) as async.Operation<types.EnableDirectoryDataAccessOutput>
 end
 
-function C:enableLDAPS(input: types.EnableLDAPSInput, options: any): async.Operation<types.EnableLDAPSOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableLDAPS, input, options) as async.Operation<types.EnableLDAPSOutput>
+function C:enableLDAPS(input: types.EnableLDAPSInput, options?: base_client.InvokeOptions): async.Operation<types.EnableLDAPSOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableLDAPS as schema.OperationSchema, input, options) as async.Operation<types.EnableLDAPSOutput>
 end
 
-function C:enableRadius(input: types.EnableRadiusInput, options: any): async.Operation<types.EnableRadiusOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableRadius, input, options) as async.Operation<types.EnableRadiusOutput>
+function C:enableRadius(input: types.EnableRadiusInput, options?: base_client.InvokeOptions): async.Operation<types.EnableRadiusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableRadius as schema.OperationSchema, input, options) as async.Operation<types.EnableRadiusOutput>
 end
 
-function C:enableSso(input: types.EnableSsoInput, options: any): async.Operation<types.EnableSsoOutput>
-    return self:invokeOperation(schemas.Service, schemas.EnableSso, input, options) as async.Operation<types.EnableSsoOutput>
+function C:enableSso(input: types.EnableSsoInput, options?: base_client.InvokeOptions): async.Operation<types.EnableSsoOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableSso as schema.OperationSchema, input, options) as async.Operation<types.EnableSsoOutput>
 end
 
-function C:getDirectoryLimits(input: types.GetDirectoryLimitsInput, options: any): async.Operation<types.GetDirectoryLimitsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetDirectoryLimits, input, options) as async.Operation<types.GetDirectoryLimitsOutput>
+function C:getDirectoryLimits(input: types.GetDirectoryLimitsInput, options?: base_client.InvokeOptions): async.Operation<types.GetDirectoryLimitsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDirectoryLimits as schema.OperationSchema, input, options) as async.Operation<types.GetDirectoryLimitsOutput>
 end
 
-function C:getSnapshotLimits(input: types.GetSnapshotLimitsInput, options: any): async.Operation<types.GetSnapshotLimitsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSnapshotLimits, input, options) as async.Operation<types.GetSnapshotLimitsOutput>
+function C:getSnapshotLimits(input: types.GetSnapshotLimitsInput, options?: base_client.InvokeOptions): async.Operation<types.GetSnapshotLimitsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSnapshotLimits as schema.OperationSchema, input, options) as async.Operation<types.GetSnapshotLimitsOutput>
 end
 
-function C:listADAssessments(input: types.ListADAssessmentsInput, options: any): async.Operation<types.ListADAssessmentsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListADAssessments, input, options) as async.Operation<types.ListADAssessmentsOutput>
+function C:listADAssessments(input: types.ListADAssessmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListADAssessmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListADAssessments as schema.OperationSchema, input, options) as async.Operation<types.ListADAssessmentsOutput>
 end
 
-function C:listCertificates(input: types.ListCertificatesInput, options: any): async.Operation<types.ListCertificatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCertificates, input, options) as async.Operation<types.ListCertificatesOutput>
+function C:listCertificates(input: types.ListCertificatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCertificatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCertificates as schema.OperationSchema, input, options) as async.Operation<types.ListCertificatesOutput>
 end
 
-function C:listIpRoutes(input: types.ListIpRoutesInput, options: any): async.Operation<types.ListIpRoutesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIpRoutes, input, options) as async.Operation<types.ListIpRoutesOutput>
+function C:listIpRoutes(input: types.ListIpRoutesInput, options?: base_client.InvokeOptions): async.Operation<types.ListIpRoutesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIpRoutes as schema.OperationSchema, input, options) as async.Operation<types.ListIpRoutesOutput>
 end
 
-function C:listLogSubscriptions(input: types.ListLogSubscriptionsInput, options: any): async.Operation<types.ListLogSubscriptionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListLogSubscriptions, input, options) as async.Operation<types.ListLogSubscriptionsOutput>
+function C:listLogSubscriptions(input: types.ListLogSubscriptionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLogSubscriptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLogSubscriptions as schema.OperationSchema, input, options) as async.Operation<types.ListLogSubscriptionsOutput>
 end
 
-function C:listSchemaExtensions(input: types.ListSchemaExtensionsInput, options: any): async.Operation<types.ListSchemaExtensionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSchemaExtensions, input, options) as async.Operation<types.ListSchemaExtensionsOutput>
+function C:listSchemaExtensions(input: types.ListSchemaExtensionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSchemaExtensionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSchemaExtensions as schema.OperationSchema, input, options) as async.Operation<types.ListSchemaExtensionsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:registerCertificate(input: types.RegisterCertificateInput, options: any): async.Operation<types.RegisterCertificateOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterCertificate, input, options) as async.Operation<types.RegisterCertificateOutput>
+function C:registerCertificate(input: types.RegisterCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterCertificate as schema.OperationSchema, input, options) as async.Operation<types.RegisterCertificateOutput>
 end
 
-function C:registerEventTopic(input: types.RegisterEventTopicInput, options: any): async.Operation<types.RegisterEventTopicOutput>
-    return self:invokeOperation(schemas.Service, schemas.RegisterEventTopic, input, options) as async.Operation<types.RegisterEventTopicOutput>
+function C:registerEventTopic(input: types.RegisterEventTopicInput, options?: base_client.InvokeOptions): async.Operation<types.RegisterEventTopicOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterEventTopic as schema.OperationSchema, input, options) as async.Operation<types.RegisterEventTopicOutput>
 end
 
-function C:rejectSharedDirectory(input: types.RejectSharedDirectoryInput, options: any): async.Operation<types.RejectSharedDirectoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.RejectSharedDirectory, input, options) as async.Operation<types.RejectSharedDirectoryOutput>
+function C:rejectSharedDirectory(input: types.RejectSharedDirectoryInput, options?: base_client.InvokeOptions): async.Operation<types.RejectSharedDirectoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RejectSharedDirectory as schema.OperationSchema, input, options) as async.Operation<types.RejectSharedDirectoryOutput>
 end
 
-function C:removeIpRoutes(input: types.RemoveIpRoutesInput, options: any): async.Operation<types.RemoveIpRoutesOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveIpRoutes, input, options) as async.Operation<types.RemoveIpRoutesOutput>
+function C:removeIpRoutes(input: types.RemoveIpRoutesInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveIpRoutesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveIpRoutes as schema.OperationSchema, input, options) as async.Operation<types.RemoveIpRoutesOutput>
 end
 
-function C:removeRegion(input: types.RemoveRegionInput, options: any): async.Operation<types.RemoveRegionOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveRegion, input, options) as async.Operation<types.RemoveRegionOutput>
+function C:removeRegion(input: types.RemoveRegionInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveRegionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveRegion as schema.OperationSchema, input, options) as async.Operation<types.RemoveRegionOutput>
 end
 
-function C:removeTagsFromResource(input: types.RemoveTagsFromResourceInput, options: any): async.Operation<types.RemoveTagsFromResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.RemoveTagsFromResource, input, options) as async.Operation<types.RemoveTagsFromResourceOutput>
+function C:removeTagsFromResource(input: types.RemoveTagsFromResourceInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveTagsFromResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveTagsFromResource as schema.OperationSchema, input, options) as async.Operation<types.RemoveTagsFromResourceOutput>
 end
 
-function C:resetUserPassword(input: types.ResetUserPasswordInput, options: any): async.Operation<types.ResetUserPasswordOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResetUserPassword, input, options) as async.Operation<types.ResetUserPasswordOutput>
+function C:resetUserPassword(input: types.ResetUserPasswordInput, options?: base_client.InvokeOptions): async.Operation<types.ResetUserPasswordOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResetUserPassword as schema.OperationSchema, input, options) as async.Operation<types.ResetUserPasswordOutput>
 end
 
-function C:restoreFromSnapshot(input: types.RestoreFromSnapshotInput, options: any): async.Operation<types.RestoreFromSnapshotOutput>
-    return self:invokeOperation(schemas.Service, schemas.RestoreFromSnapshot, input, options) as async.Operation<types.RestoreFromSnapshotOutput>
+function C:restoreFromSnapshot(input: types.RestoreFromSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.RestoreFromSnapshotOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestoreFromSnapshot as schema.OperationSchema, input, options) as async.Operation<types.RestoreFromSnapshotOutput>
 end
 
-function C:shareDirectory(input: types.ShareDirectoryInput, options: any): async.Operation<types.ShareDirectoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.ShareDirectory, input, options) as async.Operation<types.ShareDirectoryOutput>
+function C:shareDirectory(input: types.ShareDirectoryInput, options?: base_client.InvokeOptions): async.Operation<types.ShareDirectoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ShareDirectory as schema.OperationSchema, input, options) as async.Operation<types.ShareDirectoryOutput>
 end
 
-function C:startADAssessment(input: types.StartADAssessmentInput, options: any): async.Operation<types.StartADAssessmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartADAssessment, input, options) as async.Operation<types.StartADAssessmentOutput>
+function C:startADAssessment(input: types.StartADAssessmentInput, options?: base_client.InvokeOptions): async.Operation<types.StartADAssessmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartADAssessment as schema.OperationSchema, input, options) as async.Operation<types.StartADAssessmentOutput>
 end
 
-function C:startSchemaExtension(input: types.StartSchemaExtensionInput, options: any): async.Operation<types.StartSchemaExtensionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartSchemaExtension, input, options) as async.Operation<types.StartSchemaExtensionOutput>
+function C:startSchemaExtension(input: types.StartSchemaExtensionInput, options?: base_client.InvokeOptions): async.Operation<types.StartSchemaExtensionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartSchemaExtension as schema.OperationSchema, input, options) as async.Operation<types.StartSchemaExtensionOutput>
 end
 
-function C:unshareDirectory(input: types.UnshareDirectoryInput, options: any): async.Operation<types.UnshareDirectoryOutput>
-    return self:invokeOperation(schemas.Service, schemas.UnshareDirectory, input, options) as async.Operation<types.UnshareDirectoryOutput>
+function C:unshareDirectory(input: types.UnshareDirectoryInput, options?: base_client.InvokeOptions): async.Operation<types.UnshareDirectoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UnshareDirectory as schema.OperationSchema, input, options) as async.Operation<types.UnshareDirectoryOutput>
 end
 
-function C:updateConditionalForwarder(input: types.UpdateConditionalForwarderInput, options: any): async.Operation<types.UpdateConditionalForwarderOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConditionalForwarder, input, options) as async.Operation<types.UpdateConditionalForwarderOutput>
+function C:updateConditionalForwarder(input: types.UpdateConditionalForwarderInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConditionalForwarderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConditionalForwarder as schema.OperationSchema, input, options) as async.Operation<types.UpdateConditionalForwarderOutput>
 end
 
-function C:updateDirectorySetup(input: types.UpdateDirectorySetupInput, options: any): async.Operation<types.UpdateDirectorySetupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDirectorySetup, input, options) as async.Operation<types.UpdateDirectorySetupOutput>
+function C:updateDirectorySetup(input: types.UpdateDirectorySetupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDirectorySetupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDirectorySetup as schema.OperationSchema, input, options) as async.Operation<types.UpdateDirectorySetupOutput>
 end
 
-function C:updateHybridAD(input: types.UpdateHybridADInput, options: any): async.Operation<types.UpdateHybridADOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateHybridAD, input, options) as async.Operation<types.UpdateHybridADOutput>
+function C:updateHybridAD(input: types.UpdateHybridADInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateHybridADOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateHybridAD as schema.OperationSchema, input, options) as async.Operation<types.UpdateHybridADOutput>
 end
 
-function C:updateNumberOfDomainControllers(input: types.UpdateNumberOfDomainControllersInput, options: any): async.Operation<types.UpdateNumberOfDomainControllersOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateNumberOfDomainControllers, input, options) as async.Operation<types.UpdateNumberOfDomainControllersOutput>
+function C:updateNumberOfDomainControllers(input: types.UpdateNumberOfDomainControllersInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNumberOfDomainControllersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNumberOfDomainControllers as schema.OperationSchema, input, options) as async.Operation<types.UpdateNumberOfDomainControllersOutput>
 end
 
-function C:updateRadius(input: types.UpdateRadiusInput, options: any): async.Operation<types.UpdateRadiusOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRadius, input, options) as async.Operation<types.UpdateRadiusOutput>
+function C:updateRadius(input: types.UpdateRadiusInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRadiusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRadius as schema.OperationSchema, input, options) as async.Operation<types.UpdateRadiusOutput>
 end
 
-function C:updateSettings(input: types.UpdateSettingsInput, options: any): async.Operation<types.UpdateSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSettings, input, options) as async.Operation<types.UpdateSettingsOutput>
+function C:updateSettings(input: types.UpdateSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSettings as schema.OperationSchema, input, options) as async.Operation<types.UpdateSettingsOutput>
 end
 
-function C:updateTrust(input: types.UpdateTrustInput, options: any): async.Operation<types.UpdateTrustOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTrust, input, options) as async.Operation<types.UpdateTrustOutput>
+function C:updateTrust(input: types.UpdateTrustInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTrustOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTrust as schema.OperationSchema, input, options) as async.Operation<types.UpdateTrustOutput>
 end
 
-function C:verifyTrust(input: types.VerifyTrustInput, options: any): async.Operation<types.VerifyTrustOutput>
-    return self:invokeOperation(schemas.Service, schemas.VerifyTrust, input, options) as async.Operation<types.VerifyTrustOutput>
+function C:verifyTrust(input: types.VerifyTrustInput, options?: base_client.InvokeOptions): async.Operation<types.VerifyTrustOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.VerifyTrust as schema.OperationSchema, input, options) as async.Operation<types.VerifyTrustOutput>
 end
 
 return M

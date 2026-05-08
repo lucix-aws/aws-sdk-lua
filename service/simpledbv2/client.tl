@@ -8,42 +8,45 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("simpledbv2.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("simpledbv2.schemas")
 local traits = require("smithy.traits")
 local types = require("simpledbv2.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    getExport: function(Client, types.GetExportInput, any): async.Operation<types.GetExportOutput>
-    listExports: function(Client, types.ListExportsInput, any): async.Operation<types.ListExportsOutput>
-    startDomainExport: function(Client, types.StartDomainExportInput, any): async.Operation<types.StartDomainExportOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    getExport: function(Client, types.GetExportInput, ? base_client.InvokeOptions): async.Operation<types.GetExportOutput>
+    listExports: function(Client, types.ListExportsInput, ? base_client.InvokeOptions): async.Operation<types.ListExportsOutput>
+    startDomainExport: function(Client, types.StartDomainExportInput, ? base_client.InvokeOptions): async.Operation<types.StartDomainExportOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "SimpleDBv2"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "sdb", signing_region = c.region } }
                 else
@@ -62,16 +65,16 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:getExport(input: types.GetExportInput, options: any): async.Operation<types.GetExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetExport, input, options) as async.Operation<types.GetExportOutput>
+function C:getExport(input: types.GetExportInput, options?: base_client.InvokeOptions): async.Operation<types.GetExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetExport as schema.OperationSchema, input, options) as async.Operation<types.GetExportOutput>
 end
 
-function C:listExports(input: types.ListExportsInput, options: any): async.Operation<types.ListExportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListExports, input, options) as async.Operation<types.ListExportsOutput>
+function C:listExports(input: types.ListExportsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExports as schema.OperationSchema, input, options) as async.Operation<types.ListExportsOutput>
 end
 
-function C:startDomainExport(input: types.StartDomainExportInput, options: any): async.Operation<types.StartDomainExportOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartDomainExport, input, options) as async.Operation<types.StartDomainExportOutput>
+function C:startDomainExport(input: types.StartDomainExportInput, options?: base_client.InvokeOptions): async.Operation<types.StartDomainExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDomainExport as schema.OperationSchema, input, options) as async.Operation<types.StartDomainExportOutput>
 end
 
 return M

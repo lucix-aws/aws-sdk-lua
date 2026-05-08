@@ -1,6 +1,6 @@
 -- Teal declarations for runtime/load_config.lua
 
-local config = require("config")
+local config = require("aws.config")
 
 local record load_config
     record ResolvedConfig

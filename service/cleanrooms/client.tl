@@ -8,127 +8,130 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("cleanrooms.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("cleanrooms.schemas")
 local traits = require("smithy.traits")
 local types = require("cleanrooms.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    batchGetCollaborationAnalysisTemplate: function(Client, types.BatchGetCollaborationAnalysisTemplateInput, any): async.Operation<types.BatchGetCollaborationAnalysisTemplateOutput>
-    batchGetSchema: function(Client, types.BatchGetSchemaInput, any): async.Operation<types.BatchGetSchemaOutput>
-    batchGetSchemaAnalysisRule: function(Client, types.BatchGetSchemaAnalysisRuleInput, any): async.Operation<types.BatchGetSchemaAnalysisRuleOutput>
-    createAnalysisTemplate: function(Client, types.CreateAnalysisTemplateInput, any): async.Operation<types.CreateAnalysisTemplateOutput>
-    createCollaboration: function(Client, types.CreateCollaborationInput, any): async.Operation<types.CreateCollaborationOutput>
-    createCollaborationChangeRequest: function(Client, types.CreateCollaborationChangeRequestInput, any): async.Operation<types.CreateCollaborationChangeRequestOutput>
-    createConfiguredAudienceModelAssociation: function(Client, types.CreateConfiguredAudienceModelAssociationInput, any): async.Operation<types.CreateConfiguredAudienceModelAssociationOutput>
-    createConfiguredTable: function(Client, types.CreateConfiguredTableInput, any): async.Operation<types.CreateConfiguredTableOutput>
-    createConfiguredTableAnalysisRule: function(Client, types.CreateConfiguredTableAnalysisRuleInput, any): async.Operation<types.CreateConfiguredTableAnalysisRuleOutput>
-    createConfiguredTableAssociation: function(Client, types.CreateConfiguredTableAssociationInput, any): async.Operation<types.CreateConfiguredTableAssociationOutput>
-    createConfiguredTableAssociationAnalysisRule: function(Client, types.CreateConfiguredTableAssociationAnalysisRuleInput, any): async.Operation<types.CreateConfiguredTableAssociationAnalysisRuleOutput>
-    createIdMappingTable: function(Client, types.CreateIdMappingTableInput, any): async.Operation<types.CreateIdMappingTableOutput>
-    createIdNamespaceAssociation: function(Client, types.CreateIdNamespaceAssociationInput, any): async.Operation<types.CreateIdNamespaceAssociationOutput>
-    createMembership: function(Client, types.CreateMembershipInput, any): async.Operation<types.CreateMembershipOutput>
-    createPrivacyBudgetTemplate: function(Client, types.CreatePrivacyBudgetTemplateInput, any): async.Operation<types.CreatePrivacyBudgetTemplateOutput>
-    deleteAnalysisTemplate: function(Client, types.DeleteAnalysisTemplateInput, any): async.Operation<types.DeleteAnalysisTemplateOutput>
-    deleteCollaboration: function(Client, types.DeleteCollaborationInput, any): async.Operation<types.DeleteCollaborationOutput>
-    deleteConfiguredAudienceModelAssociation: function(Client, types.DeleteConfiguredAudienceModelAssociationInput, any): async.Operation<types.DeleteConfiguredAudienceModelAssociationOutput>
-    deleteConfiguredTable: function(Client, types.DeleteConfiguredTableInput, any): async.Operation<types.DeleteConfiguredTableOutput>
-    deleteConfiguredTableAnalysisRule: function(Client, types.DeleteConfiguredTableAnalysisRuleInput, any): async.Operation<types.DeleteConfiguredTableAnalysisRuleOutput>
-    deleteConfiguredTableAssociation: function(Client, types.DeleteConfiguredTableAssociationInput, any): async.Operation<types.DeleteConfiguredTableAssociationOutput>
-    deleteConfiguredTableAssociationAnalysisRule: function(Client, types.DeleteConfiguredTableAssociationAnalysisRuleInput, any): async.Operation<types.DeleteConfiguredTableAssociationAnalysisRuleOutput>
-    deleteIdMappingTable: function(Client, types.DeleteIdMappingTableInput, any): async.Operation<types.DeleteIdMappingTableOutput>
-    deleteIdNamespaceAssociation: function(Client, types.DeleteIdNamespaceAssociationInput, any): async.Operation<types.DeleteIdNamespaceAssociationOutput>
-    deleteMember: function(Client, types.DeleteMemberInput, any): async.Operation<types.DeleteMemberOutput>
-    deleteMembership: function(Client, types.DeleteMembershipInput, any): async.Operation<types.DeleteMembershipOutput>
-    deletePrivacyBudgetTemplate: function(Client, types.DeletePrivacyBudgetTemplateInput, any): async.Operation<types.DeletePrivacyBudgetTemplateOutput>
-    getAnalysisTemplate: function(Client, types.GetAnalysisTemplateInput, any): async.Operation<types.GetAnalysisTemplateOutput>
-    getCollaboration: function(Client, types.GetCollaborationInput, any): async.Operation<types.GetCollaborationOutput>
-    getCollaborationAnalysisTemplate: function(Client, types.GetCollaborationAnalysisTemplateInput, any): async.Operation<types.GetCollaborationAnalysisTemplateOutput>
-    getCollaborationChangeRequest: function(Client, types.GetCollaborationChangeRequestInput, any): async.Operation<types.GetCollaborationChangeRequestOutput>
-    getCollaborationConfiguredAudienceModelAssociation: function(Client, types.GetCollaborationConfiguredAudienceModelAssociationInput, any): async.Operation<types.GetCollaborationConfiguredAudienceModelAssociationOutput>
-    getCollaborationIdNamespaceAssociation: function(Client, types.GetCollaborationIdNamespaceAssociationInput, any): async.Operation<types.GetCollaborationIdNamespaceAssociationOutput>
-    getCollaborationPrivacyBudgetTemplate: function(Client, types.GetCollaborationPrivacyBudgetTemplateInput, any): async.Operation<types.GetCollaborationPrivacyBudgetTemplateOutput>
-    getConfiguredAudienceModelAssociation: function(Client, types.GetConfiguredAudienceModelAssociationInput, any): async.Operation<types.GetConfiguredAudienceModelAssociationOutput>
-    getConfiguredTable: function(Client, types.GetConfiguredTableInput, any): async.Operation<types.GetConfiguredTableOutput>
-    getConfiguredTableAnalysisRule: function(Client, types.GetConfiguredTableAnalysisRuleInput, any): async.Operation<types.GetConfiguredTableAnalysisRuleOutput>
-    getConfiguredTableAssociation: function(Client, types.GetConfiguredTableAssociationInput, any): async.Operation<types.GetConfiguredTableAssociationOutput>
-    getConfiguredTableAssociationAnalysisRule: function(Client, types.GetConfiguredTableAssociationAnalysisRuleInput, any): async.Operation<types.GetConfiguredTableAssociationAnalysisRuleOutput>
-    getIdMappingTable: function(Client, types.GetIdMappingTableInput, any): async.Operation<types.GetIdMappingTableOutput>
-    getIdNamespaceAssociation: function(Client, types.GetIdNamespaceAssociationInput, any): async.Operation<types.GetIdNamespaceAssociationOutput>
-    getMembership: function(Client, types.GetMembershipInput, any): async.Operation<types.GetMembershipOutput>
-    getPrivacyBudgetTemplate: function(Client, types.GetPrivacyBudgetTemplateInput, any): async.Operation<types.GetPrivacyBudgetTemplateOutput>
-    getProtectedJob: function(Client, types.GetProtectedJobInput, any): async.Operation<types.GetProtectedJobOutput>
-    getProtectedQuery: function(Client, types.GetProtectedQueryInput, any): async.Operation<types.GetProtectedQueryOutput>
-    getSchema: function(Client, types.GetSchemaInput, any): async.Operation<types.GetSchemaOutput>
-    getSchemaAnalysisRule: function(Client, types.GetSchemaAnalysisRuleInput, any): async.Operation<types.GetSchemaAnalysisRuleOutput>
-    listAnalysisTemplates: function(Client, types.ListAnalysisTemplatesInput, any): async.Operation<types.ListAnalysisTemplatesOutput>
-    listCollaborationAnalysisTemplates: function(Client, types.ListCollaborationAnalysisTemplatesInput, any): async.Operation<types.ListCollaborationAnalysisTemplatesOutput>
-    listCollaborationChangeRequests: function(Client, types.ListCollaborationChangeRequestsInput, any): async.Operation<types.ListCollaborationChangeRequestsOutput>
-    listCollaborationConfiguredAudienceModelAssociations: function(Client, types.ListCollaborationConfiguredAudienceModelAssociationsInput, any): async.Operation<types.ListCollaborationConfiguredAudienceModelAssociationsOutput>
-    listCollaborationIdNamespaceAssociations: function(Client, types.ListCollaborationIdNamespaceAssociationsInput, any): async.Operation<types.ListCollaborationIdNamespaceAssociationsOutput>
-    listCollaborationPrivacyBudgets: function(Client, types.ListCollaborationPrivacyBudgetsInput, any): async.Operation<types.ListCollaborationPrivacyBudgetsOutput>
-    listCollaborationPrivacyBudgetTemplates: function(Client, types.ListCollaborationPrivacyBudgetTemplatesInput, any): async.Operation<types.ListCollaborationPrivacyBudgetTemplatesOutput>
-    listCollaborations: function(Client, types.ListCollaborationsInput, any): async.Operation<types.ListCollaborationsOutput>
-    listConfiguredAudienceModelAssociations: function(Client, types.ListConfiguredAudienceModelAssociationsInput, any): async.Operation<types.ListConfiguredAudienceModelAssociationsOutput>
-    listConfiguredTableAssociations: function(Client, types.ListConfiguredTableAssociationsInput, any): async.Operation<types.ListConfiguredTableAssociationsOutput>
-    listConfiguredTables: function(Client, types.ListConfiguredTablesInput, any): async.Operation<types.ListConfiguredTablesOutput>
-    listIdMappingTables: function(Client, types.ListIdMappingTablesInput, any): async.Operation<types.ListIdMappingTablesOutput>
-    listIdNamespaceAssociations: function(Client, types.ListIdNamespaceAssociationsInput, any): async.Operation<types.ListIdNamespaceAssociationsOutput>
-    listMembers: function(Client, types.ListMembersInput, any): async.Operation<types.ListMembersOutput>
-    listMemberships: function(Client, types.ListMembershipsInput, any): async.Operation<types.ListMembershipsOutput>
-    listPrivacyBudgets: function(Client, types.ListPrivacyBudgetsInput, any): async.Operation<types.ListPrivacyBudgetsOutput>
-    listPrivacyBudgetTemplates: function(Client, types.ListPrivacyBudgetTemplatesInput, any): async.Operation<types.ListPrivacyBudgetTemplatesOutput>
-    listProtectedJobs: function(Client, types.ListProtectedJobsInput, any): async.Operation<types.ListProtectedJobsOutput>
-    listProtectedQueries: function(Client, types.ListProtectedQueriesInput, any): async.Operation<types.ListProtectedQueriesOutput>
-    listSchemas: function(Client, types.ListSchemasInput, any): async.Operation<types.ListSchemasOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    populateIdMappingTable: function(Client, types.PopulateIdMappingTableInput, any): async.Operation<types.PopulateIdMappingTableOutput>
-    previewPrivacyImpact: function(Client, types.PreviewPrivacyImpactInput, any): async.Operation<types.PreviewPrivacyImpactOutput>
-    startProtectedJob: function(Client, types.StartProtectedJobInput, any): async.Operation<types.StartProtectedJobOutput>
-    startProtectedQuery: function(Client, types.StartProtectedQueryInput, any): async.Operation<types.StartProtectedQueryOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAnalysisTemplate: function(Client, types.UpdateAnalysisTemplateInput, any): async.Operation<types.UpdateAnalysisTemplateOutput>
-    updateCollaboration: function(Client, types.UpdateCollaborationInput, any): async.Operation<types.UpdateCollaborationOutput>
-    updateCollaborationChangeRequest: function(Client, types.UpdateCollaborationChangeRequestInput, any): async.Operation<types.UpdateCollaborationChangeRequestOutput>
-    updateConfiguredAudienceModelAssociation: function(Client, types.UpdateConfiguredAudienceModelAssociationInput, any): async.Operation<types.UpdateConfiguredAudienceModelAssociationOutput>
-    updateConfiguredTable: function(Client, types.UpdateConfiguredTableInput, any): async.Operation<types.UpdateConfiguredTableOutput>
-    updateConfiguredTableAnalysisRule: function(Client, types.UpdateConfiguredTableAnalysisRuleInput, any): async.Operation<types.UpdateConfiguredTableAnalysisRuleOutput>
-    updateConfiguredTableAssociation: function(Client, types.UpdateConfiguredTableAssociationInput, any): async.Operation<types.UpdateConfiguredTableAssociationOutput>
-    updateConfiguredTableAssociationAnalysisRule: function(Client, types.UpdateConfiguredTableAssociationAnalysisRuleInput, any): async.Operation<types.UpdateConfiguredTableAssociationAnalysisRuleOutput>
-    updateIdMappingTable: function(Client, types.UpdateIdMappingTableInput, any): async.Operation<types.UpdateIdMappingTableOutput>
-    updateIdNamespaceAssociation: function(Client, types.UpdateIdNamespaceAssociationInput, any): async.Operation<types.UpdateIdNamespaceAssociationOutput>
-    updateMembership: function(Client, types.UpdateMembershipInput, any): async.Operation<types.UpdateMembershipOutput>
-    updatePrivacyBudgetTemplate: function(Client, types.UpdatePrivacyBudgetTemplateInput, any): async.Operation<types.UpdatePrivacyBudgetTemplateOutput>
-    updateProtectedJob: function(Client, types.UpdateProtectedJobInput, any): async.Operation<types.UpdateProtectedJobOutput>
-    updateProtectedQuery: function(Client, types.UpdateProtectedQueryInput, any): async.Operation<types.UpdateProtectedQueryOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchGetCollaborationAnalysisTemplate: function(Client, types.BatchGetCollaborationAnalysisTemplateInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetCollaborationAnalysisTemplateOutput>
+    batchGetSchema: function(Client, types.BatchGetSchemaInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetSchemaOutput>
+    batchGetSchemaAnalysisRule: function(Client, types.BatchGetSchemaAnalysisRuleInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetSchemaAnalysisRuleOutput>
+    createAnalysisTemplate: function(Client, types.CreateAnalysisTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateAnalysisTemplateOutput>
+    createCollaboration: function(Client, types.CreateCollaborationInput, ? base_client.InvokeOptions): async.Operation<types.CreateCollaborationOutput>
+    createCollaborationChangeRequest: function(Client, types.CreateCollaborationChangeRequestInput, ? base_client.InvokeOptions): async.Operation<types.CreateCollaborationChangeRequestOutput>
+    createConfiguredAudienceModelAssociation: function(Client, types.CreateConfiguredAudienceModelAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfiguredAudienceModelAssociationOutput>
+    createConfiguredTable: function(Client, types.CreateConfiguredTableInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfiguredTableOutput>
+    createConfiguredTableAnalysisRule: function(Client, types.CreateConfiguredTableAnalysisRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfiguredTableAnalysisRuleOutput>
+    createConfiguredTableAssociation: function(Client, types.CreateConfiguredTableAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfiguredTableAssociationOutput>
+    createConfiguredTableAssociationAnalysisRule: function(Client, types.CreateConfiguredTableAssociationAnalysisRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfiguredTableAssociationAnalysisRuleOutput>
+    createIdMappingTable: function(Client, types.CreateIdMappingTableInput, ? base_client.InvokeOptions): async.Operation<types.CreateIdMappingTableOutput>
+    createIdNamespaceAssociation: function(Client, types.CreateIdNamespaceAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateIdNamespaceAssociationOutput>
+    createMembership: function(Client, types.CreateMembershipInput, ? base_client.InvokeOptions): async.Operation<types.CreateMembershipOutput>
+    createPrivacyBudgetTemplate: function(Client, types.CreatePrivacyBudgetTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreatePrivacyBudgetTemplateOutput>
+    deleteAnalysisTemplate: function(Client, types.DeleteAnalysisTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAnalysisTemplateOutput>
+    deleteCollaboration: function(Client, types.DeleteCollaborationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCollaborationOutput>
+    deleteConfiguredAudienceModelAssociation: function(Client, types.DeleteConfiguredAudienceModelAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfiguredAudienceModelAssociationOutput>
+    deleteConfiguredTable: function(Client, types.DeleteConfiguredTableInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfiguredTableOutput>
+    deleteConfiguredTableAnalysisRule: function(Client, types.DeleteConfiguredTableAnalysisRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfiguredTableAnalysisRuleOutput>
+    deleteConfiguredTableAssociation: function(Client, types.DeleteConfiguredTableAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfiguredTableAssociationOutput>
+    deleteConfiguredTableAssociationAnalysisRule: function(Client, types.DeleteConfiguredTableAssociationAnalysisRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfiguredTableAssociationAnalysisRuleOutput>
+    deleteIdMappingTable: function(Client, types.DeleteIdMappingTableInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIdMappingTableOutput>
+    deleteIdNamespaceAssociation: function(Client, types.DeleteIdNamespaceAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIdNamespaceAssociationOutput>
+    deleteMember: function(Client, types.DeleteMemberInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMemberOutput>
+    deleteMembership: function(Client, types.DeleteMembershipInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMembershipOutput>
+    deletePrivacyBudgetTemplate: function(Client, types.DeletePrivacyBudgetTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeletePrivacyBudgetTemplateOutput>
+    getAnalysisTemplate: function(Client, types.GetAnalysisTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetAnalysisTemplateOutput>
+    getCollaboration: function(Client, types.GetCollaborationInput, ? base_client.InvokeOptions): async.Operation<types.GetCollaborationOutput>
+    getCollaborationAnalysisTemplate: function(Client, types.GetCollaborationAnalysisTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetCollaborationAnalysisTemplateOutput>
+    getCollaborationChangeRequest: function(Client, types.GetCollaborationChangeRequestInput, ? base_client.InvokeOptions): async.Operation<types.GetCollaborationChangeRequestOutput>
+    getCollaborationConfiguredAudienceModelAssociation: function(Client, types.GetCollaborationConfiguredAudienceModelAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetCollaborationConfiguredAudienceModelAssociationOutput>
+    getCollaborationIdNamespaceAssociation: function(Client, types.GetCollaborationIdNamespaceAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetCollaborationIdNamespaceAssociationOutput>
+    getCollaborationPrivacyBudgetTemplate: function(Client, types.GetCollaborationPrivacyBudgetTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetCollaborationPrivacyBudgetTemplateOutput>
+    getConfiguredAudienceModelAssociation: function(Client, types.GetConfiguredAudienceModelAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetConfiguredAudienceModelAssociationOutput>
+    getConfiguredTable: function(Client, types.GetConfiguredTableInput, ? base_client.InvokeOptions): async.Operation<types.GetConfiguredTableOutput>
+    getConfiguredTableAnalysisRule: function(Client, types.GetConfiguredTableAnalysisRuleInput, ? base_client.InvokeOptions): async.Operation<types.GetConfiguredTableAnalysisRuleOutput>
+    getConfiguredTableAssociation: function(Client, types.GetConfiguredTableAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetConfiguredTableAssociationOutput>
+    getConfiguredTableAssociationAnalysisRule: function(Client, types.GetConfiguredTableAssociationAnalysisRuleInput, ? base_client.InvokeOptions): async.Operation<types.GetConfiguredTableAssociationAnalysisRuleOutput>
+    getIdMappingTable: function(Client, types.GetIdMappingTableInput, ? base_client.InvokeOptions): async.Operation<types.GetIdMappingTableOutput>
+    getIdNamespaceAssociation: function(Client, types.GetIdNamespaceAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetIdNamespaceAssociationOutput>
+    getMembership: function(Client, types.GetMembershipInput, ? base_client.InvokeOptions): async.Operation<types.GetMembershipOutput>
+    getPrivacyBudgetTemplate: function(Client, types.GetPrivacyBudgetTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetPrivacyBudgetTemplateOutput>
+    getProtectedJob: function(Client, types.GetProtectedJobInput, ? base_client.InvokeOptions): async.Operation<types.GetProtectedJobOutput>
+    getProtectedQuery: function(Client, types.GetProtectedQueryInput, ? base_client.InvokeOptions): async.Operation<types.GetProtectedQueryOutput>
+    getSchema: function(Client, types.GetSchemaInput, ? base_client.InvokeOptions): async.Operation<types.GetSchemaOutput>
+    getSchemaAnalysisRule: function(Client, types.GetSchemaAnalysisRuleInput, ? base_client.InvokeOptions): async.Operation<types.GetSchemaAnalysisRuleOutput>
+    listAnalysisTemplates: function(Client, types.ListAnalysisTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListAnalysisTemplatesOutput>
+    listCollaborationAnalysisTemplates: function(Client, types.ListCollaborationAnalysisTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListCollaborationAnalysisTemplatesOutput>
+    listCollaborationChangeRequests: function(Client, types.ListCollaborationChangeRequestsInput, ? base_client.InvokeOptions): async.Operation<types.ListCollaborationChangeRequestsOutput>
+    listCollaborationConfiguredAudienceModelAssociations: function(Client, types.ListCollaborationConfiguredAudienceModelAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListCollaborationConfiguredAudienceModelAssociationsOutput>
+    listCollaborationIdNamespaceAssociations: function(Client, types.ListCollaborationIdNamespaceAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListCollaborationIdNamespaceAssociationsOutput>
+    listCollaborationPrivacyBudgets: function(Client, types.ListCollaborationPrivacyBudgetsInput, ? base_client.InvokeOptions): async.Operation<types.ListCollaborationPrivacyBudgetsOutput>
+    listCollaborationPrivacyBudgetTemplates: function(Client, types.ListCollaborationPrivacyBudgetTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListCollaborationPrivacyBudgetTemplatesOutput>
+    listCollaborations: function(Client, types.ListCollaborationsInput, ? base_client.InvokeOptions): async.Operation<types.ListCollaborationsOutput>
+    listConfiguredAudienceModelAssociations: function(Client, types.ListConfiguredAudienceModelAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListConfiguredAudienceModelAssociationsOutput>
+    listConfiguredTableAssociations: function(Client, types.ListConfiguredTableAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListConfiguredTableAssociationsOutput>
+    listConfiguredTables: function(Client, types.ListConfiguredTablesInput, ? base_client.InvokeOptions): async.Operation<types.ListConfiguredTablesOutput>
+    listIdMappingTables: function(Client, types.ListIdMappingTablesInput, ? base_client.InvokeOptions): async.Operation<types.ListIdMappingTablesOutput>
+    listIdNamespaceAssociations: function(Client, types.ListIdNamespaceAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListIdNamespaceAssociationsOutput>
+    listMembers: function(Client, types.ListMembersInput, ? base_client.InvokeOptions): async.Operation<types.ListMembersOutput>
+    listMemberships: function(Client, types.ListMembershipsInput, ? base_client.InvokeOptions): async.Operation<types.ListMembershipsOutput>
+    listPrivacyBudgets: function(Client, types.ListPrivacyBudgetsInput, ? base_client.InvokeOptions): async.Operation<types.ListPrivacyBudgetsOutput>
+    listPrivacyBudgetTemplates: function(Client, types.ListPrivacyBudgetTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListPrivacyBudgetTemplatesOutput>
+    listProtectedJobs: function(Client, types.ListProtectedJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListProtectedJobsOutput>
+    listProtectedQueries: function(Client, types.ListProtectedQueriesInput, ? base_client.InvokeOptions): async.Operation<types.ListProtectedQueriesOutput>
+    listSchemas: function(Client, types.ListSchemasInput, ? base_client.InvokeOptions): async.Operation<types.ListSchemasOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    populateIdMappingTable: function(Client, types.PopulateIdMappingTableInput, ? base_client.InvokeOptions): async.Operation<types.PopulateIdMappingTableOutput>
+    previewPrivacyImpact: function(Client, types.PreviewPrivacyImpactInput, ? base_client.InvokeOptions): async.Operation<types.PreviewPrivacyImpactOutput>
+    startProtectedJob: function(Client, types.StartProtectedJobInput, ? base_client.InvokeOptions): async.Operation<types.StartProtectedJobOutput>
+    startProtectedQuery: function(Client, types.StartProtectedQueryInput, ? base_client.InvokeOptions): async.Operation<types.StartProtectedQueryOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAnalysisTemplate: function(Client, types.UpdateAnalysisTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAnalysisTemplateOutput>
+    updateCollaboration: function(Client, types.UpdateCollaborationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCollaborationOutput>
+    updateCollaborationChangeRequest: function(Client, types.UpdateCollaborationChangeRequestInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCollaborationChangeRequestOutput>
+    updateConfiguredAudienceModelAssociation: function(Client, types.UpdateConfiguredAudienceModelAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfiguredAudienceModelAssociationOutput>
+    updateConfiguredTable: function(Client, types.UpdateConfiguredTableInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfiguredTableOutput>
+    updateConfiguredTableAnalysisRule: function(Client, types.UpdateConfiguredTableAnalysisRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfiguredTableAnalysisRuleOutput>
+    updateConfiguredTableAssociation: function(Client, types.UpdateConfiguredTableAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfiguredTableAssociationOutput>
+    updateConfiguredTableAssociationAnalysisRule: function(Client, types.UpdateConfiguredTableAssociationAnalysisRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfiguredTableAssociationAnalysisRuleOutput>
+    updateIdMappingTable: function(Client, types.UpdateIdMappingTableInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIdMappingTableOutput>
+    updateIdNamespaceAssociation: function(Client, types.UpdateIdNamespaceAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIdNamespaceAssociationOutput>
+    updateMembership: function(Client, types.UpdateMembershipInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMembershipOutput>
+    updatePrivacyBudgetTemplate: function(Client, types.UpdatePrivacyBudgetTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePrivacyBudgetTemplateOutput>
+    updateProtectedJob: function(Client, types.UpdateProtectedJobInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProtectedJobOutput>
+    updateProtectedQuery: function(Client, types.UpdateProtectedQueryInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProtectedQueryOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AWSBastionControlPlaneServiceLambda"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "cleanrooms", signing_region = c.region } }
                 else
@@ -147,356 +150,356 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:batchGetCollaborationAnalysisTemplate(input: types.BatchGetCollaborationAnalysisTemplateInput, options: any): async.Operation<types.BatchGetCollaborationAnalysisTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetCollaborationAnalysisTemplate, input, options) as async.Operation<types.BatchGetCollaborationAnalysisTemplateOutput>
+function C:batchGetCollaborationAnalysisTemplate(input: types.BatchGetCollaborationAnalysisTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetCollaborationAnalysisTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetCollaborationAnalysisTemplate as schema.OperationSchema, input, options) as async.Operation<types.BatchGetCollaborationAnalysisTemplateOutput>
 end
 
-function C:batchGetSchema(input: types.BatchGetSchemaInput, options: any): async.Operation<types.BatchGetSchemaOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetSchema, input, options) as async.Operation<types.BatchGetSchemaOutput>
+function C:batchGetSchema(input: types.BatchGetSchemaInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetSchemaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetSchema as schema.OperationSchema, input, options) as async.Operation<types.BatchGetSchemaOutput>
 end
 
-function C:batchGetSchemaAnalysisRule(input: types.BatchGetSchemaAnalysisRuleInput, options: any): async.Operation<types.BatchGetSchemaAnalysisRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.BatchGetSchemaAnalysisRule, input, options) as async.Operation<types.BatchGetSchemaAnalysisRuleOutput>
+function C:batchGetSchemaAnalysisRule(input: types.BatchGetSchemaAnalysisRuleInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetSchemaAnalysisRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetSchemaAnalysisRule as schema.OperationSchema, input, options) as async.Operation<types.BatchGetSchemaAnalysisRuleOutput>
 end
 
-function C:createAnalysisTemplate(input: types.CreateAnalysisTemplateInput, options: any): async.Operation<types.CreateAnalysisTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAnalysisTemplate, input, options) as async.Operation<types.CreateAnalysisTemplateOutput>
+function C:createAnalysisTemplate(input: types.CreateAnalysisTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAnalysisTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAnalysisTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreateAnalysisTemplateOutput>
 end
 
-function C:createCollaboration(input: types.CreateCollaborationInput, options: any): async.Operation<types.CreateCollaborationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCollaboration, input, options) as async.Operation<types.CreateCollaborationOutput>
+function C:createCollaboration(input: types.CreateCollaborationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCollaborationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCollaboration as schema.OperationSchema, input, options) as async.Operation<types.CreateCollaborationOutput>
 end
 
-function C:createCollaborationChangeRequest(input: types.CreateCollaborationChangeRequestInput, options: any): async.Operation<types.CreateCollaborationChangeRequestOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCollaborationChangeRequest, input, options) as async.Operation<types.CreateCollaborationChangeRequestOutput>
+function C:createCollaborationChangeRequest(input: types.CreateCollaborationChangeRequestInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCollaborationChangeRequestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCollaborationChangeRequest as schema.OperationSchema, input, options) as async.Operation<types.CreateCollaborationChangeRequestOutput>
 end
 
-function C:createConfiguredAudienceModelAssociation(input: types.CreateConfiguredAudienceModelAssociationInput, options: any): async.Operation<types.CreateConfiguredAudienceModelAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConfiguredAudienceModelAssociation, input, options) as async.Operation<types.CreateConfiguredAudienceModelAssociationOutput>
+function C:createConfiguredAudienceModelAssociation(input: types.CreateConfiguredAudienceModelAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConfiguredAudienceModelAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConfiguredAudienceModelAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreateConfiguredAudienceModelAssociationOutput>
 end
 
-function C:createConfiguredTable(input: types.CreateConfiguredTableInput, options: any): async.Operation<types.CreateConfiguredTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConfiguredTable, input, options) as async.Operation<types.CreateConfiguredTableOutput>
+function C:createConfiguredTable(input: types.CreateConfiguredTableInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConfiguredTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConfiguredTable as schema.OperationSchema, input, options) as async.Operation<types.CreateConfiguredTableOutput>
 end
 
-function C:createConfiguredTableAnalysisRule(input: types.CreateConfiguredTableAnalysisRuleInput, options: any): async.Operation<types.CreateConfiguredTableAnalysisRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConfiguredTableAnalysisRule, input, options) as async.Operation<types.CreateConfiguredTableAnalysisRuleOutput>
+function C:createConfiguredTableAnalysisRule(input: types.CreateConfiguredTableAnalysisRuleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConfiguredTableAnalysisRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConfiguredTableAnalysisRule as schema.OperationSchema, input, options) as async.Operation<types.CreateConfiguredTableAnalysisRuleOutput>
 end
 
-function C:createConfiguredTableAssociation(input: types.CreateConfiguredTableAssociationInput, options: any): async.Operation<types.CreateConfiguredTableAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConfiguredTableAssociation, input, options) as async.Operation<types.CreateConfiguredTableAssociationOutput>
+function C:createConfiguredTableAssociation(input: types.CreateConfiguredTableAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConfiguredTableAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConfiguredTableAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreateConfiguredTableAssociationOutput>
 end
 
-function C:createConfiguredTableAssociationAnalysisRule(input: types.CreateConfiguredTableAssociationAnalysisRuleInput, options: any): async.Operation<types.CreateConfiguredTableAssociationAnalysisRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConfiguredTableAssociationAnalysisRule, input, options) as async.Operation<types.CreateConfiguredTableAssociationAnalysisRuleOutput>
+function C:createConfiguredTableAssociationAnalysisRule(input: types.CreateConfiguredTableAssociationAnalysisRuleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConfiguredTableAssociationAnalysisRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConfiguredTableAssociationAnalysisRule as schema.OperationSchema, input, options) as async.Operation<types.CreateConfiguredTableAssociationAnalysisRuleOutput>
 end
 
-function C:createIdMappingTable(input: types.CreateIdMappingTableInput, options: any): async.Operation<types.CreateIdMappingTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIdMappingTable, input, options) as async.Operation<types.CreateIdMappingTableOutput>
+function C:createIdMappingTable(input: types.CreateIdMappingTableInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIdMappingTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIdMappingTable as schema.OperationSchema, input, options) as async.Operation<types.CreateIdMappingTableOutput>
 end
 
-function C:createIdNamespaceAssociation(input: types.CreateIdNamespaceAssociationInput, options: any): async.Operation<types.CreateIdNamespaceAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateIdNamespaceAssociation, input, options) as async.Operation<types.CreateIdNamespaceAssociationOutput>
+function C:createIdNamespaceAssociation(input: types.CreateIdNamespaceAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIdNamespaceAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIdNamespaceAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreateIdNamespaceAssociationOutput>
 end
 
-function C:createMembership(input: types.CreateMembershipInput, options: any): async.Operation<types.CreateMembershipOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMembership, input, options) as async.Operation<types.CreateMembershipOutput>
+function C:createMembership(input: types.CreateMembershipInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMembershipOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMembership as schema.OperationSchema, input, options) as async.Operation<types.CreateMembershipOutput>
 end
 
-function C:createPrivacyBudgetTemplate(input: types.CreatePrivacyBudgetTemplateInput, options: any): async.Operation<types.CreatePrivacyBudgetTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePrivacyBudgetTemplate, input, options) as async.Operation<types.CreatePrivacyBudgetTemplateOutput>
+function C:createPrivacyBudgetTemplate(input: types.CreatePrivacyBudgetTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePrivacyBudgetTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePrivacyBudgetTemplate as schema.OperationSchema, input, options) as async.Operation<types.CreatePrivacyBudgetTemplateOutput>
 end
 
-function C:deleteAnalysisTemplate(input: types.DeleteAnalysisTemplateInput, options: any): async.Operation<types.DeleteAnalysisTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAnalysisTemplate, input, options) as async.Operation<types.DeleteAnalysisTemplateOutput>
+function C:deleteAnalysisTemplate(input: types.DeleteAnalysisTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAnalysisTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAnalysisTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeleteAnalysisTemplateOutput>
 end
 
-function C:deleteCollaboration(input: types.DeleteCollaborationInput, options: any): async.Operation<types.DeleteCollaborationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCollaboration, input, options) as async.Operation<types.DeleteCollaborationOutput>
+function C:deleteCollaboration(input: types.DeleteCollaborationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCollaborationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCollaboration as schema.OperationSchema, input, options) as async.Operation<types.DeleteCollaborationOutput>
 end
 
-function C:deleteConfiguredAudienceModelAssociation(input: types.DeleteConfiguredAudienceModelAssociationInput, options: any): async.Operation<types.DeleteConfiguredAudienceModelAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConfiguredAudienceModelAssociation, input, options) as async.Operation<types.DeleteConfiguredAudienceModelAssociationOutput>
+function C:deleteConfiguredAudienceModelAssociation(input: types.DeleteConfiguredAudienceModelAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConfiguredAudienceModelAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConfiguredAudienceModelAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteConfiguredAudienceModelAssociationOutput>
 end
 
-function C:deleteConfiguredTable(input: types.DeleteConfiguredTableInput, options: any): async.Operation<types.DeleteConfiguredTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConfiguredTable, input, options) as async.Operation<types.DeleteConfiguredTableOutput>
+function C:deleteConfiguredTable(input: types.DeleteConfiguredTableInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConfiguredTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConfiguredTable as schema.OperationSchema, input, options) as async.Operation<types.DeleteConfiguredTableOutput>
 end
 
-function C:deleteConfiguredTableAnalysisRule(input: types.DeleteConfiguredTableAnalysisRuleInput, options: any): async.Operation<types.DeleteConfiguredTableAnalysisRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConfiguredTableAnalysisRule, input, options) as async.Operation<types.DeleteConfiguredTableAnalysisRuleOutput>
+function C:deleteConfiguredTableAnalysisRule(input: types.DeleteConfiguredTableAnalysisRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConfiguredTableAnalysisRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConfiguredTableAnalysisRule as schema.OperationSchema, input, options) as async.Operation<types.DeleteConfiguredTableAnalysisRuleOutput>
 end
 
-function C:deleteConfiguredTableAssociation(input: types.DeleteConfiguredTableAssociationInput, options: any): async.Operation<types.DeleteConfiguredTableAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConfiguredTableAssociation, input, options) as async.Operation<types.DeleteConfiguredTableAssociationOutput>
+function C:deleteConfiguredTableAssociation(input: types.DeleteConfiguredTableAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConfiguredTableAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConfiguredTableAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteConfiguredTableAssociationOutput>
 end
 
-function C:deleteConfiguredTableAssociationAnalysisRule(input: types.DeleteConfiguredTableAssociationAnalysisRuleInput, options: any): async.Operation<types.DeleteConfiguredTableAssociationAnalysisRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConfiguredTableAssociationAnalysisRule, input, options) as async.Operation<types.DeleteConfiguredTableAssociationAnalysisRuleOutput>
+function C:deleteConfiguredTableAssociationAnalysisRule(input: types.DeleteConfiguredTableAssociationAnalysisRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConfiguredTableAssociationAnalysisRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConfiguredTableAssociationAnalysisRule as schema.OperationSchema, input, options) as async.Operation<types.DeleteConfiguredTableAssociationAnalysisRuleOutput>
 end
 
-function C:deleteIdMappingTable(input: types.DeleteIdMappingTableInput, options: any): async.Operation<types.DeleteIdMappingTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIdMappingTable, input, options) as async.Operation<types.DeleteIdMappingTableOutput>
+function C:deleteIdMappingTable(input: types.DeleteIdMappingTableInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIdMappingTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIdMappingTable as schema.OperationSchema, input, options) as async.Operation<types.DeleteIdMappingTableOutput>
 end
 
-function C:deleteIdNamespaceAssociation(input: types.DeleteIdNamespaceAssociationInput, options: any): async.Operation<types.DeleteIdNamespaceAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteIdNamespaceAssociation, input, options) as async.Operation<types.DeleteIdNamespaceAssociationOutput>
+function C:deleteIdNamespaceAssociation(input: types.DeleteIdNamespaceAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIdNamespaceAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIdNamespaceAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteIdNamespaceAssociationOutput>
 end
 
-function C:deleteMember(input: types.DeleteMemberInput, options: any): async.Operation<types.DeleteMemberOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMember, input, options) as async.Operation<types.DeleteMemberOutput>
+function C:deleteMember(input: types.DeleteMemberInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMemberOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMember as schema.OperationSchema, input, options) as async.Operation<types.DeleteMemberOutput>
 end
 
-function C:deleteMembership(input: types.DeleteMembershipInput, options: any): async.Operation<types.DeleteMembershipOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMembership, input, options) as async.Operation<types.DeleteMembershipOutput>
+function C:deleteMembership(input: types.DeleteMembershipInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMembershipOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMembership as schema.OperationSchema, input, options) as async.Operation<types.DeleteMembershipOutput>
 end
 
-function C:deletePrivacyBudgetTemplate(input: types.DeletePrivacyBudgetTemplateInput, options: any): async.Operation<types.DeletePrivacyBudgetTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePrivacyBudgetTemplate, input, options) as async.Operation<types.DeletePrivacyBudgetTemplateOutput>
+function C:deletePrivacyBudgetTemplate(input: types.DeletePrivacyBudgetTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePrivacyBudgetTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePrivacyBudgetTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeletePrivacyBudgetTemplateOutput>
 end
 
-function C:getAnalysisTemplate(input: types.GetAnalysisTemplateInput, options: any): async.Operation<types.GetAnalysisTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAnalysisTemplate, input, options) as async.Operation<types.GetAnalysisTemplateOutput>
+function C:getAnalysisTemplate(input: types.GetAnalysisTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetAnalysisTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAnalysisTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetAnalysisTemplateOutput>
 end
 
-function C:getCollaboration(input: types.GetCollaborationInput, options: any): async.Operation<types.GetCollaborationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCollaboration, input, options) as async.Operation<types.GetCollaborationOutput>
+function C:getCollaboration(input: types.GetCollaborationInput, options?: base_client.InvokeOptions): async.Operation<types.GetCollaborationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCollaboration as schema.OperationSchema, input, options) as async.Operation<types.GetCollaborationOutput>
 end
 
-function C:getCollaborationAnalysisTemplate(input: types.GetCollaborationAnalysisTemplateInput, options: any): async.Operation<types.GetCollaborationAnalysisTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCollaborationAnalysisTemplate, input, options) as async.Operation<types.GetCollaborationAnalysisTemplateOutput>
+function C:getCollaborationAnalysisTemplate(input: types.GetCollaborationAnalysisTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetCollaborationAnalysisTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCollaborationAnalysisTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetCollaborationAnalysisTemplateOutput>
 end
 
-function C:getCollaborationChangeRequest(input: types.GetCollaborationChangeRequestInput, options: any): async.Operation<types.GetCollaborationChangeRequestOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCollaborationChangeRequest, input, options) as async.Operation<types.GetCollaborationChangeRequestOutput>
+function C:getCollaborationChangeRequest(input: types.GetCollaborationChangeRequestInput, options?: base_client.InvokeOptions): async.Operation<types.GetCollaborationChangeRequestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCollaborationChangeRequest as schema.OperationSchema, input, options) as async.Operation<types.GetCollaborationChangeRequestOutput>
 end
 
-function C:getCollaborationConfiguredAudienceModelAssociation(input: types.GetCollaborationConfiguredAudienceModelAssociationInput, options: any): async.Operation<types.GetCollaborationConfiguredAudienceModelAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCollaborationConfiguredAudienceModelAssociation, input, options) as async.Operation<types.GetCollaborationConfiguredAudienceModelAssociationOutput>
+function C:getCollaborationConfiguredAudienceModelAssociation(input: types.GetCollaborationConfiguredAudienceModelAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetCollaborationConfiguredAudienceModelAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCollaborationConfiguredAudienceModelAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetCollaborationConfiguredAudienceModelAssociationOutput>
 end
 
-function C:getCollaborationIdNamespaceAssociation(input: types.GetCollaborationIdNamespaceAssociationInput, options: any): async.Operation<types.GetCollaborationIdNamespaceAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCollaborationIdNamespaceAssociation, input, options) as async.Operation<types.GetCollaborationIdNamespaceAssociationOutput>
+function C:getCollaborationIdNamespaceAssociation(input: types.GetCollaborationIdNamespaceAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetCollaborationIdNamespaceAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCollaborationIdNamespaceAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetCollaborationIdNamespaceAssociationOutput>
 end
 
-function C:getCollaborationPrivacyBudgetTemplate(input: types.GetCollaborationPrivacyBudgetTemplateInput, options: any): async.Operation<types.GetCollaborationPrivacyBudgetTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCollaborationPrivacyBudgetTemplate, input, options) as async.Operation<types.GetCollaborationPrivacyBudgetTemplateOutput>
+function C:getCollaborationPrivacyBudgetTemplate(input: types.GetCollaborationPrivacyBudgetTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetCollaborationPrivacyBudgetTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCollaborationPrivacyBudgetTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetCollaborationPrivacyBudgetTemplateOutput>
 end
 
-function C:getConfiguredAudienceModelAssociation(input: types.GetConfiguredAudienceModelAssociationInput, options: any): async.Operation<types.GetConfiguredAudienceModelAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConfiguredAudienceModelAssociation, input, options) as async.Operation<types.GetConfiguredAudienceModelAssociationOutput>
+function C:getConfiguredAudienceModelAssociation(input: types.GetConfiguredAudienceModelAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetConfiguredAudienceModelAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConfiguredAudienceModelAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetConfiguredAudienceModelAssociationOutput>
 end
 
-function C:getConfiguredTable(input: types.GetConfiguredTableInput, options: any): async.Operation<types.GetConfiguredTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConfiguredTable, input, options) as async.Operation<types.GetConfiguredTableOutput>
+function C:getConfiguredTable(input: types.GetConfiguredTableInput, options?: base_client.InvokeOptions): async.Operation<types.GetConfiguredTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConfiguredTable as schema.OperationSchema, input, options) as async.Operation<types.GetConfiguredTableOutput>
 end
 
-function C:getConfiguredTableAnalysisRule(input: types.GetConfiguredTableAnalysisRuleInput, options: any): async.Operation<types.GetConfiguredTableAnalysisRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConfiguredTableAnalysisRule, input, options) as async.Operation<types.GetConfiguredTableAnalysisRuleOutput>
+function C:getConfiguredTableAnalysisRule(input: types.GetConfiguredTableAnalysisRuleInput, options?: base_client.InvokeOptions): async.Operation<types.GetConfiguredTableAnalysisRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConfiguredTableAnalysisRule as schema.OperationSchema, input, options) as async.Operation<types.GetConfiguredTableAnalysisRuleOutput>
 end
 
-function C:getConfiguredTableAssociation(input: types.GetConfiguredTableAssociationInput, options: any): async.Operation<types.GetConfiguredTableAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConfiguredTableAssociation, input, options) as async.Operation<types.GetConfiguredTableAssociationOutput>
+function C:getConfiguredTableAssociation(input: types.GetConfiguredTableAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetConfiguredTableAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConfiguredTableAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetConfiguredTableAssociationOutput>
 end
 
-function C:getConfiguredTableAssociationAnalysisRule(input: types.GetConfiguredTableAssociationAnalysisRuleInput, options: any): async.Operation<types.GetConfiguredTableAssociationAnalysisRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetConfiguredTableAssociationAnalysisRule, input, options) as async.Operation<types.GetConfiguredTableAssociationAnalysisRuleOutput>
+function C:getConfiguredTableAssociationAnalysisRule(input: types.GetConfiguredTableAssociationAnalysisRuleInput, options?: base_client.InvokeOptions): async.Operation<types.GetConfiguredTableAssociationAnalysisRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConfiguredTableAssociationAnalysisRule as schema.OperationSchema, input, options) as async.Operation<types.GetConfiguredTableAssociationAnalysisRuleOutput>
 end
 
-function C:getIdMappingTable(input: types.GetIdMappingTableInput, options: any): async.Operation<types.GetIdMappingTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIdMappingTable, input, options) as async.Operation<types.GetIdMappingTableOutput>
+function C:getIdMappingTable(input: types.GetIdMappingTableInput, options?: base_client.InvokeOptions): async.Operation<types.GetIdMappingTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIdMappingTable as schema.OperationSchema, input, options) as async.Operation<types.GetIdMappingTableOutput>
 end
 
-function C:getIdNamespaceAssociation(input: types.GetIdNamespaceAssociationInput, options: any): async.Operation<types.GetIdNamespaceAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetIdNamespaceAssociation, input, options) as async.Operation<types.GetIdNamespaceAssociationOutput>
+function C:getIdNamespaceAssociation(input: types.GetIdNamespaceAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetIdNamespaceAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIdNamespaceAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetIdNamespaceAssociationOutput>
 end
 
-function C:getMembership(input: types.GetMembershipInput, options: any): async.Operation<types.GetMembershipOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMembership, input, options) as async.Operation<types.GetMembershipOutput>
+function C:getMembership(input: types.GetMembershipInput, options?: base_client.InvokeOptions): async.Operation<types.GetMembershipOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMembership as schema.OperationSchema, input, options) as async.Operation<types.GetMembershipOutput>
 end
 
-function C:getPrivacyBudgetTemplate(input: types.GetPrivacyBudgetTemplateInput, options: any): async.Operation<types.GetPrivacyBudgetTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPrivacyBudgetTemplate, input, options) as async.Operation<types.GetPrivacyBudgetTemplateOutput>
+function C:getPrivacyBudgetTemplate(input: types.GetPrivacyBudgetTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetPrivacyBudgetTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPrivacyBudgetTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetPrivacyBudgetTemplateOutput>
 end
 
-function C:getProtectedJob(input: types.GetProtectedJobInput, options: any): async.Operation<types.GetProtectedJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetProtectedJob, input, options) as async.Operation<types.GetProtectedJobOutput>
+function C:getProtectedJob(input: types.GetProtectedJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetProtectedJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProtectedJob as schema.OperationSchema, input, options) as async.Operation<types.GetProtectedJobOutput>
 end
 
-function C:getProtectedQuery(input: types.GetProtectedQueryInput, options: any): async.Operation<types.GetProtectedQueryOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetProtectedQuery, input, options) as async.Operation<types.GetProtectedQueryOutput>
+function C:getProtectedQuery(input: types.GetProtectedQueryInput, options?: base_client.InvokeOptions): async.Operation<types.GetProtectedQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProtectedQuery as schema.OperationSchema, input, options) as async.Operation<types.GetProtectedQueryOutput>
 end
 
-function C:getSchema(input: types.GetSchemaInput, options: any): async.Operation<types.GetSchemaOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSchema, input, options) as async.Operation<types.GetSchemaOutput>
+function C:getSchema(input: types.GetSchemaInput, options?: base_client.InvokeOptions): async.Operation<types.GetSchemaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSchema as schema.OperationSchema, input, options) as async.Operation<types.GetSchemaOutput>
 end
 
-function C:getSchemaAnalysisRule(input: types.GetSchemaAnalysisRuleInput, options: any): async.Operation<types.GetSchemaAnalysisRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetSchemaAnalysisRule, input, options) as async.Operation<types.GetSchemaAnalysisRuleOutput>
+function C:getSchemaAnalysisRule(input: types.GetSchemaAnalysisRuleInput, options?: base_client.InvokeOptions): async.Operation<types.GetSchemaAnalysisRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSchemaAnalysisRule as schema.OperationSchema, input, options) as async.Operation<types.GetSchemaAnalysisRuleOutput>
 end
 
-function C:listAnalysisTemplates(input: types.ListAnalysisTemplatesInput, options: any): async.Operation<types.ListAnalysisTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAnalysisTemplates, input, options) as async.Operation<types.ListAnalysisTemplatesOutput>
+function C:listAnalysisTemplates(input: types.ListAnalysisTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAnalysisTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAnalysisTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListAnalysisTemplatesOutput>
 end
 
-function C:listCollaborationAnalysisTemplates(input: types.ListCollaborationAnalysisTemplatesInput, options: any): async.Operation<types.ListCollaborationAnalysisTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCollaborationAnalysisTemplates, input, options) as async.Operation<types.ListCollaborationAnalysisTemplatesOutput>
+function C:listCollaborationAnalysisTemplates(input: types.ListCollaborationAnalysisTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCollaborationAnalysisTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCollaborationAnalysisTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListCollaborationAnalysisTemplatesOutput>
 end
 
-function C:listCollaborationChangeRequests(input: types.ListCollaborationChangeRequestsInput, options: any): async.Operation<types.ListCollaborationChangeRequestsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCollaborationChangeRequests, input, options) as async.Operation<types.ListCollaborationChangeRequestsOutput>
+function C:listCollaborationChangeRequests(input: types.ListCollaborationChangeRequestsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCollaborationChangeRequestsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCollaborationChangeRequests as schema.OperationSchema, input, options) as async.Operation<types.ListCollaborationChangeRequestsOutput>
 end
 
-function C:listCollaborationConfiguredAudienceModelAssociations(input: types.ListCollaborationConfiguredAudienceModelAssociationsInput, options: any): async.Operation<types.ListCollaborationConfiguredAudienceModelAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCollaborationConfiguredAudienceModelAssociations, input, options) as async.Operation<types.ListCollaborationConfiguredAudienceModelAssociationsOutput>
+function C:listCollaborationConfiguredAudienceModelAssociations(input: types.ListCollaborationConfiguredAudienceModelAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCollaborationConfiguredAudienceModelAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCollaborationConfiguredAudienceModelAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListCollaborationConfiguredAudienceModelAssociationsOutput>
 end
 
-function C:listCollaborationIdNamespaceAssociations(input: types.ListCollaborationIdNamespaceAssociationsInput, options: any): async.Operation<types.ListCollaborationIdNamespaceAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCollaborationIdNamespaceAssociations, input, options) as async.Operation<types.ListCollaborationIdNamespaceAssociationsOutput>
+function C:listCollaborationIdNamespaceAssociations(input: types.ListCollaborationIdNamespaceAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCollaborationIdNamespaceAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCollaborationIdNamespaceAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListCollaborationIdNamespaceAssociationsOutput>
 end
 
-function C:listCollaborationPrivacyBudgets(input: types.ListCollaborationPrivacyBudgetsInput, options: any): async.Operation<types.ListCollaborationPrivacyBudgetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCollaborationPrivacyBudgets, input, options) as async.Operation<types.ListCollaborationPrivacyBudgetsOutput>
+function C:listCollaborationPrivacyBudgets(input: types.ListCollaborationPrivacyBudgetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCollaborationPrivacyBudgetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCollaborationPrivacyBudgets as schema.OperationSchema, input, options) as async.Operation<types.ListCollaborationPrivacyBudgetsOutput>
 end
 
-function C:listCollaborationPrivacyBudgetTemplates(input: types.ListCollaborationPrivacyBudgetTemplatesInput, options: any): async.Operation<types.ListCollaborationPrivacyBudgetTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCollaborationPrivacyBudgetTemplates, input, options) as async.Operation<types.ListCollaborationPrivacyBudgetTemplatesOutput>
+function C:listCollaborationPrivacyBudgetTemplates(input: types.ListCollaborationPrivacyBudgetTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCollaborationPrivacyBudgetTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCollaborationPrivacyBudgetTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListCollaborationPrivacyBudgetTemplatesOutput>
 end
 
-function C:listCollaborations(input: types.ListCollaborationsInput, options: any): async.Operation<types.ListCollaborationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCollaborations, input, options) as async.Operation<types.ListCollaborationsOutput>
+function C:listCollaborations(input: types.ListCollaborationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCollaborationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCollaborations as schema.OperationSchema, input, options) as async.Operation<types.ListCollaborationsOutput>
 end
 
-function C:listConfiguredAudienceModelAssociations(input: types.ListConfiguredAudienceModelAssociationsInput, options: any): async.Operation<types.ListConfiguredAudienceModelAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConfiguredAudienceModelAssociations, input, options) as async.Operation<types.ListConfiguredAudienceModelAssociationsOutput>
+function C:listConfiguredAudienceModelAssociations(input: types.ListConfiguredAudienceModelAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConfiguredAudienceModelAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConfiguredAudienceModelAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListConfiguredAudienceModelAssociationsOutput>
 end
 
-function C:listConfiguredTableAssociations(input: types.ListConfiguredTableAssociationsInput, options: any): async.Operation<types.ListConfiguredTableAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConfiguredTableAssociations, input, options) as async.Operation<types.ListConfiguredTableAssociationsOutput>
+function C:listConfiguredTableAssociations(input: types.ListConfiguredTableAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConfiguredTableAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConfiguredTableAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListConfiguredTableAssociationsOutput>
 end
 
-function C:listConfiguredTables(input: types.ListConfiguredTablesInput, options: any): async.Operation<types.ListConfiguredTablesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConfiguredTables, input, options) as async.Operation<types.ListConfiguredTablesOutput>
+function C:listConfiguredTables(input: types.ListConfiguredTablesInput, options?: base_client.InvokeOptions): async.Operation<types.ListConfiguredTablesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConfiguredTables as schema.OperationSchema, input, options) as async.Operation<types.ListConfiguredTablesOutput>
 end
 
-function C:listIdMappingTables(input: types.ListIdMappingTablesInput, options: any): async.Operation<types.ListIdMappingTablesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIdMappingTables, input, options) as async.Operation<types.ListIdMappingTablesOutput>
+function C:listIdMappingTables(input: types.ListIdMappingTablesInput, options?: base_client.InvokeOptions): async.Operation<types.ListIdMappingTablesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIdMappingTables as schema.OperationSchema, input, options) as async.Operation<types.ListIdMappingTablesOutput>
 end
 
-function C:listIdNamespaceAssociations(input: types.ListIdNamespaceAssociationsInput, options: any): async.Operation<types.ListIdNamespaceAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListIdNamespaceAssociations, input, options) as async.Operation<types.ListIdNamespaceAssociationsOutput>
+function C:listIdNamespaceAssociations(input: types.ListIdNamespaceAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListIdNamespaceAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIdNamespaceAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListIdNamespaceAssociationsOutput>
 end
 
-function C:listMembers(input: types.ListMembersInput, options: any): async.Operation<types.ListMembersOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMembers, input, options) as async.Operation<types.ListMembersOutput>
+function C:listMembers(input: types.ListMembersInput, options?: base_client.InvokeOptions): async.Operation<types.ListMembersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMembers as schema.OperationSchema, input, options) as async.Operation<types.ListMembersOutput>
 end
 
-function C:listMemberships(input: types.ListMembershipsInput, options: any): async.Operation<types.ListMembershipsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMemberships, input, options) as async.Operation<types.ListMembershipsOutput>
+function C:listMemberships(input: types.ListMembershipsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMembershipsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMemberships as schema.OperationSchema, input, options) as async.Operation<types.ListMembershipsOutput>
 end
 
-function C:listPrivacyBudgets(input: types.ListPrivacyBudgetsInput, options: any): async.Operation<types.ListPrivacyBudgetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPrivacyBudgets, input, options) as async.Operation<types.ListPrivacyBudgetsOutput>
+function C:listPrivacyBudgets(input: types.ListPrivacyBudgetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPrivacyBudgetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPrivacyBudgets as schema.OperationSchema, input, options) as async.Operation<types.ListPrivacyBudgetsOutput>
 end
 
-function C:listPrivacyBudgetTemplates(input: types.ListPrivacyBudgetTemplatesInput, options: any): async.Operation<types.ListPrivacyBudgetTemplatesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPrivacyBudgetTemplates, input, options) as async.Operation<types.ListPrivacyBudgetTemplatesOutput>
+function C:listPrivacyBudgetTemplates(input: types.ListPrivacyBudgetTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListPrivacyBudgetTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPrivacyBudgetTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListPrivacyBudgetTemplatesOutput>
 end
 
-function C:listProtectedJobs(input: types.ListProtectedJobsInput, options: any): async.Operation<types.ListProtectedJobsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProtectedJobs, input, options) as async.Operation<types.ListProtectedJobsOutput>
+function C:listProtectedJobs(input: types.ListProtectedJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListProtectedJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProtectedJobs as schema.OperationSchema, input, options) as async.Operation<types.ListProtectedJobsOutput>
 end
 
-function C:listProtectedQueries(input: types.ListProtectedQueriesInput, options: any): async.Operation<types.ListProtectedQueriesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProtectedQueries, input, options) as async.Operation<types.ListProtectedQueriesOutput>
+function C:listProtectedQueries(input: types.ListProtectedQueriesInput, options?: base_client.InvokeOptions): async.Operation<types.ListProtectedQueriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProtectedQueries as schema.OperationSchema, input, options) as async.Operation<types.ListProtectedQueriesOutput>
 end
 
-function C:listSchemas(input: types.ListSchemasInput, options: any): async.Operation<types.ListSchemasOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListSchemas, input, options) as async.Operation<types.ListSchemasOutput>
+function C:listSchemas(input: types.ListSchemasInput, options?: base_client.InvokeOptions): async.Operation<types.ListSchemasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSchemas as schema.OperationSchema, input, options) as async.Operation<types.ListSchemasOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:populateIdMappingTable(input: types.PopulateIdMappingTableInput, options: any): async.Operation<types.PopulateIdMappingTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.PopulateIdMappingTable, input, options) as async.Operation<types.PopulateIdMappingTableOutput>
+function C:populateIdMappingTable(input: types.PopulateIdMappingTableInput, options?: base_client.InvokeOptions): async.Operation<types.PopulateIdMappingTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PopulateIdMappingTable as schema.OperationSchema, input, options) as async.Operation<types.PopulateIdMappingTableOutput>
 end
 
-function C:previewPrivacyImpact(input: types.PreviewPrivacyImpactInput, options: any): async.Operation<types.PreviewPrivacyImpactOutput>
-    return self:invokeOperation(schemas.Service, schemas.PreviewPrivacyImpact, input, options) as async.Operation<types.PreviewPrivacyImpactOutput>
+function C:previewPrivacyImpact(input: types.PreviewPrivacyImpactInput, options?: base_client.InvokeOptions): async.Operation<types.PreviewPrivacyImpactOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PreviewPrivacyImpact as schema.OperationSchema, input, options) as async.Operation<types.PreviewPrivacyImpactOutput>
 end
 
-function C:startProtectedJob(input: types.StartProtectedJobInput, options: any): async.Operation<types.StartProtectedJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartProtectedJob, input, options) as async.Operation<types.StartProtectedJobOutput>
+function C:startProtectedJob(input: types.StartProtectedJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartProtectedJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartProtectedJob as schema.OperationSchema, input, options) as async.Operation<types.StartProtectedJobOutput>
 end
 
-function C:startProtectedQuery(input: types.StartProtectedQueryInput, options: any): async.Operation<types.StartProtectedQueryOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartProtectedQuery, input, options) as async.Operation<types.StartProtectedQueryOutput>
+function C:startProtectedQuery(input: types.StartProtectedQueryInput, options?: base_client.InvokeOptions): async.Operation<types.StartProtectedQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartProtectedQuery as schema.OperationSchema, input, options) as async.Operation<types.StartProtectedQueryOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAnalysisTemplate(input: types.UpdateAnalysisTemplateInput, options: any): async.Operation<types.UpdateAnalysisTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAnalysisTemplate, input, options) as async.Operation<types.UpdateAnalysisTemplateOutput>
+function C:updateAnalysisTemplate(input: types.UpdateAnalysisTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAnalysisTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAnalysisTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateAnalysisTemplateOutput>
 end
 
-function C:updateCollaboration(input: types.UpdateCollaborationInput, options: any): async.Operation<types.UpdateCollaborationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCollaboration, input, options) as async.Operation<types.UpdateCollaborationOutput>
+function C:updateCollaboration(input: types.UpdateCollaborationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCollaborationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCollaboration as schema.OperationSchema, input, options) as async.Operation<types.UpdateCollaborationOutput>
 end
 
-function C:updateCollaborationChangeRequest(input: types.UpdateCollaborationChangeRequestInput, options: any): async.Operation<types.UpdateCollaborationChangeRequestOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCollaborationChangeRequest, input, options) as async.Operation<types.UpdateCollaborationChangeRequestOutput>
+function C:updateCollaborationChangeRequest(input: types.UpdateCollaborationChangeRequestInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCollaborationChangeRequestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCollaborationChangeRequest as schema.OperationSchema, input, options) as async.Operation<types.UpdateCollaborationChangeRequestOutput>
 end
 
-function C:updateConfiguredAudienceModelAssociation(input: types.UpdateConfiguredAudienceModelAssociationInput, options: any): async.Operation<types.UpdateConfiguredAudienceModelAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConfiguredAudienceModelAssociation, input, options) as async.Operation<types.UpdateConfiguredAudienceModelAssociationOutput>
+function C:updateConfiguredAudienceModelAssociation(input: types.UpdateConfiguredAudienceModelAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConfiguredAudienceModelAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConfiguredAudienceModelAssociation as schema.OperationSchema, input, options) as async.Operation<types.UpdateConfiguredAudienceModelAssociationOutput>
 end
 
-function C:updateConfiguredTable(input: types.UpdateConfiguredTableInput, options: any): async.Operation<types.UpdateConfiguredTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConfiguredTable, input, options) as async.Operation<types.UpdateConfiguredTableOutput>
+function C:updateConfiguredTable(input: types.UpdateConfiguredTableInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConfiguredTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConfiguredTable as schema.OperationSchema, input, options) as async.Operation<types.UpdateConfiguredTableOutput>
 end
 
-function C:updateConfiguredTableAnalysisRule(input: types.UpdateConfiguredTableAnalysisRuleInput, options: any): async.Operation<types.UpdateConfiguredTableAnalysisRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConfiguredTableAnalysisRule, input, options) as async.Operation<types.UpdateConfiguredTableAnalysisRuleOutput>
+function C:updateConfiguredTableAnalysisRule(input: types.UpdateConfiguredTableAnalysisRuleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConfiguredTableAnalysisRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConfiguredTableAnalysisRule as schema.OperationSchema, input, options) as async.Operation<types.UpdateConfiguredTableAnalysisRuleOutput>
 end
 
-function C:updateConfiguredTableAssociation(input: types.UpdateConfiguredTableAssociationInput, options: any): async.Operation<types.UpdateConfiguredTableAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConfiguredTableAssociation, input, options) as async.Operation<types.UpdateConfiguredTableAssociationOutput>
+function C:updateConfiguredTableAssociation(input: types.UpdateConfiguredTableAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConfiguredTableAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConfiguredTableAssociation as schema.OperationSchema, input, options) as async.Operation<types.UpdateConfiguredTableAssociationOutput>
 end
 
-function C:updateConfiguredTableAssociationAnalysisRule(input: types.UpdateConfiguredTableAssociationAnalysisRuleInput, options: any): async.Operation<types.UpdateConfiguredTableAssociationAnalysisRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateConfiguredTableAssociationAnalysisRule, input, options) as async.Operation<types.UpdateConfiguredTableAssociationAnalysisRuleOutput>
+function C:updateConfiguredTableAssociationAnalysisRule(input: types.UpdateConfiguredTableAssociationAnalysisRuleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConfiguredTableAssociationAnalysisRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConfiguredTableAssociationAnalysisRule as schema.OperationSchema, input, options) as async.Operation<types.UpdateConfiguredTableAssociationAnalysisRuleOutput>
 end
 
-function C:updateIdMappingTable(input: types.UpdateIdMappingTableInput, options: any): async.Operation<types.UpdateIdMappingTableOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateIdMappingTable, input, options) as async.Operation<types.UpdateIdMappingTableOutput>
+function C:updateIdMappingTable(input: types.UpdateIdMappingTableInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIdMappingTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIdMappingTable as schema.OperationSchema, input, options) as async.Operation<types.UpdateIdMappingTableOutput>
 end
 
-function C:updateIdNamespaceAssociation(input: types.UpdateIdNamespaceAssociationInput, options: any): async.Operation<types.UpdateIdNamespaceAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateIdNamespaceAssociation, input, options) as async.Operation<types.UpdateIdNamespaceAssociationOutput>
+function C:updateIdNamespaceAssociation(input: types.UpdateIdNamespaceAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIdNamespaceAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIdNamespaceAssociation as schema.OperationSchema, input, options) as async.Operation<types.UpdateIdNamespaceAssociationOutput>
 end
 
-function C:updateMembership(input: types.UpdateMembershipInput, options: any): async.Operation<types.UpdateMembershipOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateMembership, input, options) as async.Operation<types.UpdateMembershipOutput>
+function C:updateMembership(input: types.UpdateMembershipInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMembershipOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMembership as schema.OperationSchema, input, options) as async.Operation<types.UpdateMembershipOutput>
 end
 
-function C:updatePrivacyBudgetTemplate(input: types.UpdatePrivacyBudgetTemplateInput, options: any): async.Operation<types.UpdatePrivacyBudgetTemplateOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePrivacyBudgetTemplate, input, options) as async.Operation<types.UpdatePrivacyBudgetTemplateOutput>
+function C:updatePrivacyBudgetTemplate(input: types.UpdatePrivacyBudgetTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePrivacyBudgetTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePrivacyBudgetTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdatePrivacyBudgetTemplateOutput>
 end
 
-function C:updateProtectedJob(input: types.UpdateProtectedJobInput, options: any): async.Operation<types.UpdateProtectedJobOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProtectedJob, input, options) as async.Operation<types.UpdateProtectedJobOutput>
+function C:updateProtectedJob(input: types.UpdateProtectedJobInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProtectedJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProtectedJob as schema.OperationSchema, input, options) as async.Operation<types.UpdateProtectedJobOutput>
 end
 
-function C:updateProtectedQuery(input: types.UpdateProtectedQueryInput, options: any): async.Operation<types.UpdateProtectedQueryOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProtectedQuery, input, options) as async.Operation<types.UpdateProtectedQueryOutput>
+function C:updateProtectedQuery(input: types.UpdateProtectedQueryInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProtectedQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProtectedQuery as schema.OperationSchema, input, options) as async.Operation<types.UpdateProtectedQueryOutput>
 end
 
 return M

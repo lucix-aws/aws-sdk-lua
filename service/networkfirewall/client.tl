@@ -8,118 +8,121 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("networkfirewall.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("networkfirewall.schemas")
 local traits = require("smithy.traits")
 local types = require("networkfirewall.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    acceptNetworkFirewallTransitGatewayAttachment: function(Client, types.AcceptNetworkFirewallTransitGatewayAttachmentInput, any): async.Operation<types.AcceptNetworkFirewallTransitGatewayAttachmentOutput>
-    associateAvailabilityZones: function(Client, types.AssociateAvailabilityZonesInput, any): async.Operation<types.AssociateAvailabilityZonesOutput>
-    associateFirewallPolicy: function(Client, types.AssociateFirewallPolicyInput, any): async.Operation<types.AssociateFirewallPolicyOutput>
-    associateSubnets: function(Client, types.AssociateSubnetsInput, any): async.Operation<types.AssociateSubnetsOutput>
-    attachRuleGroupsToProxyConfiguration: function(Client, types.AttachRuleGroupsToProxyConfigurationInput, any): async.Operation<types.AttachRuleGroupsToProxyConfigurationOutput>
-    createFirewall: function(Client, types.CreateFirewallInput, any): async.Operation<types.CreateFirewallOutput>
-    createFirewallPolicy: function(Client, types.CreateFirewallPolicyInput, any): async.Operation<types.CreateFirewallPolicyOutput>
-    createProxy: function(Client, types.CreateProxyInput, any): async.Operation<types.CreateProxyOutput>
-    createProxyConfiguration: function(Client, types.CreateProxyConfigurationInput, any): async.Operation<types.CreateProxyConfigurationOutput>
-    createProxyRuleGroup: function(Client, types.CreateProxyRuleGroupInput, any): async.Operation<types.CreateProxyRuleGroupOutput>
-    createProxyRules: function(Client, types.CreateProxyRulesInput, any): async.Operation<types.CreateProxyRulesOutput>
-    createRuleGroup: function(Client, types.CreateRuleGroupInput, any): async.Operation<types.CreateRuleGroupOutput>
-    createTLSInspectionConfiguration: function(Client, types.CreateTLSInspectionConfigurationInput, any): async.Operation<types.CreateTLSInspectionConfigurationOutput>
-    createVpcEndpointAssociation: function(Client, types.CreateVpcEndpointAssociationInput, any): async.Operation<types.CreateVpcEndpointAssociationOutput>
-    deleteFirewall: function(Client, types.DeleteFirewallInput, any): async.Operation<types.DeleteFirewallOutput>
-    deleteFirewallPolicy: function(Client, types.DeleteFirewallPolicyInput, any): async.Operation<types.DeleteFirewallPolicyOutput>
-    deleteNetworkFirewallTransitGatewayAttachment: function(Client, types.DeleteNetworkFirewallTransitGatewayAttachmentInput, any): async.Operation<types.DeleteNetworkFirewallTransitGatewayAttachmentOutput>
-    deleteProxy: function(Client, types.DeleteProxyInput, any): async.Operation<types.DeleteProxyOutput>
-    deleteProxyConfiguration: function(Client, types.DeleteProxyConfigurationInput, any): async.Operation<types.DeleteProxyConfigurationOutput>
-    deleteProxyRuleGroup: function(Client, types.DeleteProxyRuleGroupInput, any): async.Operation<types.DeleteProxyRuleGroupOutput>
-    deleteProxyRules: function(Client, types.DeleteProxyRulesInput, any): async.Operation<types.DeleteProxyRulesOutput>
-    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, any): async.Operation<types.DeleteResourcePolicyOutput>
-    deleteRuleGroup: function(Client, types.DeleteRuleGroupInput, any): async.Operation<types.DeleteRuleGroupOutput>
-    deleteTLSInspectionConfiguration: function(Client, types.DeleteTLSInspectionConfigurationInput, any): async.Operation<types.DeleteTLSInspectionConfigurationOutput>
-    deleteVpcEndpointAssociation: function(Client, types.DeleteVpcEndpointAssociationInput, any): async.Operation<types.DeleteVpcEndpointAssociationOutput>
-    describeFirewall: function(Client, types.DescribeFirewallInput, any): async.Operation<types.DescribeFirewallOutput>
-    describeFirewallMetadata: function(Client, types.DescribeFirewallMetadataInput, any): async.Operation<types.DescribeFirewallMetadataOutput>
-    describeFirewallPolicy: function(Client, types.DescribeFirewallPolicyInput, any): async.Operation<types.DescribeFirewallPolicyOutput>
-    describeFlowOperation: function(Client, types.DescribeFlowOperationInput, any): async.Operation<types.DescribeFlowOperationOutput>
-    describeLoggingConfiguration: function(Client, types.DescribeLoggingConfigurationInput, any): async.Operation<types.DescribeLoggingConfigurationOutput>
-    describeProxy: function(Client, types.DescribeProxyInput, any): async.Operation<types.DescribeProxyOutput>
-    describeProxyConfiguration: function(Client, types.DescribeProxyConfigurationInput, any): async.Operation<types.DescribeProxyConfigurationOutput>
-    describeProxyRule: function(Client, types.DescribeProxyRuleInput, any): async.Operation<types.DescribeProxyRuleOutput>
-    describeProxyRuleGroup: function(Client, types.DescribeProxyRuleGroupInput, any): async.Operation<types.DescribeProxyRuleGroupOutput>
-    describeResourcePolicy: function(Client, types.DescribeResourcePolicyInput, any): async.Operation<types.DescribeResourcePolicyOutput>
-    describeRuleGroup: function(Client, types.DescribeRuleGroupInput, any): async.Operation<types.DescribeRuleGroupOutput>
-    describeRuleGroupMetadata: function(Client, types.DescribeRuleGroupMetadataInput, any): async.Operation<types.DescribeRuleGroupMetadataOutput>
-    describeRuleGroupSummary: function(Client, types.DescribeRuleGroupSummaryInput, any): async.Operation<types.DescribeRuleGroupSummaryOutput>
-    describeTLSInspectionConfiguration: function(Client, types.DescribeTLSInspectionConfigurationInput, any): async.Operation<types.DescribeTLSInspectionConfigurationOutput>
-    describeVpcEndpointAssociation: function(Client, types.DescribeVpcEndpointAssociationInput, any): async.Operation<types.DescribeVpcEndpointAssociationOutput>
-    detachRuleGroupsFromProxyConfiguration: function(Client, types.DetachRuleGroupsFromProxyConfigurationInput, any): async.Operation<types.DetachRuleGroupsFromProxyConfigurationOutput>
-    disassociateAvailabilityZones: function(Client, types.DisassociateAvailabilityZonesInput, any): async.Operation<types.DisassociateAvailabilityZonesOutput>
-    disassociateSubnets: function(Client, types.DisassociateSubnetsInput, any): async.Operation<types.DisassociateSubnetsOutput>
-    getAnalysisReportResults: function(Client, types.GetAnalysisReportResultsInput, any): async.Operation<types.GetAnalysisReportResultsOutput>
-    listAnalysisReports: function(Client, types.ListAnalysisReportsInput, any): async.Operation<types.ListAnalysisReportsOutput>
-    listFirewallPolicies: function(Client, types.ListFirewallPoliciesInput, any): async.Operation<types.ListFirewallPoliciesOutput>
-    listFirewalls: function(Client, types.ListFirewallsInput, any): async.Operation<types.ListFirewallsOutput>
-    listFlowOperationResults: function(Client, types.ListFlowOperationResultsInput, any): async.Operation<types.ListFlowOperationResultsOutput>
-    listFlowOperations: function(Client, types.ListFlowOperationsInput, any): async.Operation<types.ListFlowOperationsOutput>
-    listProxies: function(Client, types.ListProxiesInput, any): async.Operation<types.ListProxiesOutput>
-    listProxyConfigurations: function(Client, types.ListProxyConfigurationsInput, any): async.Operation<types.ListProxyConfigurationsOutput>
-    listProxyRuleGroups: function(Client, types.ListProxyRuleGroupsInput, any): async.Operation<types.ListProxyRuleGroupsOutput>
-    listRuleGroups: function(Client, types.ListRuleGroupsInput, any): async.Operation<types.ListRuleGroupsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTLSInspectionConfigurations: function(Client, types.ListTLSInspectionConfigurationsInput, any): async.Operation<types.ListTLSInspectionConfigurationsOutput>
-    listVpcEndpointAssociations: function(Client, types.ListVpcEndpointAssociationsInput, any): async.Operation<types.ListVpcEndpointAssociationsOutput>
-    putResourcePolicy: function(Client, types.PutResourcePolicyInput, any): async.Operation<types.PutResourcePolicyOutput>
-    rejectNetworkFirewallTransitGatewayAttachment: function(Client, types.RejectNetworkFirewallTransitGatewayAttachmentInput, any): async.Operation<types.RejectNetworkFirewallTransitGatewayAttachmentOutput>
-    startAnalysisReport: function(Client, types.StartAnalysisReportInput, any): async.Operation<types.StartAnalysisReportOutput>
-    startFlowCapture: function(Client, types.StartFlowCaptureInput, any): async.Operation<types.StartFlowCaptureOutput>
-    startFlowFlush: function(Client, types.StartFlowFlushInput, any): async.Operation<types.StartFlowFlushOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAvailabilityZoneChangeProtection: function(Client, types.UpdateAvailabilityZoneChangeProtectionInput, any): async.Operation<types.UpdateAvailabilityZoneChangeProtectionOutput>
-    updateFirewallAnalysisSettings: function(Client, types.UpdateFirewallAnalysisSettingsInput, any): async.Operation<types.UpdateFirewallAnalysisSettingsOutput>
-    updateFirewallDeleteProtection: function(Client, types.UpdateFirewallDeleteProtectionInput, any): async.Operation<types.UpdateFirewallDeleteProtectionOutput>
-    updateFirewallDescription: function(Client, types.UpdateFirewallDescriptionInput, any): async.Operation<types.UpdateFirewallDescriptionOutput>
-    updateFirewallEncryptionConfiguration: function(Client, types.UpdateFirewallEncryptionConfigurationInput, any): async.Operation<types.UpdateFirewallEncryptionConfigurationOutput>
-    updateFirewallPolicy: function(Client, types.UpdateFirewallPolicyInput, any): async.Operation<types.UpdateFirewallPolicyOutput>
-    updateFirewallPolicyChangeProtection: function(Client, types.UpdateFirewallPolicyChangeProtectionInput, any): async.Operation<types.UpdateFirewallPolicyChangeProtectionOutput>
-    updateLoggingConfiguration: function(Client, types.UpdateLoggingConfigurationInput, any): async.Operation<types.UpdateLoggingConfigurationOutput>
-    updateProxy: function(Client, types.UpdateProxyInput, any): async.Operation<types.UpdateProxyOutput>
-    updateProxyConfiguration: function(Client, types.UpdateProxyConfigurationInput, any): async.Operation<types.UpdateProxyConfigurationOutput>
-    updateProxyRule: function(Client, types.UpdateProxyRuleInput, any): async.Operation<types.UpdateProxyRuleOutput>
-    updateProxyRuleGroupPriorities: function(Client, types.UpdateProxyRuleGroupPrioritiesInput, any): async.Operation<types.UpdateProxyRuleGroupPrioritiesOutput>
-    updateProxyRulePriorities: function(Client, types.UpdateProxyRulePrioritiesInput, any): async.Operation<types.UpdateProxyRulePrioritiesOutput>
-    updateRuleGroup: function(Client, types.UpdateRuleGroupInput, any): async.Operation<types.UpdateRuleGroupOutput>
-    updateSubnetChangeProtection: function(Client, types.UpdateSubnetChangeProtectionInput, any): async.Operation<types.UpdateSubnetChangeProtectionOutput>
-    updateTLSInspectionConfiguration: function(Client, types.UpdateTLSInspectionConfigurationInput, any): async.Operation<types.UpdateTLSInspectionConfigurationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    acceptNetworkFirewallTransitGatewayAttachment: function(Client, types.AcceptNetworkFirewallTransitGatewayAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.AcceptNetworkFirewallTransitGatewayAttachmentOutput>
+    associateAvailabilityZones: function(Client, types.AssociateAvailabilityZonesInput, ? base_client.InvokeOptions): async.Operation<types.AssociateAvailabilityZonesOutput>
+    associateFirewallPolicy: function(Client, types.AssociateFirewallPolicyInput, ? base_client.InvokeOptions): async.Operation<types.AssociateFirewallPolicyOutput>
+    associateSubnets: function(Client, types.AssociateSubnetsInput, ? base_client.InvokeOptions): async.Operation<types.AssociateSubnetsOutput>
+    attachRuleGroupsToProxyConfiguration: function(Client, types.AttachRuleGroupsToProxyConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.AttachRuleGroupsToProxyConfigurationOutput>
+    createFirewall: function(Client, types.CreateFirewallInput, ? base_client.InvokeOptions): async.Operation<types.CreateFirewallOutput>
+    createFirewallPolicy: function(Client, types.CreateFirewallPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateFirewallPolicyOutput>
+    createProxy: function(Client, types.CreateProxyInput, ? base_client.InvokeOptions): async.Operation<types.CreateProxyOutput>
+    createProxyConfiguration: function(Client, types.CreateProxyConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateProxyConfigurationOutput>
+    createProxyRuleGroup: function(Client, types.CreateProxyRuleGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateProxyRuleGroupOutput>
+    createProxyRules: function(Client, types.CreateProxyRulesInput, ? base_client.InvokeOptions): async.Operation<types.CreateProxyRulesOutput>
+    createRuleGroup: function(Client, types.CreateRuleGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateRuleGroupOutput>
+    createTLSInspectionConfiguration: function(Client, types.CreateTLSInspectionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateTLSInspectionConfigurationOutput>
+    createVpcEndpointAssociation: function(Client, types.CreateVpcEndpointAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateVpcEndpointAssociationOutput>
+    deleteFirewall: function(Client, types.DeleteFirewallInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFirewallOutput>
+    deleteFirewallPolicy: function(Client, types.DeleteFirewallPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFirewallPolicyOutput>
+    deleteNetworkFirewallTransitGatewayAttachment: function(Client, types.DeleteNetworkFirewallTransitGatewayAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNetworkFirewallTransitGatewayAttachmentOutput>
+    deleteProxy: function(Client, types.DeleteProxyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProxyOutput>
+    deleteProxyConfiguration: function(Client, types.DeleteProxyConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProxyConfigurationOutput>
+    deleteProxyRuleGroup: function(Client, types.DeleteProxyRuleGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProxyRuleGroupOutput>
+    deleteProxyRules: function(Client, types.DeleteProxyRulesInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProxyRulesOutput>
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    deleteRuleGroup: function(Client, types.DeleteRuleGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRuleGroupOutput>
+    deleteTLSInspectionConfiguration: function(Client, types.DeleteTLSInspectionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTLSInspectionConfigurationOutput>
+    deleteVpcEndpointAssociation: function(Client, types.DeleteVpcEndpointAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVpcEndpointAssociationOutput>
+    describeFirewall: function(Client, types.DescribeFirewallInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFirewallOutput>
+    describeFirewallMetadata: function(Client, types.DescribeFirewallMetadataInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFirewallMetadataOutput>
+    describeFirewallPolicy: function(Client, types.DescribeFirewallPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFirewallPolicyOutput>
+    describeFlowOperation: function(Client, types.DescribeFlowOperationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFlowOperationOutput>
+    describeLoggingConfiguration: function(Client, types.DescribeLoggingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLoggingConfigurationOutput>
+    describeProxy: function(Client, types.DescribeProxyInput, ? base_client.InvokeOptions): async.Operation<types.DescribeProxyOutput>
+    describeProxyConfiguration: function(Client, types.DescribeProxyConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeProxyConfigurationOutput>
+    describeProxyRule: function(Client, types.DescribeProxyRuleInput, ? base_client.InvokeOptions): async.Operation<types.DescribeProxyRuleOutput>
+    describeProxyRuleGroup: function(Client, types.DescribeProxyRuleGroupInput, ? base_client.InvokeOptions): async.Operation<types.DescribeProxyRuleGroupOutput>
+    describeResourcePolicy: function(Client, types.DescribeResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DescribeResourcePolicyOutput>
+    describeRuleGroup: function(Client, types.DescribeRuleGroupInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRuleGroupOutput>
+    describeRuleGroupMetadata: function(Client, types.DescribeRuleGroupMetadataInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRuleGroupMetadataOutput>
+    describeRuleGroupSummary: function(Client, types.DescribeRuleGroupSummaryInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRuleGroupSummaryOutput>
+    describeTLSInspectionConfiguration: function(Client, types.DescribeTLSInspectionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTLSInspectionConfigurationOutput>
+    describeVpcEndpointAssociation: function(Client, types.DescribeVpcEndpointAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVpcEndpointAssociationOutput>
+    detachRuleGroupsFromProxyConfiguration: function(Client, types.DetachRuleGroupsFromProxyConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DetachRuleGroupsFromProxyConfigurationOutput>
+    disassociateAvailabilityZones: function(Client, types.DisassociateAvailabilityZonesInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateAvailabilityZonesOutput>
+    disassociateSubnets: function(Client, types.DisassociateSubnetsInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateSubnetsOutput>
+    getAnalysisReportResults: function(Client, types.GetAnalysisReportResultsInput, ? base_client.InvokeOptions): async.Operation<types.GetAnalysisReportResultsOutput>
+    listAnalysisReports: function(Client, types.ListAnalysisReportsInput, ? base_client.InvokeOptions): async.Operation<types.ListAnalysisReportsOutput>
+    listFirewallPolicies: function(Client, types.ListFirewallPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListFirewallPoliciesOutput>
+    listFirewalls: function(Client, types.ListFirewallsInput, ? base_client.InvokeOptions): async.Operation<types.ListFirewallsOutput>
+    listFlowOperationResults: function(Client, types.ListFlowOperationResultsInput, ? base_client.InvokeOptions): async.Operation<types.ListFlowOperationResultsOutput>
+    listFlowOperations: function(Client, types.ListFlowOperationsInput, ? base_client.InvokeOptions): async.Operation<types.ListFlowOperationsOutput>
+    listProxies: function(Client, types.ListProxiesInput, ? base_client.InvokeOptions): async.Operation<types.ListProxiesOutput>
+    listProxyConfigurations: function(Client, types.ListProxyConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListProxyConfigurationsOutput>
+    listProxyRuleGroups: function(Client, types.ListProxyRuleGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListProxyRuleGroupsOutput>
+    listRuleGroups: function(Client, types.ListRuleGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListRuleGroupsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTLSInspectionConfigurations: function(Client, types.ListTLSInspectionConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListTLSInspectionConfigurationsOutput>
+    listVpcEndpointAssociations: function(Client, types.ListVpcEndpointAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListVpcEndpointAssociationsOutput>
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    rejectNetworkFirewallTransitGatewayAttachment: function(Client, types.RejectNetworkFirewallTransitGatewayAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.RejectNetworkFirewallTransitGatewayAttachmentOutput>
+    startAnalysisReport: function(Client, types.StartAnalysisReportInput, ? base_client.InvokeOptions): async.Operation<types.StartAnalysisReportOutput>
+    startFlowCapture: function(Client, types.StartFlowCaptureInput, ? base_client.InvokeOptions): async.Operation<types.StartFlowCaptureOutput>
+    startFlowFlush: function(Client, types.StartFlowFlushInput, ? base_client.InvokeOptions): async.Operation<types.StartFlowFlushOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAvailabilityZoneChangeProtection: function(Client, types.UpdateAvailabilityZoneChangeProtectionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAvailabilityZoneChangeProtectionOutput>
+    updateFirewallAnalysisSettings: function(Client, types.UpdateFirewallAnalysisSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFirewallAnalysisSettingsOutput>
+    updateFirewallDeleteProtection: function(Client, types.UpdateFirewallDeleteProtectionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFirewallDeleteProtectionOutput>
+    updateFirewallDescription: function(Client, types.UpdateFirewallDescriptionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFirewallDescriptionOutput>
+    updateFirewallEncryptionConfiguration: function(Client, types.UpdateFirewallEncryptionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFirewallEncryptionConfigurationOutput>
+    updateFirewallPolicy: function(Client, types.UpdateFirewallPolicyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFirewallPolicyOutput>
+    updateFirewallPolicyChangeProtection: function(Client, types.UpdateFirewallPolicyChangeProtectionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFirewallPolicyChangeProtectionOutput>
+    updateLoggingConfiguration: function(Client, types.UpdateLoggingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLoggingConfigurationOutput>
+    updateProxy: function(Client, types.UpdateProxyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProxyOutput>
+    updateProxyConfiguration: function(Client, types.UpdateProxyConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProxyConfigurationOutput>
+    updateProxyRule: function(Client, types.UpdateProxyRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProxyRuleOutput>
+    updateProxyRuleGroupPriorities: function(Client, types.UpdateProxyRuleGroupPrioritiesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProxyRuleGroupPrioritiesOutput>
+    updateProxyRulePriorities: function(Client, types.UpdateProxyRulePrioritiesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProxyRulePrioritiesOutput>
+    updateRuleGroup: function(Client, types.UpdateRuleGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRuleGroupOutput>
+    updateSubnetChangeProtection: function(Client, types.UpdateSubnetChangeProtectionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSubnetChangeProtectionOutput>
+    updateTLSInspectionConfiguration: function(Client, types.UpdateTLSInspectionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTLSInspectionConfigurationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "NetworkFirewall_20201112"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "network-firewall", signing_region = c.region } }
                 else
@@ -138,320 +141,320 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:acceptNetworkFirewallTransitGatewayAttachment(input: types.AcceptNetworkFirewallTransitGatewayAttachmentInput, options: any): async.Operation<types.AcceptNetworkFirewallTransitGatewayAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.AcceptNetworkFirewallTransitGatewayAttachment, input, options) as async.Operation<types.AcceptNetworkFirewallTransitGatewayAttachmentOutput>
+function C:acceptNetworkFirewallTransitGatewayAttachment(input: types.AcceptNetworkFirewallTransitGatewayAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.AcceptNetworkFirewallTransitGatewayAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptNetworkFirewallTransitGatewayAttachment as schema.OperationSchema, input, options) as async.Operation<types.AcceptNetworkFirewallTransitGatewayAttachmentOutput>
 end
 
-function C:associateAvailabilityZones(input: types.AssociateAvailabilityZonesInput, options: any): async.Operation<types.AssociateAvailabilityZonesOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateAvailabilityZones, input, options) as async.Operation<types.AssociateAvailabilityZonesOutput>
+function C:associateAvailabilityZones(input: types.AssociateAvailabilityZonesInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateAvailabilityZonesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateAvailabilityZones as schema.OperationSchema, input, options) as async.Operation<types.AssociateAvailabilityZonesOutput>
 end
 
-function C:associateFirewallPolicy(input: types.AssociateFirewallPolicyInput, options: any): async.Operation<types.AssociateFirewallPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateFirewallPolicy, input, options) as async.Operation<types.AssociateFirewallPolicyOutput>
+function C:associateFirewallPolicy(input: types.AssociateFirewallPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateFirewallPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateFirewallPolicy as schema.OperationSchema, input, options) as async.Operation<types.AssociateFirewallPolicyOutput>
 end
 
-function C:associateSubnets(input: types.AssociateSubnetsInput, options: any): async.Operation<types.AssociateSubnetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateSubnets, input, options) as async.Operation<types.AssociateSubnetsOutput>
+function C:associateSubnets(input: types.AssociateSubnetsInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateSubnetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateSubnets as schema.OperationSchema, input, options) as async.Operation<types.AssociateSubnetsOutput>
 end
 
-function C:attachRuleGroupsToProxyConfiguration(input: types.AttachRuleGroupsToProxyConfigurationInput, options: any): async.Operation<types.AttachRuleGroupsToProxyConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.AttachRuleGroupsToProxyConfiguration, input, options) as async.Operation<types.AttachRuleGroupsToProxyConfigurationOutput>
+function C:attachRuleGroupsToProxyConfiguration(input: types.AttachRuleGroupsToProxyConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.AttachRuleGroupsToProxyConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachRuleGroupsToProxyConfiguration as schema.OperationSchema, input, options) as async.Operation<types.AttachRuleGroupsToProxyConfigurationOutput>
 end
 
-function C:createFirewall(input: types.CreateFirewallInput, options: any): async.Operation<types.CreateFirewallOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFirewall, input, options) as async.Operation<types.CreateFirewallOutput>
+function C:createFirewall(input: types.CreateFirewallInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFirewallOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFirewall as schema.OperationSchema, input, options) as async.Operation<types.CreateFirewallOutput>
 end
 
-function C:createFirewallPolicy(input: types.CreateFirewallPolicyInput, options: any): async.Operation<types.CreateFirewallPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateFirewallPolicy, input, options) as async.Operation<types.CreateFirewallPolicyOutput>
+function C:createFirewallPolicy(input: types.CreateFirewallPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFirewallPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFirewallPolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateFirewallPolicyOutput>
 end
 
-function C:createProxy(input: types.CreateProxyInput, options: any): async.Operation<types.CreateProxyOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProxy, input, options) as async.Operation<types.CreateProxyOutput>
+function C:createProxy(input: types.CreateProxyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProxyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProxy as schema.OperationSchema, input, options) as async.Operation<types.CreateProxyOutput>
 end
 
-function C:createProxyConfiguration(input: types.CreateProxyConfigurationInput, options: any): async.Operation<types.CreateProxyConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProxyConfiguration, input, options) as async.Operation<types.CreateProxyConfigurationOutput>
+function C:createProxyConfiguration(input: types.CreateProxyConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProxyConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProxyConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateProxyConfigurationOutput>
 end
 
-function C:createProxyRuleGroup(input: types.CreateProxyRuleGroupInput, options: any): async.Operation<types.CreateProxyRuleGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProxyRuleGroup, input, options) as async.Operation<types.CreateProxyRuleGroupOutput>
+function C:createProxyRuleGroup(input: types.CreateProxyRuleGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProxyRuleGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProxyRuleGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateProxyRuleGroupOutput>
 end
 
-function C:createProxyRules(input: types.CreateProxyRulesInput, options: any): async.Operation<types.CreateProxyRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateProxyRules, input, options) as async.Operation<types.CreateProxyRulesOutput>
+function C:createProxyRules(input: types.CreateProxyRulesInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProxyRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProxyRules as schema.OperationSchema, input, options) as async.Operation<types.CreateProxyRulesOutput>
 end
 
-function C:createRuleGroup(input: types.CreateRuleGroupInput, options: any): async.Operation<types.CreateRuleGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateRuleGroup, input, options) as async.Operation<types.CreateRuleGroupOutput>
+function C:createRuleGroup(input: types.CreateRuleGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRuleGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRuleGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateRuleGroupOutput>
 end
 
-function C:createTLSInspectionConfiguration(input: types.CreateTLSInspectionConfigurationInput, options: any): async.Operation<types.CreateTLSInspectionConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTLSInspectionConfiguration, input, options) as async.Operation<types.CreateTLSInspectionConfigurationOutput>
+function C:createTLSInspectionConfiguration(input: types.CreateTLSInspectionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTLSInspectionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTLSInspectionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateTLSInspectionConfigurationOutput>
 end
 
-function C:createVpcEndpointAssociation(input: types.CreateVpcEndpointAssociationInput, options: any): async.Operation<types.CreateVpcEndpointAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVpcEndpointAssociation, input, options) as async.Operation<types.CreateVpcEndpointAssociationOutput>
+function C:createVpcEndpointAssociation(input: types.CreateVpcEndpointAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVpcEndpointAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVpcEndpointAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreateVpcEndpointAssociationOutput>
 end
 
-function C:deleteFirewall(input: types.DeleteFirewallInput, options: any): async.Operation<types.DeleteFirewallOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFirewall, input, options) as async.Operation<types.DeleteFirewallOutput>
+function C:deleteFirewall(input: types.DeleteFirewallInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFirewallOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFirewall as schema.OperationSchema, input, options) as async.Operation<types.DeleteFirewallOutput>
 end
 
-function C:deleteFirewallPolicy(input: types.DeleteFirewallPolicyInput, options: any): async.Operation<types.DeleteFirewallPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteFirewallPolicy, input, options) as async.Operation<types.DeleteFirewallPolicyOutput>
+function C:deleteFirewallPolicy(input: types.DeleteFirewallPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFirewallPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFirewallPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteFirewallPolicyOutput>
 end
 
-function C:deleteNetworkFirewallTransitGatewayAttachment(input: types.DeleteNetworkFirewallTransitGatewayAttachmentInput, options: any): async.Operation<types.DeleteNetworkFirewallTransitGatewayAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteNetworkFirewallTransitGatewayAttachment, input, options) as async.Operation<types.DeleteNetworkFirewallTransitGatewayAttachmentOutput>
+function C:deleteNetworkFirewallTransitGatewayAttachment(input: types.DeleteNetworkFirewallTransitGatewayAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNetworkFirewallTransitGatewayAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNetworkFirewallTransitGatewayAttachment as schema.OperationSchema, input, options) as async.Operation<types.DeleteNetworkFirewallTransitGatewayAttachmentOutput>
 end
 
-function C:deleteProxy(input: types.DeleteProxyInput, options: any): async.Operation<types.DeleteProxyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProxy, input, options) as async.Operation<types.DeleteProxyOutput>
+function C:deleteProxy(input: types.DeleteProxyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProxyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProxy as schema.OperationSchema, input, options) as async.Operation<types.DeleteProxyOutput>
 end
 
-function C:deleteProxyConfiguration(input: types.DeleteProxyConfigurationInput, options: any): async.Operation<types.DeleteProxyConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProxyConfiguration, input, options) as async.Operation<types.DeleteProxyConfigurationOutput>
+function C:deleteProxyConfiguration(input: types.DeleteProxyConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProxyConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProxyConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteProxyConfigurationOutput>
 end
 
-function C:deleteProxyRuleGroup(input: types.DeleteProxyRuleGroupInput, options: any): async.Operation<types.DeleteProxyRuleGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProxyRuleGroup, input, options) as async.Operation<types.DeleteProxyRuleGroupOutput>
+function C:deleteProxyRuleGroup(input: types.DeleteProxyRuleGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProxyRuleGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProxyRuleGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteProxyRuleGroupOutput>
 end
 
-function C:deleteProxyRules(input: types.DeleteProxyRulesInput, options: any): async.Operation<types.DeleteProxyRulesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteProxyRules, input, options) as async.Operation<types.DeleteProxyRulesOutput>
+function C:deleteProxyRules(input: types.DeleteProxyRulesInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProxyRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProxyRules as schema.OperationSchema, input, options) as async.Operation<types.DeleteProxyRulesOutput>
 end
 
-function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options: any): async.Operation<types.DeleteResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteResourcePolicy, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
+function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
 end
 
-function C:deleteRuleGroup(input: types.DeleteRuleGroupInput, options: any): async.Operation<types.DeleteRuleGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteRuleGroup, input, options) as async.Operation<types.DeleteRuleGroupOutput>
+function C:deleteRuleGroup(input: types.DeleteRuleGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRuleGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRuleGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteRuleGroupOutput>
 end
 
-function C:deleteTLSInspectionConfiguration(input: types.DeleteTLSInspectionConfigurationInput, options: any): async.Operation<types.DeleteTLSInspectionConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteTLSInspectionConfiguration, input, options) as async.Operation<types.DeleteTLSInspectionConfigurationOutput>
+function C:deleteTLSInspectionConfiguration(input: types.DeleteTLSInspectionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTLSInspectionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTLSInspectionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteTLSInspectionConfigurationOutput>
 end
 
-function C:deleteVpcEndpointAssociation(input: types.DeleteVpcEndpointAssociationInput, options: any): async.Operation<types.DeleteVpcEndpointAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVpcEndpointAssociation, input, options) as async.Operation<types.DeleteVpcEndpointAssociationOutput>
+function C:deleteVpcEndpointAssociation(input: types.DeleteVpcEndpointAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVpcEndpointAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVpcEndpointAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteVpcEndpointAssociationOutput>
 end
 
-function C:describeFirewall(input: types.DescribeFirewallInput, options: any): async.Operation<types.DescribeFirewallOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFirewall, input, options) as async.Operation<types.DescribeFirewallOutput>
+function C:describeFirewall(input: types.DescribeFirewallInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFirewallOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFirewall as schema.OperationSchema, input, options) as async.Operation<types.DescribeFirewallOutput>
 end
 
-function C:describeFirewallMetadata(input: types.DescribeFirewallMetadataInput, options: any): async.Operation<types.DescribeFirewallMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFirewallMetadata, input, options) as async.Operation<types.DescribeFirewallMetadataOutput>
+function C:describeFirewallMetadata(input: types.DescribeFirewallMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFirewallMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFirewallMetadata as schema.OperationSchema, input, options) as async.Operation<types.DescribeFirewallMetadataOutput>
 end
 
-function C:describeFirewallPolicy(input: types.DescribeFirewallPolicyInput, options: any): async.Operation<types.DescribeFirewallPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFirewallPolicy, input, options) as async.Operation<types.DescribeFirewallPolicyOutput>
+function C:describeFirewallPolicy(input: types.DescribeFirewallPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFirewallPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFirewallPolicy as schema.OperationSchema, input, options) as async.Operation<types.DescribeFirewallPolicyOutput>
 end
 
-function C:describeFlowOperation(input: types.DescribeFlowOperationInput, options: any): async.Operation<types.DescribeFlowOperationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeFlowOperation, input, options) as async.Operation<types.DescribeFlowOperationOutput>
+function C:describeFlowOperation(input: types.DescribeFlowOperationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFlowOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFlowOperation as schema.OperationSchema, input, options) as async.Operation<types.DescribeFlowOperationOutput>
 end
 
-function C:describeLoggingConfiguration(input: types.DescribeLoggingConfigurationInput, options: any): async.Operation<types.DescribeLoggingConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeLoggingConfiguration, input, options) as async.Operation<types.DescribeLoggingConfigurationOutput>
+function C:describeLoggingConfiguration(input: types.DescribeLoggingConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLoggingConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLoggingConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeLoggingConfigurationOutput>
 end
 
-function C:describeProxy(input: types.DescribeProxyInput, options: any): async.Operation<types.DescribeProxyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeProxy, input, options) as async.Operation<types.DescribeProxyOutput>
+function C:describeProxy(input: types.DescribeProxyInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeProxyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeProxy as schema.OperationSchema, input, options) as async.Operation<types.DescribeProxyOutput>
 end
 
-function C:describeProxyConfiguration(input: types.DescribeProxyConfigurationInput, options: any): async.Operation<types.DescribeProxyConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeProxyConfiguration, input, options) as async.Operation<types.DescribeProxyConfigurationOutput>
+function C:describeProxyConfiguration(input: types.DescribeProxyConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeProxyConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeProxyConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeProxyConfigurationOutput>
 end
 
-function C:describeProxyRule(input: types.DescribeProxyRuleInput, options: any): async.Operation<types.DescribeProxyRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeProxyRule, input, options) as async.Operation<types.DescribeProxyRuleOutput>
+function C:describeProxyRule(input: types.DescribeProxyRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeProxyRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeProxyRule as schema.OperationSchema, input, options) as async.Operation<types.DescribeProxyRuleOutput>
 end
 
-function C:describeProxyRuleGroup(input: types.DescribeProxyRuleGroupInput, options: any): async.Operation<types.DescribeProxyRuleGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeProxyRuleGroup, input, options) as async.Operation<types.DescribeProxyRuleGroupOutput>
+function C:describeProxyRuleGroup(input: types.DescribeProxyRuleGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeProxyRuleGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeProxyRuleGroup as schema.OperationSchema, input, options) as async.Operation<types.DescribeProxyRuleGroupOutput>
 end
 
-function C:describeResourcePolicy(input: types.DescribeResourcePolicyInput, options: any): async.Operation<types.DescribeResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeResourcePolicy, input, options) as async.Operation<types.DescribeResourcePolicyOutput>
+function C:describeResourcePolicy(input: types.DescribeResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DescribeResourcePolicyOutput>
 end
 
-function C:describeRuleGroup(input: types.DescribeRuleGroupInput, options: any): async.Operation<types.DescribeRuleGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRuleGroup, input, options) as async.Operation<types.DescribeRuleGroupOutput>
+function C:describeRuleGroup(input: types.DescribeRuleGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRuleGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRuleGroup as schema.OperationSchema, input, options) as async.Operation<types.DescribeRuleGroupOutput>
 end
 
-function C:describeRuleGroupMetadata(input: types.DescribeRuleGroupMetadataInput, options: any): async.Operation<types.DescribeRuleGroupMetadataOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRuleGroupMetadata, input, options) as async.Operation<types.DescribeRuleGroupMetadataOutput>
+function C:describeRuleGroupMetadata(input: types.DescribeRuleGroupMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRuleGroupMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRuleGroupMetadata as schema.OperationSchema, input, options) as async.Operation<types.DescribeRuleGroupMetadataOutput>
 end
 
-function C:describeRuleGroupSummary(input: types.DescribeRuleGroupSummaryInput, options: any): async.Operation<types.DescribeRuleGroupSummaryOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeRuleGroupSummary, input, options) as async.Operation<types.DescribeRuleGroupSummaryOutput>
+function C:describeRuleGroupSummary(input: types.DescribeRuleGroupSummaryInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRuleGroupSummaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeRuleGroupSummary as schema.OperationSchema, input, options) as async.Operation<types.DescribeRuleGroupSummaryOutput>
 end
 
-function C:describeTLSInspectionConfiguration(input: types.DescribeTLSInspectionConfigurationInput, options: any): async.Operation<types.DescribeTLSInspectionConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTLSInspectionConfiguration, input, options) as async.Operation<types.DescribeTLSInspectionConfigurationOutput>
+function C:describeTLSInspectionConfiguration(input: types.DescribeTLSInspectionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTLSInspectionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTLSInspectionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeTLSInspectionConfigurationOutput>
 end
 
-function C:describeVpcEndpointAssociation(input: types.DescribeVpcEndpointAssociationInput, options: any): async.Operation<types.DescribeVpcEndpointAssociationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVpcEndpointAssociation, input, options) as async.Operation<types.DescribeVpcEndpointAssociationOutput>
+function C:describeVpcEndpointAssociation(input: types.DescribeVpcEndpointAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVpcEndpointAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVpcEndpointAssociation as schema.OperationSchema, input, options) as async.Operation<types.DescribeVpcEndpointAssociationOutput>
 end
 
-function C:detachRuleGroupsFromProxyConfiguration(input: types.DetachRuleGroupsFromProxyConfigurationInput, options: any): async.Operation<types.DetachRuleGroupsFromProxyConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DetachRuleGroupsFromProxyConfiguration, input, options) as async.Operation<types.DetachRuleGroupsFromProxyConfigurationOutput>
+function C:detachRuleGroupsFromProxyConfiguration(input: types.DetachRuleGroupsFromProxyConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DetachRuleGroupsFromProxyConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachRuleGroupsFromProxyConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DetachRuleGroupsFromProxyConfigurationOutput>
 end
 
-function C:disassociateAvailabilityZones(input: types.DisassociateAvailabilityZonesInput, options: any): async.Operation<types.DisassociateAvailabilityZonesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateAvailabilityZones, input, options) as async.Operation<types.DisassociateAvailabilityZonesOutput>
+function C:disassociateAvailabilityZones(input: types.DisassociateAvailabilityZonesInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateAvailabilityZonesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateAvailabilityZones as schema.OperationSchema, input, options) as async.Operation<types.DisassociateAvailabilityZonesOutput>
 end
 
-function C:disassociateSubnets(input: types.DisassociateSubnetsInput, options: any): async.Operation<types.DisassociateSubnetsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateSubnets, input, options) as async.Operation<types.DisassociateSubnetsOutput>
+function C:disassociateSubnets(input: types.DisassociateSubnetsInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateSubnetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateSubnets as schema.OperationSchema, input, options) as async.Operation<types.DisassociateSubnetsOutput>
 end
 
-function C:getAnalysisReportResults(input: types.GetAnalysisReportResultsInput, options: any): async.Operation<types.GetAnalysisReportResultsOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAnalysisReportResults, input, options) as async.Operation<types.GetAnalysisReportResultsOutput>
+function C:getAnalysisReportResults(input: types.GetAnalysisReportResultsInput, options?: base_client.InvokeOptions): async.Operation<types.GetAnalysisReportResultsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAnalysisReportResults as schema.OperationSchema, input, options) as async.Operation<types.GetAnalysisReportResultsOutput>
 end
 
-function C:listAnalysisReports(input: types.ListAnalysisReportsInput, options: any): async.Operation<types.ListAnalysisReportsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAnalysisReports, input, options) as async.Operation<types.ListAnalysisReportsOutput>
+function C:listAnalysisReports(input: types.ListAnalysisReportsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAnalysisReportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAnalysisReports as schema.OperationSchema, input, options) as async.Operation<types.ListAnalysisReportsOutput>
 end
 
-function C:listFirewallPolicies(input: types.ListFirewallPoliciesInput, options: any): async.Operation<types.ListFirewallPoliciesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFirewallPolicies, input, options) as async.Operation<types.ListFirewallPoliciesOutput>
+function C:listFirewallPolicies(input: types.ListFirewallPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListFirewallPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFirewallPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListFirewallPoliciesOutput>
 end
 
-function C:listFirewalls(input: types.ListFirewallsInput, options: any): async.Operation<types.ListFirewallsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFirewalls, input, options) as async.Operation<types.ListFirewallsOutput>
+function C:listFirewalls(input: types.ListFirewallsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFirewallsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFirewalls as schema.OperationSchema, input, options) as async.Operation<types.ListFirewallsOutput>
 end
 
-function C:listFlowOperationResults(input: types.ListFlowOperationResultsInput, options: any): async.Operation<types.ListFlowOperationResultsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFlowOperationResults, input, options) as async.Operation<types.ListFlowOperationResultsOutput>
+function C:listFlowOperationResults(input: types.ListFlowOperationResultsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFlowOperationResultsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFlowOperationResults as schema.OperationSchema, input, options) as async.Operation<types.ListFlowOperationResultsOutput>
 end
 
-function C:listFlowOperations(input: types.ListFlowOperationsInput, options: any): async.Operation<types.ListFlowOperationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListFlowOperations, input, options) as async.Operation<types.ListFlowOperationsOutput>
+function C:listFlowOperations(input: types.ListFlowOperationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFlowOperationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFlowOperations as schema.OperationSchema, input, options) as async.Operation<types.ListFlowOperationsOutput>
 end
 
-function C:listProxies(input: types.ListProxiesInput, options: any): async.Operation<types.ListProxiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProxies, input, options) as async.Operation<types.ListProxiesOutput>
+function C:listProxies(input: types.ListProxiesInput, options?: base_client.InvokeOptions): async.Operation<types.ListProxiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProxies as schema.OperationSchema, input, options) as async.Operation<types.ListProxiesOutput>
 end
 
-function C:listProxyConfigurations(input: types.ListProxyConfigurationsInput, options: any): async.Operation<types.ListProxyConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProxyConfigurations, input, options) as async.Operation<types.ListProxyConfigurationsOutput>
+function C:listProxyConfigurations(input: types.ListProxyConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListProxyConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProxyConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListProxyConfigurationsOutput>
 end
 
-function C:listProxyRuleGroups(input: types.ListProxyRuleGroupsInput, options: any): async.Operation<types.ListProxyRuleGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListProxyRuleGroups, input, options) as async.Operation<types.ListProxyRuleGroupsOutput>
+function C:listProxyRuleGroups(input: types.ListProxyRuleGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListProxyRuleGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProxyRuleGroups as schema.OperationSchema, input, options) as async.Operation<types.ListProxyRuleGroupsOutput>
 end
 
-function C:listRuleGroups(input: types.ListRuleGroupsInput, options: any): async.Operation<types.ListRuleGroupsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRuleGroups, input, options) as async.Operation<types.ListRuleGroupsOutput>
+function C:listRuleGroups(input: types.ListRuleGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRuleGroupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRuleGroups as schema.OperationSchema, input, options) as async.Operation<types.ListRuleGroupsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTLSInspectionConfigurations(input: types.ListTLSInspectionConfigurationsInput, options: any): async.Operation<types.ListTLSInspectionConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTLSInspectionConfigurations, input, options) as async.Operation<types.ListTLSInspectionConfigurationsOutput>
+function C:listTLSInspectionConfigurations(input: types.ListTLSInspectionConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTLSInspectionConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTLSInspectionConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListTLSInspectionConfigurationsOutput>
 end
 
-function C:listVpcEndpointAssociations(input: types.ListVpcEndpointAssociationsInput, options: any): async.Operation<types.ListVpcEndpointAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVpcEndpointAssociations, input, options) as async.Operation<types.ListVpcEndpointAssociationsOutput>
+function C:listVpcEndpointAssociations(input: types.ListVpcEndpointAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListVpcEndpointAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVpcEndpointAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListVpcEndpointAssociationsOutput>
 end
 
-function C:putResourcePolicy(input: types.PutResourcePolicyInput, options: any): async.Operation<types.PutResourcePolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.PutResourcePolicy, input, options) as async.Operation<types.PutResourcePolicyOutput>
+function C:putResourcePolicy(input: types.PutResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutResourcePolicyOutput>
 end
 
-function C:rejectNetworkFirewallTransitGatewayAttachment(input: types.RejectNetworkFirewallTransitGatewayAttachmentInput, options: any): async.Operation<types.RejectNetworkFirewallTransitGatewayAttachmentOutput>
-    return self:invokeOperation(schemas.Service, schemas.RejectNetworkFirewallTransitGatewayAttachment, input, options) as async.Operation<types.RejectNetworkFirewallTransitGatewayAttachmentOutput>
+function C:rejectNetworkFirewallTransitGatewayAttachment(input: types.RejectNetworkFirewallTransitGatewayAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.RejectNetworkFirewallTransitGatewayAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RejectNetworkFirewallTransitGatewayAttachment as schema.OperationSchema, input, options) as async.Operation<types.RejectNetworkFirewallTransitGatewayAttachmentOutput>
 end
 
-function C:startAnalysisReport(input: types.StartAnalysisReportInput, options: any): async.Operation<types.StartAnalysisReportOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartAnalysisReport, input, options) as async.Operation<types.StartAnalysisReportOutput>
+function C:startAnalysisReport(input: types.StartAnalysisReportInput, options?: base_client.InvokeOptions): async.Operation<types.StartAnalysisReportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartAnalysisReport as schema.OperationSchema, input, options) as async.Operation<types.StartAnalysisReportOutput>
 end
 
-function C:startFlowCapture(input: types.StartFlowCaptureInput, options: any): async.Operation<types.StartFlowCaptureOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartFlowCapture, input, options) as async.Operation<types.StartFlowCaptureOutput>
+function C:startFlowCapture(input: types.StartFlowCaptureInput, options?: base_client.InvokeOptions): async.Operation<types.StartFlowCaptureOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartFlowCapture as schema.OperationSchema, input, options) as async.Operation<types.StartFlowCaptureOutput>
 end
 
-function C:startFlowFlush(input: types.StartFlowFlushInput, options: any): async.Operation<types.StartFlowFlushOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartFlowFlush, input, options) as async.Operation<types.StartFlowFlushOutput>
+function C:startFlowFlush(input: types.StartFlowFlushInput, options?: base_client.InvokeOptions): async.Operation<types.StartFlowFlushOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartFlowFlush as schema.OperationSchema, input, options) as async.Operation<types.StartFlowFlushOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAvailabilityZoneChangeProtection(input: types.UpdateAvailabilityZoneChangeProtectionInput, options: any): async.Operation<types.UpdateAvailabilityZoneChangeProtectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAvailabilityZoneChangeProtection, input, options) as async.Operation<types.UpdateAvailabilityZoneChangeProtectionOutput>
+function C:updateAvailabilityZoneChangeProtection(input: types.UpdateAvailabilityZoneChangeProtectionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAvailabilityZoneChangeProtectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAvailabilityZoneChangeProtection as schema.OperationSchema, input, options) as async.Operation<types.UpdateAvailabilityZoneChangeProtectionOutput>
 end
 
-function C:updateFirewallAnalysisSettings(input: types.UpdateFirewallAnalysisSettingsInput, options: any): async.Operation<types.UpdateFirewallAnalysisSettingsOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFirewallAnalysisSettings, input, options) as async.Operation<types.UpdateFirewallAnalysisSettingsOutput>
+function C:updateFirewallAnalysisSettings(input: types.UpdateFirewallAnalysisSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFirewallAnalysisSettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFirewallAnalysisSettings as schema.OperationSchema, input, options) as async.Operation<types.UpdateFirewallAnalysisSettingsOutput>
 end
 
-function C:updateFirewallDeleteProtection(input: types.UpdateFirewallDeleteProtectionInput, options: any): async.Operation<types.UpdateFirewallDeleteProtectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFirewallDeleteProtection, input, options) as async.Operation<types.UpdateFirewallDeleteProtectionOutput>
+function C:updateFirewallDeleteProtection(input: types.UpdateFirewallDeleteProtectionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFirewallDeleteProtectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFirewallDeleteProtection as schema.OperationSchema, input, options) as async.Operation<types.UpdateFirewallDeleteProtectionOutput>
 end
 
-function C:updateFirewallDescription(input: types.UpdateFirewallDescriptionInput, options: any): async.Operation<types.UpdateFirewallDescriptionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFirewallDescription, input, options) as async.Operation<types.UpdateFirewallDescriptionOutput>
+function C:updateFirewallDescription(input: types.UpdateFirewallDescriptionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFirewallDescriptionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFirewallDescription as schema.OperationSchema, input, options) as async.Operation<types.UpdateFirewallDescriptionOutput>
 end
 
-function C:updateFirewallEncryptionConfiguration(input: types.UpdateFirewallEncryptionConfigurationInput, options: any): async.Operation<types.UpdateFirewallEncryptionConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFirewallEncryptionConfiguration, input, options) as async.Operation<types.UpdateFirewallEncryptionConfigurationOutput>
+function C:updateFirewallEncryptionConfiguration(input: types.UpdateFirewallEncryptionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFirewallEncryptionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFirewallEncryptionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateFirewallEncryptionConfigurationOutput>
 end
 
-function C:updateFirewallPolicy(input: types.UpdateFirewallPolicyInput, options: any): async.Operation<types.UpdateFirewallPolicyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFirewallPolicy, input, options) as async.Operation<types.UpdateFirewallPolicyOutput>
+function C:updateFirewallPolicy(input: types.UpdateFirewallPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFirewallPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFirewallPolicy as schema.OperationSchema, input, options) as async.Operation<types.UpdateFirewallPolicyOutput>
 end
 
-function C:updateFirewallPolicyChangeProtection(input: types.UpdateFirewallPolicyChangeProtectionInput, options: any): async.Operation<types.UpdateFirewallPolicyChangeProtectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateFirewallPolicyChangeProtection, input, options) as async.Operation<types.UpdateFirewallPolicyChangeProtectionOutput>
+function C:updateFirewallPolicyChangeProtection(input: types.UpdateFirewallPolicyChangeProtectionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFirewallPolicyChangeProtectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFirewallPolicyChangeProtection as schema.OperationSchema, input, options) as async.Operation<types.UpdateFirewallPolicyChangeProtectionOutput>
 end
 
-function C:updateLoggingConfiguration(input: types.UpdateLoggingConfigurationInput, options: any): async.Operation<types.UpdateLoggingConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateLoggingConfiguration, input, options) as async.Operation<types.UpdateLoggingConfigurationOutput>
+function C:updateLoggingConfiguration(input: types.UpdateLoggingConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLoggingConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLoggingConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateLoggingConfigurationOutput>
 end
 
-function C:updateProxy(input: types.UpdateProxyInput, options: any): async.Operation<types.UpdateProxyOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProxy, input, options) as async.Operation<types.UpdateProxyOutput>
+function C:updateProxy(input: types.UpdateProxyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProxyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProxy as schema.OperationSchema, input, options) as async.Operation<types.UpdateProxyOutput>
 end
 
-function C:updateProxyConfiguration(input: types.UpdateProxyConfigurationInput, options: any): async.Operation<types.UpdateProxyConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProxyConfiguration, input, options) as async.Operation<types.UpdateProxyConfigurationOutput>
+function C:updateProxyConfiguration(input: types.UpdateProxyConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProxyConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProxyConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateProxyConfigurationOutput>
 end
 
-function C:updateProxyRule(input: types.UpdateProxyRuleInput, options: any): async.Operation<types.UpdateProxyRuleOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProxyRule, input, options) as async.Operation<types.UpdateProxyRuleOutput>
+function C:updateProxyRule(input: types.UpdateProxyRuleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProxyRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProxyRule as schema.OperationSchema, input, options) as async.Operation<types.UpdateProxyRuleOutput>
 end
 
-function C:updateProxyRuleGroupPriorities(input: types.UpdateProxyRuleGroupPrioritiesInput, options: any): async.Operation<types.UpdateProxyRuleGroupPrioritiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProxyRuleGroupPriorities, input, options) as async.Operation<types.UpdateProxyRuleGroupPrioritiesOutput>
+function C:updateProxyRuleGroupPriorities(input: types.UpdateProxyRuleGroupPrioritiesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProxyRuleGroupPrioritiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProxyRuleGroupPriorities as schema.OperationSchema, input, options) as async.Operation<types.UpdateProxyRuleGroupPrioritiesOutput>
 end
 
-function C:updateProxyRulePriorities(input: types.UpdateProxyRulePrioritiesInput, options: any): async.Operation<types.UpdateProxyRulePrioritiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateProxyRulePriorities, input, options) as async.Operation<types.UpdateProxyRulePrioritiesOutput>
+function C:updateProxyRulePriorities(input: types.UpdateProxyRulePrioritiesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProxyRulePrioritiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProxyRulePriorities as schema.OperationSchema, input, options) as async.Operation<types.UpdateProxyRulePrioritiesOutput>
 end
 
-function C:updateRuleGroup(input: types.UpdateRuleGroupInput, options: any): async.Operation<types.UpdateRuleGroupOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateRuleGroup, input, options) as async.Operation<types.UpdateRuleGroupOutput>
+function C:updateRuleGroup(input: types.UpdateRuleGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRuleGroupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRuleGroup as schema.OperationSchema, input, options) as async.Operation<types.UpdateRuleGroupOutput>
 end
 
-function C:updateSubnetChangeProtection(input: types.UpdateSubnetChangeProtectionInput, options: any): async.Operation<types.UpdateSubnetChangeProtectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSubnetChangeProtection, input, options) as async.Operation<types.UpdateSubnetChangeProtectionOutput>
+function C:updateSubnetChangeProtection(input: types.UpdateSubnetChangeProtectionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSubnetChangeProtectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSubnetChangeProtection as schema.OperationSchema, input, options) as async.Operation<types.UpdateSubnetChangeProtectionOutput>
 end
 
-function C:updateTLSInspectionConfiguration(input: types.UpdateTLSInspectionConfigurationInput, options: any): async.Operation<types.UpdateTLSInspectionConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateTLSInspectionConfiguration, input, options) as async.Operation<types.UpdateTLSInspectionConfigurationOutput>
+function C:updateTLSInspectionConfiguration(input: types.UpdateTLSInspectionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTLSInspectionConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTLSInspectionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateTLSInspectionConfigurationOutput>
 end
 
 return M

@@ -8,52 +8,55 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("snowdevicemanagement.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("snowdevicemanagement.schemas")
 local traits = require("smithy.traits")
 local types = require("snowdevicemanagement.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    cancelTask: function(Client, types.CancelTaskInput, any): async.Operation<types.CancelTaskOutput>
-    createTask: function(Client, types.CreateTaskInput, any): async.Operation<types.CreateTaskOutput>
-    describeDevice: function(Client, types.DescribeDeviceInput, any): async.Operation<types.DescribeDeviceOutput>
-    describeDeviceEc2Instances: function(Client, types.DescribeDeviceEc2InstancesInput, any): async.Operation<types.DescribeDeviceEc2InstancesOutput>
-    describeExecution: function(Client, types.DescribeExecutionInput, any): async.Operation<types.DescribeExecutionOutput>
-    describeTask: function(Client, types.DescribeTaskInput, any): async.Operation<types.DescribeTaskOutput>
-    listDeviceResources: function(Client, types.ListDeviceResourcesInput, any): async.Operation<types.ListDeviceResourcesOutput>
-    listDevices: function(Client, types.ListDevicesInput, any): async.Operation<types.ListDevicesOutput>
-    listExecutions: function(Client, types.ListExecutionsInput, any): async.Operation<types.ListExecutionsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listTasks: function(Client, types.ListTasksInput, any): async.Operation<types.ListTasksOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    cancelTask: function(Client, types.CancelTaskInput, ? base_client.InvokeOptions): async.Operation<types.CancelTaskOutput>
+    createTask: function(Client, types.CreateTaskInput, ? base_client.InvokeOptions): async.Operation<types.CreateTaskOutput>
+    describeDevice: function(Client, types.DescribeDeviceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDeviceOutput>
+    describeDeviceEc2Instances: function(Client, types.DescribeDeviceEc2InstancesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDeviceEc2InstancesOutput>
+    describeExecution: function(Client, types.DescribeExecutionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeExecutionOutput>
+    describeTask: function(Client, types.DescribeTaskInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTaskOutput>
+    listDeviceResources: function(Client, types.ListDeviceResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListDeviceResourcesOutput>
+    listDevices: function(Client, types.ListDevicesInput, ? base_client.InvokeOptions): async.Operation<types.ListDevicesOutput>
+    listExecutions: function(Client, types.ListExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListExecutionsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTasks: function(Client, types.ListTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListTasksOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "SnowDeviceManagement"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "snow-device-management", signing_region = c.region } }
                 else
@@ -72,56 +75,56 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:cancelTask(input: types.CancelTaskInput, options: any): async.Operation<types.CancelTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelTask, input, options) as async.Operation<types.CancelTaskOutput>
+function C:cancelTask(input: types.CancelTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CancelTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelTask as schema.OperationSchema, input, options) as async.Operation<types.CancelTaskOutput>
 end
 
-function C:createTask(input: types.CreateTaskInput, options: any): async.Operation<types.CreateTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateTask, input, options) as async.Operation<types.CreateTaskOutput>
+function C:createTask(input: types.CreateTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTask as schema.OperationSchema, input, options) as async.Operation<types.CreateTaskOutput>
 end
 
-function C:describeDevice(input: types.DescribeDeviceInput, options: any): async.Operation<types.DescribeDeviceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDevice, input, options) as async.Operation<types.DescribeDeviceOutput>
+function C:describeDevice(input: types.DescribeDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDeviceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDevice as schema.OperationSchema, input, options) as async.Operation<types.DescribeDeviceOutput>
 end
 
-function C:describeDeviceEc2Instances(input: types.DescribeDeviceEc2InstancesInput, options: any): async.Operation<types.DescribeDeviceEc2InstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeDeviceEc2Instances, input, options) as async.Operation<types.DescribeDeviceEc2InstancesOutput>
+function C:describeDeviceEc2Instances(input: types.DescribeDeviceEc2InstancesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDeviceEc2InstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDeviceEc2Instances as schema.OperationSchema, input, options) as async.Operation<types.DescribeDeviceEc2InstancesOutput>
 end
 
-function C:describeExecution(input: types.DescribeExecutionInput, options: any): async.Operation<types.DescribeExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeExecution, input, options) as async.Operation<types.DescribeExecutionOutput>
+function C:describeExecution(input: types.DescribeExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeExecution as schema.OperationSchema, input, options) as async.Operation<types.DescribeExecutionOutput>
 end
 
-function C:describeTask(input: types.DescribeTaskInput, options: any): async.Operation<types.DescribeTaskOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeTask, input, options) as async.Operation<types.DescribeTaskOutput>
+function C:describeTask(input: types.DescribeTaskInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTask as schema.OperationSchema, input, options) as async.Operation<types.DescribeTaskOutput>
 end
 
-function C:listDeviceResources(input: types.ListDeviceResourcesInput, options: any): async.Operation<types.ListDeviceResourcesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDeviceResources, input, options) as async.Operation<types.ListDeviceResourcesOutput>
+function C:listDeviceResources(input: types.ListDeviceResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDeviceResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDeviceResources as schema.OperationSchema, input, options) as async.Operation<types.ListDeviceResourcesOutput>
 end
 
-function C:listDevices(input: types.ListDevicesInput, options: any): async.Operation<types.ListDevicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListDevices, input, options) as async.Operation<types.ListDevicesOutput>
+function C:listDevices(input: types.ListDevicesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDevicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDevices as schema.OperationSchema, input, options) as async.Operation<types.ListDevicesOutput>
 end
 
-function C:listExecutions(input: types.ListExecutionsInput, options: any): async.Operation<types.ListExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListExecutions, input, options) as async.Operation<types.ListExecutionsOutput>
+function C:listExecutions(input: types.ListExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExecutions as schema.OperationSchema, input, options) as async.Operation<types.ListExecutionsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listTasks(input: types.ListTasksInput, options: any): async.Operation<types.ListTasksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTasks, input, options) as async.Operation<types.ListTasksOutput>
+function C:listTasks(input: types.ListTasksInput, options?: base_client.InvokeOptions): async.Operation<types.ListTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTasks as schema.OperationSchema, input, options) as async.Operation<types.ListTasksOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
 return M

@@ -8,60 +8,63 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("arcregionswitch.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("arcregionswitch.schemas")
 local traits = require("smithy.traits")
 local types = require("arcregionswitch.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    approvePlanExecutionStep: function(Client, types.ApprovePlanExecutionStepInput, any): async.Operation<types.ApprovePlanExecutionStepOutput>
-    cancelPlanExecution: function(Client, types.CancelPlanExecutionInput, any): async.Operation<types.CancelPlanExecutionOutput>
-    createPlan: function(Client, types.CreatePlanInput, any): async.Operation<types.CreatePlanOutput>
-    deletePlan: function(Client, types.DeletePlanInput, any): async.Operation<types.DeletePlanOutput>
-    getPlan: function(Client, types.GetPlanInput, any): async.Operation<types.GetPlanOutput>
-    getPlanEvaluationStatus: function(Client, types.GetPlanEvaluationStatusInput, any): async.Operation<types.GetPlanEvaluationStatusOutput>
-    getPlanExecution: function(Client, types.GetPlanExecutionInput, any): async.Operation<types.GetPlanExecutionOutput>
-    getPlanInRegion: function(Client, types.GetPlanInRegionInput, any): async.Operation<types.GetPlanInRegionOutput>
-    listPlanExecutionEvents: function(Client, types.ListPlanExecutionEventsInput, any): async.Operation<types.ListPlanExecutionEventsOutput>
-    listPlanExecutions: function(Client, types.ListPlanExecutionsInput, any): async.Operation<types.ListPlanExecutionsOutput>
-    listPlans: function(Client, types.ListPlansInput, any): async.Operation<types.ListPlansOutput>
-    listPlansInRegion: function(Client, types.ListPlansInRegionInput, any): async.Operation<types.ListPlansInRegionOutput>
-    listRoute53HealthChecks: function(Client, types.ListRoute53HealthChecksInput, any): async.Operation<types.ListRoute53HealthChecksOutput>
-    listRoute53HealthChecksInRegion: function(Client, types.ListRoute53HealthChecksInRegionInput, any): async.Operation<types.ListRoute53HealthChecksInRegionOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    startPlanExecution: function(Client, types.StartPlanExecutionInput, any): async.Operation<types.StartPlanExecutionOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updatePlan: function(Client, types.UpdatePlanInput, any): async.Operation<types.UpdatePlanOutput>
-    updatePlanExecution: function(Client, types.UpdatePlanExecutionInput, any): async.Operation<types.UpdatePlanExecutionOutput>
-    updatePlanExecutionStep: function(Client, types.UpdatePlanExecutionStepInput, any): async.Operation<types.UpdatePlanExecutionStepOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    approvePlanExecutionStep: function(Client, types.ApprovePlanExecutionStepInput, ? base_client.InvokeOptions): async.Operation<types.ApprovePlanExecutionStepOutput>
+    cancelPlanExecution: function(Client, types.CancelPlanExecutionInput, ? base_client.InvokeOptions): async.Operation<types.CancelPlanExecutionOutput>
+    createPlan: function(Client, types.CreatePlanInput, ? base_client.InvokeOptions): async.Operation<types.CreatePlanOutput>
+    deletePlan: function(Client, types.DeletePlanInput, ? base_client.InvokeOptions): async.Operation<types.DeletePlanOutput>
+    getPlan: function(Client, types.GetPlanInput, ? base_client.InvokeOptions): async.Operation<types.GetPlanOutput>
+    getPlanEvaluationStatus: function(Client, types.GetPlanEvaluationStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetPlanEvaluationStatusOutput>
+    getPlanExecution: function(Client, types.GetPlanExecutionInput, ? base_client.InvokeOptions): async.Operation<types.GetPlanExecutionOutput>
+    getPlanInRegion: function(Client, types.GetPlanInRegionInput, ? base_client.InvokeOptions): async.Operation<types.GetPlanInRegionOutput>
+    listPlanExecutionEvents: function(Client, types.ListPlanExecutionEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListPlanExecutionEventsOutput>
+    listPlanExecutions: function(Client, types.ListPlanExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListPlanExecutionsOutput>
+    listPlans: function(Client, types.ListPlansInput, ? base_client.InvokeOptions): async.Operation<types.ListPlansOutput>
+    listPlansInRegion: function(Client, types.ListPlansInRegionInput, ? base_client.InvokeOptions): async.Operation<types.ListPlansInRegionOutput>
+    listRoute53HealthChecks: function(Client, types.ListRoute53HealthChecksInput, ? base_client.InvokeOptions): async.Operation<types.ListRoute53HealthChecksOutput>
+    listRoute53HealthChecksInRegion: function(Client, types.ListRoute53HealthChecksInRegionInput, ? base_client.InvokeOptions): async.Operation<types.ListRoute53HealthChecksInRegionOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    startPlanExecution: function(Client, types.StartPlanExecutionInput, ? base_client.InvokeOptions): async.Operation<types.StartPlanExecutionOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updatePlan: function(Client, types.UpdatePlanInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePlanOutput>
+    updatePlanExecution: function(Client, types.UpdatePlanExecutionInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePlanExecutionOutput>
+    updatePlanExecutionStep: function(Client, types.UpdatePlanExecutionStepInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePlanExecutionStepOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "ArcRegionSwitch"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "arc-region-switch", signing_region = c.region } }
                 else
@@ -80,88 +83,88 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:approvePlanExecutionStep(input: types.ApprovePlanExecutionStepInput, options: any): async.Operation<types.ApprovePlanExecutionStepOutput>
-    return self:invokeOperation(schemas.Service, schemas.ApprovePlanExecutionStep, input, options) as async.Operation<types.ApprovePlanExecutionStepOutput>
+function C:approvePlanExecutionStep(input: types.ApprovePlanExecutionStepInput, options?: base_client.InvokeOptions): async.Operation<types.ApprovePlanExecutionStepOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ApprovePlanExecutionStep as schema.OperationSchema, input, options) as async.Operation<types.ApprovePlanExecutionStepOutput>
 end
 
-function C:cancelPlanExecution(input: types.CancelPlanExecutionInput, options: any): async.Operation<types.CancelPlanExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CancelPlanExecution, input, options) as async.Operation<types.CancelPlanExecutionOutput>
+function C:cancelPlanExecution(input: types.CancelPlanExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.CancelPlanExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelPlanExecution as schema.OperationSchema, input, options) as async.Operation<types.CancelPlanExecutionOutput>
 end
 
-function C:createPlan(input: types.CreatePlanInput, options: any): async.Operation<types.CreatePlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreatePlan, input, options) as async.Operation<types.CreatePlanOutput>
+function C:createPlan(input: types.CreatePlanInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePlan as schema.OperationSchema, input, options) as async.Operation<types.CreatePlanOutput>
 end
 
-function C:deletePlan(input: types.DeletePlanInput, options: any): async.Operation<types.DeletePlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeletePlan, input, options) as async.Operation<types.DeletePlanOutput>
+function C:deletePlan(input: types.DeletePlanInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePlan as schema.OperationSchema, input, options) as async.Operation<types.DeletePlanOutput>
 end
 
-function C:getPlan(input: types.GetPlanInput, options: any): async.Operation<types.GetPlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPlan, input, options) as async.Operation<types.GetPlanOutput>
+function C:getPlan(input: types.GetPlanInput, options?: base_client.InvokeOptions): async.Operation<types.GetPlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPlan as schema.OperationSchema, input, options) as async.Operation<types.GetPlanOutput>
 end
 
-function C:getPlanEvaluationStatus(input: types.GetPlanEvaluationStatusInput, options: any): async.Operation<types.GetPlanEvaluationStatusOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPlanEvaluationStatus, input, options) as async.Operation<types.GetPlanEvaluationStatusOutput>
+function C:getPlanEvaluationStatus(input: types.GetPlanEvaluationStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetPlanEvaluationStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPlanEvaluationStatus as schema.OperationSchema, input, options) as async.Operation<types.GetPlanEvaluationStatusOutput>
 end
 
-function C:getPlanExecution(input: types.GetPlanExecutionInput, options: any): async.Operation<types.GetPlanExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPlanExecution, input, options) as async.Operation<types.GetPlanExecutionOutput>
+function C:getPlanExecution(input: types.GetPlanExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.GetPlanExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPlanExecution as schema.OperationSchema, input, options) as async.Operation<types.GetPlanExecutionOutput>
 end
 
-function C:getPlanInRegion(input: types.GetPlanInRegionInput, options: any): async.Operation<types.GetPlanInRegionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetPlanInRegion, input, options) as async.Operation<types.GetPlanInRegionOutput>
+function C:getPlanInRegion(input: types.GetPlanInRegionInput, options?: base_client.InvokeOptions): async.Operation<types.GetPlanInRegionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPlanInRegion as schema.OperationSchema, input, options) as async.Operation<types.GetPlanInRegionOutput>
 end
 
-function C:listPlanExecutionEvents(input: types.ListPlanExecutionEventsInput, options: any): async.Operation<types.ListPlanExecutionEventsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPlanExecutionEvents, input, options) as async.Operation<types.ListPlanExecutionEventsOutput>
+function C:listPlanExecutionEvents(input: types.ListPlanExecutionEventsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPlanExecutionEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPlanExecutionEvents as schema.OperationSchema, input, options) as async.Operation<types.ListPlanExecutionEventsOutput>
 end
 
-function C:listPlanExecutions(input: types.ListPlanExecutionsInput, options: any): async.Operation<types.ListPlanExecutionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPlanExecutions, input, options) as async.Operation<types.ListPlanExecutionsOutput>
+function C:listPlanExecutions(input: types.ListPlanExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPlanExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPlanExecutions as schema.OperationSchema, input, options) as async.Operation<types.ListPlanExecutionsOutput>
 end
 
-function C:listPlans(input: types.ListPlansInput, options: any): async.Operation<types.ListPlansOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPlans, input, options) as async.Operation<types.ListPlansOutput>
+function C:listPlans(input: types.ListPlansInput, options?: base_client.InvokeOptions): async.Operation<types.ListPlansOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPlans as schema.OperationSchema, input, options) as async.Operation<types.ListPlansOutput>
 end
 
-function C:listPlansInRegion(input: types.ListPlansInRegionInput, options: any): async.Operation<types.ListPlansInRegionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListPlansInRegion, input, options) as async.Operation<types.ListPlansInRegionOutput>
+function C:listPlansInRegion(input: types.ListPlansInRegionInput, options?: base_client.InvokeOptions): async.Operation<types.ListPlansInRegionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPlansInRegion as schema.OperationSchema, input, options) as async.Operation<types.ListPlansInRegionOutput>
 end
 
-function C:listRoute53HealthChecks(input: types.ListRoute53HealthChecksInput, options: any): async.Operation<types.ListRoute53HealthChecksOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRoute53HealthChecks, input, options) as async.Operation<types.ListRoute53HealthChecksOutput>
+function C:listRoute53HealthChecks(input: types.ListRoute53HealthChecksInput, options?: base_client.InvokeOptions): async.Operation<types.ListRoute53HealthChecksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRoute53HealthChecks as schema.OperationSchema, input, options) as async.Operation<types.ListRoute53HealthChecksOutput>
 end
 
-function C:listRoute53HealthChecksInRegion(input: types.ListRoute53HealthChecksInRegionInput, options: any): async.Operation<types.ListRoute53HealthChecksInRegionOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRoute53HealthChecksInRegion, input, options) as async.Operation<types.ListRoute53HealthChecksInRegionOutput>
+function C:listRoute53HealthChecksInRegion(input: types.ListRoute53HealthChecksInRegionInput, options?: base_client.InvokeOptions): async.Operation<types.ListRoute53HealthChecksInRegionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRoute53HealthChecksInRegion as schema.OperationSchema, input, options) as async.Operation<types.ListRoute53HealthChecksInRegionOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:startPlanExecution(input: types.StartPlanExecutionInput, options: any): async.Operation<types.StartPlanExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartPlanExecution, input, options) as async.Operation<types.StartPlanExecutionOutput>
+function C:startPlanExecution(input: types.StartPlanExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.StartPlanExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartPlanExecution as schema.OperationSchema, input, options) as async.Operation<types.StartPlanExecutionOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updatePlan(input: types.UpdatePlanInput, options: any): async.Operation<types.UpdatePlanOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePlan, input, options) as async.Operation<types.UpdatePlanOutput>
+function C:updatePlan(input: types.UpdatePlanInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePlanOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePlan as schema.OperationSchema, input, options) as async.Operation<types.UpdatePlanOutput>
 end
 
-function C:updatePlanExecution(input: types.UpdatePlanExecutionInput, options: any): async.Operation<types.UpdatePlanExecutionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePlanExecution, input, options) as async.Operation<types.UpdatePlanExecutionOutput>
+function C:updatePlanExecution(input: types.UpdatePlanExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePlanExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePlanExecution as schema.OperationSchema, input, options) as async.Operation<types.UpdatePlanExecutionOutput>
 end
 
-function C:updatePlanExecutionStep(input: types.UpdatePlanExecutionStepInput, options: any): async.Operation<types.UpdatePlanExecutionStepOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdatePlanExecutionStep, input, options) as async.Operation<types.UpdatePlanExecutionStepOutput>
+function C:updatePlanExecutionStep(input: types.UpdatePlanExecutionStepInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePlanExecutionStepOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePlanExecutionStep as schema.OperationSchema, input, options) as async.Operation<types.UpdatePlanExecutionStepOutput>
 end
 
 return M

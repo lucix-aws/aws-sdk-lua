@@ -8,73 +8,76 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("chatbot.endpoint_rules")
 local restjson_protocol = require("smithy.protocol.restjson")
+local schema = require("smithy.schema")
 local schemas = require("chatbot.schemas")
 local traits = require("smithy.traits")
 local types = require("chatbot.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateToConfiguration: function(Client, types.AssociateToConfigurationInput, any): async.Operation<types.AssociateToConfigurationOutput>
-    createChimeWebhookConfiguration: function(Client, types.CreateChimeWebhookConfigurationInput, any): async.Operation<types.CreateChimeWebhookConfigurationOutput>
-    createCustomAction: function(Client, types.CreateCustomActionInput, any): async.Operation<types.CreateCustomActionOutput>
-    createMicrosoftTeamsChannelConfiguration: function(Client, types.CreateMicrosoftTeamsChannelConfigurationInput, any): async.Operation<types.CreateMicrosoftTeamsChannelConfigurationOutput>
-    createSlackChannelConfiguration: function(Client, types.CreateSlackChannelConfigurationInput, any): async.Operation<types.CreateSlackChannelConfigurationOutput>
-    deleteChimeWebhookConfiguration: function(Client, types.DeleteChimeWebhookConfigurationInput, any): async.Operation<types.DeleteChimeWebhookConfigurationOutput>
-    deleteCustomAction: function(Client, types.DeleteCustomActionInput, any): async.Operation<types.DeleteCustomActionOutput>
-    deleteMicrosoftTeamsChannelConfiguration: function(Client, types.DeleteMicrosoftTeamsChannelConfigurationInput, any): async.Operation<types.DeleteMicrosoftTeamsChannelConfigurationOutput>
-    deleteMicrosoftTeamsConfiguredTeam: function(Client, types.DeleteMicrosoftTeamsConfiguredTeamInput, any): async.Operation<types.DeleteMicrosoftTeamsConfiguredTeamOutput>
-    deleteMicrosoftTeamsUserIdentity: function(Client, types.DeleteMicrosoftTeamsUserIdentityInput, any): async.Operation<types.DeleteMicrosoftTeamsUserIdentityOutput>
-    deleteSlackChannelConfiguration: function(Client, types.DeleteSlackChannelConfigurationInput, any): async.Operation<types.DeleteSlackChannelConfigurationOutput>
-    deleteSlackUserIdentity: function(Client, types.DeleteSlackUserIdentityInput, any): async.Operation<types.DeleteSlackUserIdentityOutput>
-    deleteSlackWorkspaceAuthorization: function(Client, types.DeleteSlackWorkspaceAuthorizationInput, any): async.Operation<types.DeleteSlackWorkspaceAuthorizationOutput>
-    describeChimeWebhookConfigurations: function(Client, types.DescribeChimeWebhookConfigurationsInput, any): async.Operation<types.DescribeChimeWebhookConfigurationsOutput>
-    describeSlackChannelConfigurations: function(Client, types.DescribeSlackChannelConfigurationsInput, any): async.Operation<types.DescribeSlackChannelConfigurationsOutput>
-    describeSlackUserIdentities: function(Client, types.DescribeSlackUserIdentitiesInput, any): async.Operation<types.DescribeSlackUserIdentitiesOutput>
-    describeSlackWorkspaces: function(Client, types.DescribeSlackWorkspacesInput, any): async.Operation<types.DescribeSlackWorkspacesOutput>
-    disassociateFromConfiguration: function(Client, types.DisassociateFromConfigurationInput, any): async.Operation<types.DisassociateFromConfigurationOutput>
-    getAccountPreferences: function(Client, types.GetAccountPreferencesInput, any): async.Operation<types.GetAccountPreferencesOutput>
-    getCustomAction: function(Client, types.GetCustomActionInput, any): async.Operation<types.GetCustomActionOutput>
-    getMicrosoftTeamsChannelConfiguration: function(Client, types.GetMicrosoftTeamsChannelConfigurationInput, any): async.Operation<types.GetMicrosoftTeamsChannelConfigurationOutput>
-    listAssociations: function(Client, types.ListAssociationsInput, any): async.Operation<types.ListAssociationsOutput>
-    listCustomActions: function(Client, types.ListCustomActionsInput, any): async.Operation<types.ListCustomActionsOutput>
-    listMicrosoftTeamsChannelConfigurations: function(Client, types.ListMicrosoftTeamsChannelConfigurationsInput, any): async.Operation<types.ListMicrosoftTeamsChannelConfigurationsOutput>
-    listMicrosoftTeamsConfiguredTeams: function(Client, types.ListMicrosoftTeamsConfiguredTeamsInput, any): async.Operation<types.ListMicrosoftTeamsConfiguredTeamsOutput>
-    listMicrosoftTeamsUserIdentities: function(Client, types.ListMicrosoftTeamsUserIdentitiesInput, any): async.Operation<types.ListMicrosoftTeamsUserIdentitiesOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateAccountPreferences: function(Client, types.UpdateAccountPreferencesInput, any): async.Operation<types.UpdateAccountPreferencesOutput>
-    updateChimeWebhookConfiguration: function(Client, types.UpdateChimeWebhookConfigurationInput, any): async.Operation<types.UpdateChimeWebhookConfigurationOutput>
-    updateCustomAction: function(Client, types.UpdateCustomActionInput, any): async.Operation<types.UpdateCustomActionOutput>
-    updateMicrosoftTeamsChannelConfiguration: function(Client, types.UpdateMicrosoftTeamsChannelConfigurationInput, any): async.Operation<types.UpdateMicrosoftTeamsChannelConfigurationOutput>
-    updateSlackChannelConfiguration: function(Client, types.UpdateSlackChannelConfigurationInput, any): async.Operation<types.UpdateSlackChannelConfigurationOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateToConfiguration: function(Client, types.AssociateToConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.AssociateToConfigurationOutput>
+    createChimeWebhookConfiguration: function(Client, types.CreateChimeWebhookConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateChimeWebhookConfigurationOutput>
+    createCustomAction: function(Client, types.CreateCustomActionInput, ? base_client.InvokeOptions): async.Operation<types.CreateCustomActionOutput>
+    createMicrosoftTeamsChannelConfiguration: function(Client, types.CreateMicrosoftTeamsChannelConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateMicrosoftTeamsChannelConfigurationOutput>
+    createSlackChannelConfiguration: function(Client, types.CreateSlackChannelConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateSlackChannelConfigurationOutput>
+    deleteChimeWebhookConfiguration: function(Client, types.DeleteChimeWebhookConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteChimeWebhookConfigurationOutput>
+    deleteCustomAction: function(Client, types.DeleteCustomActionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCustomActionOutput>
+    deleteMicrosoftTeamsChannelConfiguration: function(Client, types.DeleteMicrosoftTeamsChannelConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMicrosoftTeamsChannelConfigurationOutput>
+    deleteMicrosoftTeamsConfiguredTeam: function(Client, types.DeleteMicrosoftTeamsConfiguredTeamInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMicrosoftTeamsConfiguredTeamOutput>
+    deleteMicrosoftTeamsUserIdentity: function(Client, types.DeleteMicrosoftTeamsUserIdentityInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMicrosoftTeamsUserIdentityOutput>
+    deleteSlackChannelConfiguration: function(Client, types.DeleteSlackChannelConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSlackChannelConfigurationOutput>
+    deleteSlackUserIdentity: function(Client, types.DeleteSlackUserIdentityInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSlackUserIdentityOutput>
+    deleteSlackWorkspaceAuthorization: function(Client, types.DeleteSlackWorkspaceAuthorizationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSlackWorkspaceAuthorizationOutput>
+    describeChimeWebhookConfigurations: function(Client, types.DescribeChimeWebhookConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeChimeWebhookConfigurationsOutput>
+    describeSlackChannelConfigurations: function(Client, types.DescribeSlackChannelConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSlackChannelConfigurationsOutput>
+    describeSlackUserIdentities: function(Client, types.DescribeSlackUserIdentitiesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSlackUserIdentitiesOutput>
+    describeSlackWorkspaces: function(Client, types.DescribeSlackWorkspacesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSlackWorkspacesOutput>
+    disassociateFromConfiguration: function(Client, types.DisassociateFromConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateFromConfigurationOutput>
+    getAccountPreferences: function(Client, types.GetAccountPreferencesInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountPreferencesOutput>
+    getCustomAction: function(Client, types.GetCustomActionInput, ? base_client.InvokeOptions): async.Operation<types.GetCustomActionOutput>
+    getMicrosoftTeamsChannelConfiguration: function(Client, types.GetMicrosoftTeamsChannelConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetMicrosoftTeamsChannelConfigurationOutput>
+    listAssociations: function(Client, types.ListAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssociationsOutput>
+    listCustomActions: function(Client, types.ListCustomActionsInput, ? base_client.InvokeOptions): async.Operation<types.ListCustomActionsOutput>
+    listMicrosoftTeamsChannelConfigurations: function(Client, types.ListMicrosoftTeamsChannelConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListMicrosoftTeamsChannelConfigurationsOutput>
+    listMicrosoftTeamsConfiguredTeams: function(Client, types.ListMicrosoftTeamsConfiguredTeamsInput, ? base_client.InvokeOptions): async.Operation<types.ListMicrosoftTeamsConfiguredTeamsOutput>
+    listMicrosoftTeamsUserIdentities: function(Client, types.ListMicrosoftTeamsUserIdentitiesInput, ? base_client.InvokeOptions): async.Operation<types.ListMicrosoftTeamsUserIdentitiesOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAccountPreferences: function(Client, types.UpdateAccountPreferencesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAccountPreferencesOutput>
+    updateChimeWebhookConfiguration: function(Client, types.UpdateChimeWebhookConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateChimeWebhookConfigurationOutput>
+    updateCustomAction: function(Client, types.UpdateCustomActionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCustomActionOutput>
+    updateMicrosoftTeamsChannelConfiguration: function(Client, types.UpdateMicrosoftTeamsChannelConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMicrosoftTeamsChannelConfigurationOutput>
+    updateSlackChannelConfiguration: function(Client, types.UpdateSlackChannelConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSlackChannelConfigurationOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "WheatleyOrchestration_20171011"
-    if not c.protocol then c.protocol = restjson_protocol.new() end
+    if not c.protocol then c.protocol = restjson_protocol.new() as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "chatbot", signing_region = c.region } }
                 else
@@ -93,140 +96,140 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateToConfiguration(input: types.AssociateToConfigurationInput, options: any): async.Operation<types.AssociateToConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateToConfiguration, input, options) as async.Operation<types.AssociateToConfigurationOutput>
+function C:associateToConfiguration(input: types.AssociateToConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateToConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateToConfiguration as schema.OperationSchema, input, options) as async.Operation<types.AssociateToConfigurationOutput>
 end
 
-function C:createChimeWebhookConfiguration(input: types.CreateChimeWebhookConfigurationInput, options: any): async.Operation<types.CreateChimeWebhookConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateChimeWebhookConfiguration, input, options) as async.Operation<types.CreateChimeWebhookConfigurationOutput>
+function C:createChimeWebhookConfiguration(input: types.CreateChimeWebhookConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateChimeWebhookConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateChimeWebhookConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateChimeWebhookConfigurationOutput>
 end
 
-function C:createCustomAction(input: types.CreateCustomActionInput, options: any): async.Operation<types.CreateCustomActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateCustomAction, input, options) as async.Operation<types.CreateCustomActionOutput>
+function C:createCustomAction(input: types.CreateCustomActionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCustomActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCustomAction as schema.OperationSchema, input, options) as async.Operation<types.CreateCustomActionOutput>
 end
 
-function C:createMicrosoftTeamsChannelConfiguration(input: types.CreateMicrosoftTeamsChannelConfigurationInput, options: any): async.Operation<types.CreateMicrosoftTeamsChannelConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateMicrosoftTeamsChannelConfiguration, input, options) as async.Operation<types.CreateMicrosoftTeamsChannelConfigurationOutput>
+function C:createMicrosoftTeamsChannelConfiguration(input: types.CreateMicrosoftTeamsChannelConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMicrosoftTeamsChannelConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMicrosoftTeamsChannelConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateMicrosoftTeamsChannelConfigurationOutput>
 end
 
-function C:createSlackChannelConfiguration(input: types.CreateSlackChannelConfigurationInput, options: any): async.Operation<types.CreateSlackChannelConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateSlackChannelConfiguration, input, options) as async.Operation<types.CreateSlackChannelConfigurationOutput>
+function C:createSlackChannelConfiguration(input: types.CreateSlackChannelConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSlackChannelConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSlackChannelConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateSlackChannelConfigurationOutput>
 end
 
-function C:deleteChimeWebhookConfiguration(input: types.DeleteChimeWebhookConfigurationInput, options: any): async.Operation<types.DeleteChimeWebhookConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteChimeWebhookConfiguration, input, options) as async.Operation<types.DeleteChimeWebhookConfigurationOutput>
+function C:deleteChimeWebhookConfiguration(input: types.DeleteChimeWebhookConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteChimeWebhookConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteChimeWebhookConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteChimeWebhookConfigurationOutput>
 end
 
-function C:deleteCustomAction(input: types.DeleteCustomActionInput, options: any): async.Operation<types.DeleteCustomActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteCustomAction, input, options) as async.Operation<types.DeleteCustomActionOutput>
+function C:deleteCustomAction(input: types.DeleteCustomActionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCustomActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCustomAction as schema.OperationSchema, input, options) as async.Operation<types.DeleteCustomActionOutput>
 end
 
-function C:deleteMicrosoftTeamsChannelConfiguration(input: types.DeleteMicrosoftTeamsChannelConfigurationInput, options: any): async.Operation<types.DeleteMicrosoftTeamsChannelConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMicrosoftTeamsChannelConfiguration, input, options) as async.Operation<types.DeleteMicrosoftTeamsChannelConfigurationOutput>
+function C:deleteMicrosoftTeamsChannelConfiguration(input: types.DeleteMicrosoftTeamsChannelConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMicrosoftTeamsChannelConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMicrosoftTeamsChannelConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteMicrosoftTeamsChannelConfigurationOutput>
 end
 
-function C:deleteMicrosoftTeamsConfiguredTeam(input: types.DeleteMicrosoftTeamsConfiguredTeamInput, options: any): async.Operation<types.DeleteMicrosoftTeamsConfiguredTeamOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMicrosoftTeamsConfiguredTeam, input, options) as async.Operation<types.DeleteMicrosoftTeamsConfiguredTeamOutput>
+function C:deleteMicrosoftTeamsConfiguredTeam(input: types.DeleteMicrosoftTeamsConfiguredTeamInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMicrosoftTeamsConfiguredTeamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMicrosoftTeamsConfiguredTeam as schema.OperationSchema, input, options) as async.Operation<types.DeleteMicrosoftTeamsConfiguredTeamOutput>
 end
 
-function C:deleteMicrosoftTeamsUserIdentity(input: types.DeleteMicrosoftTeamsUserIdentityInput, options: any): async.Operation<types.DeleteMicrosoftTeamsUserIdentityOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteMicrosoftTeamsUserIdentity, input, options) as async.Operation<types.DeleteMicrosoftTeamsUserIdentityOutput>
+function C:deleteMicrosoftTeamsUserIdentity(input: types.DeleteMicrosoftTeamsUserIdentityInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMicrosoftTeamsUserIdentityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMicrosoftTeamsUserIdentity as schema.OperationSchema, input, options) as async.Operation<types.DeleteMicrosoftTeamsUserIdentityOutput>
 end
 
-function C:deleteSlackChannelConfiguration(input: types.DeleteSlackChannelConfigurationInput, options: any): async.Operation<types.DeleteSlackChannelConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSlackChannelConfiguration, input, options) as async.Operation<types.DeleteSlackChannelConfigurationOutput>
+function C:deleteSlackChannelConfiguration(input: types.DeleteSlackChannelConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSlackChannelConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSlackChannelConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteSlackChannelConfigurationOutput>
 end
 
-function C:deleteSlackUserIdentity(input: types.DeleteSlackUserIdentityInput, options: any): async.Operation<types.DeleteSlackUserIdentityOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSlackUserIdentity, input, options) as async.Operation<types.DeleteSlackUserIdentityOutput>
+function C:deleteSlackUserIdentity(input: types.DeleteSlackUserIdentityInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSlackUserIdentityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSlackUserIdentity as schema.OperationSchema, input, options) as async.Operation<types.DeleteSlackUserIdentityOutput>
 end
 
-function C:deleteSlackWorkspaceAuthorization(input: types.DeleteSlackWorkspaceAuthorizationInput, options: any): async.Operation<types.DeleteSlackWorkspaceAuthorizationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteSlackWorkspaceAuthorization, input, options) as async.Operation<types.DeleteSlackWorkspaceAuthorizationOutput>
+function C:deleteSlackWorkspaceAuthorization(input: types.DeleteSlackWorkspaceAuthorizationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSlackWorkspaceAuthorizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSlackWorkspaceAuthorization as schema.OperationSchema, input, options) as async.Operation<types.DeleteSlackWorkspaceAuthorizationOutput>
 end
 
-function C:describeChimeWebhookConfigurations(input: types.DescribeChimeWebhookConfigurationsInput, options: any): async.Operation<types.DescribeChimeWebhookConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeChimeWebhookConfigurations, input, options) as async.Operation<types.DescribeChimeWebhookConfigurationsOutput>
+function C:describeChimeWebhookConfigurations(input: types.DescribeChimeWebhookConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeChimeWebhookConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeChimeWebhookConfigurations as schema.OperationSchema, input, options) as async.Operation<types.DescribeChimeWebhookConfigurationsOutput>
 end
 
-function C:describeSlackChannelConfigurations(input: types.DescribeSlackChannelConfigurationsInput, options: any): async.Operation<types.DescribeSlackChannelConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSlackChannelConfigurations, input, options) as async.Operation<types.DescribeSlackChannelConfigurationsOutput>
+function C:describeSlackChannelConfigurations(input: types.DescribeSlackChannelConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSlackChannelConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSlackChannelConfigurations as schema.OperationSchema, input, options) as async.Operation<types.DescribeSlackChannelConfigurationsOutput>
 end
 
-function C:describeSlackUserIdentities(input: types.DescribeSlackUserIdentitiesInput, options: any): async.Operation<types.DescribeSlackUserIdentitiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSlackUserIdentities, input, options) as async.Operation<types.DescribeSlackUserIdentitiesOutput>
+function C:describeSlackUserIdentities(input: types.DescribeSlackUserIdentitiesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSlackUserIdentitiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSlackUserIdentities as schema.OperationSchema, input, options) as async.Operation<types.DescribeSlackUserIdentitiesOutput>
 end
 
-function C:describeSlackWorkspaces(input: types.DescribeSlackWorkspacesInput, options: any): async.Operation<types.DescribeSlackWorkspacesOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeSlackWorkspaces, input, options) as async.Operation<types.DescribeSlackWorkspacesOutput>
+function C:describeSlackWorkspaces(input: types.DescribeSlackWorkspacesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSlackWorkspacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSlackWorkspaces as schema.OperationSchema, input, options) as async.Operation<types.DescribeSlackWorkspacesOutput>
 end
 
-function C:disassociateFromConfiguration(input: types.DisassociateFromConfigurationInput, options: any): async.Operation<types.DisassociateFromConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateFromConfiguration, input, options) as async.Operation<types.DisassociateFromConfigurationOutput>
+function C:disassociateFromConfiguration(input: types.DisassociateFromConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateFromConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateFromConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DisassociateFromConfigurationOutput>
 end
 
-function C:getAccountPreferences(input: types.GetAccountPreferencesInput, options: any): async.Operation<types.GetAccountPreferencesOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetAccountPreferences, input, options) as async.Operation<types.GetAccountPreferencesOutput>
+function C:getAccountPreferences(input: types.GetAccountPreferencesInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccountPreferencesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccountPreferences as schema.OperationSchema, input, options) as async.Operation<types.GetAccountPreferencesOutput>
 end
 
-function C:getCustomAction(input: types.GetCustomActionInput, options: any): async.Operation<types.GetCustomActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetCustomAction, input, options) as async.Operation<types.GetCustomActionOutput>
+function C:getCustomAction(input: types.GetCustomActionInput, options?: base_client.InvokeOptions): async.Operation<types.GetCustomActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCustomAction as schema.OperationSchema, input, options) as async.Operation<types.GetCustomActionOutput>
 end
 
-function C:getMicrosoftTeamsChannelConfiguration(input: types.GetMicrosoftTeamsChannelConfigurationInput, options: any): async.Operation<types.GetMicrosoftTeamsChannelConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetMicrosoftTeamsChannelConfiguration, input, options) as async.Operation<types.GetMicrosoftTeamsChannelConfigurationOutput>
+function C:getMicrosoftTeamsChannelConfiguration(input: types.GetMicrosoftTeamsChannelConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetMicrosoftTeamsChannelConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMicrosoftTeamsChannelConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetMicrosoftTeamsChannelConfigurationOutput>
 end
 
-function C:listAssociations(input: types.ListAssociationsInput, options: any): async.Operation<types.ListAssociationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAssociations, input, options) as async.Operation<types.ListAssociationsOutput>
+function C:listAssociations(input: types.ListAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListAssociationsOutput>
 end
 
-function C:listCustomActions(input: types.ListCustomActionsInput, options: any): async.Operation<types.ListCustomActionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListCustomActions, input, options) as async.Operation<types.ListCustomActionsOutput>
+function C:listCustomActions(input: types.ListCustomActionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCustomActionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCustomActions as schema.OperationSchema, input, options) as async.Operation<types.ListCustomActionsOutput>
 end
 
-function C:listMicrosoftTeamsChannelConfigurations(input: types.ListMicrosoftTeamsChannelConfigurationsInput, options: any): async.Operation<types.ListMicrosoftTeamsChannelConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMicrosoftTeamsChannelConfigurations, input, options) as async.Operation<types.ListMicrosoftTeamsChannelConfigurationsOutput>
+function C:listMicrosoftTeamsChannelConfigurations(input: types.ListMicrosoftTeamsChannelConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMicrosoftTeamsChannelConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMicrosoftTeamsChannelConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListMicrosoftTeamsChannelConfigurationsOutput>
 end
 
-function C:listMicrosoftTeamsConfiguredTeams(input: types.ListMicrosoftTeamsConfiguredTeamsInput, options: any): async.Operation<types.ListMicrosoftTeamsConfiguredTeamsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMicrosoftTeamsConfiguredTeams, input, options) as async.Operation<types.ListMicrosoftTeamsConfiguredTeamsOutput>
+function C:listMicrosoftTeamsConfiguredTeams(input: types.ListMicrosoftTeamsConfiguredTeamsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMicrosoftTeamsConfiguredTeamsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMicrosoftTeamsConfiguredTeams as schema.OperationSchema, input, options) as async.Operation<types.ListMicrosoftTeamsConfiguredTeamsOutput>
 end
 
-function C:listMicrosoftTeamsUserIdentities(input: types.ListMicrosoftTeamsUserIdentitiesInput, options: any): async.Operation<types.ListMicrosoftTeamsUserIdentitiesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListMicrosoftTeamsUserIdentities, input, options) as async.Operation<types.ListMicrosoftTeamsUserIdentitiesOutput>
+function C:listMicrosoftTeamsUserIdentities(input: types.ListMicrosoftTeamsUserIdentitiesInput, options?: base_client.InvokeOptions): async.Operation<types.ListMicrosoftTeamsUserIdentitiesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMicrosoftTeamsUserIdentities as schema.OperationSchema, input, options) as async.Operation<types.ListMicrosoftTeamsUserIdentitiesOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateAccountPreferences(input: types.UpdateAccountPreferencesInput, options: any): async.Operation<types.UpdateAccountPreferencesOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateAccountPreferences, input, options) as async.Operation<types.UpdateAccountPreferencesOutput>
+function C:updateAccountPreferences(input: types.UpdateAccountPreferencesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAccountPreferencesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAccountPreferences as schema.OperationSchema, input, options) as async.Operation<types.UpdateAccountPreferencesOutput>
 end
 
-function C:updateChimeWebhookConfiguration(input: types.UpdateChimeWebhookConfigurationInput, options: any): async.Operation<types.UpdateChimeWebhookConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateChimeWebhookConfiguration, input, options) as async.Operation<types.UpdateChimeWebhookConfigurationOutput>
+function C:updateChimeWebhookConfiguration(input: types.UpdateChimeWebhookConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateChimeWebhookConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateChimeWebhookConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateChimeWebhookConfigurationOutput>
 end
 
-function C:updateCustomAction(input: types.UpdateCustomActionInput, options: any): async.Operation<types.UpdateCustomActionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateCustomAction, input, options) as async.Operation<types.UpdateCustomActionOutput>
+function C:updateCustomAction(input: types.UpdateCustomActionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCustomActionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCustomAction as schema.OperationSchema, input, options) as async.Operation<types.UpdateCustomActionOutput>
 end
 
-function C:updateMicrosoftTeamsChannelConfiguration(input: types.UpdateMicrosoftTeamsChannelConfigurationInput, options: any): async.Operation<types.UpdateMicrosoftTeamsChannelConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateMicrosoftTeamsChannelConfiguration, input, options) as async.Operation<types.UpdateMicrosoftTeamsChannelConfigurationOutput>
+function C:updateMicrosoftTeamsChannelConfiguration(input: types.UpdateMicrosoftTeamsChannelConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMicrosoftTeamsChannelConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMicrosoftTeamsChannelConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateMicrosoftTeamsChannelConfigurationOutput>
 end
 
-function C:updateSlackChannelConfiguration(input: types.UpdateSlackChannelConfigurationInput, options: any): async.Operation<types.UpdateSlackChannelConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateSlackChannelConfiguration, input, options) as async.Operation<types.UpdateSlackChannelConfigurationOutput>
+function C:updateSlackChannelConfiguration(input: types.UpdateSlackChannelConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSlackChannelConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSlackChannelConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateSlackChannelConfigurationOutput>
 end
 
 return M

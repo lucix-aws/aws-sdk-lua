@@ -8,52 +8,55 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("workspacesinstances.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("workspacesinstances.schemas")
 local traits = require("smithy.traits")
 local types = require("workspacesinstances.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateVolume: function(Client, types.AssociateVolumeInput, any): async.Operation<types.AssociateVolumeOutput>
-    createVolume: function(Client, types.CreateVolumeInput, any): async.Operation<types.CreateVolumeOutput>
-    createWorkspaceInstance: function(Client, types.CreateWorkspaceInstanceInput, any): async.Operation<types.CreateWorkspaceInstanceOutput>
-    deleteVolume: function(Client, types.DeleteVolumeInput, any): async.Operation<types.DeleteVolumeOutput>
-    deleteWorkspaceInstance: function(Client, types.DeleteWorkspaceInstanceInput, any): async.Operation<types.DeleteWorkspaceInstanceOutput>
-    disassociateVolume: function(Client, types.DisassociateVolumeInput, any): async.Operation<types.DisassociateVolumeOutput>
-    getWorkspaceInstance: function(Client, types.GetWorkspaceInstanceInput, any): async.Operation<types.GetWorkspaceInstanceOutput>
-    listInstanceTypes: function(Client, types.ListInstanceTypesInput, any): async.Operation<types.ListInstanceTypesOutput>
-    listRegions: function(Client, types.ListRegionsInput, any): async.Operation<types.ListRegionsOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listWorkspaceInstances: function(Client, types.ListWorkspaceInstancesInput, any): async.Operation<types.ListWorkspaceInstancesOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateVolume: function(Client, types.AssociateVolumeInput, ? base_client.InvokeOptions): async.Operation<types.AssociateVolumeOutput>
+    createVolume: function(Client, types.CreateVolumeInput, ? base_client.InvokeOptions): async.Operation<types.CreateVolumeOutput>
+    createWorkspaceInstance: function(Client, types.CreateWorkspaceInstanceInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkspaceInstanceOutput>
+    deleteVolume: function(Client, types.DeleteVolumeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVolumeOutput>
+    deleteWorkspaceInstance: function(Client, types.DeleteWorkspaceInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWorkspaceInstanceOutput>
+    disassociateVolume: function(Client, types.DisassociateVolumeInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateVolumeOutput>
+    getWorkspaceInstance: function(Client, types.GetWorkspaceInstanceInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkspaceInstanceOutput>
+    listInstanceTypes: function(Client, types.ListInstanceTypesInput, ? base_client.InvokeOptions): async.Operation<types.ListInstanceTypesOutput>
+    listRegions: function(Client, types.ListRegionsInput, ? base_client.InvokeOptions): async.Operation<types.ListRegionsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listWorkspaceInstances: function(Client, types.ListWorkspaceInstancesInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkspaceInstancesOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "EUCMIFrontendAPIService"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "workspaces-instances", signing_region = c.region } }
                 else
@@ -72,56 +75,56 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateVolume(input: types.AssociateVolumeInput, options: any): async.Operation<types.AssociateVolumeOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateVolume, input, options) as async.Operation<types.AssociateVolumeOutput>
+function C:associateVolume(input: types.AssociateVolumeInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateVolumeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateVolume as schema.OperationSchema, input, options) as async.Operation<types.AssociateVolumeOutput>
 end
 
-function C:createVolume(input: types.CreateVolumeInput, options: any): async.Operation<types.CreateVolumeOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVolume, input, options) as async.Operation<types.CreateVolumeOutput>
+function C:createVolume(input: types.CreateVolumeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVolumeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVolume as schema.OperationSchema, input, options) as async.Operation<types.CreateVolumeOutput>
 end
 
-function C:createWorkspaceInstance(input: types.CreateWorkspaceInstanceInput, options: any): async.Operation<types.CreateWorkspaceInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateWorkspaceInstance, input, options) as async.Operation<types.CreateWorkspaceInstanceOutput>
+function C:createWorkspaceInstance(input: types.CreateWorkspaceInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWorkspaceInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWorkspaceInstance as schema.OperationSchema, input, options) as async.Operation<types.CreateWorkspaceInstanceOutput>
 end
 
-function C:deleteVolume(input: types.DeleteVolumeInput, options: any): async.Operation<types.DeleteVolumeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVolume, input, options) as async.Operation<types.DeleteVolumeOutput>
+function C:deleteVolume(input: types.DeleteVolumeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVolumeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVolume as schema.OperationSchema, input, options) as async.Operation<types.DeleteVolumeOutput>
 end
 
-function C:deleteWorkspaceInstance(input: types.DeleteWorkspaceInstanceInput, options: any): async.Operation<types.DeleteWorkspaceInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteWorkspaceInstance, input, options) as async.Operation<types.DeleteWorkspaceInstanceOutput>
+function C:deleteWorkspaceInstance(input: types.DeleteWorkspaceInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWorkspaceInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWorkspaceInstance as schema.OperationSchema, input, options) as async.Operation<types.DeleteWorkspaceInstanceOutput>
 end
 
-function C:disassociateVolume(input: types.DisassociateVolumeInput, options: any): async.Operation<types.DisassociateVolumeOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateVolume, input, options) as async.Operation<types.DisassociateVolumeOutput>
+function C:disassociateVolume(input: types.DisassociateVolumeInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateVolumeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateVolume as schema.OperationSchema, input, options) as async.Operation<types.DisassociateVolumeOutput>
 end
 
-function C:getWorkspaceInstance(input: types.GetWorkspaceInstanceInput, options: any): async.Operation<types.GetWorkspaceInstanceOutput>
-    return self:invokeOperation(schemas.Service, schemas.GetWorkspaceInstance, input, options) as async.Operation<types.GetWorkspaceInstanceOutput>
+function C:getWorkspaceInstance(input: types.GetWorkspaceInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.GetWorkspaceInstanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetWorkspaceInstance as schema.OperationSchema, input, options) as async.Operation<types.GetWorkspaceInstanceOutput>
 end
 
-function C:listInstanceTypes(input: types.ListInstanceTypesInput, options: any): async.Operation<types.ListInstanceTypesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListInstanceTypes, input, options) as async.Operation<types.ListInstanceTypesOutput>
+function C:listInstanceTypes(input: types.ListInstanceTypesInput, options?: base_client.InvokeOptions): async.Operation<types.ListInstanceTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInstanceTypes as schema.OperationSchema, input, options) as async.Operation<types.ListInstanceTypesOutput>
 end
 
-function C:listRegions(input: types.ListRegionsInput, options: any): async.Operation<types.ListRegionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListRegions, input, options) as async.Operation<types.ListRegionsOutput>
+function C:listRegions(input: types.ListRegionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRegionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRegions as schema.OperationSchema, input, options) as async.Operation<types.ListRegionsOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listWorkspaceInstances(input: types.ListWorkspaceInstancesInput, options: any): async.Operation<types.ListWorkspaceInstancesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListWorkspaceInstances, input, options) as async.Operation<types.ListWorkspaceInstancesOutput>
+function C:listWorkspaceInstances(input: types.ListWorkspaceInstancesInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkspaceInstancesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkspaceInstances as schema.OperationSchema, input, options) as async.Operation<types.ListWorkspaceInstancesOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
 return M

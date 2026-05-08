@@ -8,76 +8,79 @@ local defaults = require("smithy.defaults")
 local endpoint = require("smithy.endpoint")
 local endpoint_rules = require("apprunner.endpoint_rules")
 local awsjson_protocol = require("smithy.protocol.awsjson")
+local schema = require("smithy.schema")
 local schemas = require("apprunner.schemas")
 local traits = require("smithy.traits")
 local types = require("apprunner.types")
+local protocol_mod = require("smithy.protocol")
 local sdk_defaults = require("aws.sdk_defaults")
 
 local record Client
-    config: {string:any}
-    invokeOperation: function(Client, any, any, any, any): async.Operation<any>
-    associateCustomDomain: function(Client, types.AssociateCustomDomainInput, any): async.Operation<types.AssociateCustomDomainOutput>
-    createAutoScalingConfiguration: function(Client, types.CreateAutoScalingConfigurationInput, any): async.Operation<types.CreateAutoScalingConfigurationOutput>
-    createConnection: function(Client, types.CreateConnectionInput, any): async.Operation<types.CreateConnectionOutput>
-    createObservabilityConfiguration: function(Client, types.CreateObservabilityConfigurationInput, any): async.Operation<types.CreateObservabilityConfigurationOutput>
-    createService: function(Client, types.CreateServiceInput, any): async.Operation<types.CreateServiceOutput>
-    createVpcConnector: function(Client, types.CreateVpcConnectorInput, any): async.Operation<types.CreateVpcConnectorOutput>
-    createVpcIngressConnection: function(Client, types.CreateVpcIngressConnectionInput, any): async.Operation<types.CreateVpcIngressConnectionOutput>
-    deleteAutoScalingConfiguration: function(Client, types.DeleteAutoScalingConfigurationInput, any): async.Operation<types.DeleteAutoScalingConfigurationOutput>
-    deleteConnection: function(Client, types.DeleteConnectionInput, any): async.Operation<types.DeleteConnectionOutput>
-    deleteObservabilityConfiguration: function(Client, types.DeleteObservabilityConfigurationInput, any): async.Operation<types.DeleteObservabilityConfigurationOutput>
-    deleteService: function(Client, types.DeleteServiceInput, any): async.Operation<types.DeleteServiceOutput>
-    deleteVpcConnector: function(Client, types.DeleteVpcConnectorInput, any): async.Operation<types.DeleteVpcConnectorOutput>
-    deleteVpcIngressConnection: function(Client, types.DeleteVpcIngressConnectionInput, any): async.Operation<types.DeleteVpcIngressConnectionOutput>
-    describeAutoScalingConfiguration: function(Client, types.DescribeAutoScalingConfigurationInput, any): async.Operation<types.DescribeAutoScalingConfigurationOutput>
-    describeCustomDomains: function(Client, types.DescribeCustomDomainsInput, any): async.Operation<types.DescribeCustomDomainsOutput>
-    describeObservabilityConfiguration: function(Client, types.DescribeObservabilityConfigurationInput, any): async.Operation<types.DescribeObservabilityConfigurationOutput>
-    describeService: function(Client, types.DescribeServiceInput, any): async.Operation<types.DescribeServiceOutput>
-    describeVpcConnector: function(Client, types.DescribeVpcConnectorInput, any): async.Operation<types.DescribeVpcConnectorOutput>
-    describeVpcIngressConnection: function(Client, types.DescribeVpcIngressConnectionInput, any): async.Operation<types.DescribeVpcIngressConnectionOutput>
-    disassociateCustomDomain: function(Client, types.DisassociateCustomDomainInput, any): async.Operation<types.DisassociateCustomDomainOutput>
-    listAutoScalingConfigurations: function(Client, types.ListAutoScalingConfigurationsInput, any): async.Operation<types.ListAutoScalingConfigurationsOutput>
-    listConnections: function(Client, types.ListConnectionsInput, any): async.Operation<types.ListConnectionsOutput>
-    listObservabilityConfigurations: function(Client, types.ListObservabilityConfigurationsInput, any): async.Operation<types.ListObservabilityConfigurationsOutput>
-    listOperations: function(Client, types.ListOperationsInput, any): async.Operation<types.ListOperationsOutput>
-    listServices: function(Client, types.ListServicesInput, any): async.Operation<types.ListServicesOutput>
-    listServicesForAutoScalingConfiguration: function(Client, types.ListServicesForAutoScalingConfigurationInput, any): async.Operation<types.ListServicesForAutoScalingConfigurationOutput>
-    listTagsForResource: function(Client, types.ListTagsForResourceInput, any): async.Operation<types.ListTagsForResourceOutput>
-    listVpcConnectors: function(Client, types.ListVpcConnectorsInput, any): async.Operation<types.ListVpcConnectorsOutput>
-    listVpcIngressConnections: function(Client, types.ListVpcIngressConnectionsInput, any): async.Operation<types.ListVpcIngressConnectionsOutput>
-    pauseService: function(Client, types.PauseServiceInput, any): async.Operation<types.PauseServiceOutput>
-    resumeService: function(Client, types.ResumeServiceInput, any): async.Operation<types.ResumeServiceOutput>
-    startDeployment: function(Client, types.StartDeploymentInput, any): async.Operation<types.StartDeploymentOutput>
-    tagResource: function(Client, types.TagResourceInput, any): async.Operation<types.TagResourceOutput>
-    untagResource: function(Client, types.UntagResourceInput, any): async.Operation<types.UntagResourceOutput>
-    updateDefaultAutoScalingConfiguration: function(Client, types.UpdateDefaultAutoScalingConfigurationInput, any): async.Operation<types.UpdateDefaultAutoScalingConfigurationOutput>
-    updateService: function(Client, types.UpdateServiceInput, any): async.Operation<types.UpdateServiceOutput>
-    updateVpcIngressConnection: function(Client, types.UpdateVpcIngressConnectionInput, any): async.Operation<types.UpdateVpcIngressConnectionOutput>
+    config: base_client.ClientConfig
+    invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateCustomDomain: function(Client, types.AssociateCustomDomainInput, ? base_client.InvokeOptions): async.Operation<types.AssociateCustomDomainOutput>
+    createAutoScalingConfiguration: function(Client, types.CreateAutoScalingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateAutoScalingConfigurationOutput>
+    createConnection: function(Client, types.CreateConnectionInput, ? base_client.InvokeOptions): async.Operation<types.CreateConnectionOutput>
+    createObservabilityConfiguration: function(Client, types.CreateObservabilityConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateObservabilityConfigurationOutput>
+    createService: function(Client, types.CreateServiceInput, ? base_client.InvokeOptions): async.Operation<types.CreateServiceOutput>
+    createVpcConnector: function(Client, types.CreateVpcConnectorInput, ? base_client.InvokeOptions): async.Operation<types.CreateVpcConnectorOutput>
+    createVpcIngressConnection: function(Client, types.CreateVpcIngressConnectionInput, ? base_client.InvokeOptions): async.Operation<types.CreateVpcIngressConnectionOutput>
+    deleteAutoScalingConfiguration: function(Client, types.DeleteAutoScalingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAutoScalingConfigurationOutput>
+    deleteConnection: function(Client, types.DeleteConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConnectionOutput>
+    deleteObservabilityConfiguration: function(Client, types.DeleteObservabilityConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteObservabilityConfigurationOutput>
+    deleteService: function(Client, types.DeleteServiceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteServiceOutput>
+    deleteVpcConnector: function(Client, types.DeleteVpcConnectorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVpcConnectorOutput>
+    deleteVpcIngressConnection: function(Client, types.DeleteVpcIngressConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVpcIngressConnectionOutput>
+    describeAutoScalingConfiguration: function(Client, types.DescribeAutoScalingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAutoScalingConfigurationOutput>
+    describeCustomDomains: function(Client, types.DescribeCustomDomainsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCustomDomainsOutput>
+    describeObservabilityConfiguration: function(Client, types.DescribeObservabilityConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeObservabilityConfigurationOutput>
+    describeService: function(Client, types.DescribeServiceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeServiceOutput>
+    describeVpcConnector: function(Client, types.DescribeVpcConnectorInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVpcConnectorOutput>
+    describeVpcIngressConnection: function(Client, types.DescribeVpcIngressConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVpcIngressConnectionOutput>
+    disassociateCustomDomain: function(Client, types.DisassociateCustomDomainInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateCustomDomainOutput>
+    listAutoScalingConfigurations: function(Client, types.ListAutoScalingConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListAutoScalingConfigurationsOutput>
+    listConnections: function(Client, types.ListConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectionsOutput>
+    listObservabilityConfigurations: function(Client, types.ListObservabilityConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListObservabilityConfigurationsOutput>
+    listOperations: function(Client, types.ListOperationsInput, ? base_client.InvokeOptions): async.Operation<types.ListOperationsOutput>
+    listServices: function(Client, types.ListServicesInput, ? base_client.InvokeOptions): async.Operation<types.ListServicesOutput>
+    listServicesForAutoScalingConfiguration: function(Client, types.ListServicesForAutoScalingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.ListServicesForAutoScalingConfigurationOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listVpcConnectors: function(Client, types.ListVpcConnectorsInput, ? base_client.InvokeOptions): async.Operation<types.ListVpcConnectorsOutput>
+    listVpcIngressConnections: function(Client, types.ListVpcIngressConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.ListVpcIngressConnectionsOutput>
+    pauseService: function(Client, types.PauseServiceInput, ? base_client.InvokeOptions): async.Operation<types.PauseServiceOutput>
+    resumeService: function(Client, types.ResumeServiceInput, ? base_client.InvokeOptions): async.Operation<types.ResumeServiceOutput>
+    startDeployment: function(Client, types.StartDeploymentInput, ? base_client.InvokeOptions): async.Operation<types.StartDeploymentOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateDefaultAutoScalingConfiguration: function(Client, types.UpdateDefaultAutoScalingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDefaultAutoScalingConfigurationOutput>
+    updateService: function(Client, types.UpdateServiceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServiceOutput>
+    updateVpcIngressConnection: function(Client, types.UpdateVpcIngressConnectionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateVpcIngressConnectionOutput>
 end
 
 local record M
-    new: function(cfg?: {string:any}): Client
+    new: function(cfg?: base_client.ClientConfig): Client
 end
 
 local Client_mt: metatable<Client> = { __index = {} as Client }
 local C = Client_mt.__index as Client
-C.invokeOperation = base_client.invokeOperation
+C.invokeOperation = base_client.invokeOperation as function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
 
-function M.new(cfg?: {string:any}): Client
-    local c = cfg or {}
+function M.new(cfg?: base_client.ClientConfig): Client
+    local c = cfg or {} as base_client.ClientConfig
     c.service_id = "AppRunner"
-    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) end
+    if not c.protocol then c.protocol = awsjson_protocol.new({ version = "1.0", service_id = c.service_id }) as protocol_mod.ClientProtocol end
     if not c.endpoint_provider then
-        c.endpoint_provider = function(params)
+        c.endpoint_provider = function(params: {string:any}): endpoint.Endpoint, string
             return endpoint.resolve(endpoint_rules, params)
         end
     end
     if not c.auth_scheme_resolver then
-        c.auth_scheme_resolver = function(_service, operation)
-            local auth_trait = operation:trait(traits.AUTH) or _service:trait(traits.AUTH)
-            local options = {}
-            for _, scheme in ipairs(auth_trait or {}) do
-                local scheme_id = scheme.scheme_id or scheme
+        c.auth_scheme_resolver = function(_service: schema.ServiceSchema, operation: schema.OperationSchema): {auth.AuthOption}
+            local auth = require("smithy.auth")
+            local auth_trait = (operation:trait(traits.AUTH) or _service:trait(traits.AUTH)) as {auth.AuthOption}
+            local options: {auth.AuthOption} = {}
+            for _, scheme in ipairs(auth_trait or {} as {auth.AuthOption}) do
+                local scheme_id = scheme.scheme_id
                 if scheme_id == "aws.auth#sigv4" or scheme_id == "aws.auth#sigv4a" then
                     options[#options + 1] = { scheme_id = scheme_id, signer_properties = { signing_name = "apprunner", signing_region = c.region } }
                 else
@@ -96,152 +99,152 @@ function M.new(cfg?: {string:any}): Client
     return self
 end
 
-function C:associateCustomDomain(input: types.AssociateCustomDomainInput, options: any): async.Operation<types.AssociateCustomDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.AssociateCustomDomain, input, options) as async.Operation<types.AssociateCustomDomainOutput>
+function C:associateCustomDomain(input: types.AssociateCustomDomainInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateCustomDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateCustomDomain as schema.OperationSchema, input, options) as async.Operation<types.AssociateCustomDomainOutput>
 end
 
-function C:createAutoScalingConfiguration(input: types.CreateAutoScalingConfigurationInput, options: any): async.Operation<types.CreateAutoScalingConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateAutoScalingConfiguration, input, options) as async.Operation<types.CreateAutoScalingConfigurationOutput>
+function C:createAutoScalingConfiguration(input: types.CreateAutoScalingConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAutoScalingConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAutoScalingConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateAutoScalingConfigurationOutput>
 end
 
-function C:createConnection(input: types.CreateConnectionInput, options: any): async.Operation<types.CreateConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateConnection, input, options) as async.Operation<types.CreateConnectionOutput>
+function C:createConnection(input: types.CreateConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConnection as schema.OperationSchema, input, options) as async.Operation<types.CreateConnectionOutput>
 end
 
-function C:createObservabilityConfiguration(input: types.CreateObservabilityConfigurationInput, options: any): async.Operation<types.CreateObservabilityConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateObservabilityConfiguration, input, options) as async.Operation<types.CreateObservabilityConfigurationOutput>
+function C:createObservabilityConfiguration(input: types.CreateObservabilityConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateObservabilityConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateObservabilityConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateObservabilityConfigurationOutput>
 end
 
-function C:createService(input: types.CreateServiceInput, options: any): async.Operation<types.CreateServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateService, input, options) as async.Operation<types.CreateServiceOutput>
+function C:createService(input: types.CreateServiceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateService as schema.OperationSchema, input, options) as async.Operation<types.CreateServiceOutput>
 end
 
-function C:createVpcConnector(input: types.CreateVpcConnectorInput, options: any): async.Operation<types.CreateVpcConnectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVpcConnector, input, options) as async.Operation<types.CreateVpcConnectorOutput>
+function C:createVpcConnector(input: types.CreateVpcConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVpcConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVpcConnector as schema.OperationSchema, input, options) as async.Operation<types.CreateVpcConnectorOutput>
 end
 
-function C:createVpcIngressConnection(input: types.CreateVpcIngressConnectionInput, options: any): async.Operation<types.CreateVpcIngressConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.CreateVpcIngressConnection, input, options) as async.Operation<types.CreateVpcIngressConnectionOutput>
+function C:createVpcIngressConnection(input: types.CreateVpcIngressConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVpcIngressConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVpcIngressConnection as schema.OperationSchema, input, options) as async.Operation<types.CreateVpcIngressConnectionOutput>
 end
 
-function C:deleteAutoScalingConfiguration(input: types.DeleteAutoScalingConfigurationInput, options: any): async.Operation<types.DeleteAutoScalingConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteAutoScalingConfiguration, input, options) as async.Operation<types.DeleteAutoScalingConfigurationOutput>
+function C:deleteAutoScalingConfiguration(input: types.DeleteAutoScalingConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAutoScalingConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAutoScalingConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteAutoScalingConfigurationOutput>
 end
 
-function C:deleteConnection(input: types.DeleteConnectionInput, options: any): async.Operation<types.DeleteConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteConnection, input, options) as async.Operation<types.DeleteConnectionOutput>
+function C:deleteConnection(input: types.DeleteConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConnection as schema.OperationSchema, input, options) as async.Operation<types.DeleteConnectionOutput>
 end
 
-function C:deleteObservabilityConfiguration(input: types.DeleteObservabilityConfigurationInput, options: any): async.Operation<types.DeleteObservabilityConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteObservabilityConfiguration, input, options) as async.Operation<types.DeleteObservabilityConfigurationOutput>
+function C:deleteObservabilityConfiguration(input: types.DeleteObservabilityConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteObservabilityConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteObservabilityConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteObservabilityConfigurationOutput>
 end
 
-function C:deleteService(input: types.DeleteServiceInput, options: any): async.Operation<types.DeleteServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteService, input, options) as async.Operation<types.DeleteServiceOutput>
+function C:deleteService(input: types.DeleteServiceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteService as schema.OperationSchema, input, options) as async.Operation<types.DeleteServiceOutput>
 end
 
-function C:deleteVpcConnector(input: types.DeleteVpcConnectorInput, options: any): async.Operation<types.DeleteVpcConnectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVpcConnector, input, options) as async.Operation<types.DeleteVpcConnectorOutput>
+function C:deleteVpcConnector(input: types.DeleteVpcConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVpcConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVpcConnector as schema.OperationSchema, input, options) as async.Operation<types.DeleteVpcConnectorOutput>
 end
 
-function C:deleteVpcIngressConnection(input: types.DeleteVpcIngressConnectionInput, options: any): async.Operation<types.DeleteVpcIngressConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DeleteVpcIngressConnection, input, options) as async.Operation<types.DeleteVpcIngressConnectionOutput>
+function C:deleteVpcIngressConnection(input: types.DeleteVpcIngressConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVpcIngressConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVpcIngressConnection as schema.OperationSchema, input, options) as async.Operation<types.DeleteVpcIngressConnectionOutput>
 end
 
-function C:describeAutoScalingConfiguration(input: types.DescribeAutoScalingConfigurationInput, options: any): async.Operation<types.DescribeAutoScalingConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeAutoScalingConfiguration, input, options) as async.Operation<types.DescribeAutoScalingConfigurationOutput>
+function C:describeAutoScalingConfiguration(input: types.DescribeAutoScalingConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAutoScalingConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAutoScalingConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeAutoScalingConfigurationOutput>
 end
 
-function C:describeCustomDomains(input: types.DescribeCustomDomainsInput, options: any): async.Operation<types.DescribeCustomDomainsOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeCustomDomains, input, options) as async.Operation<types.DescribeCustomDomainsOutput>
+function C:describeCustomDomains(input: types.DescribeCustomDomainsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCustomDomainsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCustomDomains as schema.OperationSchema, input, options) as async.Operation<types.DescribeCustomDomainsOutput>
 end
 
-function C:describeObservabilityConfiguration(input: types.DescribeObservabilityConfigurationInput, options: any): async.Operation<types.DescribeObservabilityConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeObservabilityConfiguration, input, options) as async.Operation<types.DescribeObservabilityConfigurationOutput>
+function C:describeObservabilityConfiguration(input: types.DescribeObservabilityConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeObservabilityConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeObservabilityConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeObservabilityConfigurationOutput>
 end
 
-function C:describeService(input: types.DescribeServiceInput, options: any): async.Operation<types.DescribeServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeService, input, options) as async.Operation<types.DescribeServiceOutput>
+function C:describeService(input: types.DescribeServiceInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeService as schema.OperationSchema, input, options) as async.Operation<types.DescribeServiceOutput>
 end
 
-function C:describeVpcConnector(input: types.DescribeVpcConnectorInput, options: any): async.Operation<types.DescribeVpcConnectorOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVpcConnector, input, options) as async.Operation<types.DescribeVpcConnectorOutput>
+function C:describeVpcConnector(input: types.DescribeVpcConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVpcConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVpcConnector as schema.OperationSchema, input, options) as async.Operation<types.DescribeVpcConnectorOutput>
 end
 
-function C:describeVpcIngressConnection(input: types.DescribeVpcIngressConnectionInput, options: any): async.Operation<types.DescribeVpcIngressConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.DescribeVpcIngressConnection, input, options) as async.Operation<types.DescribeVpcIngressConnectionOutput>
+function C:describeVpcIngressConnection(input: types.DescribeVpcIngressConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeVpcIngressConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVpcIngressConnection as schema.OperationSchema, input, options) as async.Operation<types.DescribeVpcIngressConnectionOutput>
 end
 
-function C:disassociateCustomDomain(input: types.DisassociateCustomDomainInput, options: any): async.Operation<types.DisassociateCustomDomainOutput>
-    return self:invokeOperation(schemas.Service, schemas.DisassociateCustomDomain, input, options) as async.Operation<types.DisassociateCustomDomainOutput>
+function C:disassociateCustomDomain(input: types.DisassociateCustomDomainInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateCustomDomainOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateCustomDomain as schema.OperationSchema, input, options) as async.Operation<types.DisassociateCustomDomainOutput>
 end
 
-function C:listAutoScalingConfigurations(input: types.ListAutoScalingConfigurationsInput, options: any): async.Operation<types.ListAutoScalingConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListAutoScalingConfigurations, input, options) as async.Operation<types.ListAutoScalingConfigurationsOutput>
+function C:listAutoScalingConfigurations(input: types.ListAutoScalingConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAutoScalingConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAutoScalingConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListAutoScalingConfigurationsOutput>
 end
 
-function C:listConnections(input: types.ListConnectionsInput, options: any): async.Operation<types.ListConnectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListConnections, input, options) as async.Operation<types.ListConnectionsOutput>
+function C:listConnections(input: types.ListConnectionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConnectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConnections as schema.OperationSchema, input, options) as async.Operation<types.ListConnectionsOutput>
 end
 
-function C:listObservabilityConfigurations(input: types.ListObservabilityConfigurationsInput, options: any): async.Operation<types.ListObservabilityConfigurationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListObservabilityConfigurations, input, options) as async.Operation<types.ListObservabilityConfigurationsOutput>
+function C:listObservabilityConfigurations(input: types.ListObservabilityConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListObservabilityConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListObservabilityConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListObservabilityConfigurationsOutput>
 end
 
-function C:listOperations(input: types.ListOperationsInput, options: any): async.Operation<types.ListOperationsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListOperations, input, options) as async.Operation<types.ListOperationsOutput>
+function C:listOperations(input: types.ListOperationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListOperationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOperations as schema.OperationSchema, input, options) as async.Operation<types.ListOperationsOutput>
 end
 
-function C:listServices(input: types.ListServicesInput, options: any): async.Operation<types.ListServicesOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServices, input, options) as async.Operation<types.ListServicesOutput>
+function C:listServices(input: types.ListServicesInput, options?: base_client.InvokeOptions): async.Operation<types.ListServicesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServices as schema.OperationSchema, input, options) as async.Operation<types.ListServicesOutput>
 end
 
-function C:listServicesForAutoScalingConfiguration(input: types.ListServicesForAutoScalingConfigurationInput, options: any): async.Operation<types.ListServicesForAutoScalingConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListServicesForAutoScalingConfiguration, input, options) as async.Operation<types.ListServicesForAutoScalingConfigurationOutput>
+function C:listServicesForAutoScalingConfiguration(input: types.ListServicesForAutoScalingConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.ListServicesForAutoScalingConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListServicesForAutoScalingConfiguration as schema.OperationSchema, input, options) as async.Operation<types.ListServicesForAutoScalingConfigurationOutput>
 end
 
-function C:listTagsForResource(input: types.ListTagsForResourceInput, options: any): async.Operation<types.ListTagsForResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListTagsForResource, input, options) as async.Operation<types.ListTagsForResourceOutput>
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
-function C:listVpcConnectors(input: types.ListVpcConnectorsInput, options: any): async.Operation<types.ListVpcConnectorsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVpcConnectors, input, options) as async.Operation<types.ListVpcConnectorsOutput>
+function C:listVpcConnectors(input: types.ListVpcConnectorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListVpcConnectorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVpcConnectors as schema.OperationSchema, input, options) as async.Operation<types.ListVpcConnectorsOutput>
 end
 
-function C:listVpcIngressConnections(input: types.ListVpcIngressConnectionsInput, options: any): async.Operation<types.ListVpcIngressConnectionsOutput>
-    return self:invokeOperation(schemas.Service, schemas.ListVpcIngressConnections, input, options) as async.Operation<types.ListVpcIngressConnectionsOutput>
+function C:listVpcIngressConnections(input: types.ListVpcIngressConnectionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListVpcIngressConnectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVpcIngressConnections as schema.OperationSchema, input, options) as async.Operation<types.ListVpcIngressConnectionsOutput>
 end
 
-function C:pauseService(input: types.PauseServiceInput, options: any): async.Operation<types.PauseServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.PauseService, input, options) as async.Operation<types.PauseServiceOutput>
+function C:pauseService(input: types.PauseServiceInput, options?: base_client.InvokeOptions): async.Operation<types.PauseServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PauseService as schema.OperationSchema, input, options) as async.Operation<types.PauseServiceOutput>
 end
 
-function C:resumeService(input: types.ResumeServiceInput, options: any): async.Operation<types.ResumeServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.ResumeService, input, options) as async.Operation<types.ResumeServiceOutput>
+function C:resumeService(input: types.ResumeServiceInput, options?: base_client.InvokeOptions): async.Operation<types.ResumeServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResumeService as schema.OperationSchema, input, options) as async.Operation<types.ResumeServiceOutput>
 end
 
-function C:startDeployment(input: types.StartDeploymentInput, options: any): async.Operation<types.StartDeploymentOutput>
-    return self:invokeOperation(schemas.Service, schemas.StartDeployment, input, options) as async.Operation<types.StartDeploymentOutput>
+function C:startDeployment(input: types.StartDeploymentInput, options?: base_client.InvokeOptions): async.Operation<types.StartDeploymentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDeployment as schema.OperationSchema, input, options) as async.Operation<types.StartDeploymentOutput>
 end
 
-function C:tagResource(input: types.TagResourceInput, options: any): async.Operation<types.TagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.TagResource, input, options) as async.Operation<types.TagResourceOutput>
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
-function C:untagResource(input: types.UntagResourceInput, options: any): async.Operation<types.UntagResourceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UntagResource, input, options) as async.Operation<types.UntagResourceOutput>
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
-function C:updateDefaultAutoScalingConfiguration(input: types.UpdateDefaultAutoScalingConfigurationInput, options: any): async.Operation<types.UpdateDefaultAutoScalingConfigurationOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateDefaultAutoScalingConfiguration, input, options) as async.Operation<types.UpdateDefaultAutoScalingConfigurationOutput>
+function C:updateDefaultAutoScalingConfiguration(input: types.UpdateDefaultAutoScalingConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDefaultAutoScalingConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDefaultAutoScalingConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateDefaultAutoScalingConfigurationOutput>
 end
 
-function C:updateService(input: types.UpdateServiceInput, options: any): async.Operation<types.UpdateServiceOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateService, input, options) as async.Operation<types.UpdateServiceOutput>
+function C:updateService(input: types.UpdateServiceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateServiceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateService as schema.OperationSchema, input, options) as async.Operation<types.UpdateServiceOutput>
 end
 
-function C:updateVpcIngressConnection(input: types.UpdateVpcIngressConnectionInput, options: any): async.Operation<types.UpdateVpcIngressConnectionOutput>
-    return self:invokeOperation(schemas.Service, schemas.UpdateVpcIngressConnection, input, options) as async.Operation<types.UpdateVpcIngressConnectionOutput>
+function C:updateVpcIngressConnection(input: types.UpdateVpcIngressConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateVpcIngressConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateVpcIngressConnection as schema.OperationSchema, input, options) as async.Operation<types.UpdateVpcIngressConnectionOutput>
 end
 
 return M
